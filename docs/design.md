@@ -188,8 +188,9 @@ project, not a release. It should be delivered act by act, each shipping on its 
 
 The editors cover placement, entity scripts and dialogue *editing*, but not authoring:
 
-1. **Add and delete nodes and replies in the dialogue editor.** It can currently edit text
-   and rewire targets, but not create. Phases 1 and 4 both need this.
+1. ~~**Add and delete nodes and replies in the dialogue editor.**~~ **Done.** `Ctrl+N`,
+   `Ctrl+R`, `Ctrl+Shift+Del`, and a rename field that retargets every reply pointing at
+   the node — a rename that doesn't is how the 84 broken links happened.
 2. **A quest editor.** `.Quest.txt` is the brace format `resource_format` already
    round-trips; the state IDs are opaque 8-character codes that want generating and
    cross-referencing against the maps that activate them.
