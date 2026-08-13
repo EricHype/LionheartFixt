@@ -337,6 +337,10 @@ engine.**
 | **Magic school totals** | **3** | **0** | **0** |
 | area-local | 319 | 244 | 657 |
 
+The Karma row counts **dialogue replies only** and understates the system badly — see
+below. Map scripts test karma too, and the finale decides your ending on it. What that row
+really measures is how rarely a *character* remarks on your morality.
+
 Beyond the library, `Custom Requirement` embeds arbitrary expressions. What the game
 already leans on: **entity existence, 1179 uses** of `CCheckExistenceAction` — this is how
 it asks "is that person still alive"; quest state (413 current, 238 ever-activated, 106
@@ -349,12 +353,29 @@ State is stored as derived character attributes, including a general-purpose nam
 
 ### The two big gaps
 
-**Karma is real and unused.** `Derived Character Attributes/Karma`, with 78 threshold
-gates authored from 50 to 1950 — and the shipped game gates **four replies**, on
-`Karma equalless 400` and `Karma equalless 650`. Outside that library only seven files
-read karma at all, and one of them is a developer tool: Shylocke's shop, Nostradamus'
-demesne, Crossroads, Plains, and the `BrotherMichel` and `Nostradamus` conversations. A
-full good/evil axis was built and never wired into the writing.
+**Karma is fully implemented, drives the ending, and is never mentioned in between.**
+`Derived Character Attributes/Karma` is written at **213 sites across 86 files** — 101 in
+dialogue, 64 in map scripts, 47 in character templates and one in a perk. Amounts run from
+-1000 to +1000, clustering on -50 (59 sites), +25 (30), +50 (24), -25 (20) and +75 (20).
+
+The 47 character templates are the part worth knowing: **named innocents carry a karma
+penalty for killing them** — the Barmaid, the Blacksmith, the Fish Monger, Guard Pablo,
+Cervantes, Brother Michel, Esclarmonde, Quinn the Herbalist. Murdering your way through
+Barcelona already costs you something.
+
+And it pays off at the end. `08 Final Encounter.zax` writes karma 15 times and tests
+`Karma moreequal 600` and `Karma moreequal 650` through canned expressions, with relays
+named `Test Relay BAD Karma` and `Test Relay GOOD Karma`. **Karma selects your ending.**
+
+So the gap is not the system, it is the commentary. Of the 78 threshold gates in the
+library, only **seven distinct thresholds are ever tested, at 17 sites**, and only **four
+of those are dialogue replies**. The game tracks your morality meticulously, decides your
+ending with it, and no character ever remarks on it along the way.
+
+> Earlier drafts of this document said nothing wrote Karma. That was wrong: the scan
+> looked only for the read side, `Character Attribute=`, and missed the write side,
+> `Derived character attribute to modify=`. Recorded because it inverted the conclusion —
+> karma went from "a dead system to revive" to "a live system nobody talks about".
 
 **Perks are barely checked.** 98 exist; 20 are awarded by script and only 17 are ever
 checked. Nine live in a folder called `!NPC or Event Given Perks`. The reactive ones are
@@ -390,8 +411,10 @@ needs its own way out. The editor's `no way out` check covers it.
 
 ### What to add, in order of cost
 
-1. **Turn karma on.** 76 unused gates, no new mechanism. Two or three karma-gated replies
-   per major NPC is authoring only, and it is the axis players most expect to matter.
+1. **Make karma audible.** The tracking, the penalties and the ending selector all work
+   already; 71 of the 78 thresholds are simply never tested. Two or three karma-gated
+   replies per major NPC is authoring only, needs no new mechanism, and is the axis players
+   most expect to matter. Nothing blocks it.
 2. **React to the faction-killer perks.** Already awarded. Highest drama per line available.
 3. **Use `CCheckExistenceAction` for consequence.** 1179 uses of machinery already exist —
    "you killed the herbalist, and his brother knows" needs no new system.
@@ -521,23 +544,178 @@ Item 4 also answers the open question about whether a balloon can fire against a
 who may or may not be following: Grumdjum's wiring is a working example to read the answer
 off, rather than something to test blind.
 
+## Cross-cutting: the evil path and the goblin faction
+
+The game's most developed evil content is the pro-goblin thread in the Wilderness, and it
+feeds nothing — no faction, no rank, no karma, no reaction. Making it a real minor faction
+on the model of the Order of Saladin is mostly assembly, because the parts are already
+written.
+
+### What makes Saladin a real faction
+
+The entire mechanism lives in the `.Faction` file. `Saladin Aswaran`, in substance:
+
+```
+CCharacterFaction
+  PlugIn Behavior = CPlugInBehaviorModifyCharacterWhenSelected
+    Modification is permanent = 1
+    +10 Skills/Fighting/OneHandedMelee
+    +10 Skills/Fighting/TwoHandedMelee
+    +1  Character Attributes/(EN) Endurance
+    +20 Derived Character Attributes/CarryWeight
+    +1  Derived Character Attributes/Uber Perks/Saladin Rank
+  Display Name = Aswaran
+  Description  = "The enclave of Knights in this area has been impressed with your
+                  service to the goals of Saladin..."
+```
+
+A faction is **three small files**, one per rank, each granting concrete benefits *and
+incrementing its own rank counter*. `CAssignFactionToCharacterAction` at the joining moment
+is the only script needed; the rank follows from the record, and the rank is what
+`Saladin IS` and `Saladin Highlevel` read. That is the whole template, and it is
+authorable.
+
+### What the goblins already have
+
+**16 dialogues, 282 nodes.** GoblinVillager 55, Grumdjum 42 (33 of them gated — the most
+reactive NPC in the set), GoblinKhan 41, Rakeb 30, Goblin Sapper 26, plus the cut
+GoblinGirl 19 and GoblinGuards 4.
+
+**Eleven quests in a near-symmetric structure.** Each goblin leader already has both a
+serve-them and a kill-them quest:
+
+| Leader | Serve them | Kill them |
+|---|---|---|
+| Plumdjum Khan | Slay the Bounty Hunter for the Khan | Slay the Goblin Khan (Torquemada), Rid the Dryad's Forest |
+| Rakeb the shaman | Collect the Woodcutter's Eyes | Collect the Bounty of the Goblin Shaman Rakeb (Raylark) |
+| Hrubjub | Spy for Hrubjub the Goblin | *(none)* |
+| Raylark, for the other side | Slay Goblins for the Savage Heart, Rakeb's bounty | Kill him for the Khan |
+
+**Both capstone titles are already written.** `Goblin Champion` — *"TITLE PERK: You have
+slain Raylark and Fenclaw and recovered the Everlasting"* — and `Goblin Slayer` — *"You
+have slain a great number of goblins."* One per side, each already awarded by its own
+thread. There is also a `Goblin Kill Counter` attribute and a
+`Raylark Have killed 10 goblins` gate.
+
+### What is actually missing
+
+**Nothing locks anything out.** Checking every `CSetQuestSatusToFailed*` against those
+eleven quests finds **zero links**. You can be hired by Plumdjum to kill Raylark while
+being hired by Raylark to collect bounties on Plumdjum's shaman, and neither side remarks
+on it. The threads do not conflict; they fail to notice each other. The action is used 239
+times elsewhere in the game, so this is wiring, not invention.
+
+**No faction records**, so no ranks, no benefits, no allegiance gate. A `Goblin IS`
+requirement does exist under `Monster Races` with zero uses, but it tests the player's
+*race*, not their loyalty — it is not the gate this needs.
+
+**The village is under-populated** — GoblinGirl and GoblinGuards are cut, which is already
+phase 2 work and lands here.
+
+**The dialogue does not know what you did.** 282 nodes, and the villagers greet a goblin
+champion and a goblin butcher identically.
+
+### The build
+
+1. **Three `Goblin` rank records modelled on Saladin's**, with goblin-flavoured benefits —
+   Sneak, poison resistance, carry weight. Three files, following a shipped pattern exactly.
+2. **Use the existing quests as the initiation ladder.** Spy for Hrubjub to rank 1; Slay
+   the Bounty Hunter to rank 2; deliver the Everlasting to rank 3, where `Goblin Champion`
+   already sits as the capstone. No new quests are needed to stand the faction up.
+3. **Add the exclusivity.** Torquemada's contract fails the Khan's and the reverse. This is
+   the change that turns a checklist into a choice, and it is the smallest of the three.
+4. **Gate the 282 existing nodes on rank.** Free reactivity against gates that already work.
+5. **Feed karma.** Harvesting a man's eyes and liver for a goblin shaman is the darkest
+   thing in the game and currently moves nothing — while killing the Barmaid does. Adding
+   the modifier is one action per choice, and it flows straight through to the ending
+   selector.
+
+Steps 1 to 3 make it a faction without writing a single new quest, which is what makes this
+worth doing early. Step 4 is where new writing goes, and it lands on dialogue that already
+exists. Step 5 is now unblocked: karma is a live system, not a dead one.
+
+### The unfinished evil quests
+
+Six of the game's 21 unofferable quests are the evil path's missing content —
+`FIND THE RELICS FOR THE DARK WIELDERS`, `Convince DaVinci to Join the Dark Wielders`,
+`Find the Yellow Node within the Sewers`, `Investigate Quinn the Herbalist for suspicion of
+heresy`, and the `Rob the Thief Guildhouse` / `Convince the Thief Guildmistress to leave
+the Sewers` pair. Two more, `Root out the heretic Cathars` and `Prevent the Inquisitor from
+killing the Cathars`, are already activated by `02 Hamlet Burned` and display nothing.
+Full inventory and how it was established: [`cut-content.md`](cut-content.md#quests).
+
+The Cathar pair is the most valuable: a massacre-or-save choice, hooks already placed, in
+the aftermath map of the one late act that still works.
+
+### Do not restore "Convince DaVinci to Join the Dark Wielders"
+
+The quest exists with **zero states**, mirroring `Convince Quinn the Herbalist to Join the
+Dark Wielders`, which shipped with three including a refuse-and-kill branch. It is tempting
+to finish it symmetrically. Don't — the finale already disagrees.
+
+DaVinci is a real participant in the last fight: `08 Final Encounter.zax` names him 235
+times, against Galileo's 224, and he has his own `DaVinci Ending` tree. **That tree already
+contains his evil-path lines:**
+
+> `17 DaVinci Talk Evil1` — *"I have misjudged you, young one. The divine promise within
+> you has turned sickly and putrid and has made you more evil than I could have ever
+> forseen."*
+>
+> `18 DaVinci Talk Evil2` — *"You may have become one with the Darkness... It is likely
+> that I cannot defeat you, but we shall fight to the last against your evil scourge."*
+
+On an evil playthrough DaVinci **denounces you and fights**. A quest that recruits him to
+Relican contradicts the ending the game ships. That is very likely why it was cut with no
+states while Quinn's shipped intact: Quinn is expendable and has a `Herbalist Dead` flag to
+prove it, whereas DaVinci is load-bearing and is explicitly made invulnerable in
+`DaVinci Workshop interior.zax` and `01 Hamlet Exterior.zax` by a
+`RESET MAP for Invulnerable DaVinci` relay. The developers blocked the kill on purpose.
+
+His *death* is nonetheless an accounted-for outcome — `GoodEndingDavinciDies`,
+`GoodEndingOldManEscapesDaVinciDies`, a `20 DaVinci dies` node in the Galileo ending, and
+`30 Good Ending Old Man Escapes DaVinci or Galileo Dies` in each of the three spirit
+endings — but those read as him falling *in the final battle*, not being murdered in act 1.
+
+Two ways to use the stub without fighting the finale:
+
+1. **Reframe it as theft rather than recruitment.** Relican wants DaVinci's research or a
+   relic, not his allegiance. It fits the Dark Wielder ladder, leaves the ending intact, and
+   makes his evil-ending denunciation land harder for having been robbed by you.
+2. **If the kill is wanted**, it needs a `DaVinci Dead` flag on the `Herbalist Dead`
+   pattern, the invulnerability relay lifted, and the finale gated so he does not reappear.
+   Feasible, but that is endgame surgery for one quest.
+
+Option 1 is the recommendation.
+
+One loose thread to resolve while in here: `Goblin Champion` requires slaying **Raylark and
+Fenclaw**, but only Raylark appears in the quest text. Fenclaw has his own 18-node dialogue
+with cooperative and tolerant branches, so the second bounty hunter looks like a step that
+was written and only partly wired into the quest.
+
+And a warning for whoever restores the Goblin Girl: her dialogue holds two of vanilla's 21
+`no way out` nodes, `220 Liver` and `225 Liver pie`. They want fixing as part of placing
+her, not afterwards.
+
 ## Suggested order
 
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no
    new writing.
 2. **Cut content into its right home** — Goblin Girl into Goblin Warrens, the Titan quest
-   into Titan Village, Guard Pablo into Temple District. All three go where the section
-   already works, so a mistake is visible immediately.
-3. **The silent maps** — one balloon each, 17 maps, no new NPCs.
-4. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
+   into Titan Village, Guard Pablo into Temple District, Isabella's recruit wiring. All go
+   where the section already works, so a mistake is visible immediately.
+3. **The goblin faction** — three rank records, the existing quests wired as a ladder, and
+   the exclusivity that makes it a choice. No new quests, and it gives the Goblin Girl
+   somewhere to belong, so it follows straight on from step 2.
+4. **The silent maps** — one balloon each, 17 maps, no new NPCs.
+5. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
    scene that was never written. Small, self-contained, high value.
-5. **Companion presets and levelling** — a handful of numbers and a reused action, and it
-   fixes the loudest complaint after the content collapse itself. Isabella's recruit wiring
-   goes with step 2, being restoration.
-6. **Karma and the faction-killer perks** — pure writing against gates that already exist,
-   and it can ride along with any of the above rather than being a phase of its own.
-7. **The Crypt's quests** — the act's real problem, and the largest single job here.
-8. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
+6. **Companion presets and levelling** — a handful of numbers and a reused action, and it
+   fixes the loudest complaint after the content collapse itself.
+7. **Karma and the faction-killer perks** — pure writing against gates that already exist,
+   and it can ride along with any of the above rather than being a phase of its own. Karma
+   already tracks and already picks the ending; only the mid-game commentary is missing.
+8. **The Crypt's quests** — the act's real problem, and the largest single job here.
+9. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
    needs understanding first.
 
 ## Still unanswered
@@ -554,9 +732,11 @@ off, rather than something to test blind.
   disproved that. 874 of the 959 blank, unclickable replies carry it, which reads as
   auto-advance, but that is a clue rather than an answer. It matters because 2894 replies
   have it and new writing has to decide whether to.
-- **What moves Karma?** Seven files read it and nothing in the data appears to write it, so
-  it is presumably engine-maintained. Turning karma on means knowing what raises and lowers
-  it, or setting it explicitly the way any other scripting variable is set.
+- ~~**What moves Karma?**~~ **Answered.** 213 write sites across 86 files, including 47
+  character templates that penalise killing named innocents, and the finale tests
+  `Karma moreequal 600` / `650` to pick the ending. The earlier "nothing writes it" reading
+  came from scanning only `Character Attribute=` and missing
+  `Derived character attribute to modify=`.
 - **Why does Barcelona measure 16.8 spawnable entries per map here against the design
   doc's 8?** Every other section reconciles to within a few percent; this one does not, and
   it should be chased before any Barcelona thinning (though none is planned).
