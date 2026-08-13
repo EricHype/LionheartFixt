@@ -10,8 +10,17 @@ A large restoration-and-repair mod for Lionheart. Three goals, in priority order
    — including by writing new content.
 
 This document records the diagnosis, which is measured rather than asserted, and the phase
-plan. Content inventory lives in [`cut-content.md`](cut-content.md); modding technique
-lives in the `lionheart-modding` skill.
+plan. The work itself is broken down section by section and map by map in
+[`lionheart-fixt-plan.md`](lionheart-fixt-plan.md). Content inventory lives in
+[`cut-content.md`](cut-content.md); modding technique lives in the `lionheart-modding`
+skill.
+
+**Two corrections to the table below, from the per-map survey.** The act table omits the
+**Wilderness**, which is 43 maps -- more than any single act -- holding 825 authored nodes
+and 31 quests, and is where the cut goblin content belongs. And its "dialogue nodes/map"
+counts nodes *filed under* an act's folder; a player also meets whatever their companions
+carry in, which roughly doubles the figure in the late acts. Both measures are in the plan
+document, reconciled.
 
 ## The diagnosis, measured
 
@@ -208,10 +217,10 @@ The editors cover placement, entity scripts and dialogue *editing*, but not auth
 1. **What is `Max Party Mojo`?** It gates generator groups and looks like party-strength
    scaling. Phase 3 cannot be done responsibly without knowing.
 2. **Andre or Marcus?** The cut Titan quest disagrees with itself.
-3. **Where was the goblin village meant to be?** `goblingirl` and `goblinguards` are filed
-   under `Wilderness`, which has 50 dialogue files and no maps of its own — the wilderness
-   dialogue pool is shared. Finding the intended location, if there was one, would beat
-   inventing a place.
+3. ~~**Where was the goblin village meant to be?**~~ **Answered, as well as it can be.**
+   The Wilderness does have maps of its own — 43 of them — and `Goblin Warrens` is already
+   a working village: 15 conversations, 9 quests, 304 reachable nodes, with nine
+   `Goblin House Interior` maps hanging off it. `goblingirl` was cut from there.
 4. **Does companion banter need the companion present?** Whether a balloon action can be
    fired from a proximity trigger against a companion who may or may not be following.
 5. **How much can be thinned before difficulty breaks?** Only play-testing answers this,
