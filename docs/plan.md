@@ -406,6 +406,121 @@ across the game (38% in Barcelona to 27% in the Crypt) — what collapsed was th
 dialogue to gate. Reactivity is not a system to repair. It is writing to attach to a system
 that already works.
 
+## Cross-cutting: companions
+
+Three complaints are usually made about companions — they die instantly, they never level,
+and there is nothing to them once they join. All three are true, each has a different
+cause, and two are data edits rather than design work.
+
+### They die because their toughness is a fixed preset
+
+A companion's durability comes from a `Value To Preset` on their `.Race`, and presets do
+not move. The player's does: `(HP) Hit Points` is computed as roughly
+`15 + 2*EN + (CVariableCharacterLevel - 1) * <an Endurance term>`, so the gap widens every
+act while the companion stands still.
+
+| Companion | HP | AC | |
+|---|---|---|---|
+| Cub Companion | 27 | 50 | |
+| Distressed Sailor | 36 | 90 | |
+| Bear | 39 | 80 | |
+| Cervantes | 60 | 50 | |
+| Conquistador | 60 | 75 | |
+| **Grumdjum** | **225** | **200** | |
+| Beatrice | 12 | 60 | *fragile on purpose — see below* |
+
+For scale: an Alamut Assassin is 150 HP / 280 AC, an Ogre 83 / 215. Cervantes joins in
+Barcelona at 60 HP and is still at 60 HP in the Crypt.
+
+**Grumdjum is the proof.** He is the companion players remember as actually useful, and the
+only thing separating him from the others is that he is built on a race with real numbers.
+A survivable companion is a value, not a system.
+
+**Beatrice is the exception that must not be "fixed".** She is a woman transformed into a
+chicken — her entire dialogue is `Bawk bawk bawk!`, her voice lines are
+`Beatrice Chicken Cluck 10-50.ogg`, and the recruiting reply is *"Come with me, I will help
+you get right again."* She is an escort to protect, so 12 HP is the design, and raising it
+would remove the quest.
+
+### Which is why the roster has to be split by role first
+
+Reading each recruiting line makes the division obvious, and it is not the division the HP
+column suggests:
+
+| Fighters — offer their sword | Escorts — the quest is delivering them alive |
+|---|---|
+| Cervantes — *"Sure, come with me."* | **Beatrice** — clucks; take her to be cured |
+| Sir Roger — *"My sword is yours against the..."* | **Inquisitor Darsh** — *"I will escort you back to Barcelona."* |
+| Lost Knight — *"with your help, I'm sure we can fight our way out"* | **Distressed Sailor** — *"Help! Someone, I need help quickly!"* |
+| Conquistador — *"Are you my next challenger? Glory is my destiny!"* | |
+| Diego, Joan of Arc, the Saladin knight, Grumdjum, Bear, Cub | |
+
+For the escorts, fragility *is* the content — making them tough deletes the quest. Only the
+fighters should be touched. Low numbers here are not automatically defects; check what a
+companion is for before changing it.
+
+Worth recording while we were in there: the developers built an `Invulnerable Chicken`
+race — 1337 HP, 1337 AC, 1337 healing rate — and an
+`Invulnerable Chicken Companion.can` to go with it. It is placed on exactly one map, the
+`Fighting Test` scratch map, so the shipped escort can die. Whether that was a decision or
+an oversight is arguable; either way the lever for "should this escort be failable" already
+exists and is not the HP preset.
+
+### They never level, though the action to do it already ships
+
+Every companion template is `Character Level=1`. `CSetCharacterLevelAction` is used **13
+times across 11 campaign maps** as a level *floor for the player* at act boundaries — Grove
+Exterior sets 8 then 10, Hamlet Exterior 12, Burial Chamber 16, rising to 28.
+
+Its field is `Character to give experiecne to` (the engine's own typo) and **it takes a
+character name**. In all 13 campaign uses it reads `$instigator`. Pointing those same
+act-boundary actions at whichever companions can be present is close to free.
+
+One thing to establish before relying on it: the field is named "give experience to", so
+whether setting a level re-derives HP and skills or merely stamps a number wants the same
+one-NPC experiment that settled the new-attribute question.
+
+### There is no plot because there is no post-recruitment content
+
+Fourteen dialogues recruit a companion — `cortes` (78 nodes), `Cervantes` (53),
+`JoanofArc` (38), `Distressed Sailor` (31), `Inquisitor Darsh` (29), `Beatrice` (21),
+`Crazy Goblin Trapped Conquistador` (18), `SirRoger` (17), `Diego` (10),
+`alamutknightsaladin` (9), `Lost Knight` (9), `RED FILE underground characters` (8),
+`War Golem Companion` (6), `Bear Companion` (2).
+
+Once they join, the entire interaction surface is `Generic Companion Dialog`, referenced
+exactly once in the game. In full:
+
+> **"What would you like your companion to do?"** -> *Release Companion* / *Nothing*
+
+One node. That is the whole of it — except for Grumdjum, who has 42 nodes and three wired
+`companion quips` voice lines. Banter exists, was recorded, and works, for one companion
+out of fourteen.
+
+**Captain Isabella is cut content.** 43 dialogue nodes, recorded companion voice lines
+including `502 grace joined companion` and `502 grace companion asked to return` — and
+**zero** `CSetCompanionAction`. Two of her companion VOs are referenced by nothing. She was
+meant to be recruitable and the wiring never landed.
+
+### What to do, cheapest first
+
+1. **Raise the presets — for the fighters only.** Scaling Cervantes, Sir Roger, the Lost
+   Knight, the Conquistador and the animals toward Grumdjum's numbers addresses the
+   complaint players actually voice, and it is a handful of values. Leave the three
+   escorts — Beatrice, Darsh and the Distressed Sailor — exactly as they are; their
+   fragility is the quest.
+2. **Point the act-boundary level actions at companions.** Reuses shipped machinery at the
+   exact moments the game already thinks about levels.
+3. **Wire Isabella.** Recorded voice, 43 nodes, needs the recruit action. Restoration, not
+   invention — and it belongs with the phase 2 cut-content work.
+4. **Copy Grumdjum's quip pattern to the other thirteen.** Proven in the shipped game, and
+   it is the reactivity work above pointed at companions: `CCheckExistenceAction` already
+   answers "is this companion still alive", which is most of what banter needs to know.
+
+Item 4 also answers the open question about whether a balloon can fire against a companion
+who may or may not be following: Grumdjum's wiring is a working example to read the answer
+off, rather than something to test blind.
+
 ## Suggested order
 
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no
@@ -416,10 +531,13 @@ that already works.
 3. **The silent maps** — one balloon each, 17 maps, no new NPCs.
 4. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
    scene that was never written. Small, self-contained, high value.
-5. **Karma and the faction-killer perks** — pure writing against gates that already exist,
+5. **Companion presets and levelling** — a handful of numbers and a reused action, and it
+   fixes the loudest complaint after the content collapse itself. Isabella's recruit wiring
+   goes with step 2, being restoration.
+6. **Karma and the faction-killer perks** — pure writing against gates that already exist,
    and it can ride along with any of the above rather than being a phase of its own.
-6. **The Crypt's quests** — the act's real problem, and the largest single job here.
-7. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
+7. **The Crypt's quests** — the act's real problem, and the largest single job here.
+8. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
    needs understanding first.
 
 ## Still unanswered
@@ -427,7 +545,11 @@ that already works.
 - **What is `Max Party Mojo`?** 7493 generators carry it. Thinning waits on it.
 - **Andre or Marcus?** The cut Titan quest disagrees with itself.
 - **Do companion balloons need the companion present?** Decides whether banter is cheap or
-  not.
+  not. Grumdjum's three wired `companion quips` are a working example to read the answer
+  off rather than a blind test.
+- **Does `CSetCharacterLevelAction` re-derive HP and skills, or only stamp a number?** Its
+  field is named "give experience to", which suggests the former. Companion levelling
+  depends on the answer, and one NPC settles it.
 - **What does `Is Default Reply` actually do?** Not the cancel binding — an in-game test
   disproved that. 874 of the 959 blank, unclickable replies carry it, which reads as
   auto-advance, but that is a clue rather than an answer. It matters because 2894 replies
