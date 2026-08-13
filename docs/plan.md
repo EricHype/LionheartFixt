@@ -294,6 +294,118 @@ A single balloon line on entering each is the cheapest possible improvement in t
 project — `CDisplayDialogBalloonAction` has 1974 uses to copy from, and it needs no NPC.
 Inner Sanctum being on this list is the one that matters: it is a final boss room.
 
+## Cross-cutting: reactivity to the player's choices
+
+Lionheart has a complete, general, data-only reactivity system and ships with most of it
+switched off. This is the cheapest quality per hour available anywhere in the project,
+because almost none of it needs new machinery — only new writing against machinery that
+already works.
+
+### How a gate works
+
+`Requirement=` on a reply does not name a built-in check. It names a **`.can` expression
+file**, and 609 of them ship — 290 shared under `Resources/Dialog/Requirements/`, 319
+area-local beside the dialogue that uses them. Each is a small comparison:
+
+```
+Object=CIsGreaterThan
+    Operand1=CVariableDerivedCharacterAttribute
+        Character Attribute=Derived Character Attributes/Uber Perks/Templar Rank
+    Operand2=CConstant  Constant Value=0
+```
+
+That file is `Templar IS`. Every axis works the same way, so **anything expressible as a
+number is gateable, and adding an axis is authoring a file rather than patching an
+engine.**
+
+### What is built against what is used
+
+1568 of 10,915 replies are gated — 14%. By category:
+
+| Axis | Gates built | Ever used | Replies |
+|---|---|---|---|
+| Speech | 42 | 25 | 239 |
+| Faction rank | 15 | 8 | 264 |
+| Race | 10 | 5 | 167 |
+| Barter | 43 | 18 | 95 |
+| Attributes (ST/PE/IN/CH/AG/LK) | 50 | 16 | 65 |
+| **Karma** | **78** | **2** | **4** |
+| **Lockpick** | **18** | **0** | **0** |
+| **Sneak** | **4** | **0** | **0** |
+| **Outwit and other derived** | **13** | **0** | **0** |
+| **Monster races** (Dragon/Goblin/Titan/Undead) | **4** | **0** | **0** |
+| **Magic school totals** | **3** | **0** | **0** |
+| area-local | 319 | 244 | 657 |
+
+Beyond the library, `Custom Requirement` embeds arbitrary expressions. What the game
+already leans on: **entity existence, 1179 uses** of `CCheckExistenceAction` — this is how
+it asks "is that person still alive"; quest state (413 current, 238 ever-activated, 106
+completed, 15 failed); inventory 292; money 159; traits 32; race 11.
+
+State is stored as derived character attributes, including a general-purpose namespace,
+`Derived Character Attributes/Game Scripting Variables/`, holding 28 shipped flags —
+`Herbalist Dead`, `Woodcutter Dead`, `River Dryad Dead`, `FACTION LEADERS KILLED`,
+`Goblin Kill Counter`, `Player has heard Grumjun poetry`.
+
+### The two big gaps
+
+**Karma is real and unused.** `Derived Character Attributes/Karma`, with 78 threshold
+gates authored from 50 to 1950 — and the shipped game gates **four replies**, on
+`Karma equalless 400` and `Karma equalless 650`. Outside that library only seven files
+read karma at all, and one of them is a developer tool: Shylocke's shop, Nostradamus'
+demesne, Crossroads, Plains, and the `BrotherMichel` and `Nostradamus` conversations. A
+full good/evil axis was built and never wired into the writing.
+
+**Perks are barely checked.** 98 exist; 20 are awarded by script and only 17 are ever
+checked. Nine live in a folder called `!NPC or Event Given Perks`. The reactive ones are
+already there and mostly idle: `Child Killer`, `Merchant Slayer`, `Ruler of Calle Perdida`,
+`Exposer of Calle Perdida`, `Free Demon in Inquisition`, `Goblin Champion`, `Thief Friend`,
+`Beggar Friend`, and `FACTION Inquisitor / Templar / Saladin / Wielder Killer`. **Those
+four faction-killer perks are awarded and almost never reacted to** — you can destroy a
+faction's leadership and nobody mentions it.
+
+Factions themselves are 13 records in four families of three ranks (Inquisitor
+Acolyte/Hallowed/Inquisitor, Templar Squire/Warden/Paladin, Saladin Aswaran/Blessed/
+Exalted, Wielder Conjurer/Mage/Wizard), assigned by `CAssignFactionToCharacterAction` at
+29 sites and read as `Uber Perks/<family> Rank`.
+
+### Adding a new axis — proven, four steps
+
+1. **Define the variable** — a `.DerivedCharacterAttribute` file, `Expression=CConstant{0}`.
+2. **Raise it at the moment of choice** — `CAddCharacterModifierToCharacterAction` holding
+   a `CCharacterModifierDerivedAttribute` on `$Instigator`. `Allow Accumulation=1` makes it
+   a counter rather than a flag.
+3. **Gate on it** — a new `Requirements/*.can` comparing it to a constant.
+4. **Name that file** in `Requirement=` on a reply.
+
+**This was the open risk and it is now closed.** Every `.can` and every `.zax` enumerates
+the full derived-attribute list inline, so it was not obvious a new attribute could be
+added without sweeping 1698 templates. It can: the round trip is live in `test-pocket` on
+Lucia and was confirmed in-game **on a save whose character predates the attribute**, which
+is the harder case. New tracked state costs three files.
+
+One caution learned from that test: Lionheart has **no cancel key** in dialogue. Every
+conversation is left by choosing a reply that ends it, so any node added behind a gate
+needs its own way out. The editor's `no way out` check covers it.
+
+### What to add, in order of cost
+
+1. **Turn karma on.** 76 unused gates, no new mechanism. Two or three karma-gated replies
+   per major NPC is authoring only, and it is the axis players most expect to matter.
+2. **React to the faction-killer perks.** Already awarded. Highest drama per line available.
+3. **Use `CCheckExistenceAction` for consequence.** 1179 uses of machinery already exist —
+   "you killed the herbalist, and his brother knows" needs no new system.
+4. **Lockpick and Sneak gates.** 22 files built, zero uses. Non-combat solutions for thief
+   builds, which is the most direct answer to "your build stops mattering after Barcelona".
+5. **New flags for Fixt's own content**, per the recipe above. The goblin village and the
+   Titan quest both want "how did you resolve this" memory.
+
+Items 1 to 4 need nothing that does not already exist. Note how this pairs with the
+per-act reading above: the design doc found that the *share* of gated replies barely falls
+across the game (38% in Barcelona to 27% in the Crypt) — what collapsed was the volume of
+dialogue to gate. Reactivity is not a system to repair. It is writing to attach to a system
+that already works.
+
 ## Suggested order
 
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no
@@ -304,8 +416,10 @@ Inner Sanctum being on this list is the one that matters: it is a final boss roo
 3. **The silent maps** — one balloon each, 17 maps, no new NPCs.
 4. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
    scene that was never written. Small, self-contained, high value.
-5. **The Crypt's quests** — the act's real problem, and the largest single job here.
-6. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
+5. **Karma and the faction-killer perks** — pure writing against gates that already exist,
+   and it can ride along with any of the above rather than being a phase of its own.
+6. **The Crypt's quests** — the act's real problem, and the largest single job here.
+7. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
    needs understanding first.
 
 ## Still unanswered
@@ -314,6 +428,13 @@ Inner Sanctum being on this list is the one that matters: it is a final boss roo
 - **Andre or Marcus?** The cut Titan quest disagrees with itself.
 - **Do companion balloons need the companion present?** Decides whether banter is cheap or
   not.
+- **What does `Is Default Reply` actually do?** Not the cancel binding — an in-game test
+  disproved that. 874 of the 959 blank, unclickable replies carry it, which reads as
+  auto-advance, but that is a clue rather than an answer. It matters because 2894 replies
+  have it and new writing has to decide whether to.
+- **What moves Karma?** Seven files read it and nothing in the data appears to write it, so
+  it is presumably engine-maintained. Turning karma on means knowing what raises and lowers
+  it, or setting it explicitly the way any other scripting variable is set.
 - **Why does Barcelona measure 16.8 spawnable entries per map here against the design
   doc's 8?** Every other section reconciles to within a few percent; this one does not, and
   it should be chased before any Barcelona thinning (though none is planned).
