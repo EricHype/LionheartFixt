@@ -215,6 +215,10 @@ Front half is a real place; back half is four numbered dungeons.
 least make them varied. "09 Secret Quest" is a map named after content that was cut — the
 best candidate in the section for a restored objective.
 
+The front half is also where the Thieves' and Beggars' guild war lives, which is act 1's
+real opportunity — see [Act 1 — the choices that go
+nowhere](#act-1--the-choices-that-go-nowhere).
+
 ## Section 8 — Alamut
 
 Better than its reputation: 707 reachable nodes, and the finale works. The middle sags.
@@ -240,9 +244,10 @@ leave the act alone — the endings are reachable and the branch logic is engine
 
 These work. Touch them only where something is broken or where cut content belongs.
 
-**1 Barcelona (36 maps).** Nothing to add. It holds 48 of the 84 broken links, in 17 files
-— by far the biggest share of phase 1, and those files are reachable from five other
-sections because companions carry them.
+**1 Barcelona (36 maps).** Nothing to add *density*. It holds 48 of the 84 broken links, in
+17 files — by far the biggest share of phase 1, and those files are reachable from five
+other sections because companions carry them. But the act does have a real opportunity that
+is not about volume: see [Act 1 — the choices that go nowhere](#act-1--the-choices-that-go-nowhere).
 
 **3 Montaillou (17 maps).** The strongest late act and the bar to aim at: Hamlet Exterior
 alone has 102 conversations and 1006 reachable nodes. Two jobs here — the cut
@@ -255,6 +260,202 @@ the **Goblin Girl** and `goblinguards` belong — Goblin Warrens already has 15
 conversations, 9 quests and 304 reachable nodes, so the village exists and she was cut
 from it. That answers open question 3 in the design doc as well as it can be answered
 without finding a placement record.
+
+## Act 1 — the choices that go nowhere
+
+Barcelona and the Sewers do not need more content. They need the content they have to
+*matter later*. The clearest case is the Thieves' and Beggars' guild war, which is the
+best-implemented faction choice in the game and the least consequential.
+
+### The guild war is fully built
+
+Two symmetric, mutually exclusive ladders:
+
+| Thieves — Juanita Suarez | Beggars — Enrique Garcia |
+|---|---|
+| `TASKS OF THE THIEVES' GUILD` (4 states) | `AID THE BEGGAR GUILDMASTER` (2 states) |
+| Collect Dues in Port District | Destroy the Lava Trolls |
+| Recover Juanita's Stolen Locket | Discover a cure for wererat lycanthropy (5 states) |
+| Steal from a Noble's house | Steal from the Inquisition |
+| **Kill the Beggar Guildmaster** | **Kill the Thief Guildmistress** |
+
+Even the framing mirrors: `Find Juanita` calls her *"leader of the Thieves Guild and enemy
+of the rival Beggars"*, and `Find Enrique` says the same in reverse.
+
+**And it is genuinely exclusive** — 30 `CSetQuestSatusToFailed*` links. `02 Thieves
+Congregation` closes the beggar path, `04 Hall of Beggars` closes the thief path, and
+Juanita's own dialogue fails her rival's questline. The tracking is detailed to match:
+`Beggar leader requires you to have killed Juanita`, `Juanita requires PC to have killed
+Beggar leader Enrique Garcia`, and a romance subplot with a 9-node `Juanita Seduction` tree
+and a requirement file for having *refused* her at node 140.
+
+This is the proof the developers knew how to build exclusivity — which is exactly what the
+goblin faction lacks. **The guild war has exclusivity and no reach; the goblin faction has
+reach and no exclusivity.** The two fixes are opposites.
+
+### Its reach is zero
+
+`Thief Friend` and `Beggar Friend` are each **awarded and checked by exactly one NPC, the
+one that grants them.** Neither perk is referenced anywhere else in the game.
+
+The apparent exceptions are not exceptions. Barcelona's `Juanita` references are the thief
+questline reaching outward — her henchman shaking down a debtor in the Port District — not
+the world reacting to your allegiance. Every act 6 reference is `Temple District Siege`
+failing the quests in its cleanup sweep.
+
+You choose a side, kill a guild leader, take a title perk, and acts 2 through 8 never
+mention it. Neither do the endings.
+
+### The Afflicted are a three-way that nobody finished
+
+Three factions already have written positions on the sewer lycanthropes:
+
+| Faction | Quest | States |
+|---|---|---|
+| Beggars | `Discover a cure for wererat lycanthropy` | 5 |
+| Inquisition | `Deal with the Afflicted in the Sewers` | 2 |
+| Temple District | `Investigate the Beggar Menace in the Sewers` | **0, and unofferable** |
+
+Cure them, exterminate them, or — the missing third — treat the beggars themselves as the
+infestation. Two of the three are shipped and finished. This is the strongest unclaimed
+story in act 1.
+
+Two further cut resolutions belong to the same thread, both among the 21 unofferable
+quests: **`Rob the Thief Guildhouse`** (side with neither) and **`Convince the Thief
+Guildmistress to leave the Sewers`** (the non-violent ending the war visibly lacks).
+
+### What to do
+
+1. **Gate replies on the two title perks outside the Sewers.** They exist, they are
+   awarded, and nothing reads them. A fence in Montaillou who treats a `Thief Friend`
+   differently costs one requirement file and one reply. This is the single cheapest piece
+   of long-range reactivity in the project.
+2. **Feed karma.** Killing Enrique or Juanita moves nothing today, while killing the
+   Barmaid does.
+3. **Restore the two cut resolutions**, so the war has a neutral and a peaceful ending.
+4. **Finish the Afflicted three-way**, which needs one side written rather than three.
+
+Note what is *not* on this list: new quests for Barcelona. The act has 88 quests and 125
+reachable dialogue nodes per map. Its problem is consequence, not volume.
+
+## The back half — roleplaying space, and two new areas
+
+Acts 4 to 8 are dungeons, and a dungeon has nobody to talk to. Two responses are needed
+together: give the existing maps more to do, and add **one or two genuinely new places**
+where the player is not fighting at all. The second matters because there is a limit to how
+much roleplaying you can staple onto a corridor.
+
+### There is almost no social space to work with
+
+Counting maps in the back half with at least three conversations and at most 80 spawns —
+somewhere you can stand and talk:
+
+| Act | Social maps | Which |
+|---|---|---|
+| 4 Crypt | 1 | `1 Crypt Entrance` (3 convs, 37 spawns) |
+| 5 Nostrodomus | 1 | `05 Nostrodomus Demesne` (9 convs, 24 spawns) |
+| 6 Barcelona Attack | 2 | `Blacksmith map` (3 convs, 1 spawn), `Crossroads to England` |
+| 7 English Shrine | 1 | `05 Exalted Chambers` (4 convs, but 64 spawns) |
+| 8 Alamut | 4 | all of them the `END GAME` maps and the finale |
+
+Across acts 4 to 7 there are **four** such maps, and only one — Nostrodomus Demesne — is a
+real hub. Everything else is a fight. That is the pacing complaint stated as a measurement.
+
+### More roleplaying in the areas that exist
+
+Covered per act in the section tables above; the recurring moves are the same four:
+
+- **Non-combatants who belong in a dungeon** — prisoners, survivors, a dying English
+  soldier, a trapped scholar. One per silent map takes the Crypt from one quest to five.
+- **Objectives that reuse the geography** rather than adding it, so the player walks back
+  through a place with a reason.
+- **Companion reaction**, which is the only act-1 dialogue that travels into acts 2 to 5.
+- **Balloons** on the 17 silent maps, needing no NPC at all.
+
+### New area 1 — built from the Outpost's parts, not from the Outpost
+
+`Levels/Oupost.zax` is the only unused non-test map, it is large (7500 x 4000, 934
+entities, 11 working doors) and it is completely peaceful — **zero enemy generators**. The
+temptation is to ship it as-is. It should not be shipped as-is: it is a developer scratch
+area, and measurement says so throughout rather than only in the corner already known
+about.
+
+Cluster its entities and score each cluster by how often it reuses a sprite. A built room
+uses a small kit many times; a sampler uses many pieces once each:
+
+| Region | Entities | Distinct sprites | Repeats each |
+|---|---|---|---|
+| left half (x < 3000) | 601 | 229 | **2.6** |
+| right half (x >= 3000) | 333 | 173 | **1.9** |
+
+No 500-unit cell anywhere on the map exceeds 2.8 repeats, and most sit between 1.0 and
+1.5 — one placement per distinct piece. The left half is better than the right, which is
+why the earlier `outpost-expedition` mod moved the arrival point there, but it is *not*
+good; it is a slightly tidier sampler. The tileset mixing says the same thing: the right
+half puts `Hamlet/General` and `Heart of Fire` pieces beside Dwarf Region ones.
+
+**So harvest it as a parts bin and a catalogue, not as a place.** Its genuine value:
+
+- It lays out a broad sample of the kit — 229 distinct sprites in the left half alone —
+  so it shows an author what exists and what sits together.
+- Its coherent fragments (the bridge runs around x=2000, the walled sections along
+  x=0-1500, y=1500-2500) transplant as *rooms* into a purpose-built map.
+- The tiling vectors this project has already learned came from exactly this kind of
+  reading.
+
+**One correction worth recording: the "Outpost" tilesets are not unused.**
+`Outpost/Dwarf Region` has 4351 placements game-wide and is really the **Sewers kit** —
+Sewer Main Entrance 762, Thieves Congregation 752, Troll Pit 427, Hall of Beggars 367.
+`Outpost/Transformed Region` is Hall of Beggars (865), the Secret Red File Level (628) and
+Unholy Oubliette (364). The kit is 450 and 139 distinct sprites respectively.
+
+Two consequences. First, a new area built from these parts will read as **underground
+stone**, so it should be sited as such — an undercroft or a sheltered cavern, not a
+surface settlement. Second, and more useful: the *shipped Sewers maps are the reference
+for how to use this kit properly*, at hundreds of placements each. Building the new area
+means copying arrangements from `01 Sewer Main Entrance` and `04 Hall of Beggars`, with the
+Outpost as the index of what is available.
+
+### The constraint that decides how both are made
+
+**Terrain blending is not solved.** Every shipped exterior blends ground textures
+procedurally through `CPlasmaTileMap`; a hand-built map gets one flat unblended texture and
+looks it. Test Pocket is the demonstration of that ceiling.
+
+So neither new area can be an outdoor space. Both must be **interiors** — cave, undercroft,
+hall — which lean on placed geometry rather than blended ground, and that is the part the
+editor does well. It also happens to suit the kit: the Sewers/Outpost pieces are
+underground stone.
+
+### New area 2 — a variant of an existing map
+
+The game's own trick for a cheap new place is to copy one and change it:
+`13 House4 Interior After Burned`, `Church Interior ruined`, `Weng Choi Shop Siege`, and
+the whole of act 6, which is act 1's maps under siege.
+
+A cleared or captured section of the Crypt or the Shrine, repopulated with survivors, costs
+a copy and a repopulation rather than a build — and it inherits the original's navigation
+polygons, which a hand-built map does not get. That last point is not a detail: the missing
+`CWayPointsPolygon` data is why an invisible interaction zone never worked in Test Pocket.
+
+If only one new area gets built, make it this one. It is the cheaper of the two and the
+less likely to look wrong.
+
+### Where they slot in
+
+The two worst acts are the Crypt (one quest across ten maps, 296 spawns per map) and the
+English Shrine (49 authored nodes, and a final boss room with no dialogue). Nostrodomus
+already has its Demesne and does not need one.
+
+- **The built undercroft between the Crypt and Nostrodomus** — a survivors' waystation
+  after the act with the least to do in it, assembled from the Sewers kit with the Outpost
+  as the parts index. It is also where the cut Sewer Thieves and English templates could be
+  fielded as residents rather than enemies.
+- **The map variant in or before the English Shrine**, the act that shares *zero* dialogue
+  with act 1 and therefore has no other way to hear about anything you have done.
+
+Neither reuses `Oupost.zax` itself. The existing `mods/outpost-expedition` stays what it
+is — a way to go and look at a developer sandbox — and is not the foundation for either.
 
 ## Cross-cutting: the 84 broken links, by area
 
@@ -706,17 +907,26 @@ her, not afterwards.
 3. **The goblin faction** — three rank records, the existing quests wired as a ladder, and
    the exclusivity that makes it a choice. No new quests, and it gives the Goblin Girl
    somewhere to belong, so it follows straight on from step 2.
-4. **The silent maps** — one balloon each, 17 maps, no new NPCs.
-5. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
+4. **Give act 1's choices reach** — gate replies in later acts on `Thief Friend` and
+   `Beggar Friend`, which are awarded today and read by nobody. One requirement file and one
+   reply per acknowledgement, and it is the cheapest long-range reactivity available.
+5. **The silent maps** — one balloon each, 17 maps, no new NPCs.
+6. **A map variant as the first new area** — copy a cleared section of the Crypt or Shrine
+   and repopulate it with survivors. Cheapest way to break the back half's pacing, and it
+   inherits the original's navigation polygons.
+7. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
    scene that was never written. Small, self-contained, high value.
-6. **Companion presets and levelling** — a handful of numbers and a reused action, and it
+8. **Companion presets and levelling** — a handful of numbers and a reused action, and it
    fixes the loudest complaint after the content collapse itself.
-7. **Karma and the faction-killer perks** — pure writing against gates that already exist,
+9. **Karma and the faction-killer perks** — pure writing against gates that already exist,
    and it can ride along with any of the above rather than being a phase of its own. Karma
    already tracks and already picks the ending; only the mid-game commentary is missing.
-8. **The Crypt's quests** — the act's real problem, and the largest single job here.
-9. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
-   needs understanding first.
+10. **The Crypt's quests** — the act's real problem, and the largest single job here.
+11. **The built undercroft** — a new interior assembled from the Sewers kit, with the
+    Outpost as the parts index and the shipped Sewers maps as the reference for using it.
+    Last of the content work because it is the only item that builds a map from nothing.
+12. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
+    needs understanding first.
 
 ## Still unanswered
 
