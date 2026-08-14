@@ -562,6 +562,315 @@ Montserrat anyway.
 Minor faction, kept minor: one faction assignment, one restored fork, two reward splits and
 a single sparring scene. Everything else it needs, it already has.
 
+## The Sewers' third and fourth parties — lava trolls and wererats
+
+The act 1 section covers the Thieves and Beggars. Beneath them are two more peoples who
+speak, who hate each other, and whom the player cannot side with at all. Both sides of the
+feud are written; one of them was never placed.
+
+### They are peoples, not monster nests
+
+**The lava trolls speak.** `Warning Troll.DialogTree` is placed twice in `05 Troll Pit`:
+
+> `01 Greeting` — *"You! Stop! No welcome."*
+> — *"I come in peace. Eduardo said I should speak to you about Red Ore."*
+>
+> `20 no trust` — *"We no trust Eduardo no more. We no trust no one. **Too many dead
+> Trolls. Wererats sneaky.** Leave or face problem."*
+
+A trade relationship, a grievance, and a named enemy — in two nodes.
+
+**The wererats answer, and their half is cut.** `wereratwarriorcan.DialogTree` (4 nodes,
+"Wererats Helpful Canned") and its `Helpful wererat.can` template are referenced by
+**nothing**:
+
+> *"Since you are a **friend of beasts**, I'll give you some advice. Never trust a thief
+> and **beware of the lava trolls**."*
+> `30 trolls` — *"The lava trolls are in the lower levels of the sewers. I suggest you
+> avoid them."*
+
+Each side warns you about the other. Note the greeting condition — *friend of beasts* —
+which is the game already reaching for a standing check it never got.
+
+### Three parties want them dead or used, and none of it resolves
+
+| Who | Wants | Status |
+|---|---|---|
+| Enrique the beggar leader | the trolls exterminated — `Destroy the Lava Troll Menace`, a sub-quest of `Help the Beggars against the Thieves Guild` | works |
+| Inquisitor Raphael | the wererats exterminated — `Deal with the Afflicted in the Sewers` | works |
+| Eduardo, DaVinci and Cortes | the trolls' **Red Ore**, for the mechanical arm | see below |
+| The trolls | to be left alone, and something done about the wererats | no way to say so |
+
+`Warning Troll` has **no success branch**. Every path from `20 no trust` is "I must pass" or
+leave. And the Red Ore quest states *"Eduardo told you to go to the sewers below Barcelona
+and obtain Red Ore directly from the lava trolls"* — but every
+`Inventory Item To Give=...Red Ore` site is in `Blacksmith map.zax`. **The trolls grant
+none.** The game sends you to trade with them and makes the trade impossible.
+
+Even the merciful wererat path kills their leader: the beggars' cure quest requires slaying
+the Prime Wererat for a patch of fur.
+
+### And a cut item with an obvious home
+
+**`Lava Troll Hide`** has a quest-item definition, an inventory icon and a world pickup
+model — and exactly one file in the archive mentions it: its own definition. Nothing grants
+it, nothing wants it. `Wolf Trapper` already establishes hide-stripping as a mechanic.
+
+### One voice is not a faction
+
+The trolls have **one dialogue file and three nodes**. The goblins, who feel like a people,
+have twelve files and roughly 198 nodes:
+
+| | Files | Nodes |
+|---|---|---|
+| Goblin village | 12 — Villager, Khan, Rakeb, Shaman, EntranceGuard, Crier, Lt, VendorHub, Guards, Girl, Hut Ritual Sayings, guarding Woodcutter daughter | ~198 |
+| Lava trolls | 1 — `Warning Troll` | 3 |
+
+**The technique that makes the difference is cheap.** `GoblinVillager` is a single tree
+opened **52 times** in Goblin Warrens, across fifteen lettered entry nodes —
+`1 Greeting A` through `1 Greeting M`, plus `N Feralkin`, `N Sylvant` and `N Demokin` — each
+on a different `$trigger`. Fifteen goblins with their own opening line, from one file. The
+Khan and Rakeb get their own trees on top, because they are characters rather than
+population.
+
+So the trolls want the same shape, at minor-faction scale:
+
+1. **A `LavaTrollVillager` tree** on the `GoblinVillager` model: lettered greetings for the
+   rank and file, race-specific variants, and state-gated ones for before and after the
+   alliance. One file, several placements, many voices.
+2. **A chief with his own tree**, the Khan's counterpart — the face you negotiate the trade
+   with. *(This reverses an earlier recommendation in this section's review to cut the
+   chief on scope grounds. That was right about the ransom mechanics and wrong about the
+   cast: a faction needs someone to be its face, and the Khan is why the goblins have one.)*
+3. **Keep `Warning Troll` as the gatekeeper**, the `GoblinEntranceGuard` equivalent. It is
+   already placed and already `Team Number=Nutral`.
+
+Three files rather than twelve, and only one of them large.
+
+**The voice is already set, and it is not the goblins'.** The trolls speak in broken,
+plural, blunt sentences — *"You! Stop! No welcome."*, *"We no trust Eduardo no more."*,
+*"Too many dead Trolls. Wererats sneaky."* Hrubjub and his kin rhyme; the trolls do not.
+Two registers, both established in shipped text, and the troll one is cheap to write more
+of.
+
+Worth placing a mourner among them, because the map supplies the reason: a
+`Fixed Dead Body Generator` in the pit spawns a **`Lava Troll Boss` corpse**. Somebody down
+there lost a chief.
+
+### The build — a minor faction, kept minor
+
+Same tier as the goblins and the guilds: standing, reactivity and at most a couple of small
+quests, not an initiation ladder.
+
+1. **Place the cut wererat.** `Helpful wererat.can` and `wereratwarriorcan` exist and go
+   nowhere. Placing them is restoration and it gives the wererats a voice to set against
+   the trolls'. This belongs with the phase 2 cut-content work.
+2. **Give `Warning Troll` a success branch.** Speech, or evidence you have moved against the
+   wererats. Without it the trolls cannot be sided with at all, and the Red Ore promise
+   stays unkeepable.
+3. **Make the Red Ore come from the trolls**, as its own quest text says. That turns the
+   trade into the reward for the peaceful branch and gives the faction an economic reason
+   to exist — DaVinci and Cortes' arm depend on it.
+4. **Give the hide to the violent branch.** Kill them and take hides; deal with them and get
+   ore. One `InventoryAddition`-scale change that makes the choice symmetric rather than
+   punitive, and it retires a cut item.
+5. **Gate on standing, both ways.** Enrique's extermination contract should close the trade,
+   and Raphael's should open the trolls. The wererats' *friend of beasts* greeting is the
+   hook already written for the other direction.
+
+### Tomas, and why the trolls took him
+
+The lost boy in the Troll Pit is the hinge for all of this, because rescuing him is the one
+reason a player *must* go down there.
+
+**The rescue already works peacefully.** Nothing about Tomas is gated on killing trolls. His
+opening line — *"Did you kill all of those things out there?"* — accepts either answer, the
+quest completion and XP fire from `50 Fine` and `60 No thanks` with no troll condition, and
+he leaves under his own power: *"No thanks. I can get out of here on my own. You would just
+slow me down."* The only `Kill all Lava Trolls` strings in the map are comments on `warp`
+entities carrying `CPainAction` — lava damage, not quest gates. The genuine
+kill-them-all requirement belongs to the Beggar Captain, for Enrique's separate contract.
+
+So the fighting is only about *reaching* him. An alliance makes the whole errand peaceful,
+which is exactly the kind of thing that should be possible and currently is not.
+
+**He is not a lost child.** *"I come down here all the time with the beggars. I know my way
+around."* He is a beggar boy who works the sewers, and the pit is full of caches —
+`Hidden Treasure`, `secret area treasure`, `secret area2 chest`, two secret doors, and a
+**`red ore chest`**.
+
+**The reading that costs one invented fact: he was caught stealing Red Ore.** Everything
+else is already written, and this single addition ties three threads together:
+
+- It explains the capture without making the trolls monsters. A people who have lost members
+  and been cheated by their trade partner catch a human child in their ore store and shut
+  him in rather than kill him.
+- **It explains why the Eduardo trade broke.** *"We no trust Eduardo no more."* The ore keeps
+  reaching Barcelona without payment, and Tomas is the evidence — he comes down here "all
+  the time with the beggars", and Enrique is the man paying to have the trolls exterminated.
+- It makes Tomas's own line better. *"I was looking forward to getting revenge on them for
+  throwing me in this room to die"* becomes a caught thief's account rather than testimony.
+  An unreliable narrator is better writing than a victim, and it is already in the shipped
+  text.
+
+The grievance is even visible on the map: one `Fixed Dead Body Generator` in the pit spawns
+a **`Lava Troll Boss` corpse**. There is a dead chief lying down there.
+
+**Getting him out is its own quest.** It must stand alone, and specifically **must not be
+the wererat contract**: a player who only wants the boy should not be conscripted into a war
+with the Afflicted to get him. That allegiance is a separate choice and folding it in would
+collapse two decisions into one.
+
+**But it is not a ransom, and the shipped content is why.** Two findings rule that framing
+out:
+
+- **There is no cell to open.** Tomas sits behind `secret door1`, whose
+  `Relay Name=Save Tomas relay` fires a `CBeginNonInteractiveSequenceAction` when *the
+  player* opens it. `Tomas Generator` and `Tomas Fog pusher` are both `Active=0` until then.
+  He is hidden, not held, and the discovery is the mechanic.
+- **He refuses escort.** *"No thanks. I can get out of here on my own. You would just slow
+  me down."* Then `CDeleteAction` and `COtherMapAction` — he walks out unaided.
+
+So the quest is about **settling his debt and buying passage**, not unlocking a door. The
+theft stays as backstory: it is why the gatekeeper distrusts you and what the price is for.
+
+And **the price cannot be the ore.** There is exactly one Red Ore in the game, it sits in
+the `red ore chest`, and the Blacksmith's dialogue consumes it — seven
+`Inventory Item To remove=Red Ore` sites. Spend it here and Cortes' mechanical arm becomes
+impossible. So:
+
+| Route | Mechanism | Precedent |
+|---|---|---|
+| Pay what the boy took | gold, at a price the chief names | Eduardo's `Barter 25 and 100 gold` node |
+| Barter or talk him down | Barter/Speech gate | Eduardo's test of valour offers six such outs |
+| Hand back something else he lifted | one of the pit's cache items | `CActionCheckForInventoryItem`, 653 uses |
+
+All three are about the immediate theft, and all three are settleable on the spot. The
+*larger* grievance — that Barcelona has been taking their ore for years without paying — is
+deliberately left standing, because that is the first faction quest below. Settling the
+boy's debt buys a hearing, not a partnership.
+
+**Sequence:** settle the debt, then the alliance, then the faction quests. Getting Tomas out
+is what gets you listened to; the standing follows; the errands come after. A player who
+takes the boy and walks away has still had the entire peaceful route without joining
+anything or fighting anyone — which is the point.
+
+And **Tomas still walks out on his own line.** That scene is better than anything a rescue
+would replace it with, and keeping it costs nothing: the negotiation is with the trolls, not
+with him.
+
+**Who you negotiate with.** `Warning Troll` belongs to a dedicated speaker —
+`Speaker=warning troll` — so a talking troll already exists and is placed, and it is
+`Team Number=Nutral`, so it is approachable rather than hostile. The `Lava Troll Boss`
+entries are *spawnable* entries inside generators, in three difficulty tiers, so there is
+no chief character today; see the cast above for why one should be made anyway.
+
+**And keep the sting.** Tomas wants the trolls dead. Free him by making peace and you return
+a boy who resents the bargain, to a guild leader who is paying to exterminate them. Marisol
+gets her brother back; Enrique gets an informant who now knows the way in. That is a real
+cost for the peaceful route, and every piece of it is in the shipped text already.
+
+### Two minor quests for the allied route only
+
+Separate from the ransom, and available after it. Killing the trolls stays the simple
+option: you get through, you loot the chest, you take hides. Allying gets you what violence
+cannot — errands built from grievances the trolls already state and geography already
+placed.
+
+The two below are the core. Four more follow in the next subsection; the aim is not to
+build all six but to have enough that the trolls can be given work in **different
+registers** — diplomacy, ritual, trade, war — which is what stops a faction reading as a
+quest dispenser.
+
+**"Wererats sneaky."** Gated on the alliance *and* on having turned against the Afflicted,
+so it stays a choice rather than a consequence of rescuing a child. The incursion is real
+in the data, not just in the complaint:
+`05 Troll Pit` contains wererat references and `04 Hall of Beggars` contains troll ones, so
+the two peoples already overlap on each other's ground. The Troll Pit also holds
+`secret area1`, `secret area2`, `secret door1`, `secret door2` and their `tophide`
+counterparts — a ready-made answer to *how* the wererats keep getting in. Find the way
+they come through, or clear the incursion. The map does the work; the quest is the reason
+to look.
+
+**"We no trust Eduardo no more."** The first faction quest, and the one that needs no
+allegiance beyond the alliance itself. A broken trade, stated in the second line of their
+only conversation, with a merchant the player already knows. Carry word between them and
+the Red Ore becomes a trade rather than a theft — which is what the Red Ore quest's own
+text says should happen. This one quietly repairs the chain described above, and it is the
+larger version of the debt the ransom only settled for one boy.
+
+The Troll Pit already holds a **`red ore chest`** entity, so today the ore is something you
+fight through them for. That is exactly the asymmetry to preserve: kill them and the chest
+is loot; ally and the ore is given, plus two errands and a supplier who stays alive for
+DaVinci and Cortes.
+
+Neither quest needs a new map, a new NPC or a new item. Both are one quest definition and a
+handful of nodes on a conversation that has to be extended anyway for step 2.
+
+### Four more, all from things already placed
+
+Build two of these, not four. They are listed with their grounding so the choice can be
+made on what the Sewers need rather than on what sounds good.
+
+**The chief's spirit.** The pit holds **30 Spirit generators** (Spirit 2/3/4/5) and a
+`Fixed Dead Body Generator` that spawns a **`Lava Troll Boss` corpse**. The trolls say *"Too
+many dead Trolls."* Their chief is dead and unsettled — lay him to rest, or carry his spirit
+where it needs to go. Spirits are a first-class Lionheart system, and the trolls themselves
+drop spirit charges, so this reads as native rather than bolted on. Everything is already in
+the map; the quest is the reason to notice it. **This is the one that gives the mourner NPC
+a purpose.**
+
+**Speak for us.** Trolls cannot walk into Barcelona. Enrique can, and he is paying to have
+them exterminated. Argue their case: talk him down, or find something that makes the
+beggars stand off. Existing NPC, existing contract, no new map or enemy — and it is a
+**Speech and Barter quest rather than another clearance**, which the Sewers badly need
+since nearly everything down there is a kill count. It also creates the tension worth
+having: siding with the trolls sets you against the beggars, who are the other people you
+might have been helping.
+
+**The vodyanoi.** The most numerous creature in the Sewers by a wide margin — roughly 285
+spawn entries across the maps in eight variants. Lava trolls are fire and stone, vodyanoi
+are water; the antagonism writes itself and costs nothing to stage. Clear a flooded stretch,
+or stop them fouling the trolls' workings. Pure reuse of enemies that already exist in bulk.
+
+**The dead below.** `03 Unholy Oubliette` is 480 entities, 57 generators and **zero
+conversations** — one of the 17 silent maps listed above. It is full of ghouls, with
+skeletons, terrors and zombies through Dungeons 1-3. The trolls dig; the dead are through
+the wall. Recover the trolls who went down and did not come back. **This lands a quest on a
+map that currently has no dialogue at all**, so it clears an item from two lists at once.
+
+**Thieves in the tunnels.** The cut helpful wererat says the thieves *"control the eastern
+sewer corridors and hide within a maze of secret corridors. Their passageways are filled
+with traps."* `09 Secret Quest` — a map named for content it does not contain — holds
+thieves, guard dogs and 45 generators. The trolls want them out. This gives the trolls a
+stake in the Juanita and Enrique war rather than leaving them outside it, and gives
+`09 Secret Quest` something to be.
+
+**Recommendation: the chief's spirit and Speak for us.** With the Eduardo trade and the
+wererat incursion that makes four errands in four registers — ritual, diplomacy, trade,
+war. The vodyanoi and the dead below are cheaper but both are clearances, and the Sewers
+already have too many of those; keep them in reserve.
+
+**Five new quests if the recommendation is taken**, and only one of them is required to see
+the peaceful route: getting Tomas out. The Eduardo trade needs the alliance; the chief's
+spirit and Speak for us need the alliance; the wererat incursion needs the alliance *and* a
+side taken in a war the player may want no part of. Each gate is one step further in, and
+none of them is a toll on the one before.
+
+The result is a four-cornered Sewers — Thieves, Beggars, trolls, wererats — where the two
+non-human parties are the ones nobody has been able to talk to.
+
+**Total cost:** three dialogue files (a villager tree, a chief, and the existing gatekeeper
+extended), a handful of placements, two item grants, five small quests, and the cut wererat
+put back where it belongs. Against the goblins' twelve files that is still a small faction —
+but it is a faction, which one talking troll is not.
+
+Two remaining unknowns, neither blocking: `Blacksmith map.zax` contains two
+`Inventory Item To Give=Red Ore` actions despite the quest text saying Eduardo has none, so
+the ore's provenance is not fully traced; and nothing in the pit currently reacts to
+Enrique's extermination contract, so "his contract closes the trade" is new wiring rather
+than a repair.
+
 ## The back half — roleplaying space, and two new areas
 
 Acts 4 to 8 are dungeons, and a dungeon has nobody to talk to. Two responses are needed
@@ -1216,8 +1525,9 @@ her, not afterwards.
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no
    new writing.
 2. **Cut content into its right home** — Goblin Girl into Goblin Warrens, the Titan quest
-   into Titan Village, Guard Pablo into Temple District, Isabella's recruit wiring. All go
-   where the section already works, so a mistake is visible immediately.
+   into Titan Village, Guard Pablo into Temple District, Isabella's recruit wiring, and the
+   helpful wererat into the Sewers. All go where the section already works, so a mistake is
+   visible immediately.
 3. **The goblin faction** — three rank records, the existing quests wired as a ladder, and
    the exclusivity that makes it a choice. No new quests, and it gives the Goblin Girl
    somewhere to belong, so it follows straight on from step 2.
