@@ -1080,7 +1080,246 @@ Covered per act in the section tables above; the recurring moves are the same fo
 - **Companion reaction**, which is the only act-1 dialogue that travels into acts 2 to 5.
 - **Balloons** on the 17 silent maps, needing no NPC at all.
 
-### New area 1 — built from the Outpost's parts, not from the Outpost
+### New area 1 is not a waystation — it is the ghost garrison's camp
+
+The first instinct was a survivors' waystation between the Crypt and Nostrodomus. That was
+wrong, and the Crypt's own fiction says why: **the Crypt is already a war camp, and the
+game never shows it to you.**
+
+Brother Michel gives the history:
+
+> *"Two hundred years ago, my order fought a great battle against the army of a necromancer
+> within Le Crypte de la Lance Sainte. Therein lies a mighty relic, and in the end we could
+> protect it only by **sealing the complex — and trapping the undead horde within**."*
+
+The Spirit Council gives the curse:
+
+> *"It all started with **a Saracen** claiming to possess a magic that could prevent the
+> Necromancers from claiming the Bleeding Lance… as the undead creatures burst into the
+> final sanctum, Jehanne ordered the Saracen to cast his magic. **The Knight of Saladin
+> invoked the power of his brass lamp**, asking the power inside for aid."*
+>
+> *"the never-ending conflict of **a wish gone awry**"*
+
+And the garrison itself is written as a garrison, not a monster nest:
+
+> `10 relic` — *"Are you a Knight? **Have you been sent to reinforce us?**"*
+> `40 knight` — *"Excellent. **We can use more swords. Find Jehanne, she can help you.**"*
+> *"We are ever vigilant." / "We stand strong against the black tide." / "Fighting the undead
+> hordes is our task, even if it is unpleasant…"*
+
+**Jehanne d'Arc commands them** — 38 nodes, *"commander of l'armée française… The voices of
+the Divine Council have ordered me to defend this Crypt"* — and an `Efreeti` (10 nodes) is
+in the act, which is the thing in the lamp.
+
+**What is missing is the muster point.** `UndeadTemplar` is placed **seven times in the
+whole act**, only on `7 Doomed Plateau` and `9 Burial Chamber`, and mostly on
+`01 Conversation Start` and `20 monster` — the *hostile* greetings. The five "we hold the
+line" barks are used once between them. A player walks ten maps of undead and never learns
+there are two sides down there.
+
+So area 1 becomes a **camp of the Templar dead**: somewhere the garrison musters between
+engagements, Jehanne holds command, the Spirit Council can be consulted, and the Efreeti's
+wish can be discussed by the people it trapped. It answers the question the act never
+answers — *who is fighting whom, and why does it never end*.
+
+Why this is better than the waystation:
+
+- **The cast exists**: UndeadTemplar 14 nodes, UndeadTemplar2 5, Jehanne 38, Spirit Council
+  10, Efreeti 10. Roughly 77 nodes of written Crypt characters, against the act's 34
+  reachable nodes per map.
+- **The tileset is the act's own**, so no kit-matching problem and no undercroft that reads
+  as Sewers.
+- **It turns act 4's combat into a war with sides**, which is a bigger change to the worst
+  act in the game than a rest stop would be.
+- **It connects to the Saladin thread.** A Knight of Saladin's brass lamp caused this, and
+  the Saladin initiation in act 1 is the Dream Djinni. The same faction, the same magic,
+  two hundred years apart.
+
+The Outpost parts-bin work below still applies if a *second* built interior is wanted, but
+the Crypt camp should not be assembled from the Sewers kit — it should be built from the
+Crypt's.
+
+#### What already works, and must not be rebuilt
+
+Most of act 4's story is written *and reachable*. Check before adding anything:
+
+| Piece | State |
+|---|---|
+| **The Efreeti and the wish** | placed in `9 Burial Chamber` at `01 Conversation Start`. Eight wishes, including *"I wish to undo the curse laid upon Jehanne's soul and the souls of h[er knights]"* -> `100 save inga`: *"The souls of these Templars have been freed."* Plus comic failures — wish to be stronger and become *"stronger… smelling"* — and an `IN 7+` option to wish the efreet would get lost |
+| **The lamp** | a real item: `Quest Items/Genie Lamp in Crypt`, with inventory icon and world pickup |
+| **The Spirit Council** | placed on `7 Doomed Plateau`, with separate openings for Jehanne alive and Jehanne dead, and the 22-node account of the wish |
+| **Jehanne** | 38 nodes on `7 Doomed Plateau`, including `410 Open the gates`, `405 combat call help`, `600 Companion Continue Again` and `601 Joan Leaves party and Attacks Player` — **she can be recruited, and she can be killed** |
+| **The false lance** | `False Crypt Protector` in `2 Retreat of Souls Entry`, with a `30 False Lance` node, matching Brother Michel's warning about a forgery |
+
+None of that needs writing. The act has a climax, a moral choice, a joke, and a companion
+who can turn on you.
+
+#### What to add
+
+1. **The camp itself.** The garrison has nowhere to muster. This is the new area, built from
+   the Crypt's own tileset, hung off `1 Crypt Entrance` and `7 Doomed Plateau`.
+2. **Write `Release the Doomed Knights from their Torment`.** It exists with **zero states**
+   and is touched only by `02 Hamlet Burned`'s failure sweep. This is the act's missing
+   spine: Brother Michel sets it, the garrison confirms it, Jehanne carries it, the Efreeti
+   resolves it. Three or four states against content that is already all in place — the
+   single highest-value item in act 4.
+3. **Place the garrison properly.** `UndeadTemplar` appears seven times, mostly on the
+   hostile `01 Conversation Start` and `20 monster`. The friendly branch — *"Have you been
+   sent to reinforce us?"*, *"We can use more swords"* — and **eight of its nine**
+   `Random Knight` barks are unused. Placement, not writing.
+4. **A camp-population tree** on the `GoblinVillager` model, so the muster point has more
+   than one voice. The only substantial new writing here, and the same technique as the
+   lava trolls.
+5. **A reason to come back.** The camp should know how far you have got: whether you found
+   the false lance, whether Jehanne is with you, whether the lamp is in your hands.
+
+**And a naming artifact for the record:** the Efreeti's freeing node is `100 save inga` and
+Burial Chamber opens Jehanne at `500 Inga near Genie`. "Inga" appears to be a working name
+for the character shipped as Jehanne — the same filename-versus-content slippage as
+Andre/Marcus and Amir/Jafar.
+
+#### The garrison should give quests, and the socket is already cut
+
+`UndeadTemplar` recruits the player and then stops dead:
+
+```
+[10 relic]  "Are you a Knight? Have you been sent to reinforce us?"
+   -> "Yes, I am a Knight Templar."                              <Templar IS>
+   -> "<Lie> Yes, I am a Knight Templar."                        <Templar NOT>
+   -> "No, but I must help you protect the relic. Let me pass."  <Templar NOT>
+
+[40 knight]  "Excellent. We can use more swords. Find Jehanne, she can help you."
+   -- no replies. terminal.
+```
+
+A garrison enlists you, says it needs swords, and hands out nothing. **`40 knight` is where
+the act's quests belong**, and it already has a Templar check and a lie option on the way
+in. Note also that the barks are **nine**, `100` through `180` — *"I would lay down my life
+to protect the Lance!"*, *"Evil things lurk in the darkness, despite our best efforts"* —
+and exactly one of them is placed anywhere.
+
+Four quests, each from something already in the act:
+
+**Deal with the assassins.** The Crypt's `Assassin` dialogue is explicit: *"It is our master,
+**the Old Man of the Mountain**, who leads us. And it is he who has decided that you must
+die."* Alamut's faction is already inside the Crypt racing for the same relic, and the
+garrison has no idea. This is the strongest one — it uses a placed enemy, gives the
+two-hundred-year siege a live enemy rather than an abstract one, and links act 4 to act 8.
+
+**The lance they are guarding is a fake.** `False Crypt Protector` presents a choice of
+crypts and a lance that *"crumbles into dust"*; Brother Michel warns the real one is behind
+a secret door nearby. The garrison has died for centuries over a forgery. Telling them, and
+finding the true lance, is a quest the existing content sets up completely.
+
+**Carry word to Brother Michel.** They have been sealed in for two hundred years. Michel is
+a living Templar of the same order, retired in Montaillou, who already knows their story and
+already gives the player an amulet. A courier run between them costs two dialogue additions
+and ties act 3 to act 4.
+
+**Recover the fallen.** `9 Burial Chamber` and `7 Doomed Plateau` are where the garrison
+still fights. A named knight's remains or sword, returned to the camp, is the smallest
+possible version and the natural use for the mourner-style writing the barks imply.
+
+All four are given at `40 knight` or in the camp, all four use placed content, and none
+needs a new enemy or a new map.
+
+#### The evil path through the Crypt
+
+Everything above is good-aligned: enlist, hold the line, free the souls. The act already
+contains most of the opposite, and it is unusually well set up because **Jehanne treats you
+as the enemy by default.**
+
+> `1 Conversation Start` — *"Step no further, **monster**! I will not allow you to desecrate
+> this sanctum nor take the Bleeding Lance from my care."*
+
+Her `20 demand lance` branch has a separate condemnation for **every playable race** —
+Demokin, Feralkin, Sylvant and Human alike — each ending *"You are a servant of the
+necromancers, an abomination, and the Council demands that you be cleansed."* The Spirit
+Council agrees about what you are: *"That which has no soul, save one borrowed from another,
+which was taken from yet another at the point of a sword."*
+
+**What already works for an evil run:**
+
+| | State |
+|---|---|
+| Demand the Lance, insult her, threaten her | written — *"I demand that you surrender the Lance."*, *"You call *me* a monster? What of you?"*, *"The only evil one here is you, corpse."* |
+| **Kill Jehanne** | supported end to end: `601 Joan Leaves party and Attacks Player`, and the Spirit Council answers with a curse — *"you have slain our Pious Child… May you see the death of your children and your childrens' children"* |
+| Waste the wish selfishly | five self-serving options on the Efreeti, all written, all with their punchlines |
+| **Enlist under false pretences** | `10 relic` already offers *"`<Lie>` Yes, I am a Knight Templar."* to a non-Templar |
+| The rival claimants | `Assasin Master CHARACTER` is placed in `9 Burial Chamber` — the same room as the Efreeti and the real Lance |
+
+**What to add, and it is small:**
+
+1. **Let the assassins recruit you.** Their tree is three usable nodes — *"You are too late,
+   Lionheart!"* -> *"Who are you working for?"* -> *"It is our master, **the Old Man of the
+   Mountain**"* -> ends. They are placed at the climax, they serve act 8's villain, and they
+   want exactly what you may want. A join branch here is the mirror of `40 knight` and the
+   evil path's entry point.
+2. **Pay off the lie.** The `<Lie>` enlistment exists and leads nowhere different. Take the
+   garrison's quests as an impostor, learn where the true Lance is, and hand it to the
+   assassins — the betrayal is written into the front door and needs only a consequence.
+
+   **Checked, because this is the shape of mistake the DaVinci recruitment was:** giving the
+   Lance away does *not* break the main plot. `SACRED LANCE.InventoryItem` exists, but
+   **nothing in the game checks for it afterwards** — no `Inventory Item To Check For`,
+   `To remove` or `To Give` anywhere. `08 Final Encounter` mentions the **True Cross five
+   times, the Crown once, and the Lance not at all**, and nothing after act 4 refers to it
+   except Brother Michel, who receives a report. The quest's third state is *"return to
+   Montaillou and if possible, speak with Brother Michel"* — the payoff is the telling, not
+   the object.
+
+   **But it is not inert at pickup, and that decides the design.** Taking the Lance applies
+   a permanent character modifier:
+
+   | | |
+   |---|---|
+   | +5 | `(AC) Armor Class` |
+   | +1 | `CriticalChance` |
+   | +1 | `Fortune` |
+   | +5 | `Skills/Magic Divine/Defensive` |
+
+   `Modification is permanent=1`, on `Player#1-9#`. Pickup also completes the quest and
+   fires `CTriggerRelayAction -> Portal Relay`, a shortcut gated on
+   `CIsQuestCompletedAction`.
+
+   **So the betrayal has to happen *before* pickup, or it costs nothing.** Take the Lance
+   and hand it over and you keep all four bonuses — they attach to the player, not the item,
+   so the sacrifice is imaginary. The evil branch must therefore be *telling the assassins
+   where it is*, or standing aside while they take it: never touching it, and forgoing the
+   bonuses and the portal.
+
+   That makes the reward requirement concrete. **Match roughly +5 AC, +1 Critical, +1
+   Fortune and +5 to a magic branch** — for scale, `Dervish of the Crescent` grants +5 to
+   five Fighting skills and the Saladin Aswaran rank +10/+10 melee with +1 Endurance. The
+   natural mirror is an offensive boon from the Old Man's people where the Lance gives a
+   defensive one, delivered as an event-given perk.
+
+   **No soft-lock risk:** `9 Burial Chamber` has 26 doors and exits to Ante Chamber, Doomed
+   Plateau, and directly to Montaillou's `02 Hamlet Burned` and `05 Church Interior`. The
+   portal is a convenience; refusing the Lance costs the shortcut, not the way out.
+
+   Bookkeeping either way: fail `Find the Templar Crypt and Recover the Sacred Lance`
+   explicitly rather than leaving it open, and give Michel a reaction to the player who did
+   not come back with it.
+3. **A Dark Wielder claim on the Lance.** Jehanne answers four faction claims — Templar,
+   Inquisitor, Saladin and Wielder — but the Wielder line is Cedric's: *"I have been charged
+   to retrieve the Bleeding Lance before evil can…"*. Relican has no claim, though he sends
+   the player after the Crown of Thorns in the same act range. One reply, gated on the dark
+   branch.
+4. **Feed karma.** Killing Jehanne is the darkest act available in the Crypt and moves
+   nothing, while killing a Barcelona barmaid costs 50.
+5. **A necromancer's wish.** The Efreeti's *"I wish that all my enemies here would die"* gets
+   the joke answer — *"your enemies here are already dead!"*. A `Necromancer` or
+   `Undead Glory` player wishing to **command** the horde rather than destroy it is the evil
+   counterpart to freeing the souls, and it uses perks that are currently read by nothing.
+
+The shape that results: the good path enlists with the garrison and frees them; the evil
+path enlists by lying, sells them to the Old Man, and either takes the Lance or the horde.
+Both end at the same wish, spent opposite ways — and the act's existing content already
+carries most of both.
+
+### The Outpost as a parts bin, if a built interior is still wanted
 
 `Levels/Oupost.zax` is the only unused non-test map, it is large (7500 x 4000, 934
 entities, 11 working doors) and it is completely peaceful — **zero enemy generators**. The
@@ -1149,16 +1388,59 @@ polygons, which a hand-built map does not get. That last point is not a detail: 
 If only one new area gets built, make it this one. It is the cheaper of the two and the
 less likely to look wrong.
 
+### How they connect
+
+Maps link through `COtherMapAction` (549 uses) with `CRelocateAction` (724) handling
+movement within a map. A new area needs a door or trigger on an existing map and a return
+link — nothing more exotic than the door `test-pocket` already ships.
+
+**The world map costs nothing.** `Point of interest affiliation` is a *region tag*, not a
+destination: all ten Crypt maps carry `Interface/World Map/Crypt`, all ten Shrine maps carry
+`Silbury Hill`, all eleven Nostrodomus maps `Cavern Nostradamus`. A new area inherits the
+tag of the act it hangs off, and needs no new world-map art. Maps with no tag fall back to
+`Interface/World Map/!Unknown`, which is what the test maps and `Town Exterior map` use.
+
+**The back half's acts are shaped very differently, and it decides what is possible:**
+
+| Act | Structure | Route back to town |
+|---|---|---|
+| 4 Crypt | `1 Crypt Entrance` is a hub to six maps; `7 Doomed Plateau` a second | **yes** — Tavern Port District and Temple District |
+| 5 Nostrodomus | `01 Heart Entrance` is the hub | **yes** — the same two |
+| 7 English Shrine | three internal hubs: `02 Temple Initiate`, `03 Stone Chamber`, `04 Antechamber of Lore` | no — only back to `Crossroads to England`, then forward |
+| 8 Alamut | **a strict chain**, 01 to 08, no branches anywhere | no |
+
+**Area 1 hangs off `1 Crypt Entrance`.** It is the act's only social map (3 conversations, 37
+spawns against the act's 296 average), it is already a hub with eight destinations, and it
+already links back to Barcelona — so the camp is reachable, re-visitable, and sits on the
+route the player is already using. One `COtherMapAction` and a door.
+
+A second entrance from `7 Doomed Plateau` is worth considering, since that is where four of
+the seven `UndeadTemplar` placements already are and where the garrison would plausibly fall
+back from. It is also the act's densest map at 1010 spawns, so a door out of it is a mercy.
+
+**Area 2 hangs off `02 Temple Initiate`**, the Shrine's only social map — 7 conversations, 57
+balloons — and already a hub with four exits. `09 Secret Chamber` is the alternative: a
+dead-end off `04 Antechamber of Lore`, which a variant could extend rather than branch from.
+
+**Alamut cannot take one, and this is worth knowing before anyone tries.** It is eleven maps
+in an unbranching line with no return path. Inserting an area means splicing the chain
+rather than hanging something off it, which is a different and riskier job. Alamut's 117
+spawns per map need the other tools in this plan — companion reaction, balloons, skill
+gates — not a new place.
+
+The same caveat applies more mildly to the Shrine: with no route back to town, anything
+placed there is a **one-visit stop**. That is acceptable for a waystation and wrong for a
+town, which is another argument for the Crypt entrance being the better host of the two.
+
 ### Where they slot in
 
 The two worst acts are the Crypt (one quest across ten maps, 296 spawns per map) and the
 English Shrine (49 authored nodes, and a final boss room with no dialogue). Nostrodomus
 already has its Demesne and does not need one.
 
-- **The built undercroft between the Crypt and Nostrodomus** — a survivors' waystation
-  after the act with the least to do in it, assembled from the Sewers kit with the Outpost
-  as the parts index. It is also where the cut Sewer Thieves and English templates could be
-  fielded as residents rather than enemies.
+- **The ghost garrison's camp, inside the Crypt** — the muster point for Jehanne's Templar
+  dead, built from the Crypt's own tileset and populated by characters the act already has
+  written. It explains act 4 rather than interrupting it.
 - **The map variant in or before the English Shrine**, the act that shares *zero* dialogue
   with act 1 and therefore has no other way to hear about anything you have done.
 
