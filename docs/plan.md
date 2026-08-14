@@ -1086,14 +1086,57 @@ The staging is better than it looks: Hrubjub is at the wall, and both Barcelona 
 dialogues are Gate District files. The connective tissue between the city and the Warrens
 is placed. Nothing runs through it.
 
+### The Crossroads: the second rung, and the first real cost
+
+Sir Esteban, guardsman of the Crossroads, sends you to clear out the goblin patrol. The
+patrol has no way to make you the opposite offer — and it should, because almost everything
+needed is already placed.
+
+**The goblins there already talk.** `Crossroads.zax` fires `CDisplayDialogBalloonAction`
+against `GoblinVillager` nodes through a scripted encounter — entities named
+`goblin encounter` (force-generate and patrol), `goblin confrontation`, `goblin attack
+banter`, `goblin second mark`. Two of those balloons come from a named speaker,
+**`Goblin Patrol Leader`**:
+
+> `500 goblin confrontation` — *"So, you seek to eliminate the goblin scourge? But it will
+> be you that will be purged!"*
+
+That node **already reacts to your allegiance** — it is a response to having taken
+Esteban's contract. It is the natural branch point.
+
+**And they are the Khan's, not vermin.** `500 wilderness banter 4`: *"I do hope **the Khan**
+allows us to attack this day. I am famished."* The same Khan Hrubjub reports to. A player
+who spied on Barcelona for the Horde is notionally already on their side, and the patrol
+treats them as meat.
+
+**The parley machinery exists too.** `GoblinVillager` carries
+`20 used speech to avoid digestion / conflict / battle`, plus race-specific greetings for
+Feralkin, Demokin and Sylvant. Talking a goblin patrol down is a shipped pattern.
+
+**The addition:** gate a second variant of `500 goblin confrontation` on goblin standing.
+Instead of promising to purge you, the Patrol Leader recognises the human who carried word
+to the Khan and offers the counter-contract — **kill Esteban**.
+
+**Why this one matters more than the rest of the ladder:** it is the first goblin choice
+with a price. `LordJavier` checks `prior completion of estebans tasks` three times, so
+Esteban's tasks feed the Knights Templar initiation. Killing him closes a Templar rung.
+That is real cross-faction exclusivity, which is exactly what the goblin thread lacks — and
+unlike the quest-fails-quest wiring in step 3 below, the player can *see* what it costs.
+
+Esteban is already written as someone you can fall out with: `Crossroads.zax` holds
+`piss off esteban`, `Esteban Sends you to jail`, `Esteban mad cam` and
+`Esteban balloon after sending you to jail`. He is not a fixed friendly, so turning on him
+does not fight the characterisation.
+
 ### The build
 
 1. **Three `Goblin` rank records modelled on Saladin's**, with goblin-flavoured benefits —
    Sneak, poison resistance, carry weight. Three files, following a shipped pattern exactly.
-2. **Use the existing quests as the initiation ladder.** Spy for Hrubjub to rank 1; Slay
-   the Bounty Hunter to rank 2; deliver the Everlasting to rank 3, where `Goblin Champion`
-   already sits as the capstone. No new quests are needed to stand the faction up — but
-   rung one needs the onward pointer above, or the ladder starts with a step into nothing.
+2. **Use the existing quests as the initiation ladder.** Spy for Hrubjub to rank 1; the
+   Crossroads patrol's contract on Esteban to rank 2; Slay the Bounty Hunter to rank 3;
+   deliver the Everlasting to the capstone, where `Goblin Champion` already sits. Only the
+   Esteban contract is new, and it needs one gated node variant. Rung one needs the onward
+   pointer above, or the ladder starts with a step into nothing.
 3. **Add the exclusivity.** Torquemada's contract fails the Khan's and the reverse. This is
    the change that turns a checklist into a choice, and it is the smallest of the three.
 4. **Gate the 282 existing nodes on rank.** Free reactivity against gates that already work.
