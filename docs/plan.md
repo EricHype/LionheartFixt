@@ -289,6 +289,37 @@ event-given perk on the `!NPC or Event Given Perks` model — the folder where
 boon granted by a one-off act of kindness or mastery. A nature boon fits the company
 exactly.
 
+**Scale it by race, and give the Feralkin the most.** They are, by the game's own
+definition, *"the descendants of humans imbued with **the magic of a beast or a bestial
+spirit**"* — a bear den is their inheritance, not a curiosity.
+
+The contrast is already written, and it is the reason this lands. Barcelona is wary of
+Feralkin everywhere: **71 distinct Feralkin-specific nodes** across the game, nearly all
+suspicion. The Blacksmith greets one with *"Ah… a long way from the forests, aren't you, my
+big friend?"*, and node `48 Angry Feralkin` exists so the player can say *"is it because of
+my nature that you think I would agree to roam the sewers…"*. The Gate Guards, the Grumpy
+Port Guard, GuardTomas, `inquistorcanned` and the bickering couple all carry Feralkin
+variants of the same wariness.
+
+So a Feralkin is a beast-blooded outsider whom every human in Barcelona eyes sideways —
+and the bears simply take them in. That is the whole reward, and the tiering writes itself:
+
+| Player | Reception | Gate |
+|---|---|---|
+| **Feralkin** | recognised as kin; the fullest boon | `Feralkin IS` — 17 uses, well proven |
+| **Sylvant** | nature-touched, accepted | `Sylvant IS` — 10 uses |
+| Human, Imbued | tolerated; the baseline reward | — |
+| Demokin | uneasy; the beasts keep their distance | `Demokin IS` — 11 uses |
+
+**And a gate for the middle tier already exists, unused:**
+`Tainted race - feralkin or sylvant`, built and referenced **zero times** — exactly the
+"nature-touched" bracket this needs. Its sibling `NOT Feralkin or Sylvant` is also built
+and unused.
+
+The mechanism is the shipped one: race-gated node variants, as in `GoblinVillager`'s
+`1 Greeting N Feralkin` / `N Sylvant` / `N Demokin`, or the Blacksmith's three race-specific
+introductions.
+
 **Later, and this is the better reward: the bears come back.** The mechanism is ordinary —
 a dormant group placed in advance, woken with `CActivateAction` and set friendly through
 `CSetTargetTypeAction` or a category change, gated on the flag set in the den. The Crossroads
