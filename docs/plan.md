@@ -338,6 +338,230 @@ Guildmistress to leave the Sewers`** (the non-violent ending the war visibly lac
 Note what is *not* on this list: new quests for Barcelona. The act has 88 quests and 125
 reachable dialogue nodes per map. Its problem is consequence, not volume.
 
+## The Knights of Saladin — a minor faction, three repairs and one small addition
+
+Saladin is a **minor** faction and should stay one: it gets reactivity, not the Inquisition's
+content budget. Fortunately almost nothing needs writing, because the order is already
+built — three ranks with stat bonuses, 8 initiation quests with 18 states, and reactivity
+scattered across five acts. What it has are three specific breaks.
+
+### 1. Favoured One never becomes Saladin Rank
+
+The Dream Djinni trials award `Dervish of the Crescent` — *"You have become a **Favored One
+of the Knights of Saladin**"* — and `Scholar of the Crescent`. That questline is reachable
+and completable.
+
+But those perks confer only skills (Dervish: +5 to five Fighting skills; Scholar: +1 IN,
++5 Speech). `Dream Djinni Map.zax` performs **0 faction assignments and 0 derived-attribute
+writes**. Meanwhile `Saladin IS` tests `Uber Perks/Saladin Rank > 0`, and the only things
+that increment that rank are the three `.Faction` records — assigned nowhere outside
+`James.zax`, a test map.
+
+So the title and the rank are never connected, and **23 `Saladin IS` replies across five
+acts can never appear**: Barcelona 9, Montaillou 3 (Brother Michel), Crypt 3 (Joan of Arc
+claiming the Bleeding Lance for the Order), English Shrine 7 (Sir Roger), Alamut 1. Plus
+node-level greetings — both Barcelona knights have *"Welcome, brother/sister, into the
+Order of Saladin"* nodes, and the Alamut companion has male and female Saladin variants.
+
+**Repair:** one `CAssignFactionToCharacterAction` for `Factions/Saladin Aswaran`, beside
+the two `Perk to give` calls that already fire in `Dream Djinni Map.zax`. Aswaran is the
+entry rank, which matches "Favored One" and leaves Blessed and Exalted as headroom.
+
+Watch the stacking: the faction record adds +10 One-Handed, +10 Two-Handed, +1 Endurance
+and +20 carry weight on top of Dervish's +5s.
+
+### 2. The Sacred Scimitar cannot be started
+
+The quest is fully authored. Amir (in `Jafar.DialogTree`, whose `Name` field is
+**`Amir Ibn Shazid`** — the same filename-versus-content rename as Andre/Marcus) is meant
+to set it; Eduardo the blacksmith has a complete parallel branch to the Templars' Lion
+Shield, with a test of valour (recover his father's sword from the beggar Felgnash in the
+Sewers), a material hunt (magnetized silver), and **six** ways to talk past the test
+(Speech 25/35, CH 6+, IN 6+, Barter 25 with 100 gold, or Feralkin with IN 4+). The item
+`Sacred Scimitar Saladin Quest.InventoryItem` exists.
+
+Three things are broken, at both ends and in the middle:
+
+| Break | Detail |
+|---|---|
+| **The starter is switched off** | The only thing that sets state `53F5R12P` is an entity named `warp` in `Blacksmith map.zax`, tagged `Comment=activate find scimitar quest`, with **`Active=0`** and **`X Radius=0`** — a deactivated, zero-radius proximity trigger |
+| **Amir never offers it** | Node `202 make a scimitar` says *"I have decided on your second task"* and its only reply goes to `210 give shard quest` — the Shard of Dreams. The node kept the scimitar name after being rewired |
+| **Amir cannot receive it** | *"I have forged the Sacred Scimitar."* -> `210 have scimitar`, which does not exist — and that reply carries the quest's `CSetQuestSatusToCompletedAction` |
+
+### The second task was a fork
+
+`202 make a scimitar` is not a mis-named passthrough — it is a **choice point that lost one
+of its arms**:
+
+> *"&lt;Amir stops speaking, appears to contemplate something for a few moments, and then
+> resumes&gt; Hmmm. Yes, yes, **I have decided on** your second task."*
+
+He deliberates and then picks. There is nothing to deliberate if only one task exists. The
+numbering agrees: `210 give shard quest` and the missing `210 have scimitar` share a
+number, which is what happens when one branch is written over another rather than added
+beside it.
+
+The intended shape, then:
+
+```
+201 ali continued
+      |
+202 make a scimitar          "I have decided on your second task"
+      |                    \
+210 give shard quest        (scimitar assignment -- MISSING)
+      |                        |
+215 shard                   210 have scimitar -- MISSING
+      \                        /
+        120 donate gem  ->  trials  ->  230 knight of saladin  ->  Favored One
+```
+
+Two arms of one fork, converging on the gem and the trials. What survives is the shard arm
+plus both ends of the scimitar quest itself — Eduardo's full branch, the item, the
+requirement files — with only Amir's two nodes gone.
+
+**Restoring it means making the fork real again:** `202` offers both, each arm assigns its
+quest, each has a receipt node, and both lead to `120 donate gem`. The player does one or
+the other, not both.
+
+**Repair, and why not the obvious one.** Re-enabling the `warp` trigger is tempting and
+wrong: it is ungated, so it would hand the quest to every player who walks into the smithy,
+which is plausibly why it was switched off. Do it through Amir instead, matching the quest's
+own text (*"Bring Scimitar to Amir in Gate District"*):
+
+1. Give `202 make a scimitar` two replies rather than one, so Amir's deliberation ends in an
+   actual choice — the scimitar or the Shard.
+2. Author the scimitar assignment node, activating state `53F5R12P`, so the quest can start
+   without the dead trigger.
+3. Author `210 have scimitar` as the receipt, mirroring `215 shard`: acknowledge, then send
+   the player on to `120 donate gem`. Retarget the existing hand-in reply to it.
+4. Leave the dead `warp` trigger alone.
+
+This is the project's best first content job: self-contained, entirely in act 1, restores a
+finished questline rather than inventing one, and exercises the node authoring the dialogue
+editor just gained.
+
+### 3. Reward the route, not just the completion
+
+The Saladin line already contains the pattern, shipped and working. The Dream Djinni trials
+branch on *how* you win:
+
+| Route | Reward |
+|---|---|
+| Beat Kabool's champions in combat | `Dervish of the Crescent` — +5 to all five Fighting skills |
+| Beat Kabool in a contest of wits | `Scholar of the Crescent` — +1 Intelligence, +5 Speech |
+
+Two entities, `Give Dervish Perk` and `Give Scholar Perk`, hand them out. Same quest, two
+outcomes, chosen by approach.
+
+**The scimitar has the same branching and none of the payoff.** The game already tracks
+which route you took:
+
+- whether you retrieved Eduardo's father's sword from Felgnash, or talked past the test
+  through Speech 25/35, CH 6+, IN 6+, Barter 25 with 100 gold, or Feralkin indignation
+- whether he offered you payment for the retrieval — a flag entity literally named
+  `Blacksmith offered payment`, checked by `CCheckExistenceAction`, giving two separate
+  nodes, `50 Got Sword Payment` and `50 Got Sword No Payment`
+
+And then **node `64 here is your scimitar` hands the identical
+`Sacred Scimitar Saladin Quest` to everyone.** The same is true of the Templars' Lion
+Shield at `63 here is your shield`.
+
+Eduardo argues the case himself:
+
+> *"Fashioning a Sacred Scimitar… it requires a test of valor, of bravery on the part of the
+> owner to give the scimitar its strength, its spiritual center."*
+
+By the game's own fiction, a scimitar forged for someone who bartered their way out of the
+test should not be the same weapon. Proposed differentiation, using the state that already
+exists:
+
+| How you got it | Reward |
+|---|---|
+| Retrieved the sword, refused payment | the Sacred Scimitar as it ships (+5% critical), and karma |
+| Retrieved the sword, took payment | the scimitar and the gold, no karma |
+| Talked or bartered past the test | a plain scimitar — no critical bonus. He never got his father's blade back, and said himself where the enchantment comes from |
+
+That is one new `InventoryAddition` variant and a gate on an existing node, not new content.
+
+**And restoring the fork creates a second, larger split.** Once `202` offers a real choice,
+the two arms should not pay out the same way, because they are different kinds of deed:
+
+| Second task | What it costs | What it should return |
+|---|---|---|
+| **Forge the Sacred Scimitar** | errands in Barcelona and the Sewers, and a test of valour | the weapon — a personal arm, earned |
+| **Recover the Shard of Dreams** | a raid on the slavers' lair in the Wilderness | standing with the order, and a treasure surrendered to it |
+
+The scimitar arm ends with the player holding something; the Shard arm ends with the player
+handing something over. That asymmetry is already in the writing — Amir's *"Amir is
+extremely pleased!"* on receiving the Shard is gratitude for a gift, while Eduardo's
+scimitar is made *for* you.
+
+The **gem is not part of this fork** — it is the toll for the trials, paid after either arm,
+and its own lever is *which* gem. Handing over the Eye of the Dragon rather than any common
+stone is a larger sacrifice and deserves to be noticed.
+
+**The general principle, worth applying beyond Saladin:** where the game already records
+*how* a quest was resolved and then pays out identically, differentiating the reward is
+cheap reactivity. The thieves-and-beggars war and the goblin threads both qualify — each
+already tracks which side you took and rewards both the same.
+
+### 4. A sparring lesson for a real sword
+
+A small designed addition, and the only genuinely new content proposed for this faction.
+It costs one node and one custom action because the cast, the staging and the pattern all
+already exist.
+
+**The knights are already sparring.** `saladinknightcan` is Farshad ibn Almassizad, and he
+says so himself:
+
+> *"Fight? No, I am merely dueling with my twin brother, **Farshid**. He has much to learn
+> in the ways of the blade…"*
+
+Twin brothers, mid-duel, in the Gate District beside Amir's tents. Farshid is a named NPC
+in his own right — he activates `Seek out Ali Huban`.
+
+**The interaction.** If the player is carrying the Sacred Scimitar, Farshad offers a lesson
+now that they have a proper blade. Accepting fades to black over the sound of sparring, and
+the player comes back with a few points of One-Handed Melee.
+
+**Every piece has a shipped reference:**
+
+| Piece | Mechanism | Reference |
+|---|---|---|
+| Gate on carrying the scimitar | `CActionCheckForInventoryItem` on `Quest Items/Sacred Scimitar Saladin Quest` | 653 uses |
+| Fade to black | `CFadeScreenDownAction { Time Until Auto Fade Up=3 }` | **the Blacksmith's own forging montage**, `60 Back With Silver`, in the same district |
+| Sparring noise | `CPlaySoundAction` with `Sounds/Ambient/Environmental Hits/AMB_barc_attack_SS*.ogg` | 3536 uses; 226 combat-sound candidates |
+| Pause between | `CDelayAction` | pairs with the fade in every shipped use |
+| Award the skill | `CAddCharacterModifierToCharacterAction` -> `CCharacterModifierSkill` on `Skills/Fighting/OneHandedMelee` | 143 uses, including the Saladin faction records themselves |
+
+The fade needs no counterpart action: `Time Until Auto Fade Up` brings the screen back on
+its own, which is why the Blacksmith's montage is self-contained.
+
+**Fire it once.** `CCharacterModifierSkill` with `Allow Accumulation=1` is repeatable, so
+without a guard the lesson is a skill farm. Use the derived-attribute recipe — a
+`Game Scripting Variables/Saladin Lesson Taken` flag, raised by the same custom action and
+checked by the reply's requirement. This is exactly the pattern proved in `test-pocket`.
+
+**Size the bonus against its neighbours:** the Crescent perks give +5 to five skills each,
+and the Aswaran rank gives +10 One-Handed and +10 Two-Handed. **+3 One-Handed** is a
+noticeable nudge that does not compete with either, and it fits "a quick lesson" rather
+than a training arc.
+
+The nice detail is that it reads as a reward for the *scimitar arm* of the second-task fork
+specifically — take the Shard instead and the brothers have nothing to teach you, because
+you never got the sword. That is reward differentiation expressed as content rather than
+as a stat table.
+
+### 5. Nothing else
+
+No Saladin questline expansion, no Montaillou coverage to match the Inquisition's eleven
+NPCs, and **no Crown of Thorns work** — `Travel to Montserrat` is already activated by
+Jafar, and every other order plus the faction-neutral Brother Montgomerie sends you to
+Montserrat anyway.
+
+Minor faction, kept minor: one faction assignment, one restored fork, two reward splits and
+a single sparring scene. Everything else it needs, it already has.
+
 ## The back half — roleplaying space, and two new areas
 
 Acts 4 to 8 are dungeons, and a dungeon has nobody to talk to. Two responses are needed
@@ -907,25 +1131,30 @@ her, not afterwards.
 3. **The goblin faction** — three rank records, the existing quests wired as a ladder, and
    the exclusivity that makes it a choice. No new quests, and it gives the Goblin Girl
    somewhere to belong, so it follows straight on from step 2.
-4. **Give act 1's choices reach** — gate replies in later acts on `Thief Friend` and
+4. **The Knights of Saladin** — one faction assignment lights up 23 written replies across
+   five acts; restoring two of Amir's nodes returns the Sacred Scimitar questline; and
+   splitting the scimitar's reward by route follows the Dervish/Scholar pattern the act
+   already ships. Small, self-contained, all in act 1, and the best first content job in
+   the project.
+5. **Give act 1's choices reach** — gate replies in later acts on `Thief Friend` and
    `Beggar Friend`, which are awarded today and read by nobody. One requirement file and one
    reply per acknowledgement, and it is the cheapest long-range reactivity available.
-5. **The silent maps** — one balloon each, 17 maps, no new NPCs.
-6. **A map variant as the first new area** — copy a cleared section of the Crypt or Shrine
+6. **The silent maps** — one balloon each, 17 maps, no new NPCs.
+7. **A map variant as the first new area** — copy a cleared section of the Crypt or Shrine
    and repopulate it with survivors. Cheapest way to break the back half's pacing, and it
    inherits the original's navigation polygons.
-7. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
+8. **Inner Sanctum and Druid Council Level1** — the two rooms most obviously built for a
    scene that was never written. Small, self-contained, high value.
-8. **Companion presets and levelling** — a handful of numbers and a reused action, and it
+9. **Companion presets and levelling** — a handful of numbers and a reused action, and it
    fixes the loudest complaint after the content collapse itself.
-9. **Karma and the faction-killer perks** — pure writing against gates that already exist,
-   and it can ride along with any of the above rather than being a phase of its own. Karma
-   already tracks and already picks the ending; only the mid-game commentary is missing.
-10. **The Crypt's quests** — the act's real problem, and the largest single job here.
-11. **The built undercroft** — a new interior assembled from the Sewers kit, with the
+10. **Karma and the faction-killer perks** — pure writing against gates that already exist,
+    and it can ride along with any of the above rather than being a phase of its own. Karma
+    already tracks and already picks the ending; only the mid-game commentary is missing.
+11. **The Crypt's quests** — the act's real problem, and the largest single job here.
+12. **The built undercroft** — a new interior assembled from the Sewers kit, with the
     Outpost as the parts index and the shipped Sewers maps as the reference for using it.
     Last of the content work because it is the only item that builds a map from nothing.
-12. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
+13. **Thinning** — last, and only after the acts have more to do. `Max Party Mojo` still
     needs understanding first.
 
 ## Still unanswered
