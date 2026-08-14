@@ -170,10 +170,152 @@ it only looks better than the Shrine because companions carry lines in.
 | 3 Animal Den | 78 | 0 | 0 | 22 | Silent. |
 | 4 Animal Cave | 216 | 0 | 0 | 72 | Silent. |
 
-**The plan for the act.** "Druid Council Level1" is a room built for a scene that was never
-written. Individual druids to talk to, disagreeing with each other about the player, is
-the obvious fix and the act is short enough to finish. Highest new-writing value per map
-in the game.
+**The plan for the act — keep it a combat act.** The instinct to convert Montserrat into a
+settlement is wrong: it works as a fight. What it lacks is any way for a build other than a
+combat build to *change* that fight. "Druid Council Level1" is still a room built for a
+scene never written, and a druid or two to talk to would help, but the larger opportunity
+is below.
+
+### Montserrat: making a combat act read your build
+
+**What actually fights you here:**
+
+| Map | Enemy | Generators |
+|---|---|---|
+| 01 Grove Exterior | **Snakebreed**, incl. **Snakebreed Venom** ×3 tiers, plus 7 Vodyanoi | 113 |
+| 02 Druid Council Level1 | Snakebreed, Venom and **Boss** tiers | 48 |
+| 02 Druid Council Level2 | the same | 30 |
+| 3 Animal Den | **Bears** — Bear, Tough, Super, and nothing else | 9 |
+| 4 Animal Cave | **Wasps**, incl. Tainted variants | 24 |
+
+Venomous snake-people, bears and wasps. **It is a poison-and-beasts act**, and two shipped
+perks name those things exactly:
+
+- **`Snake Eater`** — *"a slight immunity to poison, adding 30% to your Poison Resistance"*
+  — against three maps of Snakebreed Venom. Today it is a passive number and nothing more.
+- **`Wolf Trapper`** — *"You are able to strip a **wolf or bear** of the..."* — and
+  `3 Animal Den` is nine bear generators, 78 entities, zero conversations. The perk names
+  the map's entire contents.
+
+Others that fit the ground: `Earthen Contact` (attunement to nature, in a druid grove),
+`Superior Senses` (+1 Perception, "tribal ancestors"), `Observant` ("notice when things are
+out of place"), `Ghost` and `Master Thief` (Sneak and Find Traps).
+
+**What the act gives you to work with, and what it does not:**
+
+| | Grove | Council L1 | Council L2 | Den | Cave |
+|---|---|---|---|---|---|
+| `CFreeRangePoly` zones | 104 | 71 | 90 | 3 | 3 |
+| Doors | 2 | 1 | 4 | 0 | 0 |
+| **Locked doors** | 0 | 0 | **1** | 0 | 0 |
+| Secret doors, `Door` tree uses | 0 | 0 | 0 | 0 | 0 |
+
+265 interaction zones already placed across the three main maps, **one locked door in the
+whole act**, and the shared `Door` tree — the game's vehicle for lockpicking, trap disarming
+and revealing false walls — used **zero times**.
+
+**And the act has one NPC of its own.** `Brother Montgomerie`, 11 nodes. Everything else
+that speaks in Montserrat is a companion you brought with you: `cortes`, `Cervantes`,
+`Inquisitor Darsh` in the Grove.
+
+### What to add, in cost order
+
+1. **A locked flank into Druid Council Level 1.** Eighteen Lockpick gates exist and are
+   used zero times game-wide; the act has one locked door. A side entrance that avoids the
+   frontal approach turns the silent 48-generator map into a build check. **No NPC needed,
+   which is the whole point in a corridor.**
+2. **Sneak past the Grove patrols.** Four Sneak gates built, zero used, against 104 zones
+   already placed. `202 sneaking into titan pen` in the `Door` tree is the shipped model —
+   *"if you're caught in here the titans will be very displeased."*
+3. **Make `Snake Eater` visible.** A venom pool, a poisoned passage, or a Snakebreed nest
+   that does not rouse for someone who reeks of it. The act is built of the exact enemy the
+   perk answers.
+4. **Give `3 Animal Den` a reason — and bring the bear.** See below; this is the act's best
+   small set piece and the map with the most room for improvement, because it currently has
+   none at all.
+5. **Perception and Outwit on the ambushes.** Thirteen derived gates, zero uses. Spot the
+   Grove ambush before it triggers.
+6. **One druid who can be talked down**, on the `GoblinVillager` pattern — the act's
+   enemies currently have no voice at all, so this is the only item here that needs writing.
+
+Items 1, 2 and 5 need no new art, no NPC and no map. They are requirement files and trigger
+zones against geometry that is already placed — which is why this approach works in acts
+where a town would not.
+
+### The bear cub and the Animal Den
+
+**`3 Animal Den` is the emptiest map in the game.** Four named entities — the two Grove
+transitions, `Start Here`, and `AMBIENT Cave SFX` — **zero loot generators and zero items**,
+against nine bear generators. You walk in, fight bears, and leave with nothing at all.
+
+**And you can already be travelling with a bear.** `Bear Companion.DialogTree` is placed at
+the Crossroads: *"&lt;The bear looks at you affectionately&gt;"*, with *"Encourage the bear to
+rejoin you"* and a `20 Whine` node — *"&lt;The bear whines with disappointment&gt;"* — for turning
+it down. It is a small one: the companion runs on `Weak Crossroads Bear` at **27 HP**,
+against the den's Bear 39, Tough 46 and Super 53. It cannot win that fight.
+
+Which is the point. **Arriving at a bear den with a bear should not be a fight.** The
+obvious reading is the one the numbers suggest: it is a cub, and this is where it came
+from. Bring it home and the den is not hostile; the reward is whatever the den should have
+held all along, and it costs the player their companion — a real trade, not a bonus.
+
+Everything needed is shipped:
+
+| Piece | Mechanism | Precedent |
+|---|---|---|
+| Detect the bear is with you | `CCheckExistenceAction` on the companion | `Name To Check For=Cervantes` ×18, `Cortes with arm` ×10, `player is close enough to see bear` ×8 |
+| Stop the den attacking | `CRemoveCategoryAction` / `CSetTargetTypeAction` | 922 uses between them |
+| Say something on entry | `CDisplayDialogBalloonAction` | 1974 uses |
+| Put something worth finding there | an inventory generator | the map currently has none |
+
+**This also partly answers an open question.** The plan asks whether a script can tell if a
+companion is present; Cervantes and Cortes are existence-checked 28 times between them, so
+the answer is yes for a named companion. What remains untested is whether the check
+distinguishes *following* from merely *alive*.
+
+Note the shape it shares with the lava trolls, at a fraction of the size: a hostile
+population, a peaceful route that needs something brought to it, and a reward the violent
+route does not give. If the troll faction is the large version of that idea, the bear den is
+the version that could be built in an afternoon — and it improves a map that presently has
+nothing in it whatsoever.
+
+#### The reward, and the bears returning
+
+Giving up a companion deserves more than a chest, and the game supplies both halves.
+
+**Immediate:** the den should hold something, since it holds nothing today, plus an
+event-given perk on the `!NPC or Event Given Perks` model — the folder where
+`Brambles Patience`, `Weng Choi Perk` and `Stargazer` already live, each a small permanent
+boon granted by a one-off act of kindness or mastery. A nature boon fits the company
+exactly.
+
+**Later, and this is the better reward: the bears come back.** The mechanism is ordinary —
+a dormant group placed in advance, woken with `CActivateAction` and set friendly through
+`CSetTargetTypeAction` or a category change, gated on the flag set in the den. The Crossroads
+already stages an encounter this way with `CForceGenerateAction` and `CSetPatrolAIAction`.
+
+**And Montaillou is where they should arrive, because the Cathars are bears.**
+
+> `Cathar Warden` — *"I saw you as a bear, and then magically change into your current
+> form."*
+> *"Like the rest of my clan, I am a **lycanthrope** and must take the form of the bear for
+> half of the day. It is a secret our..."*
+
+`Cathar Bearform` is placed **9 times in `01 Hamlet Exterior` and 34 times in
+`02 Hamlet Burned`** — `Team Number=Nutral`, `Category=Enemy`. A player who returned a cub
+to its den in act 2 arriving in act 3 among a bear-clan being hunted by the Inquisition is a
+connection the shipped content makes on its own; it only needs to be noticed.
+
+That also lands on the strongest unclaimed pair in the game: `Root out the heretic Cathars`
+and `Prevent the Inquisitor from killing the Cathars`, both empty, both already activated by
+`02 Hamlet Burned`. Mercy shown to bears earning standing with bear-people is exactly the
+kind of thread that makes a massacre-or-save choice weigh something.
+
+One complication worth keeping rather than smoothing away: **not every bear is a friend.**
+`ToulouseIapetus` warns that *"The creature is no mere bear, as we at first thought. It is,
+I fear, a Daeva... We have seen it take the forms of a bear, an ogre, a bird."* A player who
+has learned that bears are allies meeting a Daeva wearing one is the natural sting, and the
+line is already written.
 
 ## Section 6 — Barcelona Attack
 
@@ -250,9 +392,11 @@ other sections because companions carry them. But the act does have a real oppor
 is not about volume: see [Act 1 — the choices that go nowhere](#act-1--the-choices-that-go-nowhere).
 
 **3 Montaillou (17 maps).** The strongest late act and the bar to aim at: Hamlet Exterior
-alone has 102 conversations and 1006 reachable nodes. Two jobs here — the cut
+alone has 102 conversations and 1006 reachable nodes. Three jobs here — the cut
 `Help Andre the Titan with his tasks` quest belongs in Titan Village (61 conversations, 44
-spawns, already the right shape), and the act holds 20 broken links in 5 files.
+spawns, already the right shape); the act holds 20 broken links in 5 files; and it is where
+the Montserrat bear thread should pay off, because the Cathars are bear-lycanthropes and
+`Cathar Bearform` is placed 43 times across two of its maps.
 
 **Wilderness (43 maps).** Healthy but repetitive: nine Goblin House Interiors share one
 55-node tree between them, and the five `Random *` maps have 2 nodes each. This is where
@@ -1075,6 +1219,11 @@ The Karma row counts **dialogue replies only** and understates the system badly 
 below. Map scripts test karma too, and the finale decides your ending on it. What that row
 really measures is how rarely a *character* remarks on your morality.
 
+The zero rows are the opportunity, and they are not only for conversations: Lockpick,
+Sneak and the derived attributes are how a build expresses itself in a *fight*, not just in
+a dialogue. Worked through for one act in
+[Section 2 — Montserrat](#section-2--montserrat).
+
 Beyond the library, `Custom Requirement` embeds arbitrary expressions. What the game
 already leans on: **entity existence, 1179 uses** of `CCheckExistenceAction` — this is how
 it asks "is that person still alive"; quest state (413 current, 238 ever-activated, 106
@@ -1563,7 +1712,9 @@ her, not afterwards.
 - **Andre or Marcus?** The cut Titan quest disagrees with itself.
 - **Do companion balloons need the companion present?** Decides whether banter is cheap or
   not. Grumdjum's three wired `companion quips` are a working example to read the answer
-  off rather than a blind test.
+  off rather than a blind test. Partly answered: a named companion *can* be existence-checked
+  — Cervantes 18 times, Cortes 10 — but whether that distinguishes following from merely
+  alive is untested.
 - **Does `CSetCharacterLevelAction` re-derive HP and skills, or only stamp a number?** Its
   field is named "give experience to", which suggests the former. Companion levelling
   depends on the answer, and one NPC settles it.
