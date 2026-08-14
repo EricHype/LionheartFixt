@@ -1040,13 +1040,60 @@ phase 2 work and lands here.
 **The dialogue does not know what you did.** 282 nodes, and the villagers greet a goblin
 champion and a goblin butcher identically.
 
+### The way in already exists, and nobody finds it
+
+Hrubjub is the goblin scaling the wall west of Barcelona's gate — the `Goblin Sapper`
+dialogue, whose tree name is `Hrubjub`, filed under Gate District. Reporting him to the
+guard looks like the only option. It is not: you can join him, and the branch is well
+written.
+
+The route in is a **single reply**. Ask *"Did you kill this town guard?"*, then answer:
+
+> *"I admire your handiwork. I am no friend to these city guards."*
+
+That is the only in-link to `100 bad karma`. The node's other three replies all report him,
+threaten him, or leave. From there:
+
+> **`100 bad karma`** — *"Oh, how delicious, your heart sounds black and vicious. Perhaps
+> you could perform a goblin favor and complete a task of stealthy flavor?"*
+>
+> **`100 completed quest`** — *"You completed that task with practiced ease, and brought
+> news that will make **the Great Khan** pleased. Next time we return, Nueva Barcelona will
+> be burned."*
+
+**It already feeds karma**, at three points: -25 for admiring the murder, -50 for reporting
+the gate's defences, -50 on completion. This is one of the most thoroughly wired evil
+branches in the game, and it flows straight to the ending selector.
+
+Three gaps, in cost order:
+
+1. **Discoverability.** The whole path hangs off one reply, behind a question about a
+   corpse. Answer *"This doesn't concern me"* and you never learn the option existed. A
+   second entry — a Speech- or karma-gated line on `1 Start Conversation`, or an option on
+   `60 used speech` after talking him down — costs one reply and is the single highest-value
+   change to the goblin thread.
+2. **No onward pointer.** Hrubjub says the Khan will be pleased, and the thread stops. You
+   can betray Barcelona to the Horde and then arrive at Goblin Warrens as a stranger. He is
+   a spy with every reason to tell a useful human where to report, so `100 completed quest`
+   should name the village and the Khan. **This is what makes `Spy for Hrubjub` rung one of
+   the ladder below rather than a dead-ended errand** — step 2 currently assumes it leads
+   somewhere and it does not.
+3. **Two dead links, in this conversation.** `20 ate a poet` and `30 goblin name` both
+   target `5 goobye`, the typo for `5 goodbye`. That is the Goblin Sapper case already on
+   the phase 1 list — two replies, not one.
+
+The staging is better than it looks: Hrubjub is at the wall, and both Barcelona goblin
+dialogues are Gate District files. The connective tissue between the city and the Warrens
+is placed. Nothing runs through it.
+
 ### The build
 
 1. **Three `Goblin` rank records modelled on Saladin's**, with goblin-flavoured benefits —
    Sneak, poison resistance, carry weight. Three files, following a shipped pattern exactly.
 2. **Use the existing quests as the initiation ladder.** Spy for Hrubjub to rank 1; Slay
    the Bounty Hunter to rank 2; deliver the Everlasting to rank 3, where `Goblin Champion`
-   already sits as the capstone. No new quests are needed to stand the faction up.
+   already sits as the capstone. No new quests are needed to stand the faction up — but
+   rung one needs the onward pointer above, or the ladder starts with a step into nothing.
 3. **Add the exclusivity.** Torquemada's contract fails the Khan's and the reverse. This is
    the change that turns a checklist into a choice, and it is the smallest of the three.
 4. **Gate the 282 existing nodes on rank.** Free reactivity against gates that already work.
