@@ -100,6 +100,467 @@ writers gave them no names, no NPCs and no reason to exist beyond length.
 | 8 Ante Chamber | 401 | 0 | 38 | 361 | 19 gated replies reachable and zero conversations to use them on. |
 | 9 Burial Chamber | 352 | 4 | 62 | 256 | The act's payoff. Fine. |
 
+### The Crypt: the eternal battle is already running, and nobody can win it
+
+This is the act's spine, and it is half-built in the shipped data.
+
+**The two sides exist and are already hostile to each other.** Not through factions — through
+the scripted-combat categories, which is why a faction search misses them:
+
+```
+the horde     Categories to add=Scripted Custom 1
+              Valid Targets=Player,Scripted Custom 2     <- fights you AND the Templars
+the Templars  New Category=...,Scripted Custom 2,Undead
+              Valid Targets=Scripted Custom 1            <- fights the horde, never you
+```
+
+`Scripted Custom 1` is the necromancer's army — Greater Skeleton Super, Terror Brite2 Super,
+Ghoul Male Super, Zombie Super, Festering Undead Walk Super, Mana reaver Super, Disedira
+Super. `Scripted Custom 2` is `Undead Templar Generator`. They are placed against each other
+across `2 Retreat of Souls` and `7 Doomed Plateau`, and the Templars never target the player.
+
+**And the machinery for staging a scripted battle is proven in the same map.** Joan of Arc
+has a `Joan Skeleton Generator` feeding the horde side, a `monster debuffer` whose valid
+targets are `Scripted Custom 2`, and a fail-safe literally named `Enemies attacking Joan die`.
+
+**What is missing is an outcome.** Every generator in all ten maps is `Repeat Every=0` — the
+only live repeat in the act is a `CActionDoDamage` every 2 ticks on the trapped coffin's pain
+radius. So the battle is finite, nothing respawns, and nothing anywhere records which side
+won. The player clears both armies and the war simply stops having participants. The
+never-ending conflict is asserted by the Spirit Council — *"This bodes well for the
+never-ending conflict of a wish gone awry"* — and never shown.
+
+**And the quest built to hold the result is an empty shell:**
+`Release the Doomed Knights from their Torment`, `Item Count=0`. Zero states. Touched only by
+Barcelona's failure sweep.
+
+#### The proposal: let the player decide the war
+
+Make the environmental interactions below **cumulative and attributed**, so each one is a
+thumb on the scale rather than a one-off convenience. A derived attribute — call it
+`Crypt War Tide` — moves with each act:
+
+| Player action | Tide |
+|---|---|
+| Re-lay a trap so it faces the horde, not the corridor | toward the Templars |
+| Drop a barricade that seals a horde advance | toward the Templars |
+| Break a seal that was holding the horde back | toward the necromancer |
+| Trip `switch to trap ghouls` — or reverse it | either, by which way it is thrown |
+| Kill Jehanne; lie about being a Knight | toward the necromancer |
+| Deny the garrison the relic | toward the necromancer |
+
+At the threshold the act pays out, and the empty quest finally gets its states: the garrison
+breaks the siege and the Doomed Knights are released, or the horde overruns the last redoubt
+and the player leaves a crypt that is worse than they found it. Both endings are reachable
+today in fragments — the Efreeti's wish already frees the Templars, and Jehanne can already
+be murdered with the Spirit Council cursing you for it. Neither is currently the *result* of
+anything the player did with the place itself.
+
+This also answers what the four silent Misc Crypts are for. They cannot hold an NPC, but each
+is a **front** — a corridor where the war is going one way, and where a switch, a barricade
+or a re-laid trap changes which way. 248 generators between them, currently expressing
+nothing.
+
+**Why this is cheap.** No new hostility system, no respawn work: the categories are placed,
+the two armies are placed, `CAddCategoryAction` / `CRemoveCategoryAction` / `CSetTargetTypeAction`
+run 922 times across the game, and the quest file already exists and needs states rather than
+creation.
+
+### The Crypt: operate the place, do not skip past it
+
+**Two measurement corrections first.** The secret count was inflated — it is **8 named secret
+doors** (`secret door1` through `secret door8`) plus **87 `CAISecretReveal`** activities, not
+630 distinct secrets. And traps here run through interaction specifiers rather than the shared
+`Door` tree, so "the `Door` tree is used twice" was measuring the wrong thing.
+
+**But the traps still test nothing.** The act carries **66 `GetCloseThen Disarm Trap`**
+specifiers, and every one of them calls `Disarm Trap on Chest.can` or `Disarm Trap.can`, which
+are pure action bundles:
+
+```
+CPlaySoundAction                        Sound=Skills/Trap Deactivate.wav
+CDeleteAction                           Target Name=$Trigger
+CPrintCombatTextAction                  Text to print=Disarmed Trap
+CGiveExperiencePointsToAllPlayersAction Experience Points To Add=75
+```
+
+No skill is consulted. They fire automatically on approach (`Triggered By Players=1`,
+`Trigger Only Once=1`) and hand out 75 XP to a character with zero points in anything. So the
+act has **66 trap events and no trap checks** — the disarm is already staged, and adding a
+requirement to it is close to free.
+
+What the act does have is an **environmental vocabulary that is barely used**:
+
+```
+switch to trap ghouls                     <- one, and it does exactly what it says
+relay switch for ghoul
+Door 6 Misc Crypt 4 Switch Barricade      x7
+Center Trap Spike                         x10
+trapped coffin  /  chest trap  /  Fire Trap  /  Corpse Bomb Trap x2
+last coffin protect wall                  x13
+Switch for Joan Pillars
+switch to open crypts  /  switch to lower door to teleporter
+pain in the ass pulley  +  Pulley: "<You hear a faint click from the north wall>"
+```
+
+**The interaction verbs the act already understands:** `GetCloseThenTrigger` 258,
+`GetCloseThen Disarm Trap` 66, `GetCloseThen Enter Area` 15, `GetCloseThenTalk` 8,
+`GetCloseThen OpenDoor` 2, `GetCloseThenTriggerAndFight` 1.
+
+So the right proposal is not "let skilled players avoid the fights" — that replaces content
+with absence. It is **let skilled players fight with the building**, using verbs the act
+already has — and, per the section above, each of these is a thumb on the scale of a war that
+is already being fought, not an isolated convenience.
+
+#### New interactions, each extending something placed
+
+1. **Turn the traps on the horde.** `switch to trap ghouls` exists, singular. The act has
+   spike traps, a fire trap, corpse bombs, trapped coffins and trapped chests — all aimed at
+   the player. The two trap skills split this cleanly, and they are genuinely different
+   skills: **`Find Traps Secret Doors`** decides whether you *see* the trap before it fires,
+   and **`Lockpick Disarm Traps`** decides what you can *do* with it once seen. The 66 disarm
+   points then become 66 places where the choice is disarm, leave, or **re-lay it facing the
+   horde**. Skill as a weapon rather than a skeleton key.
+2. **Hold a chokepoint.** `Door 6 Misc Crypt 4 Switch Barricade` appears seven times, and
+   `last coffin protect wall` thirteen. The garrison has been holding this place for two
+   hundred years — barricade a corridor, drop a wall, and defend it with them. That is a
+   scenario the Misc Crypts can host and cannot host an NPC.
+3. **Finish the pulley.** `pain in the ass pulley` and a `Pulley` dialogue whose entire
+   content is *"&lt;You hear a faint click from the north wall&gt;"* — a mechanism puzzle
+   someone started and left as one click. The Crypt is the right place for a lock that is
+   opened by understanding rather than by a skill roll.
+4. **Make the false crypt a deduction, not a coin flip.** `False Crypt Protector` says
+   *"Choose one of the Crypts in front of you"* and the wrong lance crumbles to dust.
+   Brother Michel warns of *"trickery, traps, and deception"* and mentions a secret door
+   near the forgery. Scatter the evidence across the earlier maps and let the player
+   *reason* — with `Observant` (*"you tend to notice when things are out of place"*) and
+   `IN` as shortcuts rather than substitutes.
+5. **Read the dead.** `Necrosage` is *"morbid fascination with the countless corpses you've
+   left in your wake… a deeper understanding"*. The Crypt is nothing but corpses. Letting a
+   Necrosage or Necromancer character learn something from a body is a genuinely new verb,
+   and the act supplies unlimited subjects.
+6. **The seals.** Michel: *"Sorcerers from the Order of Saladin sealed the entrance to the
+   Crypt with magic. The seals they devised are powerful, but they are not impregnable —
+   they can be broken."* The three magic-school gates (`General Divine/Thought/Tribal Skills
+   moreequal 80`) are used in exactly one composite expression in Barcelona, and nowhere
+   else. Seals are what they are for.
+
+Only 23 locked doors and the Sneak gates remain in the bypass category, and they should stay
+a minority — a way through is worth having, but it is not the interesting half.
+
+#### Skills and perks that act on the war, not on objects
+
+Once the act has two armies and an outcome, a build can express itself by *changing who
+wins* — a much larger space than opening doors. Five hooks, all resting on placed content.
+
+**1. The wish scene is the war's control panel, and it has one gate on eight options.**
+The Efreeti offers eight wishes. Two of them decide the war outright — *"I wish to undo the
+curse laid upon Jehanne's soul and the souls of her fellow knights"* and *"I wish that all my
+enemies here would die"* — and **both are `!None`**. The only requirement anywhere in the
+scene is `IN 7+` on *"I wish that you would get lost."*
+
+A wish is *words*, so this is where the talking skills belong, and the trap is already
+written: **the Templars are undead too.** *"All my enemies here would die"* is ambiguous, and
+the act's own fiction is that this entire curse came from a wish gone awry. A character who
+phrases it badly should hand the war to the necromancer by killing the garrison. That is the
+single best skill check available in the act, and it costs one requirement on an existing
+reply.
+
+**2. The dead low-Speech family — content for the inarticulate.** Nine gate files exist for
+*failing* at speech (`Speech lessthan 015` through `090`) and **not one is used anywhere in
+the game.** The wish scene is exactly what they were built for: the brute who cannot phrase a
+wish safely. This is the rare case where low stats produce content rather than a locked door.
+
+**3. Anti-undead perks are double-edged here, and nowhere else.** The garrison is tagged
+`Undead`. So `Smite`, `Divine Favor`, turning and the divine schools cannot tell the
+necromancer's army from the knights they came to save — using them at full force pushes the
+tide the wrong way. No other act in the game can stage that dilemma, because no other act has
+undead on both sides. Playing it straight requires discrimination the player must earn:
+`Undead Glory` (*"a wondrous insight into the machinations of life after death"*) is the perk
+that should let a character tell the two apart.
+
+**4. Take command, don't just enlist.** `UndeadTemplar` and `UndeadTemplar2` are two real
+trees — 19 nodes and 22 replies — and the garrison already says *"Excellent. We can use more
+swords."* Speech has 47 gate files and 369 uses, so the infrastructure is richer here than
+anywhere: being given a squad to place, rather than a compliment, turns a conversation into a
+tactical decision.
+
+**5. Necromancy as logistics.** `Necromancer` and `Necrosage` should not merely read corpses
+(scoped above) — they should **recruit them**. The act's dead are its materiel, and the
+horde's own generators show the pattern. This is the evil path's equivalent of commanding the
+garrison, and it uses the same category actions.
+
+#### How to add the checks: the two skills that have none
+
+**A correction to an earlier draft of this document.** It listed Repair, Doctor, Science,
+Gamble, Outdoors and Throwing as skills without gates. **Those are Fallout skills and do not
+exist in Lionheart.** The real thieving tree is six skills, and this is the whole picture:
+
+Counted by reading the `Skill=Skills/...` line *inside* each `.can` — matching on filenames
+gives inflated numbers, which is where two earlier figures in this document came from:
+
+| Skill | `.can` gate files | Times used, all file types |
+|---|---|---|
+| `Thieving/Speech` | 47 | 369 (352 `.dialogtree`, 17 `.can`) |
+| `Thieving/Barter` | 53 | 146 (142 `.dialogtree`, 4 `.can`) |
+| `Thieving/Sneak` | 5 | **3** (1 `.zax`, 2 `.dialogtree`) |
+| `Thieving/Lockpick Disarm Traps` | 18 | **0** |
+| `Thieving/Find Traps Secret Doors` | **0** | **0** |
+| `Thieving/Diplomacy` | **0** | **0** |
+
+Three things follow. First, **finding a trap and disarming it are two different skills** —
+`Find Traps Secret Doors` is detection, `Lockpick Disarm Traps` is picking and disarming — so
+the trap work above needs both, and only the second has files ready. Second, only **two**
+skills need gates authored: `Find Traps Secret Doors` and `Diplomacy`. Third, **half the
+thieving tree does nothing**: three of six skills have a combined 3 uses in the entire game.
+
+Both are real, live skills — every character template in the game carries a value for them,
+and items boost them (`Thief Eyes`, the `Thief` belt, `Thievery` gauntlets, the `Eagle`
+helmet, and both a `Secret Reveal` potion and wand). **Nothing in the game ever tests them.**
+
+**The recipe, verbatim from a working gate** (`Speech moreequal 45.can`) — note `.can` files
+*are* tab-indented, unlike `.DialogTree`:
+
+```
+CCannedObject
+{
+	Object=CIsGreaterThanOrEqual
+	{
+		Operand1=CVariableSkill
+		{
+			Skill=Skills/Thieving/Find Traps Secret Doors
+		}
+		Operator=
+		Operand2=CConstant
+		{
+			Constant Value=50
+		}
+	}
+	Use=Shared Global Instance
+}
+```
+
+Drop it in `Dialog/Requirements/Skills/<Skill>/`, name it `<Skill> moreequal <N>.can`, and
+name that file in a reply's `Requirement=`. That is the entire cost — the same shape as the
+18 Lockpick files already shipping.
+
+**Where each check earns its place:**
+
+| Skill | Placement in the Crypt | What it rests on |
+|---|---|---|
+| **Find Traps Secret Doors** — *detection* | see the trap before it fires; find `secret door1`–`8` deliberately rather than by walking into them; spot the false lance before taking it | 8 named secret doors, 87 `CAISecretReveal`, and `Fake Wand Spells/Secret Reveal` already implements the reveal effect |
+| **Lockpick Disarm Traps** — *manipulation* | the 23 locked doors; and at the 66 disarm points, the choice to disarm, leave, or re-lay it facing the horde | 18 gate files, zero uses anywhere, free |
+| **Diplomacy** | take command of a Templar squad; set terms between the garrison and the player | `UndeadTemplar` + `UndeadTemplar2`, 19 nodes / 22 replies, *"We can use more swords"* |
+| **Speech** | the wish wording, high **and** low | 47 files, incl. 9 unused `lessthan` tiers |
+| **Barter** | bargain with the Efreeti over the wish | 53 files; the `moreequal 75`–`225` tiers are all unused |
+| **Sneak** | cross `7 Doomed Plateau` unengaged | 5 files, 3 uses in the whole game |
+
+The first two rows are the pairing the act is built for: detection decides what you *know* is
+there, manipulation decides what you can *do* about it. Only the second has files ready.
+
+**Why Diplomacy fits the Crypt specifically.** It has never been used because the game never
+staged a negotiation *between parties* — Speech persuades a person, and that is what all 369
+Speech uses do. The Crypt war is a two-faction conflict with a player who can tip it. That is
+the one place in the game where a faction-level skill has something to act on, which is
+probably why the skill was written and then never found a home.
+
+#### Everything that is not a thief: four trees and three attributes
+
+The section above is about the Thieving tree, and it turns out to be the **well-served** one.
+Across the whole game:
+
+| What it tests | Gate files | Uses |
+|---|---|---|
+| `Thieving/*` | 123 | **518** |
+| `Fighting` (`General Fighting Skills moreequal 80`) | 1 | 1 |
+| `Divine` (`General Divine Skills moreequal 80`) | 1 | 1 |
+| `Thought` (`General Thought Skills moreequal 80`) | 1 | 1 |
+| `Tribal` (`General Tribal Skills moreequal 80`) | 1 | 1 |
+
+**And all four of those single uses are the same expression, in the same conversation:**
+`1 Barcelona/Dialog/Gate District/Requirements/Herbalist If High Fighting or Magical Skills
+Intimidate.can`. So in the entire game, **being a great warrior or a powerful mage changes
+exactly one dialogue — intimidating the Barcelona herbalist.** There are no per-spell gates
+at all; the hundreds of `.can` files naming `Fighting/OneHandedMelee` or `Celestial Smite` are
+character templates and monster definitions, not checks.
+
+The attributes divide the same way:
+
+| Attribute | Gate files | Uses |
+|---|---|---|
+| (IN) Intelligence | 18 | 58 |
+| (PE) Perception | 6 | 37 |
+| (CH) Charisma | 12 | 28 |
+| (ST) Strength | 13 | 27 |
+| **(AG) Agility** | 5 | **0** |
+| **(EN) Endurance** | 5 | **0** |
+| **(LK) Luck** | 5 | **0** |
+
+Agility, Endurance and Luck are **never consulted anywhere in the game**, though each has a
+complete tier set already authored — `1-3`, `4-6`, `7+`, `8+`, `10+` — including a low tier
+for content that rewards being clumsy, frail or unlucky.
+
+**The four tree gates fit the act directly:** Fighting 80+ gets you recruited as a soldier
+rather than a courier (the garrison already says *"We can use more swords"* — the one line in
+the game asking for exactly this stat); Divine 80+ breaks the Saladin seals and tells friend
+from foe when turning undead; Tribal 80+ commands the horde instead (`Raise Undead`,
+`Raise Enemy`, `Corpse Bomb`, `Absorb Spirit` are all real spells); Thought 80+ unpicks the
+wish rather than re-wishing it.
+
+#### The SPECIAL checks, stat by stat
+
+Every tier below is a `.can` file that **already exists** in
+`Dialog/Requirements/Attributes/` — including the low tiers, so the "too weak, too slow, too
+dim" branches cost nothing extra. Each row hangs on content already placed in the act.
+
+**(ST) Strength** — files `ST 1-3`, `1-6`, `4-6`, `6+`, `7+`, `8+`, `10+`
+
+- **`ST 8+`** — heave a sarcophagus lid or a fallen slab aside. The act is made of coffins;
+  `last coffin protect wall` appears 13 times.
+- **`ST 7+`** — **force a locked door instead of picking it.** This is the important one: it
+  gives the 23 locked doors a second key, so a warrior is not shut out of content by a thief
+  stat. Same door, two stats, different noise — forcing it should wake the room.
+- **`ST 10+`** — work `pain in the ass pulley` by main force when the mechanism is seized.
+- **`ST 1-3`** — you cannot shift the lid; a Templar does it for you, and says something
+  about it. Being weak produces a scene rather than a locked door.
+- **`Brutish Hulk`** (*"shrug off blows that would kill lesser men"*) — cross the
+  `Trapped coffin 3rd path pain radius` and live.
+
+**(PE) Perception** — files `PE 1-3`, `4+`, `4-6`, `7+`, `8+`, `10+`
+
+- **`PE 7+` / the `Observant` perk** — *"you tend to notice when things are out of place"*,
+  which is word-for-word the false lance. Notice the forgery **before** you touch it.
+- **`PE 8+`** — see the 8 secret doors as you pass, rather than discovering them by walking
+  into them. 87 `CAISecretReveal` activities are already placed to fire.
+- **`PE 10+`** — the Pulley's only line is *"&lt;You hear a faint click from the north
+  wall&gt;"*. High Perception should tell you **which** wall, and what moved.
+- **`PE 1-3`** — you walk into the spike trap. The 10 `Center Trap Spike` entities are
+  already there to do it.
+- **`Sharpshooter`** raises Perception, so it inherits all of the above.
+
+**(EN) Endurance** — files `EN 1-3`, `4-6`, `7+`, `8+`, `10+` — **zero uses in the game today**
+
+- **`EN 8+`** — hold the barricade line. `Door 6 Misc Crypt 4 Switch Barricade` appears seven
+  times; this is a fight you survive rather than win, which is the one combat shape the act
+  never uses.
+- **`EN 7+`** — walk through the fire trap or the pain radius to reach a switch on the far
+  side, taking the damage deliberately. A real alternative to disarming.
+- **`EN 1-3`** — the garrison tells you to stay back, and means it.
+
+**(CH) Charisma** — files `CH 1-3`, `4+`, `4-6`, `6+`, `7+`, `8+`, `9+`, `9-`,
+`less than 8`, `lessthan 6`, `10+`
+
+- **`CH 9+`** — be given **command** of a Templar squad rather than a compliment.
+- **`CH 8+`** — rally knights who have been losing this war for two hundred years. The
+  garrison is written as a garrison; morale is the thing it has never been asked about.
+- **`CH 10+`** — talk Jehanne out of her default contempt. She opens by calling the player a
+  monster and has a separate condemnation for every playable race.
+- **`CH lessthan 6`** — the dead knights will not take orders from you. Two files exist for
+  exactly this and neither is used.
+
+**(IN) Intelligence** — files `IN 1-3`, `4-6`, `5-`, `6+`, `7+`, `8+`, `9+`, `10+`,
+`below 4`, and two `equal to 4` variants
+
+- **`IN 9+`** — phrase the wish so it cannot be twisted. Eight wishes are offered and only
+  one has any requirement (`IN 7+`, on *"I wish that you would get lost"*).
+- **`IN below 4`** — **the payoff branch.** A dim character wishes *"that all my enemies here
+  would die"* without realising the Templars are undead too, and kills the garrison. The act's
+  entire premise is a wish gone awry; this lets the player author the second one.
+- **`IN 8+`** — read the seals as constructed magic, and deduce the true crypt from evidence
+  rather than guessing.
+
+**(AG) Agility** — files `AG 1-3`, `4-6`, `7+`, `8+`, `10+` — **zero uses in the game today**
+
+- **`AG 8+`** — dodge the spike traps instead of disarming them; a third answer at the 66
+  trap points that belongs to no thief skill.
+- **`AG 7+`** — cross `7 Doomed Plateau` under fire (537 generators, 1010 spawns).
+- **`AG 10+`** — get under the barricade or through the closing door as it drops.
+- **`Ghost`** (*"slipping in and out of shadows"*) — pairs with Sneak on the same crossings.
+
+**(LK) Luck** — files `LK 1-3`, `4-6`, `7+`, `8+`, `10+` — **zero uses in the game today**
+
+- **`LK 8+` — the false crypt.** *"Choose one of the Crypts in front of you"*, the wrong
+  lance crumbles to dust, and the game currently resolves it at random. This is the purest
+  luck check the game could possibly have, on the game's most neglected attribute — and the
+  real Lance grants **+1 Fortune** on pickup, so the act already ties this relic to luck. It
+  simply never asks.
+- **`LK 1-3`** — the genie's bargain twists further than it would for anyone else. A wish is
+  the one place where bad luck is *content* rather than a penalty.
+
+**The shape to keep.** Every high tier above opens a door that another stat can also open by a
+different route — force it, pick it, dodge past it, or talk someone into opening it — and
+every low tier produces a *scene* rather than a refusal. That is what stops "more checks" from
+becoming "more walls".
+
+#### Derived statistics and traits: 125 defined, 11 read
+
+Below SPECIAL sits a second stat layer, and it is emptier still. The game defines **125
+derived character attributes**. Exactly **eleven** are ever tested by a requirement:
+
+| Tested | Gate files | Uses |
+|---|---|---|
+| `Uber Perks/Inquisition Rank` | 4 | **324** |
+| `Uber Perks/Templar Rank` | 5 | 131 |
+| `Uber Perks/Wielder Rank` | 4 | 66 |
+| `Uber Perks/Saladin Rank` | 3 | 35 |
+| `Karma` | **78** | **17** |
+| `DaVinci Tell player about Wielders` | 4 | 16 |
+| `Grumpy Guard talked to For Galileo` | 2 | 7 |
+| `CarryWeight` | 1 | 3 |
+| `Woodcutter Dead` / `Herbalist Dead` / `Brutish Hulk First Level` | 5 | 6 |
+
+**Faction rank is 556 of roughly 605 total uses.** Everything the game knows how to react to
+is, in practice, which order you joined. And `Karma` is the standout waste: **78 authored gate
+files, seventeen uses**, for a value written at 213 sites across 86 files.
+
+**Defined and never read once**, among others: `Fortune`, `CriticalChance`, `Mojo`,
+`(AC) Armor Class`, `(SR) Spell Resistance`, `Drunk`, `Sneak Enabled`,
+`Is Backstab Mode Enabled`, `Is Slayer Mode Enabled`, `Is Sniper Mode Enabled`,
+`Spell Immunity`, `Player has cast a spell`, `Number of Voodoo Items`, `Wearing a Helmet`,
+`Goblin Kill Counter`, `FACTION LEADERS KILLED`, and the whole `Perk and Trait Support/` block
+including `Outwit`, `Schmooze` and `Fast Talk Dialog Enhance`.
+
+**Traits: 44 defined, none gated on.** Every trait appears in exactly one `.DialogTree` —
+character creation — except the five Demokin racial traits, which appear in five. Nothing in
+the world tests a trait. (This matches the earlier finding for perks: no perk changes how
+anyone treats you. Treat any "perk appears in N trees" count with suspicion — `Necromancer`
+and `Ghost` are also ordinary English words that show up in Crypt story text.)
+
+**Three of these are unusually well suited to the Crypt:**
+
+- **`Sneak Enabled`** is a *state*, not a score — the engine knows whether the player is
+  sneaking **right now**. That allows reacting to how you enter a room rather than to a number
+  on your sheet: arriving at the garrison's hall unseen versus walking in openly. No other
+  hook in the game offers that, and it costs one gate.
+- **`FACTION LEADERS KILLED`** is a global counter that nothing anywhere reads. Jehanne is the
+  garrison's leader and can already be murdered. This is the war-tide's evil column, already
+  defined and waiting.
+- **`Fortune`** pairs with the Luck check on the false crypt above, and the Lance grants it.
+
+#### Perks
+
+The act is **pure undead** — 198 Zombie Super, 141 Ghoul Male Super, 137 Terror Brite2
+Super, 95 Greater Skeleton Super, 84 Soul Reaver Super, plus Mana Reavers in the Burial
+Chamber. That is a very specific enemy population, and the game has perks written for it
+that read nothing:
+
+| Perk | Why it fits |
+|---|---|
+| **`Undead Glory`** | *"a wondrous insight into the machinations of life after death"* — in ten maps of undead |
+| **`Necromancer`** | the Relican title. The horde here *is* a necromancer's army |
+| **`Necrosage`** | *"morbid fascination with the countless corpses you've left in your wake"* |
+| `Divine Favor`, `Smite` | the divine branches, against the undead they were written for |
+| `Cold Soul`, `Dark Majesty` | the other dark-boon perks, equally unread |
+
+The natural split is the act's own: **undead-affinity perks quiet the horde, divine perks
+turn it.** A `Necromancer` walking unmolested past the necromancer's own army is the evil
+counterpart to the garrison enlisting a Templar, and both use the category machinery — 922
+uses of `CRemoveCategoryAction` and `CSetTargetTypeAction` — rather than anything new.
+
+That also solves the Misc Crypts. `3` through `6` are four silent corridors with 248
+generators between them and nothing else. They cannot hold an NPC, but they can hold a
+locked door, a trapped passage and a horde that ignores the right character.
+
 **The plan for the act.** One quest across ten maps is the real failure, not the spawn
 count. Three or four objectives that send the player back through the Misc Crypts with a
 purpose would change how the act reads more than any thinning. Then thin: Retreat of Souls
@@ -1534,8 +1995,10 @@ really measures is how rarely a *character* remarks on your morality.
 
 The zero rows are the opportunity, and they are not only for conversations: Lockpick,
 Sneak and the derived attributes are how a build expresses itself in a *fight*, not just in
-a dialogue. Worked through for one act in
-[Section 2 — Montserrat](#section-2--montserrat).
+a dialogue. Worked through for two acts —
+[Montserrat](#section-2--montserrat), where the enemies suit the perks, and
+[the Crypt](#the-crypt-the-best-skill-expression-target-in-the-game), which has 23 locked
+doors and 630 secret references and tests none of them.
 
 Beyond the library, `Custom Requirement` embeds arbitrary expressions. What the game
 already leans on: **entity existence, 1179 uses** of `CCheckExistenceAction` — this is how
