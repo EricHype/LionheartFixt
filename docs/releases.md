@@ -146,7 +146,9 @@ concrete benefits and incrementing its own rank counter:
 - `Resources/Derived Character Attributes/Uber Perks/Goblin Rank.DerivedCharacterAttribute`
 
 Benefits should be goblin-flavoured rather than a copy of Saladin's melee package: Sneak,
-poison resistance, carry weight.
+poison resistance, carry weight. Each record grants `+1` to `Goblin Rank` with
+`Allow Accumulation=1`, and each tier's benefits are written as **increments on top of the
+last, not as tier totals** - see *Ranks accumulate* below.
 
 **3b. The gates.** `Resources/Dialog/Requirements/Monster Races/Goblin IS.can` already
 exists and tests the player's *race*. Do not reuse it. New files under
@@ -241,7 +243,7 @@ or reads only Speech:
 |---|---|---|
 | `Crazy Goblin Trapped Conquistador` (18/25, **0 gates**) | `ST 8+`, Lockpick, `Outwit` | He is pinned. Force it, pick it, or work out the mechanism - three ways into a scene that presently has one |
 | `Goblin guarding Woodcutter daughter` (14/11, 1 gate) | `Schmooze` / `CH`, `PE` | Talk the guard off her, or notice she is not the only one being held |
-| `GoblinVendorHub` / Hub'blub (3/4, **0 gates**) | Barter | A merchant with no Barter check, in a game with 51 Barter gate files |
+| `GoblinVendorHub` / Hub'blub (3/4, **0 gates**) | Barter | A merchant with no Barter check, in a game with 51 Barter gate files. Built as a second `CMerchantAI` entity at a lower `Price Multiplier`, the way `Lope Inventory low`/`high` already works |
 | `Rakeb` (30/63) | `Tribal` | The camp's real shaman, and the Tribal tree gates exactly one conversation in the whole game |
 | `Goblin Sapper` / Hrubjub | `PE` | Spot what he is actually doing at the wall before asking about the corpse - a second, observation-based way into the entire Horde path |
 | `GoblinKhan`, poetry | `Outwit` / `Schmooze` | `XP for flattering Khan` and `Khan told poetry to once` already exist. Rhyming at a goblin king is a Charisma check that writes itself |
@@ -319,15 +321,83 @@ Three claims in the plan document are wrong and are fixed there:
   84-count in the plan already excludes them; recording the evidence so nobody re-counts
   them as work.
 
-## Open questions blocking parts of 0.1.0
+## Answered - how factions and merchants actually work
 
-- **Does `CAssignFactionToCharacterAction` work from a dialogue reply, or only from a map
-  script?** Every shipped use should be checked before 3c is built on the assumption.
-- **Can a faction be *lost*?** Nothing in the shipped data demotes a rank. If the Horde
-  cannot be left, the Templar exclusivity in 3e has to be the only price.
-- **Where do merchant stock files live?** `GoblinVendorHub` names `Merchant=Hubglubs Store`
-  and no file of that name is in the archive under an obvious path. Barter gating in
-  strand 4 depends on finding it.
+The three questions that were blocking strands 3 and 4 are resolved against
+`data.dat.vanilla.bak`.
+
+### Faction assignment works from a dialogue reply
+
+`CAssignFactionToCharacterAction` has **29 uses: 20 in maps, 9 in four dialogue trees**.
+Joining from a conversation is the shipped pattern, not the exception. `CedricAlsen`,
+`Lord Relican`, `InquisitorRaphael` and `LordJavier` all recruit the player mid-sentence.
+The exact shape, from Cedric:
+
+```
+Reply Text=Yes, I will join the Wielders.
+Go to node ID=110 fashion
+Custom Action=CMultipleActionsAction
+  Action=CAssignFactionToCharacterAction
+    Faction To Assign=Factions/Wielder Conjurer
+    Character To assign=$Instigator
+  Action=CActionRemoveInventoryItem ...
+  Action=CGiveExperiencePointsToAllPlayersAction ...
+```
+
+Note the field names: `Faction To Assign` and `Character To assign` - the second has a
+lower-case `a`, and the engine will not forgive a corrected spelling. Strand 3c is
+unblocked and copies this verbatim.
+
+### Ranks accumulate, and tier benefits stack
+
+All twelve shipped records grant `+1` to their own rank counter with
+`Allow Accumulation=1` and `Modification is permanent=1`, and the `Highlevel` gates test
+`Rank > 2`. So rank climbs 1 -> 2 -> 3 across three assignments and **the tiers' benefits
+add up** - a rank-3 Templar is carrying Squire's `+4` melee, Warden's `+8` and Paladin's
+`+12` at once, for `+24`. The three goblin records must therefore be written as
+**increments, not tier totals**.
+
+### A faction cannot be lost - so the price has to be a quest, not a demotion
+
+- Zero assignments to the null faction anywhere in the game.
+- Zero negative writes to any rank attribute.
+- `CAssignFactionToCharacterAction` is the **only** faction-related action class in the
+  entire archive. There is no leave, clear, expel or demote action.
+
+`Resources/Factions/!None.Faction` does exist, but it is an empty record - no plug-in
+behaviors, blank display name. Assigning it would clear the *title* and nothing else: the
+benefits are stamped `Modification is permanent=1`, and rank is a permanently modified
+derived attribute rather than a property of the faction you currently hold, so neither
+comes back off.
+
+A negative record *is* expressible - `CCharacterModifierDerivedAttribute` takes any
+`Constant Value`, including `-1` - but nothing ships one, so it is unproven.
+
+**This settles strand 3e.** The Horde cannot be quit and the Templars cannot demote you,
+so the price of joining has to be paid in **closed content**: Esteban dead, his tasks
+unavailable, `LordJavier`'s three checks failing, and the mutual quest-failure wiring. That
+was the plan already; it is now the plan because it is the only mechanism that exists.
+
+### Merchants are map entities, and swapping them is a shipped pattern
+
+`Hubglubs Store` is not a resource file. It is a `CEntityBase` inside
+`Levels/Wilderness Maps/Goblin Vendor Interior.zax` carrying a `CMerchantAI` activity -
+`Display Name=Goblin Vendor`, `Price Multiplier=1`, `Time Between Restock=900`, and a
+13-entry stock array. There are **59 such entities** across the game and
+`Price Multiplier` is hand-tuned from `0.75` to `2.0`.
+
+Better still, the swap pattern already ships: `Lope Inventory low` / `Lope Inventory high`,
+and `Vendor 2 Inventory low` / `high` / `especial`. `CDisplayMerchantWindowAction` names
+its merchant entity, so a gated reply can open a *different* store.
+
+**Strand 4's Barter work is therefore concrete**: add a second `CMerchantAI` entity to
+`Goblin Vendor Interior.zax` at a lower `Price Multiplier` with friendlier stock, and point
+a Barter- or rank-gated reply in `GoblinVendorHub` at it. Chum prices for a chum, built the
+way the developers built Lope. `Inventory for Shaman` in `Goblin Warrens.zax` is the same
+opportunity for Rakeb.
+
+## Open questions still blocking parts of 0.1.0
+
 - **Can a perk write to `Outwit` or `Charm`?** The folder name says yes and nothing in the
   shipped game does it, so it is untested. If it works, the perk-substitutes-for-stat
   pattern is available to every later release; if it does not, strand 4's gates still work
