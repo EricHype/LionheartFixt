@@ -11,9 +11,10 @@ A large restoration-and-repair mod for Lionheart. Three goals, in priority order
 
 This document records the diagnosis, which is measured rather than asserted, and the phase
 plan. The work itself is broken down section by section and map by map in
-[`lionheart-fixt-plan.md`](lionheart-fixt-plan.md). Content inventory lives in
-[`cut-content.md`](cut-content.md); modding technique lives in the `lionheart-modding`
-skill.
+[`lionheart-fixt-plan.md`](lionheart-fixt-plan.md). What actually gets packaged, under what
+version, in what order, is in [`lionheart-fixt-releases.md`](lionheart-fixt-releases.md).
+Content inventory lives in [`cut-content.md`](cut-content.md); modding technique lives in
+the `lionheart-modding` skill.
 
 **Two corrections to the table below, from the per-map survey.** The act table omits the
 **Wilderness**, which is 43 maps -- more than any single act -- holding 825 authored nodes
