@@ -253,11 +253,20 @@ a minority — a way through is worth having, but it is not the interesting half
 Once the act has two armies and an outcome, a build can express itself by *changing who
 wins* — a much larger space than opening doors. Five hooks, all resting on placed content.
 
-**1. The wish scene is the war's control panel, and it has one gate on eight options.**
-The Efreeti offers eight wishes. Two of them decide the war outright — *"I wish to undo the
-curse laid upon Jehanne's soul and the souls of her fellow knights"* and *"I wish that all my
-enemies here would die"* — and **both are `!None`**. The only requirement anywhere in the
-scene is `IN 7+` on *"I wish that you would get lost."*
+**1. The wish scene is the war's control panel, and the two wishes that decide it are
+ungated.** The Efreeti offers eight wishes across `01 Conversation Start` and `10 efreeti`.
+Two of them settle the war outright — *"I wish to undo the curse laid upon Jehanne's soul and
+the souls of her fellow knights"* and *"I wish that all my enemies here would die"* — and
+**both are `!None`**.
+
+The scene is not ungated overall, and an earlier draft of this document said it was. What it
+gates is the *clever* wish, never the consequential one: `Requirement=IN 7+` sits on
+*"I've heard stories of your kind — I wish that I had a wish granted in generous goodwill,
+not twisted…"* in both nodes, the tree carries two inline `IN 6+ OR Speech 95 / 80`
+composites, and the Crypt ships a `Genie figure out how to get good wish.can`
+(`IN 9+ OR Speech moreequal 75`). So the author already reached for exactly this idea — a
+smart or silver-tongued character gets a better wish — and applied it to the wish that
+affects nobody but the player.
 
 A wish is *words*, so this is where the talking skills belong, and the trap is already
 written: **the Templars are undead too.** *"All my enemies here would die"* is ambiguous, and
@@ -308,15 +317,32 @@ gives inflated numbers, which is where two earlier figures in this document came
 | `Thieving/Find Traps Secret Doors` | **0** | **0** |
 | `Thieving/Diplomacy` | **0** | **0** |
 
-Three things follow. First, **finding a trap and disarming it are two different skills** —
-`Find Traps Secret Doors` is detection, `Lockpick Disarm Traps` is picking and disarming — so
-the trap work above needs both, and only the second has files ready. Second, only **two**
-skills need gates authored: `Find Traps Secret Doors` and `Diplomacy`. Third, **half the
-thieving tree does nothing**: three of six skills have a combined 3 uses in the entire game.
+**Read that table narrowly: it counts dialogue gating only.** An earlier draft of this
+document drew the conclusion that Lockpick and Find Traps "do nothing", and that is wrong.
+Both are fully implemented **world** mechanics that the engine tests constantly, without any
+`.can` file being involved:
 
-Both are real, live skills — every character template in the game carries a value for them,
-and items boost them (`Thief Eyes`, the `Thief` belt, `Thievery` gauntlets, the `Eagle`
-helmet, and both a `Secret Reveal` potion and wand). **Nothing in the game ever tests them.**
+| Mechanic | How the engine tests it | Scale |
+|---|---|---|
+| Lockpick Disarm Traps | `Is Locked=1` plus a per-object **`Lock Pick Adjustment`** | 5169 locked objects; 4003 adjustments; **Barcelona alone has 52 locks, 51 individually tuned**, from `-300` to `+100` |
+| Find Traps Secret Doors | `CAISecretReveal` with a per-secret **`Skill Adjustment`** | **443** `Reveal Action` / `Has Been Revealed` sites |
+
+Nearly every lock and secret in the game was given a hand-tuned difficulty, which is the
+opposite of neglect — these are among the most deliberately authored systems in Lionheart.
+Items back them up too: `Thief Eyes`, the `Thief` cloak, `Thievery` gloves, the `Eagle`
+helmet, a `Secret Reveal` wand, `Crossbow of Thievery` and the `Secret Door Detection`
+enchant all raise them.
+
+So the accurate statement is narrower, and it is about conversation:
+
+- **Finding a trap and disarming it are two different skills.** `Find Traps Secret Doors` is
+  detection, `Lockpick Disarm Traps` is picking and disarming. Both work in the world.
+- **Neither has ever been spoken about.** No NPC anywhere reacts to a character being a
+  lockpick or a trapfinder; no dialogue branches on either. `Diplomacy` is the only thieving
+  skill that is genuinely inert in both senses — no gates, and no world mechanic.
+- That makes the opportunity *recognition*, not *purpose*. The locks already have a purpose.
+  What is missing is the fence who notices your hands, the guard who accuses you, the
+  Templar who asks how you got in.
 
 **The recipe, verbatim from a working gate** (`Speech moreequal 45.can`) — note `.can` files
 *are* tab-indented, unlike `.DialogTree`:
@@ -349,7 +375,7 @@ name that file in a reply's `Requirement=`. That is the entire cost — the same
 | Skill | Placement in the Crypt | What it rests on |
 |---|---|---|
 | **Find Traps Secret Doors** — *detection* | see the trap before it fires; find `secret door1`–`8` deliberately rather than by walking into them; spot the false lance before taking it | 8 named secret doors, 87 `CAISecretReveal`, and `Fake Wand Spells/Secret Reveal` already implements the reveal effect |
-| **Lockpick Disarm Traps** — *manipulation* | the 23 locked doors; and at the 66 disarm points, the choice to disarm, leave, or re-lay it facing the horde | 18 gate files, zero uses anywhere, free |
+| **Lockpick Disarm Traps** — *manipulation* | at the 66 disarm points, the choice to disarm, leave, or re-lay it facing the horde. The 23 locked doors already work — 21 are individually tuned — so this is about *new* choices, not about giving the locks a use | 18 gate files, unused in dialogue |
 | **Diplomacy** | take command of a Templar squad; set terms between the garrison and the player | `UndeadTemplar` + `UndeadTemplar2`, 19 nodes / 22 replies, *"We can use more swords"* |
 | **Speech** | the wish wording, high **and** low | 47 files, incl. 9 unused `lessthan` tiers |
 | **Barter** | bargain with the Efreeti over the wish | 53 files; the `moreequal 75`–`225` tiers are all unused |
@@ -406,6 +432,52 @@ the game asking for exactly this stat); Divine 80+ breaks the Saladin seals and 
 from foe when turning undead; Tribal 80+ commands the horde instead (`Raise Undead`,
 `Raise Enemy`, `Corpse Bomb`, `Absorb Spirit` are all real spells); Thought 80+ unpicks the
 wish rather than re-wishing it.
+
+#### Where the shipped game puts its SPECIAL checks
+
+Every attribute check in the game, by act — 136 in total:
+
+| Act | ST | PE | EN | CH | IN | AG | LK | total |
+|---|--:|--:|--:|--:|--:|--:|--:|--:|
+| 1 Barcelona | 15 | 14 | 0 | 23 | 17 | 0 | 0 | **69** |
+| 2 Montserrat | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| 3 Montaillou | 0 | 20 | 0 | 0 | 24 | 0 | 0 | **44** |
+| 4 Crypt | 0 | 0 | 0 | 0 | 5 | 0 | 0 | 5 |
+| 5 Nostrodomus | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 1 |
+| 6 Barcelona Attack | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 3 |
+| 8 Alamut | 0 | 0 | 0 | 1 | 1 | 0 | 0 | 2 |
+| Sewers | 0 | 0 | 0 | 4 | 0 | 0 | 0 | 4 |
+| Wilderness | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 8 |
+
+**Barcelona and Montaillou hold 113 of 136.** The two most conversational acts have the
+attribute checks; Montserrat has none at all; and the entire back half — Crypt, Nostrodomus,
+occupied Barcelona and Alamut — has **eleven between the four of them**, nine of which are
+`IN`.
+
+**Reactivity is a whole-game goal.** The back half needs the most, because it needs new
+content as well as new checks, but the front half is not finished either — this table is a
+priority order, not a boundary. Three things it shows:
+
+- **The gap is not front versus back.** `2 Montserrat` is the *second* act and has **zero**
+  attribute checks; the Sewers have four, all Charisma, all on one person. Two of the emptiest
+  places in the game are in the first half.
+- **Three stats are absent everywhere.** Endurance, Agility and Luck are checked **zero times
+  in every act**, Barcelona included. No amount of back-half work fixes that; those need
+  placements across the campaign, wherever the fiction offers them.
+- **Strength is nearly as bare** — 15 checks in Barcelona and 8 in the Wilderness (Shylocke's
+  goons, a slaver captain), and nothing anywhere else.
+
+So the front-half work is *both*: make its existing 113 checks pay off later, which is the
+reactivity thread running through this plan, **and** fill its own holes — Montserrat above
+all, where the earlier section already argues the same case for skills.
+
+Two shipped patterns worth copying:
+
+- **`CH 6+` paired with `CH lessthan 6`** on the Barcelona Temple Entrance Guard, seven
+  replies each — the same beat written twice so that low Charisma produces a different scene
+  rather than a missing option. That is the model for the low tiers proposed below.
+- **`IN 9+ OR Speech moreequal 75`** (`Genie figure out how to get good wish.can`) — an
+  attribute OR a skill reaching the same content, so a build has two routes in.
 
 #### The SPECIAL checks, stat by stat
 
@@ -681,10 +753,12 @@ that speaks in Montserrat is a companion you brought with you: `cortes`, `Cervan
 
 ### What to add, in cost order
 
-1. **A locked flank into Druid Council Level 1.** Eighteen Lockpick gates exist and are
-   used zero times game-wide; the act has one locked door. A side entrance that avoids the
-   frontal approach turns the silent 48-generator map into a build check. **No NPC needed,
-   which is the whole point in a corridor.**
+1. **A locked flank into Druid Council Level 1.** The act has **one** locked door in the
+   whole of Montserrat, against 52 in Barcelona and 23 in the Crypt — so this is the act that
+   under-uses a mechanic the engine already runs well, not a broken mechanic. A side entrance
+   with its own `Lock Pick Adjustment`, avoiding the frontal approach, turns the silent
+   48-generator map into a build check. **No NPC needed, which is the whole point in a
+   corridor.**
 2. **Sneak past the Grove patrols.** Four Sneak gates built, zero used, against 104 zones
    already placed. `202 sneaking into titan pen` in the `Door` tree is the shipped model —
    *"if you're caught in here the titans will be very displeased."*
@@ -1908,6 +1982,143 @@ already has its Demesne and does not need one.
 Neither reuses `Oupost.zax` itself. The existing `mods/outpost-expedition` stays what it
 is — a way to go and look at a developer sandbox — and is not the foundation for either.
 
+## Audit: Barcelona, the Crossroads and the goblin camp
+
+Where can skill and SPECIAL checks be added to these three areas — in existing
+conversations, in new ones, and outside dialogue entirely. Counted by pairing each
+`Reply Text=` with the `Requirement=` that follows it.
+
+| | Conversations | Replies | Gated | % | Maps | Locked | Interaction specifiers |
+|---|--:|--:|--:|--:|--:|--:|--:|
+| Barcelona | 137 | 5711 | 1101 | **19.3%** | 36 | 52 | 1196 |
+| Crossroads | 5 | 113 | 38 | **33.6%** | 1 | 4 | 58 |
+| Goblin camp | 15 | 385 | 57 | **14.8%** | 14 | 9 | 90 |
+
+The Crossroads is the best-gated content in the game by proportion; the goblin camp is
+the worst of the three despite being a whole settlement.
+
+### Barcelona: 28 silent conversations and 52 locked doors
+
+Barcelona is where the game's roleplay lives — 1101 gated replies, more than the rest of
+the campaign combined — so this is not a bare act. It is an **uneven** one. Twenty-eight
+conversations with four or more replies have **no requirement of any kind**, including some
+of the largest in the game:
+
+| Tree | Nodes | Replies | Gates |
+|---|--:|--:|--:|
+| `Viola Organista` | 21 | 86 | 0 |
+| `Conspirator` | 32 | 71 | 0 |
+| `Man in Stocks in Prison` | 30 | 46 | 0 |
+| `MarcoPoloSpirit` | 27 | 43 | 0 |
+| `Bar Patrons` | 42 | 43 | 0 |
+| `Guard Generic Temple` | 9 | 35 | 0 |
+| `Crystal Keeper Wizard` | 10 | 29 | 0 |
+| `UndeadLackey` | 10 | 29 | 0 |
+| `Demon` | 24 | 29 | 0 |
+| `WizardCan1` | 8 | 27 | 0 |
+| `BarcelonaCitizenCan` | 18 | 25 | 0 |
+| `Inquisitor Mateo` | 15 | 21 | 0 |
+| `Beggar` | 20 | 20 | 0 |
+| `Farshid` | 9 | 19 | 0 |
+| `Fugitive Running from Inquisition` | 13 | 19 | 0 |
+
+Where to put checks, in priority order:
+
+- **`Man in Stocks in Prison` (46 replies, no gates)** — a man in the stocks is a Charisma
+  and Speech scene by construction, and a `ST 8+` scene if you simply break him out. It is
+  the largest completely ungated humane-choice moment in the act.
+- **`Conspirator` (71 replies)** — a conspiracy is the natural home for `PE 7+` (spot the
+  lie), `IN 8+` (see the plan's flaw) and `CH lessthan 6` (they stop trusting you). Nothing
+  is tested today.
+- **`Bar Patrons` (43 replies across 42 nodes)** — the drinking scene, and `Drunk` is a
+  defined derived attribute the game never reads. A tavern is where it belongs.
+- **`Demon` / `UndeadLackey` / `Crystal Keeper Wizard` / `WizardCan1` (114 replies between
+  them, zero gates)** — every one of these is a magical encounter, and the magic-tree gates
+  (`General Divine/Thought/Tribal Skills moreequal 80`) are used **once in the game**, in
+  this very act. Reuse the pattern here.
+- **`Beggar` (20 replies)** — Barter and the low-Charisma tiers; the beggar/thief war
+  described in [Act 1](#act-1--the-choices-that-go-nowhere) gives it consequences.
+- **`Viola Organista` (86 replies)** — DaVinci's instrument. An `IN 8+` or `PE 8+` reading
+  of the machine costs one gate on the act's largest ungated tree.
+
+**Outside dialogue, Barcelona's thief content already works — and nobody ever mentions it.**
+The city has **52 locked objects, 51 of them individually tuned** (`Lock Pick Adjustment`
+from `-300` to `+100`), which is more than the Crypt and the most in the game. Picking them
+is a real, working, hand-authored mechanic; the same is true of the secrets, via
+`CAISecretReveal`'s `Skill Adjustment`.
+
+What is missing is **any acknowledgement**. In the city of thieves, no conversation in 137
+trees branches on Lockpick or Find Traps. The additions that fit are social rather than
+mechanical:
+
+- The thieves' guild should recognise a lockpick without being told — a `Lockpick moreequal`
+  tier on entry to `Thieves Den map`, using files that already exist.
+- `Shylocke` (60 nodes, 134 replies) and the `Shylocke Shop` — one of only three maps whose
+  locks name the skill directly — should react to a burglar differently than to a customer.
+- A guard line for a character who was seen leaving a locked house.
+
+Two genuine mechanical gaps remain: **only 5 `GetCloseThen Disarm Trap` specifiers across 36
+maps**, so the trap half of the skill barely appears in the city, and **no `CContainerAI` at
+all** — Barcelona's loot is entirely generator-driven.
+
+### The Crossroads: small, and already the best-gated thing in the game
+
+Five conversations, 113 replies, 38 gated — a third, which nothing else approaches.
+`Crossroads Bandit` alone is 18 nodes, 67 replies and 25 gates, and the map already contains
+a spot named **`Bandit Goto Convince leave spot`**: talking the bandits down is built.
+
+So this map does not need rescuing, it needs widening. The gaps are specific:
+
+- The bandit encounter resolves by **Speech or by fighting** — `GetCloseThenTriggerAndFight`
+  appears 9 times. Add `ST 8+` (intimidate, the shipped `ShylockeGoons` pattern uses exactly
+  this) and `PE 7+` (count them, and notice the archers) as alternative routes to the same
+  `Convince leave spot`.
+- **`Crossroads Bandit Archers` has 2 nodes and 0 replies** and `Crossroads Signpost` has 1
+  node and none. The archers are a Perception beat waiting to happen — spotting the ambush
+  before it triggers.
+- **`Crossroads Hunter`** (15 nodes, 10 replies, one `Speech moreequal 15`) is the natural
+  home for Outdoors-flavoured checks; with no Outdoors skill in this game, `PE 7+` and
+  `IN 6+` are the fit.
+- This is also where the goblin recruitment beat belongs — see
+  [the goblin faction](#cross-cutting-the-evil-path-and-the-goblin-faction).
+
+### The goblin camp: a whole settlement that only understands Speech
+
+Fourteen maps, fifteen conversations, and **57 gates of which almost every one is Speech** —
+`GoblinEntranceGuard` (Speech 40/55), `GoblinVillager` (Speech 55/45), `Goblin guarding
+Woodcutter daughter` (Speech 55), `Goblin Henchman` (Speech 15, `IN >= 4`), `Goblin Sapper`
+(Speech 20 ×3 and a single **`ST 8+`**). `GoblinGrumdjum` carries 32 of the 57 and they are
+quest-state flags, not skills.
+
+A settlement that responds to exactly one stat is the problem here. Four concrete additions:
+
+- **Rakeb, not "the Shaman", is the Tribal opportunity.** The `Goblin Shaman` tree (3 nodes,
+  zero replies, "Goblin Shaman Yumjum") is a **taunt bank** fired as balloons by generic
+  shaman monsters across 16 maps -- giving it replies would give every shaman in the game a
+  conversation. The camp's real shaman is `Rakeb`: 30 nodes, 63 replies, 7 gates, placed in
+  `Goblin Warrens` and `Bounty Hunter Camp`, with his own bounty quest. He is the one to
+  gate on `Tribal 80+`, and the evil path gains a magical counterpart to the Templar
+  chaplain. His tree currently reads nothing but quest state and `sent by Darsch`.
+- **`GoblinVendorHub` has 3 replies and no gates**, and there is a dedicated
+  `Goblin Vendor Interior` map. Barter has 53 gate files and 146 uses everywhere *except*
+  here. Goblin prices should move on Barter, and on whether you arrived as a friend.
+- **`GoblinGirl` (27 replies) and `Crazy Goblin Trapped Conquistador` (24 replies) are
+  wholly ungated** — 51 replies of characterful content that reads nothing. The trapped
+  conquistador is a `ST`/`Lockpick` rescue and a `CH` conversation at once.
+- **`Khan Chest` and 9 locked objects** across the goblin maps, plus
+  `trap poly on trapped chest1` and a `fire pain radius` in the Slave Pit hut. These already
+  work as lock and trap content, and the theft *is* already noticed -- `Khan Chest`
+  (`Lock Pick Adjustment=40`) fires `Make Goblins Hostile Relay`, triggers a
+  `Stealing from Khan relay` and cancels sneaking; Rakeb's chest (`30`) does the same. The
+  gap is that the consequence is **binary**. There is no standing to lose by degrees, no
+  Khan who merely hears you were in his tent -- only the entire camp turning at once. A
+  goblin rank is what gives that theft a middle.
+
+**And the faction check that should exist everywhere here.** `GoblinKhan` gates on
+`Inquisitor IS` / `Templar IS` / `NOT Templar or Inquisitor`, which is the right idea — the
+goblins care who you serve. Nothing else in the camp asks. Once the goblin faction becomes a
+real allegiance, every one of the fifteen trees above has an obvious second axis.
+
 ## Cross-cutting: the 84 broken links, by area
 
 Phase 1 is not per-map — links live in dialogue files, which are shared. It is per area:
@@ -1923,6 +2134,12 @@ Phase 1 is not per-map — links live in dialogue files, which are shared. It is
 
 Barcelona and Montaillou are 68 of the 84. Doing those two areas first fixes 81% of the
 link rot and covers every act that borrows their trees.
+
+**A further 244 targets differ from a real node only in capitalisation, and are not
+broken.** `GoblinKhan` sends the player to `130 the job` when the node is `130 The job`;
+`Rakeb` does it six times to `90 goodbye`. Those are traversed in ordinary play, so the
+engine's node lookup is case-insensitive. The 84 above already excludes them — recorded so
+nobody recounts them as work.
 
 The three targets that are not IDs at all, for the record:
 
