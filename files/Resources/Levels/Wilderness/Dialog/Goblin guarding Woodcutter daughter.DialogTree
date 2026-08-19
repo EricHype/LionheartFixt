@@ -1,0 +1,292 @@
+CDialogTree
+{
+Name=Goblin
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=20 Goblin cuts in
+Text=Quiet child, and finish eating.  You've only eaten five meals today.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=21 Goblin cuts in
+Text=You, traveler, what concern is this of yours?  For your sake, I suggest you continue on your way and simply pretend that you never saw us here.  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are your plans for this girl?
+Go to node ID=20 feast
+
+Requirement=ST 8+
+Reply Text=<Say nothing. Step over him, pick the child up, and look down.> Try.
+Go to node ID=70 scared
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved woodcutter's daughter though speech
+Experience Points To Add=1
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Free the girl immediately, Goblin.
+Go to node ID=25 Goblin says no
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=It's no concern of mine what you do with her.
+Go to node ID=50 Goblin says wise
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 feast
+Text=If you must know, she will be the most succulent course at our upcoming feast.  There is no finer culinary delight than the sweet flesh of a young child.  I warn you - if you interfere, we shall feed your tough, aged flesh to our slaves.
+Should Have Voiceover=0
+
+Requirement=Goblin Horde IS
+Reply Text=I carry the Khan's favour, and I am taking this child to him. Argue, and he will hear about that instead.
+Go to node ID=70 scared
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved woodcutter's daughter though speech
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What would you take for her? Everything has a price.
+Go to node ID=40 goblin offers trade
+
+Requirement=Speech moreequal 55
+Reply Text=Let me take this child to the Goblin Khan, I will tell him it is a gift from you.
+Go to node ID=70 scared
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved woodcutter's daughter though speech
+Experience Points To Add=1
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Find another meal, she's coming with me.
+Go to node ID=30 Goblin mad
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry child, I can't help you.
+Go to node ID=50 Goblin says wise
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 Goblin says no
+Text=You are in no position to make demands, traveler. You'll be a fine appetizer for my next meal!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Goblin mad
+Text=You were adequately informed of the ramifications of your decision.  Prepare to reap what you have sowed!  Our slaves shall enjoy your fleshy parts and feed your bones to our animals.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Goblin Attacks
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 goblin offers trade
+Text=As I do not see a younger, fatter child in your company, there is no trade that will be acceptable to me.  You see, a child such as this is a true delicacy.  Now, the choice is yours.  Leave in peace, or be part of the meal yourself.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 55
+Reply Text=A delicacy you will eat once. I am offering you a season of them - salt pork, twice your weight, waiting at the Crossroads under my name. Refuse that and you are not a gourmet, you are simply hungry.
+Go to node ID=70 scared
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved woodcutter's daughter though speech
+Experience Points To Add=1
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Then we have nothing to discuss. Find another meal, she's coming with me.
+Go to node ID=30 Goblin mad
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry child, I can't help you.
+Go to node ID=50 Goblin says wise
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Goblin says wise
+Text=A wise, but moot choice. You will make a fine appetizer for the main course.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Boy freaks
+Text=Don't leave me here!  My father will pay you!  He's a wealthy man.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=65 Goblin says quiet
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 Goblin says quiet
+Text=Quiet! and keep eating!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=70 scared
+Text=Y-you know the Khan?  You will speak well of me?  Then take the child!  I shall not interfere with the wishes of the Khan!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=$Trigger
+Temporary Task AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Goblin flee marker
+Offset=0.000000,0.000000
+Starting Action=CDelayAction
+{
+Next Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=CDeleteAction
+{
+Target Name=$Trigger
+}
+Run=1
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=0
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+Suppress can't assign error=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Girl leaves safely
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Quit
+Text=Quit whining about your father.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=81 Stop
+Text=Stop your sniveling.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=82 Dinner
+Text=But we are looking forward to having you for dinner.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=83 Silence
+Text=Silence!
+Should Have Voiceover=0
+}

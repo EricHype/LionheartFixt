@@ -31,7 +31,7 @@ All of these are scripted and must be re-run after *any* change to `files/`.
 **A0.11 is the one that has bitten this project before.** The loose `data\` tree shadows
 `data.dat`; a correct archive with a stale mirror is a mod that silently does nothing.
 
-The validator must itself be negative-tested — feed it a known-bad file and confirm it
+The validator must itself be negative-tested -- feed it a known-bad file and confirm it
 fails. A checker that passes everything is worse than no checker.
 
 ---
@@ -149,14 +149,23 @@ unless the row says otherwise.
 | C8 | Goblin Khan | CH 7+, at `11 Earn Goodbye` | Charm reply visible; reaches `16 flattered khan`; XP awarded |
 | C9 | " | Character B with Speech 25 | Vanilla flattery reply still works |
 | C10 | Grumdjum, dryad branch | IN 7+, **Speech below 20** | The dryad reply is now visible (it was Speech-only before) |
-| C11 | " | Speech 20+, IN below 7 | Still visible — the Speech route was not removed |
+| C11 | " | Speech 20+, IN below 7 | Still visible -- the Speech route was not removed |
 | C12 | Grumdjum (Lake), `10 Smart Goblins` | IN 7+ | The Bonecrusher reply is visible; reaches `11 fellow pedant`, which returns cleanly to `20 The Offer` |
 | C13 | Grumdjum, `81 Magic Node` | Thought 80+ | The reservoirs reply is visible; reaches `82 the residue theory` |
 | C14 | Grumdjum, `91 Dryad Magic` | IN 7+ | The "you are afraid I will listen to her" reply is visible; reaches `92 why silence her` |
 | C15 | " | From `92`, choose *"I will hear her out first"* | Conversation ends without accepting the kill contract; the dryad can still be talked to |
 | C16 | Grumdjum, `110 Goblin Poetry` | CH 7+ | The craft-praise reply is visible; reaches `120 More pun-ishment` |
-| C17 | " | After C16, talk to the Goblin Khan | The "I could tell you a Goblin poem" option is available — the Schmooze route sets the same flag the vanilla routes do |
+| C17 | " | After C16, talk to the Goblin Khan | The "I could tell you a Goblin poem" option is available -- the Schmooze route sets the same flag the vanilla routes do |
 | C18 | Grumdjum | **Character B** | All four new replies absent; every vanilla route through his tree still works |
+| C19 | Bludjund (Barcelona wall), `10 brain` | ST 8+ | The wrist reply is visible; reaches `30 used speech` and he backs off |
+| C20 | Bludjund, `50 secret mission` | IN 7+ | The "what else are you not telling me" reply is visible; reaches `55 not telling`, which returns cleanly |
+| C21 | Bludjund, after the spy quest (`1 start likes you`) | CH 7+ | The full couplet reply is visible; reaches `1 he likes poem`. The vanilla `IN 4` reply is still there too |
+| C22 | Daughter's guard (Scar Ravine) | ST 8+ | The "Try." reply is visible; reaches `70 scared`, the child is freed, XP awarded |
+| C23 | " | Horde rank | The Khan's-favour reply is visible; same outcome, no Speech needed |
+| C24 | " | Any character | *"What would you take for her?"* is visible and reaches `40 goblin offers trade` -- **unreachable in vanilla** |
+| C25 | " | From `40`, Barter 55+ | The salt-pork offer is visible; reaches `70 scared` and the child is freed |
+| C26 | " | From `40`, **Character B** | Only the fight and the walk-away replies; both still behave as vanilla |
+| C27 | " | **Character B**, whole scene | The Speech 55 route and every combat route work exactly as vanilla |
 
 ### Restore - the cut characters
 
@@ -228,12 +237,11 @@ The most important gate, and the easiest to skip.
 - **The Crossroads patrol makes no counter-offer**, the goblin and Torquemada quests still
   do not fail each other, and harvesting the woodcutter's eyes still moves no karma. All
   0.2.0.
-- **Two goblin conversations are untouched** and remain exactly as vanilla shipped them:
-  `Goblin Henchman` (10 nodes / 27 replies) and `Goblin guarding Woodcutter daughter`
-  (14 / 11). `GoblinCrier`, `GoblinLt`, `Goblin Hut Ritual Sayings` and `Goblin Shaman`
-  are balloon banks with no player replies and are correctly left alone.
+- **Every goblin conversation with player replies is now touched.** `GoblinCrier`,
+  `GoblinLt`, `Goblin Hut Ritual Sayings` and `Goblin Shaman` remain vanilla: they are
+  balloon banks with no player replies at all, and are correctly left alone.
 - **`GoblinGuards` is an overheard exchange**, not a branching conversation. Four nodes,
-  no player replies — that is how it shipped.
+  no player replies -- that is how it shipped.
 
 ---
 
@@ -242,11 +250,11 @@ The most important gate, and the easiest to skip.
 | Symptom | Look here first |
 |---|---|
 | A gated reply never appears, on any build | The `Requirement=` name did not resolve. **This is the release's top known risk**: `Outwit 7+`, `Schmooze 7+` and `Tribal 80+` were re-authored into `Requirements/Attributes/` because no shipped DialogTree references their original folders. Reasoned from precedent, not proven. |
-| A gated reply appears for *everyone* | The requirement resolved to nothing and defaulted open — same root cause as above |
+| A gated reply appears for *everyone* | The requirement resolved to nothing and defaulted open -- same root cause as above |
 | An NPC is missing entirely | Save staleness first (L1.1), then the generator's `Position X/Y`. Bad positions fail as silently as a bad spawner class |
 | NPC present but not talkable | `Interaction Type` should be `GetCloseThenTalk`; check the `CDisplayDialogTreeAction` node ID matches a real node |
-| Conversation opens then immediately errors | "executable or data file has become corrupted" almost always means a malformed DialogTree — check the wrapper and brace balance |
-| Faction bonuses never granted | `CAssignFactionToCharacterAction` on Hrubjub's completion reply. Field names are `Faction To Assign` and `Character To assign` — the lower-case `a` is authentic and must not be "fixed" |
+| Conversation opens then immediately errors | "executable or data file has become corrupted" almost always means a malformed DialogTree -- check the wrapper and brace balance |
+| Faction bonuses never granted | `CAssignFactionToCharacterAction` on Hrubjub's completion reply. Field names are `Faction To Assign` and `Character To assign` -- the lower-case `a` is authentic and must not be "fixed" |
 | Change does not appear at all despite a clean build | The loose `data\` mirror (A0.11). Re-run `build`, which syncs it |
 | Prices identical in both Hub'blub stores | The gated reply is opening `Hubglubs Store` rather than `Hubglubs Chum Store` |
 

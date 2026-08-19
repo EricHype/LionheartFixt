@@ -1,0 +1,299 @@
+CDialogTree
+{
+Name=Bludjund
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Start Conversation
+Text=What you want? You go away, or maybe you be Bludjund's first brain!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=First brain? What are you talking about?
+Go to node ID=10 brain
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=I'm going to rid this place of your miserable hide.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=hrubjub interrupts
+}
+Action=CActionResetPointClickAI
+{
+Character with PointClickAI=$instigator
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 brain
+Text=Me eat your brain - grow smart, like Hrubjub! You look smart, I think.
+Should Have Voiceover=0
+
+Requirement=ST 8+
+Reply Text=<Take his wrist and close your hand until something creaks.> Squire. Look at my arm, then look at yours, and tell me whose brain is getting eaten today.
+Go to node ID=30 used speech
+Icon=Attribute Icon
+
+Requirement=Speech moreequal 15
+Reply Text=You don't want to eat my brain. It's *far* too tough.
+Go to node ID=30 used speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=The only thing you'll eat is dirt.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=hrubjub interrupts
+}
+Action=CActionResetPointClickAI
+{
+Character with PointClickAI=$instigator
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 goblin
+Text=Me is Bludjund, goblin squire of Hrubjub the great. We on a secret mission, Hrubjub thinks maybe I can eat my first brain - maybe that be you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What secret mission?
+Go to node ID=50 secret mission
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=First brain? What are you talking about?
+Go to node ID=10 brain
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=I'm going to rid this place of your miserable hide.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=hrubjub interrupts
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 brain eaten
+Text=Yes, he try to get his friends, and ruin the secret mission. But Hrubjub bash him good and eat his brain.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What secret mission?
+Go to node ID=50 secret mission
+
+Requirement=!None
+Reply Text=I'll just be leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=hrubjub interrupts
+}
+Action=CActionResetPointClickAI
+{
+Character with PointClickAI=$instigator
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 used speech
+Text=Maybe you right. Me wait for another guard then. You go away now.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=hrubjub interrupts
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 combat
+Text=Hrubjub! You help me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=goblins attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 secret mission
+Text=Me not supposed to tell anyone Great Khan sent us to spy on human city. And me no tell you about that. Bludjund too smart, even without first brain.
+Should Have Voiceover=0
+
+Requirement=Outwit 7+
+Reply Text=You have not told me the Khan sent you to spy on the city. I want to be clear that you have not told me that. What else are you not telling me?
+Go to node ID=55 not telling
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=First brain? What are you talking about?
+Go to node ID=10 brain
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=I'm going to rid this place of your miserable hide.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=hrubjub interrupts
+}
+Action=CActionResetPointClickAI
+{
+Character with PointClickAI=$instigator
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 not telling
+Text=<He thinks about this so hard his ears move.> ...Me not tell you Khan want to know where the gate guards sleep. Me *definitely* not tell you Hrubjub climb wall on third night when moon is small. <He beams, delighted with himself.> Bludjund keep good secret!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You are a credit to the Horde, Bludjund.
+Go to node ID=50 secret mission
+
+Requirement=!None
+Reply Text=I have heard enough. This one dies.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Keep it up. I'll be on my way.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=hrubjub interrupts
+}
+Action=CActionResetPointClickAI
+{
+Character with PointClickAI=$instigator
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 start likes you
+Text=You spy for Hrubjub. Bludjund let you be and no harm will come to...umm...what rhyme with *be*?
+Should Have Voiceover=0
+
+Requirement=Schmooze 7+
+Reply Text="...no harm will come to thee, for thou art sworn to Bludjund, and Bludjund's word is free." There. Now it scans, and it is yours.
+Go to node ID=1 he likes poem
+Icon=Attribute Icon
+
+Requirement=IN greater than or equal to 4
+Reply Text='Thee' might be the rhyme you're looking for.
+Go to node ID=1 he likes poem
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Uhh...The 'sea'?
+Go to node ID=1 no like
+
+Requirement=!None
+Reply Text=I have no patience for idiots.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 he likes poem
+Text=Oh, you smart! That why Hrubjub pick you for mission.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 no like
+Text=Uh, that not sound so good. You go away now.
+Should Have Voiceover=0
+}

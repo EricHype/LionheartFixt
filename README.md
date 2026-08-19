@@ -124,15 +124,21 @@ Agility, Endurance and Luck - 46 finished files that nothing in Lionheart reads.
 | `GoblinEntranceGuard` | `Goblin Horde IS` | Name-drop Hrubjub. The pointer he gives you is the thing the guard checks |
 | `GoblinGrumdjum`, `10 Smart Goblins` | `Outwit 7` | He brags about goblin philosophers "beyond the ken of your average human intellect". Call the bluff: Bonecrusher wrote nothing down, and Brain-Gnasher was a general |
 | `GoblinGrumdjum`, `81 Magic Node` | `Thought 80` | He theorises the mana obelisks are the residue of old spells. A Thought mage knows they are reservoirs, and he takes the correction beautifully |
-| `GoblinGrumdjum`, `91 Dryad Magic` | `Outwit 7` | He warns you about the dryad's healing, her wards, and her tongue — the tongue twice. He is not afraid you will lose to her |
+| `GoblinGrumdjum`, `91 Dryad Magic` | `Outwit 7` | He warns you about the dryad's healing, her wards, and her tongue -- the tongue twice. He is not afraid you will lose to her |
 | `GoblinGrumdjum`, `110 Goblin Poetry` | `Schmooze 7` | Praise the haiku on its craft rather than gushing. Feeds the same "told the Khan about the poetry" flag the vanilla routes do |
+| `Goblin Henchman` (Bludjund) | `ST 8+` | He is a squire who has never eaten a brain and would like it to be yours. Loom at him |
+| same | `Outwit 7` | He insists he is not telling you the Khan sent them to spy, having just told you. Ask what else he is not telling you |
+| same | `Schmooze 7` | Finish his rhyme properly instead of scraping past the `IN 4` bar |
+| `Goblin guarding Woodcutter daughter` | `ST 8+` | Step over him and pick the child up |
+| same | `Goblin Horde IS` | The shipped Speech line is a *bluff* about knowing the Khan. If you serve him it is not a bluff |
+| same | `Barter 55` | Buy her, through the restored trade node below |
 
-**Grumdjum is the largest goblin conversation in the game** — 42 nodes, 105 replies, and
+**Grumdjum is the largest goblin conversation in the game** -- 42 nodes, 105 replies, and
 in vanilla every one of its 33 gates is quest state, not one skill or attribute among
 them. He is also the goblin who reads philosophy, theorises about magic and writes haiku,
 so the four checks above are all about meeting him at his own level rather than getting
 past him. The dryad one is load-bearing: the tree already supports talking to her instead
-of killing her — that is what its `Dryad talked to NOT killed` gate is for — and vanilla
+of killing her -- that is what its `Dryad talked to NOT killed` gate is for -- and vanilla
 never hints the option exists.
 
 **Two shipped requirement files are named for Outwit and test Speech instead** -
@@ -162,6 +168,18 @@ which is what that folder is for - so gating on them leaves a socket open for a 
 to grant the reading without touching the stat. Raw attributes are used only where no perk
 should ever substitute: `ST 8+` to face down the conquistador is strength, not cleverness
 about strength.
+
+### Restore - a negotiation nobody could reach
+
+`Goblin guarding Woodcutter daughter` contains `40 goblin offers trade`, a written
+negotiation node with **no inbound link and no replies of its own** - cut content sitting
+in the shipped file. It is wired back in, which is what gives Barter something to do in a
+scene that otherwise offers a Speech roll or a fight.
+
+That scene needed it. In vanilla it has eleven replies and **exactly one non-combat
+exit**; even "It's no concern of mine what you do with her" ends with the goblin deciding
+you are the appetiser. It now has four ways out that do not involve killing him, and the
+child lives in all of them.
 
 ### Restore - two characters who were written and never placed
 
