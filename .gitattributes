@@ -1,0 +1,9 @@
+# The mod payload is game data, not source. Lionheart's resource files are CRLF
+# and modmanager compares them byte-for-byte against the vanilla archive, so any
+# line-ending normalisation here would corrupt them. Never let git touch them.
+files/** -text
+
+# Project text is plain LF.
+*.md text eol=lf
+*.json text eol=lf
+.gitattributes text eol=lf

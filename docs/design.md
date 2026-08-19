@@ -11,9 +11,9 @@ A large restoration-and-repair mod for Lionheart. Three goals, in priority order
 
 This document records the diagnosis, which is measured rather than asserted, and the phase
 plan. The work itself is broken down section by section and map by map in
-[`lionheart-fixt-plan.md`](lionheart-fixt-plan.md). What actually gets packaged, under what
-version, in what order, is in [`lionheart-fixt-releases.md`](lionheart-fixt-releases.md).
-Content inventory lives in [`cut-content.md`](cut-content.md); modding technique lives in
+[`plan.md`](plan.md). What actually gets packaged, under what
+version, in what order, is in [`releases.md`](releases.md).
+Content inventory lives in [`cut-content.md`](https://github.com/EricHype/LionheartModTools/blob/main/docs/cut-content.md); modding technique lives in
 the `lionheart-modding` skill.
 
 **Two corrections to the table below, from the per-map survey.** The act table omits the
@@ -102,7 +102,7 @@ plainly does the same. `dialogtree_format.goto` now trims, which moves those twe
 
 ## Phase 2 — Restore cut content
 
-Everything here already exists in the shipped archive. See [`cut-content.md`](cut-content.md)
+Everything here already exists in the shipped archive. See [`cut-content.md`](https://github.com/EricHype/LionheartModTools/blob/main/docs/cut-content.md)
 for the full inventory and how it was established.
 
 **The Goblin Girl.** 19 nodes, 28 replies of finished, characterful writing for an NPC

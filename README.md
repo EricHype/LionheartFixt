@@ -1,16 +1,38 @@
-# Lionheart Fixt 0.1.0 - "The Horde"
+# Lionheart Fixt
 
 A cumulative restoration-and-repair mod for *Lionheart: Legacy of the Crusader*, named
 after Fallout Fixt and following the same discipline: one mod, one install, and every
 release visible in all three registers - **fix**, **restore**, **extend**.
 
+Lionheart shipped as a strong RPG for one act and a combat corridor for seven. That is
+measurable rather than merely felt: Barcelona holds 88 quests and the Crypt holds one,
+while combat density rises 35x. Fixt repairs what is broken, restores what was cut, and
+writes new content where the game simply ran out - working from the shipped archive rather
+than from opinion.
+
+**This repository is the mod.** Its root is the mod package: `mod.json`, `files/`, and the
+documents that explain every decision in it.
+
+| | |
+|---|---|
+| [`docs/design.md`](docs/design.md) | the diagnosis, measured, and the phase plan |
+| [`docs/plan.md`](docs/plan.md) | the work, section by section and map by map |
+| [`docs/releases.md`](docs/releases.md) | what ships, in what version, in what order |
+
+**The tooling lives separately**, in
+[LionheartModTools](https://github.com/EricHype/LionheartModTools) - the archive
+packer, the resource-format parser, `modmanager.py`, the map editor and the
+`lionheart-modding` skill. You need that repo checked out to build or install this one.
+Fixt is content; the tools are tools.
+
+## Current release: 0.1.0 - "The Horde"
+
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
 standing, and a settlement that answers to almost nothing but Speech.
 
-Planning and measurements: [`docs/lionheart-fixt-releases.md`](../../docs/lionheart-fixt-releases.md).
-
-## What is in this release
+**Not yet tested in-game.** It is built, deployed and verified byte-identical in both
+`data.dat` and the loose `data\` mirror, but nobody has played it yet.
 
 ### Fix - the goblin thread's dead ends
 
@@ -194,15 +216,14 @@ bug to look for.
 ## Installing
 
 ```
-python modmanager.py install mods/lionheart-fixt "<game-dir>"
+python modmanager.py install <path-to-this-repo> "<game-dir>"
 python modmanager.py build "<game-dir>"
 ```
 
 `install` must be rerun before every `build` if anything under `files/` changed - `build`
 reads from the installed copy, not from this folder.
 
-**Enable it last.** Nothing here collides with the other mods in this repo, but Fixt is
-the one that should win any future conflict.
+**Enable it last.** Fixt should win any conflict with the scratch mods in the tools repo.
 
 ## Compatibility
 

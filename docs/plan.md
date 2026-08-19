@@ -2,9 +2,9 @@
 
 Status: **planning**. Nothing below is built.
 
-The [design doc](lionheart-fixt-design.md) argues *what* to do and why. This is *where*:
+The [design doc](design.md) argues *what* to do and why. This is *where*:
 every section of the game, every map that needs work, and what the work is. Content
-inventory lives in [`cut-content.md`](cut-content.md).
+inventory lives in [`cut-content.md`](https://github.com/EricHype/LionheartModTools/blob/main/docs/cut-content.md).
 
 ## How the numbers were taken
 
@@ -2608,7 +2608,7 @@ Six of the game's 21 unofferable quests are the evil path's missing content —
 heresy`, and the `Rob the Thief Guildhouse` / `Convince the Thief Guildmistress to leave
 the Sewers` pair. Two more, `Root out the heretic Cathars` and `Prevent the Inquisitor from
 killing the Cathars`, are already activated by `02 Hamlet Burned` and display nothing.
-Full inventory and how it was established: [`cut-content.md`](cut-content.md#quests).
+Full inventory and how it was established: [`cut-content.md`](https://github.com/EricHype/LionheartModTools/blob/main/docs/cut-content.md#quests).
 
 The Cathar pair is the most valuable: a massacre-or-save choice, hooks already placed, in
 the aftermath map of the one late act that still works.

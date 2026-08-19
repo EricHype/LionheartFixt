@@ -2,8 +2,8 @@
 
 Status: **planning the first ship**. Nothing below is built yet.
 
-The diagnosis lives in [`lionheart-fixt-design.md`](lionheart-fixt-design.md); the
-map-by-map work lives in [`lionheart-fixt-plan.md`](lionheart-fixt-plan.md). This document
+The diagnosis lives in [`design.md`](design.md); the
+map-by-map work lives in [`plan.md`](plan.md). This document
 is the other half: what actually gets packaged, under what name, in what order, and what
 "done" means for each release.
 
@@ -285,7 +285,7 @@ back. For each strand:
    true breaks are gone and no new ones appeared.
 2. **Faction** - assert each new `.Faction` parses on the `Saladin Aswaran` shape and that
    `Goblin Rank` increments once per record.
-3. **Deploy** - `modmanager.py install mods/lionheart-fixt <game-dir>` then
+3. **Deploy** - `modmanager.py install <path-to-this-repo> <game-dir>` then
    `modmanager.py build <game-dir>`, then byte-compare the loose `data\` mirror and the
    `data.dat` entries against the mod source.
 4. **In-game, in one pass** - Hrubjub via the new entry, spy quest, rank 1; Crossroads
@@ -298,7 +298,7 @@ back. For each strand:
    correctly absent. A check that silently replaced a shipped route is the failure mode to
    look for.
 
-## Corrections to `lionheart-fixt-plan.md` found while scoping this
+## Corrections to `plan.md` found while scoping this
 
 Three claims in the plan document are wrong and are fixed there:
 
