@@ -1,0 +1,1275 @@
+CDialogTree
+{
+Name=Goblin Khan
+Portrait=Dialog/NPC Portraits/Goblin Kahn
+Should Have Voiceovers=1
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=Khan player tries to exit dialog by walking away
+}
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Rarely does such a tasty morsel so willingly present itself for the table. If you have business for Plumjum Khan, I suggest you talk quickly before my appetite overwhelms my curiosity.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=Great Khan, I have killed the water witch as Grumdjum asked. I humbly request an audience with you.
+Go to node ID=100 Returning to the Khan after the dryad is dead
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player has made friends
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+State=G28XU4JM
+}
+Action=CNotAction
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Grumdjum has tasked me to slay the dryad. I seek to gain your trust.
+Go to node ID=30 Kill Dryad
+Action work in progress=(If get kill Dryad quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Rid the Dryad's Forest of the Goblins
+State=84EXX5SC
+}
+}
+Reply Text=I have come to save the dryad from your murderous clan. Your tyranny ends here.
+Go to node ID=
+Action work in progress=(If Dryad asked player to kill Khan)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+State=SR7XNOVO
+}
+}
+Reply Text=I have been sent by the Inquisition to end your pathetic life. Do you have anything thing left to say before I slit your throat?
+Go to node ID=
+Action work in progress=(if Inquisition and on the quest to slay the kahn)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+State=SR7XNOVO
+}
+}
+}
+Reply Text=For the Inquisition, I will cleanse you heathens.
+Go to node ID=
+Action work in progress=(if Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=Templar IS
+Reply Text=For the Knights Templar, I will cleanse you heathens.
+Go to node ID=
+Action work in progress=(if Templar)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=NOT Templar or Inquisitor
+Reply Text=My business is nothing more than to kill every last goblin.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, Great Khan, I seem to have taken a wrong turn. I'll be on my way.
+Go to node ID=11 Earn Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Again, this morsel intrudes into my cave. What is so important that you would dare to interrupt the Khan?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=Great Khan, I have killed the water witch as Grumdjum asked. I humbly request an audience with you.
+Go to node ID=100 Returning to the Khan after the dryad is dead
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player has made friends
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+State=G28XU4JM
+}
+Action=CNotAction
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Grumdjum has tasked me to slay the dryad. I seek to gain your trust.
+Go to node ID=30 Kill Dryad
+Action work in progress=(If get kill Dryad quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Rid the Dryad's Forest of the Goblins
+State=84EXX5SC
+}
+}
+Reply Text=The River Dryad has tasked me to exterminate you.
+Go to node ID=
+Action work in progress=(If get Pearl Quest from Dryad)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+State=SR7XNOVO
+}
+}
+Reply Text=I have been sent by the Inquisition to end your pathetic life. Do you have anything thing left to say before I slit your throat?
+Go to node ID=
+Action work in progress=(if Inquisition and on the quest to slay the kahn)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+State=SR7XNOVO
+}
+}
+}
+Reply Text=For the Inquisition, I will cleanse you heathens.
+Go to node ID=
+Action work in progress=(if Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=Templar IS
+Reply Text=For the Knights Templar, I will cleanse you heathens.
+Go to node ID=
+Action work in progress=(if Templar)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=NOT Templar or Inquisitor
+Reply Text=I seek nothing more than to kill every last goblin.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, Great Khan, I seem to have taken a wrong turn. I'll be on my way.
+Go to node ID=11 Earn Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=It's fortunate for you I had a large lunch.  Very well, I'll allow you to leave... this time.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 Earn Goodbye
+Text=Nonsense, no one may depart unless I wish it. And before I deign to let you leave my august presence, I insist that you entertain me, whelp.
+Should Have Voiceover=0
+
+Requirement=Schmooze 7+
+Reply Text=Entertain you? Great Khan, the whole warren already tells your story badly. Let me leave, and I will tell it properly.
+Go to node ID=16 flattered khan
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=XP for flattering Khan
+Experience Points To Add=1
+}
+Icon=Attribute Icon
+
+Requirement=Speech moreequal 25
+Reply Text=If you would let me pass, I will entertain others with tales of your glory, Great Khan.
+Go to node ID=16 flattered khan
+Action work in progress=(speech >25)
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=XP for flattering Khan
+Experience Points To Add=1
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Khan told poetry to once
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I could tell you a Goblin poem.
+Go to node ID=22 grumdjum poem
+Action work in progress=(if heard Grumjum poem)
+Custom Action=CActivateAction
+{
+Target Name=Khan told poetry to once
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I don't think I would be a very good entertainer.
+Go to node ID=21 Combat 2
+
+Requirement=!None
+Reply Text=I must leave.
+Go to node ID=20 Combat
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 Have Earned Goodbye
+Text=That was very sporting of you! I am entertained, so for now, you will not be detained.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=16 flattered khan
+Text=Oh, you are a wickedly shrewd whelp, but I admire such keen thinking. You may depart now.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Combat
+Text=Hehe, morsel, you are no match for me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 Combat 2
+Text=On the contrary, eating you will be most entertaining!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said not entertaining
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=22 grumdjum poem
+Text=Ah, well that would certainly be acceptable! Nothing quite stirs the soul like the beauty of Goblin verse. Speak your poem then, bard!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The meter is a bit off. 'Violence is red, and so is blood, I'll crush your skull, with a delicious thud.'
+Go to node ID=13 Have Earned Goodbye
+Action work in progress=(if heard Grumjum poem)
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Player recites goblin poetry
+Experience Points To Add=1
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Kill Dryad
+Text=Have you? Grumdjum is, as ever, the clever one. Why waste the strength of the clan on petty annoyances when a morsel like you begs to serve? Very well then, go and do not fail us lest you end worse than a mere victim of the dryad. If you manage to slay the beast, I may have a job for you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Consider her dead, my Khan.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Returning to the Khan after the dryad is dead
+Text=So, you've killed the dryad? Excellent, you show promise for a mere morsel. Your Khan asks another service of you, though it will prove more difficult than the last. I trust you will not refuse me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more. If the reward is adequate I might be interested.
+Go to node ID=130 The job
+Action work in progress=(barter)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+}
+Reply Text=I have already been employed by the shaman Rakeb to kill a local woodsman.
+Go to node ID=110 Kill the woodsman
+Action work in progress=(Accepted woodsman quest from Rakeb)
+
+Requirement=!None
+Reply Text=I'm not your servant, Khan. Perhaps you should take orders from me?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+
+Requirement=!None
+Reply Text=I regret slaying the dryad. The only way to atone is to kill you and all your goblins.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=With all due respect, I think I've done your clan enough favors for one day. I should be leaving.
+Go to node ID=120 Don't refuse the Khan
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=110 Kill the woodsman
+Text=Rakeb's deviant quests are a distraction the clan cannot afford. Kill the woodsman if you want, but you will do my bidding first.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I don't take orders from goblins.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+
+Requirement=!None
+Reply Text=Yes, but...
+Go to node ID=130 The job
+------------------------------------------------------------
+Node ID=120 Don't refuse the Khan
+Text=You will leave my presence to inflict my will upon the land or you will leave in my chamber pot. Am I being clear, morsel?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Certainly, great Khan. As long as you have the means to pay, I'll slaughter whole cities for you.
+Go to node ID=130 the job
+
+Requirement=!None
+Reply Text=While I appreciate your confidence in me, I'm going to have to decline your offer.
+Go to node ID=210 Dinner
+
+Requirement=!None
+Reply Text=Nobody takes that tone with me, you bloated worm.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 The job
+Text=To the south and west of Khara'Khorum, in a cleverly situated lair, a bounty hunter has been preying on my clan.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=Actually, I have already taken care of that bounty hunter.
+Go to node ID=160 PC Returns after killing bounty hunter
+Action work in progress=(Player has already killed him)
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=Unfortunately, I suffered a grievous wound in your service. I must decline the task until I am healed. <Lie>
+Go to node ID=135 job 2
+Action work in progress=(speech)
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=How could a mere bounty hunter vex the Great Khan?
+Go to node ID=135 job 2
+
+Requirement=!None
+Reply Text=On second thought, I'm not interested.
+Go to node ID=120 Don't refuse the Khan
+------------------------------------------------------------
+Node ID=135 Job 2
+Text=Do not presume to question me, morsel. This bounty hunter wields a powerful weapon, which my people call The Everlasting. It has potent magic that can slay even the mightiest of our warriors.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And so you will send me. You are very cunning, great Khan.
+Go to node ID=140 Job 3
+
+Requirement=!None
+Reply Text=I'm not interested.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+
+Requirement=!None
+Reply Text=I must leave.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Job 3
+Text=Yes, yes I am. You will be well rewarded when the hunter is dead - and you have returned to me with his weapon.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=He's as good as dead, great Khan.
+Go to node ID=145 goodbye 2
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Deal with the bounty hunter preying on the goblins
+State=6FXCD9GH
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm not interested.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=145 goodbye 2
+Text=Good luck, morsel.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Return to Khan and Raylark lives
+Text=While the cursed bounty hunter lives we have nothing more to speak of, morsel.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 PC Returns after killing bounty hunter
+Text=I wonder why my scouts did not inform me of this? No matter. Now, give me the weapon.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+}
+}
+}
+Reply Text=I have slain the bounty hunter, but I did not bring his weapon.
+Go to node ID=151 Raylark dead NO SWORD
+Icon=Quest Icon
+
+Requirement=Barter moreequal 20
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+}
+}
+Reply Text=You mean the potent weapon that slays goblins? Goblins... like you? Let's discuss my price.
+Go to node ID=170 hard bargaining
+Action work in progress=(barter 20)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+}
+}
+Reply Text=Certainly, great Khan. Here is the hunter's weapon.
+Go to node ID=180 soft bargaining
+Action work in progress=(remove sword from PC inventory, give small reward)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=XP for giving Everlasting to Kahn
+Experience Points To Add=1
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Deal with the bounty hunter preying on the goblins
+State=B4L8KX9M
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Deal with the bounty hunter preying on the goblins
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+}
+}
+Reply Text=Sorry, the weapon is the perfect opportunity to kill every last one of you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=165 Combat 2
+Text=Arhh, traitor! I will gnaw your bones in Hell!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(combat)
+------------------------------------------------------------
+Node ID=170 Hard Bargaining
+Text=Hehe, you are indeed a worthy creature, morsel. You have an admirably cunning spirit. Your payment will be increased, but do not push me too far.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm glad we see eye-to-eye, great Khan. Here is the weapon.
+Go to node ID=200 goodbye 3
+Action work in progress=(remove sword from PC inventory, give reward)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=700
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Deal with the bounty hunter preying on the goblins
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=XP for giving Everlasting to Kahn
+Experience Points To Add=1
+}
+Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Goblin Champion
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=On second thought, I can think of no reward greater than killing you.  Oh, and then taking everything you have.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=180 Soft bargaining
+Text=You have done well, morsel. For you, though, I think the task was easily accomplished. Without the fell power of his weapon to hide behind, the cur probably just cowered and begged for his life. I really cannot give you much for such a simple task.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 25
+Reply Text=I am grateful for your reward, Khan. Doubtless a khan of your meager means can afford no more than this.
+Go to node ID=195 Charisma
+Action work in progress=(speech 25)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What? You promised me more than a pittance!
+Go to node ID=190 Double-crossed
+
+Requirement=!None
+Reply Text=I will humbly accept whatever I am given.
+Go to node ID=210 dinner
+
+Requirement=!None
+Reply Text=Nobody double-crosses me, Khan. I'll kill you for this with or without the hunter's weapon.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=190 double-crossed
+Text=True, but that was before you lost your bargaining... edge, so to speak.  Take what you're given, morsel, and be glad for it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, great Khan.
+Go to node ID=200 goodbye 3
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Goblin Champion
+}
+}
+}
+
+Requirement=!None
+Reply Text=Nobody crosses me and lives, goblin.  You'll regret this, but not for long.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=195 Charisma
+Text=You are very clever, morsel. Yes, I can afford more. Perhaps you will prove useful to me one day in the future if you keep your wits about you and don't end up somebody's dinner. Here, take this as well.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=This is more like it, great Khan.  It has been a pleasure dealing with you.
+Go to node ID=200 goodbye 3
+Action work in progress=(give player an additional reward)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=300
+}
+Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Goblin Champion
+}
+}
+}
+
+Requirement=!None
+Reply Text=This is closer to what I want, great Khan, but not close enough.
+Go to node ID=210 Dinner
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+------------------------------------------------------------
+Node ID=200 Goodbye 3
+Text=Farewell, morsel, and may chaos follow in your wake.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 Dinner
+Text=Morsel, you disappoint me. Your spirit seems to be... lacking. In fact, you remind me of a suckling cow, weak and timid and probably very, very tender. Tender and weak and delicious. You've served me well enough, morsel, but I'm afraid you'll serve me next as dinner.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=350 next task
+Text=You have proven yourself worthy to remain in my presence. Now you may be privy to the grand plans of our tribe. I have need of a strategist to assist with our next war campaign.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=360 attack barcelona
+Text=I have drawn plans to invade Nueva Barcelona. My goblins prepare for war. But there are many warriors within the city, and the walls are nearly impregnable.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=365 barcelona walls
+Text=Of course not, we need only adopt the proper strategy to scale that obstacle. *You* will slay the guards outside the city walls, beginning with that fool Guard Esteban. Then kill the gate guards to prevent them from dropping the portcullis, and my horde will flood into the city.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=05 Return Friends of Khan
+Text=So, the goblin friend returns. What do you want?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Bounty Hunter and sword have been told to Khan
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have not yet slain the Bounty Hunter.
+Go to node ID=150 Return to Khan and Raylark lives
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Bounty Hunter and sword have been told to Khan
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=I have slain the bounty hunter, and I have his weapon.
+Go to node ID=160 PC Returns after killing bounty hunter
+Custom Action=CActivateAction
+{
+Target Name=Bounty Hunter and sword have been told to Khan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Bounty Hunter and sword have been told to Khan
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Deal with the bounty hunter preying on the goblins
+}
+}
+}
+}
+}
+}
+Reply Text=I have slain the bounty hunter, but I did not bring his weapon.
+Go to node ID=151 Raylark dead NO SWORD
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have changed my mind. I now seek nothing more than to kill every last goblin.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry. I did not mean to bother the Great Khan. Goodbye.
+Go to node ID=200 Goodbye 3
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 Where are you going?
+Text=I did not say you could leave! Have at thee!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Start in Persia
+Text=Hello, Goblin morsel. Without a doubt you are surprised to see Rumjun Khan here amidst the sandy dunes. I am here to cause destruction in this part of the world...and assist you on your journey of bloodshed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would be honored if you would accompany me.
+Go to node ID=501 Excellent
+
+Requirement=!None
+Reply Text=I do not think that would be a wise thing to do.
+Go to node ID=502 Too bad
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=501 Excellent
+Text=Excellent! Let us go forth and sow destruction in our wake! My time has come to leave this earthen plane and I wish to do so with the grease of blood on my hands.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=502 Too bad
+Text=That's too bad. We will continue our travels and meet my brethern in the East. China is very rich and my belly is very empty...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=151 Raylark dead NO SWORD
+Text=While I applaud your tenacity and strength in overcoming that blight upon the goblin cause, I must have that weapon. Get it. Now.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll retrieve the weapon at once.
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I think perhaps I could find another buyer for the weapon...unless you can promise me a kings ransom.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+
+Requirement=!None
+Reply Text=I don't take orders from goblins.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan player traitor in dialog said kill him
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=200 Feed me
+Text=Feed me, my goblins!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=201 First guy dead
+Text=Damn you, Lionheart!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=202 Second guy dead
+Text=It will take more than that to defeat me, mortal!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=203 Third guy dead
+Text=Hrabjab! You will pay for that, Lionheart!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=204 4th guy dead
+Text=<groans> You cannot win!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=205 last guy dead
+Text=*You* will feed my hunger now, interloper!
+Should Have Voiceover=0
+}

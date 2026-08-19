@@ -1,0 +1,1045 @@
+CDialogTree
+{
+Name=Rakeb
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=We knew you were coming, but we must admit your intentions are not clear. You are hard for us to see through. There is something quite... special about you. Ah, but forgive my poor manners. We are Rakeb.
+Should Have Voiceover=0
+
+Requirement=Rakeb requires player to be sent by darsch
+Reply Text=Release Darsh. Now.
+Go to node ID=15 No Darsh
+Action work in progress=if Sent by Darsh, show this one
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+}
+}
+Reply Text=Are you some sort of fortune teller?
+Go to node ID=20 Fortune Teller
+
+Requirement=!None
+Reply Text=I'm here to wipe you and your ilk from the face of the world. A fairly transparent motive, really.
+Go to node ID=100 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, apparently I'm a little lost. I'll be on my way.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=We knew you would return.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=store open
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to buy some items.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Shaman
+After Closed Action=
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+State=WGC23NPX
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+}
+}
+}
+Reply Text=I have killed the Devil fish.
+Go to node ID=325 another task
+Action work in progress=Note: this one is if you're not on the Darsh rescue qeust
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Vodyanoi
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=75
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+State=WGC23NPX
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+}
+}
+Reply Text=I have killed the Devil fish.
+Go to node ID=60 Returning after Dryad is killed
+Action work in progress=Note: this one's if you are on the Darsh rescue quest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Vodyanoi
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=no gold
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=I have Darsh's Ransom.
+Go to node ID=65 maybe another task
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+Action=CDeactivateAction
+{
+Target Name=no gold
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=3EUUJA40
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+}
+Reply Text=I have the woodsman's eyes and liver.
+Go to node ID=120 Returning with the eyes
+Icon=Quest Icon
+
+Requirement=Rakeb requires player to be sent by darsch
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+}
+}
+}
+Reply Text=Darsh is still a captive.  I want him released without further delay.
+Go to node ID=15 No Darsh
+Action work in progress=if Sent by Darsh, show this one
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+}
+}
+}
+Reply Text=So, you're a fortune teller?
+Go to node ID=20 Fortune Teller
+
+Requirement=!None
+Reply Text=I'm here to wipe you and your ilk from the face of the world. A fairly transparent motive, really.
+Go to node ID=100 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, apparently I'm a little lost. I'll be on my way.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 No Darsh
+Text=We originally planned merely to ransom the human you call Darsh. If that were still the case, I would be happy to accept the gold and turn him over to you. As it is, events have decreed a different fate for him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you mean, goblin?
+Go to node ID=30 Explanation
+
+Requirement=!None
+Reply Text=If you won't acept gold, you'll have to accept steel!
+Go to node ID=100 combat
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=20 Fortune Teller
+Text=Yes, we are, but the art and science of divination is not as crass as your question implies. We are no mere 'fortune teller'. Rakeb is a master of many diverse forms of prognostication.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How do you tell the future? Do you have a crystal ball?
+Go to node ID=30 Explanation
+
+Requirement=!None
+Reply Text=How's this for telling the future? I see... it's getting clearer...clearer... I see my blade -- in your liver!
+Go to node ID=100 Combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll let you get back to that. Sorry to interrupt.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Explanation
+Text=Our job is to tell the clan's future so that our khan may plan accordingly. We are specialists in batraquomancy and catoptromancy but lately we've had to expand our skills in anthropomancy due to a slight...complication.
+Should Have Voiceover=0
+
+Requirement=Rakeb requires player to be sent by darsch
+Reply Text=What does this have to do with Darsh?
+Go to node ID=40 Divination Definitions
+Action work in progress=if Sent by Darsh, show this one
+Icon=Quest Icon
+
+Requirement=Tribal 80+
+Reply Text=Frogs, mirrors and entrails. You read what the clan eats, what the clan sees and what the clan kills - and lately rather more of the third than a healthy camp should need.
+Go to node ID=35 fellow practitioner
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I don't speak Goblin. Could you explain that to me in a language I understand?
+Go to node ID=40 Divination Definitions
+------------------------------------------------------------
+Node ID=35 fellow practitioner
+Text=<Rakeb's eyes narrow, and for the first time he speaks without performance.> So. The soft-skin has held a scrying bowl. Then you know what it costs to read a thing that does not wish to be read, and you know why my hands shake. I will not insult a practitioner with the speech I keep for tourists.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then tell me plainly. What is the complication?
+Go to node ID=40 Divination Definitions
+
+Requirement=!None
+Reply Text=Keep your bowl, shaman. I have seen enough.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Divination Definitions
+Text=Ah, your kind is always so ill-educated. You should really speak to Grumdjum about that. Batraquomancy and catoptromancy are, respectively, the prediction of future events by observing the actions of frogs and by seeking visions in a mirror placed underwater.
+Should Have Voiceover=0
+
+Requirement=Rakeb requires player to be sent by darsch
+Reply Text=What does this lunacy have to do with Darsh? I grow increasingly impatient, goblin.
+Go to node ID=45 More Definitions
+Action work in progress=if Sent by Darsh, show this one
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I see. And Anthromancy?
+Go to node ID=45 More Definitions
+
+Requirement=!None
+Reply Text=You're crazy. That's how you tell the future? That sounds ridiculous.
+Go to node ID=43 Crazy
+------------------------------------------------------------
+Node ID=43 Crazy
+Text=A response typical of the ignorant. The combination of these two sciences has allowed our clan to survive for decades in the midst of these human lands. The famiy Anura, or frogs, possess keen insight into future events, and it is only by observing their motions underwater with a mirror that their wisdom becomes clear.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Of course. How... stupid of me. Please continue.
+Go to node ID=45 More definitions
+
+Requirement=!None
+Reply Text=You'll die for that remark!
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=45 More Definitions
+Text=Lately, devil-creatures have prevented me from employing my usual techniques in the stream that runs through these woods. I have had to rely on my training in anthropomancy, the prediction of future events by studying human entrails. Very messy, and it's hard to hear the spirits, what with all of the screaming.
+Should Have Voiceover=0
+
+Requirement=Rakeb requires player to be sent by darsch
+Reply Text=I see, and I take it you plan on telling the future with Darsh's entrails, then?
+Go to node ID=47 Task
+Action work in progress=if Sent by Darsh, show this one
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+}
+}
+Reply Text=I have a knack for solving problems with a blade. But I'm not inexpensive.
+Go to node ID=50 Grumdjum
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Well, I'm sorry, but I'm going to have to kill you now, and probably the rest of your tribe too.
+Go to node ID=100 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=That's my cue to leave. I'll be on my way.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=47 Task
+Text=Unfortunately for Inquisitor Darsh, yes.  However, if you were to kill the creatures that have recently infested my stream, we would have no need of the human and could ransom the Inquisitor to you.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed all fish
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already killed the devil fish.
+Go to node ID=60 Returning after Dryad is killed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Vodyanoi
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed all fish
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=All right, if it will save Darsh then I'll do it.
+Go to node ID=90 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+State=DQOGRTPJ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=A tempting offer, but I think killing you and everybody you know is a more eloquent solution.
+Go to node ID=100 combat
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=50 Grumdjum
+Text=If you eliminate these devilfish, you will not go without compensation. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed all fish
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Yes, I accept your task.
+Go to node ID=90 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+State=DQOGRTPJ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed all fish
+Desired Minimum Count=1
+}
+}
+Reply Text=The vodyanoi in the waterfall cave? They're all extinct, thanks to me.
+Go to node ID=325 another task
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Vodyanoi
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=75
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Devil fish dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I think killing you and everybody you know is a more eloquent solution.
+Go to node ID=100 combat
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Devil fish dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=A tempting offer, but I think killing you and everybody you know is a more eloquent solution.
+Go to node ID=100 combat
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=60 Returning after Dryad is killed
+Text=Excellent, the clan thanks you.  Now, if you pay the ransom of 250 gold, we'll be more than happy to release the Inquisitor to you. I may also have another task for a creature as resilient as you.
+Should Have Voiceover=0
+
+Requirement=Rakeb requires player to be sent by darsch
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+Reply Text=Here's the ransom, let him go.
+Go to node ID=65 maybe another task
+Action work in progress=release Darsh, pay ransom
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+
+Requirement=!None
+Reply Text=I do not have that much gold.
+Go to node ID=320 release
+Custom Action=CActivateAction
+{
+Target Name=no gold
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+------------------------------------------------------------
+Node ID=63 Returning after the node 60 without accepting the other task
+Text=I knew you would return. I have a job for you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more.
+Go to node ID=70 other task
+
+Requirement=!None
+Reply Text=No thanks, just passing through. Goodbye.
+Go to node ID=90 goodbye
+
+Requirement=!None
+Reply Text=Sorry, I've decided to kill all of you.
+Go to node ID=100 combat
+------------------------------------------------------------
+Node ID=65 maybe another task
+Text=So, now that your precious human is safe, perhaps we can do a little business? I have a job that needs doing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perhaps, tell me more.
+Go to node ID=70 other task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, we're through.  Goodbye.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=70 other task
+Text=Love can take many mysterious forms, can it not? Its motives and methods are hidden even to us. We are left to try to fulfill the desires it places in our heart and must be content with not knowing its reasons.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I see. You've fallen in love, I take it?  A star-crossed romance, perhaps?  
+Go to node ID=75 love
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I've decided against taking your quest.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=75 love
+Text=We were wandering in the forest not long ago, searching for a new pool or stream in which to practice our craft when we came across a woodsman.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A woodsman?
+Go to node ID=80 more love
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I've decided against taking your quest.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=80 more love
+Text=Yes, we found him most enchanting. He had the most beautiful eyes. Ah, but he also had a large axe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I see, you've fallen in love with this woodsman's... eyes? And you want me to talk to him for you? I doubt this will end well.
+Go to node ID=85 eyes
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=You bore me goblin. I've decided against taking your quest.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=85 eyes
+Text=No, you misunderstand. We found the rest of the woodsman to be brutish and crass. We want you to bring us his eyes. Just his eyes. Well, and perhaps his liver. I am partial to Human liver. It is almost as tasty as their brains.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+Reply Text=I already have the woodsman's eyes and liver.
+Go to node ID=120 Returning with the eyes
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Woodcutter dead
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+}
+}
+Reply Text=I've already killed the woodcutter. I'll have to go back and gouge out his eyes and carve out his liver.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+Action=COtherMapAction
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CRemoveAIAction
+{
+Target Name=Woodcutter
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAddAIAction
+{
+Target Name=Woodcutter
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+Then=CDisplayDialogTreeAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Woodcutter
+Node ID=200 dead woodcutter
+Speaker=$trigger
+Player Being Spoken To=$Instigator
+}
+Else=
+Return failure if the If failes=0
+}
+X Radius=30
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
+}
+}
+}
+Other Map Name=Wilderness Maps/Woodcutter Forest
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Woodcutter dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I suppose I can do that.
+Go to node ID=110 second task accepted
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I try not to get involved in things like this.  Good day.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=90 Goodbye
+Text=You'll be back. We're sure.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Combat
+Text=We thought you might prove to be hostile. We look forward to splitting you open and reading your entrails.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 second task accepted
+Text=The woodsman lives in this forest. We doubt he'll part with his eyes willingly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Don't worry about that. I have excellent powers of persuasion.
+Go to node ID=90 Goodbye
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=115 Returning after accepting Woodsman quest without his eyes
+Text=You return, but we do not see the eyes. Find the woodsman and return with them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm working on it.
+Go to node ID=90 goodbye
+------------------------------------------------------------
+Node ID=120 Returning with the eyes
+Text=We sensed that you have that which we desire.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 35
+Reply Text=Yes, but 'liberating' your prizes without damaging them was tricky. I expect a handsome reward. 
+Go to node ID=135 other reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return Woodsman's eyes and liver
+Experience Points To Add=1
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Here they are. Now about my reward...
+Go to node ID=130 reward
+Action work in progress=remove eyes from inventory
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return Woodsman's eyes and liver
+Experience Points To Add=1
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 reward
+Text=This reward should be suitable. You have done us many favors. We thank you and would be pleased to offer our small services to you if you have need of them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you, and good day, goblin.
+Go to node ID=90 goodbye
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=125
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=135 other reward
+Text=We will give you the greatest of boons, friend, and let you purchase these items.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CActivateAction
+{
+Target Name=store open
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Shaman
+After Closed Action=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=136 Vision
+Text=We hope the items have served you well. We thank you for your efforts on our behalf and would be pleased to offer our small services to you if you have need of them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you, and good day, goblin.
+Go to node ID=90 goodbye
+Action work in progress=the PC could receive a scripted, foreshadowing "vision" and the shaman might now sell magical items or potions to the PC
+------------------------------------------------------------
+Node ID=300 shaman
+Text=Bow before the Great Plumdjum Khan, you worm!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 shaman 2
+Text=You are not worthy to be in the Great Khan's presence!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=320 release
+Text=Then if you desire his uncontested release, I suggest you return at such a time when you are in posession of the paltry sum.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=325 another task
+Text=Excellent! The gold I have given you will undoubtedly show my gratitude. Now then, perhaps we can do a little more business? I have another matter that needs tending.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perhaps, tell me more.
+Go to node ID=70 other task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, we're done.  Goodbye.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+}

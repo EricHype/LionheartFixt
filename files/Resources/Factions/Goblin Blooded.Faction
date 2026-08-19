@@ -1,0 +1,63 @@
+CCharacterFaction
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Goblin Blooded Uber-Perk
+			Modification is permanent=1
+			Modifiers=Array
+			{
+				Item Count=5
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=8
+					}
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Sneak
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=8
+					}
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Barter
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=10
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Poison Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=10
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Disease Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Uber Perks/Goblin Rank
+				}
+			}
+		}
+	}
+	Display Name=Goblin Blooded
+	Description=You have spilled blood for the Horde where the Horde could see you do it.  The vendors call you by name and shave their prices, the shamans no longer test your food on a rat first, and the whole reeking warren has stopped being a danger to you.  Your Sneak and Barter skills each gain 8 skill points, and you resist 10 more Poison and 10 more Disease damage.
+}

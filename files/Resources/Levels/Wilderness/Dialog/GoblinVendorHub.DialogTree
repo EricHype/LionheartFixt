@@ -1,0 +1,67 @@
+CDialogTree
+{
+Name=Hub'blub
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Look at the nasty one walking into Hub'blub's hut! You seek potions of potency or charms of power, or magic blades to make humans cower?
+Should Have Voiceover=0
+
+Requirement=Goblin Horde IS
+Reply Text=Chum prices, Hub'blub. I did not walk into a goblin warren to be charged like a tourist.
+Go to node ID=25 chum vendor
+Icon=Quest Icon
+
+Requirement=Barter moreequal 60
+Reply Text=Your bolts are damp, your blades are notched, and I am the only customer who has walked in here all week. Shall we talk again about the price?
+Go to node ID=25 chum vendor
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=20 vendor
+
+Requirement=!None
+Reply Text=I don't want anything right now.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Come again, goblin chum!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=20 vendor
+Text=Come then goblin chum and marvel at my stock, and buy arrows that scorch and bolts that shock! 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Hubglubs Store
+After Closed Action=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 chum vendor
+Text=<Hub'blub's grin curdles.> Chum, is it, chum? Then take the chum price and take it quiet - if the Khan hears what I let this go for, he will have my ears for a purse!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Hubglubs Chum Store
+After Closed Action=
+}
+Is Default Reply=1
+}

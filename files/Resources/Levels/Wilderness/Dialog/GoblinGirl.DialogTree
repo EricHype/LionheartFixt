@@ -1,0 +1,256 @@
+CDialogTree
+{
+Name=Goblin Girl
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 First time PC enters village
+Text=You're cute for a... whatever it is you are.  What are you?  Are there more of you? Are they all so cute? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+
+Requirement=!None
+Reply Text=Yes.
+Go to node ID=10 more of me
+
+Requirement=!None
+Reply Text=No. Now leave me alone.
+Go to node ID=15 I'm the only one
+
+Requirement=!None
+Reply Text=Since I'm here to kill all of you anyway, I'm afraid the question is, from your point of view, moot.
+Go to node ID=100 Combat
+
+Requirement=!None
+Reply Text=No, and we're not all so bloodthirsty, either!
+Go to node ID=100 combat
+------------------------------------------------------------
+Node ID=2 PC Enters the village again, before completing any quest
+Text=Ooh, you're back.  My momma says I shouldn't hang around no-account losers like you, but I think she's just jealous.  She's old and dried up and bitter and can't understand our bizarre interspecies love!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Frankly, neither can I. Don't you have something... else to do?
+Go to node ID=80 Rebuffed
+
+Requirement=!None
+Reply Text=Although I have nothing against goblins in general, you in particular really need to die.
+Go to node ID=100 combat
+
+Requirement=!None
+Reply Text=I'll kill the old hag if she stands in our way.  Now, give me some sugar, baby!
+Go to node ID=5 Give me some sugar
+------------------------------------------------------------
+Node ID=5 Give me some sugar
+Text=Oooh, you're as bold as a weasel, but you'll have to prove yourself.  You won't find a girl like me under a rock every day, you'll have to prove you're as wicked as you are cute if you want to claim the Khan's daughter!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're the Khan's daughter?  I never realized how cratered and diseased your complexion is, my little snail.
+Go to node ID=7 sugar part 2
+
+Requirement=!None
+Reply Text=Ah, your father must be very wealthy...  I mean, he's, umm, lucky to have a daughter as sweet as you.
+Go to node ID=80 Rebuffed
+------------------------------------------------------------
+Node ID=7 sugar part 2
+Text=You're positively vile!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=90 follow 
+------------------------------------------------------------
+Node ID=10 more of me
+Text=Wow, I hope we have whatever-you-ares every night this week!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=90 follow
+------------------------------------------------------------
+Node ID=15 I'm the only one
+Text=Aww, that's too bad. In that case I hope you aren't dinner!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=90 follow
+------------------------------------------------------------
+Node ID=80 Rebuffed
+Text=Hmph! Nobody says that to the Khan's daughter! If you don't change your mind, I'll have daddy change your head!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=girls walks away
+------------------------------------------------------------
+Node ID=90 Follow
+Text=I'll just keep an eye on you and make sure nobody else tries to eat you, okay?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Combat
+Text=Eeeeeeeeek!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=girl runs away, PC gets "rejected Khan's daughter flag"
+------------------------------------------------------------
+Node ID=110 New Hero in town
+Text=Oooh, you killed the water witch! You must be very fierce and cunning! I... I picked you a boquet of snails, the really juicy kind! Do you want them?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+
+Requirement=!None
+Reply Text=Ah, just the kind I like, and I can see you picked them yourself! Seeing you all slimy like this is giving me wicked ideas!
+Go to node ID=115 Slimy
+
+Requirement=!None
+Reply Text=Ah, umm, that's really not necessary. Why don't you go... over there.
+Go to node ID=180 Rebuffed 2
+------------------------------------------------------------
+Node ID=115 Slimy
+Text=Well, don't you go getting those ideas... yet.  You're evil and mighty and all, but you still haven't proven yourself worthy of the Khan's daughter!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=190 Follow 2
+------------------------------------------------------------
+Node ID=120 Player returns again after killing dryad, but no other quests completed
+Text=You're back. I'm sure you're plotting all sorts of devilry! Who are you going to kill next?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It's hard to tell, really. Anybody who gets in our way, I guess.
+Go to node ID=195 Follow 2 no snails
+
+Requirement=!None
+Reply Text=Why do you persist in annoying me? 
+Go to node ID=180 Rebuffed 2
+------------------------------------------------------------
+Node ID=180 Rebuffed 2
+Text=You're running out of chances.  If I can't have you, I'll have you for dinner!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=girl storms off
+------------------------------------------------------------
+Node ID=190 Follow 2
+Text=I'd better follow you around and help you eat your snails!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=195 Follow 2 no snails
+Text=Goody, I'll help you look for people to get in our way!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 Returning after killing the woodsman 
+Text=How many innocents did you kill? Did you bring Rakeb the eyes? What did you bring me? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Here, I brought you his liver.
+Go to node ID=220 Liver
+Action work in progress=remove woodsman's liver from inventory
+
+Requirement=!None
+Reply Text=I'm sorry, I pulverized him so thoroughly that there just wasn't anything left.
+Go to node ID=230 Another present
+
+Requirement=!None
+Reply Text=You frighten me. Why don't you find a nice goblin man to torment and just leave me alone?
+Go to node ID=250 Rejection
+------------------------------------------------------------
+Node ID=220 Liver
+Text=Oooh, you really know how to woo a girl! I'm going to make you the best liver and grunion pie you've ever had! Don't leave town, I'll be right back!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=225 Liver pie
+Action work in progress=(girl runs away, then will come back a few minutes later if the PC is still in the town) 
+------------------------------------------------------------
+Node ID=225 Liver pie
+Text=Here, I baked you a pie with the woodsman's liver you brought me. Momma added some special magical ingredients that she said would help you if you were ever badly hurt. I think momma's warming up to you!
+Should Have Voiceover=0
+
+Requirement=PE 7+
+Reply Text=<Under the liver there is a sharp green smell you know from the apothecary's back room.> Your mother is very kind. Did she help with the seasoning?
+Go to node ID=227 momma's seasoning
+Icon=Attribute Icon
+
+Requirement=Outwit 7+
+Reply Text=Momma has never once looked at me without measuring me for a pot. Whatever is in this, she did not put it there to help.
+Go to node ID=227 momma's seasoning
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=
+Go to node ID=290 follow 3
+Action work in progress=(girl give PC a poison pie)
+Custom Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver Pie Goblins
+Additions to add=Array
+{
+Item Count=0
+}
+}
+------------------------------------------------------------
+Node ID=230 Another present
+Text=That's not very nice. ...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=250 Rejection
+Text=<Her face goes flat and old, all at once.> Fine. FINE. Go and be somebody else's problem. I hope something with too many teeth finds you in the dark, and I hope it is slow about it, and I hope you think of me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=girl storms off, PC gets rejected the Khan's daughter flag
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=227 momma's seasoning
+Text=<She looks at the pie, and then at you, and her face does something complicated.> ...Momma helped a lot. Momma helped with nearly all of it. You could just carry it around and not eat it? Lots of people carry pies about.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will carry it everywhere. Thank your mother for me.
+Go to node ID=290 follow 3
+Custom Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver Pie Goblins
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=290 follow 3
+Text=Momma says a girl should keep close to what she has cooked for. I will be right behind you!
+Should Have Voiceover=0
+}

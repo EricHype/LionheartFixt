@@ -1,0 +1,1456 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/Barcelona
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=5
+		Full Mix Song=Wilderness/MX_BA2_WILD_MONGOL.ogg
+		Med Mix Song=Wilderness/MX_BA1_WILD_MONGOL.ogg
+		Ambiant Song=Wilderness/AMB_GoblinHouse1.ogg
+	}
+	Width=1024
+	Height=1024
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=
+	Has Begin Been Called=0
+	Map Description=Goblin Hut
+	First Fire Action=
+	First Load Action=
+	View Position=84.000000,253.000000
+	Int View Position=84,253
+	Partial File Name=Wilderness Maps/Goblin Vendor Interior
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=0, 0, 255, 0, 255, 1023, 0, 1023, 0, 0
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=255, 313, 254, 0, 1023, 0, 1023, 1023, 240, 1023, 267, 735, 684, 756, 672, 322, 255, 313
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIAlwaysOcclude
+				{
+					Marked For Deletion=0
+					Publisher=
+					Left Offset=0
+					Top Offset=0
+					Right Offset=0
+					Bottom Offset=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Wilderness/goblin inside/gobinsid2 a
+			Position X=486.778
+			Position Y=471.722
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=idle front
+		}
+		Level Part=CEntityBase
+		{
+			Name=Make Goblins Hostile Relay
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CDelayAction
+							{
+								Next Action=CGoToCombatAction
+								{
+									Enemy Name=Goblin
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=COtherMapAction
+							{
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Make Goblins Hostile Relay
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Make Goblins Hostile Relay
+										}
+									}
+								}
+								Other Map Name=Wilderness Maps/Mongol Camp
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=279
+			Position Y=509
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=exit trigger polu
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=Exits to Mongol Camp
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=Wilderness Maps/Mongol Camp
+						New Location=From Goblin Vendor
+						Who To Switch=$Instigator
+						Relative Position=0
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=311, 628, 448, 583, 524, 582, 647, 643, 656, 762, 484, 783, 311, 762, 311, 628
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=Hub'Blub
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=5
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=3
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Mongol Vendor Village
+								}
+							}
+						}
+					}
+					New Name=Goblin
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=2
+						AI=CSkeletonAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Patrol AI=CScanAreaAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Play Ratio=0
+								Next Try To Move=0
+								State=Scanning
+								Go Home Range=300
+								Move To Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Starting Angle=-45
+								Ending Angle=45
+								Turning Speed=10
+								Time Between Turning=0
+								Start Out Waiting=0
+								Start Counterclockwise=0
+								Turning Flag=0
+								Turn Sequence Name=Idle
+								End Turn Action=CSendAIDoneMessage
+								{
+									Target=$Trigger
+								}
+								Execute Each Turn=0
+								Reset Each Begin=1
+								Current Time To Wait=0
+								Current Start Angle=0
+								Current End Angle=0
+								Waiting=1
+								Starting Facing Angle=-999
+								Complete Turn Time=0
+								Current Turn Time=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+							}
+							Patrol Start Action=
+							Patrol End Action=
+							Respond to calls for reinforcements=0
+							Target shooter if hit=1
+							Never Unacquire=0
+							Sneak Adjustment=0
+							Target Type=CEntityBehaviorStateSetClosestTarget
+							{
+								Max Distance=550
+								Vision Cone=360
+								Name To Target=
+								Must Be Collideable=1
+								Must Have HPs=1
+								Valid Targets=
+							}
+							Has Seen Target=0
+							Max dist from home=1200
+							Pursue AI=CChasePursueAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=1
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Max Radius From Final Pos To Get Within=0
+								Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+							}
+							Pursue Start Action=
+							Pursue End Action=
+							Max distance from home=1000
+							Investigate End Action=
+							Investigate Start Action=
+							Investigate AI=CChaseInvestigateAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Turn Behavior=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Time To Investigate=5
+								Count To Investigate=0
+								Radius to Investigate Point=0
+								Run To Investigate=1
+								State=Chasing
+								Investigate AI=CScanInvestigateAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CScanAreaAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Play Ratio=0
+										Next Try To Move=0
+										State=Scanning
+										Go Home Range=300
+										Move To Behavior=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Starting Angle=-45
+										Ending Angle=45
+										Turning Speed=10
+										Time Between Turning=0
+										Start Out Waiting=0
+										Start Counterclockwise=0
+										Turning Flag=0
+										Turn Sequence Name=Idle
+										End Turn Action=
+										Execute Each Turn=0
+										Reset Each Begin=1
+										Current Time To Wait=0
+										Current Start Angle=0
+										Current End Angle=0
+										Waiting=1
+										Starting Facing Angle=-999
+										Complete Turn Time=0
+										Current Turn Time=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+									}
+								}
+							}
+							Max Dist=70
+							Attack AI=CNormalAttackAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Use Primary Shoot Behavior=1
+								Shoot Behavior=CShootEntityBehavior
+								{
+									Play Sequence=
+									Play Reload Sequence=
+								}
+								Shoot Completed=
+								Turn Behavior=CPointWeaponAtTargetEntityBehavior
+								{
+								}
+								MoveBehavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Minimum Attack Distance=100
+								Move Buffer Zone=50
+								Waiting For Threshold=0
+								Moving State=1
+								Firing Complete=1
+								Firing In Progress=0
+								Waiting To Shoot=0
+								Time To Next State Change=0
+								Time To Next MoveRevision=0
+								Began Shooting From=0.000000,0.000000
+							}
+							Attack Start Action=
+							Attack End Action=
+							Check Range When Firing=0
+							Ignore line of sight if in range=0
+							Retreat when=0
+							Retreat Start Action=
+							Has Started Retreat=0
+							State=Any
+							Allowed To Roam Anywhere=0
+							Transition=Array
+							{
+								Array Count=1
+								Array Item=CSkeletonTransition
+								{
+									Trigger=Once Per New Target
+									From State=Any
+									To State=Attack
+									Action=CRandomAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CPlaySoundAction
+											{
+												Sound=Enemies/Mongol Goblins/Goblin war cry1.ogg
+												Position=$Trigger
+												Multiplayer=Heard by all players
+											}
+											Action=CPlaySoundAction
+											{
+												Sound=Enemies/Mongol Goblins/Goblin war cry2.ogg
+												Position=$Trigger
+												Multiplayer=Heard by all players
+											}
+										}
+									}
+									IsDone=0
+								}
+							}
+						}
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/GoblinVendorHub
+										Node ID=1 Conversation Start
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/GoblinVendorHub
+										Node ID=1 Conversation Start
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+								}
+								When Done=Repeat Series
+								Require Success To Advance=1
+								Next Action Index=0
+							}
+							X Radius=70
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+							{
+								Target Name=$Instigator
+								New Category=Goblin
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Make Goblins Hostile Relay
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CDelayAction
+										{
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Make Goblins Hostile Relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Target Name=$Instigator
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Make Goblins Hostile Relay
+								}
+								Delay=0.7
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					New Facing Angle=0.663225
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=470
+			Position Y=472
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Start Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=CSeriesAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=
+							Action=
+						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
+					}
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=270
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=484
+			Position Y=549
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Hubglubs Chum Store
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Goblin Vendor
+					Price Multiplier=0.75
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=13
+						Array Item=CMerchantListItem
+						{
+							Quantity=6
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Weapons/ALL WEAPONS Mojo Begin
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/LongBow
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Crossbow
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=20
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Arrow
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Bolt
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Armor/MASTER Armor List Non Magic
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=3
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=5
+										Item=Inventory Items/ShieldSmall
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=5
+										Item=Inventory Items/ShieldMedium
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ShieldLarge
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=10
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Arrows and Bolts
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Arrows and Bolts
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=10
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Miscellaneous Items
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Miscellaneous Items
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=690
+			Position Y=490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Hubglubs Store
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Goblin Vendor
+					Price Multiplier=1
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=13
+						Array Item=CMerchantListItem
+						{
+							Quantity=6
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Weapons/ALL WEAPONS Mojo Begin
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/LongBow
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Crossbow
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=20
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Arrow
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Bolt
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Armor/MASTER Armor List Non Magic
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=3
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=5
+										Item=Inventory Items/ShieldSmall
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=5
+										Item=Inventory Items/ShieldMedium
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ShieldLarge
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=10
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Arrows and Bolts
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Arrows and Bolts
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=10
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Miscellaneous Items
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Miscellaneous Items
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=674
+			Position Y=490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=0.5
+		Num Textures=2
+		Texture 0=14 Black
+		Texture 1=14 Black
+		Elevations Row 0=0001010101010101010101010101010100
+		Elevations Row 1=0101010101010101010101010101010100
+		Elevations Row 2=0101010101010101010101010101010100
+		Elevations Row 3=0101010101010101010101010101010100
+		Elevations Row 4=0101010101010101010101010101010100
+		Elevations Row 5=0101010101010101010101010101010100
+		Elevations Row 6=0101010101010101010101010101010100
+		Elevations Row 7=0101010101010101010101010101010100
+		Elevations Row 8=FFE8D0B8A0897159413931292119110900
+		Elevations Row 9=FFECD8C4B09D89756155493D3125190D00
+		Elevations Row 10=FFF0E0D0C0B0A090807161514131211100
+		Elevations Row 11=C0B4A89C9084786C6055493D3125190D00
+		Elevations Row 12=8078706860585048403931292119110900
+		Elevations Row 13=403C3834302D2925211D1915110D090500
+		Elevations Row 14=0001010101010101010101010101010100
+		Elevations Row 15=0000000000000000000000000000000000
+		Elevations Row 16=0000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 16=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+	}
+}

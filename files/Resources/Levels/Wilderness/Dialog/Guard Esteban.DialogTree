@@ -1,0 +1,2765 @@
+CDialogTree
+{
+Name=Sir Esteban
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Hello traveler. I am Esteban, guardsman of the crossroads of Barcelona. I'd advise you to be cautious when traveling, as there are dangers just beyond the roads. I have served at this post for many years, so if you have any questions about the wilderness you may ask.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are you guarding the crossroads?
+Go to node ID=20 Why Guarding
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=Tell me more about the dangers.
+Go to node ID=30 Dangers
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=Tell me more about the wilderness.
+Go to node ID=40 Wilderness
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Hello traveler. It is good to see you again. Remember, my advice to you to is to be cautious when traveling. There are dangers just beyond the roads.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+}
+Reply Text=I have a blood bracer to sell you.
+Go to node ID=500 blood bracer
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+State=0OJYTKQU
+}
+}
+Reply Text=The goblins around the crossroads are all dead.
+Go to node ID=500 killed goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CActivateAction
+{
+Target Name=Told about goblins
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+}
+}
+Operator=
+Operand2=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+Character to get attributes from=$Instigator
+Then=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/LongBow
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Crossbows and Bows/Extra Damage
+}
+}
+Else=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+}
+}
+Operator=
+Operand2=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+}
+Character to get attributes from=$Instigator
+Then=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/LongSword
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Extra Damage
+}
+}
+Else=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/TwoHandedSword
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Extra Damage
+}
+}
+}
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Kill Xp
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Karma
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=45
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Esteban requires all wasps killed
+Reply Text=I have slain the giant wasps.
+Go to node ID=103 wasps killed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CActivateAction
+{
+Target Name=told about wasps
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wasp kill quest xp
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Karma
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=45
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Esteban requires thieves dealt with
+Reply Text=I have dealt with the bandits.
+Go to node ID=113 Thief success
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CActivateAction
+{
+Target Name=told about thieves
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bandit vanquish quest xp
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Karma
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=45
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=3
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+Early Exit=0
+}
+Then=CFailAction
+{
+Action=
+}
+Else=CSucceedAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+}
+Reply Text=Why are you guarding the crossroads?
+Go to node ID=20 Why Guarding
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Tell me more about these dangers.
+Go to node ID=35 dangers 2
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=Tell me more about these dangers.
+Go to node ID=30 Dangers
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=Tell me more about the wilderness.
+Go to node ID=40 Wilderness
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 return dialogue
+Text=Good to see you again, friend.  The crossroads is a safer place, thanks to your efforts. Good travels to you.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+}
+Reply Text=I have a blood bracer to sell you.
+Go to node ID=500 blood bracer
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Be safe traveler.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=15 Other Questions
+Text=Now, what would you like to know?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+}
+Reply Text=I have a goblin blood bracer to sell you.
+Go to node ID=500 blood bracer
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+State=OAGX85AK
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about wasps
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have slain the giant wasps
+Go to node ID=103 wasps killed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CActivateAction
+{
+Target Name=told about wasps
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wasp kill quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+State=FZH0WLV3
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about thieves
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have dealt with the bandits.
+Go to node ID=113 Thief success
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CActivateAction
+{
+Target Name=told about thieves
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bandit vanquish quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+State=0OJYTKQU
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told about goblins
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have slain the goblins.
+Go to node ID=500 killed goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CActivateAction
+{
+Target Name=Told about goblins
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Kill Xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Esteban will not retell troubles
+Reply Text=Why are you guarding the crossroads?
+Go to node ID=20 Why Guarding
+
+Requirement=!None
+Reply Text=Tell me more about the dangers.
+Go to node ID=30 Dangers
+
+Requirement=!None
+Reply Text=Tell me more about the wilderness.
+Go to node ID=40 Wilderness
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Why Guarding
+Text=The guards of Barcelona always patrol these roads to ensure the routes are safe for travelers and merchants. With so many dangers about, the forest is no longer safe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about the dangers here in the crossroads.
+Go to node ID=30 Dangers
+
+Requirement=!None
+Reply Text=Tell me more about the forest.
+Go to node ID=40 Wilderness
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Dangers
+Text=While the roads near Barcelona are usually safe, packs of wolves prey on unwary travelers that stray into the forest. Goblins and other monstrous creatures that once hid in the shadows are growing bolder, attacking day and night. Also, because I have few guards to patrol the Crossroads, a gang of vicious thieves still operates within these woods.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+State=OAGX85AK
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about wasps
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have already slain the giant wasps.
+Go to node ID=103 wasps killed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CActivateAction
+{
+Target Name=told about wasps
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wasp kill quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+State=FZH0WLV3
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about thieves
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have already dealt with the bandits.
+Go to node ID=113 Thief success
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CActivateAction
+{
+Target Name=told about thieves
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bandit vanquish quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+State=0OJYTKQU
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told about goblins
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have already slain the goblins.
+Go to node ID=500 killed goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CActivateAction
+{
+Target Name=Told about goblins
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Kill Xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+}
+Reply Text=Tell me more about the goblins.
+Go to node ID=500 goblins
+
+Requirement=Esteban will not reassign wasp quest
+Reply Text=Tell me more about monstrous creatures.
+Go to node ID=50 Monsters
+
+Requirement=Esteban will not reassign thief quest
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about thieves
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Tell me more about thieves.
+Go to node ID=60 Thieves
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 dangers 2
+Text=The thieves, goblins, and wasps have been the biggest dangers.
+Should Have Voiceover=0
+
+Requirement=Esteban will not reassign wasp quest
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about wasps
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Tell me more about the wasps.
+Go to node ID=50 Monsters
+
+Requirement=Esteban will not reassign thief quest
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about thieves
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Tell me more about thieves.
+Go to node ID=60 Thieves
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+}
+Reply Text=Tell me more about the goblins.
+Go to node ID=500 goblins
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Wilderness
+Text=Should you take the road to the west, you'll enter El Bosque. Last I heard, there were goblin tribes deep in the forest. To the south is the Barcelona coastline, where you can see some of the ships of the Spanish Armada. To the north, you'll find Blood Scar Ravine.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about El Bosque.
+Go to node ID=120 Verdant Forest
+
+Requirement=!None
+Reply Text=Tell me about the Barcelona coastline.
+Go to node ID=130 Barcelona Coast
+
+Requirement=!None
+Reply Text=Tell me more about Blood Scar Ravine.
+Go to node ID=140 Blood Scar Ravine
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=Thanks, I should be on my way now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Monsters
+Text=All sorts of creatures are swarming about. Goblins and rabid wolves roam the deep forest. Every day is a different problem. Today, giant wasps have been harassing travelers on this road and unfortunately I can't find their nest. I've offered a reward for the destruction of the wasps, but so far no one has accepted the challenge.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Wasps dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already destroyed those wasps.
+Go to node ID=130 verify
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Wasps dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I can help you destroy the wasps.
+Go to node ID=100 Wasp Quest Accepted
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+State=XMDADTR3
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about the reward.
+Go to node ID=70 Wasp Reward
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Thieves
+Text=The thieves have been operating around these roads for several weeks now, always evading our patrols. I suspect that they have a camp somewhere to the south. A reward has been posted for anyone who can stop them.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Thieves dealt with
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already taken care of those thieves.
+Go to node ID=140 verify too
+Icon=Quest Icon
+
+Requirement=Esteban will not reassign thief quest
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Thieves dealt with
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I can help you stop these thieves.
+Go to node ID=110 Thief Quest Accepted
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+State=NJ7LY2XB
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about the reward.
+Go to node ID=80 Thieves Reward
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Wasp Reward
+Text=For anyone that can destroy the giant wasps, I'll give them some gold that I've collected. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Wasps dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already destroyed those wasps.
+Go to node ID=130 verify
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Wasps dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I can help you destroy the wasps.
+Go to node ID=100 Wasp Quest Accepted
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+State=XMDADTR3
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No thanks, I'll just be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Thieves Reward
+Text=If anyone can put a stop to the thieves, I'll pay a few bags of gold to them. Those vagabonds have annoyed and tormented many travelers along these roads.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Thieves dealt with
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already taken care of the thieves.
+Go to node ID=140 verify too
+Icon=Quest Icon
+
+Requirement=Esteban will not reassign thief quest
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Thieves dealt with
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I can help you stop these thieves.
+Go to node ID=110 Thief Quest Accepted
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+State=NJ7LY2XB
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No thanks, I'll just be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Wasp Quest Accepted
+Text=Excelente! The wasps have been plaguing travelers along the north road, so I would try searching that area. Return to me when the wasps are gone and I'll give you the reward. Buena suerte!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are there other troubles?
+Go to node ID=35 dangers 2
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=Thanks, I should be on my way now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=103 wasps killed
+Text=Muy excelente! Here is your payment for the task.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+State=FZH0WLV3
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about thieves
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have also dealt with the bandits.
+Go to node ID=113 Thief success
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CActivateAction
+{
+Target Name=told about thieves
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bandit vanquish quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+State=0OJYTKQU
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told about goblins
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have also slain the goblins.
+Go to node ID=500 killed goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CActivateAction
+{
+Target Name=Told about goblins
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Kill Xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Are there other troubles?
+Go to node ID=35 dangers 2
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Thief Quest Accepted
+Text=Bueno. The band of thieves is led by some criminal named El Bandito Rie, the Laughing Bandit. Sometimes they set camp to the south. Return to me once you have dealt with them. Buena suerte!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are there other troubles?
+Go to node ID=35 dangers 2
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Verdant Forest
+Text=El Bosque teems with life and is filled with many creatures. Unfortunately, the deeper you travel into the woods, the more dangerous the creatures become. Lately, the guards have encountered increased resistance, so be careful if you travel to the west.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about the dangers here in the crossroads.
+Go to node ID=30 Dangers
+
+Requirement=!None
+Reply Text=Tell me more about Barcelona coastline.
+Go to node ID=130 Barcelona Coast
+
+Requirement=!None
+Reply Text=Tell me more about Blood Scar Ravine.
+Go to node ID=140 Blood Scar Ravine
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=Thanks, I should be on my way now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 Barcelona Coast
+Text=From the white shores of the coast, you should be able to see the ships of the Spanish Armada. I've heard reports that Vodyanoi, evil water spirits, have followed the warm southern currents. Be wary when walking near the water.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about the dangers here in the crossroads.
+Go to node ID=30 Dangers
+
+Requirement=!None
+Reply Text= Tell me more about El Bosque.
+Go to node ID=120 Verdant Forest
+
+Requirement=!None
+Reply Text= Tell me more about Blood Scar Ravine.
+Go to node ID=140 Blood Scar Ravine
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=Thanks, I should be on my way now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Blood Scar Ravine
+Text=There is a legend about that place. During the fifth crusade against the necromancers, a great battle waged in what was once known as the Girona Valley. So many brave Spaniards died in that valley, that the blood of the fallen would forever stain the ground. Today, spirits and undead still haunt the old battlefield, despite our patrols. I would suggest that you not visit that place without an armed escort. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about the dangers here in the crossroads.
+Go to node ID=30 Dangers
+
+Requirement=!None
+Reply Text= Tell me more about El Bosque.
+Go to node ID=120 Verdant Forest
+
+Requirement=!None
+Reply Text= Tell me more about Barcelona coastline.
+Go to node ID=130 Barcelona Coast
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=Thanks, I should be on my way now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=113 Thief success
+Text=Good work!  Here is your justly deserved reward. With your skills, I could see you joining our ranks very soon.
+Should Have Voiceover=0
+
+Requirement=Esteban requires all wasps killed
+Reply Text=I have also slain the wasps.
+Go to node ID=103 wasps killed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CActivateAction
+{
+Target Name=told about wasps
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wasp kill quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+State=0OJYTKQU
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told about goblins
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have also slain the goblins.
+Go to node ID=500 killed goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CActivateAction
+{
+Target Name=Told about goblins
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Kill Xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Are there other troubles?
+Go to node ID=35 dangers 2
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=114 pre assigned thief success
+Text=Really?  Most excellent. Here is your reward.  I see you joining our ranks soon.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are there other troubles?
+Go to node ID=35 dangers 2
+Is Default Reply=1
+
+Requirement=Esteban requires all wasps killed
+Reply Text=I have also slain the wasps.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CActivateAction
+{
+Target Name=Wasps dead
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+State=0OJYTKQU
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told about goblins
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have also slain the goblins.
+Go to node ID=500 killed goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CActivateAction
+{
+Target Name=Told about goblins
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Kill Xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=130 verify
+Text=Really?  Wait here, I must verify this.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CActivateAction
+{
+Target Name=told about wasps
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wasp kill quest xp
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CTriggerRelayAction
+{
+Relay Name=AFter Verifty Wasps display dialog tree
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 verify too
+Text=Really? Wait here, I must verify this.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CActivateAction
+{
+Target Name=told about thieves
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bandit vanquish quest xp
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=After Verify thief display dialog tree
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 goblins
+Text=Dios mio, the goblins...so many of those filthy creatures infest the forest - we slaughter them by the droves, but still they come to attack our citizens. Lately they have grown even bolder than usual, sending their fiendish scouts close to the walls of Nueva Barcelona itself.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=500 goblin continued
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 goblins 2
+Text=I suspect that this recent activity does not bode well for us - the goblins might be planning some large scale attack against our city. If only I had the guards to spare, I would send out a hunting party to discover their plans. But I have my hands filled keeping these crossroads cleared of dangers.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Corner Goblins Dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already slain those goblins.
+Go to node ID=500 killed goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CActivateAction
+{
+Target Name=Told about goblins
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+}
+}
+Operator=
+Operand2=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+Character to get attributes from=$Instigator
+Then=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/LongBow
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Crossbows and Bows/Extra Damage
+}
+}
+Else=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+}
+}
+Operator=
+Operand2=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+}
+Character to get attributes from=$Instigator
+Then=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/LongSword
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Extra Damage
+}
+}
+Else=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/TwoHandedSword
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Extra Damage
+}
+}
+}
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Kill Xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Corner Goblins Dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps I could help you with your goblin troubles?
+Go to node ID=500 goblin quest
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Corner Goblins Dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have other questions.
+Go to node ID=15 other questions
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Corner Goblins Dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=If only Barcelona could train *competent* guards.
+Go to node ID=500 piss of esteban
+Custom Action=CActivateAction
+{
+Target Name=piss off esteban
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Corner Goblins Dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I wish you luck with the goblins, but I must go.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 goblin quest
+Text=You do look like someone looking for some adventure, no? Perhaps we could arrange a deal that would benefit us both - you could assist me with the goblins and I could help fill your empty coinpurse, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you want me to do about the goblins?
+Go to node ID=500 goblin quest 2
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Go deal with this problem yourself, fool.
+Go to node ID=500 piss of esteban
+Custom Action=CActivateAction
+{
+Target Name=piss off esteban
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=This does not sound like something I'm interested in.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I'm leaving. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 goblin quest 2
+Text=I would pay handsomely if someone could simply eliminate the goblin menace from the wilderness. If you could aid me against the goblins, I can pay you with equipment and gold. Interested?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll eliminate the goblins for you.
+Go to node ID=500 eliminate the goblins
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+State=9CA5T3YN
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Go deal with this problem yourself, fool.
+Go to node ID=500 piss of esteban
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have to go now. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 piss of esteban
+Text=That kind of hot venom will keep you warm at night, but will burn you eventually. Watch your tongue, stranger, I am tolerant...to a point.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=piss of esteban
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 goblin sniffs
+Text=<Sniff> <Sniff>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 goblin continued
+Text=Sometimes I feel like they are all around me, watching through the trees, biding their time to attack.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=500 goblins 2
+Custom Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=Corner Goblins Dead
+Desired Minimum Count=1
+}
+Then=
+Else=CTriggerRelayAction
+{
+Relay Name=goblin encounter
+}
+Return failure if the If failes=0
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Return Dialogue pissed
+Text=Well, the surly tongued one returns. Have you come with more insults, or do you have something intelligent to say?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=My apolgies for my earlier insult - I meant no disrespect.
+Go to node ID=500 apology accepted
+Custom Action=CDeactivateAction
+{
+Target Name=piss off esteban
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+}
+Reply Text=I have a blood bracer to sell you.
+Go to node ID=500 blood bracer
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+
+Requirement=Esteban requires all wasps killed
+Reply Text=I have slain the giant wasps.
+Go to node ID=103 wasps killed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CActivateAction
+{
+Target Name=told about wasps
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wasp kill quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Esteban requires thieves dealt with
+Reply Text=I have dealt with the bandits.
+Go to node ID=113 Thief success
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CActivateAction
+{
+Target Name=told about thieves
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bandit vanquish quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Esteban will not retell troubles
+Reply Text=Why are you guarding the crossroads?
+Go to node ID=20 Why Guarding
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=Tell me more about these dangers.
+Go to node ID=30 Dangers
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=Tell me more about the wilderness.
+Go to node ID=40 Wilderness
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=500 rude goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 apology accepted
+Text=Fine, your apology is accepted.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 other questions
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 rude goodbye
+Text=Just go.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 goblin confrontation
+Text=So, you seek to eliminate the goblin scourge? But it will be you that will be purged!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 goblin confrontation 2
+Text=Goblins come and feast well 'till you are gorged and belly-swelled!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 eliminate the goblins
+Text=Excellent! Your help is a godsend. I pray that you are successful.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=goblin confrontation
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 goblin bubble
+Text=Nothing smells worse than goblin corpses...Filthy creatures.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 killed goblins
+Text=Good. Very good, indeed! For your work, I have some equipment and a few gold coins to help fill your pockets. If you happen to kill more goblins and recover their blood bracers, I will give you even more gold.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+}
+}
+Reply Text=I have a blood bracer to sell you.
+Go to node ID=500 blood bracer
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Goblin Armband
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=F5BCFW6V
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+State=FZH0WLV3
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=told about thieves
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have also dealt with the bandits.
+Go to node ID=113 Thief success
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Crossroads Bandit
+}
+Action=CActivateAction
+{
+Target Name=told about thieves
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bandit vanquish quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Esteban requires all wasps killed
+Reply Text=I have also slain the wasps.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CActivateAction
+{
+Target Name=told about wasps
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=mark as complete Javier's "complete esteban's quests" quest 
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wasp kill quest xp
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Are there other troubles?
+Go to node ID=35 dangers 2
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 blood bracer
+Text=Good. One less goblin haunting this forest. Here, take this gold for your work.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=35
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 Spellcast Detected
+Text=Cast that spell in town and there will be a bounty on your head.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=700 Attacked Esteban
+Text=Guards! Arrest this Criminal!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=710 After jail balloon
+Text=I hope your temper has eased, or you'll return to the Inquisition's prison.
+Should Have Voiceover=0
+}

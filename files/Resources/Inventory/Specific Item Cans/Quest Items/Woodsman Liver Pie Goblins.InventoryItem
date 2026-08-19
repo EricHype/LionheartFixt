@@ -1,0 +1,103 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorUseAction
+		{
+			Use Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CActionDoDamage
+					{
+						Character Doing Damage=$instigator
+						Character To Damage=$instigator
+						Defend Against=0
+						No Friendly Fire Check=1
+						Damages=Array
+						{
+							Item Count=1
+							Damage=CXRPGDamageOverTime
+							{
+								Damage Type=Damage Types/Poison
+								Damage Amount=CRandom
+								{
+									Operator=
+									Minimum=CConstant
+									{
+										Constant Value=2
+									}
+									Maximum=CConstant
+									{
+										Constant Value=5
+									}
+								}
+								Duration=CConstant
+								{
+									Constant Value=60
+								}
+							}
+						}
+					}
+					Action=CPlaySoundAction
+					{
+						Sound=Potions/spel_potion_of_healing.ogg
+						Position=$Trigger
+						Multiplayer=Heard by all players
+					}
+				}
+			}
+			Selected Action=
+			Deselected Action=
+		}
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_potion.ogg
+				Position=$Trigger
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_potion.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=1
+	}
+	Is Magic=1
+	Encumbrance=2
+	On the ground=Items/PickUps/Special Items/Goblin Pie_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Liver Pie
+	Description=Created from the Woodsman's Liver.  All fresh ingredients.  
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Misc Items/Goblin Pie
+		Better=Items/Inventory Images/Misc Items/Goblin Pie
+		Special=Items/Inventory Images/Misc Items/Goblin Pie
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/HotKey
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Miscellaneous
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Woodsman Liver Pie Goblins
+}

@@ -1,0 +1,211 @@
+# Lionheart Fixt 0.1.0 - "The Horde"
+
+A cumulative restoration-and-repair mod for *Lionheart: Legacy of the Crusader*, named
+after Fallout Fixt and following the same discipline: one mod, one install, and every
+release visible in all three registers - **fix**, **restore**, **extend**.
+
+Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
+most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
+standing, and a settlement that answers to almost nothing but Speech.
+
+Planning and measurements: [`docs/lionheart-fixt-releases.md`](../../docs/lionheart-fixt-releases.md).
+
+## What is in this release
+
+### Fix - the goblin thread's dead ends
+
+Four replies pointed at node IDs that do not exist. Choosing one advanced to nothing.
+
+| Conversation | Reply | Went to | Now goes to |
+|---|---|---|---|
+| Hrubjub (`Goblin Sapper`) | "I've heard enough. Goodbye." | `5 goobye` | `5 goodbye` |
+| Hrubjub | (second site, same typo) | `5 goobye` | `5 goodbye` |
+| `GoblinVillager` | "My brain is far too porous and small for your tastes." | `100 avoid dinner` | `20 used speech to avoid digestion` |
+| `Guard Esteban` | "Goodbye." | `5 Goodbye` | `10 Goodbye` |
+
+Esteban is included because a later release puts a contract on his head, and a man whose
+farewell dead-ends is a poor advertisement. His other fifteen goodbye replies already
+pointed at `10 Goodbye`; this was a one-character typo.
+
+### Extend - the Goblin Horde becomes a faction
+
+Three rank records on the shipped `Saladin Aswaran` / Templar pattern, plus the rank
+counter and the gates that read it.
+
+| Rank | Faction | Grants |
+|---|---|---|
+| 1 | `Goblin Chum` | Sneak +10, Poison resistance +10, carry weight +10 |
+| 2 | `Goblin Blooded` | Sneak +8, Barter +8, Poison +10, Disease +10 |
+| 3 | `Goblin Champion` | Sneak +12, Barter +6, Poison +15, Agility +1, carry weight +20 |
+
+Benefits are written as **increments**, not tier totals, because the shipped ladders
+accumulate: every vanilla faction record grants `+1` to its rank counter with
+`Allow Accumulation=1`, and the `Highlevel` gates test `Rank > 2`, so a rank-3 Templar is
+carrying Squire's `+4`, Warden's `+8` and Paladin's `+12` simultaneously. At rank 3 a
+Horde player therefore has Sneak +30, Barter +14, Poison resistance +35, Disease +10,
+Agility +1 and carry weight +30.
+
+New gates: `Goblin Horde IS`, `Goblin Horde Midlevel`, `Goblin Horde Highlevel`,
+`Goblin Horde NOT`, in `Resources/Dialog/Requirements/Faction/` beside the shipped ones.
+These are deliberately *not* the existing `Monster Races/Goblin IS.can`, which tests the
+player's race rather than their loyalty.
+
+### Extend - Hrubjub is findable, and leads somewhere
+
+In vanilla the entire Horde path hangs off one reply, behind a question about a corpse.
+Answer "This doesn't concern me" and you never learn the option existed.
+
+- **A Perception route.** `PE 7+` on the opening node: *"You are no scavenger. You have
+  been sounding that wall for a weak course."* He is a sapper, and an observant character
+  can see it before saying a word about the body.
+- **A second door after talking him down.** Reaching `60 used speech` no longer dead-ends
+  the recruitment; you can ask what his business at the wall is.
+- **An onward pointer.** He used to say the Khan would be pleased and stop. He now names
+  the warrens beyond the western wood and tells you to use his name - which is what makes
+  the spy quest rung one of a ladder rather than an errand.
+- **Rank 1.** Completing `Spy for Hrubjub the Goblin` assigns `Goblin Chum`, on the same
+  `CAssignFactionToCharacterAction` pattern Cedric Alsen uses to recruit you to the
+  Wielders.
+
+Both new doors cost the same -25 karma as the shipped one, copied verbatim so no route is
+a cheaper way to the same place.
+
+### Extend - the camp reads your build
+
+Vanilla's goblin camp has 23 skill and attribute gates and **19 of them are Speech**. Most
+of what is added here costs no new requirement files, because the game already ships them
+and references them nowhere: 18 Lockpick gates, 7 Schmooze, 6 Outwit, and five each for
+Agility, Endurance and Luck - 46 finished files that nothing in Lionheart reads.
+
+| Where | Check | What it opens |
+|---|---|---|
+| Trapped Conquistador (25 replies, **0 gates** in vanilla) | `Schmooze 7` | Play along. Announce yourself as the herald and move his imaginary tourney to Barcelona |
+| same | `Outwit 7` | See the arrangement for what it is: he is fed, housed and matched against prisoners, which makes him livestock rather than a champion |
+| same | `ST 8+` | He respects exactly one argument, and it is not an argument |
+| Hrubjub | `PE 7+` | The way into the Horde, above |
+| `Rakeb` | `Tribal 80` | He explains his craft in real divination vocabulary and vanilla's only reply is "I don't speak Goblin". A practitioner can answer him - and he drops the performance |
+| `GoblinKhan` | `Schmooze 7` | Charm rather than trained Speech as a way to satisfy his demand to be entertained |
+| `GoblinEntranceGuard` | `Schmooze 7` | Talk your way through the gate on charisma |
+| `GoblinEntranceGuard` | `Goblin Horde IS` | Name-drop Hrubjub. The pointer he gives you is the thing the guard checks |
+
+**Two shipped requirement files are named for Outwit and test Speech instead** -
+`Grumdjun Dryad talked to NOT killed Player high Outwit.can` and
+`River Dryad Take Goblinkill quest Grumjun NOT dead High Outwit.can`. Somebody meant to
+gate Grumdjum's dryad branch on intelligence, named the files for it, and shipped Speech.
+Both now test `COR(Speech >= 20, Outwit >= 7)`, so the intelligence route is added and the
+Speech route is untouched.
+
+**Three gates are re-authored rather than referenced where they sit.** Vanilla's own
+`Outwit 7 greater or equal`, `Schmooze 7 greater or equal` and
+`General Tribal Skills moreequal 80` live in `Requirements/Derived Attributes/` and
+`Requirements/Skills/Magic Tribal/`, and **no shipped DialogTree names a gate from either
+folder** - because nothing ever used those gates at all. No shipped DialogTree uses a
+path-qualified `Requirement=` either, so both ways of reaching them were unproven.
+
+Bare names demonstrably resolve from fifteen different folders, so resolution is almost
+certainly a global search and either form would probably work. "Probably" is not a good
+enough foundation for eight replies, so this mod ships `Outwit 7+`, `Schmooze 7+` and
+`Tribal 80+` in `Requirements/Attributes/` instead - the folder sixteen vanilla bare names
+already resolve from, and where `PE 7+` and `ST 8+` live. The expressions are copied from
+the shipped files verbatim; only the location and the stem differ.
+
+`Outwit` and `Schmooze` are used in preference to raw `IN` and `CH` wherever both would
+work. They are pass-through derived attributes living under `Perk and Trait Support` -
+which is what that folder is for - so gating on them leaves a socket open for a later perk
+to grant the reading without touching the stat. Raw attributes are used only where no perk
+should ever substitute: `ST 8+` to face down the conquistador is strength, not cleverness
+about strength.
+
+### Restore - two characters who were written and never placed
+
+`GoblinGirl` (19 nodes) and `GoblinGuards` (4 nodes) ship finished in the archive with
+**zero map references**. Both are now in `Goblin Warrens`.
+
+- **The Khan's daughter** stands beside her father's court. She has a first-meeting node
+  and a return node, and the whole flirtation-and-prove-yourself arc the writers gave her.
+- **The two gossiping guards** are on the southern approach, arguing about how bad
+  Grumdjum's latest poem is until one of them says *"Shhh, did you hear something?"*
+
+**Her tree was also truncated.** Two replies point at `250 Rejection` and `290 follow 3`,
+and the vanilla file simply ends before either node was written - two of the game's 21
+"no way out" dead ends. Both are authored here, because placing her without fixing them
+would ship a character who can strand you.
+
+Neither NPC needed a new character template. A Character Template carries no reference to
+its dialogue - the generator does - so both reuse shipped villager cans and take their
+identity from `New Name` and the tree's own `Name=`. The Girl uses `Mongol Vendor Village`
+(race `Goblin Tough`, the weakest of the three villager presets), which suits the Khan's
+daughter better than a warrior statline, and means she turns on you with the rest of the
+camp if you give the camp a reason.
+
+### Restore - the poisoned pie, which also already existed
+
+`Woodsman Liver Pie Goblins.InventoryItem` ships in the archive with its own inventory
+icon (`Goblin Pie.mdl16`), its own ground pickup model (`Goblin Pie_PU.mdl16`), a display
+name and a description - and **nothing in the entire game refers to it**. It was cut with
+its art finished. No new art was needed here, and none was made.
+
+It also could not be used: `PlugIn Behaviors=Array{Item Count=0}` and
+`Slot Used In=Character Slot Types/!None`. It is now a real consumable on the shipped
+`Potion Luck` pattern - UseAction, PickUp, PutDown, `HotKey` slot, and the Array form of
+the icon field, which all eleven shipped HotKey items use and no non-usable item does.
+
+**What it does is what the file asks for.** The Girl says her mother's ingredients "would
+help you if you were ever badly hurt". The designer's note on the same reply says
+*"girl give PC a poison pie"*. Those do not contradict each other - one is the lie and one
+is the truth - so both are kept. The description stays byte-for-byte as shipped, trailing
+whitespace and all, and the pie poisons: 2-5 Poison damage over 60 seconds, calibrated
+against the shipped Poison Touch wand's 1-4 over 120. Even the sound it plays on use is
+the healing-potion sound, which is the pie's whole argument.
+
+And you can catch it. `PE 7+` smells the apothecary's back room under the liver;
+`Outwit 7+` simply knows what her mother thinks of you. Either one opens
+`227 momma's seasoning`, where the Girl folds immediately and suggests, hopefully, that
+you could just carry it around and not eat it. You still get the pie. You just know.
+
+### Extend - Hub'blub keeps two sets of prices
+
+Vanilla ships one merchant entity at `Price Multiplier=1` and a vendor conversation with
+no Barter check at all. Barter can only mean something if there is a cheaper store to
+reach, so there is now a second `CMerchantAI` entity at `Price Multiplier=0.75` - the low
+end of the shipped 0.75-to-2.0 range - with identical stock. It opens two ways:
+
+- `Goblin Horde IS` - *"Chum prices, Hub'blub. I did not walk into a goblin warren to be
+  charged like a tourist."*
+- `Barter moreequal 60` - the damp-bolts-and-no-other-customers argument.
+
+This is the pattern the developers already use for `Lope Inventory low`/`high` and
+`Vendor 2 Inventory low`/`high`/`especial`: same vendor, second entity, different number.
+
+## The rule this release follows
+
+**A check adds a route. It never removes one.** Every scene here can still be solved
+exactly the way vanilla solved it, by a character with none of these stats. That is worth
+stating because it is also the test: a check that silently replaced a shipped route is the
+bug to look for.
+
+## Not in this release
+
+- **The Crossroads counter-contract on Esteban**, the mutual quest-failure wiring, and
+  karma for the Woodcutter's eyes. All are 0.2.0.
+- Nothing else from the 0.1.0 scope. The Girl's poisoned pie, briefly cut for needing a
+  new item, turned out not to need one - see below.
+
+## Installing
+
+```
+python modmanager.py install mods/lionheart-fixt "<game-dir>"
+python modmanager.py build "<game-dir>"
+```
+
+`install` must be rerun before every `build` if anything under `files/` changed - `build`
+reads from the installed copy, not from this folder.
+
+**Enable it last.** Nothing here collides with the other mods in this repo, but Fixt is
+the one that should win any future conflict.
+
+## Compatibility
+
+New dialogue nodes and new faction records do not retrofit cleanly onto a save that has
+already had these conversations. Start a new game, or at least a character who has not yet
+met Hrubjub.

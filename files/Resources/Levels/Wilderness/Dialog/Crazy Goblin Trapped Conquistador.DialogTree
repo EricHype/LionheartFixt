@@ -1,0 +1,321 @@
+CDialogTree
+{
+Name=Spaniard
+Portrait=Dialog/NPC Portraits/Conquistador01
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Are you my next challenger? Speak! Glory is my destiny!
+Should Have Voiceover=0
+
+Requirement=Schmooze 7+
+Reply Text=<Draw yourself up.> Champion! I am the herald of the Tourney, and I bring word from the masters.
+Go to node ID=35 herald
+Icon=Attribute Icon
+
+Requirement=ST 8+
+Reply Text=I am your next challenger, and I am stronger than you. Yield, and walk out of here at my side.
+Go to node ID=40 Return Barcelona
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Hold on. I'm not here to fight.
+Go to node ID=10 Not Fight
+
+Requirement=!None
+Reply Text=What is a Spaniard doing with Goblins?
+Go to node ID=20 Spaniard Goblins
+
+Requirement=!None
+Reply Text=Bring it on.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind.  I'm leaving.
+Go to node ID=10 Not Fight
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=A new battle! More blood and glory for Spain!
+Should Have Voiceover=0
+
+Requirement=Schmooze 7+
+Reply Text=<Draw yourself up.> Champion! I am the herald of the Tourney, and I bring word from the masters.
+Go to node ID=35 herald
+Icon=Attribute Icon
+
+Requirement=ST 8+
+Reply Text=I am your next challenger, and I am stronger than you. Yield, and walk out of here at my side.
+Go to node ID=40 Return Barcelona
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Hold on. I'm not here to fight.
+Go to node ID=10 Not Fight
+
+Requirement=!None
+Reply Text=What is a Spaniard doing with Goblins?
+Go to node ID=20 Spaniard Goblins
+
+Requirement=!None
+Reply Text=Bring it on.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=10 Not Fight
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Not Fight
+Text=A killing of reluctance brings no glory. Why do you enter the gladiator arena if you will not fight!?
+Should Have Voiceover=0
+
+Requirement=Outwit 7+
+Reply Text=They feed you, they house you, and they bring you opponents who are already beaten. Those are not arena masters. Those are farmers, and you are the livestock.
+Go to node ID=40 Return Barcelona
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Hmmm. I believe you are not thinking clearly. Where is your home?
+Go to node ID=40 Return Barcelona
+
+Requirement=!None
+Reply Text=Arena? This is a goblin's pen, littered with bones.
+Go to node ID=30 mistaken
+
+Requirement=!None
+Reply Text=I changed my mind. Bring it on.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind, I'm leaving.
+Go to node ID=55 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Spaniard Goblins
+Text=Goblins! Hah! They would not show their face around me! I am the Slayer reincarnated! I do battle against many foes in this arena! No goblin would stand a chance!
+Should Have Voiceover=0
+
+Requirement=Outwit 7+
+Reply Text=They feed you, they house you, and they bring you opponents who are already beaten. Those are not arena masters. Those are farmers, and you are the livestock.
+Go to node ID=40 Return Barcelona
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=You are mistaken. You are standing inside a goblin pen.
+Go to node ID=30 mistaken
+
+Requirement=!None
+Reply Text=Hmmm. I believe you are not thinking clearly. Where is your home?
+Go to node ID=40 Return Barcelona
+
+Requirement=!None
+Reply Text=I changed my mind. Bring it on.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Now I'm leaving.
+Go to node ID=55 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 mistaken
+Text=I beg to differ. This is the Tourney of Champions. I will bring honor to Spain! My silver-tongued arena masters are due to bring me a battle at any moment!
+Should Have Voiceover=0
+
+Requirement=Outwit 7+
+Reply Text=They feed you, they house you, and they bring you opponents who are already beaten. Those are not arena masters. Those are farmers, and you are the livestock.
+Go to node ID=40 Return Barcelona
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=These "masters" of yours are goblins.
+Go to node ID=20 Spaniard Goblins
+
+Requirement=!None
+Reply Text=Hmmm. I believe you are not thinking clearly. Where is your home?
+Go to node ID=40 Return Barcelona
+
+Requirement=!None
+Reply Text=I changed my mind. Bring it on.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=On second thought, I'm leaving.
+Go to node ID=55 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 herald
+Text=<He straightens and salutes, fist to breastplate.> At last! Then my bout in this place is concluded, and the Tourney moves on. To Barcelona, surely - a champion must be crowned before the people he honors, not before a pen of ragged little men.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=To Barcelona. The masters were most insistent.
+Go to node ID=40 Return Barcelona
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Return Barcelona
+Text=Home...HOME! Excellente! It *is* time to leave this arena and tell the people of Barcelona my exploits! Unless...you wish my arm in your struggles against those that oppose you? You have the look of danger about you, my friend. Do you have a need for my strength?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sure. Let's go.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Give interaction specifier when added as a companion.
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Experience Points when release Conquistador
+Experience Points To Add=200
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDeactivateAction
+{
+Target Name=Damage Crazy Conquistador goto combat
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I think you should go on without me.
+Go to node ID=60 Goodbye
+------------------------------------------------------------
+Node ID=55 Goodbye
+Text=Adios. May the power of steel guide you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 Goodbye
+Text=As you wish. I will inscribe your name beneath my own on the Chalice of Victory!!  Whoever you are.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSendAIDoneMessage
+{
+Target=Trapped Conquistador
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Change Trapped Conquistador leaving AIInteract
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Experience Points when release Conquistador
+Experience Points To Add=200
+}
+Action=CDeactivateAction
+{
+Target Name=Damage Crazy Conquistador goto combat
+}
+}
+}
+------------------------------------------------------------
+Node ID=70 No Time Talk
+Text=Barcelona awaits! I cannot dally.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=80 RandomAttack For Spain
+Text=Por España!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=81 RandomAttack For Glory
+Text=For Glory!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=82 RandomAttack My name is
+Text=Prepare to die!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=83 RandomAttack Cry
+Text=Ahhhh!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=84 RandomAttack Hasta
+Text=Hasta la Vista!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 RandomAttack Adios
+Text=Adios!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=86 RandomAttack Run Through
+Text=I'll run you through!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=87 RandomAttack For Maiden
+Text=For my fair maiden Dulcena!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3 return after released as a companion
+Text=Shall we continue our journey?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sure, come with me.
+Go to node ID=
+Custom Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=No, I'll be going on alone.
+Go to node ID=
+Icon=Exit Icon
+}

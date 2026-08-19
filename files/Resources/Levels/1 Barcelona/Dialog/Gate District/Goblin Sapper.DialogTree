@@ -1,0 +1,665 @@
+CDialogTree
+{
+Name=Hrubjub
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Start
+Text=No, Grumdjum's orders were quite clear. You follow *my* orders!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Start Continued
+Text=Now, let me stand on your shoulders so I can scale this wall.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Goblin Responds
+Text=No, me think me stand on your shoulder!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Goblin Retorts
+Text=This debate is growing quite tiresome. Must I eat your brain too?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Goblin
+Text=Wait, Hrubjub! Someone approaches from the east!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Start Conversation
+Text=Ah, an unlucky witness to wicked goblin schemes, a morsel to be slain lest it spoils our black goblin dreams!
+Should Have Voiceover=0
+
+Requirement=PE 7+
+Reply Text=You are no scavenger. You have been sounding that wall for a weak course.
+Go to node ID=15 spotted the sap
+Icon=Attribute Icon
+
+Requirement=Speech moreequal 20
+Reply Text=No need to get aggressive, friend. I mean you no harm.
+Go to node ID=60 used speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=Slay me? Threaten me again and you'll regret it.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 spotted the sap
+Text=Sharp eyes in a soft skull! You mark the mortar, the measure and the mark. No idle thief am I, but the wedge that splits this wall after dark. So - do you run to raise the alarm, or has a clever morsel found a taste for goblin harm?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am no friend to these city guards. What did you have in mind?
+Go to node ID=100 bad karma
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop Karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=I will be reporting every stone of it.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I will keep my observations to myself.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Return Conversation
+Text=Morsel, speak with haste, or learn why mortals fear the goblin race.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Spy for Hrubjub the Goblin
+State=LD8PLRXA
+}
+}
+Reply Text=I have news. The gate is weakly guarded and few defenders wait within.
+Go to node ID=100 completed quest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=bad goblin quest xp
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop karma by 50
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Speech moreequal 20
+Reply Text=No need to get aggressive, friend. I mean you no harm.
+Go to node ID=60 used speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=Threaten me again and you'll regret it.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=Wait, before you leave, you must earn your reprieve. If you seek to alert the guard,  you will *not* leave here unscarred.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=By my honor, I will not utter a word about you to anyone.
+Go to node ID=5 goodbye ok
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I promise I won't say a word about you.
+Go to node ID=5 goodbye ok
+
+Requirement=!None
+Reply Text=I intend to tell the guards about you.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll leave and do as I please.
+Go to node ID=40 combat
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye ok
+Text=Leave with haste and remember, keep your promise or you'll be dismembered.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 goblin
+Text=Hrubjub am I, the shadow eye and master goblin spy - the first of the Goblin Horde to scale these walls and put your kind to a sword.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're very eloquent for a *goblin*.
+Go to node ID=20 ate a poet
+
+Requirement=!None
+Reply Text=I've heard enough. Time for you to die.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm going to be on my way.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 ate a poet
+Text=Before this fascinating conversation, I *happened* upon a poet of great sophistication. Though our encounter was rather terse, I ate his brain and gained his gift for verse.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're poetry has a loathsome charm.
+Go to node ID=20 compliment a poet
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Your verse is dark for my tastes, goblin.
+Go to node ID=20 critic
+
+Requirement=!None
+Reply Text=I must kill you before you can utter another awful rhyme.
+Go to node ID=50 straight to combat
+Custom Action=CTriggerRelayAction
+{
+Relay Name=goblin attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 brain eaten
+Text=That morsel? He became a bother and a pain, so I skewered him and dined upon his brain. What of it?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm going to report you to the guards.
+Go to node ID=40 combat threat
+
+Requirement=!None
+Reply Text=I admire your handiwork. I am no friend to these city guards.
+Go to node ID=100 bad karma
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop Karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=A murderous act should be paid back in kind, villain.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=This doesn't concern me. I'll just leave.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 goblin name
+Text=I am Hrubjub of the Goblin Horde, on a secret mission to serve my goblin lord.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why do you speak in rhyme?
+Go to node ID=
+
+Requirement=!None
+Reply Text=You're a goblin? I *kill* goblins.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 combat threat
+Text=So the brave crusader threatens to vanquish the knave invader? Tell me, hero, how do you hope to accomplish such a lofty goal, when you face a goblin with an iniquitous soul?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=There are ten guards waiting for my command to kill you.
+Go to node ID=60 used speech
+Icon=Speach Skill Icon
+
+Requirement=ST 8+
+Reply Text=I'll crack your skull open with my bare hands, just as easily as a soft nut.
+Go to node ID=60 used speech
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=If you don't run away, I'll destroy you.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You'll die by my hand.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=On second thought, I'll just be on my way.
+Go to node ID=40 combat
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 combat
+Text=Though I doubt your brain will add much to my intellect, I suspect it will be sweet and delectable!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=goblins attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 used speech
+Text=Words you do not mince, and this goblin you have convinced. You may leave or you may remain, but interfere and you will know pain.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You and I may have more in common than you think. What is your business at this wall?
+Go to node ID=100 bad karma
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop Karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=Threaten me again and you'll regret it.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 bad karma
+Text=Oh, how delicious, your heart sounds black and vicious. Perhaps you could perform a goblin favor and complete  a task of stealthy flavor?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm interested. What task is this?
+Go to node ID=100 spy
+
+Requirement=!None
+Reply Text=I've decided to slay you where you stand.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=No, I'm leaving.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 spy
+Text=A simple task for a stout scout, enter the city and just look about, tell us whether guards abound and where those troops can be found.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=been inside courtyard
+Desired Minimum Count=1
+}
+}
+Reply Text=I've been inside the city. Two guards stand at the front gate, and a few wait inside the courtyard.
+Go to node ID=100 completed quest
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=been inside courtyard
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll go look inside for you and report back.
+Go to node ID=100 take quest
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Spy for Hrubjub the Goblin
+State=AFIR4PS2
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Traitorous goblin, I'll kill you for spying.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=No thanks, I'm just going to leave.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 completed quest
+Text=You completed that task with practiced ease, and brought news that will make the Great Khan pleased. Next time we return, Nueva Barcelona will be burned. Now seek the Great Khan yourself, in the warrens beyond the western wood - speak the name Hrubjub there, chum, and you will be understood.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Goblin Chum
+Character To assign=$Instigator
+}
+Action=CTriggerRelayAction
+{
+Relay Name=goblins leave
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=bad goblin quest xp
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Spy for Hrubjub the Goblin
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop karma by 50
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 take quest
+Text=Goblin friend, I will await you here, while you become my eyes and ears.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 goodbye
+Text=My dim friend is naive, so I'll allow you to leave, but you must *earn* your reprieve. Do you seek to alert the guards to our presence, allowing them to raise their defenses?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=By my honor, I will not utter a word about you to anyone.
+Go to node ID=5 goodbye ok
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I promise I won't say a word about you.
+Go to node ID=5 goodbye ok
+
+Requirement=!None
+Reply Text=I intend to tell the guards about you.
+Go to node ID=40 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll leave and do as I please.
+Go to node ID=40 combat
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 goblin scene in warrens
+Text=On my honor and by my word, we have misjudged their defenses by a third! The city is like a ripe tree whose fruit can be plucked freely!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 compliment a poet
+Text=Your smooth tongue serves you with buttery flatter, saves you from being served on the platter. What is it that you desire, ask quick before I baste you over open fire.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 20
+Reply Text=No need to get aggressive, friend. I only want to help. <Lie>
+Go to node ID=60 used speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=Slay me? Threaten me again and you'll regret it.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 critic
+Text=Tis such a tragic waste that you are not accustomed to goblin tastes. Now that I have heard your critical review, it's time to prepare you for the stew.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 20
+Reply Text=No need to get aggressive, friend. I only want to help. <Lie>
+Go to node ID=60 used speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Did you kill this town guard?
+Go to node ID=20 brain eaten
+
+Requirement=!None
+Reply Text=Who or *what* are you?
+Go to node ID=10 goblin
+
+Requirement=!None
+Reply Text=Threaten me again and you'll regret it.
+Go to node ID=40 combat threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Return Conversation with quest
+Text=Says the spider to his fly, what in Barcelona did you spy?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Spy for Hrubjub the Goblin
+State=LD8PLRXA
+}
+}
+Reply Text=I have news. The gate is weakly guarded and few defenders wait within.
+Go to node ID=100 completed quest
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Spy for Hrubjub the Goblin
+State=AFIR4PS2
+}
+}
+Reply Text=I still need to enter the city,
+Go to node ID=100 take quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=100 take quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 straight to combat
+Text=If it is a duel you seek, a duel you crave - then defend yourself you wretched knave!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+}

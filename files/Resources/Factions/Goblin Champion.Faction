@@ -1,0 +1,72 @@
+CCharacterFaction
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Goblin Champion Uber-Perk
+			Modification is permanent=1
+			Modifiers=Array
+			{
+				Item Count=6
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=12
+					}
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Sneak
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=6
+					}
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Barter
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=15
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Poison Damage Resistance
+				}
+				Modifier=CCharacterModifierAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Allow Accumulation=1
+					Character attribute to modify=Character Attributes/(AG) Agility
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=20
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/CarryWeight
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Uber Perks/Goblin Rank
+				}
+			}
+		}
+	}
+	Display Name=Goblin Champion
+	Description=The Khan has named you champion of the Horde, which among goblins is less an honour than a standing dare -- every warrior in the warrens now knows exactly whose throat would make a reputation.  You have learned to walk quietly and quickly, and to sleep lightly.  Your Sneak skill gains 12 skill points, your Barter 6, your Agility is increased by 1, your carry weight by 20, and you resist 15 more Poison damage.
+}

@@ -1,0 +1,31 @@
+CCannedObject
+{
+	Object=CActionExpression
+	{
+		Action=CAndAction
+		{
+			Action=Array
+			{
+				Item Count=1
+				Action=CExpressionAction
+				{
+					Expression=COR
+					{
+						Operand1=CUseCannedExpression
+						{
+							Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 20
+						}
+						Operator=
+						Operand2=CUseCannedExpression
+						{
+							Canned Expression=Dialog/Requirements/Derived Attributes/Outwit 7 greater or equal
+						}
+					}
+					Character to get attributes from=$Instigator
+				}
+			}
+			Early Exit=0
+		}
+	}
+	Use=Shared Global Instance
+}

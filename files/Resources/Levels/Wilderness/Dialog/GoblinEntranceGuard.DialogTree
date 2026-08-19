@@ -1,0 +1,431 @@
+CDialogTree
+{
+Name=Goblin
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start Gob 1
+Text=Stand fast and be recognized, knave! You stand on Mongol soil, where goblins scheme and enemies boil. Have you come to surrender your plump flesh to the cooking pot? 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+}
+Reply Text=I am a friend to goblins, Grumdjum's chum, and enemy of the water dryad scum.
+Go to node ID=60 goblin friend
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=Goblin Hate Switch
+}
+Action=CDeactivateAction
+{
+Target Name=entrance guards attack relay
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Used Speech to Bypass Gob Guards
+Experience Points To Add=1
+}
+}
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Rid the Dryad's Forest of the Goblins
+}
+}
+Reply Text=The river dryad asked me to slay your petty Khan. I intend to finish that task.
+Go to node ID=50 combat
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Rescue Inquisitor Darsh from the Goblin Camp
+State=
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have come to save the life of Inquisitor Darsh.
+Go to node ID=10 darsh
+Icon=Quest Icon
+
+Requirement=Goblin Horde IS
+Reply Text=Hrubjub of the Horde sent me from the walls of Nueva Barcelona, and I am expected.
+Go to node ID=30 khan
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Goblin Hate Switch
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Used Speech to Bypass Gob Guards
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Schmooze 7+
+Reply Text=<Grin, and keep grinning.> I have come a very long way to admire your gate, and I would hate to have to admire it from outside.
+Go to node ID=30 khan
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Goblin Hate Switch
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Used Speech to Bypass Gob Guards
+Experience Points To Add=1
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=Speech moreequal 40
+Reply Text=I have come to seek an audience with your great leader.
+Go to node ID=30 khan
+Action work in progress=(speech 50)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Goblin Hate Switch
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Used Speech to Bypass Gob Guards
+Experience Points To Add=1
+}
+}
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I come in peace and wish to travel in peace.
+Go to node ID=115 dont believe
+
+Requirement=!None
+Reply Text=I have come to rid this forest of your existence, monster.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm just exploring the forest. I'll just be on my way.
+Go to node ID=115 dont believe
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Greetings goblin friend. What do you want? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have come to rid this forest of your existence, monster.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have come to find Inquisitor Darsh.
+Go to node ID=10 darsh
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=I have come to seek an audience with your great leader.
+Go to node ID=30 khan
+Action work in progress=(speech 40)
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=10 darsh
+Text=If you have come to find our prisoner, you may join him...In our slave pens!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 khan
+Text=You seek the Great Khan? And what makes you think that you, some human piece of filth, are worthy to see his august visage? Likely, Plumbjum would devour you for such temerity, but if digestion is what you seek, you will find the Khan in the cave to the north of the village.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 combat
+Text=Well now, it has been a pleasure to meet you, but it will be a delight to eat you! Guards, slay the intruder!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 goblin friend
+Text=Well then friend of Grumdjum, you are welcome to New Khara'Khorum, capital of the goblin horde. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=70 walk away for guard
+Text=I detest being ignored. Guards, slay the intruder!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 darsh leaves
+Text=Hold a moment, knave. Where, in the Khan's name, do you think you are taking our prisoner?
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 55
+Reply Text=Your Khan asked me to personally escort him to Grumdjum for interrogation.
+Go to node ID=110 khans wish
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Used Speech to Free Darsh
+Experience Points To Add=1
+}
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 25
+Reply Text=Your Khan wanted me to drown this cur in the waterfall.
+Go to node ID=115 dont believe
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I intend to leave your village and return him to Barcelona.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+
+Requirement=!None
+Reply Text=If you don't step away, I'll kill every last one of you goblins.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I intend to leave your village and return him to Barcelona.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 khans wish
+Text=Then I will honor the Khan's wishes. On your way.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Darsh allowed to go with player
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=115 dont believe
+Text=What a pitiful lie. Goblins, kill this intruder!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+}

@@ -1,0 +1,54 @@
+CCharacterFaction
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Goblin Chum Uber-Perk
+			Modification is permanent=1
+			Modifiers=Array
+			{
+				Item Count=4
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=10
+					}
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Sneak
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=10
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Poison Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=10
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/CarryWeight
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Uber Perks/Goblin Rank
+				}
+			}
+		}
+	}
+	Display Name=Goblin Chum
+	Description=Word has gone round the warrens that a human walks among the Horde and has not yet been eaten.  You are a chum now, and a chum is taught the two things every goblin whelp learns first: how to move without being seen, and how to keep down what the cookpots serve.  Your Sneak skill gains 10 skill points, your carry weight is increased by 10, and you resist 10 more Poison damage.
+}

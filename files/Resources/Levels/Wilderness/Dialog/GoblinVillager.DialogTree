@@ -1,0 +1,490 @@
+CDialogTree
+{
+Name=Goblin
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+------------------------------------------------------------
+Node ID=1 Greeting A
+Text=You are quite an ugly specimen. I wonder if you taste sweet or sour?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting B
+Text=Khara'Khorum is the most advanced cultural metropolis in this world, much more civilized than the backward human dwellings beyond the forest. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting C
+Text=Rakeb predicted that I would dine on a ripe brain today. How fortuitous!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting D
+Text=Out of my way.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting E
+Text=You would be well advised to speak with another, as I have little patience but great hunger for non-goblins. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting F
+Text=You are too grotesque to be a goblin, so I would surmise that you are a slave. I do not converse with slaves.  
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting G
+Text=You look like a walking meal to me, so plump and ripe for the tasting! Give me a reason why I should not devour you this instant? 
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 40
+Reply Text=My skin is far too tough and my bones would cause you indigestion.
+Go to node ID=20 used speech to avoid conflict
+Action work in progress=(speech 40)
+Icon=Speach Skill Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Can we discuss this before violence?
+Go to node ID=100 Combat A
+
+Requirement=!None
+Reply Text=Please, don't hurt me!
+Go to node ID=100 Combat A
+
+Requirement=!None
+Reply Text=One wrong move, and you will be eating my blade.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Greeting H
+Text=Welcome to New Khara'Khorum, capital of the goblins. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting I
+Text=Slave, kindly fetch me some tender victuals.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting J
+Text=Oh, your face is terribly disfigured, most ungoblin-like. Perhaps you should visit Shaman Rakeb?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting K
+Text=I have been watching you prowl around our fair village, and I fear that you are plotting something most treacherous against my kin. Explain yourself or be devoured.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 55
+Reply Text=I have been studying your people so that I can assimilate into your great culture.
+Go to node ID=20 used speech to avoid conflict
+Action work in progress=(speech 60)
+Icon=Speach Skill Icon
+Is Default Reply=1
+
+Requirement=Speech moreequal 45
+Reply Text=I seek to study under your shaman and learn goblin secrets.
+Go to node ID=
+Icon=Speach Skill Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I am studying your people so I can form a strategy to wipe you all out.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=One wrong move, and you will be eating my blade.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Greeting L
+Text=You should visit Shaman Rakeb so that he can tell you what the frogs croak of your future.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where is your shaman?
+Go to node ID=100 shaman
+
+Requirement=!None
+Reply Text=One wrong move, and you will be eating my blade.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Thank you. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1 Greeting M
+Text=Did you hear of the mercenary in the western grove? I've heard he's butchered a hundred goblinkin!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting N Feralkin
+Text=Judging by your oversized shoulders and protruding cranium, I would guess that you are a feralkin. Care to test your mettle then, feralkin, in a battle of strength?
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 40
+Reply Text=I concede the test of strength to you, as I prefer contests of the mind.
+Go to node ID=20 used speech to avoid battle
+Action work in progress=(speech 40)
+Icon=Speach Skill Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I don't want to fight you.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+
+Requirement=!None
+Reply Text=I would love to oblige you, goblin.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Greeting O
+Text=You should visit Shaman Rakeb so that he can tell you what the frogs croak of your future.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting N Demokin
+Text=You have the mark of demons about you. How exquisite! You are welcome in Khara'Khorum, child of chaos.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Greeting N Sylvant
+Text=Bah! I smell the stink of the fairy ilk about you. Why, you're a *sylvant*. How loathsome! I shall enjoy extracting your sweet brain and sucking its succulent juices...
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 50
+Reply Text=Wait, I only smell like a sylvant because...I ate one of those fairy creatures recently. <Lie>
+Go to node ID=20 used speech to avoid sylvant heritage
+Action work in progress=(speech 50)
+Icon=Speach Skill Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Yes, I am a sylvant.
+Go to node ID=100 Combat A
+
+Requirement=!None
+Reply Text=Yes, and this sylvant will destroy you and this village.
+Go to node ID=100 Combat A
+
+Requirement=!None
+Reply Text=I'm not a sylvant. <Lie>
+Go to node ID=100 Combat A
+------------------------------------------------------------
+Node ID=20 used speech to avoid digestion
+Text=I do have a delicate stomach. Perhaps there are more palatable meals nearby.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 used speech to avoid conflict
+Text=Ah, that seems logical. Continue your observations then. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 used speech to avoid battle
+Text=Spoken like a wise goblin sage. I shall find my sport elsewhere.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 used speech to avoid sylvant heritage
+Text=<Laughs> Well, I am certainly envious of your meal. Oh, how my stomach yearns for warm fairy flesh! I will be off then to seek my meal. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Combat A
+Text=Sound the alarm! A brash interloper seeks to do us harm!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Combat Fight
+Text=Well, sadly for you, I do feel like a fight. Now be sporting and prepare your weapon!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Fleeing A
+Text=They are too mighty!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Fleeing B
+Text=We must flee and make haste!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Fleeing C
+Text=Run! AIIIIiiiiIIII!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Attacking A
+Text=They have butchered our brothers with alarming ease. Perhaps discretion would be the more prudent course of action?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Attacking B
+Text=Nonsense, we are Mongol-trained goblins, the scourge of the land!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Attacking C
+Text=Yes, Wumjup is right! Muster up your courage and attack! AIIIIiiiiIIII!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=400 darsh challenge
+Text=And just *where* do you think you are taking that prisoner?
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 25
+Reply Text=The Khan has requested to eat this morsel. I am escorting him.
+Go to node ID=400 jailor okays release
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I'm rescuing him. Any goblin who stops me will die.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Who, him? We were just leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 jailor okays release
+Text=The Khan? But he promised the first taste to me! Oh, very well, take him to Plumdjum Khan quickly.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 wilderness banter
+Text=Oh, I need to taste a brain! <Sniff> Yours smells like it will do!
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 15
+Reply Text=My brain is far too porous and small for your tastes.
+Go to node ID=20 used speech to avoid digestion
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+
+Requirement=!None
+Reply Text=One wrong move, and you will be eating my blade.
+Go to node ID=100 Combat A
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=500 wilderness banter 2
+Text=Oh, how I thirst for the marrow of their bones!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 wilderness banter 3
+Text=I do hope the Khan allows us to attack this day. I am *famished*.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 wilderness banter 4
+Text=I do hope the Khan allows us to attack this day. I am *famished*.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 wilderness banter 5
+Text=Are you dark meat...or white flesh? Mmm, you smell delicious!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 thief
+Text=Thief! You would steal from the Great Khan? You will die!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 goblin sniffs
+Text=<Sniff> <Sniff>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 goblin confrontation 2
+Text=Goblins come and feast well 'till you are gorged and belly-swelled!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 goblin confrontation
+Text=So, you seek to eliminate the goblin scourge? But it will be you that will be purged!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 dinner
+Text=You will make a fine meal for a ravenous goblin!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=goblins attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 shaman
+Text=In the northern part of our twisted forest, in his dark hut, you will find the shaman.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 take our meal
+Text=You dare to slay our meal before its time? Now you will join the prisoner in the cooking pot!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 wilderness generic no talk
+Text=<The goblin sneers at you.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 wilderness generic no talk2
+Text=<The goblin drools and peers at you with hungry eyes.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 wilderness generic no talk3
+Text=<The goblin licks his lips and eyes you hungrily.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 wilderness generic no talk4
+Text=<He looks at you warily.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 wilderness generic no talk5
+Text=<He stares at you coldly.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=700 intruders
+Text=Death to all those who seek to harm our Plumdjum Khan!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=800 bow to rakeb
+Text=Bow your head and show respect to Shaman Rakeb.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Thief generic
+Text=Thief!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 smell brains
+Text=Me smell brains!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 take brain
+Text=Me eat brain! Then me am smart!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Warning
+Text=Beware morsel. Your scent makes my mouth water and my belly rumble...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Attack
+Text=I can restrain myself no longer. I must taste your brain!
+Should Have Voiceover=0
+}
