@@ -25,14 +25,16 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release: 0.1.0 - "The Horde"
+## Current release candidate: 0.1.0-rc1 - "The Horde"
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
 standing, and a settlement that answers to almost nothing but Speech.
 
-**Not yet tested in-game.** It is built, deployed and verified byte-identical in both
-`data.dat` and the loose `data\` mirror, but nobody has played it yet.
+**Not yet tested in-game, so this is a release candidate, not a release.** It is built,
+deployed, and verified byte-identical in both `data.dat` and the loose `data\` mirror --
+but nobody has played it. [`docs/qa.md`](docs/qa.md) is the checklist it has to pass
+first, and it needs two differently-built characters to pass honestly.
 
 ### Fix - the goblin thread's dead ends
 
@@ -54,11 +56,22 @@ pointed at `10 Goodbye`; this was a one-character typo.
 Three rank records on the shipped `Saladin Aswaran` / Templar pattern, plus the rank
 counter and the gates that read it.
 
-| Rank | Faction | Grants |
-|---|---|---|
-| 1 | `Goblin Chum` | Sneak +10, Poison resistance +10, carry weight +10 |
-| 2 | `Goblin Blooded` | Sneak +8, Barter +8, Poison +10, Disease +10 |
-| 3 | `Goblin Champion` | Sneak +12, Barter +6, Poison +15, Agility +1, carry weight +20 |
+| Rank | Faction | Earned by | Grants |
+|---|---|---|---|
+| 1 | `Goblin Chum` | Spying on Barcelona's gate for Hrubjub | Sneak +10, Poison resistance +10, carry weight +10 |
+| 2 | `Goblin Blooded` | Bringing Rakeb the woodcutter's eyes | Sneak +8, Barter +8, Poison +10, Disease +10 |
+| 3 | `Goblin Champion` | Handing the Khan the Everlasting | Sneak +12, Barter +6, Poison +15, Agility +1, carry weight +20 |
+
+**The ladder is made of quests the game already shipped.** Only rung one needed new
+writing (Hrubjub had no onward pointer); the shaman's eyes quest and the Khan's bounty
+hunter both already existed, already served the Horde, and already completed inside
+conversations this mod was editing anyway. Rank 3 is granted in the same action array as
+the shipped `Goblin Champion` perk, at all three prices you can haggle the Khan to.
+
+Each grant is guarded on holding the previous rank, because Lionheart's quests can be done
+in any order and these are tiers rather than a counter. Reach the Khan first and you are
+not titled Champion at rank one; you simply do not advance until you have earned the rung
+below.
 
 Benefits are written as **increments**, not tier totals, because the shipped ladders
 accumulate: every vanilla faction record grants `+1` to its rank counter with
