@@ -148,6 +148,11 @@ gate Grumdjum's dryad branch on intelligence, named the files for it, and shippe
 Both now test `COR(Speech >= 20, Outwit >= 7)`, so the intelligence route is added and the
 Speech route is untouched.
 
+Only the first of the two has any effect in play: `River Dryad Take Goblinkill quest
+Grumjun NOT dead High Outwit.can` is referenced by **no conversation in the game**. It is
+repaired for consistency and because a later release may want it, but nothing reads it
+today and no test can observe it.
+
 **Three gates are re-authored rather than referenced where they sit.** Vanilla's own
 `Outwit 7 greater or equal`, `Schmooze 7 greater or equal` and
 `General Tribal Skills moreequal 80` live in `Requirements/Derived Attributes/` and

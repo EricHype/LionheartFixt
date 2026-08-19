@@ -214,6 +214,10 @@ The most important gate, and the easiest to skip.
 | N2 | No new reply appears for a character who fails its gate | Confirmed per row in Gate 2 |
 | N3 | No scene became *unsolvable* for a low-stat build | Confirmed |
 | N4 | Nothing outside the goblin thread changed | Spot-check Barcelona quest givers, the Templar/Inquisition initiations |
+| N5 | **The anti-goblin path still works through an edited file.** `GoblinKhan.DialogTree` carries Torquemada's `Slay the Goblin Khan` and Fixt edits it | Take the contract, kill the Khan, collect from Torquemada -- unchanged from vanilla |
+| N6 | A **non-Horde** player hands the Khan the Everlasting | Quest completes and the shipped `Goblin Champion` perk is still granted. The rank guard fails silently; it must not swallow the perk |
+| N7 | A **non-Horde** player brings Rakeb the woodcutter's eyes | Quest completes and the reward is paid as vanilla. No rank, no error |
+| N8 | Kill Rakeb / the Khan **after** taking a rank from them | No script errors; the camp-hostility relay behaves normally |
 
 ---
 
@@ -231,6 +235,9 @@ The most important gate, and the easiest to skip.
 
 ## Known gaps in 0.1.0 - not bugs, do not report
 
+- **`River Dryad Take Goblinkill quest Grumjun NOT dead High Outwit.can` is read by no
+  conversation in the game.** Fixt repairs it alongside its twin for consistency, but
+  nothing references it, so no test can observe the change. Do not hunt for it in play.
 - **The `Midlevel` / `Highlevel` / `NOT` gates are referenced nowhere yet.** The records
   they read are granted, but no conversation branches on rank 2 or 3 in this release. That
   reactivity pass is 0.2.0. The gates exist so the pass has something to read.
