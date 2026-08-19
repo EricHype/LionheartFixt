@@ -1,0 +1,1543 @@
+CDialogTree
+{
+Name=Goblin Grumdjum
+Portrait=Dialog/NPC Portraits/Grumjun the Goblin
+Should Have Voiceovers=1
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=Grumdjum Hates You
+}
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Ah! I have been waiting for someone of your imposing countenance and swagger.  Although our clan has no shortage of veteran warriors, I have a trifling task that merits your attention.
+Should Have Voiceover=1
+
+Requirement=Grumdjun Dryad talked to NOT killed Player high Outwit
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Already gotten reward for fake dryad dead quest
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CIsNotEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=I have slain her. The Dryad put up a fight, but she was no match for my bloodthirst. (LIE)
+Go to node ID=150 Killed River Dryad fake
+
+Requirement=Grumdjun Dryad has been killed
+Reply Text=She's dead.  The Dryad will bother you no more.
+Go to node ID=140 Killed River Dryad
+
+Requirement=Grumdjun reverse checker Dryad has been killed
+Reply Text=How did a goblin learn to speak so eloquently?
+Go to node ID=10 Smart Goblins
+
+Requirement=Grumdjun reverse checker Dryad has been killed
+Reply Text=What sort of task are you talking about?
+Go to node ID=20 The Offer
+
+Requirement=Grumdjun Have Darsh quest to kill Dryad
+Reply Text=Rakeb sent me. Tell me what I can do for you.
+Go to node ID=20 The Offer
+
+Requirement=!None
+Reply Text=I don't deal with goblins, I fight them.
+Go to node ID=50 Goodbye
+Icon=Fight Icon
+
+Requirement=Grumdjun reverse checker Dryad has been killed
+Reply Text=I'm not interested. I'll just be on my way.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=You're back. Doubtless you have tales of bloodshed that goblin poets will sing of for years to come?
+Should Have Voiceover=1
+
+Requirement=Grumdjun Dryad talked to NOT killed Player high Outwit
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Already gotten reward for fake dryad dead quest
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CIsNotEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=I have slain her. The Dryad put up a fight, but she was no match for my bloodthirst. <LIE>
+Go to node ID=150 Killed River Dryad fake
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+State=2QEGR0S8
+}
+}
+Reply Text=She's dead. The Dryad will bother you no more.
+Go to node ID=140 Killed River Dryad
+Icon=Quest Icon
+
+Requirement=Grumdjun reverse checker Dryad has been killed
+Reply Text=How did a goblin learn to speak so eloquently?
+Go to node ID=10 Smart Goblins
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+Reply Text=Tell me more of goblin poetry.
+Go to node ID=110 Goblin Poetry
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=heard grumdjum's poetry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Goblin Warrens
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+}
+Reply Text=Tell me again about the wild goblin tribes.
+Go to node ID=1000 southern gobs have no brains
+
+Requirement=Grumdjun reverse checker Dryad has been killed
+Reply Text=Could you refresh me on what you needed done?
+Go to node ID=20 The Offer
+
+Requirement=!None
+Reply Text=I decided that I don't make deals with goblins.
+Go to node ID=50 Goodbye
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon. I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Return Dialogue
+Text=Back again? If you want to do business, please, let's do business. If you've returned merely to pester me with inane questions I'd rather you just went on your way.
+Should Have Voiceover=1
+
+Requirement=Grumdjun Dryad talked to NOT killed Player high Outwit
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Already gotten reward for fake dryad dead quest
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CIsNotEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=I have slain her. The Dryad put up a fight, but she was no match for my bloodthirst. <LIE>
+Go to node ID=150 Killed River Dryad fake
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+State=2QEGR0S8
+}
+}
+Reply Text=She's dead. The Dryad will bother you no more.
+Go to node ID=140 Killed River Dryad
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=How did a goblin learn to speak so eloquently?
+Go to node ID=10 Smart Goblins
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+Reply Text=Tell me more of goblin poetry.
+Go to node ID=110 Goblin Poetry
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=heard grumdjum's poetry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Goblin Warrens
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+}
+Reply Text=Tell me again about the wild goblin tribes.
+Go to node ID=1000 southern gobs have no brains
+
+Requirement=!None
+Reply Text=What did you need done again?
+Go to node ID=20 The Offer
+
+Requirement=!None
+Reply Text=I don't pester goblins, I kill them.
+Go to node ID=50 Goodbye
+Icon=Fight Icon
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon.  I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=6 Return Dialogue
+Text=For your sake, you had best be here to tell me the witch is dead. Or I will make an epic poem about your long torture.
+Should Have Voiceover=1
+
+Requirement=Grumdjun Dryad talked to NOT killed Player high Outwit
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Already gotten reward for fake dryad dead quest
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CIsNotEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=I have slain her. The Dryad put up a fight, but she was no match for my bloodthirst. <LIE>
+Go to node ID=150 Killed River Dryad fake
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+State=2QEGR0S8
+}
+}
+Reply Text=She's dead. The Dryad will bother you no more.
+Go to node ID=140 Killed River Dryad
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=How did a goblin learn to speak so eloquently?
+Go to node ID=10 Smart Goblins
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+Reply Text=Tell me more of goblin poetry.
+Go to node ID=110 Goblin Poetry
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=heard grumdjum's poetry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Goblin Warrens
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+}
+Reply Text=Tell me again about the wild goblin tribes.
+Go to node ID=1000 southern gobs have no brains
+
+Requirement=!None
+Reply Text=What did you need done again?
+Go to node ID=20 The Offer
+
+Requirement=!None
+Reply Text=I don't pester goblins, I kill them.
+Go to node ID=50 Goodbye
+Icon=Fight Icon
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon.  I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=7 Return Dialogue
+Text=Just answer one question for me. Is the witch destroyed?
+Should Have Voiceover=1
+
+Requirement=Grumdjun Dryad talked to NOT killed Player high Outwit
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Already gotten reward for fake dryad dead quest
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CIsNotEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=I have slain her. The Dryad put up a fight, but she was no match for my bloodthirst. <LIE>
+Go to node ID=150 Killed River Dryad fake
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+State=2QEGR0S8
+}
+}
+Reply Text=She's dead. The Dryad will bother you no more.
+Go to node ID=140 Killed River Dryad
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+Reply Text=Tell me more of goblin poetry.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Grumdjum Hates You
+}
+
+Requirement=!None
+Reply Text=What did you need done again?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Grumdjum Hates You
+}
+
+Requirement=!None
+Reply Text=I don't pester goblins, I kill them.
+Go to node ID=50 Goodbye
+Icon=Fight Icon
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon. I have to go.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Grumdjum Hates You
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=8 Return Dialogue Dryad Dead
+Text=It is always a pleasure to see you, my dryad slayer. We will sing your praises in New Khara'Khorum. Grumdjum is in your debt, so what can I do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is New Khara'Khorum?
+Go to node ID=100 Goblin City
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+Reply Text=Tell me more of goblin poetry.
+Go to node ID=200 new poem
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=heard grumdjum's poetry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Goblin Warrens
+}
+
+Requirement=!None
+Reply Text=I will leave you now.
+Go to node ID=160 After Dryad death bubble
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Smart Goblins
+Text=Goblinkind has produced the greatest philosophers ever to walk this orb, great minds like Bloodspiller the Pensive, Bonecrusher the Pedantic, and Brain-Gnasher of the Fairy-Pogrom. Goblins whose works, no doubt, are quite beyond the ken of your average human intellect.
+Should Have Voiceover=1
+
+Requirement=Outwit 7+
+Reply Text=Bonecrusher the Pedantic wrote nothing down, so you have read him only in quotation - and Brain-Gnasher was a general, not a philosopher. You are showing me a shelf you have not opened.
+Go to node ID=11 fellow pedant
+Icon=Attribute Icon
+
+Requirement=Grumdjun reverse checker Have Accepted Quest
+Reply Text='Great minds' aside, what sort of task were you talking about?
+Go to node ID=20 The Offer
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon. I have to go.
+Go to node ID=55 Goodbye Got Quest
+
+Requirement=!None
+Reply Text=The only 'great goblin minds' are those on the end of a spear.
+Go to node ID=50 Goodbye
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, not interested. I'll just be on my way.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 The Offer
+Text=A certain water witch lives in these parts, causing our clan no end of trouble. It so happens that her magic is especially potent against our kind, making removing her more of a nuisance than she warrants.
+Should Have Voiceover=1
+
+Requirement=Grumdjun Have Darsh quest to kill Dryad
+Reply Text=Darsh is worth the life of a Dryad. If this must be done, then so be it.
+Go to node ID=70 Accept the Offer
+
+Requirement=!None
+Reply Text=Tell me more about this witch.
+Go to node ID=40 River Dryad
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+}
+}
+Reply Text=I'm not interested in doing your dirty work. 
+Go to node ID=50 Goodbye
+Is Default Reply=1
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon. I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 River Dryad
+Text=The witch is a River Dryad, the last of the loathsome good forest folk we have had the privilege of exterminating. Her underhanded tactics and magic have butchered...several of my brethren who were merely trying to devour the candy-coated fairy creatures of this grove.
+Should Have Voiceover=1
+
+Requirement=Grumdjun Have Darsh quest to kill Dryad
+Reply Text=Darsh is worth the life of a Dryad.  If this must be done, then so be it.
+Go to node ID=70 Accept the Offer
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+}
+}
+Reply Text=Very well, I will expect an ample reward.
+Go to node ID=70 Accept the offer
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Why do you want to kill the dryad?
+Go to node ID=60 Explanation
+
+Requirement=!None
+Reply Text=You want me to kill a River Dryad? Forget it goblin.
+Go to node ID=50 Goodbye
+
+Requirement=!None
+Reply Text=I'm not interested. I'll just be on my way.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon.  I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 Goodbye
+Text=That's too bad, I think you would have fared much better than the others. Still, if you are not aiding the goblin cause, then you'll have to settle for feeding it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 Goodbye Got Quest
+Text=I grow weary of this delay, warrior.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Explanation
+Text=Goblins are a rare breed, cursed by dark magic to spread blessed chaos throughout the world. We are drawn to good like moths to light, so that we may surround the light and smother it. Between battles, we make bad poetry.
+Should Have Voiceover=1
+
+Requirement=Grumdjun Have Darsh quest to kill Dryad
+Reply Text=If this must be done to save Darsh, then it will be done.
+Go to node ID=70 Accept the offer
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+}
+}
+Reply Text=I'll do it, if you can pay for a mercenary of rare skill.
+Go to node ID=70 Accept the offer
+
+Requirement=!None
+Reply Text=Tell me more of goblin poetry.
+Go to node ID=110 Goblin Poetry
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=heard grumdjum's poetry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Goblin Warrens
+}
+
+Requirement=!None
+Reply Text=I'm not interested. I'll just be on my way.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon. I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=70 Accept the offer
+Text=Excellent! The Magic Crystal on the trail behind me will take you to her lair on a small island west of here. Beware of her magic. She is a vile and treacherous fairy.
+Should Have Voiceover=1
+
+Requirement=Grumdjun reverse checker Have Accepted Quest
+Reply Text=I'm off to kill her.  I will return for my reward.
+Go to node ID=100 Goodbye Accept the offer
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I do not trust your 'Magic Crystal'. Tell me about it first.
+Go to node ID=80 Magic Node
+
+Requirement=!None
+Reply Text=What kind of magic does the dryad wield?
+Go to node ID=90 Dryad Magic
+
+Requirement=!None
+Reply Text=I've changed my mind Grumjdum. We have no deal.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon.  I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Magic Node
+Text=You will discover these peculiar structures scattered across the land. We do not know their origin, which predates our arrival in these climes, but many believe that they are the magic teeth of Gurukal, the all powerful Goblin Lord.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=81 Magic Node
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=81 Magic Node
+Text=I distrust these tales, however, and I have reason to believe that they are accumulations of magic, the discarded residue of old spells. This would account for their decidedly random nature.
+Should Have Voiceover=1
+
+Requirement=Grumdjun reverse checker Have Accepted Quest
+Reply Text=I'm off to kill her. I will return for my reward.
+Go to node ID=100 Goodbye Accept the offer
+Icon=Quest Icon
+
+Requirement=Thought 80+
+Reply Text=They are not residue, they are reservoirs. Magic collects in them the way water collects in a cistern, and it can be drawn back out by anyone who knows how to ask.
+Go to node ID=82 the residue theory
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What kind of magic does the dryad wield?
+Go to node ID=90 Dryad Magic
+
+Requirement=!None
+Reply Text=I've changed my mind Grumjdum. We have no deal.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon. I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Dryad Magic
+Text=She wields a particularly distasteful magic, white healing magic and noxious warding spells that protect her from our own magic blights.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 Dryad Magic
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=91 Dryad Magic
+Text=Her sorceress' tongue bewitches all but the most strong-minded. This last magic is particularly deadly and you'd be well-advised to kill her quickly before you succumb to her charms and specious reasoning.
+Should Have Voiceover=1
+
+Requirement=Grumdjun reverse checker Have Accepted Quest
+Reply Text=I'm off to kill her. I will return for my reward.
+Go to node ID=100 Goodbye Accept the offer
+Icon=Quest Icon
+
+Requirement=Outwit 7+
+Reply Text=You have warned me about her healing, her wards and her tongue - and only the tongue twice. You are not afraid I will lose to her, Grumdjum. You are afraid I will listen to her.
+Go to node ID=92 why silence her
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Tell me about the Magic Crystal.
+Go to node ID=80 Magic Node
+
+Requirement=!None
+Reply Text=I've changed my mind Grumjdum. We have no deal.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon. I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Goodbye Accept the offer
+Text=Good luck, dark knight!  
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+State=G28XU4JM
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Set Goblins upper right NO attack player
+}
+Action=CActivateAction
+{
+Target Name=Accepted Kill Dryad Quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Activate Grumdjums Warning
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Goblin Poetry
+Text=A connoisseur of goblin culture! I have a few verses prepared, but the meter is a bit off. Very well, here is the first: 'Violence is red, and so is blood, I'll crush your skull, with a delicious thud.' Want to hear another?
+Should Have Voiceover=1
+
+Requirement=Schmooze 7+
+Reply Text=The thud does the work, and you put it last. Most poets would have wasted it in the second line. Another, please - and take your time over the meter.
+Go to node ID=120 More pun-ishment
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=makes player able to tell Khan this later
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Bravisimo! More verses please!
+Go to node ID=120 More pun-ishment
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=makes player able to tell Khan this later
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=I'd love to hear more of this *poetry*, but I hate to trouble you...
+Go to node ID=120 More pun-ishment
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=makes player able to tell Khan this later
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+------------------------------------------------------------
+Node ID=120 More pun-ishment
+Text=This is a 'haiku', a form of poetry from a land far, far to the east.  'Red Sylvant entrails.  Warm, feculent, swarms of flies.  Greedily laying eggs.'
+Should Have Voiceover=1
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=Umm, that's plenty to think about. I don't need to hear any more.
+Go to node ID=130 No more poetry
+
+Requirement=Grumdjun reverse checker Have Accepted Quest
+Reply Text=Umm, that's plenty to think about. I don't need to hear any more.
+Go to node ID=130 No more poetry not accepted dryad quest
+------------------------------------------------------------
+Node ID=130 No more poetry not accepted dryad quest
+Text=I understand. Like the blood of an innocent, goblin poetry should be sipped and savored slowly. So, have you come to a decision regarding my offer?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I might be interested... if you can afford my services. Tell me more.
+Go to node ID=70 Accept the offer
+
+Requirement=!None
+Reply Text=You want me to kill a River Dryad? Forget it goblin.
+Go to node ID=50 Goodbye
+
+Requirement=Grumdjun Have Accepted Quest
+Reply Text=I will kill her soon.  I have to go.
+Go to node ID=55 Goodbye Got Quest
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Sorry, not interested in any offer from you. I'll just be on my way.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Killed River Dryad
+Text=Her sickening charms will distract our plans no longer. Please, take this as a token of our Goblin admiration of your blood thirst.  May the blood of the fallen stain your children, and your children's children! Now, I have brains to consume.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Ring
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Rings/Fiery Death
+}
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=Goblin Grumdjum
+Temporary Task AI=CFollowPathAI
+{
+Marked For Deletion=0
+Publisher=
+Path Poly=Path for Grumjun goto Crystal
+PathPolygonLayerPart=
+Order=Go To End
+Ignore last point=0
+End of path action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=$Trigger
+}
+Action=CActivateAction
+{
+Target Name=Goblin Grumdjum After Kill Dryad generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Grumdjum is considering how to eat the River Dryad
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+TimeBeforCanReviseData=0
+Revise Point=0.000000,0.000000
+Revising Data=0
+Target Point=0
+Moving=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+Suppress can't assign error=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill River Dryad for Grumjun XP
+Experience Points To Add=500
+}
+Action=CRemoveAIAction
+{
+Target Name=Goblin Grumdjum
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Killed River Dryad fake
+Text=Strange, the forest still resounds with her taint...but perhaps it is just a residual effect. Please, take this as a token of our Goblin admiration of your bloodthirst.  May the blood of the fallen stain your children, and your children's children! Now I have brains to consume.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=11
+Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Action=CSetQuestSatusToFailedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the River Dryad
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Ring
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Rings/Fiery Death
+}
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill River Dryad for Grumjun XP
+Experience Points To Add=500
+}
+Action=CActivateAction
+{
+Target Name=Fog clearer for watching Grumjun die
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Already gotten reward for fake dryad dead quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeleteAction
+{
+Target Name=Goblin Grumdjum
+}
+Action=CActivateAction
+{
+Target Name=Goblin Grumdjum After Kill Dryad generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=grumdjum dies cam
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=Goblin Grumdjum
+Temporary Task AI=CFollowPathAI
+{
+Marked For Deletion=0
+Publisher=
+Path Poly=Path for Grumjun goto Crystal
+PathPolygonLayerPart=
+Order=Go To End
+Ignore last point=0
+End of path action=
+TimeBeforCanReviseData=0
+Revise Point=0.000000,0.000000
+Revising Data=0
+Target Point=0
+Moving=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+Suppress can't assign error=0
+}
+Action=CAddCategoryAction
+{
+Target Name=River Dryad
+Categories to add=NonInteractiveSequence Actor
+}
+Action=CAddCategoryAction
+{
+Target Name=Goblin Grumdjum
+Categories to add=NonInteractiveSequence Actor
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 After Dryad death bubble
+Text=Oh, where to begin? The dryad's brain will be so succulent!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 fellow pedant
+Text=<He stops. The theatrical sneer slips, and for a moment there is only a very well-read goblin standing in a swamp.> ...Bonecrusher wrote nothing down. Yes. In eleven years no human has once asked me which of them I had actually read. <He recovers.> It signifies nothing. Your brain would still be improved by cooking.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You said there was a task.
+Go to node ID=20 The Offer
+
+Requirement=!None
+Reply Text=Keep your philosophers, goblin. I am leaving.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=82 the residue theory
+Text=<He listens all the way to the end without once interrupting, which for Grumdjum is close to a religious experience.> Reservoirs. Not the leavings of magic but the keeping of it. <A long pause.> I have been wrong about this for a very long time and I find I mind it far less than I expected. Do not tell the Khan. He has me down as an authority.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What kind of magic does the dryad wield?
+Go to node ID=90 Dryad Magic
+
+Requirement=!None
+Reply Text=Your secret is safe. Now, about this witch.
+Go to node ID=40 River Dryad
+
+Requirement=!None
+Reply Text=I have heard enough theory for one day.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=92 why silence her
+Text=<The pause before he answers is exactly one beat too long.> You misunderstand me. I said her tongue was dangerous. I did not say she had anything true to tell you with it. <He straightens.> Kill her quickly, and you will not have to find out which of us is lying. That is the whole of my advice.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then I will hear her out first, and decide after.
+Go to node ID=50 Goodbye
+
+Requirement=!None
+Reply Text=Fine. Where do I find her?
+Go to node ID=40 River Dryad
+
+Requirement=!None
+Reply Text=I want no part of whatever this is.
+Go to node ID=50 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Walk away from Grumdjum
+Text=It is unwise to ignore Grumdjum! You will die for your insolence!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=130 No more poetry
+Text=I understand. Like the blood of an innocent, goblin poetry should be sipped and savored slowly.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Goblin City
+Text=New Khara'Khorum, our Mongol village and the home of our Great Khan, Plumdjum. You should go there to marvel at its beauty! Seek our city through the waterfall to the east. Farewell, dryad slayer.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will leave you now.
+Go to node ID=160 After Dryad death bubble
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 new poem
+Text=At last someone answered my prayer, a dreaded dark knight dryad slayer. Now she bleeds on her beloved land, murdered by the slayer's hand. And now that she is no longer a pain, I shall dine well on her moist brain.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=A bit abstract, but not bad.
+Go to node ID=200 new poem response
+
+Requirement=!None
+Reply Text=Touching. I'm speechless.
+Go to node ID=200 new poem response
+
+Requirement=!None
+Reply Text=Horrible does not begin to describe it.
+Go to node ID=200 new poem response
+------------------------------------------------------------
+Node ID=200 new poem response
+Text=Admittedly it needs work. Perhaps after I devour her brain, her intellect will help me improve the poem even more. Mmm. What rhymes with Dryad Brain?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Perhaps. Farewell, goblin poet.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 companion
+Text=Greetings, goblin friend, Grumdjum is pleased to see you once again. And since my Khan has tasked me to aid with your quest, let us seek the Old Man in Alamut, the Eagles Nest. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why do you want to help me? 
+Go to node ID=300 kill old man
+
+Requirement=!None
+Reply Text=Your company is most welcome, Grumdjum.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'd rather kill you where you stand.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I work alone. Leave.
+Go to node ID=300 companion leaves you 
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 kill old man
+Text=Many years ago, the Great Khan sent proud warriors to slay the Old Man of the Mountain. None survived that ill-fated encounter. I am here to help you correct history, and kill that meddling assassin master, on one condition. *I* receive the honor of eating his brain.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Your company is most welcome, Grumdjum. The Old Man's brain is yours.
+Go to node ID=300 companion quips 3
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'd rather kill you where you stand.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I work alone. Leave.
+Go to node ID=300 companion leaves you
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 player speaks to goblin as companion
+Text=What can Grumdjum do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Nothing. Nevermind.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I work alone. Leave.
+Go to node ID=300 companion leaves you
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 grumdjum asks to rejoin
+Text=Are you ready to continue our quest - to put the Old Man to rest?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 grumdjum rejoins
+Text=At last dark knight, you have come to your senses, now let us beat these assassins senseless!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 grumdjum hurting
+Text=If my blood continues to flow, to the stewpot beyond I will go!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 grumdjum hurting 2
+Text=My time is nearly past, I need healing fast!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 companion quips 1
+Text=Arrows sing and sabers rattle, let us engage these creatures in battle! 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 companion quips 2
+Text=Slay these creatures without delay, draw your weapons and enter the fray!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 companion quips 3
+Text=The great goblin bards will sing poems of our valor for years to come.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 companion joins you
+Text=Would you like Grumdjum to join you again?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 companion leaves you
+Text=If that is your wish, here I will remain. Should you need my sword, return and a goblin companion you will regain.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 southern gobs have no brains
+Text=Before you go, there is one thing that you should know. The wild goblin tribes to the south have not yet tasted brains in their mouths. To make their minds fatter, some goblins will seek to eat your gray matter!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+Reply Text=Tell me more of goblin poetry.
+Go to node ID=110 Goblin Poetry
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=heard grumdjum's poetry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Goblin Warrens
+}
+
+Requirement=!None
+Reply Text=I'll keep that in 'mind' if I travel south.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

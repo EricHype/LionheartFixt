@@ -122,6 +122,18 @@ Agility, Endurance and Luck - 46 finished files that nothing in Lionheart reads.
 | `GoblinKhan` | `Schmooze 7` | Charm rather than trained Speech as a way to satisfy his demand to be entertained |
 | `GoblinEntranceGuard` | `Schmooze 7` | Talk your way through the gate on charisma |
 | `GoblinEntranceGuard` | `Goblin Horde IS` | Name-drop Hrubjub. The pointer he gives you is the thing the guard checks |
+| `GoblinGrumdjum`, `10 Smart Goblins` | `Outwit 7` | He brags about goblin philosophers "beyond the ken of your average human intellect". Call the bluff: Bonecrusher wrote nothing down, and Brain-Gnasher was a general |
+| `GoblinGrumdjum`, `81 Magic Node` | `Thought 80` | He theorises the mana obelisks are the residue of old spells. A Thought mage knows they are reservoirs, and he takes the correction beautifully |
+| `GoblinGrumdjum`, `91 Dryad Magic` | `Outwit 7` | He warns you about the dryad's healing, her wards, and her tongue — the tongue twice. He is not afraid you will lose to her |
+| `GoblinGrumdjum`, `110 Goblin Poetry` | `Schmooze 7` | Praise the haiku on its craft rather than gushing. Feeds the same "told the Khan about the poetry" flag the vanilla routes do |
+
+**Grumdjum is the largest goblin conversation in the game** — 42 nodes, 105 replies, and
+in vanilla every one of its 33 gates is quest state, not one skill or attribute among
+them. He is also the goblin who reads philosophy, theorises about magic and writes haiku,
+so the four checks above are all about meeting him at his own level rather than getting
+past him. The dryad one is load-bearing: the tree already supports talking to her instead
+of killing her — that is what its `Dryad talked to NOT killed` gate is for — and vanilla
+never hints the option exists.
 
 **Two shipped requirement files are named for Outwit and test Speech instead** -
 `Grumdjun Dryad talked to NOT killed Player high Outwit.can` and

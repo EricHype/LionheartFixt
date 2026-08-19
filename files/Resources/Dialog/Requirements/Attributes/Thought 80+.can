@@ -1,0 +1,16 @@
+CCannedObject
+{
+	Object=CIsGreaterThanOrEqual
+	{
+		Operand1=CVariableSkill
+		{
+			Skill=Skills/Thought
+		}
+		Operator=
+		Operand2=CConstant
+		{
+			Constant Value=80
+		}
+	}
+	Use=Shared Global Instance
+}

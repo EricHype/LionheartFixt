@@ -150,6 +150,13 @@ unless the row says otherwise.
 | C9 | " | Character B with Speech 25 | Vanilla flattery reply still works |
 | C10 | Grumdjum, dryad branch | IN 7+, **Speech below 20** | The dryad reply is now visible (it was Speech-only before) |
 | C11 | " | Speech 20+, IN below 7 | Still visible — the Speech route was not removed |
+| C12 | Grumdjum (Lake), `10 Smart Goblins` | IN 7+ | The Bonecrusher reply is visible; reaches `11 fellow pedant`, which returns cleanly to `20 The Offer` |
+| C13 | Grumdjum, `81 Magic Node` | Thought 80+ | The reservoirs reply is visible; reaches `82 the residue theory` |
+| C14 | Grumdjum, `91 Dryad Magic` | IN 7+ | The "you are afraid I will listen to her" reply is visible; reaches `92 why silence her` |
+| C15 | " | From `92`, choose *"I will hear her out first"* | Conversation ends without accepting the kill contract; the dryad can still be talked to |
+| C16 | Grumdjum, `110 Goblin Poetry` | CH 7+ | The craft-praise reply is visible; reaches `120 More pun-ishment` |
+| C17 | " | After C16, talk to the Goblin Khan | The "I could tell you a Goblin poem" option is available — the Schmooze route sets the same flag the vanilla routes do |
+| C18 | Grumdjum | **Character B** | All four new replies absent; every vanilla route through his tree still works |
 
 ### Restore - the cut characters
 
@@ -221,11 +228,10 @@ The most important gate, and the easiest to skip.
 - **The Crossroads patrol makes no counter-offer**, the goblin and Torquemada quests still
   do not fail each other, and harvesting the woodcutter's eyes still moves no karma. All
   0.2.0.
-- **Three goblin conversations are untouched** and remain exactly as vanilla shipped them:
-  `Goblin Henchman` (10 nodes / 27 replies), `Goblin guarding Woodcutter daughter`
-  (14 / 11), and `GoblinGrumdjum` (42 / 105 -- reached only indirectly, via the two
-  repaired Outwit gates). `GoblinCrier`, `GoblinLt`, `Goblin Hut Ritual Sayings` and
-  `Goblin Shaman` are balloon banks with no player replies and are correctly left alone.
+- **Two goblin conversations are untouched** and remain exactly as vanilla shipped them:
+  `Goblin Henchman` (10 nodes / 27 replies) and `Goblin guarding Woodcutter daughter`
+  (14 / 11). `GoblinCrier`, `GoblinLt`, `Goblin Hut Ritual Sayings` and `Goblin Shaman`
+  are balloon banks with no player replies and are correctly left alone.
 - **`GoblinGuards` is an overheard exchange**, not a branching conversation. Four nodes,
   no player replies — that is how it shipped.
 
