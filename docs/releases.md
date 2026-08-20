@@ -59,6 +59,59 @@ development.
 | 0.4.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
 | 0.5.0+ | The back half - the Crypt's war, the two new areas, companions | The largest work, and it wants the faction and reactivity templates settled first |
 
+## The Crossroads patrol, and why it is hostile
+
+Found while testing 0.1.0-rc1: talking to Guard Esteban about the local dangers makes the
+Crossroads goblins attack, with no quest accepted. This is vanilla, and the mechanism is
+now fully traced.
+
+`30 Dangers` -> `500 goblins` -> `500 goblin continued` fires `Relay Name=goblin encounter`
+unconditionally, unless `Corner Goblins Dead` is already set. There is no quest gate
+anywhere on that path.
+
+**The relay itself is innocent.** `goblin encounter` is a `CRelayAI` whose six actions
+force-generate the Corner Goblins, activate the Scout Generator, set a patrol route to
+`Goblin patrols here`, and fade in the Patrol Leader and Scout. It contains **no combat
+action at all**, and it is `Trigger Only Once=1`.
+
+**The hostility is in the template, and the fix is in the generator.** The spawned entity
+is `Monster Cans/Mongol Gate District`, which carries `Valid Targets=Player,Player Friend`
+and `Category=Enemy,Goblin` -- it aggroes on sight, with no script needed.
+
+The decisive detail is that **Goblin Warrens spawns the same kind of goblin from equally
+hostile templates and its villagers are peaceful**. `Mongol Archer Village` and
+`Mongol SwordsmanVillage` also ship as `Valid Targets=Player,Player Friend` /
+`Category=Enemy,Goblin`. What makes them neutral is two actions in the generator's
+`After Action`, run at spawn:
+
+```
+Action=CSetTargetTypeAction
+{
+    Entity Name=$Instigator
+    Name To Target=
+    Valid Targets=            <- clears targeting
+}
+Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+{
+    Target Name=$Instigator
+    New Category=Goblin       <- drops "Enemy"
+}
+```
+
+`Corner Goblin Generator` at the Crossroads has no `After Action` at all. That single
+omission is the whole difference between a patrol you can walk past and one that charges.
+
+**So the fix is small and fully precedented**: add that two-action `After Action` to
+`Corner Goblin Generator`, and let the existing `goblin confrontation` relay -- which
+already does `CSetTargetTypeAction` + `CGoToCombatAction` on the Patrol Leader -- turn them
+hostile when the scene calls for it. Do not edit the shared template; it is used elsewhere.
+
+**It should not ship alone.** A neutral patrol with nothing to say is worse content than a
+hostile one: it removes an encounter and replaces it with nothing. This lands with the
+counter-contract below, which is the thing that gives a peaceful patrol a purpose. It is
+also why the counter-contract could never have worked as scoped -- a patrol that is
+already charging cannot offer you a job.
+
 ## 0.1.0 - "The Horde"
 
 **The thesis.** Lionheart's most developed evil content is the pro-goblin thread, and it
