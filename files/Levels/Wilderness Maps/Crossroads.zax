@@ -28342,36 +28342,7 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=2
-						AI=CAIInteractionSpecifier
-						{
-							Marked For Deletion=0
-							Publisher=
-							Trigger Only Once=0
-							Was Triggered=0
-							Auto-Flip Switch=1
-							Trigge Must Have HP=0
-							Triggered By Anything=0
-							Triggered By Players=1
-							Triggered By Player Friends=0
-							Triggered By Enemies=0
-							Triggered By Projectiles=0
-							Triggered By Companions=0
-							Triggered By Name=
-							Interaction Description=
-							Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
-							Action=
-							X Radius=85
-							Attacker Range Modifier=0
-							YX Ratio=0.712766
-							Highlight Self Time=0
-							Highlight Until Clicked=0
-							Is Locked=0
-							Allow Interact If Has Target=1
-							Lock Pick Adjustment=0
-							Inventory item to use as key=Inventory Items/!None
-							Is Bussy Talking=0
-						}
+						Item Count=1
 						AI=CAIInteractionSpecifier
 						{
 							Marked For Deletion=0
@@ -28473,18 +28444,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=7
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=
-							}
-							Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
-							{
-								Target Name=$Instigator
-								New Category=Goblin
-							}
+							Item Count=5
 							Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
 							{
 								Target Name=Goblin Patrol Leader

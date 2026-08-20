@@ -53,8 +53,17 @@ template: `Mongol Gate District` ships with `Valid Targets=Player,Player Friend`
 
 The proof of the fix is in Goblin Warrens, whose peaceful villagers spawn from *equally
 hostile* templates. Two actions in the generator's `After Action` neutralise them at spawn
--- clear targeting, drop the `Enemy` category. Six Crossroads generators now do the same,
-and the shared template is untouched, because it is used elsewhere.
+-- clear targeting, drop the `Enemy` category. **Five** Crossroads generators now do the
+same, and the shared template is untouched, because it is used elsewhere. The sixth,
+`Scout Generator`, already did it in vanilla; the Patrol Leader was never the aggressive
+one.
+
+**He was, however, unclickable.** `Scout Generator` shipped with a
+`GetCloseThenTriggerAndFight` interaction specifier carrying an empty action, so the only
+thing you could do to a peaceful patrol leader was swing at him. That specifier is removed
+and the conversation takes its place. Combat still works: `CGoToCombatAction` converts
+whatever specifier an entity holds into a fight one, which is how `goblins attack` reaches
+him.
 
 `goblins attack` had to grow to match: it only ever re-armed `Goblin Scout` and
 `Goblin Patrol Leader`, so with the corner goblins neutral it would have started a fight
@@ -70,6 +79,13 @@ He is a real conversation now, with four state-based entry points, and he offers
 | `Goblin Horde IS` | He recognises the human who carried word to the Khan, and makes an offer |
 | `Speech 40` | Talk your way past without fighting or dealing |
 | `Outwit 7` | See why he needs a *human* hand: goblin spears on a Templar bring white cloaks, a human killer brings a manhunt for a human |
+
+**Taking Esteban's own goblin contract closes this route, and that is the point.** His
+`500 eliminate the goblins` reply fires the vanilla `goblin confrontation` relay, which
+turns the patrol hostile -- you agreed to clear them out, so they stop being available to
+talk to. Ask him about the dangers and the patrol appears peacefully; accept his job and
+you have chosen. Both relays are fired from Esteban's tree and nowhere else, so the
+sequence is entirely in the player's hands.
 
 **The contract is on Esteban**, and everything it costs is paid at the corpse, not at the
 handshake. Accepting costs 50 karma -- a decision you made, in your own head -- and

@@ -201,7 +201,9 @@ unless the row says otherwise.
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
-| X1 | Crossroads | Ask Esteban about the dangers, then walk to the patrol | The goblins **do not attack**. They patrol and can be approached |
+| X1 | Crossroads | Ask Esteban about the dangers -- but **do not accept his goblin quest** -- then walk to the patrol | The goblins **do not attack**. They patrol and can be approached |
+| X1b | " | Talk to the Patrol Leader | A conversation opens. **In vanilla and in the first 0.1.1 build the only interaction was an attack**; his `GetCloseThenTriggerAndFight` specifier was shadowing the conversation |
+| X1c | " | Now accept Esteban's goblin quest | The patrol turns hostile -- vanilla's `goblin confrontation` relay. **This is the choice, not a bug**: you agreed to clear them out |
 | X2 | " | Attack one anyway | The full vanilla fight starts -- Patrol Leader, Scout **and** the corner goblins all turn. If any stands inert, `goblins attack` did not re-arm it |
 | X3 | Goblin Patrol Leader | Talk to him with **no** Horde rank | The purge line, a `Speech 40` route, a fight and a walk-away. **No contract offered** |
 | X4 | " | Talk with Horde rank | He recognises you and offers the contract on Esteban |
