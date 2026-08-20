@@ -60,19 +60,11 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=2
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
 State=K7BQ2XR4
-}
-Action=CSetQuestSatusToFailedIfActiveAction
-{
-Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
-}
-Action=CSetQuestSatusToFailedIfActiveAction
-{
-Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
 }
 Action=CAddCharacterModifierToCharacterAction
 {
@@ -117,19 +109,11 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=2
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
 State=K7BQ2XR4
-}
-Action=CSetQuestSatusToFailedIfActiveAction
-{
-Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
-}
-Action=CSetQuestSatusToFailedIfActiveAction
-{
-Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
 }
 Action=CAddCharacterModifierToCharacterAction
 {
@@ -193,7 +177,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=2
 Action=CSetQuestSatusToCompletedAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
@@ -201,28 +185,6 @@ Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
 Action=CGiveMoneyToAllPlayersAction
 {
 Value to give=450
-}
-Action=CAddCharacterModifierToCharacterAction
-{
-Modifier Description=Drop karma for killing Esteban
-Modification is permanent=0
-Character to modify=$Instigator
-Modifiers=Array
-{
-Item Count=1
-Modifier=CCharacterModifierDerivedAttribute
-{
-Modification Amount=CConstant
-{
-Constant Value=-75
-}
-Modification amount is a percent=0
-Allow Accumulation=1
-Derived character attribute to modify=Derived Character Attributes/Karma
-}
-}
-OPTIONAL Duration=
-Expression Context=$Instigator
 }
 }
 }

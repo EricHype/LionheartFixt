@@ -71,10 +71,30 @@ He is a real conversation now, with four state-based entry points, and he offers
 | `Speech 40` | Talk your way past without fighting or dealing |
 | `Outwit 7` | See why he needs a *human* hand: goblin spears on a Templar bring white cloaks, a human killer brings a manhunt for a human |
 
-**The contract is on Esteban**, and it bites. Taking it fails his own two quests
-immediately, and `LordJavier` checks completion of Esteban's tasks three times during the
-Knights Templar initiation -- so this is the first goblin choice that visibly closes a
-door somewhere else. Accepting costs 50 karma, killing him another 75.
+**The contract is on Esteban**, and everything it costs is paid at the corpse, not at the
+handshake. Accepting costs 50 karma -- a decision you made, in your own head -- and
+changes nothing about Esteban, because he was not there and has no way to know. Killing
+him fails his two quests, fails the Templar initiation step he existed for, and costs
+another 75 karma.
+
+That timing is the shipped game's own grammar rather than a preference. Vanilla fails
+quests on a *dialogue choice* when the choice is a public allegiance switch -- Cedric
+Alsen's "Yes, I will join the Wielders" fails five quests at once, and the Inquisition
+would obviously learn of it -- and on *death* when the giver is simply gone, as with
+Shylocke, Cervantes, the Mayor, Andre the Titan and the Conspirator. A secret contract
+whispered to a goblin on a road is the second shape.
+
+Closing the Templar rung needed one subtlety. `LordJavier` requires
+`Assist Sir Esteban at the Crossroads` to be at state `AIFBMSWX`, "return to Lord Javier" --
+and quest **status** and **state** are independent axes, so failing the quest alone would
+have left his check passing. Esteban's death rewinds the state to `F5BCFW6V`, *"You must
+complete any tasks Sir Esteban asks of you"*, which is now impossible and says so in the
+quest log.
+
+One consequence worth knowing: the price scales with when you strike. Kill him early and
+you lose his whole questline and the Templar rung. Do his work first and you keep what you
+banked -- the initiation step is still voided, but you were paid for the tasks. Late
+betrayal is cheaper than early betrayal, which is how betrayal usually works.
 
 Nothing in the shipped game recorded Esteban's death, so 0.1.1 adds an `Esteban Dead` flag
 set from his generator, which is what lets the Patrol Leader know to pay you.

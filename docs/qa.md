@@ -206,12 +206,14 @@ unless the row says otherwise.
 | X3 | Goblin Patrol Leader | Talk to him with **no** Horde rank | The purge line, a `Speech 40` route, a fight and a walk-away. **No contract offered** |
 | X4 | " | Talk with Horde rank | He recognises you and offers the contract on Esteban |
 | X5 | " | With IN 7+ | The "you need a human hand" reply is visible and leads to the same offer |
-| X6 | " | Accept the contract | Quest appears; karma drops 50; **Esteban's own two quests fail immediately** |
-| X7 | Guard Esteban | Talk to him after accepting | His quests are gone/failed -- this is the door closing |
-| X8 | " | Kill him | No script error; the `Esteban Dead` flag is set |
+| X6 | " | Accept the contract | Quest appears; karma drops 50. **Esteban is unaffected** -- he was not there and cannot know |
+| X7 | Guard Esteban | Talk to him after accepting | He behaves **exactly as before**. Still offers his quests, still takes turn-ins |
+| X8 | " | Kill him | His two quests fail, the Templar step fails and rewinds to `F5BCFW6V`, karma drops 75, `Esteban Dead` is set |
+| X8b | " | Kill him **without ever taking the contract** | Same consequences. Killing a Templar man-at-arms costs the same whoever asked |
 | X9 | Goblin Patrol Leader | Return after killing Esteban | He pays 450 gold, completes the quest, karma drops another 75 |
 | X10 | " | Talk again after payment | The `50 after` line, and **no second payment** |
-| X11 | `LordJavier`, Temple District | Attempt the Knights Templar initiation | The rung that needs Esteban's tasks is closed -- the exclusivity has teeth |
+| X11 | `LordJavier`, Temple District | Attempt the initiation after killing Esteban | The rung is closed. He requires state `AIFBMSWX` and the death rewound it, so failing the quest status alone would not have been enough |
+| X11b | " | Do all Esteban's tasks, reach `AIFBMSWX`, **then** kill him | The rung still closes -- the rewind is unconditional. You keep the rewards you already earned |
 | X12 | " | **Character B**, never took the contract | The whole Templar initiation still works exactly as vanilla |
 
 ### Extend - Hub'blub's two prices
