@@ -485,11 +485,16 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=5
+Item Count=6
 Action=CAssignFactionToCharacterAction
 {
 Faction To Assign=Factions/Goblin Chum
 Character To assign=$Instigator
+}
+Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Goblin Chum
 }
 Action=CTriggerRelayAction
 {

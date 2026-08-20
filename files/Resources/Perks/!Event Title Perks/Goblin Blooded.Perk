@@ -1,0 +1,26 @@
+CCharacterPerk
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Display Name=Goblin Blooded
+	Description=TITLE PERK: You butchered a man and carried his eyes to a goblin shaman's table.
+	Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsGreaterThanOrEqual
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Number of ranks=1
+}

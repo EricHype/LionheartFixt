@@ -134,6 +134,7 @@ unless the row says otherwise.
 | G8 | Goblin Khan | Hand over the Everlasting (any of the three price routes) at rank 2 | **Rank 3, `Goblin Champion`**, granted alongside the shipped `Goblin Champion` perk |
 | G9 | " | Try the other two Everlasting routes afterwards | Rank does **not** increment again -- the rank==2 guard makes it idempotent |
 | G10 | Character sheet at rank 3 | Sum the three tiers | Sneak +30, Barter +14, Poison res +35, Disease res +10, Agility +1, carry weight +30 |
+| G11 | Character sheet after **each** rank | Check the perk list, not just the stats | A TITLE PERK appears at every rung: `Goblin Chum`, `Goblin Blooded`, `Goblin Champion` |
 
 ### Extend - the checks
 
@@ -235,6 +236,13 @@ The most important gate, and the easiest to skip.
 
 ## Known gaps in 0.1.0 - not bugs, do not report
 
+- **Talking to Esteban about the local dangers arms the Crossroads goblin encounter, with
+  no quest required. That is vanilla.** The path `30 Dangers` -> `500 goblins` ->
+  `500 goblin continued` fires `Relay Name=goblin encounter` unconditionally (unless
+  `Corner Goblins Dead`), and there is no quest gate anywhere along it. Fixt's only change
+  to that file is a one-line repair to a dangling `Goodbye` target. Confirmed by testing
+  in 0.1.0-rc1; do not re-report. Making the patrol parley-able instead is 0.2.0 work, and
+  it will have to disarm this trigger first.
 - **`River Dryad Take Goblinkill quest Grumjun NOT dead High Outwit.can` is read by no
   conversation in the game.** Fixt repairs it alongside its twin for consistency, but
   nothing references it, so no test can observe the change. Do not hunt for it in play.

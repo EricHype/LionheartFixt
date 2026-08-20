@@ -68,6 +68,13 @@ hunter both already existed, already served the Horde, and already completed ins
 conversations this mod was editing anyway. Rank 3 is granted in the same action array as
 the shipped `Goblin Champion` perk, at all three prices you can haggle the Khan to.
 
+Each rung also grants an Event Title Perk, so the rank is visible on the character sheet
+rather than only in the stat totals. Rank 3's (`Goblin Champion`) ships with the game and
+is granted by the Khan in vanilla; ranks 1 and 2 needed new perk files built on that
+pattern. No shipped faction join announces itself in any other way -- the Templar, Wielder
+and Inquisition assignments fire XP and quest actions and nothing else -- so this is the
+game's own idiom for "you have earned a title", not an invented one.
+
 Each grant is guarded on holding the previous rank, because Lionheart's quests can be done
 in any order and these are tiers rather than a counter. Reach the Khan first and you are
 not titled Champion at rank one; you simply do not advance until you have earned the rung
