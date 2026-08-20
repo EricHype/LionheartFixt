@@ -54,6 +54,7 @@ development.
 | Version | Theme | Why this order |
 |---|---|---|
 | **0.1.0** | **The Horde** - the goblin thread becomes a faction you can join, and the camp starts reading your build | The most complete unfinished thread in the game. Almost no new machinery, one new quest, and it is the only evil path with writing already in place |
+| **0.1.1** | **The Crossroads patrol** - disarm the spawn-hostility, add the counter-contract on Esteban, and let the Templar exclusivity bite | Finishes the goblin theme while its machinery is fresh. Kept out of 0.2.0 deliberately: it is new writing, and 0.2.0's value is that it has none |
 | 0.2.0 | Link repair, whole game | 84 true dead ends. Ships standalone, needs no new writing. Deliberately *not* first: 0.1.0 needs to demonstrate the thing Fixt is for |
 | 0.3.0 | The Knights of Saladin | The second minor faction, all in act 1, and the template is now proven by 0.1.0 |
 | 0.4.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
@@ -108,9 +109,16 @@ hostile when the scene calls for it. Do not edit the shared template; it is used
 
 **It should not ship alone.** A neutral patrol with nothing to say is worse content than a
 hostile one: it removes an encounter and replaces it with nothing. This lands with the
-counter-contract below, which is the thing that gives a peaceful patrol a purpose. It is
+counter-contract, which is the thing that gives a peaceful patrol a purpose. It is
 also why the counter-contract could never have worked as scoped -- a patrol that is
 already charging cannot offer you a job.
+
+**Both ship in 0.1.1.** This was briefly recorded as 0.2.0, which was wrong twice over:
+0.2.0 is defined as link repair that needs no new writing, and `plan.md` had originally
+scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own theme. It also
+no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
+quest, so it is optional content that can be sequenced on its merits rather than forced
+into a release it does not fit.
 
 ## 0.1.0 - "The Horde"
 

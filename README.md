@@ -277,8 +277,12 @@ bug to look for.
 
 ## Not in this release
 
-- **The Crossroads counter-contract on Esteban**, the mutual quest-failure wiring, and
-  karma for the Woodcutter's eyes. All are 0.2.0.
+- **The Crossroads patrol** -- disarming its spawn-hostility and adding the counter-contract
+  on Esteban. Scheduled as **0.1.1**, which finishes the goblin theme.
+- **The mutual quest-failure wiring** (Torquemada's contract against the Khan's), **karma
+  for the Woodcutter's eyes**, and **dialogue that branches on rank 2 or 3**. All are
+  goblin follow-ups and **none is scheduled yet** -- they are deliberately not called
+  0.2.0, because 0.2.0 is whole-game link repair that needs no new writing.
 - Nothing else from the 0.1.0 scope. The Girl's poisoned pie, briefly cut for needing a
   new item, turned out not to need one - see below.
 

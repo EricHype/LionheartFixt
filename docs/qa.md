@@ -244,17 +244,18 @@ The most important gate, and the easiest to skip.
   `500 goblin continued` fires `Relay Name=goblin encounter` unconditionally (unless
   `Corner Goblins Dead`), and there is no quest gate anywhere along it. Fixt's only change
   to that file is a one-line repair to a dangling `Goodbye` target. Confirmed by testing
-  in 0.1.0-rc1; do not re-report. Making the patrol parley-able instead is 0.2.0 work, and
-  it will have to disarm this trigger first.
+  in 0.1.0-rc1; do not re-report. Making the patrol parley-able is **0.1.1** work, and it
+  will have to disarm this trigger first.
 - **`River Dryad Take Goblinkill quest Grumjun NOT dead High Outwit.can` is read by no
   conversation in the game.** Fixt repairs it alongside its twin for consistency, but
   nothing references it, so no test can observe the change. Do not hunt for it in play.
 - **The `Midlevel` / `Highlevel` / `NOT` gates are referenced nowhere yet.** The records
   they read are granted, but no conversation branches on rank 2 or 3 in this release. That
-  reactivity pass is 0.2.0. The gates exist so the pass has something to read.
-- **The Crossroads patrol makes no counter-offer**, the goblin and Torquemada quests still
-  do not fail each other, and harvesting the woodcutter's eyes still moves no karma. All
-  0.2.0.
+  reactivity pass is **not scheduled yet**. The gates exist so the pass has something to
+  read when it is.
+- **The Crossroads patrol makes no counter-offer** -- that is 0.1.1. The goblin and
+  Torquemada quests still do not fail each other, and harvesting the woodcutter's eyes
+  still moves no karma; neither is scheduled yet.
 - **Every goblin conversation with player replies is now touched.** `GoblinCrier`,
   `GoblinLt`, `Goblin Hut Ritual Sayings` and `Goblin Shaman` remain vanilla: they are
   balloon banks with no player replies at all, and are correctly left alone.
