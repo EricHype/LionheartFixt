@@ -42,14 +42,28 @@ Four replies pointed at node IDs that do not exist. Choosing one advanced to not
 
 | Conversation | Reply | Went to | Now goes to |
 |---|---|---|---|
-| Hrubjub (`Goblin Sapper`) | "I've heard enough. Goodbye." | `5 goobye` | `5 goodbye` |
-| Hrubjub | (second site, same typo) | `5 goobye` | `5 goodbye` |
-| `GoblinVillager` | "My brain is far too porous and small for your tastes." | `100 avoid dinner` | `20 used speech to avoid digestion` |
-| `Guard Esteban` | "Goodbye." | `5 Goodbye` | `10 Goodbye` |
+| Hrubjub (`Goblin Sapper`), `20 ate a poet` | "I've heard enough. Goodbye." | `5 goobye` | `5 goodbye` |
+| `Guard Esteban`, `50 Monsters` | "Goodbye." | `5 Goodbye` | `10 Goodbye` |
+| Hrubjub, `30 goblin name` | same typo | `5 goobye` | `5 goodbye` -- **but see below** |
+| `GoblinVillager`, `500 wilderness banter` | "My brain is far too porous and small for your tastes." | `100 avoid dinner` | `20 used speech to avoid digestion` -- **but see below** |
 
 Esteban is included because a later release puts a contract on his head, and a man whose
 farewell dead-ends is a poor advertisement. His other fifteen goodbye replies already
 pointed at `10 Goodbye`; this was a one-character typo.
+
+**Two of these four repairs cannot be observed in play, and that is worth stating plainly.**
+Both fix genuine dangling targets, but the nodes containing them are unreachable in the
+shipped game:
+
+- `Goblin Sapper`'s `30 goblin name` has **zero inbound links** -- an orphan node in
+  vanilla. Nothing can navigate to it, so its repaired reply never renders.
+- `GoblinVillager`'s `500 wilderness banter` is fired **only as a balloon**, once, at the
+  Crossroads. Balloons render an NPC's line with no reply list at all, so a repaired reply
+  inside one is invisible. The node has no inbound links either, and none of
+  `GoblinVillager`'s four conversation entry points can reach it.
+
+They are kept because they are correct, cost nothing, and will work if a later release
+gives either node a way in. They are not kept because you can see them.
 
 ### Extend - the Goblin Horde becomes a faction
 

@@ -101,8 +101,8 @@ unless the row says otherwise.
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | F1 | Hrubjub, node `20 ate a poet` | Ask what he is, compliment his poetry, then *"I've heard enough. Goodbye."* | Reaches `5 goodbye` ("you must earn your reprieve"), not a dead stop |
-| F2 | Hrubjub, node `30 goblin name` | Same farewell reply from the goblin-name branch | Reaches `5 goodbye` |
-| F3 | `GoblinVillager` (Crossroads or camp), banter node | With Speech 15+, *"My brain is far too porous and small for your tastes."* | Goblin replies "I do have a delicate stomach..." and disengages |
+| F2 | -- | **Not testable.** `Goblin Sapper`'s `30 goblin name` has zero inbound links; the repair is correct but the node is unreachable | skip |
+| F3 | -- | **Not testable.** `GoblinVillager`'s `500 wilderness banter` fires only as a balloon, and balloons have no reply list | skip |
 | F4 | Guard Esteban, Crossroads, node `50 Monsters` | Ask about monsters, then "Goodbye." | Reaches `10 Goodbye` ("Be safe traveler.") |
 
 ### Extend - the way into the Horde
@@ -180,6 +180,9 @@ unless the row says otherwise.
 | R6 | " | After killing the woodsman, choose *"why don't you find a nice goblin man"* | Node `250 Rejection` plays and **ends cleanly** (this node did not exist in vanilla) |
 | R7 | Goblin Warrens, southern approach | Enter the map | **Two guards present**, conversation auto-advances through all four nodes to *"Shhh, did you hear something?"* |
 | R8 | " | Attack the camp / trip the hostility relay | Both new NPCs turn hostile with everyone else |
+| R9 | Goblin Girl, **after killing the River Dryad** | Talk to her | She greets you with `110 New Hero in town` (the snails), not the first-meeting line |
+| R10 | " | Talk again | `120 Player returns again after killing dryad...` |
+| R11 | Goblin Girl, **after killing the woodcutter** | Talk to her | `200 Returning after killing the woodsman` -- this is the gateway to the whole pie chain, and it was unreachable until the generator learned to pick a greeting by state |
 
 ### Restore - the poisoned pie
 

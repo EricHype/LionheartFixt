@@ -28923,29 +28923,110 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CSeriesAction
+							Action=CIfAction
 							{
-								Action=Array
+								If=CExpressionAction
 								{
-									Item Count=2
-									Action=CDisplayDialogTreeAction
+									Expression=CIsGreaterThanOrEqual
 									{
-										Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
-										Node ID=1 First time PC enters village
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Woodcutter Dead
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
+										}
 									}
-									Action=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
-										Node ID=2 PC Enters the village again, before completing any quest
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
-									}
+									Character to get attributes from=$Instigator
 								}
-								When Done=Repeat Last Action
-								Require Success To Advance=1
-								Next Action Index=0
+								Then=CSeriesAction
+								{
+									Action=Array
+									{
+										Item Count=1
+										Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+											Node ID=200 Returning after killing the woodsman
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+									}
+									When Done=Repeat Last Action
+									Require Success To Advance=1
+									Next Action Index=0
+								}
+								Else=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=1
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Then=CSeriesAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+												Node ID=110 New Hero in town
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+												Node ID=120 Player returns again after killing dryad, but no other quests completed
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+										}
+										When Done=Repeat Last Action
+										Require Success To Advance=1
+										Next Action Index=0
+									}
+									Else=CSeriesAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+												Node ID=1 First time PC enters village
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+												Node ID=2 PC Enters the village again, before completing any quest
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+										}
+										When Done=Repeat Last Action
+										Require Success To Advance=1
+										Next Action Index=0
+									}
+									Return failure if the If failes=0
+								}
+								Return failure if the If failes=0
 							}
 							X Radius=75
 							Attacker Range Modifier=0
