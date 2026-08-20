@@ -1,0 +1,19 @@
+CQuestDefinition
+{
+	Name=Kill Guard Esteban for the Goblin Patrol
+	States=Array
+	{
+		Item Count=2
+		State=CQuestStateDefinition
+		{
+			Text=The leader of the goblin patrol at the crossroads has offered you a contract on Guard Esteban, the Templar man-at-arms who has been paying travellers to thin the patrol out. Kill Esteban, and the road belongs to the Horde.
+			ID=K7BQ2XR4
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Esteban is dead. Return to the goblin patrol leader at the crossroads and collect what you were promised.
+			ID=M3PZ9DLT
+		}
+	}
+	Sub-Quest of=!None
+}

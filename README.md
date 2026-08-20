@@ -25,16 +25,59 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release candidate: 0.1.0-rc1 - "The Horde"
+## Current release candidate: 0.1.1-rc1
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
 standing, and a settlement that answers to almost nothing but Speech.
 
+It carries two releases' worth of work: **0.1.0 "The Horde"**, below, and **0.1.1 "The
+Crossroads Patrol"**, described next.
+
 **Not yet tested in-game, so this is a release candidate, not a release.** It is built,
 deployed, and verified byte-identical in both `data.dat` and the loose `data\` mirror --
 but nobody has played it. [`docs/qa.md`](docs/qa.md) is the checklist it has to pass
 first, and it needs two differently-built characters to pass honestly.
+
+### 0.1.1 - the Crossroads patrol, and a contract on a Templar
+
+In vanilla, asking Guard Esteban about the local dangers makes the goblin patrol attack --
+no quest required, no way to talk to them, and no way back. The chain is
+`30 Dangers` -> `500 goblins` -> `500 goblin continued`, which fires the `goblin encounter`
+relay unconditionally.
+
+**The relay was never the problem.** It force-generates the patrol, sets a route and fades
+in the Patrol Leader, and contains no combat action at all. The hostility is in the
+template: `Mongol Gate District` ships with `Valid Targets=Player,Player Friend` and
+`Category=Enemy,Goblin`, so it aggroes on sight.
+
+The proof of the fix is in Goblin Warrens, whose peaceful villagers spawn from *equally
+hostile* templates. Two actions in the generator's `After Action` neutralise them at spawn
+-- clear targeting, drop the `Enemy` category. Six Crossroads generators now do the same,
+and the shared template is untouched, because it is used elsewhere.
+
+`goblins attack` had to grow to match: it only ever re-armed `Goblin Scout` and
+`Goblin Patrol Leader`, so with the corner goblins neutral it would have started a fight
+against three statues. It now re-arms them too. **Attack the patrol and you still get the
+vanilla fight** -- what changed is that you are no longer given it unasked.
+
+**The Patrol Leader now talks.** He was balloon-only, which is why the counter-contract
+could never have been written where the plan first put it: balloons have no reply list.
+He is a real conversation now, with four state-based entry points, and he offers work:
+
+| Check | What it opens |
+|---|---|
+| `Goblin Horde IS` | He recognises the human who carried word to the Khan, and makes an offer |
+| `Speech 40` | Talk your way past without fighting or dealing |
+| `Outwit 7` | See why he needs a *human* hand: goblin spears on a Templar bring white cloaks, a human killer brings a manhunt for a human |
+
+**The contract is on Esteban**, and it bites. Taking it fails his own two quests
+immediately, and `LordJavier` checks completion of Esteban's tasks three times during the
+Knights Templar initiation -- so this is the first goblin choice that visibly closes a
+door somewhere else. Accepting costs 50 karma, killing him another 75.
+
+Nothing in the shipped game recorded Esteban's death, so 0.1.1 adds an `Esteban Dead` flag
+set from his generator, which is what lets the Patrol Leader know to pay you.
 
 ### Fix - the goblin thread's dead ends
 

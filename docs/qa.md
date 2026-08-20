@@ -197,6 +197,23 @@ unless the row says otherwise.
 | P7 | " | Eat it at full health | Poison damage ticks over roughly a minute; not instantly lethal |
 | P8 | " | Drop it | Ground pickup model appears and can be picked back up |
 
+### 0.1.1 - the Crossroads patrol
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| X1 | Crossroads | Ask Esteban about the dangers, then walk to the patrol | The goblins **do not attack**. They patrol and can be approached |
+| X2 | " | Attack one anyway | The full vanilla fight starts -- Patrol Leader, Scout **and** the corner goblins all turn. If any stands inert, `goblins attack` did not re-arm it |
+| X3 | Goblin Patrol Leader | Talk to him with **no** Horde rank | The purge line, a `Speech 40` route, a fight and a walk-away. **No contract offered** |
+| X4 | " | Talk with Horde rank | He recognises you and offers the contract on Esteban |
+| X5 | " | With IN 7+ | The "you need a human hand" reply is visible and leads to the same offer |
+| X6 | " | Accept the contract | Quest appears; karma drops 50; **Esteban's own two quests fail immediately** |
+| X7 | Guard Esteban | Talk to him after accepting | His quests are gone/failed -- this is the door closing |
+| X8 | " | Kill him | No script error; the `Esteban Dead` flag is set |
+| X9 | Goblin Patrol Leader | Return after killing Esteban | He pays 450 gold, completes the quest, karma drops another 75 |
+| X10 | " | Talk again after payment | The `50 after` line, and **no second payment** |
+| X11 | `LordJavier`, Temple District | Attempt the Knights Templar initiation | The rung that needs Esteban's tasks is closed -- the exclusivity has teeth |
+| X12 | " | **Character B**, never took the contract | The whole Templar initiation still works exactly as vanilla |
+
 ### Extend - Hub'blub's two prices
 
 | # | Where | Steps | Pass |
@@ -244,8 +261,9 @@ The most important gate, and the easiest to skip.
   `500 goblin continued` fires `Relay Name=goblin encounter` unconditionally (unless
   `Corner Goblins Dead`), and there is no quest gate anywhere along it. Fixt's only change
   to that file is a one-line repair to a dangling `Goodbye` target. Confirmed by testing
-  in 0.1.0-rc1; do not re-report. Making the patrol parley-able is **0.1.1** work, and it
-  will have to disarm this trigger first.
+  in 0.1.0-rc1. **0.1.1 changes this**: the patrol now spawns neutral and the encounter is
+  a conversation, so the X-cases below replace this behaviour. Attacking them still starts
+  the vanilla fight.
 - **`River Dryad Take Goblinkill quest Grumjun NOT dead High Outwit.can` is read by no
   conversation in the game.** Fixt repairs it alongside its twin for consistency, but
   nothing references it, so no test can observe the change. Do not hunt for it in play.
@@ -253,9 +271,8 @@ The most important gate, and the easiest to skip.
   they read are granted, but no conversation branches on rank 2 or 3 in this release. That
   reactivity pass is **not scheduled yet**. The gates exist so the pass has something to
   read when it is.
-- **The Crossroads patrol makes no counter-offer** -- that is 0.1.1. The goblin and
-  Torquemada quests still do not fail each other, and harvesting the woodcutter's eyes
-  still moves no karma; neither is scheduled yet.
+- The goblin and Torquemada quests still do not fail each other, and harvesting the
+  woodcutter's eyes still moves no karma; neither is scheduled yet.
 - **Every goblin conversation with player replies is now touched.** `GoblinCrier`,
   `GoblinLt`, `Goblin Hut Ritual Sayings` and `Goblin Shaman` remain vanilla: they are
   balloon banks with no player replies at all, and are correctly left alone.

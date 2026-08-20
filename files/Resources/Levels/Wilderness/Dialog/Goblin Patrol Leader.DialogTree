@@ -1,0 +1,266 @@
+CDialogTree
+{
+Name=Goblin Patrol Leader
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=So, you seek to eliminate the goblin scourge? But it will be you that will be purged!
+Should Have Voiceover=0
+
+Requirement=Goblin Horde IS
+Reply Text=Look again before you swing. I carried word from Hrubjub to the Great Khan himself, and I am still carrying it.
+Go to node ID=10 recognised
+Icon=Quest Icon
+
+Requirement=Speech moreequal 40
+Reply Text=I have no contract on you, and no quarrel worth the walk home.
+Go to node ID=60 talked down
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Then come and be purged yourself.
+Go to node ID=100 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I will leave you to your road.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 recognised
+Text=<He squints, and the spear comes down a hand's width.> The Khan's own chum, out here in the mud with the rest of us? Then hold a moment, chum, and hear a proposition from a goblin with a grudge.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am listening.
+Go to node ID=20 the offer
+
+Requirement=!None
+Reply Text=I am nobody's errand boy, least of all a goblin's.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 the offer
+Text=There is a guardsman at the crossroads, Esteban by name, in Templar colours and Templar wages. He does not fight us himself - oh no, he pays passing meat to do it, a coin a head, and we are the heads. Kill him, and this road is goblin road again.
+Should Have Voiceover=0
+
+Requirement=Outwit 7+
+Reply Text=You have a patrol, spears and a scout, and you still need a human to do it. He is not the one you are afraid of - the Templars behind him are.
+Go to node ID=25 seen through
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Consider it done.
+Go to node ID=30 accepted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+State=K7BQ2XR4
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop karma for taking a contract on a Templar guardsman
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will not murder a guardsman for you.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 seen through
+Text=<A long, unblinking pause.> ...Clever meat. Yes. Kill a guardsman with goblin spears and the white cloaks come in numbers. Kill him with a human hand and they come looking for a human. So: will you, or will you not?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will. But I will be paid as a professional, not as meat.
+Go to node ID=30 accepted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+State=K7BQ2XR4
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop karma for taking a contract on a Templar guardsman
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will not be your alibi.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 accepted
+Text=Then go quickly, chum, and go quietly. When the guardsman is cold, come back along this road and I will have your payment counted out.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=The guardsman still breathes, chum. I can hear him from here, giving orders to travellers. My patience is shorter than my spear.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Soon.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 paid
+Text=<He is grinning, which is worse than the scowl.> The crossroads is quiet, and the quiet has your name on it. Here - counted honest, chum, which for a goblin is a considerable thing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=450
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop karma for killing Esteban
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 after
+Text=The road is ours, chum, and you are the reason. Walk it whenever you like.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 talked down
+Text=No contract, no quarrel, and no coin in you either by the look. Walk on then, and walk quickly - my scout is not as patient as I am.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 goodbye
+Text=Then keep walking, and keep looking behind you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 combat
+Text=Spears! The meat has chosen!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=goblins attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+}
