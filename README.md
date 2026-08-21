@@ -83,7 +83,8 @@ He is a real conversation now, with four state-based entry points, and he offers
 
 | Check | What it opens |
 |---|---|
-| `Goblin Horde IS` | He recognises the human who carried word to the Khan, and makes an offer |
+| `Goblin Horde IS` | He recognises the human who carried word to the Khan |
+| `Goblin Horde Midlevel` | The contract itself -- rank 2 only, see below |
 | `Speech 40` | Talk your way past without fighting or dealing |
 | `Outwit 7` | See why he needs a *human* hand: goblin spears on a Templar bring white cloaks, a human killer brings a manhunt for a human |
 
@@ -130,9 +131,25 @@ use it**. Somebody moved him off the unkillable preset onto a fightable one and 
 him with the jail instead. The contract is only finishing a thought the shipped data
 already started.
 
-**Practical consequence: the contract has no level gate, and probably should be taken
-late.** If you can beat the Goblin Khan you can beat Esteban; if you cannot, taking the
-contract early leaves you with an unfulfillable quest and a Templar rung already closed.
+**So the contract is gated on rank 2, and the Patrol Leader says why.** He would otherwise
+offer it the moment you finished Hrubjub's errand in Barcelona -- around level 4 against a
+man who needs level 9-12 to kill -- and accepting cost 50 karma up front for a quest you
+could not finish and could not hand back. Rank 2 comes from Rakeb's eyes quest, deep in the
+Wilderness, which is a natural level proxy and needed no new machinery.
+
+He has three things to say to a Horde member, so the gate signposts rather than just
+refusing:
+
+| Your standing | What he tells you |
+|---|---|
+| Rank 1, never met the Khan | Go and stand in front of the Great Khan first, and come back along this road when you have |
+| Rank 1, met the Khan | *"You have stood in front of the Khan and you are still only a chum. That tells me what he thought."* Do the shaman's work and earn a name |
+| Rank 2, `Goblin Blooded` | The contract |
+
+The middle one points at Rakeb without naming him, which is exactly where rank 2 comes
+from. Knowing you have met the Khan needed a new flag, because everything his tree sets is
+a map-entity activation on Goblin Warrens that the Crossroads cannot read; it is recorded
+from his interaction specifier, which fires whenever you talk to him.
 
 **Stripping them off the entity is not enough, and two failed attempts proved it.**
 `RESET MAP for Invulnerable Esteban` is fired from *every spawn point on the map* -- ten of

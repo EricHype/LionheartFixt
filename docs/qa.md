@@ -207,7 +207,9 @@ unless the row says otherwise.
 | X1d | " | Mouse over any goblin in the patrol before anything turns hostile | A **speech** cursor, not a sword. Clicking gets a line of banter |
 | X2 | " | Attack one anyway | The full vanilla fight starts -- Patrol Leader, Scout **and** the corner goblins all turn. If any stands inert, `goblins attack` did not re-arm it |
 | X3 | Goblin Patrol Leader | Talk to him with **no** Horde rank | The purge line, a `Speech 40` route, a fight and a walk-away. **No contract offered** |
-| X4 | " | Talk with Horde rank | He recognises you and offers the contract on Esteban |
+| X4 | " | Talk carrying **rank 1 only**, before ever meeting the Khan | He recognises you but offers **no contract** -- he sends you to the Khan first |
+| X4b | " | Meet the Khan, come back still at rank 1 | *"You are still only a chum."* He tells you to do the shaman's work. Still no contract |
+| X4c | " | Come back at **rank 2** (after Rakeb's eyes quest) | Now the contract is offered. With IN 7+ you can also work out why he needs a *human* hand |
 | X5 | " | With IN 7+ | The "you need a human hand" reply is visible and leads to the same offer |
 | X6 | " | Accept the contract | Quest appears; karma drops 50. **Esteban is unaffected** -- he was not there and cannot know |
 | X7 | Guard Esteban | Talk to him after accepting | He behaves **exactly as before**. Still offers his quests, still takes turn-ins |

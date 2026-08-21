@@ -15815,29 +15815,58 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CSeriesAction
+							Action=CMultipleActionsAction
 							{
 								Action=Array
 								{
 									Item Count=2
-									Action=CDisplayDialogTreeAction
+									Action=CAddCharacterModifierToCharacterAction
 									{
-										Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
-										Node ID=1 Conversation Start
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Modifier Description=Met the Goblin Khan
+										Modification is permanent=1
+										Character to modify=Player#1-9#
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Met the Goblin Khan
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
 									}
-									Action=CDisplayDialogTreeAction
+									Action=CSeriesAction
 									{
-										Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
-										Node ID=3 Return Dialogue
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
+												Node ID=1 Conversation Start
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
+												Node ID=3 Return Dialogue
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+										}
+										When Done=Repeat Last Action
+										Require Success To Advance=1
+										Next Action Index=0
 									}
 								}
-								When Done=Repeat Last Action
-								Require Success To Advance=1
-								Next Action Index=0
 							}
 							X Radius=100
 							Attacker Range Modifier=0

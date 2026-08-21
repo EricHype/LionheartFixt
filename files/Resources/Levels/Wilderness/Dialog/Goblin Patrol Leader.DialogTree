@@ -34,12 +34,86 @@ Node ID=10 recognised
 Text=<He squints, and the spear comes down a hand's width.> The Khan's own chum, out here in the mud with the rest of us? Then hold a moment, chum, and hear a proposition from a goblin with a grudge.
 Should Have Voiceover=0
 
-Requirement=!None
+Requirement=Goblin Horde Midlevel
 Reply Text=I am listening.
 Go to node ID=20 the offer
 
 Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde Midlevel
+}
+}
+Operator=
+Operand2=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Met the Goblin Khan
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=I have stood before your Khan. What is it you want?
+Go to node ID=15 serve him further
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde Midlevel
+}
+}
+Operator=
+Operand2=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Met the Goblin Khan
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Say it, then.
+Go to node ID=12 seek the khan
+
+Requirement=!None
 Reply Text=I am nobody's errand boy, least of all a goblin's.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 seek the khan
+Text=<He looks you over the way a butcher looks at a thin animal.> A chum. A chum who has carried one message down one road. No, not yet. Go and stand in front of the Great Khan first, in the warrens, and let him take your measure. Come back along this road when he has, and I may have work for you that pays better than walking.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will find him.
+Go to node ID=90 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 serve him further
+Text=<He spits, without much malice.> You have stood in front of the Khan and you are still only a chum. That tells me what he thought. Go and do the shaman's work, chum - earn a name in the warrens, come back with the Horde's blood on you - and then we will talk. What I have needs someone the Horde would miss.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will earn it.
 Go to node ID=90 goodbye
 Icon=Exit Icon
 Is Default Reply=1
