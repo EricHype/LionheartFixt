@@ -117,6 +117,23 @@ That matters for whether lifting the wards is legitimate. It is: nothing downstr
 him alive, and the case the rail exists to prevent -- killing him by accident -- is exactly
 the case a deliberate contract is not.
 
+**And he is built as a real fight, not a prop.** His template uses the `Knight Templar 5`
+preset: **200 HP, 200 AC, one-handed melee 90** -- tougher than the Goblin Khan (210 HP,
+175 AC, melee 60) and a shade under Joan of Arc. His template also carries
+`Category=Spell Immunity`, so **magic cannot touch him at all**; he has to be killed with a
+weapon.
+
+The telling detail is that a `Guard Esteban.Race` exists at **10,000 HP and 1,000 AC** --
+the statline Lionheart gives NPCs it genuinely never wants dead, shared by DaVinci, Lord
+Javier, Sir Auric, the Grand Inquisitor and the Blacksmith -- and **his template does not
+use it**. Somebody moved him off the unkillable preset onto a fightable one and protected
+him with the jail instead. The contract is only finishing a thought the shipped data
+already started.
+
+**Practical consequence: the contract has no level gate, and probably should be taken
+late.** If you can beat the Goblin Khan you can beat Esteban; if you cannot, taking the
+contract early leaves you with an unfulfillable quest and a Templar rung already closed.
+
 **Stripping them off the entity is not enough, and two failed attempts proved it.**
 `RESET MAP for Invulnerable Esteban` is fired from *every spawn point on the map* -- ten of
 them, including every road in. Its Per Party Spawn Action deletes Guard Esteban, clones the
