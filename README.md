@@ -104,7 +104,18 @@ installs at spawn:
 | His Damaged Action, *"if the instigator is a Player, trigger `Esteban Sends you to jail`"* | any damage reaches him |
 | `Esteban hostile`, a 400-radius area manager | you cast a spell near him |
 
-All three exist to stop a player accidentally wrecking the Knights Templar initiation.
+**All three are a guard rail, not a plot lock.** Esteban is not narratively load-bearing:
+he never physically appears outside the Crossroads, in any later act or any ending. Act 6's
+`Temple District Siege` mentions him only to fail his outstanding quests when Barcelona
+falls -- it does not spawn him. What he *is* load-bearing for is one rung of the Knights
+Templar initiation, and he stands alone in a wilderness crossroads where the player will
+fight bandits, wasps and a goblin patrol. A stray area effect or a mis-click would have
+silently destroyed that questline with no warning and no way back. Prison is the forgiving
+alternative to a broken initiation.
+
+That matters for whether lifting the wards is legitimate. It is: nothing downstream needs
+him alive, and the case the rail exists to prevent -- killing him by accident -- is exactly
+the case a deliberate contract is not.
 
 **Stripping them off the entity is not enough, and two failed attempts proved it.**
 `RESET MAP for Invulnerable Esteban` is fired from *every spawn point on the map* -- ten of

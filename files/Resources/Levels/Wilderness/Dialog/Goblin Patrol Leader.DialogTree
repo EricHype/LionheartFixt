@@ -60,42 +60,15 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=7
+Item Count=3
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
 State=K7BQ2XR4
 }
-Action=CSetDamagedScriptActionAction
+Action=CUseCannedActionAction
 {
-New Damaged Action=
-Target Name=Guard Esteban
-}
-Action=CRemoveAIAction
-{
-Target Name=Guard Esteban
-AI=CAIAreaOvalManager
-Delay Between Removes=0
-}
-Action=CRemoveAIAction
-{
-Target Name=Guard Esteban
-AI=CHandleMessageAI
-Delay Between Removes=0
-}
-Action=CDeactivateAction
-{
-Target Name=Esteban Sends you to jail
-Play Activate Sound=0
-Delay Between Activations=0
-Warp Behavior=
-}
-Action=CDeactivateAction
-{
-Target Name=RESET MAP for Invulnerable Esteban
-Play Activate Sound=0
-Delay Between Activations=0
-Warp Behavior=
+Canned Object=Levels/Wilderness/Quests/Lift Esteban Wards
 }
 Action=CAddCharacterModifierToCharacterAction
 {
@@ -140,42 +113,15 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=7
+Item Count=3
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
 State=K7BQ2XR4
 }
-Action=CSetDamagedScriptActionAction
+Action=CUseCannedActionAction
 {
-New Damaged Action=
-Target Name=Guard Esteban
-}
-Action=CRemoveAIAction
-{
-Target Name=Guard Esteban
-AI=CAIAreaOvalManager
-Delay Between Removes=0
-}
-Action=CRemoveAIAction
-{
-Target Name=Guard Esteban
-AI=CHandleMessageAI
-Delay Between Removes=0
-}
-Action=CDeactivateAction
-{
-Target Name=Esteban Sends you to jail
-Play Activate Sound=0
-Delay Between Activations=0
-Warp Behavior=
-}
-Action=CDeactivateAction
-{
-Target Name=RESET MAP for Invulnerable Esteban
-Play Activate Sound=0
-Delay Between Activations=0
-Warp Behavior=
+Canned Object=Levels/Wilderness/Quests/Lift Esteban Wards
 }
 Action=CAddCharacterModifierToCharacterAction
 {

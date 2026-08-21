@@ -1,0 +1,42 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=5
+			Action=CDeactivateAction
+			{
+				Target Name=Esteban Sends you to jail
+				Play Activate Sound=0
+				Delay Between Activations=0
+				Warp Behavior=
+			}
+			Action=CDeactivateAction
+			{
+				Target Name=RESET MAP for Invulnerable Esteban
+				Play Activate Sound=0
+				Delay Between Activations=0
+				Warp Behavior=
+			}
+			Action=CRemoveAIAction
+			{
+				Target Name=Guard Esteban
+				AI=CHandleMessageAI
+				Delay Between Removes=0
+			}
+			Action=CRemoveAIAction
+			{
+				Target Name=Guard Esteban
+				AI=CAIAreaOvalManager
+				Delay Between Removes=0
+			}
+			Action=CSetDamagedScriptActionAction
+			{
+				New Damaged Action=
+				Target Name=Guard Esteban
+			}
+		}
+	}
+	Use=Shared Global Instance
+}
