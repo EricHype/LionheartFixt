@@ -60,7 +60,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
@@ -75,6 +75,12 @@ Action=CRemoveAIAction
 {
 Target Name=Guard Esteban
 AI=CAIAreaOvalManager
+Delay Between Removes=0
+}
+Action=CRemoveAIAction
+{
+Target Name=Guard Esteban
+AI=CHandleMessageAI
 Delay Between Removes=0
 }
 Action=CAddCharacterModifierToCharacterAction
@@ -120,7 +126,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
@@ -135,6 +141,12 @@ Action=CRemoveAIAction
 {
 Target Name=Guard Esteban
 AI=CAIAreaOvalManager
+Delay Between Removes=0
+}
+Action=CRemoveAIAction
+{
+Target Name=Guard Esteban
+AI=CHandleMessageAI
 Delay Between Removes=0
 }
 Action=CAddCharacterModifierToCharacterAction

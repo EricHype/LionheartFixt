@@ -65,6 +65,13 @@ and the conversation takes its place. Combat still works: `CGoToCombatAction` co
 whatever specifier an entity holds into a fight one, which is how `goblins attack` reaches
 him.
 
+**The peaceful goblins also stopped offering a sword.** They kept vanilla's
+`GetCloseThenTriggerAndFight` specifier, which is what draws the attack cursor -- correct
+for an ambush, wrong for a patrol you can walk past. All five now use `GetCloseThenTalk`
+with a balloon, the same treatment the Goblin Warrens villagers get, so hovering offers
+speech and clicking gets a line of banter. Turn them hostile and `CGoToCombatAction`
+converts the specifier back, so the cursor corrects itself.
+
 `goblins attack` had to grow to match: it only ever re-armed `Goblin Scout` and
 `Goblin Patrol Leader`, so with the corner goblins neutral it would have started a fight
 against three statues. It now re-arms them too. **Attack the patrol and you still get the
@@ -88,13 +95,21 @@ you have chosen. Both relays are fired from Esteban's tree and nowhere else, so 
 sequence is entirely in the player's hands.
 
 **Esteban has to be made killable first, and that took finding out why he wasn't.** He is
-not invulnerable -- he is *jail-warded*, twice over, by machinery his generator installs at
-spawn. His Damaged Action reads *"if the instigator is a Player, trigger `Esteban Sends you
-to jail`"*, so any hit at all ends the fight before it starts; and `Esteban hostile` adds a
-400-radius area manager that jails you for casting a spell near him. Both exist to stop a
-player accidentally wrecking the Knights Templar initiation.
+not invulnerable -- he is *jail-warded*, three times over, by machinery his generator
+installs at spawn:
 
-Accepting the goblin contract lifts both. Nothing about Esteban changes -- he still stands
+| Ward | Fires when |
+|---|---|
+| A `CHandleMessageAI` on the message `gotocombat` | **you attack him** -- this is the one that actually arrests you |
+| His Damaged Action, *"if the instigator is a Player, trigger `Esteban Sends you to jail`"* | any damage reaches him |
+| `Esteban hostile`, a 400-radius area manager | you cast a spell near him |
+
+The first one is why the first attempt at this fix failed in testing: the `gotocombat`
+handler arrests you before the damaged script is ever consulted, so clearing the damaged
+script alone changed nothing. All three exist to stop a player accidentally wrecking the
+Knights Templar initiation.
+
+Accepting the goblin contract lifts all three. Nothing about Esteban changes -- he still stands
 there peacefully, and still defends himself only once you swing. What is removed is a guard
 rail, in the one case it was never meant to cover: a deliberate contract on the man's life.
 `RESET MAP for Invulnerable Esteban`, which deletes and re-clones him, is left alone; it
