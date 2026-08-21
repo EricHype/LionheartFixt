@@ -104,12 +104,19 @@ installs at spawn:
 | His Damaged Action, *"if the instigator is a Player, trigger `Esteban Sends you to jail`"* | any damage reaches him |
 | `Esteban hostile`, a 400-radius area manager | you cast a spell near him |
 
-The first one is why the first attempt at this fix failed in testing: the `gotocombat`
-handler arrests you before the damaged script is ever consulted, so clearing the damaged
-script alone changed nothing. All three exist to stop a player accidentally wrecking the
-Knights Templar initiation.
+All three exist to stop a player accidentally wrecking the Knights Templar initiation.
 
-Accepting the goblin contract lifts all three. Nothing about Esteban changes -- he still stands
+**Stripping them off the entity is not enough, and two failed attempts proved it.**
+`RESET MAP for Invulnerable Esteban` is fired from *every spawn point on the map* -- ten of
+them, including every road in. Its Per Party Spawn Action deletes Guard Esteban, clones the
+generator to make a fresh one, and re-activates the jail relay. **Every entry to the
+Crossroads restores a pristine, fully warded Esteban**, so anything removed from the live
+entity is undone the next time you walk in.
+
+So accepting the contract disables the two relay *entities* rather than chasing their
+triggers. It does not matter how many things fire `Esteban Sends you to jail` if the relay
+is inactive, and the reset cannot restore him if it is inactive too. The per-entity strips
+stay as well, for the instance already standing there. Nothing about Esteban changes -- he still stands
 there peacefully, and still defends himself only once you swing. What is removed is a guard
 rail, in the one case it was never meant to cover: a deliberate contract on the man's life.
 `RESET MAP for Invulnerable Esteban`, which deletes and re-clones him, is left alone; it
