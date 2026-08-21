@@ -87,6 +87,19 @@ talk to. Ask him about the dangers and the patrol appears peacefully; accept his
 you have chosen. Both relays are fired from Esteban's tree and nowhere else, so the
 sequence is entirely in the player's hands.
 
+**Esteban has to be made killable first, and that took finding out why he wasn't.** He is
+not invulnerable -- he is *jail-warded*, twice over, by machinery his generator installs at
+spawn. His Damaged Action reads *"if the instigator is a Player, trigger `Esteban Sends you
+to jail`"*, so any hit at all ends the fight before it starts; and `Esteban hostile` adds a
+400-radius area manager that jails you for casting a spell near him. Both exist to stop a
+player accidentally wrecking the Knights Templar initiation.
+
+Accepting the goblin contract lifts both. Nothing about Esteban changes -- he still stands
+there peacefully, and still defends himself only once you swing. What is removed is a guard
+rail, in the one case it was never meant to cover: a deliberate contract on the man's life.
+`RESET MAP for Invulnerable Esteban`, which deletes and re-clones him, is left alone; it
+reads as post-jail cleanup, and if you are never jailed it never fires.
+
 **The contract is on Esteban**, and everything it costs is paid at the corpse, not at the
 handshake. Accepting costs 50 karma -- a decision you made, in your own head -- and
 changes nothing about Esteban, because he was not there and has no way to know. Killing

@@ -210,8 +210,11 @@ unless the row says otherwise.
 | X5 | " | With IN 7+ | The "you need a human hand" reply is visible and leads to the same offer |
 | X6 | " | Accept the contract | Quest appears; karma drops 50. **Esteban is unaffected** -- he was not there and cannot know |
 | X7 | Guard Esteban | Talk to him after accepting | He behaves **exactly as before**. Still offers his quests, still takes turn-ins |
-| X8 | " | Kill him | His two quests fail, the Templar step fails and rewinds to `F5BCFW6V`, karma drops 75, `Esteban Dead` is set |
-| X8b | " | Kill him **without ever taking the contract** | Same consequences. Killing a Templar man-at-arms costs the same whoever asked |
+| X8 | " | **With the contract accepted**, attack him | A real fight starts. **You are not sent to prison.** In vanilla any player damage triggers `Esteban Sends you to jail` |
+| X8a | " | As a caster, cast near him after accepting | Also no jail -- the 400-radius spellcast ward is removed too |
+| X8c | " | Kill him | His two quests fail, the Templar step fails and rewinds to `F5BCFW6V`, karma drops 75, `Esteban Dead` is set |
+| X8d | " | **Without** the contract, attack him | **Still jailed.** The wards are lifted only by taking the contract; vanilla behaviour is untouched for everyone else |
+| X8b | " | If you find another way to kill him without the contract | Same consequences. Killing a Templar man-at-arms costs the same whoever asked |
 | X9 | Goblin Patrol Leader | Return after killing Esteban | He pays 450 gold, completes the quest, karma drops another 75 |
 | X10 | " | Talk again after payment | The `50 after` line, and **no second payment** |
 | X11 | `LordJavier`, Temple District | Attempt the initiation after killing Esteban | The rung is closed. He requires state `AIFBMSWX` and the death rewound it, so failing the quest status alone would not have been enough |
