@@ -20,6 +20,7 @@ documents that explain every decision in it.
 | [`docs/releases.md`](docs/releases.md) | what ships, in what version, in what order |
 | [`docs/qa.md`](docs/qa.md) | every case a release candidate has to pass |
 | [`docs/playtest-guide/`](docs/playtest-guide/) | the same cases as a route to walk, built by `build.py` |
+| [`dist/README.txt`](dist/README.txt) | what a player reads after unzipping a release |
 
 **The tooling lives separately**, in
 [LionheartModTools](https://github.com/EricHype/LionheartModTools) - the archive
