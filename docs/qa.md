@@ -152,6 +152,11 @@ unless the row says otherwise.
 | T6 | The Khan, entering his cave | At **rank 3** | A different greeting: *"Not 'morsel'. Not today."* <span>If he still opens with the morsel line, the map-side rank gate failed</span> |
 | T7 | " | At rank 3, when he demands entertainment | You can refuse: *"Ask the room whether the Khan's champion dances."* |
 | T8 | " | At **rank 0-2** | Every vanilla greeting and the entertainment demand are unchanged |
+| T9 | Goblin Girl, **first meeting**, with the River Dryad already dead | Talk to her | *"You're cute for a... whatever it is you are."* **Not** the snails line. Reported from play: she used to greet a stranger as an old friend |
+| T10 | " | Same, with the **woodcutter** already dead | Still the first-meeting line. World state must never beat first contact |
+| T11 | " | Talk again after that first meeting | *Now* the state greetings apply -- snails if the dryad is dead, the woodsman line if he is |
+| T12 | The Khan, **first meeting at rank 3** earned without the Everlasting (spy + dryad + eyes) | Enter his cave | The **vanilla** greeting. He must not claim the Everlasting hangs on his wall |
+| T13 | " | Then deliver the Everlasting and return | *Now* the Champion greeting |
 
 ### Extend - the checks
 

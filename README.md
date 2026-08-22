@@ -39,6 +39,30 @@ deployed, and verified byte-identical in both `data.dat` and the loose `data\` m
 but nobody has played it. [`docs/qa.md`](docs/qa.md) is the checklist it has to pass
 first, and it needs two differently-built characters to pass honestly.
 
+### First meetings, and greetings that assume too much
+
+Two bugs of the same shape, one found in play and one found by looking for its twin.
+
+**The Goblin Girl greeted a stranger like an old friend.** Arriving having already killed
+the River Dryad, she opened with `110 New Hero in town` -- *"I picked you a boquet of
+snails, the really juicy kind!"* -- on first meeting. The greeting selector keyed purely on
+world state and never asked whether she had met you. All three of her state greetings
+presume acquaintance, and the shipped node names say so: `120 Player returns again after
+killing dryad`, `200 Returning after killing the woodsman`. `1 First time PC enters
+village` has to win regardless of what is dead in the wider world. It now does, via a
+`Met the Goblin Girl` flag checked first and set *after* the greeting is chosen.
+
+**The Khan could thank you for a gift you never gave him.** His Champion greeting says
+*"The Everlasting hangs on my wall because you put it there"* and was conditioned only on
+`Goblin Rank > 2`. That was safe while rank 3 could only come from handing him the
+Everlasting, and stopped being safe the moment standing began accumulating -- spy, dryad
+and eyes now reach rank 3 without him. It now requires rank 3 **and** the bounty-hunter
+quest completed.
+
+The general lesson, worth stating because it will recur: **a greeting keyed on a proxy for
+an event rather than on the event itself will eventually greet the wrong person.** Both of
+these were correct when written and became wrong when something else changed.
+
 ### 0.1.2 - the camp reacts to your standing
 
 Rank had been earnable since 0.1.0 and read almost nowhere: four gates on

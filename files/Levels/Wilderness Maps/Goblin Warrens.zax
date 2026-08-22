@@ -15844,21 +15844,33 @@ CLayerSaveData
 									}
 									Action=CIfAction
 									{
-										If=CExpressionAction
+										If=CAndAction
 										{
-											Expression=CIsGreaterThan
+											Action=Array
 											{
-												Operand1=CVariableDerivedCharacterAttribute
+												Item Count=2
+												Action=CExpressionAction
 												{
-													Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+													Expression=CIsGreaterThan
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=2
+														}
+													}
+													Character to get attributes from=$Instigator
 												}
-												Operator=
-												Operand2=CConstant
+												Action=CIsQuestCompletedAction
 												{
-													Constant Value=2
+													Quest=Levels/Wilderness/Quests/Deal with the bounty hunter preying on the goblins
 												}
 											}
-											Character to get attributes from=$Instigator
+											Early Exit=0
 										}
 										Then=CDisplayDialogTreeAction
 										{
@@ -28979,110 +28991,139 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CIfAction
+							Action=CMultipleActionsAction
 							{
-								If=CExpressionAction
+								Action=Array
 								{
-									Expression=CIsGreaterThanOrEqual
+									Item Count=2
+									Action=CIfAction
 									{
-										Operand1=CVariableDerivedCharacterAttribute
+										If=CExpressionAction
 										{
-											Character Attribute=Derived Character Attributes/Game Scripting Variables/Woodcutter Dead
+											Expression=CIsLessThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Met the Goblin Girl
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=1
+												}
+											}
+											Character to get attributes from=$Instigator
 										}
-										Operator=
-										Operand2=CConstant
-										{
-											Constant Value=1
-										}
-									}
-									Character to get attributes from=$Instigator
-								}
-								Then=CSeriesAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CDisplayDialogTreeAction
+										Then=CDisplayDialogTreeAction
 										{
 											Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
-											Node ID=200 Returning after killing the woodsman 
+											Node ID=1 First time PC enters village
 											Speaker=$trigger
 											Player Being Spoken To=$Instigator
 										}
+										Else=CIfAction
+										{
+											If=CExpressionAction
+											{
+												Expression=CIsGreaterThanOrEqual
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/Woodcutter Dead
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=1
+													}
+												}
+												Character to get attributes from=$Instigator
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+												Node ID=200 Returning after killing the woodsman 
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Else=CIfAction
+											{
+												If=CExpressionAction
+												{
+													Expression=CIsGreaterThanOrEqual
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=1
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Then=CSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDisplayDialogTreeAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+															Node ID=110 New Hero in town
+															Speaker=$trigger
+															Player Being Spoken To=$Instigator
+														}
+														Action=CDisplayDialogTreeAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+															Node ID=120 Player returns again after killing dryad, but no other quests completed
+															Speaker=$trigger
+															Player Being Spoken To=$Instigator
+														}
+													}
+													When Done=Repeat Last Action
+													Require Success To Advance=1
+													Next Action Index=0
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+													Node ID=2 PC Enters the village again, before completing any quest
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
 									}
-									When Done=Repeat Last Action
-									Require Success To Advance=1
-									Next Action Index=0
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=Met the Goblin Girl
+										Modification is permanent=1
+										Character to modify=Player#1-9#
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Met the Goblin Girl
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
 								}
-								Else=CIfAction
-								{
-									If=CExpressionAction
-									{
-										Expression=CIsGreaterThanOrEqual
-										{
-											Operand1=CVariableDerivedCharacterAttribute
-											{
-												Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
-											}
-											Operator=
-											Operand2=CConstant
-											{
-												Constant Value=1
-											}
-										}
-										Character to get attributes from=$Instigator
-									}
-									Then=CSeriesAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CDisplayDialogTreeAction
-											{
-												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
-												Node ID=110 New Hero in town
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
-											}
-											Action=CDisplayDialogTreeAction
-											{
-												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
-												Node ID=120 Player returns again after killing dryad, but no other quests completed
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
-											}
-										}
-										When Done=Repeat Last Action
-										Require Success To Advance=1
-										Next Action Index=0
-									}
-									Else=CSeriesAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CDisplayDialogTreeAction
-											{
-												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
-												Node ID=1 First time PC enters village
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
-											}
-											Action=CDisplayDialogTreeAction
-											{
-												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
-												Node ID=2 PC Enters the village again, before completing any quest
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
-											}
-										}
-										When Done=Repeat Last Action
-										Require Success To Advance=1
-										Next Action Index=0
-									}
-									Return failure if the If failes=0
-								}
-								Return failure if the If failes=0
 							}
 							X Radius=75
 							Attacker Range Modifier=0
