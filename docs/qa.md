@@ -22,6 +22,7 @@ All of these are scripted and must be re-run after *any* change to `files/`.
 | A0.5 | Every embedded `Custom Action` / `Custom Requirement` parses | no parse failures |
 | A0.6 | Non-dialogue resources round-trip byte-identically through `resource_format` | canonical formatting |
 | A0.7 | Both edited `.zax` files parse as `CLayerSaveData` and round-trip byte-identically | identical |
+| A0.7b | **Every map -> dialogue node reference matches BYTE-EXACTLY** -- unstripped, including trailing spaces | zero mismatches. A miss here is a hard crash on map entry, not a silent failure, and it is how the Goblin Warrens crash shipped |
 | A0.8 | Every `Sound=`, `On the ground=`, icon and `Damage Type=` reference exists in the archive | zero unresolved |
 | A0.9 | All files are latin-1 clean and pure CRLF | no mixed endings |
 | A0.10 | `mod.json` file list exactly matches what is on disk | sets equal |
