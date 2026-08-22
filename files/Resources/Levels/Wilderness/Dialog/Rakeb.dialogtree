@@ -9,6 +9,16 @@ Node ID=1 Conversation Start
 Text=We knew you were coming, but we must admit your intentions are not clear. You are hard for us to see through. There is something quite... special about you. Ah, but forgive my poor manners. We are Rakeb.
 Should Have Voiceover=0
 
+Requirement=Goblin Horde Highlevel
+Reply Text=You know what I am carrying, shaman. You knew before I came through the door.
+Go to node ID=6 the champion at the pool
+Icon=Quest Icon
+
+Requirement=Goblin Horde Midlevel
+Reply Text=I have done the clan's work with my own hands. Speak to me as clan.
+Go to node ID=5 clan business
+Icon=Quest Icon
+
 Requirement=Rakeb requires player to be sent by darsch
 Reply Text=Release Darsh. Now.
 Go to node ID=15 No Darsh
@@ -44,6 +54,16 @@ Is Default Reply=1
 Node ID=3 Return Dialogue
 Text=We knew you would return.
 Should Have Voiceover=0
+
+Requirement=Goblin Horde Highlevel
+Reply Text=You know what I am carrying, shaman. You knew before I came through the door.
+Go to node ID=6 the champion at the pool
+Icon=Quest Icon
+
+Requirement=Goblin Horde Midlevel
+Reply Text=I have done the clan's work with my own hands. Speak to me as clan.
+Go to node ID=5 clan business
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -291,6 +311,34 @@ Icon=Fight Icon
 
 Requirement=!None
 Reply Text=Sorry, apparently I'm a little lost. I'll be on my way.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 clan business
+Text=<He sets the bowl down.> Clan. Yes. The bones have been saying so for a while and I have been pretending not to hear them, because a human in the clan is an untidy sort of omen. Ask, then. I will not charge you the tourist's price.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about your divination.
+Go to node ID=30 Explanation
+
+Requirement=!None
+Reply Text=Another time, shaman.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=6 the champion at the pool
+Text=<For a long moment he does not answer, and the water in the bowl does not move either.> I knew. I have known since the bounty hunter stopped breathing, and I have not decided yet whether the clan should be glad. A human champion is a door left open, and doors are how weather gets in. <He inclines his head anyway.> Champion.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then read the weather, shaman, and tell me what comes through.
+Go to node ID=30 Explanation
+
+Requirement=!None
+Reply Text=Keep your omens. I have work.
 Go to node ID=90 Goodbye
 Icon=Exit Icon
 Is Default Reply=1

@@ -25,19 +25,42 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release candidate: 0.1.1-rc1
+## Current release candidate: 0.1.2-rc1
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
 standing, and a settlement that answers to almost nothing but Speech.
 
-It carries two releases' worth of work: **0.1.0 "The Horde"**, below, and **0.1.1 "The
-Crossroads Patrol"**, described next.
+It carries three releases' worth of work: **0.1.0 "The Horde"**, below, **0.1.1 "The
+Crossroads Patrol"**, and **0.1.2 "Standing"**, both described next.
 
 **Not yet tested in-game, so this is a release candidate, not a release.** It is built,
 deployed, and verified byte-identical in both `data.dat` and the loose `data\` mirror --
 but nobody has played it. [`docs/qa.md`](docs/qa.md) is the checklist it has to pass
 first, and it needs two differently-built characters to pass honestly.
+
+### 0.1.2 - the camp reacts to your standing
+
+Rank had been earnable since 0.1.0 and read almost nowhere: four gates on
+`Goblin Horde IS`, one on `Midlevel`, and **`Highlevel` referenced by nothing at all**. The
+Khan has 41 nodes and calls the player *"morsel"* **17 times** -- including after they have
+handed him the Everlasting and been named Champion of the Horde. Rakeb has 31 nodes and no
+standing check. The villagers threaten to eat a man the Khan calls champion.
+
+| Who | At what standing | What changes |
+|---|---|---|
+| **The Khan** | Champion | A different greeting at the cave mouth. *"Not 'morsel'. Not today. The Everlasting hangs on my wall because you put it there."* |
+| **The Khan** | Champion | He stops shaking his own champion down for a poem at `11 Earn Goodbye` |
+| **Rakeb** | Blooded | *"Clan. Yes. The bones have been saying so for a while and I have been pretending not to hear them."* No tourist's price |
+| **Rakeb** | Champion | He is not sure the clan should be glad -- *"a human champion is a door left open, and doors are how weather gets in"* |
+| **A villager** | Member | The spear comes down. *"Word travels, and your name has been in three mouths this week."* |
+| **A villager** | Champion | The spear goes all the way down, and so does the goblin |
+
+The villagers matter most, because they are what makes the *place* feel different rather
+than one conversation: both of the threatening greetings -- *"You look like a walking meal
+to me"* and the one accusing you of plotting -- now have a way out that is not Speech.
+
+`Goblin Horde Highlevel` went from zero uses to five.
 
 ### 0.1.1 - the Crossroads patrol, and a contract on a Templar
 

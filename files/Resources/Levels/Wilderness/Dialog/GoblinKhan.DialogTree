@@ -313,9 +313,23 @@ Reply Text=
 Go to node ID=
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=06 The Champion Returns
+Text=<The spears at the cave mouth stay up until he waves them down, and he takes his time about waving.> Not 'morsel'. Not today. The Everlasting hangs on my wall because you put it there, and a Khan who forgets such a thing is a Khan who eats alone. Speak, champion, and speak as long as you like.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have business, Great Khan.
+Go to node ID=3 Return Dialogue
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=11 Earn Goodbye
 Text=Nonsense, no one may depart unless I wish it. And before I deign to let you leave my august presence, I insist that you entertain me, whelp.
 Should Have Voiceover=0
+
+Requirement=Goblin Horde Highlevel
+Reply Text=<Do not move, and do not answer.> I brought you the Everlasting, Plumjum. Ask the room whether the Khan's champion dances.
+Go to node ID=16 flattered khan
+Icon=Quest Icon
 
 Requirement=Schmooze 7+
 Reply Text=Entertain you? Great Khan, the whole warren already tells your story badly. Let me leave, and I will tell it properly.

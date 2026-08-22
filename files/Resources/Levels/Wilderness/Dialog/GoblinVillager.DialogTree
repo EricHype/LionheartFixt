@@ -36,6 +36,16 @@ Node ID=1 Greeting G
 Text=You look like a walking meal to me, so plump and ripe for the tasting! Give me a reason why I should not devour you this instant? 
 Should Have Voiceover=0
 
+Requirement=Goblin Horde Highlevel
+Reply Text=<Say nothing. Let them look at what you are wearing.>
+Go to node ID=26 the champion walks
+Icon=Quest Icon
+
+Requirement=Goblin Horde IS
+Reply Text=I am of the Horde, and I have the Khan's leave to walk here.
+Go to node ID=25 known to the clan
+Icon=Quest Icon
+
 Requirement=Speech moreequal 40
 Reply Text=My skin is far too tough and my bones would cause you indigestion.
 Go to node ID=20 used speech to avoid conflict
@@ -79,6 +89,16 @@ Should Have Voiceover=0
 Node ID=1 Greeting K
 Text=I have been watching you prowl around our fair village, and I fear that you are plotting something most treacherous against my kin. Explain yourself or be devoured.
 Should Have Voiceover=0
+
+Requirement=Goblin Horde Highlevel
+Reply Text=<Say nothing. Let them look at what you are wearing.>
+Go to node ID=26 the champion walks
+Icon=Quest Icon
+
+Requirement=Goblin Horde IS
+Reply Text=I am of the Horde, and I have the Khan's leave to walk here.
+Go to node ID=25 known to the clan
+Icon=Quest Icon
 
 Requirement=Speech moreequal 55
 Reply Text=I have been studying your people so that I can assimilate into your great culture.
@@ -194,6 +214,24 @@ Go to node ID=100 Combat A
 Requirement=!None
 Reply Text=I'm not a sylvant. <Lie>
 Go to node ID=100 Combat A
+------------------------------------------------------------
+Node ID=25 known to the clan
+Text=<The spear comes down, slowly, and not very far.> ...So you are. Word travels, and your name has been in three mouths this week. Walk where you like, chum. Do not touch the cookpots.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=26 the champion walks
+Text=<The spear goes all the way down, and then so does the goblin, one knee into the mud.> Champion. Forgive it, Champion - you look like every other soft thing from over the wall until you are close. Nobody here will trouble you. Nobody here would dare.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=20 used speech to avoid digestion
 Text=I do have a delicate stomach. Perhaps there are more palatable meals nearby.

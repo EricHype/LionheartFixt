@@ -15842,29 +15842,56 @@ CLayerSaveData
 										OPTIONAL Duration=
 										Expression Context=$Instigator
 									}
-									Action=CSeriesAction
+									Action=CIfAction
 									{
-										Action=Array
+										If=CExpressionAction
 										{
-											Item Count=2
-											Action=CDisplayDialogTreeAction
+											Expression=CIsGreaterThan
 											{
-												Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
-												Node ID=1 Conversation Start
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=2
+												}
 											}
-											Action=CDisplayDialogTreeAction
-											{
-												Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
-												Node ID=3 Return Dialogue
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
-											}
+											Character to get attributes from=$Instigator
 										}
-										When Done=Repeat Last Action
-										Require Success To Advance=1
-										Next Action Index=0
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
+											Node ID=06 The Champion Returns
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Else=CSeriesAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
+													Node ID=1 Conversation Start
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Action=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/GoblinKhan
+													Node ID=3 Return Dialogue
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+											}
+											When Done=Repeat Last Action
+											Require Success To Advance=1
+											Next Action Index=0
+										}
+										Return failure if the If failes=0
 									}
 								}
 							}

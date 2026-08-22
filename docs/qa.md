@@ -140,6 +140,19 @@ unless the row says otherwise.
 | G10 | Character sheet at rank 3 | Sum the three tiers | Sneak +30, Barter +14, Poison res +35, Disease res +10, Agility +1, carry weight +30 |
 | G11 | Character sheet after **each** rank | Check the perk list, not just the stats | A TITLE PERK appears at every rung: `Goblin Chum`, `Goblin Blooded`, `Goblin Champion` |
 
+### 0.1.2 - the camp reacts to standing
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| T1 | A goblin villager in the Warrens | Talk to one at **rank 0** | The vanilla threat, and only the Speech way out |
+| T2 | " | At **any rank** | *"Word travels, and your name has been in three mouths this week."* The spear comes down |
+| T3 | " | At **rank 3** | The goblin kneels. *"Forgive it, Champion."* |
+| T4 | Rakeb | At **rank 2** | *"Clan. Yes. The bones have been saying so for a while."* No tourist's price |
+| T5 | " | At **rank 3** | He is not sure the clan should be glad -- *"a door left open, and doors are how weather gets in"* |
+| T6 | The Khan, entering his cave | At **rank 3** | A different greeting: *"Not 'morsel'. Not today."* <span>If he still opens with the morsel line, the map-side rank gate failed</span> |
+| T7 | " | At rank 3, when he demands entertainment | You can refuse: *"Ask the room whether the Khan's champion dances."* |
+| T8 | " | At **rank 0-2** | Every vanilla greeting and the entertainment demand are unchanged |
+
 ### Extend - the checks
 
 | # | Where | Steps | Pass |
