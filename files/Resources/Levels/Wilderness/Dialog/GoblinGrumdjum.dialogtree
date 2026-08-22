@@ -1006,7 +1006,11 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=5
+Item Count=6
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
+}
 Action=CSetQuestSatusToCompletedAction
 {
 Quest=Levels/Wilderness/Quests/Slay the River Dryad

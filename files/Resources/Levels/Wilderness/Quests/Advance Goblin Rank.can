@@ -1,0 +1,116 @@
+CCannedObject
+{
+	Object=CIfAction
+	{
+		If=CExpressionAction
+		{
+			Expression=CIsEqualTo
+			{
+				Operand1=CVariableDerivedCharacterAttribute
+				{
+					Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+				}
+				Operator=
+				Operand2=CConstant
+				{
+					Constant Value=0
+				}
+			}
+			Character to get attributes from=$Instigator
+		}
+		Then=CMultipleActionsAction
+		{
+			Action=Array
+			{
+				Item Count=2
+				Action=CAssignFactionToCharacterAction
+				{
+					Faction To Assign=Factions/Goblin Chum
+					Character To assign=$Instigator
+				}
+				Action=CGiveCharacterPerkAction
+				{
+					Character to give perk to=$Instigator
+					Perk to give=Perks/!Event Title Perks/Goblin Chum
+				}
+			}
+		}
+		Else=CIfAction
+		{
+			If=CExpressionAction
+			{
+				Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=$Instigator
+			}
+			Then=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CAssignFactionToCharacterAction
+					{
+						Faction To Assign=Factions/Goblin Blooded
+						Character To assign=$Instigator
+					}
+					Action=CGiveCharacterPerkAction
+					{
+						Character to give perk to=$Instigator
+						Perk to give=Perks/!Event Title Perks/Goblin Blooded
+					}
+				}
+			}
+			Else=CIfAction
+			{
+				If=CExpressionAction
+				{
+					Expression=CIsEqualTo
+					{
+						Operand1=CVariableDerivedCharacterAttribute
+						{
+							Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=2
+						}
+					}
+					Character to get attributes from=$Instigator
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=2
+						Action=CAssignFactionToCharacterAction
+						{
+							Faction To Assign=Factions/Goblin Champion
+							Character To assign=$Instigator
+						}
+						Action=CGiveCharacterPerkAction
+						{
+							Character to give perk to=$Instigator
+							Perk to give=Perks/!Event Title Perks/Goblin Champion
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Return failure if the If failes=0
+		}
+		Return failure if the If failes=0
+	}
+	Use=Shared Global Instance
+}
