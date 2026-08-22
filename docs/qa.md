@@ -7,6 +7,10 @@ that the files arrived, not that the game agrees with them -- so every release i
 The order matters. Gates 0 and 1 are cheap and catch the failures that would otherwise
 waste a whole play session; do not start Gate 2 until they are green.
 
+The cases below are the authority. [`playtest-guide/`](playtest-guide/) is the same list arranged as a route to walk
+in one sitting, and cites these IDs; its `build.py` refuses to build if it cites one
+that no longer exists here, so renumbering a case cannot silently orphan the guide.
+
 ---
 
 ## Gate 0 - automated, before anyone plays

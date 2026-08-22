@@ -18,6 +18,8 @@ documents that explain every decision in it.
 | [`docs/design.md`](docs/design.md) | the diagnosis, measured, and the phase plan |
 | [`docs/plan.md`](docs/plan.md) | the work, section by section and map by map |
 | [`docs/releases.md`](docs/releases.md) | what ships, in what version, in what order |
+| [`docs/qa.md`](docs/qa.md) | every case a release candidate has to pass |
+| [`docs/playtest-guide/`](docs/playtest-guide/) | the same cases as a route to walk, built by `build.py` |
 
 **The tooling lives separately**, in
 [LionheartModTools](https://github.com/EricHype/LionheartModTools) - the archive

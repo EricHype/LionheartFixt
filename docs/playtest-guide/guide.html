@@ -1,0 +1,516 @@
+<title>The Horde Playtest Route</title>
+<style>
+  :root {
+    --ground: #e9e7e1;
+    --surface: #f7f6f2;
+    --sunk: #e1dfd8;
+    --ink: #1a1e22;
+    --muted: #5e6672;
+    --rule: #cfccc3;
+    --accent: #2d6b62;
+    --accent-soft: #dbe8e5;
+    --brass: #8a6a2b;
+    --rust: #a03c2c;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #14171a;
+      --surface: #1c2126;
+      --sunk: #191d21;
+      --ink: #e6e4de;
+      --muted: #8b94a0;
+      --rule: #2e353c;
+      --accent: #5fb3a6;
+      --accent-soft: #1e2e2c;
+      --brass: #c9a25a;
+      --rust: #d4705e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #14171a;
+    --surface: #1c2126;
+    --sunk: #191d21;
+    --ink: #e6e4de;
+    --muted: #8b94a0;
+    --rule: #2e353c;
+    --accent: #5fb3a6;
+    --accent-soft: #1e2e2c;
+    --brass: #c9a25a;
+    --rust: #d4705e;
+  }
+  :root[data-theme="light"] {
+    --ground: #e9e7e1;
+    --surface: #f7f6f2;
+    --sunk: #e1dfd8;
+    --ink: #1a1e22;
+    --muted: #5e6672;
+    --rule: #cfccc3;
+    --accent: #2d6b62;
+    --accent-soft: #dbe8e5;
+    --brass: #8a6a2b;
+    --rust: #a03c2c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+  }
+
+  header { display: flex; flex-direction: column; gap: 0.75rem; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+    font-weight: 600;
+  }
+  .standfirst {
+    font-size: 1.06rem;
+    color: var(--muted);
+    max-width: 40rem;
+    margin: 0;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+    font-weight: 700;
+  }
+  p { margin: 0; max-width: 42rem; }
+  section { display: flex; flex-direction: column; gap: 1rem; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1.25rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .panel.warn { border-left: 3px solid var(--rust); }
+  .panel.note { border-left: 3px solid var(--brass); }
+
+  code, .mono { font-family: var(--mono); font-size: 0.86em; }
+  code {
+    background: var(--sunk);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.05em 0.32em;
+    word-break: break-word;
+  }
+
+  /* ---- the dependency chain ---- */
+  .chain { display: flex; flex-direction: column; gap: 0.5rem; }
+  .chain-row {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0.9rem;
+    align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .chain-row:last-child { border-bottom: 0; }
+  .chain-key {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .chain-val { font-size: 0.95rem; }
+
+  /* ---- stops ---- */
+  .stop { display: flex; flex-direction: column; gap: 1rem; }
+  .stop-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.6rem;
+  }
+  .num {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .map {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  ul.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  ul.checks > li {
+    display: grid;
+    grid-template-columns: 1.35rem 1fr;
+    gap: 0.7rem;
+    align-items: start;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dotted var(--rule);
+  }
+  ul.checks > li:last-child { border-bottom: 0; padding-bottom: 0; }
+  input[type="checkbox"] {
+    margin: 0.35rem 0 0;
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .body { display: flex; flex-direction: column; gap: 0.3rem; }
+  .who {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.1rem 0.42rem;
+    border-radius: 2px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    background: var(--sunk);
+    white-space: nowrap;
+  }
+  .who.a { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .who.b { color: var(--rust); border-color: var(--rust); background: transparent; }
+  .who.both { color: var(--brass); border-color: var(--brass); background: transparent; }
+  .expect { font-size: 0.93rem; color: var(--muted); }
+  .expect strong { color: var(--ink); font-weight: 600; }
+  .flag { color: var(--rust); font-weight: 600; }
+  .id {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
+  .scroll { overflow-x: auto; }
+  th, td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    font-size: 0.7rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  td.num-col { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Lionheart Fixt &middot; 0.1.2-rc1</div>
+  <h1>The Horde Playtest Route</h1>
+  <p class="standfirst">Everything 0.1.0, 0.1.1 and 0.1.2 changed, ordered by where you walk
+  rather than by feature. Eleven stops, two characters, and the Crossroads twice &mdash; because
+  the contract needs a standing you cannot have on the first pass.</p>
+</header>
+
+<section class="panel warn">
+  <h2>Start a new game. Both times.</h2>
+  <p>Two independent blockers, both confirmed the hard way:</p>
+  <ul class="checks">
+    <li><span></span><div class="body"><div><strong>New map entities never appear on a save that already
+      entered that level.</strong> The entity list is captured the first time a level is visited and
+      restored from that snapshot forever. This hides the Goblin Girl, the Goblin Guards,
+      Hub'blub's second store, the Patrol Leader's conversation, the goblins' new cursor and the
+      Khan's Champion greeting.</div></div></li>
+    <li><span></span><div class="body"><div><strong>New dialogue nodes do not retrofit</strong> onto a
+      conversation a character has already had.</div></div></li>
+  </ul>
+  <p>Edits to <em>existing</em> dialogue text <em>are</em> picked up on revisit, which is what makes
+  this trap dangerous &mdash; it builds false confidence that revisiting works.</p>
+  <p><strong>Save at each threshold once</strong> and reuse those saves: outside Hrubjub's wall, the
+  Crossroads, the goblin camp gate, inside Goblin Warrens, the Lake.</p>
+</section>
+
+<section>
+  <h2>The two characters</h2>
+  <p>The release's rule is that <strong>a check adds a route and never removes one</strong>. One
+  character cannot prove that &mdash; a build that passes everything can't show whether the vanilla
+  path survived. That's what B is for.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>&nbsp;</th><th>A &mdash; the noticer</th><th>B &mdash; the bruiser</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">IN</td><td class="num-col">8+ &nbsp;<span class="expect">drives every <code>Outwit 7+</code>; skill points per level are <code>10 + IN</code></span></td><td class="num-col">3</td></tr>
+      <tr><td class="num-col">CH</td><td class="num-col">8+ &nbsp;<span class="expect">drives every <code>Schmooze 7+</code></span></td><td class="num-col">3</td></tr>
+      <tr><td class="num-col">PE</td><td class="num-col">8+</td><td class="num-col">3</td></tr>
+      <tr><td class="num-col">ST</td><td class="num-col">4&ndash;5</td><td class="num-col">9+ &nbsp;<span class="expect">drives every <code>ST 8+</code></span></td></tr>
+      <tr><td>Speech</td><td>55+ before the goblin camp</td><td>as low as the build allows</td></tr>
+      <tr><td>Barter</td><td>60+ before Hub'blub</td><td>low</td></tr>
+      <tr><td>Magic</td><td>Tribal 80 and/or Thought 80</td><td>none</td></tr>
+      <tr><td>Melee</td><td>&mdash;</td><td><strong>90+ before stop 10</strong> &mdash; Esteban is AC 200 and spell-immune</td></tr>
+      <tr><td>Proves</td><td>every new route is reachable</td><td>every vanilla route still works, no new route is wrongly offered, and Esteban can actually be killed</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="panel note">
+    <p><strong>Two constraints worth planning around.</strong> Rakeb needs <code>Tribal 80</code> and
+    Grumdjum needs <code>Thought 80</code> &mdash; two different schools on one character. If A can
+    only afford one, take either and <strong>record which you skipped</strong>.</p>
+    <p>And <strong>Esteban is spell-immune</strong>. A caster cannot damage him at any level.</p>
+  </div>
+</section>
+
+<section>
+  <h2>How standing works now</h2>
+  <p>Goblin rank <strong>accumulates</strong>. Every service to the Horde grants the next rank you
+  do not have, so any three of them in any order reach rank 3 and none is ever wasted. There is no
+  required first step and no required order.</p>
+  <div class="panel chain">
+    <div class="chain-row"><div class="chain-key">any service</div><div class="chain-val">rank 0 &rarr; <strong>Goblin Chum</strong> &nbsp;&middot;&nbsp; rank 1 &rarr; <strong>Goblin Blooded</strong> &nbsp;&middot;&nbsp; rank 2 &rarr; <strong>Goblin Champion</strong> &nbsp;&middot;&nbsp; rank 3 &rarr; nothing</div></div>
+    <div class="chain-row"><div class="chain-key">the five</div><div class="chain-val">Hrubjub's spy quest &middot; the vodyanoi for Rakeb &middot; the River Dryad for Grumdjum &middot; the woodcutter's eyes &middot; the Everlasting to the Khan</div></div>
+    <div class="chain-row"><div class="chain-key">rank 1</div><div class="chain-val">opens the camp gate, Hub'blub's chum prices, the daughter's guard, the Patrol Leader's recognition, and every villager greeting</div></div>
+    <div class="chain-row"><div class="chain-key">rank 2</div><div class="chain-val">the Esteban contract, and Rakeb speaking to you as clan</div></div>
+    <div class="chain-row"><div class="chain-key">rank 3</div><div class="chain-val">the Khan's Champion greeting, Rakeb's misgivings, and villagers kneeling</div></div>
+    <div class="chain-row"><div class="chain-key">meeting the Khan</div><div class="chain-val">recorded separately &mdash; it changes what the Patrol Leader says at rank 1</div></div>
+  </div>
+  <p><strong>This is worth deliberately testing out of order</strong>, because it was broken until
+  late: rank used to be granted by Hrubjub alone, so a player who never met him finished at rank 0
+  no matter how much they did for the Horde.</p>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">01</span><h2>Hrubjub and his squire</h2><span class="map">Barcelona &middot; Gate District</span></div>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Approach Hrubjub. The reply <em>&ldquo;You are no scavenger. You have been sounding that wall for a weak course.&rdquo;</em> is visible.</div><div class="expect">Leads to <code>15 spotted the sap</code>. Siding with him drops <strong>25 karma</strong>. <span class="id">H1&ndash;H3</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> The vanilla route still works: ask about the town guard, then admire his handiwork.</div><div class="expect">On B, the Perception reply is <strong>absent</strong>. <span class="id">H7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Do the spy quest and report back.</div><div class="expect">His line names <strong>the warrens beyond the western wood</strong>. You gain Sneak +10, carry weight +10, Poison resist +10, <strong>and a <code>Goblin Chum</code> TITLE PERK</strong> &mdash; check the perk list, not just the stats. <span class="id">H8&ndash;H10, G11</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> <strong>Skip Hrubjub entirely on this character.</strong></div><div class="expect">Not a check yet &mdash; it sets up the accumulation test. B should reach the Wilderness at rank 0 and earn standing there instead. <span class="id">G7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Bludjund, the squire. On B: <em>&ldquo;Look at my arm, then look at yours.&rdquo;</em> On A: ask what else he is not telling you.</div><div class="expect">B's is <code>ST 8+</code>, A's is <code>Outwit 7+</code> &rarr; <code>55 not telling</code>. <span class="id">C19&ndash;C20</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> After the spy quest, finish Bludjund's rhyme properly.</div><div class="expect"><code>Schmooze 7+</code>. The vanilla <code>IN 4</code> reply is still there. <span class="id">C21</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">02</span><h2>The patrol that no longer charges</h2><span class="map">Crossroads &middot; first pass</span></div>
+  <p><strong>The order matters.</strong> Esteban's own goblin quest turns the patrol hostile &mdash;
+  that's the choice working, not a bug &mdash; so parley first. You will <em>not</em> be offered the
+  contract yet; that needs rank 2, and you come back at stop 10.</p>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Ask Esteban about the local dangers. <strong>Do not accept his goblin quest.</strong> Walk toward the goblins.</div><div class="expect"><strong>They do not attack.</strong> <span class="flag">In vanilla this was an ambush.</span> <span class="id">X1</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Mouse over any goblin in the patrol.</div><div class="expect">A <strong>speech</strong> cursor, not a sword. Clicking gets a line of banter. <span class="id">X1d</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Talk to the Goblin Patrol Leader.</div><div class="expect">A conversation opens. <span class="flag">In vanilla, and in the first 0.1.1 build, the only interaction was an attack.</span> <span class="id">X1b</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Talk with <strong>no</strong> Horde rank.</div><div class="expect">The purge line, a Speech route, a fight and a walk-away. No recognition. <span class="id">X3</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Talk at <strong>rank 1</strong>, before meeting the Khan.</div><div class="expect">He recognises you but offers <strong>no contract</strong> &mdash; <em>&ldquo;A chum who has carried one message down one road.&rdquo;</em> He sends you to the Khan. <span class="id">X4</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Esteban: ask about monsters, then say goodbye.</div><div class="expect">Reaches <em>&ldquo;Be safe traveler.&rdquo;</em> instead of dead-ending. The one repaired link you can observe. <span class="id">F4</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> <em>Now</em> accept Esteban's goblin quest, look at the patrol, then attack.</div><div class="expect">They turn hostile &mdash; vanilla's <code>goblin confrontation</code> relay, and the choice working. Then Patrol Leader, Scout <strong>and</strong> corner goblins must all turn. <span class="flag">Any that stands inert means <code>goblins attack</code> failed to re-arm it.</span> <span class="id">X1c, X2</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">03</span><h2>Grumdjum and the Spaniard</h2><span class="map">Wilderness &middot; Lake</span></div>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Grumdjum, when he brags about goblin philosophers.</div><div class="expect">Call the bluff: Bonecrusher wrote nothing down, Brain-Gnasher was a general. <code>Outwit 7+</code> &rarr; <code>11 fellow pedant</code>. <span class="id">C12</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Ask about the Magic Crystal, then correct his theory about the obelisks.</div><div class="expect"><code>Thought 80</code> &rarr; <code>82 the residue theory</code>. He asks you not to tell the Khan. <span class="id">C13</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Ask what magic the dryad wields, then point out he warned you about her tongue twice.</div><div class="expect"><code>Outwit 7+</code> &rarr; <code>92 why silence her</code>. <strong>The load-bearing one</strong> &mdash; it reveals the dryad can be talked to instead of killed, which vanilla never hints at. <span class="id">C14&ndash;C15</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Hear his poetry, then praise the haiku on its craft.</div><div class="expect"><code>Schmooze 7+</code>. Sets the &ldquo;can tell the Khan&rdquo; flag &mdash; verify at stop 07. <span class="id">C16&ndash;C17</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> <strong>Kill the River Dryad for Grumdjum</strong> as B's very first goblin service.</div><div class="expect">B becomes <strong><code>Goblin Chum</code></strong> without ever meeting Hrubjub. He is a goblin lieutenant, so his errand counts. <span class="flag">If nothing happens, the accumulation cascade is not firing.</span> <span class="id">G7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> The trapped Conquistador. A: play herald, or deduce he is livestock. B: <em>&ldquo;I am your next challenger.&rdquo;</em></div><div class="expect">He is deluded, not caged. On B the CH and IN replies are <strong>absent</strong> and the vanilla &ldquo;Where is your home?&rdquo; route still works. <span class="id">C1&ndash;C5</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">04</span><h2>The child in the pen</h2><span class="map">Wilderness &middot; Scar Ravine</span></div>
+  <p>In vanilla this scene has eleven replies and <strong>exactly one</strong> non-combat exit. Even
+  &ldquo;It's no concern of mine&rdquo; ends with the goblin deciding you're the appetiser.</p>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Step over him and pick the child up.</div><div class="expect"><code>ST 8+</code>. Child freed, XP awarded. <span class="id">C22</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Carrying rank: claim the Khan's favour.</div><div class="expect">The shipped Speech line is a <em>bluff</em> about knowing the Khan. With rank it isn't one. <span class="id">C23</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> <em>&ldquo;What would you take for her?&rdquo;</em></div><div class="expect">Reaches <code>40 goblin offers trade</code> &mdash; <strong>unreachable in vanilla</strong>, written and never wired. <span class="id">C24</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> From there, the salt-pork offer with Barter 55+.</div><div class="expect">Child freed. On B only the fight and walk-away replies appear. <span class="id">C25&ndash;C27</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">05</span><h2>Kill the woodcutter</h2><span class="map">Wilderness &middot; Woodcutter Forest</span></div>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Kill him, take the eyes and liver.</div><div class="expect">Not a check &mdash; it gates two later ones: Rakeb's eyes quest and the Goblin Girl's pie greeting. Rank no longer depends on it, but the pie does.</div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">06</span><h2>The camp gate</h2><span class="map">Wilderness &middot; Mongol Camp</span></div>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Name-drop Hrubjub.</div><div class="expect"><code>Goblin Horde IS</code>. Reaches <code>30 khan</code>, camp stays calm. <span class="id">G1&ndash;G2</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Same gate, carrying rank earned from <em>the dryad</em> rather than Hrubjub.</div><div class="expect">The Horde reply is present. Standing is standing, whoever you earned it from. <span class="id">G1, G7b</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Charm your way through instead.</div><div class="expect"><code>Schmooze 7+</code>, same destination. The vanilla Speech 40 route still works. <span class="id">G4&ndash;G5</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">07</span><h2>The warrens</h2><span class="map">Wilderness &middot; Goblin Warrens</span></div>
+  <p class="expect"><strong>Entering this map crashed the game until very late in the build</strong>
+  &mdash; a node reference that differed from the shipped one by a single trailing space. If you get
+  a <em>&ldquo;Fatal Not Found Error&rdquo;</em> on entry, that regressed.</p>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Find the <strong>Goblin Girl</strong> near the Khan's court, and the <strong>two guards</strong> on the southern approach.</div><div class="expect">Both ship finished with zero map references &mdash; they have never been in the game before. <span class="id">R1, R7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> <strong>Meet her for the very first time with the River Dryad already dead</strong> &mdash; and again on the other character with the woodcutter dead.</div><div class="expect"><em>&ldquo;You're cute for a... whatever it is you are.&rdquo;</em> <strong>Not</strong> the snails line, and not the woodsman line. <span class="flag">Reported from play: she used to greet a total stranger as an old friend, because the greeting keyed on world state and never asked whether she had met you.</span> <span class="id">T9&ndash;T10</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> <em>Now</em> talk to her again, and again after the woodcutter dies.</div><div class="expect">Return line, then the snails if the dryad is dead, then <code>200 Returning after killing the woodsman</code>. State greetings apply only once she knows you. <span class="id">R2&ndash;R3, R11, T11</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Give her the liver, take the pie. With PE 7+ or IN 7+, smell it first.</div><div class="expect">Named <strong>Liver Pie</strong>, correct icon, vanilla description. The check adds knowledge, <strong>not</strong> an item &mdash; you still get the pie. <span class="id">P1&ndash;P5</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Slot the pie on the hotkey belt and eat it at full health.</div><div class="expect">Poison ticks for about a minute. In vanilla the item could not be slotted at all. <span class="id">P6&ndash;P7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> <strong>Talk to a villager at rank 0.</strong></div><div class="expect">The vanilla threat &mdash; <em>&ldquo;You look like a walking meal to me&rdquo;</em> &mdash; and only the Speech way out. <span class="id">T1</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Talk to a villager <strong>with any rank</strong>, then again at <strong>rank 3</strong>.</div><div class="expect">At any rank the spear comes down: <em>&ldquo;your name has been in three mouths this week.&rdquo;</em> At rank 3 the goblin kneels: <em>&ldquo;Forgive it, Champion.&rdquo;</em> <span class="id">T2&ndash;T3</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> <strong>Rakeb.</strong> Ask how he tells the future, then answer in his own vocabulary.</div><div class="expect"><code>Tribal 80</code> &rarr; <code>35 fellow practitioner</code>. On B, only <em>&ldquo;I don't speak Goblin&rdquo;</em>. <span class="id">C6&ndash;C7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Rakeb at <strong>rank 2</strong>, then at <strong>rank 3</strong>.</div><div class="expect">At 2: <em>&ldquo;Clan. Yes. The bones have been saying so for a while.&rdquo;</em> At 3 he is not sure the clan should be glad &mdash; <em>&ldquo;a door left open, and doors are how weather gets in.&rdquo;</em> <span class="id">T4&ndash;T5</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Clear the vodyanoi for Rakeb, and bring him the woodcutter's eyes.</div><div class="expect">Each advances you one rank. <strong>Do the eyes as your first ever service and you become <code>Goblin Chum</code>, not Blooded</strong> &mdash; the cascade grants the next rank you lack. <span class="id">G6, G7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> <strong>The Khan.</strong> Reach <strong>rank 3 without ever handing him the Everlasting</strong> &mdash; spy, dryad and eyes alone get you there &mdash; then enter his cave.</div><div class="expect">The <strong>vanilla</strong> greeting. <span class="flag">He must not say the Everlasting hangs on his wall because you put it there. That line was gated on rank 3 alone, which was true only while rank 3 could <em>only</em> come from the Everlasting; accumulation made it reachable without him. Same bug as the Goblin Girl's, found by looking for its twin.</span> <span class="id">T12</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> <em>Now</em> deliver the Everlasting and speak to him again.</div><div class="expect">The Champion greeting: <em>&ldquo;Not 'morsel'. Not today.&rdquo;</em> <span class="flag">Still the morsel line means the map-side gate failed.</span> <span class="id">T6, T13</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> When he demands entertainment, at rank 3 and below.</div><div class="expect">At rank 3 you can refuse: <em>&ldquo;Ask the room whether the Khan's champion dances.&rdquo;</em> Below it, the vanilla Speech 25 and the Schmooze route both still work. <span class="id">T7&ndash;T8, C8&ndash;C9</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Tell him about Grumdjum's poem.</div><div class="expect">Available because the Schmooze route at the Lake set the same flag the vanilla routes set. <span class="id">C17</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">08</span><h2>Chum prices</h2><span class="map">Wilderness &middot; Goblin Vendor Interior</span></div>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Buy from Hub'blub with no rank and low Barter.</div><div class="expect">Only the vanilla sale reply. Store opens normally. <span class="id">V1</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Demand chum prices, or make the damp-bolts argument with Barter 60+.</div><div class="expect">Two ways into <code>25 chum vendor</code>. <strong>Compare a specific item's price against B's</strong> &mdash; matching prices mean the gated reply opens the wrong store. <span class="id">V2&ndash;V4</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">09</span><h2>The Everlasting</h2><span class="map">Bounty Hunter Camp &rarr; Goblin Warrens</span></div>
+  <p><strong>Haggle before you hand it over.</strong> Talk the weapon up first and he raises the
+  payment; hand it over meekly and he lowballs you, then tells you why: <em>&ldquo;that was before
+  you lost your bargaining&hellip; edge.&rdquo;</em> Push for more <em>after</em> he has already
+  improved the offer and he eats you. None of that affects rank.</p>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Deal with the bounty hunter, take the Everlasting to the Khan.</div><div class="expect">Advances one rank &mdash; <strong><code>Goblin Champion</code></strong> if you were at rank 2. <span class="id">G8</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Try the other two haggle prices afterwards.</div><div class="expect">Rank does <strong>not</strong> increment again. <span class="flag">The <em>&ldquo;I'm glad we see eye-to-eye&rdquo;</em> reply briefly advanced twice.</span> <span class="id">G9, G7d</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Do a fourth and fifth service after reaching rank 3.</div><div class="expect">Nothing happens. No rank, no duplicate title perk. <span class="id">G7c</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Check the sheet.</div><div class="expect">Tiers stack: Sneak +30, Barter +14, Poison +35, Disease +10, Agility +1, carry weight +30. Three title perks. <span class="id">G10&ndash;G11</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Hand over the Everlasting with <em>no</em> Horde rank.</div><div class="expect">You become <code>Goblin Chum</code>, and the shipped <code>Goblin Champion</code> perk is <strong>still granted</strong> as vanilla's reward for the deed. <span class="id">N6</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">10</span><h2>Back for the contract</h2><span class="map">Crossroads &middot; second pass</span></div>
+  <p><strong>Esteban is 200 HP, 200 AC, melee 90, and spell-immune.</strong> You want One-Handed
+  Melee around <strong>90</strong> and the attack-speed slider at its <em>slowest</em> &mdash; the
+  formula divides your skill by 0.45 there against 0.8 at the fastest, worth more than several
+  levels. Roughly level 9&ndash;12. If you can beat the Goblin Khan, you can beat him.</p>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Optional: talk to the Patrol Leader at rank 1 <em>after</em> meeting the Khan.</div><div class="expect"><em>&ldquo;You have stood in front of the Khan and you are still only a chum.&rdquo;</em> He points you at the shaman's work. Still no contract. <span class="id">X4b</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Return at <strong>rank 2</strong>.</div><div class="expect">The contract at last. With IN 7+ you can also work out why he needs a <em>human</em> hand. <span class="id">X4c, X5</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Accept, then go straight back to Esteban and talk to him.</div><div class="expect"><strong>He behaves exactly as before</strong> &mdash; he was not there and cannot know. Karma dropped 50. <span class="id">X6&ndash;X7</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Attack him.</div><div class="expect">A real fight, and <strong>no prison</strong>. <span class="flag">Three separate wards jail you in vanilla and this fix is on its third attempt &mdash; the two before it were byte-verified and still did nothing.</span> If you are arrested, this is the one to report. <span class="id">X8</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> As a caster, cast near him. Then leave the Crossroads, come back, attack again.</div><div class="expect">No jail either time. Every map entry re-clones a warded Esteban, so the fix has to survive that. <span class="id">X8a, X8e</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Attack him <strong>without</strong> the contract.</div><div class="expect"><strong>Still jailed.</strong> Vanilla behaviour is untouched for anyone not on the goblins' payroll. <span class="id">X8d</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Kill him, then return to the Patrol Leader, then talk again.</div><div class="expect">His quests fail, the Templar step rewinds, karma drops 75. Then 450 gold and the quest completes; the second conversation pays <strong>nothing</strong> more. <span class="id">X8c, X9&ndash;X10</span></div></div></li>
+  </ul>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">11</span><h2>The door that closed</h2><span class="map">Barcelona &middot; Temple District</span></div>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Take the Templar initiation to Lord Javier after killing Esteban.</div><div class="expect">The rung is <strong>closed</strong>. He requires state <code>AIFBMSWX</code> and the death rewound it &mdash; failing the quest status alone would not have been enough. <span class="id">X11</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> The harder version: do <em>all</em> Esteban's tasks first, reach the &ldquo;return to Javier&rdquo; state, <em>then</em> kill him.</div><div class="expect">The rung still closes &mdash; the rewind is unconditional. <span class="flag">The case that would expose a broken rewind.</span> <span class="id">X11b</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who b">B</span> Never take the contract. Then take Torquemada's and kill the Goblin Khan.</div><div class="expect">The Templar initiation works exactly as vanilla, and so does the anti-goblin path &mdash; which runs through a file this release edits. <span class="id">X12, N4&ndash;N5</span></div></div></li>
+  </ul>
+</section>
+
+<section class="panel note">
+  <h2>Not bugs. Please don't report these.</h2>
+  <ul class="checks">
+    <li><span></span><div class="body"><div><strong>Two of the four repaired links cannot be seen.</strong>
+      <code>Goblin Sapper</code>'s <code>30 goblin name</code> is an orphan node with zero inbound
+      links, and <code>GoblinVillager</code>'s <code>500 wilderness banter</code> fires only as a
+      balloon &mdash; balloons have no reply list.</div></div></li>
+    <li><span></span><div class="body"><div><code>River Dryad Take Goblinkill quest Grumjun NOT dead
+      High Outwit.can</code> is read by <strong>no conversation in the game</strong>.</div></div></li>
+    <li><span></span><div class="body"><div><strong>Accepting Esteban's goblin quest turns the patrol
+      hostile.</strong> You agreed to clear them out; that is the choice.</div></div></li>
+    <li><span></span><div class="body"><div><strong>The Khan calls you &ldquo;morsel&rdquo; in most of
+      his tree even at rank 3.</strong> Only the greeting and the entertainment demand change; he
+      says it 17 times across 41 nodes and rewriting all of them is not this release.</div></div></li>
+    <li><span></span><div class="body"><div><code>Goblin Horde NOT</code> is still referenced nowhere.
+      The goblin and Torquemada quests still don't fail each other, and the woodcutter's eyes still
+      move no karma.</div></div></li>
+  </ul>
+</section>
+
+<section>
+  <h2>If something breaks</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Symptom</th><th>Look here first</th></tr></thead>
+    <tbody>
+      <tr><td>A gated reply never appears, on any build</td><td>The <code>Requirement=</code> name didn't resolve. <strong>Top known risk:</strong> <code>Outwit 7+</code>, <code>Schmooze 7+</code>, <code>Tribal 80+</code> and <code>Thought 80+</code> live in a folder chosen from precedent, not proof.</td></tr>
+      <tr><td>A gated reply appears for <em>everyone</em></td><td>Same root cause &mdash; the requirement resolved to nothing and defaulted open.</td></tr>
+      <tr><td>&ldquo;Fatal Not Found Error&rdquo; on entering a map</td><td>A map-side node reference is matched byte-exactly and vanilla node IDs carry trailing spaces. The dialog names the node and lists the ones it found &mdash; screenshot it.</td></tr>
+      <tr><td>A service grants no rank</td><td>You may already be at rank 3, which is the cap. Otherwise the cascade in <code>Advance Goblin Rank.can</code> did not fire.</td></tr>
+      <tr><td>An NPC is missing entirely</td><td>Save staleness first. Then the generator's position &mdash; bad coordinates fail as silently as a bad spawner.</td></tr>
+      <tr><td>A goblin stands inert during a fight</td><td><code>goblins attack</code> didn't re-arm it.</td></tr>
+      <tr><td>Jailed attacking Esteban <em>with</em> the contract</td><td>The ward-lift dispatches through <code>Lift Esteban Wards.can</code>. Two earlier inline versions silently no-opped; if this one has too, that is the cause, not the field values.</td></tr>
+      <tr><td>You miss Esteban constantly</td><td>Not a bug &mdash; AC 200. Slow the attack-speed slider right down before grinding levels.</td></tr>
+      <tr><td>An NPC greets a stranger like an old friend</td><td>A greeting keyed on a proxy for an event rather than the event itself. Reported once at the Goblin Girl and found again at the Khan; if a <em>third</em> turns up, that is the shape to look for.</td></tr>
+      <tr><td>A change doesn't appear despite a clean build</td><td>The loose <code>data\</code> mirror shadows <code>data.dat</code>. Re-run <code>build</code>.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Worth recording for anything that fails:</strong> which character, their goblin rank,
+  the exact node or reply text, and whether the vanilla route still worked. That last one separates
+  &ldquo;a check didn't fire&rdquo; from &ldquo;a check ate the shipped content&rdquo;, which is the
+  failure this release's own rule forbids.</p>
+</section>
+
+<footer>
+  Lionheart Fixt 0.1.2-rc1 &middot; built, deployed and byte-verified in both <code>data.dat</code>
+  and the loose mirror &middot; the Crossroads parley, the goblin cursor and the Warrens crash fix
+  confirmed in play; the Esteban wards on their third fix, and 0.1.2 untested apart from the Goblin Girl greeting that prompted its own fix. Full case
+  list in <code>docs/qa.md</code>.
+</footer>
+
+</div>
