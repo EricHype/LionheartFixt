@@ -27,10 +27,20 @@ Release 0.1.0 - 0.1.2 covers the goblins of the Wilderness.
 The installer finds your game automatically. If it cannot, it asks you to paste
 the folder that contains Lionheart.exe.
 
-It does NOT modify data.dat, the game's big archive file. It copies files into
-the game's data\ folder, which the engine reads in preference to the archive.
-That means installing takes a couple of seconds instead of several minutes, and
-your original archive is never rewritten or at risk.
+It does NOT modify data.dat, the game's big archive file. It writes into the
+game's data\ folder, which the engine reads in preference to the archive. That
+means installing takes a couple of seconds instead of several minutes, and your
+original archive is never rewritten or at risk.
+
+This download contains none of the game's own files. Where Fixt changes something
+the game already has, it ships only the difference and rebuilds the file from
+your copy during install. That keeps the download small -- 60 KB rather than
+2 MB -- and means nothing here is redistributed content.
+
+One consequence: the installer needs your original files to patch. If another mod
+has already changed one of the same files, it will say exactly which file it could
+not rebuild and stop without changing anything. Remove the other mod, or verify
+your game files, and run it again.
 
 
 --------------------------------------------------------------------------------
@@ -91,8 +101,19 @@ The installer says access is denied
     "Run as administrator".
 
 Nothing seems different at all
-    Check that the installer reported files copied, and that you started a new
+    Check that the installer reported files written, and that you started a new
     game rather than loading an old one.
+
+"Could not rebuild <some file>"
+    Fixt patches your own game files rather than shipping copies of them, so it
+    needs the originals. Another mod has almost certainly changed that file
+    first. Remove it, or verify/reinstall the game, then try again. Nothing was
+    changed by the failed attempt.
+
+Windows or your antivirus warns about the installer
+    It is an unsigned .bat and .ps1 that asks for administrator rights, which is
+    a shape worth being suspicious of. Both are plain text -- read them. A
+    SHA-256 of the zip is published alongside the download.
 
 
 --------------------------------------------------------------------------------
