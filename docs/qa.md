@@ -131,7 +131,10 @@ unless the row says otherwise.
 | G4 | " | Character A with CH 7+ | The `Schmooze` gate reply is visible and also reaches `30 khan` |
 | G5 | " | Vanilla Speech 40 route | Still present and still works |
 | G6 | Rakeb | Bring the woodcutter's eyes and liver; hand them over (either the Barter 35 route or the plain one) | **Rank 2, `Goblin Blooded`**: Sneak and Barter each +8, Poison and Disease resistance each +10 |
-| G7 | " | Do it **before** the Hrubjub spy quest | Rank is **not** granted -- the guard requires rank 1 first |
+| G7 | " | Do the eyes quest as your **first** goblin service ever | You become **`Goblin Chum`**, not Blooded -- the cascade grants the next rank you lack, so no service is wasted |
+| G7b | Any two further services, in any order | e.g. the vodyanoi, then the Everlasting | Rank climbs 1 -> 2 -> 3 regardless of order, and **never past 3** |
+| G7c | A fourth and fifth service after reaching rank 3 | Anything else pro-goblin | Nothing happens. No rank, no duplicate title perk |
+| G7d | The Khan's *"I'm glad we see eye-to-eye"* reply | Take it at rank 2 | Exactly **one** rank. That reply both completes the bounty quest and grants rank, and briefly advanced twice |
 | G8 | Goblin Khan | Hand over the Everlasting (any of the three price routes) at rank 2 | **Rank 3, `Goblin Champion`**, granted alongside the shipped `Goblin Champion` perk |
 | G9 | " | Try the other two Everlasting routes afterwards | Rank does **not** increment again -- the rank==2 guard makes it idempotent |
 | G10 | Character sheet at rank 3 | Sum the three tiers | Sneak +30, Barter +14, Poison res +35, Disease res +10, Agility +1, carry weight +30 |
