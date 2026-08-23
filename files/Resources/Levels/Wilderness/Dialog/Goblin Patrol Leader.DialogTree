@@ -243,6 +243,26 @@ Text=The guardsman still breathes, chum. I can hear him from here, giving orders
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Guard Esteban
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=He does not breathe. I saw to that myself. Count it out.
+Go to node ID=40 paid
+Icon=Quest Icon
+Custom Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Esteban Death Consequences
+}
+
+Requirement=!None
 Reply Text=Soon.
 Go to node ID=90 goodbye
 Icon=Exit Icon

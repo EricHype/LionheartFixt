@@ -28400,69 +28400,127 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CIfAction
+							Action=CMultipleActionsAction
 							{
-								If=CIsQuestCompletedAction
+								Action=Array
 								{
-									Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
-								}
-								Then=CDisplayDialogTreeAction
-								{
-									Dialog Tree File=Levels/Wilderness/Dialog/Goblin Patrol Leader
-									Node ID=50 after
-									Speaker=$trigger
-									Player Being Spoken To=$Instigator
-								}
-								Else=CIfAction
-								{
-									If=CWasQuestEverActivatedAction
+									Item Count=2
+									Action=CIfAction
 									{
-										Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
-									}
-									Then=CIfAction
-									{
-										If=CExpressionAction
+										If=CIsAliveAction
 										{
-											Expression=CIsGreaterThanOrEqual
+											Name To Check For=Guard Esteban
+											Desired Minimum Count=1
+										}
+										Then=
+										Else=CMultipleActionsAction
+										{
+											Action=Array
 											{
-												Operand1=CVariableDerivedCharacterAttribute
+												Item Count=4
+												Action=CAddCharacterModifierToCharacterAction
 												{
-													Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+													Modifier Description=Esteban is dead
+													Modification is permanent=1
+													Character to modify=Player#1-9#
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=0
+															Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
 												}
-												Operator=
-												Operand2=CConstant
+												Action=CSetQuestSatusToFailedIfActiveAction
 												{
-													Constant Value=1
+													Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+												}
+												Action=CSetQuestSatusToFailedIfActiveAction
+												{
+													Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+												}
+												Action=CSetQuestSatusToFailedIfActiveAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
 												}
 											}
-											Character to get attributes from=$Instigator
+										}
+										Return failure if the If failes=0
+									}
+									Action=CIfAction
+									{
+										If=CIsQuestCompletedAction
+										{
+											Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
 										}
 										Then=CDisplayDialogTreeAction
 										{
 											Dialog Tree File=Levels/Wilderness/Dialog/Goblin Patrol Leader
-											Node ID=40 paid
+											Node ID=50 after
 											Speaker=$trigger
 											Player Being Spoken To=$Instigator
 										}
-										Else=CDisplayDialogTreeAction
+										Else=CIfAction
 										{
-											Dialog Tree File=Levels/Wilderness/Dialog/Goblin Patrol Leader
-											Node ID=3 Return Dialogue
-											Speaker=$trigger
-											Player Being Spoken To=$Instigator
+											If=CWasQuestEverActivatedAction
+											{
+												Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+											}
+											Then=CIfAction
+											{
+												If=CExpressionAction
+												{
+													Expression=CIsGreaterThanOrEqual
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=1
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Goblin Patrol Leader
+													Node ID=40 paid
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Goblin Patrol Leader
+													Node ID=3 Return Dialogue
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Return failure if the If failes=0
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/Goblin Patrol Leader
+												Node ID=1 Conversation Start
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Return failure if the If failes=0
 										}
 										Return failure if the If failes=0
 									}
-									Else=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/Wilderness/Dialog/Goblin Patrol Leader
-										Node ID=1 Conversation Start
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
-									}
-									Return failure if the If failes=0
 								}
-								Return failure if the If failes=0
 							}
 							X Radius=100
 							Attacker Range Modifier=0

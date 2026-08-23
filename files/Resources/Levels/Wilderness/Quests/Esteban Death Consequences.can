@@ -1,0 +1,45 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=4
+			Action=CAddCharacterModifierToCharacterAction
+			{
+				Modifier Description=Esteban is dead
+				Modification is permanent=1
+				Character to modify=Player#1-9#
+				Modifiers=Array
+				{
+					Item Count=1
+					Modifier=CCharacterModifierDerivedAttribute
+					{
+						Modification Amount=CConstant
+						{
+							Constant Value=1
+						}
+						Modification amount is a percent=0
+						Allow Accumulation=0
+						Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+					}
+				}
+				OPTIONAL Duration=
+				Expression Context=$Instigator
+			}
+			Action=CSetQuestSatusToFailedIfActiveAction
+			{
+				Quest=Levels/Wilderness/Quests/Investigate the goblin menace for Esteban
+			}
+			Action=CSetQuestSatusToFailedIfActiveAction
+			{
+				Quest=Levels/Wilderness/Quests/Slay the Giant Wasps in the Wilderness
+			}
+			Action=CSetQuestSatusToFailedIfActiveAction
+			{
+				Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+			}
+		}
+	}
+	Use=Shared Global Instance
+}
