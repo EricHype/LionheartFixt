@@ -74,6 +74,20 @@ even after visiting the maps again.
 
 
 --------------------------------------------------------------------------------
+  USING OTHER MODS AT THE SAME TIME
+--------------------------------------------------------------------------------
+
+Yes, as long as no two of them change the same file. Install them one after
+another; each is listed separately and each can be removed on its own, in any
+order, without disturbing the others.
+
+If two mods do want the same file, the second one refuses to install and tells
+you which file clashed. It does not merge them and it does not overwrite the
+first -- nothing is changed at all. There is no way to combine two mods that
+edit the same file; you have to choose one.
+
+
+--------------------------------------------------------------------------------
   UNINSTALLING
 --------------------------------------------------------------------------------
 
