@@ -19,13 +19,18 @@ Release 0.1.0 - 0.1.2 covers the goblins of the Wilderness.
 --------------------------------------------------------------------------------
 
   1. Close Lionheart if it is running.
-  2. Double-click Install.bat.
-  3. Approve the administrator prompt. This is needed because the game normally
-     lives under Program Files, and Windows will not let an ordinary program
-     write there.
+  2. Double-click "Mod Manager.bat".
+  3. Click "Install mod...", pick this release's .zip, and wait a few seconds.
 
-The installer finds your game automatically. If it cannot, it asks you to paste
-the folder that contains Lionheart.exe.
+The manager finds your game by itself. If it cannot, click Change... and point it
+at the folder containing Lionheart.exe. You can also drag a release .zip straight
+onto the window, and Uninstall puts everything back.
+
+Administrator rights are usually NOT needed -- a GOG install lets you write to its
+own folder. If yours does not, the manager says so and you can right-click
+"Mod Manager.bat" and choose "Run as administrator".
+
+Prefer no window? Install.bat and Uninstall.bat do the same job from a console.
 
 Installing rebuilds data.dat, the game's archive: your copy is read, the files
 Fixt changes are replaced, the ones it adds are added, and the result is written
@@ -97,12 +102,12 @@ exist. Keep a save from before installing if you want a guaranteed way back.
 A new character is not where the notes say they are
     Almost always an existing save. See the section above.
 
-The installer says it cannot find Lionheart
-    Paste the full path to the folder holding Lionheart.exe when it asks.
+It cannot find Lionheart
+    Click Change... in the manager and select the folder holding Lionheart.exe.
 
-The installer says access is denied
-    It was not run as administrator. Right-click Install.bat and choose
-    "Run as administrator".
+It says it cannot write to the game folder
+    Right-click "Mod Manager.bat" (or Install.bat) and choose "Run as
+    administrator". Nothing is changed when this happens.
 
 Nothing seems different at all
     Check that the installer reported files written, and that you started a new
@@ -114,10 +119,11 @@ Nothing seems different at all
     first. Remove it, or verify/reinstall the game, then try again. Nothing was
     changed by the failed attempt.
 
-Windows or your antivirus warns about the installer
-    It is an unsigned .bat and .ps1 that asks for administrator rights, which is
-    a shape worth being suspicious of. Both are plain text -- read them. A
-    SHA-256 of the zip is published alongside the download.
+Windows or your antivirus warns about it
+    Everything here is an unsigned .bat and .ps1. That is a shape worth being
+    suspicious of, so: they are plain text and you can read every line of them
+    before running anything. A SHA-256 of the zip is published alongside the
+    download.
 
 
 --------------------------------------------------------------------------------
