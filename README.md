@@ -18,7 +18,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.1.2-rc1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.1.2-rc1).
+-- currently [0.1.4-rc1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.1.4-rc1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -61,19 +61,26 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release candidate: 0.1.2-rc1
+## Current release candidate: 0.1.4-rc1
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
 standing, and a settlement that answers to almost nothing but Speech.
 
-It carries three releases' worth of work: **0.1.0 "The Horde"**, below, **0.1.1 "The
-Crossroads Patrol"**, and **0.1.2 "Standing"**, both described next.
+It carries four releases' worth of work: **0.1.0 "The Horde"**, **0.1.1 "The Crossroads
+Patrol"**, **0.1.2 "Standing"**, and **0.1.4 "What Playtesting Found"** -- all described
+below. (0.1.3 was written up and superseded before it was ever published.)
 
-**Not yet tested in-game, so this is a release candidate, not a release.** It is built,
-deployed, and verified byte-identical in both `data.dat` and the loose `data\` mirror --
-but nobody has played it. [`docs/qa.md`](docs/qa.md) is the checklist it has to pass
-first, and it needs two differently-built characters to pass honestly.
+**Still a candidate, but no longer an untested one.** Most of it has now been played, and
+0.1.4 exists entirely because of what that found: eight defects, of which the ones that
+mattered most were invisible to every static check -- a rank that silently never rose above
+1, a contract that paid nothing, a girl who greeted you as a stranger forever. Two fixes in
+0.1.4 are verified in the built data but not yet seen working in a session: the faction
+ranks, and Rakeb's restored greetings.
+
+[`docs/qa.md`](docs/qa.md) is the checklist, and it still wants two differently-built
+characters to pass honestly -- a build that solves everything cannot show whether a check
+quietly replaced a vanilla route, which is the failure this project's own rule forbids.
 
 ### 0.1.4 - what playtesting found
 

@@ -1,9 +1,9 @@
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Lionheart Fixt &middot; 0.1.2-rc1</div>
+  <div class="eyebrow">Lionheart Fixt &middot; 0.1.4-rc1</div>
   <h1>The Horde Playtest Route</h1>
-  <p class="standfirst">Everything 0.1.0, 0.1.1 and 0.1.2 changed, ordered by where you walk
+  <p class="standfirst">Everything 0.1.0 through 0.1.4 changed, ordered by where you walk
   rather than by feature. Eleven stops, two characters, and the Crossroads twice &mdash; because
   the contract needs a standing you cannot have on the first pass.</p>
 </header>
@@ -71,6 +71,22 @@
   <p><strong>This is worth deliberately testing out of order</strong>, because it was broken until
   late: rank used to be granted by Hrubjub alone, so a player who never met him finished at rank 0
   no matter how much they did for the Horde.</p>
+</section>
+
+<section class="stop">
+  <div class="stop-head"><span class="num">!!</span><h2>What 0.1.4 fixed, and what it did not</h2><span class="map">read this first</span></div>
+  <p class="expect">0.1.4 exists entirely because of the last playtest. Eight defects, and the
+  ones that mattered were <strong>invisible to every static check</strong> &mdash; the files were
+  byte-correct and the logic was wrong. Two of its fixes have still not been seen working in a
+  session, and they are the first things to try.</p>
+  <ul class="checks">
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> <strong>Take three goblin services and watch your standing.</strong></div><div class="expect">It must reach <strong>rank 3</strong>. Every tier used to grant <code>+1</code> and each replaced the last, so standing never passed 1 and the Crossroads contract refused players who had earned it. <span class="flag">Verified in the built data, never in play. If the contract still refuses you at Goblin Blooded, this is unfixed.</span> <span class="id">F1</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> Compare a rank's bonuses against the one below.</div><div class="expect">Each tier is now the running total of everything beneath it, so promotion never takes something away. Becoming Champion used to cost you Blooded's disease resistance and drop your Barter. <span class="id">F2</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who a">A</span> <strong>Rakeb, at three different points in his errands.</strong></div><div class="expect">Take the eyes job and return without them &rarr; <em>&ldquo;You return, but we do not see the eyes.&rdquo;</em> Kill the devil fish and return before taking a second job &rarr; <em>&ldquo;I have a job for you.&rdquo;</em> Finish everything &rarr; <em>&ldquo;We hope the items have served you well.&rdquo;</em> <span class="flag">All three were written and unreachable; he gave one generic line for every state. Needs a character who has never entered the Warrens.</span> <span class="id">F3</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Ask the goblin girl for a pie twice, and Rakeb for the devil fish job twice.</div><div class="expect">Neither should be given twice. Both were farmable. <span class="id">F4</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Kill Guard Esteban, then return to the patrol leader.</div><div class="expect">He pays, the quest completes, and Esteban's own quests fail. <span class="flag">Confirmed working. It took three attempts: a corpse still <em>exists</em>, so the check had to ask whether he was <em>alive</em>.</span> <span class="id">F5</span></div></div></li>
+    <li><input type="checkbox"><div class="body"><div><span class="who both">Both</span> Read the rank titles you have been given.</div><div class="expect">Each describes your standing, not a deed. Goblin Blooded used to claim you butchered a woodcutter for his eyes even if you earned it by killing the river dryad. <span class="id">F6</span></div></div></li>
+  </ul>
 </section>
 
 <section class="stop">
@@ -259,10 +275,10 @@
 </section>
 
 <footer>
-  Lionheart Fixt 0.1.2-rc1 &middot; built, deployed and byte-verified in both <code>data.dat</code>
-  and the loose mirror &middot; the Crossroads parley, the goblin cursor and the Warrens crash fix
-  confirmed in play; the Esteban wards on their third fix, and 0.1.2 untested apart from the Goblin Girl greeting that prompted its own fix. Full case
-  list in <code>docs/qa.md</code>.
+  Lionheart Fixt 0.1.4-rc1 &middot; built, byte-verified, and installed from the published
+  release &middot; most of 0.1.0&ndash;0.1.2 confirmed in play, and 0.1.4 written entirely from
+  what that found. The faction ranks and Rakeb's restored greetings are fixed but not yet seen
+  working in a session. Full case list in <code>docs/qa.md</code>.
 </footer>
 
 </div>
