@@ -29104,8 +29104,8 @@ CLayerSaveData
 									Action=CAddCharacterModifierToCharacterAction
 									{
 										Modifier Description=Met the Goblin Girl
-										Modification is permanent=1
-										Character to modify=Player#1-9#
+										Modification is permanent=0
+										Character to modify=$Instigator
 										Modifiers=Array
 										{
 											Item Count=1
@@ -29116,7 +29116,7 @@ CLayerSaveData
 													Constant Value=1
 												}
 												Modification amount is a percent=0
-												Allow Accumulation=0
+												Allow Accumulation=1
 												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Met the Goblin Girl
 											}
 										}

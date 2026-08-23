@@ -1,5 +1,5 @@
 ================================================================================
-  LIONHEART FIXT 0.1.2
+  LIONHEART FIXT 0.1.3
   A restoration and repair mod for Lionheart: Legacy of the Crusader
 ================================================================================
 
@@ -11,7 +11,7 @@ The rule the whole project follows: every check this mod adds opens a NEW route
 through a scene, and none removes an existing one. If you solved something in
 vanilla by talking your way out of it, that still works.
 
-Release 0.1.0 - 0.1.2 covers the goblins of the Wilderness.
+Release 0.1.0 - 0.1.3 covers the goblins of the Wilderness.
 
 
 --------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Release 0.1.0 - 0.1.2 covers the goblins of the Wilderness.
 
   1. Close Lionheart if it is running.
   2. Double-click "Mod Manager.bat" in this folder.
-  3. Click "Install Lionheart Fixt 0.1.2-rc1" and wait a few seconds.
+  3. Click "Install Lionheart Fixt 0.1.3-rc1" and wait a few seconds.
 
 Nothing to download separately and nothing to install first: the mod manager is
 in this folder, and the button names the mod it will install.
@@ -162,6 +162,12 @@ Windows or your antivirus warns about it
     The goblin patrol at the Crossroads was an ambush with no way to talk to it.
     It is now a parley, with a contract you can take against the guard captain
     who has been hunting them -- and the captain can now actually be killed.
+
+0.1.3  What Playtesting Found
+    Killing Guard Esteban is now noticed: the goblin patrol pays the
+    contract, the quest completes, and the quests he was running fail. The
+    goblin rank titles no longer describe a deed you may not have done. Six
+    blank dialogue options that did nothing when clicked are repaired.
 
 0.1.2  Standing
     The camp reacts to your rank. Villagers, Rakeb and the Khan all treat a

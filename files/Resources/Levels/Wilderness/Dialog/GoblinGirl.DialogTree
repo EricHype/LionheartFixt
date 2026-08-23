@@ -10,8 +10,21 @@ Text=You're cute for a... whatever it is you are.  What are you?  Are there more
 Should Have Voiceover=0
 
 Requirement=!None
-Reply Text=
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Met the Goblin Girl
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=(reading) she has met me before.
 Go to node ID=
+
 
 Requirement=!None
 Reply Text=Yes.
@@ -88,6 +101,7 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=
 Go to node ID=
+Is Default Reply=1
 Action work in progress=girls walks away
 ------------------------------------------------------------
 Node ID=90 Follow
@@ -101,15 +115,13 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=
 Go to node ID=
+Is Default Reply=1
 Action work in progress=girl runs away, PC gets "rejected Khan's daughter flag"
 ------------------------------------------------------------
 Node ID=110 New Hero in town
 Text=Oooh, you killed the water witch! You must be very fierce and cunning! I... I picked you a boquet of snails, the really juicy kind! Do you want them?
 Should Have Voiceover=0
 
-Requirement=!None
-Reply Text=
-Go to node ID=
 
 Requirement=!None
 Reply Text=Ah, just the kind I like, and I can see you picked them yourself! Seeing you all slimy like this is giving me wicked ideas!
@@ -146,6 +158,7 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=
 Go to node ID=
+Is Default Reply=1
 Action work in progress=girl storms off
 ------------------------------------------------------------
 Node ID=190 Follow 2
@@ -219,6 +232,7 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=
 Go to node ID=
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=250 Rejection
 Text=<Her face goes flat and old, all at once.> Fine. FINE. Go and be somebody else's problem. I hope something with too many teeth finds you in the dark, and I hope it is slow about it, and I hope you think of me.

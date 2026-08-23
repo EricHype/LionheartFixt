@@ -75,6 +75,46 @@ deployed, and verified byte-identical in both `data.dat` and the loose `data\` m
 but nobody has played it. [`docs/qa.md`](docs/qa.md) is the checklist it has to pass
 first, and it needs two differently-built characters to pass honestly.
 
+### 0.1.3 - what playtesting found
+
+The first release made entirely of things that only appear when someone plays it. Every
+item here was reported from a real session, and two of them were mine rather than the
+game's.
+
+**Killing Esteban did nothing.** No payment, no completed quest, no failed Templar
+initiation. Everything hung on a destroyed script that Fixt installs by appending an
+action to his generator, and that runs only when the generator *spawns* him -- so on any
+character who had already been to the Crossroads it never ran at all, and vanilla gives
+him no destroyed script to fall back on. Two attempted fixes failed before the real cause
+surfaced: **a killed NPC leaves a corpse, and a corpse still exists**, so asking
+`CCheckExistenceAction` whether Guard Esteban is around answers yes forever. The engine
+has a separate action for the question actually being asked, `CIsAliveAction`. The patrol
+leader now uses it, notices when the guardsman has stopped breathing, and pays out.
+
+**The rank titles described a deed you may not have done.** Goblin Chum claimed you had
+carried word of Barcelona's defences; Goblin Blooded, that you had butchered a man for his
+eyes. Both were written when each rank had exactly one route into it. Standing now
+accumulates across every service and the cascade grants whichever rank you lack next, so a
+player who killed the river dryad was being told they had gutted a woodcutter. All three
+titles now describe the standing rather than the deed. Rank 3's text was vanilla's own, so
+Fixt overrides it.
+
+**The Goblin Girl offered a blank reply that did nothing.** Six of them, in fact, all
+vanilla's -- and a defect rather than an idiom, since only 0.5% of the shipped game's
+10,915 replies have that shape. The game's real way to close a conversation is an empty
+reply flagged as the default, which node 250 in her own tree uses correctly. Two of the six
+sat beside working replies and are simply gone; the other four were the *only* exit from
+their node, so deleting them would have trapped you in a conversation. Those are now proper
+closes.
+
+**Still open: she does not remember meeting you.** Her greeting reads a flag that is
+written the first time you speak, and on a fresh character it is not sticking. The write
+used the minority option on all three fields vanilla varies -- permanent, target, and
+accumulation -- which is a poor bet even if each is individually legal, so it now matches
+what 47 of 50 vanilla writes do. **This release carries a diagnostic reply on her
+first-meeting node, reading `(reading) she has met me before.`** It exists to tell us
+whether the write or the read is at fault, and must be removed before 0.1.3 is final.
+
 ### First meetings, and greetings that assume too much
 
 Two bugs of the same shape, one found in play and one found by looking for its twin.
