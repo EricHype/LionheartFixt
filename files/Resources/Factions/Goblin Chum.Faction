@@ -16,6 +16,7 @@ CCharacterFaction
 					{
 						Constant Value=10
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Skill to modify=Skills/Thieving/Sneak
 				}
@@ -25,6 +26,7 @@ CCharacterFaction
 					{
 						Constant Value=10
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Damage Related/Poison Damage Resistance
 				}
@@ -34,8 +36,9 @@ CCharacterFaction
 					{
 						Constant Value=10
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
-					Derived character attribute to modify=Derived Character Attributes/CarryWeight
+					Derived character attribute to modify=Derived Character Attributes/Carry Weight/CarryWeight
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
@@ -43,6 +46,7 @@ CCharacterFaction
 					{
 						Constant Value=1
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Uber Perks/Goblin Rank
 				}

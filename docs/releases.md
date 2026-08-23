@@ -127,6 +127,43 @@ into a release it does not fit.
 Everything here came from a play session rather than from reading the archive, which makes
 it the first release whose contents could not have been planned.
 
+### The faction tiers replaced each other
+
+**Faction tiers replace each other, and that broke the ranks.** The in-game log settles
+what no amount of reading the archive had: taking Goblin Blooded prints *"-10 modifier to
+Sneak, -10 to Poison Resistance, -10 to Carry Weight"* -- Goblin Chum's whole package being
+withdrawn -- and then applies Blooded's. A character holds one faction, not a stack.
+
+Two bugs fell out of that. Every tier granted `+1 Goblin Rank`, so promotion removed the
+old `+1` and added a new one and **the rank never exceeded 1** -- which is precisely why the
+Crossroads contract kept refusing players who had earned it. The gates were correct; the
+number they read was not. Each tier now grants its own number: 1, 2, 3.
+
+And because the previous package is withdrawn, each tier has to be a strict superset of the
+one below or promotion is a demotion. Champion granted Barter +6 against Blooded's +8 and
+dropped Blooded's disease resistance entirely. The tiers now escalate the way vanilla's
+Templar line does -- melee 4, then 8, then 12, each keeping everything beneath it:
+
+| | Chum | Blooded | Champion |
+|---|---|---|---|
+| Sneak | +10 | +15 | +20 |
+| Barter | -- | +8 | +12 |
+| Poison Resistance | +10 | +20 | +30 |
+| Disease Resistance | -- | +10 | +15 |
+| Carry Weight | +10 | +15 | +25 |
+| Agility | -- | -- | +1 |
+| **Goblin Rank** | **1** | **2** | **3** |
+
+**Vanilla has the identical defect.** Templar Squire, Warden and Paladin all grant `+1
+Templar Rank`, so vanilla's own `Rank > 2` gates can never fire. Fixt inherited this by
+copying the shipped pattern faithfully -- which is the lesson worth keeping: a pattern
+being vanilla's does not make it a working one.
+
+One thing that cannot be fixed the same way: the titles stay in your perk list as you rise,
+so a Champion still shows Goblin Chum and Goblin Blooded. There is no remove-perk action in
+the engine -- `CGiveCharacterPerkAction` exists and nothing withdraws one -- so the three
+read as a record of what you earned rather than a single current rank.
+
 ### Esteban's death went unnoticed
 
 The contract paid nothing, the quest never completed, and the Templar initiation never

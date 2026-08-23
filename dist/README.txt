@@ -164,6 +164,11 @@ Windows or your antivirus warns about it
     who has been hunting them -- and the captain can now actually be killed.
 
 0.1.3  What Playtesting Found
+    Goblin standing now actually rises. Each rank of the Horde replaced the
+    last rather than adding to it, so your standing never passed the first
+    tier and the crossroads contract kept refusing you. Each rank is also
+    now strictly better than the one below it; becoming Champion used to
+    cost you the disease resistance you had as Blooded.
     Killing Guard Esteban is now noticed: the goblin patrol pays the
     contract, the quest completes, and the quests he was running fail. The
     goblin rank titles no longer describe a deed you may not have done. Six

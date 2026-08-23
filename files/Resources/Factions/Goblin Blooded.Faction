@@ -9,13 +9,14 @@ CCharacterFaction
 			Modification is permanent=1
 			Modifiers=Array
 			{
-				Item Count=5
+				Item Count=6
 				Modifier=CCharacterModifierSkill
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=8
+						Constant Value=15
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Skill to modify=Skills/Thieving/Sneak
 				}
@@ -25,6 +26,7 @@ CCharacterFaction
 					{
 						Constant Value=8
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Skill to modify=Skills/Thieving/Barter
 				}
@@ -32,8 +34,9 @@ CCharacterFaction
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=10
+						Constant Value=20
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Damage Related/Poison Damage Resistance
 				}
@@ -43,6 +46,7 @@ CCharacterFaction
 					{
 						Constant Value=10
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Damage Related/Disease Damage Resistance
 				}
@@ -50,8 +54,19 @@ CCharacterFaction
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=1
+						Constant Value=15
 					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Carry Weight/CarryWeight
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Uber Perks/Goblin Rank
 				}

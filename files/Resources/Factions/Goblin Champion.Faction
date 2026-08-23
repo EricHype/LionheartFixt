@@ -9,13 +9,14 @@ CCharacterFaction
 			Modification is permanent=1
 			Modifiers=Array
 			{
-				Item Count=6
+				Item Count=7
 				Modifier=CCharacterModifierSkill
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=12
+						Constant Value=20
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Skill to modify=Skills/Thieving/Sneak
 				}
@@ -23,8 +24,9 @@ CCharacterFaction
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=6
+						Constant Value=12
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Skill to modify=Skills/Thieving/Barter
 				}
@@ -32,10 +34,31 @@ CCharacterFaction
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=15
+						Constant Value=30
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Damage Related/Poison Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=15
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Disease Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=25
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Carry Weight/CarryWeight
 				}
 				Modifier=CCharacterModifierAttribute
 				{
@@ -43,6 +66,7 @@ CCharacterFaction
 					{
 						Constant Value=1
 					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Character attribute to modify=Character Attributes/(AG) Agility
 				}
@@ -50,17 +74,9 @@ CCharacterFaction
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=20
+						Constant Value=3
 					}
-					Allow Accumulation=1
-					Derived character attribute to modify=Derived Character Attributes/CarryWeight
-				}
-				Modifier=CCharacterModifierDerivedAttribute
-				{
-					Modification Amount=CConstant
-					{
-						Constant Value=1
-					}
+					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Uber Perks/Goblin Rank
 				}
