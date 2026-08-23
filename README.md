@@ -81,6 +81,32 @@ The first release made entirely of things that only appear when someone plays it
 item here was reported from a real session, and two of them were mine rather than the
 game's.
 
+**Rakeb had 33 nodes and the map opened two of them.** Three finished return-greetings were
+unreachable, because `3 Return Dialogue` was shown unconditionally and swallowed every
+situation they were written for:
+
+| Node | What he says | When it now shows |
+|---|---|---|
+| `115` | *"You return, but we do not see the eyes. Find the woodsman and return with them."* | you took the eyes job and have not delivered |
+| `63` | *"I knew you would return. I have a job for you."* | the devil fish are dead, the second task untaken |
+| `136` | *"We hope the items have served you well..."* | all his business concluded |
+
+He now has a selector on the same pattern as the Goblin Girl's -- most specific first, each
+rung a strict narrowing of the one below, with `3 Return Dialogue` as the fallback. His
+first-meeting node is untouched.
+
+Two orphans are deliberately left alone. `200 dead woodcutter` has no text and no replies:
+an empty placeholder, with nothing to restore. `300 shaman` and `300 shaman 2` are
+Khan's-court guard lines sitting in the wrong file -- no map anywhere opens Rakeb's tree at
+them, and inventing a reason for a shaman to shout *"Bow before the Great Plumdjum Khan, you
+worm!"* would be writing new content rather than restoring it.
+
+An audit of the rest of his tree found nothing else wrong. Two things that looked broken are
+not: `43 Crazy`'s *"You'll die for that remark!"* has no target because it carries
+`CGoToCombatAction`, and the two identical *"I have killed the Devil fish"* replies on node 3
+are mutually exclusive -- one requires the Darsh rescue quest to be current, the other
+requires it not to be.
+
 **Two rewards could be collected over and over.** The Goblin Girl handed out a liver pie
 every time you asked, and Rakeb would re-issue the devil fish quest as often as you cared to
 say *"speak to me as clan"*. Same defect in two shapes: a one-time transaction offered from

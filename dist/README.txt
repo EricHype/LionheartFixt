@@ -169,6 +169,9 @@ Windows or your antivirus warns about it
     tier and the crossroads contract kept refusing you. Each rank is also
     now strictly better than the one below it; becoming Champion used to
     cost you the disease resistance you had as Blooded.
+    Rakeb the shaman now reacts to what you have done for him. Three
+    greetings that were written for him could never be seen, because he
+    gave the same generic line whatever the state of his errands.
     The goblin girl no longer hands out an endless supply of liver pies,
     and Rakeb will not re-issue the devil fish quest once you have taken it.
     Killing Guard Esteban is now noticed: the goblin patrol pays the

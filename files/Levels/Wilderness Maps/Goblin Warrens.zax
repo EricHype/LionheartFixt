@@ -23472,12 +23472,73 @@ CLayerSaveData
 										Speaker=$trigger
 										Player Being Spoken To=$Instigator
 									}
-									Action=CDisplayDialogTreeAction
+									Action=CIfAction
 									{
-										Dialog Tree File=Levels/Wilderness/Dialog/Rakeb
-										Node ID=3 Return Dialogue
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										If=CIsQuestCompletedAction
+										{
+											Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/Wilderness/Dialog/Rakeb
+											Node ID=136 Vision
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Else=CIfAction
+										{
+											If=CIsQuestStateTheCurrentStateAction
+											{
+												Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+												State=4MH7UVMD
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/Rakeb
+												Node ID=115 Returning after accepting Woodsman quest without his eyes
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Else=CIfAction
+											{
+												If=CAndAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CIsQuestCompletedAction
+														{
+															Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+														}
+														Action=CNotAction
+														{
+															Action=CIsQuestCompletedAction
+															{
+																Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+															}
+														}
+													}
+													Early Exit=0
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Rakeb
+													Node ID=63 Returning after the node 60 without accepting the other task
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Rakeb
+													Node ID=3 Return Dialogue
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
 									}
 								}
 								When Done=Repeat Last Action
