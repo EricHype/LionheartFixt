@@ -1,5 +1,5 @@
 ================================================================================
-  LIONHEART FIXT 0.1.3
+  LIONHEART FIXT 0.1.4
   A restoration and repair mod for Lionheart: Legacy of the Crusader
 ================================================================================
 
@@ -11,7 +11,7 @@ The rule the whole project follows: every check this mod adds opens a NEW route
 through a scene, and none removes an existing one. If you solved something in
 vanilla by talking your way out of it, that still works.
 
-Release 0.1.0 - 0.1.3 covers the goblins of the Wilderness.
+Release 0.1.0 - 0.1.4 covers the goblins of the Wilderness.
 
 
 --------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Release 0.1.0 - 0.1.3 covers the goblins of the Wilderness.
 
   1. Close Lionheart if it is running.
   2. Double-click "Mod Manager.bat" in this folder.
-  3. Click "Install Lionheart Fixt 0.1.3-rc1" and wait a few seconds.
+  3. Click "Install Lionheart Fixt 0.1.4-rc1" and wait a few seconds.
 
 Nothing to download separately and nothing to install first: the mod manager is
 in this folder, and the button names the mod it will install.
@@ -163,7 +163,7 @@ Windows or your antivirus warns about it
     It is now a parley, with a contract you can take against the guard captain
     who has been hunting them -- and the captain can now actually be killed.
 
-0.1.3  What Playtesting Found
+0.1.4  What Playtesting Found
     Goblin standing now actually rises. Each rank of the Horde replaced the
     last rather than adding to it, so your standing never passed the first
     tier and the crossroads contract kept refusing you. Each rank is also

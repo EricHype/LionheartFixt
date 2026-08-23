@@ -75,7 +75,7 @@ deployed, and verified byte-identical in both `data.dat` and the loose `data\` m
 but nobody has played it. [`docs/qa.md`](docs/qa.md) is the checklist it has to pass
 first, and it needs two differently-built characters to pass honestly.
 
-### 0.1.3 - what playtesting found
+### 0.1.4 - what playtesting found
 
 The first release made entirely of things that only appear when someone plays it. Every
 item here was reported from a real session, and two of them were mine rather than the
@@ -190,13 +190,13 @@ sat beside working replies and are simply gone; the other four were the *only* e
 their node, so deleting them would have trapped you in a conversation. Those are now proper
 closes.
 
-**Still open: she does not remember meeting you.** Her greeting reads a flag that is
-written the first time you speak, and on a fresh character it is not sticking. The write
-used the minority option on all three fields vanilla varies -- permanent, target, and
-accumulation -- which is a poor bet even if each is individually legal, so it now matches
-what 47 of 50 vanilla writes do. **This release carries a diagnostic reply on her
-first-meeting node, reading `(reading) she has met me before.`** It exists to tell us
-whether the write or the read is at fault, and must be removed before 0.1.3 is final.
+**She also did not remember meeting you**, which made every visit her first. The flag her
+greeting reads is written the first time you speak to her, and the write used the minority
+option on all three fields vanilla varies -- `permanent`, target, and accumulation. Each is
+individually legal, which is why nothing flagged it, but a write agreeing with vanilla on
+none of its three optional fields is a poor bet. It now matches what 47 of 50 vanilla writes
+do, and she remembers. Found by shipping a diagnostic reply that reported the flag's value
+rather than guessing at it a fourth time.
 
 ### First meetings, and greetings that assume too much
 

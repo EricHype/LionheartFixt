@@ -56,7 +56,7 @@ development.
 | **0.1.0** | **The Horde** - the goblin thread becomes a faction you can join, and the camp starts reading your build | The most complete unfinished thread in the game. Almost no new machinery, one new quest, and it is the only evil path with writing already in place |
 | **0.1.1** | **The Crossroads patrol** (built) - disarm the spawn-hostility, add the counter-contract on Esteban, and let the Templar exclusivity bite | Finishes the goblin theme while its machinery is fresh. Kept out of 0.2.0 deliberately: it is new writing, and 0.2.0's value is that it has none |
 | **0.1.2** | **Standing** (built) - the camp reacts to your rank, and standing accumulates across every service rather than being granted once | Completes the faction as a thing with texture, not just a gate |
-| **0.1.3** | **What playtesting found** (built) - Esteban's death is recognised, the rank titles stop naming a deed you may not have done, and the Goblin Girl's dead replies are repaired | The first release made entirely of play reports. Cut as its own version because the fixes change behaviour players had already seen |
+| **0.1.4** | **What playtesting found** (built) - Esteban's death is recognised, the rank titles stop naming a deed you may not have done, and the Goblin Girl's dead replies are repaired | The first release made entirely of play reports. Cut as its own version because the fixes change behaviour players had already seen |
 | 0.2.0 | Link repair, whole game | 84 true dead ends. Ships standalone, needs no new writing. Deliberately *not* first: 0.1.0 needs to demonstrate the thing Fixt is for |
 | 0.3.0 | The Knights of Saladin | The second minor faction, all in act 1, and the template is now proven by 0.1.0 |
 | 0.4.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
@@ -122,7 +122,10 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
-## 0.1.3 - "What Playtesting Found"
+## 0.1.4 - "What Playtesting Found"
+
+*Written up as 0.1.3 and never published; more fixes landed before it went out, so it
+ships as 0.1.4 rather than leaving a version that exists only in this repository.*
 
 Everything here came from a play session rather than from reading the archive, which makes
 it the first release whose contents could not have been planned.
@@ -265,18 +268,20 @@ only exit from their node, so deleting them would have left the conversation wit
 out; they are now proper closes. This is exactly the class of repair Fixt exists for, and
 all six were vanilla's.
 
-### Open: the Goblin Girl does not remember you
+### The Goblin Girl did not remember you
 
 Her greeting keys on `Met the Goblin Girl`, written the first time you speak to her, and on
-a fresh character it is not taking effect. The write used the minority option on all three
-fields vanilla varies for scripting variables -- `permanent=1` where 47 of 50 use 0,
-`Player#1-9#` where 34 use `$Instigator`, `accumulation=0` where 31 use 1 -- and now matches
-the dominant pattern.
+a fresh character it was not taking effect -- so every visit was her first. The write used
+the minority option on all three fields vanilla varies for scripting variables:
+`permanent=1` where 47 of 50 use 0, `Player#1-9#` where 34 use `$Instigator`,
+`accumulation=0` where 31 use 1. Each is individually legal, which is why nothing caught it.
+It now matches the dominant pattern.
 
-Whether that is sufficient is unknown, so this release carries a **temporary diagnostic**: a
-reply on her first-meeting node reading `(reading) she has met me before.`, visible only
-when the flag is set. Its presence or absence on a second visit distinguishes a failed write
-from a failed read. **It must be removed before 0.1.3 is final.**
+What settled it was shipping a diagnostic rather than theorising: a reply on her
+first-meeting node, visible only when the flag was set, so its presence on a second visit
+would separate a failed write from a failed read. That is the habit worth keeping from this
+release -- three earlier bugs cost multiple cycles each to inference that a single
+measurement would have ended.
 
 ## 0.1.0 - "The Horde"
 
