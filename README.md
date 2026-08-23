@@ -13,6 +13,33 @@ than from opinion.
 **This repository is the mod.** Its root is the mod package: `mod.json`, `files/`, and the
 documents that explain every decision in it.
 
+## Installing
+
+Download the release zip, unzip it, and double-click
+**`Mod Manager.bat`**. The button names the mod; click it and wait a few seconds.
+
+Nothing else is needed -- no Python, no separate mod manager, no vanilla backup to make
+first. The manager finds a GOG, Steam or retail install by itself, and `Uninstall` puts
+everything back exactly as it was.
+
+**Start a new game afterwards.** A save records a map's contents the first time it enters
+and restores that recording rather than re-reading it, so characters this mod places will
+not appear on an existing save. Dialogue changes *do* appear, which makes it worse rather
+than better: half the mod seems to work.
+
+Unzip somewhere with a **short path**. A few resource paths run to ~110 characters, and a
+deep folder pushes them past Windows' 260-character limit, where the extractor drops files
+without reporting it -- the install then fails for a reason that looks nothing like the
+cause.
+
+Building from a checkout instead, with [the tools](https://github.com/EricHype/LionheartModTools):
+
+```
+python modmanager.py install <path to this repo> "<game folder>"
+python modmanager.py uninstall lionheart-fixt "<game folder>"
+```
+
+
 | | |
 |---|---|
 | [`docs/design.md`](docs/design.md) | the diagnosis, measured, and the phase plan |

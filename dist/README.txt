@@ -19,12 +19,16 @@ Release 0.1.0 - 0.1.2 covers the goblins of the Wilderness.
 --------------------------------------------------------------------------------
 
   1. Close Lionheart if it is running.
-  2. Double-click "Mod Manager.bat".
-  3. Click "Install mod...", pick this release's .zip, and wait a few seconds.
+  2. Double-click "Mod Manager.bat" in this folder.
+  3. Click "Install Lionheart Fixt 0.1.2-rc1" and wait a few seconds.
+
+Nothing to download separately and nothing to install first: the mod manager is
+in this folder, and the button names the mod it will install.
 
 The manager finds your game by itself. If it cannot, click Change... and point it
-at the folder containing Lionheart.exe. You can also drag a release .zip straight
-onto the window, and Uninstall puts everything back.
+at the folder containing Lionheart.exe. Uninstall puts everything back, and you
+can install other mods with it too -- "Other mod..." opens a file picker, or drag
+a release .zip onto the window.
 
 Administrator rights are usually NOT needed -- a GOG install lets you write to its
 own folder. If yours does not, the manager says so and you can right-click
