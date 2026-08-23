@@ -9,22 +9,6 @@ Node ID=1 First time PC enters village
 Text=You're cute for a... whatever it is you are.  What are you?  Are there more of you? Are they all so cute? 
 Should Have Voiceover=0
 
-Requirement=!None
-Custom Requirement=CIsGreaterThanOrEqual
-{
-Operand1=CVariableDerivedCharacterAttribute
-{
-Character Attribute=Derived Character Attributes/Game Scripting Variables/Met the Goblin Girl
-}
-Operator=
-Operand2=CConstant
-{
-Constant Value=1
-}
-}
-Reply Text=(reading) she has met me before.
-Go to node ID=
-
 
 Requirement=!None
 Reply Text=Yes.
