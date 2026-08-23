@@ -516,7 +516,9 @@ Experience Points To Add=1
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CExpressionNot
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
 {
 Operand1=CActionExpression
 {
@@ -524,6 +526,18 @@ Action=CCheckExistenceAction
 {
 Name To Check For=killed all fish
 Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate devil fish for shaman
+}
 }
 }
 }

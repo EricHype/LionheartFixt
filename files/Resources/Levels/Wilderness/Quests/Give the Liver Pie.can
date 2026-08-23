@@ -1,0 +1,44 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=2
+			Action=CActionGiveStandardInventoryItem
+			{
+				Who to give to=$instigator
+				Delete Trigger=0
+				Notify Player=1
+				Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver Pie Goblins
+				Additions to add=Array
+				{
+					Item Count=0
+				}
+			}
+			Action=CAddCharacterModifierToCharacterAction
+			{
+				Modifier Description=Gave the Goblin Girl the Liver
+				Modification is permanent=0
+				Character to modify=$Instigator
+				Modifiers=Array
+				{
+					Item Count=1
+					Modifier=CCharacterModifierDerivedAttribute
+					{
+						Modification Amount=CConstant
+						{
+							Constant Value=1
+						}
+						Modification amount is a percent=0
+						Allow Accumulation=1
+						Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Gave the Goblin Girl the Liver
+					}
+				}
+				OPTIONAL Duration=
+				Expression Context=$Instigator
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

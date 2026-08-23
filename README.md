@@ -81,6 +81,21 @@ The first release made entirely of things that only appear when someone plays it
 item here was reported from a real session, and two of them were mine rather than the
 game's.
 
+**Two rewards could be collected over and over.** The Goblin Girl handed out a liver pie
+every time you asked, and Rakeb would re-issue the devil fish quest as often as you cared to
+say *"speak to me as clan"*. Same defect in two shapes: a one-time transaction offered from
+a node the player returns to freely, with nothing asking whether it had already happened.
+
+Her node 200 is the greeting for as long as the woodcutter is dead, and its *"Here, I
+brought you his liver"* reply led to the pie unconditionally -- it did not even check you
+were carrying a liver. It is now gated on a flag set when the pie is handed over, so the
+reply disappears once the exchange is done.
+
+Rakeb's offer already carried a guard -- `NOT exists("killed all fish")` -- so vanilla did
+think about it, but that only rules out re-taking the quest *after* the fish are dead. It
+says nothing about taking the quest, walking away and coming back. Vanilla's test is kept
+and ANDed with whether the quest was ever activated.
+
 **Faction tiers replace each other, and that broke the ranks.** The in-game log settles
 what no amount of reading the archive had: taking Goblin Blooded prints *"-10 modifier to
 Sneak, -10 to Poison Resistance, -10 to Carry Weight"* -- Goblin Chum's whole package being

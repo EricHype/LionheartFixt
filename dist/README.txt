@@ -169,6 +169,8 @@ Windows or your antivirus warns about it
     tier and the crossroads contract kept refusing you. Each rank is also
     now strictly better than the one below it; becoming Champion used to
     cost you the disease resistance you had as Blooded.
+    The goblin girl no longer hands out an endless supply of liver pies,
+    and Rakeb will not re-issue the devil fish quest once you have taken it.
     Killing Guard Esteban is now noticed: the goblin patrol pays the
     contract, the quest completes, and the quests he was running fail. The
     goblin rank titles no longer describe a deed you may not have done. Six

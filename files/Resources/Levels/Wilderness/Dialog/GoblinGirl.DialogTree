@@ -158,6 +158,18 @@ Text=How many innocents did you kill? Did you bring Rakeb the eyes? What did you
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Gave the Goblin Girl the Liver
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
 Reply Text=Here, I brought you his liver.
 Go to node ID=220 Liver
 Action work in progress=remove woodsman's liver from inventory
@@ -197,16 +209,9 @@ Requirement=!None
 Reply Text=
 Go to node ID=290 follow 3
 Action work in progress=(girl give PC a poison pie)
-Custom Action=CActionGiveStandardInventoryItem
+Custom Action=CUseCannedActionAction
 {
-Who to give to=$instigator
-Delete Trigger=0
-Notify Player=1
-Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver Pie Goblins
-Additions to add=Array
-{
-Item Count=0
-}
+Canned Object=Levels/Wilderness/Quests/Give the Liver Pie
 }
 ------------------------------------------------------------
 Node ID=230 Another present
@@ -235,16 +240,9 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=I will carry it everywhere. Thank your mother for me.
 Go to node ID=290 follow 3
-Custom Action=CActionGiveStandardInventoryItem
+Custom Action=CUseCannedActionAction
 {
-Who to give to=$instigator
-Delete Trigger=0
-Notify Player=1
-Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver Pie Goblins
-Additions to add=Array
-{
-Item Count=0
-}
+Canned Object=Levels/Wilderness/Quests/Give the Liver Pie
 }
 Is Default Reply=1
 ------------------------------------------------------------
