@@ -1,0 +1,793 @@
+CDialogTree
+{
+Name=Inquisitor Darsh
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Rescued at last!  Now that you are here, Inquisitor, we should have no problem eliminating these abominations. They shall pay dearly for their atrocities. Let us kill them all - every last heathen!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If I help you, we do it my way. We leave this village with stealth and wit.
+Go to node ID=20
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will escort you back to Barcelona. Any goblins blocking our way, die.
+Go to node ID=
+Action work in progress=Inquisitor Darsh will begin seeking and attacking Goblins.  He is weak and needs your healing to survive.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=darsh gets new dialog
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=TTX37U4V
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+State=NXHFHONZ
+}
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry, I'm not getting paid to rescue you.
+Go to node ID=100 offer
+
+Requirement=!None
+Reply Text=I think imprisonment suits you, Inquisitor. Goodbye.
+Go to node ID=100 offer
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=This is not my concern. I'm leaving.
+Go to node ID=100 offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20
+Text=Leave without a fight? Where is your courage? Are you a coward? Come now, let us put an end to these creatures that have dared to imprison an Inquisitor.  I cannot do it alone, but with your help and God's will, it will be done.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, we must escape with caution. You are weakened and we cannot defeat all the goblins.
+Go to node ID=30 disappointing
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You are right. I will escort you back to Barcelona. Any goblins blocking our way, die.
+Go to node ID=
+Action work in progress=Inquisitor Darsh will begin seeking and attacking Goblins.  He is weak and needs your healing to survive.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=darsh gets new dialog
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=TTX37U4V
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+State=NXHFHONZ
+}
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I'd rather not help you.
+Go to node ID=100 offer
+
+Requirement=!None
+Reply Text=The more I speak with you, the more I dislike you. Rot here, for all I care.
+Go to node ID=100 ignore offer
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=This is not my concern. I'm leaving.
+Go to node ID=100 offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 disappointing
+Text=You disappoint me, young one. Fine, I will return one day and slaughter these heathens myself. Let us go.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=darsh gets new dialog
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=TTX37U4V
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+State=NXHFHONZ
+}
+Return failure if the If failes=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 goblin scout sniffs
+Text=<Sniff> <Sniff>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 goblin horde
+Text=We don't have much time before they are upon us. Would you like to fight, or flee, or perhaps I could try magic to conceal us?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What kind of magic are you talking about?
+Go to node ID=210 invisibility
+
+Requirement=!None
+Reply Text=Let's try to hide in the shadows from the goblins.
+Go to node ID=240 hide in shadows
+
+Requirement=!None
+Reply Text=We fight to the last.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh fights
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=We should flee, now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh flees
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 invisibility
+Text=There is a spell that I saw the goblin shaman cast once. It is dark magic and unfamiliar to me, so it would be up to our fortunes whether the spell works or not. But if I cast it correctly, we will be rendered invisible for a short time.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Let's try your magic, Inquisitor.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh casts invisibility
+}
+
+Requirement=!None
+Reply Text=I'm not convinced. We should prepare for battle.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh fights
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm not convinced. We should flee, now!
+Go to node ID=230 flee from goblins
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh flees
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=230 flee from goblins
+Text=If you think that is best, I will follow.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh flees
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=240 hide in shadows
+Text=Hide in shadows? Do you take me for a petty thug? If you had a measure of courage, you would help me send these heathens back to the hellfire they slithered from.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 25
+}
+Reply Text=Your holiness, I only seek to keep you safe from a horde of monsters.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh tries to hide
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I insist that we hide now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh refuses to hide
+}
+
+Requirement=!None
+Reply Text=We fight to the last.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh fights
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=We should flee, now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=darsh flees
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 start darsh nis
+Text=Listen! Do you hear those savages? The goblins have sent a war party to hunt us down!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=200 goblin horde
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=310 darsh casts
+Text=Very well. I will try my best.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=320 goblin says to come
+Text=Brothers, don't delay! We must follow the trail of our prey!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=340 darsh tries to hide
+Text=Very well, I will try my best. Hide in the shadows, quickly!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=400 all clear
+Text=They have passed. We are safe now.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=400 time to flee
+Text=Run then, I will try to follow, but don't stop until you see the gates of Nueva Barcelona!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=400 darsh fights
+Text=These fiends will likely flee at the sight of our courage. Let us slay these heathens to the last.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=400 oh dear
+Text=Oh dear.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=400 not hide well
+Text=No, you blundering fool! You hide in shadows like a *torch*!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 saved darsh
+Text=Through your actions and the grace of God, I have returned to my birthcity - too many nights I feared I would never leave that god-forsaken goblin village alive.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 thank you
+Text=You have my eternal gratitude. Thank again for rescuing me. May your path be blessed with good fortune.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 offer
+Text=You...heartless cur! There is, of course,  a *reward* for my safe return. If you would free me and return me to Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If I help you, we do it my way. We leave this village with stealth and wit.
+Go to node ID=20
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will escort you back to Barcelona. Any goblins blocking our way, die.
+Go to node ID=
+Action work in progress=Inquisitor Darsh will begin seeking and attacking Goblins.  He is weak and needs your healing to survive.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=darsh gets new dialog
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=TTX37U4V
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+State=NXHFHONZ
+}
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You likely deserve this fate, Inquisitor. Who am I to oppose fate?
+Go to node ID=100 ignore offer
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm not willing to risk my life for you.
+Go to node ID=100 ignore offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 ignore offer
+Text=You are no better than these monsters...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Conversation Start Not Inquisitor
+Text=Praise the Lord, my salvation! I am Inquisitor Darsh, a prisoner of these wicked creatures for the past few days. I beseech you, help me escape so that I can destroy all of these abominations.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If I help you, we do it my way. We leave this village with stealth and wit.
+Go to node ID=20
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will escort you back to Barcelona. Any goblins blocking our way, die.
+Go to node ID=
+Action work in progress=Inquisitor Darsh will begin seeking and attacking Goblins.  He is weak and needs your healing to survive.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=darsh gets new dialog
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=TTX37U4V
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+State=NXHFHONZ
+}
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, I'm not getting paid to rescue you.
+Go to node ID=100 offer
+
+Requirement=!None
+Reply Text=I think imprisonment suits you, Inquisitor. Goodbye.
+Go to node ID=100 offer
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=This is not my concern. I'm leaving.
+Go to node ID=100 offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return
+Text=You have returned. Will you help a servant of the Inquisition escape this imprisonment?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If I help you, we do it my way. We leave this village with stealth and wit.
+Go to node ID=20
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will escort you back to Barcelona. Any goblins blocking our way, die.
+Go to node ID=
+Action work in progress=Inquisitor Darsh will begin seeking and attacking Goblins.  He is weak and needs your healing to survive.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=darsh gets new dialog
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=TTX37U4V
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+State=NXHFHONZ
+}
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm with you, let's destroy the goblins.
+Go to node ID=
+Action work in progress=Inquisitor Darsh will begin seeking and attacking Goblins.  He is weak and needs your healing to survive.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=darsh gets new dialog
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=TTX37U4V
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+State=NXHFHONZ
+}
+Return failure if the If failes=0
+}
+Action=CSetDamagedScriptActionAction
+{
+New Damaged Action=
+Target Name=Darsh
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry, I'm not getting paid to rescue you.
+Go to node ID=100 offer
+
+Requirement=!None
+Reply Text=I think imprisonment suits you, Inquisitor. Goodbye.
+Go to node ID=100 offer
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=This is not my concern. I'm leaving.
+Go to node ID=100 offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 release darsh
+Text=Well, are you ready to resume our journey to Barcelona?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, follow me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Action=CActivateAction
+{
+Target Name=Darsh is a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=is darsh a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=No, I want you to wait here for now.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 attack
+Text=Before I die in this place, I will send you to your fate!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 darsh refuses you
+Text=Insist all you want, I will not hide. I want to tame these heathens with the hammer of faith.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10000 Far from Barcelona
+Text=I must return to Barcelona! If we do not journey there soon, I shall go there myself!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10001 Darsh leaving for good
+Text=Very well! Adios! I must report to the Grand Inquisitor! God speed you on your quests, for I doubt we shall meet again!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Darsh Leaves for Good
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 saved darsh 2
+Text=I would like you to have this pendant, a holy necklace blessed and given to me by the Grand Inquisitor himself. It protects the wearer against evil - may it serve you well.
+Should Have Voiceover=0
+}
