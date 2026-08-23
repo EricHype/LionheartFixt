@@ -98,13 +98,20 @@ Templar line does -- melee 4, then 8, then 12, each keeping everything beneath i
 
 | | Chum | Blooded | Champion |
 |---|---|---|---|
-| Sneak | +10 | +15 | +20 |
-| Barter | -- | +8 | +12 |
-| Poison Resistance | +10 | +20 | +30 |
-| Disease Resistance | -- | +10 | +15 |
-| Carry Weight | +10 | +15 | +25 |
+| Sneak | +10 | +18 | +30 |
+| Barter | -- | +8 | +14 |
+| Poison Resistance | +10 | +20 | +35 |
+| Disease Resistance | -- | +10 | +10 |
+| Carry Weight | +10 | +10 | +30 |
 | Agility | -- | -- | +1 |
 | **Goblin Rank** | **1** | **2** | **3** |
+
+Each tier grants the **running total** of everything below it, so replacement produces the
+same character a stack would have. Moving the bonuses onto the perks would stack genuinely
+-- perks accumulate and cannot be removed -- but **no shipped title perk grants a bonus**,
+all 13 of vanilla's are pure text, and the behaviour that would carry them is named
+`...WhenSelected` on a perk the player can never select. Faction bonuses are confirmed
+working in play; that path is not, so the arithmetic route wins on evidence.
 
 **Vanilla has the identical defect.** Templar Squire, Warden and Paladin all grant `+1
 Templar Rank`, so vanilla's own `Rank > 2` gates can never fire. Fixt inherited this by

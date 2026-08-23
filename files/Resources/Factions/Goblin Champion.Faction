@@ -14,27 +14,17 @@ CCharacterFaction
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=20
+						Constant Value=30
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=1
 					Skill to modify=Skills/Thieving/Sneak
 				}
-				Modifier=CCharacterModifierSkill
-				{
-					Modification Amount=CConstant
-					{
-						Constant Value=12
-					}
-					Modification amount is a percent=0
-					Allow Accumulation=1
-					Skill to modify=Skills/Thieving/Barter
-				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=30
+						Constant Value=35
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=1
@@ -44,21 +34,31 @@ CCharacterFaction
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=15
+						Constant Value=30
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=1
-					Derived character attribute to modify=Derived Character Attributes/Damage Related/Disease Damage Resistance
+					Derived character attribute to modify=Derived Character Attributes/Carry Weight/CarryWeight
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=14
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Barter
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
 					Modification Amount=CConstant
 					{
-						Constant Value=25
+						Constant Value=10
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=1
-					Derived character attribute to modify=Derived Character Attributes/Carry Weight/CarryWeight
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Disease Damage Resistance
 				}
 				Modifier=CCharacterModifierAttribute
 				{
