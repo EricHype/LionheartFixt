@@ -173,3 +173,6 @@ Windows or your antivirus warns about it
 
 Fixt is named after Fallout Fixt, in the same spirit: fix what is broken, restore
 what was cut, and change as little else as possible.
+
+Updates, older versions and the source:
+  https://github.com/EricHype/LionheartFixt/releases

@@ -11,12 +11,17 @@ writes new content where the game simply ran out - working from the shipped arch
 than from opinion.
 
 **This repository is the mod.** Its root is the mod package: `mod.json`, `files/`, and the
-documents that explain every decision in it.
+documents that explain every decision in it. Releases are on the
+[releases page](https://github.com/EricHype/LionheartFixt/releases); the current one is a
+**release candidate**, so expect to find things.
 
 ## Installing
 
-Download the release zip, unzip it, and double-click
-**`Mod Manager.bat`**. The button names the mod; click it and wait a few seconds.
+**[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
+-- currently [0.1.2-rc1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.1.2-rc1).
+
+Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
+wait a few seconds.
 
 Nothing else is needed -- no Python, no separate mod manager, no vanilla backup to make
 first. The manager finds a GOG, Steam or retail install by itself, and `Uninstall` puts
