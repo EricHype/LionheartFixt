@@ -74,10 +74,10 @@ below. (0.1.3 was written up and superseded before it was ever published.)
 **Still a candidate, but no longer an untested one.** Most of it has now been played, and
 0.1.4 exists entirely because of what that found: eight defects, of which the ones that
 mattered most were invisible to every static check -- a rank that silently never rose above
-1, a contract that paid nothing, a girl who greeted you as a stranger forever. One fix in 0.1.4 is
-verified in the built data but has never been seen working in a session: the faction ranks.
-Rakeb's restored greetings are confirmed -- node 115 fires on a return visit with the eyes
-job outstanding, which also confirms that a map interaction can read quest state.
+1, a contract that paid nothing, a girl who greeted you as a stranger forever. Every fix in it has now been
+seen working, including the two that took longest: goblin standing climbs 1 to 3 across
+three services, and Rakeb's restored greetings fire -- which also confirmed that a map
+interaction can read quest state, something every greeting selector depends on.
 
 [`docs/qa.md`](docs/qa.md) is the checklist, and it still wants two differently-built
 characters to pass honestly -- a build that solves everything cannot show whether a check

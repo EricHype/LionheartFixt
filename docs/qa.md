@@ -165,12 +165,12 @@ unless the row says otherwise.
 ### 0.1.4 - what playtesting found
 
 Every case here exists because a play session found a defect that static checking could
-not. The first two are fixed but not yet re-confirmed in play, which makes them the most
-valuable things in this table.
+not. All of these have now been seen working. They are kept because a regression in any of them
+would be invisible to every static check the project has -- which is how each got here.
 
 | # | Where | Do | Expect |
 |---|---|---|---|
-| F1 | Anywhere | Perform three goblin services | Standing reaches **rank 3**. Every tier granted `+1` and replaced the last, so it never passed 1 and the Crossroads contract refused players who had earned it. **Not yet seen working in play** |
+| F1 | Anywhere | Perform three goblin services | Standing reaches **rank 3**. Every tier granted `+1` and replaced the last, so it never passed 1 and the Crossroads contract refused players who had earned it. **Confirmed in play** |
 | F2 | " | Compare each rank's bonuses to the one below | Each tier is the running total of everything beneath it. Champion used to cost you Blooded's disease resistance and drop Barter |
 | F3 | Goblin Warrens | Rakeb, at three points in his errands | Eyes job taken, not delivered -> *"we do not see the eyes"*. Fish killed, second job untaken -> *"I have a job for you"*. All done -> *"the items have served you well"*. All three were unreachable. *"we do not see the eyes"* **confirmed in play**; the other two rungs are not. Needs a character new to the map |
 | F4 | " | Ask the girl for a pie twice; ask Rakeb for the fish job twice | Neither is given twice. Both were farmable |

@@ -214,6 +214,14 @@ all 13 of vanilla's are pure text, and the behaviour that would carry them is na
 `...WhenSelected` on a perk the player can never select. Faction bonuses are confirmed
 working in play; that path is not, so the arithmetic route wins on evidence.
 
+**Confirmed in play.** Standing climbs 1, 2, 3 across three services, and the disease
+resistance survives promotion to Champion -- so both halves landed: the escalating grant
+that makes the rank equal the tier, and the cumulative totals that stop a promotion taking
+something away. This was the longest-lived defect in the project: it made the Crossroads
+contract refuse players who had earned it, and I spent three sessions checking gate
+thresholds, branch mappings, name resolution and save snapshots before a screenshot of the
+in-game log showed the tiers withdrawing each other.
+
 **Vanilla has the identical defect.** Templar Squire, Warden and Paladin all grant `+1
 Templar Rank`, so vanilla's own `Rank > 2` gates can never fire. Fixt inherited this by
 copying the shipped pattern faithfully -- which is the lesson worth keeping: a pattern
