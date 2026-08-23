@@ -172,7 +172,7 @@ valuable things in this table.
 |---|---|---|---|
 | F1 | Anywhere | Perform three goblin services | Standing reaches **rank 3**. Every tier granted `+1` and replaced the last, so it never passed 1 and the Crossroads contract refused players who had earned it. **Not yet seen working in play** |
 | F2 | " | Compare each rank's bonuses to the one below | Each tier is the running total of everything beneath it. Champion used to cost you Blooded's disease resistance and drop Barter |
-| F3 | Goblin Warrens | Rakeb, at three points in his errands | Eyes job taken, not delivered -> *"we do not see the eyes"*. Fish killed, second job untaken -> *"I have a job for you"*. All done -> *"the items have served you well"*. All three were unreachable. **Not yet seen working in play**; needs a character new to the map |
+| F3 | Goblin Warrens | Rakeb, at three points in his errands | Eyes job taken, not delivered -> *"we do not see the eyes"*. Fish killed, second job untaken -> *"I have a job for you"*. All done -> *"the items have served you well"*. All three were unreachable. *"we do not see the eyes"* **confirmed in play**; the other two rungs are not. Needs a character new to the map |
 | F4 | " | Ask the girl for a pie twice; ask Rakeb for the fish job twice | Neither is given twice. Both were farmable |
 | F5 | Crossroads | Kill Esteban, return to the patrol leader | He pays, the quest completes, his own quests fail. A corpse still *exists*, so the check had to ask whether he was *alive* |
 | F6 | Anywhere | Read the rank titles you hold | Each describes standing, not a deed you may not have done |

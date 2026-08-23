@@ -146,6 +146,11 @@ He now has a selector on the same pattern as the Goblin Girl's -- most specific 
 rung a strict narrowing of the one below, with `3 Return Dialogue` as the fallback. His
 first-meeting node is untouched.
 
+**Confirmed in play**: returning with the eyes job outstanding produces node 115 rather than
+the generic greeting. That also settles a question the selector depended on --
+`CIsQuestStateTheCurrentStateAction` does evaluate correctly from a map interaction, not
+only from a dialogue requirement.
+
 Two orphans are deliberately left alone. `200 dead woodcutter` has no text and no replies:
 an empty placeholder, with nothing to restore. `300 shaman` and `300 shaman 2` are
 Khan's-court guard lines sitting in the wrong file -- no map anywhere opens Rakeb's tree at
