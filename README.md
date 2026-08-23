@@ -12,13 +12,12 @@ than from opinion.
 
 **This repository is the mod.** Its root is the mod package: `mod.json`, `files/`, and the
 documents that explain every decision in it. Releases are on the
-[releases page](https://github.com/EricHype/LionheartFixt/releases); the current one is a
-**release candidate**, so expect to find things.
+[releases page](https://github.com/EricHype/LionheartFixt/releases).
 
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.1.4-rc1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.1.4-rc1).
+-- currently [0.1.4](https://github.com/EricHype/LionheartFixt/releases/tag/v0.1.4).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -50,7 +49,7 @@ python modmanager.py uninstall lionheart-fixt "<game folder>"
 | [`docs/design.md`](docs/design.md) | the diagnosis, measured, and the phase plan |
 | [`docs/plan.md`](docs/plan.md) | the work, section by section and map by map |
 | [`docs/releases.md`](docs/releases.md) | what ships, in what version, in what order |
-| [`docs/qa.md`](docs/qa.md) | every case a release candidate has to pass |
+| [`docs/qa.md`](docs/qa.md) | every case a release has to pass |
 | [`docs/playtest-guide/`](docs/playtest-guide/) | the same cases as a route to walk, built by `build.py` |
 | [`dist/README.txt`](dist/README.txt) | what a player reads after unzipping a release |
 | [`LICENSE`](LICENSE) / [`NOTICE`](NOTICE) | MIT, and what the MIT grant does and does not cover |
@@ -61,7 +60,7 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release candidate: 0.1.4-rc1
+## Current release: 0.1.4
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
@@ -71,17 +70,17 @@ It carries four releases' worth of work: **0.1.0 "The Horde"**, **0.1.1 "The Cro
 Patrol"**, **0.1.2 "Standing"**, and **0.1.4 "What Playtesting Found"** -- all described
 below. (0.1.3 was written up and superseded before it was ever published.)
 
-**Still a candidate, but no longer an untested one.** Most of it has now been played, and
-0.1.4 exists entirely because of what that found: eight defects, of which the ones that
-mattered most were invisible to every static check -- a rank that silently never rose above
-1, a contract that paid nothing, a girl who greeted you as a stranger forever. Every fix in it has now been
-seen working, including the two that took longest: goblin standing climbs 1 to 3 across
-three services, and Rakeb's restored greetings fire -- which also confirmed that a map
-interaction can read quest state, something every greeting selector depends on.
+**Played, and fixed from what playing found.** 0.1.4 exists entirely because of a
+playtest: eight defects, of which the ones that mattered most were invisible to every static
+check -- a rank that silently never rose above 1, a contract that paid nothing, a girl who
+greeted you as a stranger forever. Every fix has since been seen working, including the two
+that took longest: goblin standing climbs 1 to 3 across three services, and Rakeb's restored
+greetings fire, which also confirmed that a map interaction can read quest state.
 
-[`docs/qa.md`](docs/qa.md) is the checklist, and it still wants two differently-built
-characters to pass honestly -- a build that solves everything cannot show whether a check
-quietly replaced a vanilla route, which is the failure this project's own rule forbids.
+**One gap is worth naming.** [`docs/qa.md`](docs/qa.md) wants two differently-built
+characters, and only one has walked it. A build that solves everything cannot show whether a
+check quietly *replaced* a vanilla route rather than adding one -- the failure this project's
+own rule forbids -- and only a low-INT, low-CHA character can. That pass is still outstanding.
 
 ### 0.1.4 - what playtesting found
 
