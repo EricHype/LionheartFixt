@@ -27,20 +27,24 @@ Release 0.1.0 - 0.1.2 covers the goblins of the Wilderness.
 The installer finds your game automatically. If it cannot, it asks you to paste
 the folder that contains Lionheart.exe.
 
-It does NOT modify data.dat, the game's big archive file. It writes into the
-game's data\ folder, which the engine reads in preference to the archive. That
-means installing takes a couple of seconds instead of several minutes, and your
-original archive is never rewritten or at risk.
+Installing rebuilds data.dat, the game's archive: your copy is read, the files
+Fixt changes are replaced, the ones it adds are added, and the result is written
+back. It takes about ten seconds. The new archive is checked before it replaces
+the old one, so a failure part way through leaves your game as it was.
 
-This download contains none of the game's own files. Where Fixt changes something
-the game already has, it ships only the difference and rebuilds the file from
-your copy during install. That keeps the download small -- 60 KB rather than
-2 MB -- and means nothing here is redistributed content.
+This download contains none of the game's own files. Where Fixt changes
+something the game already has, it ships only the difference and rebuilds the
+file from your copy during installation. That keeps the download to 60 KB rather
+than 2 MB, and means nothing here is redistributed content.
 
 One consequence: the installer needs your original files to patch. If another mod
-has already changed one of the same files, it will say exactly which file it could
-not rebuild and stop without changing anything. Remove the other mod, or verify
-your game files, and run it again.
+has already changed one of the same files, it will say exactly which file it
+could not rebuild and stop without changing anything. Remove the other mod, or
+verify your game files, and run it again.
+
+You need about 2 GB of free disk space during installation, since the new
+archive is written before the old one is replaced. The installer checks first
+and stops if there is not enough.
 
 
 --------------------------------------------------------------------------------

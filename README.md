@@ -21,6 +21,7 @@ documents that explain every decision in it.
 | [`docs/qa.md`](docs/qa.md) | every case a release candidate has to pass |
 | [`docs/playtest-guide/`](docs/playtest-guide/) | the same cases as a route to walk, built by `build.py` |
 | [`dist/README.txt`](dist/README.txt) | what a player reads after unzipping a release |
+| [`LICENSE`](LICENSE) / [`NOTICE`](NOTICE) | MIT, and what the MIT grant does and does not cover |
 
 **The tooling lives separately**, in
 [LionheartModTools](https://github.com/EricHype/LionheartModTools) - the archive
