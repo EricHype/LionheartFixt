@@ -398,6 +398,20 @@ The most important gate, and the easiest to skip.
   the Khan and the villagers. `NOT` is still referenced nowhere.
 - The goblin and Torquemada quests still do not fail each other, and harvesting the
   woodcutter's eyes still moves no karma; neither is scheduled yet.
+- **The captive child on Scar Ravine works, and needs nothing.** Investigated in 0.2 and
+  cleared on three counts, recorded so nobody re-opens it. (1) `60 Boy freaks` looks
+  orphaned in `Goblin guarding Woodcutter daughter.DialogTree`, but it is a stray duplicate
+  -- the map correctly plays the child's own copy from `Woodcutterson.DialogTree`, and the
+  balloon exchange runs. (2) The rescue pays off: `Woodcutter Forest.zax` selects
+  three ways, and `daughter saved` reaches `6 saved daughter` and its reward. (3) The
+  Woodcutter's `90 Player return A-1` through `160 Player Return G` are **superseded, not
+  cut** -- `2 Return Dialogue angry` (11 replies) and `3 Return Dialogue happy` (10) are
+  the consolidated greetings that absorbed that whole series through reply-level gates.
+  What is genuinely unused there: three aggro barks (`100 dinner`, `100 take our meal`,
+  `100 take brain`). Wiring `100 take our meal` would need a captive-death trigger on a map
+  the mod does not own, for one line.
+- **The Darsh jailor scene works too** -- see the 0.2 jailor section. Vanilla wires it end
+  to end; only the rank reply is Fixt's.
 - **Every goblin conversation with player replies is now touched.** `GoblinCrier`,
   `GoblinLt`, `Goblin Hut Ritual Sayings` and `Goblin Shaman` remain vanilla: they are
   balloon banks with no player replies at all, and are correctly left alone.
