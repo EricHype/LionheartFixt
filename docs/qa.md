@@ -264,6 +264,29 @@ Confirmed in play: F1 and the main-exit farewell. **F2, F3, F5, F7, F9, F10 and 
 unobserved.** F9 and F10 are the two that matter -- they are the failure modes that turn a
 bounded follower back into a full companion, or into a ghost saying goodbye.
 
+### 0.2 - Esteban and the bandit you killed before he asked
+
+Kill the Crossroads bandit before Esteban raises it, tell him so, and he verifies your
+claim. The relay that brings him back opened `113 Thief success` -- *"Good work! Here is
+your justly deserved reward"* -- congratulating you on an assignment he never made. The
+node written for this path, `114 pre assigned thief success`, was reached by nothing.
+
+The path is exclusive: `60 Thieves` sits behind `Esteban will not reassign thief quest`, so
+the relay can only fire for a player he never asked.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| E1 | Crossroads | Kill El Bandito Rie **before** taking any Esteban quest, then talk to him and ask about thieves | The reply *"I've already taken care of those thieves"* is offered |
+| E2 | " | Take it | He verifies, screen fades, and he returns with *"**Really? Most excellent.** Here is your reward"* -- **not** *"Good work!"* |
+| E3 | " | Check money and log | 150 gold and the XP from the verify step, `Find the Crossroads Bandit` completed. Unchanged from before this fix -- the payout was never the broken part |
+| E4 | " | If the wasps are also dead, take *"I have also slain the wasps"* | Wasp quest completes, 100 gold, **and he now answers** with `103 wasps killed` -- *"Muy excelente!"* Before, the conversation ended silently |
+| E5 | " | Take *"I should be on my way"*, or press Escape | `10 Goodbye`. This reply did not exist on the node before; its default used to push you on to `35 dangers 2` |
+| E6 | Crossroads, the **assigned** route | Take the thief quest from Esteban normally, then complete it | Still reaches `113 Thief success` and *"Good work!"* -- 113 is reached from six other places and must be untouched |
+
+E6 is the regression that matters. E3 and E4 guard against double-payment: the wasp
+completion lives on the reply, and `103 wasps killed` pays nothing itself, so the
+retarget cannot pay twice.
+
 ### 0.2 - Grumdjum after the dryad
 
 One field. The post-dryad Grumdjum's talk interaction opened `160 After Dryad death bubble`

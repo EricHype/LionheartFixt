@@ -1800,11 +1800,10 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Are there other troubles?
 Go to node ID=35 dangers 2
-Is Default Reply=1
 
 Requirement=Esteban requires all wasps killed
 Reply Text=I have also slain the wasps.
-Go to node ID=
+Go to node ID=103 wasps killed
 Custom Action=CMultipleActionsAction
 {
 Action=Array
@@ -1892,6 +1891,11 @@ Experience Points To Add=1
 }
 }
 Icon=Quest Icon
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=130 verify
 Text=Really?  Wait here, I must verify this.
