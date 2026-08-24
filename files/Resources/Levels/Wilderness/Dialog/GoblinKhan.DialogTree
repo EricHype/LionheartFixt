@@ -303,6 +303,10 @@ Reply Text=Sorry, Great Khan, I seem to have taken a wrong turn. I'll be on my w
 Go to node ID=11 Earn Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=Goblin Horde Highlevel
+Reply Text=Great Khan, I would serve the Horde again. What does the war need?
+Go to node ID=350 next task
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=10 Goodbye
 Text=It's fortunate for you I had a large lunch.  Very well, I'll allow you to leave... this time.
@@ -1042,14 +1046,71 @@ Is Default Reply=1
 Node ID=350 next task
 Text=You have proven yourself worthy to remain in my presence. Now you may be privy to the grand plans of our tribe. I have need of a strategist to assist with our next war campaign.
 Should Have Voiceover=0
+Requirement=!None
+Reply Text=What campaign is this, Great Khan?
+Go to node ID=360 attack barcelona
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Find another strategist.
+Go to node ID=400 Where are you going?
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Later, Great Khan. I have business.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=360 attack barcelona
 Text=I have drawn plans to invade Nueva Barcelona. My goblins prepare for war. But there are many warriors within the city, and the walls are nearly impregnable.
 Should Have Voiceover=0
+Requirement=!None
+Reply Text=Impregnable? Then how do you mean to cross them?
+Go to node ID=365 barcelona walls
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Then your horde will break on those walls, and I will watch.
+Go to node ID=400 Where are you going?
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I will think on it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=365 barcelona walls
 Text=Of course not, we need only adopt the proper strategy to scale that obstacle. *You* will slay the guards outside the city walls, beginning with that fool Guard Esteban. Then kill the gate guards to prevent them from dropping the portcullis, and my horde will flood into the city.
 Should Have Voiceover=0
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=Esteban is already dead. I cut him down before you asked.
+Go to node ID=370 the khan hears esteban is dead
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=The gate will be open, Great Khan.
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I will not open a city of men to your cookpots.
+Go to node ID=400 Where are you going?
+Icon=Fight Icon
 ------------------------------------------------------------
 Node ID=05 Return Friends of Khan
 Text=So, the goblin friend returns. What do you want?
@@ -1217,6 +1278,14 @@ Is Default Reply=1
 Node ID=400 Where are you going?
 Text=I did not say you could leave! Have at thee!
 Should Have Voiceover=0
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Khan dialog player said kill him
+}
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=500 Start in Persia
 Text=Hello, Goblin morsel. Without a doubt you are surprised to see Rumjun Khan here amidst the sandy dunes. I am here to cause destruction in this part of the world...and assist you on your journey of bloodshed.
@@ -1299,4 +1368,14 @@ Should Have Voiceover=0
 Node ID=205 last guy dead
 Text=*You* will feed my hunger now, interloper!
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=370 the khan hears esteban is dead
+Text=<He stops. The cave stops with him.> Dead already. Before I asked for him. <The laugh starts low and goes on far too long.> Morsel, I keep generals who need three days and a map to do less than that. Find my gate guards next, and do not wait on my asking for those either.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It will be done, Great Khan.
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
 }

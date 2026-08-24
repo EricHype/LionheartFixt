@@ -264,6 +264,33 @@ Confirmed in play: F1 and the main-exit farewell. **F2, F3, F5, F7, F9, F10 and 
 unobserved.** F9 and F10 are the two that matter -- they are the failure modes that turn a
 bounded follower back into a full companion, or into a ghost saying goodbye.
 
+### 0.2 - the Khan's war campaign
+
+Four orphaned vanilla nodes restored. `365` names Guard Esteban as step one of an invasion
+of Nueva Barcelona, which is the motive the Esteban contract has never had.
+
+Requires **Goblin Champion** (rank 3 -- the rank the Khan himself grants at `195 Charisma`
+for bargaining well over the Everlasting), so this is late in his arc by design.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| K1 | Goblin Khan, as **Champion** | Talk to him | New reply *"I would serve the Horde again. What does the war need?"* is offered |
+| K2 | " | Take it | `350 next task` -- *"I have need of a strategist"* |
+| K3 | " | Continue twice | `360 attack barcelona`, then `365 barcelona walls`, which names Esteban and the gate guards |
+| K4 | " | Accept | Conversation ends peacefully. Nothing else changes -- the briefing grants no quest and no reward |
+| K5 | " | At `350` or `360`, take the **Exit Icon** reply, or press Escape | Conversation ends, camp stays calm. **The default reply is never the fight** |
+| K6 | " | Take a **Fight Icon** reply at any of the three | `400 Where are you going?` -- *"I did not say you could leave!"* -- and the Khan turns hostile |
+| K7 | " | **Below Champion** (Chum or Blooded) | The entry reply is **absent**; his conversation is unchanged from 0.1.4 |
+| K8 | Khan, **after already killing Esteban** | Reach `365` | A fourth reply appears: *"Esteban is already dead. I cut him down before you asked."* -> `370`, the Khan's reaction |
+| K9 | " | Same, with Esteban **alive** | That reply is **absent** |
+
+K7 and K9 are the pair worth checking hardest -- either one failing open means a gate did
+not resolve, which is this project's top recurring failure mode.
+
+**Not a bug, do not report:** the horde never does attack Barcelona. Act 6 has essentially
+no goblins in it. The briefing restores the Khan's stated plan, not a promise the game
+keeps.
+
 ### 0.2 - the goblin jailor, and rank as an argument
 
 The Darsh escort scene is **vanilla and works** -- it was surveyed as possible cut content
