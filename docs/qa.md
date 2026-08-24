@@ -264,6 +264,33 @@ Confirmed in play: F1 and the main-exit farewell. **F2, F3, F5, F7, F9, F10 and 
 unobserved.** F9 and F10 are the two that matter -- they are the failure modes that turn a
 bounded follower back into a full companion, or into a ghost saying goodbye.
 
+### 0.2 - Grumdjum after the dryad
+
+One field. The post-dryad Grumdjum's talk interaction opened `160 After Dryad death bubble`
+-- a bark -- instead of `8 Return Dialogue Dryad Dead`. The bubble is still there; it is
+node 8's exit reply, which is how we know 8 was meant to be the entry.
+
+Reaching it: take the dryad quest from Grumdjum at the Lake, kill the River Dryad, return
+and hand it in. He walks to her crystal and respawns there as a second entity.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| G1 | Lake, after handing in the dryad kill | Find Grumdjum at the dryad's crystal and talk to him | *"It is always a pleasure to see you, my dryad slayer..."* and **three replies**. Before this fix he said one line about her brain and the conversation ended |
+| G2 | " | Ask *"What is New Khara'Khorum?"* | `100 Goblin City` -- he says to seek it **through the waterfall to the east**. That is a real direction: the Warrens' second exit is `From Waterfall Passage` |
+| G3 | " | Ask about poetry (needs `Player has heard Grumjun poetry` > 0, so hear a poem from him first) | `200 new poem`, then any of three reactions -> `200 new poem response` |
+| G4 | " | Take the third reply, or press Escape | `160 After Dryad death bubble` -- the brain line, now working as the sign-off it reads as |
+| G5 | " | Re-open the conversation | Repeats cleanly; no farming, since nothing here grants anything |
+| G6 | Lake, **before** handing in the dryad kill | Talk to Grumdjum | Unchanged from vanilla -- the rotating `3` / `5` / `6` / `7` greetings, and the hand-in reply still pays the Ring of Fiery Death and advances rank |
+
+G6 is the regression that matters: this edit sits next to the quest hand-in, which is
+shipped and tested content.
+
+**Not done, and reclassified as back-half work:** Grumdjum's `300 ...` companion arc (ten
+nodes -- join, dismissal, rejoin, injury barks, combat quips, all in rhyme). His join line
+is about Alamut, the Khan's `500 Start in Persia` is the matching cut goblin companion for
+the same act, and neither has a companion generator on any map. One cut Act 8 feature, not
+Wilderness work.
+
 ### 0.2 - the Khan's war campaign
 
 Four orphaned vanilla nodes restored. `365` names Guard Esteban as step one of an invasion
