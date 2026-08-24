@@ -287,6 +287,38 @@ E6 is the regression that matters. E3 and E4 guard against double-payment: the w
 completion lives on the reply, and `103 wasps killed` pays nothing itself, so the
 retarget cannot pay twice.
 
+### 0.3 - the Knights of Saladin award the rank, not just the title
+
+The Dream Djinni trials hand out `Dervish of the Crescent` -- whose own text says *"You have
+become a Favored One of the Knights of Saladin"* -- or `Scholar of the Crescent`. Both are
+perks, and perks confer only skills. `Dream Djinni Map.zax` performed **zero** faction
+assignments, and the only place in the shipped game that assigned a Saladin faction was a
+test map. So `Saladin IS` (Saladin Rank > 0) was never true and **20 replies across four
+acts could never appear.**
+
+Reaching it: complete the Dream Djinni trials in Barcelona, by combat (Dervish) or by wits
+(Scholar).
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| S1 | Dream Djinni, Barcelona | Win the trials by **combat** | `Dervish of the Crescent` awarded **and** the character sheet shows the Aswaran modifiers: +10 One-Handed, +10 Two-Handed, +1 EN, +20 carry |
+| S2 | " | Win by **wits** instead | `Scholar of the Crescent` awarded, same Aswaran modifiers |
+| S3 | " | Re-trigger the trial reward if possible | Rank does **not** climb past 1. Faction tiers replace rather than stack, and only Aswaran is ever assigned |
+| S4 | **Quinn the Herbalist**, Gate District | Talk to him as a Saladin | **6 replies** appear that were previously unreachable -- more than any other NPC in the game |
+| S5 | Temple Entrance Guard, Gate District | Talk as a Saladin | 1 new reply |
+| S6 | Brother Michel, Montaillou | " | 3 new replies |
+| S7 | Joan of Arc, the Crypt | " | 3 new replies, including claiming the Bleeding Lance for the Order |
+| S8 | Sir Roger, English Shrine | " | 7 new replies -- the largest single block |
+| S9 | Any of the above, **not** a Saladin | " | All of those replies are **absent**. This is the gate-failing-open check |
+
+S4 is the cheapest real test -- Quinn is metres from the Dream Djinni and carries six of the
+twenty. S9 is the one that matters most.
+
+**Not a bug:** the Aswaran description text says "+1 Endurance, carry weight increases by 10,
+and both melee skills gain 4 points" while the record actually grants +10/+10/+1/+20. That
+mismatch is vanilla's, in a description nobody could previously read because the faction was
+never assigned. Left alone.
+
 ### 0.2 - Grumdjum after the dryad
 
 One field. The post-dryad Grumdjum's talk interaction opened `160 After Dryad death bubble`

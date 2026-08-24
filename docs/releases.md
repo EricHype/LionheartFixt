@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.2.1 shipped**. 0.1.0 through 0.1.4, 0.2.0 and 0.2.1 are published; the sections
+Status: **0.2.1 shipped; 0.3.0 in progress**. 0.1.0 through 0.1.4, 0.2.0 and 0.2.1 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -59,9 +59,10 @@ development.
 | **0.1.2** | **Standing** (built) - the camp reacts to your rank, and standing accumulates across every service rather than being granted once | Completes the faction as a thing with texture, not just a gate |
 | **0.1.4** | **What playtesting found** (built) - Esteban's death is recognised, the rank titles stop naming a deed you may not have done, and the Goblin Girl's dead replies are repaired | The first release made entirely of play reports. Cut as its own version because the fixes change behaviour players had already seen |
 | 0.2.0 | Link repair, whole game | 84 true dead ends. Ships standalone, needs no new writing. Deliberately *not* first: 0.1.0 needs to demonstrate the thing Fixt is for |
-| 0.3.0 | The Knights of Saladin | The second minor faction, all in act 1, and the template is now proven by 0.1.0 |
-| 0.4.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
-| 0.5.0+ | The back half - the Crypt's war, the two new areas, companions | The largest work, and it wants the faction and reactivity templates settled first |
+| 0.3.0 | **The Knights of Saladin** (in progress) - the order awards the rank, not just the title | The second minor faction. Ordered ahead of Quinn deliberately: the core repair is one faction assignment with four acts of payoff, which is far cheaper than a three-quest chain |
+| 0.4.0 | **Quinn's reagents** - three quests, three healing potion tiers | The project's first new content. Specced in [`plan.md`](plan.md); most of the assets already exist |
+| 0.5.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
+| 0.6.0+ | The back half - the Crypt's war, the two new areas, companions | The largest work, and it wants the faction and reactivity templates settled first |
 
 ## The Crossroads patrol, and why it is hostile
 
@@ -122,6 +123,61 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.3.0 - "The Knights of Saladin" (in progress)
+
+### The order awards the title and never the rank
+
+The Dream Djinni trials are reachable and completable, and they award `Dervish of the
+Crescent` -- whose own text reads *"You have become a **Favored One of the Knights of
+Saladin**"* -- or `Scholar of the Crescent`, chosen by whether you beat Kabool in combat or
+in a contest of wits. Both are perks, and perks confer only skills.
+
+`Dream Djinni Map.zax` performs **0 faction assignments and 0 Saladin Rank writes.**
+Meanwhile `Saladin IS` tests `Uber Perks/Saladin Rank > 0`, and the only things that
+increment that counter are the three `.Faction` records -- assigned nowhere in the shipped
+game except `Levels/Test Maps/James/James.zax`, a test map.
+
+So the title and the rank were never connected, and **20 replies across four acts can never
+appear:**
+
+| Where | Replies |
+|---|---|
+| Quinn the Herbalist, Gate District | 6 |
+| Sir Roger, English Shrine | 7 |
+| Brother Michel, Montaillou | 3 |
+| Joan of Arc, the Crypt | 3 |
+| Temple Entrance Guard, Gate District | 1 |
+
+Plus node-level greetings: both Barcelona knights have *"Welcome, brother into the Order of
+Saladin"* nodes, and the Alamut companion has male and female Saladin variants.
+
+**The repair is one `CAssignFactionToCharacterAction` for `Factions/Saladin Aswaran`, beside
+each of the two perk grants that already fire.** Aswaran is the entry rank, which matches
+"Favored One" and leaves Blessed and Exalted as headroom.
+
+Safe against double-assignment two ways. Each grant is already wrapped in a *"does the
+player not already have this perk"* guard, so it fires once; and faction tiers replace
+rather than stack -- the lesson 0.1.4 learned the hard way with the goblins -- so a player
+who somehow earned both trials still lands on Aswaran at rank 1, which is all `Saladin IS`
+needs.
+
+Note the stacking that becomes visible for the first time: the faction record adds +10
+One-Handed, +10 Two-Handed, +1 Endurance and +20 carry weight on top of Dervish's +5s. That
+is vanilla's arithmetic, but nobody has ever had it applied.
+
+Six of the twenty replies are on **Quinn**, which is a useful accident -- he is metres from
+the Dream Djinni, so the cheapest test of this fix is also the character the next release is
+built around.
+
+### Still to come in 0.3.0
+
+Per [`plan.md`](plan.md), the faction assignment is repair 1 of 3. Also scoped, not yet
+built: the **Sacred Scimitar**, which is broken at all three ends -- its starter is a
+proximity trigger with both `Active=0` and `X Radius=0`, Amir's second-task node is a fork
+that lost an arm, and the hand-in reply points at a node that does not exist while carrying
+the quest completion. Then rewarding the route rather than only the completion, and one
+sparring scene with Farshad.
 
 ## 0.2.1 - the bandit you killed before he asked
 
