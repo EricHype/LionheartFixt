@@ -1,0 +1,481 @@
+CDialogTree
+{
+Name=Farshad ibn Almassizad
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Salaam. The Knights of Saladin welcome you. To what do I owe the honor?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=IQZMC3KQ
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=TP99P5B3
+}
+}
+}
+}
+}
+Reply Text=Can you tell me anything about Ali Huban?
+Go to node ID=100 ali
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Why were you fighting?
+Go to node ID=50 duel
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 name
+
+Requirement=!None
+Reply Text=You don't appear to be from around here.
+Go to node ID=20 persia
+
+Requirement=!None
+Reply Text=What are the Knights of Saladin?
+Go to node ID=40 knights
+
+Requirement=!None
+Reply Text=I was merely touring the camp. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Knight of Saladin Male
+Text=Word of your deeds have come before you, brother. Welcome into the Order of Saladin. Jafar has spoken of you highly.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=IQZMC3KQ
+}
+}
+}
+}
+Reply Text=Can you tell me anything about Ali Huban?
+Go to node ID=100 ali
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I am honored to be a member of the Order. Although tracking down Ali Huban proved to be a greater challenge than I thought.
+Go to node ID=50 Ali
+
+Requirement=!None
+Reply Text=I shall seek to make myself worthy of Jafar's praise, brother. The Prophet be with you.
+Go to node ID=11 Goodbye Prophet Male
+
+Requirement=!None
+Reply Text=If that was flattery, then you may dispense with it. Now leave me be.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=20 persia
+
+Requirement=!None
+Reply Text=Why were you fighting?
+Go to node ID=50 duel
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Retun Knight of Saladin Sister
+Text=Word of your deeds have come before you, sister. Welcome into the Order of Saladin. Jafar has spoken of you highly. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=IQZMC3KQ
+}
+}
+}
+}
+Reply Text=Can you tell me anything about Ali Huban?
+Go to node ID=100 ali
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I am honored to be a member of the Order. Although tracking down Ali Huban proved to be a greater challenge than I thought. 
+Go to node ID=50 Ali
+
+Requirement=!None
+Reply Text=I shall seek to make myself worthy of Jafar's praise, brother. The Prophet be with you.
+Go to node ID=12 Goodbye Prophet Female
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=If that was flattery, then you may dispense with it. Now leave me be.
+Go to node ID=
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=You have my attention.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=IQZMC3KQ
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=TP99P5B3
+}
+}
+}
+}
+}
+Reply Text=Can you tell me anything about Ali Huban?
+Go to node ID=100 ali
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=20 persia
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 name
+
+Requirement=!None
+Reply Text=What are the Knights of Saladin?
+Go to node ID=40 knights
+
+Requirement=!None
+Reply Text=Why were you fighting?
+Go to node ID=50 duel
+
+Requirement=!None
+Reply Text=I was merely touring the camp. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Good travels to you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=11 Goodbye Prophet Male
+Text=You as well, brother.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=12 Goodbye Prophet Female
+Text=You as well, sister.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 persia
+Text=I have traveled with my brothers from Persia. We have come here to join counsel with the Inquisition and Knights Templar.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are you meeting with the Inquisition and Knights Templar?
+Go to node ID=30 meeting
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=3 Return Dialogue
+
+Requirement=!None
+Reply Text=I was merely touring the camp. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 meeting
+Text=To our shame, one of the old relics in our care has been stolen. We fear that the Holy Cross protected within Barcelona might be in danger. We have come to offer our support to the Knights Templar.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=3 Return Dialogue
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 knights
+Text=We are the knights of the Order of Saladin, bound to protect the relics of the East.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If you are bound to protect the relics of the East, what are you doing here?
+Go to node ID=30 meeting
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=3 Return Dialogue
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Ali
+Text=Ah, I have heard - is it true you found him garbed in the robes of a woman? That Ali Huban...he is a strange one. It is not certain what he is truly selling, no?
+Should Have Voiceover=0
+
+Requirement=Male IS
+Reply Text=I suppose not, brother. The Prophet be with you.
+Go to node ID=11 Goodbye Prophet Male
+
+Requirement=Female IS
+Reply Text=I suppose not, brother. The Prophet be with you.
+Go to node ID=12 Goodbye Prophet Female
+
+Requirement=!None
+Reply Text=The world is full of stranger things, I am sure. Goodbye, brother.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 ignore
+Text=<The knight ignores you, his attention is fixed on his opponent.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 duel
+Text=Fight? No, I am merely dueling with my twin brother, Farshid. He has much to learn in the ways of the blade, and I have much to teach. It will take many of these *lessons* for him to learn how to wield his blade properly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=3 Return Dialogue
+
+Requirement=!None
+Reply Text=Ah, I see.  Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Farshad has given the lesson
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+}
+}
+}
+}
+Reply Text=I carry a blade of Eduardo's making now. Would you teach me to use it as you teach your brother?
+Go to node ID=55 the lesson
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=50 name
+Text=My name is Farshad ibn Almassizad, Knight of the Order of Saladin, and protector of the sacred relics of the East. My brothers and I have traveled far to come to Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=3 Return Dialogue
+
+Requirement=!None
+Reply Text=I was merely touring the camp. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Ali
+Text=Ali is like the desert wind. He can appear and disappear in a moment. His guile is legendary. I have not met him, so I cannot describe him to you, but I have heard tales that he is a master of disguise. With his talents, he is usually found only when he wants to be found.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well, I have other questions.
+Go to node ID=3 Return Dialogue
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=IQZMC3KQ
+}
+
+Requirement=!None
+Reply Text=Thank you for the information. Goodbye.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=IQZMC3KQ
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 favored one
+Text=The prophet bless you, Favored One.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=55 the lesson
+Text=<He looks at the blade, then at how you are standing, and something in his face gives up on you very slightly.> Ah. You hold it like a man carrying a chair through a doorway. Come. Farshid will be glad of the rest.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Learn from him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=3
+}
+Action=CActivateAction
+{
+Target Name=Farshad has given the lesson
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Farshad's lesson
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierSkill
+{
+Modification Amount=CConstant
+{
+Constant Value=5
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Skill to modify=Skills/Fighting/OneHandedMelee
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+}

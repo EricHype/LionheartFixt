@@ -319,6 +319,28 @@ and both melee skills gain 4 points" while the record actually grants +10/+10/+1
 mismatch is vanilla's, in a description nobody could previously read because the faction was
 never assigned. Left alone.
 
+### 0.3 - the Sacred Scimitar, and Farshad
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| S10 | Amir, Gate District, at `202 make a scimitar` | Reach the second task **without** having taken the Shard | **Two** replies now: the Shard as before, and *"Eduardo the smith speaks of a sacred blade..."* |
+| S11 | " | Take the scimitar arm | The `Forge a Sacred Scimitar` quest starts -- **from Amir**, not from the dead trigger in the smithy |
+| S12 | " | Take the Shard arm instead, then return | The scimitar reply is **gone**. One arm or the other, never both |
+| S13 | Eduardo, then Amir | Forge the blade, return to Amir | *"I have forged the Sacred Scimitar"* now reaches `210 have scimitar` instead of dead-ending. He hands it **back** -- the Shard is surrendered, the scimitar is kept |
+| S14 | " | Continue | Both arms converge on `120 donate gem` and the trials |
+| S15 | Eduardo, **retrieved his father's sword** | Take the scimitar | The **Sacred** Scimitar: +5 critical, +10 piercing resistance. Karma or 150 gold as vanilla, depending on whether you took payment |
+| S16 | Eduardo, **talked or bartered past the test** | Take the scimitar | The **Crescent** Scimitar -- same art, no bonuses. The quest still completes and Amir still accepts it |
+| S17 | Farshad, Gate District | Talk to him at all | **A conversation opens.** Before this he gave a one-line balloon and nothing else |
+| S18 | " | As a male Saladin | *"Word of your deeds have come before you, brother. Welcome into the Order of Saladin."* |
+| S19 | " | As a female Saladin | The sister variant of that greeting |
+| S20 | " | Not a Saladin | `1 Conversation Start`, the ordinary entry -- unchanged |
+| S21 | " | Carrying either scimitar, ask about the duel | He offers a lesson; accept for **+5 One-Handed Melee** after a fade |
+| S22 | " | Ask again | The offer is **gone**. Once only |
+| S23 | " | Carrying no scimitar | The offer never appears |
+
+S16 is the one to argue about, not to bug-report: it is the release's only deliberate
+balance change. S22 is the farming check.
+
 ### 0.2 - Grumdjum after the dryad
 
 One field. The post-dryad Grumdjum's talk interaction opened `160 After Dryad death bubble`
