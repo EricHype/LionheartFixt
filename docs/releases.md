@@ -1,6 +1,7 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **planning the first ship**. Nothing below is built yet.
+Status: **0.2.0 shipped**. 0.1.0 through 0.1.4 and 0.2.0 are published; the sections
+below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -121,6 +122,93 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.2.0 - "What Was Written"
+
+Almost everything here was written by Black Isle and never reached the game. Not cut lines
+in a leftover file -- finished nodes, in the files the engine loads, that nothing in the
+game can ever open. The release is named for that.
+
+It is also the first release scoped deliberately rather than by opportunity. The survey
+found 84 repairable dead ends across five acts; shipping them all would have been more
+surface than one person can play-test, so 0.2.0 stays inside the goblin thread that 0.1.x
+already established.
+
+### The Goblin Girl's follow was written and never wired
+
+Vanilla ships `90 Follow`, `190 Follow 2` and `195 Follow 2 no snails` -- three terminal
+nodes in which she announces she is coming along, each with no replies and no action. Their
+neighbours carry `Action work in progress=girls walks away` and `girl storms off`, the
+original designers' inline to-do key, so the whole gesture was cut rather than forgotten.
+
+The engine has exactly one follow mechanism, `CSetCompanionAction`. There is no generic
+follow AI: `CApproachTargetAI` and `CPursueAI` have zero uses in shipped content and
+`CGaurdNearMovingPosAI` has no target field. Companions cross map transitions, gated on
+"You must gather your party", and vanilla bounds them with a remover entity on each map
+where they are unwanted -- `Remover of Barcelona Companions` appears on eight. The Warrens
+is cheap to bound because both its exits relocate to the same map, so the release happens
+at the exits themselves, behind a farewell node.
+
+**Confirmed in play.**
+
+### The Khan's war campaign, and the fight for walking out of it
+
+`350 next task` -> `360 attack barcelona` -> `365 barcelona walls`, all vanilla, all
+orphaned, all reply-less. `365` names Guard Esteban as step one of an invasion -- which is
+the motive the Esteban contract has never had, one release after 0.1.4 made that kill pay
+out. `400 Where are you going?` was a fourth orphan and is what refusing the campaign now
+reaches.
+
+Gated on Champion, the rank the Khan himself grants. One new node, `370`, for the case Fixt
+created: a player who killed Esteban before ever hearing why.
+
+**The horde never does attack Barcelona.** Act 6 has essentially no goblins in it. The
+briefing restores the plan the Khan states and leaves it stated; wiring the second half of
+the order is buildable -- the Gate District holds nine `Gate Guard` entities and a
+`Barcelona Portcullis` -- but it would resolve to nothing, and a tracked objective that
+visibly fails to pay is worse than a stated plan that never happens.
+
+### Grumdjum's post-dryad conversation opened a bark
+
+One field. Handing in the dryad kill despawns him and spawns a second copy at her body,
+whose talk interaction opened `160 After Dryad death bubble` -- one line, no replies -- instead
+of `8 Return Dialogue Dryad Dead`. The tree proves the intent: node 8's own exit reply goes
+to 160, so the designers wrote the bubble as the sign-off and the wiring sat one level too
+shallow.
+
+Node 8 is the sole gateway to `100 Goblin City`, where he says to seek the goblin city
+*through the waterfall to the east* -- the only in-world direction to the Warrens that
+exists -- and to `200 new poem`.
+
+### Standing counts with the goblin jailor
+
+The Darsh escort scene is fully wired in vanilla and needed no repair; it offers one
+non-violent way past the jailor, Speech 25. `Goblin Horde Midlevel` had been built in 0.1.2
+and read by nothing, so Blooded and Champion now pull rank instead. Adds a route, removes
+none.
+
+### Five dead replies
+
+One dangling target in Inquisitor Darsh's tree, cleared rather than retargeted because all
+four replies on that node fire a relay and the relay is the outcome. Four blank options
+that did nothing when clicked -- deleted where the node had other replies, marked as the
+default close where they were its only exit.
+
+### What the survey got wrong
+
+The scan that found this release -- a node nothing reaches, counting both the tree's own
+`Go to node ID` and every `.zax` that opens it -- runs at about a one-in-three hit rate.
+Three leads were investigated and cleared, and are recorded in `qa.md` so they are not
+re-opened: the goblin jailor (vanilla wires it end to end), the captive child on Scar
+Ravine (a duplicate node ID in a sibling file), and the Woodcutter's A-1 through G greeting
+matrix (superseded by two consolidated nodes, not cut).
+
+### Explicitly out of 0.2.0
+
+**Grumdjum's companion arc** -- ten nodes covering join, dismissal, rejoin, injury barks and
+combat quips, all in rhyming couplets. His join line is about Alamut, the Khan's `500 Start
+in Persia` is a matching cut goblin companion for the same act, and neither has a companion
+generator on any map. One cut Act 8 feature, and it should return with Act 8.
 
 ## 0.1.4 - "What Playtesting Found"
 
