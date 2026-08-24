@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.1.4](https://github.com/EricHype/LionheartFixt/releases/tag/v0.1.4).
+-- currently [0.2.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.2.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -60,15 +60,23 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release: 0.1.4
+## Current release: 0.2.0
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
 standing, and a settlement that answers to almost nothing but Speech.
 
-It carries four releases' worth of work: **0.1.0 "The Horde"**, **0.1.1 "The Crossroads
-Patrol"**, **0.1.2 "Standing"**, and **0.1.4 "What Playtesting Found"** -- all described
-below. (0.1.3 was written up and superseded before it was ever published.)
+It carries five releases' worth of work: **0.1.0 "The Horde"**, **0.1.1 "The Crossroads
+Patrol"**, **0.1.2 "Standing"**, **0.1.4 "What Playtesting Found"** and **0.2.0 "What Was
+Written"** -- all described below. (0.1.3 was written up and superseded before it was ever
+published.)
+
+**Almost everything in 0.2.0 was written by Black Isle and never reached the game.** Not
+cut lines in a leftover file -- finished nodes, in the files the engine loads, that nothing
+in the game can ever open. The Goblin Girl has three in which she announces she is
+following you. The Khan has four in which he explains how he means to take Barcelona. Two
+of the five items in the release add nothing at all: they change one field, or supply the
+player's half of a conversation whose other half was already written.
 
 **Played, and fixed from what playing found.** 0.1.4 exists entirely because of a
 playtest: eight defects, of which the ones that mattered most were invisible to every static
@@ -81,6 +89,39 @@ greetings fire, which also confirmed that a map interaction can read quest state
 characters, and only one has walked it. A build that solves everything cannot show whether a
 check quietly *replaced* a vanilla route rather than adding one -- the failure this project's
 own rule forbids -- and only a low-INT, low-CHA character can. That pass is still outstanding.
+
+### 0.2.0 - what was written
+
+Lionheart shipped with dialogue its own scripters never wired up.
+
+**The Goblin Girl follows you around the Warrens.** Vanilla wrote the moment she decides to
+-- *"I'll just keep an eye on you and make sure nobody else tries to eat you, okay?"* -- and
+never connected it. She is not a companion you take on the road: walk to either exit while
+she is with you and she stops at the cave mouth and says she will wait there.
+
+**The Khan explains his war.** Reach Goblin Champion and he lays out the invasion of Nueva
+Barcelona -- kill the guards outside the walls, *starting with that fool Guard Esteban*, then
+the gate guards, and the horde comes through the portcullis. Four vanilla nodes, none
+previously reachable, including the one where he objects to you leaving mid-briefing. It is
+also the motive the Esteban contract never had. The horde never does attack Barcelona; that
+is vanilla's unkept promise, and the release restores the plan rather than pretending
+otherwise.
+
+**Grumdjum talks to you after the dryad.** One wrong field in the map pointed his
+post-quest conversation at a one-line bark. Behind the greeting it should have opened sit
+two scenes nobody has seen -- including the only in-world direction to the Goblin Warrens
+that exists in the game, *through the waterfall to the east*.
+
+**Goblin standing counts with the jailor.** Escorting Inquisitor Darsh out of the Mongol
+Camp, vanilla gives one way past that is not a fight: Speech 25. Blooded and Champion
+goblins can pull rank instead, and the Speech route is untouched.
+
+**Five dead replies** -- one dangling target, four blank options that did nothing when
+clicked.
+
+*Three further leads were investigated and cleared rather than built -- the scene was
+already working in each case. [`docs/qa.md`](docs/qa.md) records why, so they are not
+re-opened.*
 
 ### 0.1.4 - what playtesting found
 
@@ -651,10 +692,12 @@ bug to look for.
 
 - **The Crossroads patrol** -- disarming its spawn-hostility and adding the counter-contract
   on Esteban. Scheduled as **0.1.1**, which finishes the goblin theme.
-- **The mutual quest-failure wiring** (Torquemada's contract against the Khan's), **karma
-  for the Woodcutter's eyes**, and **dialogue that branches on rank 2 or 3**. All are
-  goblin follow-ups and **none is scheduled yet** -- they are deliberately not called
-  0.2.0, because 0.2.0 is whole-game link repair that needs no new writing.
+- **The mutual quest-failure wiring** (Torquemada's contract against the Khan's) and
+  **karma for the Woodcutter's eyes**. Both are goblin follow-ups and **neither is
+  scheduled yet**. *(Written before 0.2.0 existed, when it was planned as whole-game link
+  repair. It became goblin-scoped instead -- 84 repairs across five acts is more surface
+  than one person can play-test -- and "dialogue that branches on rank 2 or 3" shipped in
+  it, in the Khan's war briefing and with the goblin jailor.)*
 - Nothing else from the 0.1.0 scope. The Girl's poisoned pie, briefly cut for needing a
   new item, turned out not to need one - see below.
 

@@ -480,3 +480,14 @@ both completed Gate 2. Record the result here per release.
 | Release | Gate 0 | Gate 1 | Gate 2 (A) | Gate 2 (B) | Gate 3 | Gate 4 | Signed off |
 |---|---|---|---|---|---|---|---|
 | 0.1.0-rc1 | PASS (automated) | - | - | - | - | - | **not yet** |
+| 0.1.4 | PASS (automated) | PASS | PASS | - | - | - | **published as full** |
+| 0.2.0 | PASS (automated) | - | partial | - | - | - | **published as full** |
+
+0.2.0 was published as a full release on the maintainer's call, not because the gates were
+green. Of its five items only the Goblin Girl's follow has been played; the Khan's
+campaign, the report-back, the jailor's rank route and the Grumdjum fix are verified in the
+built archive and unplayed. Gate 0 catches a broken reference, never a gate that resolves
+wrongly, which is the failure mode this release carries most of.
+
+Character B has never walked any release. That is the outstanding hole in the whole
+project, not a 0.2.0 problem.
