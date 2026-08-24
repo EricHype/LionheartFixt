@@ -171,14 +171,48 @@ CLayerSaveData
 					Triggered By Name=
 					Interaction Description=
 					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
-					Action=CRelocateAction
+					Action=CIfAction
 					{
-						Return to map=definitely soon
-						New Map Name=Wilderness Maps/Mongol Camp
-						New Location=From Waterfall Passage
-						Who To Switch=$Instigator
-						Relative Position=0
-						Ignore Party Ready Rules=0
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Goblin Girl is a companion
+							Desired Minimum Count=1
+						}
+						Then=CIfAction
+						{
+							If=CIsAliveAction
+							{
+								Name To Check For=Goblin Girl
+								Desired Minimum Count=1
+							}
+							Then=CDisplayDialogTreeAction
+							{
+								Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+								Node ID=296 goblin girl stays behind waterfall
+								Speaker=Goblin Girl
+								Player Being Spoken To=$Instigator
+							}
+							Else=CRelocateAction
+							{
+								Return to map=definitely soon
+								New Map Name=Wilderness Maps/Mongol Camp
+								New Location=From Waterfall Passage
+								Who To Switch=$Instigator
+								Relative Position=0
+								Ignore Party Ready Rules=0
+							}
+							Return failure if the If failes=0
+						}
+						Else=CRelocateAction
+						{
+							Return to map=definitely soon
+							New Map Name=Wilderness Maps/Mongol Camp
+							New Location=From Waterfall Passage
+							Who To Switch=$Instigator
+							Relative Position=0
+							Ignore Party Ready Rules=0
+						}
+						Return failure if the If failes=0
 					}
 					X Radius=0
 					Attacker Range Modifier=0
@@ -12992,14 +13026,48 @@ CLayerSaveData
 					Triggered By Name=
 					Interaction Description=
 					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
-					Action=CRelocateAction
+					Action=CIfAction
 					{
-						Return to map=unlikely soon
-						New Map Name=Wilderness Maps/Mongol Camp
-						New Location=From Warrens
-						Who To Switch=$Instigator
-						Relative Position=0
-						Ignore Party Ready Rules=0
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Goblin Girl is a companion
+							Desired Minimum Count=1
+						}
+						Then=CIfAction
+						{
+							If=CIsAliveAction
+							{
+								Name To Check For=Goblin Girl
+								Desired Minimum Count=1
+							}
+							Then=CDisplayDialogTreeAction
+							{
+								Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+								Node ID=295 goblin girl stays behind
+								Speaker=Goblin Girl
+								Player Being Spoken To=$Instigator
+							}
+							Else=CRelocateAction
+							{
+								Return to map=unlikely soon
+								New Map Name=Wilderness Maps/Mongol Camp
+								New Location=From Warrens
+								Who To Switch=$Instigator
+								Relative Position=0
+								Ignore Party Ready Rules=0
+							}
+							Return failure if the If failes=0
+						}
+						Else=CRelocateAction
+						{
+							Return to map=unlikely soon
+							New Map Name=Wilderness Maps/Mongol Camp
+							New Location=From Warrens
+							Who To Switch=$Instigator
+							Relative Position=0
+							Ignore Party Ready Rules=0
+						}
+						Return failure if the If failes=0
 					}
 					X Radius=80
 					Attacker Range Modifier=0
@@ -28980,6 +29048,36 @@ CLayerSaveData
 			Model=Environments/Heart of Fire/Walls/Wall color 01 A
 			Position X=3231.28
 			Position Y=2373.56
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Goblin Girl is a companion
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1855
+			Position Y=1470
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle

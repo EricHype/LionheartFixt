@@ -91,6 +91,49 @@ Action work in progress=girls walks away
 Node ID=90 Follow
 Text=I'll just keep an eye on you and make sure nobody else tries to eat you, okay?
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Keep up, then.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=Goblin Girl is a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CSetDestroyedScriptActionAction
+{
+New Destroyed Action=CDeactivateAction
+{
+Target Name=Goblin Girl is a companion
+}
+Target Name=$Trigger
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Keep your eyes to yourself.
+Go to node ID=
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=100 Combat
 Text=Eeeeeeeeek!
@@ -148,10 +191,96 @@ Action work in progress=girl storms off
 Node ID=190 Follow 2
 Text=I'd better follow you around and help you eat your snails!
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Bring the snails.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=Goblin Girl is a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CSetDestroyedScriptActionAction
+{
+New Destroyed Action=CDeactivateAction
+{
+Target Name=Goblin Girl is a companion
+}
+Target Name=$Trigger
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Eat them yourself.
+Go to node ID=
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=195 Follow 2 no snails
 Text=Goody, I'll help you look for people to get in our way!
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then stay behind me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=Goblin Girl is a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CSetDestroyedScriptActionAction
+{
+New Destroyed Action=CDeactivateAction
+{
+Target Name=Goblin Girl is a companion
+}
+Target Name=$Trigger
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I hunt alone.
+Go to node ID=
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=200 Returning after killing the woodsman 
 Text=How many innocents did you kill? Did you bring Rakeb the eyes? What did you bring me? 
@@ -249,4 +378,157 @@ Is Default Reply=1
 Node ID=290 follow 3
 Text=Momma says a girl should keep close to what she has cooked for. I will be right behind you!
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Right behind me, then.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=Goblin Girl is a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CSetDestroyedScriptActionAction
+{
+New Destroyed Action=CDeactivateAction
+{
+Target Name=Goblin Girl is a companion
+}
+Target Name=$Trigger
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Stay with your momma.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=295 goblin girl stays behind
+Text=<She stops short of the cave mouth, toes right up to the line where the dark ends.> Momma says outside is all big-folk and open sky and no roof to speak of. I'll be here. I'll be right here, so don't you go getting eaten out there.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Wait here for me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CReleaseCompanionAction
+{
+Companion To Release=Goblin Girl
+}
+Action=CDeactivateAction
+{
+Target Name=Goblin Girl is a companion
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CReleaseCompanionAction
+{
+Companion To Release=Goblin Girl
+}
+Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=Wilderness Maps/Mongol Camp
+New Location=From Warrens
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+}
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Not yet. There is more down here.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=296 goblin girl stays behind waterfall
+Text=<She stops where the spray starts and will not be coaxed past it.> That way is all water and wet and outside. I'll wait by the dry part. Come back before momma notices you're gone.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Wait here for me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CReleaseCompanionAction
+{
+Companion To Release=Goblin Girl
+}
+Action=CDeactivateAction
+{
+Target Name=Goblin Girl is a companion
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CReleaseCompanionAction
+{
+Companion To Release=Goblin Girl
+}
+Action=CRelocateAction
+{
+Return to map=definitely soon
+New Map Name=Wilderness Maps/Mongol Camp
+New Location=From Waterfall Passage
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+}
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Not yet. There is more down here.
+Go to node ID=
+Is Default Reply=1
 }
