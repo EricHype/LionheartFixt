@@ -1,0 +1,5858 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/Barcelona
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=5
+		Full Mix Song=1 Barcelona/AMB_GateDis_BlkSmth.ogg
+		Med Mix Song=1 Barcelona/AMB_GateDis_BlkSmth.ogg
+		Ambiant Song=1 Barcelona/AMB_GateDis_BlkSmth.ogg
+	}
+	Width=1216
+	Height=1216
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=
+	Has Begin Been Called=0
+	Map Description=Blacksmith's Shop
+	First Fire Action=
+	First Load Action=
+	View Position=9.000000,483.000000
+	Int View Position=9,483
+	Partial File Name=1 Barcelona/Blacksmith map
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CEntityBase
+		{
+			Name=Inventory for Blacksmith
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Blacksmith
+					Price Multiplier=1
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=7
+						Array Item=CMerchantListItem
+						{
+							Quantity=10
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Weapons/ALL WEAPONS Mojo Begin
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/LongBow
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Crossbow
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=8
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=3
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ArmorHauberkMail
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ArmorChainMail
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ArmorPlateMail
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ShieldSmall
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ShieldMedium
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Arrows and Bolts
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=97
+			Position Y=577
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=display baloon & trigger make arm
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDelayAction
+					{
+						Next Action=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CBeginNonInteractiveSequenceAction
+								{
+									Options=CNonInteractiveSequence
+									{
+										Pause Characters=1
+										Disable Player Controls=1
+										Can Fast Forward=1
+									}
+								}
+								Action=CDelayAction
+								{
+									Next Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+										Node ID=2000 Cortes Arm
+										Name of Position=eduardo
+										Position Offset=0.000000,-70.000000
+										After Action=CTriggerRelayAction
+										{
+											Relay Name=construct parts for Cortes arm
+										}
+										Include In Log=1
+									}
+									Delay=0.4
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+							}
+						}
+						Delay=0.1
+						Plus or Minus=0
+						Forget Trigger=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=147
+			Position Y=815
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/BlackSmith/BlackSmith
+			Position X=491
+			Position Y=558
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=give scimitar
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDisplayDialogTreeAction
+					{
+						Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+						Node ID=64 here is your scimitar
+						Speaker=eduardo
+						Player Being Spoken To=$Instigator
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=165
+			Position Y=671
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=give Lion Shield
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDisplayDialogTreeAction
+					{
+						Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+						Node ID=63 here is your shield
+						Speaker=eduardo
+						Player Being Spoken To=$Instigator
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=189
+			Position Y=706
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=construct parts for Cortes arm
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CFadeScreenDownAction
+							{
+								Time Until Auto Fade Up=2
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+									Node ID=2010 here are the parts
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
+								}
+								Delay=2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=2.01
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CGiveExperiencePointsToAllPlayersAction
+							{
+								Get XP Frome=received ore
+								Experience Points To Add=1
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=190
+			Position Y=862
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=294, 731, 269, 741, 192, 623, 223, 612, 294, 731
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=activate find lionshield quest
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateQuestStateAction
+					{
+						Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+						State=PBJ9W0UZ
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=273.25
+			Position Y=627.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet Church Int/Candle
+			Position X=239
+			Position Y=644
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Visiting Customers for Blacksmith generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CSeriesAction
+					{
+						Action=Array
+						{
+							Item Count=7
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Visiting Customers for Blacksmith generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=4
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Visiting Customers for Blacksmith generator
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Visiting Customers for Blacksmith generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=4
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Visiting Customers for Blacksmith generator
+									}
+								}
+							}
+							Action=CActivateAction
+							{
+								Target Name=Customer Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Visiting Customers for Blacksmith generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=4
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Visiting Customers for Blacksmith generator
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Visiting Customers for Blacksmith generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=4
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Visiting Customers for Blacksmith generator
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Visiting Customers for Blacksmith generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=4
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Visiting Customers for Blacksmith generator
+									}
+								}
+							}
+							Action=CActivateAction
+							{
+								Target Name=Customer2 Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+						}
+						When Done=Do Nothing
+						Require Success To Advance=1
+						Next Action Index=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=223
+			Position Y=751
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=250
+			}
+			Name=received ore
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=257
+			Position Y=818
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=activate find scimitar quest
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateQuestStateAction
+					{
+						Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+						State=53F5R12P
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=308.25
+			Position Y=604.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=Activate red ore quest
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateQuestStateAction
+					{
+						Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+						State=WEDKYW9X
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=345.25
+			Position Y=583.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=Teleport to Felgnash
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=probably soon
+						New Map Name=Sewers/04 Hall of Beggars
+						New Location=felgnash test
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=352.25
+			Position Y=695.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Box3/Box3 A
+			Position X=291.667
+			Position Y=780.333
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Barrel1/Barrel1 A
+			Position X=333.248
+			Position Y=855.718
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=if this is active, player receives discounted prices
+			}
+			Name=Discount checker
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=403
+			Position Y=460
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Pot1/Pot1 A
+			Position X=354.248
+			Position Y=594.718
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=activate have ore make arm parts quest
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CActivateQuestStateAction
+							{
+								Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+								State=YJ2T7PXI
+							}
+							Action=CActionGiveStandardInventoryItem
+							{
+								Who to give to=$instigator
+								Delete Trigger=0
+								Notify Player=1
+								Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Red Ore
+								Additions to add=Array
+								{
+									Item Count=0
+								}
+							}
+						}
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=387.25
+			Position Y=568.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=teleport to magnatized Silver
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=Wilderness Maps/Ravine Cave West
+						New Location=silver test
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=395.25
+			Position Y=675.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Customer Leave goto1
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=391
+			Position Y=708
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Start Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=RESET MAP for Invulnerable Eduardo
+							}
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Visiting Customers for Blacksmith generator
+							}
+						}
+					}
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=270
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=409
+			Position Y=783
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=391, 751, 458, 836, 381, 754, 391, 751
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Primary
+			Include Closing Segment=1
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=606, 772, 664, 746, 831, 964, 367, 1150, 329, 859, 389, 841, 435, 1024, 714, 959, 606, 772
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=417
+			Position Y=432
+			Rendering Height=60
+			Rendering Height Float=60
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=If this is active, Player did NOT find sword for blacksmith
+			}
+			Name=Sword find checker
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=433
+			Position Y=483
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Blacksmith received his fathers blade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=300
+			Position Y=300
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=If this is active, blacksmith offered payment to player to find his father's sword
+			}
+			Name=Blacksmith offered payment
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=472
+			Position Y=501
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=489, 541, 466, 549, 449, 537, 441, 565, 397, 557, 394, 530, 474, 523, 489, 541
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=Found Blacksmith's father's sword before quest assigned
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActionGiveStandardInventoryItem
+					{
+						Who to give to=$instigator
+						Delete Trigger=0
+						Notify Player=1
+						Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+						Additions to add=Array
+						{
+							Item Count=0
+						}
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=437.25
+			Position Y=556.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=teleport to red ore
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=Sewers/05 Troll Pit
+						New Location=test lava trolls
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=434.25
+			Position Y=652.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=teleport to Fernandez
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=probably soon
+						New Map Name=1 Barcelona/Church Interior
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=477.25
+			Position Y=637.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Customer2 Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/1 Barcelona/Character Templates/Port District/Demokin Sailor
+					New Name=Customer2
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Customer
+								Node ID=1 Mercado Customer 3
+								Name of Position=Customer2
+								Position Offset=0.000000,-85.000000
+								After Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CRemoveAIAction
+										{
+											Target Name=Customer2
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAddAIAction
+											{
+												Target Name=Customer2
+												AI=CAIInteractionSpecifier
+												{
+													Marked For Deletion=0
+													Publisher=
+													Trigger Only Once=0
+													Was Triggered=0
+													Auto-Flip Switch=1
+													Trigge Must Have HP=0
+													Triggered By Anything=0
+													Triggered By Players=1
+													Triggered By Player Friends=0
+													Triggered By Enemies=0
+													Triggered By Projectiles=0
+													Triggered By Name=
+													Interaction Description=
+													Interaction Type=Interaction Specifiers/GetCloseThenTalk
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/Generic NO TALK dialog
+														Node ID=10 No Talk bubble male
+														Name of Position=$trigger
+														Position Offset=0.000000,-75.000000
+														After Action=
+														Include In Log=1
+													}
+													X Radius=50
+													Attacker Range Modifier=0
+													YX Ratio=0.712766
+													Highlight Self Time=0
+													Highlight Until Clicked=0
+													Is Locked=0
+													Allow Interact If Has Target=1
+													Lock Pick Adjustment=0
+													Inventory item to use as key=Inventory Items/!None
+													Is Bussy Talking=0
+												}
+												Delay Between Adds=0
+											}
+											Delay=0
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Action=CSendAIDoneMessage
+										{
+											Target=Customer2
+										}
+									}
+								}
+								Include In Log=1
+							}
+							Action=CSetPatrolAIAction
+							{
+								Patrol AI=CSeriesAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AIs=Array
+									{
+										Item Count=3
+										AI=CScanAreaAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Play Ratio=0
+											Next Try To Move=0
+											State=Scanning
+											Go Home Range=300
+											Move To Behavior=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Starting Angle=-20
+											Ending Angle=20
+											Turning Speed=10
+											Time Between Turning=0
+											Start Out Waiting=0
+											Start Counterclockwise=0
+											Turning Flag=0
+											Turn Sequence Name=Idle
+											End Turn Action=
+											Execute Each Turn=0
+											Reset Each Begin=1
+											Current Time To Wait=0
+											Current Start Angle=0
+											Current End Angle=0
+											Waiting=1
+											Starting Facing Angle=-999
+											Complete Turn Time=0
+											Current Turn Time=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+										}
+										AI=CGoToAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Destination=Customer Leave goto1
+											Offset=0.000000,0.000000
+											Starting Action=
+											Finished=0
+											Move Finished=0
+											Failed Path=0
+											Target Was Set By Goto AI=0
+											Move Behavior=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Done action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=4
+													Action=CSetCollidableAction
+													{
+														Target Name=$Trigger
+														Collidable=0
+													}
+													Action=CSendAIDoneMessage
+													{
+														Target=$Trigger
+													}
+													Action=CFadeToOpacityAction
+													{
+														Opacity To Fade To=0
+														Seconds To Fade=2
+														Part To Fade=$Trigger
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=$Trigger
+														}
+														Delay=2
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+											Run=0
+											Make New Home=0
+											Play Ratio=0
+											Time To Try To Move=0
+											Set Facing Angle=0
+											Turn Sequence Name=Idle
+											Facing Angle=CEntityBehaviorTurnToAngle
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+											}
+											Need to Call Start=1
+										}
+										AI=CGoToAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Destination=Customer Leave goto2
+											Offset=0.000000,0.000000
+											Starting Action=
+											Finished=0
+											Move Finished=0
+											Failed Path=0
+											Target Was Set By Goto AI=0
+											Move Behavior=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Done action=CSendAIDoneMessage
+											{
+												Target=$Trigger
+											}
+											Run=0
+											Make New Home=0
+											Play Ratio=0
+											Time To Try To Move=0
+											Set Facing Angle=0
+											Turn Sequence Name=Idle
+											Facing Angle=CEntityBehaviorTurnToAngle
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+											}
+											Need to Call Start=1
+										}
+									}
+									Current AI=0
+									When Done=Do Nothing
+									Restart Series Next Begin=0
+								}
+								Target=$Instigator
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=GoToCombat
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Piss off eduardo
+									}
+								}
+								Delay Between Adds=0
+							}
+						}
+					}
+					New Facing Angle=6.21327
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=450
+			Position Y=618
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=1 Barcelona/Gate District
+						New Location=From Blacksmith
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=433, 806, 482, 813, 605, 772, 731, 967, 429, 1047, 386, 843, 423, 831, 433, 806
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=Customer Leave goto2
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=430
+			Position Y=803
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Guard Clone Generator1
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/1 Barcelona/Character Templates/Generic Gaurd NPC
+					New Name=Cloned Guard
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CSkeletonAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Patrol AI=CGoToAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Destination=Guard Goto
+								Offset=0.000000,0.000000
+								Starting Action=
+								Finished=0
+								Move Finished=0
+								Failed Path=0
+								Target Was Set By Goto AI=0
+								Move Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Done action=CSendAIDoneMessage
+								{
+									Target=$Trigger
+								}
+								Run=1
+								Make New Home=0
+								Play Ratio=0
+								Time To Try To Move=0
+								Set Facing Angle=0
+								Turn Sequence Name=Idle
+								Facing Angle=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Need to Call Start=1
+							}
+							Patrol Start Action=
+							Patrol End Action=
+							Respond to calls for reinforcements=0
+							Target shooter if hit=1
+							Never Unacquire=0
+							Time Since Acquiring Shooter=999
+							Sneak Adjustment=0
+							Target Type=CEntityBehaviorStateSetClosestTarget
+							{
+								Max Distance=550
+								Vision Cone=360
+								Name To Target=
+								Must Be Collideable=1
+								Must Have HPs=1
+								Valid Targets=Player
+							}
+							Has Seen Target=0
+							Max dist from home=1200
+							Pursue AI=CChasePursueAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=1
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Max Radius From Final Pos To Get Within=0
+								Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+							}
+							Pursue Start Action=
+							Pursue End Action=
+							Force Pursue Shooter=2
+							Max distance from home=1000
+							Investigate End Action=
+							Investigate Start Action=
+							Investigate AI=CChaseInvestigateAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Turn Behavior=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Time To Investigate=5
+								Count To Investigate=0
+								Radius to Investigate Point=0
+								Run To Investigate=1
+								State=Chasing
+								Investigate AI=CScanInvestigateAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CScanAreaAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Play Ratio=0
+										Next Try To Move=0
+										State=Scanning
+										Go Home Range=300
+										Move To Behavior=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Starting Angle=-45
+										Ending Angle=45
+										Turning Speed=10
+										Time Between Turning=0
+										Start Out Waiting=0
+										Start Counterclockwise=0
+										Turning Flag=0
+										Turn Sequence Name=Idle
+										End Turn Action=
+										Execute Each Turn=0
+										Reset Each Begin=1
+										Current Time To Wait=0
+										Current Start Angle=0
+										Current End Angle=0
+										Waiting=1
+										Starting Facing Angle=-999
+										Complete Turn Time=0
+										Current Turn Time=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+									}
+								}
+							}
+							Max Dist=80
+							Attack AI=
+							Attack Start Action=
+							Attack End Action=
+							Check Range When Firing=0
+							Ignore line of sight if in range=1
+							Retreat when=0
+							Retreat Start Action=
+							Has Started Retreat=0
+							State=Any
+							Allowed To Roam Anywhere=0
+							Transition=Array
+							{
+								Array Count=0
+							}
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=4.29351
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=463
+			Position Y=858
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/BlackSmith/FireWood
+			Position X=544
+			Position Y=522
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=
+			}
+			Name=Insult meter
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=494
+			Position Y=526
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=teleport to Davinci's workshop
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=1 Barcelona/DaVinci Workshop interior
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=513.25
+			Position Y=609.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Customer Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/1 Barcelona/Character Templates/Gate District/Walking Male Citizen 2
+					New Name=Customer
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Customer
+								Node ID=1 Blacksmith Customer
+								Name of Position=Customer
+								Position Offset=0.000000,-75.000000
+								After Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CRemoveAIAction
+										{
+											Target Name=Customer
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAddAIAction
+											{
+												Target Name=Customer
+												AI=CAIInteractionSpecifier
+												{
+													Marked For Deletion=0
+													Publisher=
+													Trigger Only Once=0
+													Was Triggered=0
+													Auto-Flip Switch=1
+													Trigge Must Have HP=0
+													Triggered By Anything=0
+													Triggered By Players=1
+													Triggered By Player Friends=0
+													Triggered By Enemies=0
+													Triggered By Projectiles=0
+													Triggered By Name=
+													Interaction Description=
+													Interaction Type=Interaction Specifiers/GetCloseThenTalk
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/Generic NO TALK dialog
+														Node ID=10 No Talk bubble male
+														Name of Position=$trigger
+														Position Offset=0.000000,-75.000000
+														After Action=
+														Include In Log=1
+													}
+													X Radius=50
+													Attacker Range Modifier=0
+													YX Ratio=0.712766
+													Highlight Self Time=0
+													Highlight Until Clicked=0
+													Is Locked=0
+													Allow Interact If Has Target=1
+													Lock Pick Adjustment=0
+													Inventory item to use as key=Inventory Items/!None
+													Is Bussy Talking=0
+												}
+												Delay Between Adds=0
+											}
+											Delay=0
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Action=CSendAIDoneMessage
+										{
+											Target=Customer
+										}
+									}
+								}
+								Include In Log=1
+							}
+							Action=CSetPatrolAIAction
+							{
+								Patrol AI=CSeriesAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AIs=Array
+									{
+										Item Count=3
+										AI=CScanAreaAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Play Ratio=0
+											Next Try To Move=0
+											State=Scanning
+											Go Home Range=300
+											Move To Behavior=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Starting Angle=-20
+											Ending Angle=20
+											Turning Speed=10
+											Time Between Turning=0
+											Start Out Waiting=0
+											Start Counterclockwise=0
+											Turning Flag=0
+											Turn Sequence Name=Idle
+											End Turn Action=
+											Execute Each Turn=0
+											Reset Each Begin=1
+											Current Time To Wait=0
+											Current Start Angle=0
+											Current End Angle=0
+											Waiting=1
+											Starting Facing Angle=-999
+											Complete Turn Time=0
+											Current Turn Time=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+										}
+										AI=CGoToAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Destination=Customer Leave goto1
+											Offset=0.000000,0.000000
+											Starting Action=
+											Finished=0
+											Move Finished=0
+											Failed Path=0
+											Target Was Set By Goto AI=0
+											Move Behavior=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Done action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=4
+													Action=CSetCollidableAction
+													{
+														Target Name=$Trigger
+														Collidable=0
+													}
+													Action=CSendAIDoneMessage
+													{
+														Target=$Trigger
+													}
+													Action=CFadeToOpacityAction
+													{
+														Opacity To Fade To=0
+														Seconds To Fade=2
+														Part To Fade=$Trigger
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=$Trigger
+														}
+														Delay=2
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+											Run=0
+											Make New Home=0
+											Play Ratio=0
+											Time To Try To Move=0
+											Set Facing Angle=0
+											Turn Sequence Name=Idle
+											Facing Angle=CEntityBehaviorTurnToAngle
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+											}
+											Need to Call Start=1
+										}
+										AI=CGoToAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Destination=Customer Leave goto2
+											Offset=0.000000,0.000000
+											Starting Action=
+											Finished=0
+											Move Finished=0
+											Failed Path=0
+											Target Was Set By Goto AI=0
+											Move Behavior=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Done action=CSendAIDoneMessage
+											{
+												Target=$Trigger
+											}
+											Run=0
+											Make New Home=0
+											Play Ratio=0
+											Time To Try To Move=0
+											Set Facing Angle=0
+											Turn Sequence Name=Idle
+											Facing Angle=CEntityBehaviorTurnToAngle
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+											}
+											Need to Call Start=1
+										}
+									}
+									Current AI=0
+									When Done=Do Nothing
+									Restart Series Next Begin=0
+								}
+								Target=$Instigator
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=GoToCombat
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Piss off eduardo
+									}
+								}
+								Delay Between Adds=0
+							}
+						}
+					}
+					New Facing Angle=5.39307
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=519
+			Position Y=674
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Guard Goto
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=465
+			Position Y=728
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=recover sword but not for templar quest
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDisplayDialogBalloonAction
+					{
+						Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+						Node ID=1000 Reward for bringing back sword not a templar
+						Name of Position=eduardo
+						Position Offset=0.000000,-80.000000
+						After Action=
+						Include In Log=1
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=514
+			Position Y=827
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Guard Clone Generator2
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/1 Barcelona/Character Templates/Generic Gaurd NPC
+					New Name=Cloned Guard
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CSkeletonAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Patrol AI=CGoToAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Destination=Guard Goto
+								Offset=0.000000,0.000000
+								Starting Action=
+								Finished=0
+								Move Finished=0
+								Failed Path=0
+								Target Was Set By Goto AI=0
+								Move Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Done action=CSendAIDoneMessage
+								{
+									Target=$Trigger
+								}
+								Run=1
+								Make New Home=0
+								Play Ratio=0
+								Time To Try To Move=0
+								Set Facing Angle=0
+								Turn Sequence Name=Idle
+								Facing Angle=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Need to Call Start=1
+							}
+							Patrol Start Action=
+							Patrol End Action=
+							Respond to calls for reinforcements=0
+							Target shooter if hit=1
+							Never Unacquire=0
+							Time Since Acquiring Shooter=999
+							Sneak Adjustment=0
+							Target Type=CEntityBehaviorStateSetClosestTarget
+							{
+								Max Distance=550
+								Vision Cone=360
+								Name To Target=
+								Must Be Collideable=1
+								Must Have HPs=1
+								Valid Targets=Player
+							}
+							Has Seen Target=0
+							Max dist from home=1200
+							Pursue AI=CChasePursueAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=1
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Max Radius From Final Pos To Get Within=0
+								Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+							}
+							Pursue Start Action=
+							Pursue End Action=
+							Force Pursue Shooter=2
+							Max distance from home=1000
+							Investigate End Action=
+							Investigate Start Action=
+							Investigate AI=CChaseInvestigateAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Turn Behavior=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Time To Investigate=5
+								Count To Investigate=0
+								Radius to Investigate Point=0
+								Run To Investigate=1
+								State=Chasing
+								Investigate AI=CScanInvestigateAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CScanAreaAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Play Ratio=0
+										Next Try To Move=0
+										State=Scanning
+										Go Home Range=300
+										Move To Behavior=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Starting Angle=-45
+										Ending Angle=45
+										Turning Speed=10
+										Time Between Turning=0
+										Start Out Waiting=0
+										Start Counterclockwise=0
+										Turning Flag=0
+										Turn Sequence Name=Idle
+										End Turn Action=
+										Execute Each Turn=0
+										Reset Each Begin=1
+										Current Time To Wait=0
+										Current Start Angle=0
+										Current End Angle=0
+										Waiting=1
+										Starting Facing Angle=-999
+										Complete Turn Time=0
+										Current Turn Time=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+									}
+								}
+							}
+							Max Dist=80
+							Attack AI=
+							Attack Start Action=
+							Attack End Action=
+							Check Range When Firing=0
+							Ignore line of sight if in range=1
+							Retreat when=0
+							Retreat Start Action=
+							Has Started Retreat=0
+							State=Any
+							Allowed To Roam Anywhere=0
+							Transition=Array
+							{
+								Array Count=0
+							}
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=4.29351
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=485
+			Position Y=904
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Big Fire
+			Position X=551
+			Position Y=436
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CUnderConstructionLayerPart
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			X=586
+			Y=479
+			Text=Eduardo the Blacksmith
+			Max Width=100
+			Border Texture=Special/Under Construction
+		}
+		Level Part=CEntityBase
+		{
+			Name=Blacksmith generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=11
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=3
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/1 Barcelona/Character Templates/Gate District/Blacksmith
+								}
+							}
+						}
+					}
+					New Name=eduardo
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=2
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Player has talked to Eduardo
+									Desired Minimum Count=1
+								}
+								Then=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=Blacksmith has insulted player in dialog
+										Desired Minimum Count=1
+									}
+									Succeed Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+										Node ID=03 Return Dialogue 1, Insulted
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									Fail Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+										Node ID=03 Return Dialogue 1 Normal
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									Return failure if the TryAction failes=0
+								}
+								Else=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Player has talked to Eduardo
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CConditionalAction
+										{
+											Try Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Races/Demokin IS
+												}
+												Character to get attributes from=$Instigator
+											}
+											Succeed Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+												Node ID=01 Introduction, Tainted Demokin
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Fail Action=CConditionalAction
+											{
+												Try Action=CExpressionAction
+												{
+													Expression=CUseCannedExpressionExpression
+													{
+														Canned Expression=Dialog/Requirements/Races/Feralkin IS
+													}
+													Character to get attributes from=$Instigator
+												}
+												Succeed Action=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+													Node ID=01 Introduction, Feralkin
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Fail Action=CConditionalAction
+												{
+													Try Action=CExpressionAction
+													{
+														Expression=CUseCannedExpressionExpression
+														{
+															Canned Expression=Dialog/Requirements/Races/Sylvant IS
+														}
+														Character to get attributes from=$Instigator
+													}
+													Succeed Action=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+														Node ID=01 Introduction, Sylvant
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+													Fail Action=CConditionalAction
+													{
+														Try Action=CExpressionAction
+														{
+															Expression=CUseCannedExpressionExpression
+															{
+																Canned Expression=Dialog/Requirements/Male IS
+															}
+															Character to get attributes from=$Instigator
+														}
+														Succeed Action=CDisplayDialogTreeAction
+														{
+															Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+															Node ID=01 Introduction Non-tainted Male
+															Speaker=$trigger
+															Player Being Spoken To=$Instigator
+														}
+														Fail Action=CDisplayDialogTreeAction
+														{
+															Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+															Node ID=01 Introduction, Non-Tainted Female
+															Speaker=$trigger
+															Player Being Spoken To=$Instigator
+														}
+														Return failure if the TryAction failes=0
+													}
+													Return failure if the TryAction failes=0
+												}
+												Return failure if the TryAction failes=0
+											}
+											Return failure if the TryAction failes=0
+										}
+									}
+								}
+								Return failure if the If failes=0
+							}
+							X Radius=100
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+						AI=CSkeletonAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Patrol AI=CScanAreaAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Play Ratio=0
+								Next Try To Move=0
+								State=Scanning
+								Go Home Range=300
+								Move To Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Starting Angle=-10
+								Ending Angle=10
+								Turning Speed=2
+								Time Between Turning=0
+								Start Out Waiting=0
+								Start Counterclockwise=0
+								Turning Flag=0
+								Turn Sequence Name=Idle
+								End Turn Action=
+								Execute Each Turn=0
+								Reset Each Begin=1
+								Current Time To Wait=0
+								Current Start Angle=0
+								Current End Angle=0
+								Waiting=1
+								Starting Facing Angle=-999
+								Complete Turn Time=0
+								Current Turn Time=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+							}
+							Patrol Start Action=
+							Patrol End Action=
+							Respond to calls for reinforcements=1
+							Target shooter if hit=1
+							Never Unacquire=0
+							Time Since Acquiring Shooter=999
+							Sneak Adjustment=0
+							Target Type=CEntityBehaviorStateSetClosestTarget
+							{
+								Max Distance=550
+								Vision Cone=360
+								Name To Target=
+								Must Be Collideable=1
+								Must Have HPs=1
+								Valid Targets=
+							}
+							Has Seen Target=0
+							Max dist from home=1200
+							Pursue AI=CChasePursueAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Max Radius From Final Pos To Get Within=0
+								Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+							}
+							Pursue Start Action=
+							Pursue End Action=
+							Force Pursue Shooter=2
+							Max distance from home=1000
+							Investigate End Action=
+							Investigate Start Action=
+							Investigate AI=CChaseInvestigateAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Turn Behavior=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Time To Investigate=5
+								Count To Investigate=0
+								Radius to Investigate Point=0
+								Run To Investigate=1
+								State=Chasing
+								Investigate AI=CScanInvestigateAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CScanAreaAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Play Ratio=0
+										Next Try To Move=0
+										State=Scanning
+										Go Home Range=300
+										Move To Behavior=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Starting Angle=-45
+										Ending Angle=45
+										Turning Speed=10
+										Time Between Turning=0
+										Start Out Waiting=0
+										Start Counterclockwise=0
+										Turning Flag=0
+										Turn Sequence Name=Idle
+										End Turn Action=
+										Execute Each Turn=0
+										Reset Each Begin=1
+										Current Time To Wait=0
+										Current Start Angle=0
+										Current End Angle=0
+										Waiting=1
+										Starting Facing Angle=-999
+										Complete Turn Time=0
+										Current Turn Time=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+									}
+								}
+							}
+							Max Dist=80
+							Attack AI=
+							Attack Start Action=
+							Attack End Action=
+							Check Range When Firing=0
+							Ignore line of sight if in range=0
+							Retreat when=0
+							Retreat Start Action=
+							Has Started Retreat=0
+							State=Any
+							Allowed To Roam Anywhere=0
+							Transition=Array
+							{
+								Array Count=0
+							}
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CTriggerRelayAction
+								{
+									Relay Name=Piss off eduardo
+								}
+								Target Name=$Instigator
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=GoToCombat
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Piss off eduardo
+									}
+								}
+								Delay Between Adds=0
+							}
+						}
+					}
+					New Facing Angle=2.80988
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=584
+			Position Y=613
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=give silver
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActionGiveStandardInventoryItem
+					{
+						Who to give to=$instigator
+						Delete Trigger=0
+						Notify Player=1
+						Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+						Additions to add=Array
+						{
+							Item Count=0
+						}
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=587.25
+			Position Y=708.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=give red ore
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActionGiveStandardInventoryItem
+					{
+						Who to give to=$instigator
+						Delete Trigger=0
+						Notify Player=1
+						Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Red Ore
+						Additions to add=Array
+						{
+							Item Count=0
+						}
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=red ore
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=610.25
+			Position Y=688.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Barrel1/Barrel1 A
+			Position X=569.667
+			Position Y=787.333
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=RESET MAP for Invulnerable Eduardo
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=7
+							Action=CActivateAction
+							{
+								Target Name=Eduardo Sends you to jail
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CDeleteAction
+							{
+								Target Name=eduardo
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Cloned Guard
+							}
+							Action=CDelayAction
+							{
+								Next Action=CCloneAction
+								{
+									New Location=Blacksmith generator
+									Copy Height=0
+									Random Location Delta=0
+									Warp Behavior=
+									Source Name=Blacksmith generator
+									New Name=Used Blacksmith Generator
+									Set Facing Angle=0
+									New Facing Angle=0.785398
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Used Blacksmith Generator
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Customer
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Customer2
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=566
+			Position Y=818
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Piss off eduardo
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=7
+							Action=CDeactivateAction
+							{
+								Target Name=Piss off eduardo
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+								Node ID=600 Guards!
+								Name of Position=eduardo
+								Position Offset=0.000000,-80.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDelayAction
+							{
+								Next Action=CCloneAction
+								{
+									New Location=Guard Clone Generator1
+									Copy Height=0
+									Random Location Delta=0
+									Warp Behavior=
+									Source Name=Guard Clone Generator1
+									New Name=Used Guard Generator
+									Set Facing Angle=0
+									New Facing Angle=4.01426
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CCloneAction
+								{
+									New Location=Guard Clone Generator2
+									Copy Height=0
+									Random Location Delta=0
+									Warp Behavior=
+									Source Name=Guard Clone Generator2
+									New Name=Used Guard Generator
+									Set Facing Angle=0
+									New Facing Angle=4.01426
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Used Guard Generator
+							}
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Eduardo Sends you to jail
+							}
+							Action=CDelayAction
+							{
+								Next Action=CActivateAction
+								{
+									Target Name=Piss off eduardo
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=566
+			Position Y=863
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=669, 581, 602, 571, 585, 541, 669, 581
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=teleport to magnatized Silver
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActionGiveStandardInventoryItem
+					{
+						Who to give to=$instigator
+						Delete Trigger=0
+						Notify Player=1
+						Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+						Additions to add=Array
+						{
+							Item Count=0
+						}
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=Give Felgnash Sword
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=649.667
+			Position Y=673.333
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Box4/Box4 A
+			Position X=630.667
+			Position Y=747.333
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Player has talked to Eduardo
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=622
+			Position Y=809
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Eduardo Sends you to jail
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=8
+							Action=CDeactivateAction
+							{
+								Target Name=Eduardo Sends you to jail
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=eduardo
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CBeginNonInteractiveSequenceAction
+							{
+								Options=CNonInteractiveSequence
+								{
+									Pause Characters=0
+									Disable Player Controls=1
+									Can Fast Forward=1
+								}
+							}
+							Action=CDelayAction
+							{
+								Next Action=CFadeScreenDownAction
+								{
+									Time Until Auto Fade Up=2
+								}
+								Delay=3
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CRelocateAction
+								{
+									Return to map=unlikely soon
+									New Map Name=1 Barcelona/Inquisition Chambers2
+									New Location=Jail Start
+									Who To Switch=Player#1-9#
+									Relative Position=0
+									Ignore Party Ready Rules=1
+								}
+								Delay=3.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=3.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDeleteAction
+								{
+									Target Name=eduardo
+								}
+								Delay=3.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDeleteAction
+								{
+									Target Name=Cloned Guard
+								}
+								Delay=3.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=627
+			Position Y=868
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=702
+			Position Y=547
+			Rendering Height=65
+			Rendering Height Float=65
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Pot2/Pot2 A
+			Position X=684.667
+			Position Y=664.333
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Barrel2/Barrel2 B
+			Position X=684.546
+			Position Y=683.076
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Box2/Box2 A
+			Position X=692.546
+			Position Y=724.076
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=used barter to avoid sword quest
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=679
+			Position Y=783
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=500
+			}
+			Name=Recover Father's sword 
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=936
+			Position Y=398
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=500
+			}
+			Name=Recover Magnetized Silver
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=936
+			Position Y=520
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=1.27591e+010
+		Num Textures=2
+		Texture 0=14 Black
+		Texture 1=14 Black
+		Elevations Row 0=9090909090909090909090909090909090909000
+		Elevations Row 1=010F1C2A3745525F6C5F5245372A1C0F010F1C00
+		Elevations Row 2=010D18232E3A45505B59575552504E4C494C4E00
+		Elevations Row 3=010A131C252E374049525B646D767F8890887F00
+		Elevations Row 4=252C333A40474E555B62686F757C838A908A8300
+		Elevations Row 5=494E52575B6064686C71757A7E83878C908C8700
+		Elevations Row 6=6D6F717375787A7C7E818385878A8C8E908E8C00
+		Elevations Row 7=9090909090909090909090909090909090909000
+		Elevations Row 8=FFF5EBE1D6CCC1B7ACB7C1CCD6E1EBF5FFF5EB00
+		Elevations Row 9=FFF7EEE6DDD5CCC3BABCBEC0C1C3C5C7C8C7C500
+		Elevations Row 10=FFF9F2EBE4DDD6CFC8C1BAB3ACA59E9790979E00
+		Elevations Row 11=E4DFDAD5CFCAC5C0BAB5B0ABA5A09B9690969B00
+		Elevations Row 12=C8C5C1BEBAB7B3B0ACA9A5A29E9B979490949700
+		Elevations Row 13=ACABA9A7A5A4A2A09E9D9B999796949290929400
+		Elevations Row 14=9090909090909090909090909090909090909000
+		Elevations Row 15=0000000000000000000000000000000000000000
+		Elevations Row 16=0000000000000000000000000000000000000000
+		Elevations Row 17=0000000000000000000000000000000000000000
+		Elevations Row 18=0000000000000000000000000000000000000000
+		Elevations Row 19=0000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080000000000000000000808080000000808080808080808080808080000000000000000000000000000000808080808080808080808080
+		Light Overlay Row 15=808080000000000000000000000000000000000000808080000000000000000000000000000000000000000000000000808080808080808080808080
+		Light Overlay Row 16=808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000808080808080808080
+		Light Overlay Row 17=808080808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000808080808080808080808080
+		Light Overlay Row 18=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 19=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+	}
+}

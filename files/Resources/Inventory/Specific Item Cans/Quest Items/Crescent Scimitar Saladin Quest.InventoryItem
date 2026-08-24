@@ -1,0 +1,309 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=7
+		PlugIn Behavior=CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride
+		{
+			Override Models=Array
+			{
+				Character Slot Types/!None=Models3D/!None/!None
+				Character Slot Types/Arm=Models3D/!None/!None
+				Character Slot Types/Arrow=Models3D/!None/!None
+				Character Slot Types/Body=Models3D/!None/!None
+				Character Slot Types/Bolt=Models3D/!None/!None
+				Character Slot Types/Finger=Models3D/!None/!None
+				Character Slot Types/Foot=Models3D/!None/!None
+				Character Slot Types/Hand=Models3D/!None/!None
+				Character Slot Types/Head=Models3D/!None/!None
+				Character Slot Types/HotKey=Models3D/!None/!None
+				Character Slot Types/Neck=Models3D/!None/!None
+				Character Slot Types/Shield=Models3D/!None/!None
+				Character Slot Types/Waist=Models3D/!None/!None
+				Character Slot Types/Weapon=Models3D/!None/!None
+			}
+			Override Names=Array
+			{
+				Character Slot Types/!None=
+				Character Slot Types/Arm=
+				Character Slot Types/Arrow=
+				Character Slot Types/Body=
+				Character Slot Types/Bolt=
+				Character Slot Types/Finger=
+				Character Slot Types/Foot=
+				Character Slot Types/Hand=
+				Character Slot Types/Head=
+				Character Slot Types/HotKey=
+				Character Slot Types/Neck=
+				Character Slot Types/Shield=
+				Character Slot Types/Waist=
+				Character Slot Types/Weapon=Sacred Scim
+			}
+			Override Active=0
+		}
+		PlugIn Behavior=CPlugInBehaviorPlaySequence
+		{
+			Granny Animations=Array
+			{
+				Item Count=0
+			}
+			Sequence Name=AttackOneHanded
+			Random Sequence Selection=1
+			Sequence Index=-1
+		}
+		PlugIn Behavior=CPlugInBehaviorAttack
+		{
+			Max Attack Range=64
+			Is Location Based=0
+			Can Use Slayer Mode=0
+			Can Use Sniper Mode=0
+			Action On Hit=
+			Action On Miss=
+		}
+		PlugIn Behavior=CPlugInBehaviorDamage
+		{
+			Hit Or Miss=Damage Types/Damage Hit Or Miss/OneHandedMelee
+			Cache Hit Or Miss Result=1
+			Hit Margin=0
+			Damages=Array
+			{
+				Item Count=1
+				Damage=CXRPGDamage
+				{
+					Damage Type=Damage Types/Slashing
+					Damage Amount=CAdd
+					{
+						Operand1=CRandom
+						{
+							Operator=
+							Minimum=CConstant
+							{
+								Constant Value=2
+							}
+							Maximum=CConstant
+							{
+								Constant Value=11
+							}
+						}
+						Operator=
+						Operand2=CAdd
+						{
+							Operand1=CIfExpression
+							{
+								Condition=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Fighting/OneHandedMelee
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=50
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=0
+								}
+								OperatorPart2=
+								Value if False=CIfExpression
+								{
+									Condition=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Fighting/OneHandedMelee
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=100
+										}
+									}
+									OperatorPart1=
+									Value if True =CConstant
+									{
+										Constant Value=1
+									}
+									OperatorPart2=
+									Value if False=CIfExpression
+									{
+										Condition=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Fighting/OneHandedMelee
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=150
+											}
+										}
+										OperatorPart1=
+										Value if True =CConstant
+										{
+											Constant Value=2
+										}
+										OperatorPart2=
+										Value if False=CIfExpression
+										{
+											Condition=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Fighting/OneHandedMelee
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=200
+												}
+											}
+											OperatorPart1=
+											Value if True =CConstant
+											{
+												Constant Value=3
+											}
+											OperatorPart2=
+											Value if False=CIfExpression
+											{
+												Condition=CIsLessThan
+												{
+													Operand1=CVariableSkill
+													{
+														Skill=Skills/Fighting/OneHandedMelee
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=250
+													}
+												}
+												OperatorPart1=
+												Value if True =CConstant
+												{
+													Constant Value=4
+												}
+												OperatorPart2=
+												Value if False=CIfExpression
+												{
+													Condition=CIsLessThan
+													{
+														Operand1=CVariableSkill
+														{
+															Skill=Skills/Fighting/OneHandedMelee
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=300
+														}
+													}
+													OperatorPart1=
+													Value if True =CConstant
+													{
+														Constant Value=5
+													}
+													OperatorPart2=
+													Value if False=CConstant
+													{
+														Constant Value=6
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Operator=
+							Operand2=CIfExpression
+							{
+								Condition=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/One-Handed Weapon Specialization
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=3
+								}
+								OperatorPart2=
+								Value if False=CConstant
+								{
+									Constant Value=0
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=0
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_metal_weapon.ogg
+				Position=$Trigger
+				Multiplayer=Heard by all players
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_metal_weapon.ogg
+				Position=$Trigger
+				Multiplayer=Heard by all players
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=400
+	}
+	Is Magic=0
+	Encumbrance=5
+	On the ground=Items/PickUps/Weapons/ScimitarSacred_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Crescent Scimitar
+	Description=(One-Handed) %s[damage]. Honestly made and honestly plain. Eduardo forged it to the pattern of the Order, but he never got his father's blade back, and he said himself where the enchantment comes from.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Quest Items/Sacred Scimitar
+		Better=Items/Inventory Images/Quest Items/Sacred Scimitar
+		Special=Items/Inventory Images/Quest Items/Sacred Scimitar
+	}
+	WholeItemDisplayName=
+	WholeItemDescription=
+	Damage Location=0
+	Damage Length=0
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Weapon
+	Sub Slot Used In=0
+	Number Hands Needed=One
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Sword
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+}

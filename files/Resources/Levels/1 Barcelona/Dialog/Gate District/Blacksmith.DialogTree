@@ -1,0 +1,4902 @@
+CDialogTree
+{
+Name=Eduardo the Blacksmith
+Portrait=Dialog/NPC Portraits/BlackSmith
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Introduction Non-tainted Male
+Text=Buenos dias, senor! Adelante, adelante <Come in, come in> - welcome to Eduardo's Blacksmith Shop. Come to purchase the finest weapons in Barcelona, no? Simple iron to enchanted steel, you will find it all here!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Reply Text=I have a blade that I believe belongs to you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CTriggerRelayAction
+{
+Relay Name=recover sword but not for templar quest
+}
+}
+}
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci has asked me to speak with you about Red Ore for Cortes' mechanical arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Here is some Red Ore. Can you use it to complete Davinci's design for Cortes' mechanical arm?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=display baloon & trigger make arm
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You forge enchanted weapons? Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=!None
+Reply Text=Yes, I would like to see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Introduction, Non-Tainted Female
+Text=Buenos dias, senorita! Adelante, adelante <Come in, come in> - welcome to Eduardo's Blacksmith Shop. Come to purchase the finest weapons in Barcelona, no? Simple iron to enchanted steel, you will find it all here!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Reply Text=I have a blade that I believe belongs to you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CTriggerRelayAction
+{
+Relay Name=recover sword but not for templar quest
+}
+}
+}
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci has asked me to speak with you about Red Ore for Cortes' mechanical arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Here is some Red Ore. Can you use it to complete Davinci's design for Cortes' mechanical arm?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=display baloon & trigger make arm
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Yes, I would like to see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=You forge enchanted weapons? Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Introduction, Sylvant
+Text=Ah...are you one of those touched by nature, my friend? No matter. Do not let it be said that I ever turn away a paying customer - welcome to Eduardo's Blacksmith Shop. Come to purchase the finest weapons in Barcelona, no? Simple iron to enchanted steel, you will find it all here!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Reply Text=I have a blade that I believe belongs to you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CTriggerRelayAction
+{
+Relay Name=recover sword but not for templar quest
+}
+}
+}
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci has asked me to speak with you about Red Ore for Cortes' mechanical arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Here is some Red Ore. Can you use it to complete Davinci's design for Cortes' mechanical arm?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=display baloon & trigger make arm
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Yes, I would like to see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=You forge enchanted weapons? Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Introduction, Feralkin
+Text=Ah...a long way from the forests, aren't you, my big friend? No matter. Do not let it be said that I ever turn away a paying customer - welcome to Eduardo's Blacksmith Shop. Come to purchase the finest weapons in Barcelona, no? Simple iron to enchanted steel, you will find it all here!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Reply Text=I have a blade that I believe belongs to you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CTriggerRelayAction
+{
+Relay Name=recover sword but not for templar quest
+}
+}
+}
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Here is some Red Ore. Can you use it to complete Davinci's design for Cortes' mechanical arm?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=display baloon & trigger make arm
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci has asked me to speak with you about Red Ore for Cortes' mechanical arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Yes, I would like to see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=You forge enchanted weapons? Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Introduction, Tainted Demokin
+Text=Eh...welcome to Eduardo's Blacksmith Shop. If you are looking for iron and, eh, enchanted steel, you have come to the right place.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Reply Text=I have a blade that I believe belongs to you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CTriggerRelayAction
+{
+Relay Name=recover sword but not for templar quest
+}
+}
+}
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci has asked me to speak with you about Red Ore for Cortes' mechanical arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Here is some Red Ore. Can you use it to complete Davinci's design for Cortes' mechanical arm?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=display baloon & trigger make arm
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Is there some problem? Your smile died as soon as I entered the door.
+Go to node ID=20 Problem Demokin
+Action work in progress=(Tainted, Demokin)
+
+Requirement=!None
+Reply Text=Yes, I would like to see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=You forge enchanted weapons? Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue 1 Normal
+Text=Welcome back to Eduardo's Blacksmith Shop. Come to see what weapons and armor I have that might interest you, no?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Reply Text=I have a blade that I believe belongs to you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CTriggerRelayAction
+{
+Relay Name=recover sword but not for templar quest
+}
+}
+}
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci has asked me to speak with you about Red Ore for Cortes' mechanical arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Here is some Red Ore. Can you use it to complete Davinci's design for Cortes' mechanical arm?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=display baloon & trigger make arm
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Before, you mentioned you have enchanted weapons for sale. Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue 1, Insulted
+Text=Eh...welcome back to Eduardo's Blacksmith Shop. Perhaps you have forgiven me for my earlier insult? I meant no harm. Please, let me show you what weapons and armor I have.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=08 No Discount Yet
+Action work in progress=(Set Insult Flag to 0, Store Discount Not Given, Set Store Discount)
+
+Requirement=!None
+Reply Text=
+Go to node ID=09 Discount Given
+Action work in progress=(Set Insult Flag to 0, Store Discount Given)
+------------------------------------------------------------
+Node ID=6 Return Dialogue Wizard
+Text=Eh...welcome back to Eduardo's Blacksmith Shop. Perhaps you have forgiven me for my earlier insult? I meant no harm. Please, let me show you what weapons and armor I have.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=08 No Discount Yet
+Text=Eh...as a gesture of goodwill, how about at a discount? Would that suit you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Before, you mentioned you have enchanted weapons for sale. Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have some Red Ore
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=Human NOT
+Reply Text=Nothing some human fool has for sale could interest me. You and your shop be damned, blacksmith.
+Go to node ID=
+Action work in progress=(Tainted, Demokin, Set Insult Flag to 1)
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=09 Discount Given
+Text=As a gesture of goodwill, that discount I mentioned before, it is a standing one - all you buy here will be at the best possible price, I assure you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Before, you mentioned you have enchanted weapons for sale. Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have Red Ore for Cortes' arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=Human NOT
+Reply Text=Nothing some human fool has for sale could interest me. You and your shop be damned, blacksmith.
+Go to node ID=
+Action work in progress=(Tainted, Demokin, Set Insult Flag to 1)
+Custom Action=CActivateAction
+{
+Target Name=
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Claro! Claro! <Of course, of course> But please, return again if you are in need of the finest steel in Barcelona. And if not you, send your friends...Eduardo's is open to all!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 Problem Demokin
+Text=My apologies, I- I am not always used to seeing one with blood such as yours in my shop. And with the Inquisition, these are difficult times for all those touched by magic.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=21 Problem Demokin 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 Problem Demokin 2
+Text=I meant no insult...please, let me show you what I have in stock. I have the finest weapons and armor in all Barcelona, I assure you! Simple iron to enchanted steel, you will find it all here!
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 50
+Reply Text=I would hate to spread along to my kin I was not made welcome at your shop...it would be bad for business, I think.
+Go to node ID=08 No Discount Yet
+Action work in progress=(Barter>=25%, Set Insult Flag to 0, Store Discount Given)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Insult meter
+}
+Action=CActivateAction
+{
+Target Name=Discount checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Before, you mentioned you have enchanted weapons for sale. Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have some Red Ore
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=Human NOT
+Reply Text=Nothing some human fool has for sale could interest me. You and your shop be damned, blacksmith.
+Go to node ID=
+Action work in progress=(Tainted, Demokin, Set Insult Flag to 1)
+Custom Action=CActivateAction
+{
+Target Name=Insult meter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Can You Forge a Lion Shield
+Text=Si, si, you've come to the right place! <Shakes head> But what you ask, my friend, is no easy task. Fashioning a Lion Shield...it is more than simply pounding hot metal upon the anvil. It requires a test of valor, of bravery on the part of the owner to give the shield its strength, its spiritual center.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=A test of bravery? Like what?
+Go to node ID=33 Test of Bravery
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=What would I need to do to prove myself?
+Go to node ID=33 Test of Bravery
+------------------------------------------------------------
+Node ID=30 Can You Forge a Sacred Scimitar
+Text=Si, si, you've come to the right place! <Shakes head> But what you ask, my friend, it is no easy task. Fashioning a Sacred Scimitar...it is more than simply pounding hot metal upon the anvil. It requires a test of valor, of bravery on the part of the owner to give the scimitar its strength, its spiritual center.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=A test of bravery? Like what?
+Go to node ID=33 Test of Bravery
+
+Requirement=!None
+Reply Text=What would I need to do to prove myself?
+Go to node ID=33 Test of Bravery
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=33 Test of Bravery
+Text=It so happens I have just the task! A filthy beggar named Felgnash - may all the devils in hell dog his steps until his dying day - has stolen a sword from me, a sword fashioned by my father, no less! The coward has fled into the sewers, no doubt in fear of the beating he would receive at my hands!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+Reply Text=Wait a minute...is this your sword?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Have Sword)
+Is Default Reply=1
+
+Requirement=Blacksmith requires you to be on Lionshield Quest without fathers sword
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+}
+Reply Text=
+Go to node ID=35 Test of Bravery 2 Lion Shield
+Action work in progress=(Don't Have Sword, On Lion Shield Quest)
+Is Default Reply=1
+
+Requirement=Blacksmith requires you to be on scimitar quest without scimitar yet
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+}
+}
+Reply Text=
+Go to node ID=35 Test of Bravery 2 Scimitar
+Action work in progress=(Don't Have Sword, On Scimitar Quest)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 Test of Bravery 2 Lion Shield
+Text=I would go after the honorless dog myself, but...alas, my work demands that I remain here, slave to the anvil and iron. Will you do it? It is a fair task, and one worthy of your strength - it shows your devotion to justice, proves your bravery...and it will allow my father's spirit to finally rest easily in his grave to know that his sword has been returned to his son.
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires Feralkin intelligence 4+
+Reply Text=Wait a minute...is it because of my nature that you think I would agree to roam the sewers in search of your blade? We feralkin do not live in sewers like animals, Eduardo. Do you seek to insult me?
+Go to node ID=48 Angry Feralkin
+Action work in progress=(IN > 4, Feralkin, Don't Have Sword)
+Icon=Attribute Icon
+
+Requirement=Blacksmith requires CH less than 7 and speech over 25 percent
+Reply Text=The Knights Templar said nothing of any test, Eduardo, and I am on official business. Can you make the shield or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH < 7, Speech >=25%)
+Custom Action=CActivateAction
+{
+Target Name=Sword find checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+
+Requirement=CH 6+
+Reply Text=The Knights Templar said nothing of any test, Eduardo, and I am on official business. Can you make the shield or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH > 6)
+Custom Action=CActivateAction
+{
+Target Name=Sword find checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Attribute Icon
+
+Requirement=Blacksmith requires male with minimum 35 percent speect
+Reply Text=My time in Barcelona is short, Eduardo, and the Knights Templar told me you could finish the Lion Shield, no matter what the challenge.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Male)
+Custom Action=CActivateAction
+{
+Target Name=Sword find checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+
+Requirement=Blacksmith requires female with 35 percent speech
+Reply Text=Ah, you are truly confident in your manhood not to heed what the other merchants would say if you sent a woman down into such danger.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Female)
+Custom Action=CActivateAction
+{
+Target Name=Sword find checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+
+Requirement=IN 6+
+Reply Text=But if it is your father's sword, the "task of valor" should fall upon you, since you will be the one forging the Lion Shield. If you cannot prove yourself, then won't your weakness be present in the shield?
+Go to node ID=46 Success Non Barter
+Action work in progress=(IN > 6)
+Icon=Attribute Icon
+
+Requirement=Barter less than 50
+Reply Text=Can I just pay you more for the Lion Shield instead?
+Go to node ID=43 Failed Barter Lion Shield
+Action work in progress=(Barter <25%)
+
+Requirement=Blacksmith requires barter over 25 and 100 gold
+Reply Text=Perhaps we can come to an arrangement...say double the gold instead of finding the sword?
+Go to node ID=44 Success Barter
+Action work in progress=(Barter >=25%, Have 100 Gold, Take 100 Gold)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=I guess I have no choice, do I?
+Go to node ID=40 No Choice
+
+Requirement=Male IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Male
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Female
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 Test of Bravery 2 Scimitar
+Text=I would go after the honorless dog myself, but...alas, my work demands that I remain here, slave to the anvil and iron. Will you do it? It is a fair task, and one worthy of your strength - it shows your devotion to justice, proves your bravery...and it will allow my father's spirit to finally rest easily in his grave to know that his sword has been returned to his son.
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires Feralkin intelligence 4+
+Reply Text=Wait a minute...is it because of my nature that you think I would agree to roam the sewers in search of your blade? We feralkin do not live in sewers like animals, Eduardo. Do you seek to insult me?
+Go to node ID=48 Angry Feralkin
+Action work in progress=(IN > 4, Feralkin, Don't Have Sword)
+Icon=Attribute Icon
+
+Requirement=Blacksmith requires CH less than 7 and speech over 25 percent
+Reply Text=The Knights of Saladin said nothing of any test, Eduardo, and I am on official business. Can you make the scimitar or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH < 7, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=CH 6+
+Reply Text=The Knights of Saladin said nothing of any test, Eduardo, and I am on official business. Can you make the scimitar or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH > 6)
+Icon=Attribute Icon
+
+Requirement=Blacksmith requires male with minimum 35 percent speect
+Reply Text=My time in Barcelona is short, Eduardo, and the Knights of Saladin told me you could finish the Sacred Scimitar, no matter what the challenge.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Male)
+Custom Action=CActivateAction
+{
+Target Name=Sword find checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+
+Requirement=Blacksmith requires female with 35 percent speech
+Reply Text=Ah, you are truly confident in your manhood not to heed what the other merchants would say if you sent a woman down into such danger.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Female)
+Icon=Speach Skill Icon
+
+Requirement=IN 6+
+Reply Text=But if it is your father's sword, the "task of valor" should fall upon you, since you will be the one forging the Sacred Scimitar. If you cannot prove yourself, then won't your weakness be present in the scimitar?
+Go to node ID=46 Success Non Barter
+Action work in progress=(IN > 6)
+Icon=Attribute Icon
+
+Requirement=Barter less than 50
+Reply Text=Can I just pay you more for the Sacred Scimitar instead?
+Go to node ID=43 Failed Barter Sacred Scimitar
+Action work in progress=(Barter <25%)
+
+Requirement=Blacksmith requires barter over 25 and 100 gold
+Reply Text=Perhaps we can come to an arrangement...say, a hundred gold instead of finding the sword?
+Go to node ID=44 Success Barter
+Action work in progress=(Barter >=25%, Have 100 Gold, Take 100 Gold)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=I guess I have no choice, do I?
+Go to node ID=40 No Choice
+
+Requirement=Male IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Male
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Female
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 No Choice
+Text=Come now, my friend. Is that any kind of attitude? It will be a simple task for the likes of you. Felgnash is said to live in the sewers, and he cannot be far. Hurry back and I'll make that item for you. ¡Buena suerta! <Good luck!>
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 Agreed Male
+Text=Ah, bless you, señor! It is said that he hides in the sewers. But he cannot hide from you there, no, no matter what the smell, no matter how many thieves and beggars surround and protect him, I know he shall not escape your keen eye and strong sword arm!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=41 Agreed Female
+Text=Ah, bless you, señorita! It is said that he hides in the sewers. But he cannot hide from you there, no, no matter what the smell, no matter how many thieves and beggars surround and protect him, I know he shall not escape your keen eye and strong sword arm!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=42 Success Reputation
+Text=Well, si...er, I mean, no, no, but I...eh...hmmm. I would be saddened if my reputation, as sterling as it is, was harmed because of a misperception. Besides, nothing would make my father sleep easy within his grave anyway.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=45 Success to Silver
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=43 Failed Barter Lion Shield
+Text=It is not a matter of gold, my friend. Do you think you ask for something as simple as a horseshoe? It takes a great deal of effort and research to fashion such a thing! I think it only fair that you do a favor for me in return, no?
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires Feralkin intelligence 4+
+Reply Text=Is it because of my nature that you think I would agree to roam the sewers in search of your blade? We feralkin do not live in sewers like animals, Eduardo. Do you seek to insult me?
+Go to node ID=48 Angry Feralkin
+Action work in progress=(IN > 4, Feralkin, Don't Have Sword)
+Icon=Attribute Icon
+
+Requirement=Blacksmith requires CH less than 7 and speech over 25 percent
+Reply Text=The Knights Templar said nothing of any test, Eduardo, and I am on official business. Can you make the shield or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH < 6, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=CH 6+
+Reply Text=The Knights Templar said nothing of any test, Eduardo, and I am on official business. Can you make the shield or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH > 6)
+Icon=Attribute Icon
+
+Requirement=Blacksmith requires male with minimum 35 percent speect
+Reply Text=My time in Barcelona is short, Eduardo, and the Knights Templar told me you could finish the Lion Shield, no matter what the challenge.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Male)
+Icon=Speach Skill Icon
+
+Requirement=Blacksmith requires female with 35 percent speech
+Reply Text=Ah, you are truly confident in your manhood not to heed what the other merchants would say if you sent a woman down into such danger.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Female)
+Icon=Speach Skill Icon
+
+Requirement=IN 6+
+Reply Text=But if it is your father's sword, the "task of valor" should fall upon you, since you will be the one forging the Lion Shield. If you cannot prove yourself, then won't your weakness be present in the shield?
+Go to node ID=46 Success Non Barter
+Action work in progress=(IN > 6)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I guess I have no choice, do I?
+Go to node ID=40 No Choice
+
+Requirement=Male IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Male
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Female
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=43 Failed Barter Sacred Scimitar
+Text=It is not a matter of gold, my friend. Do you think you ask for something as simple as a horseshoe? It takes a great deal of effort and research to fashion such a thing! I think it only fair that you do a favor for me in return, no?
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires Feralkin intelligence 4+
+Reply Text=Is it because of my nature that you think I would agree to roam the sewers in search of your blade? We feralkin do not live in sewers like animals, Eduardo. Do you seek to insult me?
+Go to node ID=48 Angry Feralkin
+Action work in progress=(IN > 4, Feralkin, Don't Have Sword)
+
+Requirement=Blacksmith requires CH less than 7 and speech over 25 percent
+Reply Text=The Knights of Saladin said nothing of any test, Eduardo, and I am on official business. Can you make the scimitar or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH < 6, Speech >=25%)
+
+Requirement=CH 6+
+Reply Text=The Knights of Saladin said nothing of any test, Eduardo, and I am on official business. Can you make the scimitar or not?
+Go to node ID=46 Success Non Barter
+Action work in progress=(CH > 6)
+
+Requirement=Blacksmith requires male with minimum 35 percent speect
+Reply Text=My time in Barcelona is short, Eduardo, and the Knights of Saladin told me you could finish the Sacred Scimitar, no matter what the challenge.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Male)
+
+Requirement=Blacksmith requires female with 35 percent speech
+Reply Text=Ah, you are truly confident in your manhood not to heed what the other merchants would say if you sent a woman down into such danger.
+Go to node ID=42 Success Reputation
+Action work in progress=(Speech >=35%, Female)
+
+Requirement=IN 6+
+Reply Text=But if it is your father's sword, the "task of valor" should fall upon you, since you will be the one forging the Sacred Scimitar. If you cannot prove yourself, then won't your weakness be present in the scimitar?
+Go to node ID=46 Success Non Barter
+Action work in progress=(IN > 6)
+
+Requirement=!None
+Reply Text=I guess I have no choice, do I?
+Go to node ID=40 No Choice
+
+Requirement=Male IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Male
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+
+Requirement=Female IS
+Reply Text=I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Female
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+------------------------------------------------------------
+Node ID=44 Success Barter
+Text=Now, now, my friend, you have asked for a very special item th...eh, a hundred gold, you say? Hmm. Very well, it is a deal! Nothing would make my father sleep easy within his grave anyway.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=45 Success to Silver
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Action=CActivateAction
+{
+Target Name=used barter to avoid sword quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Success to Silver
+Text=But...eh, now that I have given the matter some thought, there is a complication. A small one, to be sure, but...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=But...?
+Go to node ID=51 Got Sword 2
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Out with it, man. I don't have all day to stand and talk with you.
+Go to node ID=51 Got Sword 2
+------------------------------------------------------------
+Node ID=46 Success Non Barter
+Text=Eh, heh, si...what was I thinking? You are right, the customer is always right. Perhaps I could, eh, pay you for your valuable service in retrieving the blade...in addition to making you the item you requested? No?
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires you to be on Lionshield Quest without fathers sword
+Reply Text=Perhaps I was not clear the first time when I spoke - gold is not the issue here, the shield is.
+Go to node ID=47 Perhaps I Was Not Clear
+Action work in progress=(Lion Shield Quest)
+Icon=Fight Icon
+
+Requirement=Blacksmith requires you to be on scimitar quest without scimitar yet
+Reply Text=Perhaps I was not clear the first time when I spoke - gold is not the issue here, the scimitar is.
+Go to node ID=47 Perhaps I Was Not Clear
+Action work in progress=(Scimitar Quest)
+Icon=Fight Icon
+
+Requirement=Male IS
+Reply Text=Pay me, eh? Very well. I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Male
+Action work in progress=(Set Reward for the Quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Blacksmith offered payment
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Reply Text=Pay me, eh? Very well. I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Female
+Action work in progress=(Set Reward for the Quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Blacksmith offered payment
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=47 Perhaps I Was Not Clear
+Text=Very well, let us forget I said anything of the retrieval of the sword - nothing would make my father sleep easy within his grave anyway.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=45 Success to Silver
+Action work in progress=(Set Sword Not Returned)
+Custom Action=CActivateAction
+{
+Target Name=Sword find checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=48 Angry Feralkin
+Text=No, no! Please, no offense meant, my large friend! Heh - I would never mean to imply such a thing, and you have my deepest apologies. To prove my good word, perhaps I could, eh, pay you for your valuable service in retrieving the blade...in addition to making you the item you requested? No?
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires you to be on Lionshield Quest without fathers sword
+Reply Text=So NOW you imply I am nothing more than a mercenary, to be swayed by gold? Make the shield, Eduardo, and do not insult me again.
+Go to node ID=47 Perhaps I Was Not Clear
+Action work in progress=(Lion Shield Quest)
+Icon=Fight Icon
+
+Requirement=Blacksmith requires you to be on scimitar quest without scimitar yet
+Reply Text=So NOW you imply I am nothing more than a mercenary, to be swayed by gold? Make the scimitar, Eduardo, and do not insult me again.
+Go to node ID=47 Perhaps I Was Not Clear
+Action work in progress=(Sacred Scimitar Quest)
+Icon=Fight Icon
+
+Requirement=Blacksmith requires you to be on Lionshield Quest without fathers sword
+Reply Text=I'm losing patience. Make the shield. Now.
+Go to node ID=47 Perhaps I Was Not Clear
+Action work in progress=(Lion Shield Quest)
+Icon=Fight Icon
+
+Requirement=Blacksmith requires you to be on scimitar quest without scimitar yet
+Reply Text=I'm losing patience. Make the scimitar. Now.
+Go to node ID=47 Perhaps I Was Not Clear
+Action work in progress=(Scimitar Quest)
+Icon=Fight Icon
+
+Requirement=Male IS
+Reply Text=Pay me, eh? I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Male
+Action work in progress=(Male, Pay Me)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Blacksmith offered payment
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Reply Text=Pay me, eh? I will find Felgnash and see what I can do.
+Go to node ID=41 Agreed Female
+Action work in progress=(Female, Pay Me)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Blacksmith offered payment
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+State=9MF5NQU1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Got Sword No Payment
+Text=The blade... gracias! Oh, at last, my father shall sleep easily in his grave - I shall speak of your generosity far and wide! Ah...but as far as the item you requested, there is a small problem.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=51 Got Sword 2
+Action work in progress=(Give Faction Karma Bonus)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=5
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CActivateAction
+{
+Target Name=Blacksmith received his fathers blade
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Got Sword Payment
+Text=The blade... gracias! Oh, at last, my father shall sleep easily in his grave - and, eh, hmmm...here - as promised, the payment for your work. Ah...but as far as the item you requested, there is a small problem.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=51 Got Sword 2
+Action work in progress=(Give 100 Gold)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CActivateAction
+{
+Target Name=Blacksmith received his fathers blade
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 Got Sword 2
+Text=Unfortunately, I have all the materials I need except for, eh, a deposit of magnetized silver. I know it is much to ask, but I will need you to get some for me.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=used barter to avoid sword quest
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Sword find checker
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 35
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+}
+}
+}
+Reply Text=Eduardo, I already retrieved your father's sword, which was no small task. Perhaps you could send someone else to retrieve this silver?
+Go to node ID=53 Got Sword 3
+Action work in progress=(IN > 6 or Speech >=35%, Sword Returned, and No Silver)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+}
+}
+Reply Text=Where can I find some magnetized silver?
+Go to node ID=54 Where
+Action work in progress=(No silver)
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+}
+Reply Text=It is no trouble - I have some magnetized silver with me.
+Go to node ID=61 Already Had Silver
+Action work in progress=(Have silver)
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=IN less than or equal to 4
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+}
+}
+Reply Text=Uhh..Magna-ties silver? Is that some kind of English currency?
+Go to node ID=52 Magna Ties
+Action work in progress=(IN < 4, No Silver)
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 35
+}
+}
+Reply Text=Perhaps you could send someone else to retrieve this silver and let me know when the shield is done?
+Go to node ID=53 Got Sword 3
+Action work in progress=(Speech >=35%, didn't get blade for him, and No Silver)
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=52 Magna Ties
+Text=Eh...no, it is silver that has been affected by the magnetic currents and spirits of the world, and it...nevermind, the nature of the metal is of no consequence.
+Should Have Voiceover=1
+
+Requirement=Blacksmith - IN over 6 or speech over 35 and sword returned
+Reply Text=Eduardo, I already retrieved your father's sword, which was no small task. Perhaps you could send someone else to retrieve this silver?
+Go to node ID=53 Got Sword 3
+Action work in progress=(IN > 6 or Speech >=35%, Sword Returned)
+Icon=Attribute Icon
+
+Requirement=Blacksmith - Speech over 35 no blade found and NO silver
+Reply Text=Perhaps you could send someone else to retrieve this silver and let me know when the shield is done?
+Go to node ID=53 Got Sword 3
+Action work in progress=(Speech >=35%, didn't get blade for him)
+Icon=Speach Skill Icon
+
+Requirement=Blacksmith = Lionsheild or Scimitar seeker have NO Silver
+Reply Text=Where can I find some magnetized silver?
+Go to node ID=54 Where
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=53 Got Sword 3
+Text=If only I could, I would not hesitate, my friend! But even if I explained your need, even if I called in every favor I had, my suppliers could do nothing! Apparently there is a small matter, of, eh, some goblins infesting the cave where the ore is mined.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=55 Got Sword 4
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=54 Where
+Text=Well, normally I would obtain the silver from my suppliers. But even if I explained your need, even if I called in every favor I had, my suppliers could do nothing! Apparently there is a small matter, of, eh, some goblins infesting the cave where the ore is mined.  I'm not sure where the cave is exactly - somewhere north of the Crossroads is all I know.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=55 Got Sword 4
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 Got Sword 4
+Text=My suppliers claim the creatures are trying to artificially drive up the price of magnetized silver - criminal! It pains me to say that if you want your item finished, you'll have to deal with them yourself.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN less than or equal to 4
+}
+}
+Reply Text=Very well. I shall deal with these goblins and get the magnetized silver you need.
+Go to node ID=59 Agree to Silver Quest
+Action work in progress=(IN >4)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+State=4N6FYHBD
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=IN less than or equal to 4
+Reply Text=Very well. I shall deal with these goblins and get this magna...magna-ties silver you need.
+Go to node ID=59 Agree to Silver Quest
+Action work in progress=(IN <4)
+Icon=Attribute Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Why don't you have the Barcelona guard deal with the beasts?
+Go to node ID=56 What About Barcelona Guard
+------------------------------------------------------------
+Node ID=56 What About Barcelona Guard
+Text=The guard? Ha! They will do nothing to aid the merchants, they are too busy with the English and the war - no, they will not heed the request of a poor blacksmith such as myself. No, you must deal with these goblins and get the silver yourself.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+State=4N6FYHBD
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=59 Agree to Silver Quest
+Text=Gracias, gracias - and pay no heed to the rumors of the goblin's strength and ferocity - that is nothing more than the talk of idiots in the street. I doubt they are little more fearsome than some of the shopkeepers around here. I'm sure the creatures only killed those miners by surprise.  Being prepared, you should fare much better against them.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+State=4N6FYHBD
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Back With Silver
+Text=You brought it! I knew you had the strength for such a task - I shall get on what you requested straight away!
+Should Have Voiceover=1
+
+Requirement=Blacksmith - requires Lionshield quest previously activated
+Reply Text=Excellent. I look forward to finally holding the shield in my hands.
+Go to node ID=
+Action work in progress=(Shield Quest, Make Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=give Lion Shield
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Blacksmith - requires Lionshield quest previously activated
+Reply Text=Then don't let me keep you, blacksmith. I've wasted enough time with you.
+Go to node ID=63 here is your shield
+Action work in progress=(Shield Quest, Make Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=give Lion Shield
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+
+Requirement=Blacksmith - requires Scimitar quest previously activated
+Reply Text=Excellent. I look forward to finally holding the scimitar in my hands.
+Go to node ID=
+Action work in progress=(Scimitar Quest, Make Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=give scimitar
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - requires Scimitar quest previously activated
+Reply Text=Then don't let me keep you, blacksmith. I've wasted enough time with you.
+Go to node ID=
+Action work in progress=(Scimitar Quest, Make Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=give scimitar
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+------------------------------------------------------------
+Node ID=61 Already Had Silver
+Text=You have it! Magnífico! I shall get on what you requested straight away!
+Should Have Voiceover=1
+
+Requirement=Blacksmith - requires Lionshield quest previously activated
+Reply Text=Excellent. I look forward to finally holding the shield in my hands.
+Go to node ID=63 here is your shield
+Action work in progress=(Shield Quest, Make Shield)
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Blacksmith - requires Lionshield quest previously activated
+Reply Text=Then don't let me keep you, blacksmith. I've wasted enough time with you.
+Go to node ID=63 here is your shield
+Action work in progress=(Shield Quest, Make Shield)
+
+Requirement=Blacksmith - requires Scimitar quest previously activated
+Reply Text=Excellent. I look forward to finally holding the scimitar in my hands.
+Go to node ID=64 here is your scimitar
+Action work in progress=(Scimitar Quest, Make Scimitar)
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Blacksmith - requires Scimitar quest previously activated
+Reply Text=Then don't let me keep you, blacksmith. I've wasted enough time with you.
+Go to node ID=64 here is your scimitar
+Action work in progress=(Scimitar Quest, Make Scimitar)
+------------------------------------------------------------
+Node ID=70 Red Iron 1
+Text=I used to keep a supply of Red Ore, but with all these thieves and beggars about the Barcelona streets, I do not keep any on hand. It is too rare and precious...and, of course, expensive...to risk it.
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires you to NOT have red Iron yet
+Reply Text=
+Go to node ID=71 Red Iron 2
+Action work in progress=(Do Not Have Red Iron)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=71 Red Iron 2
+Text=Every time I need some, I send a runner down to the Sewers. The Lava Trolls down there have some. Perhaps you can buy some from them...or take it from them if you have to.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=72 Red Iron 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=72 Red Iron 3
+Text=But, eh, if you should decide to help yourself to the Ore, I would wish to remain ignorant of such matters, since I do not deal with my suppliers in such a way - comprende? <Do you understand?>
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Then I will go see these lava trolls immediately.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Can't you send a runner down for the Iron? I do not enjoy the idea of going down in the Sewers.
+Go to node ID=73 Send a Runner
+
+Requirement=Blacksmith requires barter of 35 or speech less than 35 or barter and speech tagged
+Reply Text=Negotiation may be best - I wouldn't want to damage your business relationship.
+Go to node ID=75 Red Iron Barter or Speech
+Action work in progress=(Barter >=35% or Speech <=35% or Barter Tagged or Speech Tagged)
+Icon=Barter Skill Icon
+
+Requirement=Blacksmith requires sneak tagged or over 35
+Reply Text=Hmm. Perhaps I could take it from them without them noticing its loss. Do you know if it is heavily guarded?
+Go to node ID=76 Perhaps Steal
+Action work in progress=(Sneak >=35% or Sneak Tagged)
+
+Requirement=!None
+Reply Text=What if things should turn violent?
+Go to node ID=78 What If Things Turn Violent
+------------------------------------------------------------
+Node ID=73 Send a Runner
+Text=No runner will agree to do this thing, my friend, and I am sorry, most have been conscripted for the war effort. You will have to deal with the lava trolls personally, I'm afraid.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go now to see these lava trolls.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Blacksmith requires barter of 35 or speech less than 35 or barter and speech tagged
+Reply Text=Negotiation may be best, then - I wouldn't want to damage your business relationship.
+Go to node ID=75 Red Iron Barter or Speech
+Action work in progress=(Barter >=35% or Speech <=35% or Barter Tagged or Speech Tagged)
+Icon=Barter Skill Icon
+
+Requirement=Blacksmith requires sneak tagged or over 35
+Reply Text=Hmm. Perhaps I could take the Red Iron from them without the trolls noticing its loss. Do you know if it is heavily guarded?
+Go to node ID=76 Perhaps Steal
+Action work in progress=(Sneak >=35% or Sneak Tagged)
+
+Requirement=!None
+Reply Text=What if things should turn violent?
+Go to node ID=78 What If Things Turn Violent
+------------------------------------------------------------
+Node ID=75 Red Iron Barter or Speech
+Text=If you can negotiate with them, that is fine. Those creatures have never hesitated to cheat me on many occasions, so do what you must if your friend...Cortes, is it? ...is in great need...but if you can do so peaceably, then that would be the best for all.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go see these lava trolls, then. Goodbye.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=76 Perhaps Steal
+Text=Hmmmm...I do not know, but it is possible a stealthy man could obtain the Ore. Those creatures have never hesitated to cheat me on many occasions, so do what you must if your friend...Cortes, is it? ...is in great need.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Of course. If someone were to make off with the Ore, no one would think to blame you. I shall go see what can be done.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will take the Iron from them only if necessary. I will return shortly.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will go see these lava trolls, then. Goodbye.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=78 What If Things Turn Violent
+Text=I would be saddened if they refused to part with the Iron, but those creatures have never hesitated to cheat me on many occasions, so do what you must if your friend...Cortes, is it? ...is in great need...but I have no wish to know of such things...should it come to that.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Of course. If those trolls were to come to a quick end, no one would think to blame you. I shall go see what can be done.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will fight them only if necessary, and return with the Iron.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will go see these lava trolls, then. Goodbye.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=80 Do You Have The Item I Need?
+Text=Yes, I have finished it - ¡que aproveche! <May you enjoy it!> Is there anything else you wish to see while you are here?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes, let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Before, you mentioned you have enchanted weapons for sale. Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have Red Ore for Cortes' arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 How Do You Forge Magic Weapons Are You a Mage
+Text=Friend...I know you mean no offense or harm with such a question, but, ah, I beg you - do not say that again; the Inquisition - may they be forever blessed - has ears throughout Barcelona and even the whisper of magic use has ruined many a businessman.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 How Do You Forge Magic Weapons Are You a Mage 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=91 How Do You Forge Magic Weapons Are You a Mage 2
+Text=No, what I do is much different, and the Inquisition knows this; with my skill and craft, I am able to take the spirits they bring me and bind them into the metals in my forge. When it comes to magical steel, the Inquisition - may they be forever blessed - is my most valued customer.
+Should Have Voiceover=1
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have Red Ore for Cortes' arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Wait - the Inquisition brings you spirits?
+Go to node ID=92 The Inquisition Brings You Spirits
+
+Requirement=Inquisitor NOT
+Reply Text=So the Inquisition turns a blind eye to you forging magic weapons and purchases them from you? The Inquisition seems filled with hypocrisies.
+Go to node ID=95 The Inquisition Buys From You
+Action work in progress=(Not Inquisition)
+
+Requirement=Inquisitor NOT
+Reply Text=The Inquisition is among your customers? And they purchase enchanted weapons? That seems...difficult to believe.
+Go to node ID=95 The Inquisition Buys From You
+Action work in progress=(Not Inquisition)
+
+Requirement=!None
+Reply Text=So you take metal from the earth, put the flames to it, and re-shape it? The natural spirits within the metal must suffer greatly.
+Go to node ID=97 Does The Metal Suffer
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=92 The Inquisition Brings You Spirits
+Text=Indeed. And I sell the weapons back to them, providing them with the strongest enchanted steel in Barcelona.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Where do these spirits come from?
+Go to node ID=93 Where Do These Spirits Come From
+
+Requirement=!None
+Reply Text=So the Inquisition turns a blind eye to you forging magic weapons and purchases them from you? The Inquisition seems filled with hypocrisies.
+Go to node ID=95 The Inquisition Buys From You
+Action work in progress=(Not Inquisition)
+
+Requirement=!None
+Reply Text=The Inquisition is among your customers? And they purchase enchanted weapons? That seems...difficult to believe.
+Go to node ID=95 The Inquisition Buys From You
+
+Requirement=!None
+Reply Text=So you take metal from the earth, put the flames to it, and re-shape it? The natural spirits within the metal must suffer greatly.
+Go to node ID=97 Does The Metal Suffer
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have Red Ore for Cortes' arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=93 Where Do These Spirits Come From
+Text=It is my belief the spirits come from the tainted criminals they purify. They are brought to me in specially-prepared vessels from deep within the Chambers of the Inquisition...but from where exactly, I do not know, nor do I dare ask. Sometimes...the spirits when released from the vessels, they are howling, crying...I...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=98 Does The Metal Suffer 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=95 The Inquisition Buys From You
+Text=Is a blade in the hands of a Knight Templar or a priest of the Inquisition not employed in a righteous duty, my friend? I think you will find little argument for the holiness of such weapons from the church. But enough of this - surely you have not come to talk, but to see how I may help you. As I have said, I have many fine weapons.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=You said you take metal from the earth, put the flames to it, and re-shape it? The natural spirits within the metal must suffer greatly.
+Go to node ID=97 Does The Metal Suffer
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have Red Ore for Cortes' arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=97 Does The Metal Suffer
+Text=Does a sick man not feel pain at the hands of a surgeon, my friend? I treat the metal, make it run pure, and the spirit - if you wish to call it that - is healed. Besides, there is no spirit within the metal to begin with, such things would be blasphemy to the eyes of the Inquisition and my craft.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 How Do You Forge Magic Weapons Are You a Mage 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=98 Does The Metal Suffer 2
+Text=But enough of this - surely you have not come to talk, but to see how I may help you. As I have said, I have many fine weapons.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have Red Ore for Cortes' arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Is Business Good
+Text=There have been better times, yes, but the Inquisition is still in need of weapons, especially with the war with England on the horizon. The Inquisition allows me my forge, and they are my best customers. I must be careful, however, I would not want my weapons to fall into the hands of those touched by the black arts.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Very well. Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have Red Ore for Cortes' arm.
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=63 here is your shield
+Text=Here you go, here is the Lion Shield.  I am quite proud of that one.  Is there anything else Eduardo can do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=No, the Shield is all I need.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Lion Shield Templar Quest
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Yes, I need the shield and something else.
+Go to node ID=07 what more
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Lion Shield Templar Quest
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=64 here is your scimitar
+Text=Here you go, here is the Scimitar.  I am quite proud of it.  Will you be needing anything else?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=No, the Scimitar is all I need.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=Blacksmith received his fathers blade
+Desired Minimum Count=1
+}
+Then=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Else=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Return failure if the If failes=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Yes, I need the Scimitar and something else.
+Go to node ID=07 what more
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=Blacksmith received his fathers blade
+Desired Minimum Count=1
+}
+Then=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Else=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Return failure if the If failes=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=07 what more
+Text=What can Eduardo do for you?  You would like some weapons and armor, no?
+Should Have Voiceover=1
+
+Requirement=Blacksmith requires player to be on red iron quest
+Reply Text=DaVinci said you may have some Red Ore
+Go to node ID=70 Red Iron 1
+Action work in progress=(On Red Iron Quest)
+Icon=Quest Icon
+
+Requirement=Blacksmith Need LionShield
+Reply Text=I've been told you can forge a Lion Shield.
+Go to node ID=30 Can You Forge a Lion Shield
+Icon=Quest Icon
+
+Requirement=Blacksmith Need Scimitar
+Reply Text=I've been told you can forge a Sacred Scimitar.
+Go to node ID=30 Can You Forge a Sacred Scimitar
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshield seeker has sword was not offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lionshied seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Lion Shield for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has sword was NOT offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword No Payment
+Action work in progress=(Got Sword, No Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Scimitar seeker has sword WAS offered payment
+Reply Text=Here is your father's blade. Now can you forge the Sacred Scimitar for me?
+Go to node ID=50 Got Sword Payment
+Action work in progress=(Got Sword, Payment, Sacred Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Eduardo's Sword from Felgnash
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Father's sword 
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - Lion shield seeker recovers silver
+Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Lion Shield)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Blacksmith - scimitar seeker has silver
+Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
+Go to node ID=60 Back With Silver
+Action work in progress=(Got Silver, Scimitar)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Recover Estral Silver for Eduardo
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Magnetized Silver
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Recover Magnetized Silver
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Here is some Red Ore. Can you use it to complete Davinci's design for Cortes' mechanical arm?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=display baloon & trigger make arm
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Let me see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Blacksmith
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Before, you mentioned you have enchanted weapons for sale. Are you a mage?
+Go to node ID=90 How Do You Forge Magic Weapons Are You a Mage
+
+Requirement=!None
+Reply Text=From the look of your shop, you are doing well for yourself.
+Go to node ID=100 Is Business Good
+
+Requirement=Human NOT
+Reply Text=Nothing some human fool has for sale could interest me. You and your shop be damned, blacksmith.
+Go to node ID=
+Action work in progress=(Tainted, Demokin, Set Insult Flag to 1)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 attacked blacksmith
+Text=Perhaps now you will think twice about attacking me, eh? Behave yourself in my shop. Or else.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=2000 Cortes Arm
+Text=Excellent!  I will get right to it. Now, where did I put those sketches Davinci gave me?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2010 here are the parts
+Text=Well, those were very complex designs, but I believe I have done them justice.  I am not known as the best Blacksmith in Barcelona for nothing!  Now, just take these to Davinci and he'll assemble them for you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you, I'll be going now.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Cortez Arm Gears
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Cortez Arm Rod
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=M3GF3HGM
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 Guards!
+Text=Guards! Arrest this criminal!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 Reward for bringing back sword not a templar
+Text=Gracias! Oh, you have eased the pain of my father's restless spirit. Please take this gold as payment for your good deed.
+Should Have Voiceover=0
+}
