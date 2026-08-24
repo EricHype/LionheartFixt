@@ -240,6 +240,30 @@ would be invisible to every static check the project has -- which is how each go
 | P7 | " | Eat it at full health | Poison damage ticks over roughly a minute; not instantly lethal |
 | P8 | " | Drop it | Ground pickup model appears and can be picked back up |
 
+### 0.2 - the Goblin Girl follows, but only in the Warrens
+
+Vanilla wrote three follow nodes for her and wired none of them. Restoring the behaviour
+means restoring its boundary too: the point of this section is as much that she **stops**
+as that she starts.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| F1 | Goblin Warrens, at any follow node (`90`, `190`, `195`, `290`) | Take the accepting reply | She falls in behind you and keeps up across the cave |
+| F2 | " | Take the declining reply instead | Conversation ends, she stays put, nothing else changes |
+| F3 | " | Open the conversation and press Escape | Same as F2 -- decline is the default reply, so cancelling is never the committing path |
+| F4 | Warrens main exit, **while she follows** | Click the exit | Node `295 goblin girl stays behind` opens instead of the map change |
+| F5 | " | Take *"Not yet. There is more down here."* | **You do not leave the map.** She is still following |
+| F6 | " | Take *"Wait here for me."* | She stays; you arrive at the Mongol Camp **alone** |
+| F7 | Waterfall passage exit, while she follows | Same as F4-F6 | Node `296 goblin girl stays behind waterfall`; different line, same behaviour |
+| F8 | Either exit, **not** following | Click the exit | Straight map change, no dialogue -- vanilla behaviour is untouched |
+| F9 | Mongol Camp, after F6 | Walk around | **She is not with you.** This is the whole point; if she is here, the release lost its race with the relocate and Mongol Camp needs vanilla's remover entity |
+| F10 | Warrens, kill her while she follows | Then click an exit | Straight map change, **no farewell from a corpse**. Her death script clears the marker, and the exit also checks `CIsAliveAction` |
+| F11 | Warrens, leave and return while she followed | Talk to her | She is where you left her and still greets by quest state |
+
+Confirmed in play: F1 and the main-exit farewell. **F2, F3, F5, F7, F9, F10 and F11 are
+unobserved.** F9 and F10 are the two that matter -- they are the failure modes that turn a
+bounded follower back into a full companion, or into a ghost saying goodbye.
+
 ### 0.1.1 - the Crossroads patrol
 
 | # | Where | Steps | Pass |
