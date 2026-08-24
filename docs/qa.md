@@ -264,6 +264,27 @@ Confirmed in play: F1 and the main-exit farewell. **F2, F3, F5, F7, F9, F10 and 
 unobserved.** F9 and F10 are the two that matter -- they are the failure modes that turn a
 bounded follower back into a full companion, or into a ghost saying goodbye.
 
+### 0.2 - the goblin jailor, and rank as an argument
+
+The Darsh escort scene is **vanilla and works** -- it was surveyed as possible cut content
+and it is not. Cases J1-J3 exist to confirm that reading is right, because the whole scene
+has never been walked deliberately. J4 is the only Fixt change here.
+
+Reaching it: free Darsh in the Mongol Camp jail, let him follow you, then walk him toward
+the camp exit. The jailor challenges you about a second after Darsh crosses the line.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| J1 | Mongol Camp, escorting Darsh | Walk Darsh toward the exit | The **Goblin Jailor** stops you: *"And just where do you think you are taking that prisoner?"* |
+| J2 | " | Speech 25+, take *"The Khan has requested to eat this morsel"* | `400 jailor okays release`; **camp stays calm** and you leave with Darsh |
+| J3 | " | Take either other reply, or press Escape | Camp turns hostile. This is vanilla's design, not a bug -- the bluff has no check behind it and the default reply is the bluff |
+| J4 | " | **Goblin Blooded or Champion**, any Speech | New reply *"I am of the Horde, and this morsel is spoken for"* is offered **above** the Speech option, and reaches the same release |
+| J5 | " | Goblin Chum (rank 1) only | The rank reply is **absent** -- the gate is `Goblin Rank > 1`, not merely "in the Horde" |
+| J6 | " | Kill the jailor first, then escort Darsh out | No challenge at all; the trigger checks `CIsAliveAction` before firing |
+
+J4 and J5 are the pair that matters: J5 failing open would mean the requirement did not
+resolve, which is this project's top recurring failure mode.
+
 ### 0.1.1 - the Crossroads patrol
 
 | # | Where | Steps | Pass |
@@ -345,10 +366,9 @@ The most important gate, and the easiest to skip.
 - **`River Dryad Take Goblinkill quest Grumjun NOT dead High Outwit.can` is read by no
   conversation in the game.** Fixt repairs it alongside its twin for consistency, but
   nothing references it, so no test can observe the change. Do not hunt for it in play.
-- **The `Midlevel` / `Highlevel` / `NOT` gates are referenced nowhere yet.** The records
-  they read are granted, but no conversation branches on rank 2 or 3 in this release. That
-  reactivity pass is **not scheduled yet**. The gates exist so the pass has something to
-  read when it is.
+- ~~**The `Midlevel` / `Highlevel` / `NOT` gates are referenced nowhere yet.**~~ Stale as of
+  0.2. `Midlevel` is read by the Goblin Patrol Leader and the goblin jailor, `Highlevel` by
+  the Khan and the villagers. `NOT` is still referenced nowhere.
 - The goblin and Torquemada quests still do not fail each other, and harvesting the
   woodcutter's eyes still moves no karma; neither is scheduled yet.
 - **Every goblin conversation with player replies is now touched.** `GoblinCrier`,
