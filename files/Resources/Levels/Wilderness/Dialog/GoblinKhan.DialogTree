@@ -304,6 +304,23 @@ Go to node ID=11 Earn Goodbye
 Icon=Exit Icon
 Is Default Reply=1
 Requirement=Goblin Horde Highlevel
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=Great Khan, the gatekeeper Esteban is dead. I want you to hear it from me.
+Go to node ID=370 the khan hears esteban is dead
+Icon=Quest Icon
+
+Requirement=Goblin Horde Highlevel
 Reply Text=Great Khan, I would serve the Horde again. What does the war need?
 Go to node ID=350 next task
 Icon=Quest Icon

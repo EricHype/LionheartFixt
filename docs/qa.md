@@ -310,6 +310,9 @@ for bargaining well over the Everlasting), so this is late in his arc by design.
 | K7 | " | **Below Champion** (Chum or Blooded) | The entry reply is **absent**; his conversation is unchanged from 0.1.4 |
 | K8 | Khan, **after already killing Esteban** | Reach `365` | A fourth reply appears: *"Esteban is already dead. I cut him down before you asked."* -> `370`, the Khan's reaction |
 | K9 | " | Same, with Esteban **alive** | That reply is **absent** |
+| K10 | Khan, **after killing Esteban**, on the greeting itself | Talk to him | A **second** Champion reply is offered: *"the gatekeeper Esteban is dead. I want you to hear it from me."* -> straight to `370`, without re-walking the briefing |
+| K11 | " | With Esteban **alive** | That reply is absent; only the briefing entry shows |
+| K12 | " | After reporting, talk again | The briefing entry is still there and still works. Re-hearing his plan is intended; nothing is granted, so there is nothing to farm |
 
 K7 and K9 are the pair worth checking hardest -- either one failing open means a gate did
 not resolve, which is this project's top recurring failure mode.
@@ -317,6 +320,13 @@ not resolve, which is this project's top recurring failure mode.
 **Not a bug, do not report:** the horde never does attack Barcelona. Act 6 has essentially
 no goblins in it. The briefing restores the Khan's stated plan, not a promise the game
 keeps.
+
+**Also deliberately not done**, so it is not proposed again. A quest object for the
+campaign would put a rival Esteban entry in the log beside Fixt's own `Kill Guard Esteban
+for the Goblin Patrol`. And wiring the second half of the order is buildable -- Barcelona's
+Gate District really does hold nine `Gate Guard` entities and a `Barcelona Portcullis` --
+but it would resolve to nothing, and a tracked objective that visibly fails to pay is worse
+than a stated plan that never happens.
 
 ### 0.2 - the goblin jailor, and rank as an argument
 
