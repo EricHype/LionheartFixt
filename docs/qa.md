@@ -505,6 +505,7 @@ both completed Gate 2. Record the result here per release.
 | 0.1.0-rc1 | PASS (automated) | - | - | - | - | - | **not yet** |
 | 0.1.4 | PASS (automated) | PASS | PASS | - | - | - | **published as full** |
 | 0.2.0 | PASS (automated) | - | partial | - | - | - | **published as full** |
+| 0.2.1 | PASS (automated) | - | - | - | - | - | **published as full** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's

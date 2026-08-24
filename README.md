@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.2.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.2.0).
+-- currently [0.2.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.2.1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -60,7 +60,7 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release: 0.2.0
+## Current release: 0.2.1
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
@@ -89,6 +89,17 @@ greetings fire, which also confirmed that a map interaction can read quest state
 characters, and only one has walked it. A build that solves everything cannot show whether a
 check quietly *replaced* a vanilla route rather than adding one -- the failure this project's
 own rule forbids -- and only a low-INT, low-CHA character can. That pass is still outstanding.
+
+### 0.2.1 - the bandit you killed before he asked
+
+Kill El Bandito Rie before Guard Esteban ever raises it, tell him so, and he verified your
+claim and then congratulated you on an assignment he never made. The line written for that
+path was in the game and reached by nothing, because a map relay opened the wrong one of
+two nearly identical nodes.
+
+A voice fix -- the reward always worked. Two smaller gaps in the same node came out with
+it: handing in the giant wasps on this path used to end the conversation with no
+acknowledgement, and the node had no way to say goodbye.
 
 ### 0.2.0 - what was written
 

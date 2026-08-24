@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.2.0 shipped**. 0.1.0 through 0.1.4 and 0.2.0 are published; the sections
+Status: **0.2.1 shipped**. 0.1.0 through 0.1.4, 0.2.0 and 0.2.1 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -122,6 +122,40 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.2.1 - the bandit you killed before he asked
+
+A patch. One relay in `Crossroads.zax`, `After Verify thief display dialog tree`, opened
+`113 Thief success` -- *"Good work! Here is your justly deserved reward"* -- when the only
+path that can reach it is the one where Esteban never gave you the job. `114 pre assigned
+thief success` was written for it and reached by nothing.
+
+The path is provably exclusive: `140 verify too` has two inbounds and both sit behind
+`Esteban will not reassign thief quest`, which succeeds only when `Find the Crossroads
+Bandit` was never activated.
+
+Corroborating, and the reason this was findable at all: the shipped gate `Esteban requires
+bandit dealth with before assinging quest` -- the bandit quest *completed* -- is read by
+nothing anywhere in the game. Built for this state and never wired, the same shape as the
+`Goblin Horde Midlevel` gate that 0.2.0 finally gave a reader.
+
+### Pointing the relay at 114 exposed that 114 was unfinished
+
+Consistent with it being the arm that got dropped. Both gaps closed with lines and targets
+already present in the tree:
+
+- Its wasps reply had an empty target. Both nodes complete `Slay the Giant Wasps` inline
+  and pay 100 gold, but 113 continues to `103 wasps killed` and 114 did not, so handing in
+  the wasps on this path ended the conversation with no acknowledgement. `103 wasps killed`
+  completes nothing and pays nothing itself -- checked before retargeting, because
+  double-payment is exactly how this class of fix goes wrong.
+- It had no goodbye, and its default reply advanced to `35 dangers 2` rather than closing.
+  It now carries 113's *"I should be on my way."* as the default.
+
+`113` is untouched and still reached from six places, which is the regression to watch.
+
+**This is a voice fix.** The 150 gold, the experience and the quest completion all worked
+before.
 
 ## 0.2.0 - "What Was Written"
 
