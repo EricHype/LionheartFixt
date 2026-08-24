@@ -1272,6 +1272,219 @@ Montserrat anyway.
 Minor faction, kept minor: one faction assignment, one restored fork, two reward splits and
 a single sparring scene. Everything else it needs, it already has.
 
+## Quinn's reagents — the first new content, and three potion tiers that already exist
+
+This is the project's first deliberate step into the third register. The stated order is
+fix, then restore, then extend, and the README promises new content only "where the game
+plainly ran out". A three-quest chain with new consumables is unambiguously **extend**, and
+the release notes should say so plainly rather than let it read as more restoration.
+
+What makes it cheap is that most of it is already built or already in the shipped game.
+
+### What exists before any work starts
+
+Two mods in `LionheartModTools` fold into Fixt:
+
+| Source | State |
+|---|---|
+| `mods/wolf-pelts-for-quinn` | Quest stub with one state, an XP `.can`, and a dialogue splice into `Herbalist Dialogue.DialogTree` |
+| `mods/great-healing-potion` | **Three finished tiers** — Great, Superior, Supreme — with recoloured icons confirmed working in-game |
+
+The potions currently ship into `Test Pocket.zax`, a test map. They exist and nothing in
+real play can obtain them. The chain is what gives them a home.
+
+The ladder was checked against vanilla and is evenly spaced and structurally identical —
+each potion is `min(random(lo,hi) + maxHP*pct, cap)`, and each has the same paired
+normal/double blocks vanilla uses:
+
+| Potion | roll | + maxHP | source |
+|---|---|---|---|
+| Healing | 3–4 | 2.5% | vanilla |
+| Extra Healing | 9–11 | 5% | vanilla |
+| **Great** | 15–18 | 8% | built |
+| **Superior** | 22–26 | 11% | built |
+| **Supreme** | 32–38 | 15% | built |
+
+Supreme is roughly four times Extra Healing, so **pacing has to come from somewhere.** The
+decision below is that it comes from where each reagent lives, not from a level check.
+
+### Quinn is a better hub than he looks
+
+`Herbalist map.zax` is only 134 KB. He already carries **three faction-conditioned stores**
+— `Good Store for Herbalist`, `Templar and Inquisition Inventory for Herbalist`,
+`Wielder Store for Herbalist` — switched across 24 merchant calls in his 52-node tree. The
+store-swap mechanism is already his, and Fixt has used the same pattern for Hub'blub.
+
+Stock entries are ordinary `CMerchantListItem` records: `Item=Inventory Items/Potion` plus
+`Addition=Inventory/Inventory Additions/Miscellaneous/Potions/<tier>`. Adding a tier to a
+store is one array entry.
+
+He also has four vanilla quests already, two of them faction initiations that target him:
+the Inquisition sends you to investigate him for heresy, the Wielders to convert him.
+
+### The chain
+
+| Q | Reagent | Where | Item status | Unlocks |
+|---|---|---|---|---|
+| 1 | 3 wolf pelts | Wilderness, early | stub exists | Great |
+| 2 | 5 wasp stingers | Ravine Cave West, Scar Ravine, Woodcutter Forest | **item, art and drops all exist** | Superior |
+| 3 | 1 lava troll hide | Sewers, Troll Pit | **item and art exist; needs a drop** | Supreme |
+
+All three are creature reagents, which reads as one series rather than three unrelated fetch
+errands, and the escalation is pelts, then venom, then the hide of something that will not
+stay dead.
+
+#### Wasp stingers
+
+`Resources/Inventory Items/Wasp Stinger.InventoryItem` and its icon already exist, and the
+item **already drops** — but only from the Cursed and Tainted variants, 6 of the 9 wasp
+cans. Plain `Wasp.can`, `Wasp Tough` and `Wasp Super` give nothing, so five stingers is a
+real errand rather than a formality. Wasps are plentiful in the right places: Ravine Cave
+West (60), Scar Ravine (46), Montserrat Animal Cave (48), Woodcutter Forest (25),
+Crossroads (12).
+
+**Nothing in the game consumes a wasp stinger.** It is vendor trash with finished art. This
+gives it a purpose, which is the same move as the rest of the project.
+
+#### The lava troll hide, and why it is the right reagent 3
+
+`Resources/Inventory/Specific Item Cans/Quest Items/Lava Troll Hide.InventoryItem` exists,
+with finished icon art, and is referenced by **exactly nothing** — no drop table, no quest,
+no dialogue, no map. A quest item for a quest nobody wrote.
+
+The fiction then writes itself: **trolls regenerate**, so the hide of a creature that heals
+itself is the reagent for the best healing potion in the game. That is the obvious use for
+an orphaned item rather than a MacGuffin invented to fill a slot.
+
+It also paces and connects correctly. Lava trolls live in `Sewers/05 Troll Pit.zax` (91
+references) with a vanilla quest already attached, and `Sewers/04 Hall of Beggars.zax`
+relocates **directly into the Herbalist map** — the errand and the hand-in are neighbours.
+
+Nothing drops it, so the drop is added to the `Lava Troll*.can` files by copying the
+`CGenerateInventoryItemAction` death-script pattern the wasp cans already use. Those are
+resource files, not maps, so the drop itself costs no map edit.
+
+Candidates rejected: **Eye of the Dragon** (taken by Jafar's questline), **nightshade root**
+(already a vanilla Quinn quest), **titan stonehearts** (quest-critical in Montaillou),
+**woodsman liver and eyes** (goblin content Fixt already owns).
+
+### Three routes to the hide, so nobody is locked into hostility
+
+Vanilla wrote a diplomatic opening to the trolls and then closed it. `Warning
+Troll.DialogTree` is the only troll conversation in the game, and its one non-hostile reply
+— *"I come in peace. Eduardo said I should speak to you about Red Ore"* — is answered with:
+
+> We no trust Eduardo no more. We no trust no one. Too many dead Trolls. Wererats sneaky.
+> Leave or face problem.
+
+Every branch from there ends in `CGoToCombatAction` or walking away, and `make troll mad`
+targets `Lava Troll,Warning Troll`, so killing one turns the whole pit. Left alone, the hide
+would force hostility toward a people the game frames sympathetically.
+
+The troll states his own grievance unprompted, and it is **pragmatic, not moral**: the
+wererats are killing his people. He does not care how that stops, only that it does. And
+because **the Beggars are the wererats** — the Afflicted are one population — the game
+already tracks both endings as ordinary quest states:
+
+| Route | Read | Outcome |
+|---|---|---|
+| Cure them | `Discover a cure for wererat lycanthropy` → `R6173D60` | Beggars turn human |
+| Exterminate them | `Kill The Beggar Master` → `VVRLBE0M`, or `Help the Thieves Destroy the Beggars Guild` → `XA9G1XA2` | Beggars dead |
+| Kill a troll | — | the hide drops |
+
+All three reach the hide, so it is available on the good path, the evil path, and the path
+of no diplomacy at all. Nobody is ever locked out. The checks are
+`CIsQuestStateTheCurrentStateAction`, the same primitive `Beggar leader requires you to have
+killed all lava trolls.can` already uses — no new tracking machinery.
+
+Note when writing it: the cure route **already requires killing the Prime Wererat** for a
+patch of fur (state `G1HA8DWI`), so "cure" is not a pacifist route in vanilla either. The
+troll route rewards *ending it*, not mercy, and the dialogue should not claim otherwise.
+
+### Quinn is already in this questline
+
+The cure quest sends you to him. State `HXTR8E1U` reads *"Quinn has told you that he needs a
+special component before he can brew a cure for the Afflicted"*, and the Beggar leader's
+gate is literally `Beggar leader requires you to have potion from herbalist.can`.
+
+He is already the pharmacist at the centre of the Sewers' three-way war, and nothing
+connects that to his shop. The reagent chain is not bolting a new role onto him; it is
+extending the one he has.
+
+### The unlock mechanism
+
+One game-scripting variable, `Quinn Reagents Delivered`, incremented 1 to 3 — the same
+counter shape as goblin rank. Three "reserve" store entities on `Herbalist map.zax`, each
+cumulative, and one new dialogue branch that opens the highest unlocked one.
+
+Deliberately **not** multiplied against his three faction stores. The reserve is a separate
+"ask about his private stock" branch, so the cost stays three entities rather than twelve.
+
+### Open decisions
+
+**What happens if Quinn dies.** He can be killed — Enrique has the taunt *"Quinn? If you
+need him for the cure, you and your friends are doomed. I killed—"*. Proposal: tiers already
+unlocked persist in general merchants, further tiers are lost. That makes killing him a real
+cost rather than a soft-lock, and it needs no resurrection machinery.
+
+**Which late-game merchants get them.** See the section below — the mechanism is settled,
+the list of merchants is not.
+
+**The faction initiations.** The chain needs gating so it does not offer reagent errands to
+a player who has just denounced him to the Inquisition or converted him for the Wielders.
+His tree already branches three ways on faction, so the shape exists.
+
+**The release slot.** `0.3.0` is currently earmarked for the Knights of Saladin in
+`releases.md`. Saladin is cheaper — largely one `CAssignFactionToCharacterAction` with four
+acts of payoff — and probably should go first, making this 0.4.0.
+
+### Getting the tiers into other merchants later in the game
+
+There is a shared potion list, and it is a trap. The chain is:
+
+```
+Potion selection MAGIC.can            <- one weighted list, 15 entries
+   ^-- All Potions.can                <- a CInventoryItemGeneratorCannedList wrapper
+          ^-- 244 references across 69 files
+```
+
+Editing `Potion selection MAGIC.can` therefore reaches almost the whole game in one file —
+and that is precisely why it must not be touched. Those 244 references are **chests and
+enemy drops as well as shop stock**, in Barcelona and the Sewers as much as Alamut. Supreme
+Healing would start turning up in act 1 starter chests, which destroys both the pacing and
+the reason the chain exists.
+
+**And it cannot be gated.** All fifteen `CInventoryItemGenerator*` classes in the exe are
+weighted or list-based; **none of them reads quest state, character state or level.** The
+"Mojo Begin / Low / Medium / High" naming on the vanilla lists is a designer convention, not
+an automatic scaler — `Armor Mojo Medium Standard.can` is a plain weighted list, and the
+pacing comes entirely from *which list a given map chooses to reference*.
+
+That convention is the answer. The vanilla idiom for "better stock later in the game" is a
+richer list referenced by later locations, so:
+
+1. Author a new shared list, `Potion selection MAGIC HIGH.can`, holding the vanilla potions
+   plus the three new tiers at low weights.
+2. Point **selected late-game merchants** at it, one edit per merchant map.
+
+Gated by geography rather than by quest state, which is how the shipped game does it, and it
+leaves the 244 existing references untouched.
+
+Scale of the job: **59 merchant inventories across 32 maps**, but only a handful are
+late-game and worth touching. Picking that handful is the open decision; the mechanism is
+not in doubt.
+
+Note the consequence for the chain: Quinn's reserve stays the *early* and *reliable* source,
+bought with quests, while general availability arrives on its own schedule by location. The
+two do not need to agree, and it is better that they do not — the chain should still be
+worth doing for a player who has reached Alamut.
+
+### Explicitly not in it
+
+No new Sewers faction. The lava trolls get one reply and a trade, not the allied route
+sketched in "The Sewers' third and fourth parties" below. No change to the wererat cure
+questline itself. No new potion tiers beyond the three already built.
+
 ## The Sewers' third and fourth parties — lava trolls and wererats
 
 The act 1 section covers the Thieves and Beggars. Beneath them are two more peoples who
