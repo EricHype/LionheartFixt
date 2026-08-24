@@ -1,0 +1,2393 @@
+CDialogTree
+{
+Name=Amir Ibn Shazid
+Portrait=Dialog/NPC Portraits/Saladin Trainer
+Should Have Voiceovers=1
+Default Canceled Node Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Salaam! I see you are a newcomer to this city, such as I. What do you seek from me?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse for amir
+Desired Minimum Count=1
+}
+}
+Reply Text=Do you know anything about the hidden corpse to the east?
+Go to node ID=500 report murder continued
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+}
+Reply Text=Who are you?
+Go to node ID=20 Amir
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=30 persia
+
+Requirement=!None
+Reply Text=Why are these tents here?
+Go to node ID=35 tents
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Salaam and welcome friend. What can Amir do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Letter to Jafar Saladin Quest
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=gave letter to jafar
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=I have a message from Ali Huban.
+Go to node ID=200 ali
+Action work in progress=(have message from Ali)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Ali XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Letter to Jafar Saladin Quest
+}
+}
+}
+Action=CActivateAction
+{
+Target Name=gave letter to jafar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Small Karma 15
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=15
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Jafar Recovered the Shard
+Reply Text=I have recovered the Shard.
+Go to node ID=215 shard
+Action work in progress=(recovered shard)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shard XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Small Karma 15
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=15
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Eye of the Dragon
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have a rare gem called the Eye of the Dragon to offer the Dream Djinn.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Misc Items/Eye of the Dragon
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Gem XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Tears of Kwan Yin
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have a rare gem from the East to offer the Dream Djinn - a Tear of Kwan Yin.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Tears of Kwan Yin
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Gem XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Dryad River Pearl
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have a rare River Pearl to offer the Dream Djinn.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Dryad River Pearl
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Gem XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Jafar Player has a gem
+Reply Text=I have a gem to donate.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Gem
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Gem XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=XFEDCK28
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=failed dream djinn
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I am ready to retake the Trial of Dreams.
+Go to node ID=120 donate gem
+Icon=Quest Icon
+
+Requirement=Jafar Return to Take the Trial of Dreams
+Reply Text=I am ready to take the Trial of Dreams.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Summoning/Spiritual Knight
+Location Entity=$Instigator
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=probably soon
+New Map Name=1 Barcelona/Dream Djinni Map
+New Location=Start Here
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=WDUAUF4B
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Jafar Have Passed the Trial of Dreams
+Reply Text=I have passed the Trial of Dreams.
+Go to node ID=230 knight of saladin
+Action work in progress=(passed trial of dream)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Pass Trial XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Small Karma 15
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=15
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse for amir
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=gave amulet
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Do you know anything about the hidden corpse to the east?
+Go to node ID=500 report murder continued
+
+Requirement=!None
+Reply Text=Why are these tents here?
+Go to node ID=35 tents
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+}
+Reply Text=Who are you?
+Go to node ID=20 Amir
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=30 persia
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Farewell then, and may the Prophet guide you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 questions
+Text=Now, what else would you like to speak about?
+Should Have Voiceover=1
+
+Requirement=Jafar Player has a gem
+Reply Text=I have a gem to give to the Knights of Saladin.
+Go to node ID=
+Icon=Quest Icon
+
+Requirement=Jafar Have message from Ali Huban
+Reply Text=I have a message from Ali Huban.
+Go to node ID=200 ali
+Action work in progress=(have message from Ali)
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+Icon=Quest Icon
+
+Requirement=Jafar Forged the Sacred Scimitar
+Reply Text=I have forged the Sacred Scimitar.
+Go to node ID=210 have scimitar
+Action work in progress=(forged scimitar)
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+}
+Icon=Quest Icon
+
+Requirement=Jafar Recovered the Shard
+Reply Text=I have recovered the Shard.
+Go to node ID=215 shard
+Action work in progress=(recovered shard)
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+}
+Icon=Quest Icon
+
+Requirement=Jafar Have Passed the Trial of Dreams
+Reply Text=I have passed the Trial of Dreams.
+Go to node ID=230 knight of saladin
+Action work in progress=(passed trial of dream)
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Initiation Quest of the Knights of Saladin
+}
+}
+}
+Reply Text=Why are these tents here?
+Go to node ID=35 tents
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Initiation Quest of the Knights of Saladin
+}
+}
+}
+Reply Text=Who are you?
+Go to node ID=20 Amir
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=30 persia
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 Amir
+Text=My name is Amir Ibn Shazid, a humble Knight of Saladin. And may I ask your name then?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=My name is %<Player Name>%.
+Go to node ID=23 gave name
+
+Requirement=!None
+Reply Text=The less people that know my identity, the better.
+Go to node ID=21 hides name
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=21 hides name
+Text=I see. Perhaps one day I will earn your trust enough to learn your name. Until then, it will suffice to call you friend. Well then, what can Amir do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 Amir
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=30 persia
+
+Requirement=!None
+Reply Text=Why are these tents here?
+Go to node ID=35 tents
+------------------------------------------------------------
+Node ID=23 gave name
+Text=Your name rings in my ear with the sound of power, young one. It is an honor to meet you! Now, what can Amir do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Knights of Saladin.
+Go to node ID=50 knights
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=30 persia
+
+Requirement=!None
+Reply Text=Why are these tents here?
+Go to node ID=35 tents
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 persia
+Text=We have traveled here from Persia to speak with our old allies the Knights Templar about a matter of vital importance.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why are you waiting to speak with the Knights Templar?
+Go to node ID=41 templar
+
+Requirement=!None
+Reply Text=You say old allies, tell me about that.
+Go to node ID=48 Old Pact
+
+Requirement=!None
+Reply Text=What is this important matter?
+Go to node ID=40 mission
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 tents
+Text=We are welcome, yet unwelcome guests of the city. Because of our practices, the Inquisition requested that we not enter Barcelona. We respect their customs, so we remain in our tents until our meeting with the Knights Templar.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What practices are you talking about?
+Go to node ID=36 practices
+
+Requirement=!None
+Reply Text=Why must you wait outside the city gates for the Knights Templar?
+Go to node ID=41 templar
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=36 practices
+Text=Like our brothers the Knights Templar, we are an order that values honor and virtue. But while the Knights Templar shun all but the magic of the Inquisition, the Knights of Saladin embrace the use of elemental magic and desert sorcery.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What do you think of the Inquisition?
+Go to node ID=38 Inquisition
+
+Requirement=!None
+Reply Text=Why are you waiting to meet with the Knights Templar?
+Go to node ID=41 templar
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=38 Inquisition
+Text=I think very highly of the Inquisition. In the past, it has done great things. I disagree with their view that only divine magic can be used for good, and they would likely say that the magic I wield is a hair's breadth away from demon-craft. Still, both sides respect the other, and the Old Pact still binds us.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Tell me about the Old Pact.
+Go to node ID=48 Old Pact
+
+Requirement=!None
+Reply Text=I must leave now.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 mission
+Text=One of the sacred relics from the third crusade was stolen from a secret mosque guarded by my order. We are concerned that those responsible may attempt to steal the relics under the care of the Knights Templar.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=41 templar
+Text=Although the Knights Templar are our old allies in the jihad against the darkness, our use of magic has put us at odds with the Inquisition. We respect the edicts of the Inquisition, so we wait outside the city for a meeting with the Knights Templar. We offer our scimitars and magic to help support our western allies.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=That sounds very noble and tolerant of you and your order.
+Go to node ID=43 noble
+
+Requirement=!None
+Reply Text=You are a fool to abide the wishes of the Inquisition.
+Go to node ID=44 insult
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=42 thefts
+Text=Unfortunately, we do not know. Our enemy must wield powerful sorcery to overcome the wards we placed around the mosque. We fear that even the Cathedral of Barcelona may be vulnerable to whoever or whatever is targeting the relics.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=43 noble
+Text=You are most kind to say so. We are creatures of duty and we do as we must.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+}
+Reply Text=Your order intrigues me. Can I join the Knights of Saladin?
+Go to node ID=100 join
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=44 insult
+Text=Where I come from, such insults are not tolerated. But since I am in a foreign land, I will spare you the beating of your life. Do you have more of your wisdom to share or will you be going?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Yes, I'll impart some wisdom before I kill you - don't resist and you'll die quicker.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Saladin Hostile Relay
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I meant no offense. Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=48 Old Pact
+Text=Centuries ago, King Richard and Saladin both agreed to form brotherhoods, the Knights Templar and the Knights of Saladin, to protect the relics of the west and east. In times of darkness, the two orders fight side by side to bring balance to the world. This pact has survived four crusades and nearly four centuries.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 knights
+Text=We are an order of warriors founded centuries ago by Saladin. Like the Knights Templar of the west, we protect the lands and the people from the forces of darkness and we strictly abide by the principles of our order.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about your principles.
+Go to node ID=60 principles
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+}
+Reply Text=How do I join the Knights of Saladin?
+Go to node ID=100 join
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 principles
+Text=Above all else, a Knight of Saladin is committed to duty. Our sworn duty is to protect our lands from the forces of darkness and to protect the holy relics.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+}
+}
+}
+Reply Text=How do I join the Knights of Saladin?
+Go to node ID=100 join
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 join
+Text=Unfortunately, it is forbidden for a westerner to ever be fully welcomed into our order. However, if you are interested, you may become what we call a Favored One. But, know that the path is not much easier than what a full initiate must traverse. The writings dictate that I be a demanding instructor, and that you demonstrate yourself to be worthy of the honored title of 'Favored One'. Are you sure you desire to undertake this challenge?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Though it is unfortunate that I cannot join your faction, I would be willing to take on the challenges of the Favored One.
+Go to node ID=150 initiate warning
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I'm not interested right now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 donate gem
+Text=Yes, yes, I am sure that you are. However, anyone seeking a trial before the Dream Djinn must first sacrifice a portion of their wealth in the form of a treasure of the earth. That is to say, a precious gem or stone. Only then will the Djinn agree to see you and put you to the test.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Gem
+}
+}
+Reply Text=I already have a gem to donate.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Gem
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Eye of the Dragon
+}
+}
+Reply Text=I have the Eye of the Dragon to offer the Dream Djinn.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Eye of the Dragon
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Dryad River Pearl
+}
+}
+Reply Text=I have a rare Pearl to offer the Dream Djinn.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Dryad River Pearl
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Tears of Kwan Yin
+}
+}
+Reply Text=I have a rare gem from the East to offer the Dream Djinn.
+Go to node ID=125 have a gem for Amir
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+Delay=0.02
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Tears of Kwan Yin
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will return when I have a gem worthy of the Dream Djinn.
+Go to node ID=126 return later with gem
+Custom Action=CIfAction
+{
+If=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Find a precious gem to give to Jafar
+State=NGLZH120
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=125 have a gem for Amir
+Text=Praise to the Prophet, what a remarkable stone! Now, I trust you desire to face the Dream Djinn?  Well then, I suppose you are ready. I give you this advice: be vigilant!  The trials of the Dream Djinn are not without danger.  You must keep your wits about you or be ready with your sword!  Good fortune to you, my most promising pupil.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thank you, I believe I can pass the trials.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=$Instigator
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=1 Barcelona/Dream Djinni Map
+New Location=Start Here
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=1
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=WDUAUF4B
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I would like more time to prepare for the trials.
+Go to node ID=610 return when ready
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=126 return later with gem
+Text=I wish you luck. Return swiftly, the Trial of Dreams awaits!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will be on my way.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=128 cancel membership
+Text=The path of the Favored One is not an easy one. I wish you good fortune as you search for your own way. Know that you will always be welcome by my desert brethren.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 initiate
+Text=Very well young one, I accept you as my pupil. Now, you must honor our custom and complete a series of initiation tasks. Your first task will be to contact a comrade of mine, a Persian trader known as Ali Huban. He has lived in Barcelona for some time, but has recently come into...conflict with the local authorities over a minor trade dispute, so he may have gone into hiding. When you find him, ask if he has *news* for Amir. Speak with my brothers if you would like to learn more about Ali.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Letter to Jafar Saladin Quest
+}
+}
+Reply Text=I already had an *encounter* with Ali. When our business concluded, he offered up this letter...
+Go to node ID=200 ali
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Letter to Jafar Saladin Quest
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Letter to Jafar Saladin Quest
+}
+}
+}
+Reply Text=I will find Ali Huban.
+Go to node ID=10 Goodbye
+Action work in progress=(activate find ali subquest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Speak with Ali Huban
+State=1PB7IWBJ
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I've decided not to accept the challenges of the Favored One.
+Go to node ID=128 cancel membership
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=200 ali
+Text=So, you tracked down that rascal then eh? Ali has been in this city for some time, although his colored reputation occasionally forces him to assume different personas. I should have suspected that he would hide in the garb of a woman, he was always a bit, ah, perhaps I will tell you another time. Let us see what he has written in his note...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=201 ali continued
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=201 ali continued
+Text=Hmm. Yes. Good, he has found them! When we first arrived here a few days ago, a group of thieves stole a priceless gem from my tent. I suspect these thieves still have not grasped the powers in the gem, or we would have heard about their deaths. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=202 make a scimitar
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=202 make a scimitar
+Text=<Amir stops speaking, appears to contemplate something for a few moments, and then resumes> Hmmm. Yes, yes, I have decided on your second task. It will do nicely.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is it?
+Go to node ID=210 give shard quest
+Icon=Quest Icon
+Is Default Reply=1
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+}
+}
+}
+Reply Text=Before you name it - Eduardo the smith speaks of a sacred blade, forged only for one who has proven himself. Might that be my task?
+Go to node ID=210 give scimitar quest
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=210 give shard quest
+Text=According to Ali, there is a group of petty slavers operating somewhere in the Wilderness and he believes they have hidden the Shard of Dreams within their lair. I would ask that you track them down and recover the Shard. It is an invaluable treasure that is sacred to our Order. You may punish the thieves responsible for the theft if you wish, but you must return when you have recovered the Shard.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+}
+}
+Reply Text=I will find these slavers and recover the Shard of Dreams.
+Go to node ID=10 goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+State=1IBFN2FU
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+}
+Reply Text=I already have the Shard of Dreams.
+Go to node ID=215 shard
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shard XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+}
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=215 shard
+Text=How wonderful! <Laughs> Amir is extremely pleased! Thank you! Now, for the next part of your initiation, you must complete the trials of the Dream Djinn.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I am ready.
+Go to node ID=120 donate gem
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 pass trials
+Text=You did very well in the test young one, Amir is proud.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=230 knight of saladin
+Text=Oh, well done! You have completed the trials. It is my honor to call you a Favored One of the Knights of Saladin. I hope the knowledge and experiences you have gained on this journey will serve you well as you seek your fate. The blessings of Allah be upon you!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=passed trials
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Pass Trial XP
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Initiation Quest of the Knights of Saladin
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 next duty
+Text=The Knights Templar have requested an audience with us to discuss the recent troubles. Now that you are ready, I would like you to accompany me to the Cathedral so that we may offer our aid. We must leave at once.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Of course, I will accompany you.
+Go to node ID=
+Action work in progress=(relocate to Cathedral and start NIS)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=definitely soon
+New Map Name=1 Barcelona/Church Interior
+New Location=Start Player NIS Here
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 NIS Start
+Text=Amir, we are honored that you and the Knights of Saladin are with us in these dark times.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 NIS Dialogue 2
+------------------------------------------------------------
+Node ID=400 NIS Dialogue 2
+Text=As Saladin stood with Richard centuries ago, we now stand with our western brothers and sisters.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 NIS Dialogue 4a
+------------------------------------------------------------
+Node ID=400 NIS Dialogue 4a
+Text=A week ago, an unidentified group attempted to steal the True Cross from our possession.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
+State=FNGP3UMQ
+}
+
+Requirement=!None
+Reply Text=What is the Crown of Thorns?
+Go to node ID=400 crown of thorns
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation
+------------------------------------------------------------
+Node ID=400 NIS Montserrat Directions
+Text=Montserrat Abbey lies some fifty miles to the northeast. I shall mark the path on your map. You must travel with all speed to Montserrat to see if our enemies have stolen the Crown of Thorns.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I am ready to depart for Montserrat.
+Go to node ID=238 Leave for Montserrat
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
+State=FNGP3UMQ
+}
+
+Requirement=!None
+Reply Text=First, what is the Crown of Thorns? 
+Go to node ID=400 crown of thorns
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation
+------------------------------------------------------------
+Node ID=400 crown of thorns
+Text=It is a holy relic, the same thorn covered Crown worn by Christ during the crucifixion. The Crown was hidden long ago in Montserrat so that the forces of darkness could never use its powers again.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation
+------------------------------------------------------------
+Node ID=400 relics explanation
+Text=The holy relics are objects of great divine power, each possessing the power of creation. In the hands of the pious, they can bring about great things, though wicked hands can use their power to bring about terrible evil. For centuries, it has been the duty of both knight orders to keep the holy relics of the east and west safe.  
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
+State=FNGP3UMQ
+}
+
+Requirement=!None
+Reply Text=First, what is the Crown of Thorns? 
+Go to node ID=400 crown of thorns
+------------------------------------------------------------
+Node ID=500 Return from Montaillou
+Text=The tragic deaths of the monks at Montserrat saddens me. I fear that our enemy now possesses several of the holy relics. You must follow the trail of these assassins and recover the Sacred Lance. Travel north to Montaillou and find the one named Brother Michel. May the Prophet give us strength in these endeavors.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montaillou now.
+Go to node ID=238 Leave for Montserrat
+
+Requirement=!None
+Reply Text=Before I go, tell me about the Sacred Lance.
+Go to node ID=500 Sacred Lance
+------------------------------------------------------------
+Node ID=500 Sacred Lance
+Text=The Sacred Lance is an ancient relic, wielded by a Roman soldier who used it to pierce the body of Christ, drawing his blood and imbuing it with powers. It was one of the relics used by the evil one to invoke the Disjunction. It was hidden centuries ago, but we fear our enemies might have discovered its resting place.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will leave for Montserrat to recover the Lance. 
+Go to node ID=238 Leave for Montserrat
+------------------------------------------------------------
+Node ID=238 Leave for Montserrat
+Text=May the Prophet guide you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 NIS Begin
+Text=Lord Javier, it is indeed an honor to meet you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 NIS Dialogue 2b
+Text=As living proof of this bond, I have brought the scion of Lionheart, who has recently joined our Order. Tell us what has happened.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 NIS Dialogue 4a
+------------------------------------------------------------
+Node ID=400 NIS Dialogue 4b
+Text=To ensure the safety of the other hidden relics, I dispatched a party of knights to Montserrat to ensure that the Crown of Thorns was still secure. They have not returned, so we must assume the worst.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
+State=FNGP3UMQ
+}
+
+Requirement=!None
+Reply Text=What is the Crown of Thorns?
+Go to node ID=400 crown of thorns
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation
+------------------------------------------------------------
+Node ID=500 ends duel
+Text=Well fought, my brothers! A fine duel!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 report murder continued
+Text=May the Prophet bless the soul of the departed, I have not seen this corpse. Tell me, what did you see? Perhaps there was something that could help reveal the murderer?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Someone or something drained all the fluids from the victim.
+Go to node ID=500 murder saw fluids
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=examined with high perception
+Desired Minimum Count=1
+}
+}
+Reply Text=I noticed strange bite marks on the neck of the corpse. Also, the corpse appeared oddly drained of fluids.
+Go to node ID=500 murder saw fluids
+
+Requirement=!None
+Reply Text=I could not discern anything. I have other questions though.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 murder saw fluids
+Text=A most unnatural death. Surely the work of some twisted creature, demon or Daeva. If such a creature lurks the streets of Barcelona, you would be advised to travel armed and ready.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Daeva?
+Go to node ID=500 Daeva
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Daeva
+Text=Whisper when you speak of the Daevas, as the very mention of the word can attract them. The Daevas are demons, seven of the most terrible foes of man. They seek to corrupt and destroy all that is good - they seek to steal the sacred relics to bring about unspeakable evil.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you think there are Daevas in Barcelona?
+Go to node ID=500 Daeva in Barcelona
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=15 questions
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Daeva in Barcelona
+Text=It is possible they have come to steal the relics hidden in Barcelona. I will speak about this with Lord Javier, leader of the Knights Templar, when I meet with him. If you should encounter a dread Daeva, I would advise you to run...and pray.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=500 amulet
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 amulet
+Text=Somehow I fear that your fate is inexorably linked with danger. You are so young to carry such burdens...I would like you to take this blessing of the Prophet, it will do more good in your hands than mine. May it protect you against the creatures of darkness.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 questions
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=Player#1-9#
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=gave amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=seen gate corpse for amir
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 ready to resume
+Text=Hello there. Have you decided that you are ready to face the Dream Djinn?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=failed dream djinn
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Yes, I am ready.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=passed on Dream Djinn
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=$Instigator
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=probably soon
+New Map Name=1 Barcelona/Dream Djinni Map
+New Location=Start Here
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=WDUAUF4B
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=NHU2GV9N
+}
+}
+Early Exit=0
+}
+Then=
+Else=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=WDUAUF4B
+}
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=failed dream djinn
+Desired Minimum Count=1
+}
+}
+Reply Text=Yes, I am prepared to face the Dream Djinn again.
+Go to node ID=120 donate gem
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Not yet. Perhaps later.
+Go to node ID=610 return when ready
+Custom Action=CActivateAction
+{
+Target Name=passed on Dream Djinn
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=610 return when ready
+Text=Yes, yes, you must prepare yourself! The Dream Djinn is not to be faced unless you feel fully up to the task.  Return to me when you feel you are prepared!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=passed on Dream Djinn
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=NHU2GV9N
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=650 Favored one
+Text=Hello again Favored One. It is good to see you again. I trust you are well.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse for amir
+Desired Minimum Count=1
+}
+}
+Reply Text=Do you know anything about the hidden corpse to the east?
+Go to node ID=500 report murder continued
+------------------------------------------------------------
+Node ID=1000 infidel
+Text=Infidel!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 ends duel no VO
+Text=Well fought, my brothers! A fine duel!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=150 initiate warning
+Text=<Amir has told you that the Challenges of the Favored One will not fulfill DaVinci's quest to join a faction. The Knights of Saladin lack the influence of the other major factions.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=150 initiate
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 give scimitar quest
+Text=<He looks at you a moment longer than is comfortable, and then he smiles.> So. You listen in the smithy as well as in my tent. Yes - let that be your second task. Eduardo has the skill and he has the silver; what he lacks is a reason to spend them. Bring me the Sacred Scimitar, and bring it having earned it.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+}
+}
+}
+Reply Text=I will have the blade forged, and I will earn it.
+Go to node ID=10 goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+}
+}
+Reply Text=I already carry it.
+Go to node ID=210 have scimitar
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=210 have scimitar
+Text=<He takes the scimitar, turns it once in the light, and gives it back to you.> Eduardo's work, and your deed inside it. Keep it - it was made for your hand and it would be a poor gift to me. Now, for the next part of your initiation, you must complete the trials of the Dream Djinn.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am ready.
+Go to node ID=120 donate gem
+Icon=Quest Icon
+Is Default Reply=1
+}
