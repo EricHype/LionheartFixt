@@ -305,8 +305,9 @@ is in the Gate District; the offers sit under *"I have other questions"*.
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | Q1 | Quinn | Ask what you can help with | He asks for **three wolf pelts** |
-| Q2 | Wilderness | Kill wolves **without** the Wolf Trapper perk, return | The plain pelts are accepted. *Before this release the quest took only the plain pelt, which drops from nothing -- it was uncompletable* |
-| Q3 | " | Same **with** the Trapper perk | The quality pelts are accepted too. Either counts, and a mixed three works |
+| Q2 | Wilderness | Kill wolves **without** the Wolf Trapper perk, return | The plain pelts are accepted -- this is the vanilla-perk path and it worked before this release too |
+| Q3 | " | Same **with** the Trapper perk | The quality pelts are accepted too. **This is the case that was broken**: a Trapper gets `Wolf Pelt Perk Quality` and the turn-in only took the plain pelt, so the perk locked you out of the errand |
+| Q3b | " | Mix them -- some plain, some quality | Any three count, in any combination |
 | Q4 | Quinn, after Q2/Q3 | Ask again | He asks for **five wasp stingers**. The pelt errand is gone |
 | Q5 | " | Try to turn in with four | Nothing happens, and no stingers are taken |
 | Q6 | Ravine Cave West / Scar Ravine | Kill **Cursed or Tainted** wasps | Stingers drop. Plain wasps give none -- 6 of the 9 cans carry it |
@@ -322,7 +323,11 @@ Q10 and Q11 are the pair that matters: the peaceful route must appear only once 
 wererats are settled, and it must work whether you cured them or exterminated them -- the
 troll's grievance is pragmatic, not moral.
 
-Q2 is the regression check on the bug this release fixes.
+Q3 is the regression check on the bug this release fixes -- not Q2. The wolf cans branch
+on `Wolf Trapper Perk Checker`: without the perk you get one plain `Wolf Pelt` through a
+canned list, with it you get two `Wolf Pelt Perk Quality`. So the errand always worked
+for ordinary characters and only ever failed for trappers, who were handed pelts their
+own quest would not take.
 
 ### 0.3 - the Knights of Saladin award the rank, not just the title
 
