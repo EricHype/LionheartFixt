@@ -297,6 +297,33 @@ E6 is the regression that matters. E3 and E4 guard against double-payment: the w
 completion lives on the reply, and `103 wasps killed` pays nothing itself, so the
 retarget cannot pay twice.
 
+### 0.5 - peace with the lava trolls
+
+Settle the wererats -- cure them or destroy the Beggars, the trolls do not care which -- and
+the Warning Troll will trade. That branch now also stands the pit down.
+
+Four things were established in play before any of this shipped: a name-based action reaches
+**every** entity sharing that name; it only reaches what has **already spawned**; the pit's
+generators spawn lazily as you approach, so peace has to be maintained rather than declared;
+and stripping an interaction specifier must be paired with adding one back or the trolls
+become completely uninteractable.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| T1 | Troll Pit, wererats **not** settled | Walk in | Vanilla: the Warning Troll confronts you, the pit is hostile |
+| T2 | " | Take a Fight-icon reply | Combat, exactly as vanilla |
+| T3 | Troll Pit, wererats **settled** | Talk to the Warning Troll, take the trade | He gives the hide **and the pit stands down** |
+| T4 | " | Walk the **whole** pit, southern path included | Trolls spawning ahead of you settle within a second or two. None of them attacks |
+| T5 | " | Click an ordinary troll | It **grumbles** -- one of three lines. It does not attack, and it is not inert |
+| T6 | " | Click the **alpha** (taller, different model) | A conversation, not a grumble |
+| T7 | " | Force-attack a troll | It works. Peace is refusable |
+| T8 | " | After breaking it, walk on | Newly spawned trolls stay hostile -- the keeper is off |
+| T9 | " | Look for the dead boss corpse | Still lying there, untouched by any of this |
+
+T4 is the case the whole mechanism exists for, and the one that failed first time: a
+one-shot pacify only calms what has already spawned. T5 is the regression on my own fix --
+removing the attack cursor originally removed *all* interaction.
+
 ### 0.5 - the Helpful Wererat
 
 A finished character the game never placed: `Helpful wererat.can` and

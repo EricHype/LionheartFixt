@@ -29,7 +29,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
 Action=CDeactivateAction
 {
 Target Name=make troll mad
@@ -37,6 +37,10 @@ Target Name=make troll mad
 Action=CGoToCombatAction
 {
 Enemy Name=$Trigger
+}
+Action=CDeactivateAction
+{
+Target Name=Troll Peace Keeper
 }
 }
 }
@@ -119,7 +123,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
 Action=CDeactivateAction
 {
 Target Name=make troll mad
@@ -127,6 +131,10 @@ Target Name=make troll mad
 Action=CGoToCombatAction
 {
 Enemy Name=$Trigger
+}
+Action=CDeactivateAction
+{
+Target Name=Troll Peace Keeper
 }
 }
 }
@@ -149,7 +157,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
 Action=CActionGiveStandardInventoryItem
 {
 Who to give to=$instigator
@@ -165,8 +173,37 @@ Action=CDeactivateAction
 {
 Target Name=make troll mad
 }
+Action=CActivateAction
+{
+Target Name=Troll Peace Keeper
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
 }
 }
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 troll bark 1
+Text=<The troll watches you pass, and grumbles somewhere deep in its chest.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=90 troll bark 2
+Text=<It does not move aside. It does not move at all.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=90 troll bark 3
+Text=<A low sound, more rock than throat. Whatever it means, it is not welcome.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=95 the chief
+Text=<He is a head taller than the others and does not grumble. He looks at you the way a man looks at weather.>  You walk in my rock and my people do not stop you. So. Say the thing you came to say.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Nothing yet. I am only looking.
+Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
 }
