@@ -1,0 +1,172 @@
+CDialogTree
+{
+Name=Troll
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Greeting
+Text=You!  Stop!  No welcome.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=3KL9W1JQ
+}
+}
+Reply Text=I come in peace. Eduardo said I should speak to you about Red Ore.
+Go to node ID=20 no trust
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Stand down troll.  Let me pass.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=make troll mad
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Sorry, I'll be going now.
+Go to node ID=
+Icon=Exit Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+}
+}
+}
+}
+Reply Text=The wererats are finished. Whatever else you think of me, I am the reason no more of your people are being dragged off in the dark.
+Go to node ID=30 troll trade
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=20 no trust
+Text=We no trust Eduardo no more.  We no trust no one.  Too many dead Trolls.  Wererats sneaky.  Leave or face problem.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You leave me no options - I must pass
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=make troll mad
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, I'll be going now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 troll trade
+Text=<The troll looks at you for a long moment. Something in the set of its shoulders comes down.> ...We know. We count. Was many, now is none.  <It reaches behind itself, works at something with both hands, and holds it out still warm.> Old skin. Comes off anyway. You take. We owe, and Trolls do not like to owe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Take it.> Your people can sleep.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CDeactivateAction
+{
+Target Name=make troll mad
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+}

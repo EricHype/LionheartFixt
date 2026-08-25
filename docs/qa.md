@@ -297,6 +297,33 @@ E6 is the regression that matters. E3 and E4 guard against double-payment: the w
 completion lives on the reply, and `103 wasps killed` pays nothing itself, so the
 retarget cannot pay twice.
 
+### 0.4 - Quinn's reagents
+
+Three errands, in order, each unlocking a healing tier above vanilla's Extra Healing. Quinn
+is in the Gate District; the offers sit under *"I have other questions"*.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| Q1 | Quinn | Ask what you can help with | He asks for **three wolf pelts** |
+| Q2 | Wilderness | Kill wolves **without** the Wolf Trapper perk, return | The plain pelts are accepted. *Before this release the quest took only the plain pelt, which drops from nothing -- it was uncompletable* |
+| Q3 | " | Same **with** the Trapper perk | The quality pelts are accepted too. Either counts, and a mixed three works |
+| Q4 | Quinn, after Q2/Q3 | Ask again | He asks for **five wasp stingers**. The pelt errand is gone |
+| Q5 | " | Try to turn in with four | Nothing happens, and no stingers are taken |
+| Q6 | Ravine Cave West / Scar Ravine | Kill **Cursed or Tainted** wasps | Stingers drop. Plain wasps give none -- 6 of the 9 cans carry it |
+| Q7 | Quinn | Turn in five | Accepted; the errand advances |
+| Q8 | " | Ask again | He asks for a **lava troll hide**, and mentions the trolls are not animals |
+| Q9 | Sewers, Troll Pit | Kill a **Lava Troll Boss** | It drops the hide. Ordinary trolls do not |
+| Q10 | " | **Or**: settle the wererats first (cure them, or destroy the Beggars either way), then talk to the Warning Troll | A new reply appears and he **gives** you a hide. The pit does not turn hostile |
+| Q11 | " | Same, wererats unresolved | That reply is absent. Killing remains the only route |
+| Q12 | Quinn, after each turn-in | Ask what he set aside | **Great** after one, **Great + Superior** after two, **all three** after three |
+| Q13 | " | Buy and drink each | Great heals more than Extra Healing; Superior more than Great; Supreme most |
+
+Q10 and Q11 are the pair that matters: the peaceful route must appear only once the
+wererats are settled, and it must work whether you cured them or exterminated them -- the
+troll's grievance is pragmatic, not moral.
+
+Q2 is the regression check on the bug this release fixes.
+
 ### 0.3 - the Knights of Saladin award the rank, not just the title
 
 The Dream Djinni trials hand out `Dervish of the Crescent` -- whose own text says *"You have
