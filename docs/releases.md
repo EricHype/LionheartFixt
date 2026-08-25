@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.2.1 shipped; 0.3.0 in progress**. 0.1.0 through 0.1.4, 0.2.0 and 0.2.1 are published; the sections
+Status: **0.3.0 shipped**. 0.1.0 through 0.3.0 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -59,7 +59,7 @@ development.
 | **0.1.2** | **Standing** (built) - the camp reacts to your rank, and standing accumulates across every service rather than being granted once | Completes the faction as a thing with texture, not just a gate |
 | **0.1.4** | **What playtesting found** (built) - Esteban's death is recognised, the rank titles stop naming a deed you may not have done, and the Goblin Girl's dead replies are repaired | The first release made entirely of play reports. Cut as its own version because the fixes change behaviour players had already seen |
 | 0.2.0 | Link repair, whole game | 84 true dead ends. Ships standalone, needs no new writing. Deliberately *not* first: 0.1.0 needs to demonstrate the thing Fixt is for |
-| 0.3.0 | **The Knights of Saladin** (in progress) - the order awards the rank, not just the title | The second minor faction. Ordered ahead of Quinn deliberately: the core repair is one faction assignment with four acts of payoff, which is far cheaper than a three-quest chain |
+| 0.3.0 | **The Knights of Saladin** (built) - the order awards the rank, not just the title | The second minor faction. Ordered ahead of Quinn deliberately: the core repair is one faction assignment with four acts of payoff, which is far cheaper than a three-quest chain |
 | 0.4.0 | **Quinn's reagents** - three quests, three healing potion tiers | The project's first new content. Specced in [`plan.md`](plan.md); most of the assets already exist |
 | 0.5.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
 | 0.6.0+ | The back half - the Crypt's war, the two new areas, companions | The largest work, and it wants the faction and reactivity templates settled first |
@@ -124,7 +124,7 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
-## 0.3.0 - "The Knights of Saladin" (in progress)
+## 0.3.0 - "The Knights of Saladin"
 
 ### The order awards the title and never the rank
 
@@ -170,14 +170,37 @@ Six of the twenty replies are on **Quinn**, which is a useful accident -- he is 
 the Dream Djinni, so the cheapest test of this fix is also the character the next release is
 built around.
 
-### Still to come in 0.3.0
+### What else shipped in it
 
-Per [`plan.md`](plan.md), the faction assignment is repair 1 of 3. Also scoped, not yet
-built: the **Sacred Scimitar**, which is broken at all three ends -- its starter is a
-proximity trigger with both `Active=0` and `X Radius=0`, Amir's second-task node is a fork
-that lost an arm, and the hand-in reply points at a node that does not exist while carrying
-the quest completion. Then rewarding the route rather than only the completion, and one
-sparring scene with Farshad.
+**The Sacred Scimitar questline, restored.** Fully authored, unstartable, broken at all
+three ends -- the starter was a proximity trigger with both `Active=0` and `X Radius=0`,
+Amir's second-task node was a fork that had lost an arm, and the hand-in reply pointed at a
+node that does not exist while carrying the quest's completion action. Routed through Amir
+rather than by re-enabling the dead trigger, which is ungated and would hand the quest to
+anyone who walked into the smithy.
+
+**Farshad's conversation.** Sixteen nodes, including two "Welcome into the Order of Saladin"
+greetings, hidden because his talk interaction opened a *balloon* of `10 Goodbye` and
+`saladinknightcan` was never opened as a tree anywhere. Third instance of that bug shape
+this project has found.
+
+**The scimitar remembers how you earned it**, and the Dream Djinni sets it alight rather
+than handing you a duplicate. See the release notes.
+
+### Four vanilla defects the restoration exposed
+
+All four found by playing, none catchable by Gate 0, and all invisible before because the
+questline could not be started:
+
+| Defect | |
+|---|---|
+| The quest could move backwards | `I8FFAL7P`, the state Amir's gate needs, is set in exactly one place; the other reply at node 64 sent the quest back to "Do as Blacksmith requests" with nothing to advance it again |
+| The hand-in was unreachable | Its reply sits on `15 questions`, entered from seventeen topic nodes and never from the greeting the map opens |
+| A duplicate reward | The combat trial hands out the same Sacred Scimitar -- almost certainly the cut quest's payoff, relocated |
+| A near miss | Enchanting the blade would have broken Farshad's lesson gate, which tested only for the item |
+
+**The lesson of the release:** restoring content runs code that has never executed. Static
+verification proves every reference resolves and tells you nothing about any of this.
 
 ## 0.2.1 - the bandit you killed before he asked
 

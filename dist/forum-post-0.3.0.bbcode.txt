@@ -1,0 +1,119 @@
+[size=150][b]Lionheart Fixt 0.3.0 - the Knights of Saladin[/b][/size]
+
+The Dream Djinni tells you that you have become a [b]Favored One of the Knights of Saladin[/b].
+Then it never makes you one.
+
+The trials award a perk. The [i]rank[/i] comes from a faction record - and in the whole shipped
+game, a Saladin faction is assigned in exactly one place: a test map no player can reach. So
+the check every Saladin reply depends on could never be true, and [b]twenty replies across
+four acts have never been seen by anyone[/b]. Seven of them belong to Sir Roger in the English
+Shrine. Six to Quinn the Herbalist, standing about forty feet from the Djinni.
+
+One faction assignment, beside the two perk grants that already fire, fixes all of it.
+
+[b]Fixt[/b] is a restoration-and-repair mod, named after Fallout Fixt and following the same
+discipline. It fixes what is broken, restores what was cut, and writes new content only
+where the game plainly ran out - working from the shipped archive rather than from opinion.
+
+[b]Download:[/b] [url]https://github.com/EricHype/LionheartFixt/releases/latest[/url]
+[b]Source:[/b] [url]https://github.com/EricHype/LionheartFixt[/url] (MIT)
+
+[hr][/hr]
+
+[size=130][b]The Sacred Scimitar[/b][/size]
+
+A complete questline that could not be started.
+
+Eduardo the blacksmith has all of it written - a test of valour, a material hunt, six
+separate ways to talk your way past the test - and the sword exists as an item. It was
+broken at three ends simultaneously. The starter is a proximity trigger with [i]both[/i]
+[i]Active=0[/i] and [i]X Radius=0[/i]. Amir's node is named [i]202 make a scimitar[/i], he visibly
+deliberates over your second task, and then offers something else entirely. And the reply
+that hands the finished blade over points at a node that does not exist - while carrying the
+quest's completion action.
+
+That middle one is the interesting one. [i]202[/i] is not a mis-named passthrough; it is a fork
+that lost an arm. There is nothing to deliberate over if only one task exists, and the
+missing node shares its number with the surviving one, which is what happens when a branch
+is written over rather than beside.
+
+Amir now genuinely chooses. Earn your own blade, or recover a treasure for the Order.
+
+[size=130][b]Farshad has a conversation[/b][/size]
+
+Sixteen nodes, two of them Saladin greetings, hidden because his talk interaction opened a
+one-line balloon and his dialogue tree was never opened as a tree anywhere in the game. Walk
+up to a Knight of Saladin, talk to him, get a grunt.
+
+He will also teach you to use a sword, once you own one worth teaching with. He is already
+duelling his twin brother and says so himself.
+
+[size=130][b]The scimitar remembers how you earned it[/b][/size]
+
+Eduardo argues the case: *"it requires a test of valor, of bravery on the part of the owner
+to give the scimitar its strength, its spiritual center."* Then he hands the same blade to
+everyone, including the player who bartered their way out of the test. Now he does not.
+
+And if you forged a blade before the trials, the Djinni no longer hands you an identical
+second one. He sets the one you have alight.
+
+[hr][/hr]
+
+[size=130][b]What playing found that reading could not[/b][/size]
+
+Restoring a questline runs code that has never executed. Four vanilla defects surfaced the
+moment this one became completable, and every one of them passed every automated check the
+project has:
+
+[list]
+[*]The quest could move [b]backwards[/b]. The state the hand-in requires is set by exactly one
+[/list]
+  reply; its sibling handed over the blade and sent the quest back a step, permanently.
+[list]
+[*]The hand-in reply lives on Amir's [i]"anything else?"[/i] hub - reachable from seventeen
+[/list]
+  unrelated topics and never from the greeting the game actually opens.
+[list]
+[*]The combat trial's reward is a [b]duplicate[/b] of the blade you just forged. Almost
+[/list]
+  certainly the cut quest's payoff, relocated when the quest was dropped.
+
+That is the argument for playtesting each restoration rather than batching them.
+
+[hr][/hr]
+
+[size=130][b]What 0.1.x and 0.2.x did, if you are new[/b][/size]
+
+The [b]goblins of the Wilderness[/b] become a real faction with three accumulating ranks, and
+the camp reads your standing. Two finished characters that shipped with complete dialogue
+and zero map references are put back. The Goblin Girl's cut follow behaviour is restored,
+bounded to her own cave. The Khan explains his war on Barcelona. Dead-end replies throughout
+the goblin thread are repaired.
+
+The rule the whole project follows: [b]every check adds a route and none removes one.[/b] If
+you solved a scene in vanilla by talking your way out of it, that still works.
+
+[hr][/hr]
+
+[size=130][b]Installing[/b][/size]
+
+Unzip somewhere with a short path, double-click [b][i]Mod Manager.bat[/i][/b], click the button that
+names the mod. [i]Uninstall[/i] puts everything back exactly as it was. No Python, no separate
+mod manager. Windows only; GOG, Steam and retail.
+
+[b]You must start a new game.[/b] A save records a map's contents the first time it enters.
+
+The download contains no game content: files that already exist in your installation travel
+as deltas against your own copy and are rebuilt locally during installation.
+
+[hr][/hr]
+
+[size=130][b]What has not been tested[/b][/size]
+
+The questline has been played through the scimitar and the lesson - that is how the four
+bugs above were found. [b]The twenty replies have not been seen in play yet.[/b]
+
+If you find a rank-gated reply showing up for the wrong rank, that is the single most useful
+thing you could report. It is the failure mode no automated check here can catch.
+
+Issues: [url]https://github.com/EricHype/LionheartFixt/issues[/url]

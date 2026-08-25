@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.2.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.2.1).
+-- currently [0.3.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.3.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -60,7 +60,7 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release: 0.2.1
+## Current release: 0.3.0
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
@@ -89,6 +89,25 @@ greetings fire, which also confirmed that a map interaction can read quest state
 characters, and only one has walked it. A build that solves everything cannot show whether a
 check quietly *replaced* a vanilla route rather than adding one -- the failure this project's
 own rule forbids -- and only a low-INT, low-CHA character can. That pass is still outstanding.
+
+### 0.3.0 - the Knights of Saladin
+
+The Dream Djinni trials tell you that you have become a **Favored One of the Knights of
+Saladin** -- and then never make you one. The trials award a perk; the rank comes from a
+faction record assigned nowhere in the shipped game except a test map. So `Saladin IS` could
+never be true, and **twenty replies across four acts could never appear**: seven on Sir
+Roger, six on Quinn, three each on Brother Michel and Joan of Arc, one on the Temple gate.
+One faction assignment fixes all of it.
+
+**The Sacred Scimitar questline is restored.** It was fully authored and unstartable, broken
+at all three ends at once.
+
+**Farshad has a conversation.** Sixteen nodes, two of them Saladin greetings, hidden behind
+a talk interaction that opened a one-line balloon. He will also teach you to use the blade
+once you own one.
+
+**The scimitar remembers how you earned it**, and the Djinni sets it burning instead of
+handing you a second one.
 
 ### 0.2.1 - the bandit you killed before he asked
 
