@@ -1,0 +1,1345 @@
+CCannedObject
+{
+	Object=CEntityWalking
+	{
+		Dynamic Properties=2
+		{
+			Comment=
+			Experience Points=219
+		}
+		Name=
+		Child List=
+		Visible=1
+		Collideable=1
+		Half Height=0
+		Full Height=1
+		Tries To Collide=0
+		Has Hit Points=0
+		Stationary=1
+		Active=1
+		Is Temporarily Excluded=0
+		Is Marked For Deletion=0
+		Activity=Array
+		{
+			Item Count=5
+			Activity=CSkeletonAI
+			{
+				Marked For Deletion=0
+				Publisher=
+				Patrol AI=CScanAreaAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Play Ratio=0
+					Next Try To Move=0
+					State=Scanning
+					Go Home Range=300
+					Move To Behavior=CEntityBehaviorMoveToPos
+					{
+						Old Stationary Flag=0
+						Angle To Turn To=0
+						Facing Backwards=0
+						Idle Behavior=CEntityBehaviorIdle
+						{
+							Num Seconds=1
+							Seconds Have Transitioned=0
+							Override Fidget Options=
+							Current Fidget Data=
+							Time Until Next Fidget=0
+							Fidgeting=0
+						}
+						Play Ratio=1
+						Smooth Turning=0
+						Do Path Finding=1
+						Finished=1
+						Failed Last Path=0
+						Idle Begin Called=0
+						Move To Rate=0
+						CurTargetNormalX=0
+						CurTargetNormalY=0
+						Path Finding Params=CWayPointPath
+						{
+							Start Point=0,0
+							End Point=0,0
+							Length=0
+							Max Dist To Travel=0
+							Num Failed Paths=0
+							Max Failed Paths=0
+							Pos To Move Index=0
+							Dist So Far=0
+							Path=
+						}
+						Pos Moving From=0.000000,0.000000
+						Final Dest=0.000000,0.000000
+						Dest Radius=0
+						Cur Dest Move To=0.000000,0.000000
+						Last Neg Dist=0
+						NumTimesLostGound=0
+						Sequence=
+						Planed Path For=
+					}
+					Starting Angle=-45
+					Ending Angle=45
+					Turning Speed=10
+					Time Between Turning=0
+					Start Out Waiting=0
+					Start Counterclockwise=0
+					Turning Flag=0
+					Turn Sequence Name=Idle
+					End Turn Action=
+					Execute Each Turn=0
+					Reset Each Begin=1
+					Current Time To Wait=0
+					Current Start Angle=0
+					Current End Angle=0
+					Waiting=1
+					Starting Facing Angle=-999
+					Complete Turn Time=0
+					Current Turn Time=0
+					Idle Behavior=CEntityBehaviorIdle
+					{
+						Num Seconds=1
+						Seconds Have Transitioned=0
+						Override Fidget Options=
+						Current Fidget Data=
+						Time Until Next Fidget=0
+						Fidgeting=0
+					}
+				}
+				Patrol Start Action=
+				Patrol End Action=
+				Respond to calls for reinforcements=0
+				Target shooter if hit=1
+				Never Unacquire=0
+				Time Since Acquiring Shooter=999
+				Sneak Adjustment=0
+				Target Type=CEntityBehaviorStateSetClosestTarget
+				{
+					Max Distance=550
+					Vision Cone=360
+					Name To Target=
+					Must Be Collideable=1
+					Must Have HPs=1
+					Valid Targets=Player,Player Friend
+				}
+				Has Seen Target=0
+				Max dist from home=4000
+				Pursue AI=CChasePursueAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					AFloat=CEntityBehaviorMoveToPos
+					{
+						Old Stationary Flag=0
+						Angle To Turn To=0
+						Facing Backwards=0
+						Idle Behavior=CEntityBehaviorIdle
+						{
+							Num Seconds=1
+							Seconds Have Transitioned=0
+							Override Fidget Options=
+							Current Fidget Data=
+							Time Until Next Fidget=0
+							Fidgeting=0
+						}
+						Play Ratio=1
+						Smooth Turning=1
+						Do Path Finding=1
+						Finished=1
+						Failed Last Path=0
+						Idle Begin Called=0
+						Move To Rate=0
+						CurTargetNormalX=0
+						CurTargetNormalY=0
+						Path Finding Params=CWayPointPath
+						{
+							Start Point=0,0
+							End Point=0,0
+							Length=0
+							Max Dist To Travel=0
+							Num Failed Paths=0
+							Max Failed Paths=0
+							Pos To Move Index=0
+							Dist So Far=0
+							Path=
+						}
+						Pos Moving From=0.000000,0.000000
+						Final Dest=0.000000,0.000000
+						Dest Radius=0
+						Cur Dest Move To=0.000000,0.000000
+						Last Neg Dist=0
+						NumTimesLostGound=0
+						Sequence=
+						Planed Path For=
+					}
+					Play Ratio=0
+					Next Try To Move=0
+					Max Radius From Final Pos To Get Within=0
+					Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+				}
+				Pursue Start Action=
+				Pursue End Action=
+				Force Pursue Shooter=2
+				Max distance from home=4000
+				Investigate End Action=
+				Investigate Start Action=
+				Investigate AI=CChaseInvestigateAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					AFloat=CEntityBehaviorMoveToPos
+					{
+						Old Stationary Flag=0
+						Angle To Turn To=0
+						Facing Backwards=0
+						Idle Behavior=CEntityBehaviorIdle
+						{
+							Num Seconds=1
+							Seconds Have Transitioned=0
+							Override Fidget Options=
+							Current Fidget Data=
+							Time Until Next Fidget=0
+							Fidgeting=0
+						}
+						Play Ratio=1
+						Smooth Turning=0
+						Do Path Finding=1
+						Finished=1
+						Failed Last Path=0
+						Idle Begin Called=0
+						Move To Rate=0
+						CurTargetNormalX=0
+						CurTargetNormalY=0
+						Path Finding Params=CWayPointPath
+						{
+							Start Point=0,0
+							End Point=0,0
+							Length=0
+							Max Dist To Travel=0
+							Num Failed Paths=0
+							Max Failed Paths=0
+							Pos To Move Index=0
+							Dist So Far=0
+							Path=
+						}
+						Pos Moving From=0.000000,0.000000
+						Final Dest=0.000000,0.000000
+						Dest Radius=0
+						Cur Dest Move To=0.000000,0.000000
+						Last Neg Dist=0
+						NumTimesLostGound=0
+						Sequence=
+						Planed Path For=
+					}
+					Turn Behavior=CEntityBehaviorTurnToAngle
+					{
+						Old Stationary Flag=0
+						Angle To Turn To=0
+						Facing Backwards=0
+					}
+					Play Ratio=0
+					Next Try To Move=0
+					Time To Investigate=5
+					Count To Investigate=0
+					Radius to Investigate Point=0
+					Run To Investigate=1
+					State=Chasing
+					Investigate AI=CScanInvestigateAI
+					{
+						Marked For Deletion=0
+						Publisher=
+						AI=CScanAreaAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Play Ratio=0
+							Next Try To Move=0
+							State=Scanning
+							Go Home Range=300
+							Move To Behavior=CEntityBehaviorMoveToPos
+							{
+								Old Stationary Flag=0
+								Angle To Turn To=0
+								Facing Backwards=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+								Play Ratio=1
+								Smooth Turning=0
+								Do Path Finding=1
+								Finished=1
+								Failed Last Path=0
+								Idle Begin Called=0
+								Move To Rate=0
+								CurTargetNormalX=0
+								CurTargetNormalY=0
+								Path Finding Params=CWayPointPath
+								{
+									Start Point=0,0
+									End Point=0,0
+									Length=0
+									Max Dist To Travel=0
+									Num Failed Paths=0
+									Max Failed Paths=0
+									Pos To Move Index=0
+									Dist So Far=0
+									Path=
+								}
+								Pos Moving From=0.000000,0.000000
+								Final Dest=0.000000,0.000000
+								Dest Radius=0
+								Cur Dest Move To=0.000000,0.000000
+								Last Neg Dist=0
+								NumTimesLostGound=0
+								Sequence=
+								Planed Path For=
+							}
+							Starting Angle=-45
+							Ending Angle=45
+							Turning Speed=10
+							Time Between Turning=0
+							Start Out Waiting=0
+							Start Counterclockwise=0
+							Turning Flag=0
+							Turn Sequence Name=Idle
+							End Turn Action=
+							Execute Each Turn=0
+							Reset Each Begin=1
+							Current Time To Wait=0
+							Current Start Angle=0
+							Current End Angle=0
+							Waiting=1
+							Starting Facing Angle=-999
+							Complete Turn Time=0
+							Current Turn Time=0
+							Idle Behavior=CEntityBehaviorIdle
+							{
+								Num Seconds=1
+								Seconds Have Transitioned=0
+								Override Fidget Options=
+								Current Fidget Data=
+								Time Until Next Fidget=0
+								Fidgeting=0
+							}
+						}
+					}
+				}
+				Max Dist=100
+				Attack AI=CNormalAttackAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Use Primary Shoot Behavior=1
+					Shoot Behavior=CShootEntityBehavior
+					{
+						Play Sequence=
+						Play Reload Sequence=
+					}
+					Shoot Completed=
+					Turn Behavior=CPointWeaponAtTargetEntityBehavior
+					{
+					}
+					MoveBehavior=CEntityBehaviorMoveToPos
+					{
+						Old Stationary Flag=0
+						Angle To Turn To=0
+						Facing Backwards=0
+						Idle Behavior=CEntityBehaviorIdle
+						{
+							Num Seconds=1
+							Seconds Have Transitioned=0
+							Override Fidget Options=
+							Current Fidget Data=
+							Time Until Next Fidget=0
+							Fidgeting=0
+						}
+						Play Ratio=1
+						Smooth Turning=0
+						Do Path Finding=1
+						Finished=1
+						Failed Last Path=0
+						Idle Begin Called=0
+						Move To Rate=0
+						CurTargetNormalX=0
+						CurTargetNormalY=0
+						Path Finding Params=CWayPointPath
+						{
+							Start Point=0,0
+							End Point=0,0
+							Length=0
+							Max Dist To Travel=0
+							Num Failed Paths=0
+							Max Failed Paths=0
+							Pos To Move Index=0
+							Dist So Far=0
+							Path=
+						}
+						Pos Moving From=0.000000,0.000000
+						Final Dest=0.000000,0.000000
+						Dest Radius=0
+						Cur Dest Move To=0.000000,0.000000
+						Last Neg Dist=0
+						NumTimesLostGound=0
+						Sequence=
+						Planed Path For=
+					}
+					Minimum Attack Distance=100
+					Move Buffer Zone=50
+					Waiting For Threshold=0
+					Moving State=1
+					Firing Complete=1
+					Firing In Progress=0
+					Waiting To Shoot=0
+					Time To Next State Change=0
+					Time To Next MoveRevision=0
+					Began Shooting From=0.000000,0.000000
+				}
+				Attack Start Action=
+				Attack End Action=
+				Check Range When Firing=0
+				Ignore line of sight if in range=0
+				Retreat when=0
+				Retreat Start Action=
+				Has Started Retreat=0
+				State=Any
+				Allowed To Roam Anywhere=0
+				Transition=Array
+				{
+					Array Count=1
+					Array Item=CSkeletonTransition
+					{
+						Trigger=Once Per New Target
+						From State=Any
+						To State=Attack
+						Action=CRandomAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CPlaySoundAction
+								{
+									Sound=Enemies/LavaTroll war cry1.ogg
+									Position=$Trigger
+									Multiplayer=Heard by all players
+								}
+								Action=CPlaySoundAction
+								{
+									Sound=Enemies/LavaTroll war cry2.ogg
+									Position=$Trigger
+									Multiplayer=Heard by all players
+								}
+								Action=CPlaySoundAction
+								{
+									Sound=Enemies/LavaTroll war cry3.ogg
+									Position=$Trigger
+									Multiplayer=Heard by all players
+								}
+							}
+						}
+						IsDone=0
+					}
+				}
+			}
+			Activity=CAICharacterProfile
+			{
+				Marked For Deletion=0
+				Publisher=
+				Weapon Mode=Primary Weapon
+				User Assigned Name=Lava Troll Master
+				Gender=Male
+				Head=0
+				Hue Remapper=Player Data/Hue Remappers/!None
+				Race=Races/Enemies/Sewers/Lavatroll Boss Super
+				Mana Available=0
+				NumSecondsToRebroadcastFollow=0
+				Experience Points=0
+				Character Level=1
+				Skill Points=0
+				Selected Skill=Skills/!None
+				Skill To Select When Shoot Sequence Ends=Skills/!None
+				Selected Weapon Index=0
+				CharacterAttribute Values=Array
+				{
+					Character Attributes/(AG) Agility=0,-9999,9999
+					Character Attributes/(CH) Charisma=0,-9999,9999
+					Character Attributes/(EN) Endurance=0,-9999,9999
+					Character Attributes/(IN) Intelligence=0,-9999,9999
+					Character Attributes/(LK) Luck=0,-9999,9999
+					Character Attributes/(PE) Perception=0,-9999,9999
+					Character Attributes/(ST) Strength=0,-9999,9999
+				}
+				Character Attribute Modifiers=Array
+				{
+					Character Attributes/(AG) Agility=0
+					Character Attributes/(CH) Charisma=0
+					Character Attributes/(EN) Endurance=0
+					Character Attributes/(IN) Intelligence=0
+					Character Attributes/(LK) Luck=0
+					Character Attributes/(PE) Perception=0
+					Character Attributes/(ST) Strength=0
+				}
+				Character Attribute Permanent Modifiers=Array
+				{
+					Character Attributes/(AG) Agility=0
+					Character Attributes/(CH) Charisma=0
+					Character Attributes/(EN) Endurance=0
+					Character Attributes/(IN) Intelligence=0
+					Character Attributes/(LK) Luck=0
+					Character Attributes/(PE) Perception=0
+					Character Attributes/(ST) Strength=0
+				}
+				Derived Character Attribute Temporary Modifiers=Array
+				{
+					Derived Character Attributes/(AC) Armor Class=0
+					Derived Character Attributes/(HP) Hit Points=0
+					Derived Character Attributes/(SR) Spell Resistance=0
+					Derived Character Attributes/Action Points=0
+					Derived Character Attributes/CarryWeight=0
+					Derived Character Attributes/Combat Speed=0
+					Derived Character Attributes/Companion Follow Enabled=0
+					Derived Character Attributes/CriticalChance=0
+					Derived Character Attributes/Damage Related/Acid Damage Resistance=0
+					Derived Character Attributes/Damage Related/Acid Damage Threshold=0
+					Derived Character Attributes/Damage Related/Additional Poison Damage Maximum=0
+					Derived Character Attributes/Damage Related/Additional Poison Damage Minimum=0
+					Derived Character Attributes/Damage Related/Backlash Fire Damage To Give Attacker=0
+					Derived Character Attributes/Damage Related/Cold Damage Resistance=0
+					Derived Character Attributes/Damage Related/Cold Damage Threshold=0
+					Derived Character Attributes/Damage Related/Crushing Damage Resistance=0
+					Derived Character Attributes/Damage Related/Crushing Damage Threshold=0
+					Derived Character Attributes/Damage Related/Disease Damage Resistance=0
+					Derived Character Attributes/Damage Related/Disease Damage Threshold=0
+					Derived Character Attributes/Damage Related/Electrical Damage Resistance=0
+					Derived Character Attributes/Damage Related/Electrical Damage Threshold=0
+					Derived Character Attributes/Damage Related/Elemental Deflector Percentage Zero To One=0
+					Derived Character Attributes/Damage Related/Fire Damage Resistance=0
+					Derived Character Attributes/Damage Related/Fire Damage Threshold=0
+					Derived Character Attributes/Damage Related/Mana Shield Percentage Zero To One=0
+					Derived Character Attributes/Damage Related/Melee Damage Percentage Gives Health To Attacker Zero To One=0
+					Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Bonus Chance to Hit=0
+					Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent=0
+					Derived Character Attributes/Damage Related/Physical Damage Percentage Given To Attacker Zero To One=0
+					Derived Character Attributes/Damage Related/Piercing Damage Resistance=0
+					Derived Character Attributes/Damage Related/Piercing Damage Threshold=0
+					Derived Character Attributes/Damage Related/Poison Damage Resistance=0
+					Derived Character Attributes/Damage Related/Poison Damage Threshold=0
+					Derived Character Attributes/Damage Related/Should Give Backlash Fire Damage To Attacker Percentage=0
+					Derived Character Attributes/Damage Related/Slashing Damage Resistance=0
+					Derived Character Attributes/Damage Related/Slashing Damage Threshold=0
+					Derived Character Attributes/Damage Related/Successful Backstab Attack Extra Damage Percentage Zero To One=0
+					Derived Character Attributes/Drunk=0
+					Derived Character Attributes/Fortune=0
+					Derived Character Attributes/Game Scripting Variables/Arrow Bonus Chance to Hit Ammount=0
+					Derived Character Attributes/Game Scripting Variables/Bolt Bonus Chance to Hit Ammount=0
+					Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead=0
+					Derived Character Attributes/Game Scripting Variables/Bow equipped=0
+					Derived Character Attributes/Game Scripting Variables/Crossbow equipped=0
+					Derived Character Attributes/Game Scripting Variables/DaVinci Tell player about Wielders=0
+					Derived Character Attributes/Game Scripting Variables/FACTION LEADERS KILLED=0
+					Derived Character Attributes/Game Scripting Variables/Galileo talked to for Grumpy Guard=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 1=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 2=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 3=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 4=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 5=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal Quest given in Calle=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystals ALL FOUND=0
+					Derived Character Attributes/Game Scripting Variables/Grumpy Guard talked to For Galileo=0
+					Derived Character Attributes/Game Scripting Variables/Herbalist Dead=0
+					Derived Character Attributes/Game Scripting Variables/Player first pickup of HEALTH ball=0
+					Derived Character Attributes/Game Scripting Variables/Player first pickup of Spirit Mana=0
+					Derived Character Attributes/Game Scripting Variables/Player has cast a spell=0
+					Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry=0
+					Derived Character Attributes/Game Scripting Variables/Relican Dead=0
+					Derived Character Attributes/Game Scripting Variables/River Dryad Dead=0
+					Derived Character Attributes/Game Scripting Variables/Spell Immunity=0
+					Derived Character Attributes/Game Scripting Variables/Spirit Strength Given=0
+					Derived Character Attributes/Game Scripting Variables/Weird Woman Told about Old Man History=0
+					Derived Character Attributes/Game Scripting Variables/Woodcutter Dead=0
+					Derived Character Attributes/Goblin Kill Counter=0
+					Derived Character Attributes/HealingRate=0
+					Derived Character Attributes/Is Backstab Mode Enabled=0
+					Derived Character Attributes/Is Slayer Mode Enabled=0
+					Derived Character Attributes/Is Sniper Mode Enabled=0
+					Derived Character Attributes/Is Wearing Necklace of Voodoo=0
+					Derived Character Attributes/Karma=0
+					Derived Character Attributes/Magic Speed=0
+					Derived Character Attributes/Mana Capacity=0
+					Derived Character Attributes/Mana Capacity Magic Enhancer=0
+					Derived Character Attributes/Mana Replenishment Rate=0
+					Derived Character Attributes/Mana Variable Rate within Replenishment=0
+					Derived Character Attributes/MeleeDamage=0
+					Derived Character Attributes/Mojo=0
+					Derived Character Attributes/Monster Summoning number of monsters=0
+					Derived Character Attributes/Number of Voodoo Items=0
+					Derived Character Attributes/Perk and Trait Support/Acid Damage Multiplier for Reverse Heal=0
+					Derived Character Attributes/Perk and Trait Support/Brutish Hulk First Level=0
+					Derived Character Attributes/Perk and Trait Support/Buy Price Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Disease Damage Multiplier for Reverse Heal=0
+					Derived Character Attributes/Perk and Trait Support/Divine Spell Cast Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Experience Points Percent=0
+					Derived Character Attributes/Perk and Trait Support/Fast Talk Dialog Enhancer=0
+					Derived Character Attributes/Perk and Trait Support/Found Money Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Initial Spell Bonus=0
+					Derived Character Attributes/Perk and Trait Support/Levels Per Perk=0
+					Derived Character Attributes/Perk and Trait Support/Outwit=0
+					Derived Character Attributes/Perk and Trait Support/Schmooze=0
+					Derived Character Attributes/Perk and Trait Support/Thought Spell Cast Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Tribal Spell Cast Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Unarmed Damage Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Wolf Trapper Perk Checker=0
+					Derived Character Attributes/PhysicalCriticalResult=0
+					Derived Character Attributes/RangedDamage=0
+					Derived Character Attributes/Skill Points Per Level=0
+					Derived Character Attributes/SkillMultiplier=0
+					Derived Character Attributes/Sneak Enabled=0
+					Derived Character Attributes/Sneak Speed Factor=0
+					Derived Character Attributes/Speed/Attack Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Attack Magic Speed Multiplier=0
+					Derived Character Attributes/Speed/Base Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Ranged Attack Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Walk Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Walk Magic Speed Multiplier=0
+					Derived Character Attributes/Uber Perks/Inquisition Rank=0
+					Derived Character Attributes/Uber Perks/Saladin Rank=0
+					Derived Character Attributes/Uber Perks/Templar Rank=0
+					Derived Character Attributes/Uber Perks/Wielder Rank=0
+					Derived Character Attributes/UnarmedDamage=0
+					Derived Character Attributes/UnarmedDamageMaximum=0
+					Derived Character Attributes/UnarmedDamageMinimum=0
+					Derived Character Attributes/Wearing a Helmet=0
+					Derived Character Attributes/Wearing One-Handed Combat Ring=0
+					Derived Character Attributes/Wearing Two-Handed Combat Ring=0
+				}
+				Derived Character Attribute Permanent Modifiers=Array
+				{
+					Derived Character Attributes/(AC) Armor Class=0
+					Derived Character Attributes/(HP) Hit Points=0
+					Derived Character Attributes/(SR) Spell Resistance=0
+					Derived Character Attributes/Action Points=0
+					Derived Character Attributes/CarryWeight=0
+					Derived Character Attributes/Combat Speed=0
+					Derived Character Attributes/Companion Follow Enabled=0
+					Derived Character Attributes/CriticalChance=0
+					Derived Character Attributes/Damage Related/Acid Damage Resistance=0
+					Derived Character Attributes/Damage Related/Acid Damage Threshold=0
+					Derived Character Attributes/Damage Related/Additional Poison Damage Maximum=0
+					Derived Character Attributes/Damage Related/Additional Poison Damage Minimum=0
+					Derived Character Attributes/Damage Related/Backlash Fire Damage To Give Attacker=0
+					Derived Character Attributes/Damage Related/Cold Damage Resistance=0
+					Derived Character Attributes/Damage Related/Cold Damage Threshold=0
+					Derived Character Attributes/Damage Related/Crushing Damage Resistance=0
+					Derived Character Attributes/Damage Related/Crushing Damage Threshold=0
+					Derived Character Attributes/Damage Related/Disease Damage Resistance=0
+					Derived Character Attributes/Damage Related/Disease Damage Threshold=0
+					Derived Character Attributes/Damage Related/Electrical Damage Resistance=0
+					Derived Character Attributes/Damage Related/Electrical Damage Threshold=0
+					Derived Character Attributes/Damage Related/Elemental Deflector Percentage Zero To One=0
+					Derived Character Attributes/Damage Related/Fire Damage Resistance=0
+					Derived Character Attributes/Damage Related/Fire Damage Threshold=0
+					Derived Character Attributes/Damage Related/Mana Shield Percentage Zero To One=0
+					Derived Character Attributes/Damage Related/Melee Damage Percentage Gives Health To Attacker Zero To One=0
+					Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Bonus Chance to Hit=0
+					Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent=0
+					Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent=0
+					Derived Character Attributes/Damage Related/Physical Damage Percentage Given To Attacker Zero To One=0
+					Derived Character Attributes/Damage Related/Piercing Damage Resistance=0
+					Derived Character Attributes/Damage Related/Piercing Damage Threshold=0
+					Derived Character Attributes/Damage Related/Poison Damage Resistance=0
+					Derived Character Attributes/Damage Related/Poison Damage Threshold=0
+					Derived Character Attributes/Damage Related/Should Give Backlash Fire Damage To Attacker Percentage=0
+					Derived Character Attributes/Damage Related/Slashing Damage Resistance=0
+					Derived Character Attributes/Damage Related/Slashing Damage Threshold=0
+					Derived Character Attributes/Damage Related/Successful Backstab Attack Extra Damage Percentage Zero To One=0
+					Derived Character Attributes/Drunk=0
+					Derived Character Attributes/Fortune=0
+					Derived Character Attributes/Game Scripting Variables/Arrow Bonus Chance to Hit Ammount=0
+					Derived Character Attributes/Game Scripting Variables/Bolt Bonus Chance to Hit Ammount=0
+					Derived Character Attributes/Game Scripting Variables/Bounty Hunter Goblin killer dead=0
+					Derived Character Attributes/Game Scripting Variables/Bow equipped=0
+					Derived Character Attributes/Game Scripting Variables/Crossbow equipped=0
+					Derived Character Attributes/Game Scripting Variables/DaVinci Tell player about Wielders=0
+					Derived Character Attributes/Game Scripting Variables/FACTION LEADERS KILLED=0
+					Derived Character Attributes/Game Scripting Variables/Galileo talked to for Grumpy Guard=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 1=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 2=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 3=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 4=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal 5=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystal Quest given in Calle=0
+					Derived Character Attributes/Game Scripting Variables/Green Way Crystals ALL FOUND=0
+					Derived Character Attributes/Game Scripting Variables/Grumpy Guard talked to For Galileo=0
+					Derived Character Attributes/Game Scripting Variables/Herbalist Dead=0
+					Derived Character Attributes/Game Scripting Variables/Player first pickup of HEALTH ball=0
+					Derived Character Attributes/Game Scripting Variables/Player first pickup of Spirit Mana=0
+					Derived Character Attributes/Game Scripting Variables/Player has cast a spell=0
+					Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry=0
+					Derived Character Attributes/Game Scripting Variables/Relican Dead=0
+					Derived Character Attributes/Game Scripting Variables/River Dryad Dead=0
+					Derived Character Attributes/Game Scripting Variables/Spell Immunity=0
+					Derived Character Attributes/Game Scripting Variables/Spirit Strength Given=0
+					Derived Character Attributes/Game Scripting Variables/Weird Woman Told about Old Man History=0
+					Derived Character Attributes/Game Scripting Variables/Woodcutter Dead=0
+					Derived Character Attributes/Goblin Kill Counter=0
+					Derived Character Attributes/HealingRate=0
+					Derived Character Attributes/Is Backstab Mode Enabled=0
+					Derived Character Attributes/Is Slayer Mode Enabled=0
+					Derived Character Attributes/Is Sniper Mode Enabled=0
+					Derived Character Attributes/Is Wearing Necklace of Voodoo=0
+					Derived Character Attributes/Karma=0
+					Derived Character Attributes/Magic Speed=0
+					Derived Character Attributes/Mana Capacity=0
+					Derived Character Attributes/Mana Capacity Magic Enhancer=0
+					Derived Character Attributes/Mana Replenishment Rate=0
+					Derived Character Attributes/Mana Variable Rate within Replenishment=0
+					Derived Character Attributes/MeleeDamage=0
+					Derived Character Attributes/Mojo=0
+					Derived Character Attributes/Monster Summoning number of monsters=0
+					Derived Character Attributes/Number of Voodoo Items=0
+					Derived Character Attributes/Perk and Trait Support/Acid Damage Multiplier for Reverse Heal=0
+					Derived Character Attributes/Perk and Trait Support/Brutish Hulk First Level=0
+					Derived Character Attributes/Perk and Trait Support/Buy Price Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Disease Damage Multiplier for Reverse Heal=0
+					Derived Character Attributes/Perk and Trait Support/Divine Spell Cast Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Experience Points Percent=0
+					Derived Character Attributes/Perk and Trait Support/Fast Talk Dialog Enhancer=0
+					Derived Character Attributes/Perk and Trait Support/Found Money Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Initial Spell Bonus=0
+					Derived Character Attributes/Perk and Trait Support/Levels Per Perk=0
+					Derived Character Attributes/Perk and Trait Support/Outwit=0
+					Derived Character Attributes/Perk and Trait Support/Schmooze=0
+					Derived Character Attributes/Perk and Trait Support/Thought Spell Cast Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Tribal Spell Cast Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Unarmed Damage Multiplier=0
+					Derived Character Attributes/Perk and Trait Support/Wolf Trapper Perk Checker=0
+					Derived Character Attributes/PhysicalCriticalResult=0
+					Derived Character Attributes/RangedDamage=0
+					Derived Character Attributes/Skill Points Per Level=0
+					Derived Character Attributes/SkillMultiplier=0
+					Derived Character Attributes/Sneak Enabled=0
+					Derived Character Attributes/Sneak Speed Factor=0
+					Derived Character Attributes/Speed/Attack Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Attack Magic Speed Multiplier=0
+					Derived Character Attributes/Speed/Base Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Ranged Attack Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Walk Animation Speed Multiplier=0
+					Derived Character Attributes/Speed/Walk Magic Speed Multiplier=0
+					Derived Character Attributes/Uber Perks/Inquisition Rank=0
+					Derived Character Attributes/Uber Perks/Saladin Rank=0
+					Derived Character Attributes/Uber Perks/Templar Rank=0
+					Derived Character Attributes/Uber Perks/Wielder Rank=0
+					Derived Character Attributes/UnarmedDamage=0
+					Derived Character Attributes/UnarmedDamageMaximum=0
+					Derived Character Attributes/UnarmedDamageMinimum=0
+					Derived Character Attributes/Wearing a Helmet=0
+					Derived Character Attributes/Wearing One-Handed Combat Ring=0
+					Derived Character Attributes/Wearing Two-Handed Combat Ring=0
+				}
+				Non-Accumulating Modifier=Array
+				{
+					Item Count=0
+				}
+				Character Was Initialized=0
+				Has Attached Head Particles=0
+				m_ClientPlayerID=0
+				Is Shooting=0
+				Skill Values=Array
+				{
+					Skills/!None=0,-9999,9999
+					Skills/Divine=0,-9999,9999
+					Skills/Fake Wand Spells/Cure Major Wounds=0,-9999,9999
+					Skills/Fake Wand Spells/Cure Small Wounds=0,-9999,9999
+					Skills/Fake Wand Spells/Poison Touch=0,-9999,9999
+					Skills/Fake Wand Spells/Rigor Mortis=0,-9999,9999
+					Skills/Fake Wand Spells/Secret Reveal=0,-9999,9999
+					Skills/Fight=0,-9999,9999
+					Skills/Fighting/Evasion=0,-9999,9999
+					Skills/Fighting/OneHandedMelee=0,-9999,9999
+					Skills/Fighting/Ranged=0,-9999,9999
+					Skills/Fighting/TwoHandedMelee=0,-9999,9999
+					Skills/Fighting/Unarmed=0,-9999,9999
+					Skills/Magic Divine/Defensive=0,-9999,9999
+					Skills/Magic Divine/Defensive/Aid=0,-9999,9999
+					Skills/Magic Divine/Defensive/Divine Assistance=0,-9999,9999
+					Skills/Magic Divine/Defensive/Divine Strength=0,-9999,9999
+					Skills/Magic Divine/Defensive/Greater Resistance=0,-9999,9999
+					Skills/Magic Divine/Defensive/Greater Sight=0,-9999,9999
+					Skills/Magic Divine/Defensive/Healing=0,-9999,9999
+					Skills/Magic Divine/Defensive/Holy Fire=0,-9999,9999
+					Skills/Magic Divine/Defensive/Mana Shield=0,-9999,9999
+					Skills/Magic Divine/Defensive/Physical Aura=0,-9999,9999
+					Skills/Magic Divine/Defensive/Resist Fire=0,-9999,9999
+					Skills/Magic Divine/Defensive/Resist Poison=0,-9999,9999
+					Skills/Magic Divine/Defensive/Turn Undead=0,-9999,9999
+					Skills/Magic Divine/Divine Favor=0,-9999,9999
+					Skills/Magic Divine/Fortitude=0,-9999,9999
+					Skills/Magic Divine/Offensive/Blessed Aim=0,-9999,9999
+					Skills/Magic Divine/Offensive/Celestial Smite=0,-9999,9999
+					Skills/Magic Divine/Offensive/Cripple Enemies=0,-9999,9999
+					Skills/Magic Divine/Offensive/Divine Might=0,-9999,9999
+					Skills/Magic Divine/Offensive/Exorcise=0,-9999,9999
+					Skills/Magic Divine/Offensive/Spiritual Knight=0,-9999,9999
+					Skills/Magic Divine/Offensive/Weaken Enemies=0,-9999,9999
+					Skills/Magic Divine/Smite=0,-9999,9999
+					Skills/Magic Thought/Defensive=0,-9999,9999
+					Skills/Magic Thought/Defensive/Cold Ground=0,-9999,9999
+					Skills/Magic Thought/Defensive/ENEMY Magical Shield=0,-9999,9999
+					Skills/Magic Thought/Defensive/Fire Ground=0,-9999,9999
+					Skills/Magic Thought/Defensive/Magical Shield=0,-9999,9999
+					Skills/Magic Thought/Defensive/Mana Shield=0,-9999,9999
+					Skills/Magic Thought/Electrical=0,-9999,9999
+					Skills/Magic Thought/Fire=0,-9999,9999
+					Skills/Magic Thought/Ice=0,-9999,9999
+					Skills/Magic Thought/Offensive/Electrical Burst=0,-9999,9999
+					Skills/Magic Thought/Offensive/Fire Circle=0,-9999,9999
+					Skills/Magic Thought/Offensive/Fire Orb=0,-9999,9999
+					Skills/Magic Thought/Offensive/Fireball=0,-9999,9999
+					Skills/Magic Thought/Offensive/Flame Thrower=0,-9999,9999
+					Skills/Magic Thought/Offensive/Ice Javelin=0,-9999,9999
+					Skills/Magic Thought/Offensive/Ice Missile=0,-9999,9999
+					Skills/Magic Thought/Offensive/Ice Ring=0,-9999,9999
+					Skills/Magic Thought/Offensive/Ice Storm=0,-9999,9999
+					Skills/Magic Thought/Offensive/Lightning Bolt=0,-9999,9999
+					Skills/Magic Thought/Offensive/Lightning Chain=0,-9999,9999
+					Skills/Magic Thought/Offensive/Lightning Storm=0,-9999,9999
+					Skills/Magic Thought/Offensive/Poison Ring=0,-9999,9999
+					Skills/Magic Thought/Offensive/Spike=0,-9999,9999
+					Skills/Magic Thought/Offensive/Static Charge=0,-9999,9999
+					Skills/Magic Tribal/Defensive=0,-9999,9999
+					Skills/Magic Tribal/Defensive/Animal Grace=0,-9999,9999
+					Skills/Magic Tribal/Defensive/Armor of Bones=0,-9999,9999
+					Skills/Magic Tribal/Defensive/Backlash=0,-9999,9999
+					Skills/Magic Tribal/Defensive/Mana Shield=0,-9999,9999
+					Skills/Magic Tribal/Defensive/Shamans Eye=0,-9999,9999
+					Skills/Magic Tribal/Defensive/Shroud Darkness=0,-9999,9999
+					Skills/Magic Tribal/Defensive/Undead Energy=0,-9999,9999
+					Skills/Magic Tribal/Domination=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Absorb Spirit=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Amplify Damage=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Charm=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Corpse Bomb=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Fear=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Insect Plague=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Monster Summoning=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Raise Enemy=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Raise Undead=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Sleep=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Slow=0,-9999,9999
+					Skills/Magic Tribal/Offensive/Vampire=0,-9999,9999
+					Skills/Magic Tribal/Summoning=0,-9999,9999
+					Skills/Magic Tribal/Wounding=0,-9999,9999
+					Skills/Thief=0,-9999,9999
+					Skills/Thieving/Barter=0,-9999,9999
+					Skills/Thieving/Diplomacy=0,-9999,9999
+					Skills/Thieving/Find Traps Secret Doors=0,-9999,9999
+					Skills/Thieving/Lockpick Disarm Traps=0,-9999,9999
+					Skills/Thieving/Sneak=0,-9999,9999
+					Skills/Thieving/Speech=0,-9999,9999
+					Skills/Thought=0,-9999,9999
+					Skills/Tribal=0,-9999,9999
+				}
+				Skill Modifiers=Array
+				{
+					Skills/!None=0
+					Skills/Divine=0
+					Skills/Fake Wand Spells/Cure Major Wounds=0
+					Skills/Fake Wand Spells/Cure Small Wounds=0
+					Skills/Fake Wand Spells/Poison Touch=0
+					Skills/Fake Wand Spells/Rigor Mortis=0
+					Skills/Fake Wand Spells/Secret Reveal=0
+					Skills/Fight=0
+					Skills/Fighting/Evasion=0
+					Skills/Fighting/OneHandedMelee=0
+					Skills/Fighting/Ranged=0
+					Skills/Fighting/TwoHandedMelee=0
+					Skills/Fighting/Unarmed=0
+					Skills/Magic Divine/Defensive=0
+					Skills/Magic Divine/Defensive/Aid=0
+					Skills/Magic Divine/Defensive/Divine Assistance=0
+					Skills/Magic Divine/Defensive/Divine Strength=0
+					Skills/Magic Divine/Defensive/Greater Resistance=0
+					Skills/Magic Divine/Defensive/Greater Sight=0
+					Skills/Magic Divine/Defensive/Healing=0
+					Skills/Magic Divine/Defensive/Holy Fire=0
+					Skills/Magic Divine/Defensive/Mana Shield=0
+					Skills/Magic Divine/Defensive/Physical Aura=0
+					Skills/Magic Divine/Defensive/Resist Fire=0
+					Skills/Magic Divine/Defensive/Resist Poison=0
+					Skills/Magic Divine/Defensive/Turn Undead=0
+					Skills/Magic Divine/Divine Favor=0
+					Skills/Magic Divine/Fortitude=0
+					Skills/Magic Divine/Offensive/Blessed Aim=0
+					Skills/Magic Divine/Offensive/Celestial Smite=0
+					Skills/Magic Divine/Offensive/Cripple Enemies=0
+					Skills/Magic Divine/Offensive/Divine Might=0
+					Skills/Magic Divine/Offensive/Exorcise=0
+					Skills/Magic Divine/Offensive/Spiritual Knight=0
+					Skills/Magic Divine/Offensive/Weaken Enemies=0
+					Skills/Magic Divine/Smite=0
+					Skills/Magic Thought/Defensive=0
+					Skills/Magic Thought/Defensive/Cold Ground=0
+					Skills/Magic Thought/Defensive/ENEMY Magical Shield=0
+					Skills/Magic Thought/Defensive/Fire Ground=0
+					Skills/Magic Thought/Defensive/Magical Shield=0
+					Skills/Magic Thought/Defensive/Mana Shield=0
+					Skills/Magic Thought/Electrical=0
+					Skills/Magic Thought/Fire=0
+					Skills/Magic Thought/Ice=0
+					Skills/Magic Thought/Offensive/Electrical Burst=0
+					Skills/Magic Thought/Offensive/Fire Circle=0
+					Skills/Magic Thought/Offensive/Fire Orb=0
+					Skills/Magic Thought/Offensive/Fireball=0
+					Skills/Magic Thought/Offensive/Flame Thrower=0
+					Skills/Magic Thought/Offensive/Ice Javelin=0
+					Skills/Magic Thought/Offensive/Ice Missile=0
+					Skills/Magic Thought/Offensive/Ice Ring=0
+					Skills/Magic Thought/Offensive/Ice Storm=0
+					Skills/Magic Thought/Offensive/Lightning Bolt=0
+					Skills/Magic Thought/Offensive/Lightning Chain=0
+					Skills/Magic Thought/Offensive/Lightning Storm=0
+					Skills/Magic Thought/Offensive/Poison Ring=0
+					Skills/Magic Thought/Offensive/Spike=0
+					Skills/Magic Thought/Offensive/Static Charge=0
+					Skills/Magic Tribal/Defensive=0
+					Skills/Magic Tribal/Defensive/Animal Grace=0
+					Skills/Magic Tribal/Defensive/Armor of Bones=0
+					Skills/Magic Tribal/Defensive/Backlash=0
+					Skills/Magic Tribal/Defensive/Mana Shield=0
+					Skills/Magic Tribal/Defensive/Shamans Eye=0
+					Skills/Magic Tribal/Defensive/Shroud Darkness=0
+					Skills/Magic Tribal/Defensive/Undead Energy=0
+					Skills/Magic Tribal/Domination=0
+					Skills/Magic Tribal/Offensive/Absorb Spirit=0
+					Skills/Magic Tribal/Offensive/Amplify Damage=0
+					Skills/Magic Tribal/Offensive/Charm=0
+					Skills/Magic Tribal/Offensive/Corpse Bomb=0
+					Skills/Magic Tribal/Offensive/Fear=0
+					Skills/Magic Tribal/Offensive/Insect Plague=0
+					Skills/Magic Tribal/Offensive/Monster Summoning=0
+					Skills/Magic Tribal/Offensive/Raise Enemy=0
+					Skills/Magic Tribal/Offensive/Raise Undead=0
+					Skills/Magic Tribal/Offensive/Sleep=0
+					Skills/Magic Tribal/Offensive/Slow=0
+					Skills/Magic Tribal/Offensive/Vampire=0
+					Skills/Magic Tribal/Summoning=0
+					Skills/Magic Tribal/Wounding=0
+					Skills/Thief=0
+					Skills/Thieving/Barter=0
+					Skills/Thieving/Diplomacy=0
+					Skills/Thieving/Find Traps Secret Doors=0
+					Skills/Thieving/Lockpick Disarm Traps=0
+					Skills/Thieving/Sneak=0
+					Skills/Thieving/Speech=0
+					Skills/Thought=0
+					Skills/Tribal=0
+				}
+				Selected Racial Traits=Array
+				{
+					Item Count=0
+				}
+				Selected Traits=Array
+				{
+					Item Count=0
+				}
+				Selected TagSkills=Array
+				{
+					Item Count=0
+				}
+				Selected Perks=Array
+				{
+					Item Count=0
+				}
+				Availabel Perks=Array
+				{
+					Item Count=0
+				}
+				Number of perks earned=0
+				CharacterLevelWasAtWhenLastPerkGiven=0
+				Can Be Knocked Around=1
+				Critical Hit=Array
+				{
+					Item Count=0
+				}
+				Actor=
+				Damage Application Period=5
+				Seconds Since Last Queued Damage Application=0
+				Damages=Array
+				{
+					Item Count=0
+				}
+				Equipment Slots=Array
+				{
+					Item Count=0
+				}
+			}
+			Activity=CAIInteractionSpecifier
+			{
+				Marked For Deletion=0
+				Publisher=
+				Trigger Only Once=0
+				Was Triggered=0
+				Auto-Flip Switch=1
+				Trigge Must Have HP=0
+				Triggered By Anything=0
+				Triggered By Players=1
+				Triggered By Player Friends=0
+				Triggered By Enemies=0
+				Triggered By Projectiles=0
+				Triggered By Name=
+				Interaction Description=
+				Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+				Action=
+				X Radius=50
+				Attacker Range Modifier=0
+				YX Ratio=0.712766
+				Highlight Self Time=0
+				Highlight Until Clicked=0
+				Is Locked=0
+				Allow Interact If Has Target=1
+				Lock Pick Adjustment=0
+				Inventory item to use as key=Inventory Items/!None
+				Is Bussy Talking=0
+			}
+			Activity=CAIInventory
+			{
+				Marked For Deletion=0
+				Publisher=
+				Default Inventory Item=CInventoryItem
+				{
+					PlugIn Behaviors=Array
+					{
+						Item Count=4
+						PlugIn Behavior=CPlugInBehaviorAttack
+						{
+							Max Attack Range=500
+							Is Location Based=0
+							Can Use Slayer Mode=0
+							Can Use Sniper Mode=0
+							Action On Hit=
+							Action On Miss=
+						}
+						PlugIn Behavior=CPlugInBehaviorPlaySequence
+						{
+							Granny Animations=Array
+							{
+								Item Count=0
+							}
+							Sequence Name=Attack
+							Random Sequence Selection=1
+							Sequence Index=-1
+						}
+						PlugIn Behavior=CXRPGPlugInBehaviorLauncher
+						{
+							After Launch Action=
+							Num To Launch=1
+							Dispersion Angle=180
+							Aim At Parents Target=1
+							Launch Offset=0.000000,0.000000
+							Parents Bone Launch Location=Bip01 R Foot
+							Direction From Bone X=0
+							Direction From Bone Y=0
+							Direction From Bone Z=0
+							Requires Line Of Sight=1
+							Primary Launchable Slot=Character Slot Types/!None
+							Secondary Launchable Types=Array
+							{
+								Item Count=1
+								Secondary Launchable Type=Inventory Items/Enemy Items/Lava Troll Boss Super Instant Hit Projectile
+							}
+							Damages=Array
+							{
+								Item Count=0
+							}
+						}
+						PlugIn Behavior=CPlugInBehaviorLaunchAction
+						{
+							Launch Action=CCreateCustomEntityAction
+							{
+								New Location=$Trigger
+								Copy Height=0
+								Random Location Delta=0
+								Warp Behavior=
+								Entity=CEntityBase
+								{
+									Name=
+									Child List=
+									Visible=1
+									Collideable=1
+									Half Height=0
+									Full Height=1
+									Tries To Collide=0
+									Has Hit Points=0
+									Stationary=1
+									Active=1
+									Is Temporarily Excluded=0
+									Is Marked For Deletion=0
+									Activity=Array
+									{
+										Item Count=2
+										Activity=CActionAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Action=CRippleGroundAction
+											{
+												Name of Target=$trigger
+												Target Elevation=90
+												Num Seconds To Push=0.5
+												Final X Radius=120
+												YX Ratio=0.712766
+												Do Not Modify If GreaterThan=255
+												Do Not Modify If Less Than=0
+											}
+											Executed Action=0
+										}
+										Activity=CActionAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Action=CDelayAction
+											{
+												Next Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CRippleGroundAction
+														{
+															Name of Target=$trigger
+															Target Elevation=156
+															Num Seconds To Push=1
+															Final X Radius=120
+															YX Ratio=0.712766
+															Do Not Modify If GreaterThan=255
+															Do Not Modify If Less Than=0
+														}
+														Action=CDeleteAction
+														{
+															Target Name=$Trigger
+														}
+													}
+												}
+												Delay=0.75
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Executed Action=0
+										}
+									}
+									Category=
+									Team Number=Nutral
+									Used In=QuestMode
+									Current Target=
+									Publisher=
+									Model=Editor/Position Marker
+									Position X=0
+									Position Y=0
+									Rendering Height=0
+									Rendering Height Float=0
+									Cur Sequence=Idle
+								}
+							}
+						}
+					}
+					Value=CConstant
+					{
+						Constant Value=0
+					}
+					Is Magic=0
+					Encumbrance=2
+					On the ground=!Unknown Model
+					Requirements=Array
+					{
+						Item Count=0
+					}
+					Display Name=unnamed
+					Description=undefined
+					Inventory Window Images=Array
+					{
+						Basic=!Unknown Model
+						Better=!Unknown Model
+						Special=!Unknown Model
+					}
+					Whole Item Display Name=
+					Whole Item Description=
+					Number Of Additions Added=0
+					Slot Used In=Character Slot Types/!None
+					Sub Slot Used In=0
+					Number Hands Needed=None
+					Unique Select ID=0
+					IsCurrentlyUsedByPlayer=0
+					Catagory for display Grouping=Inventory/Grouping Catagories/!none
+					Inventory Addition Group=Inventory/!Unknown
+					Item Grade=Basic
+					Origonal Item=Inventory Items/Amulet
+				}
+				Inventory Items=Array
+				{
+					Item Count=0
+				}
+				Accumulate Forwards Offsets=0
+				Next Unique Select ID=4200
+				Was Encumbered Last Update=0
+				Money=0
+			}
+			Activity=CAISetOpacityBasedOnVisibility
+			{
+				Marked For Deletion=0
+				Publisher=
+			}
+		}
+		Category=Enemy
+		Team Number=Nutral
+		Used In=QuestMode
+		Current Target=
+		Publisher=
+		Model=Characters/Monsters/Lava Troll boss
+		Position X=143
+		Position Y=233.998
+		Rendering Height=0
+		Rendering Height Float=0
+		Cur Sequence=Idle
+		Cur Damage=0
+		Destroyed Script Action=CGenerateInventoryItemAction
+		{
+			Number of items to generate=1
+			Level of item to generate=
+			Location=$Trigger
+			Location Offset=0,0
+			Generate Within Radius=128
+			Aspect Ratio=0.712766
+			Item List=CInventoryItemGeneratorMixedList
+			{
+				Items=Array
+				{
+					Array Count=1
+					Array Item=CInventoryItemGeneratorMixedListItem
+					{
+						Weighting=10
+						Item=CInventoryItemGeneratorBasic
+						{
+							Items=Array
+							{
+								Array Count=1
+								Array Item=CInventoryItemGeneratorBasicItem
+								{
+									Weighting=10
+									Item=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Destroyed Effect Action=CIfAction
+		{
+			If=CWasDamagedByPlayerAction
+			{
+				Entity To Check For Damage=$Trigger
+			}
+			Then=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CGiveExperiencePointsToAllPlayersAction
+					{
+						Get XP Frome=$Trigger
+						Experience Points To Add=1509
+					}
+					Action=CUseCannedActionAction
+					{
+						Dynamic Properties=1
+						{
+							Comment=generates 3Medium spirit
+						}
+						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/3Medium Spirit Charge Drop Action
+					}
+				}
+			}
+			Else=
+			Return failure if the If failes=0
+		}
+		Damaged Script Action=
+		Damaged Effect Action=CRandomAction
+		{
+			Action=Array
+			{
+				Item Count=2
+				Action=CPlaySoundAction
+				{
+					Sound=Enemies/LavaTroll Boss_pain.ogg
+					Position=$Trigger
+					Multiplayer=Heard by all players
+				}
+				Action=CPlaySoundAction
+				{
+					Sound=Enemies/LavaTroll Boss_pain_v1.ogg
+					Position=$Trigger
+					Multiplayer=Heard by all players
+				}
+			}
+		}
+		Hit Action=
+		Default Death Type=Generic Human Default
+		Has Done Death Processing=0
+		Play Ratio=0
+		Aiming Angle=0
+		Movement Angle=0
+		Start FacingAngle=0
+		Current Frame=0
+		Created By=
+		BehaviorStack=CEntityBehaviorStack
+		{
+			InProcess=0
+			Blocking Priority=Idle
+			BehaviorList=Array
+			{
+				Item Count=0
+			}
+		}
+		Facing Backwards=0
+		Last Facing Backwards=0
+		Upper Body Present=0
+		Synch Aiming And Moving=1
+		Frame Index Locked=0
+		Waiting For Discharge=0
+		Still Shooting=0
+		Trying To Move=0
+		Tracking Updates Since Relocate=0
+		Friction=0
+		Velocity X=0
+		Velocity Y=0
+		Acceleration X=0
+		Acceleration Y=0
+		Home Pos X=143
+		Home Pos Y=233.998
+		LastDischargePosX=0
+		LastDischargePosY=0
+		LastDischargeSequenceName=
+		Movement Speed=Walk
+	}
+	Use=Shared Global Instance
+}

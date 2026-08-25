@@ -152,7 +152,7 @@ Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
 Action=CUseCannedActionAction
 {
 Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
@@ -183,6 +183,110 @@ Action=CGiveMoneyToAllPlayersAction
 {
 Value to give=100
 }
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt Perk Quality
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt Perk Quality
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 }
 }
 }
@@ -190,14 +294,608 @@ Value to give=100
 Else=
 Return failure if the If failes=0
 }
+Return failure if the If failes=0
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt Perk Quality
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt Perk Quality
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt Perk Quality
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt Perk Quality
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
 }
 }
 Else=
 Return failure if the If failes=0
 }
+Return failure if the If failes=0
+}
 }
 }
 Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt Perk Quality
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt Perk Quality
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt Perk Quality
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt Perk Quality
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt Perk Quality
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt Perk Quality
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt Perk Quality
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt Perk Quality
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
 Return failure if the If failes=0
 }
 Icon=Quest Icon
