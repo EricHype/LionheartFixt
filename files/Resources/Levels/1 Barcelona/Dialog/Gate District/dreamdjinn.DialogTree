@@ -1769,7 +1769,7 @@ Go to node ID=40 dream plane
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=161 pass combat already armed
-Text=Congratulations!  You have proven yourself worthy!  You have passed the Trial of Dreams.  <His eye falls on the blade already at your side, and he inclines his head.>  And you come to us bearing Eduardo's own work - I will not insult a good sword by handing you its twin.  Now, you must return to Amir.  I will tell him that you have passed your Trials!  He will be happy to see you.
+Text=Congratulations!  You have proven yourself worthy!  You have passed the Trial of Dreams.  <His eye falls on the blade already at your side.>  Eduardo's work, and honestly carried - a second such sword would be no gift at all.  But this...  <He closes his hand around the blade. When he opens it the steel is still burning, and does not stop.>  ...this is a gift.  Now, you must return to Amir.  I will tell him that you have passed your Trials!
 Should Have Voiceover=0
 
 Requirement=!None
@@ -1816,12 +1816,62 @@ Forget Trigger=0
 }
 Action=CForEachPlayerAction
 {
-Action=CPrintCombatTextAction
+Action=CIfAction
 {
-Text to print=The Djinn regards the blade you already carry.
-Character to show text to=$Instigator
-Emphasize=0
-Suppress Duplicates=0
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Firebrand
+}
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Weapons/Firebrand
+}
+}
+}
+}
+Return failure if the If failes=0
 }
 }
 Action=CTriggerRelayAction
