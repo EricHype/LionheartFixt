@@ -772,6 +772,55 @@ Warp Behavior=
 }
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpression
+{
+Canned Expression=Levels/1 Barcelona/Dialog/Gate District/Requirements/Jafar Forged the Sacred Scimitar
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+}
+}
+}
+}
+}
+Reply Text=I have forged the Sacred Scimitar.
+Go to node ID=210 have scimitar
+Action work in progress=(forged scimitar)
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=10 Goodbye
 Text=Farewell then, and may the Prophet guide you.

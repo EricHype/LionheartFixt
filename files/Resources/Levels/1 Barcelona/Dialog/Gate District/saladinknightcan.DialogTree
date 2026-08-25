@@ -429,7 +429,7 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=<Learn from him.>
-Go to node ID=
+Go to node ID=56 after the lesson
 Custom Action=CMultipleActionsAction
 {
 Action=Array
@@ -477,5 +477,15 @@ Forget Trigger=0
 }
 }
 Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=56 after the lesson
+Text=<He steps back and lets the point of his blade drop, which from him is applause.> ...Better. You will not shame the Order in a corridor now. Come again when your wrist tires less slowly, and I will teach you the thing my brother still refuses to learn.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=My thanks, Farshad.
+Go to node ID=
+Icon=Exit Icon
 Is Default Reply=1
 }
