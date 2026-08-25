@@ -905,6 +905,294 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=I have five wasp stingers for you.
+Go to node ID=830 wasp stingers turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn XP
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=I brought you the hide of a lava troll.
+Go to node ID=850 troll hide turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=1 Conversation Start Normal Female Not Inquisitor
 Text=Welcome, senorita, to Quinn's Apothecary, providing tonics and potions to all Nueva Barcelona for twenty years - and God willing, twenty more. Please, tell me what ails you, and we will see what I have that may help.
@@ -1108,6 +1396,294 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=I have five wasp stingers for you.
+Go to node ID=830 wasp stingers turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn XP
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=I brought you the hide of a lava troll.
+Go to node ID=850 troll hide turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=1 Conversation Start Inquisitor
 Text=Eh...it is truly an honor to have one of the Inquisition grace Quinn's Apothecary. In all my twenty years, the Inquisition has always been welcome in this shop, and my health permitting, they shall be for twenty more.
@@ -1341,6 +1917,294 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=I have five wasp stingers for you.
+Go to node ID=830 wasp stingers turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn XP
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=I brought you the hide of a lava troll.
+Go to node ID=850 troll hide turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=03 Return Dialogue
 Text=Welcome back, traveler. How can Quinn be of service?
@@ -1607,6 +2471,294 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=I have five wasp stingers for you.
+Go to node ID=830 wasp stingers turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn XP
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=I brought you the hide of a lava troll.
+Go to node ID=850 troll hide turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=03 Return Dialogue Inquisitor and Templar
 Text=Eh...welcome back. Was there something you forgot concerning my natural ingredients the last time you were here?
@@ -1899,6 +3051,294 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=I have five wasp stingers for you.
+Go to node ID=830 wasp stingers turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn XP
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=I brought you the hide of a lava troll.
+Go to node ID=850 troll hide turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=03 Return Dialogue Wielder Friend
 Text=Welcome back, friend of the Wielders. How can Quinn be of service?
@@ -2143,6 +3583,294 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=I have five wasp stingers for you.
+Go to node ID=830 wasp stingers turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn XP
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=I brought you the hide of a lava troll.
+Go to node ID=850 troll hide turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=05 Other Questions
 Text=What would you like to know about?
@@ -2422,6 +4150,362 @@ Reply Text=Nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+}
+}
+Reply Text=Anything else I could bring you?
+Go to node ID=820 wasp stingers request
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+}
+}
+Reply Text=You have something harder in mind, I think.
+Go to node ID=840 troll hide request
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=What have you set aside for me?
+Go to node ID=860 quinns reserve
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=I have five wasp stingers for you.
+Go to node ID=830 wasp stingers turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wasp Stinger
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wasp Stinger
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn XP
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=I brought you the hide of a lava troll.
+Go to node ID=850 troll hide turned in
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=reagent delivered
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=10 Potions response if Inquisitor or Knight Templar
 Text=Eh...again, many apologies, my stock is limited today, but I do have a few *natural* tonics that can help speed the healing of wounds...
@@ -3860,6 +5944,133 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=Good luck with your tests.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=820 wasp stingers request
+Text=There is. The giant wasps out in the Wilderness -- I want five of their stingers, and I want them still in the barb. Venom keeps better in the animal than out of it, and what I can draw from a fresh sting I cannot draw from a jar.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You will have them.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=830 wasp stingers turned in
+Text=<He turns one over with a pair of tongs and does not touch it.> Five, and none of them spoiled. You have a steadier hand than the last three people I asked. Take this, and come back -- I am not finished with you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Good luck with your work.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=840 troll hide request
+Text=I do. In the sewers beneath this city there are trolls that close their own wounds faster than I can write the fact down. A creature like that is carrying the answer around on its back. Bring me the hide of one, and I will find out what is in it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How would you have me take it?
+Go to node ID=845 how to take it
+Icon=Quest Icon
+Requirement=!None
+Reply Text=I will see it done.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=845 how to take it
+Text=<He shrugs, and it is not a kind shrug.> However you like. Though I would say this -- they are not animals, whatever the beggars tell you, and a thing that can be asked is usually cheaper to ask than to kill.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will remember that.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=850 troll hide turned in
+Text=<He goes very quiet, and for a while he simply has his hands on it.> ...Yes. Yes, this will do. Whatever I make from this, you get the first of it -- that is not a courtesy, it is what I owe you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will hold you to that.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=860 quinns reserve
+Text=<He reaches under the counter without being asked.> I keep a little back for people who bring me work instead of complaints. This is what your errands have bought.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=2
+}
+}
+Reply Text=Let me see it.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Quinn Reserve Three
+After Closed Action=
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=2
+}
+}
+Reply Text=Let me see it.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Quinn Reserve Two
+After Closed Action=
+}
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=Let me see it.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Quinn Reserve One
+After Closed Action=
+}
+Icon=Quest Icon
+Requirement=!None
+Reply Text=Another time.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
