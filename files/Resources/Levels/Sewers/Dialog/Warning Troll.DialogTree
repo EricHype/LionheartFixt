@@ -206,4 +206,213 @@ Reply Text=Nothing yet. I am only looking.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+State=KLET2WR9
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tomas debt settled
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=There is a child of my kind shut in your rock. I have come for him.
+Go to node ID=96 the boy
+Icon=Quest Icon
+
+------------------------------------------------------------
+Node ID=96 the boy
+Text=<He does not pretend not to know which child.>  The small one. He came in the dark and put his hands in our ore, and not the first time, and not the first of him. Your city has eaten this rock for years and paid us in nothing.  <He shrugs, and the shrug is enormous.>  We keep him because he is what we caught.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Name your price, then.
+Go to node ID=97 the price
+Icon=Quest Icon
+
+Requirement=Speech moreequal 45
+Reply Text=He is a child. He was sent by men who are not children, and it is those men who owe you. Take it out of them, not out of him.
+Go to node ID=98 talked down
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Keep him, then, and I will take him off what is left of you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Troll Peace Keeper
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I will come back to this.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=97 the price
+Text=<He holds up one hand, spreads it, and closes it twice.>  Two hundred. Not for the boy. For the times before, when we did not catch him.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=200
+}
+}
+Reply Text=<Pay it.> Two hundred. We are square.
+Go to node ID=99 debt settled
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=200
+}
+Action=CActivateAction
+{
+Target Name=Troll Peace Keeper
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Tomas debt settled
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Tomas Debt XP
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Barter moreequal 40
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+Reply Text=One hundred, in your hand, today. Two hundred is a number you made up on the way to saying it.
+Go to node ID=99 debt settled
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Action=CActivateAction
+{
+Target Name=Troll Peace Keeper
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Tomas debt settled
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Tomas Debt XP
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=I do not have it. Not yet.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=98 talked down
+Text=<The silence goes on long enough to be uncomfortable.>  ...A child. Yes. Sent by men who are not.  <He turns away from you, which is how this ends.>  Take him. And tell the men who sent him that we counted every time.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will tell them.
+Go to node ID=99 debt settled
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=Troll Peace Keeper
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Tomas debt settled
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Tomas Debt XP
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=99 debt settled
+Text=<He steps out of the way, and the sound of the room changes behind him.>  Go. Find him yourself -- we do not fetch. And walk slow. My people will not touch you today, but do not mistake that for gladness.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Go and find the boy.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 }

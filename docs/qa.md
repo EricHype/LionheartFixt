@@ -297,6 +297,36 @@ E6 is the regression that matters. E3 and E4 guard against double-payment: the w
 completion lives on the reply, and `103 wasps killed` pays nothing itself, so the
 retarget cannot pay twice.
 
+### 0.5 - buying Tomas out
+
+The lost boy is in the Troll Pit and the rescue already worked peacefully in vanilla --
+nothing about Tomas is gated on killing trolls. The fighting was only ever about *reaching*
+him. This makes that reachable without a fight, by settling what he owes.
+
+One invented fact, and only one: he was caught stealing Red Ore. It explains the capture
+without making the trolls monsters, it explains why the Eduardo trade broke, and it turns
+Tomas's own shipped line into a caught thief's account rather than testimony.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| B1 | Troll Pit, **on** the Tomas quest | Talk to the alpha | A new reply: *"There is a child of my kind shut in your rock"* |
+| B2 | " | Not on the quest | That reply is **absent** |
+| B3 | " | Ask his price | Two hundred gold -- *"Not for the boy. For the times before, when we did not catch him"* |
+| B4 | " | Pay it (needs 200) | 200 taken, the pit stands down, XP |
+| B5 | " | **Barter 40+**, with 100 gold | 100 taken instead. The reply is absent below Barter 40 or under 100 gold |
+| B6 | " | **Speech 45+** | He concedes for nothing -- *"A child. Yes. Sent by men who are not"* |
+| B7 | " | Refuse and threaten him | Combat, and the peace switches **off** |
+| B8 | After settling any way | Walk the pit and find Tomas | No fighting needed. He leaves under his own power, as vanilla |
+| B9 | " | Tell Tomas you did **not** kill the trolls | *"That's too bad. I was looking forward to getting revenge."* Vanilla's own line, and the sting the peaceful route earns |
+| B10 | " | Talk to the alpha again | The offer is gone -- it is gated on the debt being unsettled |
+| B11 | " | Check gold after B4/B5 | Taken exactly once. Reloading and re-settling must not charge twice |
+
+B9 is the point of the whole thing: you buy the boy out, and he resents you for it. That is
+in the shipped text -- nothing was added to Tomas.
+
+B5 and B6 are the gate checks. If either reply shows up for a character who does not have
+the skill, a gate has failed open.
+
 ### 0.5 - peace with the lava trolls
 
 Settle the wererats -- cure them or destroy the Beggars, the trolls do not care which -- and
