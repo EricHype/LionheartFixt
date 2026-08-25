@@ -15,7 +15,17 @@ that no longer exists here, so renumbering a case cannot silently orphan the gui
 
 ## Gate 0 - automated, before anyone plays
 
-All of these are scripted and must be re-run after *any* change to `files/`.
+All of these are scripted in [`tools/validate.py`](../tools/validate.py) and must be
+re-run after *any* change to `files/`:
+
+```
+python tools/validate.py
+```
+
+It exits non-zero on any problem, so it can gate a build. `--tools` and `--vanilla`
+override the two paths it needs. Binary payloads -- `.mdl16` icon art and friends --
+are skipped by extension and only checked for being non-empty; every other extension
+is parsed, so a new *text* type cannot slip through by being unlisted.
 
 | # | Check | Passes when |
 |---|---|---|

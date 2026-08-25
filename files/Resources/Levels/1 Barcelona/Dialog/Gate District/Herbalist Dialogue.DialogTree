@@ -1,0 +1,3168 @@
+CDialogTree
+{
+Name=Quinn the Herbalist
+Portrait=Dialog/NPC Portraits/Quinn the Herbilist
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Welcome, senor, to Quinn's Apothecary, providing tonics and potions to all Nueva Barcelona for twenty years - and God willing, twenty more. Please, tell me what ails you, and we will see what I have that may help.
+Should Have Voiceover=0
+
+Requirement=Herbalist Player has Convince Herbalist Turn Dark
+Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
+Go to node ID=700 relican
+Action work in progress=(Quest from Relican to turn Quinn to Dark Wielders)
+Icon=Quest Icon
+
+Requirement=Herbalist if davinci told you about wielders AND Speech 25
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Character to get attributes from=$Instigator
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=101 Wielders Good
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=herbalist if wererats asked you to get cure
+Reply Text=I need a cure for someone not completely turned into one of the Afflicted.
+Go to node ID=350 wererat cure
+Action work in progress=(If you have been told to find a cure for the Wererats)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Very well. Can I see what you have for sale?
+Go to node ID=20 Potions response if not Inquisitor
+Action work in progress=If How make Potions NOT Explained
+
+Requirement=Speech moreequal 25
+Reply Text=You've been in Barcelona for twenty years? You must know a great deal about what goes on in the city.
+Go to node ID=40 City News
+Action work in progress=(Speech>=25%)
+Icon=Speach Skill Icon
+
+Requirement=Speech lessthan 025
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=40 City News
+Action work in progress=(Speech<25%)
+
+Requirement=Herbalist if davinci told you about wielders
+Reply Text=Signor Leo told me you know something about the Wielders.
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech < 25%)
+
+Requirement=Herbalist if NOT have quest to get Lycanthropy potion
+Reply Text=Can you make any special cures?
+Go to node ID=30 Special Order
+Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+}
+Reply Text=I brought you three wolf pelts, as you asked.
+Go to node ID=810 wolf pelts turned in
+Action work in progress=(Checks for and removes 3 Wolf Pelts, completes the quest, gives reward)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Normal Female Not Inquisitor
+Text=Welcome, senorita, to Quinn's Apothecary, providing tonics and potions to all Nueva Barcelona for twenty years - and God willing, twenty more. Please, tell me what ails you, and we will see what I have that may help.
+Should Have Voiceover=0
+
+Requirement=Herbalist Player has Convince Herbalist Turn Dark
+Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
+Go to node ID=700 relican
+Action work in progress=(Quest from Relican to turn Quinn to Dark Wielders)
+Icon=Quest Icon
+
+Requirement=Herbalist if davinci told you about wielders AND Speech 25
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=101 Wielders Good
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=herbalist if wererats asked you to get cure
+Reply Text=I need a cure for someone not completely turned into one of the Afflicted.
+Go to node ID=350 wererat cure
+Action work in progress=(If you have been told to find a cure for the Wererats)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Very well. Can I see what you have for sale?
+Go to node ID=20 Potions response if not Inquisitor
+Action work in progress=If How make Potions NOT Explained
+
+Requirement=Speech moreequal 25
+Reply Text=You've been in Barcelona for twenty years? You must know a great deal about what goes on in the city.
+Go to node ID=40 City News
+Action work in progress=(Speech>=25%)
+Icon=Speach Skill Icon
+
+Requirement=Speech lessthan 025
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=40 City News
+Action work in progress=(Speech<25%)
+
+Requirement=Herbalist if davinci told you about wielders
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Character to get attributes from=$Instigator
+}
+}
+}
+Reply Text=Signor Leo told me you know something about the Wielders.
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech < 25%)
+
+Requirement=Herbalist if NOT have quest to get Lycanthropy potion
+Reply Text=Can you make any special cures?
+Go to node ID=30 Special Order
+Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+}
+Reply Text=I brought you three wolf pelts, as you asked.
+Go to node ID=810 wolf pelts turned in
+Action work in progress=(Checks for and removes 3 Wolf Pelts, completes the quest, gives reward)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Inquisitor
+Text=Eh...it is truly an honor to have one of the Inquisition grace Quinn's Apothecary. In all my twenty years, the Inquisition has always been welcome in this shop, and my health permitting, they shall be for twenty more.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=2 Conversation Start Inquisitor or Templar 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Knight Templar
+Text=Eh...it is truly an honor to have one of the Knights Templar grace Quinn's Apothecary. In all my twenty years, the Templars have always been welcome in this shop, and my health permitting, they shall be for twenty more.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=2 Conversation Start Inquisitor or Templar 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Conversation Start Inquisitor or Templar 2
+Text=But please, tell me what ails you, and I will see what I have in my limited stock of humble tonics and ointments - all made with roots, herbs, and other natural ingredients - that may help you.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+State=AT88QQLU
+}
+}
+Reply Text=I seek the location of the Wielders - La Calle Perdida I believe it is called.
+Go to node ID=101 Wielders from Raphael
+Icon=Quest Icon
+
+Requirement=Herbalist if davinci told you about wielders AND Speech 25
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Character to get attributes from=$Instigator
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist Player has Convince Herbalist Turn Dark
+Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
+Go to node ID=700 relican
+Action work in progress=(Quest from Relican to turn Quinn to Dark Wielders)
+Icon=Quest Icon
+
+Requirement=herbalist if wererats asked you to get cure
+Reply Text=I need a cure for someone not completely turned into one of the Afflicted.
+Go to node ID=350 wererat cure
+Action work in progress=(If you have been told to find a cure for the Wererats)
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=You've had this shop for twenty years? You must know a great deal about what goes on in the city.
+Go to node ID=40 City News
+Action work in progress=(Speech>=25%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Natural ingredients? What kind of healing items do you sell here?
+Go to node ID=10 Potions response if Inquisitor or Knight Templar
+
+Requirement=Speech lessthan 025
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=41 City News Bad
+Action work in progress=(Speech<25%)
+
+Requirement=Herbalist if davinci told you about wielders
+Reply Text=Signor Leo told me you know something about the Wielders.
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech < 25%)
+
+Requirement=Herbalist if NOT have quest to get Lycanthropy potion
+Reply Text=Can you make any special cures?
+Go to node ID=30 Special Order
+Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+}
+Reply Text=I brought you three wolf pelts, as you asked.
+Go to node ID=810 wolf pelts turned in
+Action work in progress=(Checks for and removes 3 Wolf Pelts, completes the quest, gives reward)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Welcome back, traveler. How can Quinn be of service?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=earned not used discount
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to take advantage of the discounted prices you promised me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=got cheap prices already
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=earned not used discount
+}
+}
+}
+
+Requirement=Herbalist if davinci told you about wielders AND Speech 25
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=101 Wielders Good
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist Player has Convince Herbalist Turn Dark
+Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
+Go to node ID=700 relican
+Action work in progress=(Quest from Relican to turn Quinn to Dark Wielders)
+Icon=Quest Icon
+
+Requirement=herbalist if wererats asked you to get cure
+Reply Text=I need a cure for someone not completely turned into one of the Afflicted.
+Go to node ID=350 wererat cure
+Action work in progress=(If you have been told to find a cure for the Wererats)
+Icon=Quest Icon
+
+Requirement=Herbalist have lycanthrope fur for potion
+Reply Text=I have a piece of fur from the original lycanthrope creature.
+Go to node ID=360 have fur
+Action work in progress=(have prime wererat fur)
+Icon=Quest Icon
+
+Requirement=Herbalist Has NOT explained how store works
+Reply Text=Can I see what you have for sale?
+Go to node ID=20 Potions response if not Inquisitor
+Action work in progress=If How make Potions NOT Explained
+
+Requirement=Herbalist HAS explained how store works
+Reply Text=Can I see what you have for sale?
+Go to node ID=
+Action work in progress=If How make Potions HAS BEEN Explained
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=Herbalist Speech 25 OR NOT Inquisitor or Templar
+Reply Text=You said you had this shop for twenty years? You must know a great deal about what goes on in the city.
+Go to node ID=40 City News
+Action work in progress=(Speech>=25% or not an Inquisitor or Templar)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist Speech less 25 AND Templar or Inquisition
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=41 City News Bad
+Action work in progress=(Speech<25% and either a Templar or Inquisitor)
+
+Requirement=Herbalist if davinci told you about wielders
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Signor Leo told me you know something about the Wielders.
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech < 25%)
+
+Requirement=Herbalist if NOT have quest to get Lycanthropy potion
+Reply Text=Can you make any special cures?
+Go to node ID=30 Special Order
+Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+}
+Reply Text=I brought you three wolf pelts, as you asked.
+Go to node ID=810 wolf pelts turned in
+Action work in progress=(Checks for and removes 3 Wolf Pelts, completes the quest, gives reward)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue Inquisitor and Templar
+Text=Eh...welcome back. Was there something you forgot concerning my natural ingredients the last time you were here?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=earned not used discount
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to take advantage of the discounted prices you promised me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=got cheap prices already
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=earned not used discount
+}
+}
+}
+
+Requirement=Herbalist if davinci told you about wielders AND Speech 25
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist Player has Convince Herbalist Turn Dark
+Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
+Go to node ID=700 relican
+Action work in progress=(Quest from Relican to turn Quinn to Dark Wielders)
+Icon=Quest Icon
+
+Requirement=herbalist if wererats asked you to get cure
+Reply Text=I need a cure for someone not completely turned into one of the Afflicted.
+Go to node ID=350 wererat cure
+Action work in progress=(If you have been told to find a cure for the Wererats)
+Icon=Quest Icon
+
+Requirement=Herbalist have lycanthrope fur for potion
+Reply Text=I have a piece of fur from the original lycanthrope creature.
+Go to node ID=360 have fur
+Action work in progress=(have prime wererat fur)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Can I see what you have for sale?
+Go to node ID=
+Action work in progress=(Go directly into store)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Natural ingredients? What kind of healing items do you sell here?
+Go to node ID=10 Potions response if Inquisitor or Knight Templar
+
+Requirement=Herbalist Inquisitor or Templar NOT
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=40 City News
+Action work in progress=(not an Inquisitor or Templar)
+
+Requirement=Herbalist Inquisitor or Templar IS
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=41 City News Bad
+Action work in progress=(Inquisitor or Templar)
+
+Requirement=Herbalist if davinci told you about wielders
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Signor Leo told me you know something about the Wielders.
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech < 25%)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+State=AT88QQLU
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I seek the location of the Wielders - La Calle Perdida I believe it is called.
+Go to node ID=101 Wielders from Raphael
+Icon=Quest Icon
+
+Requirement=Herbalist if NOT have quest to get Lycanthropy potion
+Reply Text=Can you make any special cures?
+Go to node ID=30 Special Order
+Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+}
+Reply Text=I brought you three wolf pelts, as you asked.
+Go to node ID=810 wolf pelts turned in
+Action work in progress=(Checks for and removes 3 Wolf Pelts, completes the quest, gives reward)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue Wielder Friend
+Text=Welcome back, friend of the Wielders. How can Quinn be of service?
+Should Have Voiceover=0
+
+Requirement=Wielder IS
+Reply Text=Do you have any special concoctions that you save for your fellow Wielders?
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Wielder Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=earned not used discount
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to take advantage of the discounted prices you promised me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=got cheap prices already
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=earned not used discount
+}
+}
+}
+
+Requirement=Herbalist Player has Convince Herbalist Turn Dark
+Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
+Go to node ID=700 relican
+Action work in progress=(Quest from Relican to turn Quinn to Dark Wielders)
+Icon=Quest Icon
+
+Requirement=herbalist if wererats asked you to get cure
+Reply Text=I need a cure for someone not completely turned into one of the Afflicted.
+Go to node ID=350 wererat cure
+Action work in progress=(If you have been told to find a cure for the Wererats)
+Icon=Quest Icon
+
+Requirement=Herbalist have lycanthrope fur for potion
+Reply Text=I have a piece of fur from the original lycanthrope creature.
+Go to node ID=360 have fur
+Action work in progress=(have prime wererat fur)
+Icon=Quest Icon
+
+Requirement=Herbalist Speech 25 OR NOT Inquisitor or Templar
+Reply Text=You said you had this shop for twenty years? You must know a great deal about what goes on in the city.
+Go to node ID=40 City News
+Action work in progress=(Speech>=25% or not an Inquisitor or Templar)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist Has NOT explained how store works
+Reply Text=Can I see what you have for sale?
+Go to node ID=20 Potions response if not Inquisitor
+Action work in progress=If How make Potions NOT Explained
+
+Requirement=Herbalist HAS explained how store works
+Reply Text=Can I see what you have for sale?
+Go to node ID=
+Action work in progress=If How make Potions HAS BEEN Explained
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=Herbalist Speech less 25 AND Templar or Inquisition
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=41 City News Bad
+Action work in progress=(Speech<25% and either a Templar or Inquisitor)
+
+Requirement=!None
+Reply Text=Can you make any special cures?
+Go to node ID=30 Special Order
+Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+}
+Reply Text=I brought you three wolf pelts, as you asked.
+Go to node ID=810 wolf pelts turned in
+Action work in progress=(Checks for and removes 3 Wolf Pelts, completes the quest, gives reward)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Other Questions
+Text=What would you like to know about?
+Should Have Voiceover=0
+
+Requirement=Herbalist Player has Convince Herbalist Turn Dark
+Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
+Go to node ID=700 relican
+Action work in progress=(Quest from Relican to turn Quinn to Dark Wielders)
+Icon=Quest Icon
+
+Requirement=herbalist if wererats asked you to get cure
+Reply Text=I need a cure for someone not completely turned into one of the Afflicted.
+Go to node ID=350 wererat cure
+Action work in progress=(If you have been told to find a cure for the Wererats)
+Icon=Quest Icon
+
+Requirement=Herbalist if DaVinci told about Wielders Speech 25 and NOT Inq or Templar
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=101 Wielders Good
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25% and PC is not a Templar or Inquisition)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist if Davinci told about Wielders Speech 25 AND Inq OR Templar
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist if Templer OR Inq AND NOT convinced OK
+Reply Text=Let's see what you have for sale.
+Go to node ID=
+Action work in progress=(If Inquisitor and Templar NOT convinced OK)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=Herbalist HAS explained how store works AND NOT Inq or Templar
+Reply Text=Can I see what you have for sale?
+Go to node ID=
+Action work in progress=(If Set Quinn Store Dialogue Intro Done OR if Inquisitor and Templar convinced OK)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=Herbalist Has NOT explained how store works AND NOT Inq or Temp
+Reply Text=Can I see what you have for sale?
+Go to node ID=20 Potions response if not Inquisitor
+Action work in progress=(If Set Quinn Store Dialogue Intro Done and not an Inquisitor and Templar)
+
+Requirement=Herbalist Speech 25 OR NOT Inquisitor or Templar
+Reply Text=You said you've had this shop for twenty years? You must know a great deal about what goes on in the city.
+Go to node ID=40 City News
+Action work in progress=(Speech>=25% or not an Inquisitor or Templar)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist Speech less 25 AND Templar or Inquisition
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=41 City News Bad
+Action work in progress=(Speech<25%, Inquisitor or Templar)
+
+Requirement=Herbalist if davinci told you about wielders
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Signor Leo told me you know something about the Wielders.
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech < 25%)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+}
+Reply Text=Is there anything around here I could help you with?
+Go to node ID=800 wolf pelts request
+Action work in progress=(Offers the Wolf Pelts for Quinn quest if not already given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+}
+Reply Text=I brought you three wolf pelts, as you asked.
+Go to node ID=810 wolf pelts turned in
+Action work in progress=(Checks for and removes 3 Wolf Pelts, completes the quest, gives reward)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wolf Pelt
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wolf Pelt
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn XP
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=[TEST] Give me a small amount of XP.
+Go to node ID=
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=$instigator
+Experience Points To Add=50
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Potions response if Inquisitor or Knight Templar
+Text=Eh...again, many apologies, my stock is limited today, but I do have a few *natural* tonics that can help speed the healing of wounds...
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=
+Go to node ID=11 Potions response if Inquisitor 2
+Is Default Reply=1
+
+Requirement=Templar IS
+Reply Text=
+Go to node ID=14 Potions response if Templar 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 Potions response if Inquisitor 2
+Text=If you, uh, need any salves for burns, tonics to speed the mending of broken bones, or any of the other cures requested by your interrogators and wardens for the prisoners, then I'm afraid I have only a few left. Made with natural ingredients, of course.
+Should Have Voiceover=0
+
+Requirement=Herbalist NOT Convinced OK AND Barter 35
+Reply Text=Perhaps you have mistaken me for one of the more...zealous...members of our order. I would prefer to see what you *really* have for sale.
+Go to node ID=13 Argument
+Action work in progress=(Store is not set to Good, Barter>=35%)
+Icon=Barter Skill Icon
+
+Requirement=Herbalist NOT Convinced Player Tainted AND IN 5
+Reply Text=My friend, as you can see from my features, I am touched by magic. I assure you, you have nothing to fear from me. Please show me what you really have for sale.
+Go to node ID=
+Action work in progress=(Store is not set to Good, Tainted and IN > 5, Set Store to Good)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=If Inquisitor or Knight convinced Herbalist player OK
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Burns and mending of broken bones? What do you mean?
+Go to node ID=12 Burns
+
+Requirement=Herbalist NOT convinced OK Barter less 35 IN 5 High Speech
+Reply Text=You made quite a case for the "natural ingredients" in your potions. Perhaps you'd best show me what you *really* have for sale, or I shall tell the Inquisition a different story.
+Go to node ID=13 Argument
+Action work in progress=(Store is not set to Good, Barter < 35% and IN > 5 and Speech>=35%)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Let me see what you have left in stock, then.
+Go to node ID=
+Action work in progress=(Open Store)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 Burns
+Text=Yes. It is often part of the purchases of the Inquisition...for use in the interrogation chambers...and the prison, to keep those who do not confess alive. I'm afraid I have none left in stock.
+Should Have Voiceover=0
+
+Requirement=Herbalist NOT Convinced OK AND Barter 35
+Reply Text=Perhaps you have mistaken me for one of the more...zealous...members of our order. I would prefer to see what you *really* have for sale.
+Go to node ID=13 Argument
+Action work in progress=(Store is not set to Good, Barter>=35%)
+Icon=Barter Skill Icon
+
+Requirement=Herbalist NOT convinced OK Barter less 35 IN 5 High Speech
+Reply Text=You made quite a case for the "natural ingredients" in your potions. Perhaps you'd best show me what you *really* have for sale, or I shall tell the Inquisition a different story.
+Go to node ID=13 Argument
+Action work in progress=(Store is not set to Good, Barter < 35% and IN > 5 and Speech>=35%)
+Icon=Attribute Icon
+
+Requirement=Herbalist NOT Convinced Player Tainted AND IN 5
+Reply Text=My friend, as you can see from my features, I am touched by magic. I assure you, you have nothing to fear from me. Please show me what you really have for sale.
+Go to node ID=
+Action work in progress=(Store is not set to Good, Tainted and IN > 5, Set Store to Good)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=If Inquisitor or Knight convinced Herbalist player OK
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Let me see what you have left in stock, then.
+Go to node ID=
+Action work in progress=(Open Store)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 Argument
+Text=But...what I have is what I have...
+Should Have Voiceover=0
+
+Requirement=Herbalist NOT Convinced OK AND Barter 35 AND Inquisitor
+Reply Text=Enough with the denials - I am a businessman, not a zealot. Do not make me bring the rest of the Inquisition into this.
+Go to node ID=
+Action work in progress=(Barter>=35%, PC is an Inquisitor, Set Store to Good)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=If Inquisitor or Knight convinced Herbalist player OK
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=Herbalist NOT Convinced OK AND Barter 35 AND Templar
+Reply Text=Enough with the denials - I am a businessman, not a zealot. Do not make me bring the Inquisition into this.
+Go to node ID=
+Action work in progress=(Barter>=35%, PC is a Templar, Set Store to Good)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=If Inquisitor or Knight convinced Herbalist player OK
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=Herbalist NOT Convinced OK Barter 35 IN 5 High Speech AND Inquisitor
+Reply Text=Do not make me repeat myself, herbalist. Show me what you have for sale, and part of my payment to you will be my silence. The rest of the Inquisition need not know of our arrangement.
+Go to node ID=
+Action work in progress=(Barter < 35% and IN > 5 and Speech>=35%, and PC is an Inquisitor, Set Store to Good)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=If Inquisitor or Knight convinced Herbalist player OK
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=Herbalist NOT Convinced OK Barter less 35 IN 5 High Speech AND Templar
+Reply Text=Do not make me repeat myself, herbalist. Show me what you have for sale, and part of my payment to you will be my silence. The Inquisition and the rest of the Knights need not know of our arrangement.
+Go to node ID=
+Action work in progress=(Barter < 35% and IN > 5 and Speech>=35%, and PC is a Templar, Set Store to Good)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=If Inquisitor or Knight convinced Herbalist player OK
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I will be on my way, then. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=14 Potions response if Templar 2
+Text=I realize you are a Knight Templar, but if you need any salves for burns, tonics to speed the mending of broken bones, or any of the other...eh, medicial cures...the Inquisition requests, I'm afraid I have only a few left in stock. All made with natural ingredients, of course.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Burns? And mending of broken bones? What does the Inquisition need with those?
+Go to node ID=12 Burns
+
+Requirement=Herbalist NOT Convinced OK AND Barter 35
+Reply Text=Perhaps you have mistaken me for one of the more...zealous...members of the Knights Templar. I would prefer to see what you *really* have for sale.
+Go to node ID=13 Argument
+Action work in progress=(Store is not set to Good, Barter>=35%)
+Icon=Barter Skill Icon
+
+Requirement=Herbalist NOT convinced OK Barter less 35 IN 5 High Speech
+Reply Text=You made quite a case for the "natural ingredients" in your potions. Perhaps you'd best show me what you *really* have for sale, or I shall tell the Inquisition a different story.
+Go to node ID=13 Argument
+Action work in progress=(Store is not set to Good, Barter < 35% and IN > 5 and Speech>=35%)
+Icon=Attribute Icon
+
+Requirement=Herbalist NOT Convinced Player Tainted AND IN 5
+Reply Text=My friend, as you can see from my features, I am touched by magic. I assure you, you have nothing to fear from me. Please show me what you really have for sale.
+Go to node ID=
+Action work in progress=(Store is not set to Good, Tainted and IN > 5, Set Store to Good)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=If Inquisitor or Knight convinced Herbalist player OK
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Let me see what you have left in stock, then.
+Go to node ID=
+Action work in progress=(Open Store)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Potions response if not Inquisitor
+Text=Given the proper ingredients, I can make a potion to cure any illness. I sell potions that can protect you from harm, heal your wounds, and help speed the body's recovery. Feel free to inspect my stock. If you need a specific potion, I can do a special order for you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Set Quinn Store Dialogue Intro Done and open store)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Store Dialog Intro for explaining Store
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Special Order
+Text=Indeed, I can brew a concoction to cure many afflictions of the mind and body, given the right recipe and the proper ingredients. If you run across any such ailments, come to me, and we will see what can be done.
+Should Have Voiceover=0
+
+Requirement=Herbalist if Templer OR Inq AND NOT convinced OK
+Reply Text=Let's see what you have for sale.
+Go to node ID=
+Action work in progress=(If Inquisitor and Templar NOT convinced OK)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=Herbalist HAS explained how store works AND NOT Inq or Templar
+Reply Text=Can I see what you have for sale?
+Go to node ID=
+Action work in progress=(If Set Quinn Store Dialogue Intro Done OR if Inquisitor and Templar convinced OK)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=Herbalist Has NOT explained how store works AND NOT Inq or Temp
+Reply Text=Can I see what you have for sale?
+Go to node ID=20 Potions response if not Inquisitor
+Action work in progress=(If Set Quinn Store Dialogue Intro Done and not an Inquisitor and Templar)
+
+Requirement=Herbalist Speech 25 OR NOT Inquisitor or Templar
+Reply Text=You said you had this shop for twenty years? You must know a great deal about what goes on in the city.
+Go to node ID=40 City News
+Action work in progress=(Speech>=25% or NOT Inquisitor or Templar)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist Speech less 25 AND Templar or Inquisition
+Reply Text=Can I ask you some questions about Barcelona?
+Go to node ID=41 City News Bad
+Action work in progress=(Speech<25%, Inquisitor or Templar)
+
+Requirement=Herbalist if DaVinci told about Wielders Speech 25 and NOT Inq or Templar
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=101 Wielders Good
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25% and PC is not a Templar or Inquisition)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist if Davinci told about Wielders Speech 25 AND Inq OR Templar
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=A mutual friend, Signor Leo, recommended that I speak to you...about a certain faction within the city that has been wrongfully persecuted?
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Herbalist if davinci told you about wielders
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player reads book DaVinci info goes away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Signor Leo told me you know something about the Wielders.
+Go to node ID=100 Wielders
+Action work in progress=(If spoken with Davinci about Wielders, Speech < 25%)
+
+Requirement=!None
+Reply Text=I will. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 City News
+Text=Well, I suppose I *have* picked up a few pieces of information about Barcelona over the years. What would you like to know?
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me about the Inquisition.
+Go to node ID=50 Inquisition
+Action work in progress=(PC =Not Inquisition)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me about the Inquisition.
+Go to node ID=51 Inquisition Member
+Action work in progress=(PC =Inquisition)
+
+Requirement=Templar NOT
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=60 Knights
+Action work in progress=(PC =Not Knight Templar)
+
+Requirement=Templar IS
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=61 Knights Member
+Action work in progress=(PC =Knight Templar)
+
+Requirement=Saladin NOT
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=70 Order
+Action work in progress=(PC =Not Knight of Saladin)
+
+Requirement=Saladin IS
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=71 Order Member
+Action work in progress=(PC =Knight of Saladin)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 City News Bad
+Text=Eh, well, I am a simple herbalist, and the life of the city tends to pass me by. I'm sure there is very little I could tell you that you do not already know.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Still, I would like to hear what you know about the Inquisition.
+Go to node ID=50 Inquisition
+Action work in progress=(PC =Not Inquisition)
+
+Requirement=Inquisitor IS
+Reply Text=Still, I would like to hear what you know about the Inquisition.
+Go to node ID=51 Inquisition Member
+Action work in progress=(PC =Inquisition)
+
+Requirement=Templar NOT
+Reply Text=Perhaps. But I would like to know what you have heard of the Knights Templar.
+Go to node ID=60 Knights
+Action work in progress=(PC =Not Knight Templar)
+
+Requirement=Templar IS
+Reply Text=Perhaps. But I would like to know what you have heard of the Knights Templar.
+Go to node ID=61 Knights Member
+Action work in progress=(PC =Knight Templar)
+
+Requirement=Saladin NOT
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=70 Order
+Action work in progress=(PC =Not Knight of Saladin)
+
+Requirement=Saladin IS
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=71 Order Member
+Action work in progress=(PC =Knight of Saladin)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Inquisition
+Text=The Inquisition? They grow more powerful with each passing month. I wouldn't be in business long if I spoke out against them. Because of my trade, they constantly watch my business, looking for the faintest hint of magic so they can set their hounds from the guard upon me. Fortunately for me, they have yet to find a reason to throw me in the pits like they did with the shopkeep next door.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What happened next door?
+Go to node ID=50 Shop Next Door
+
+Requirement=Herbalist Speech High OR Barter High
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=got cheap prices already
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=No reason? Perhaps I could convince them otherwise...unless you make it worth my while.
+Go to node ID=80 Extortion
+Action work in progress=(Speech >=35% or Barter >=35%)
+Icon=Barter Skill Icon
+
+Requirement=Templar NOT
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=60 Knights
+Action work in progress=(PC =Not Knight Templar)
+
+Requirement=Templar IS
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=61 Knights Member
+Action work in progress=(PC =Knight Templar)
+
+Requirement=Saladin NOT
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=70 Order
+Action work in progress=(PC =Not Knight of Saladin)
+
+Requirement=Saladin IS
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=71 Order Member
+Action work in progress=(PC =Knight of Saladin)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Shop Next Door
+Text=Alas, the authorities were ever suspicious of the poor man. But I fear he brought it down upon himself. Not only was he a foreigner, but he was audacious enough to openly sell magical weapons to anyone who would ask. They confiscated his shop and I haven't heard of him since.
+Should Have Voiceover=0
+
+Requirement=Herbalist Speech High OR Barter High
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=got cheap prices already
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps I should convince the Inquisition you do work in magic...unless you make it worth my while not to.
+Go to node ID=80 Extortion
+Action work in progress=(Speech >=35% or Barter >=35%)
+Icon=Barter Skill Icon
+
+Requirement=Templar NOT
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=60 Knights
+Action work in progress=(PC =Not Knight Templar)
+
+Requirement=Templar IS
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=61 Knights Member
+Action work in progress=(PC =Knight Templar)
+
+Requirement=Saladin NOT
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=70 Order
+Action work in progress=(PC =Not Knight of Saladin)
+
+Requirement=Saladin IS
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=71 Order Member
+Action work in progress=(PC =Knight of Saladin)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 Inquisition Member
+Text=The Inquisition? Why, Inquisitor, you would know better than I. They defend Spain, nay, all of Europe from the threat of magic, and they grow more powerful with each year. It is only due to their graces - and the grace of God, of course - that this business remains.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=60 Knights
+
+Requirement=!None
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=70 Order
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=That is all I wished to know. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 Knights
+Text=The Knights are paragons of virtue and honor. They have protected Europe from the forces of darkness for centuries. They are deeply spiritual and dedicated to their cause. I have great respect for them.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me about the Inquisition.
+Go to node ID=50 Inquisition
+Action work in progress=(PC =Not Inquisition)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me about the Inquisition.
+Go to node ID=51 Inquisition Member
+Action work in progress=(PC =Inquisition)
+
+Requirement=Saladin NOT
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=70 Order
+Action work in progress=(PC =Not Knight of Saladin)
+
+Requirement=Saladin IS
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=71 Order Member
+Action work in progress=(PC =Knight of Saladin)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=That is all I wished to know. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=61 Knights Member
+Text=The Knights Templar? Why, my friend, you would know better than I. The Knights are paragons of virtue and honor and have protected Europe from the forces of darkness for centuries. They are deeply spiritual and dedicated to their cause. I have great respect for them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=50 Inquisition
+
+Requirement=!None
+Reply Text=What can you tell me about the Order of Saladin?
+Go to node ID=70 Order
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=That is all I wished to know. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Order
+Text=The Saracens outside the city? They are a powerful force, the eastern equivalent of the Knights Templar. Every member of the Order I have met has been noble and honorable. They've traveled far from their distant desert homes to reach Spain. I can only imagine that they have come here to meet with the Knights Templar.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me about the Inquisition.
+Go to node ID=50 Inquisition
+Action work in progress=(PC =Not Inquisition)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me about the Inquisition.
+Go to node ID=51 Inquisition Member
+Action work in progress=(PC =Inquisition)
+
+Requirement=Templar NOT
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=60 Knights
+Action work in progress=(PC =Not Knight Templar)
+
+Requirement=Templar IS
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=61 Knights Member
+Action work in progress=(PC =Knight Templar)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=That is all I wished to know. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=71 Order Member
+Text=Why, my friend, you would know better than I. In fact, I was curious how you managed to slip inside the city, since I thought your camp lay outside the city walls. But let us keep such things between us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=72 Order Member 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=72 Order Member 2
+Text=Your group is a powerful force, indeed. The eastern equivalent of the Knights Templar. Every member of the Knights of Saladin I have met has been noble and honorable. They've traveled far from their distant desert homes to reach Spain. I can only imagine that they have come here to meet with the Knights Templar for some vital mission.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=50 Inquisition
+
+Requirement=!None
+Reply Text=I would like to know more about the Knights Templar.
+Go to node ID=60 Knights
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=That is all I wished to know. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=80 Extortion
+Text=Are you attempting to extort me? If so, you'd do well to take back your words before I summon the Barcelona Guard.
+Should Have Voiceover=0
+
+Requirement=Saladin NOT
+Reply Text=If you summon the Guard, I will summon the Inquisition. The Guard may arrest me for a time, but the Inquisition will torture you, and your business will be ruined. Let's stop threatening each other, and reach an agreement.
+Go to node ID=81 Extortion 2
+Action work in progress=(PC is not a Saladin Member, Make PC Asshole, Take Karma Hit, But Set Store Bonus)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Extort Herbalist Karma Hit Node 80
+}
+Action=CAdjustMerchantPriceMultiplierAction
+{
+Merchant=Good Store for Herbalist
+Price Multiplier Adjustment=-0.1
+}
+}
+}
+
+Requirement=Saladin IS
+Reply Text=If you summon the Guard, I will summon the Inquisition. The Guard may arrest me for a time, but the Inquisition will torture you, and your business will be ruined. Let's stop threatening each other, and reach an agreement.
+Go to node ID=82 Extortion Knight of Saladin
+Action work in progress=(PC is a Saladin Member, Make PC Asshole, Take Karma Hit)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Extort Herbalist Karma Hit Node 80
+}
+
+Requirement=!None
+Reply Text=You misunderstood me...let us forget the matter. I had some questions I wished to ask instead.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I think we have spoken long enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=81 Extortion 2
+Text=Is a discount what you seek for your silence? Very well...I do not wish any trouble with the Inquisition.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well, we shall keep this between us. Let me see what you have in stock.
+Go to node ID=
+Action work in progress=(Open Store)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=got cheap prices already
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I'll take you up on the discount the next time I am here.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=earned not used discount
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+------------------------------------------------------------
+Node ID=82 Extortion Knight of Saladin
+Text=And perhaps I will inform them that a Knight of Saladin has somehow managed to slip into Barcelona when they were ordered by the Inquisition to remain outside, no? Now let us both forget your poor choice of words and keep things civil between us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Hmmm. Very well. Let me see what you have in stock.
+Go to node ID=
+Action work in progress=(Open Store)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I had some other questions, then.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I think we have spoken long enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Wielders
+Text=You spoke to that old loon? You should be more careful. It is the prevailing opinion of the brightest medical minds of Europe that you can contract lunacy by listening to the ranting of a madman. He still thinks that he's some sort of wizard, does he?
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=I've heard the Wielders are criminals using evil magic. I want to bring them to the justice of the Inquisition.
+Go to node ID=300 Another Wielder Brush off Inquisitor
+Action work in progress=(PC is an Inquisitor, Give bonus to Inquisition Karma)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Question Wielders Karma Bonus Templar or Inquisition node 100
+}
+
+Requirement=Templar IS
+Reply Text=I've heard the Wielders are criminals using evil magic. I want to bring them to the justice of the Inquisition.
+Go to node ID=301 Another Wielder Brush off Templar
+Action work in progress=(PC is a Templar, Give bonus to Templar Karma)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Question Wielders Karma Bonus Templar or Inquisition node 100
+}
+
+Requirement=Inquisitor NOT
+Reply Text=He seemed sure that you knew something about the Wielders. I would like to find them so I can ask them about my own magic talent.
+Go to node ID=170 Magic Talent
+Action work in progress=(PC is not Inquisition)
+
+Requirement=Inquisitor IS
+Reply Text=He seemed sure that you knew something about the Wielders. I would like to find them so I can ask them about my own magic talent.
+Go to node ID=171 Magic Talent Inquisition
+Action work in progress=(PC is Inquisition)
+
+Requirement=!None
+Reply Text=I had some other questions instead.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=You're right. DaVinci did seem a bit unstable. Forget I mentioned it.
+Go to node ID=
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=101 Wielders Good
+Text=Indeed? You should be more careful when speaking to a madman such as DaVinci, my friend. He has forgotten more than he knows, and that is considerable - but nevertheless, his judgment is sound and there must have been a reason he sent you here. So humor me - what did he say of this persecuted faction?
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=I've heard the Wielders are criminals using evil magic. I want to bring them to the justice of the Inquisition.
+Go to node ID=300 Another Wielder Brush off Inquisitor
+Action work in progress=(PC is an Inquisitor, Give bonus to Inquisition Karma)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Question Wielders Karma Bonus Templar or Inquisition node 100
+}
+
+Requirement=Templar IS
+Reply Text=I've heard the Wielders are criminals using evil magic. I want to bring them to the justice of the Inquisition.
+Go to node ID=301 Another Wielder Brush off Templar
+Action work in progress=(PC is a Templar, Give bonus to Templar Karma)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Question Wielders Karma Bonus Templar or Inquisition node 100
+}
+
+Requirement=Inquisitor NOT
+Reply Text=He seemed sure that you knew something about the Wielders. I would like to find them so I can ask them about my own magic talent.
+Go to node ID=170 Magic Talent
+Action work in progress=(PC is not Inquisition)
+
+Requirement=Inquisitor IS
+Reply Text=He seemed sure that you knew something about the Wielders. I would like to find them so I can ask them about my own magic talent.
+Go to node ID=171 Magic Talent Inquisition
+Action work in progress=(PC is Inquisition)
+
+Requirement=!None
+Reply Text=I had some other questions instead.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=You're right -DaVinci did seem a bit unstable. Forget I mentioned it.
+Go to node ID=
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 Magic Talent
+Text=So, you have a magic talent, hmm? I would caution you to whisper when you say such things. You take a great risk telling me this, and I admire such courage. Yes, I know something of the Wielders...or at least, know someone who does.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who do you know that is associated with the Wielders?
+Go to node ID=210 Proof of Magic
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I don't have time to mince words, old man. Tell me how to contact the Wielders.
+Go to node ID=210 Proof of Magic
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Impatience during Dialog minor Karma hit
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=171 Magic Talent Inquisition
+Text=Magic talent? My friend, you wear the trappings of an Inquisitor...are you mad?  Is this some kind of trap?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It is a long story, and I fear it will be much longer before the year is through. I do possess magic, but I seek the Wielders so I might understand it.
+Go to node ID=170 Magic Talent
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have magic running in my blood, and I need help that perhaps only the Wielders can provide.
+Go to node ID=170 Magic Talent
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You *will* divulge the location of La Calle Perdida... or you will spend eterity on the Inquisition rack!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Quinn Fights
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I have other questions.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 Proof of Magic
+Text=Before we go any further, I must have proof that what you say is true, and you are not a spy sent to ferret out the location of La Calle Perdida. There is a tome on the chair next to me with magic inscriptions that only a person touched with magic could comprehend. Read a passage from the book to me now.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(player must cast spell, and if he does, go to node 400)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Adds AI to Magic book
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Seek out the Wizards of La Calle Perdida
+State=GGOUCL35
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 Another Wielder Brush off Inquisitor
+Text=Many in this town would agree that those who use magic are criminals. Unfortunately, I know nothing of the Wielders except their name. I wish I could be more helpful. Good luck with your investigation, Inquisitor.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=301 Another Wielder Brush off Templar
+Text=Many in this town would agree that those who use magic are criminals. Unfortunately, I know nothing of the Wielders except their name. I wish I could be more helpful. Good luck with your investigation, Templar.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 wererat cure
+Text=You seek a cure for an Afflicted, someone suffering from the curse of lycanthropy? Such a cure is possible to create, but there are grave risks involved.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=355 risks
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=355 risks
+Text=While I possess some of the mundane components to brew the cure, I will need a fang, a bit of hair, or something else from the lycanthrope that first infected those you seek to cure. I would suggest looking for this "prime wererat" in the wilderness - beyond the walls of Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wererat Fur
+}
+}
+Reply Text=I already have a piece of the animal.
+Go to node ID=360 have fur
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wererat Fur
+}
+}
+}
+Reply Text=I will find a piece of this creature and return it to you.
+Go to node ID=
+Action work in progress=(update quest log)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+State=HXTR8E1U
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wererat Fur
+}
+}
+}
+Reply Text=Sounds too risky for me. 
+Go to node ID=357 risky
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wererat Fur
+}
+}
+}
+Reply Text=I'll have to think about that. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=357 risky
+Text=Oh, yes, quite risky I'm sure. We can only hope someone of courage and valor decides to brave those dangers for us, yes? Good day, and good health.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=360 have fur
+Text=I had a sense you would best the creature and be back with the ingredient, so I already prepared the mixture. And now this last component completes the cure. A mere drop from this vial will cure anyone Afflicted with lycanthropy, so this should be more than enough.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well, then. Thank you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Wererat Fur
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Potion Lycanthropy Cure
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+State=XJ1TW06W
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 proved magic
+Text=Well done! You do have magic talent, I see! Should you be interested in honing your magical talents, seek Cedric in La Calle Perdida.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=401 proved magic 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=401 proved magic 2
+Text=Here...take this amulet. It will allow you to *see* the hidden doorway along the western wall. Remember, you must tell no one about this place. The lives of many good people depend on The Lost Street remaining a secret from the Inquisition.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(give la calle charm)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Wielders Charm find Calle
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Seek out the Wizards of La Calle Perdida
+State=ELWBBEEZ
+}
+Action=CActivateAction
+{
+Target Name=quinn gave you the amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=700 relican
+Text=So it is as I feared. You have joined that treacherous bastard? And you come here and ask me to pledge fealty to *him*? My answer will be to leave your smoking remains at La Calle Perdida's entrance.
+Should Have Voiceover=0
+
+Requirement=Speech lessthan 050
+Reply Text=Quinn, is there no way that I could persuade you to join us peacefully?
+Go to node ID=
+Action work in progress=(combat speech <50)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Display NO dialog ballon for combat
+}
+}
+}
+
+Requirement=Speech moreequal 50
+Reply Text=Quinn, you would be honored among the Dark Wielders, allowed more freedom for research and power. Know this: you will serve the necromancers, alive or dead.
+Go to node ID=710 persuade Quinn
+Action work in progress=(speech >50)
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Talk Herbalist into Joining Dark Wielders XP bonus
+Experience Points To Add=1
+}
+Icon=Speach Skill Icon
+
+Requirement=Herbalist If High Fighting or Magical Skills Intimidate
+Reply Text=Quinn, my power far outstrips yours. Join us peacefully and accept your place.
+Go to node ID=710 persuade Quinn
+Action work in progress=(Root Skill Abilities >80)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Good, I'm ready for a battle.
+Go to node ID=
+Action work in progress=(combat)
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=710 persuade Quinn
+Text=Well, if you put it that way.  How can I resist such persuasion?  You are right, I-I cannot deny my true path any longer.  And I certainly do not relish the thought of becoming your bone servant. Very well, tell Relican that I will join the Dark Wielders.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Mark quest to make Dark Wielder complete)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+State=FPC9941A
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=used speech against herbalist
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Calle Perdida
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=720 NO
+Text=No, No!  A thousand times no!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=900 Bubble Next Door
+Text=Go away! It is enough that last night's wine pounds in my head without you pounding on my door!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=901 Bubble Next Door
+Text=This door is secured with a heavy chain and bears the seal of the Inquisition. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Wielders from Raphael
+Text=Indeed? May I ask why you believe I would know the location of such a place?  As you know kind Inquisitor, I am a law abiding citizen and know full well the penalty for associating with heretics.
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=I've heard the Wielders are criminals using evil magic. I want to bring them to the justice of the Inquisition.
+Go to node ID=300 Another Wielder Brush off Inquisitor
+Action work in progress=(PC is an Inquisitor, Give bonus to Inquisition Karma)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Question Wielders Karma Bonus Templar or Inquisition node 100
+}
+
+Requirement=Inquisitor IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 35
+}
+Reply Text=Well, please do not tell this to anyone for it would harm my status as an inquisitor, but I would like to find them so I can ask them about my own magic talent. <lie>
+Go to node ID=171 Magic Talent Inquisition
+Action work in progress=(PC is Inquisition)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You *will* divulge the location of La Calle Perdida... or you will spend eterity on the Inquisition rack!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Quinn Fights
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I had some other questions instead.
+Go to node ID=05 Other Questions
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 welcome wielder
+Text=Welcome, traveler.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=2005 waits for book
+Text=Before we speak about magic or the Wielders any further, I would ask that you touch the book to prove your talent.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3000 herbalist drinks a potion
+Text=<Quinn drinks a regeneration potion.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3000 herbalist drinks a heal potion
+Text=<Quinn drinks a healing potion.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=800 wolf pelts request
+Text=Actually, yes -- I have come across some wolf pelts that may be tainted by dark magic. Bring me three wolf pelts and I will test them for corruption. It is important work, and I will make it worth your while.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will see what I can find.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=810 wolf pelts turned in
+Text=These will do nicely for my tests -- thank you. Here, take this for your trouble.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Good luck with your tests.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}
