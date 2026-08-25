@@ -1525,10 +1525,16 @@ which is the game already reaching for a standing check it never got.
 | The trolls | to be left alone, and something done about the wererats | no way to say so |
 
 `Warning Troll` has **no success branch**. Every path from `20 no trust` is "I must pass" or
-leave. And the Red Ore quest states *"Eduardo told you to go to the sewers below Barcelona
-and obtain Red Ore directly from the lava trolls"* — but every
-`Inventory Item To Give=...Red Ore` site is in `Blacksmith map.zax`. **The trolls grant
-none.** The game sends you to trade with them and makes the trade impossible.
+leave. *(0.4.0 added one: settle the wererats either way and they will trade you a hide.)*
+
+**Correction, 0.5 scoping.** This section previously claimed the Red Ore trade was impossible
+because every `Inventory Item To Give=...Red Ore` site is in `Blacksmith map.zax`. That was a
+direct-reference search missing container contents: `05 Troll Pit.zax` holds a **`red ore
+chest`** containing `Inventory/Specific Item Cans/Quest Items/Red Ore`, so the ore is
+obtainable and `Recover Red Iron for Eduardo` completes. What is missing is not the item but
+the *trade* — you can take the ore, you cannot be given it. Making the trolls hand it over is
+therefore a new peaceful route to an existing reward, which is **extend**, not a repair of a
+broken promise.
 
 Even the merciful wererat path kills their leader: the beggars' cure quest requires slaying
 the Prime Wererat for a patch of fur.

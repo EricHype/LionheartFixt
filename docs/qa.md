@@ -297,6 +297,26 @@ E6 is the regression that matters. E3 and E4 guard against double-payment: the w
 completion lives on the reply, and `103 wasps killed` pays nothing itself, so the
 retarget cannot pay twice.
 
+### 0.5 - the Helpful Wererat
+
+A finished character the game never placed: `Helpful wererat.can` and
+`wereratwarriorcan.DialogTree` both exist, both are complete, and **neither is referenced by
+any file in the archive**. Same shape as the Goblin Girl in 0.1.0.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| W1 | Sewers, Hall of Beggars, near Enrique Garcia | Enter the map on a fresh character | A wererat stands apart from the swarm and **does not attack** |
+| W2 | " | Talk to him | *"Since you are a friend of beasts, I'll give you some advice. Never trust a thief and beware of the lava trolls."* |
+| W3 | " | Ask where the thieves are | The eastern corridors, and a warning about traps |
+| W4 | " | Ask where the lava trolls are | The lower levels, and advice to avoid them |
+| W5 | " | Leave and return | He is still there and still talks |
+| W6 | " | Attack him | He fights back like any wererat. Nothing else in the map changes |
+
+W1 is the one to watch. He is `Team Number=Nutral` with `GetCloseThenTalk` on his own
+template, so he should be approachable by construction -- but he stands in a hall full of
+hostile Afflicted, and if the swarm's AI drags him into the fight before you can speak, the
+placement needs moving rather than the character changing.
+
 ### 0.4 - Quinn's reagents
 
 Three errands, in order, each unlocking a healing tier above vanilla's Extra Healing. Quinn
