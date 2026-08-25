@@ -3284,12 +3284,47 @@ CLayerSaveData
 								Else=
 								Return failure if the If failes=0
 							}
-							Action=CDisplayDialogTreeAction
+							Action=CIfAction
 							{
-								Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/dreamdjinn
-								Node ID=160 pass combat
-								Speaker=$trigger
-								Player Being Spoken To=Player1
+								If=CExpressionAction
+								{
+									Expression=COR
+									{
+										Operand1=CActionExpression
+										{
+											Action=CActionCheckForInventoryItem
+											{
+												Who to give check=$instigator
+												Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+											}
+										}
+										Operator=
+										Operand2=CActionExpression
+										{
+											Action=CActionCheckForInventoryItem
+											{
+												Who to give check=$instigator
+												Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+											}
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/dreamdjinn
+									Node ID=161 pass combat already armed
+									Speaker=$trigger
+									Player Being Spoken To=Player1
+								}
+								Else=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/dreamdjinn
+									Node ID=160 pass combat
+									Speaker=$trigger
+									Player Being Spoken To=Player1
+								}
+								Return failure if the If failes=0
 							}
 							Action=CMixInSongAndPlayAmbientTrackAction
 							{

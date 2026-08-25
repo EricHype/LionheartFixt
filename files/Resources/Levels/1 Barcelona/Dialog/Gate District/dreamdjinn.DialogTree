@@ -1,0 +1,1834 @@
+CDialogTree
+{
+Name=Dream Djinn
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Salaam! Kabool welcomes you to the Trial of Dreams! 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=20 kabool
+
+Requirement=!None
+Reply Text=What is the Trial of Dreams?
+Go to node ID=30 trial
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=40 dream plane
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Return Dialogue
+Text=Salaam! Kabool welcomes you to the Trial of Dreams!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Salaam! Kabool welcomes you to the Trial of Dreams!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Kabool understands. Perhaps there will be a time when you will be ready to complete the Trials. Awaken from this dream, Scion of Lionheart.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(remove player)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CPlayAnimationAction
+{
+Animation=SpellCast
+Random From Sequencial Set=0
+Target Name=Dream Djinn
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+Action=CDelayAction
+{
+Next Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=Player#1-9#
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Delay=0.4
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=1 Barcelona/Gate District
+New Location=From Dream Djinn
+Who To Switch=Player#1-9#
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=passed on Dream Djinn
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=XFEDCK28
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=NHU2GV9N
+}
+}
+}
+Early Exit=0
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=NHU2GV9N
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 kabool
+Text=Well my friend, Kabool is a spirit of the desert. Among my kind, I am known as Kabool Ibn Al'Kahoosh, Pasha of the Dreamland, and the Royal Djinn and Trialmaster of the Order of Saladin. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is the Trial of Dreams?
+Go to node ID=30 trial
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=40 dream plane
+------------------------------------------------------------
+Node ID=30 trial
+Text=You seek the favor of the Order of Saladin? Then you must pass the Trial of Dreams, a series of tests to measure your worth.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about the tests.
+Go to node ID=50 test
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=20 kabool
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=40 dream plane
+------------------------------------------------------------
+Node ID=40 dream plane
+Text=You are far, but near. You stand sleepless in the Dream Plane, my friend.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=20 kabool
+
+Requirement=!None
+Reply Text=What is the Trial of Dreams?
+Go to node ID=30 trial
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 test
+Text=Kabool must test you to determine if you are worthy enough to be a Favored One. Pass the challenges and you will be granted power. Are you prepared for the Trials?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I am prepared.
+Go to node ID=80 choose test
+
+Requirement=!None
+Reply Text=No, I don't want to take your test. I want to leave.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 exit
+Text=Kabool is saddened, for you will become a brave warrior soon. Kabool welcomes you to return, if you choose. Until then my friend, may your roads be clear!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(remove player from dream plane)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CPlayAnimationAction
+{
+Animation=Spellcast
+Random From Sequencial Set=0
+Target Name=Dream Djinn
+When Done=Return to First Frame
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=XFEDCK28
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=NHU2GV9N
+}
+}
+}
+Early Exit=0
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=NHU2GV9N
+}
+Else=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=f
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+Return failure if the If failes=0
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=Player#1-9#
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=probably soon
+New Map Name=1 Barcelona/Gate District
+New Location=From Dream Djinn
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=failed dream djinn
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 choose test
+Text=Then let us begin by deciding how you will be tested. During your adventures, you will face countless challenges, some of which can be resolved with the sharp edge of your blade and others with keen wit. So I offer you the chance to choose. Will you rely on your intellect or will you overcome the Trial of Dreams through pure physical strength and endurance?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I choose to test my intellect.
+Go to node ID=199 start riddle path
+
+Requirement=!None
+Reply Text=I choose to test my physical prowess.
+Go to node ID=300 start physical test
+
+Requirement=!None
+Reply Text=I am not prepared to take the Trial of Dreams now. I wish to leave.
+Go to node ID=10 Goodbye
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=passed on Dream Djinn
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Moral Test
+Text=Kabool must test your moral judgment, to see if you are worthy of gaining the trust of the Knights of Saladin. You have been entrusted with a solemn duty to uphold the law and are ordered to investigate the murder of an old man. To your shock, you learn that your younger brother is the killer. As justification for his crime, your brother invoked the right of fair retribution - a year before, the old man killed your brother's best friend and stole from his family. What would you do?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would try to settle the matter with gold, paying the old man's family for their grief.
+Go to node ID=120 fail
+Icon=Barter Skill Icon
+
+Requirement=Speech moreequal 90
+Reply Text=I would urge my brother to turn himself, but I would strive to clear his name.
+Go to node ID=110 trial 2
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Nothing is more important than family. I would stall the investigation and secretly help my brother escape capture.
+Go to node ID=120 fail
+
+Requirement=!None
+Reply Text=My brother's actions were just. I would shield him from prosecution.
+Go to node ID=120 fail
+
+Requirement=!None
+Reply Text=My brother is guilty and so must be punished. I would capture him and let justice prevail.
+Go to node ID=110 trial 2
+
+Requirement=!None
+Reply Text=I would change my report to make the crime look like self defense, so my brother would be guilty of a lesser crime.
+Go to node ID=120 fail
+
+Requirement=!None
+Reply Text=I would relieve myself of my duties to avoid the dilemma
+Go to node ID=120 fail
+------------------------------------------------------------
+Node ID=110 trial 2
+Text=Kabool admires you for making a difficult decision. Loyalty to family is admirable, but the duties of the Knights of Saladin are of tremendous importance. Duty is everything to a Knight, and so you have answered the question correctly!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 fail
+Text=Kabool knows that this is a difficult question, since the morals of one could be abhored by another. But to the Knights of Saladin, nothing is more important than duty. You have answered incorrectly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 pass trials
+Text=Congratulations my friend! You have passed the trials! For your brilliant display of intellect, I bestow upon you the title of Scholar of the Crescent, a great honor among the people of the east. I shall tell Amir that you have passed your Trials, seek him out and revel in your accomplishments!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you Kabool. I am honored.
+Go to node ID=
+Action work in progress=(transport player out of plane)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=RHAGYW4H
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=$Instigator
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=1 Barcelona/Gate District
+New Location=From Dream Djinn
+Who To Switch=Player#1-9#
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Give Scholar Perk
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=199 start riddle path
+Text=Oh, how wonderful, Kabool loves riddles! I have waited too long to pose these vexing puzzles. In order to progress, you must answer three riddles correctly. If you make an incorrect guess, you will fail the Trial. Now here is the first riddle.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(trigger riddle master relay) 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Riddle Relay Switch
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 riddle master
+Text=Very well. Here is the next riddle.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(trigger riddle master relay) 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Riddle Relay Switch
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=201 riddle 1
+Text=My life can be measured in hours, I serve by being devoured. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A moth.
+Go to node ID=203 fail riddle 1
+
+Requirement=!None
+Reply Text=A fig.
+Go to node ID=203 fail riddle 1
+
+Requirement=!None
+Reply Text=A candle.
+Go to node ID=202 pass riddle 1
+Action work in progress=(trigger pass riddle relay)
+
+Requirement=!None
+Reply Text=A butterfly.
+Go to node ID=203 fail riddle 1
+
+Requirement=!None
+Reply Text=A wave.
+Go to node ID=203 fail riddle 1
+
+Requirement=!None
+Reply Text=A cloud.
+Go to node ID=203 fail riddle 1
+------------------------------------------------------------
+Node ID=202 pass riddle 1
+Text=Correct! That riddle was but a trifle, a minor teaser for your next problem.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue.
+Go to node ID=
+Action work in progress=(trigger pass relay) 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=203 fail riddle 1
+Text=I am sorry, but you are incorrect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue.
+Go to node ID=
+Action work in progress=(trigger fail relay) 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=204 riddle 2
+Text=What God never sees, what the king rarely sees, and what we see every day. Who could it be?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Someone who is the complete opposite.
+Go to node ID=207 riddle 2 fail
+
+Requirement=!None
+Reply Text=Someone who admires you.
+Go to node ID=207 riddle 2 fail
+
+Requirement=!None
+Reply Text=Someone who detests you.
+Go to node ID=207 riddle 2 fail
+
+Requirement=!None
+Reply Text=Someone who believes in you.
+Go to node ID=207 riddle 2 fail
+
+Requirement=!None
+Reply Text=Someone who is an equal.
+Go to node ID=206 riddle 2 pass
+
+Requirement=!None
+Reply Text=Someone who is pleasant.
+Go to node ID=207 riddle 2 fail
+
+Requirement=!None
+Reply Text=Someone who is lesser.
+Go to node ID=207 riddle 2 fail
+
+Requirement=IN below 4
+Reply Text=Someone who is just.
+Go to node ID=207 riddle 2 fail
+------------------------------------------------------------
+Node ID=206 riddle 2 pass
+Text=Correct! Perhaps Kabool's riddles are far too simple for such a sharp mind, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue.
+Go to node ID=
+Action work in progress=(trigger pass relay) 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=207 riddle 2 fail
+Text=Ah, unfortunately that is incorrect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue.
+Go to node ID=
+Action work in progress=(trigger fail relay) 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=209 riddle 3
+Text=What is the plate with many gems which when kept upside down not a single one falls?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is sand.
+Go to node ID=210 riddle 3 fail
+
+Requirement=!None
+Reply Text=The answer is the ocean.
+Go to node ID=210 riddle 3 fail
+
+Requirement=!None
+Reply Text=The answer is sky.
+Go to node ID=211 riddle 3 pass
+
+Requirement=!None
+Reply Text=The answer is the earth.
+Go to node ID=210 riddle 3 fail
+
+Requirement=!None
+Reply Text=The answer is a roof.
+Go to node ID=210 riddle 3 fail
+------------------------------------------------------------
+Node ID=210 riddle 3 fail
+Text=Sorry, my friend, that is not the right answer.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=211 riddle 3 pass
+Text=Yes! Oh, you could be the brightest of the seekers Kabool has seen yet! Well done, my friend!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 riddle 4
+Text=Only one color, but not one size, stuck at the bottom, yet easily flies. Present in sun, but not in rain, doing no harm, and feeling no pain. What do I speak of?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is an eclipse.
+Go to node ID=222 riddle 4 fail
+
+Requirement=!None
+Reply Text=The answer is my imagination.
+Go to node ID=222 riddle 4 fail
+
+Requirement=!None
+Reply Text=The answer is a shadow.
+Go to node ID=221 riddle 4 pass
+
+Requirement=!None
+Reply Text=The answer is a rainbow.
+Go to node ID=222 riddle 4 fail
+
+Requirement=!None
+Reply Text=The answer is a painting.
+Go to node ID=222 riddle 4 fail
+
+Requirement=!None
+Reply Text=The answer is paper.
+Go to node ID=222 riddle 4 fail
+------------------------------------------------------------
+Node ID=221 riddle 4 pass
+Text=Of course it is! Kabool knew you were special indeed! Well done!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=222 riddle 4 fail
+Text=A fair guess, my friend, but not the correct one.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=230 riddle 5
+Text=What is greater than God, more evil than Satan, rich people need it, poor people have it, if you eat it you'll die.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is gold.
+Go to node ID=232 riddle 5 fail
+
+Requirement=!None
+Reply Text=The answer is poverty.
+Go to node ID=232 riddle 5 fail
+
+Requirement=!None
+Reply Text=The answer is a heart.
+Go to node ID=232 riddle 5 fail
+
+Requirement=!None
+Reply Text=The answer is avarice.
+Go to node ID=232 riddle 5 fail
+
+Requirement=!None
+Reply Text=The answer is nothing.
+Go to node ID=231 riddle 5 pass
+
+Requirement=!None
+Reply Text=The answer is charity.
+Go to node ID=232 riddle 5 fail
+
+Requirement=!None
+Reply Text=The answer is desire.
+Go to node ID=232 riddle 5 fail
+------------------------------------------------------------
+Node ID=231 riddle 5 pass
+Text=Of course it is! Kabool knew you were special indeed! Well done!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=232 riddle 5 fail
+Text=Incorrect, though you made a valiant attempt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=240 riddle 6
+Text=A merchant comes before you and claims that one of three beggars stole an apple from his cart. You question them: the first beggar says the second one stole it, the second beggar says he is innocent of the crime, and the third beggar says he is not the thief. Only one of the three is telling the truth - now tell me, who is guilty?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is the first beggar.
+Go to node ID=242 riddle 6 fail
+
+Requirement=!None
+Reply Text=The answer is the second beggar.
+Go to node ID=242 riddle 6 fail
+
+Requirement=!None
+Reply Text=The answer is the third beggar.
+Go to node ID=241 riddle 6 pass
+------------------------------------------------------------
+Node ID=241 riddle 6 pass
+Text=Yes, you are most clever! Kabool applauds with much admiration!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=242 riddle 6 fail
+Text=No, you chose incorrectly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=250 riddle 7
+Text=What is that which travels without feet, head or hands?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is a worm.
+Go to node ID=251 riddle 7 pass
+
+Requirement=!None
+Reply Text=The answer is a man.
+Go to node ID=252 riddle 7 fail
+
+Requirement=!None
+Reply Text=The answer is a woman.
+Go to node ID=252 riddle 7 fail
+
+Requirement=!None
+Reply Text=The answer is a snake.
+Go to node ID=252 riddle 7 fail
+
+Requirement=!None
+Reply Text=The answer is a fish.
+Go to node ID=252 riddle 7 fail
+
+Requirement=!None
+Reply Text=The answer is water.
+Go to node ID=251 riddle 7 pass
+
+Requirement=!None
+Reply Text=The answer is a tree.
+Go to node ID=252 riddle 7 fail
+------------------------------------------------------------
+Node ID=251 riddle 7 pass
+Text=Yes, you are most clever! Kabool applauds with much admiration!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=252 riddle 7 fail
+Text=Though there is more than one answer to this riddle, that is not one of them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=260 riddle 8
+Text=What force and strength cannot get through, I with a gentle touch can do. And many in the street would stand, were I not a friend at hand.  What am I?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A hammer.
+Go to node ID=262 riddle 8 fail
+
+Requirement=!None
+Reply Text=A glass.
+Go to node ID=262 riddle 8 fail
+
+Requirement=!None
+Reply Text=A sword.
+Go to node ID=262 riddle 8 fail
+
+Requirement=!None
+Reply Text=A key.
+Go to node ID=261 riddle 8 pass
+
+Requirement=!None
+Reply Text=A shield.
+Go to node ID=262 riddle 8 fail
+
+Requirement=!None
+Reply Text=A door.
+Go to node ID=262 riddle 8 fail
+------------------------------------------------------------
+Node ID=261 riddle 8 pass
+Text=Correct! You are quite clever, my friend. Kabool is highly impressed!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=262 riddle 8 fail
+Text=Sadly, that is incorrect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=265 riddle 9
+Text=He who makes it, makes it to sell. He who buys it, does not use it. He who uses it, does not know it. What do I speak of?
+Should Have Voiceover=0
+
+Requirement=IN greater than or equal to 4
+Reply Text=The answer is a sword. 
+Go to node ID=269 riddle 9 fail
+
+Requirement=!None
+Reply Text=The answer is a door.
+Go to node ID=269 riddle 9 fail
+
+Requirement=!None
+Reply Text=The answer is love. 
+Go to node ID=269 riddle 9 fail
+
+Requirement=!None
+Reply Text=The answer is advice.
+Go to node ID=269 riddle 9 fail
+
+Requirement=!None
+Reply Text=The answer is a coffin.
+Go to node ID=268 riddle 9 pass
+
+Requirement=!None
+Reply Text=The answer is gold. 
+Go to node ID=269 riddle 9 fail
+
+Requirement=IN greater than or equal to 4
+Reply Text=The answer is a lantern. 
+Go to node ID=269 riddle 9 fail
+
+Requirement=!None
+Reply Text=The answer is trouble. 
+Go to node ID=269 riddle 9 fail
+------------------------------------------------------------
+Node ID=268 riddle 9 pass
+Text=Oh, well done!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=269 riddle 9 fail
+Text=Sadly, that is incorrect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=270 riddle 10
+Text=What is it that was given to you, that still belongs to you, that you have never lent to anyone, but that is used by all the people you know?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is your eyes. 
+Go to node ID=272 riddle 10 fail
+
+Requirement=!None
+Reply Text=The answer is your humility. 
+Go to node ID=272 riddle 10 fail
+
+Requirement=!None
+Reply Text=The answer is your name. 
+Go to node ID=271 riddle 10 pass
+
+Requirement=!None
+Reply Text=The answer is shame. 
+Go to node ID=272 riddle 10 fail
+
+Requirement=!None
+Reply Text=The answer is luck. 
+Go to node ID=272 riddle 10 fail
+
+Requirement=!None
+Reply Text=The answer is your pride. 
+Go to node ID=272 riddle 10 fail
+------------------------------------------------------------
+Node ID=271 riddle 10 pass
+Text=Oh, well done!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=272 riddle 10 fail
+Text=Sadly, that is incorrect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 start physical test
+Text=Ah, Kabool could see that you are no stranger to battle. For one so formidable as you, I will need to conjure fierce creatures indeed. You must defeat all of my champions, each stronger than the next, to pass this test.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=300 start physical test 2
+Action work in progress=(transport to arena and start fight)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=305 fail physical test
+Text=Alas, the fierce ones proved too much for your battle prowess. You have failed the Trial of Dreams and must travel a different path in life. Take solace that the wounds sustained here will heal when you leave the dream. Rest now, Lionheart.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(return to Gate District)
+------------------------------------------------------------
+Node ID=310 fail mental test
+Text=Alas, you have answered incorrectly. You have failed the test and must awaken from the dream. If you ever wish to retake the trials, speak with Amir and he will tell you what to do. Kho'da Ha'fez! <Goodbye!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=failed dream djinn
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=XFEDCK28
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CPlayAnimationAction
+{
+Animation=SpellCast
+Random From Sequencial Set=0
+Target Name=Dream Djinn
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+Action=CDelayAction
+{
+Next Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=Player#1-9#
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Delay=0.4
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=1 Barcelona/Gate District
+New Location=From Dream Djinn
+Who To Switch=Player#1-9#
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 pass wave 1
+Text=You are most skilled in the arts of combat! Kabool is very impressed. I suppose I should conjure opponents more worthy of your mettle. Ah, but where are Kabool's manners, eh? Allow me to heal your wounds before the battle.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(active spawners)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CForEachPlayerAction
+{
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Heal/Heal
+Location Entity=$Instigator
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+}
+Action=CForEachPlayerAction
+{
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=10
+}
+Expression Context=$Instigator
+}
+}
+}
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CCloneAction
+{
+New Location=Monster Spawner 2
+Copy Height=0
+Random Location Delta=100
+Warp Behavior=
+Source Name=Monster Spawner 2
+New Name=Used Monster Spawner 2
+Set Facing Angle=1
+New Facing Angle=1.5708
+}
+Action=CCloneAction
+{
+New Location=Monster Spawner 1
+Copy Height=0
+Random Location Delta=120
+Warp Behavior=
+Source Name=zombie generator
+New Name=used zombie generator
+Set Facing Angle=1
+New Facing Angle=0
+}
+Action=CCloneAction
+{
+New Location=Monster Spawner 3
+Copy Height=0
+Random Location Delta=0
+Warp Behavior=
+Source Name=zombie generator
+New Name=used zombie generator
+Set Facing Angle=1
+New Facing Angle=3.14159
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+Location Entity=Undead
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeleteAction
+{
+Target Name=Used Monster Spawner 2
+}
+Action=CDeleteAction
+{
+Target Name=used zombie generator
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=325 pass wave 2
+Text=Truly you are a formidable opponent! Kabool is almost ashamed that he has not given you a proper challenge. But, the next foes, summoned from the most inhospitable of places, are terrible indeed and could only be slain by a true knight. Kabool gives you healing and his blessing for this battle.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(active spawners)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CForEachPlayerAction
+{
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Heal/Heal
+Location Entity=$Instigator
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+}
+Action=CForEachPlayerAction
+{
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=20
+}
+Expression Context=$Instigator
+}
+}
+}
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CCloneAction
+{
+New Location=Ogre Spawn 2
+Copy Height=0
+Random Location Delta=100
+Warp Behavior=
+Source Name=Monster Spawner 3
+New Name=Used Monster Spawner 3
+Set Facing Angle=0
+New Facing Angle=0
+}
+Action=CCloneAction
+{
+New Location=Ogre Spawn 1
+Copy Height=0
+Random Location Delta=100
+Warp Behavior=
+Source Name=Monster Spawner 3
+New Name=Used Monster Spawner 3
+Set Facing Angle=0
+New Facing Angle=0
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+Location Entity=Ogre
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CDelayAction
+{
+Next Action=CDeleteAction
+{
+Target Name=Used Monster Spawner 3
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=330 pass wave 3
+Text=Kabool stands in awe of your inspiring might! Now comes the final stage of the physical test. Your last opponent will be an enemy formed by your own fears and nightmares.  If you prevail,  you will pass the Trial of Dreams.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(active spawners)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CForEachPlayerAction
+{
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Heal/Heal
+Location Entity=$Instigator
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+}
+Action=CForEachPlayerAction
+{
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=20
+}
+Expression Context=$Instigator
+}
+}
+}
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCloneAction
+{
+New Location=Monster Spawner 4
+Copy Height=0
+Random Location Delta=0
+Warp Behavior=
+Source Name=Monster Spawner 4
+New Name=Used Monster Spawner 4
+Set Facing Angle=1
+New Facing Angle=4.71239
+}
+Action=CDelayAction
+{
+Next Action=CDeleteAction
+{
+Target Name=Used Monster Spawner 4
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 riddle combat
+Text=Now then, Scion of Lionheart, you must defeat me in a duel of logic. Imagine that before you are three implements, a sword, a shield, and a book of magic. The sword allows you to strike as swiftly as the wind, the shield grants protection as strong and durable as the Earth. The Book grants you magic to assume the form of scorching fire to destroy what you touch, or to take the form of pure liquid water to mingle with all elements and sustain life. You may choose an implement first, and then I will choose.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I choose the sword.
+Go to node ID=
+
+Requirement=!None
+Reply Text=I choose the shield.
+Go to node ID=
+
+Requirement=!None
+Reply Text=I choose the book to assume the form of fire.
+Go to node ID=
+
+Requirement=!None
+Reply Text=I choose the book to assume the form of water.
+Go to node ID=
+------------------------------------------------------------
+Node ID=500 riddle 11
+Text=In naming me, I am no longer there. What am I?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is death.
+Go to node ID=502 riddle 11 fail
+
+Requirement=!None
+Reply Text=The answer is space.
+Go to node ID=502 riddle 11 fail
+
+Requirement=!None
+Reply Text=The answer is your name. 
+Go to node ID=502 riddle 11 fail
+
+Requirement=!None
+Reply Text=The answer is silence. 
+Go to node ID=501 riddle 11 pass
+
+Requirement=!None
+Reply Text=The answer is hate. 
+Go to node ID=502 riddle 11 fail
+
+Requirement=!None
+Reply Text=The answer is a thought.
+Go to node ID=502 riddle 11 fail
+------------------------------------------------------------
+Node ID=501 riddle 11 pass
+Text=Oh, well done!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=502 riddle 11 fail
+Text=Sadly, that is incorrect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 start physical test 2
+Text=Should the test prove to be too rigorous, run to the yellow crystal and invoke its power to end the dream and return to Amir. Prepare yourself for battle!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CPlayAnimationAction
+{
+Animation=SpellCast
+Random From Sequencial Set=0
+Target Name=Dream Djinn
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+Action=CDelayAction
+{
+Next Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=Player#1-9#
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Delay=0.4
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=definitely soon
+New Map Name=1 Barcelona/Dream Djinni Map
+New Location=Arena Start
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 pass combat
+Text=Congratulations!  You have proven yourself worthy!  You have passed the Trial of Dreams.  Here, take this Sacred Scimitar.  It is a blade forged in the image of that carried by the great Saladin himself. May it serve you well.  Now, you must return to Amir.  I will tell him that you have passed your Trials!  He will be happy to see you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=RHAGYW4H
+}
+Action=CForEachPlayerAction
+{
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=$Instigator
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=1 Barcelona/Gate District
+New Location=From Dream Djinn
+Who To Switch=Player#1-9#
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CForEachPlayerAction
+{
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Give Dervish Perk
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5000 fool
+Text=Foolish mortal.  You dare attack a Djinn?  If you wish a fight, your wish shall be granted!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 riddle 12
+Text=Walk on the living, they don't even mumble. Walk on the dead, they mutter and grumble. What are they?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The answer is fallen leaves.
+Go to node ID=502 riddle 12 pass
+
+Requirement=!None
+Reply Text=The answer is bones.
+Go to node ID=502 riddle 12 fail
+
+Requirement=IN below 4
+Reply Text=The answer is water.
+Go to node ID=502 riddle 12 fail
+
+Requirement=!None
+Reply Text=The answer is spiders.
+Go to node ID=502 riddle 12 fail
+
+Requirement=!None
+Reply Text=The answer is glass.
+Go to node ID=502 riddle 12 fail
+
+Requirement=!None
+Reply Text=The answer is clouds.
+Go to node ID=502 riddle 12 fail
+
+Requirement=!None
+Reply Text=The answer is books.
+Go to node ID=502 riddle 12 fail
+
+Requirement=!None
+Reply Text=The answer is rocks.
+Go to node ID=502 riddle 12 fail
+
+Requirement=IN below 4
+Reply Text=The answer is graves.
+Go to node ID=502 riddle 12 fail
+------------------------------------------------------------
+Node ID=502 riddle 12 pass
+Text=Oh, well done!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(trigger pass relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Pass Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=502 riddle 12 fail
+Text=Sadly, that is incorrect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(trigger fail relay)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Master Fail Riddle Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return to Dream Plane
+Text=Salaam! Kabool welcomes you back to the Trial of Dreams!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am prepared to take the Trials.
+Go to node ID=80 choose test
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=20 kabool
+
+Requirement=!None
+Reply Text=What is the Trial of Dreams?
+Go to node ID=30 trial
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=40 dream plane
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=161 pass combat already armed
+Text=Congratulations!  You have proven yourself worthy!  You have passed the Trial of Dreams.  <His eye falls on the blade already at your side, and he inclines his head.>  And you come to us bearing Eduardo's own work - I will not insult a good sword by handing you its twin.  Now, you must return to Amir.  I will tell him that you have passed your Trials!  He will be happy to see you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+State=RHAGYW4H
+}
+Action=CForEachPlayerAction
+{
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=$Instigator
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=1 Barcelona/Gate District
+New Location=From Dream Djinn
+Who To Switch=Player#1-9#
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CForEachPlayerAction
+{
+Action=CPrintCombatTextAction
+{
+Text to print=The Djinn regards the blade you already carry.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Give Dervish Perk
+}
+}
+}
+Is Default Reply=1
+}
