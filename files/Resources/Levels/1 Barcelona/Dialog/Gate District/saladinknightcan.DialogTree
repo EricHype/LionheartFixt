@@ -358,6 +358,8 @@ Desired Minimum Count=1
 Operator=
 Operand2=COR
 {
+Operand1=COR
+{
 Operand1=CActionExpression
 {
 Action=CActionCheckForInventoryItem
@@ -373,6 +375,15 @@ Action=CActionCheckForInventoryItem
 {
 Who to give check=$instigator
 Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Crescent Scimitar Saladin Quest
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
 }
 }
 }

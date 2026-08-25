@@ -336,7 +336,11 @@ never assigned. Left alone.
 | S20 | " | Not a Saladin | `1 Conversation Start`, the ordinary entry -- unchanged |
 | S21 | " | Carrying either scimitar, ask about the duel | He offers a lesson; accept for **+5 One-Handed Melee** after a fade |
 | S22 | " | Ask again | The offer is **gone**. Once only |
-| S23 | " | Carrying no scimitar | The offer never appears |
+| S23 | " | Carrying no scimitar, scimitar quest never done | The offer never appears |
+| S24 | Dream Djinni, **carrying a scimitar you forged** | Win the combat trial | He does **not** hand you a second one. He enchants the one you have -- it gains **Flame**, fire damage |
+| S25 | " | Took the **Shard** arm instead, so no forged blade | Vanilla: he hands you a Sacred Scimitar as always |
+| S26 | Farshad, **after** the Djinni enchanted your blade | Ask about the duel | The lesson is **still offered**. The gate accepts the quest being completed as well as the item being carried, because re-granting the blade with an addition may not satisfy an item check |
+| S27 | " | Compare the two blades | Sacred+Flame must still beat Crescent+Flame -- the Crescent never gains the base +5 critical or +10 piercing |
 
 S16 is the one to argue about, not to bug-report: it is the release's only deliberate
 balance change. S22 is the farming check.
