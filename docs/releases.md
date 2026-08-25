@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.3.0 shipped**. 0.1.0 through 0.3.0 are published; the sections
+Status: **0.4.0 shipped**. 0.1.0 through 0.4.0 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -60,7 +60,7 @@ development.
 | **0.1.4** | **What playtesting found** (built) - Esteban's death is recognised, the rank titles stop naming a deed you may not have done, and the Goblin Girl's dead replies are repaired | The first release made entirely of play reports. Cut as its own version because the fixes change behaviour players had already seen |
 | 0.2.0 | Link repair, whole game | 84 true dead ends. Ships standalone, needs no new writing. Deliberately *not* first: 0.1.0 needs to demonstrate the thing Fixt is for |
 | 0.3.0 | **The Knights of Saladin** (built) - the order awards the rank, not just the title | The second minor faction. Ordered ahead of Quinn deliberately: the core repair is one faction assignment with four acts of payoff, which is far cheaper than a three-quest chain |
-| 0.4.0 | **Quinn's reagents** - three quests, three healing potion tiers | The project's first new content. Specced in [`plan.md`](plan.md); most of the assets already exist |
+| 0.4.0 | **Quinn's reagents** (built) - three quests, three healing potion tiers | The project's first new content. Most of the assets already existed |
 | 0.5.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
 | 0.6.0+ | The back half - the Crypt's war, the two new areas, companions | The largest work, and it wants the faction and reactivity templates settled first |
 
@@ -123,6 +123,65 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.4.0 - "Quinn's Reagents"
+
+**The first release that is mostly new content**, and it should be read as a deliberate
+crossing rather than more restoration. The project's order is fix, then restore, then
+extend, and this is extend.
+
+What makes it cheap is that almost none of it needed authoring. Two of the three reagents
+already exist as items with finished art, and one of them -- `Lava Troll Hide` -- was
+referenced by **nothing at all** in the shipped game: a quest item for a quest nobody wrote.
+The three healing tiers were already built in a separate mod, shipping into a test map where
+no player could reach them.
+
+### The chain
+
+| Errand | Reagent | Unlocks |
+|---|---|---|
+| 1 | three wolf pelts | Great Healing |
+| 2 | five wasp stingers | Superior Healing |
+| 3 | one lava troll hide | Supreme Healing |
+
+Strictly ordered, and **paced by where each reagent lives** rather than by a level check --
+which is the whole reason the order matters. Supreme Healing is roughly four times Extra
+Healing and would wreck act 1 if it arrived there.
+
+### Three ways to the hide, so nobody is locked into hostility
+
+Vanilla wrote a diplomatic opening to the lava trolls and closed it. Every branch of
+`Warning Troll.DialogTree` ends in combat or walking away, and killing one turns the whole
+pit. But the troll states his grievance unprompted, and it is **pragmatic, not moral**: the
+wererats are killing his people, and he does not care how that stops.
+
+Because the Beggars *are* the wererats, both endings are already tracked vanilla quests:
+
+| Route | Read |
+|---|---|
+| Cure them | `Discover a cure for wererat lycanthropy` |
+| Exterminate them | `Kill The Beggar Master`, or `Help the Thieves Destroy the Beggars Guild` |
+| Kill a Lava Troll Boss | it drops the hide |
+
+Good path, evil path, or no diplomacy at all. The route deliberately does not reward mercy
+specifically -- vanilla's own cure quest requires killing the Prime Wererat for a patch of
+fur, so framing it that way would be dishonest.
+
+### The Wolf Trapper perk locked you out of the errand
+
+The migrated wolf-pelt mod consumed the plain `Wolf Pelt`. Every wolf can branches on
+`Wolf Trapper Perk Checker`: without the perk you get one plain pelt through a canned list,
+with it you get two `Wolf Pelt Perk Quality`. So taking the perk handed you pelts your own
+quest would not accept. Either now counts, at each of the three units.
+
+*(My first diagnosis of this was wrong -- I said the quest was uncompletable by anyone,
+having missed the canned-list indirection. The user had completed it in play. Corrected in
+`321a9cb`.)*
+
+### Also in it
+
+Gate 0's validator moved into the repo at [`tools/validate.py`](../tools/validate.py). It
+had been described as scripted since 0.1.0 while only ever existing in a session scratchpad.
 
 ## 0.3.0 - "The Knights of Saladin"
 

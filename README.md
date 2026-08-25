@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.3.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.3.0).
+-- currently [0.4.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.4.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -60,7 +60,7 @@ packer, the resource-format parser, `modmanager.py`, the map editor and the
 `lionheart-modding` skill. You need that repo checked out to build or install this one.
 Fixt is content; the tools are tools.
 
-## Current release: 0.3.0
+## Current release: 0.4.0
 
 Release 0.1.0 is about the goblins. The pro-goblin thread in the Wilderness is the game's
 most developed evil content and in vanilla it feeds nothing: no faction, no rank, no
@@ -89,6 +89,25 @@ greetings fire, which also confirmed that a map interaction can read quest state
 characters, and only one has walked it. A build that solves everything cannot show whether a
 check quietly *replaced* a vanilla route rather than adding one -- the failure this project's
 own rule forbids -- and only a low-INT, low-CHA character can. That pass is still outstanding.
+
+### 0.4.0 - Quinn's reagents
+
+**The project's first new content**, and the first release that is mostly *extend* rather
+than fix or restore.
+
+Quinn the herbalist wants three things, in order: **three wolf pelts**, **five wasp
+stingers**, and **the hide of a lava troll**. Each unlocks a tier of healing potion above
+vanilla's Extra Healing, sold from a reserve he keeps under the counter for people who bring
+him work instead of complaints.
+
+Almost none of it needed authoring. Two of the three reagents already exist as items with
+finished art -- and the `Lava Troll Hide` was referenced by **nothing at all** in the shipped
+game, a quest item for a quest nobody wrote. The potion tiers already existed too, shipping
+into a test map no player could reach.
+
+**Three ways to get the hide.** Kill a Lava Troll Boss, or settle the wererats -- by curing
+them or by wiping them out, the trolls do not care which -- and they will trade you one. The
+top tier is never gated behind a morality choice.
 
 ### 0.3.0 - the Knights of Saladin
 
