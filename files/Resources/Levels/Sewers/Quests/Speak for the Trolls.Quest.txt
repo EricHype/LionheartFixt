@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=Speak for the Trolls
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=Enrique Garcia, who leads the beggars, is paying to have the lava trolls exterminated. The trolls cannot walk into his hall and argue. Do it for them.
+			ID=SPK2H7VL
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Enrique has withdrawn the contract on the lava trolls. Take the word back down to the chief.
+			ID=SPK5N3BQ
+		}
+		State=CQuestStateDefinition
+		{
+			Text=The beggars are no longer paying to have the lava trolls killed. Nobody in the Sewers is, for the first time in a long while.
+			ID=SPK9C6XZ
+		}
+	}
+	Sub-Quest of=!None
+}

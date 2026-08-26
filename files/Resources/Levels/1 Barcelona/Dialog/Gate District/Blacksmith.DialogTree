@@ -153,6 +153,20 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=01 Introduction, Non-Tainted Female
 Text=Buenos dias, senorita! Adelante, adelante <Come in, come in> - welcome to Eduardo's Blacksmith Shop. Come to purchase the finest weapons in Barcelona, no? Simple iron to enchanted steel, you will find it all here!
@@ -302,6 +316,20 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=01 Introduction, Sylvant
 Text=Ah...are you one of those touched by nature, my friend? No matter. Do not let it be said that I ever turn away a paying customer - welcome to Eduardo's Blacksmith Shop. Come to purchase the finest weapons in Barcelona, no? Simple iron to enchanted steel, you will find it all here!
@@ -451,6 +479,20 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=01 Introduction, Feralkin
 Text=Ah...a long way from the forests, aren't you, my big friend? No matter. Do not let it be said that I ever turn away a paying customer - welcome to Eduardo's Blacksmith Shop. Come to purchase the finest weapons in Barcelona, no? Simple iron to enchanted steel, you will find it all here!
@@ -600,6 +642,20 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=01 Introduction, Tainted Demokin
 Text=Eh...welcome to Eduardo's Blacksmith Shop. If you are looking for iron and, eh, enchanted steel, you have come to the right place.
@@ -754,6 +810,20 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=03 Return Dialogue 1 Normal
 Text=Welcome back to Eduardo's Blacksmith Shop. Come to see what weapons and armor I have that might interest you, no?
@@ -1060,6 +1130,20 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=03 Return Dialogue 1, Insulted
 Text=Eh...welcome back to Eduardo's Blacksmith Shop. Perhaps you have forgiven me for my earlier insult? I meant no harm. Please, let me show you what weapons and armor I have.
@@ -1074,10 +1158,38 @@ Requirement=!None
 Reply Text=
 Go to node ID=09 Discount Given
 Action work in progress=(Set Insult Flag to 0, Store Discount Given)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=6 Return Dialogue Wizard
 Text=Eh...welcome back to Eduardo's Blacksmith Shop. Perhaps you have forgiven me for my earlier insult? I meant no harm. Please, let me show you what weapons and armor I have.
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=08 No Discount Yet
 Text=Eh...as a gesture of goodwill, how about at a discount? Would that suit you?
@@ -3009,6 +3121,20 @@ State=3KL9W1JQ
 }
 Icon=Quest Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+Reply Text=I have been down to the lava trolls. Their chief sends you terms.
+Go to node ID=790 the troll terms
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=76 Perhaps Steal
 Text=Hmmmm...I do not know, but it is possible a stealthy man could obtain the Ore. Those creatures have never hesitated to cheat me on many occasions, so do what you must if your friend...Cortes, is it? ...is in great need.
@@ -4899,4 +5025,82 @@ Should Have Voiceover=0
 Node ID=1000 Reward for bringing back sword not a templar
 Text=Gracias! Oh, you have eased the pain of my father's restless spirit. Please take this gold as payment for your good deed.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=790 the troll terms
+Text=<He sets down the tongs, which he did not do for the Inquisition.>  Terms. From the trolls.  <He laughs once, without much in it, and then stops laughing.>  ...You went down there and came back up with terms. Madre de Dios. Say them, then.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=They dig and stack it. You send one man, in daylight, and he knocks and waits. You pay in iron, not coin. And you send the same man every time, so they know the face.
+Go to node ID=791 terms weighed
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=791 terms weighed
+Text=<He is quiet for long enough that you can hear the forge.>  Iron I have. Daylight costs me nothing. The same man...  <He rubs his jaw.>  ...that is the part that is not about ore, senor. That is them saying they wish to know who they are dealing with. Which is not a thing you ask of someone you mean to cheat.  <He looks at the tongs.>  Fourteen years I have sent boys down there in the dark and told myself it was their business to come back. I did not care to think what was on the other end of it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then agree, and send a man who will keep to it.
+Go to node ID=792 agreed
+Icon=Quest Icon
+
+Requirement=Blacksmith requires barter of 35 or speech less than 35 or barter and speech tagged
+Reply Text=Iron for ore, at their price, is still cheaper than what you have been paying in runners who do not come back.
+Go to node ID=792 agreed
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=I will let you think on it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=792 agreed
+Text=Bueno. Tell them Eduardo agrees. One man, the same man, in daylight, and paid properly -- I will find somebody who can be relied upon to knock and wait instead of helping himself.  <He picks the tongs back up, and does not quite look at you.>  And tell them...tell them I did not know they counted. Gracias, my friend. Truly.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+State=ZZKX5PFU
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+}
+}
+}
+Reply Text=Send Tomas. He is the boy you have been sending down there for years, and he knows that road better than anyone alive -- and he has just been bought back off the trolls at his sister's expense, so pay him properly.
+Go to node ID=793 send the boy
+Icon=Quest Icon
+Requirement=!None
+Reply Text=I will tell them.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD7Q2NB
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=793 send the boy
+Text=<He stops with the tongs halfway to the fire.>  ...Tomas. The little one who used to come for the scraps.  <He sets them down again.>  Madre de Dios. That was who I was sending. All that time I was paying a child to steal from something that could have broken him in half, and I never once asked his name to his face.  <He is quiet for a moment.>  Si. Send him. And tell him he is not a runner now, he is my man, and he knocks on that rock in daylight like a Christian and comes home for his supper.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will tell him.
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
 }

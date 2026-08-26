@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=The Chief Before
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=The lava troll chief who came before this one lies where he fell, at the far end of the pit, among the raiding party that killed him. No troll will go to that part of the rock. Find him, and stand where they will not.
+			ID=CHF3M8QW
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You stood the rite over the old chief's body. Go back and tell the chief it is done.
+			ID=CHF6R1TN
+		}
+		State=CQuestStateDefinition
+		{
+			Text=The old chief has been counted. The trolls will go and fetch their dead now, which they have not been able to do since the day it happened.
+			ID=CHF8Y4KD
+		}
+	}
+	Sub-Quest of=!None
+}

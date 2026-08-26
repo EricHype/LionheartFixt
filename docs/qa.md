@@ -324,8 +324,267 @@ Tomas's own shipped line into a caught thief's account rather than testimony.
 B9 is the point of the whole thing: you buy the boy out, and he resents you for it. That is
 in the shipped text -- nothing was added to Tomas.
 
+**B12-B16: the parley, and the deadlock it fixes.** Found in play. The negotiation above
+lives on `95 the chief`; the chief is talkable *only* while `Troll Peace Keeper` runs
+(his generator carries no interaction specifier of its own); and the peacekeeper was
+started by exactly two things -- node `30 troll trade`, which requires the wererats to be
+dead already, and nodes `97`/`98`, which **are** the chief's negotiation. The only road to
+peace ran through the chief and the only road to the chief ran through peace. A player who
+had not exterminated the wererats could not reach any of it. The negotiation was built and
+the door was never cut.
+
+The Warning Troll grants the parley, because he is the one vanilla already put at the
+entrance to decide whether you go further. It buys safe passage, not the boy.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| B12 | Sewers entrance, **on** the Tomas quest | Talk to the Warning Troll | *"There is a child of my kind shut in your rock. Who do I speak to about it?"* on **both** `01 Greeting` and `20 no trust` |
+| B13 | " | Not on the quest, or debt already settled | Both are absent |
+| B14 | " | Take the parley | He points you deep, past the water. Peace comes on. `make troll mad` is switched off, so he does not re-aggro as you walk away |
+| B15 | " | Walk to the chief and negotiate | B1-B11 all reachable now |
+| B16 | " | Open with *"I come in peace, Eduardo said..."* | `20 no trust` is no longer a fight-or-leave dead end -- parley and the wererat route are both there |
+
+B14's `make troll mad` clause is the specific thing to watch. That trigger is what caused
+the earlier *"if I walk by the greeting troll he turns hostile"* report, and node
+`30 troll trade` switches it off. The parley now does the same; if the gatekeeper turns on
+you after granting passage, that is the cause.
+
+Reply **order** on `01 Greeting` changed as a side effect: the menu now reads talk, leave,
+wererats, parley, fight, where vanilla read talk, fight, leave. Which reply carries
+`Is Default Reply=1` is unchanged -- vanilla marks the *combat* reply as the default on
+that node, and that has been left alone rather than quietly rewritten.
+
 B5 and B6 are the gate checks. If either reply shows up for a character who does not have
 the skill, a gate has failed open.
+
+### 0.5 - the Red Ore trade
+
+Vanilla writes four ways to get Eduardo his Red Ore -- buy it, steal it, fight for it, or
+just go -- and every one of them ends on the same line: set `3KL9W1JQ`, walk to the pit.
+Node `75 Red Iron Barter or Speech` has Eduardo say *"if you can do so peaceably, then that
+would be the best for all"*, and the game then provides no peaceable path at all, because
+until 0.5 nothing could stop the trolls attacking.
+
+This keeps that promise. The chief's grievance was already written -- *"Your city has eaten
+this rock for years and paid us in nothing"* -- and `98 talked down` ends on *"tell the men
+who sent him that we counted every time."* The player carries that word.
+
+Cross-map state is a **quest**, not a marker: `CCheckExistenceAction` only sees the loaded
+map, and Eduardo is in Barcelona while the chief is in the Sewers. The one marker is *"the
+chief has already given his terms"*, read only in the pit, and its whole job is to stop the
+offer reappearing and dragging the quest backwards.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| O1 | Troll Pit, peace **not** made | Talk to the chief | The ore reply is **absent** -- it is gated on the peace being live |
+| O2 | " | Make peace (either route), talk to the chief | *"You said my city has eaten this rock for years..."* |
+| O3 | " | Hear him out | Node 100, then his four terms: dig and stack, one man in daylight, paid in **iron not coin**, the same face each time |
+| O4 | " | Accept | Quest **The Red Ore Trade** appears at state 1 |
+| O5 | " | Talk to the chief again | The offer is **gone**. If it reappears the marker gate failed and the quest can be walked backwards |
+| O6 | Gate District, Eduardo | Open the conversation, any greeting | The reply *"Their chief sends you terms"* is on **every** opening, not buried in a topic |
+| O7 | " | As a Demokin / Sylvant / Feralkin / wizard / after insulting him | Still present -- all eight openings carry it |
+| O8 | " | Give the terms | He sets down the tongs. *"Fourteen years I have sent boys down there in the dark"* |
+| O9 | " | Agree | Quest moves to state 2. He names **Tomas** as the runner |
+| O10 | " | **Barter 35+** | The second acceptance reply is present; absent below it |
+| O11 | Troll Pit | Return to the chief | New reply gated on state 2. Node 102 -- a younger troll hands you the ore himself |
+| O12 | " | Take it | **Red Ore** in inventory, quest state 3, **1509 XP** |
+| O13 | " | Talk to him again | Nothing repeats. No second ore, no second grant |
+| O14 | " | Check Davinci's quest | The ore behaves exactly as looted ore does -- this adds an item, it does not touch `3KL9W1JQ` |
+| O15 | Any | Never talk to the trolls at all | All four vanilla routes unchanged. Eduardo's node count is vanilla + 3 |
+
+O9 is the payoff and the reason the quest is worth writing: the runner Eduardo names is the
+boy you just bought out of that same pit, paid properly this time. It closes the debt quest
+without a line of new Tomas dialogue.
+
+O14 is the risk case. The chief's ore must not activate a Davinci state -- a player who
+never took that quest would have it moved for them. It gives the item and nothing else.
+
+**XP, and why the numbers moved.** A lava troll is worth **1509**, and the pit holds far
+more of them than any quest can offset -- the peaceful route is XP-negative by construction
+and always will be. But it should not be *punitive*. The Tomas debt was paying **200** for
+talking a chief out of a hostage, less than a seventh of what stabbing one troll pays. That
+is not a choice offered to the player, it is a tax on taking it. So:
+
+| Grant | Was | Now | Precedent |
+|---|---|---|---|
+| Tomas debt settled | 200 | **1003** | vanilla grants 1003 exactly 36 times |
+| The Red Ore trade | - | **1509** | one lava troll; vanilla grants 1509 exactly 36 times |
+
+Both are native vanilla figures rather than numbers invented for the mod, and both sit well
+under the 4004 ceiling. Two more allied quests at this scale are specced in `plan.md` (the
+chief's spirit, and speaking for the trolls to Enrique).
+
+### 0.5 - continuity audit of the whole troll faction
+
+Every Fixt-authored node across the three trees was walked with the check in the modding
+skill: enumerate every arrival, ask what the player has actually been *told* on each, and
+compare that against what their reply claims. Six things came out. Gate 0 passed all of them
+before and after -- a reference checker cannot see that a sentence is false.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AU1 | Warning Troll, `20 no trust` | Character who has done **nothing** about the wererats | The *"wererats are finished"* reply is **absent**. Before this it was ungated -- see below |
+| AU2 | " | On Quinn's hide quest, wererats resolved, no hide held | It appears, exactly as on `01 Greeting` |
+| AU3 | Troll chief, ore offer | Never took Eduardo's or DaVinci's Red Ore quest | *"Is there anything your people need from the city?"* -- the player claims nothing. The **chief** names the ore and names Eduardo |
+| AU4 | " | Then hear the terms | *"The smith sends one man"* now has an antecedent |
+| AU5 | " | Rite offer | *"There is a dead troll out on the rock bigger than any I have seen standing. Who was he?"* -- an observation. Node 110's *"You have seen it. Good"* now answers something |
+| AU6 | " | Speak-for-us offer, **never having met Enrique** | The player asks who sent the bodies; the chief answers *"Enrique Garcia. The one who keeps the beggars."* That is also how the player learns where to go |
+| AU7 | Eduardo, node 792 | Never took Marisol's quest | He does **not** name Tomas |
+| AU8 | " | Tomas rescued | A gated player reply offers him, and node 793 is Eduardo realising who he had been sending down there |
+
+**AU1 was an exploit, not a wording slip.** When the wererat reply was spliced into
+`20 no trust` last turn the text was copied and its requirement was not. The copy on
+`01 Greeting` carries a real gate -- `CAND(CAND(on Quinn's hide quest, do not already hold a
+hide), COR(wererat cure done, COR(Beggar Master killed, Beggars destroyed)))`. Ungated, any
+character at any time could claim the wererats were dead and collect **peace and a free Lava
+Troll Hide**. Both copies now carry the identical gate, and the build asserts they match.
+
+AU3-AU6 are all the same shape as the three continuity bugs already on record: a **player's
+own line** asserting something they only learn on one route in. The repair in every case was
+to let the NPC supply the fact instead, which reads better as well -- an NPC answering a
+question beats an NPC agreeing with an accusation.
+
+CAND nests (210 vanilla uses) and COR exists (121), so multi-condition gates were available
+the whole time.
+
+### 0.5 - the chief's errands are tiered, not offered all at once
+
+Found in play: peace lands and a troll who has never met you offers a trade negotiation, a
+burial rite and political representation in the same breath. That is a quest dispenser,
+which is the one thing a faction is not supposed to read as.
+
+Each errand now needs the one before it:
+
+| Tier | Errand | Available once | Why there |
+|---|---|---|---|
+| 1 | **The Red Ore Trade** | peace, however you got it | Business, not trust. He has been robbed for years and would say so to anyone who could carry it upstairs |
+| 2 | **The Chief Before** | the ore trade is complete | He has watched you carry his word honestly and come back -- which is the whole of what the rite asks for. Handing a stranger his predecessor's body is not |
+| 3 | **Speak for the Trolls** | the rite is complete | Being their voice in the city is the deepest of the three, and node 132 lands hardest once you have buried the chief that day made |
+
+This is a **deliberate departure from `plan.md`**, which wanted the errands parallel so that
+"none of them is a toll on the one before". In play that reads as a dispenser. Play wins.
+
+The tier gates drop the peace operand on purpose: the chief cannot be spoken to at all
+unless the peacekeeper is running, so a completed ore trade already implies peace.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TR1 | Troll chief, first conversation | Peace just made, nothing done | **Exactly one** errand offered -- the ore trade. Plus the Tomas reply if you are on that quest, the flavor replies, and the goodbye |
+| TR2 | " | Take the ore trade, return before finishing | No new offers. The ore offer itself is gone |
+| TR3 | " | Finish the ore trade | The rite appears. Speak-for-us does **not** |
+| TR4 | " | Finish the rite | Speak-for-us appears |
+| TR5 | " | Finish all three | No offers left. Only flavor and the goodbye |
+| TR6 | " | Reach peace via the **wererat** route, never taking the Tomas quest | The ore trade is still offered -- tier 1 keys on peace, not on Tomas |
+
+TR6 also covers a continuity fix of the same class as the Eduardo/scimitar error. The ore
+offer used to open *"You said my city has eaten this rock for years and paid you nothing"*,
+quoting node 96 -- the **Tomas** negotiation. A player who reached peace by exterminating
+the wererats never heard that line. It now stands on its own either way.
+
+### 0.5 - the chief before
+
+`05 Troll Pit` holds **thirteen corpses in one tight cluster**, x 4265-4939, y 2500-3089:
+four dead lava trolls, one dead `Lava Troll Boss`, and the eight who killed him -- two
+wererats, two guard dogs, two thieves, a thug and a prisoner. The living chief stands at
+(5185, 2640), a couple of hundred units off the lip of that field. The map author staged a
+battlefield, put the new chief on the edge of it, and wrote not one line about any of it.
+
+This is also a **correction to `plan.md`**, which proposed a spirit quest on the grounds
+that the pit holds "30 Spirit generators" and the trolls' dead are unquiet. Those
+generators create `Inventory/Enemy Drop Items Cans/Spirit Energy/Spirit 5 Huge Entity` --
+they are mana pickups, not ghosts. The corpses are the real content, and they are better.
+
+The invented fact is one line of custom: a chief must be counted by someone who was not
+there. It is what makes the errand impossible for the trolls and possible for the player,
+and it is why the bodies have lain untouched rather than the trolls simply not caring.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CB1 | Troll Pit, peace made | Talk to the chief | *"There are bodies at the far end of this rock, and none of them are being fetched"* |
+| CB2 | " | Peace **not** made | That reply is absent |
+| CB3 | " | Hear him out | Node 111: a chief is counted by one who was not there. Quest **The Chief Before** at state 1 |
+| CB4 | " | Talk to him again | The offer is gone -- marker-gated, cannot run backwards |
+| CB5 | Troll Pit, far east end | Walk to (4736, 3014) | The old chief's body. **It can be clicked and it talks** |
+| CB6 | " | Read node 120 | It names what is lying around him, and does not arrange them |
+| CB7 | " | **Not** on the quest | Node 120 still opens; the rite reply is absent, the look-and-leave reply is not |
+| CB8 | " | Stand the rite | Node 121. Quest to state 2 |
+| CB9 | Back at the chief | Tell him | Node 112 -- the trolls move east *en masse*. **1509 XP**, quest state 3 |
+| CB10 | " | Talk again | Nothing repeats |
+
+**CB5 is the risk case and the reason this needs a playtest.** The specifier is hung on the
+corpse generator's `AIs to Add`, which is the documented way every generated NPC in the game
+gets its dialogue -- but it has never been done on a *corpse* here, and a dead body already
+carries a loot interaction. If the body cannot be clicked, the fix is known and proven: move
+the specifier onto the `Troll Peace Keeper`'s two-second tick, which already does
+remove-then-add on named entities and was verified in play for the trolls themselves.
+
+### 0.5 - speaking for the trolls
+
+Enrique pays the player to exterminate the trolls (`141 Lava Trolls 2`, quest `Destroy the
+Lava Trolls`). **Vanilla offers no way to decline** -- both replies on that node either
+accept the contract or report it already done. Trolls cannot walk into his hall to argue.
+The player can.
+
+`CSetQuestSatusToFailedIfActiveAction` retires the contract: 239 vanilla uses, and a no-op
+for a player who never took it.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SF1 | Troll Pit, peace made | Talk to the chief | *"There is a man above who is paying to have you killed"* |
+| SF2 | " | Hear him out | He gives you the exact words. Quest **Speak for the Trolls** at state 1 |
+| SF3 | Hall of Beggars, Enrique | Open the conversation, either greeting | The reply is on **both** openings, not buried in a topic |
+| SF4 | " | Deliver it | Node 701 -- he gets faster and less comfortable |
+| SF5 | " | **Speech 50+** | *"You are paying to create the problem you are paying to solve"* |
+| SF6 | " | **Barter 45+** | The ledger argument. Both absent below the thresholds |
+| SF7 | " | With **The Red Ore Trade** complete | A third door, no skill needed -- the trade is worth more than the trolls are dead |
+| SF8 | " | Without it | That third reply is absent |
+| SF9 | " | Any of the three | Contract withdrawn. `Destroy the Lava Trolls` shows **failed** if it was active, untouched if not |
+| SF10 | " | Say nothing (node 703) | He keeps the offer open. Nothing is lost |
+| SF11 | " | Back at the chief | Node 132 -- he sits down. **1509 XP**, quest state 3 |
+| SF12 | Hall of Beggars | On `141 Lava Trolls 2`, decline | **New in Fixt**: *"No. I will not hunt them for you."* Node 704 keeps a way back to the contract |
+| SF13 | " | Take the contract, kill the trolls anyway | Vanilla's route is entirely unchanged |
+
+SF9 is the gate that matters. If the contract shows failed for a player who never accepted
+it, `FailedIfActive` is not behaving as its 239 vanilla uses suggest.
+
+SF12 repairs a real vanilla defect, and repairs it without cost: node 704 offers the contract
+back, so declining can never strand the beggar chain.
+
+### 0.5 - variance: stat, race and faction checks
+
+Flavor only. Nothing in this block moves a quest, takes an item, grants XP or changes a
+reward -- the build test asserts the absence of every one of those actions inside these
+nodes. Each reply returns to the node it came from, so none of them can strand a player
+mid-negotiation, and none is Trigger Only Once, so all can be re-read.
+
+Every gate is a stock requirement can referenced by bare basename, and every one is proven
+in vanilla *dialogue* rather than merely present on disk: `PE 7+` (6 uses), `IN 6+` (6),
+`IN below 4` (3), `ST 8+` (5), `CH lessthan 6` (7), `Templar IS` (45), `Inquisitor IS`
+(106), `Tainted race - feralkin or sylvant`.
+
+| # | Where | Gate | Pass |
+|---|---|---|---|
+| VR1 | The corpse field, node 120 | `PE 7+` | The four trolls are in a line, all facing his way -- they were still coming when it ended. A bow with no arrow nocked. The dogs are the only ones who ran |
+| VR2 | " | `IN 6+` | Wererats *and* thieves in one party -- two ends of a war that has run for years. Somebody bought both halves for the same night and told neither |
+| VR3 | " | `IN below 4` | *"Thirteen. That is a lot."* Short and flat, not comic |
+| VR4 | " | PE 6 or less / IN 4-5 | VR1 and VR2 absent. The plain description is all you get |
+| VR5 | " | After any of VR1-VR3 | Returns to node 120. The rite is still available |
+| VR6 | Troll chief, node 95 | `ST 8+` | He looks away first, and makes it a courtesy. *"Big is common down here"* |
+| VR7 | " | Feralkin or Sylvant | He sees it. They have a word for you up there and it is the same word the trolls get |
+| VR8 | " | Human / Demokin, ST 7 or less | Both absent |
+| VR9 | Enrique, node 701 | `Templar IS` | *"I am being lectured about mercy toward monsters. By a Templar."* And: you are the first one who asked them first |
+| VR10 | " | `Inquisitor IS` | He checks the chair for a trap. *"I am extremely listening."* |
+| VR11 | " | `CH lessthan 6` | The blunt version lands *better* -- he was braced for cleverness and got a fact |
+| VR12 | " | Any of VR9-VR11 | Returns to node 701. Speech / Barter / ore-trade routes all still reachable |
+
+VR3 and VR11 are the **Character B** cases -- the low-INT, low-CHA, high-STR build that has
+never had a release walked with it. They are deliberately written short and flat rather
+than played for laughs: the joke wears out in ten minutes and the character still has to be
+playable for forty hours.
+
+VR7 is the one worth reading in place. A Feralkin or Sylvant player and a lava troll are
+both things Barcelona rings a bell about, and the chief is the only character in the game
+who says so.
 
 ### 0.5 - peace with the lava trolls
 

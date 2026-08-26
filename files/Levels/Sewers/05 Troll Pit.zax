@@ -117,6 +117,96 @@ CLayerSaveData
 		}
 		Level Part=CEntityBase
 		{
+			Name=Chief rite asked
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=5185
+			Position Y=2680
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Beggar case asked
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=5185
+			Position Y=2680
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Red Ore terms carried
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=5185
+			Position Y=2680
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Troll Peace Keeper
 			Child List=
 			Visible=0
@@ -24871,11 +24961,45 @@ CLayerSaveData
 					Publisher=
 					Already Generated=0
 					Entity=Monster Cans/Sewers/Lava Troll Boss
-					New Name=
+					New Name=The Chief Before
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CDisplayDialogTreeAction
+							{
+								Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+								Node ID=120 the field
+								Speaker=$trigger
+								Player Being Spoken To=$Instigator
+							}
+							X Radius=70
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
 					}
 					Canned AIs to Add=Array
 					{

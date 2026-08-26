@@ -21,32 +21,6 @@ State=3KL9W1JQ
 Reply Text=I come in peace. Eduardo said I should speak to you about Red Ore.
 Go to node ID=20 no trust
 Icon=Quest Icon
-
-Requirement=!None
-Reply Text=Stand down troll.  Let me pass.
-Go to node ID=
-Custom Action=CMultipleActionsAction
-{
-Action=Array
-{
-Item Count=3
-Action=CDeactivateAction
-{
-Target Name=make troll mad
-}
-Action=CGoToCombatAction
-{
-Enemy Name=$Trigger
-}
-Action=CDeactivateAction
-{
-Target Name=Troll Peace Keeper
-}
-}
-}
-Icon=Fight Icon
-Is Default Reply=1
-
 Requirement=!None
 Reply Text=Sorry, I'll be going now.
 Go to node ID=
@@ -111,6 +85,58 @@ Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
 Reply Text=The wererats are finished. Whatever else you think of me, I am the reason no more of your people are being dragged off in the dark.
 Go to node ID=30 troll trade
 Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+State=KLET2WR9
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tomas debt settled
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=A boy came down here from the city and did not come back up. Small, human. Have your people seen him?
+Go to node ID=40 parley
+Icon=Quest Icon
+Requirement=!None
+Reply Text=Stand down troll.  Let me pass.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=make troll mad
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CDeactivateAction
+{
+Target Name=Troll Peace Keeper
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+
 ------------------------------------------------------------
 Node ID=20 no trust
 Text=We no trust Eduardo no more.  We no trust no one.  Too many dead Trolls.  Wererats sneaky.  Leave or face problem.
@@ -139,12 +165,98 @@ Target Name=Troll Peace Keeper
 }
 }
 Icon=Fight Icon
-
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+State=KLET2WR9
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tomas debt settled
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=A boy came down here from the city and did not come back up. Small, human. Have your people seen him?
+Go to node ID=40 parley
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+}
+}
+}
+}
+Reply Text=The wererats are finished. Whatever else you think of me, I am the reason no more of your people are being dragged off in the dark.
+Go to node ID=30 troll trade
 Requirement=!None
 Reply Text=Sorry, I'll be going now.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 ------------------------------------------------------------
 Node ID=30 troll trade
 Text=<The troll looks at you for a long moment. Something in the set of its shoulders comes down.> ...We know. We count. Was many, now is none.  <It reaches behind itself, works at something with both hands, and holds it out still warm.> Old skin. Comes off anyway. You take. We owe, and Trolls do not like to owe.
@@ -202,10 +314,122 @@ Text=<He is a head taller than the others and does not grumble. He looks at you 
 Should Have Voiceover=0
 
 Requirement=!None
-Reply Text=Nothing yet. I am only looking.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Troll Peace Keeper
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Red Ore terms carried
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Is there anything your people need from the city? I can carry word.
+Go to node ID=100 the ore
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD7Q2NB
+}
+}
+Reply Text=The smith has agreed. He will deal with you directly, and no more runners in the dark.
+Go to node ID=102 word carried
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD9V5XC
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Chief rite asked
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=There is a dead troll out on the rock bigger than any I have seen standing. Who was he?
+Go to node ID=110 the field of them
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
+State=CHF6R1TN
+}
+}
+Reply Text=It is done. I stood over him and I counted.
+Go to node ID=112 counted
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
+State=CHF8Y4KD
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Beggar case asked
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=The ones lying out there with your dead -- thieves, and dogs off a beggar's leash. Who sent them?
+Go to node ID=130 the man above
+Icon=Quest Icon
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK5N3BQ
+}
+}
+Reply Text=The beggar has taken the price off you. Nobody is being paid to come down here now.
+Go to node ID=132 no price
+Icon=Quest Icon
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -230,9 +454,20 @@ Desired Minimum Count=1
 }
 }
 }
-Reply Text=There is a child of my kind shut in your rock. I have come for him.
+Reply Text=I am looking for a human child. Small, and not from down here. He came into the dark and did not come out again.
 Go to node ID=96 the boy
 Icon=Quest Icon
+Requirement=ST 8+
+Reply Text=<Meet his eye, and do not be the first to look away.>
+Go to node ID=150 he sizes you up
+Requirement=Tainted race - feralkin or sylvant
+Reply Text=<You are also a thing this city rings a bell about.>
+Go to node ID=151 the bell
+Requirement=!None
+Reply Text=Nothing yet. I am only looking.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 
 ------------------------------------------------------------
 Node ID=96 the boy
@@ -415,4 +650,363 @@ Reply Text=<Go and find the boy.>
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 the ore
+Text=<He is quiet for a moment, and it is not the quiet of a creature deciding whether to speak. It is the quiet of one deciding whether you are worth the words.>  Not need. Owed.  <He puts a finger against the rock beside him, and the finger is the size of your forearm.>  There is red ore in this rock. It goes up in a sack on a small man's back, in the night, and nothing comes down. Not food. Not iron. Not one word of asking.  We know where it goes. The smith. Eduardo. We have known that name a long time.  We are not thieves. We do not want to be robbed by them either.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then set a price and I will carry it up myself.
+Go to node ID=101 terms given
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=The men above will never agree to pay for what they can steal.
+Go to node ID=101 terms given
+
+Requirement=!None
+Reply Text=Not today.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=101 terms given
+Text=Then hear it, and carry it whole.  <He counts on those enormous fingers, slowly, so you cannot mistake him.>  We dig. We stack. The smith sends one man, in daylight, and that man knocks on the rock and waits to be answered. He pays iron, not coin -- coin is no good in the dark. And he sends the same man each time, so we know the face.  <He closes his hand.>  That is all of it. It is not much to ask of a man who has been taking it for free.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Iron, daylight, and the same man each time. I will tell him.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Red Ore terms carried
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD4K8ZM
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=102 word carried
+Text=<He takes this in the way he takes everything, without moving. Then he turns and says something short over his shoulder, and somewhere behind him a great deal of rock begins to shift.>  In daylight. And the same face.  <He looks back at you.>  You carried it whole. So.  <A younger troll brings up a piece of ore and the chief does not take it from him -- he lets him hand it to you himself, which is a thing you suspect has never happened in this room before.>  The first is not sold. The first is to show we can.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will see he keeps to it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Red Ore
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD9V5XC
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Red Ore Trade XP
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 the field of them
+Text=<Something goes out of him, briefly, and then comes back.>  You have seen it. Good. Then I do not have to say it.  <He does not look east, which you notice is deliberate.>  The one before me is out there. He is lying in the middle of the ones who came for the ore, because that is where he stopped them, and he has been lying there since. We have not gone to him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why not? He is one of yours.
+Go to node ID=111 why not
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=That is your business, not mine.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=111 why not
+Text=Because a chief is counted by one who was not there.  <He says it the way a man says a thing he has said many times and never once liked.>  We were all there. Every one of us who is left was there and did not stop it. So none of us may stand over him and say the number. It must be somebody who owes him nothing.  <He looks at you, and it is the first time he has looked at you like that.>  You owe him nothing. You were not born when it happened. Go out to him, and stand, and count -- one for him and one for each of ours lying near him. That is all of it. Then come back and tell me it is done.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will go and count.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Chief rite asked
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
+State=CHF3M8QW
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=112 counted
+Text=<He is silent long enough that you begin to wonder whether he heard.>  ...Then he is counted.  <He turns and calls something down the pit, one word, and it goes back through the rock in a way you feel through your boots. Somewhere behind him a great many trolls begin moving east, all at once, for the first time in a long time.>  We will go and fetch them now. All of them. You will forgive us if we do not stop to thank you properly -- it has waited long enough.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Go. I will still be here.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
+State=CHF8Y4KD
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Chief Before XP
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 the field
+Text=<A lava troll, and a big one -- bigger than the chief, which takes a moment to absorb. He is lying on his back with his arms out, and the reason he is lying on his back is that there is a great deal of him and it went down all at once.>  <Around him, close enough to touch: two wererats. Two of the beggars' dogs. Two thieves, one with a bow still in his hand. A big man in Barcelona leathers. And one more you would have to roll over to name.>  <None of them are arranged. They are where they stopped.>
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
+State=CHF3M8QW
+}
+}
+Reply Text=<Stand over him, and count. One for him, and one for each of his lying near him.>
+Go to node ID=121 the counting
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=<Leave him as he lies.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=PE 7+
+Reply Text=<Look at how they are lying, and not just at how many.>
+Go to node ID=122 the ground says
+
+Requirement=IN 6+
+Reply Text=<Wererats and thieves. In the same party. Think about that.>
+Go to node ID=123 who paid for this
+
+Requirement=IN below 4
+Reply Text=<Count them.>
+Go to node ID=124 a lot of them
+
+------------------------------------------------------------
+Node ID=121 the counting
+Text=<You count him first, because he is the reason. Then the four of his lying near enough to have been coming to him when it finished -- and they were coming to him, all four are facing the same way and it is his way.>  <Five. It takes no time at all. That is the part that stays with you: a thing that has waited this long, and it takes less than a minute to do, and it needed nothing but somebody who was not there.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Done. Go back and tell him.>
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
+State=CHF6R1TN
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 the man above
+Text=Enrique Garcia. The one who keeps the beggars.  <He says the name the way you would say a debt.>  He has been paying for it for a long time. The ones out there on the rock were his, some of them.  <He says this without heat, which is somehow worse.>  We cannot go up and say anything about it. A troll in your streets is a thing that gets a bell rung. So it goes on being paid, and men keep coming down, and we keep putting them on the rock, and none of that is talking.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I can go up. Let me say it for you.
+Go to node ID=131 say it then
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Then it goes on.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=131 say it then
+Text=<He considers this for a while, and you get the distinct sense he is deciding whether it is a kindness or a trick, and that he has been wrong about that before.>  Then say this, and say it in these words. We did not come up. Not once. In all of it, not one of us has ever gone up your stairs.  <He holds up a finger.>  Everything that has happened has happened down here, on our rock, to people who came to it. Ask him what he is paying for. Ask him if he can say the same.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will say exactly that.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Beggar case asked
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK2H7VL
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=132 no price
+Text=<He takes this the way he takes everything, and then does something you have not seen him do: he sits down. It is a slow business and the floor complains about it.>  No price.  <He looks at the rock between his feet.>  I have been chief since the day out there. Every day of it there has been a price. I do not know yet what the work is when there is not one.  <He glances up.>  I will find out. Go carefully on the stairs.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave him to it.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK9C6XZ
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Speak for Us XP
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 he sizes you up
+Text=<He does look away first, but he takes his time about it, and you get the distinct impression it was a courtesy rather than a concession.>  You are not big. But you stand like something that has been hit and did not go over.  <He makes a low sound that is not quite approval.>  That is worth more than big. Big is common down here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Say nothing, and let it stand.>
+Go to node ID=95 the chief
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=151 the bell
+Text=<He looks at you for a long moment -- properly, the way he has not until now.>  ...Ah. Yes. I see it.  <He does not say what he sees, and does not need to.>  Then you know. They have a word for you up there and it is not your name, and when they say it in a room the room changes.  <He turns back to the rock.>  We have a word too. It is the same word. I am not going to pretend that makes us the same thing -- but you did not have to be told what this is, and everyone else has to be told.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Let it lie.>
+Go to node ID=95 the chief
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=122 the ground says
+Text=<The four trolls near him are not scattered. They are in a rough line and every one of them is facing the same direction, which is his. They were coming to him. They were still coming when it finished.>  <The thieves are further out and turned the other way -- one still has a bow in his hand with no arrow on the string, which means it ended faster than he could work. The dogs are furthest out of all and they are the only ones lying in a way that suggests they ran.>  <He was surrounded, and he did not move from where he stood, and his people did not reach him in time.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Straighten up.>
+Go to node ID=120 the field
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=123 who paid for this
+Text=<Two wererats and two thieves, in the same party, on the same night, dying inside twenty feet of each other.>  <Those two do not work together. They have never worked together -- they are opposite ends of a war that has been running under this city for years, and everyone in the Sewers knows it.>  <Which leaves one arrangement that fits: somebody bought both halves separately, for the same night, and did not tell either of them the other was coming. And that somebody was not down here dying with them.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<File that away.>
+Go to node ID=120 the field
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=124 a lot of them
+Text=<Thirteen. That is a lot.>  <The big one in the middle is the biggest thing here and he is dead too, so whatever happened, it was worse than him.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Stop counting.>
+Go to node ID=120 the field
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=40 parley
+Text=<The troll's head comes round. Whatever it expected you to say, it was not that.>  ...Small one. Yes. Is in the deep.  <It shifts its weight, and for the first time it is not blocking you so much as thinking.>  Not my say. Not my rock to give. You want small one, you talk to chief. Chief is deep, past the water, at the far end where the rock goes red.  <It steps aside -- not far, and not comfortably.>  I say the word down. My people not touch you while you walk to him. That is all I give. Chief gives rest, or chief gives nothing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then I will go and speak to your chief.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=make troll mad
+}
+Action=CActivateAction
+{
+Target Name=Troll Peace Keeper
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=<Say nothing, and go back to the entrance.>
+Go to node ID=
+Icon=Exit Icon
 }

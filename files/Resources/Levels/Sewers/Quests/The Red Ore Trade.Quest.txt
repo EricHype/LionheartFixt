@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=The Red Ore Trade
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=The lava troll chief will sell Red Ore rather than have it taken, if the smith who keeps sending runners after it will deal with him honestly. That smith is Eduardo, in the Gate District. Carry the chief's terms to him.
+			ID=TRD4K8ZM
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Eduardo has agreed to the chief's terms, and to deal openly rather than through runners. Take his word back down to the troll pit.
+			ID=TRD7Q2NB
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Eduardo and the lava trolls trade openly now. The chief handed you Red Ore on the strength of the agreement, rather than making you take it off his dead.
+			ID=TRD9V5XC
+		}
+	}
+	Sub-Quest of=!None
+}

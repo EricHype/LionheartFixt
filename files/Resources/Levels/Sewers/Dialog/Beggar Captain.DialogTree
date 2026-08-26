@@ -1,0 +1,1505 @@
+CDialogTree
+{
+Name=Enrique Garcia - Beggar Leader
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 Conversation Start
+Text=I can tell from your clean clothes that you are a stranger to these filthy sewers, and perhaps even a stranger to Barcelona as well, eh? Yes, I don't forget faces, you have come here recently for some great purpose, it's written on your face like words in a book! Perhaps someone important as yourself could aid a poor, downtrodden sewer-dweller by donating a gold coin or two?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+State=GNYL5VNB
+}
+}
+Reply Text=Juanita will be happy to hear I've killed you!
+Go to node ID=100 what
+Action work in progress=only show this reply if the player has seen Juanita
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+State=48OL7YRF
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What kind of beggar knows everyone?  
+Go to node ID=50 good one
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+State=48OL7YRF
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=Beggar leader requires PC to have 1 gold piece
+Reply Text=Yes, here is a gold coin for you.
+Go to node ID=73 Thank you
+Action work in progress=Give the beggar a gold coin.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+State=48OL7YRF
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+
+Requirement=!None
+Reply Text=I do not like beggars, except for dead ones.
+Go to node ID=30 appearances
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+State=48OL7YRF
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, not today.  I'll be going now.
+Go to node ID=40 come on back
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK2H7VL
+}
+}
+Reply Text=I have been down to the lava trolls, and they have something to say to you.
+Go to node ID=700 the trolls case
+Icon=Quest Icon
+
+------------------------------------------------------------
+Node ID=20 subsequent returns
+Text=You are back, how can I help you?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+State=GNYL5VNB
+}
+}
+Reply Text=Juanita will be happy to hear I've killed you!
+Go to node ID=100 what
+Action work in progress=only show this reply if the player has seen Juanita
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you to have killed some theives
+Reply Text=I have the short sword you asked for.
+Go to node ID=120 next task
+Action work in progress=show this reply only if Player has killed some Thieves
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Take a short sword from a thief
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return enrique's sword
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you to have killed Juanita
+Reply Text=I have killed Juanita for you.
+Go to node ID=130 Inquisition
+Action work in progress=show this reply only if player has killed Juanita
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill the Thieves master
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Juanita
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you to have stolen from the Inquisition
+Reply Text=I have stolen from the Inquisition.
+Go to node ID=140 Lava Trolls
+Action work in progress=show this reply only if player has thieved from Inquisition 
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Steal from Inquisition house
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=steal from inquisition
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you to have killed all lava trolls
+Reply Text=I have killed all the Lava Trolls.
+Go to node ID=150 Potion
+Action work in progress=show this reply only If player has killed all Lava trolls
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Destroy the Lava Trolls
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Lava trolls
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you to have potion from herbalist
+Reply Text=I have the potion you asked for.
+Go to node ID=160 Rejoice
+Action work in progress=show this reply only if player has the potion with him 
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Beggars against the Thieves Guild
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=return lycanthrpe potion
+Experience Points To Add=1
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Potion Lycanthropy Cure
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader checks if he ever assigned you a quest
+Reply Text=What kind of beggar knows everyone?
+Go to node ID=50 good one
+
+Requirement=!None
+Reply Text=I do not like beggars, except for dead ones.
+Go to node ID=30 appearances
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+State=48OL7YRF
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nothing. I'll be on my way.
+Go to node ID=
+Action work in progress=if they choose this, end dialogue
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK2H7VL
+}
+}
+Reply Text=I have been down to the lava trolls, and they have something to say to you.
+Go to node ID=700 the trolls case
+Icon=Quest Icon
+
+------------------------------------------------------------
+Node ID=21 will you kill Juanita
+Text=Have you decided to Kill Juanita after all?
+Should Have Voiceover=0
+
+Requirement=Beggar leader checks to see if Juanita is dead
+Reply Text=I have already killed her. *grin*
+Go to node ID=130 Inquisition
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill the Thieves master
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Juanita
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=Beggar leader requires you NOT to have killed Juanita
+Reply Text=Yes, I will do it.
+Go to node ID=89 good luck
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Kill the Thieves master
+State=226STGLY
+}
+Action=CDeactivateAction
+{
+Target Name=Juanita Checker
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you NOT to have killed Juanita
+Reply Text=No I will not.
+Go to node ID=22 Then leave me alone
+------------------------------------------------------------
+Node ID=22 Then leave me alone
+Text=Then leave me alone!  I do not have time for you if you will not help me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=30 appearances
+Text=Why threaten a poor beggar? Have you not learned in your travels that things are not always what they seem?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Beggar turns into wererat and attacks
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CHandleMessageAI
+Delay Between Removes=0
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=$Trigger
+Name To Target=
+Valid Targets=
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Transformation
+Location Entity=Enrique Garcia (wererat)
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=CDelayAction
+{
+Next Action=CDeactivateAction
+{
+Target Name=$Trigger
+}
+Delay=1.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=Enrique Garcia (wererat)
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 come on back
+Text=Ahh, perhaps another time.  Heh Heh, there's no hurry, I will still need gold the next time I see you!  That is for sure!  
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 good one
+Text=Why, a good one of course!  I make it my business to know everyone - and whether or not they are loose with their purse strings.  My 'friends' and I keep in close contact, so if I don't know someone, I at least know of them.  You, I've never heard of.  Tell me, are you with the Inquisition?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What friends?
+Go to node ID=55 beggars
+
+Requirement=Inquisitor IS
+Reply Text=Yes, I am aligned with them... why?
+Go to node ID=60 knew it
+Custom Action=CActivateAction
+{
+Target Name=told Enrique you are an inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Inquisitor NOT
+Reply Text=No, I am not, why?
+Go to node ID=70 quest assigned
+
+Requirement=Inquisitor NOT
+Reply Text=Yes, I am aligned with them... why? <Lie> 
+Go to node ID=60 knew it
+Action work in progress=show this reply only if player is NOT playing as an Inquisitor 
+Custom Action=CActivateAction
+{
+Target Name=told Enrique you are an inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Inquisitor IS
+Reply Text=No, I am not, why? <Lie>
+Go to node ID=70 quest assigned
+Action work in progress=show this reply only if player is playing as an Inquisitor
+------------------------------------------------------------
+Node ID=55 beggars
+Text=Ahh, a lot of beggars around here sort of look up to me as their leader.  I give them tips, tricks, protect them if they get in a scuffle, things like that.  In exchange, they give me part of their 'earnings' and tell me about people they meet.  But enough about me, are you with the Inquisition or not?
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=Yes, I am aligned with them... why?
+Go to node ID=60 knew it
+Custom Action=CActivateAction
+{
+Target Name=told Enrique you are an inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Inquisitor NOT
+Reply Text=No, I am not, why?
+Go to node ID=70 quest assigned
+
+Requirement=Inquisitor NOT
+Reply Text=Yes, I am aligned with them... why? <Lie> 
+Go to node ID=60 knew it
+Action work in progress=show this reply only if player is NOT playing as an Inquisitor 
+Custom Action=CActivateAction
+{
+Target Name=told Enrique you are an inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Inquisitor IS
+Reply Text=No, I am not, why? <Lie>
+Go to node ID=70 quest assigned
+Action work in progress=show this reply only if player is playing as an Inquisitor
+------------------------------------------------------------
+Node ID=60 knew it
+Text=Ahh, I might have known as much.  I could tell right off that I wouldn't like you.  High and mighty Inquisitor.  I don't see what's wrong with a little magic.  It's not like those folks can help it that they're gifted.  Ahh, there's no use talking to you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you have against Inquisitors?
+Go to node ID=65 not talk
+
+Requirement=!None
+Reply Text=You are a Wielder!  Die Magic User!
+Go to node ID=
+Action work in progress=if they choose this, begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Target Affected/Charm
+Location Entity=Enrique Garcia (wererat)
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=CDelayAction
+{
+Next Action=CDeactivateAction
+{
+Target Name=$Trigger
+}
+Delay=1.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=Enrique Garcia (wererat)
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You're probably right, goodbye.
+Go to node ID=
+Action work in progress=if they choose this, end dialogue
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 not talk
+Text=N-Nothing.  Hey, why don't you just leave me alone - and I'll do the same to you, Inquisitor.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Nervous, Wielder?  You should be.
+Go to node ID=
+Action work in progress=if they choose this, begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Target Affected/Charm
+Location Entity=Enrique Garcia (wererat)
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=CDelayAction
+{
+Next Action=CDeactivateAction
+{
+Target Name=$Trigger
+}
+Delay=1.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=Enrique Garcia (wererat)
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Fine with me, suit yourself.
+Go to node ID=
+Action work in progress=if they choose this, end dialogue
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 quest assigned
+Text=Excellent, because I cannot stand Inquisitors.  We would have ended this conversation right then, had you said yes.  Say, are you interested in helping me out?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, what do you need?
+Go to node ID=90 battle
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Ha! A foe of the Inquisition! Die scum!
+Go to node ID=
+Action work in progress=if they choose this, begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Target Affected/Charm
+Location Entity=Enrique Garcia (wererat)
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=CDelayAction
+{
+Next Action=CDeactivateAction
+{
+Target Name=$Trigger
+}
+Delay=1.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=Enrique Garcia (wererat)
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Not now, thanks. I must be going.
+Go to node ID=80 maybe later
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=73 Thank you
+Text=Thank you!  Your kindness is very much appreciated.  I wish there were more like you around this town, stranger.  Say, is there anything I can do for you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What kind of 'beggar' knows everyone?
+Go to node ID=50 good one
+
+Requirement=!None
+Reply Text=Not today thanks, I'll be going now.
+Go to node ID=40 come on back
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 maybe later
+Text=All right then, but maybe if we see each other again, you'll feel differently.  I can definitely use some help.  Goodbye then.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=83 hurry
+Text=Excellent. Please hurry, my friends are growing weary of fighting with those thieves.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=84 of course
+Text=Of course I will!  You will find me very happy if you bring me news of her demise! And I in turn will make you very happy. Now, get to it!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Kill the Thieves master
+State=226STGLY
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=85 doubts
+Text=Then I will forever doubt your true allegiance.  Kill her, and I will trust you.  Choose not to, and I will consider you as a stranger.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=86 think quickly
+Text=Well, while you're thinking about it, why not just do it?  Hear this: if you choose not to kill her, I will forever doubt your true allegiance.  If you kill her, and I will trust you as a friend.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll do it after all.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Kill the Thieves master
+State=226STGLY
+}
+Action=CDeactivateAction
+{
+Target Name=Juanita Checker
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, I will not do that.
+Go to node ID=22 Then leave me alone
+Custom Action=CActivateAction
+{
+Target Name=Juanita Checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=88 trust me
+Text=Trust me, it will be worth your time to steal from the Inquisition!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Steal from Inquisition house
+State=1MHZROG3
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=89 good luck
+Text=Good luck!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=90 battle
+Text=Well, there is a band of thieves led by a woman called Juanita Suarez.  Argh, what a witch!  Anyway, they've apparently got something against me and my friends because they will not stop picking fights with us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 more battle
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 what
+Text=What? You are an associate of Juanita? Then it is I who shall kill you!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Target Affected/Charm
+Location Entity=Enrique Garcia (wererat)
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=CDelayAction
+{
+Next Action=CDeactivateAction
+{
+Target Name=$Trigger
+}
+Delay=1.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=Enrique Garcia (wererat)
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 tough times
+Text=Does that surprise you? Please do not take offense at this, but I have my doubts about your affiliatons. If you do this for me, it will calm those fears. So what will it be, will you help me or not?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'll see what I can do.
+Go to node ID=83 hurry
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Take a short sword from a thief
+State=5JEO99EE
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you to have met Juanita
+Reply Text=Juanita will be glad to hear I've killed you!
+Go to node ID=100 what
+Action work in progress=only show this reply if player has seen Juanita
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry, I can not do that.
+Go to node ID=80 maybe later
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 next task
+Text=Thank you, my friends and I sure do appreciate it.  Here, take this as token of my appreciation.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=121 next task continued
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Beggar Short Sword in Sewers
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 Inquisition
+Text=Excellent! Thank you very much.  I feel so much safer now.  Let me reward you by giving you a tip.  I overheard when I was out begging today that there is something very valuable being held at the local Inquisition quarters - a treasured chalice I believe.  Go there and steal it from them.  Then, if you come back to me, I will pay you handsomely for it!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Inquisistor's Chalice
+}
+}
+Reply Text=I have already stolen a chalice from them.
+Go to node ID=140 Lava Trolls
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=steal from inquisition
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Inquisistor's Chalice
+}
+}
+}
+Reply Text=Thanks, maybe I'll do it.
+Go to node ID=
+Action work in progress=if they choose this, end dialogue
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Steal from Inquisition house
+State=1MHZROG3
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Inquisistor's Chalice
+}
+}
+}
+Reply Text=That's all? After what I did for you?
+Go to node ID=88 trust me
+------------------------------------------------------------
+Node ID=140 Lava Trolls
+Text=You have the chalice with you then? Excellent! Ha, I relish the irony of it!  I will use this chalice to drink a certain potion I crave - if I am fortunate enough to ever acquire it. To think that I will achieve freedom from my condition by placing my lips against a most treasured item of my persecutors! Ha! Here, take this gold, and give me the Chalice!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=141 Lava Trolls 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=175
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Inquisistor's Chalice
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Steal from Inquisition house
+}
+Action=
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Potion
+Text=Excellent! Thank you very much. Here, take this gold for your trouble. Now, if I may press you one more time, there is one thing more that I need. We beggars have all been poisoned by an infectious bite from a Wererat. We were once part of Juanita's clan, but they shunned us when we began to change. When we venture into Barcelona, we must disquise ourselves as common beggars - looking much like what you see before you. In reality I am a wererat like the others you have encountered here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=155 Potion 2
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=155 Potion 2
+Text=Please, you must seek out Quinn the Herbalist.  He will no doubt have a potion that will cure us and return us back to normal.  He will not do it for me. I'm afraid he thinks of me a common thief and will not have me in his store much less go to the trouble of making the potion for me. But without that potion, we will be forced to live our lives despised by all as Wererats.  As you can imagine, you will be greatly rewarded if you bring that potion back to us.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=quinn is dead
+Desired Minimum Count=1
+}
+}
+Reply Text=Quinn? If you need him for the cure, you and your friends are doomed. I killed him.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=enrique attacks
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=quinn is dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll do it.
+Go to node ID=
+Action work in progress=if they choose this, end dialogue
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+State=HNZJ0I2W
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 Rejoice
+Text=Can it be true? Oh please let me have it... Yes.. it is true!  Oh you have saved us!  We shall be forever grateful.  Here, take this.  You have earned it!  Good luck with the remainder of your journey.  You shall never be forgotten.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Potion Luck
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Beggar Friend
+}
+}
+}
+Character to get attributes from=$Instigator
+Then=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Beggar Friend
+}
+Else=
+}
+}
+Action=CPrintCombatTextAction
+{
+Text to print=You have become a friend of the beggars.
+Character to show text to=$Instigator
+Emphasize=1
+Suppress Duplicates=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=91 more battle
+Text=They've even killed a few of us. This is making my 'friends' uncomfortable and some are starting to doubt my leadership abilities.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=92 even more battle
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=92 even more battle
+Text=Now, one of the more fearsome thieves carries with him a short sword that he stole from me. Now that he has it, he seems to particularly enjoy using it against us. If you can kill him and bring me that short sword, I will make it worth your while.
+Should Have Voiceover=0
+
+Requirement=Beggar leader requires you to have met Juanita
+Reply Text=Juanita will be happy to hear I've killed you!
+Go to node ID=100 what
+Action work in progress=only show this reply if the player has seen Juanita
+Icon=Quest Icon
+
+Requirement=Beggar leader requires previous discovery of short sword
+Reply Text=Is this the short sword you're talking about?
+Go to node ID=122 why yes
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return enrique's sword
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Take a short sword from a thief
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires NOT having previously found short sword
+Reply Text=You want me to kill for you?
+Go to node ID=110 tough times
+
+Requirement=Beggar leader requires NOT having previously found short sword
+Reply Text=I will recover the sword.
+Go to node ID=83 hurry
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Take a short sword from a thief
+State=5JEO99EE
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires NOT having previously found short sword
+Reply Text=Sorry, I can not do that.
+Go to node ID=80 maybe later
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=121 next task continued
+Text=Now, if you really want to help me, put an end to that witch Juanita.  Ever since I ended my love affair with her.. she just.. she.. ahh never mind.  Let's just say we haven't gotten along very well.  I'm certain she wants me dead, so I have no option but to kill her first.  Will you do it?
+Should Have Voiceover=0
+
+Requirement=Beggar leader checks to see if Juanita is dead
+Reply Text=I have already killed her. <Grin>
+Go to node ID=130 Inquisition
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill the Thieves master
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Juanita
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Beggar leader requires you NOT to have killed Juanita
+Reply Text=I'll think about it.
+Go to node ID=86 think quickly
+Custom Action=CActivateAction
+{
+Target Name=Juanita Checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Beggar leader requires you NOT to have killed Juanita
+Reply Text=You had better make it worth my time.
+Go to node ID=84 of course
+Icon=Fight Icon
+
+Requirement=Beggar leader requires you NOT to have killed Juanita
+Reply Text=Sorry, I can not do that.
+Go to node ID=85 doubts
+Custom Action=CActivateAction
+{
+Target Name=Juanita Checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=122 why yes
+Text=Why yes it is!  Thank you. Here, take this as token of my appreciation.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=121 next task continued
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Beggar Short Sword in Sewers
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Take a short sword from a thief
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=131 Juanita dead
+Text=Really? That is excellent news! I feel so much safer now. Let me reward you by giving you a tip. I overheard when I was out begging today that there is something very valuable being held at the local Inquisition quarters. You should go there and steal it from them.  Then, if you come back to me, I have another high paying job for you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thanks, maybe I'll do it.
+Go to node ID=
+Action work in progress=if they choose this, end dialogue
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Steal from Inquisition house
+State=1MHZROG3
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=That's all? A tip?
+Go to node ID=88 trust me
+------------------------------------------------------------
+Node ID=151 Special Potion
+Text=I wondered why the stench was lessening. Thank you very much, take this gold for your trouble. Now, if I may press you one more time, there is one thing more that I need. We beggars have all been poisoned by an infectious bite from a Wererat.  We were once part of Juanita's clan, but they shunned us when we began to change.  All of us wrap ourselves so as to disguise ourselves as common beggars, but in reality we are slowly changing into wererats ourselves.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=155 Potion 2
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=141 Lava Trolls 2
+Text=I have another job for you that will be equally worth your while.  Below us are a group of Lava Trolls that have been giving us a devil of a time.  Could you go down there and clear them out for us?  If so, I can promise you that our guild will reward you handsomely.
+Should Have Voiceover=0
+
+Requirement=Beggar leader requires that you have killed all lava trolls with OR without quest assigned
+Reply Text=I have killed them already.
+Go to node ID=151 Special Potion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Destroy the Lava Trolls
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Lava trolls
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Beggar leader requires that you have NOT killed the lava trolls
+Reply Text=I'll see what I can do.
+Go to node ID=89 good luck
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Destroy the Lava Trolls
+State=LSOB9VJE
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=No. I will not hunt them for you.
+Go to node ID=704 the offer stands
+
+------------------------------------------------------------
+Node ID=23 inquisitor return
+Text=Good day, Inquisitor.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 pissed
+Text=No! I'll rip you apart for that!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=700 the trolls case
+Text=<He laughs, and then notices you are not laughing, and stops.>  ...You are serious. You went down into the pit and had a conversation. With the trolls.  <He sets down what he is holding.>  Very well. I have paid good coin to have them killed and you have apparently spent the afternoon chatting with them, so by all means. What do they say?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=They say they have never once come up your stairs. Not in all of it. Everything that has happened, happened down there, to men who went to them.
+Go to node ID=701 never came up
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=701 never came up
+Text=<The silence goes on a beat too long.>  ...That is not the point. They are trolls, senor. They sit on the lower level with their ore and their...  <he gestures>  ...and everyone knows what they are.  <He is talking a little faster than he was.>  And I have men who will not go down past the fourth turning, and that costs me. It costs me every week.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 50
+Reply Text=Your men will not go down past the fourth turning because you keep sending them down past the fourth turning to be killed. Stop sending them and the cost stops. You are paying to create the problem you are paying to solve.
+Go to node ID=702 withdrawn
+Icon=Speach Skill Icon
+
+Requirement=Barter moreequal 45
+Reply Text=Then count it properly. What has the contract cost you so far, in coin and in men, against what you have got back? You are not buying safety. You are buying a bill.
+Go to node ID=702 withdrawn
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD9V5XC
+}
+}
+Reply Text=There is red ore moving up out of that pit now, bought and paid for, through your district. That trade is worth more to you standing than the trolls are dead -- and it does not survive you killing the people at the other end of it.
+Go to node ID=702 withdrawn
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=<Say nothing more.>
+Go to node ID=703 not persuaded
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Templar IS
+Reply Text=<Let him notice, at his leisure, exactly who is standing in his hall arguing on behalf of trolls.>
+Go to node ID=710 a knight argues
+
+Requirement=Inquisitor IS
+Reply Text=<Say nothing. Let the robe do it.>
+Go to node ID=711 the robe does it
+
+Requirement=CH lessthan 6
+Reply Text=They live down. You live up. That is all of it.
+Go to node ID=712 blunt
+
+------------------------------------------------------------
+Node ID=702 withdrawn
+Text=<He is quiet for a moment, and when he speaks again he has stopped performing.>  ...Bueno. Bueno. The contract is withdrawn. I will tell the men the lower level is closed and not to go past the fourth turning at all, which is what they have been doing anyway without my permission.  <He rubs his face.>  Tell your trolls that Enrique Garcia has never in his life been argued out of a grudge before and would prefer it did not get about.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It will not get about.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/Sewers/Quests/Destroy the Lava Trolls
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK5N3BQ
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=703 not persuaded
+Text=Then we are where we were, and the offer is where it was.  <He picks his cup back up.>  If you find you have changed your mind about them, the coin is still there. It is not going anywhere. Neither, apparently, are they.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave it.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=704 the offer stands
+Text=<He shrugs, entirely unoffended.>  As you like. It is not for everyone. The offer stands -- I am not in a hurry and neither are they, evidently.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=On reflection, I will do it.
+Go to node ID=89 good luck
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Destroy the Lava Trolls
+State=LSOB9VJE
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=<Leave it there.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=710 a knight argues
+Text=<He notices. You watch him notice.>  ...I am being lectured about mercy toward monsters. By a Templar.  <He laughs, and this time there is something real underneath it, and it is not comfortable.>  Do you know how many of your order have come through this hall telling me what God wants doing to the things in the lower level? All of them, senor. Every one.  <He looks at you differently.>  You are the first one who came down and asked them first.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Return to the argument.>
+Go to node ID=701 never came up
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=711 the robe does it
+Text=<He looks at the robe. He looks at your face. He looks at the robe again.>  ...The Inquisition is asking me to be gentler with something.  <He sits back slowly, like a man checking a chair for a trap.>  Forgive me. I have been in Barcelona a long time and that sentence has never once been said in my hearing, and I find I do not know which way to jump.  <A pause.>  Say the rest of it. I am listening. I am extremely listening.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Return to the argument.>
+Go to node ID=701 never came up
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=712 blunt
+Text=<The bluntness lands oddly. He was braced for cleverness and got a fact.>  ...Yes. That is all of it, isn't it.  <He turns his cup around once.>  I have had that explained to me at much greater length by men who were saying less.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Get on with it.>
+Go to node ID=701 never came up
+Is Default Reply=1
+
+}
