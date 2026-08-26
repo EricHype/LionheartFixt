@@ -4,7 +4,7 @@ CCannedObject
 	{
 		Action=Array
 		{
-			Item Count=4
+			Item Count=5
 			Action=CAddCharacterModifierToCharacterAction
 			{
 				Modifier Description=Esteban is dead
@@ -38,6 +38,21 @@ CCannedObject
 			Action=CSetQuestSatusToFailedIfActiveAction
 			{
 				Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+			}
+			Action=CIfAction
+			{
+				If=CIsQuestStateTheCurrentStateAction
+				{
+					Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+					State=K7BQ2XR4
+				}
+				Then=CActivateQuestStateAction
+				{
+					Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+					State=M3PZ9DLT
+				}
+				Else=
+				Return failure if the If failes=0
 			}
 		}
 	}

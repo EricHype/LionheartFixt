@@ -230,7 +230,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=6
+							Item Count=9
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=Lava Troll
@@ -345,6 +345,57 @@ CLayerSaveData
 										Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
 										Node ID=95 the chief
 										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									X Radius=70
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=warning troll
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=warning troll
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=warning troll
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+										Node ID=01 Greeting
+										Speaker=$Trigger
 										Player Being Spoken To=$Instigator
 									}
 									X Radius=70
@@ -24965,41 +25016,7 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=1
-						AI=CAIInteractionSpecifier
-						{
-							Marked For Deletion=0
-							Publisher=
-							Trigger Only Once=0
-							Was Triggered=0
-							Auto-Flip Switch=1
-							Trigge Must Have HP=0
-							Triggered By Anything=0
-							Triggered By Players=1
-							Triggered By Player Friends=0
-							Triggered By Enemies=0
-							Triggered By Projectiles=0
-							Triggered By Name=
-							Interaction Description=
-							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CDisplayDialogTreeAction
-							{
-								Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
-								Node ID=120 the field
-								Speaker=$trigger
-								Player Being Spoken To=$Instigator
-							}
-							X Radius=70
-							Attacker Range Modifier=0
-							YX Ratio=0.712766
-							Highlight Self Time=0
-							Highlight Until Clicked=0
-							Is Locked=0
-							Allow Interact If Has Target=1
-							Lock Pick Adjustment=0
-							Inventory item to use as key=Inventory Items/!None
-							Is Bussy Talking=0
-						}
+						Item Count=0
 					}
 					Canned AIs to Add=Array
 					{
@@ -26608,6 +26625,59 @@ CLayerSaveData
 			Polygon=5055, 2427, 5058, 2571, 5224, 2663, 5182, 2698, 5033, 2582, 5021, 2432, 5055, 2427
 			Center Position Offset=0.000000,0.000000
 		}
+		Level Part=CFreeRangePoly
+		{
+			Name=the field of them
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Enter Action=CDisplayDialogTreeAction
+					{
+						Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+						Node ID=120 the field
+						Speaker=$trigger
+						Player Being Spoken To=$Instigator
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=4620, 2880, 4990, 2880, 4990, 3150, 4620, 3150, 4620, 2880
+			Center Position Offset=0.000000,0.000000
+		}
 		Level Part=CEntityBase
 		{
 			Name=
@@ -26645,7 +26715,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=5
 							Action=CRemoveCategoryAction
 							{
 								Target Name=$Instigator
@@ -27104,6 +27174,45 @@ CLayerSaveData
 											}
 										}
 									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+										Node ID=01 Greeting
+										Speaker=$Trigger
+										Player Being Spoken To=$Instigator
+									}
+									X Radius=70
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
 								}
 								Delay Between Adds=0
 							}

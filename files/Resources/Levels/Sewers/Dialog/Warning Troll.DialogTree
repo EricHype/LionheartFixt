@@ -21,10 +21,12 @@ State=3KL9W1JQ
 Reply Text=I come in peace. Eduardo said I should speak to you about Red Ore.
 Go to node ID=20 no trust
 Icon=Quest Icon
+
 Requirement=!None
 Reply Text=Sorry, I'll be going now.
 Go to node ID=
 Icon=Exit Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -85,6 +87,7 @@ Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
 Reply Text=The wererats are finished. Whatever else you think of me, I am the reason no more of your people are being dragged off in the dark.
 Go to node ID=30 troll trade
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -112,6 +115,7 @@ Desired Minimum Count=1
 Reply Text=A boy came down here from the city and did not come back up. Small, human. Have your people seen him?
 Go to node ID=40 parley
 Icon=Quest Icon
+
 Requirement=!None
 Reply Text=Stand down troll.  Let me pass.
 Go to node ID=
@@ -165,6 +169,7 @@ Target Name=Troll Peace Keeper
 }
 }
 Icon=Fight Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -192,6 +197,7 @@ Desired Minimum Count=1
 Reply Text=A boy came down here from the city and did not come back up. Small, human. Have your people seen him?
 Go to node ID=40 parley
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -251,6 +257,7 @@ Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
 }
 Reply Text=The wererats are finished. Whatever else you think of me, I am the reason no more of your people are being dragged off in the dark.
 Go to node ID=30 troll trade
+
 Requirement=!None
 Reply Text=Sorry, I'll be going now.
 Go to node ID=
@@ -340,6 +347,7 @@ Desired Minimum Count=1
 Reply Text=Is there anything your people need from the city? I can carry word.
 Go to node ID=100 the ore
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -352,15 +360,27 @@ State=TRD7Q2NB
 Reply Text=The smith has agreed. He will deal with you directly, and no more runners in the dark.
 Go to node ID=102 word carried
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=COR
+{
 Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+}
+}
+Operator=
+Operand2=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/Sewers/Quests/The Red Ore Trade
 State=TRD9V5XC
+}
 }
 }
 Operator=
@@ -379,6 +399,7 @@ Desired Minimum Count=1
 Reply Text=There is a dead troll out on the rock bigger than any I have seen standing. Who was he?
 Go to node ID=110 the field of them
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -391,15 +412,27 @@ State=CHF6R1TN
 Reply Text=It is done. I stood over him and I counted.
 Go to node ID=112 counted
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=COR
+{
 Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
+}
+}
+Operator=
+Operand2=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/Sewers/Quests/The Chief Before
 State=CHF8Y4KD
+}
 }
 }
 Operator=
@@ -418,6 +451,7 @@ Desired Minimum Count=1
 Reply Text=The ones lying out there with your dead -- thieves, and dogs off a beggar's leash. Who sent them?
 Go to node ID=130 the man above
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -430,6 +464,7 @@ State=SPK5N3BQ
 Reply Text=The beggar has taken the price off you. Nobody is being paid to come down here now.
 Go to node ID=132 no price
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -457,12 +492,15 @@ Desired Minimum Count=1
 Reply Text=I am looking for a human child. Small, and not from down here. He came into the dark and did not come out again.
 Go to node ID=96 the boy
 Icon=Quest Icon
+
 Requirement=ST 8+
 Reply Text=<Meet his eye, and do not be the first to look away.>
 Go to node ID=150 he sizes you up
+
 Requirement=Tainted race - feralkin or sylvant
-Reply Text=<You are also a thing this city rings a bell about.>
+Reply Text=They have a word for what I am, up there. I would guess they have much the same one for you.
 Go to node ID=151 the bell
+
 Requirement=!None
 Reply Text=Nothing yet. I am only looking.
 Go to node ID=
@@ -710,7 +748,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
 Action=CActionGiveStandardInventoryItem
 {
 Who to give to=$instigator
@@ -730,6 +768,10 @@ State=TRD9V5XC
 Action=CUseCannedActionAction
 {
 Canned Object=Levels/Sewers/Quests/Red Ore Trade XP
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
 }
 }
 }
@@ -791,7 +833,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Sewers/Quests/The Chief Before
@@ -800,6 +842,10 @@ State=CHF8Y4KD
 Action=CUseCannedActionAction
 {
 Canned Object=Levels/Sewers/Quests/Chief Before XP
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/The Chief Before
 }
 }
 }
@@ -912,7 +958,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Sewers/Quests/Speak for the Trolls
@@ -921,6 +967,10 @@ State=SPK9C6XZ
 Action=CUseCannedActionAction
 {
 Canned Object=Levels/Sewers/Quests/Speak for Us XP
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
 }
 }
 }
@@ -938,7 +988,7 @@ Is Default Reply=1
 
 ------------------------------------------------------------
 Node ID=151 the bell
-Text=<He looks at you for a long moment -- properly, the way he has not until now.>  ...Ah. Yes. I see it.  <He does not say what he sees, and does not need to.>  Then you know. They have a word for you up there and it is not your name, and when they say it in a room the room changes.  <He turns back to the rock.>  We have a word too. It is the same word. I am not going to pretend that makes us the same thing -- but you did not have to be told what this is, and everyone else has to be told.
+Text=<He looks at you for a long moment -- properly, the way he has not until now.>  ...Ah. Yes. I see it now.  <He does not say what he sees, and does not need to.>  Same word, near enough. I am not going to pretend that makes us the same thing -- you can walk up those stairs and I cannot.  <He turns back to the rock.>  But you did not have to be told what this place is. Every other one of you has to be told.
 Should Have Voiceover=0
 
 Requirement=!None

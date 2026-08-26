@@ -103,6 +103,20 @@ def check_dialogtree(p, raw):
     if replies != gotos:
         fails.append(name + ": %d replies but %d goto lines" % (replies, gotos))
 
+    # Every reply must be preceded by a blank line. Vanilla holds this without a single
+    # exception -- 10915 replies, 0 violations -- and the parser needs it: without the
+    # separator a reply is swallowed into the one before it, so its Custom Action never
+    # runs. That shipped silently from 0.2.0 to 0.5 because helpers that reorder replies
+    # rebuilt nodes by joining on a single newline. Caught in play, never by this file,
+    # which is why it is now here.
+    for m in re.finditer(LF + "Requirement=", t):
+        if not t[:m.start()].endswith(LF):
+            ctx = t[:m.start()].rsplit(LF + "Node ID=", 1)
+            where = ctx[1].split(LF)[0].strip() if len(ctx) > 1 else "?"
+            fails.append(name + ": reply not separated by a blank line, in node "
+                         + repr(where))
+            break
+
     for m in re.finditer(r"^(?:Custom Action|Custom Requirement)=(\w+)\n\{\n", t, re.M):
         start = m.end() - 2
         depth, i = 0, start
@@ -200,6 +214,36 @@ for p in files:
         check_resource(p, raw)
         if p.suffix.lower() == ".zax":
             check_map_node_refs(p, raw)
+
+# Every state of every quest this mod defines must be set by something, somewhere.
+# A state that is only ever *read* is a quest that can be offered and accepted but never
+# actually starts -- so its turn-in, gated on that state, never appears. Two of Quinn's
+# three reagent errands shipped in 0.4.0 that way: the reply that offers them carried the
+# Custom Requirement deciding whether to show it, and no Custom Action to activate it.
+# Both were uncompletable, and one of them gated the peaceful route to a lava troll hide.
+# Caught in play three releases later, so it lives here now.
+# .can and .zax are tab-indented; DialogTrees are flat. Allow both, or this silently
+# fails to see any activation that lives outside a conversation.
+SET_STATE = re.compile(r"CActivateQuestStateAction[ \t]*\n[ \t]*\{[ \t]*\n"
+                       r"[ \t]*Quest=([^\n]*)\n[ \t]*State=([^\n]*)")
+activated = set()
+for p in files:
+    if p.suffix.lower() in BINARY:
+        continue
+    t = p.read_bytes().decode("latin-1").replace("\r\n", LF)
+    for m in SET_STATE.finditer(t):
+        activated.add((m.group(1).strip().lower(), m.group(2).strip()))
+for q in F.rglob("*.Quest.txt"):
+    rel = q.as_posix().split("/Resources/", 1)
+    if len(rel) != 2:
+        continue
+    qpath = rel[1][:-len(".Quest.txt")].lower()
+    qt = q.read_bytes().decode("latin-1").replace("\r\n", LF)
+    for s in re.findall(r"^\s*ID=(.*)$", qt, re.M):
+        s = s.strip()
+        if s and (qpath, s) not in activated:
+            fails.append(q.name + ": state " + repr(s)
+                         + " is never activated -- the quest can be offered but never starts")
 
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:

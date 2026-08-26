@@ -303,6 +303,7 @@ Reply Text=Sorry, Great Khan, I seem to have taken a wrong turn. I'll be on my w
 Go to node ID=11 Earn Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=Goblin Horde Highlevel
 Custom Requirement=CIsGreaterThan
 {
@@ -1063,6 +1064,7 @@ Is Default Reply=1
 Node ID=350 next task
 Text=You have proven yourself worthy to remain in my presence. Now you may be privy to the grand plans of our tribe. I have need of a strategist to assist with our next war campaign.
 Should Have Voiceover=0
+
 Requirement=!None
 Reply Text=What campaign is this, Great Khan?
 Go to node ID=360 attack barcelona
@@ -1082,6 +1084,7 @@ Is Default Reply=1
 Node ID=360 attack barcelona
 Text=I have drawn plans to invade Nueva Barcelona. My goblins prepare for war. But there are many warriors within the city, and the walls are nearly impregnable.
 Should Have Voiceover=0
+
 Requirement=!None
 Reply Text=Impregnable? Then how do you mean to cross them?
 Go to node ID=365 barcelona walls
@@ -1101,6 +1104,7 @@ Is Default Reply=1
 Node ID=365 barcelona walls
 Text=Of course not, we need only adopt the proper strategy to scale that obstacle. *You* will slay the guards outside the city walls, beginning with that fool Guard Esteban. Then kill the gate guards to prevent them from dropping the portcullis, and my horde will flood into the city.
 Should Have Voiceover=0
+
 Requirement=!None
 Custom Requirement=CIsGreaterThan
 {
@@ -1295,6 +1299,7 @@ Is Default Reply=1
 Node ID=400 Where are you going?
 Text=I did not say you could leave! Have at thee!
 Should Have Voiceover=0
+
 Requirement=!None
 Reply Text=
 Go to node ID=

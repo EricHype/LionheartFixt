@@ -414,6 +414,51 @@ Both are native vanilla figures rather than numbers invented for the mod, and bo
 under the 4004 ceiling. Two more allied quests at this scale are specced in `plan.md` (the
 chief's spirit, and speaking for the trolls to Enrique).
 
+### 0.5 - the missing blank line: 47 broken replies across three releases
+
+Found in play: the Eduardo ore conversation completed on the Barter path, the quest did not
+advance, and returning to the chief did nothing.
+
+**A blank line before every reply is structural.** Vanilla holds this without a single
+exception -- 10915 replies, 0 violations. Without it the reply is swallowed into the one
+before it: it never appears as its own choice and its `Custom Action=` never runs. Node
+`792 agreed` had two replies separated by nothing, so the `CActivateQuestStateAction` that
+advances The Red Ore Trade was never reached.
+
+The cause is systemic, not local. Every helper this project used to reorder or append
+replies rebuilt the node with `CR.join(r.rstrip(CR) for r in reps)`, which strips the
+separator and never restores it. That helper has been copied forward since 0.2.0:
+
+| File | Sites | Shipped in |
+|---|---|---|
+| Herbalist Dialogue | 21 | 0.4.0 -- Quinn's reagents, unplayed |
+| Warning Troll | 16 | 0.5 |
+| GoblinKhan | 5 | 0.2.0 |
+| Jafar | 2 | 0.3.0 -- the scimitar |
+| Blacksmith | 1 | 0.5 |
+| saladinknightcan | 1 | 0.3.0 |
+| Guard Esteban | 1 | 0.2.0 |
+
+Plus one in the playtest kit's own `Merchant Lope` menu hook, which means the test kit has
+been partly broken as a testing instrument.
+
+**Jafar's `3 Return Dialogue` is on that list**, and that is the node the Sacred Scimitar
+hand-in was spliced into after being reported unreachable *twice*. The splice was correct
+both times. It may well have been landing in a malformed node the whole way.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| BL1 | Eduardo, ore terms | Agree on the **plain** path | Quest reaches state 2. Chief's return reply appears |
+| BL2 | " | Agree on the **Barter 35** path | Same -- this is the reported failure |
+| BL3 | Amir, with the Sacred Scimitar | Open the conversation | The hand-in reply is reachable from the greeting |
+| BL4 | Quinn | Each of the three reagent turn-ins | All 21 repaired sites are in this tree; every turn-in reply must be selectable |
+| BL5 | Goblin Khan / Esteban | Re-walk 0.2.0's branches | 6 repaired sites |
+| BL6 | Any | `python tools/validate.py` | Gate 0 now fails on a missing separator and names the node |
+
+BL6 is the real remedy. Gate 0 never checked this and so never saw any of it; it does now,
+and the check was verified by deliberately breaking a node and confirming the gate caught it.
+BL3-BL5 are regression passes over content that was signed off while quietly damaged.
+
 ### 0.5 - continuity audit of the whole troll faction
 
 Every Fixt-authored node across the three trees was walked with the check in the modding

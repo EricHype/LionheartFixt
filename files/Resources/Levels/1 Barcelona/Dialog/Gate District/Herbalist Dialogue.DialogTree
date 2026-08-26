@@ -905,6 +905,7 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -1082,6 +1083,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -1396,6 +1398,7 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -1573,6 +1576,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -1917,6 +1921,7 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -2094,6 +2099,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -2471,6 +2477,7 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -2648,6 +2655,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -3051,6 +3059,7 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -3228,6 +3237,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -3583,6 +3593,7 @@ Reply Text=I need nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -3760,6 +3771,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -4150,6 +4162,7 @@ Reply Text=Nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -4175,7 +4188,14 @@ State=QN5TG7XR
 }
 Reply Text=Anything else I could bring you?
 Go to node ID=820 wasp stingers request
+Action work in progress=(Offers the Wasp Stingers for Quinn quest if not already given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -4201,7 +4221,14 @@ State=QN8HD4LM
 }
 Reply Text=You have something harder in mind, I think.
 Go to node ID=840 troll hide request
+Action work in progress=(Offers the Troll Hide for Quinn quest if not already given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CIsGreaterThanOrEqual
 {
@@ -4218,6 +4245,7 @@ Constant Value=1
 Reply Text=What have you set aside for me?
 Go to node ID=860 quinns reserve
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -4395,6 +4423,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -4506,6 +4535,7 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=10 Potions response if Inquisitor or Knight Templar
 Text=Eh...again, many apologies, my stock is limited today, but I do have a few *natural* tonics that can help speed the healing of wounds...
@@ -5976,6 +6006,7 @@ Requirement=!None
 Reply Text=How would you have me take it?
 Go to node ID=845 how to take it
 Icon=Quest Icon
+
 Requirement=!None
 Reply Text=I will see it done.
 Go to node ID=
@@ -6027,6 +6058,7 @@ Merchant=Quinn Reserve Three
 After Closed Action=
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CIsEqualTo
 {
@@ -6048,6 +6080,7 @@ Merchant=Quinn Reserve Two
 After Closed Action=
 }
 Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CIsEqualTo
 {
@@ -6069,6 +6102,7 @@ Merchant=Quinn Reserve One
 After Closed Action=
 }
 Icon=Quest Icon
+
 Requirement=!None
 Reply Text=Another time.
 Go to node ID=

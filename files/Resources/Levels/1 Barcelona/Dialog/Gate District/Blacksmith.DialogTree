@@ -5083,6 +5083,7 @@ Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sew
 Reply Text=Send Tomas. He is the boy you have been sending down there for years, and he knows that road better than anyone alive -- and he has just been bought back off the trolls at his sister's expense, so pay him properly.
 Go to node ID=793 send the boy
 Icon=Quest Icon
+
 Requirement=!None
 Reply Text=I will tell them.
 Go to node ID=
@@ -5101,6 +5102,11 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=I will tell him.
 Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+State=TRD7Q2NB
+}
 Icon=Quest Icon
 Is Default Reply=1
 }
