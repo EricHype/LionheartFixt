@@ -1,0 +1,61 @@
+[size=150][b]Lionheart Fixt 0.4.1 - repair[/b][/size]
+
+If you installed 0.4.0 and went to Quinn the herbalist for his wasp stingers or the lava
+troll hide, you could not do it. He asks, you agree, and nothing happens -- the turn-in never
+appears. Two of that release's three errands were uncompletable, and I did not know until
+somebody played them.
+
+[b]Fixt[/b] is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt: it
+fixes what is broken, restores what was cut, and adds new content only where the game plainly
+ran out. This release is entirely the first of those, and it repairs the mod's own past
+releases rather than the game's.
+
+[size=125][b]What is fixed[/b][/size]
+
+[b]Quinn's second and third errands now start.[/b] The replies offering them carried the
+check deciding whether to show the option, and nothing to actually begin the quest. The first
+errand was wired correctly, which is why the wolf pelts worked and the rest silently did not.
+
+[b]47 broken replies across six conversations, going back to 0.2.0.[/b] A reply in a
+Lionheart conversation file must be preceded by a blank line -- the shipped game does this
+10,915 times without exception, and the parser depends on it. Without the separator the reply
+is swallowed into the one before it and whatever it was meant to do never runs. It fails
+silently. The conversation looks fine and a quest just does not move.
+
+Every tool I had written for editing conversations was quietly dropping that line.
+
+[b]The Sacred Scimitar hand-in.[/b] In 0.3.0 this was reported unreachable twice, and twice I
+moved it somewhere more visible. The move was right both times -- the node it landed in was
+malformed. That is the real fix, and it is in this release.
+
+[b]Esteban's contract updates its journal.[/b] Kill him for the goblins and the log used to
+still say "kill him". The quest always completed; only the entry was wrong.
+
+[size=125][b]The part I would rather write about[/b][/size]
+
+None of these were found by the checks. The mod has an automated validator that runs before
+every build, and it passed all three releases with these defects in them, because it checked
+that files parsed and that references resolved -- not that a reply was shaped the way the
+engine requires, or that a quest this mod defines is ever actually started.
+
+Both checks exist now, and both were verified by deliberately breaking something first. The
+second one found the Esteban bug on its first run.
+
+The wider lesson, for anyone modding this game: [b]restoring content runs code that has never
+executed.[/b] Vanilla's own quests are full of paths that were written, wired, and never
+walked, and the moment you make one reachable you are the first person to test it. A
+validator that only proves the files are well-formed will not tell you that.
+
+[size=125][b]Installing[/b][/size]
+
+Download, unzip, run [i]Mod Manager.bat[/i]. It finds a GOG, Steam or retail install by
+itself and [i]Uninstall[/i] puts everything back.
+
+Install over 0.4.0 as normal. [b]These fixes apply to an existing save[/b] -- conversations
+are read fresh each time you speak to someone, unlike map contents, which a save records the
+first time it loads a level. If you were stuck on Quinn's stingers or the hide, just ask him
+again.
+
+Sewers faction work -- making peace with the lava trolls, ransoming the lost boy instead of
+fighting for him, and three errands for the troll chief -- is written and is the next
+release. It is not in this one.

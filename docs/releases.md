@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.4.0 shipped**. 0.1.0 through 0.4.0 are published; the sections
+Status: **0.4.1 shipped**. 0.1.0 through 0.4.1 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -123,6 +123,72 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.4.1 - repair
+
+**No new content.** Every line of this release fixes something already shipped, and two of
+the three items were only found because 0.5's work made a player walk paths that had never
+been walked.
+
+### The blank line
+
+A reply in a `.DialogTree` must be preceded by an empty line. Vanilla holds this without a
+single exception -- 10915 replies, zero violations -- and the parser needs it: without the
+separator a reply is swallowed into the one before it, so it never becomes its own choice and
+its `Custom Action` never runs. The failure is silent and looks nothing like its cause. A
+conversation plays through normally and a quest simply does not advance.
+
+Fixt has been shipping that defect since 0.2.0, in **47 places across six conversations**,
+because every helper used to reorder or append replies rebuilt the node by joining on a single
+newline:
+
+| Conversation | Sites | Shipped in |
+|---|---|---|
+| Herbalist (Quinn) | 21 | 0.4.0 |
+| GoblinKhan | 5 | 0.2.0 |
+| Jafar (Amir) | 2 | 0.3.0 |
+| saladinknightcan | 1 | 0.3.0 |
+| Guard Esteban | 1 | 0.2.0 |
+| Blacksmith (Eduardo) | 1 | 0.5 work |
+| Warning Troll | 16 | 0.5 work |
+
+Jafar's `3 Return Dialogue` being on that list matters: it is the node the Sacred Scimitar
+hand-in was moved to after being reported unreachable **twice** in 0.3.0. The move was correct
+both times. It was very likely landing in a malformed node all along, which means that
+diagnosis was wrong.
+
+### Two of Quinn's three errands could never be started
+
+The replies offering the wasp stingers and the troll hide carried a `Custom Requirement` --
+the gate deciding whether to *show* them -- and no `Custom Action` at all. Quinn asks, the
+player agrees, and the quest never activates, so both turn-ins stay invisible and both errands
+are uncompletable. That is two thirds of 0.4.0.
+
+`QN8HD4LM` also gates the Warning Troll's peaceful trade reply, so the non-violent route to a
+lava troll hide was dead as well.
+
+### Esteban's contract never closed its journal
+
+`Kill Guard Esteban for the Goblin Patrol` defines a second state -- "Esteban is dead. Return
+to the goblin patrol leader and collect what you were promised" -- that nothing ever set, so a
+player carrying his corpse still read "kill him". The hand-in always worked, being gated on
+his death rather than the state; only the log was wrong. Now hooked into the death script and
+guarded on the contract actually having been taken, so it cannot retroactively hand a goblin
+contract to somebody who killed him for the Templars.
+
+### Two new gates, because none of the above was catchable
+
+`tools/validate.py` now fails on a reply that is not preceded by a blank line, naming the
+node, and on any state of a Fixt-authored quest that is never activated. Both were verified by
+deliberately breaking them. The second immediately caught the Esteban state -- and then caught
+its own first implementation being wrong, because the regex assumed no indentation, which
+holds for DialogTrees and not for tab-indented `.can` files.
+
+### What is NOT in this release
+
+The Sewers faction work -- troll peace, the Tomas ransom, three allied errands, the
+desecration scene -- is on `main` but is **0.5.0**, unfinished and lightly played. None of it
+is reachable on an existing save, so it is inert for anyone installing 0.4.1 over 0.4.0.
 
 ## 0.4.0 - "Quinn's Reagents"
 
