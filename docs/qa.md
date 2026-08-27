@@ -556,6 +556,79 @@ and it is why the bodies have lain untouched rather than the trolls simply not c
 | CB9 | Back at the chief | Tell him | Node 112 -- the trolls move east *en masse*. **1509 XP**, quest state 3 |
 | CB10 | " | Talk again | Nothing repeats |
 
+**CB11-CB14: the rite has to change the field.** Node 112 says a great many trolls begin
+moving east and that they will fetch their dead now, and originally nothing changed -- the
+line was something the player could walk back and disprove. Vanilla's idiom for a change the
+player should not watch happen (`Blacksmith map.zax`) is `CFadeScreenDownAction{Time Until
+Auto Fade Up=2}` with a `CDelayAction` making the change inside the dark; the fade restores
+itself, which is why `CFadeScreenUpAction` has exactly one use in the whole game.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CB11 | Troll chief | Turn in the rite | The screen fades down and comes back by itself |
+| CB12 | The field | Walk back in | **The five troll bodies are gone.** The eight raiders are still lying there |
+| CB13 | " | Read what fires now | Node 125, not 120 -- it describes the drag marks and what was left. Node 120 must **not** fire, it describes a body that no longer exists |
+| CB14 | " | Before the rite | Node 120 still fires normally |
+
+CB12 is the point. Only the trolls' own dead are taken, which is what node 112 actually says
+-- "we will go and fetch them now, all of them" means all of *theirs*. The thieves, the dogs
+and the two Barcelona men stay on the rock, which is a better image than clearing the field.
+
+**CB15-CB19: desecrating the body.** `Absorb Spirit` (Tribal, offensive) is cast on a
+corpse: it heals the caster -- much more with the Demokin `Vampiric Fury` trait -- fades the
+body out, deletes it, and sends `Message=After Death Spell` to it. `Corpse Bomb` and
+`Raise Enemy` send the same message, so one handler catches all three.
+
+Listening for it is vanilla's own idiom (5 uses); `Gate House Near Thieves` has a corpse that
+deactivates its walk-in poly when consumed. This goes further on the maintainer's call: the
+peace ends and the tribe turns on you. They could not go to him themselves, they asked you
+precisely because you owed him nothing, and you ate him.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CB15 | The field | Cast **Absorb Spirit** on the old chief | You are healed and the body is consumed -- vanilla behaviour, unchanged |
+| CB16 | " | Immediately after | **The chief speaks** -- node 127 -- and then peace ends and Lava Troll, Troll Chief and the gatekeeper all turn hostile |
+| CB16b | " | **Without ever being given the errand** | Same reaction -- he still arrives, they still turn. But the line is node **128**, not 127 |
+| CB16c | " | With the errand given | Node **127** -- the only case where "I asked you because you owed him nothing" is a sentence he can say |
+| CB16d | " | Having fought your way east through a hostile pit | Node 128 still reads correctly. It says nothing about alliance or permission |
+| CB17 | " | Check the journal | **The Chief Before** is failed. No-op if it was never taken |
+| CB18 | " | Walk back into the field | Node **126**, not 120 -- a shape in the dust, and the eight raiders left. Node 120 must not fire |
+| CB19 | " | Do it having never taken the rite | Same reaction. Peace still ends; the errand is simply never offered |
+
+**How it is staged.** The corpse's message handler does nothing but trigger a `CRelayAI`,
+`Troll desecration relay`, which owns the whole scene in thirteen actions: begin a
+non-interactive sequence, swap the field trigger, delete the chief from his post, force-
+generate him and four Lava Troll Supers **north of the player** at (4790, 2690) and
+(4790, 2670), end the sequence at 4s, open his line at 4s, switch off the peacekeeper, turn
+everyone at 10s, and fail the rite.
+
+The arrivals are pacified at their generators -- `CRemoveCategoryAction` off Enemy, then
+`CSetTargetTypeAction` -- so they cannot swing while he is talking, and each carries a
+`GetCloseThenTalk` specifier because `CGoToCombatAction` works by *converting* an existing
+specifier and silently does nothing without one.
+
+**The hostility is on the relay's timer, not on the reply, and that is deliberate.** A reply's
+`Custom Action` does not execute when the conversation was opened by a script rather than by
+an interaction specifier -- proven twice with a 500 XP probe placed first in the array, under
+both `Speaker=Troll Chief` and `Speaker=$trigger`. Anything that must happen when this line
+closes has to be timed instead. The reply keeps `Icon=Fight Icon` as the player's only warning.
+
+There is no walk and no camera. Both were built and removed: `CAssignMoveRelativeAction` is a
+dragon knockback rather than a walk, `CGoToAI` skated them and left them on the wrong side, and
+the `CAIAttractCamera` chain never tracked. Node 127's text was always written for an arrival
+nobody witnesses -- "You do not see him come. He is simply there" -- so spawning them in place
+is what the prose already describes.
+
+CB16 is the whole reason node 127 exists. Without it the sequence read as: cast a spell, the entire pit goes red, no reason given -- node 126 was the only explanation and it needs the player to walk back into the field, which mid-fight they will not.
+
+**CB18 is the prose check** and the reason this was built at all: without it the player walks
+into an empty patch of rock and is told about a troll bigger than any they have seen standing.
+
+**Known and accepted:** `Corpse Bomb` has a radius, so a Tribal caster fighting near the
+field can destroy the body without intending to, losing the errand *and* the alliance. That
+is a deliberate call, not an oversight -- but it is the most likely way a player meets this
+without understanding why.
+
 **CB5 is the risk case and the reason this needs a playtest.** The specifier is hung on the
 corpse generator's `AIs to Add`, which is the documented way every generated NPC in the game
 gets its dialogue -- but it has never been done on a *corpse* here, and a dead body already

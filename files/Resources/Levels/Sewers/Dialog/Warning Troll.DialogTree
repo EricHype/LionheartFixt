@@ -833,7 +833,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=5
 Action=CActivateQuestStateAction
 {
 Quest=Levels/Sewers/Quests/The Chief Before
@@ -847,13 +847,49 @@ Action=CSetQuestSatusToCompletedAction
 {
 Quest=Levels/Sewers/Quests/The Chief Before
 }
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeleteAction
+{
+Target Name=troll field dead
+}
+Action=CDeleteAction
+{
+Target Name=The Chief Before
+}
+Action=CDeactivateAction
+{
+Target Name=the field of them
+}
+Action=CActivateAction
+{
+Target Name=the field after
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
 }
 }
 Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=120 the field
-Text=<A lava troll, and a big one -- bigger than the chief, which takes a moment to absorb. He is lying on his back with his arms out, and the reason he is lying on his back is that there is a great deal of him and it went down all at once.>  <Around him, close enough to touch: two wererats. Two of the beggars' dogs. Two thieves, one with a bow still in his hand. A big man in Barcelona leathers. And one more you would have to roll over to name.>  <None of them are arranged. They are where they stopped.>
+Text=<A lava troll, and a big one -- bigger than anything you have seen walking down here, which takes a moment to absorb. He is lying on his back with his arms out, and the reason he is lying on his back is that there is a great deal of him and it went down all at once.>  <Around him, close enough to touch: two wererats. Two of the beggars' dogs. Two thieves, one with a bow still in his hand. A big man in Barcelona leathers. And one more you would have to roll over to name.>  <None of them are arranged. They are where they stopped.>
 Should Have Voiceover=0
 
 Requirement=!None
@@ -1059,4 +1095,44 @@ Requirement=!None
 Reply Text=<Say nothing, and go back to the entrance.>
 Go to node ID=
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=125 the field after
+Text=<The trolls have been through here. You can see where -- the rock is scuffed in long parallel drags, five of them, all heading back the way the trolls went.>  <What is left is the eight who came down for the ore. Two wererats. Two dogs off a beggar's leash. Two thieves, one still holding a bow he never got to use. A big man in Barcelona leathers, and one more beside him.>  <Nobody has moved them. Nobody is going to. They are lying in a place that has just been very carefully cleared of everybody who mattered to it, and the difference is not subtle.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave them where they are.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=126 the field desecrated
+Text=<There is a shape in the dust where he was. Not a mark you made -- the mark of something very large having lain in one place long enough for the dust to build up around it and then not be there any more.>  <The eight who killed him are still here. They are the only ones left to be here.>  <Somewhere back down the pit, a sound goes through the rock that you can feel in your boots, and it is not the sound they made when they were going to fetch him.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<There is nothing to count.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=127 the chief knows
+Text=<You do not see him come. He is simply there, at the edge of where the light reaches, and he is not looking at you. He is looking at the place on the rock where the body was.>  <He is quiet for a long time. Long enough that you begin to want him to say something.>  I asked you because you owed him nothing.  <He says it almost gently, and that is the worst of it.>  That was the whole of what the rite needed. Somebody with no debt to him, who was not there, who could stand and count and mean it.  <He looks up.>  I did not know there was a third thing an outsider could be.  <Behind him the sound starts, and it goes through the rock, and it is not a word.>  Do not run. It is a long way up and my people know this rock better than your legs do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<There is nothing you can say to this.>
+Go to node ID=
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=128 the chief knows unasked
+Text=<He is there before you have finished. You did not see him come, and you do not see how something that size got that close.>  <He is not looking at you. He is looking at the mark in the dust where the body was.>  That one stopped the ones who came for the ore. He stood where he is lying and he did not move, and that is the only reason there is still an us.  <A sound starts in the rock behind him, and it keeps going, and it does not stop when you expect it to.>  And you have taken him for what was in him. For the strength of it. Like a thing off a shelf.  <He looks at you now.>  Try the rest of us. We are all still standing up.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<There is nothing you can say to this.>
+Go to node ID=
+Icon=Fight Icon
+Is Default Reply=1
 }
