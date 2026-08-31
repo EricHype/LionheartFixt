@@ -704,6 +704,161 @@ VR7 is the one worth reading in place. A Feralkin or Sylvant player and a lava t
 both things Barcelona rings a bell about, and the chief is the only character in the game
 who says so.
 
+### 0.5 - the thieves' final job, and the first new map
+
+**This is the first map Fixt has added**, though not the first this project has built:
+`test-pocket` in the tools repo is a from-scratch map with hand-laid wall runs, a door,
+NPCs and a quest, and it works. So "will the engine mount a map that did not ship" is
+already answered -- yes, and with no registration anywhere.
+
+`test-pocket` also settles something this build got wrong. It ships **no cache files at
+all** -- no `.way` waypoint graph, no `.frm16` automaps -- and still plays, so the engine
+generates them when they are missing (`Calculating Way Point Map` in the exe, gated by
+`Levels/WayPointVersion.txt`). This map was instead built as a byte-identical geometry
+clone of `Port House Near Warehouse` specifically so the donor's caches would stay valid,
+and no prop was moved or added for the same reason. **That constraint was unnecessary.**
+It is why the room is a visual twin of a Port District house, and that can be undone by
+dropping the three cache files and letting the engine build them.
+
+Nothing about the constraint makes the current build *wrong* -- the geometry really is
+identical, so the cloned caches really are correct for it -- but the room did not have to
+look like that.
+
+The entrance took three attempts, and the two failures are worth recording because
+both looked fine in the files.
+
+First try: an unnamed door in the Temple District with a `CDoorAI` and an empty
+`After Opened` -- it opened, closed, and did nothing, which read as an unused
+entrance. It is neither. It sits at 48% across and 49% down the House Of Ilk's
+1464x877 sprite -- the building's visual middle -- and since depth is `y`, the
+building draws over it and swallows clicks on it. Across every Barcelona map it is
+the **only** door that draws behind its own building. It is also fenced off. Both
+are why it shipped dead.
+
+Second try assumed walkable ground meant reachable ground. The `.way` waypoint
+positions decode reliably, but connectivity lives in the edge lists, which do not.
+"There is floor here" is not "the player can get here".
+
+What shipped: the walled yard at the far end of the district. Its gate at
+(3365.25, 2504) becomes passable -- `FenceDoor2` / `Cur Sequence=Open` /
+`Collideable=0`, matching the open gate already in this map at (800, 2519), because
+all 45 lettered `FenceDoor A..H` in the game are solid scenery with no open frame.
+The entrance itself is the arch **painted into** `house2 c`; the house carries no
+door entity, so it is a walk-into `GetCloseThen Enter Area` poly over the arch at
+(3454, 2491). That position came from decoding the sprite: the arch is at pixel
+(118,400), hotspot (199,181), anchor (3535.08, 2272.25). Crucially **y 2491 is
+greater than the house's 2272**, so it draws in front of the building -- the test
+the first attempt failed.
+
+The quest itself shipped with the game and was never reachable: node `130 Final Job`
+is the only thing that activates `Thieve in Temple District`, and nothing reached
+node 130. That quest's second state, and the requirement `.can` written to gate its
+turn-in, were both unused -- the same fingerprint as the Juanita fee bug.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SR1 | Temple District, the walled yard | Walk through the iron gate at the far end of the district and into the arched doorway of the house inside | You load into a room. **A crash, a hang or a black screen here is the whole test failing** |
+| SR2 | Inside | Look around | A furnished Barcelona interior, walls and floor drawn normally, no missing geometry or holes |
+| SR3 | " | Walk to each corner, and around the table and shelves | Pathing works and the character routes around furniture. Getting stuck, walking through a prop, or refusing to move is a **navmesh mismatch** -- report it |
+| SR4 | " | Open the map / minimap | The automap draws. A blank or garbage automap is a `.frm16` problem, not a quest problem |
+| SR5 | " | Leave by the exit at the edge of the room | You land back inside the yard, on walkable ground, near the doorway you came in by -- not outside the fence |
+| SR6 | " | Walk into the doorway again | You go back in. It is not a one-shot |
+
+Only once SR1-SR6 are green does the quest matter.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SR7 | Juanita, after handing over the Port District dues | Take the reward | She still gives the **Bracers of Stealthy Cunning** and the **Thief Friend** perk, and prints "You have become a friend of the thieves." The rewards come *before* the new job and cannot be missed |
+| SR8 | " | Continue | She offers the final job: *"Now, for the final task. In the Temple District there is a prime location"* |
+| SR9 | " | Choose *"Another time. I have business elsewhere."* | Goes straight to the seduction, exactly as it did before this change. **This is the regression case** -- declining must lose nothing |
+| SR10 | " | Choose *"Consider it done. Where am I going?"* | She names a walled yard with an iron gate at the far end of the district, says the gate stands open, mentions a guard, and warns that what she wants will not be sitting out on a table |
+| SR11 | Journal | After SR10 | A quest **Steal from A Noble of the Temple District** with the entry *"Find location in Temple district to thieve"* |
+| SR12 | The store room | Search the room and find the hidden valuables | The journal advances to *"Tell Juanita about Temple District success"* |
+| SR13 | " | Do SR12 on a character with **PE 4 or lower** and Find Traps under 35 | The hiding place is still findable, because being on the quest reveals it. A low-Perception thief is not locked out of a job they were handed |
+| SR13b | " | Enter with **Find Traps / Secret Doors 35+**, no quest, PE 4 or lower | The cache is revealed. This is the skill the game actually has for finding hidden things, and the shipped game **never checks it** -- its only appearance is a developer debug panel in `Levels/Test Maps/Dan/DDan.zax` that prints every skill value. This is its first real use |
+| SR14 | " | Enter the room with no quest, PE 4 or lower **and** Find Traps under 35 | Nothing is revealed -- unchanged for a passer-by with no aptitude for it |
+| SR15 | Juanita | Return after SR12 | A new reply: *"The house by the flags is lighter than it was. This was in it."* |
+| SR16 | " | Take it | Quest completes, **500 XP** (the same as her other jobs), and the conversation moves to the seduction |
+| SR17 | " | Talk to her again | The turn-in reply is gone. No double completion, no double XP |
+
+Regressions, because `Temple District.zax` was edited and it is a 2.2MB hub:
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SR18 | Temple District | Enter the district at all | Loads normally. Two entities were added to a map with 1028 |
+| SR19 | " | Machiavelli's door, and the **unnamed door at (1034,499)** the first attempt used | Machiavelli's still opens into the House of Ilk map. The other is inert and unnamed again, exactly as vanilla ships it |
+| SR20 | " | The Cathedral, Shylocke, the Inquisition doors, the sewer entrance | All still work |
+| SR21 | " | The **other** Temple District robbery -- Juanita's node 124 job with her key | Unaffected. It is a different house and a different quest |
+| SR22 | Juanita | The henchman shakedown: refuse to pay the 150, meet the thug in the Port District, pay him, return | Node 230 still opens and still leads to the seduction |
+| SR23 | Temple District, the yard gate | Walk up to the iron gate at (3365, 2504) | It is passable. The swapped `FenceDoor2` sprite is 3x wider than the piece it replaced, so also check it sits in the fence run rather than overhanging it |
+| SR24 | " | Walk from the gate to the house doorway | A continuous walkable route, without going round the outside. The waypoints show a band at y 2483-2540 and nothing between 2363 and 2483, which should be the house itself |
+| SR25 | " | Rob the house cleanly, then walk the district | **No** guards appear anywhere. There are **27** entities named `Temple Guard Reserves` and name-targeted actions broadcast, so a mistake here spawns guards across the whole district, not just at the yard. The new post is uniquely named to avoid that |
+
+**Known, and now avoidable:** the store room is a visual twin of `Port House Near
+Warehouse`, because its geometry is that map's. The shipped game reuses these shells
+across maps -- `Temple Home near Ilk` and `Port House Near Merchant` are both
+House1/Rotation E -- but it always varies the furniture, and this room does not. That was
+done to keep the cloned navmesh valid, which `test-pocket` shows was never required. The
+fix is to delete the three cache files and rearrange the props; the engine will build a
+navmesh to match. Not done yet, and not a blocker for testing.
+
+**Also accepted:** the entrance is a walk-into trigger, not a click. The house has no
+door entity -- the arch is painted into the wall -- and `CFreeRangePoly` hover has never
+worked in a hand-built map, so the shipped relocate-fallback idiom is what this uses.
+If the trigger fires while merely walking past, the polygon is too far out; if walking
+into the arch does nothing, it is too far into the wall.
+
+### 0.5 - getting caught, and what Juanita makes of it
+
+Skill decides the *cost*, not whether the job is possible. Vanilla's own equivalent
+robbery has no gate at all -- the entity called `hidden poly reveaked if perception
+check passed` is `Active=1` with zero activations anywhere, so the name is aspirational
+and anyone who walks near it triggers it. Rather than copy that, or hard-wall the quest
+behind a stat a player cannot see, the skill buys you a quiet exit:
+
+| | |
+|---|---|
+| **PE 5+ or Find Traps 35+** | nobody notices |
+| **neither** | a guard is waiting when you step out |
+
+The consequence is assembled from shipped parts. The transport is a copy of
+`Eduardo Sends you to jail`, which fades, disables controls and relocates the party to
+`Inquisition Chambers2 @ Jail Start`; **Sanchez is already there** with an 18-node tree
+covering the fine, `Speech 35` and `Speech 50` negotiation, a Templar route and a
+repeat-visit greeting. **Nothing in that flow strips inventory** -- verified across
+`Jail Start` and Sanchez both -- so the treasure survives a sentence and the quest stays
+completable. That was the one thing that could have sunk this design.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SR26 | The store room | Take the cache with **PE 5+ or Find Traps 35+** | You leave unchallenged. No guard, no dialogue |
+| SR27 | " | Take it with **PE 4 or lower and Find Traps under 35** | Step outside and a guard is there: *"You came out of a house that is not yours, carrying something that is not yours, and you did not even have the sense to do it quietly."* |
+| SR28 | " | Same, but check the timing | He appears at the doorway you came out of, not somewhere across the yard, and the conversation opens by itself |
+| SR29 | The guard | *"You will not take me anywhere."* | He turns hostile and fights. Killing him leaves you free, and you keep the cache |
+| SR30 | " | *"I will come quietly."* | Screen fades, controls lock, and you wake in the Inquisition prison with Sanchez talking at you |
+| SR31 | The cell | Check your inventory | **You still have what you stole.** If it is gone, stop -- the quest can no longer be completed |
+| SR32 | " | Get out via any of Sanchez's routes -- pay the fine, `Speech 35`, `Speech 50`, or Templar | All work as they always did. Nothing here is new |
+| SR33 | Juanita, after being jailed | Hand in the job | She is disgusted -- *"you sat in Sanchez's prison with my name in your mouth and my errand in your pocket"* -- and demands **300** |
+| SR34 | " | Pay the 300 | You stay a member. The debt does not come up again |
+| SR35 | " | Say you do not have it, leave, come back | The debt is still there as a reply on her hub. It does not quietly vanish |
+| SR36 | " | With the debt unpaid or paid, try for the seduction | **She refuses either way.** Being jailed on her errand ends that possibility permanently -- the fee buys membership, not forgiveness |
+| SR37 | Juanita, after fighting the guard off | Hand in the job | She takes you to bed as normal, but first: *"a dead guard at a rich man's gate is a thing people ask questions about. Next time you go quiet or you do not go."* |
+| SR38 | Juanita, clean job | Hand in the job | Neither speech appears. Straight to the seduction, exactly as before this branch existed |
+
+**The regression case that matters most:**
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SR39 | Anywhere | Get jailed for something **unrelated** -- provoke Eduardo, the Church, Inquisition Foyer1, the Knights Templar or the Crossroads -- then go and see Juanita | **She does not care at all.** No disgust, no fee, seduction still available |
+
+SR39 is guarding against a specific mistake. Vanilla sets a marker called
+`been in jail before`, and keying Juanita off it would have made her hostile over a
+Templar scuffle in another district. It is set and read **only inside**
+`Inquisition Chambers2.zax`, purely to choose Sanchez's greeting, and **six** shipped
+routes lead to that cell. Juanita reads two new markers instead, set only by this
+arrest, and the build asserts that none of those six routes touches them.
+
+
 ### 0.5 - peace with the lava trolls
 
 Settle the wererats -- cure them or destroy the Beggars, the trolls do not care which -- and

@@ -1,0 +1,1359 @@
+CDialogTree
+{
+Name=Juanita Suarez
+Portrait=Dialog/NPC Portraits/Thief Guildmistress
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 Conversation Start
+Text=Who are you?  What are you doing here? If you know what's best for you, you will not get mixed up with the likes of me. You will find that my reputation is well deserved.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?  What reputation?
+Go to node ID=20 Juanita
+
+Requirement=!None
+Reply Text=Why are you fighting these poor beggars?
+Go to node ID=40 Inquisition
+
+Requirement=!None
+Reply Text=Do not tell me what is best for me, woman.
+Go to node ID=70 no respect
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, I'll not interfere with you.
+Go to node ID=30 come on back
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 Juanita
+Text=I am Juanita Suarez, and I am looked to as the leader of this particular guild of individuals. We pride ourselves in our ability to reallocate resources. That is, we find people that have too much, and we reallocate it to people who need more - namely, ourselves.  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=So you're a thief!
+Go to node ID=73 thief
+
+Requirement=!None
+Reply Text=Sounds like my kind of people.
+Go to node ID=50 Help
+
+Requirement=!None
+Reply Text=Why are you fighting these poor beggars?
+Go to node ID=40 Inquisition
+------------------------------------------------------------
+Node ID=30 come on back
+Text=That's probably for the best right now. But if you want, why don't you come back some other time?  I may have some work for you if you're interested.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=33 suit yourself
+Text=Suit yourself. But why don't you come on back if you change your mind. I can put you to work, that's for sure.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=34 suit yourself2
+Text=Suit yourself. But come back if you change your mind.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=36 enemies
+Text=Then, you are no better than these beggars! Defend yourself, beggar friend!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Thief enemy trigger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Thief enemy trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=37 get to it
+Text=Then get to it! There are certainly no lack of them around here. When you've killed a few come back here, and I'll give you that second chance to prove yourself.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=38 good luck
+Text=Good luck, and hurry back. If you do this for me, I will tell you of a house in town that has plenty of assets to reallocate.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=39 suspicion
+Text=What other way do you need? You'll either do it, or risk being labeled a supporter of the Wielders. Trust me, you do not want to be so labeled around here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll do it.
+Go to node ID=38 good luck
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+State=GNYL5VNB
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thief Locket in Sewers
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll not kill for you again.
+Go to node ID=36 enemies
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToFailedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thief Locket in Sewers
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Inquisition
+Text=We were sought out by the Inquisition and offered clemency if we would eradicate these worthless beggars. The Inquisition suspects that they're actually Wererats in disguise...  Say, are you aligned with anyone? Are you of a mind to help us?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I can help you.
+Go to node ID=60 Excellent
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I am no friend of the Inquisition.
+Go to node ID=36 enemies
+
+Requirement=!None
+Reply Text=No, I'd rather stay out of this.
+Go to node ID=33 suit yourself
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 explanation
+Text=We were sought out by the Inquisition and offered full clemency if we would do a little combat with these worthless beggars. The Inquisition suspects that they're actually Wererats in disguise...  So what will it be?  Are you of a mind to help us or not?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I can help you out.
+Go to node ID=60 Excellent
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I hate the Inquisition, and all of its allies.
+Go to node ID=36 enemies
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'd rather stay out of this.
+Go to node ID=33 suit yourself
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Help
+Text=Really?  Hmmm.. very interesting. Would you like to help us then?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sure, I can help you out.
+Go to node ID=60 Excellent
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Well, why are you fighting these - things.
+Go to node ID=42 explanation
+
+Requirement=!None
+Reply Text=I'd rather mind my own affairs thanks.
+Go to node ID=33 suit yourself
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Excellent
+Text=Excellent! But as with all who work for me, you'll need to earn my trust, and prove your willingness to do certain... tasks. Still interested?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes.
+Go to node ID=61 still interested
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I better be going.
+Go to node ID=33 suit yourself
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=61 still interested
+Text=One of these beggars managed to steal a locket that belongs to me. Kill as many of them as it takes to find the one who has my locket. After you've done that, I'll give you a second, better chance to prove your allegiance. Are you up for it?
+Should Have Voiceover=0
+
+Requirement=Juanita checks to see if you have the locket
+Reply Text=Is this the locket?
+Go to node ID=93 Yes it is
+Icon=Quest Icon
+
+Requirement=Juanita checks to see if you have NOT found the locket
+Reply Text=Yes, I'll do that.
+Go to node ID=37 get to it
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Find a Locket for Juanita
+State=KO8F2GB5
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I better be going.
+Go to node ID=33 suit yourself
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 no respect
+Text=Is that any way to speak to a lady such as me? I demand your respect, and since you will not give it, I will take it from you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Thief enemy trigger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Thief enemy trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=73 thief
+Text=Thief is such an ugly word. I prefer to think of myself as an opportunist. In fact, I have an opportunity for you, if you're interested.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I can help you out.
+Go to node ID=60 Excellent
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Why are you fighting these beggars?
+Go to node ID=42 explanation
+
+Requirement=!None
+Reply Text=I'd rather mind my own affairs, thanks.
+Go to node ID=33 suit yourself
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 subsequent returns
+Text=You are back, what news do you bring me?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Find a Locket for Juanita
+State=KNAI60PE
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thief Locket in Sewers
+}
+}
+}
+Reply Text=I have your locket. What now?
+Go to node ID=90 anyone
+Action work in progress=Show this reply only if Player has killed some Beggars
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Find a Locket for Juanita
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thief Locket in Sewers
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=recovered Locket
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Juanita requires PC to have killed Beggar leader Enrique Garcia
+Reply Text=I have killed the Beggar Guildmaster.
+Go to node ID=100 Good work
+Action work in progress=Show this reply only if player has killed the Wererat leader
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Enrique
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Juanita requires PC to have thieved in Gate District
+Reply Text=I was successful in the Temple District.
+Go to node ID=110 bribe
+Action work in progress=Show this reply only if  player has thieved house in Gate District
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Rob the house of a Spanish Noble
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=thieved from temple district
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Juanita requires PC to have refused to pay for second lead -node 113
+Reply Text=I've decided to pay you for another lead.
+Go to node ID=81 decided to pay
+Action work in progress=Show this reply only if player has heard node 113, 
+Icon=Quest Icon
+
+Requirement=Juanita requires PC to have collected dues from man in Port District
+Reply Text=Here is your portion of the dues I collected.
+Go to node ID=139 Give gift
+Action work in progress=Show this reply only if player has collected dues in Port District 
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Collect Dues in Port District
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=75
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=collected dues in port district
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Juanita requires player to have initially refused romance in node 140
+Reply Text=Still want to spend a night with me?
+Go to node ID=145 Seduction2
+Action work in progress=Show this reply only if If player has heard node 150
+
+Requirement=Juanita checks if shes ever assigned you a quest
+Reply Text=Please remind me, who are you?
+Go to node ID=20 Juanita
+
+Requirement=Juanita requires completion of Temple District sidequest
+Reply Text=The house by the flags is lighter than it was. This was in it.
+Go to node ID=141 how did it go
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Thieve in Temple District
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Temple Side Job XP
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=jailed robbing for Juanita
+Desired Minimum Count=1
+}
+}
+Reply Text=About that three hundred I owe you.
+Go to node ID=142 disgusted
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no news, I'll be on my way.
+Go to node ID=
+Action work in progress=End Dialogue
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=141 how did it go
+Text=Well? You have the look of someone with a story.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=jailed robbing for Juanita
+Desired Minimum Count=1
+}
+}
+Reply Text=The watch took me. I spent the night in a cell before I paid my way out.
+Go to node ID=142 disgusted
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=fought the guard for Juanita
+Desired Minimum Count=1
+}
+}
+Reply Text=A guard was waiting at the gate. He is not waiting there now.
+Go to node ID=143 careless
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nobody saw me come or go.
+Go to node ID=140 Seduction
+Icon=Quest Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=142 disgusted
+Text=A cell. You were seen, you were taken, and you sat in Sanchez's prison with my name in your mouth and my errand in your pocket. Do you know what a magistrate can make of a thread like that? I do not care to find out. You are not spending tonight anywhere near me. You can spend three hundred instead, and count yourself lucky I am selling and not deciding.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=300
+}
+}
+Reply Text=Three hundred. Take it.
+Go to node ID=144 paid up
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=300
+}
+Action=CDeactivateAction
+{
+Target Name=jailed robbing for Juanita
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I do not have that on me.
+Go to node ID=145 come back with it
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=143 careless
+Text=<She is quiet for a moment.> No. You did it loudly, and then you did it violently, and a dead guard at a rich man's gate is a thing people ask questions about. Next time you go quiet or you do not go. <Then, more warmly:> But you came back, and you came back with it, and that counts for something.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Next time I will be quieter.
+Go to node ID=140 Seduction
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=144 paid up
+Text=Then we are square, and you are still one of mine. Go and be less memorable for a while.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=145 come back with it
+Text=Then find it. Until you do, you are a name I have to explain to people, and I do not enjoy explaining.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=90 anyone
+Text=I thank you...but do not think your allegiance is proven. Anyone can kill a pathetic beggar.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 more proof
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Good work
+Text=Good work! You have proven yourself and earned a small fortune for me at the same time! Excellent!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=101 gate district job
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 bribe
+Text=So I suppose you are hoping for another tip. Well, for a small fee of 70 gold coins, I will happily tell you of one. No doubt what you found in the Temple District was worth more than that.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That's too much gold.
+Go to node ID=113 insulted
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=70
+}
+}
+Reply Text=Here is the gold. Where is the next job?
+Go to node ID=120 Port district
+Action work in progress=take Gold from player
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=cheapskate
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=70
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Maybe later.
+Go to node ID=
+Action work in progress=If they choose this, End Dialogue
+Custom Action=CActivateAction
+{
+Target Name=cheapskate
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=113 insulted
+Text=Fool, you expect me to give away leads for free? What do you take me for? My price is fixed. Pay it, or get out of my sight.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=70
+}
+}
+Reply Text=Very well, here is the gold.
+Go to node ID=121 Port district too
+Action work in progress=needs to take gold from player
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=70
+}
+}
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I'll not pay, and I'll be leaving now.
+Go to node ID=34 suit yourself2
+Action work in progress=If they choose this, End Dialogue
+Custom Action=CActivateAction
+{
+Target Name=cheapskate
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Port district
+Text=Thank you, you are becoming very profitable! Now, In the Port District there is a house that has a faulty lock that any decent thief should be able to pick.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=122 remainder of port district job
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 Final Job
+Text=Thank you, you are proving to be a very worthwhile associate. Now, for the final task. In the Temple District there is a prime location, just waiting for you. If you visit me after that one, you'll find me ready for a different type of - interaction.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Consider it done. Where am I going?
+Go to node ID=131 Ilk side door
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Thieve in Temple District
+State=2KTR5KY9
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Another time. I have business elsewhere.
+Go to node ID=140 Seduction
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=131 Ilk side door
+Text=At the far end of the Temple District there is a walled yard with an iron gate, and a house inside it. The gate stands open. The man who lives there has done very well out of other people's misfortune and keeps a guard nearby, so do not dawdle. What I want will not be sitting out on a table, so search the place properly before you leave.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will find it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=140 Seduction
+Text=<Seductively> You know, I've been impressed with you in more ways than one. You're just the kind of person that I could...become close to. Tell me, are you interested in staying with me tonight?
+Should Have Voiceover=0
+
+Requirement=CH 9+
+Reply Text=I'll bring the wine.
+Go to node ID=
+Action work in progress=High charisma
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Juanita Seduces CH 9 or better
+}
+Icon=Attribute Icon
+
+Requirement=CH 9-
+Reply Text=I'll bring the wine.
+Go to node ID=
+Action work in progress=Low charisma
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Juanita Seduces CH less than 9
+}
+
+Requirement=!None
+Reply Text=No, but thanks just the same.
+Go to node ID=150 perhaps
+Custom Action=CActivateAction
+{
+Target Name=refused seduction
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=145 Seduction2
+Text=<Seductively> Any time.
+Should Have Voiceover=0
+
+Requirement=CH 9+
+Reply Text=I'll bring the wine.
+Go to node ID=
+Action work in progress=High charisma
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Juanita Seduces CH 9 or better
+}
+Icon=Attribute Icon
+
+Requirement=CH 9-
+Reply Text=I'll bring the wine.
+Go to node ID=
+Action work in progress=Low charisma
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Juanita Seduces CH less than 9
+}
+------------------------------------------------------------
+Node ID=150 perhaps
+Text=<Seductively> Well, perhaps another time then. Come back, I promise you that you won't be disappointed.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=121 Port district too
+Text=That's better. Now then, in the Port District there is a house that has a faulty lock that any decent thief should be able to pick.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=122 remainder of port district job
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=91 more proof
+Text=Before I can be certain you are trustworthy, I need you to do one more thing for me. The Inquisition has offered me a tremendous bounty for proof that the Guildmaster of these Beggars has been killed. If you can find and kill that beast, I will be certain that you are not in the employ of my opposition. He and his guild are hiding somewhere here in Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Enrique already dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already killed him.
+Go to node ID=100 Good work
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Enrique
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Enrique already dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll see what I can do.
+Go to node ID=38 good luck
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+State=GNYL5VNB
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Enrique already dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Is there another way to earn your trust?
+Go to node ID=39 suspicion
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Enrique already dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll not kill for you again.
+Go to node ID=36 enemies
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToFailedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=101 gate district job
+Text=Now, to welcome you into our fold, let me tell you of a house in the Temple District. This key will unlock its front door. After that, you're on your own. If you are a halfway decent thief, you'll find a trip there worth your while. It's my little way of saying thank you. If you return and pay me a commission, I will tell you of other opportunities.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sure, but can you tell me where the house is?
+Go to node ID=124 directions to Temple District
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=122 remainder of port district job
+Text=Inside is a man who has not paid his civic protection dues for the last few months. Pay him a visit and collect those dues. If you return half of them to me, I'll give you one last job that will certainly make you happy.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dues already collected
+Desired Minimum Count=1
+}
+}
+Reply Text=Wait, I've already collected those dues.
+Go to node ID=160 restitution
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dues already collected
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will do it, but where is the house?
+Go to node ID=123 directions to Port District
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Collect Dues in Port District
+State=KCLH344H
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=81 decided to pay
+Text=Have you come back to pay my fee?
+Should Have Voiceover=0
+
+Requirement=Juanita requires player to have 100 gold
+Reply Text=Yes, I'll pay
+Go to node ID=121 Port district too
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=cheapskate
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Juanita requires player to have less than 100 gold
+Reply Text=Not yet. I do not have that kind of gold on me.
+Go to node ID=82 idiot
+
+Requirement=!None
+Reply Text=No, I'll be going.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=82 idiot
+Text=Then I suggest you come back when you do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=cheapskate
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=93 Yes it is
+Text=Why yes it is... thank you... but don't think your allegiance is proven. Anyone can kill a pathetic beggar.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 more proof
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Find a Locket for Juanita
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thief Locket in Sewers
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=recovered Locket
+Experience Points To Add=1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 restitution
+Text=What! This is unfathomable. You have collected from one of my routes - without my permission? I demand that you hand over 150 Gold immediately, or there will be trouble.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=150
+}
+}
+Reply Text=I didn't realize he was 'yours'. I meant no offense, of course. Please accept my apology...and the gold.
+Go to node ID=139 Give gift
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Collect Dues in Port District
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=150
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=collected dues in port district
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=!None
+Reply Text=I don't have the gold with me.
+Go to node ID=180 heard that one
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 better
+Text=A very wise decision. I would hate to have to end our relationship on such terms. Now, for your final job, I have a most interesting proposition for you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=140 Seduction
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=180 heard that one
+Text=I've made a career out of ignoring that statement. If you do not pay now, I will send people to make sure you pay.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=150
+}
+}
+Reply Text=I didn't realize he was 'yours'. I meant no offense, of course. Please accept my apology...and the gold.
+Go to node ID=139 Give gift
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Collect Dues in Port District
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=150
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=collected dues in port district
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Fine, I will pay later.
+Go to node ID=190 interest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Juanita shakedown poly
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Port District
+}
+Action=CActivateAction
+{
+Target Name=lackeys sent
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=190 interest
+Text=Yes, you will. With interest.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 my fee?
+Text=Do you have my gold? I believe it was 150 plus interest. Let's make it an even 175.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=175
+}
+}
+Reply Text=Yes, here, take it.
+Go to node ID=170 better
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=175
+}
+Action=CDeactivateAction
+{
+Target Name=lackeys sent
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, I do not.
+Go to node ID=210 waste time
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Juanita attacks
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 waste time
+Text=Then you will not have another chance!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=230 associate
+Text=My associate tells me you've made good on your obligation to me. That was wise. Now then, there is something else I would like to discuss with you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=140 Seduction
+Custom Action=CDeactivateAction
+{
+Target Name=paid Juanita's henchman
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=139 Give gift
+Text=You continue to surprise me. Here, take this as a token of my appreciation.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=130 Final Job
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Bracers of Stealthy Cunning
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Thief Friend
+}
+}
+}
+Character to get attributes from=$Instigator
+Then=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Thief Friend
+}
+Else=
+}
+}
+Action=CPrintCombatTextAction
+{
+Text to print=You have become a friend of the thieves.
+Character to show text to=$Instigator
+Emphasize=1
+Suppress Duplicates=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=123 directions to Port District
+Text=It is near that old loon DaVinci's house. Somewhere in that area of the District.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=124 directions to Temple District
+Text=It's right next to the Cathedral.  I trust you can find that. If not... don't bother coming back.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=I've already stolen from this house
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already stolen from that house.
+Go to node ID=110 bribe
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Rob the house of a Spanish Noble
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=thieved from temple district
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'll see what I can do.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Rob the house of a Spanish Noble
+State=192STPGN
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Keys/Temple District Key from Juanita Suarez
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Icon=Exit Icon
+}

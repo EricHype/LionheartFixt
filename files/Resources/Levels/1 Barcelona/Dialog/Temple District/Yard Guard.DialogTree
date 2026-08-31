@@ -1,0 +1,66 @@
+CDialogTree
+{
+Name=Temple Guard
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Stop there. You came out of a house that is not yours, carrying something that is not yours, and you did not even have the sense to do it quietly. Put it down and come with me, or do not, and we will settle it here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will come quietly.
+Go to node ID=10 quietly
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Yard sends you to jail
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You will not take me anywhere.
+Go to node ID=20 fight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=fought the guard for Juanita
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Sewers/02 Thieves Congregation
+}
+Action=CGoToCombatAction
+{
+Enemy Name=Yard Guard
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 quietly
+Text=Sensible. The magistrate will want a word, and Sanchez will want rather more than a word.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 fight
+Text=Then we settle it here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+}

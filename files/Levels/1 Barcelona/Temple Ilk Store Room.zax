@@ -1,0 +1,902 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/Barcelona
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=5
+		Full Mix Song=Main Menu/Main Menu.ogg
+		Med Mix Song=Main Menu/Main Menu.ogg
+		Ambiant Song=1 Barcelona/AMB_PortDis_House1.ogg
+	}
+	Width=1216
+	Height=1216
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=
+	Has Begin Been Called=0
+	Map Description=A Barcelona Home
+	First Fire Action=
+	First Load Action=
+	View Position=131.000000,317.000000
+	Int View Position=131,317
+	Partial File Name=1 Barcelona/Temple Ilk Store Room
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/Houses Free/House3 interiors/Rotation H
+			Position X=481
+			Position Y=492
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=638, 710, 531, 659, 754, 680, 906, 969, 251, 952, 439, 643, 474, 649, 439, 682, 396, 773, 646, 813, 638, 710
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=1 Barcelona/Temple District
+						New Location=From Ilk Store Room
+						Who To Switch=$Instigator
+						Relative Position=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=469, 647, 556, 663, 665, 696, 676, 846, 374, 786, 422, 683, 469, 647
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/House Items/Rug3/Rug1 C
+			Position X=597
+			Position Y=793
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle Shadow
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/House Items/Desk1/Desk1 C
+			Position X=58.25
+			Position Y=616
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Misc/Table Items/BowlGroupTwo D
+			Position X=466
+			Position Y=574
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/House Items/Plant2/Plant2 A
+			Position X=138.5
+			Position Y=200
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Start Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=
+					Per Character Spawn Action=CSeriesAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableCharacterAttribute
+										{
+											Character Attribute=Character Attributes/(PE) Perception
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=5
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Then=CActivateAction
+								{
+									Target Name=Treasure Perception Checker
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Else=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Thieving/Find Traps Secret Doors
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=35
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Then=CActivateAction
+									{
+										Target Name=Treasure Perception Checker
+										Play Activate Sound=0
+										Delay Between Activations=0
+										Warp Behavior=
+									}
+									Else=CIfAction
+									{
+										If=CIsQuestStateTheCurrentStateAction
+										{
+											Quest=Levels/Sewers/Quests/Thieve in Temple District
+											State=2KTR5KY9
+										}
+										Then=CActivateAction
+										{
+											Target Name=Treasure Perception Checker
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Else=CSucceedAction
+										{
+											Action=
+										}
+										Return failure if the If failes=0
+									}
+									Return failure if the If failes=0
+								}
+								Return failure if the If failes=0
+							}
+							Action=CSucceedAction
+							{
+								Action=
+							}
+						}
+						When Done=Repeat Series
+						Require Success To Advance=1
+						Next Action Index=0
+					}
+					Set Facing Angle=1
+					Facing Angle=310
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=531
+			Position Y=613
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=521, 622, 486, 681, 530, 617, 521, 622
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Primary
+			Include Closing Segment=1
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=Treasure Perception Checker
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CGenerateInventoryItemAction
+							{
+								Number of items to generate=1
+								Level of item to generate=
+								Location=$Trigger
+								Location Offset=-41,4
+								Generate Within Radius=27
+								Aspect Ratio=0.712766
+								Item List=CInventoryItemGeneratorMixedList
+								{
+									Items=Array
+									{
+										Array Count=2
+										Array Item=CInventoryItemGeneratorMixedListItem
+										{
+											Weighting=5
+											Item=CInventoryItemGeneratorCannedList
+											{
+												Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Mana Recharge
+											}
+										}
+										Array Item=CInventoryItemGeneratorMixedListItem
+										{
+											Weighting=10
+											Item=CInventoryItemGeneratorCannedList
+											{
+												Canned Item List=Inventory/Generator Combinations/Misc Items/Money Standard Items
+											}
+										}
+									}
+								}
+							}
+							Action=CIfAction
+							{
+								If=CIsQuestStateTheCurrentStateAction
+								{
+									Quest=Levels/Sewers/Quests/Thieve in Temple District
+									State=2KTR5KY9
+								}
+								Then=CActivateQuestStateAction
+								{
+									Quest=Levels/Sewers/Quests/Thieve in Temple District
+									State=2MQMFLZR
+								}
+								Else=CSucceedAction
+								{
+									Action=
+								}
+								Return failure if the If failes=0
+							}
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableCharacterAttribute
+										{
+											Character Attribute=Character Attributes/(PE) Perception
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=5
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Then=CSucceedAction
+								{
+									Action=
+								}
+								Else=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Thieving/Find Traps Secret Doors
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=35
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Then=CSucceedAction
+									{
+										Action=
+									}
+									Else=COtherMapAction
+									{
+										Action=CActivateAction
+										{
+											Target Name=caught robbing the yard
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Other Map Name=1 Barcelona/Temple District
+									}
+									Return failure if the If failes=0
+								}
+								Return failure if the If failes=0
+							}
+						}
+					}
+					X Radius=21
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=562, 462, 563, 442, 596, 444, 594, 465, 562, 462
+			Center Position Offset=10.000000,80.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CGenerateInventoryItemAction
+					{
+						Number of items to generate=1
+						Level of item to generate=CUseCannedExpressionExpression
+						{
+							Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Average
+						}
+						Location=$Trigger
+						Location Offset=-22,35
+						Generate Within Radius=30
+						Aspect Ratio=0.712766
+						Item List=CInventoryItemGeneratorMixedList
+						{
+							Items=Array
+							{
+								Array Count=1
+								Array Item=CInventoryItemGeneratorMixedListItem
+								{
+									Weighting=10
+									Item=CInventoryItemGeneratorCannedList
+									{
+										Canned Item List=Inventory/Creating Random Magic Items/All Potions
+									}
+								}
+							}
+						}
+					}
+					X Radius=55
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/House Items/Shelves2/Shelves2 A
+			Position X=569
+			Position Y=441.75
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Misc/Table Items/Bottle Broke E
+			Position X=711
+			Position Y=494
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/House Items/Bed3/Bed3 E
+			Position X=594.25
+			Position Y=707.25
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/House Items/Chair2/Chair2 H
+			Position X=689.5
+			Position Y=347.25
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Town/House Items/Chair2/Chair2 E
+			Position X=718.75
+			Position Y=605.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=1.27591e+010
+		Num Textures=2
+		Texture 0=14 Black
+		Texture 1=14 Black
+		Elevations Row 0=9090909090909090909090909090909090909000
+		Elevations Row 1=010F1C2A3745525F6C5F5245372A1C0F010F1C00
+		Elevations Row 2=010D18232E3A45505B59575552504E4C494C4E00
+		Elevations Row 3=010A131C252E374049525B646D767F8890887F00
+		Elevations Row 4=252C333A40474E555B62686F757C838A908A8300
+		Elevations Row 5=494E52575B6064686C71757A7E83878C908C8700
+		Elevations Row 6=6D6F717375787A7C7E818385878A8C8E908E8C00
+		Elevations Row 7=9090909090909090909090909090909090909000
+		Elevations Row 8=FFF5EBE1D6CCC1B7ACB7C1CCD6E1EBF5FFF5EB00
+		Elevations Row 9=FFF7EEE6DDD5CCC3BABCBEC0C1C3C5C7C8C7C500
+		Elevations Row 10=FFF9F2EBE4DDD6CFC8C1BAB3ACA59E9790979E00
+		Elevations Row 11=E4DFDAD5CFCAC5C0BAB5B0ABA5A09B9690969B00
+		Elevations Row 12=C8C5C1BEBAB7B3B0ACA9A5A29E9B979490949700
+		Elevations Row 13=ACABA9A7A5A4A2A09E9D9B999796949290929400
+		Elevations Row 14=9090909090909090909090909090909090909000
+		Elevations Row 15=0000000000000000000000000000000000000000
+		Elevations Row 16=0000000000000000000000000000000000000000
+		Elevations Row 17=0000000000000000000000000000000000000000
+		Elevations Row 18=0000000000000000000000000000000000000000
+		Elevations Row 19=0000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080000000000000000000808080000000808080808080808080808080000000000000000000000000000000808080808080808080808080
+		Light Overlay Row 15=808080000000000000000000000000000000000000808080000000000000000000000000000000000000000000000000808080808080808080808080
+		Light Overlay Row 16=808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000808080808080808080
+		Light Overlay Row 17=808080808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000808080808080808080808080
+		Light Overlay Row 18=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 19=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Fog Of War 4 Row 0=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 1=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 2=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 3=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 4=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 5=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 6=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 7=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 8=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 9=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 10=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 11=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 12=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 13=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 14=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 15=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 16=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 17=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 18=0000000000000000000000000000000000000000
+		Fog Of War 4 Row 19=0000000000000000000000000000000000000000
+	}
+}
