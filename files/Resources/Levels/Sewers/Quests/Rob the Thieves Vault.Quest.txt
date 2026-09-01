@@ -1,0 +1,19 @@
+CQuestDefinition
+{
+	Name=Rob the Thieves' Vault
+	States=Array
+	{
+		Item Count=2
+		State=CQuestStateDefinition
+		{
+			Text=Skulker says the thieves keep a strongbox behind the secret door at the back of their den, and that he cannot get near it himself. Find a way past the guard and take it.
+			ID=VLT1SKLK
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You have the vault's strongbox. Get out of the den and find Skulker.
+			ID=VLT2TAKE
+		}
+	}
+	Sub-Quest of=!None
+}

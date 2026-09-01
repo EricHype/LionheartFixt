@@ -1,0 +1,244 @@
+CDialogTree
+{
+Name=Skulker
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Mucker interested in some goods? Right dangerous down here, so mucker might want to get somes of Skulker's goods.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why did you call me a mucker?
+Go to node ID=20 Mucker
+
+Requirement=!None
+Reply Text=What do you have for sale?
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Skulker
+After Closed Action=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Skulker knows the vault
+Desired Minimum Count=1
+}
+}
+Reply Text=What is behind that door at the back?
+Go to node ID=60 the vault
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+State=VLT2TAKE
+}
+}
+Reply Text=I have your strongbox.
+Go to node ID=62 paid for the vault
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=400
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Vault Job XP
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry, not interested.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Mucker interested in some goods?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you have for sale?
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Skulker
+After Closed Action=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Skulker knows the vault
+Desired Minimum Count=1
+}
+}
+Reply Text=What is behind that door at the back?
+Go to node ID=60 the vault
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+State=VLT2TAKE
+}
+}
+Reply Text=I have your strongbox.
+Go to node ID=62 paid for the vault
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=400
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Vault Job XP
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry, not interested.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Pssh. Mucker come back if you need somethin'.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 the vault
+Text=<Skulker's voice drops.> That door is not for muckers. Thieves keep a box back there, and Skulker keeps not being able to reach it. You look like someone what could reach it. Skulker pays good for what is in it, and Skulker forgets your face after.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will get your box.
+Go to node ID=61 be quiet about it
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+State=VLT1SKLK
+}
+Action=CDeactivateAction
+{
+Target Name=Skulker knows the vault
+}
+Action=CActivateAction
+{
+Target Name=Secret Quest Guard
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Not for all the coin in the sewer.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=61 be quiet about it
+Text=One thing. There is a man on that door. Skulker does not care how you get past him, but Skulker cares very much whether the rest of them come running. Quiet is worth more than fast.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=62 paid for the vault
+Text=<He does not open it in front of you.> Skulker knew about you. Here. And Skulker never said nothing about no door.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=20 Mucker
+Text=You muck around in the sewer, so you a mucker, says Skulker.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you have for sale?
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Skulker
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=You're not very bright are you?
+Go to node ID=50 Unfriendly Goodbye
+
+Requirement=!None
+Reply Text=Sorry, not interested.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Unfriendly Goodbye
+Text=Pssh. Mucker make fun of Skulker so you buy no potions.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Made Skulker mad relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Psst
+Text=*Psst* Over here.
+Should Have Voiceover=0
+}

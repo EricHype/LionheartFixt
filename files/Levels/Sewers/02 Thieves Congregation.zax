@@ -16616,7 +16616,7 @@ CLayerSaveData
 								{
 									Opacity To Fade To=1
 									Seconds To Fade=1.5
-									Part To Fade=Skulker
+									Part To Fade=Skulker3
 								}
 								Delay=0.1
 								Plus or Minus=0
@@ -16626,7 +16626,7 @@ CLayerSaveData
 							{
 								Next Action=CAddAIAction
 								{
-									Target Name=Skulker
+									Target Name=Skulker3
 									AI=CAIInteractionSpecifier
 									{
 										Marked For Deletion=0
@@ -16704,7 +16704,7 @@ CLayerSaveData
 								{
 									Dialog Tree File=Levels/Sewers/Dialog/Skulker
 									Node ID=2 Psst
-									Name of Position=Skulker
+									Name of Position=Skulker3
 									Position Offset=0.000000,-80.000000
 									After Action=
 									Include In Log=1
@@ -16724,11 +16724,11 @@ CLayerSaveData
 							{
 								Opacity To Fade To=0
 								Seconds To Fade=1.5
-								Part To Fade=Skulker
+								Part To Fade=Skulker3
 							}
 							Action=CRemoveAIAction
 							{
-								Target Name=Skulker
+								Target Name=Skulker3
 								AI=CAIInteractionSpecifier
 								Delay Between Removes=0
 							}
@@ -18585,7 +18585,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=Skulker
+					New Name=Skulker3
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -18657,7 +18657,7 @@ CLayerSaveData
 										{
 											Action=CDeleteAction
 											{
-												Target Name=Skulker
+												Target Name=Skulker3
 											}
 											Other Map Name=Sewers/02 Thieves Congregation
 										}
@@ -18730,7 +18730,7 @@ CLayerSaveData
 										{
 											Action=CDeleteAction
 											{
-												Target Name=Skulker
+												Target Name=Skulker3
 											}
 											Other Map Name=Sewers/02 Thieves Congregation
 										}
@@ -18803,7 +18803,7 @@ CLayerSaveData
 											{
 												Action=CDeleteAction
 												{
-													Target Name=Skulker
+													Target Name=Skulker3
 												}
 												Other Map Name=Sewers/02 Thieves Congregation
 											}
@@ -18868,13 +18868,13 @@ CLayerSaveData
 							{
 								Opacity To Fade To=0
 								Seconds To Fade=1
-								Part To Fade=Skulker
+								Part To Fade=Skulker3
 							}
 							Action=CDelayAction
 							{
 								Next Action=CDeleteAction
 								{
-									Target Name=Skulker
+									Target Name=Skulker3
 								}
 								Delay=1
 								Plus or Minus=0
@@ -49193,6 +49193,36 @@ CLayerSaveData
 			Model=Editor/Checker
 			Position X=1560
 			Position Y=668
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Skulker knows the vault
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=2200
+			Position Y=1060
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
