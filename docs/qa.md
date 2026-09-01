@@ -773,9 +773,9 @@ Only once SR1-SR6 are green does the quest matter.
 | SR9 | " | Choose *"Another time. I have business elsewhere."* | Goes straight to the seduction, exactly as it did before this change. **This is the regression case** -- declining must lose nothing |
 | SR10 | " | Choose *"Consider it done. Where am I going?"* | She names a walled yard with an iron gate at the far end of the district, says the gate stands open, mentions a guard, and warns that what she wants will not be sitting out on a table |
 | SR11 | Journal | After SR10 | A quest **Steal from A Noble of the Temple District** with the entry *"Find location in Temple district to thieve"* |
-| SR12 | The store room | Walk around the room for a few seconds | A secret reveals itself on the floor, with the game's usual found-a-secret feedback. Take it: **50 XP**, a gold pile, and the journal advances to *"Tell Juanita about Temple District success"* |
-| SR12b | " | Note how it is found | It reveals on a **timer**, not on a click. Standing near the middle of the floor is the play. If nothing appears after a good while on a low-skill character, that is worth reporting |
-| SR13 | " | Do SR12 on a character with **PE 4 or lower and Find Traps under 35** | It still reveals, just more slowly. Find Traps is a *percentage chance per time unit*, not a threshold -- the engine's own property text says so -- and this cache carries `Skill Adjustment=+75`, so no build is locked out of a job it was handed |
+| SR12 | The store room | Look at the floor **just south of the bookshelf** | A glint at (568,509). Click it: **250 coin**, **50 XP**, and the journal advances to *"Tell Juanita about Temple District success"* |
+| SR12b | " | Check it does not fight the exit | It sits 138 units clear of the exit area. It previously sat at (486,681), inside that area, so clicking it competed with leaving the room -- found in play |
+| SR13 | " | Do SR12 on **any** build, however low PE and Find Traps | It is there and it is clickable. Finding the cache is not skill-gated at all; skill only decides whether the guard is waiting outside (SR26/SR27) |
 | SR13b | " | Enter the room with **no quest at all**, any skill | **There is no secret in the room.** The cache is `Active=0` until the spawn point sees the quest state. A passer-by finds the bookshelf potion and has no reason to think anything of the place |
 | SR14 | " | The bookshelf, on any character | Gives a random potion, exactly as it does in `Port House Near Warehouse`. It is byte-identical to vanilla and carries no quest wiring |
 
@@ -848,33 +848,47 @@ completable. That was the one thing that could have sunk this design.
 | SR37 | Juanita, after fighting the guard off | Hand in the job | She takes you to bed as normal, but first: *"a dead guard at a rich man's gate is a thing people ask questions about. Next time you go quiet or you do not go."* |
 | SR38 | Juanita, clean job | Hand in the job | Neither speech appears. Straight to the seduction, exactly as before this branch existed |
 
-**Why the cache is a hidden find and not a container.** The first build put the quest
-advance on the donor's invisible perception polygon, which shares a footprint with a
-solid bookshelf; the shelf takes the click and the trigger under it never fires. Reported
-in play as "PE 7, got a potion from the bookshelf, quest never advanced". Moving it onto
-the shelf worked but made the prize the obvious thing on a shelf, which contradicts
-Juanita's own line about it not sitting out on a table.
+**Three failed attempts at one object, all invisible to every automated check.**
+The advance first sat on the donor's hidden perception polygon, which shares a
+footprint with a solid bookshelf, so the shelf took the click. Then the spawn point
+turned out to be a `CSeriesAction`, which the engine describes as *"execute a
+different action each time this action is executed"* -- one item per firing, so the
+quest gate appended as item three never ran once. Then the replacement used
+`CAISecretReveal`, whose search behaviour, radius and timing live entirely in the exe
+(`CAISearchForTrapsAndSecrets` and `Secret Search Radius` appear nowhere in the game
+data), and it still did not show.
 
-It is now a `Hidden Treasure` on open floor using `CAISecretReveal`, the mechanic the
-shipped game uses **443 times**. That also corrects something recorded earlier in this
-document: `Skills/Thieving/Find Traps Secret Doors` is *not* unused. No script reads it
-via `CVariableSkill`, which is what the earlier note actually established, but the engine
-consumes it constantly through `CAISecretReveal`. Its own property text:
+It is now the same kind of object as the bookshelf -- visible, `Active=0` until the
+spawn point sees the quest state, plain `GetCloseThenTrigger` -- because that is the
+one thing in this room that has worked every single time. Every one of those three
+builds parsed, round-tripped byte-identically, passed all 91 Gate 0 checks and
+deployed correctly. They were all semantic, and only the running game showed them.
 
-> The value of the "Find Traps" skill is interpreted to mean the percentage chance you
-> will find a trap within X seconds.
-
-> [Skill Adjustment] is the number of skill points that will be added to the player
-> during the check. Set it negative to make it harder to find the trap.
-
-So it is a rate, not a gate, which is why hanging a quest on it is safe here when it
-would not have been under the earlier reading.
+One correction that survives from that: `Skills/Thieving/Find Traps Secret Doors` is
+**not** unused, as an earlier note here claimed. No script reads it via
+`CVariableSkill`, but the engine consumes it through 443 `CAISecretReveal` instances,
+and its own property text calls it *"the percentage chance you will find a trap within
+X seconds"* -- a rate, not a threshold. It is still used here, but only for the
+scripted were-you-seen check.
 
 **The regression case that matters most:**
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | SR39 | Anywhere | Get jailed for something **unrelated** -- provoke Eduardo, the Church, Inquisition Foyer1, the Knights Templar or the Crossroads -- then go and see Juanita | **She does not care at all.** No disgust, no fee, seduction still available |
+| SR40 | Juanita, after the seduction | Sleep with her on **CH 9 or better** | An on-screen line: *"You wake refreshed, and alone. Juanita has gone about her business."* Without it she simply vanishes and nothing explains it -- found in play |
+| SR41 | " | Sleep with her on **CH under 9** | *"You wake refreshed, and alone. Your purse feels lighter than it did."* **She robs you**, scaled to what you carry -- up to 500 gold |
+| SR42 | " | Count your gold before and after SR41 | The loss matches one of vanilla's brackets: 500 / 400 / 300 / 200 / 100 / 50 / 25, or nothing under 25 |
+
+**SR40-SR42 are a vanilla defect, not one of ours.** Both seduction relays are
+byte-identical to the shipped ones and the tree they open, `Juanita Seduction`, ships
+with correct node names and real text in all nine nodes. But every node in it has **no
+replies at all**, so it is a narration box that opens and closes by itself three
+seconds after the relay fires, with no speaker and no portrait -- and in play it does
+not register. The low-charisma path quietly takes up to 500 gold and tells you only
+through that box. Fixt leaves the vanilla dialogue alone and adds a
+`CPrintCombatTextAction` beside it, the same mechanism node 139 uses for "You have
+become a friend of the thieves", which does show.
 
 SR39 is guarding against a specific mistake. Vanilla sets a marker called
 `been in jail before`, and keying Juanita off it would have made her hostile over a

@@ -12676,7 +12676,7 @@ CLayerSaveData
 													{
 														Action=Array
 														{
-															Item Count=2
+															Item Count=3
 															Action=CGiveHealthToCharacterAction
 															{
 																Character to give health to=$instigator
@@ -12685,6 +12685,13 @@ CLayerSaveData
 																	Constant Value=15
 																}
 																Expression Context=$Instigator
+															}
+															Action=CPrintCombatTextAction
+															{
+																Text to print=You wake refreshed, and alone. Juanita has gone about her business.
+																Character to show text to=$Instigator
+																Emphasize=1
+																Suppress Duplicates=0
 															}
 															Action=CDisplayDialogTreeAction
 															{
@@ -13838,7 +13845,7 @@ CLayerSaveData
 														{
 															Action=Array
 															{
-																Item Count=3
+																Item Count=4
 																Action=CTakeMoneyAction
 																{
 																	Take From=$instigator
@@ -13852,6 +13859,13 @@ CLayerSaveData
 																		Constant Value=15
 																	}
 																	Expression Context=$Instigator
+																}
+																Action=CPrintCombatTextAction
+																{
+																	Text to print=You wake refreshed, and alone. Your purse feels lighter than it did.
+																	Character to show text to=$Instigator
+																	Emphasize=1
+																	Suppress Duplicates=0
 																}
 																Action=CDisplayDialogTreeAction
 																{

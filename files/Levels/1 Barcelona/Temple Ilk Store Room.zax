@@ -344,11 +344,11 @@ CLayerSaveData
 					Marked For Deletion=0
 					Publisher=
 					Per Party Spawn Action=
-					Per Character Spawn Action=CSeriesAction
+					Per Character Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=2
 							Action=CIfAction
 							{
 								If=CExpressionAction
@@ -380,10 +380,6 @@ CLayerSaveData
 								}
 								Return failure if the If failes=0
 							}
-							Action=CSucceedAction
-							{
-								Action=
-							}
 							Action=CIfAction
 							{
 								If=CIsQuestStateTheCurrentStateAction
@@ -405,9 +401,6 @@ CLayerSaveData
 								Return failure if the If failes=0
 							}
 						}
-						When Done=Repeat Series
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Set Facing Angle=1
 					Facing Angle=310
@@ -702,7 +695,7 @@ CLayerSaveData
 			}
 			Name=Hidden Treasure
 			Child List=
-			Visible=0
+			Visible=1
 			Collideable=1
 			Half Height=0
 			Full Height=1
@@ -715,142 +708,108 @@ CLayerSaveData
 			Activity=Array
 			{
 				Item Count=1
-				Activity=CAISecretReveal
+				Activity=CAIInteractionSpecifier
 				{
 					Marked For Deletion=0
 					Publisher=
-					Skill Adjustment=75
-					Reveal Action=CUseCannedActionAction
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
 					{
-						Canned Object=Common Objects and Scripts/Found Hidden Treasure
-					}
-					AIs To Add=Array
-					{
-						Item Count=1
-						AI=CAIInteractionSpecifier
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Trigger Only Once=1
-							Was Triggered=0
-							Auto-Flip Switch=1
-							Trigge Must Have HP=0
-							Triggered By Anything=0
-							Triggered By Players=1
-							Triggered By Player Friends=0
-							Triggered By Enemies=0
-							Triggered By Projectiles=0
-							Triggered By Companions=0
-							Triggered By Name=
-							Interaction Description=
-							Interaction Type=Interaction Specifiers/GetCloseThenTrigger
-							Action=CMultipleActionsAction
+							Item Count=3
+							Action=CUseCannedActionAction
 							{
-								Action=Array
+								Canned Object=Common Objects and Scripts/Taken Hidden Treasure
+							}
+							Action=CGiveMoneyToAllPlayersAction
+							{
+								Value to give=250
+							}
+							Action=CIfAction
+							{
+								If=CIsQuestStateTheCurrentStateAction
 								{
-									Item Count=3
-									Action=CUseCannedActionAction
+									Quest=Levels/Sewers/Quests/Thieve in Temple District
+									State=2KTR5KY9
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
 									{
-										Canned Object=Common Objects and Scripts/Taken Hidden Treasure
-									}
-									Action=CGenerateInventoryItemAction
-									{
-										Number of items to generate=1
-										Level of item to generate=
-										Location=$Trigger
-										Location Offset=0,0
-										Generate Within Radius=20
-										Aspect Ratio=0.712766
-										Item List=CInventoryItemGeneratorMixedList
-										{
-											Items=Array
-											{
-												Array Count=1
-												Array Item=CInventoryItemGeneratorMixedListItem
-												{
-													Weighting=10
-													Item=CInventoryItemGeneratorCannedList
-													{
-														Canned Item List=Inventory/Enemy Drop Items Cans/Gold/Gold 5MediumLarge Pile
-													}
-												}
-											}
-										}
-									}
-									Action=CIfAction
-									{
-										If=CIsQuestStateTheCurrentStateAction
+										Item Count=2
+										Action=CActivateQuestStateAction
 										{
 											Quest=Levels/Sewers/Quests/Thieve in Temple District
-											State=2KTR5KY9
+											State=2MQMFLZR
 										}
-										Then=CMultipleActionsAction
+										Action=CIfAction
 										{
-											Action=Array
+											If=CExpressionAction
 											{
-												Item Count=2
-												Action=CActivateQuestStateAction
+												Expression=CIsGreaterThanOrEqual
 												{
-													Quest=Levels/Sewers/Quests/Thieve in Temple District
-													State=2MQMFLZR
+													Operand1=CVariableSkill
+													{
+														Skill=Skills/Thieving/Find Traps Secret Doors
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=35
+													}
 												}
-												Action=CIfAction
-												{
-													If=CExpressionAction
-													{
-														Expression=CIsGreaterThanOrEqual
-														{
-															Operand1=CVariableSkill
-															{
-																Skill=Skills/Thieving/Find Traps Secret Doors
-															}
-															Operator=
-															Operand2=CConstant
-															{
-																Constant Value=35
-															}
-														}
-														Character to get attributes from=$Instigator
-													}
-													Then=CSucceedAction
-													{
-														Action=
-													}
-													Else=COtherMapAction
-													{
-														Action=CActivateAction
-														{
-															Target Name=caught robbing the yard
-															Play Activate Sound=0
-															Delay Between Activations=0
-															Warp Behavior=
-														}
-														Other Map Name=1 Barcelona/Temple District
-													}
-													Return failure if the If failes=0
-												}
+												Character to get attributes from=$Instigator
 											}
+											Then=CSucceedAction
+											{
+												Action=
+											}
+											Else=COtherMapAction
+											{
+												Action=CActivateAction
+												{
+													Target Name=caught robbing the yard
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Other Map Name=1 Barcelona/Temple District
+											}
+											Return failure if the If failes=0
 										}
-										Else=CSucceedAction
-										{
-											Action=
-										}
-										Return failure if the If failes=0
 									}
 								}
+								Else=CSucceedAction
+								{
+									Action=
+								}
+								Return failure if the If failes=0
 							}
-							X Radius=25
-							Attacker Range Modifier=0
-							YX Ratio=0.712766
-							Highlight Self Time=0
-							Highlight Until Clicked=0
-							Is Locked=0
-							Allow Interact If Has Target=1
-							Lock Pick Adjustment=0
-							Inventory item to use as key=Inventory Items/!None
-							Is Bussy Talking=0
 						}
 					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
 				}
 			}
 			Category=
@@ -859,8 +818,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Special Effects/Secret Icon
-			Position X=446
-			Position Y=700
+			Position X=568
+			Position Y=509
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
