@@ -773,10 +773,12 @@ Only once SR1-SR6 are green does the quest matter.
 | SR9 | " | Choose *"Another time. I have business elsewhere."* | Goes straight to the seduction, exactly as it did before this change. **This is the regression case** -- declining must lose nothing |
 | SR10 | " | Choose *"Consider it done. Where am I going?"* | She names a walled yard with an iron gate at the far end of the district, says the gate stands open, mentions a guard, and warns that what she wants will not be sitting out on a table |
 | SR11 | Journal | After SR10 | A quest **Steal from A Noble of the Temple District** with the entry *"Find location in Temple district to thieve"* |
-| SR12 | The store room | Search the room and find the hidden valuables | The journal advances to *"Tell Juanita about Temple District success"* |
-| SR13 | " | Do SR12 on a character with **PE 4 or lower** and Find Traps under 35 | The hiding place is still findable, because being on the quest reveals it. A low-Perception thief is not locked out of a job they were handed |
-| SR13b | " | Enter with **Find Traps / Secret Doors 35+**, no quest, PE 4 or lower | The cache is revealed. This is the skill the game actually has for finding hidden things, and the shipped game **never checks it** -- its only appearance is a developer debug panel in `Levels/Test Maps/Dan/DDan.zax` that prints every skill value. This is its first real use |
-| SR14 | " | Enter the room with no quest, PE 4 or lower **and** Find Traps under 35 | Nothing is revealed -- unchanged for a passer-by with no aptitude for it |
+| SR12 | The store room | Walk around the room for a few seconds | A secret reveals itself on the floor, with the game's usual found-a-secret feedback. Take it: **50 XP**, a gold pile, and the journal advances to *"Tell Juanita about Temple District success"* |
+| SR12b | " | Note how it is found | It reveals on a **timer**, not on a click. Standing near the middle of the floor is the play. If nothing appears after a good while on a low-skill character, that is worth reporting |
+| SR13 | " | Do SR12 on a character with **PE 4 or lower and Find Traps under 35** | It still reveals, just more slowly. Find Traps is a *percentage chance per time unit*, not a threshold -- the engine's own property text says so -- and this cache carries `Skill Adjustment=+75`, so no build is locked out of a job it was handed |
+| SR13b | " | Enter the room with **no quest at all**, any skill | **There is no secret in the room.** The cache is `Active=0` until the spawn point sees the quest state. A passer-by finds the bookshelf potion and has no reason to think anything of the place |
+| SR14 | " | The bookshelf, on any character | Gives a random potion, exactly as it does in `Port House Near Warehouse`. It is byte-identical to vanilla and carries no quest wiring |
+
 | SR15 | Juanita | Return after SR12 | A new reply: *"The house by the flags is lighter than it was. This was in it."* |
 | SR16 | " | Take it | Quest completes, **500 XP** (the same as her other jobs), and the conversation moves to the seduction |
 | SR17 | " | Talk to her again | The turn-in reply is gone. No double completion, no double XP |
@@ -831,8 +833,9 @@ completable. That was the one thing that could have sunk this design.
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
-| SR26 | The store room | Take the cache with **PE 5+ or Find Traps 35+** | You leave unchallenged. No guard, no dialogue |
+| SR26 | The store room | Take the cache with **PE 5+ or Find Traps 35+** | You leave unchallenged. No guard, no dialogue. This is a separate, scripted check from the one that reveals the cache -- finding it is the engine's job, being *seen* is this one |
 | SR27 | " | Take it with **PE 4 or lower and Find Traps under 35** | Step outside and a guard is there: *"You came out of a house that is not yours, carrying something that is not yours, and you did not even have the sense to do it quietly."* |
+| SR27b | " | Rob the house **before** Juanita ever mentions it, then take the job and go back | The cache is there when you return. It was never present to be consumed early -- this was a genuine soft-lock until the cache was gated on the quest |
 | SR28 | " | Same, but check the timing | He appears at the doorway you came out of, not somewhere across the yard, and the conversation opens by itself |
 | SR29 | The guard | *"You will not take me anywhere."* | He turns hostile and fights. Killing him leaves you free, and you keep the cache |
 | SR30 | " | *"I will come quietly."* | Screen fades, controls lock, and you wake in the Inquisition prison with Sanchez talking at you |
@@ -844,6 +847,28 @@ completable. That was the one thing that could have sunk this design.
 | SR36 | " | With the debt unpaid or paid, try for the seduction | **She refuses either way.** Being jailed on her errand ends that possibility permanently -- the fee buys membership, not forgiveness |
 | SR37 | Juanita, after fighting the guard off | Hand in the job | She takes you to bed as normal, but first: *"a dead guard at a rich man's gate is a thing people ask questions about. Next time you go quiet or you do not go."* |
 | SR38 | Juanita, clean job | Hand in the job | Neither speech appears. Straight to the seduction, exactly as before this branch existed |
+
+**Why the cache is a hidden find and not a container.** The first build put the quest
+advance on the donor's invisible perception polygon, which shares a footprint with a
+solid bookshelf; the shelf takes the click and the trigger under it never fires. Reported
+in play as "PE 7, got a potion from the bookshelf, quest never advanced". Moving it onto
+the shelf worked but made the prize the obvious thing on a shelf, which contradicts
+Juanita's own line about it not sitting out on a table.
+
+It is now a `Hidden Treasure` on open floor using `CAISecretReveal`, the mechanic the
+shipped game uses **443 times**. That also corrects something recorded earlier in this
+document: `Skills/Thieving/Find Traps Secret Doors` is *not* unused. No script reads it
+via `CVariableSkill`, which is what the earlier note actually established, but the engine
+consumes it constantly through `CAISecretReveal`. Its own property text:
+
+> The value of the "Find Traps" skill is interpreted to mean the percentage chance you
+> will find a trap within X seconds.
+
+> [Skill Adjustment] is the number of skill points that will be added to the player
+> during the check. Set it negative to make it harder to find the trap.
+
+So it is a rate, not a gate, which is why hanging a quest on it is safe here when it
+would not have been under the earlier reading.
 
 **The regression case that matters most:**
 
@@ -857,8 +882,6 @@ Templar scuffle in another district. It is set and read **only inside**
 `Inquisition Chambers2.zax`, purely to choose Sanchez's greeting, and **six** shipped
 routes lead to that cell. Juanita reads two new markers instead, set only by this
 arrest, and the build asserts that none of those six routes touches them.
-
-
 ### 0.5 - peace with the lava trolls
 
 Settle the wererats -- cure them or destroy the Beggars, the trolls do not care which -- and
