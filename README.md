@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.4.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.4.1).
+-- currently [0.5.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.5.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.

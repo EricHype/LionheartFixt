@@ -1,0 +1,91 @@
+# Lionheart Fixt 0.5.0 - the thieves' guild
+
+If you have played the Sewers you may have felt the thieves were thinner than the
+beggars. They are, and it is measurable.
+
+Enrique offers the beggars **five** jobs. Juanita offers **four**. He pays out about
+600 gold across his line; she has seven money-taking actions and not a single one that
+gives. The biggest quest down there -- the wererat cure, five states across three maps
+-- is on his side. Her jobs pay more XP each, but there is one fewer of them and they
+cost you money to take.
+
+And her fifth job was written. The node that offers it is orphaned, its second state is
+activated by nothing, and the requirement written to gate its turn-in is used nowhere
+in the game. It shipped whole, with nowhere to happen.
+
+**Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt:
+it fixes what is broken, restores what was cut, and adds new content only where the
+game plainly ran out.
+
+## The final job, and a house to do it in
+
+There was no house to rob, so this release adds one -- the first new map the project
+has made. A walled yard at the far end of the Temple District, a side door, and a cache
+worth lifting.
+
+Getting the entrance right took three attempts. The first used a door the game already
+placed and never wired, which turned out to be the only door in Barcelona drawn
+*behind* its own building, on ground you cannot reach anyway. That is why it shipped
+dead, and it took someone opening the map to see it.
+
+## Skill decides the cost, not whether you can do it
+
+Perception 5 or Find Traps 35 and you are out clean. Neither, and a guard is waiting
+when you step outside.
+
+Surrender and you wake in the Inquisition's cell, where Sanchez already knows what to
+charge you. You keep what you stole, so the job can still be finished. Fight and
+Juanita takes you anyway, with a word about drawing the watch onto the guild. Go to the
+cell on her errand and she will not take you at all -- three hundred buys your
+membership back, not her good opinion.
+
+Getting jailed for anything else leaves her completely indifferent, which took some
+care: the game's own "you have been here before" marker is set by six different routes
+into that cell, and keying her off it would have made her hostile over a Templar
+scuffle in another district.
+
+## The vault nobody was guarding
+
+Behind a secret door in the thieves' den there is a 324KB map -- spike traps, archers,
+guard dogs, around 950 XP -- that **no quest in the game points at**. The door is
+unlocked. The guard is switched off. You get shouted at twice by warning balloons
+belonging to a man who is not there, and you walk in.
+
+Skulker will now pay you to do it properly, and taking the job switches the guard on.
+Five ways past him: standing with the guild, a bluff, a hundred gold, a quiet moment,
+or steel. Draw steel and every thief in the den comes for you -- that consequence was
+already built, and never reachable.
+
+## Two repairs
+
+**Juanita's fee was avoidable.** Refuse her 70 gold for a lead, walk away, come back,
+and she handed it over free. The code that charges a late penalty was in the file,
+unreachable, and the requirement written for it ships used nowhere.
+
+**The night with her explains itself now.** The aftermath is real text with no replies
+in any of it, so it opens and closes on its own and does not register. If your Charisma
+is under 9 she robs you of up to 500 gold, and vanilla tells you only through that box.
+
+## The part I would rather write about
+
+Of the three things in this release, **one has been played.** The other two are built,
+verified, and unplayed, and the notes say so.
+
+That matters because while building this, four separate defects passed every automated
+check the project has -- correct parse, byte-identical round-trip, 97 validator checks,
+verified deployment -- and were visible only in the running game. One was a spawn action
+that runs a single item per firing, so a check appended to it had never executed once.
+Another was an invisible trigger sitting underneath a solid bookshelf, which took the
+click instead.
+
+If a validator tells you a mod is well-formed, it has told you the files are
+well-formed. It has not told you the game agrees.
+
+## Installing
+
+Download, unzip, run `Mod Manager.bat`. It finds a GOG, Steam or retail install by
+itself and `Uninstall` puts everything back.
+
+**This one needs a new character.** Dialogue is read fresh every time you talk to
+someone, but map contents are captured into your save the first time you enter a level,
+and this release adds a new map and new entities to three existing ones.

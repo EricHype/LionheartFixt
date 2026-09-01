@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.4.1 shipped**. 0.1.0 through 0.4.1 are published; the sections
+Status: **0.5.0 built, not yet signed off**. 0.1.0 through 0.4.1 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -123,6 +123,98 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.5.0 - the thieves' guild
+
+**Not signed off.** Of the three things in this release only one has been played: the
+final job, end to end, by a tester on the day it was built. The caught-in-the-act
+branch and the vault job are built, verified and unplayed. `docs/qa.md` SR1-SR42
+covers the first two; the vault has no cases yet, deliberately, because they should be
+written against what play shows rather than what the build intends.
+
+### Why the thieves needed it
+
+Counted properly, Enrique offers five jobs and Juanita four. He pays out around 600
+gold across his line; she has seven `CTakeMoneyAction` and not one give. The single
+biggest quest in the Sewers -- the wererat cure, five states across three maps -- is on
+his side. Her jobs pay more XP each (500 against 200), but there is one fewer of them
+and they cost money to take.
+
+Her fifth job was written and never reachable. `130 Final Job` is the only thing that
+activates `Thieve in Temple District`; nothing reaches node 130; that quest's second
+state is activated by nothing; and the requirement `.can` written to gate its turn-in
+is used nowhere. The frame shipped whole with nowhere to happen.
+
+### The first new map
+
+There was no house to rob, so this adds one. That is possible because no file registers
+the 200 shipped maps, a room's walls and floor are a single prefab entity rather than
+baked terrain, and -- per the tools repo's own `test-pocket`, built from scratch and
+shipping no caches at all -- the engine generates the waypoint graph and automap when
+they are absent.
+
+The entrance took three attempts and the two failures are worth keeping. An unnamed
+door with a `CDoorAI` and an empty `After Opened` looked like an unused entrance; it is
+the only door in Barcelona that draws behind its own building, sitting at 48% across
+and 49% down the House Of Ilk's sprite, and the ground behind its fence is unreachable.
+Both are why it shipped dead. The second attempt then treated walkable ground as
+reachable ground -- the `.way` positions decode reliably, but connectivity lives in the
+edge lists, which do not.
+
+### Getting caught
+
+Skill decides the cost, not whether the job is possible. Vanilla's own equivalent
+robbery has no gate at all: the entity named `hidden poly reveaked if perception check
+passed` is `Active=1` with zero activations anywhere. Here, Perception 5 or Find Traps
+35 gets you out quietly. Without either, a guard is waiting outside. Surrender copies
+`Eduardo Sends you to jail` and lands you in `Inquisition Chambers2 @ Jail Start`, where
+Sanchez already handles the fine, the Speech routes and release -- and nothing in that
+flow strips inventory, so the quest survives a sentence. Fight instead and Juanita
+takes you anyway, with a word about drawing the watch onto the guild.
+
+She reacts only to *this* arrest. Vanilla's `been in jail before` is set and read only
+inside `Inquisition Chambers2`, purely to pick Sanchez's greeting, and six shipped
+routes reach that cell; keying off it would have made her hostile over a Templar
+scuffle. Two new markers carry it instead.
+
+### The vault
+
+`09 Secret Quest` is a 324KB map -- spike-trap doors, thief archers, guard dogs, ~950
+XP of markers -- that no quest points at, behind a door that is unlocked. Its guard is
+fully built and `Active=0`, so today you are shouted at twice by warning balloons
+belonging to someone who is not there, and you walk in.
+
+Taking Skulker's job switches him on. Five ways past: the `Thief Friend` perk, Speech
+40, a hundred gold at Barter 35, Sneak 35, or steel. Fighting fires vanilla's own
+`Thief enemy trigger` -- `CGoToCombatAction` over Sewer Thief, Juanita and the dogs,
+plus `Make unspawned thieves mad at player` -- and the den comes for you. Quiet costs
+nothing.
+
+Skulker rather than Juanita for a reason: after the seduction she is stripped of her
+interaction specifier and walks out through `secret door2`. She is not deleted, but she
+can never be spoken to again, so her arc has a hard terminus.
+
+### Repairs found on the way
+
+- **Juanita's fee was avoidable.** Refuse her 70 gold, walk away, come back, and the
+  reply "I've decided to pay you for another lead" handed it over free -- no
+  `CHasMoneyAction`, no `CTakeMoneyAction`. Node `81 decided to pay` charges 100 and was
+  unreachable, and `Juanita requires player to have less than 100 gold` ships used
+  nowhere. Both are now wired.
+- **The night with Juanita explains itself.** `Juanita Seduction` ships with real text
+  in all nine nodes but no replies in any of them, so it opens and closes on its own and
+  does not register. The low-charisma path takes up to 500 gold and tells you only
+  through that box.
+
+### Gates
+
+`tools/validate.py` passes at 97 files. Every map edited round-trips byte-identically
+through `resource_format`, and the deployed `data.dat` was byte-compared against source
+after every change. Check A0.7b caught a hard crash before it shipped -- an empty
+`Node ID=` in the guard confrontation poly.
+
+None of that is a substitute for playing it, which is the whole point of the note at the
+top of this section.
 
 ## 0.4.1 - repair
 
