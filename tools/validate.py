@@ -62,6 +62,34 @@ CANPATHS = {n[len("Resources/"):-len(".can")].lower()
 CANPATHS |= {str(p.relative_to(F / "Resources")).replace("\\", "/")[:-4].lower()
              for p in F.rglob("*.can")}
 
+# Every Model= an entity names must exist as art, or the game dies on map entry with a
+# "Fatal Not Found Error" naming the model and the map. That is a hard crash, not a
+# silent failure -- and it shipped in 0.5.0, from a chest placed with the invented path
+# "Environments/Misc/Chest/Chest A". Nothing else here would have caught it: the file
+# parsed, round-tripped byte-exact, deployed byte-identical, and passed every other gate.
+MODELS = {n[len("Cache/Models/"):-len(".mdl16")].lower()
+          for n in zf.namelist()
+          if n.lower().startswith("cache/models/") and n.lower().endswith(".mdl16")}
+MODELS |= {str(p.relative_to(F / "Cache" / "Models")).replace("\\", "/")[:-len(".mdl16")].lower()
+           for p in (F / "Cache" / "Models").rglob("*.mdl16")} \
+    if (F / "Cache" / "Models").exists() else set()
+# Editor/* markers are placeholders the editor draws and the engine ignores, and the
+# empty value and !Unknown Model are both legal "no art" spellings.
+MODEL_OK = {"", "!unknown model"}
+
+# `Cur Sequence` has to name an animation the model actually has, and the failure is the
+# same fatal crash with the same dialog -- 0.5.0 shipped a chest set to "Idle" when the
+# chest models only have Closed/Open/Opening. Rather than parse sequence tables out of
+# the .mdl16, take the pairs vanilla itself uses: 200 shipped maps are a better authority
+# on which sequence goes with which model than anything inferred.
+SEQ_RE = re.compile(r"Model=([^\r\n]+)\r\n(?:[^\r\n]*\r\n){0,12}?[ \t]*Cur Sequence=([^\r\n]*)")
+VANILLA_SEQ = {}
+for _n in zf.namelist():
+    if not _n.lower().endswith(".zax"):
+        continue
+    for _m in SEQ_RE.finditer(zf.read(_n).decode("latin-1")):
+        VANILLA_SEQ.setdefault(_m.group(1).strip().lower(), set()).add(_m.group(2).strip())
+
 fails = []
 LF = chr(10)
 
@@ -178,6 +206,39 @@ def check_map_node_refs(p, raw):
                          " into " + tree.split("/")[-1] + " (" + why + ")")
 
 
+def check_models(p, raw):
+    """Every Model= names art that exists. A miss is a fatal crash on map entry."""
+    seen = set()
+    for m in re.finditer(r"^\s*Model=(.*)$", raw.decode("latin-1"), re.M):
+        v = m.group(1).strip()
+        low = v.lower()
+        if low in MODEL_OK or low.startswith("editor/") or low in seen:
+            continue
+        seen.add(low)
+        if low not in MODELS:
+            fails.append(p.name + ": CRASH -- Model=" + repr(v)
+                         + " does not exist; the engine dies on map entry")
+    # Only pairs this mod introduces are judged; a pair already in the vanilla copy of
+    # the same map is the game's own business even if it looks odd.
+    rel = "Levels/" + p.as_posix().split("/files/Levels/", 1)[-1]
+    try:
+        vanilla_same_map = zf.read(rel).decode("latin-1")
+    except KeyError:
+        vanilla_same_map = ""
+    for m in SEQ_RE.finditer(raw.decode("latin-1")):
+        mod, seq = m.group(1).strip(), m.group(2).strip()
+        if mod.lower().startswith("editor/") or mod.lower() in MODEL_OK:
+            continue
+        if SEQ_RE.search(vanilla_same_map) and re.search(
+                re.escape("Model=" + mod) + r"\r\n(?:[^\r\n]*\r\n){0,12}?[ \t]*Cur Sequence="
+                + re.escape(seq), vanilla_same_map):
+            continue
+        known = VANILLA_SEQ.get(mod.lower())
+        if known and seq not in known:
+            fails.append(p.name + ": CRASH -- Cur Sequence=" + repr(seq) + " on Model="
+                         + repr(mod) + "; vanilla uses " + repr(sorted(known)))
+
+
 def check_resource(p, raw):
     try:
         node = rf.parse_resource_text(raw.decode("latin-1"))
@@ -214,6 +275,7 @@ for p in files:
         check_resource(p, raw)
         if p.suffix.lower() == ".zax":
             check_map_node_refs(p, raw)
+            check_models(p, raw)
 
 # Every state of every quest this mod defines must be set by something, somewhere.
 # A state that is only ever *read* is a quest that can be offered and accepted but never

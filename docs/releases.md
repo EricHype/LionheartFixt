@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.5.0 built, not yet signed off**. 0.1.0 through 0.4.1 are published; the sections
+Status: **0.5.1 built, not yet signed off**. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded. 0.1.0 through 0.4.1 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -123,6 +123,50 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.5.1 - the two crashes 0.5.0 would have shipped
+
+0.5.0 was packaged and never tagged. Play found two fatal errors within minutes of each
+other, both on entering the vault, both the same underlying mistake: art referenced
+without being checked against the archive.
+
+- **`Model=Environments/Misc/Chest/Chest A` does not exist.** An invented path. The game
+  dies on map entry with a "Fatal Not Found Error" naming the model and the map.
+- **`Cur Sequence=Idle` on a chest.** Chest models have `Closed`, `Open` and `Opening`,
+  and no `Idle`. Same dialog, same fatality, one field over -- found immediately after
+  fixing the first, because fixing the model did not prompt me to check the animation on
+  it.
+
+Both are now gates. `tools/validate.py` asserts every `Model=` exists, and that every
+`(Model, Cur Sequence)` pair a Fixt file introduces is one the shipped game uses for that
+model -- 200 vanilla maps are a better authority on which animation belongs to which
+model than anything inferred, and it means the check reports the correct value rather
+than just refusing. Both were written before their fix and confirmed against the real
+crash. Neither existed before, which is exactly why 0.5.0 was packaged with two of them
+after passing every other check, round-tripping byte-exact and deploying byte-identical.
+
+A sweep of every entity this mod adds across all four edited maps found no other
+instance of either fault.
+
+### The guard attacked after the Speech check passed
+
+Also found in play. The quiet routes ran `CDeactivateAction` on `Secret Quest Guard`,
+which is the **generator**, not the man. The spawned guard carries three AIs of his own
+and one is a `CTouchingOvalTriggerAI` holding `CGoToCombatAction` -- a proximity trigger
+that fires when you walk into his oval regardless of anything said. Deactivating the
+generator only stops it spawning a replacement.
+
+He also spawned as `New Name=Sewer Thief`, shared with every thief in the den and with
+the mass-hostility relay's target list, so he could not be addressed individually. He is
+now `Vault Guard` on that generator alone; the other eight `Sewer Thief` spawners are
+untouched. The four quiet routes strip the proximity trigger and clear his targeting --
+`CRemoveAIAction` and `CSetTargetTypeAction`, both idioms vanilla already uses in that
+map and in the jail relay -- and the fight route names him explicitly rather than
+relying on `$Trigger` scoping.
+
+One consequence: because he is no longer called `Sewer Thief`, the mass-hostility relay
+does not include him. On the fight route he is made hostile directly, so that path is
+unaffected, but if the den is roused some other way while he lives he will not join in.
 
 ## 0.5.0 - the thieves' guild
 
