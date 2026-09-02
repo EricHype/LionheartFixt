@@ -61,6 +61,10 @@ ap.add_argument("--survey", metavar="PATH_FRAGMENT",
                      "the mod; matches tree paths case-insensitively, '' means all")
 ap.add_argument("--all-nodes", action="store_true",
                 help="survey: list every unreachable node, not just those with replies")
+ap.add_argument("--with-mod", action="store_true",
+                help="survey: measure the game as this mod leaves it, not as it shipped. "
+                     "Without this a survey re-reports content Fixt has already "
+                     "restored, which reads like a discovery and is not one")
 args = ap.parse_args()
 
 sys.path.insert(0, args.tools)
@@ -186,15 +190,29 @@ def show(node):
 # ---------------------------------------------------------------- survey mode
 if args.survey is not None:
     want = args.survey.lower()
-    entries = entry_points(corpus_texts({}))
+    survey_overlay = {}
+    if args.with_mod:
+        for p in sorted(F.rglob("*")):
+            if p.is_file() and p.suffix.lower() in SCANNED:
+                survey_overlay[p.relative_to(F).as_posix()] = \
+                    p.read_bytes().decode("latin-1")
+    by_lower = {k.lower(): v for k, v in survey_overlay.items()}
+    entries = entry_points(corpus_texts(survey_overlay))
     trees = sorted(n for n in zf.namelist()
                    if n.lower().endswith(TREE_EXT) and want in n.lower())
     if not trees:
         sys.exit("no shipped dialogue trees match %r" % args.survey)
+    if args.with_mod:
+        print("surveying the game as this mod leaves it (%d file(s) overlaid)"
+              % len(survey_overlay))
 
     total_nodes = total_orphans = total_with_replies = 0
     for name in trees:
-        tree = dt.parse(zf.read(name).decode("latin-1"))
+        # read our edited copy of the tree when we ship one, so nodes this mod has
+        # already spliced in are counted as present
+        text = by_lower.get(name.lower())
+        tree = dt.parse(text if text is not None
+                        else zf.read(name).decode("latin-1"))
         orphans = unreachable(tree, entries[basename(name)])
         total_nodes += len(tree.nodes)
         total_orphans += len(orphans)
