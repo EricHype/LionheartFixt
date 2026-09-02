@@ -286,15 +286,38 @@ for p in files:
 # Caught in play three releases later, so it lives here now.
 # .can and .zax are tab-indented; DialogTrees are flat. Allow both, or this silently
 # fails to see any activation that lives outside a conversation.
+#
+# The activation does not have to live in *our* files. As soon as this mod ships an
+# edited copy of a shipped quest -- 0.6.0's `help distressed sailor` is the first -- the
+# states it inherits are activated by vanilla maps we do not ship, and scanning only the
+# mod tree reports every one of them as dead. So the vanilla archive is scanned too, with
+# our own files shadowing their archive counterparts rather than being unioned with them:
+# unioning would hide an activation this mod had deliberately *removed*.
 SET_STATE = re.compile(r"CActivateQuestStateAction[ \t]*\n[ \t]*\{[ \t]*\n"
                        r"[ \t]*Quest=([^\n]*)\n[ \t]*State=([^\n]*)")
+SCANNED_FOR_STATES = (".zax", ".dialogtree", ".can", ".txt")
 activated = set()
+
+
+def collect_activations(text):
+    for m in SET_STATE.finditer(text):
+        activated.add((m.group(1).strip().lower(), m.group(2).strip()))
+
+
+ours = set()
 for p in files:
     if p.suffix.lower() in BINARY:
         continue
-    t = p.read_bytes().decode("latin-1").replace("\r\n", LF)
-    for m in SET_STATE.finditer(t):
-        activated.add((m.group(1).strip().lower(), m.group(2).strip()))
+    ours.add(p.relative_to(F).as_posix().lower())
+    collect_activations(p.read_bytes().decode("latin-1").replace("\r\n", LF))
+for name in zf.namelist():
+    low = name.lower()
+    if low.startswith("cache/") or not low.endswith(SCANNED_FOR_STATES):
+        continue
+    if low in ours:                      # our edited copy already contributed
+        continue
+    collect_activations(zf.read(name).decode("latin-1").replace("\r\n", LF))
+
 for q in F.rglob("*.Quest.txt"):
     rel = q.as_posix().split("/Resources/", 1)
     if len(rel) != 2:

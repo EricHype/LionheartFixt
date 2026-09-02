@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=Help the Sailor Save his Brother
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=Search the coast for Fernand's missing brother and see if it is possible to save him.
+			ID=S1NPX04I
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Return to Fernand and tell him that unfortunately, his brother perished.
+			ID=VMS91BAX
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Return to Fernand and tell him that his brother lives.
+			ID=JUA1LIVE
+		}
+	}
+	Sub-Quest of=!None
+}

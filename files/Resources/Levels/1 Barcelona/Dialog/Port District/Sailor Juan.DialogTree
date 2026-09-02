@@ -1,0 +1,36 @@
+CDialogTree
+{
+Name=Juan Carlos Desoto
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Save Juan
+Text=Mi hermano! You saved me!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Juan lives thanks you
+Text=And many thanks to you, stranger. I owe you my life - sadly, I am a man of simple means, a seaman of the Spanish Armada. But what I have is yours - take the items I leave behind, and have good fortune.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Male
+Text=You have my eternal gratitude for saving my life. Muchas gracias, amigo.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Conversation Start Female
+Text=You have my eternal gratitude for saving my life. Muchas gracias, amiga.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 dead
+Text=<The sailor still breathes, but barely. His wounds are terrible, and without healing he will not last long.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 too late
+Text=<The sailor's breathing falters, and stops. There is nothing more you can do for him.>
+Should Have Voiceover=0
+}

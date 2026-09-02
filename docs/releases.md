@@ -127,9 +127,9 @@ into a release it does not fit.
 
 ## 0.6.0 - the Port District
 
-**Scoped, not built.** Nothing below is implemented. Every figure is measured against
-`data.dat.vanilla.bak` and is reproducible from the scripts described under "how this was
-found".
+**The Fernand quest is built and unplayed. The rest of the section is still scope.**
+Every figure is measured against `data.dat.vanilla.bak` and is reproducible from the
+scripts described under "how this was found".
 
 The Sewers work closed with the thieves and the beggars roughly level. The Port District
 is the next-largest cluster of Barcelona content, and it holds **the game's fourth
@@ -210,9 +210,15 @@ But the rescue was written:
 - `Sailor Juan.DialogTree` - *"Mi hermano! You saved me!"*, `1 Juan lives thanks you`, and
   male and female thanks nodes. **Three of its five nodes are unreachable.**
 - Fernand's `20 still breathing`, `20 not breathing`, `30 saved juan`.
-- Map position markers `juan travels back` (4345,1483), `juan travels back further`
-  (4176,1703) and `juan heads to ship` - a living Juan walking home to the Armada. They
-  are placed and nothing sends anyone to them.
+- Map position markers named for Juan - `juan heads to ship` (4639,1354),
+  `juan travels back` (4345,1483), `juan travels back further` (4176,1703) - tracing a
+  route from the island back to the ship. **These are not unused**, and an earlier draft
+  of this section wrongly said nothing sends anyone to them: `sailor leaves` walks
+  *Fernand* down all three, plus `sailor runs to help` and `distressed sailor goes here`,
+  when the quest ends badly. Each of the five is referenced exactly once, by that one
+  relay. That they carry Juan's name while moving his brother suggests the route was laid
+  out for Juan and reused - but that is inference, not evidence, and it is weaker support
+  for "the rescue was written" than the dialogue and the unused requirement are.
 - The fight is there too: three `Vodyanoi agile Generator`s at (4967,231), (4987,549) and
   (5232,226), straight across the approach to the body.
 
@@ -243,8 +249,9 @@ wiring rather than authoring.
 
 3. **A living Juan.** A `CGeneratorAI` beside the corpse generator, which stays for the
    no-potion path. The walk home copies `sailor leaves`, which already does
-   `CAssignTemporaryTaskAction` over a chain of five `CGoToAI` for Fernand and is the
-   pattern the `juan travels back` markers were placed for.
+   `CAssignTemporaryTaskAction` over a chain of five `CGoToAI` for Fernand; Juan shares
+   three of its destinations rather than claiming them, and his `CGoToAI` legs are
+   lifted out of that relay byte-for-byte with only `Destination=` changed.
 
 4. **Fernand's return branch.** His generator's interaction is a two-armed `CIfAction`:
    quest ever activated -> `1 Return 2`, else -> `1 Return`. `CIfAction` has one `Then`
@@ -256,6 +263,174 @@ wiring rather than authoring.
    XP is the one decision: the death report pays 150 through the `saved juan but died`
    entity, and a rescue should pay more - a **second** XP entity, so the failure path
    keeps its shipped value.
+
+### What got built
+
+The footprint on `Port District.zax` is **four parts added, two changed, none
+removed**, out of 1317, plus one line changed and one node added in a shipped dialogue
+tree:
+
+| Part | |
+|---|---|
+| `juan goes home` | new, walks him back down three of `sailor leaves`' markers |
+| `juan bleeds out` | new, the 45-second clock and the shipped failure path |
+| `told fernand juan lives` | new checker, so the payout happens once |
+| `saved juan and he lived` | new XP entity, 300 |
+| `sailor rescues brother` | changed: the potion branch |
+| `Distressed Sailor generator` | changed: a third arm to the reward node |
+
+The no-potion path is the shipped balloon and the shipped quest-If, **character for
+character** -- the verifier re-extracts both from the archive and compares. Juan's three
+`CGoToAI` legs are lifted out of `sailor leaves` byte-for-byte with only `Destination=`
+changed; each is ~75 lines of movement boilerplate, and retyping them is how a default
+gets altered by accident. Fernand's shipped two-armed `CIfAction` survives untouched as
+the `Else` of the new one.
+
+Both gates pass. The quest-state check needed fixing first: it scanned only the mod tree
+for activations, so the two states this quest inherits -- activated by vanilla maps we do
+not ship -- would have been reported as dead. It now reads the vanilla archive too, with
+our files shadowing their archive counterparts rather than being unioned with them.
+
+### Decisions taken while building
+
+- **The potion is consumed, and the rescue is a click on the body.** Both of these
+  reverse what the first build did, and both came out of playing it. The first build
+  fired on the proximity trigger, so the rescue happened *to* the player rather than
+  being something they did; and it did not take the potion, on the grounds that vanilla
+  only ever removes specific quest items. That second claim was simply wrong. DaVinci's
+  Magic Machine asks for "a magical potion - any potion will do", tests
+  `Inventory Items/Potion` and then removes `Inventory Items/Potion` -- the same generic
+  path Fernand hands out. One survey of `CActionRemoveInventoryItem` had shown only
+  `Specific Item Cans/...` uses and that was taken as the whole picture; four generic ones
+  were in the same result set, further down. The known limitation stands, but is now a
+  cost paid deliberately rather than a reason not to act: the remove carries no
+  `Additions`, so it takes *a* potion and may take a better one than the healing potion
+  Fernand gave you. Vanilla's own Magic Machine has exactly this flaw.
+- **300 XP**, against the district's own scale: Helped Bartolome 250, Saved Tomas 200,
+  the death report 150, the murder-mystery payouts 500. The failure path keeps its
+  shipped 150 through its own entity; this adds a second rather than editing that one.
+- **Juan is revived in place, not replaced.** The first build deleted the corpse and
+  spawned a fresh Juan from a generator, which is precisely a teleport, and looked like
+  one. The engine never needed that. `Genderate Dead Body` -- the shared canned script
+  behind every corpse in the game -- *transforms an entity in place* in nine steps, and
+  each one has an inverse: drop the `Corpse` category, make him collidable, re-add the
+  `CAISetOpacityBasedOnVisibility` it stripped, and wake the CSkeletonAI it parked in a
+  `CWaitAI`. Then `GetUp` plays on the body already lying there.
+  - **Order is load-bearing.** `Raise Enemy Action.can`, the necromancy spell and the only
+    shipped thing that raises one of these corpses, sends the `Raise Enemy` message
+    *before* playing `getup`. That is not cosmetic: the corpse script's `CWaitAI` has
+    `Completion Message to wait for=Raise Enemy`, and `CPlayAnimationAction`'s
+    `AI To Interrupt=CSkeletonAI` has nothing to interrupt until the message restores it.
+  - **The animation exists for this model**, which had to be checked rather than assumed:
+    `Boatswain/Shared Animations/{01,02}/GetUp.ANIMATION.GR2` is on disk, and the
+    pre-rendered sprite the game actually draws,
+    `Cache/Models/Characters/NPC/Barcelona/Sailors/BoatswainMace.mdl16`, lists
+    `Shared Animations/02/GetUpB` among its baked sequences. A source animation with no
+    baked frames would have played as nothing.
+  - **Double-clicking cannot cost two potions.** The whole interaction is wrapped in
+    `CCheckCategoryAction` for `Corpse`, and the revive drops that category as its second
+    action, so a second click during the get-up finds nothing to do. This is structural
+    rather than a `Trigger Only Once` flag, which would have burned the one chance for a
+    player who arrived without a potion.
+- **A player who never took the quest can still save Juan.** The trigger is `Active=1`
+  from map load, so anyone who wanders to the island with a potion sets `JUA1LIVE`, which
+  starts the quest already at "go tell Fernand". Vanilla anticipates the no-quest case on
+  the death path the same way, through `discoverd brother dead`. Fernand's greeting then
+  says "thank you *again*", which is slightly off for someone he has never met.
+
+- **Juan is dying, not dead, and he can run out of time.** Play turned up a line
+  that the restoration itself had made false: the shipped bark on approach reads
+  *"<Arriving at the body, you notice that it has been very recently killed.>"*, which is
+  correct for a corpse and absurd for a man who sits up when you pour a potion into him.
+  Rewording it is one line, but it cannot ship alone, and the reason is worth writing
+  down. `VMS91BAX` -- the state vanilla sets the instant you walk up -- is what gates
+  Fernand's reply *"No, I was not. I'm very sorry, but your brother has perished."* So in
+  the first build you could walk up, immediately report him dead, walk back, and revive
+  him. A bark that says he is *dying* makes that contradiction impossible to ignore, so
+  the state had to move to a moment when it is true, and nothing in the vanilla design
+  provides such a moment. The timer creates it.
+  - The approach trigger now sets **no quest state at all**. It starts a 45-second relay.
+  - The **shipped quest-state If moves across whole** -- both arms, character for
+    character, including the `discoverd brother dead` branch for a player who never took
+    the job. The failure path is not rewritten, only rescheduled.
+  - **The delay is not cancellable, by design.** `CDelayAction` fires no matter what, so
+    rather than adding a second mechanism to call it off, the delayed block re-checks the
+    same `Corpse` category the rescue does. Healed Juan has no such category and the whole
+    block does nothing. One guard, read in two places, instead of two mechanisms that can
+    drift apart.
+  - It lives on a **relay** rather than inside the trigger because the trigger deletes
+    itself on the frame it fires. Vanilla gets away with ordering actions after that
+    `CDeleteAction` because deletion is deferred to end of frame; ninety seconds is not.
+  - **45 seconds**, down from 90 after the first playtest, where the clock did not
+    fire at all -- for the ordering reason below, not because 90 was too long. Verified
+    in play at 45. A `Vodyanoi agile Generator` sits 61 units from the body --
+    Agile, Super and Tough -- so the player usually arrives into the fight Fernand
+    describes. That is what makes the timer a decision (pour the potion mid-fight, or
+    clear the creatures first and gamble) rather than a formality. Too short and it stops
+    being a decision and becomes a reload.
+  - **A relay must be fired before its trigger deletes itself. Confirmed in play.**
+    The first build ordered `CTriggerRelayAction` *after* the `CDeleteAction` that removes
+    the trigger, and the clock silently never ran. Moving the relay call one slot earlier
+    fixed it, and Juan now dies on schedule.
+
+    This is worth stating as a general engine rule, because everything else about the
+    relay was already correct and none of it was the problem: `Relay Name` is the only
+    field the game ever uses (4021 times), `Forget Trigger=0` is what all 4089 shipped
+    `CDelayAction`s use, a 130-second delay inside a `CRelayAI` is shipped, and
+    runtime-added categories *are* visible to `CCheckCategoryAction` -- vanilla both adds
+    and checks `Player Friend` and `Scripted Custom 1`. Chasing any of those would have
+    been wasted effort.
+
+    What found it was asking a narrower question: *what does this build do that no shipped
+    map does?* Of the two vanilla enter-actions containing both a `CDeleteAction` and a
+    `CTriggerRelayAction`, neither orders the delete first. That was the only deviation,
+    and it was the bug. The trap is that vanilla **does** put a `CIfAction` and a
+    `CDeactivateAction` after its self-delete and those demonstrably run -- deletion is
+    deferred to end of frame -- which makes "actions after a self-delete are fine" look
+    like a safe general rule. It is not: those actions need nothing *from* the trigger,
+    whereas dispatching a relay evidently goes through it. The failure is silent, with no
+    error and no partial effect.
+  - **A regression the timer introduced, still open.** Vanilla set `VMS91BAX` the instant
+    you walked up, so the death report to Fernand was always available. It is now set only
+    when the clock runs out. A player who looks at Juan and walks off the map probably
+    loses the pending delay along with the layer, which would leave the quest stuck at
+    "I have not found him yet" and the shipped 150 XP report unreachable. The short clock
+    makes it much more likely the question resolves while the player is still standing
+    there, but that is mitigation, not a fix. If play confirms it, the answer is probably
+    a second always-on trigger that resolves the state on re-entry.
+  - This is the first **timed failure in the game**. Nothing in vanilla fails a quest on a
+    clock -- no shipped quest state mentions running out of time -- so it is a new kind of
+    pressure for Lionheart, and the main thing to be suspicious of in play. The primitive
+    is not new, though: `CDelayAction` at this scale is shipped (vanilla runs one at 130s),
+    and the map already uses `CLimitedTimeAI`.
+  - It stays **losable, never unwinnable**: failing just routes to the vanilla death
+    report, which still pays its shipped 150 XP and 100 gold.
+
+### What to play
+
+No QA cases yet, deliberately -- 0.5.0's lesson was that they should be written against
+what play shows rather than what the build intends. Needs **a save that has never entered
+the Port District**. Four routes:
+
+1. Take the job, keep the potion, reach the body. You should get the shipped "he's dead"
+   balloon on approach, exactly as in vanilla, and then the cursor should turn to the
+   Interact hand over Juan. Click him: the potion goes, he plays a get-up animation,
+   thanks you, and walks off toward the ship.
+2. Take the job, arrive without a potion. Clicking him prints that he is beyond your
+   help, and leaves the body clickable -- but the clock is running, so coming back with
+   one is only possible inside 45 seconds.
+3. Take the job and stand there. After 45 seconds he dies -- **confirmed in play**.
+   Still to check: that the body stops being clickable, that only then does the log say to
+   tell Fernand he perished, and that reporting it pays the unchanged vanilla 150 XP and
+   100 gold.
+4. **Whether the clock survives leaving the map is not known and needs watching.** The
+   engine swaps a level out when you leave, so a pending delay may pause, may resume, or
+   may be lost. All three are survivable -- worst case he stays savable indefinitely --
+   but which one happens decides whether "go buy a potion" is a real option.
+5. Report back to Fernand after 1. The reward node should open, pay 300 once, close the
+   quest, and offer the companion at Speech 20 or Barter 20.
+6. Recruit him, and take him somewhere. This is the first time the companion machinery
+   has ever run for this character.
 
 ### Open decisions
 
