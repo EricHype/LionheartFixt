@@ -15,12 +15,19 @@ that no longer exists here, so renumbering a case cannot silently orphan the gui
 
 ## Gate 0 - automated, before anyone plays
 
-All of these are scripted in [`tools/validate.py`](../tools/validate.py) and must be
-re-run after *any* change to `files/`:
+A0.1-A0.12 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
+[`tools/reachability.py`](../tools/reachability.py), which needs the vanilla archive to
+tell our orphans from the shipped game's. Both must be re-run after *any* change to
+`files/`:
 
 ```
 python tools/validate.py
+python tools/reachability.py
 ```
+
+`reachability.py` also has a survey mode - `--survey "Port District"`, `--survey ""` for
+the whole game - which reports what the *developers* wrote and never connected. That is
+a content-discovery tool rather than a gate, and it is how 0.6.0 was scoped.
 
 It exits non-zero on any problem, so it can gate a build. `--tools` and `--vanilla`
 override the two paths it needs. Binary payloads -- `.mdl16` icon art and friends --
@@ -42,6 +49,7 @@ is parsed, so a new *text* type cannot slip through by being unlisted.
 | A0.10 | `mod.json` file list exactly matches what is on disk | sets equal |
 | A0.11 | After build: all payload files byte-identical in `data.dat` **and** the loose `data\` mirror | identical in both |
 | A0.12 | `data.dat` passes `testzip()` and every entry is `compress_type == 0` | store-only |
+| A0.13 | Every node this mod adds is reachable -- `python tools/reachability.py` | zero unreachable. Nodes already orphaned in the shipped tree are tolerated; a Fixt tree is usually a shipped tree with nodes spliced in, and should not inherit the blame for what it copied |
 
 **A0.11 is the one that has bitten this project before.** The loose `data\` tree shadows
 `data.dat`; a correct archive with a stale mirror is a mod that silently does nothing.

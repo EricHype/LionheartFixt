@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.5.1 built, not yet signed off**. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded. 0.1.0 through 0.4.1 are published; the sections
+Status: **0.5.1 built, not yet signed off**; 0.6.0 is scoped and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded. 0.1.0 through 0.4.1 are published; the sections
 below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
@@ -62,7 +62,8 @@ development.
 | 0.3.0 | **The Knights of Saladin** (built) - the order awards the rank, not just the title | The second minor faction. Ordered ahead of Quinn deliberately: the core repair is one faction assignment with four acts of payoff, which is far cheaper than a three-quest chain |
 | 0.4.0 | **Quinn's reagents** (built) - three quests, three healing potion tiers | The project's first new content. Most of the assets already existed |
 | 0.5.0 | Cut content into its right home | Titan quest, Guard Pablo, Isabella, the helpful wererat |
-| 0.6.0+ | The back half - the Crypt's war, the two new areas, companions | The largest work, and it wants the faction and reactivity templates settled first |
+| 0.6.0 | **The Port District** - Fernand Desoto becomes the game's fourth companion, because his brother can finally be saved | The companion is written and wired on both sides and reachable by nothing. It exercises the companion machinery on the cheapest case before Grace or the Crypt need it |
+| 0.7.0+ | The back half - the Crypt's war, the two new areas, the England companion | The largest work, and it wants the faction and reactivity templates settled first |
 
 ## The Crossroads patrol, and why it is hostile
 
@@ -123,6 +124,198 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.6.0 - the Port District
+
+**Scoped, not built.** Nothing below is implemented. Every figure is measured against
+`data.dat.vanilla.bak` and is reproducible from the scripts described under "how this was
+found".
+
+The Sewers work closed with the thieves and the beggars roughly level. The Port District
+is the next-largest cluster of Barcelona content, and it holds **the game's fourth
+companion** - written, wired on both the dialogue and the map side, and reachable by
+nothing.
+
+### How this was found
+
+Reachability, per tree: walk `Go to node ID` outward from every entry point and report
+what is never visited. Entry points are the first node in the file, plus any node named
+by a `Dialog Tree File=` / `Node ID=` pair anywhere in the shipped game. Both of those
+fields sit in the same brace block **in either order**, so the block has to be delimited
+properly rather than scanned forwards a fixed distance - a forward-only scan misses
+entries and reports live balloons as orphans.
+
+Across the district's **31 trees that is 111 unreachable nodes**, and most of them are
+balloons and combat barks that a map fires directly. Sorting by "carries replies" cuts it
+to **38**, which is where authored branches live. Two of those branches are cut content.
+The rest are barks, superseded drafts, or one-line flavour.
+
+Reproduce with:
+
+```
+python tools/reachability.py --survey "Port District"
+```
+
+That is `tools/reachability.py`, promoted out of scratch while this was being written -
+which immediately corrected two figures in an earlier draft of this section. The
+district has 31 trees, not 30: `Character Templates/Port District/Maria.DialogTree` sits
+outside the `Dialog/` folder and a folder glob misses it.
+
+### Fernand Desoto is a finished companion
+
+`Distressed Sailor.DialogTree` - header `Name=Fernand Desoto` - is 31 nodes, **17 of them
+unreachable**, and the unreachable half is the entire success branch.
+
+Node `80 companion` runs a real
+`CSetCompanionAction{Player=$Instigator, Companion=Distressed Sailor}`. That is the same
+call that makes Cervantes, Cortes and Fang follow you, and those three are the only
+companions in the shipped game. The map side is finished too: `Port District.zax` carries
+a 14KB relay named `fernand joins you` that strips his `CSkeletonAI` and adds a
+follow-capable one, swaps his `CAIInteractionSpecifier`, and gives him companion banter
+through `100 companion banter` - *"Where you go, I follow."*
+
+Nothing fires any of it. `1 return after saving juan`, the node the whole branch hangs
+off, is **defined once and referenced nowhere in the game**. It offers six replies:
+
+| Reply | Gate | Goes to | Pays |
+|---|---|---|---|
+| "I would like you to accompany me for a time." | none | `40 companion` | the companion |
+| "don't you think his life is worth more than I was paid?" | Barter 20 | `40 hard barter` | chain mail, an Extra Healing potion, 100 gold |
+| "I have great need of gold." | Barter 20 | `40 barter` | 100 gold |
+| "Tell me about yourself." | none | `50 who are you` | - |
+| two exits | none | - | - |
+
+`40 companion` then gates the recruitment on **Speech 20 or Barter 20**, with a written
+refusal (`70 rejection`) for anyone who has neither. Both routes reach `80 companion`.
+
+### Why it is unreachable: Juan cannot be saved
+
+The only Juan on the map is a `Fixed Dead Body Generator` at (5293,221) - a
+`CSimpleGeneratorForCannedEntitiesAI` over `ShipSailorsonShipCanned`, `New Name=Juan`,
+dropping leather armour and a club. The `sailor rescues brother` proximity trigger at
+(5275,242) **unconditionally** plays `Sailor Juan / 100 dead` (*"you notice that it has
+been very recently killed"*) and sets the quest to `VMS91BAX`.
+
+`help distressed sailor.Quest.txt` ships with exactly two states and **neither is a
+success state**:
+
+- `S1NPX04I` - "Search the coast for Fernand's missing brother and see if it is possible
+  to save him."
+- `VMS91BAX` - "Return to Fernand and tell him that unfortunately, his brother perished."
+
+You get 150 XP for reporting a death, and that is the whole quest as shipped.
+
+But the rescue was written:
+
+- `Sailor Juan.DialogTree` - *"Mi hermano! You saved me!"*, `1 Juan lives thanks you`, and
+  male and female thanks nodes. **Three of its five nodes are unreachable.**
+- Fernand's `20 still breathing`, `20 not breathing`, `30 saved juan`.
+- Map position markers `juan travels back` (4345,1483), `juan travels back further`
+  (4176,1703) and `juan heads to ship` - a living Juan walking home to the Armada. They
+  are placed and nothing sends anyone to them.
+- The fight is there too: three `Vodyanoi agile Generator`s at (4967,231), (4987,549) and
+  (5232,226), straight across the approach to the body.
+
+### The intended mechanic is identifiable
+
+When you take the job, node `30 take the job` hands you a healing potion: *"Take this
+potion of healing, you might need it against those creatures."*
+
+And `Dialog/Port District/Requirements/Player has a potion of healing.can` exists, checks
+`CActionCheckForInventoryItem` against `Inventory Items/Potion`, and is **referenced by
+nothing in the game**. It is one of four unused requirement files in the district.
+
+Reach Juan with the potion still on you and he lives. That is the design, and it wants
+wiring rather than authoring.
+
+### The build
+
+1. **A success state.** Add one to `help distressed sailor.Quest.txt` - "Return to
+   Fernand and tell him his brother lives." Note this would be **the first shipped
+   `.Quest.txt` Fixt edits**; all eight quest files it currently ships are new ones. The
+   shape is an `Item Count=N` array of `State=` entries, which is the same edit made
+   routinely inside `.zax`, so the risk is low - but it is a new file class and gets its
+   own validator check and a first-entry playtest before anything else is judged.
+
+2. **The rescue.** `sailor rescues brother` becomes a `CIfAction` on the unused
+   requirement. Potion in hand: spawn Juan alive, play `Sailor Juan / 1 Save Juan`, set
+   the new state. No potion: exactly what happens today, unchanged.
+
+3. **A living Juan.** A `CGeneratorAI` beside the corpse generator, which stays for the
+   no-potion path. The walk home copies `sailor leaves`, which already does
+   `CAssignTemporaryTaskAction` over a chain of five `CGoToAI` for Fernand and is the
+   pattern the `juan travels back` markers were placed for.
+
+4. **Fernand's return branch.** His generator's interaction is a two-armed `CIfAction`:
+   quest ever activated -> `1 Return 2`, else -> `1 Return`. `CIfAction` has one `Then`
+   and one `Else`, so a third arm nests: put the brother-alive test outermost with
+   `1 return after saving juan` as its `Then`, and the existing `CIfAction` as its `Else`.
+
+5. **Rewards.** Nothing new is needed. Both Barter routes self-limit through the
+   `fernand gave barter` checker, already placed at (4592,1759) and `Active=0`. Success
+   XP is the one decision: the death report pays 150 through the `saved juan but died`
+   entity, and a rescue should pay more - a **second** XP entity, so the failure path
+   keeps its shipped value.
+
+### Open decisions
+
+- **The potion check is loose.** `Player has a potion of healing.can` tests for
+  `Inventory Items/Potion` generically; Healing and Extra Healing are distinguished by
+  their `Additions`, not the item. As written, any potion passes, so a player carrying
+  one for any reason gets the good ending without spending Fernand's. Recommend accepting
+  the vanilla file's own looseness rather than tightening it: it only ever helps someone
+  who came prepared, and using the shipped file unmodified is the stronger claim about
+  what was intended.
+- **Fernand is fragile.** `Distressed Sailor.can` points at `Races/NPCs/Sailor` - a real
+  race, so not the dangling-self-reference bug - at **36 HP and AC 90**, against the
+  Wererat Boss's 150. Recommend leaving him: the writing is explicit that he is a sailor
+  of modest means breaking a vow of duty, and a companion you have to keep alive is the
+  more interesting object than a repointed one. Revisit only if play says he dies before
+  he can say anything.
+- **Where he can follow.** He has one banter node and no hurt or combat barks, unlike
+  Cortes, who has ten. Nothing needs stripping, but he will be silent in a way the other
+  companions are not, and that is worth seeing in play before deciding whether to write
+  any.
+
+### The rest of the district
+
+| Item | Verdict |
+|---|---|
+| Port guards' murder reaction - `200 Duke is Dead`, `300 assassination`, `500 tragedy` | Written, never plays. Cheap, and it makes the Duke's death visible in the streets. **In scope.** |
+| Fish Monger `60 sold skull normal price` | Orphaned branch of the Vodyanoi Skull sale, which the sailor quest now sends players past. **In scope, small.** |
+| Brendan Michael Sullivan, the Irish sailor | `200 irish`, `200 name`, `200 drink`, `200 insult` - dead in **both** `Bar Patrons` (5 replies) and `ShipSailorsonShipCanned` (4 replies). Two copies of the same tavern character, both orphaned. **Probably in scope**; needs a read to decide which copy is the live one. |
+| `Gather the drunken sailors from the tavern` | Zero states, referenced only by the fall-of-Barcelona failure sweep, and `DrunkSailorsInBar.DialogTree` is seven ambient barks with no quest content. Nothing to restore - it would be new writing. **Out.** |
+| Cortes `165 help with arm` -> `170 accept cortes arm quest`, and the unused `Cortes Help Him Rebuild Arm.can` | **Not touched.** This looks like a superseded draft, not cut content: the reachable `164 cortes needs to repair the arm` does the same job, and the two activate *different* states of the same quest (`165` jumps to `WEDKYW9X`, skipping `EPVSO4Y0`). This is exactly the shape misread twice during 0.5 - it gets a proper read against the quest's six states before anyone calls it either way. |
+| Bartolome's `80 thank you`, handing out Boots Arid dJinn | Orphaned, but `100 saved brother` is reachable, gives the same boots and completes the quest. A draft, not a loss. **Out.** |
+
+### Explicitly not in it
+
+**Grace O'Malley.** Isabella's tree carries eleven unreachable `500`/`502`/`503` nodes for
+the England act - `502 grace joined romantic`, `502 grace companion near death`,
+`503 druids` - with matching `.ogg` files sitting in her Port District VO folder. They are
+unreachable for a blunter reason than Fernand's: `Captain Isabella.DialogTree` is opened
+by exactly one map, `Port District.zax`, and she is never placed in Act 7 at all.
+Restoring her means placing a character in the English Shrine and deciding what her
+presence does to that act's ending. That is a release of its own, and it belongs after the
+companion machinery has been exercised once on Fernand.
+
+### Gates before this ships
+
+- `tools/validate.py` extended with a `.Quest.txt` check: state IDs unique, `Item Count`
+  matching the array, every ID referenced by a `CActivateQuestStateAction` or
+  `CIsQuestStateTheCurrentStateAction` somewhere.
+- `tools/reachability.py` in gate mode (**built**, and now part of Gate 0 as A0.13): no
+  node this mod adds may be unreachable. Nodes already orphaned in the shipped tree are
+  tolerated, since a Fixt tree is usually a shipped tree with nodes spliced into it - it
+  currently tolerates 69 and passes. Negative-tested against both halves of the rule: a
+  new node nothing links to, and a broken link orphaning a node that used to be reachable.
+  This release exists because that check did not exist, and it should not have to be
+  rediscovered.
+- **A save that has never entered the Port District.** New entities on an edited map do
+  not appear on a save that has already visited it, and this release adds several.
+- The vodyanoi fight, the potion route, the no-potion route, and the recruitment played
+  separately. Nine defects in 0.5 passed parse, byte-identical round-trip, every validator
+  check and verified deployment, and were visible only in the running game.
 
 ## 0.5.1 - the two crashes 0.5.0 would have shipped
 
