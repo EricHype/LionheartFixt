@@ -1,0 +1,74 @@
+# Lionheart Fixt 0.6.0 - the Port District
+
+Lionheart ships with three companions: Cervantes, Cortes and Fang. It was written with
+four.
+
+Fernand Desoto is the sailor on the Port District docks who asks you to save his brother.
+His dialogue file is 31 nodes and **17 of them cannot be reached** -- and the unreachable
+half is the entire success branch. One of those nodes runs a real `CSetCompanionAction`,
+the same call behind the other three companions. The map has a 14KB relay waiting to swap
+his AI over and give him companion banter: *"Where you go, I follow."*
+
+None of it can happen, because his brother cannot be saved. The trigger on the body
+declares him dead no matter what, and the quest ships with two states, neither of them a
+success. You get 150 XP for reporting a death, and that is the whole quest.
+
+But the rescue was written. Juan has a thanks node and *"Mi hermano! You saved me!"*.
+Fernand has lines for finding him alive. And when you take the job he presses a potion of
+healing into your hand -- *"you might need it against those creatures"* -- while a file
+called `Player has a potion of healing.can` sits in the same folder, checking for exactly
+that, referenced by nothing in the game.
+
+The pieces were all there. They were never connected.
+
+**Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt: it
+fixes what is broken, restores what was cut, and adds new content only where the game
+plainly ran out.
+
+## Saving Juan
+
+Reach him with the potion still on you and he can be saved. He is not a corpse when you
+arrive -- he is dying, and you have about forty-five seconds while a nest of vodyanoi is
+usually still coming at you. That is the decision the scene was built for: stop and use
+the potion now, or clear the water first and gamble.
+
+Pour it into him and he gets up. The same man, off the ground, playing a get-up
+animation -- not a fresh copy spawned where the body was. Then he makes his own way back
+to the ship, and his brother can be told, and thanked, and asked to come along.
+
+If the clock runs out he is gone for good, and the quest falls back to the ending the game
+already had: report the death, take the 150 gold and the XP.
+
+## Also in it
+
+**The Duke's murder leaves a crime scene.** Blow up the Duke of Medina and a guard already
+runs in shouting that he has been assassinated -- then the game deletes him and the body
+and fades out, so the written aftermath had nowhere to land. Two guards now hold the scene
+afterwards, and will tell you to move along, and what happened here.
+
+**The fish monger buys skulls properly.** Selling him a vodyanoi skull took the skull, paid
+the gold, and then dropped the conversation mid-sentence; his reply was written and
+unreachable. He says it now, and you can sell him another without starting over.
+
+**The Irish sailor will tell you where he is from.** Brendan Michael Sullivan has a whole
+answer about Ireland having *"sank some three hundred years ago during the troubled
+times"*, and nothing in his dialogue ever led to it. The missing line was sitting in an
+unused duplicate of his own conversation. It is his text, put back.
+
+**Something for the skulls.** There is a reward for selling that fish monger a great many
+vodyanoi skulls. It is not hinted, nothing tracks it, and it is not written down anywhere.
+
+## Before you install
+
+**This is barely a played build.** The rescue has been played and works. Most of the rest
+has not, and one piece of it depends on a mechanism no perk in the shipped game uses -- if
+the engine ignores it, it will simply do nothing. Everything here is honest about which is
+which, and if you would rather wait, wait.
+
+**It needs a character who has never entered the Port District.** Dialogue is read fresh
+every time you talk to someone, but a level's contents are captured into your save the
+first time you walk into it. On a save that has already been there, Juan cannot be saved
+and the crime scene stays empty.
+
+Download, unzip, run `Mod Manager.bat`. It finds a GOG, Steam or retail install by itself,
+`Uninstall` puts everything back, and it installs over 0.5.1 as normal.
