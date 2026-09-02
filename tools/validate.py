@@ -94,6 +94,33 @@ fails = []
 LF = chr(10)
 
 
+_VANILLA_DANGLING = {}
+
+
+def vanilla_dangling(p):
+    """Dangling `Go to node ID` targets in the SHIPPED copy of this same tree.
+
+    Empty for a tree this mod authored, which is the point: only inherited breakage is
+    excused, never breakage in something we wrote.
+    """
+    rel = p.relative_to(F).as_posix()
+    if rel in _VANILLA_DANGLING:
+        return _VANILLA_DANGLING[rel]
+    out = set()
+    try:
+        v = zf.read(rel).decode("latin-1").replace("\r\n", LF)
+    except KeyError:
+        pass
+    else:
+        ids = {x.strip().lower() for x in re.findall(r"^Node ID=(.*)$", v, re.M)}
+        for m in re.finditer(r"^Go to node ID=(.*)$", v, re.M):
+            g = m.group(1).strip().lower()
+            if g and g not in ids and g not in ("!none", "none"):
+                out.add(g)
+    _VANILLA_DANGLING[rel] = out
+    return out
+
+
 def check_dialogtree(p, raw):
     name = p.name
     if b"\n" in raw and raw.count(b"\r\n") != raw.count(b"\n"):
@@ -113,9 +140,20 @@ def check_dialogtree(p, raw):
         fails.append(name + ": duplicate node IDs " + repr(sorted(dupes)))
     low = {i.lower() for i in ids}
 
+    # A Fixt dialogue tree is almost always a *shipped* tree with nodes spliced into it,
+    # so it inherits whatever was already broken -- `Fish Monger` alone ships four dead
+    # `Go to node ID=` targets, and `Bar Patrons` ships three more in a branch nothing can
+    # reach. Reporting those says nothing about this mod and drowns out the ones it would
+    # actually introduce, so they are tolerated exactly the way reachability.py tolerates
+    # nodes already orphaned in vanilla: compare against the shipped copy of the same file
+    # and report only what is new. A tree we author from scratch has no vanilla
+    # counterpart, so every dangling target in it is still reported.
+    inherited = vanilla_dangling(p)
     for m in re.finditer(r"^Go to node ID=(.*)$", t, re.M):
         g = m.group(1).strip()
         if g and g.lower() not in low and g.lower() not in ("!none", "none"):
+            if g.lower() in inherited:
+                continue
             fails.append(name + ": dangling target " + repr(g))
 
     for m in re.finditer(r"^Requirement=(.*)$", t, re.M):
@@ -324,8 +362,28 @@ for q in F.rglob("*.Quest.txt"):
         continue
     qpath = rel[1][:-len(".Quest.txt")].lower()
     qt = q.read_bytes().decode("latin-1").replace("\r\n", LF)
-    for s in re.findall(r"^\s*ID=(.*)$", qt, re.M):
-        s = s.strip()
+    ids = [s.strip() for s in re.findall(r"^\s*ID=(.*)$", qt, re.M)]
+
+    # The array's declared length must match what follows it. A `.zax` tolerates a wrong
+    # `Item Count` in some places because the reader walks braces, but a quest's state
+    # array is read as a counted list: declare too few and the tail is silently dropped,
+    # which presents as a quest whose log never advances past a certain step.
+    m = re.search(r"States=Array\s*\n\s*\{\s*\n\s*Item Count=(\d+)", qt)
+    if not m:
+        fails.append(q.name + ": no States=Array with an Item Count")
+    elif int(m.group(1)) != len(ids):
+        fails.append(q.name + ": Item Count=%s but %d State entries"
+                     % (m.group(1), len(ids)))
+
+    dupes = sorted({i for i in ids if ids.count(i) > 1})
+    if dupes:
+        fails.append(q.name + ": duplicate state IDs " + repr(dupes))
+    for s in ids:
+        if not re.fullmatch(r"[A-Z0-9]{8}", s):
+            fails.append(q.name + ": state ID " + repr(s)
+                         + " is not 8 uppercase alphanumerics")
+
+    for s in ids:
         if s and (qpath, s) not in activated:
             fails.append(q.name + ": state " + repr(s)
                          + " is never activated -- the quest can be offered but never starts")

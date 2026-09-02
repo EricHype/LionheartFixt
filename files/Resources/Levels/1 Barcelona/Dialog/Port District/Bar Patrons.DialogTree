@@ -1,0 +1,658 @@
+CDialogTree
+{
+Name=Bar Patron
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Knight at Bar
+Text=<The knight silently sips his wine by the fire and ignores you.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Knight at Bar 2
+Text=<The knight looks up at you briefly but returns to his drink solemnly.> 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Knight at Bar 3
+Text=<The knight glares at you with burning eyes as he slowly sips his wine.> 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 irish sailor
+Text=If'n it isn't another foreigner in this god-forsaken tavern! Come sit down and share a pint o' the watered-down-bull-piss they call *ale* with an old Irishman.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took irish drink
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=If you're buying, I'll have a drink.
+Go to node ID=200 drink
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=200 name
+
+Requirement=!None
+Reply Text=You're Irish? I don't drink with Irish.
+Go to node ID=200 irish insult
+
+Requirement=!None
+Reply Text=That accent is odd - where are you from?
+Go to node ID=200 irish
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=200 health to you
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 irish
+Text=My accent is odd, is it? Sure'n you should listen to yerself? Alas, Ireland, the land I am from, is no more, sank some three hundred years ago during the troubled times. To my people, our home is the ocean. Some of us have come to Spain to join Armada and help sail their galleys for a good wage - but the English, we fight them for free! <Laughs>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll take that drink now, if you're still buying.
+Go to node ID=200 drink
+
+Requirement=!None
+Reply Text=Why did you say you will fight the English?
+Go to node ID=200 english
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=200 name
+
+Requirement=!None
+Reply Text=You're Irish? I don't drink with Irish.
+Go to node ID=200 irish insult
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=200 health to you
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 irish insult
+Text=That's just grand. Why don't ye go find an Englishman to drink with, eh? <Mutters> Sure'n you be a ravin' eejit...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Irish drinking song relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Irish drinking song relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 drink
+Text=Take a healthy tug from the Serpent's Bile - sure'n it's the only drink that comes close to the sweetness of pure Irish whiskey. Sláinte! <Health!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=1500 other questions for irish
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Serpent's Bile
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=took irish drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 name
+Text=The name is Brendan Michael Sullivan, at your service. I have come to Spain to serve the Armada, earn an honest wage, and fight the English all across the deep blue ocean.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took irish drink
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll take that drink now, if you're still buying.
+Go to node ID=200 drink
+
+Requirement=!None
+Reply Text=Why did you say you will fight the English?
+Go to node ID=200 english
+
+Requirement=!None
+Reply Text=You're Irish? I don't drink with Irish.
+Go to node ID=200 irish insult
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=200 health to you
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Irish drinking song relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Irish drinking song relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 low luck
+Text=Forgive me, but I can't help but notice that you be a bit down on yer luck, now, eh lad? Here, perhaps this will bring you some good fortune - it's clover, plucked from the last patch of dry ground 'afore me island sank. <Whispers> Legend says it be magic, so keep it safe...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 health to you
+Text=Goodbye and may the road rise to meet you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Irish drinking song relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=restart irish song
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 english
+Text=Well now, are ye daft? The English are wicked sorcerers and heretics the lot of 'em! Spanish Armada prepares for war against the English, so we drink for health and victory.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took irish drink
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll take that drink now, if you're still buying.
+Go to node ID=200 drink
+
+Requirement=!None
+Reply Text=Tell me about yourself.
+Go to node ID=200 name
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=200 health to you
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 health to the company
+Text=Here's a health to the company and one to my lass ...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 health to the company 2
+Text=Let us drink and be merry all out of one glass...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 health to the company 3
+Text=Come lift up your voices, all grief to refrain...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 health to the company 4
+Text=For we may and might never all meet here again...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song start
+Text=Kind friends and companions, come join me in rhyme...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song 2
+Text=Come lift up your voices in chorus with mine...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song 3
+Text=Come lift up your voices, all grief to refrain...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song 4
+Text=For we may and might never all meet here again!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song second verse
+Text=Here's a health to the wee lass that I love so well...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song second verse 2
+Text=Her style and her beauty, sure none can excel...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song second verse 3
+Text=There's a smile upon her countenance as she sits on my knee...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song second verse 4
+Text=Sure'n there's no one in this wide world as happy as we!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song third verse
+Text=Our ship lies at harbor, she's ready to dock...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song third verse 2
+Text=I hope she's safe-landed without any shock...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song third verse 3
+Text=If ever we should meet again by land or by sea...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 song third verse 4
+Text=I will always remember your kindness to me...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 greeting generic
+Text=A health to you, stranger!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 greeting generic 2
+Text=Raise your glass, toast to the Armada!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1500 drunk guy
+Text=Barshih jarshz fzoash wojey woash!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You are the drunkest man I've ever seen.
+Go to node ID=1500 drunk guy 2
+
+Requirement=!None
+Reply Text=Say again?
+Go to node ID=1500 drunk guy 2
+
+Requirement=!None
+Reply Text=You are a moron.
+Go to node ID=1500 drunk guy 4
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Right. Goodbye.
+Go to node ID=1500 drunk guy 2
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1500 drunk guy 2
+Text=Flarsh smarshi yarzish beersh?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1500 understand drunk
+Text=You understand me? Finally, someone is drunk enough to hear what I'm saying! Look, I could use another gold for one more ale. What do you say, friend?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1
+}
+}
+Reply Text=I could spare a gold. Here you go.
+Go to node ID=1500 gave money to drunk
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1
+}
+
+Requirement=!None
+Reply Text=Forget it. You're drunk enough.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1500 drunk guy 4
+Text=Flubusk yorshuz! Bezzenjo!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1500 converse with drunk
+Text=Spare a gold to buy me another drink?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sorry, I can't spare it.
+Go to node ID=1500 drunk guy 3
+
+Requirement=!None
+Reply Text=Yes, here is a gold. Enjoy.
+Go to node ID=1500 drunk guy 3
+
+Requirement=!None
+Reply Text=Forget it, drunkard. Goodbye.
+Go to node ID=1500 drunk guy 3
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1500 irish singer return female
+Text=Well then lass, what can I do fer ye?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took irish drink
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll take that drink now, if you're still buying.
+Go to node ID=200 drink
+Custom Action=CActivateAction
+{
+Target Name=took irish drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=200 name
+
+Requirement=!None
+Reply Text=You're Irish? I don't drink with Irish.
+Go to node ID=200 irish insult
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=200 health to you
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1500 irish singer return male
+Text=Well then lad, what can I do fer ye?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took irish drink
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll take that drink now, if you're still buying.
+Go to node ID=200 drink
+Custom Action=CActivateAction
+{
+Target Name=took irish drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=200 name
+
+Requirement=!None
+Reply Text=You're Irish? I don't drink with Irish.
+Go to node ID=200 irish insult
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=200 health to you
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1500 other questions for irish
+Text=Grand. Now, what can I do fer ye?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took irish drink
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll take that drink now, if you're still buying.
+Go to node ID=200 drink
+Custom Action=CActivateAction
+{
+Target Name=took irish drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=200 name
+
+Requirement=!None
+Reply Text=You're Irish? I don't drink with Irish.
+Go to node ID=200 irish insult
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=200 health to you
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1500 restart irish singing
+Text=Now then lads, where were we?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1600 going on
+Text=<Disgusted> Can't I enjoy a drink in peace?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1500 gave money to drunk
+Text=Out of this whole stinking bar, you're the only one that's shown any kindness to a lost soul like myself. I can't pay you back in gold, but I can teach you a style of fighting I learned while drinking in the most dangerous taverns of Europe. Do you want to learn this fighting style?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=gave a gold and helped out drunk
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Yes, show me the fighting style.
+Go to node ID=1600 drunkard
+Custom Action=CActivateAction
+{
+Target Name=gave a gold and helped out drunk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=No thanks, this will be my last drink.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1600 drunkard
+Text=Let me show you a style of fighting I learned while deeply intoxicated.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CDelayAction
+{
+Next Action=CEndNonInteractiveSequenceAction
+{
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CPrintCombatTextAction
+{
+Text to print=The drunken bar patron has taught you an unorthodox style of unarmed fighting based on Drunken Boxing.
+Character to show text to=$Instigator
+Emphasize=1
+Suppress Duplicates=0
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Drunken Boxing
+}
+}
+}
+Character to get attributes from=$Instigator
+Then=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!NPC or Event Given Perks/Drunken Boxing
+}
+Else=
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1500 return after give gold
+Text=Good to see you again, friend. Grab an ale and enjoy yourself.
+Should Have Voiceover=0
+}

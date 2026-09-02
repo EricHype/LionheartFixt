@@ -456,12 +456,119 @@ the Port District**. Four routes:
 
 | Item | Verdict |
 |---|---|
-| Port guards' murder reaction - `200 Duke is Dead`, `300 assassination`, `500 tragedy` | Written, never plays. Cheap, and it makes the Duke's death visible in the streets. **In scope.** |
-| Fish Monger `60 sold skull normal price` | Orphaned branch of the Vodyanoi Skull sale, which the sailor quest now sends players past. **In scope, small.** |
-| Brendan Michael Sullivan, the Irish sailor | `200 irish`, `200 name`, `200 drink`, `200 insult` - dead in **both** `Bar Patrons` (5 replies) and `ShipSailorsonShipCanned` (4 replies). Two copies of the same tavern character, both orphaned. **Probably in scope**; needs a read to decide which copy is the live one. |
+| Port guards' murder reaction - `200 Duke is Dead`, `300 assassination`, `500 tragedy` | **Built.** See below. |
+| Fish Monger `60 sold skull normal price` | **Built.** See below. |
+| Brendan Michael Sullivan, the Irish sailor | **Built.** See below. |
 | `Gather the drunken sailors from the tavern` | Zero states, referenced only by the fall-of-Barcelona failure sweep, and `DrunkSailorsInBar.DialogTree` is seven ambient barks with no quest content. Nothing to restore - it would be new writing. **Out.** |
-| Cortes `165 help with arm` -> `170 accept cortes arm quest`, and the unused `Cortes Help Him Rebuild Arm.can` | **Not touched.** This looks like a superseded draft, not cut content: the reachable `164 cortes needs to repair the arm` does the same job, and the two activate *different* states of the same quest (`165` jumps to `WEDKYW9X`, skipping `EPVSO4Y0`). This is exactly the shape misread twice during 0.5 - it gets a proper read against the quest's six states before anyone calls it either way. |
+| Cortes `165 help with arm` -> `170 accept cortes arm quest`, and the unused `Cortes Help Him Rebuild Arm.can` | **Out, and now on evidence rather than suspicion.** The read was done. `Give Cortes a Hand` has six states. The orphaned chain is `15 Return Greeting` -> `165 help with arm` -> `165 help with arm 2` -> `170`, and `165 help with arm 2` activates **`WEDKYW9X`** - *"DaVinci has told you that Eduardo will need Red Ore"* - which is the quest's **second** step. The reachable `164 cortes needs to repair the arm` activates **`EPVSO4Y0`**, *"you will find DaVinci and ask"*, the first. Restoring the branch would drop the player into the middle of the arm quest with the DaVinci conversation already assumed, and `WEDKYW9X` is reachable four other ways in normal play. `Cortes Help Him Rebuild Arm.can` has **zero** references, consistent with an abandoned gate. A superseded draft, confirmed. |
 | Bartolome's `80 thank you`, handing out Boots Arid dJinn | Orphaned, but `100 saved brother` is reachable, gives the same boots and completes the quest. A draft, not a loss. **Out.** |
+
+### The Duke's murder leaves no crime scene
+
+The assassination plays in vanilla: blow up the Duke and a guard runs in shouting
+`400 guard calls for help`. What that guard's balloon then does is fire
+`Fade down and remove the duke`, which **deletes both the Duke and the guard** 2.1 seconds
+later and ends the cutscene at 3.1. When the screen fades back up the scene is empty. That
+is why `200 Duke is Dead` - *"Move along, citizen. This is a crime scene."* - and its
+answer `300 assassination` cannot be reached: after the murder there is nobody there to
+say them.
+
+Two guards now stay, using the two positions the level already has:
+
+- `Duke Guard Goes Here` (2255,1394), where the shouting guard runs to, free again once
+  he is deleted.
+- `Duke Guard 2` (2344,1306), an `Editor/Position Marker` **defined once and referenced
+  nowhere** - a second guard post placed and never used. Established by counting
+  references, not by reading the name, after the `juan travels back` markers taught that
+  lesson earlier in this same release.
+
+Both open `200 Duke is Dead`. A one-shot proximity trigger balloons `500 tragedy` over the
+second guard when the player next walks in; that node carries no replies, exactly like the
+shipped `400`, so a bark is the consistent reading rather than a conversation. They are
+switched on inside `Fade down and remove the duke`, behind the screen fade, so the scene
+changes while the picture is black.
+
+**A vanilla name mismatch, checked and harmless.** The clone that spawns the shouting guard
+names `Duke Guard Generator`; the entity is `Duke Guard generator`. Play confirms he
+arrives, so lookup is case-insensitive - and a census puts a number on it: **232
+references across the shipped maps resolve only if case is ignored**, in scenes that
+demonstrably work. Worth knowing, because had it been case-sensitive the cutscene would
+never have ended.
+
+### The Fish Monger, and a perk for the skulls
+
+Selling a vodyanoi skull at the normal price works, but the reply that takes the gold has
+a blank `Go to node ID=`, so the conversation just stops. `60 sold skull normal price`
+- *"Excellent! A pleasure doing business with you. Anything else?"* - is written for that
+moment and nothing reached it. Its own first reply, "I have another vodyanoi skull to sell
+you.", was likewise blank; it now returns to `50 skull`, closing the loop the two nodes
+were plainly written to form.
+
+Restoring it exposed a second defect behind the first: node 60's *"I have other
+questions."* points at `10 Goodbye`, which does not exist, so the reply would have closed
+the conversation instead of asking anything. Repointed at `10 other questions`. The
+tree's other dead targets are left alone - `5 Goodbye` against a node called `5 goodbye`,
+one with a trailing full stop, one where a reply's own text was pasted into the target
+field - because all of them are *goodbye* replies, and a dead target ends the
+conversation, which is what a goodbye does.
+
+**New content, deliberately: sell him fifteen skulls and he tells you where to aim.** This is
+not restoration and is the one thing in 0.6.0 that is not, so the reasoning is recorded in
+full. The engine supports every piece except one:
+
+- `CriticalChance` is a real derived attribute and `More Criticals.Perk` is a template.
+- `CGiveCharacterPerkAction` has 56 shipped uses, so a script can grant a perk, and
+  `!NPC or Event Given Perks` is where NPC-given ones live. They carry a deliberately
+  unsatisfiable `0 >= 1` requirement so they can never be chosen at level-up; ours does
+  too.
+- Fifteen is comfortably reachable, which was checked rather than assumed. All twelve
+  vodyanoi cans use `Vodyanoi Drop Action`, a three-way `CRandomAction` over
+  nothing / skull / gold, so roughly one kill in three yields a skull - and the game
+  places **471-589 vodyanoi**, about 160-200 skulls. Barcelona Coast alone (147) covers
+  it several times over. The *summoned* vodyanoi cans are not among the twelve, so the
+  count cannot be farmed with Monster Summoning.
+- Counting uses the `Goblin Kill Counter` idiom - a `DerivedCharacterAttribute`
+  incremented with `Allow Accumulation=1`. Reading it back in dialogue with
+  `Custom Requirement=CIsGreaterThanOrEqual` over `CVariableDerivedCharacterAttribute` is
+  what the Port District's own `Grumpy Port Guard.DialogTree` already does.
+- The bonus copies `Animal Slayer.InventoryAddition`: a `CPlugInBehaviorStrikeAction`
+  guarded by `CExpressionHitMargin > 0` so it only pays on a blow that lands. The
+  condition is `CCheckModelAction` over all three vodyanoi models rather than Animal
+  Slayer's category check, because vodyanoi are `Category=Animal,Enemy` and a category
+  check would fire on every animal in the game.
+
+**The unproven part:** no shipped *perk* carries a `CPlugInBehaviorStrikeAction`. Perks and
+inventory additions share the same `PlugIn Behaviors=Array` and the behaviour is real -
+five critical-hit effects and a dozen weapon additions use it - but whether the engine
+runs one from a perk is unknown until it is played. If it never fires, the fallback is a
+flat `CriticalChance` perk in the shape of `More Criticals`.
+
+It is bonus damage rather than literal critical chance because crit chance is a character
+attribute and nothing in the perk system can see who you are fighting; there is also no
+action that *applies* a critical hit, only `CActionRemoveCriticalHits`.
+
+**It is a hidden perk, and that is deliberate - do not "fix" it by adding a hint.** The
+monger never mentions the soft spot until the fifteenth sale, so nothing signposts the
+reward and nothing tracks it on screen: the counter attribute ships with
+`Display In Attributes Window=0`, `Display In Character Creation Summary=0` and
+`Display Some Other Place=0`, so the player sees no progress bar and no clue. The whole
+thing is discovered by having sold him skulls for their own sake. A hint line in
+`60 sold skull normal price` was considered and rejected. The perk itself does appear in
+the perks window once granted, which is the reveal.
+
+### The Irish sailor: the dead copy names the missing link
+
+Brendan Michael Sullivan exists twice. `Bar Patrons` is opened by the tavern 45 times
+including his greeting; `ShipSailorsonShipCanned` is opened by no map at any 200-series
+node. So the live copy is `Bar Patrons` - and the **dead** copy is what identifies the
+break, because it carries the one reply that reaches `200 irish`:
+
+    That accent is odd - where are you from?    ->  200 irish
+
+The live greeting offers drink / who are you / insult / goodbye and no way to ask, so the
+node answering it - the one saying Ireland *"sank some three hundred years ago during the
+troubled times"* - was unreachable. The reply is lifted from the duplicate rather than
+written, so this restores text the game already ships.
 
 ### Explicitly not in it
 
@@ -476,9 +583,19 @@ companion machinery has been exercised once on Fernand.
 
 ### Gates before this ships
 
-- `tools/validate.py` extended with a `.Quest.txt` check: state IDs unique, `Item Count`
-  matching the array, every ID referenced by a `CActivateQuestStateAction` or
-  `CIsQuestStateTheCurrentStateAction` somewhere.
+- `tools/validate.py` extended with a `.Quest.txt` check (**built**): state IDs unique and
+  well-formed, `Item Count` matching the array, and every ID activated by a
+  `CActivateQuestStateAction` somewhere - scanning the vanilla archive as well as the mod
+  tree, since an edited shipped quest inherits states that vanilla maps activate.
+  Negative-tested on all four rules against a deliberately corrupted copy of
+  `help distressed sailor.Quest.txt`; each fires with the right message, and the restored
+  file passes.
+- `tools/validate.py`'s dangling-target check now tolerates targets **already dangling in
+  the shipped copy of the same tree**, the way reachability.py tolerates vanilla orphans.
+  A Fixt tree is usually a shipped tree with nodes spliced in, and `Fish Monger` alone
+  inherits four dead targets; reporting those says nothing about this mod and buries the
+  ones it would introduce. A tree authored from scratch has no vanilla counterpart, so
+  every dangling target in it is still reported.
 - `tools/reachability.py` in gate mode (**built**, and now part of Gate 0 as A0.13): no
   node this mod adds may be unreachable. Nodes already orphaned in the shipped tree are
   tolerated, since a Fixt tree is usually a shipped tree with nodes spliced into it - it

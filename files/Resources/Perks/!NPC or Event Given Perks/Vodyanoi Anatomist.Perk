@@ -1,0 +1,88 @@
+CCharacterPerk
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorStrikeAction
+		{
+			Strike Action=CIfExpressionAction
+			{
+				If Expression=CIsGreaterThan
+				{
+					Operand1=CExpressionHitMargin
+					{
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=0
+					}
+				}
+				Character to get attributes from=$Instigator
+				Then=CIfAction
+				{
+					If=CCheckModelAction
+					{
+						Target Name=$trigger
+						Allowable Models=Array
+						{
+							Item Count=3
+							Model=Characters/Monsters/Vodyanoi
+							Model=Characters/Monsters/Vodyanoi fast
+							Model=Characters/Monsters/Vodyanoi poison
+						}
+					}
+					Then=CActionDoDamage
+					{
+						Character Doing Damage=$instigator
+						Character To Damage=$trigger
+						Defend Against=1
+						No Friendly Fire Check=0
+						Damages=Array
+						{
+							Item Count=1
+							Damage=CXRPGDamage
+							{
+								Damage Type=Damage Types/Piercing
+								Damage Amount=CRandom
+								{
+									Operator=
+									Minimum=CConstant
+									{
+										Constant Value=4
+									}
+									Maximum=CConstant
+									{
+										Constant Value=10
+									}
+								}
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+		}
+	}
+	Display Name=Vodyanoi Anatomist
+	Description=The fish monger of the Port District has cut up enough of your vodyanoi skulls to find the soft spot behind the eye, and he has shown you where it is. Your blows against vodyanoi do an extra 4 - 10 points of damage.
+	Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsGreaterThanOrEqual
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Number of ranks=1
+}

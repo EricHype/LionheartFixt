@@ -1,0 +1,1325 @@
+CDialogTree
+{
+Name=Fish Monger
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Hello friend. If you're looking for fish, I'm a bit...short of stock right now. Perhaps later I will have better luck.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A fishmonger with no fish? What happened?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=What can you tell me about this district?
+Go to node ID=10 port
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Welcome back. I still don't have any fish for sale, but if there is something else I can help you with, just ask.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 70
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=5
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=barter on
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=already bartered with monger
+Desired Minimum Count=1
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+Early Exit=0
+}
+}
+Reply Text=By purchasing vodyanoi skulls, you support my efforts to rid the waters of these fiends. If the price is not worth my efforts, I will move on to more profitable prey.
+Go to node ID=200 second barter
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=barter on
+}
+Action=CDeactivateAction
+{
+Target Name=heard vodyanoi skull
+}
+Action=CDeactivateAction
+{
+Target Name=vendor full of skulls
+}
+Action=CActivateAction
+{
+Target Name=vendor full and barter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Barter Skill Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full of skulls
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=A fishmonger with no fish? What happened?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=What can you tell me about this district?
+Go to node ID=10 port
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=Farewell. Come again if I *ever* get some fish.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 port
+Text=You're standing in the port district, the gritty heart of Nueva Barcelona. This is where people hawk wares from other lands and fishermen sell their catches, though that is rare these days.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What happened to the fish?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 vodyanoi
+Text=Ravenous creatures have floated in with the tides, devouring most of the fish of the ocean and rivers around Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
+
+Requirement=!None
+Reply Text=What are these creatures?
+Go to node ID=20 fish
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 other questions
+Text=What would you like to ask?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=What can you tell me about this district?
+Go to node ID=10 port
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye.
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 name
+Text=My name is Carlos Desoto, a fishmonger by trade, though not a very successful trade right now...
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Why is your trade not successful now?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 fish
+Text=Their name is foreign to me - it sounds like 'vod-va-noy', but whatever the name, it's a monstrous breed to be sure. They have almost destroyed the fishing sites around the city. Those floating vermin have ruined my life, forcing me to find a new business.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard about vodyanoi
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=How have these creatures ruined your life?
+Go to node ID=20 ruin
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=What is this new business?
+Go to node ID=30 new business
+Custom Action=CActivateAction
+{
+Target Name=heard vodyanoi skull
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=I'll be leaving now.
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 brother
+Text=Mi hermano...My brother and I were fishing by the river outside of town. Those water creatures grabbed him and dragged him underwater as they swarmed around me...I...I had to flee.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 new business
+Text=I carve scrimshaw from the skulls of those aquatic beasts. If you happen to defeat one of those monsters I would be more than happy to pay you well for the skull bone, say twenty five gold for each skull.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
+
+Requirement=!None
+Reply Text=Tell me about these monsters.
+Go to node ID=20 fish
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 ruin
+Text=Not only have the vodyanoi killed my fishing business, they also killed my brother. It happened a month ago during a fishing trip on the river.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=20 ruin 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 ruin 2
+Text=They leapt from the water and grabbed my brother, dragging him under until he drowned. I...I could not save him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about the vodyanoi.
+Go to node ID=10 vodyanoi ecology
+
+Requirement=!None
+Reply Text=Tell me about your brother again.
+Go to node ID=10 brother
+
+Requirement=!None
+Reply Text=I have other questions
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Goodbye
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 skull
+Text=Oh, excellent! One less voracious vodyanoi in the world. Now, I believe we agreed upon twenty five gold a skull, did we not?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+Reply Text=Sounds fair. Here is the skull.
+Go to node ID=60 sold skull normal price
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+Action=CTriggerRelayAction
+{
+Relay Name=barter responses relay
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+Reply Text=Sounds fair. Here is the skull.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+Action=CTriggerRelayAction
+{
+Relay Name=barter responses relay
+}
+}
+}
+
+Requirement=Barter moreequal 20
+Reply Text=This is a *genuine* vodyanoi skull, obtained at great risk. Surely you could offer more?
+Go to node ID=70 barter
+Custom Action=CActivateAction
+{
+Target Name=barter on
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Nevermind, I'll try to find a better deal.
+Go to node ID=5 Goodbye
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 sold skull normal price
+Text=Excellent! A pleasure doing business with you. Anything else?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have another vodyanoi skull to sell you.
+Go to node ID=50 skull
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Not at the moment. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 soft spot
+Text=Hold a moment, friend. I have cut up enough of these skulls now to see the pattern - there is a soft spot behind the eye, where the bone goes thin. If I had to fight one of those things, that is where I would aim.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have another vodyanoi skull to sell you.
+Go to node ID=50 skull
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Not at the moment. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 barter
+Text=A point well taken, those creatures can be difficult to slay. Very well, I'll offer fifty gold per head. Deal?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+Reply Text=You have a deal. Here is the head.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Action=CTriggerRelayAction
+{
+Relay Name=barter responses relay
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 barter
+Text=Very good. I believe you haggled me to the price of fifty gold a skull, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, here is your skull.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Action=CTriggerRelayAction
+{
+Relay Name=barter responses relay
+}
+}
+}
+
+Requirement=!None
+Reply Text=I have other questions first.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Nevermind, I'll just leave.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 barter sell
+Text=Excellent. As we agreed, here is your gold. I will put this skull to good use, perhaps carve a likeness of my brother. Is there anything else?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
+
+Requirement=!None
+Reply Text=I have other questions first.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 barter sell 2
+Text=Very good, here is your gold. Perhaps I will be able to carve something of beauty from this foul skull. Now, is there anything else?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard vodyanoi skull
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
+
+Requirement=!None
+Reply Text=I have other questions first.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 vodyanoi ecology
+Text=They are like monstrous fish, with wickedly sharp teeth. They can leap out from the water and even walk on land for short periods of time. If you are not devoured by their terrible jaws, their poisounous spit will burn you. Truly, they are dangerous predators.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=10 other questions
+
+Requirement=!None
+Reply Text=Goodbye
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 no more skulls
+Text=It seems that I have all the skulls I need to carve for some time. We seem to have a problem of supply and demand. I no longer demand the skulls and my supply of them is full! But, since you have been a good customer, I will pay you ten gold for each skull.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 70
+Reply Text=By purchasing these skulls, you support my efforts to rid the waters of these fiends. If the price is not worth my efforts, I will move on to more profitable prey.
+Go to node ID=200 second barter
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=barter on
+}
+Action=CDeactivateAction
+{
+Target Name=heard vodyanoi skull
+}
+Action=CDeactivateAction
+{
+Target Name=vendor full of skulls
+}
+Action=CActivateAction
+{
+Target Name=vendor full and barter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Barter Skill Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Very well, I accept your price. Here is another skull.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CDeactivateAction
+{
+Target Name=barter on
+}
+Action=CDeactivateAction
+{
+Target Name=heard vodyanoi skull
+}
+Action=CActivateAction
+{
+Target Name=vendor full
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=vendor full of skulls
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+}
+}
+
+Requirement=!None
+Reply Text=I will consider your offer. Goodbye.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=barter on
+}
+Action=CDeactivateAction
+{
+Target Name=heard vodyanoi skull
+}
+Action=CActivateAction
+{
+Target Name=vendor full
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=vendor full of skulls
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 take a skull after full
+Text=Fine, this will do nicely. We agreed upon ten gold for each skull, so here is your gold. Anything else?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full of skulls
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=A fishmonger with no fish? What happened?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=What can you tell me about this district?
+Go to node ID=10 port
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 take a skull after full with barter
+Text=Fine, this will do nicely. I believe we agreed upon twenty five gold for each skull, so here is your gold. Anything else?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=A fishmonger with no fish? What happened?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=What can you tell me about this district?
+Go to node ID=10 port
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 second barter
+Text=You are right. Your bravery benefits me twice, with skulls for my new trade, and revenge against the creatures that killed my brother. I will pay you twenty five gold for the skulls, that is all I can afford now until I can carve these skulls for profit.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I accept your price. Here is another skull for you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=already bartered with monger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I will consider your offer. Goodbye.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=already bartered with monger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 take a skull after full 2
+Text=Excellent. As we agreed, here is your ten gold. What else can I do for you?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full of skulls
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=A fishmonger with no fish? What happened?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=What can you tell me about this district?
+Go to node ID=10 port
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 take a skull after full with barter 2
+Text=Excellent. As we agreed, here is your twenty five gold for the skull. Now what else can I do for you?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node after full
+}
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=A fishmonger with no fish? What happened?
+Go to node ID=10 vodyanoi
+
+Requirement=!None
+Reply Text=What can you tell me about this district?
+Go to node ID=10 port
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+}
