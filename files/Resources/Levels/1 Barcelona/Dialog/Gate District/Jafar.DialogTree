@@ -69,6 +69,49 @@ Should Have Voiceover=1
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
+}
+}
+}
+}
+Reply Text=What troubles the Order, Amir?
+Go to node ID=400 NIS Dialogue 4a
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Reply Text=I have returned from Montserrat.
+Go to node ID=500 Return from Montaillou
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
 Operand1=CActionExpression
 {
 Action=CWasQuestEverActivatedAction
@@ -2035,10 +2078,21 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=I am ready to depart for Montserrat.
 Go to node ID=238 Leave for Montserrat
-Custom Action=CActivateQuestStateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
 State=FNGP3UMQ
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Montserrat
+}
+}
 }
 
 Requirement=!None

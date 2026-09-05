@@ -125,6 +125,111 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.7.0 - the road north
+
+**Built and unplayed.** Every figure is measured against `data.dat.vanilla.bak`.
+
+0.3.0 got the player *into* the Knights of Saladin. This gets them out again: the order
+could be joined and never served, and Amir had the whole speech for sending you to
+Montserrat without the one action that makes it possible.
+
+### The order is a peer, and the game says so
+
+Three patrons send the player to Montserrat, each in ordinary conversation, each revealing
+the abbey on the world map: **Lord Javier** (Templar/Inquisition), **Cedric Alsen** (the
+druids) and **Lord Relican** (the Wielders). Cedric ships requirement files for the
+*unaffiliated* player too, so joining anyone is a choice rather than a gate.
+
+The game already treats Saladin as a fourth peer. `Cedric Player IS Templar Inquisitor or
+Saladin.can` is a shipped requirement testing whether you already serve one of the orders,
+and Saladin is in the list. `Saladin IS` is checked in **Acts 1, 3, 4 and 7** -- the same
+span as `Templar IS`, at lower density (20 uses against 46).
+
+### What was broken: one missing action
+
+Amir's directions node says, in the shipped text:
+
+> *"Montserrat Abbey lies some fifty miles to the northeast. **I shall mark the path on
+> your map.** You must travel with all speed to Montserrat..."*
+
+It sets the quest state and contains **no `CEnablePointOfInterestOnWorldMapAction`**. All
+three other patrons have one. That single omission is why the Saladin route dead-ends, and
+adding it is a repair the line itself demands rather than an invention.
+
+### The build
+
+| | |
+|---|---|
+| `400 NIS Montserrat Directions` | now marks Montserrat on the world map, alongside the quest state it already set |
+| `3 Return Dialogue` | two gated replies, both behind `Dialog/Requirements/Faction/Saladin IS` |
+
+That reclaims **seven nodes**, all of them shipped text, none of it altered:
+`400 NIS Dialogue 4a`, `400 crown of thorns`, `400 relics explanation`,
+`400 NIS Montserrat Directions`, `238 Leave for Montserrat`,
+`500 Return from Montaillou`, `500 Sacred Lance`. The Gate District's still-cut count falls
+from **102 unreachable / 51 carrying replies** to **95 / 45**.
+
+`400 NIS Dialogue 4a` is genuinely Amir's and exists nowhere else -- *"an unidentified
+group attempted to steal the True Cross from **our** possession"*. Most of the summit
+chain is not: Jafar's `400 NIS Start`, `Montserrat Directions`, `crown of thorns` and
+`relics explanation` are character-for-character copies of Lord Javier's, because the scene
+was duplicated into every participant's tree. That duplication is what made this look like
+a superseded draft on first reading.
+
+**No new quest state was needed.** The other factions' report-back states (`FX3UY821`
+Javier, `V8439DKP` Raphael, `XQX0TUT7` Cedric) are alternatives to one another; the step
+that actually advances the story is Brother Montgomerie's `SAXRA7U2`, which every route
+shares. Saladin simply uses the shared one.
+
+### The two new lines, and why there are any
+
+Everything Amir says is his own. Two **player** replies are new:
+
+- *"What troubles the Order, Amir?"* -> `400 NIS Dialogue 4a`
+- *"I have returned from Montserrat."* -> `500 Return from Montaillou`
+
+They exist because the chain's only authored entry is `400 next duty` -- *"The Knights
+Templar have requested an audience... accompany me to the Cathedral"* -- which relocates
+the player and belongs to the summit variant below. A conversation route needs a way in,
+and there was none.
+
+### Explicitly not in it
+
+**Promotion.** `Saladin Blessed` and `Saladin Exalted` are fully authored faction records
+-- 4 and 8 character modifiers, comparable to `Templar Paladin`'s 9 -- and are assigned in
+exactly one place in the whole game: `Levels/Test Maps/James/James.zax`, a developer test
+map. Every other order has its three ranks granted in real content, including late-game
+promotion in Act 8's `02 Shifting Dunes`.
+
+**It is left alone because nobody wrote it.** A search of every dialogue tree for any line
+about rising in the order -- Aswaran, Blessed, Exalted, promotion, elevation -- returns five
+hits and **none of them Saladin**. There is no line in which anyone promotes you within the
+order. Granting a rank would mean choosing when it happens and writing the words, which is
+designing a faction questline, not restoring one. `Saladin Highlevel.can` tests rank > 2
+and is used **zero** times, so nothing is gated on the higher ranks either.
+
+**The Cathedral summit.** `Choose NIS Player` dispatches on `if dark wielder` /
+`if wielder` / `if inquisition` / else Templar, with no Saladin arm, and each arm has its
+own relay, spawn point and faction music. `MX_FACT_KNIGHTSALADIN1.ogg` and `2.ogg` exist
+for a scene that never plays. So a fourth variant is clearly buildable and clearly
+intended -- but it is a new cutscene in a map this mod has never touched, its value is a
+scene rather than a route, and 0.5 established that scripted sequences fail in ways no
+static check catches. Worth doing on its own, not folded into this.
+
+### What to play
+
+Needs a character who joins the Knights of Saladin -- the Dream Djinni trials, which
+0.3.0 made completable.
+
+1. Complete the initiation, then talk to Amir. *"What troubles the Order, Amir?"* should
+   appear, and only for a member.
+2. Take his directions. **Montserrat should appear on the world map** -- this is the whole
+   release in one check.
+3. Confirm the reply disappears once the quest is taken.
+4. Go north, learn about Montaillou, come back. *"I have returned from Montserrat."*
+   should appear and Amir should send you on with the Sacred Lance explanation.
+5. Confirm a non-member sees neither reply.
+
 ## 0.6.0 - the Port District
 
 **The Fernand quest is built and unplayed. The rest of the section is still scope.**
