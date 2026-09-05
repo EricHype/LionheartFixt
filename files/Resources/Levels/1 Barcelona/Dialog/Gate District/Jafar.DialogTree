@@ -2139,6 +2139,32 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=I will go to Montaillou now.
 Go to node ID=238 Leave for Montserrat
+Custom Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Saladin Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Saladin Blessed
+Character To assign=Player#1-9#
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
 
 Requirement=!None
 Reply Text=Before I go, tell me about the Sacred Lance.
@@ -2151,6 +2177,32 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=I will leave for Montserrat to recover the Lance. 
 Go to node ID=238 Leave for Montserrat
+Custom Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Saladin Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Saladin Blessed
+Character To assign=Player#1-9#
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
 ------------------------------------------------------------
 Node ID=238 Leave for Montserrat
 Text=May the Prophet guide you.

@@ -193,20 +193,134 @@ Templar have requested an audience... accompany me to the Cathedral"* -- which r
 the player and belongs to the summit variant below. A conversation route needs a way in,
 and there was none.
 
+### The rank ladder, and a bug 0.3.0 had made live
+
+The order could be joined at one rank and never rise. `Saladin Blessed` and
+`Saladin Exalted` are fully authored faction records that vanilla assigns in exactly one
+place: `Levels/Test Maps/James/James.zax`, a developer test map.
+
+**How the Templars do it** was the only precedent worth copying, and it is three different
+mechanisms:
+
+| Tier | Awarded by | Earned by |
+|---|---|---|
+| Squire | node `210 give gold` | paying the tithe |
+| Warden | node `450 made a knight` | a dedicated knighting, after Esteban's tasks |
+| Paladin | the **Ways Crystal** | a world object in Act 7 and Act 8 |
+
+Join, serve, be knighted, and a late-game relic crowns you. So:
+
+| Tier | Awarded by |
+|---|---|
+| Aswaran | the Dream Djinni trials -- 0.3.0, unchanged |
+| **Blessed** | reporting back to Amir from Montserrat, which 0.7.0 made reachable |
+| **Exalted** | the Ways Crystal, a new fourth arm |
+
+**The ranks are increments, not alternatives.** Each record grants `+1 Rank`, permanent,
+with `Allow Accumulation=1`, so the ladder only reads 1 -> 2 -> 3 if the player holds all
+three -- which is why `Saladin Highlevel` tests rank **> 2**, and why Blessed's stat line
+looks smaller than Aswaran's in isolation. The totals are the largest melee numbers in the
+game:
+
+| | Aswaran | Blessed | Exalted | total |
+|---|---|---|---|---|
+| One-Handed Melee | +10 | +6 | +13 | **+29** |
+| Two-Handed Melee | +10 | +6 | +13 | **+29** |
+| Carry Weight | +20 | +10 | +20 | **+50** |
+| Endurance | +1 | - | +2 | **+3** |
+| Turn Undead | - | - | +12 | **+12** |
+| Crushing / Slashing % | - | - | +5 / +5 | **+5 / +5** |
+
+Templar by comparison is 4/8/12 across *three* weapon skills including Ranged, plus +5 HP
+a tier and HealingRate; Wielder is elemental damage, AC and Intelligence. Saladin is the
+pure melee specialist, and Turn Undead +12 at the top appears in no other ladder.
+
+#### The bug
+
+Both crystals -- Act 7 `09 Secret Chamber` and Act 8 `02 Shifting Dunes`, byte-identical in
+the relevant block -- branch like this, read by walking braces rather than by proximity:
+
+```
+if   Inquisitor IS  ->  Inquisitor Hallowed
+elif Templar IS     ->  Templar Paladin
+else                ->  Wielder Wizard        <- unguarded
+```
+
+Anyone who is neither Inquisitor nor Templar is made a **Wielder Wizard**. In vanilla a
+Knight of Saladin cannot exist, so that case was dormant -- **and 0.3.0 made it live.**
+Since then, Fixt has been converting Saladin knights into Wielders when they touch the
+crystal in Act 7. The crystal's balloon is generic (`Find All 5 Green Crystals`), so no new
+words were needed to fix it -- but a single extra arm turned out not to be enough either,
+for the reason below.
+
+This is the fourth instance of one shape: a faction branch with three arms and a missing
+fourth. `Choose NIS Player` in the Cathedral has the same gap.
+
+#### The orders are not exclusive, so the crystal now honours all of them
+
+Adding a fourth arm to the chain was not enough, and the reason is worth recording:
+**faction membership is not exclusive.** None of the four joins -- Templar Squire,
+Inquisitor Acolyte, Wielder Conjurer, Saladin Aswaran -- is gated on already serving
+someone. Nothing outside `James.zax` ever clears a faction. And the rank modifiers are
+`Modification is permanent=1`, so once a rank is above zero it stays there for the rest of
+the game. Javier and Raphael at least test for each other and for Wielders; **Amir tests
+for nobody.**
+
+So a player can be a Knight Templar *and* a Knight of Saladin, and vanilla's if/elif chain
+grants only the first match -- which left the restored Saladin arm dead for exactly the
+players most likely to have it, since the djinni trials are an optional side questline that
+a Templar can happily complete.
+
+The chain is now four **independent** arms, the side order first and the main allegiance
+awarded in addition rather than instead:
+
+```
+if Saladin IS                     ->  Saladin Exalted
+if Inquisitor IS                  ->  Inquisitor Hallowed
+if Templar IS                     ->  Templar Paladin
+if Wielder IS OR no order at all  ->  Wielder Wizard
+```
+
+Every match fires, so the order does not decide who gets what; it states the intent. The
+fourth arm tests `Wielder IS` **as well as** the no-order case, which the first sketch of
+this did not: without it, a Wielder who had also done the djinni trials would have lost the
+Wizard grant they get today, because the Saladin arm would have claimed them. Nothing is
+taken away from anyone.
+
+By membership, against what the game does today:
+
+| Serves | Gets | Change |
+|---|---|---|
+| nobody | Wizard | unchanged -- vanilla's freebie for the unaffiliated, kept deliberately |
+| Inquisition | Hallowed | unchanged |
+| Templars | Paladin | unchanged |
+| Wielders | Wizard | unchanged |
+| Templars + Wielders | Paladin + Wizard | gains Wizard |
+| Saladin | Exalted | gains Exalted -- was silently made a Wielder |
+| Templars + Saladin | Paladin + Exalted | gains Exalted |
+
+The unaffiliated freebie is still left in place on purpose. Guarding it away would be
+defensible, but it takes a bonus off unaffiliated playthroughs, which is a balance change
+rather than a repair.
+
+#### How Blessed is kept to one grant
+
+By testing the rank itself -- `Saladin Rank == 1` -- rather than a checker entity or
+`COnlyOnceAction`, whose state persistence for a dialogue action is unproven. The modifier
+is permanent and accumulating, so an unguarded grant would stack on every revisit. The test
+sits on the **action**, not the reply, so the reply still works at rank 2 and the player is
+never stranded in the conversation.
+
 ### Explicitly not in it
 
-**Promotion.** `Saladin Blessed` and `Saladin Exalted` are fully authored faction records
--- 4 and 8 character modifiers, comparable to `Templar Paladin`'s 9 -- and are assigned in
-exactly one place in the whole game: `Levels/Test Maps/James/James.zax`, a developer test
-map. Every other order has its three ranks granted in real content, including late-game
-promotion in Act 8's `02 Shifting Dunes`.
-
-**It is left alone because nobody wrote it.** A search of every dialogue tree for any line
-about rising in the order -- Aswaran, Blessed, Exalted, promotion, elevation -- returns five
-hits and **none of them Saladin**. There is no line in which anyone promotes you within the
-order. Granting a rank would mean choosing when it happens and writing the words, which is
-designing a faction questline, not restoring one. `Saladin Highlevel.can` tests rank > 2
-and is used **zero** times, so nothing is gated on the higher ranks either.
+**Promotion dialogue.** The ranks themselves are now restored (see above), but there is
+still no line in which anyone *says* you have been promoted. A search of every dialogue tree
+for any mention of rising in the order -- Aswaran, Blessed, Exalted, promotion, elevation --
+returns five hits and **none of them Saladin**. Amir hands over Blessed silently, and the
+crystal shows its generic balloon. Writing promotion speeches is authoring, not restoring,
+so it is left undone; and nothing is gated on the higher ranks in any case, since
+`Saladin Highlevel.can` is used **zero** times. The ranks are a stat reward for service,
+not a key to new content.
 
 **The Cathedral summit.** `Choose NIS Player` dispatches on `if dark wielder` /
 `if wielder` / `if inquisition` / else Templar, with no Saladin arm, and each arm has its
