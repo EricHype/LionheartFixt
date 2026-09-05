@@ -311,6 +311,84 @@ is permanent and accumulating, so an unguarded grant would stack on every revisi
 sits on the **action**, not the reply, so the reply still works at rank 2 and the player is
 never stranded in the conversation.
 
+### The Cathedral summit: three deleted parts whose callers survived
+
+This is the strongest evidence of cut content the project has found, and it was nearly
+missed. `Church Interior.zax` references **three relays that do not exist**, and all three
+call sites are live in the shipped map:
+
+| Caller | Calls | Exists? |
+|---|---|---|
+| a `warp` with `Comment=start NIS` | `Saladin NIS Relay` | no |
+| **`Lord Javier generator`** | `Start Saladin NIS Conversation` | no |
+| **`determine ending relay`** | `End Saladin NIS Relay` | no |
+
+The variant was deleted and nobody cleaned up its callers. Better still, both surviving
+dispatchers carry a **complete four-way chain with Saladin as the else**:
+
+```
+Lord Javier generator : if inquisition / if wielder / if dark wielder / if templar
+                        else -> Start Saladin NIS Conversation
+determine ending relay: if dark wielder / if wielder / if inquisition / if templar
+                        else -> End Saladin NIS Relay
+```
+
+So the original design is legible: **serve no other order and you are at that table as a
+Knight of Saladin.** `Choose NIS Player` is the odd one out -- it has no `if templar` test
+and defaults to the Templar relay, exactly the shape you get by collapsing a deleted final
+arm. It is restored to match its siblings, which also fixes a live vanilla defect: a player
+who is none of Inquisition, Wielder or Templar currently reaches two parts that do not
+exist, so the summit has no conversation driver and no ending for them.
+
+Two of the three part names were written before any of this was known, by following the
+Templar naming convention. They matched the names the map already expected, character for
+character -- which is what the original authors had done too.
+
+#### Amir was switched on, not added
+
+`Jafar Generator Wielder NIS` is a complete, positioned, dialogue-wired Knight of Saladin
+named Jafar at (788,1000), beside the summit's own spawn point. It is `Active=0` and
+**referenced by nothing in the entire map**, so Amir appears in no variant of the scene --
+including the one the generator is named for. The new relay simply activates it. No
+character template, no new spawn point: the relocate reuses `Start Player NIS TEMPLAR`, the
+same framing of the same room.
+
+#### The scene
+
+```
+Lord Javier   400 NIS Start          "Amir, we are honored that you and the
+                                      Knights of Saladin are with us..."
+Amir          400 NIS Dialogue 2     "As Saladin stood with Richard centuries ago,
+                                      we now stand with our western brothers..."
+Amir          400 NIS Dialogue 2b    "As living proof of this bond, I have brought
+                                      the scion of Lionheart, who has recently joined"
+Lord Javier   400 NIS Dialogue 4a    the True Cross, and the three replies
+Amir          238 Leave for Montserrat  "May the Prophet guide you."
+```
+
+Only `2` and `2b` are uniquely Amir's. `400 NIS Start` is Javier's welcome *to* him and
+exists on both trees. **`4a` is Cathedral-side, not Amir's** -- an earlier draft of these
+notes had it the other way round. The True Cross rests in the Cathedral (the Knight Guard,
+Javier and Raphael all say so), so "from our possession" is Javier's line; it survives only
+in Jafar's copy of the scene and is restored by showing it with Javier as speaker.
+
+The interactive tail deliberately runs in **Jafar's** tree so its replies reach Jafar's
+`Montserrat Directions`, which sets the Saladin quest state and marks the map. Javier's
+identical copy would set the Templar quest instead.
+
+#### What this replaced
+
+The direct reply added earlier in this release -- *"What troubles the Order, Amir?"* going
+straight to the briefing -- now leads to `400 next duty`, Amir's authored summons: *"The
+Knights Templar have requested an audience with us... accompany me to the Cathedral."* Its
+`CRelocateAction` lands on `Start Player NIS Here`, which is one of the things that triggers
+`Choose NIS Player`, so the summons needed no new wiring at all. Reverting to the shortcut
+is a one-line change if the scene misbehaves in play.
+
+One consequence worth stating: a player who is **also** a Templar or Inquisitor gets their
+own variant rather than the Saladin one, because Saladin is the else. That is vanilla's own
+logic in the two surviving dispatchers, not a choice made here.
+
 ### Explicitly not in it
 
 **Promotion dialogue.** The ranks themselves are now restored (see above), but there is
@@ -322,13 +400,11 @@ so it is left undone; and nothing is gated on the higher ranks in any case, sinc
 `Saladin Highlevel.can` is used **zero** times. The ranks are a stat reward for service,
 not a key to new content.
 
-**The Cathedral summit.** `Choose NIS Player` dispatches on `if dark wielder` /
-`if wielder` / `if inquisition` / else Templar, with no Saladin arm, and each arm has its
-own relay, spawn point and faction music. `MX_FACT_KNIGHTSALADIN1.ogg` and `2.ogg` exist
-for a scene that never plays. So a fourth variant is clearly buildable and clearly
-intended -- but it is a new cutscene in a map this mod has never touched, its value is a
-scene rather than a route, and 0.5 established that scripted sequences fail in ways no
-static check catches. Worth doing on its own, not folded into this.
+**The Cathedral summit is now in** -- see above. It turned out not to be a new cutscene
+at all but three deleted parts whose callers are still live in the map. Correcting an
+earlier claim in these notes: `MX_FACT_KNIGHTSALADIN1/2.ogg` are **not** unused -- all three
+uses are in `Dream Djinni Map.zax`, the trials. The track is the order's music, not orphaned
+summit music, and it is reused here rather than restored.
 
 ### What to play
 
