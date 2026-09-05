@@ -1,0 +1,71 @@
+# Lionheart Fixt 0.7.0 - the road north
+
+If you have ever completed the Dream Djinni's trials, Amir names you *"a Favored One of the
+Knights of Saladin"* - and then the order has nothing further for you. No second rank, no
+errand, no road out of Barcelona. A title you collect and never use.
+
+That is not how it was designed. It is the wreckage of how it was designed.
+
+Three patrons send the player north to Montserrat - Lord Javier, Cedric Alsen, Lord Relican -
+and each does it in plain conversation, marking the abbey on your map. Amir has the whole
+speech for it. His own line, in the shipped game, reads:
+
+> *"Montserrat Abbey lies some fifty miles to the northeast. **I shall mark the path on your
+> map.** You must travel with all speed to Montserrat..."*
+
+His node sets the quest and contains **no map-marking action at all**. The other three
+patrons have one each. One missing line of script is the whole reason the Knights of Saladin
+lead nowhere.
+
+**Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt: it
+fixes what is broken, restores what was cut, and adds new content only where the game plainly
+ran out.
+
+## The order gets a career
+
+**The road north.** Amir can send you to Montserrat and receive you when you return, then
+point you on to Montaillou. The dialogue was all written; it needed the one action his own
+words promise.
+
+**Three ranks instead of one.** Aswaran, Blessed and Exalted are written and costed, and
+vanilla grants the last two in exactly one place in the whole game - a developer test map.
+They stack, so the full ladder is the largest melee progression in Lionheart: +29 one-handed,
++29 two-handed, +50 carry weight, and Turn Undead at the top, which no other order gets.
+Blessed is earned by serving the order; Exalted comes from the same late-game relic that
+crowns the Templars and the Inquisition.
+
+**A seat at the council.** The Knights Templar call a summit in the Cathedral, and in the
+shipped game a Knight of Saladin is not at it - though Amir is spoken *to* in that scene and
+spoken *about*, with Lord Javier delivering Amir's report on his behalf in the third person,
+from a node still named after Jafar. The Cathedral map calls three relays that do not exist,
+two of its dispatchers still route to them, and a complete Knight of Saladin stands in that
+room, placed and given dialogue, switched on by nothing. Amir now summons you there himself,
+attends, and speaks.
+
+## Two things it fixes for everyone else
+
+**A promotion that changed your order.** The relic that grants the top faction rank checks
+Inquisition, then Templar, then hands everyone else the *Wielder* rank. Nobody could be a
+Knight of Saladin in vanilla, so that fault lay dormant - until Fixt 0.3.0 made membership
+possible. Since then this mod has been quietly turning Saladin knights into Wielders. It no
+longer does, and the relic now honours every order you have actually served rather than only
+the first one it checks.
+
+**A summit with no ending.** Because two of the Cathedral's dispatchers default to the
+missing Saladin parts, a player who serves *no* order reaches a scene with no conversation
+and no way out of it. That now works.
+
+## Before you install
+
+**This one is unplayed, and it reaches further than the last.** It touches four maps across
+Acts 1, 7 and 8 - the first time this project has edited anything past Barcelona - and two of
+its changes affect playthroughs with no Saladin content in them at all. If you would rather
+wait for a build somebody has walked end to end, wait. Four defects in 0.5 passed every
+automated check this project has and were visible only in the running game.
+
+**It wants a character who joins the Knights of Saladin**, and one who has not already been
+inside the Cathedral - a level's contents are captured into your save the first time you walk
+into it.
+
+Download, unzip, run `Mod Manager.bat`. It finds a GOG, Steam or retail install by itself,
+`Uninstall` puts everything back, and it installs over 0.6.0 as normal.
