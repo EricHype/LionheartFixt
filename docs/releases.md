@@ -127,8 +127,8 @@ into a release it does not fit.
 
 ## 0.8.0 - the Gate District remainder (scope)
 
-**Tiers 1 and 2 are built and unplayed; Tiers 3 and 4 are still scope.** The district has
-gone from **42 reply-carrying orphans to 35**. Every figure is measured against
+**Tiers 1, 2 and 3 are built and unplayed; Tier 4 is still scope.** The district has gone
+from **42 reply-carrying orphans to 34**. Every figure is measured against
 `data.dat.vanilla.bak` **as this mod leaves the game**, not as it shipped:
 
 ```
@@ -219,18 +219,40 @@ that had already been written, and briefly produced the conclusion that vanilla 
 correct all along. Read the committed copy, not the working tree, when asking what a change
 did.
 
-### Tier 3 - needs a condition, not just a link
+### Tier 3 - built, and the premise was wrong
 
-Variant greetings that require a `CIfAction` on the interaction rather than a series slot.
-In scope only if the gating condition turns out to be derivable from the files:
+Scoped as "variant greetings that require a `CIfAction`... in scope only if the gating
+condition turns out to be derivable from the files." Two of the three did not need a
+condition derived at all, and the third was not a variant.
 
-- **`WengChoi / 03 Return Dialogue Special Customer`** -- *"Welcome back spirit bearer, how
-  can Weng Choi help one of his most valued customers?"* Needs whatever marks a special
-  customer.
-- **`Blacksmith / 6 Return Dialogue Wizard`** -- a third return variant beside `Normal` and
-  `Insulted`; needs the wizard condition.
-- **`BarcelonaCitizenCan / 05 Return` for the Gate District's `Helpful Citizen`** -- no
-  return slot exists, so this one is structural rather than a value change.
+**`WengChoi / 03 Return Dialogue Special Customer` -- BUILT, and it was a one-value fix.**
+His generator's greeting series has three entries: first meeting, plain return, and then a
+`CIfAction` on `Gave Book to Weng Relay` **whose both arms open `03 Return Dialogue`**.
+Vanilla built the branch, wired the correct checker, and pointed both outcomes at the same
+node, so *"Welcome back spirit bearer, how can Weng Choi help one of his most valued
+customers?"* could never fire. Only the `Then` destination was wrong. This is the same shape
+as 0.7.0's Ways Crystal: a branch that collapses to a single outcome.
+
+**`BarcelonaCitizenCan / 05 Return` for `Helpful Citizen` -- BUILT, and it reclaims nothing.**
+Genuinely structural: the part opened `1 Conversation Start` through a bare
+`CDisplayDialogTreeAction` with no return slot, so it became a two-entry `CSeriesAction`. But
+Tier 1's Temple District fix had already made `05 Return` reachable, so no node is recovered
+here. It is consistency polish -- Gate District citizens should not greet a returning player
+as a stranger either -- and is recorded as such rather than as a repair.
+
+**`Blacksmith / 6 Return Dialogue Wizard` -- NOT BUILT.** Its text is character-for-character
+identical to `03 Return Dialogue 1, Insulted`: *"Eh...welcome back to Eduardo's Blacksmith
+Shop. Perhaps you have forgiven me for my earlier insult?"* The map already selects `Insulted`
+through the live `Blacksmith has insulted player in dialog` checker. A duplicate with a
+misleading name, not a third variant -- the Cortes verdict, and the fourth time that shape has
+appeared in this project.
+
+One false alarm worth recording, because it looked serious for a minute. `6 Return Dialogue
+Wizard` carries a reply gated on `The Red Ore Trade / TRD4K8ZM` -- a **Fixt** quest state, in
+Fixt's own mnemonic ID style -- which suggested an earlier release had spliced content into an
+orphaned node and broken its own feature. It had not: `790 the troll terms` is reachable from
+**nine** nodes including both live return dialogues. An earlier release simply added that reply
+to every greeting variant, orphan included.
 
 ### Tier 4 - read before touching, both plausibly superseded drafts
 
@@ -283,9 +305,16 @@ orphans.
 
 ### The honest recommendation
 
-Tiers 1 and 2 are built: five items, **seven reply-carrying nodes reclaimed** (42 -> 35), the
-DaVinci gem branch as the headline. Tier 3 adds three more if the conditions turn out to be
-derivable, and Tier 4 may well end in "out" twice, like Cortes.
+Tiers 1 to 3 are built: seven items, **eight reply-carrying nodes reclaimed** (42 -> 34), the
+DaVinci gem branch as the headline. Two of the three Tier 3 items turned out to be one-value
+fixes rather than the conditional work the scope predicted, and the third was a duplicate.
+Tier 4 remains, and may well end in "out" twice, like Cortes.
+
+A lesson from Tier 3 worth carrying: **assert deltas, not absolute counts.** Two attempts at
+verifying the citizen change failed on `count(...) == 1` because vanilla's Gate District
+already opens an `05 Return` on a *different* tree, `BarcelonaCitizenCan Gate Beg`, in
+`Person to beg from Generator`. An absolute count cannot tell "my change worked" from "the
+name occurs elsewhere".
 
 **This is still stacked on unplayed work.** 0.7.0 is entirely unplayed and 0.6.0 is unplayed
 past the rescue, one of them having changed a late-game promotion for every faction

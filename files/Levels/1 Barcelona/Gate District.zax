@@ -33322,12 +33322,29 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CDisplayDialogTreeAction
+							Action=CSeriesAction
 							{
-								Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
-								Node ID=1 Conversation Start
-								Speaker=$trigger
-								Player Being Spoken To=$Instigator
+								Action=Array
+								{
+									Item Count=2
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
+										Node ID=1 Conversation Start
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
+										Node ID=05 Return
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
 							}
 							X Radius=70
 							Attacker Range Modifier=0
