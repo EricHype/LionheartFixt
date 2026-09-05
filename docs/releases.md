@@ -125,6 +125,173 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.8.0 - the Gate District remainder (scope)
+
+**Tiers 1 and 2 are built and unplayed; Tiers 3 and 4 are still scope.** The district has
+gone from **42 reply-carrying orphans to 35**. Every figure is measured against
+`data.dat.vanilla.bak` **as this mod leaves the game**, not as it shipped:
+
+```
+python tools/reachability.py --survey "Gate District" --with-mod
+```
+
+The Gate District surveys at **92 unreachable nodes, 42 of them carrying replies**, down
+from 107/53 in the shipped game. What follows is all 42, triaged.
+
+There is no cut quest left here. The district's one narrative find was the Knights of
+Saladin and 0.7.0 spent it. What remains is greeting variants, four missing parent replies,
+and a dozen nodes that can never be fixed at all -- so **42 is not a to-do list**, and this
+is a chore release rather than another 0.7.0.
+
+### Tier 1 - one field each, the Farshad shape
+
+Two `CSeriesAction` pairs where the *return* slot points at the first-meeting node while a
+dedicated return node sits unused. This is the third and fourth instance of the bug shape
+0.3.0 found on Farshad.
+
+| Map | Part | Now | Change to |
+|---|---|---|---|
+| `Gate District.zax` | `Temple Gate Guard 2` | opens `1 Conversation Start` **twice** | second entry -> `3 Conversation Start` (**9 replies**) |
+| `Temple District.zax` | `Disturbed Citizen Generator` | opens `1 Conversation Start` twice | second entry -> `05 Return` |
+
+Lowest risk on the list: one value each, no new parts, shipped text. Note the citizen fix
+lands in **Temple District** -- the Gate District's own `Helpful Citizen` has no return slot
+at all and is Tier 3.
+
+### Tier 2 - a missing parent reply
+
+Each is an orphan whose parent reply does not exist. One new player line each at most.
+
+1. **`DaVinci / 320 gem is with inquisitor`** -- the item worth doing. It is the root of a
+   live sub-branch, linking to `320 no to inquisition`, `320 oppose the inquisition` and
+   `320 job reject`. **One entry reply reclaims three nodes** and restores a real choice
+   about whether to cross the Inquisition for DaVinci's gem. The parent is `320 business 2`,
+   which is reachable.
+2. **`Goblin Sapper / 30 goblin name`** -- *"I am Hrubjub of the Goblin Horde, on a secret
+   mission to serve my goblin lord."* No actions, exits to `40 combat threat` / `5 goodbye`.
+   Needs a "who are you?" reply on his greeting. The cleanest item here.
+3. **`Merchant Lope / 87 Perceptive` -> `87 Perceptive 2`** -- a two-node haggle ending in a
+   discount (`CActivateAction` plus a merchant window). Needs a Perception-gated reply
+   accusing him of overcharging. Two nodes for one reply.
+4. ~~**`Merchant Lope / 60 beg from already`**~~ -- dropped, see above: eight parent nodes
+   for a two-reply brush-off.
+
+### What got built, and one scope error
+
+**Tier 1, both.** `Gate District / Temple Gate Guard 2` now opens `3 Conversation Start` on
+return, and `Temple District / Disturbed Citizen Generator` opens `05 Return`. One line
+changed in each map, confirmed by `git diff --numstat` reading `1 1` for both.
+
+A caution for anyone repeating this work: the citizen's series hangs off the **`Else=`** of a
+`CIfAction` branching on whether he has heard the Cervantes rumour, not off an `Action=`. A
+matcher looking only for `Action=CSeriesAction` finds nothing and reports the part as having
+no conversation at all.
+
+**Tier 2, three of four.**
+
+- **`DaVinci / 320 gem is with inquisitor`** -- a reply on `320 business 2`, gated on
+  `TN10C2WO`, *"Go to Inquisitor Fournier and retrieve the confiscated spirit gem"*, which is
+  set by `05 Church Interior.zax` and by Guillaume's own tree. The gate is shipped, not
+  invented. This reclaims the node plus `320 no to inquisition`, and is the only way into
+  `320 oppose the inquisition` -- so one reply restores the choice of whether to steal from
+  the Inquisition for DaVinci's gem. `320 progress` was the other candidate parent and is
+  wrong: it is about Nostradamus, not the errand.
+- **`Goblin Sapper / 30 goblin name`** -- one reply on `10 goblin`, the hub reachable from
+  five places.
+- **`Merchant Lope / 87 Perceptive`** -- the third way to stop him overcharging a tainted
+  player. He activates `Lope normal` and opens the un-inflated inventory, exactly as
+  `85 Threatened` (intimidation) and `86 Speech skill` (Barter 35) do; those two are each
+  offered from the same three nodes and the Perception approach from none. Added to all three.
+  **The threshold is a choice, not a discovery**: Lope's tree contains no Perception gates to
+  mirror, so `Attributes/PE 7+` was picked because it is shipped and is the game's convention
+  for seeing through a facade -- 14 uses, with lines like *"You might fool others, but I can
+  see..."*. `PE 4+` reads too low for calling out a merchant; `PE 8+` has one use.
+
+**Dropped: `Merchant Lope / 60 beg from already`.** The scope listed it as a Tier 2 item. It
+is not one. `50 Beg from Human` and `51 Beg from NONHuman` are offered from **eight** separate
+nodes, so gating a repeat-beg properly means eight variants for a two-reply brush-off.
+Disproportionate, and better left than done badly.
+
+**A scope error worth recording.** The Tier 1 entry for the guard was found with a regex over
+a 2600-character window, which reported both series entries as opening `1 Conversation Start`.
+That was right. But the same loose method was then used to *verify* the fix, against a file
+that had already been written, and briefly produced the conclusion that vanilla had been
+correct all along. Read the committed copy, not the working tree, when asking what a change
+did.
+
+### Tier 3 - needs a condition, not just a link
+
+Variant greetings that require a `CIfAction` on the interaction rather than a series slot.
+In scope only if the gating condition turns out to be derivable from the files:
+
+- **`WengChoi / 03 Return Dialogue Special Customer`** -- *"Welcome back spirit bearer, how
+  can Weng Choi help one of his most valued customers?"* Needs whatever marks a special
+  customer.
+- **`Blacksmith / 6 Return Dialogue Wizard`** -- a third return variant beside `Normal` and
+  `Insulted`; needs the wizard condition.
+- **`BarcelonaCitizenCan / 05 Return` for the Gate District's `Helpful Citizen`** -- no
+  return slot exists, so this one is structural rather than a value change.
+
+### Tier 4 - read before touching, both plausibly superseded drafts
+
+Both have the Cortes shape: a big orphaned hub beside reachable content that may already do
+the job. Neither gets built until it has been read against what already works.
+
+- **`Blacksmith / 80 Do You Have The Item I Need?`** -- 13 replies, carrying
+  `CActivateQuestStateAction`, `CSetQuestSatusToCompletedAction`, XP and a merchant window.
+  It is a turn-in hub for the shield and the scimitar. **0.3.0 already restored the Sacred
+  Scimitar hand-in through `15 questions`**, so this is very likely the superseded original
+  and wiring both would risk a double payout.
+- **`WengChoi / 570 scroll give` -> `600 something else`** -- `570` takes money and sets a
+  quest state; `600` is an 8-reply hub reachable only from `570`/`580`. Restoring the entry
+  reclaims three nodes, but `600` overlaps `200 show special stock`, which is live.
+
+### Explicitly not in it
+
+**DaVinci's starting gift** (`500 davinci gives a gift to help you get started`, male and
+female). An earlier note in this file called it appealing. It has **no actions at all**: the
+line says *"I have something for you"* and nothing is given. Restoring it faithfully means
+choosing an item, which is authoring rather than restoration. Out unless it is taken up
+deliberately as new content.
+
+**`DaVinci / 320 general surly response 3`** and **`340 return spirit`** -- the third surly
+escalation, and a spirit turn-in paying XP and gold. Both plausible; neither has a gating
+condition derivable from the files, so wiring them would be guessing.
+
+**Twelve nodes that can never be fixed.** Three whole trees no map opens anywhere --
+`barcelonavendor` (3), `Barcelona Vendor Sympathetic2` (3) and `KnightSaladincanned2` (4,
+including two *"Welcome, brother/sister, into the Order of Saladin"* greetings) -- plus two
+nodes the authors named `10 Don't use this node`. These are the Irish-sailor pattern: spare
+copies nobody wired. They will show as orphans forever.
+
+**The six `dreamdjinn` orphans** (`90 Moral Test`, `400 riddle combat`, the failure
+branches) are 0.3.0 territory and the trials demonstrably work -- these read as alternate
+trial variants the game chooses between. Plus two one-line flavour barks,
+`Magic Machine / 500 nothing happens` and `Viola Organista / 40 broken key`.
+
+**`Jafar / 400 NIS Start` and `400 NIS Dialogue 4b`** -- duplicates whose live copies now
+play through Lord Javier in the summit. Correctly left alone; they will always survey as
+orphans.
+
+### Gates before this ships
+
+- Both existing gates, unchanged.
+- **Two of these fixes land outside the Gate District** -- the citizen in Temple District,
+  and DaVinci's tree is shared with Montaillou content. The blast radius is wider than the
+  section title suggests.
+- **A save that has never entered the affected levels**, as always for map edits.
+
+### The honest recommendation
+
+Tiers 1 and 2 are built: five items, **seven reply-carrying nodes reclaimed** (42 -> 35), the
+DaVinci gem branch as the headline. Tier 3 adds three more if the conditions turn out to be
+derivable, and Tier 4 may well end in "out" twice, like Cortes.
+
+**This is still stacked on unplayed work.** 0.7.0 is entirely unplayed and 0.6.0 is unplayed
+past the rescue, one of them having changed a late-game promotion for every faction
+combination. Nothing here is urgent: the remaining items are greeting variants and two reads.
+Playing what exists is worth more than the rest of this list.
+
 ## 0.7.0 - the road north
 
 **Built and unplayed.** Every figure is measured against `data.dat.vanilla.bak`.

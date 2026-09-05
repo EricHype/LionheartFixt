@@ -1,0 +1,2993 @@
+CDialogTree
+{
+Name=Signor Leo
+Portrait=Dialog/NPC Portraits/Leonardo
+Should Have Voiceovers=1
+Default Canceled Node Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=detect player for davinci gift
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=davinci banter relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Welcome to Barcelona, jewel of the world, la città grande, the greatest metropolis of Europe. My apologies for not introducing myself earlier, but with the slavers and the assassins threatening you, there was no time for introductions.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Conversation Start Inventory Addition
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=davinci impersonate gift relay
+}
+Action=CFlashHudIconAction
+{
+Icon To Flash=Inventory Button
+Duration=45
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Always a pleasure to see you my friend. What can I do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=EPVSO4Y0
+}
+}
+Reply Text=Cortes said you were working on a mechanical arm for him.  How is it coming?
+Go to node ID=2000 ask about cortes in gate district non vo
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about Barcelona.
+Go to node ID=20 Barcelona
+
+Requirement=!None
+Reply Text=Who sent those assassins to attack me?
+Go to node ID=50 Who attacked
+
+Requirement=!None
+Reply Text=How did you know to rescue me from the slavers?
+Go to node ID=1000 how did you save from slavers
+
+Requirement=!None
+Reply Text=How did the slavers capture me?
+Go to node ID=60 Why attackers run
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=Goodbye.
+Go to node ID=1100 Goodbye in Shop
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Arrivederci il mio amigo! If you need me, you will be able to find me here, or at my workshop in the Port District.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=DaVinci tells you to get quest
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 More Questions
+Text=Si, my friend. What would you like to know about?
+Should Have Voiceover=1
+
+Requirement=DaVinci Crossbow
+Reply Text=I have the gears for the crossbow.
+Go to node ID=700 need lens
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Gears
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Retrieve Gears from Steam Machine
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=DaVinci Have recovered lens
+Reply Text=I have the lens from Galileo's Observatory.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Targeting Lens
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Retrieve lens for Davinci
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=crossbow given
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Tell me about Barcelona.
+Go to node ID=20 Barcelona
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=Tell me about Barcelona.
+Go to node ID=20 Barcelona in shop
+
+Requirement=!None
+Reply Text=Who sent those assassins to attack me?
+Go to node ID=50 Who attacked
+
+Requirement=!None
+Reply Text=Why did the slavers capture me?
+Go to node ID=60 Why attackers run
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=entered workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=Tell me about your machines.
+Go to node ID=390 machines
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 Barcelona
+Text=Nueva Barcelona, she is the center of it all, the meeting of the minds, our greatest hope. You stand at the Gate District, the prosperous market of the city. To the north is the beautiful Temple District, and to the east you will find the Port District. You will find a wide variety of interesting people and powerful societies within Barcelona.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about the Port District.
+Go to node ID=130 Port District
+
+Requirement=!None
+Reply Text=Tell me more about the Temple District.
+Go to node ID=140 Temple District
+
+Requirement=!None
+Reply Text=Tell me more about the Gate District.
+Go to node ID=150 Gate District
+
+Requirement=!None
+Reply Text=Tell me more about the factions.
+Go to node ID=170 factions
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Who attacked
+Text=Certainly no friends of yours or mine. They were trained assassins to be sure, but who sent them? I do not know. It would surely be in your best interest to find out. But although their source is mysterious, I suspect I know their motives...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why do you think the assassins attacked me?
+Go to node ID=100 Special Talent
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Why attackers run
+Text=Ah, you don't remember - the trauma of your spirit's manifestation and your capture will likely affect your memory for some time. You were in a village market when your power decided to reveal itself. Fearing black magic, the villagers sold you to slavers, who in turn tried to sell you to the Inquisition. These are difficult times, child, but know that you have friends here in Barcelona.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What "power" do you mean?
+Go to node ID=100 Special Talent
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 Special Talent
+Text=I think you understand now that there is something different about you. You possess a spirit, one of great strength. It is clear that someone else wants the power hidden within you, someone strong or foolish enough to defy the Inquisition.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What kind of spirit do I have within me?
+Go to node ID=110 Explanation of Spirit Power
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=110 Explanation of Spirit Power
+Text=A legacy has been passed down to you, a special power that has been in your family for many generations. Do not repeat this to anyone you do not trust, for speaking this to the wrong ears could endanger you. There is a spirit within you, an old mystic being that enables you to wield magic.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about this magic.
+Go to node ID=120 magic
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=120 magic
+Text=Humans normally possess no innate ability to cast magic. Only by binding a spirit can one tap into magical energies. You have such a spirit within you, and you can develop your magic talents further if you desire.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=130 Port District
+Text=Surely the roughest area of Barcelona. The sailors of the Armada and merchants of modest wares crowd the busy Port District. At first, the district can be unpleasant, but after a short while you won't even notice the stench of the nearby sewers.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Reply Text=Tell me more about the Temple District.
+Go to node ID=140 Temple District
+
+Requirement=!None
+Reply Text=Tell me more about the Gate District.
+Go to node ID=150 Gate District
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=140 Temple District
+Text=The Temple District is the center of power for the Inquisition and the Knights Templar. Only their allies, or nobles of considerable wealth, are even allowed into that area of Barcelona.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Reply Text=Tell me more about the Port District.
+Go to node ID=130 Port District
+
+Requirement=!None
+Reply Text=Tell me more about the Gate District.
+Go to node ID=150 Gate District
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=150 Gate District
+Text=The melting pot and my favorite area of Barcelona! Here, citizens from all walks of life, visitors, soldiers, and merchants all mingle and go about their business. You will be able to purchase supplies from the many merchants of the Gate District.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Reply Text=Tell me more about the Port District.
+Go to node ID=130 Port District
+
+Requirement=!None
+Reply Text=Tell me more about the Temple District.
+Go to node ID=140 Temple District
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=170 factions
+Text=Without question, the most powerful group in the city, if not all of Europe, is the Inquisition. You will also find many of the Knights Templar in the city. Either of those orders would prove to be a valuable ally. There are also other smaller societies and guilds lurking in the city.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+State=8CDDPXEF
+}
+}
+}
+Reply Text=How can I ally myself with a faction?
+Go to node ID=1000 you need allies
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+State=8CDDPXEF
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about the Knights Templar.
+Go to node ID=175 knights
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=180 inquisition
+
+Requirement=!None
+Reply Text=Tell me about the smaller groups.
+Go to node ID=190 other
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=175 knights
+Text=Paragons of virtue and honor, the Knights Templar protect Europe with strength and steel. Seek them out if your heart is pure and virtuous, as they would prove to be valuable and trustworthy allies.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=180 inquisition
+
+Requirement=!None
+Reply Text=Tell me about the Order of Saladin.
+Go to node ID=185 order
+
+Requirement=!None
+Reply Text=Tell me about the other factions.
+Go to node ID=190 other
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=180 inquisition
+Text=The Inquisitors are zealous guardians of the faithful, protecting the pious from the forces of evil. Inquisitors seek out those that practice forbidden magic, or magic created from dark spirits. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=180 inquisition continued
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=180 inquisition continued
+Text=While their methods can be extreme, there is no doubt that they have brought security and safety to Barcelona and the other cities they control. If you approve of their ways, you would be well-served to join the Inquisition.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Knights Templar.
+Go to node ID=175 knights
+
+Requirement=!None
+Reply Text=Tell me about the Order of Saladin.
+Go to node ID=185 order
+
+Requirement=!None
+Reply Text=Tell me about the other factions.
+Go to node ID=190 other
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Reply Text=I think I'll be on my way.
+Go to node ID=10 Goodbye
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=185 order
+Text=The warriors of the Order of Saladin are brave and honorable. They devote their lives to their sacred duty, protecting the eastern holy lands and relics from the forces of darkness. They have been staunch allies of the Knights Templar ever since King Richard and Saladin rallied together during the Disjunction. Despite this, the Inquisition will not let them enter the city because they openly practice their desert magic.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Knights Templar.
+Go to node ID=175 knights
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=180 inquisition
+
+Requirement=!None
+Reply Text=Tell me about the other factions.
+Go to node ID=190 other
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=190 other
+Text=Although they do not operate openly, a small thieves' guild exists in the shadows, so be alert in the alleys of the city. And despite the best efforts of the Inquisition, there are some wizards in hiding within the city.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1000 other 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 wizards
+Text=Fearing persecution from the Inquisition, the wizards of Barcelona have fled into the shadows. Some suspect that these wizards banded together for their collective safety and formed a secret brotherhood. If such a group exists, I imagine it is hidden by powerful magic.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How do I find these wizards?
+Go to node ID=210 street
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/DaVinci Tell player about Wielders
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=Tell me about the Knights Templar.
+Go to node ID=175 knights
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=180 inquisition
+
+Requirement=!None
+Reply Text=Tell me about the Order of Saladin.
+Go to node ID=185 order
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=210 street
+Text=There are rumors that they used their magic to hide within a secret street of the city. If such a place exists, I imagine that the entrance is most cleverly guarded. If you are interested in learning more about these rumors, I suppose you could speak with Quinn, the Herbalist. He has lived in Barcelona for many years and probably would have a few more stories than I can remember.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Knights Templar.
+Go to node ID=175 knights
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=180 inquisition
+
+Requirement=!None
+Reply Text=Tell me about the Order of Saladin.
+Go to node ID=185 order
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=220 cortes
+Text=Yes, Cortes approached me about this a few months ago. It just so happens that I finished the design for a mechanical arm and I gave it to Eduardo the Blacksmith. However, he will need a supply of Red Iron in order to complete it. Bring the Red Iron to the blacksmith and he will make the arm for Cortes. Anything else?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+Reply Text=Actually, I already have the Ore you speak of.  I will go to the Blacksmith and see if he can use it to complete your designs.
+Go to node ID=1100 Goodbye in Shop
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=YJ2T7PXI
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=I will go see the Blacksmith now.
+Go to node ID=1100 Goodbye in Shop
+Action work in progress=(have cortes arm quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=WEDKYW9X
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Red Ore
+}
+}
+}
+Reply Text=Yes, I will visit Eduardo, but before I go, I have other questions.
+Go to node ID=15 More Questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=WEDKYW9X
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about Barcelona.
+Go to node ID=20 Barcelona
+
+Requirement=!None
+Reply Text=Who sent those ruffians to attack me?
+Go to node ID=50 Who attacked
+
+Requirement=!None
+Reply Text=Why did the ruffians run away from you?
+Go to node ID=60 Why attackers run
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 davinci in montaillou start
+Text=There you are! I was starting to wonder if you would ever wander up here. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How did you get here?
+Go to node ID=300 davinci in montaillou
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 davinci in montaillou
+Text=I was just passing over the area in my flying machine and I decided to drop in. Actually, the machine made that decision abruptly. It will need quite a few more adjustments before any sane person would step back into the pedals of that heap. But few people have accused me of being sane.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=310 help
+
+Requirement=!None
+Reply Text=A pity you survived the crash.
+Go to node ID=320 general surly response 2
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=310 help
+Text=I just thought I would check on your progress, and you seem to be progressing *marvelously*. And I suppose I do have *some* business here in Montaillou, so it seemed like a perfect excuse to get away from my work and see the gorgeous French countryside.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+}
+}
+}
+Reply Text=What business do you have in Montaillou?
+Go to node ID=320 business
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+}
+}
+}
+Reply Text=Why are you checking on my progress?
+Go to node ID=320 progress
+
+Requirement=!None
+Reply Text=Tell me what you know of Montaillou.
+Go to node ID=330 montaillou
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 business
+Text=A merchant by the name of Guillaume promised to deliver a rare spirit to me, bound within a special gem. I need this spirit to power one of my new inventions, a siege engine that operates by magic.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=320 business 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 business 2
+Text=Unfortunately, Guillaume has failed to arrive, and I fear he might be avoiding me. I would look for him myself, but I need to repair my flying machine.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Reply Text=The Inquisition has confiscated the gem.
+Go to node ID=320 gem is with inquisitor
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Spirit Transfer Gem DaVinci
+}
+}
+}
+Reply Text=I'll find Guillaume and try to get the gem for you.
+Go to node ID=1000 goodbye montaillou
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=3XIW1ZAS
+}
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=Killed Guillaume
+Desired Minimum Count=1
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Spirit Transfer Gem DaVinci
+}
+}
+Reply Text=Is this the gem you're looking for?
+Go to node ID=3001 Gem recovered
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=Leo Leaves relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeleteAction
+{
+Target Name=bar scene with davinci
+}
+Action=CDelayAction
+{
+Next Action=COtherMapAction
+{
+Action=CDeleteAction
+{
+Target Name=bar scene with davinci
+}
+Other Map Name=3 Montaillou/04 Inn Interior
+}
+Delay=0.3
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Do I look like your lackey? Find him *yourself*.
+Go to node ID=320 job reject
+
+Requirement=!None
+Reply Text=Tell me about Montaillou.
+Go to node ID=330 montaillou
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 progress
+Text=There is a common bond between us, our spirits have crossed paths before. I see great things for you, young one, and I would like to cultivate your gifts and help you to discover more about yourself and your abilities.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=320 progress 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 progress 2
+Text=There is another nearby, a great power who might help you learn more about the path ahead of you and the enemies that confront you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you speaking about?
+Go to node ID=400 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=And what makes you think that I want your *help*, old one?
+Go to node ID=320 general surly response
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 job reject
+Text=Well, no offense intended, but you looked like you could use the work. I won't trouble you any longer.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=320 general surly response
+Text=Youth today, they have no respect for their elders.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=320 general surly response 2
+Text=It pains me to see a dark nature growing within you. There is a sinister taint in your soul that you must restrain - do not let it consume you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=320 general surly response 3
+Text=I have suffered quite enough of your insolence. You tread down a dark path, young one, and you shame the honor of your namesake. I implore you to reconsider your ways, and refocus your powers for the greater *good*.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=davinci banter relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=davinci banter relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 gem is with inquisitor
+Text=Well, that is unfortunate. I really do need that gem. There are so few *stable* torrential elementals these days. If the Inquisition is investigating the gem, far be it from me to suggest interfering with their work. Still, it is such a pity and a loss...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I could try to speak with the Inquisition about the gem.
+Go to node ID=10 Goodbye
+
+Requirement=!None
+Reply Text=I could 'appropriate' the gem from the Inquisition.
+Go to node ID=320 oppose the inquisition 
+
+Requirement=!None
+Reply Text=I could not, in good conscience, oppose the Inquisition.
+Go to node ID=320 no to inquisition
+
+Requirement=!None
+Reply Text=Do I look like your lackey? Find him *yourself*.
+Go to node ID=320 job reject 
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 oppose the inquisition
+Text=Si, si, but be careful not to do anything too unlawful, eh? Be cautious when dealing with the Inquisition, they tend to be extremely zealous.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=320 no to inquisition
+Text=Oh, I hope you did not get the impression that I wanted you to *oppose* the Inquisition, I merely suggested that you might, perhaps, speak with them about the matter. But, eh, no matter, I will find another way to finish my invention.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I could try to speak with the Inquisition about the gem.
+Go to node ID=10 Goodbye
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 speak to inquisition
+Text=Ah, I would owe you a great debt if you would speak to the Inquisition. Grazie! <Thank you!>
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=330 montaillou
+Text=A beautiful village, though I found the townspeople to be...overly cautious of strangers. There are secrets in Montaillou, many secrets.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+}
+}
+}
+Reply Text=What business do you have in Montaillou?
+Go to node ID=320 business
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+}
+}
+}
+Reply Text=Why are you checking on my progress?
+Go to node ID=320 progress
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=340 return spirit
+Text=You've returned with a feisty spirit! His tempestuous nature should be able to power the siege machine. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(if deliver spirit to davinci, give xp and gold)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=$Trigger
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=400
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 Enter Workshop
+Text=So good to see that you found my workshop! Per favore, be careful in this place. There are many gears and moving parts, so many delicate machines.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=cervantes checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
+}
+}
+}
+Reply Text=How can I help Cervantes?
+Go to node ID=400 enchanted quill dialogue
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=EPVSO4Y0
+}
+}
+Reply Text=Cortes said you were working on a mechanical arm for him.  How is it coming?
+Go to node ID=220 cortes
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about your machines.
+Go to node ID=390 machines
+
+Requirement=!None
+Reply Text=Who sent those assassins to attack me?
+Go to node ID=50 Who attacked
+
+Requirement=!None
+Reply Text=How did the slavers capture me?
+Go to node ID=60 Why attackers run
+
+Requirement=!None
+Reply Text=Tell me about Barcelona.
+Go to node ID=20 Barcelona in shop
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Workshop
+Text=Always a pleasure to see you my friend. What can I do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=cervantes checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
+}
+}
+}
+Reply Text=How can I help Cervantes?
+Go to node ID=400 enchanted quill dialogue
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=EPVSO4Y0
+}
+}
+Reply Text=Cortes said you were working on a mechanical arm for him.  How is it coming?
+Go to node ID=220 cortes
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Cortez Arm Gears
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Cortez Arm Rod
+}
+}
+}
+Reply Text=Here are the parts for Cortes' mechanical arm. Can you assemble it now?
+Go to node ID=2000 Davinci about arm
+Icon=Quest Icon
+
+Requirement=DaVinci Crossbow
+Reply Text=I have the gears for the crossbow.
+Go to node ID=700 need lens
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Gears
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Retrieve Gears from Steam Machine
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=DaVinci Have recovered lens
+Reply Text=I have the lens from Galileo's Observatory.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Targeting Lens
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Retrieve lens for Davinci
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=crossbow given
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about your machines.
+Go to node ID=390 machines
+
+Requirement=!None
+Reply Text=Who sent those assassins to attack me?
+Go to node ID=50 Who attacked
+
+Requirement=!None
+Reply Text=How did the slavers capture me?
+Go to node ID=60 Why attackers run
+
+Requirement=!None
+Reply Text=Tell me about Barcelona.
+Go to node ID=20 Barcelona in shop
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=350 crossbow
+Text= I purchased a Chinese crossbow design from Weng Choi that allows for rapid, repeating fire. Of course I made some improvements on the design, but I will need help to complete it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll help you complete the crossbow.
+Go to node ID=356 help crossbow
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I'm not interested. Goodbye.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=390 machines
+Text=My machines are my tools, inventions to help me build more devices and unlock the mysteries of the natural and supernatural. Be careful when you walk about my workshop, some of these machines have minds of their own...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What do you mean they have minds of their own?
+Go to node ID=395 machine mind
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=395 machine mind
+Text=To make the machines run, I infused them with magic spirits. Some of these spirits are more temperamental than others. One in particular, the steam engine, causes me grief to no end, and I haven't been able to finish my latest invention.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the steam engine.
+Go to node ID=397 steam engine
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+}
+}
+}
+Reply Text=Tell me more about your latest invention.
+Go to node ID=350 crossbow
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=397 steam engine
+Text=It's rather embarrassing, you see, but the steam engine is upset at me over some creative differences. It believes that it is a great inventor and that I'm its apprentice. Serves me right for using a fire elemental as the power source, but it really does generate a good deal of steam.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=356 help crossbow
+Text=Perfecto! To complete the design, I'll need help gathering some of the final components. Unfortunately, I need the steam engine to create some special gears, but it isn't speaking with me. Perhaps you could convince it to help us?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll convince the steam engine to make the gears.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+State=Y6DXD26W
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=Sorry, not interested.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=400 touch machines
+Text=Don't touch that button again!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 fixed machines
+Text=There, that should fix it. Now don't touch the machine again! It has a nasty temper.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=700 need lens
+Text=Well done! Now, while I attach the gears to the crossbow I need you to find the final component, a suitable lens for a targeting device I've designed. I believe Galileo constructed such a lens for his telescope and, given his current troubles, I doubt he has much need of it.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Targeting Lens
+}
+}
+Reply Text=Do you mean this lens?  I have it right here.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Targeting Lens
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Retrieve lens for Davinci
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=crossbow given
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Targeting Lens
+}
+}
+}
+Reply Text=I'll retrieve the lens.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+State=3V05AKXK
+}
+Action=CTriggerRelayAction
+{
+Relay Name=tell location of Galileo
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=710 found lens
+Text=Wonderful! Now I can complete the crossbow. I'll just attach the lens...Make the final adjustments...Ah, there! It is complete. The weapon is yours, use it well.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 davinci machine warning
+Text=No! Not that button!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 davinci chides cervantes
+Text=Miguel, I trusted you in my workshop and you stole my enchanted quill! It's quite fortunate that you didn't conjure more than a simple nightmare with such magic! This explains everything...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 enchanted quill dialogue
+Text=Miguel used the enchanted quill, and so the things he wrote became flesh and blood. There is only one thing that can be done. You must go to the place where he wrote and invoked the power of the quill, then confront whatever apparition Miguel conjured. Only then will he be freed from his haunting.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Miguel, you must tell us where you used the quill!
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=cervantes speaks
+}
+Action=CDeactivateAction
+{
+Target Name=cervantes checker
+}
+Action=CTriggerRelayAction
+{
+Relay Name=cervantes tells of windmill
+}
+Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 nostradamus
+Text=Once known as the renowned physician Michel de Notredame, the seer Nostradamus joined with a temporal spirit and now sees things no other *man* can see. Lately, he has accumulated great power, something that has not gone unnoticed by myself, or by other wielders.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 nostradamus part 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 nostradamus part 2
+Text=I suggest that you seek out Nostradamus and speak with him. His uncanny ability to predict future events might provide insight into those who conspire against you, or even help you discover answers that you seek about *yourself*. He lives somewhere near here, perhaps in one of the many caves that dot the area.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What else can you tell me about Nostradamus?
+Go to node ID=400 nostradamus part 3
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I would imagine he is being hunted by the Inquisition.
+Go to node ID=400 nostradamus part 4
+------------------------------------------------------------
+Node ID=400 nostradamus part 3
+Text=Several years ago, Nostradamus wrote a controversial book of prophecies called the Centuries. The Inquisition hunted Nostradamus and branded him a heretic, afraid that his prophecies might influence people to view magic with less suspicion.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 nostradamus part 4
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 nostradamus part 4
+Text=Nostradamus fled from the Inquisitors. I do not know where the caves are, but it is likely that someone here in Montaillou could show you the way.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will seek out the whereabouts of Nostradamus.
+Go to node ID=1000 goodbye montaillou
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 davinci gives a gift to help you get started male
+Text=Signore! Oh, how could I have forgotten? I have something for you! I am far too old to be carrying this around, but it might serve you. You might find it useful when exploring the wilderness beyond the city walls, or you might sell it to a merchant and buy something else entirely. Honestly, I don't mind, I have no more use for it. Ciao signore!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CSendAIDoneMessage
+{
+Target=DaVinci
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 davinci gives a gift to help you get started female
+Text=Signora! Oh, how could I have forgotten? I have something for you! I am far too old to be carrying this around, but it might serve you well. You might find it useful when exploring the wilderness, or you could sell it to a merchant and purchase other equipment. Honestly, I don't mind, I have no more use for it. Ciao signora!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CSendAIDoneMessage
+{
+Target=DaVinci
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 1
+Text=So much to accomplish today! Perhaps I should return to my workshop?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 2
+Text=Or perhaps I should paint outdoors - this tree would make an excellent subject! 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 3
+Text=This portcullis desperately needs to be redesigned. I must speak with Eduardo about replacing those pulleys... 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 4
+Text=Hmm, yes, a counterweight would solve that problem, I do hope I remember to add that to the design before...Oh, what a remarkable bird, look at the plumage! 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 5
+Text=Now what did I need from the market again?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci strolls in opening nis
+Text=Ah, there you are! 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci strolls in opening nis 2
+Text=My apologies, I seem to have botched that transport spell. I landed halfway up the tree like a common squirrel...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 6
+Text=Perhaps I should visit Quinn and purchase the mercury I need for my next experiment?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 7
+Text=Perhaps I should visit Quinn and purchase the mercury I need.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 8
+Text=I must not forget to visit Galileo later.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 davinci stroll banter 9
+Text=...of course, that will require a few calibrations, but I think it would significantly improve efficiency.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=700 davinci banter in montaillou
+Text=Oh, my poor flying machine, her wings, they are clipped. I've made you fly better than a bird, landing however is another matter...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=700 davinci banter in montaillou 2
+Text=Perhaps the flap mechanism overcompensated for the air backflow? A few simple modifications might be in order...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=700 montaillou banter
+Text=This machine will fly again, and this time it will fly higher and faster...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 montaillou bar conversation
+Text=...but I was capturing her *inner* beauty!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 montaillou bar conversation 2
+Text=Uh...yes...I mean...That is to say...Ah, Louis, it seems you have a new patron! *Ahem*
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=700 montaillou banter 2
+Text=...unless of course an unexpected upwind collapses the manifold and then it will be a burning heap.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 davinci goodbye in france
+Text=As they say here in Montaillou, au revoir mon ami.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=davinci banter relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=davinci banter relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=700 montaillou banter 4
+Text=Oh, there is so much damage...Where to begin?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=700 montaillou banter 5
+Text=Gravity. You are a harsh mistress.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=700 montaillou banter 6
+Text=O Icarus, I know your plight, to soar so high, and be struck down from flight!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 davinci travel banter
+Text=Come, let's explore this grand city!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 davinci in secret chamber
+Text=Bravisimo! A moving performance on the viola organista, I should say!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 davinci in secret chamber 2
+Text=I know you are extremely clever, but I suppose I should watch you a bit more closely, eh?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 davinci in secret chamber 3
+Text=<Laughs>
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 davinci in secret chamber 4
+Text=You might as well look around and pry into my secrets. Try not to break my siege engine, that one is particularly dangerous.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 davinci in secret chamber 5
+Text=The Knights Templar asked me to design several inventions to help defend Barcelona. I keep them hidden here so that I can tinker with them without interruption. The large siege engine near you is the most promising design so far, but I will need a *special* spirit to power its machinery.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why do you need a spirit for the siege engine?
+Go to node ID=900 siege engine explanation
+
+Requirement=!None
+Reply Text=How do I leave this place?
+Go to node ID=900 exit secret chamber
+
+Requirement=!None
+Reply Text=Where exactly is *here*?
+Go to node ID=900 davinci explains secret area
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=davinci leaves
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=900 exit secret chamber
+Text=When you are ready to leave, simply approach the yellow crystal and touch it. You will then return to the workshop.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=900 davinci in secret chamber 6
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 davinci leaves secret chamber
+Text=Now, do *try* not to break anything. Arrivederci!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 davinci explains secret area
+Text=This place is ether, the space between. Wielders who know how to access this plane can learn to shape their own domains here - though mine is modest, there are larger ethereal pockets, like La Calle Perdida.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already seen calle perdida
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=How do I find La Calle Perdida?
+Go to node ID=900 how to find la calle
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=900 davinci in secret chamber 6
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=davinci leaves
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=900 how to find la calle
+Text=You were clever enough to find this place, you will find La Calle Perdida too, if that is your path. If you seek the Wielders, go to Quinn and mention that I sent you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=900 davinci in secret chamber 6
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Derived Att Flag For Quinn
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/DaVinci Tell player about Wielders
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 davinci in secret chamber 6
+Text=Anything else?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why do you need a spirit for the siege engine?
+Go to node ID=900 siege engine explanation
+
+Requirement=!None
+Reply Text=How do I leave this place?
+Go to node ID=900 exit secret chamber
+
+Requirement=!None
+Reply Text=Where exactly is *here*?
+Go to node ID=900 davinci explains secret area
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=davinci leaves
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=900 siege engine explanation
+Text=This is an astonishing new branch of science that I have been working on for many years now. For my machines to work, I need to instill in them a spirit, a source of power to turn the gears. I will need a *special* spirit indeed to move this war machine. But I think I might know just the place to find one...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=900 davinci in secret chamber 6
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 goodbye montaillou
+Text=Arrividerci! If you wish to speak again, you can find me here, or perhaps we'll meet again in town.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 davinci in montaillou return
+Text=Always good to see a familiar face. I'm still having a dreadful time putting my flying machine back together.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Spirit Transfer Gem DaVinci
+}
+}
+Reply Text=I have the gem you've been looking for.
+Go to node ID=3001 Gem recovered
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Spirit Transfer Gem DaVinci
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=gem xp
+Experience Points To Add=1
+}
+Action=CActivateAction
+{
+Target Name=Leo Leaves relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=Leo Leaves relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=0.3
+Plus or Minus=0
+Forget Trigger=0
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=CDeleteAction
+{
+Target Name=bar scene with davinci
+}
+Action=CDelayAction
+{
+Next Action=COtherMapAction
+{
+Action=CDeleteAction
+{
+Target Name=bar scene with davinci
+}
+Other Map Name=3 Montaillou/04 Inn Interior
+}
+Delay=0.3
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=310 help
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I should be going.
+Go to node ID=1000 goodbye montaillou
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=inn fire
+Desired Minimum Count=1
+}
+}
+Reply Text=I should be going.
+Go to node ID=800 davinci goodbye in france
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 you need allies exit
+Text=Before you go, I advise you to explore this city and meet the leaders of the different factions. In these uncertain times, it will benefit you to have strong allies against whatever enemy seeks you. Check your Quest Log by pressing the Book icon.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+State=8CDDPXEF
+}
+Action=CSendAIDoneMessage
+{
+Target=DaVinci
+}
+Action=CAutoSaveAction
+{
+Display Name for Save Game=
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 you need allies
+Text=I would advise you to explore this city and meet the leaders of the different factions. Gaining their trust may prove difficult, but in these uncertain times it will benefit you to have strong allies against whatever enemy seeks you. <Check your Quest Log by pressing the Book icon>
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+State=8CDDPXEF
+}
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 other 2
+Text=Oh, and recently a small band of eastern warriors, the Knights of Saladin, have arrived for some secret business with the Knights Templar - even I know nothing of it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Order of Saladin.
+Go to node ID=185 order
+
+Requirement=!None
+Reply Text=Tell me about the wizards.
+Go to node ID=200 wizards
+
+Requirement=!None
+Reply Text=Tell me about the Knights Templar.
+Go to node ID=175 knights
+
+Requirement=!None
+Reply Text=Tell me about the Inquisition.
+Go to node ID=180 inquisition
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Reply Text=I think I'll be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1100 Goodbye in Shop
+Text=Arrivederci il mio amigo!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 how did you save from slavers
+Text=Although we have never met, we do have much in common. We both bear ancient spirits within us and these beings have known each other through many ages of man. My spirit sensed a power awaken within you only days before your capture by the slavers.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=But why did you save me?
+Go to node ID=1000 why did you save me
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 why did you save me
+Text=Our spirits are old allies in an eternal struggle that they are eager to rejoin. I saved you because I think you may come to play a role in the coming troubles, though you may not think your worth so great now.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Continued
+Text=Now then, my friends call me Signor Leo, and you my friend, undoubtedly have questions, yes?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about Barcelona.
+Go to node ID=20 Barcelona
+Custom Action=CEndNonInteractiveSequenceAction
+{
+}
+
+Requirement=!None
+Reply Text=How did you know to rescue me from the slavers?
+Go to node ID=1000 how did you save from slavers
+Custom Action=CEndNonInteractiveSequenceAction
+{
+}
+
+Requirement=!None
+Reply Text=Who sent those assassins to attack me?
+Go to node ID=50 Who attacked
+Custom Action=CEndNonInteractiveSequenceAction
+{
+}
+
+Requirement=!None
+Reply Text=How did the slavers capture me?
+Go to node ID=60 Why attackers run
+Custom Action=CEndNonInteractiveSequenceAction
+{
+}
+
+Requirement=!None
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Custom Action=CEndNonInteractiveSequenceAction
+{
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Inventory Addition
+Text=Sadly, I could not recover all of your possessions, though I did save these few items. <You have been given a few items. You can see these objects by clicking on your flashing Inventory icon>
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Conversation Start Continued
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 Davinci about arm
+Text=Wonderful! 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Cortez Arm Gears
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Cortez Arm Rod
+}
+Action=CTriggerRelayAction
+{
+Relay Name=cortes arm given
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2010 give arm
+Text=There! It is complete.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Barcelona in shop
+Text=Nueva Barcelona, she is the center of it all, our greatest hope. You will find a wide variety of interesting people and powerful societies within Barcelona. As you may have learned by now, Barcelona is divided into three districts.  My humble workshop in which you stand is part of the Port District. To the west are the markets of the Gate District and further beyond that you can find the beautiful Temple District. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about the Port District.
+Go to node ID=130 Port District
+
+Requirement=!None
+Reply Text=Tell me more about the Temple District.
+Go to node ID=140 Temple District
+
+Requirement=!None
+Reply Text=Tell me more about the Gate District.
+Go to node ID=150 Gate District
+
+Requirement=!None
+Reply Text=Tell me more about the factions.
+Go to node ID=170 factions
+
+Requirement=!None
+Reply Text=I have other questions I'd like to ask.
+Go to node ID=15 More Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I'll be on my way.
+Go to node ID=1100 Goodbye in Shop
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=you are talking to davinci in his workshop
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I'll go explore more of the city.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2030 give crossbow
+Text=Ah! There! It is complete.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=5000000 <Sigh>
+Text=<Sigh>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=4500 galileo
+Text=The telescope is within the Temple District Observatory.  Return when you have the lens!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3001 Gem recovered
+Text=Molto buono! Thank you very much, this is exactly what I need! I will soon complete the repairs to my flying machine and return to Barcelona where I can put this gem to good use. In the meantime, I'm sure you have business to attend to here. Perhaps when you've finished we can share a certain bottle I have laid away in my workshop, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Do you have anything that might help me with my "unfinished business", as you put it?
+Go to node ID=3002 gem reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=gem xp
+Experience Points To Add=1
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Spirit Transfer Gem DaVinci
+}
+}
+}
+
+Requirement=!None
+Reply Text=Try not to let your flying contraption finish you off, you senile old fool.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=gem xp
+Experience Points To Add=1
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Spirit Transfer Gem DaVinci
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I look forward to that day, Signor Leo.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=gem xp
+Experience Points To Add=1
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Spirit Transfer Gem DaVinci
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3002 gem reward
+Text=I had brought some trinkets for you, but alas I fear they were smashed to bits in the crash. I do, however, have a sum of money I would be happy to give you. Perhaps you could find something useful in town?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you, Signor Leo.
+Go to node ID=
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=However much it is, I'm sure it isn't enough.
+Go to node ID=
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=5000001 Spellcast Detected
+Text=Casting magic is forbidden here! My illusions protect me, but you must go... Be cautious on your return!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=2000 ask about cortes in gate district non vo
+Text=Perhaps we should discuss this matter in my workshop. If you like, I will meet you at my workshop in the Port District later.
+Should Have Voiceover=0
+}

@@ -1,0 +1,1442 @@
+CDialogTree
+{
+Name=Lope the merchant
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Bievenidos señor! Welcome to El Mercado. Perhaps you would like to see what Lope has for sale, eh amigo?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 30
+Reply Text=No doubt your items are of the finest craftsmanship. Show me your best stock, and perhaps we can do business.
+Go to node ID=100 see low inventory goods
+Custom Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1 Conversation Start Tainted
+Text=It is a sad day for me and my grandchildren that a tainted creature like you walks the streets of the Gate District. Why don't you leave El Mercado, and slither back to the ports with the other animals.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Reply Text=These prices are inflated and we both know it. I can read a tag as well as you can.
+Go to node ID=87 Perceptive
+Icon=Attribute Icon
+
+Requirement=Barter moreequal 35
+Reply Text=This town is full of merchants who would be glad to take my gold. If you are not one of them, all the worse for you.
+Go to node ID=86 Speech skill
+Action work in progress=speech skill
+Custom Action=CActivateAction
+{
+Target Name=Lope Normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Just show me what you have for sale.
+Go to node ID=100 shows high inventory
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=What have I done to make you so hostile?
+Go to node ID=70 Bigotry explained
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/ST 7+
+}
+Reply Text=I don't beg or steal, but I have been known to kill.
+Go to node ID=85 Threatened
+Action work in progress=high strength
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/ST 1-6
+}
+Reply Text=I don't beg or steal, but I have been known to kill.
+Go to node ID=85 Not threatened
+Action work in progress=low strength
+
+Requirement=!None
+Reply Text=I'll spend my money elsewhere.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Welcome if female
+Text=Bievenidos, senora! Welcome to el Mercado. Perhaps you would like to see what Lope has for sale, eh amiga?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 30
+Reply Text=No doubt your items are of the finest craftsmanship. Show me your best stock, and perhaps we can do business.
+Go to node ID=100 see low inventory goods
+Custom Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 goodbye
+Text=Return later, you never know when Lope receives new goods.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Don't use this node
+Text=It is always good to see a valued customer return! What can I interest you in?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Show me what you have for sale today. 
+Go to node ID=
+Action work in progress=Show normal inventory
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory low
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=10 tainted return high
+Text=I see the guards still allow you to roam in the streets of the Gate District unchained. Speak your business quickly.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Reply Text=These prices are inflated and we both know it. I can read a tag as well as you can.
+Go to node ID=87 Perceptive
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Reply Text=On second thought, you're quite rude. I'm sure I could find everything you offer from a much more polite merchant.
+Go to node ID=86 Speech skill 2
+Action work in progress=higher speech or high barter
+Custom Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 35
+}
+Reply Text=This town is full of merchants who would be glad to take my gold. If you are not one of them, all the worse for you.
+Go to node ID=86 Speech skill
+Action work in progress=barter skill
+Custom Action=CActivateAction
+{
+Target Name=Lope Normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Just show me what you have for sale. 
+Go to node ID=100 shows high inventory
+Action work in progress=Show high normal 
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/ST 7+
+}
+Reply Text=I want to see you broken and in a great deal of pain.
+Go to node ID=85 Threatened
+Action work in progress=high strength
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nothing from you.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 tainted return normal
+Text=We can discuss business, but you'll receive no bargains from me, tainted one.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Reply Text=On second thought, you're quite rude. I'm sure I could find everything you offer from a much more polite merchant.
+Go to node ID=86 Speech skill 2
+Action work in progress=higher speech or high barter
+Custom Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Show me what you have for sale today. 
+Go to node ID=20 vendor
+Action work in progress=Show normal inventory
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Nothing from you.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 tainted return low
+Text=You again? Lope is...errmm...*pleased* that you have returned. What do you need?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Show me what you have for sale today. 
+Go to node ID=100 see low inventory goods
+Action work in progress=Show low inventory
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I'm just passing by. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 vendor
+Text=Excelente! I can personally guarantee that you won't be disappointed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory
+After Closed Action=CTriggerRelayAction
+{
+Relay Name=after lope serves you normal
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 after shop
+Text=I trust that you found what you were looking for. Safe travels.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=5 return male
+Text=Welcome back senor! Would you be interested in purchasing some quality items?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 30
+Reply Text=No doubt your items are of the finest craftsmanship. Show me your best stock, and perhaps we can do business.
+Go to node ID=100 see low inventory goods
+Custom Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from Second Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=5 return female
+Text=Welcome back senora! Can I interest you in some of my goods?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 30
+Reply Text=No doubt your items are of the finest craftsmanship. Show me your best stock, and perhaps we can do business.
+Go to node ID=100 see low inventory goods
+Custom Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from Second Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Beg from Human
+Text=Hah! I have seven mouths to feed at home, and you beg for my coin? I have none to spare, but I can sell you something instead.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+Custom Action=CActivateAction
+{
+Target Name=Money from Second Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Custom Action=CActivateAction
+{
+Target Name=Money from Second Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 Beg from NONHuman
+Text=If I give you this gold, what do I teach you? Like a dog you would keep coming back for scraps. But, if it will make you go away...here take this.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thanks. I would still like to see what you have for sale.
+Go to node ID=20 vendor
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1
+}
+Action=CActivateAction
+{
+Target Name=Money from Second Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Thanks. Goodbye.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1
+}
+Action=CActivateAction
+{
+Target Name=Money from Second Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 beg from already
+Text=Just as I thought, the dog returns to beg again. I'll give you no gold, but if you like, you can see what I have for sale.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes. Let's see what you have for sale.
+Go to node ID=20 vendor
+Custom Action=CActivateAction
+{
+Target Name=Money from Second Vendor asked for a second time
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=No. Goodbye.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Money from Second Vendor asked for a second time
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Bigotry explained
+Text=Your kind is not welcome here. You should be thrown into the Port District with the other animals. We are pious people who do not want to be corrupted by creatures born of magic blood! 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Reply Text=These prices are inflated and we both know it. I can read a tag as well as you can.
+Go to node ID=87 Perceptive
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 35
+}
+Reply Text=This town is full of merchants who would be glad to take my gold. If you are not one of them, all the worse for you.
+Go to node ID=86 Speech skill
+Action work in progress=barter skill
+Custom Action=CActivateAction
+{
+Target Name=Lope Normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Just show me what you have for sale.
+Go to node ID=
+Action work in progress=high price inventory
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory high
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=Lope high
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/ST 7+
+}
+Reply Text=I dare many things. In fact, I'd dare slit your throat for words like those.
+Go to node ID=85 Threatened
+Action work in progress=high strength
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/ST 1-6
+}
+Reply Text=I dare many things. In fact, I'd dare slit your throat for words like those.
+Go to node ID=85 Not threatened
+Action work in progress=low strength
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have neither patience nor gold for bigots.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=85 Threatened
+Text=Wait a moment, my friend! You misunderstand me! Lope has always...*liked*...errm...people of your kind! They're some of my best customers!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Just show me what you have for sale, Lope.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory low
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=Lope normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 30
+}
+Reply Text=Lope, huh? Good, now I know what to have them carve on your headstone.
+Go to node ID=85 Threatened 2
+Action work in progress=speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'll be back.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Lope normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=85 Threatened 2
+Text=P-p-please, spare me! I beg you to have pity! Here, I will sell you anything I have for a very low cost - I will practically give items away!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well, let me see what you have to offer.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory low
+After Closed Action=
+}
+}
+}
+
+Requirement=!None
+Reply Text=You are a coward with a big mouth, Lope. I'll take my business to somebody more deserving of my coin.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=85 Not threatened
+Text=Your words resound like the roar of a mouse. If a child said such things to me, I might call the guards for aid. But a threat from someone like *you*? I'll save my breath and take my chances, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perhaps I should go find a guard and tell him how you've mistreated me.
+Go to node ID=85 Not threatened 2
+
+Requirement=!None
+Reply Text=Just let me see what you have for sale.
+Go to node ID=
+Action work in progress=show expensive stuff
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Lope high
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory high
+After Closed Action=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I'll take my coin elsewhere.
+Go to node ID=
+Action work in progress=trigger a relay to show a bubble
+------------------------------------------------------------
+Node ID=85 Not threatened 2
+Text=You think the guards would come to your aid, eh? Likely they would throw you into deepest pits of the Inquisition Chambers for disrupting the good merchants of El Mercado. I have wasted enough time talking to you already, now go away!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=86 Speech skill
+Text=You seem to know the heart of Lope well. Your gold coins have the same value as gold from a noble. Very well, would you like to see what I have to offer?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Reply Text=On second thought, you're quite rude. I'm sure I could find everything you offer from a much more polite merchant.
+Go to node ID=86 Speech skill 2
+Action work in progress=higher speech or high barter
+Custom Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Yes, let me see what you have.
+Go to node ID=
+Action work in progress=normal prices
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Lope Normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory
+After Closed Action=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Actually, the thought of my coin going to a man like you sickens me.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Lope normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=86 Speech skill 2
+Text=Yes, well, you *could* go to another merchant, but he could never match my prices! Just look at my stock, you won't find lower prices anywhere in Barcelona!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well, show me what you have.
+Go to node ID=
+Action work in progress=shoe low price inventory
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Lope Low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory low
+After Closed Action=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Likely because they are the worst-made in the city. I'll spend my money elsewhere.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'll just leave.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=87 Perceptive
+Text=What? You dare impugn my integrity as a merchant of Barcelona! I am Lope, and I have a reputation to protect within this city! Oh...very well, I will go against my better judgment and sell you my wares, if only to stop your incessant barking.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Just show me what you have for sale.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Lope normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory low
+After Closed Action=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 35
+}
+Reply Text=Perhaps my tongue will cease its wagging...and perhaps you'll offer me a deep discount.
+Go to node ID=87 Perceptive 2
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=On second thought, I will take my coin elsewhere.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Lope normal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=87 Perceptive 2
+Text=Very well. I will give you a discount and I will add extortion to the long list of crimes your kind is capable of. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Be glad that is the only "crime" I am committing here today. Now show me your wares.
+Go to node ID=
+Action work in progress=show low price inventory
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Lope low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory low
+After Closed Action=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I shudder at the thought of my coin going to the purse of a man like you. I will take my business elsewhere.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Lope low
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 shows high inventory
+Text=Fine, but a *creature* like yourself should not expect any bargains in this city.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory high
+After Closed Action=CTriggerRelayAction
+{
+Relay Name=after lope serves you high
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 see low inventory goods
+Text=When Lope promises quality, Lope delivers! You will not be disappointed with my selection!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Lope Inventory low
+After Closed Action=CTriggerRelayAction
+{
+Relay Name=after lope serves you low
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 after tainted purchases
+Text=Look, don't tell anyone that Lope even spoke with you, eh? I have a reputation to uphold. Now, just go.
+Should Have Voiceover=0
+}
