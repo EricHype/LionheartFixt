@@ -127,8 +127,9 @@ into a release it does not fit.
 
 ## 0.8.0 - the Gate District remainder (scope)
 
-**Tiers 1, 2 and 3 are built and unplayed; Tier 4 is still scope.** The district has gone
-from **42 reply-carrying orphans to 34**. Every figure is measured against
+**Built and unplayed. The scope is closed:** Tiers 1 to 3 are done and Tier 4 is ruled out
+with evidence. The district has gone from **42 reply-carrying orphans to 34**, and the
+remaining 34 are accounted for below -- none of them is a cut quest. Every figure is measured against
 `data.dat.vanilla.bak` **as this mod leaves the game**, not as it shipped:
 
 ```
@@ -254,19 +255,35 @@ orphaned node and broken its own feature. It had not: `790 the troll terms` is r
 **nine** nodes including both live return dialogues. An earlier release simply added that reply
 to every greeting variant, orphan included.
 
-### Tier 4 - read before touching, both plausibly superseded drafts
+### Tier 4 - read, and both ruled OUT
 
-Both have the Cortes shape: a big orphaned hub beside reachable content that may already do
-the job. Neither gets built until it has been read against what already works.
+Both were suspected superseded drafts and both are. The test that settled it is worth stating,
+because two earlier passes at it gave the wrong answer: the question is not "does another node
+pay this?" but **"does a *reachable* node pay this?"** Attribute every payout to its owning
+node, then split by reachability.
 
-- **`Blacksmith / 80 Do You Have The Item I Need?`** -- 13 replies, carrying
-  `CActivateQuestStateAction`, `CSetQuestSatusToCompletedAction`, XP and a merchant window.
-  It is a turn-in hub for the shield and the scimitar. **0.3.0 already restored the Sacred
-  Scimitar hand-in through `15 questions`**, so this is very likely the superseded original
-  and wiring both would risk a double payout.
-- **`WengChoi / 570 scroll give` -> `600 something else`** -- `570` takes money and sets a
-  quest state; `600` is an 8-reply hub reachable only from `570`/`580`. Restoring the entry
-  reclaims three nodes, but `600` overlaps `200 show special stock`, which is live.
+**`Blacksmith / 80 Do You Have The Item I Need?` -- OUT.** It completes two quests and pays two
+XP awards, and *every one of those payouts is already made by reachable nodes*:
+`03 Return Dialogue 1 Normal`, `07 what more`, `08 No Discount Yet`, `09 Discount Given`,
+`100 Is Business Good`, `21 Problem Demokin 2`, and all five race introductions. Nothing is
+unique to node 80. Wiring it would not restore content; it would add a second way to be paid
+for the Felgnash sword and the Estral silver.
+
+An intermediate pass wrongly concluded the opposite, by comparing node 80 against four
+hand-picked live nodes rather than the whole tree. The Blacksmith tree completes the Felgnash
+quest in **44** places; picking four of them proves nothing.
+
+**`WengChoi / 570 scroll give` -> `600 something else` -- OUT.** `570` is the dialogue version of
+buying the Wind Scroll: `CTakeMoneyAction` plus a hand-over. The shipped game sells it through
+the shop instead -- `550 Wind Scroll`'s reply opens **`Special Inventory for Weng Choi`**, which
+**stocks `Scroll Wind`**, and then checks whether the player now holds it and triggers
+`Swap Special Merchant AI`. So the purchase is fully live and `570` is the superseded original.
+`600 something else` goes with it: its nine book XP awards are all paid by reachable nodes
+(`03 Return Dialogue`, `55 collection`, `110 become special customer`, `115 Good Barter`,
+`200 show special stock`).
+
+That makes **five** superseded drafts this project has now identified and correctly left alone
+-- Cortes's arm, Bartolome's boots, the Blacksmith's Wizard greeting, and these two.
 
 ### Explicitly not in it
 
@@ -305,10 +322,16 @@ orphans.
 
 ### The honest recommendation
 
-Tiers 1 to 3 are built: seven items, **eight reply-carrying nodes reclaimed** (42 -> 34), the
-DaVinci gem branch as the headline. Two of the three Tier 3 items turned out to be one-value
-fixes rather than the conditional work the scope predicted, and the third was a duplicate.
-Tier 4 remains, and may well end in "out" twice, like Cortes.
+Seven items built, **eight reply-carrying nodes reclaimed** (42 -> 34), the DaVinci gem branch
+as the headline. Two of the three Tier 3 items turned out to be one-value fixes rather than the
+conditional work the scope predicted; the third was a duplicate. Tier 4 ended in "out" twice,
+as expected.
+
+**The Gate District is finished.** What remains of its 34 orphans is: twelve nodes in dead trees
+and author-labelled corpses that can never be fixed, six deliberate `dreamdjinn` trial variants,
+five superseded drafts, two duplicates left by 0.7.0's own summit work, two flavour barks, and
+the DaVinci gift and surly/spirit nodes that would need invented conditions. There is no cut
+quest left here and no further list to work through.
 
 A lesson from Tier 3 worth carrying: **assert deltas, not absolute counts.** Two attempts at
 verifying the citizen change failed on `count(...) == 1` because vanilla's Gate District
