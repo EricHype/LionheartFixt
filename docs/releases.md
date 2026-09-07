@@ -1,7 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.5.1 built, not yet signed off**; 0.6.0 is scoped and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded. 0.1.0 through 0.4.1 are published; the sections
-below are in reverse release order, newest first.
+Status: **0.1.0 through 0.8.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -124,6 +123,318 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.9.0 - the Temple District (scope)
+
+**Not started.** Survey and triage only. Every figure is measured against
+`data.dat.vanilla.bak` **as this mod leaves the game**, not as it shipped:
+
+```
+python tools/reachability.py --survey "Temple District" --with-mod
+```
+
+The Temple District surveys at **40 trees, 738 nodes, 72 unreachable, 27 of them carrying
+replies**. All 27 are triaged below.
+
+**This district is not the Gate District.** The Gate District's remainder was greeting variants
+and nodes that can never be fixed; 0.8.0 was a chore release and said so. Here the survey turns
+up **a complete quest with a perk at the end that nobody can be given**, a cross-act
+consequence branch with two opposite endings and no caller, and four faction- or race-gated
+variants of the kind 0.3.0 and 0.7.0 built. 27 is a smaller number than 42 and a much larger
+amount of content.
+
+One correction recorded up front, because the first pass got it wrong. Three orphaned Montserrat
+briefings turned up in one district and that looked like the Inquisition having no road north --
+the exact shape 0.7.0 fixed for the Knights of Saladin. It is not. `Inquisition Foyer1.zax`
+activates `Investigate the fate of Montserrat` from a live map trigger, and **five** live sources
+put the abbey on the world map (Cedric Alsen, Lord Relican, Jafar, Lord Javier, and
+`Crossroads.zax`). The Inquisition's road north works. What is orphaned is a set of *parallel
+copies* in the Inquisition characters' own trees -- which makes several of them duplicates rather
+than cut content, and is why they are in Tier 4 and not Tier 1.
+
+### Tier 1 - the Inquisition's second task, which nobody can be given
+
+The headline, and the largest single find since the Knights of Saladin. Five nodes, one chain.
+
+`Purify the Shadow Dryad` is a complete three-state quest with its own `.Quest.txt`, XP, and a
+**perk** on completion. Its states, verbatim:
+
+| State | Text |
+|---|---|
+| `AM6C3B5E` | *"Grand Inquisitor Torquemada has asked you to perform a service for the Inquisition..."* |
+| `S6JH3MKG` | *"To complete Grand Inquisitor Torquemada's task you must slay the shadow dryad..."* |
+| `V3X8REJC` | *"Return to the Chambers of the Inquisition in Nueva Barcelona and tell the Grand Inquisitor..."* |
+
+**Only `V3X8REJC` is ever set by anything reachable**, and by a map part rather than a
+conversation: `Inquisition Chambers2.zax`, commented *"if this is active, PC killed Shadow Dryad
+(Weird Woman) before encountering Torquemada"*. States 1 and 2 are set only by the orphaned
+`411 shadow dryad 2`. So the quest can enter the journal only at its final step, and only for a
+player who happened to kill her before ever meeting Torquemada. **It cannot be given.**
+
+The obvious objection was checked, because two witch quest files exist.
+`Find the Witch for Inquisitor Fournier` is fully live -- given by `MontailluInquisitor / 70
+Tasks` and completed in five reachable places. It is a *different* quest: Fournier's local
+errand in Montaillou. Torquemada's is a Barcelona-side arc with its own three states, its own
+reward, and its own giver. Same target, different quest.
+
+**And the way in is one faction check.** The Khan is Torquemada's first task -- content 0.1.0
+already restored. On reporting the kill, every greeting routes the player to
+`408 killed khan not inquisitor`. The node written for an Inquisitor reporting it,
+`407 killed khan`, pays **150 gold**, asks *"Are you ready for another task?"*, and has no
+parent at all.
+
+| Node | State | What it is |
+|---|---|---|
+| `407 killed khan` | orphan | the Inquisitor's own Khan report, 150 gold |
+| `401 already dead` | orphan | "I killed him before you asked" -- the **only** route to the dryad chain |
+| `410 shadow dryad` | orphan | Na Roqua named, and Montaillou named |
+| `411 shadow dryad 2` | orphan | sets the quest, or completes it if she is already dead, plus XP |
+| `412 shadow dryad dead` | orphan | grants a **perk** |
+
+Reachable for comparison: `405 kill khan` (the task), `408`/`409 killed khan not inquisitor`
+(the outsider's report). A variant exists, is correct, and nothing selects it, while the
+not-a-member version is what everyone gets. That is the 0.3.0 Saladin shape exactly, and the
+fix is a faction-gated reply on the greetings that already offer the outsider's line.
+
+Two things to check while building, not assumed now: whether `407 killed khan` needs a "yes"
+reply into `410 shadow dryad` of its own -- its text asks a question its one shipped reply does
+not answer -- and whether the `Inquisition Chambers2.zax` early-kill flag still behaves once the
+quest can be given normally.
+
+**Two dryads, and they are not the same person.** Worth settling explicitly, because the game
+uses the word for both and one of them is famously live. The **River Dryad** is Wilderness
+content: template `River Dryad.can`, race `River Dryad by Lake`, level 4, generated by
+`Lake.zax`, with her own DialogTree, seventeen voice files and dedicated combat sounds. She is
+the subject of two live quests -- `Slay the River Dryad for the Goblin Grumdjum`, and
+`Rid the Dryad's Forest of the Goblins`, her counter-offer -- which is 0.1.0's territory. The
+**Shadow Dryad** is Na Roqua, the Montaillou perfecti, and the phrase "shadow dryad" occurs in
+exactly six files, all of them Barcelona. Nothing anywhere links the shadow dryad to the lake,
+the river or the forest. The one sentence connecting the two vocabularies is the authors' own
+comment in `Inquisition Chambers2.zax` -- *"PC killed Shadow Dryad (Weird Woman)"* -- which
+identifies the shadow dryad as the Weird Woman, not as the River Dryad. Neither character is
+cut; only Torquemada's quest about Na Roqua is.
+
+Note also that neither is a tree-spirit: the River Dryad's model is `Woman Generic2`, a generic
+townswoman. "Dryad" in this game is a label applied to a woman, which is worth knowing before
+writing any new line that uses the word.
+
+**And the evidence that this chain was finished is stronger than a normal restoration.** Two
+things beyond the written dialogue:
+
+- **All five orphaned nodes have shipped voice-over.** `401 already dead.ogg`,
+  `407 killed khan.ogg`, `410 shadow dryad.ogg`, `411 shadow dryad 2.ogg` and
+  `412 shadow dryad dead.ogg` are all present under `GrandInquisitor VOs/`. Voice actors
+  recorded this and it shipped on the disc. It was lost at the wiring stage, not abandoned in
+  writing -- the strongest class of evidence this project gets, and the same one that carried
+  the Sacred Scimitar.
+- **The gating is already built, and it is correct.** Three requirement checkers ship for this
+  chain. `Torquemade requires Shadow Dryad NOT killed yet` wraps a `CCheckExistenceAction` on
+  `Weird Woman dead` in a `CNotAction`; `Torquemada Requires Shadow Dryad Dead before meeting`
+  is the same check unwrapped. Both are already wired onto `411 shadow dryad 2`'s two replies,
+  so the out-of-order case is handled. The third, `Torquemade requires Shadow Dryad killed`,
+  tests whether `V3X8REJC` is the current state -- exactly what a report-back reply needs -- and
+  is **used by nobody**. Vanilla built the whole state machine and wired two thirds of it.
+
+One false alarm recorded so it is not re-raised: the two existence checkers look identical under
+a field-by-field dump and appear to be a bug where "NOT killed yet" tests "killed". They are not
+identical -- one is wrapped in `CNotAction`. A selective dump that lists only leaf keys hides the
+wrapper. Read such files whole; they are under 250 bytes.
+
+#### Two design decisions, settled before building
+
+**Use Na Roqua. Do not build a separate shadow dryad.** The alternative was considered
+seriously, and its best arguments are real: a purpose-built creature would keep Torquemada out
+of Act 3's most intricate live questline, and it would give the quest an actual fight, which
+Na Roqua cannot -- `CGoToCombatAction` appears **zero** times in her tree and zero times in
+`06 Witch Interior.zax`, so nothing in vanilla ever makes her hostile. It loses anyway, on five
+counts:
+
+- The authors said so, in a comment: *"PC killed Shadow Dryad (Weird Woman)"*.
+- Both shipped checkers test `Name To Check For=Weird Woman dead`. Pointing the quest at an
+  invented character means **rewriting shipped requirement files** -- overwriting the author's
+  wiring and calling the result restored.
+- `410` names her and her village: *"Na Roqua... lurks within the French village of Montaillou."*
+- **No shadow dryad assets exist at all** -- no template, no race, no model, no creature voice.
+  Compare the River Dryad: a template, a dedicated race, her own tree, five checkers, seventeen
+  voice files. That is what a built dryad looks like here. The shadow dryad has three
+  requirement files and three lines of Torquemada's voice: the fingerprint of a character who
+  was always meant to be someone who already existed.
+- She is *better* built than the River Dryad -- dedicated race (`Races/NPCs/Weird Woman`) and
+  dedicated model (`Characters/NPC/Montaillou/Weird Woman`), where the River Dryad wears
+  `Woman Generic2`, a generic townswoman.
+
+And the reveal makes the name literally true: *"I am no longer Druj, the \*creature\* that your
+spirit named. I am Na Roqua, and I have atoned for my past."* She really was a shadow creature.
+A separate monster would not be redundant so much as destructive -- the weight of the quest is
+that the thing you are sent to purify already purified itself.
+
+**Author no refusal reply. Torquemada would not accept the atonement, and the game already put
+the refusal somewhere better.** The question was whether to add *"she has atoned; I will not"* to
+`411`, whose only two shipped replies are *"I shall do it"* and *"I have already made
+arrangements."* No, for four reasons drawn from the text:
+
+- **His charge is present-tense teaching, not past creaturehood.** *"A wolf in sheep's clothing
+  that is leading a flock astray"*; *"masquerading as a Cathar perfecti... spreading a perverted
+  faith to unsuspecting people. **End her heresy.**"* Atonement for having been Druj is not a
+  defence he rejects -- it is not responsive to the charge he actually makes.
+- **She concedes his facts in her own dialogue.** *"Are you not lying to your flock by not
+  telling the cathars of your past?"* -- *"Alas, the sins of the past chain me to this world...
+  and I admit that I have not told the \*truth\* to those that look to me for guidance."* So
+  "masquerading" is accurate and the accusation is not slander. Torquemada is factually correct
+  on every particular; only his conclusion is monstrous. That is better writing than a villain
+  who lies.
+- **Mercy is absent from his vocabulary, measurably.** Across his fifty-node tree: "mercy" x0,
+  "forgive" x0, "repent" x0, "atone" x0. Not a gap to fill -- the characterization. Compare the
+  fire trial, where he watches a miracle and cannot tell it from damnation: *"is this a miracle
+  or the work of demons?"*, *"I do not know whether divine providence or fiendish charms guard
+  your body from the fire, so I will test your honor."* He resolves holiness by testing loyalty.
+- **Refusal already exists and costs nothing.** Every declining reply in his tree lands on
+  `10 Goodbye` -- *"I regret I cannot perform such a task, your grace."* No penalty, no
+  follow-up. The player can decline, or take the task and never act on it.
+
+The meaningful refusal is already written, live, and in the right mouth -- in her house, to her
+face, as an Inquisitor. These are shipped reachable replies in `weirdwoman.DialogTree`:
+*"Though I am an Inquisitor, I am willing to spare the Cathars"*, *"I promise no harm will come
+to the Cathars by my hand"*, and hers in answer: *"Very well, I sense a \*truth\* in your
+conviction... I will help you if you promise not to harm the cathars."*
+
+**Which is the strongest argument for restoring Tier 1 exactly as shipped.** That promise is
+currently free. A player can swear to spare the Cathars and nothing ever tests it, because
+Torquemada never asks for her. Restoring the quest supplies the temptation the promise was
+written to resist: a perk, XP and *"your deeds shall be transcribed in the Annals of the
+Inquisition"* on one side; a woman who trusted you and a vow you made on the other. The half
+that is missing is the pressure, and the pressure is the half that shipped voiced and unwired.
+
+**Recorded as a knowing choice: this makes the mod darker.** A vanilla player cannot be asked to
+do this. Restoring Tier 1 adds a rewarded path -- perk plus experience -- for killing a repentant
+pacifist in her home, and the reward is framed as a blessing. That is the game's own moral
+architecture and the Inquisition is written to be exactly like this, so it ships as found. It is
+noted here rather than left implicit, because it is a real change in what the mod hands a player
+and it should be a decision on the record rather than a side effect.
+
+### Tier 2 - cheap and additive, one reply or one field each
+
+Seven items. None invents a condition; none removes a route.
+
+1. **`SirAuric / 100 join tainted`** -- the Weng Choi shape. `100 join` is live with three
+   parents; the tainted variant (*"I didn't think someone like you could have completed the
+   task"*) has none, though Auric's tree handles tainted characters everywhere else
+   (`1 Conversation Start Tainted`, `100 convince auric tainted`,
+   `3 Return Hostile Tainted Did Not Use Speech`, all live). A tainted player earns the
+   sponsorship and gets the generic acceptance. `105 join feralkin` is the same shape and
+   carries no replies, so it is not one of the 27.
+2. **`LordJavier / 190 need sponsor`** -- and it closes a loop. The join reply needs
+   `Javier req spoke with Auric`; the direct route needs an entity named `second chance` to
+   exist. A player with neither has **no join reply at all**. `190 need sponsor` is that
+   missing branch -- *"you'll need a sponsor. Perhaps Sir Auric will do it. I have heard he is
+   seeking an apprentice"* -- and its reply is *"I will seek out Auric,"* while Auric's live
+   `100 join` ends *"go speak with Lord Javier."* Both ends written, entrance orphaned. Purely
+   additive: it adds the explanation and the pointer and gates nothing.
+3. **`Cervantes / 3 Return Dialogue`** -- the Farshad shape, fifth instance. All four of its
+   replies lead to live nodes; the map opens `1 conversation start` and four scripted nodes but
+   never the return greeting.
+4. **`LordJavier / 500 Sacred Lance`** -- Jafar's identical lore node is live and Javier's is
+   not. One "tell me about the Sacred Lance" reply; its own reply already feeds the live
+   `238 Leave for Montserrat`.
+5. **`ShylockeChests / 600 gold chest opened 2`** -- the middle line of the gold casket's verse.
+   The map opens `600 gold chest opened` and `600 gold chest opened 3` and skips the one
+   between, so the inscription is read with a line missing. Pure flavour, one field.
+6. **`Sanchez / 100 faction let off inquisitor`** -- *"Very well, your grace, I believe we can
+   come to an understanding."* Faction-gated leniency on your fine. The map opens five fine
+   outcomes and not this one. Needs reading how the map picks before it is certain this is a
+   field rather than a condition.
+7. **`Sanchez / 100 low fine`** -- the same shape for a persuasive rather than well-connected
+   player. Same caveat.
+
+### Tier 3 - needs a map-side route or a condition, not just a link
+
+Seven items, each real but each more than a value change.
+
+1. **`Shylocke / 7 return with shakepeares money`** -- the payoff for the Shakespeare loan job,
+   *"Here is your share of the gold, plus a bonus."* Needs a return route conditioned on having
+   collected, which is map-side work.
+2. **`Shylocke / 312 charge`** -- the hundred-gold asking price, with all four of its replies
+   landing on live nodes (`315 barter charge`, `330 pay the price`, `400 threat`). Needs a
+   parent in the 310 range.
+3. **`Shylocke / 140 no resolution`** -- *"I shall take this matter to the magistrates and we
+   will let the courts decide."* Reclaims `151 no resolution 2` with it.
+4. **`Cervantes / 500 magic quill explanation`** -- the doppelganger reveal, *"I am real!
+   Cervantes is the shade!"* Reclaims `500 don quixote attacks`. Needs the Don Quixote encounter
+   located first.
+5. **`InquisitorRaphael / 500 Return from Montaillou`** -- Jafar's equivalent is live; Raphael
+   has no post-Montaillou reception. Reclaims `238 Leave for Montserrat` inside his tree.
+6. **`LordJavier / 400 Esteban Slain`** -- reactivity to Sir Esteban's death, whose reply feeds
+   the live `305 speak with auric 2`. Almost certainly wants a map relay fired on the death
+   rather than a dialogue reply, which is why it is here and not Tier 2.
+7. **`Machiavelli`, the whole consequence branch** -- see below. Listed here for completeness;
+   recommended for its own release.
+
+### Tier 4 - read before touching, all four plausibly superseded
+
+Four candidates with the Cortes shape. The Tier 4 test from 0.8.0 applies: not *"does another
+node do this?"* but *"does a **reachable** node do this?"*
+
+- **`GrandInquisitor / 400 NIS Dialogue 4b`** -- a third copy of the summit's Montserrat
+  briefing. Jafar's `400 NIS Dialogue 4b` is *also* an orphan and 0.7.0 correctly left it alone,
+  because the live copy plays through Lord Javier. This is the Torquemada-side copy of the same
+  scene. The one thing that could make it real: 0.7.0 built the summit with Javier and Jafar as
+  speakers, so an Inquisition player's summit may want Torquemada. Read against the summit
+  before deciding.
+- **`InquisitorRaphael / 321 chapter 2 mission 2`** -- sets `Investigate the fate of Montserrat`,
+  which `Inquisition Foyer1.zax` sets from a live map trigger. Very likely the dialogue version
+  a map trigger replaced -- the Weng Choi scroll pattern.
+- **`GrandInquisitor / 202 trial 2`** -- the middle step of the fire trial. `Inquisition
+  Chambers2.zax` opens `203 trial 3` directly, so the map may be skipping step 2 deliberately.
+- **`Machiavelli / 201 not helping`** -- its reply lands on `202 not helping 2`, which is live
+  from elsewhere, so this is probably a superseded entry node into a branch that already works.
+
+### Out now, with reasons
+
+- **`Shylocke / 500 shylocke gets gold`** -- pays 500 gold, and the live `60 borrow money` and
+  `61 borrow money tainted` already pay exactly that. Wiring it would add a second loan window.
+- **`LordJavier / 500 pyrenees`** -- sets `Ensure safety of Monserrat Relics`, which his own
+  live `400 NIS Montserrat Directions` already sets.
+
+### Machiavelli, and why he should be his own release
+
+Refuse to partner with him and he sells you out: *"you forced me to seek aid from those that
+seek to do us harm. It turns out that you have a most formidable enemy, Lionheart."* Save him
+and he repays you in Montaillou with **500 gold**. Both endings are written --
+`230`/`231 ambush greeting if you don't help mach`, and `300 machiavelli helps you in
+montaillou` with a `2` and a `3` behind it -- and **nothing calls either one**.
+
+He is not on any Montaillou map. He exists as an entity only in `House of Ilk map.zax` (five
+generators) and as a door and a relocate-target in `Temple District.zax`. So restoring this is
+not a dialogue fix: it is a generator, a position, and a conditional greeting selection on a map
+in another act -- the Cathedral summit's shape and roughly its size.
+
+It is also the most interesting thing in the district after Tier 1, because it is a Barcelona
+choice with an Act 3 consequence, in both directions. Doing it properly deserves a release that
+is about it, rather than being the seventh item in a list.
+
+### Gates before this ships
+
+- Both existing gates, unchanged.
+- **Tier 1 spans two maps and an act boundary in effect** -- the quest is given in Barcelona,
+  resolved in Montaillou, and reported in Barcelona, and `Inquisition Chambers2.zax` already
+  holds a flag for the out-of-order case. That interaction is the risk, not the dialogue.
+- **A save that has never entered the affected levels**, as always for map edits.
+- Tier 1 wants a character who joins the Inquisition, and one who has *not* yet killed the
+  Weird Woman, so the early-kill flag can be tested separately.
+
+### The honest recommendation
+
+**Build Tier 1 first and let Tier 2 ride along.** Tier 1 is a whole unstartable quest with a
+perk at the end, reached through the same faction-gated reply this project has now built three
+times, and it sits directly downstream of 0.1.0's Khan work, so the two releases compound. Tier
+2 is seven cheap additive items that need no new conditions.
+
+Hold Machiavelli for 0.10.0. Hold Tier 3 and Tier 4 unless Tier 1 lands early.
+
+**And the caveat that has now stood for three releases running.** 0.6.0 is unplayed past the
+Juan rescue and 0.7.0 is entirely unplayed, including a change to a late-game promotion that
+affects every faction combination. Tier 1 here would add a second Inquisition quest on top of
+that untested pile. Playing what exists is still worth more than building more of it.
 
 ## 0.8.0 - the Gate District remainder (scope)
 
