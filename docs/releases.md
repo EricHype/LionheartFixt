@@ -196,10 +196,53 @@ Reachable for comparison: `405 kill khan` (the task), `408`/`409 killed khan not
 not-a-member version is what everyone gets. That is the 0.3.0 Saladin shape exactly, and the
 fix is a faction-gated reply on the greetings that already offer the outsider's line.
 
-Two things to check while building, not assumed now: whether `407 killed khan` needs a "yes"
-reply into `410 shadow dryad` of its own -- its text asks a question its one shipped reply does
-not answer -- and whether the `Inquisition Chambers2.zax` early-kill flag still behaves once the
-quest can be given normally.
+#### What it actually takes -- read, not assumed
+
+The scope first described this as a faction-gated reply plus four links. That was wrong, and the
+read that corrected it is the most important one in this section.
+
+**`Weird Woman dead` has no legitimate source. It is a debug switch.** The only thing in the
+shipped game that sets it is a part named `warp`, `Active=0`, carrying the comment *"Weird woman
+killer 1 - This is to kill the Weird woman to test what happens when you kill her"*, sitting
+beside an `Editor/Test Interaction` that relocates the player to `Inquisition Foyer1`. No
+Montaillou map references the flag under any spelling.
+
+That cascades further than the flag itself:
+
+- `411`'s second reply, *"I have already made arrangements"*, is gated on it, so it can **never
+  fire**.
+- That reply is the only thing that completes the quest and pays its XP.
+- `412 shadow dryad dead` -- the **perk** -- is reachable only from that reply.
+
+So wiring `410` -> `411` and stopping there yields a quest the player can accept and never
+finish, with the perk still unreachable. The scope's original description would have shipped
+exactly that.
+
+The repair is visible in the shipped files, though. The third checker, `Torquemade requires
+Shadow Dryad killed`, tests whether `V3X8REJC` is the current state and is **used by nobody** --
+which is precisely the gate a report-back reply needs. So Tier 1 is three pieces, not one:
+
+| Piece | Where | Cost |
+|---|---|---|
+| faction-gated reply into `407`/`401`, and `410` -> `411` -> `412` links | `GrandInquisitor.DialogTree` | cheap, as originally scoped |
+| **a death hook that advances the quest to `V3X8REJC`** | `06 Witch Interior.zax` | **new, and in Act 3** |
+| a report-back reply gated on the unused third checker | `GrandInquisitor.DialogTree` | cheap |
+
+Jafar's generator is the shipped precedent for a quest keyed to a character's death, so the
+middle row has something to copy rather than invent.
+
+**A method error recorded, because it is the fourth of its kind.** This read first reported the
+activation as living inside the `Grand Inquisitor generator`. It does not. The brace-walker
+searched backwards for `Level Part=CEntityBase`, and the real parent is a `CEntityAnimated`, so
+it walked straight past it into the previous sibling and attributed the action to the wrong
+entity. The fix was to stop filtering and dump the region raw, at which point the `warp` comment
+was the first thing visible. Same family as the wrong-baseline and absolute-count mistakes:
+**when a structural query returns something surprising, print the bytes before believing the
+parse.**
+
+One question from the original scope is still open and still a build detail: whether
+`407 killed khan` wants a "yes" reply into `410 shadow dryad` of its own, since its text asks
+*"Are you ready for another task?"* and its one shipped reply does not answer that.
 
 **Two dryads, and they are not the same person.** Worth settling explicitly, because the game
 uses the word for both and one of them is famously live. The **River Dryad** is Wilderness
@@ -314,7 +357,8 @@ and it should be a decision on the record rather than a side effect.
 
 ### Tier 2 - cheap and additive, one reply or one field each
 
-Seven items. None invents a condition; none removes a route.
+**Five items** -- two fewer than first scoped; Sanchez's pair turned out to need a condition and
+moved to Tier 3. None of these invents a condition; none removes a route.
 
 1. **`SirAuric / 100 join tainted`** -- the Weng Choi shape. `100 join` is live with three
    parents; the tainted variant (*"I didn't think someone like you could have completed the
@@ -339,16 +383,12 @@ Seven items. None invents a condition; none removes a route.
 5. **`ShylockeChests / 600 gold chest opened 2`** -- the middle line of the gold casket's verse.
    The map opens `600 gold chest opened` and `600 gold chest opened 3` and skips the one
    between, so the inscription is read with a line missing. Pure flavour, one field.
-6. **`Sanchez / 100 faction let off inquisitor`** -- *"Very well, your grace, I believe we can
-   come to an understanding."* Faction-gated leniency on your fine. The map opens five fine
-   outcomes and not this one. Needs reading how the map picks before it is certain this is a
-   field rather than a condition.
-7. **`Sanchez / 100 low fine`** -- the same shape for a persuasive rather than well-connected
-   player. Same caveat.
+*(Sanchez's `100 faction let off inquisitor` and `100 low fine` were items 6 and 7 here. The
+read moved them -- see Tier 3.)*
 
 ### Tier 3 - needs a map-side route or a condition, not just a link
 
-Seven items, each real but each more than a value change.
+**Nine items**, each real but each more than a value change.
 
 1. **`Shylocke / 7 return with shakepeares money`** -- the payoff for the Shakespeare loan job,
    *"Here is your share of the gold, plus a bonus."* Needs a return route conditioned on having
@@ -366,8 +406,20 @@ Seven items, each real but each more than a value change.
 6. **`LordJavier / 400 Esteban Slain`** -- reactivity to Sir Esteban's death, whose reply feeds
    the live `305 speak with auric 2`. Almost certainly wants a map relay fired on the death
    rather than a dialogue reply, which is why it is here and not Tier 2.
-7. **`Machiavelli`, the whole consequence branch** -- see below. Listed here for completeness;
-   recommended for its own release.
+7. **`Machiavelli`, the whole consequence branch** -- see below. No longer held back for its
+   own release; it now ships with Tier 1, for the reason given there.
+8. **`Sanchez / 100 faction let off inquisitor`** -- *"Very well, your grace, I believe we can
+   come to an understanding."* Faction-gated leniency on your fine.
+9. **`Sanchez / 100 low fine`** -- the same for a persuasive rather than a well-connected player.
+
+   Both were scoped as Tier 2 field fixes and are not. The fines are a **money ladder in the
+   map**, not a dialogue branch: `Inquisition Chambers2.zax` tests `CHasMoneyAction` for 100,
+   then 50, then 25, takes that amount, and only then opens the matching narration node
+   (`100 high fine`, `100 medium fine`, `100 low cash fine`, then `100 no cash take item` which
+   takes an item instead). Because the map takes the money *before* opening the node, a reduced
+   fine is not a destination an existing arm can be repointed at -- it needs a **new arm** that
+   tests Speech or faction and takes less. Note this lands in the same file as Tier 1's Barcelona
+   work.
 
 ### Tier 4 - read before touching, all four plausibly superseded
 
@@ -395,7 +447,7 @@ node do this?"* but *"does a **reachable** node do this?"*
 - **`LordJavier / 500 pyrenees`** -- sets `Ensure safety of Monserrat Relics`, which his own
   live `400 NIS Montserrat Directions` already sets.
 
-### Machiavelli, and why he should be his own release
+### Machiavelli, and why he now ships with Tier 1
 
 Refuse to partner with him and he sells you out: *"you forced me to seek aid from those that
 seek to do us harm. It turns out that you have a most formidable enemy, Lionheart."* Save him
@@ -409,27 +461,66 @@ not a dialogue fix: it is a generator, a position, and a conditional greeting se
 in another act -- the Cathedral summit's shape and roughly its size.
 
 It is also the most interesting thing in the district after Tier 1, because it is a Barcelona
-choice with an Act 3 consequence, in both directions. Doing it properly deserves a release that
-is about it, rather than being the seventh item in a list.
+choice with an Act 3 consequence, in both directions.
+
+**And that is now the argument for shipping it here rather than later.** The original plan held
+it back for its own release, on the grounds that it needs a Montaillou map edit and Tier 1 did
+not. Read 1 destroyed that distinction: Tier 1 needs a death hook in `06 Witch Interior.zax`, so
+both items open `3 Montaillou`. Opening that act costs a tester a fresh character through two
+acts every time, because a level's contents are captured into a save the first time it is
+entered. Paying that once for two features is worth much more than paying it twice for one each.
+
+### The dormant-check sweep, and a clean result
+
+A pre-build sweep was run for the defect class that produced 0.7.0's Ways Crystal bug: **vanilla
+logic that was unreachable in the shipped game because nobody could be a Knight of Saladin, and
+which this mod made live in 0.3.0.** That is regression surface Fixt created rather than found,
+and it went undetected for four releases, so it was worth measuring rather than assuming.
+
+There are five such checks, across four files outside the ones this mod already edits. **All
+five are correctly guarded.** Cedric Alsen's three form a proper mutually exclusive set:
+
+| Checker | Selects |
+|---|---|
+| `Cedric Player IS Templar Inquisitor or Saladin` | *"Nevermind. I have already joined a faction."* -> `55 dismissal warning` |
+| `Cedric Player is NOT Inquisitor Knight or Saladin` | *"I accept your challenge."* -> `70 first task` |
+| `Cedric Player is Feralkin AND is NOT Inq Temp or Saladin` | the feralkin variant -> `70 first task` |
+
+A Knight of Saladin is correctly turned away from the Wielder initiation. `Grumpy Port Guard`'s
+two `Saladin IS` checks route to `41 Mistake End (Non Inquisition)`, also correct.
+
+Two conclusions. **The worry is retired**: 0.3.0 did not switch on a pile of broken logic, it
+switched on one unguarded branch, and 0.7.0 fixed that one. And this is **fresh evidence for the
+Saladin thesis from an angle the project had not used** -- Cedric's author wrote `Saladin IS`
+into a three-way faction test that could never be true in the game as shipped. Three separate
+authors wrote for a faction that shipped unjoinable.
 
 ### Gates before this ships
 
 - Both existing gates, unchanged.
-- **Tier 1 spans two maps and an act boundary in effect** -- the quest is given in Barcelona,
-  resolved in Montaillou, and reported in Barcelona, and `Inquisition Chambers2.zax` already
-  holds a flag for the out-of-order case. That interaction is the risk, not the dialogue.
+- **Tier 1 spans two acts for real, not just in effect** -- the quest is given in Barcelona,
+  resolved in Montaillou by a hook this release has to build, and reported in Barcelona. That
+  round trip is the risk, not the dialogue.
+- **This is the project's first edit to `3 Montaillou`**, and both Tier 1 and Machiavelli land
+  there. Everything the 0.5 and 0.7 releases learned about scripted sequences failing in ways no
+  static check catches applies with full force.
 - **A save that has never entered the affected levels**, as always for map edits.
 - Tier 1 wants a character who joins the Inquisition, and one who has *not* yet killed the
   Weird Woman, so the early-kill flag can be tested separately.
 
 ### The honest recommendation
 
-**Build Tier 1 first and let Tier 2 ride along.** Tier 1 is a whole unstartable quest with a
-perk at the end, reached through the same faction-gated reply this project has now built three
-times, and it sits directly downstream of 0.1.0's Khan work, so the two releases compound. Tier
-2 is seven cheap additive items that need no new conditions.
+**0.9.0 is Tier 1 complete, Machiavelli, and Tier 2's five cheap items.** That is a larger
+release than this section first proposed, and the enlargement is a correction rather than
+ambition: Tier 1 cannot be shipped as originally described, because doing so would hand the
+player a quest with no ending and leave the perk unreachable.
 
-Hold Machiavelli for 0.10.0. Hold Tier 3 and Tier 4 unless Tier 1 lands early.
+The shape follows from read 1. Tier 1 needs an Act 3 death hook, Machiavelli needs an Act 3
+generator, and a tester pays for opening Act 3 once either way -- so the two ship together. Tier
+2's five items are cheap, additive Barcelona work that needs no new conditions and can ride
+along.
+
+Hold Tier 3 (now nine items, including Sanchez's money-ladder arm) and Tier 4 for 0.10.0.
 
 **And the caveat that has now stood for three releases running.** 0.6.0 is unplayed past the
 Juan rescue and 0.7.0 is entirely unplayed, including a change to a late-game promotion that
