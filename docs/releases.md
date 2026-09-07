@@ -152,9 +152,12 @@ put the abbey on the world map (Cedric Alsen, Lord Relican, Jafar, Lord Javier, 
 copies* in the Inquisition characters' own trees -- which makes several of them duplicates rather
 than cut content, and is why they are in Tier 4 and not Tier 1.
 
-### Tier 1 - the Inquisition's second task, which nobody can be given
+### Tier 1 - the Inquisition's second task: half built, half impossible
 
-The headline, and the largest single find since the Knights of Saladin. Five nodes, one chain.
+**Scoped as the headline restoration. It split in two.** The Khan report is built and shipped;
+the shadow dryad is out, because it is not unwired content -- it is *unfinished* content, and
+finishing it would mean authoring. The reads that established this are below, in the order they
+happened, because the order is the lesson.
 
 `Purify the Shadow Dryad` is a complete three-state quest with its own `.Quest.txt`, XP, and a
 **perk** on completion. Its states, verbatim:
@@ -183,13 +186,13 @@ already restored. On reporting the kill, every greeting routes the player to
 `407 killed khan`, pays **150 gold**, asks *"Are you ready for another task?"*, and has no
 parent at all.
 
-| Node | State | What it is |
+| Node | Verdict | What it is |
 |---|---|---|
-| `407 killed khan` | orphan | the Inquisitor's own Khan report, 150 gold |
-| `401 already dead` | orphan | "I killed him before you asked" -- the **only** route to the dryad chain |
-| `410 shadow dryad` | orphan | Na Roqua named, and Montaillou named |
-| `411 shadow dryad 2` | orphan | sets the quest, or completes it if she is already dead, plus XP |
-| `412 shadow dryad dead` | orphan | grants a **perk** |
+| `407 killed khan` | **BUILT** | the Inquisitor's own Khan report, 150 gold |
+| `401 already dead` | left orphaned | "I killed him before you asked" -- the only route to the dryad chain, deliberately not opened |
+| `410 shadow dryad` | OUT | Na Roqua named, and Montaillou named |
+| `411 shadow dryad 2` | OUT | sets the quest, or completes it if she is already dead, plus XP |
+| `412 shadow dryad dead` | OUT | grants a **perk** |
 
 Reachable for comparison: `405 kill khan` (the task), `408`/`409 killed khan not inquisitor`
 (the outsider's report). A variant exists, is correct, and nothing selects it, while the
@@ -222,14 +225,47 @@ The repair is visible in the shipped files, though. The third checker, `Torquema
 Shadow Dryad killed`, tests whether `V3X8REJC` is the current state and is **used by nobody** --
 which is precisely the gate a report-back reply needs. So Tier 1 is three pieces, not one:
 
-| Piece | Where | Cost |
+| Piece | Where | Outcome |
 |---|---|---|
-| faction-gated reply into `407`/`401`, and `410` -> `411` -> `412` links | `GrandInquisitor.DialogTree` | cheap, as originally scoped |
-| **a death hook that advances the quest to `V3X8REJC`** | `06 Witch Interior.zax` | **new, and in Act 3** |
-| a report-back reply gated on the unused third checker | `GrandInquisitor.DialogTree` | cheap |
+| faction-gated reply into `407` | `GrandInquisitor.DialogTree` | **BUILT** |
+| a death hook that advances the quest to `V3X8REJC` | `06 Witch Interior.zax` | **impossible -- see below** |
+| a report-back reply gated on the unused third checker | `GrandInquisitor.DialogTree` | out, with the hook |
 
-Jafar's generator is the shipped precedent for a quest keyed to a character's death, so the
-middle row has something to copy rather than invent.
+The Khan's generator is the shipped precedent for a quest keyed to a death --
+`CSetDestroyedScriptActionAction` in the generator's `After Action`, whose `CIfAction` advances
+the quest state on the `Then` arm and, on the `Else`, reaches across the act boundary with
+`COtherMapAction` to set a flag defined in a Barcelona map. That idiom is worth recording even
+though this release cannot use it: it is how anything in a later act reports back to Torquemada.
+
+#### Why the dryad half is out: she cannot be killed
+
+The death hook has nothing to hook. Na Roqua is protected three independent ways:
+
+| Layer | What it does |
+|---|---|
+| `Wierd Woman.can` | `Has Hit Points=0` |
+| `Races/NPCs/Weird Woman.Race` | **AC 1000, HP 10000**, and full damage resistances across 11 presets |
+| her generator's `After Action` | a `CHandleMessageAI` on **`Gotocombat`** that fires the `kicks you` relay |
+
+`kicks you` is not a failure state. It plays SpellCast, spawns a teleport effect on the player,
+has her say *"Away with you!"*, and relocates them to `01 Hamlet Exterior` -- and **the live
+Fournier questline has shipped dialogue for exactly that outcome**: *"when I confronted her she
+used her magic to send me to a den of wolves"*, *"when I confronted her she vanished."* Being
+banished is a written beat. She is also never made a combat target anywhere in the game:
+`CGoToCombatAction` naming her occurs zero times.
+
+So `Weird Woman dead` has a debug switch as its only source because **there was never any other
+way to set it**. `Purify the Shadow Dryad` was written, voiced, quest-filed and checker-copied
+from the working Khan chain, and then blocked on a character built to be unkillable. Two halves
+that never met.
+
+Completing it would mean giving her hit points, removing or conditioning the banish, and
+overriding a live scene -- authoring, and invasive authoring. Out.
+
+**One correction to record, because it was stated confidently and was wrong.** `Has Hit Points=0`
+does *not* mean invulnerable. Every shapeshifting daeva template carries it too, and that
+creature fights and dies; its races carry HP 150 to 275. The flag is not what protects her -- her
+race numbers and the banish relay are.
 
 **A method error recorded, because it is the fourth of its kind.** This read first reported the
 activation as living inside the `Grand Inquisitor generator`. It does not. The brace-walker
@@ -240,9 +276,11 @@ was the first thing visible. Same family as the wrong-baseline and absolute-coun
 **when a structural query returns something surprising, print the bytes before believing the
 parse.**
 
-One question from the original scope is still open and still a build detail: whether
-`407 killed khan` wants a "yes" reply into `410 shadow dryad` of its own, since its text asks
-*"Are you ready for another task?"* and its one shipped reply does not answer that.
+`407 killed khan` still ends on a question its one shipped reply does not answer -- *"Are you
+ready for another task?"* -- and that is now permanent rather than pending, since the task it
+would offer cannot be finished. `402 tasks 3` and `401 already dead` were deliberately left
+untouched for the same reason: opening that pair is the only way into the dryad chain, and it
+would hand the player a quest with no ending.
 
 **Two dryads, and they are not the same person.** Worth settling explicitly, because the game
 uses the word for both and one of them is famously live. The **River Dryad** is Wilderness
@@ -311,6 +349,15 @@ spirit named. I am Na Roqua, and I have atoned for my past."* She really was a s
 A separate monster would not be redundant so much as destructive -- the weight of the quest is
 that the thing you are sent to purify already purified itself.
 
+**That decision is now partly superseded, and the reason matters.** It was made on the premise
+that using her was *restoration* and a separate creature was *invention*. Once she turned out to
+be unkillable, that premise died: there is no restoration available either way, so the choice is
+no longer between restoring and inventing but between leaving the quest unfinished and finishing
+it as declared new content. A separate creature is back on the table on those terms -- see
+"The impostor" below. One objection from the list above does fall: the shipped checkers test a
+flag *name*, `Weird Woman dead`, not an entity, so any creature's death could set it and both
+checkers would keep working unmodified.
+
 **Author no refusal reply. Torquemada would not accept the atonement, and the game already put
 the refusal somewhere better.** The question was whether to add *"she has atoned; I will not"* to
 `411`, whose only two shipped replies are *"I shall do it"* and *"I have already made
@@ -354,6 +401,69 @@ pacifist in her home, and the reward is framed as a blessing. That is the game's
 architecture and the Inquisition is written to be exactly like this, so it ships as found. It is
 noted here rather than left implicit, because it is a real change in what the mod hands a player
 and it should be a decision on the record rather than a side effect.
+
+### The Cathar friend, and the cave that was not empty
+
+Not in the original scope at all. It came out of the dryad investigation and is the better find.
+
+`06 Witch Interior.zax` ships a part named **`cathar friend`**, `Active=0`, `Editor/Checker`, and
+`weirdwoman.DialogTree` checks it -- and **nothing in the game ever activated it**. So
+`100 Favorable Return`, the greeting written for that state (*"Welcome spiritbearer and Cathar
+friend. What do you seek?"*), could never fire. Same shape as `Weird Woman dead`, with a happier
+ending: this flag has somewhere legitimate to be set.
+
+**BUILT.** The three promise replies -- including the Inquisitor's *"Though I am an Inquisitor, I
+am willing to spare the Cathars"* -- now set `cathar friend` alongside the `heard node 50` they
+already set, and the greeting ladder gained one arm. The arm is nested *inside* the existing
+heard-50 branch rather than above it: sound, because the same replies set both flags so
+`cathar friend` is a strict subset, and it kept the edit to a six-line re-indent instead of
+shifting the whole ladder.
+
+That reclaims `100 Favorable Return` and the two nodes behind it, and unlocks her admission about
+the shapeshifter: *"It is true that **we once hunted together**. It preys on mortals and **takes
+their forms** to strike again at the unsuspecting."*
+
+**And it nearly shipped a trap.** `100 Shapeshifting Daeva 2` gives the same periapt advice as the
+live `100 shapeshifting demon 2` and carries **no action**, where the live node fires a
+`CTriggerRelayAction` on `shapeshifter ring` -- the relay that activates `secret cave entrance`,
+activates `met the demon`, and plays her *"Step through the fire"* balloon. Restored as-is, the
+informed path would have given advice and left the cave door shut while the ordinary phrasing of
+the same question worked. Both its replies now fire the same relay, copied verbatim.
+
+**A correction worth keeping, because it is the fourth of its kind.** This file previously said
+her cave was empty and that the periapt would have to be authored. It is not empty: it holds a
+`Chest 01 C`, `Active=1`, that generates the **Ring of the Prophet** -- one of the two Zarathustra
+relics the shapeshifter's permanent-kill gate already tests for. The miss came from searching for
+`Entity=` and `Inventory Item To Give=`; the chest uses `CGenerateInventoryItemAction` inside a
+nested generator list, on a part whose `Name=` is blank. Nothing needed authoring. **Search by
+what a thing does, not by the one key you expect it to use.**
+
+For the record on duplication: the Amulet of the Prophet comes from Jafar/Amir plus containers in
+`01 Hamlet Exterior.zax` and `Titan Village.zax`; the Ring comes from those two maps plus this
+chest; and both kill gates accept either. Multiple relics in one playthrough is shipped design,
+and this release adds no new source.
+
+### The impostor - proposed, and openly new content
+
+The only route left to finishing Torquemada's quest, and it is authoring, so it ships labelled as
+such or not at all.
+
+Druj is confirmed a daeva -- *"Druj, the daeva of lies"* (Nostradamus), *"Druj the Daeva of Lies
+and Deception"* (the Beast, Demonic and Elemental Spirits, independently) -- and Druj is
+**Na Roqua's own former name**, not a separate being. So the killable thing cannot be Druj. It
+would be a different daeva wearing her face, which the game supports directly: Na Roqua herself
+says the formless one *"preys on mortals and takes their forms"*, and Torquemada's own briefing
+is second-hand -- *"we have heard **reports**"*.
+
+What already exists to build on: the `Demon Shapeshifter` model with a full animation set, four
+daeva races with real combat stats, a Trueform dialogue tree, the seven-daevas fiction, and -- as
+of this release -- a live, signposted route to the Ring of the Prophet, which is exactly a
+true-form reveal mechanism in the player's hands.
+
+What would be new: the creature's placement, its dialogue, and the reveal scripting. Note the
+shipped shapeshifter is **Nanghaithya**, *"one of the seven demons, he with a thousand faces"*,
+whose questline is fully live through Iapetus in Toulouse -- so it is not a spare part and cannot
+be reused as the impostor.
 
 ### Tier 2 - cheap and additive, one reply or one field each
 
@@ -510,7 +620,10 @@ authors wrote for a faction that shipped unjoinable.
 
 ### The honest recommendation
 
-**0.9.0 is Tier 1 complete, Machiavelli, and Tier 2's five cheap items.** That is a larger
+**Revised: 0.9.0 is the Khan report, the Cathar friend chain, Machiavelli, and Tier 2's five
+cheap items.** Tier 1's dryad half is out, and the two items below replaced it.
+
+**0.9.0 was originally scoped as Tier 1 complete, Machiavelli, and Tier 2's five cheap items.** That is a larger
 release than this section first proposed, and the enlargement is a correction rather than
 ambition: Tier 1 cannot be shipped as originally described, because doing so would hand the
 player a quest with no ending and leave the perk unreachable.
