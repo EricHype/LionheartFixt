@@ -1,0 +1,2273 @@
+CDialogTree
+{
+Name=Grand Inquisitor Tomas Torquemada
+Portrait=Dialog/NPC Portraits/Torquemada
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=And another soul comes to be judged. Tell us, child, does your heart pound with sangre limpia, the blood of purity? Or does the taint of magic corrupt your body and soul?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+}
+}
+}
+Reply Text=I am a servant of the Inquisition. I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=I am a pureblood human.
+Go to node ID=20 pureblood
+Action work in progress=(human)
+
+Requirement=Torquemade requires human and Inquisitor
+Reply Text=I am a pureblood and a servant of the Inquisition, your holiness.
+Go to node ID=25 pureblood inquisition
+Action work in progress=(human and Inquisition, Speech >=25%)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=5
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I am a pureblood and a servant of the Inquisition, your holiness. <Attempt to hide that you are a Demokin>.
+Go to node ID=25 pureblood inquisition
+Action work in progress=(Demokin passing as human and Inquisition
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I have a tainted heritage, but I serve the Inquisition, your holiness.
+Go to node ID=27 tainted inquisition
+Action work in progress=(tainted and Inquisition, Speech >=25%)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=5
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I have a tainted heritage, but I serve the Inquisition, your holiness. <Admit that you are a Demokin passing as a Human>
+Go to node ID=27 tainted inquisition
+Action work in progress=(tainted and Inquisition, Speech >=25%)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=5
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+}
+}
+}
+Reply Text=I am a pureblood human. <Attempt to hide that you are a Demokin>
+Go to node ID=25 pureblood inquisition
+Action work in progress=Demokin passing as a human
+
+Requirement=Torquemada requires Not Human and High speech
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I am a pureblood human. <Lie>
+Go to node ID=25 pureblood inquisition
+Action work in progress=(not human, Speech >= 50%)
+
+Requirement=torquemada requires not human and low speech
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I am a pureblood human. <Lie>
+Go to node ID=20 pureblood
+Action work in progress=(not human, Speech < 50%)
+
+Requirement=Inquisitor NOT
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=5
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+}
+}
+}
+Reply Text=I must confess, my blood is tainted by magic.
+Go to node ID=30 admit tainted
+Action work in progress=(not human)
+Custom Action=CActivateAction
+{
+Target Name=Torquemada irritated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Inquisitor NOT
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=5
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+}
+}
+}
+Reply Text=My soul swims in magic, old fool.
+Go to node ID=100 renounce
+Custom Action=CActivateAction
+{
+Target Name=Torquemada irritated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=torquemada mad at interruption
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=2 Irritated Return Dialogue
+Text=You grow more presumptuous, child, believing you are worthy of a second audience. Will you undergo the trial of fire now to test your faith?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=did not take khan quest
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Does the Inquisition have any tasks for me?
+Go to node ID=400 tasks
+Icon=Quest Icon
+
+Requirement=Torquemada requires goblin Khan dead
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I have slain the Goblin Khan for the Inquisition.
+Go to node ID=407 killed khan
+Action work in progress=(completed kill khan quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Khan
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Torquemada requires goblin Khan dead
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Reply Text=I have slain the Goblin Khan for the Inquisition.
+Go to node ID=408 killed khan not inquisitor
+Action work in progress=(completed kill khan quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Khan
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Reply Text=I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Torquemada irritated
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Speech moreequal 50
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already used speech on inquisitor
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=And what about the Inquisition's hypocritical use of magic?
+Go to node ID=205 outwit
+Action work in progress=50 speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I will submit to the trial of fire.
+Go to node ID=200 trial
+
+Requirement=!None
+Reply Text=Trial? But I have done nothing wrong!
+Go to node ID=110 defy
+
+Requirement=Speech moreequal 25
+Reply Text=Not at this time. I shall take leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+
+Requirement=!None
+Reply Text=You are the one who will burn, Inquisitor.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I did not come here to be placed on trial. Goodbye.
+Go to node ID=11 Angry Greeting and Goodbye
+Action work in progress=(Speech < 25%)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=You return. What do you seek? 
+Should Have Voiceover=1
+
+Requirement=Torquemada requires goblin Khan dead
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I have slain the Goblin Khan for the Inquisition.
+Go to node ID=407 killed khan
+Action work in progress=(completed kill khan quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Khan
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Torquemada requires goblin Khan dead
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Reply Text=I have slain the Goblin Khan for the Inquisition.
+Go to node ID=408 killed khan not inquisitor
+Action work in progress=(completed kill khan quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Khan
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+}
+}
+}
+Reply Text=I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=did not take khan quest
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Does the Inquisition have any tasks for me?
+Go to node ID=400 tasks
+Icon=Quest Icon
+
+Requirement=Torquemade requires human and Inquisitor
+Reply Text=I am a pureblood and a servant of the Inquisition, your holiness.
+Go to node ID=25 pureblood inquisition
+Action work in progress=(human and Inquisition, Speech >=25%)
+Custom Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=5
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=I am a pureblood and a servant of the Inquisition, your holiness. <Attempt to hide that you are a Demokin>.
+Go to node ID=25 pureblood inquisition
+Action work in progress=(Demokin passing as human and Inquisition
+Custom Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I have a tainted heritage, but I serve the Inquisition, your holiness.
+Go to node ID=27 tainted inquisition
+Action work in progress=(tainted and Inquisition, Speech >=25%)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsRace
+{
+Acceptable Races=Array
+{
+Item Count=1
+Acceptable Race=Races/Demokin
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=5
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I have a tainted heritage, but I serve the Inquisition, your holiness. <Admit that you are a Demokin passing as a Human>
+Go to node ID=27 tainted inquisition
+Action work in progress=(tainted and Inquisition, Speech >=25%)
+
+Requirement=Speech moreequal 25
+Reply Text=I shall take leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech < 25%)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=5 Favored Return
+Text=The favored of the Inquisition has returned. What can we do for you, my child?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=did not take khan quest
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Does the Inquisition have any tasks for me?
+Go to node ID=400 tasks
+Icon=Quest Icon
+
+Requirement=Torquemada requires goblin Khan dead
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I have slain the Goblin Khan for the Inquisition.
+Go to node ID=407 killed khan
+Action work in progress=(completed kill khan quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Khan
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Torquemada requires goblin Khan dead
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Reply Text=I have slain the Goblin Khan for the Inquisition.
+Go to node ID=408 killed khan not inquisitor
+Action work in progress=(completed kill khan quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Khan
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Reply Text=I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=I shall take leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech < 25%)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=7 Torquemada Ignores
+Text=There is nothing more to say, child. You must leave this place. Do not return again.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+}
+}
+}
+Reply Text=I am a servant of the Inquisition. I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Action work in progress=(warning 1)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=May you know truth and purity, my child.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=11 Angry Greeting and Goodbye
+Text=You have been warned! Depart from these holy grounds and enter nevermore, or you will imperil your mortal soul.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+}
+}
+}
+Reply Text=I am a servant of the Inquisition. I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Action work in progress=(warning 2)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 Really Angry Combat Greeting
+Text=Insolent fool! I warned you not to return - now you will learn the folly of your disobedience.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(combat)
+Custom Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 pureblood
+Text=Your lips speak of purity, but I sense your heart knows sin. There is a scent of magic about you, child, one that you cannot mask or disguise. Will you submit to a trial of purity to test your faith?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will submit to the trial of fire.
+Go to node ID=200 trial
+
+Requirement=!None
+Reply Text=Trial? But I have done nothing wrong!
+Go to node ID=110 defy
+
+Requirement=Torquemade requires hi intelligence and speech
+Reply Text=What of the Inquisition's hypocritical use of magic?
+Go to node ID=205 outwit
+Action work in progress=(intelligence 8 with outwit, and Inquisitor Faction penalty)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=You are the one who will burn, Inquisitor.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=Speech moreequal 25
+Reply Text=Not at this time. I shall take leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I did not come here to be placed on trial. Goodbye.
+Go to node ID=11 Angry Greeting and Goodbye
+Action work in progress=(Speech < 25%)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 pureblood inquisition
+Text=Your presence brings strength and faith to the Inquisition. What is it that you seek from us, child?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=TIJPUML8
+}
+}
+}
+Reply Text=I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+}
+}
+Reply Text=I seek to serve the Inquisition further.
+Go to node ID=400 tasks
+Action work in progress=(get favored status)
+Custom Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=I shall take my leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(get favored status, Speech >= 25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(get favored status, Speech < 25%)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=27 tainted inquisition
+Text=I sense the conflict within you. There is good in your heart, but the shadow of spirit magic endangers your soul. It is good that you tread the path of the Inquisitor, the difficult trials will help to cleanse your soul. What can I do for you, child?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Reply Text=I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I seek to serve the Inquisition further.
+Go to node ID=400 tasks
+Action work in progress=(get favored status)
+Custom Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=I shall take my leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(get favored status, Speech >= 25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(get favored status, Speech < 25%)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 admit tainted
+Text=It is as I suspected. There is a scent of magic about you, child, one that you cannot mask or disguise. But it is promising that you are willing to speak the truth about your heritage. Will you submit to a trial of purity to test your faith?
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 50
+Reply Text=What of the Inquisition's hypocritical use of magic?
+Go to node ID=205 outwit
+Action work in progress=speech is 50
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I will submit to the trial of fire.
+Go to node ID=200 trial
+
+Requirement=!None
+Reply Text=Trial? But I have done nothing wrong!
+Go to node ID=110 defy
+
+Requirement=!None
+Reply Text=You are the one who will burn, Inquisitor.
+Go to node ID=120 combat
+Custom Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=Speech moreequal 25
+Reply Text=Not at this time. I shall take leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I did not come here to be placed on trial. Goodbye.
+Go to node ID=11 Angry Greeting and Goodbye
+Action work in progress=(Speech < 25%)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 rod
+Text=Of course, child. I shall infuse the hair of Saint Bartholomew into your implement, consecrating this to be a Rod of the Inquisitor and bestowing it with powers of faith and righteousness. May this Rod serve you against the darkness, child, and deliver truth and purity to the flock of Europe.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+}
+}
+Reply Text=Does the Inquisition have any tasks for me?
+Go to node ID=400 tasks
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=Thank you. I shall take leave of you now, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Custom Action=CActivateAction
+{
+Target Name=did not take khan quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech < 25%)
+Custom Action=CActivateAction
+{
+Target Name=did not take khan quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 renounce
+Text=Insolence! You dare to foul this sacred place with your presence and blasphemy? You will renounce your heresy and receive the trial of purifying fire, or face a most holy wrath!
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 50
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already used speech on inquisitor
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=What of the Inquisition's hypocritical use of magic?
+Go to node ID=205 outwit
+Action work in progress=speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I will submit to the trial of fire.
+Go to node ID=200 trial
+
+Requirement=!None
+Reply Text=Trial? But I have done nothing wrong!
+Go to node ID=110 defy
+
+Requirement=!None
+Reply Text=You are the one who will burn, Inquisitor.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Grand Inquisitor Sends you to jail
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=110 Defy
+Text=You dare defy me? You will not see another dawn!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 trial
+Text=The purifying fire will sear away your sins and cleanse your soul of the taint of magic. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(blast player with fire)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cast fire purification spell
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=202 trial 2
+Text=You resist? The flames do not harm you. Truly, I have not seen such a phenomenon. But is this a miracle or the work of demons?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=203 trial 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=203 trial 3
+Text=I do not know whether divine providence or fiendish charms guard your body from the fire, so I will test your honor. Tell me - do you wield your magic for good or for dark purposes?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I use my spirit's magic for good.
+Go to node ID=204 saved
+
+Requirement=!None
+Reply Text=I use my spirit's magic for my own needs.
+Go to node ID=220 no reasoning
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I use my spirit's magic for dark purposes.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=204 saved
+Text=Then perhaps you can be saved. In fact, I may be able to help absolve your sins. There is a difficult challenge facing our order. Perhaps by directing your magical energies for good, we can help to save your soul. Do you wish to undertake this mission?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Reply Text=I ask you to shape this darkwood into a true Rod of an Inquisitor.
+Go to node ID=
+Action work in progress=(get favored status)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActivateAction
+{
+Target Name=Player is favored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=DEEC6PU6
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=fashion Rod of Inquisitor
+}
+Action=CActivateAction
+{
+Target Name=did not take khan quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me more about this mission.
+Go to node ID=400 tasks
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=I regret I cannot, your grace. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Custom Action=CActivateAction
+{
+Target Name=did not take khan quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=Not at this time. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech < 25%)
+Custom Action=CActivateAction
+{
+Target Name=did not take khan quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=205 outwit
+Text=You possess a devil's tongue, young one, and are bold indeed to debate the Grand Inquisitor. You seek to know the difference between the tools of the Inquisition and black magic?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=206 outwit 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=206 outwit 2
+Text=Know that our magic comes from divine sources, angels and cherubim from above. The magic such as you wield descends from the boundless abyss of darkness and evil, from foul spirits bent on the domination of the world!
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 60
+Reply Text=Yet you still wield magic. You're no better than those you persecute.
+Go to node ID=210 outwit 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Speech with GI
+Experience Points To Add=1
+}
+Action=CDeactivateAction
+{
+Target Name=Torquemada irritated
+}
+Action=CActivateAction
+{
+Target Name=already used speech on inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You have convinced me, Inquisitor. I submit to you.
+Go to node ID=221 exorcism
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Torquemada irritated
+}
+Action=CActivateAction
+{
+Target Name=already used speech on inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=Speech moreequal 25
+Reply Text=I have said too much, your grace. Goodbye.
+Go to node ID=11 Angry Greeting and Goodbye
+Action work in progress=(Speech >=25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I must go. Goodbye.
+Go to node ID=11 Angry Greeting and Goodbye
+Action work in progress=(Speech < 25%)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=210 outwit 2
+Text=I shall concede the point that we wield magic, young one. My soul is joined with a divine spirit that sustains my old body on this mortal world.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=211 outwit 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=211 outwit 3
+Text=But you are too naïve to understand that we must wield good magic to combat all of the evil in the world. There is such a thing as the greater good.  
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I use my spirit's power for good.
+Go to node ID=204 saved
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Torquemada irritated
+}
+Action=CActivateAction
+{
+Target Name=already used speech on inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I use my spirit's power for my own purposes.
+Go to node ID=220 no reasoning
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Torquemada irritated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=already used speech on inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I freely admit that I wield dark magic.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Action=CActivateAction
+{
+Target Name=Torquemada irritated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=already used speech on inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+------------------------------------------------------------
+Node ID=220 no reasoning
+Text=Is there no reasoning with you? Do you not see the folly of your indulgence? A fell spirit has possessed you, goading you to seek the empty pursuits of power! Submit to a cleansing of your soul and allow me to help you achieve peace.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=You have convinced me of my sins, Inquisitor. I submit to you.
+Go to node ID=221 exorcism
+
+Requirement=!None
+Reply Text=You are the one who will burn, Inquisitor.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have no need of your help. Goodbye.
+Go to node ID=110 defy
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=221 exorcism
+Text=I will attempt to drive the magic from your soul, but I sense that its grip on you is formidable.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(cast exorcism)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=attempt Exorcism
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=222 fail exorcism
+Text=I have done all I can, child, but the magic within you remains. In order to truly save your soul, you must dedicate your life to good and spread truth across the land. Renounce the darkness within and follow the path of purity.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will strive to follow the path of good.
+Go to node ID=225 hope
+Action work in progress=(Karma Bonus)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Torquemada irritated
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add 50 Karma
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+
+Requirement=!None
+Reply Text=I will walk my own path.
+Go to node ID=224 very well fail
+Custom Action=CActivateAction
+{
+Target Name=Torquemada irritated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I will revel in my darkness, thank you.
+Go to node ID=
+Action work in progress=(Karma Penalty)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGoToCombatAction
+{
+Enemy Name=Grand Inquisitor
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Torquemada irritated
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add 50 Karma
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-200
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+}
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=224 very well fail
+Text=Then I fear you are lost. I will pray for your soul, child, but it will do little good unless you renounce your heresy. Walk your own path, but leave this place and do not return.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(now get Torquemada ignores you greeting)
+Custom Action=CActivateAction
+{
+Target Name=Player is ignored
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=225 hope
+Text=Then there is hope for you yet, child. Stay on the path of righteousness, and I will pray for your soul.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 inquisition inquisitor scene
+Text=It is a great honor to speak with you again, Asha.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 tasks
+Text=I commend your initiative, child. There are indeed tasks that require the rare talent and subtleties of an experienced Inquisitor - or one such as you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=401 tasks 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 NIS Dialogue 4b
+Text=To ensure the safety of the Crown of Thorns and the other hidden relics, I dispatched a party of knights to Montserrat. They have not returned, so we must assume the worst.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
+State=FNGP3UMQ
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=What is the Crown of Thorns?
+Go to node ID=400 crown of thorns
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation 
+------------------------------------------------------------
+Node ID=401 tasks 2
+Text=For you see, despite the tireless effort of the Inquisition, heresy is spreading again. Within the forests outside of Barcelona, evil has taken root and threatens to devour the fruits of our labor.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=402 tasks 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=402 tasks 3
+Text=I speak of the filthy goblin tribes that spread chaos and wickedness in their wake. If you truly wish to aid our cause, seek out the Khan of these tribes - and deal with him.
+Should Have Voiceover=1
+
+Requirement=torquemada requires goblin Khan Dead BEFORE quest assigned
+Reply Text=I have already killed him.
+Go to node ID=408 killed khan not inquisitor
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Khan
+Experience Points To Add=1
+}
+Action=CDeactivateAction
+{
+Target Name=did not take khan quest
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=torquemada requires Goblin Khan alive
+Reply Text=It will be done.
+Go to node ID=405 kill khan
+Action work in progress=(add kill khan quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+State=SR7XNOVO
+}
+Action=CDeactivateAction
+{
+Target Name=did not take khan quest
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=I regret I cannot perform such a task, your grace. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Custom Action=CActivateAction
+{
+Target Name=did not take khan quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Goblin Khan is Dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I am not up to the task. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech < 25%)
+Custom Action=CActivateAction
+{
+Target Name=did not take khan quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=405 kill khan
+Text=Splendid, child. Return to me when the deed is done. Go with the grace of God.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=407 killed khan
+Text=I have known, child. I felt the blight lift from the forest as the beast drew its last breath. You have my gratitude. Are you ready for another task?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thank you, Grand Inquisitor. I shall take my leave of you now.
+Go to node ID=
+Action work in progress=grant xp and gold
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=408 killed khan not inquisitor
+Text=I have known, child. I felt the blight lift from the forest as the beast drew its last breath. You have my gratitude.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=409 killed khan not inquisitor 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=409 killed khan not inquisitor 2
+Text=I feel there is now hope for your soul. I will pray for you, child. Take this gold as a sign of our appreciation for your efforts.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thank you, Grand Inquisitor. I shall take my leave of you now.
+Go to node ID=
+Action work in progress=grant xp and gold
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=410 shadow dryad
+Text=There is a wolf in sheep's clothing that is leading a flock astray. Na Roqua, a shadow dryad witch, lurks within the French village of Montaillou.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=411 shadow dryad 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=411 shadow dryad 2
+Text=We have heard reports that she is masquerading as a Cathar perfecti, a heathen, spreading a perverted faith to unsuspecting people. End her heresy, Inquisitor, and reap the rewards of righteousness.
+Should Have Voiceover=1
+
+Requirement=Torquemade requires Shadow Dryad NOT killed yet
+Reply Text=I shall do it.
+Go to node ID=
+Action work in progress=(shadow dryad quest not completed, then add shadow dryad quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Purify the Shadow Dryad
+State=AM6C3B5E
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Torquemada Requires Shadow Dryad Dead before meeting
+Reply Text=I have already made arrangements to deal with the witch. She will not trouble you for long.
+Go to node ID=412 shadow dryad dead
+Action work in progress=(shadow dryad quest completed)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Purify the Shadow Dryad
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Killed Weird Woman
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=412 shadow dryad dead
+Text=Your deeds shall be transcribed in the Annals of the Inquisition, child. Know that you have done great and profound things for our order, and you have earned my gratitude. Receive my blessing, child, and always tread the path of purity.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(grant kickass Grand Inquisitor perk - add to exorcism and detection)
+Custom Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!NPC or Event Given Perks/Torquemada Divine Boon
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=401 already dead
+Text=I wondered if that were the case. I felt a blight lift from the forest, I was not sure it was the Khan. You have my gratitude. Are you ready for another task?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes.
+Go to node ID=410 shadow dryad
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=Not as this time, your grace. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech >=25%)
+Icon=Exit Icon
+
+Requirement=Speech lessthan 025
+Reply Text=Not today. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Speech < 25%)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1000 inquisitor cathedral nis intro
+Text=My apologies for not arriving earlier.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 inquisitor cathedral nis intro 2
+Text=This old body moves...ever more slowly.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 inquisitor cathedral nis speaks to javier
+Text=Javier, my son, I know your anguish and sense your fears. What can we do to help the Knights Templar in their most sacred and vital duty?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 end inquisition nis
+Text=Let your faith guide you, child.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 attack torquemada 
+Text=Arrogant fool! Guards! Restrain this heretic!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 return after attack
+Text=Have a care, criminal. Do not defy the laws of God in this holy place again, or you will face my wrath. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1100 Player attacks
+Text=Perhaps some time in a cell is what you need.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1100 Spellcast detect
+Text=Magic? In these hallowed halls? Preposterous!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1200 do not bother me
+Text=Why have you wasted my time with this fruitless interruption?  Do not return unless you are prepared to face the trial of fire.
+Should Have Voiceover=0
+}

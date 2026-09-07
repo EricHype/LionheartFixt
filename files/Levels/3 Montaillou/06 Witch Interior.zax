@@ -1,0 +1,3239 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/Montaillou
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=5
+		Full Mix Song=3 Montaillou/AMB_Mntllou_Witch.ogg
+		Med Mix Song=3 Montaillou/AMB_Mntllou_Witch.ogg
+		Ambiant Song=3 Montaillou/AMB_Mntllou_Witch.ogg
+	}
+	Width=1600
+	Height=1216
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=QuestMode
+	Has Begin Been Called=0
+	Map Description=Hut of the Perfecti
+	First Fire Action=
+	First Load Action=
+	View Position=286.000000,260.000000
+	Int View Position=286,260
+	Partial File Name=3 Montaillou/06 Witch Interior
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=0, 1151, 0, 0, 556, 0, 560, 377, 592, 531, 488, 589, 527, 726, 710, 740, 712, 1151, 0, 1151
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=750, 625, 710, 743, 526, 727, 486, 587, 603, 525, 527, 610, 549, 703, 690, 718, 750, 625
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=3 Montaillou/01 Hamlet Exterior
+						New Location=From Witch Hut
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=736, 600, 760, 655, 696, 728, 535, 715, 508, 590, 597, 530, 618, 549, 736, 600
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=711, 1151, 709, 743, 744, 640, 982, 660, 1090, 447, 855, 293, 560, 378, 555, 0, 1535, 0, 1535, 1151, 711, 1151
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet Witches House/Witches House
+			Position X=808
+			Position Y=487
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle Front
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=on nostradamus quest
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateQuestStateAction
+					{
+						Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+						State=NML4JYFE
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=587.25
+			Position Y=302.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Return dialog if NOT heard node 50
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=609
+			Position Y=683
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet Witches House/Witch Fire
+			Position X=828
+			Position Y=446
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Box3/Box3 A
+			Position X=663
+			Position Y=478
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=start here
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CTriggerRelayAction
+							{
+								Relay Name=RESET MAP for Invulnerable Weird Woman
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=COnlyOnceAction
+										{
+											Action=CTriggerRelayAction
+											{
+												Relay Name=weird woman spirit scene relay
+											}
+										}
+										Action=CIfAction
+										{
+											If=CCheckExistenceAction
+											{
+												Name To Check For=weird woman hates you
+												Desired Minimum Count=1
+											}
+											Then=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+												Node ID=100 warning
+												Name of Position=Weird Woman
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Action=CDelayAction
+										{
+											Next Action=CDeactivateAction
+											{
+												Target Name=weird woman hates you
+											}
+											Delay=0.3
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Delay=0.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=Been to the weird woman
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=3 Montaillou/05 Church Interior
+							}
+						}
+					}
+					Per Character Spawn Action=
+					Set Facing Angle=0
+					Facing Angle=180
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=686
+			Position Y=560
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=If this is active, player already heard about caverns and witch will not offer to talk about them upon subsequent returns of the player
+			}
+			Name=heard node 50
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=649
+			Position Y=688
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=have access to weird woman store
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=642
+			Position Y=758
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=met the demon
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateAction
+					{
+						Target Name=met the demon
+						Play Activate Sound=0
+						Delay Between Activations=0
+						Warp Behavior=
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=733.25
+			Position Y=227.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=spoke with seer
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateAction
+					{
+						Target Name=spoke with seer about weird woman
+						Play Activate Sound=0
+						Delay Between Activations=0
+						Warp Behavior=
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=675.25
+			Position Y=259.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Spawn Spirit Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=711
+			Position Y=478
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=677, 585, 723, 531, 677, 585
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityBase
+		{
+			Name=witch hates you
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=693
+			Position Y=684
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=relocate to alamut
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=8 Alamut/08 Final Encounter
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=795.25
+			Position Y=226.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=spirit nis camera
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIAttractCamera
+				{
+					Marked For Deletion=0
+					Publisher=
+					Camera Arrived Action=
+					Disable Self When Camera Arrives=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Camera Attractor
+			Position X=768
+			Position Y=516
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=cathar friend
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=752
+			Position Y=695
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=RESET MAP for Invulnerable Weird Woman
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CActivateAction
+							{
+								Target Name=kicks you
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Weird Woman
+							}
+							Action=CDelayAction
+							{
+								Next Action=CCloneAction
+								{
+									New Location=Weird woman generator
+									Copy Height=0
+									Random Location Delta=0
+									Warp Behavior=
+									Source Name=Weird woman generator
+									New Name=Used Weird Woman Generator
+									Set Facing Angle=0
+									New Facing Angle=0.785398
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Used Weird Woman Generator
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=758
+			Position Y=775
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Weird woman generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/3 Montaillou/Character Templates/Wierd Woman
+					New Name=Weird Woman
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=witch hates you
+									Desired Minimum Count=1
+								}
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+									Node ID=100 Weird Woman pissed return
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
+								}
+								Else=CIfAction
+								{
+									If=CCheckExistenceAction
+									{
+										Name To Check For=heard node 50
+										Desired Minimum Count=1
+									}
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=cathar friend
+											Desired Minimum Count=1
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+											Node ID=100 Favorable Return
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+											Node ID=03 Return Dialogue if Heard 50
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Return failure if the If failes=0
+									}
+									Else=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=1
+											Action=CIfAction
+											{
+												If=CCheckExistenceAction
+												{
+													Name To Check For=Return dialog if not heard node 50
+													Desired Minimum Count=1
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+													Node ID=05 Return Dialogue if Not Heard 50
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Else=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDisplayDialogTreeAction
+														{
+															Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+															Node ID=01 Conversation Start
+															Speaker=$trigger
+															Player Being Spoken To=$Instigator
+														}
+														Action=CActivateAction
+														{
+															Target Name=Return dialog if NOT heard node 50
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
+													}
+												}
+												Return failure if the If failes=0
+											}
+										}
+									}
+									Return failure if the If failes=0
+								}
+								Return failure if the If failes=0
+							}
+							X Radius=70
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=Gotocombat
+									Action=CTriggerRelayAction
+									{
+										Relay Name=kicks you
+									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CTriggerRelayAction
+								{
+									Relay Name=kicks you
+								}
+								Target Name=$Instigator
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=$Instigator
+								Categories to add=NonInteractiveSequence Actor
+							}
+						}
+					}
+					New Facing Angle=1.90241
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=837
+			Position Y=443
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=870, 442, 826, 409, 896, 386, 870, 442
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=return from secret
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=
+					Per Character Spawn Action=CSpawnEffectAction
+					{
+						Explosion Model=Special Effects/Teleport Generic
+						Location Entity=$Instigator
+						Make effect a child of the location entity=0
+						X Offset=0
+						Y Offset=0
+						Height Offset=0
+						Play Default Sound=1
+						Action to execute After Effect=
+					}
+					Set Facing Angle=0
+					Facing Angle=180
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=849
+			Position Y=519
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Weird Woman Upset
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=814
+			Position Y=696
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=weird woman hates you
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=851
+			Position Y=781
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=kicks you
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=8
+							Action=CBeginNonInteractiveSequenceAction
+							{
+								Options=CNonInteractiveSequence
+								{
+									Pause Characters=1
+									Disable Player Controls=1
+									Can Fast Forward=1
+								}
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Weird Woman
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CPlayAnimationAction
+							{
+								Animation=SpellCast
+								Random From Sequencial Set=0
+								Target Name=Weird Woman
+								When Done=Set Sequence
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Special Effects/Teleport Generic
+									Location Entity=Player#1-9#
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=0.7
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+								Node ID=100 begone
+								Name of Position=Weird Woman
+								Position Offset=0.000000,-80.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=0.9
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CRelocateAction
+								{
+									Return to map=unlikely soon
+									New Map Name=3 Montaillou/01 Hamlet Exterior
+									New Location=teleport from witch
+									Who To Switch=$Instigator
+									Relative Position=0
+									Ignore Party Ready Rules=1
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CActivateAction
+							{
+								Target Name=weird woman hates you
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=816
+			Position Y=779
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=965, 482, 913, 490, 891, 478, 890, 447, 965, 482
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet Witches House/Witch FireFX
+			Position X=903
+			Position Y=466
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Opening
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=secret cave entrance
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Continue On
+					Action=CRelocateAction
+					{
+						Return to map=definitely soon
+						New Map Name=3 Montaillou/15 Witch SecretCave
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=75
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=879, 481, 879, 454, 952, 459, 950, 498, 879, 495, 879, 481
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=weird woman spirit scene relay
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActionResetPointClickAI
+										{
+											Character with PointClickAI=$instigator
+										}
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+											Node ID=200 nis weird woman introduction
+											Name of Position=Weird Woman
+											Position Offset=0.000000,-80.000000
+											After Action=CDelayAction
+											{
+												Next Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+													Node ID=200 nis weird woman introduction 2
+													Name of Position=Weird Woman
+													Position Offset=0.000000,-80.000000
+													After Action=CConditionalAction
+													{
+														Try Action=CExpressionAction
+														{
+															Expression=CHasSpirit
+															{
+																Spirit=Spirits/Ancestral
+															}
+															Character to get attributes from=Player1
+														}
+														Succeed Action=CMultipleActionsAction
+														{
+															Action=Array
+															{
+																Item Count=2
+																Action=CSpawnEffectAction
+																{
+																	Explosion Model=Special Effects/Spirit Calls/Ancestral
+																	Location Entity=Spawn Spirit Here
+																	Make effect a child of the location entity=0
+																	X Offset=0
+																	Y Offset=0
+																	Height Offset=0
+																	Play Default Sound=1
+																	Action to execute After Effect=
+																}
+																Action=CDelayAction
+																{
+																	Next Action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=3
+																			Action=CCreateDefaultEntityAction
+																			{
+																				New Location=Spawn Spirit Here
+																				Copy Height=0
+																				Random Location Delta=0
+																				Warp Behavior=
+																				Model to Create=Special Effects/Spirits/Ancestral Left
+																				New Name=Elemental Spirit2
+																			}
+																			Action=CPlayAnimationAction
+																			{
+																				Animation=Appear
+																				Random From Sequencial Set=0
+																				Target Name=Elemental Spirit2
+																				When Done=Set Sequence
+																				End Sequence Name=Idle
+																				Delay Between Targets=0
+																				Play In Reverse=0
+																				AI To Interrupt=CSkeletonAI
+																			}
+																			Action=CDelayAction
+																			{
+																				Next Action=CDisplayDialogBalloonAction
+																				{
+																					Dialog Tree File=Levels/Wilderness/Dialog/Elemental Spirit
+																					Node ID=900 nis spirit recognizes weird woman
+																					Name of Position=Spawn Spirit Here
+																					Position Offset=0.000000,-115.000000
+																					After Action=CDelayAction
+																					{
+																						Next Action=CDisplayDialogBalloonAction
+																						{
+																							Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																							Node ID=200 nis weird woman respond to elemental
+																							Name of Position=Weird Woman
+																							Position Offset=0.000000,-80.000000
+																							After Action=CTriggerRelayAction
+																							{
+																								Relay Name=end spirit nis
+																							}
+																							Include In Log=1
+																						}
+																						Delay=0.5
+																						Plus or Minus=0
+																						Forget Trigger=0
+																					}
+																					Include In Log=1
+																				}
+																				Delay=2
+																				Plus or Minus=0
+																				Forget Trigger=0
+																			}
+																		}
+																	}
+																	Delay=0.1
+																	Plus or Minus=0
+																	Forget Trigger=0
+																}
+															}
+														}
+														Fail Action=CConditionalAction
+														{
+															Try Action=CExpressionAction
+															{
+																Expression=CHasSpirit
+																{
+																	Spirit=Spirits/Beastial
+																}
+																Character to get attributes from=Player1
+															}
+															Succeed Action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CSpawnEffectAction
+																	{
+																		Explosion Model=Special Effects/Spirit Calls/Beast
+																		Location Entity=Spawn Spirit Here
+																		Make effect a child of the location entity=0
+																		X Offset=0
+																		Y Offset=0
+																		Height Offset=0
+																		Play Default Sound=1
+																		Action to execute After Effect=
+																	}
+																	Action=CDelayAction
+																	{
+																		Next Action=CMultipleActionsAction
+																		{
+																			Action=Array
+																			{
+																				Item Count=3
+																				Action=CCreateDefaultEntityAction
+																				{
+																					New Location=Spawn Spirit Here
+																					Copy Height=0
+																					Random Location Delta=0
+																					Warp Behavior=
+																					Model to Create=Special Effects/Spirits/Beast Left
+																					New Name=Bestial Spirit2
+																				}
+																				Action=CPlayAnimationAction
+																				{
+																					Animation=Appear
+																					Random From Sequencial Set=0
+																					Target Name=Bestial Spirit2
+																					When Done=Set Sequence
+																					End Sequence Name=Idle
+																					Delay Between Targets=0
+																					Play In Reverse=0
+																					AI To Interrupt=CSkeletonAI
+																				}
+																				Action=CDelayAction
+																				{
+																					Next Action=CDisplayDialogBalloonAction
+																					{
+																						Dialog Tree File=Levels/Wilderness/Dialog/Beast Spirit
+																						Node ID=900 nis spirit recognizes weird woman
+																						Name of Position=Spawn Spirit Here
+																						Position Offset=0.000000,-115.000000
+																						After Action=CDisplayDialogBalloonAction
+																						{
+																							Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																							Node ID=200 nis weird woman respond to elemental
+																							Name of Position=Weird Woman
+																							Position Offset=0.000000,-80.000000
+																							After Action=CTriggerRelayAction
+																							{
+																								Relay Name=end spirit nis
+																							}
+																							Include In Log=1
+																						}
+																						Include In Log=1
+																					}
+																					Delay=2
+																					Plus or Minus=0
+																					Forget Trigger=0
+																				}
+																			}
+																		}
+																		Delay=0.1
+																		Plus or Minus=0
+																		Forget Trigger=0
+																	}
+																}
+															}
+															Fail Action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CSpawnEffectAction
+																	{
+																		Explosion Model=Special Effects/Spirit Calls/Demon
+																		Location Entity=Spawn Spirit Here
+																		Make effect a child of the location entity=0
+																		X Offset=0
+																		Y Offset=0
+																		Height Offset=0
+																		Play Default Sound=1
+																		Action to execute After Effect=
+																	}
+																	Action=CDelayAction
+																	{
+																		Next Action=CMultipleActionsAction
+																		{
+																			Action=Array
+																			{
+																				Item Count=3
+																				Action=CCreateDefaultEntityAction
+																				{
+																					New Location=Spawn Spirit Here
+																					Copy Height=0
+																					Random Location Delta=0
+																					Warp Behavior=
+																					Model to Create=Special Effects/Spirits/Demonic Left
+																					New Name=Demonic Spirit2
+																				}
+																				Action=CPlayAnimationAction
+																				{
+																					Animation=appear
+																					Random From Sequencial Set=0
+																					Target Name=Demonic Spirit2
+																					When Done=Set Sequence
+																					End Sequence Name=Idle
+																					Delay Between Targets=0
+																					Play In Reverse=0
+																					AI To Interrupt=CSkeletonAI
+																				}
+																				Action=CDelayAction
+																				{
+																					Next Action=CDisplayDialogBalloonAction
+																					{
+																						Dialog Tree File=Levels/Wilderness/Dialog/Demonic Spirit
+																						Node ID=900 nis demon recognizes weird woman
+																						Name of Position=Spawn Spirit Here
+																						Position Offset=0.000000,-115.000000
+																						After Action=CDelayAction
+																						{
+																							Next Action=CDisplayDialogBalloonAction
+																							{
+																								Dialog Tree File=Levels/Wilderness/Dialog/Demonic Spirit
+																								Node ID=900 nis demon continues reponse
+																								Name of Position=Spawn Spirit Here
+																								Position Offset=0.000000,-115.000000
+																								After Action=CDelayAction
+																								{
+																									Next Action=CDisplayDialogBalloonAction
+																									{
+																										Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																										Node ID=200 nis weird woman conclusion
+																										Name of Position=Weird Woman
+																										Position Offset=0.000000,-80.000000
+																										After Action=CTriggerRelayAction
+																										{
+																											Relay Name=end spirit nis
+																										}
+																										Include In Log=1
+																									}
+																									Delay=0.5
+																									Plus or Minus=0
+																									Forget Trigger=0
+																								}
+																								Include In Log=1
+																							}
+																							Delay=0.5
+																							Plus or Minus=0
+																							Forget Trigger=0
+																						}
+																						Include In Log=1
+																					}
+																					Delay=2
+																					Plus or Minus=0
+																					Forget Trigger=0
+																				}
+																			}
+																		}
+																		Delay=0.1
+																		Plus or Minus=0
+																		Forget Trigger=0
+																	}
+																}
+															}
+															Return failure if the TryAction failes=0
+														}
+														Return failure if the TryAction failes=0
+													}
+													Include In Log=1
+												}
+												Delay=0.5
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Include In Log=1
+										}
+									}
+								}
+								Delay=0.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CBeginNonInteractiveSequenceAction
+							{
+								Options=CNonInteractiveSequence
+								{
+									Pause Characters=1
+									Disable Player Controls=1
+									Can Fast Forward=1
+								}
+							}
+							Action=CActivateAction
+							{
+								Target Name=spirit nis camera
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=weird woman spirit scene relay
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=893
+			Position Y=713
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Blue Torch Fire
+			Position X=918
+			Position Y=416
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Barrel1/Barrel1 A
+			Position X=955
+			Position Y=570
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=fire
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=909
+			Position Y=478
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=spoke with seer about weird woman
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=958
+			Position Y=626
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=end spirit nis
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CHasSpirit
+									{
+										Spirit=Spirits/Ancestral
+									}
+									Character to get attributes from=Player1
+								}
+								Succeed Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CPlayAnimationAction
+										{
+											Animation=Disappear
+											Random From Sequencial Set=0
+											Target Name=Elemental Spirit2
+											When Done=Stop on last frame
+											End Sequence Name=Idle
+											Delay Between Targets=0
+											Play In Reverse=0
+											AI To Interrupt=CSkeletonAI
+										}
+										Action=CDelayAction
+										{
+											Next Action=CDeactivateAction
+											{
+												Target Name=Elemental Spirit2
+											}
+											Delay=1.5
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Fail Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasSpirit
+										{
+											Spirit=Spirits/Beastial
+										}
+										Character to get attributes from=Player1
+									}
+									Succeed Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CPlayAnimationAction
+											{
+												Animation=Disappear
+												Random From Sequencial Set=0
+												Target Name=Bestial Spirit2
+												When Done=Stop on last frame
+												End Sequence Name=Idle
+												Delay Between Targets=0
+												Play In Reverse=0
+												AI To Interrupt=CSkeletonAI
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeactivateAction
+												{
+													Target Name=Bestial Spirit2
+												}
+												Delay=1.5
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Fail Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CPlayAnimationAction
+											{
+												Animation=Disappear
+												Random From Sequencial Set=0
+												Target Name=Demonic Spirit2
+												When Done=Stop on last frame
+												End Sequence Name=Idle
+												Delay Between Targets=0
+												Play In Reverse=0
+												AI To Interrupt=CSkeletonAI
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeactivateAction
+												{
+													Target Name=Demonic Spirit2
+												}
+												Delay=1.5
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Return failure if the TryAction failes=0
+								}
+								Return failure if the TryAction failes=0
+							}
+							Action=CEndNonInteractiveSequenceAction
+							{
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=945
+			Position Y=723
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=relocate to church interior
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=probably soon
+						New Map Name=3 Montaillou/05 Church Interior
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=1027.25
+			Position Y=263.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Inventory for Weird woman
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Weird Woman
+					Price Multiplier=1.35
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=8
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Extra Healing
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Mana Recharge
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Cure-All
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=6
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Potions
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=8
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Miscellaneous Items
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Miscellaneous Items
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=1013
+			Position Y=709
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=shapeshifter ring
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CDeleteAction
+							{
+								Target Name=met the demon
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Special Effects/Teleport Generic
+								Location Entity=fire
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CActivateAction
+							{
+								Target Name=secret cave entrance
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+								Node ID=101 through the fire
+								Name of Position=Weird Woman
+								Position Offset=0.000000,-75.000000
+								After Action=
+								Include In Log=1
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1080
+			Position Y=346
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Beatrice Relay
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=14
+							Action=CPlayAnimationAction
+							{
+								Animation=spellcast
+								Random From Sequencial Set=0
+								Target Name=weird woman
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CActivateQuestStateAction
+							{
+								Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+								State=5JYSPXBT
+							}
+							Action=CGiveExperiencePointsToAllPlayersAction
+							{
+								Get XP Frome=chicken
+								Experience Points To Add=1
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Special Effects/Transformation
+								Location Entity=Chicken Beatrice
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CCloneAction
+							{
+								New Location=chicken beatrice
+								Copy Height=0
+								Random Location Delta=0
+								Warp Behavior=
+								Source Name=beatrice generator
+								New Name=Beatrice Generator Active
+								Set Facing Angle=0
+								New Facing Angle=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDeleteAction
+								{
+									Target Name=chicken beatrice
+								}
+								Delay=0.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/3 Montaillou/Dialog/Beatrice
+									Node ID=40 follower
+									Name of Position=beatrice
+									Position Offset=0.000000,-75.000000
+									After Action=
+									Include In Log=1
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+									Node ID=951 chicken goodbye
+									Name of Position=$Trigger
+									Position Offset=0.000000,-75.000000
+									After Action=
+									Include In Log=1
+								}
+								Delay=1.3
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Special Effects/Teleport Generic
+									Location Entity=beatrice
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=1.8
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDeleteAction
+								{
+									Target Name=beatrice
+								}
+								Delay=1.9
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=COtherMapAction
+							{
+								Action=CDeleteAction
+								{
+									Target Name=chickeny beatrice generator
+								}
+								Other Map Name=3 Montaillou/13 House4 Interior
+							}
+							Action=COtherMapAction
+							{
+								Action=CDeleteAction
+								{
+									Target Name=chickeny beatrice
+								}
+								Other Map Name=3 Montaillou/13 House4 Interior
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=beatrice generator
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=3 Montaillou/13 House4 Interior
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=chicken generator
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=3 Montaillou/13 House4 Interior
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1093
+			Position Y=515
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Beatrice present
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1092
+			Position Y=564
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=400
+			}
+			Name=used speech on weird woman
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=1104
+			Position Y=666
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=met the demon
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1146
+			Position Y=336
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=2500
+			}
+			Name=Chicken
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=1150
+			Position Y=497
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Beatrice generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/3 Montaillou/Character Templates/Beatrice
+					New Name=Beatrice
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=1158
+			Position Y=584
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=0.5
+		Num Textures=3
+		Texture 0=14 Black
+		Texture 1=14 Black
+		Texture 2=VykaCrypt/Brown Dirt
+		Elevations Row 0=0808080808080808080808080808084A00000000000000000000
+		Elevations Row 1=0808080808080808080808080808084A00000000000000000000
+		Elevations Row 2=0808000008000008000008000808084A00000000000000000000
+		Elevations Row 3=0808000008000800080808080000084A00000000000000000000
+		Elevations Row 4=0808020200020002021000000000004A00000000000000000000
+		Elevations Row 5=0808000000101010000000000000004A00000000000000000000
+		Elevations Row 6=0800000000545400000000000000004A00000000000000000000
+		Elevations Row 7=0800000000540054000000CECECECE4A00000000000000000000
+		Elevations Row 8=0808000000000000000000CECECE084A00000000000000000000
+		Elevations Row 9=0808000210100000000010100000084A00000000000000000000
+		Elevations Row 10=0808020210101010541010020008084A00000000000000000000
+		Elevations Row 11=0808020208000202101010020008084A00000000000000000000
+		Elevations Row 12=0808080000000800000000000808084A00000000000000000000
+		Elevations Row 13=084A0800000000000000000008084A4A00000000000000000000
+		Elevations Row 14=4A4A4A000000000000000008084A4A4A00000000000000000000
+		Elevations Row 15=4A4A4A4A4A4A4A4A4A4A4A4A4A4A4A4A00000000000000000000
+		Elevations Row 16=0000000000000000000000000000000000000000000000000000
+		Elevations Row 17=0000000000000000000000000000000000000000000000000000
+		Elevations Row 18=0000000000000000000000000000000000000000000000000000
+		Elevations Row 19=0000000000000000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080FFFE80FFFFFFFFFFFF000000000000FFFFFFFFFFFF808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080FE808080FEFEFFFFFF0B09154B5249FFFFFFFFFFFF808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080FE808080FEFEFFFEFF7E6160B3D5A2FFB725FFBE9B808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=80808080808080FE80808080FFF9FFFFFFFFFFFFFFFFFFA5FFFF96808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080FFFFFFFFFFFFFFFFFFFFFFFFA8AFA66C6162808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFF808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=8080808080808080808080808080808080808080FEFE8080FE8080FE80FF808080FE8080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 16=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 17=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 18=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 19=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+	}
+}

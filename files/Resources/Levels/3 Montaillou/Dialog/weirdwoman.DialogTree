@@ -1,0 +1,2334 @@
+CDialogTree
+{
+Name=Weird Woman
+Portrait=Dialog/NPC Portraits/Weird Woman
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Well then spiritbearer, what are you seeking here?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Reply Text=My spirit called you the witch of lies - is that what you are?
+Go to node ID=300 confront the weird woman 2
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I seek the ancient relics guarded by the Knights Templar.
+Go to node ID=40 Relics
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+}
+Reply Text=If you are a witch, then I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CActivateAction
+{
+Target Name=witch hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=If you are a witch, then you must be destroyed.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CActivateAction
+{
+Target Name=witch hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue if Heard 50
+Text=You seek my aid again? I shall do what I can.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+
+Requirement=!None
+Reply Text=My spirit called you the witch of lies - is that what you are?
+Go to node ID=300 confront the weird woman 2
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=have access to weird woman store
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to see what magic you have.
+Go to node ID=
+Action work in progress=(Only available if the player has not helped the Inquisition, open magic vendor screen)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=You have the look of a witch. I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue if Heard 50 AND shapechanged Beatrice
+Text=You seek my aid again? No chickens this time? Perhaps a weasel or stoat who is really the King of Persia or a princess who was cast under an evil spell to evermore resemble a toad? No? Well then, what can I do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+
+Requirement=!None
+Reply Text=My spirit called you the witch of lies - is that what you are?
+Go to node ID=300 confront the weird woman 2
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I would like to see what magic you have.
+Go to node ID=
+Action work in progress=(Only available if the player has not helped the Inquisition, open magic vendor screen)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I need no magic at the moment. Goodbye.
+Go to node ID=
+
+Requirement=!None
+Reply Text=You have the look of a witch. I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Return Dialogue if Not Heard 50
+Text=Spiritbearer. Why do you linger here and struggle against fate, knowing that all of this will pass?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+
+Requirement=!None
+Reply Text=It seems I was born to struggle against fate, I can only hope it does some good. I seek to gather a relic from a Crypt in this region.
+Go to node ID=50 Caverns
+
+Requirement=!None
+Reply Text=Why should this place pass so soon?
+Go to node ID=60 Passing
+
+Requirement=!None
+Reply Text=I've heard enough. I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CActivateAction
+{
+Target Name=witch hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Return Dialogue if Not Heard 50 AND shapechanged Beatrice
+Text=No chickens this time, Spiritbearer? Why do you linger here and struggle against fate, knowing that all of this will pass?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+
+Requirement=!None
+Reply Text=But staying in this world longer will save more souls.
+Go to node ID=50 Caverns
+
+Requirement=!None
+Reply Text=Why should this place pass so soon?
+Go to node ID=60 Passing
+
+Requirement=!None
+Reply Text=I've heard enough. I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CActivateAction
+{
+Target Name=witch hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Return if Inquisitor
+Text=Greetings your holiness. I trust your investigation in Montaillou goes well, and you are closer to discovering the innocence of the Cathars.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Beatrice present
+Desired Minimum Count=1
+}
+}
+Reply Text=Certainly. However, that isn't what brings me here today. This chicken has need of your magical prowess.
+Go to node ID=950 Chicken 1
+------------------------------------------------------------
+Node ID=10 Bad Goodbye
+Text=Your tongue is soiled by the impurity of your life; your mind is still ensnared in the mire of this world. Get thee from my sight.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CRemoveAIAction
+{
+Target Name=weird woman
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CPlayAnimationAction
+{
+Animation=SpellCast
+Random From Sequencial Set=0
+Target Name=Weird Woman
+When Done=Stop on last frame
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+Action=CDelayAction
+{
+Next Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=$Instigator
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Delay=0.7
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CRelocateAction
+{
+Return to map=definitely soon
+New Map Name=3 Montaillou/01 Hamlet Exterior
+New Location=Teleport from Witch
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+Delay=1.7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Witch in hiding
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+Action=CActivateAction
+{
+Target Name=Weird Woman Upset
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Know Me
+Text=Everything has a soul. Nothing ever dies. A soul merely sheds a shell and flies away, but evil thoughts drag it into one life after another.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Interesting. I seek the seer known as Nostradamus. Can you help me?
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=So you've met me in a previous life. What was I like then?
+Go to node ID=30 Shell Game
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=100 other questions
+
+Requirement=!None
+Reply Text=I've heard enough. I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Shell Game
+Text=The shells we wear are of small import. Only by becoming a perfecti, by leaving this world aside, can one's spirit soar away to heaven.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=35 Shell Game 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 Shell Game 2
+Text=I am on that road now, and the closer I come to its end, the clearer I see the spirits that travel beside me. I recognize you, but only dimly, as in a dream.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Interesting. I seek the seer known as Nostradamus. Can you help me?
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=100 other questions
+
+Requirement=!None
+Reply Text=What is a perfecti?
+Go to node ID=300 perfecti
+
+Requirement=!None
+Reply Text=You have the look of a witch. I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Relics
+Text=The relics? They are nearby, but why do you bother with such earthly trifles? All in this world shall pass away, and this place sooner than most.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=The relics hold great power and may soon fall into the hands of those who would use them to sow suffering in this land.
+Go to node ID=50 Caverns
+
+Requirement=!None
+Reply Text=Why should this place pass so soon?
+Go to node ID=60 Passing
+
+Requirement=!None
+Reply Text=I've heard enough. I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Nostradamus
+Text=Beware the dangers of the caverns, therein dwells a great spirit of prophecy, whom some misconceive as a god and others seek to control.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Can you tell me where to find him?
+Go to node ID=500 Where is Nostrodomus
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Cavern Nostradamus
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=MRZFAVTU
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Caverns
+Text=Very well, I sense a *truth* in your conviction...I will help you if you promise not to harm the cathars.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I promise no harm will come to the Cathars by my hand.
+Go to node ID=53 Caverns 2
+Action work in progress=(Set Heard Caverns so Return Dialogue becomes 03)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=heard node 50
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=cathar friend
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=Though I am an Inquisitor, I am willing to spare the Cathars.
+Go to node ID=53 Caverns 2
+Action work in progress=(Set Heard Caverns so Return Dialogue becomes 03)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=heard node 50
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=cathar friend
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=As an Inquisitor, I cannot abide the practices of the heretic Cathars.
+Go to node ID=10 bad goodbye
+Custom Action=CActivateAction
+{
+Target Name=witch hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I cannot make such a promise unless I know more about these Cathars.
+Go to node ID=50 cathars
+
+Requirement=!None
+Reply Text=I know of these Cathars - they are heretics and should be burned by the Inquisition.
+Go to node ID=10 bad goodbye
+Custom Action=CActivateAction
+{
+Target Name=witch hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 cathars
+Text=There are people within this village - they follow a *true* and enlightened faith. Cathars are attuned to nature, they know the balance of the material world and the spirit world, the struggle of good and evil, and the duality of all things. These Cathars look to me for spiritual guidance and together we will find truth.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 80
+Reply Text=Truth? According to my spirit, your past is full of lies and deceit. Have you told your flock about that 'truth'?
+Go to node ID=300 confront the weird woman 4
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=heard node 50
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=used speech on weird woman
+Experience Points To Add=1
+}
+}
+}
+Icon=Speach Skill Icon
+
+Requirement=Inquisitor IS
+Reply Text=Though I am an Inquisitor, I am willing to spare the Cathars.
+Go to node ID=53 Caverns 2
+
+Requirement=Inquisitor IS
+Reply Text=As an Inquisitor, I cannot abide the practices of the heretic Cathars.
+Go to node ID=10 bad goodbye
+
+Requirement=!None
+Reply Text=Very well, I promise no harm will come to the Cathars by my hand.
+Go to node ID=53 Caverns 2
+Action work in progress=(Set Heard Caverns so Return Dialogue becomes 03)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=heard node 50
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=cathar friend
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I know of these Cathars - they are heretics and should be burned by the Inquisition.
+Go to node ID=10 bad goodbye
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=53 Caverns 2
+Text=The crypt is haunted by unnatural shells which should not walk this plane. The old knight, Brother Michel, can show you where this crypt lies and I can help you prepare for your journey.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will accept your help. I would like to see what magic you have for sale.
+Go to node ID=
+Action work in progress=(Only available if the player has not helped the Inquisition, open magic vendor screen)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=have access to weird woman store
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I need no help at this time. Goodbye.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=have access to weird woman store
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=have access to weird woman store
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Passing
+Text=All things will pass in time. The time will come when this land is swept clean.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=That time will come sooner than you think if I don't recover the relic within the Crypt.
+Go to node ID=50 Caverns
+
+Requirement=!None
+Reply Text=Enough of your ravings, I'll seek aid elsewhere, witch.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Stash in Caverns
+Text=There is a place I keep secret, where items of power are stored. These things could be yours if you are a friend to the cathars.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes, I would like to see this place.
+Go to node ID=50 Caverns
+
+Requirement=!None
+Reply Text=I will accept no aid from you, witch.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+------------------------------------------------------------
+Node ID=200 nis weird woman introduction
+Text=I know you. We've met before, haven't we? 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 nis weird woman introduction 2
+Text=Yes...before you were in this *shell*. The pull of your fate is as strong as it was before. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 nis weird woman respond to demon
+Text=I have not heard that name in many ages, almost as long as since I last spoke with you, demon. Stranger, you should beware of this impish spirit you keep as counsel, he has deceived others before you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 nis weird woman respond to beast
+Text=I have not heard that name in many ages. Stranger, the beast spirit within you knew me long ago when I was *different*, when I lived in darkness. But seasons turn, and I travel a new path, one of atonement and spiritual perfection.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 nis weird woman respond to elemental
+Text=I have not heard that name in many ages, not since we clashed so long ago as bitter enemies. Stranger, you should know that the spirit within you is wise and good, but ignorant of my transformation and rigidly incapable of forgiving my past sins.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 nis weird woman conclusion
+Text=I am no longer Druj, the *creature* that your spirit named. I am Na Roqua, and I have atoned for my past.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 nis weird woman conclusion 2
+Text=I have a new life here among the folk of Montaillou. If you have things to discuss you may stay, otherwise leave in peace.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 confront the weird woman 1
+Text=Then you know of my past, that I once led a very different life.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=300 confront the weird woman 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 confront the weird woman 2
+Text=Truth and lies sometimes are indistinguishable. It is true that I once used lies like daggers against your kind, stabbing at virtues to corrupt man and woman alike.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=300 confront the weird woman 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 confront the weird woman 3
+Text=It took centuries of enduring the endless struggle of good and evil to understand there are greater truths than those absolutes. I seek to transcend such concepts, to become a perfecti.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 80
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=cathar friend
+Desired Minimum Count=1
+}
+}
+Reply Text=Are you not lying to your flock by not telling the cathars of your past?
+Go to node ID=300 confront the weird woman 4
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What is a perfecti?
+Go to node ID=300 perfecti
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 perfecti
+Text=A perfecti is beyond that which is flawed and mortal. Perfecti transcend the material world and leave behind all imperfections - it is the purity of immortality.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard node 50
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek the ancient relics guarded by the Knights Templar.
+Go to node ID=40 Relics
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=Why do you wish to become a perfecti?
+Go to node ID=30 Shell Game
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=100 Other Questions
+
+Requirement=!None
+Reply Text=I must go now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 confront the weird woman 4
+Text=Alas, the sins of the past chain me to this world...and I admit that I have not told the *truth* to those that look to me for guidance. Perhaps it is this imperfection that keeps me from leaving this place. But I will tell them now.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=300 confront the weird woman 5
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 confront the weird woman 5
+Text=You have helped me to find a courage I lacked. It might be possible now for me to pass on and find what I seek, and for that I thank you. What can I do for you that would help you with your own journey?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Over your long life, you must have accumulated many enchanted items. Perhaps you could sell me something useful?
+Go to node ID=
+Action work in progress=(Only available if the player has not helped the Inquisition, open magic vendor screen)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Action=CActivateAction
+{
+Target Name=have access to weird woman store
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=Speech moreequal 60
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Tell me about the crypt that houses the relic I seek.
+Go to node ID=53 Caverns 2
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=have access to weird woman store
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=305 twin
+Text=You speak of Asha, the wave that once doused the fire, the light that dispelled the darkness. There was a time when we fought over the souls of mortals. It was a contest fought over many centuries, but in the end the scales balanced and neither could claim victory.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why did you leave this contest?
+Go to node ID=305 twin 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=305 twin 2
+Text=I grew tired of the conflict and sought a new purpose, to leave this stagnant world and its mortals to their own designs. I know not what has become of Asha since I left the struggle, though I assume he still strives to save mortals from themselves.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=Nostradmus said that your opposite changed as well. Could Asha have turned to the darkness?
+Go to node ID=305 twin 3
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=305 twin 3
+Text=Nature *demands* balance in all things. Since I no longer seek the darkness, it is possible Asha no longer follows the light. If so, I fear for humanity.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How could such a being be defeated?
+Go to node ID=305 defeat twin
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Weird Woman Told about Old Man History
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=305 defeat twin
+Text=All things die. If Asha now stands against the light and truly opposes your quest, even he can be slain. You now know his past, and have caught a glimpse into his mind. Such knowledge holds great power.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Perhaps this knowledge will prove useful later. Goodbye.
+Go to node ID=
+Custom Action=CDeactivateAction
+{
+Target Name=spoke with seer about weird woman
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 cathars
+Text=There are people within this village - they follow a *true* and enlightened faith. Cathars are attuned with nature, they know the balance of the material world and the spirit world, the struggle of good and evil, and the duality of all things.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=10 goodbye
+Text=Seek your own truth. Always.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=100 Return
+Text=The spiritbearer returns. How can Na Roqua help your journey?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=I seek the seer known as Nostradamus. Can you help me?
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+
+Requirement=!None
+Reply Text=My spirit called you the witch of lies - is that what you are?
+Go to node ID=20 Know Me
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I seek the ancient relics guarded by the Knights Templar.
+Go to node ID=40 Relics
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=If you are a witch, then I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=If you are witch, then you must be destroyed.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Other Questions
+Text=Your journey will be riddled with questions. Some may be answered. Speak then.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+}
+}
+Reply Text=My spirit called you the witch of lies - is that what you are?
+Go to node ID=300 confront the weird woman 2
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard node 50
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek the ancient relics guarded by the Knights Templar.
+Go to node ID=40 Relics
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=have access to weird woman store
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to see what magic you have.
+Go to node ID=
+Action work in progress=(Only available if the player has not helped the Inquisition, open magic vendor screen)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=If you are a witch, then I think the Inquisition would want to have a word with you.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=If you are witch, then you must be destroyed.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Favorable Return
+Text=Welcome spiritbearer and Cathar friend. What do you seek?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+}
+Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
+Go to node ID=45 nostradamus
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Reply Text=I'm hunted by a shapeshifting Daeva. My spirit said that you could help me fight it.
+Go to node ID=100 Shapeshifting Daeva
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
+Go to node ID=100 shapeshifting demon 1
+
+Requirement=!None
+Reply Text=I seek the ancient relics guarded by the Knights.
+Go to node ID=40 Relics
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Shapeshifting Daeva
+Text=The formless one. It is true that we once hunted together. It preys on mortals and takes their forms to strike again at the unsuspecting. This daeva can only be truly slain if a killing blow is struck against its *true* form.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=100 Shapeshifting Daeva 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Shapeshifting Daeva 2
+Text=Within my cave, there is an old periapt - it will let you see the daeva's true form and strike it down. Forever. Step through the fire and take the periapt, and end the suffering of mortals.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=100 other questions
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shapeshifter ring
+}
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shapeshifter ring
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Weird Woman pissed return
+Text=Whether you be Inquisitor friend or bothersome fiend, I will not tolerate you any more. You are lost to me - and you will leave this place.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I apologize for my previous remarks, words spoken that I would take back if I could.
+Go to node ID=100 apology accepted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=witch hates you
+}
+Action=CDeactivateAction
+{
+Target Name=witch hates you
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsAliveAction
+{
+Name To Check For=Chicken Beatrice
+Desired Minimum Count=1
+}
+}
+Reply Text=This poor 'chicken' has need of your magical prowess.
+Go to node ID=950 Chicken 1
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 apology accepted
+Text=Your words sound genuine, so I believe you speak truth, so you may stay. How can I help you with your journey?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=My spirit called you the witch of lies - is that what you are?
+Go to node ID=20 Know Me
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=I seek the ancient relics guarded by the Knights Templar.
+Go to node ID=40 Relics
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=have access to weird woman store
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to see what magic you have.
+Go to node ID=
+Action work in progress=(Only available if the player has not helped the Inquisition, open magic vendor screen)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=On second thought, you must be destroyed.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 begone
+Text=Away with you!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=Unknown
+Text=Our allies are coming to liberate us from the tyranny of the Inquisition, and then what will be, will be. Do you wish for my aid or not?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes.
+Go to node ID=50 Caverns
+
+Requirement=!None
+Reply Text=I must know what sort of *aid* you intend to give.
+Go to node ID=60 Stash in Caverns
+
+Requirement=!None
+Reply Text=I will accept no aid from you, witch.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=950 Chicken 1
+Text=Ah, I see. This smacks of Pierre's malfeasance. While I don't doubt that on some level the chain of misadventures that led to this poor woman's fate makes an amusing tale, I'm certain that the story would only leave me with a dreadful headache. <Sigh> Very well, I will make this right.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Beatrice Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 warning
+Text=If you cannot control yourself, you cannot remain here.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=100 shapeshifting demon 1
+Text=The shifting Daeva, the nameless horror...It has plagued my flock in Montaillou for some time now. The creature can only be stopped for a time - there is but one way to kill it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=100 shapeshifting demon 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 shapeshifting demon 2
+Text=There are relics blessed by an ancient Persian prophet, Zarathustra. These items of power, touched by his hand, could fell the shapeshifter. If you possessed an amulet or item of the prophet, you could kill the shapshifting Daeva.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shapeshifter ring
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Where is Nostrodomus
+Text=<The woman marks your map where Nostradamus can be found.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=100 other questions
+
+Requirement=!None
+Reply Text=I must find him immediately. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=06 Return Destroyed Montaillou
+Text=What can I do for you, spiritbearer?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Weird Woman Told about Old Man History
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=I have spoken to the seer. I seek information about your 'opposite twin'.
+Go to node ID=305 twin
+
+Requirement=Inquisitor NOT
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Weird Woman asked to see wares already
+Desired Minimum Count=1
+}
+}
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Character to get attributes from=$Instigator
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Bodies all around you I see. Good to know you can defend yourself. Speaking of that, could I see what magic you have that would assist me in defending the city?
+Go to node ID=
+Action work in progress=Not Inquisitor and first time asked
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Weird Woman asked to see wares already
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+
+Requirement=Inquisitor NOT
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Weird Woman asked to see wares already
+Desired Minimum Count=1
+}
+}
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Character to get attributes from=$Instigator
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Bodies all around you I see. Good to know your Heathen Magic can be used for something valuable. Let's put these differences of opinion behind us. I know you have magic for sale...I would like to see your wares to save this fare city from destruction.
+Go to node ID=
+Action work in progress=IS Inquisitor and first time asked
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Weird Woman asked to see wares already
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman Inquisitor
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weird woman
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Nothing. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=951 chicken goodbye
+Text=Go home now, child.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 through the fire
+Text=Step through the fire, you will find what you need.
+Should Have Voiceover=0
+}
