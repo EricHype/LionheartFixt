@@ -1,0 +1,1310 @@
+CDialogTree
+{
+Name=Sir Auric
+Portrait=Dialog/NPC Portraits/Sir Auric
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=What business do you have in the armory? You are not of the order, and I certainly did not send for you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is this order are you talking about?
+Go to node ID=20 knight
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 armory
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=30 auric
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Welcome back young one. How can this knight serve you?
+Should Have Voiceover=1
+
+Requirement=Auric req knight initiate quest
+Reply Text=Lord Javier sent me here to get my next initiation quest.
+Go to node ID=50 initiation
+Action work in progress=(have knight initiate quest)
+Icon=Quest Icon
+
+Requirement=Auric req first knight dead
+Reply Text=The knight died in the sewers.
+Go to node ID=200 knight 1 dead
+Action work in progress=(first knight dead)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Discover Fate of the Lost Knight Patrol
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=9DSQIS1W
+}
+Action=CActivateAction
+{
+Target Name=Auric quest done
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Found Knight Dead
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Auric req first knight rescued
+Reply Text=I rescued the knight in the Sewers.
+Go to node ID=205 knight 1 alive
+Action work in progress=(first knight rescued)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Discover Fate of the Lost Knight Patrol
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=9DSQIS1W
+}
+Action=CActivateAction
+{
+Target Name=Auric quest done
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved Knight
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=auric will not reassign quest
+Reply Text=What is a Knight Templar?
+Go to node ID=20 knight
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 armory
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=30 auric
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 finished quest return dialogue
+Text=It is good to see you again.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=5 questions
+Text=Ask your question then.
+Should Have Voiceover=1
+
+Requirement=Auric req knight initiate quest
+Reply Text=I am ready for an initiation quest.
+Go to node ID=50 initiation
+Action work in progress=(have knight initiate quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+State=1BMWFBRT
+}
+}
+}
+Reply Text=What is a Knight Templar?
+Go to node ID=20 knight
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 armory
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=30 auric
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Until next we meet.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=11 please return
+Text=I see. Well, this will not help your chances of becoming a Knight Templar. Good day to you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 knight
+Text=I belong to an order of warriors known as the Knights Templar, sworn guardians of the people of Europe. We stand vigil over the holy relics to ensure that evil will never again call forth the Disjunction.
+Should Have Voiceover=1
+
+Requirement=Auric Requires NO taint and No assign of quest
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+Reply Text=How can I become a knight?
+Go to node ID=100 convince auric
+Action work in progress=(if not tainted looking race)
+Icon=Quest Icon
+
+Requirement=Auric requires Feralkin and no quest assigned
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+Reply Text=How can I become a knight?
+Go to node ID=100 convince auric tainted
+Action work in progress=(if tainted looking race)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Forces of darkness?
+Go to node ID=70 darkness
+
+Requirement=!None
+Reply Text=Tell me about the Disjunction.
+Go to node ID=60 disjunction
+
+Requirement=!None
+Reply Text=Tell me about the holy relics.
+Go to node ID=90 holy relics
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 auric
+Text=My name is Sir Auric Galenon. I have been a Knight for fifteen of my thirty years. I left England as a boy to train as Lord Javier's squire and it has been my privilege to serve with him and the brothers of my order since. What else do you wish to know?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 initiation
+Text=The path to knighthood is not an easy one, but I sense that you have the strength and nobility to succeed. If you are indeed ready, I have an important task for you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I am ready for the task, please continue.
+Go to node ID=51 initiation cont
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll be going now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 initiation cont
+Text=One of our fellow knights went into the sewers yesterday looking for a lost boy. He has failed to report in. I would like you to enter the sewers and investigate. Return with news when you have it.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Already Saved the Lost Knight
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lost knight already dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've already saved the knight.
+Go to node ID=205 knight 1 alive
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Discover Fate of the Lost Knight Patrol
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=9DSQIS1W
+}
+Action=CActivateAction
+{
+Target Name=Auric quest done
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved Knight
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lost knight already dead
+Desired Minimum Count=1
+}
+}
+Reply Text=The knight died in the sewers.
+Go to node ID=200 knight 1 dead
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Discover Fate of the Lost Knight Patrol
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=9DSQIS1W
+}
+Action=CActivateAction
+{
+Target Name=Auric quest done
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved Knight
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=Lost knight already dead
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Already Saved the Lost Knight
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CFailAction
+{
+Action=
+}
+Else=CSucceedAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+}
+Reply Text=Yes, and I have other questions.
+Go to node ID=5 questions
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Discover Fate of the Lost Knight Patrol
+State=G5JXXKIB
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=CUPX2DYD
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=Lost knight already dead
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Already Saved the Lost Knight
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CFailAction
+{
+Action=
+}
+Else=CSucceedAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+}
+Reply Text=Very well, I will go find him now.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Discover Fate of the Lost Knight Patrol
+State=G5JXXKIB
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=CUPX2DYD
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=Lost knight already dead
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Already Saved the Lost Knight
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CFailAction
+{
+Action=
+}
+Else=CSucceedAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+}
+Reply Text=I'd rather not do that. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 disjunction
+Text=A great calamity that changed the world, so many centuries ago. It heralded an age of magic and darkness that we struggle against to this day. If not for the courage of King Richard and the first Knights Templar, the evil unleashed by the Disjunction would have claimed the Earth.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 darkness
+Text=The first Disjunction long ago unleashed many dark creatures into the world. In the past, goblins, titans, ogres, dragons, and creatures from the grave all plagued our cities. The Knights Templar launched a series of crusades with the Knights of Saladin to drive the darkness back. We control most of Europe today, but evil still exists in the shadows, so we must always be vigilant.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 holy relics
+Text=The holy relics are ancient items, sacred to our order. They possess powers of creation that we cannot hope to comprehend. It is our duty to make sure such power never falls into the grasp of evil.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 join
+Text=I must say, I'm impressed, you have earned my trust and proven your convictions. I will sponsor you for the initiation trials. Go speak with Lord Javier in the Cathedral to begin the formal initiation for knighthood.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thank you, Sir Auric. I will speak with Lord Javier.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Lord Javier
+State=826TAXFR
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Auric Checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Temple District
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=105 join feralkin
+Text=Well now, interested in joining our order? While I sense potential within you, I must warn you that your appearance might evoke some suspicion or even prejudice among other knights or the Inquisition. Across the square in the cathedral you will find Lord Javier. Tell him that Auric will sponsor you for the trials of initiation. I wish you luck young one. Now, is there anything else?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 knight 1 dead
+Text=Thank you for investigating. While his death is a tragedy, he died with valor in the pursuit of his duty. Here is your reward for your efforts. What else can I do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=205 knight 1 alive
+Text=Thank you! You have done a great service for the knights and your bravery will not be forgotten. Here is your reward. What else would you like to ask?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 nis auric
+Text=Lord Javier, my liege, the Knights Templar stand ready for duty.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 attack auric
+Text=You will pay dearly for your rash actions! 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Auric Sends you to jail
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 return after attack auric
+Text=Save your belligerence for the creatures of the wilderness. I will not tolerate your foolishness.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=3 Return Hostile
+Text=The first rude interruption I forgive as ignorance, but to barge into this armory without invitation again requires a good deal of bravery or stupidity. What is it that you want now?
+Should Have Voiceover=1
+
+Requirement=Auric req knight initiate quest
+Reply Text=I am ready for an initiation quest.
+Go to node ID=50 initiation
+Action work in progress=(have knight initiate quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What is this order you mentioned before?
+Go to node ID=20 knight
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 armory
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=30 auric
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Hostile Tainted Did Not Use Speech
+Text=The first rude interruption I forgive as ignorance, but to barge into this armory without invitation again requires a good deal of bravery or stupidity. What is it that you want now?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is this order you mentioned before?
+Go to node ID=20 knight
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 armory
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=30 auric
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Tainted
+Text=What business do you have in the armory? You are not of the order, and I cannot believe the guards allowed one of your *kind* into this fair district without some sorcery on your part. Perhaps I should summon the guard to escort you to the Port District?
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Reply Text=I appeal to your noble nature to look beyond my outward appearance and hear my words.
+Go to node ID=1 Conversation Start Tainted Auric Listens
+Custom Action=CDeactivateAction
+{
+Target Name=overcome auric tainted bias
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Forgive the intrusion, my lord. I merely seek your counsel.
+Go to node ID=1 Conversation Start Tainted Auric Listens
+Custom Action=CDeactivateAction
+{
+Target Name=overcome auric tainted bias
+}
+
+Requirement=!None
+Reply Text=Can I just ask you a few questions?
+Go to node ID=1 hostile goodbye
+
+Requirement=!None
+Reply Text=Do you know where I can find work to earn coin?
+Go to node ID=1 hostile goodbye
+
+Requirement=!None
+Reply Text=Could you tell me where to purchase potions and equipment?
+Go to node ID=1 hostile goodbye
+
+Requirement=!None
+Reply Text=I make no apologies for my heritage. I demand to be treated with some respect.
+Go to node ID=100 auric shocked
+Custom Action=CDeactivateAction
+{
+Target Name=overcome auric tainted bias
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I will leave and cause you no further distress.
+Go to node ID=1 Hostile Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Tainted Auric Listens
+Text=Fine, but talk quickly. It would not be proper for one of my standing in the order to be seen speaking with someone...of impure blood.  
+Should Have Voiceover=1
+
+Requirement=Auric req knight initiate quest
+Reply Text=I am ready for an initiation quest.
+Go to node ID=50 initiation
+Action work in progress=(have knight initiate quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What is this order are you talking about?
+Go to node ID=20 knight
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 armory
+
+Requirement=!None
+Reply Text=Tell me who you are?
+Go to node ID=30 auric
+
+Requirement=!None
+Reply Text=Impure blood? Shall we find out how pure your blood runs?
+Go to node ID=100 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=1 Hostile Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Hostile Goodbye
+Text=You evidently know where the door is. Go and use it.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=100 threat
+Text=The last fool who tossed threats so carelessly at me stretched a full foot on the Inquisitor's rack. Take your temper to the Port District and leave this place before you utter something you'll regret. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll enjoy beating the arrogance out of you.
+Go to node ID=400 attack auric
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Uh, I should go. Farewell.
+Go to node ID=1 Hostile Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 armory
+Text=This is the armory for the Knights Templar. Though it is mostly barren now, in rare times of peace it is filled with stacks of cleaned blades and bows. These days, most weapons are claimed, so you will find few things of interest. Just the same, stay clear of the remaining storage chests.
+Should Have Voiceover=1
+
+Requirement=Auric req knight initiate quest
+Reply Text=I am ready for an initiation quest.
+Go to node ID=50 initiation
+Action work in progress=(have knight initiate quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What is this order are you talking about?
+Go to node ID=20 knight
+
+Requirement=!None
+Reply Text=Tell me who you are?
+Go to node ID=30 auric
+
+Requirement=!None
+Reply Text=Farewell.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 esteban
+Text=Tell Esteban that I cannot spare any more knights. I don't care if he has to hire conscripts off the road, he must secure the crossroads. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=100 convince auric
+Text=So, you think you have the mettle to become a Knight? Have you any idea how heavy a burden it is to be a knight? Do you think your shoulders so broad and strong as to bear this burden?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Let me prove to you that I am worthy of becoming a Knight Templar.
+Go to node ID=100 first task 1
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I should just be on my way.
+Go to node ID=1 hostile goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 first task 1
+Text=Though I have my doubts, I will give you this one chance to prove your worth. If you can help me with a problem, perhaps I will recommend that you be considered for the initiation trials.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=100 first task 2
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 first task 2
+Text=Our patrols are spread out across Europe to enforce peace, yet our own city suffers from rampant crime.  The merchants of the port demand that the activities of the thieves be curbed, and there is one thief in particular that I would like someone to *deal* with. Would you do this task for me?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dealt with thug
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I am certain that I have already eliminated that threat. He operated in an alley, but he is no more.
+Go to node ID=100 join
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Dealt with Benito
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dealt with thug
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I am certain that I have already eliminated that threat. He operated in an alley, but he is no more.
+Go to node ID=100 join tainted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Dealt with Benito
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dealt with thug
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I will help you deal with this thief.
+Go to node ID=100 first task given
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+State=1BMWFBRT
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dealt with thug
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=No, I happen to prefer the company of thieves to arrogant knights.
+Go to node ID=1 hostile goodbye
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dealt with thug
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I'm not interested. Goodbye.
+Go to node ID=1 hostile goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 first task given
+Text=You accepted the task eagerly...that is good. The thief's name is Benito, I have heard rumors that he plies his trade in the alleys of the Port District. Deal with him as you wish, so long as he no longer threatens our citizens. Return when the task is done.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dealt with thug
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have already dealt with that thug.
+Go to node ID=100 join
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Dealt with Benito
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=dealt with thug
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have already dealt with that thug.
+Go to node ID=100 join tainted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Dealt with Benito
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll go now to deal with the thief.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 steal
+Text=You would steal from the armory of the Knights Templar? Perhaps time in the Inquisition Chambers will teach you some manners!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=if auric catches you stealing
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 convince auric tainted
+Text=So, you think you have the mettle to become a Knight? Have you any idea how heavy a burden it is to be a knight? Do you think your shoulders so broad and strong as to bear this burden, your mind so disciplined to overcome the hatred and prejudice your kind endures?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Let me prove to you that I am worthy of becoming a Knight Templar.
+Go to node ID=100 first task 1
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Perhaps you are right. I may not be strong enough for your order.
+Go to node ID=1 hostile goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I should just be on my way.
+Go to node ID=1 hostile goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 return with quest
+Text=Well now, how goes your task? Have you found that street urchin yet?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+State=5UGOEYPD
+}
+}
+}
+Reply Text=Benito the thief has been dealt with.
+Go to node ID=100 join
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Dealt with Benito
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+State=5UGOEYPD
+}
+}
+}
+Reply Text=Benito the thief has been dealt with.
+Go to node ID=100 join tainted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Dealt with Benito
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'm still looking. I'll be back later.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 auric shocked
+Text=So, the animal has a spine after all. You wish to be treated with respect, to have a rational discussion?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Conversation Start Tainted Auric Listens
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 return after initiation
+Text=I must say, I am very proud to see you as a knight of our order. You endured much and completed your initiation with honor. Now, what I can do for you?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=100 join tainted
+Text=I must say, I'm impressed, I didn't think someone like you could have completed the task, but you proved me wrong. You have earned my trust and proven your convictions. I will sponsor you for the initiation trials. Go speak with Lord Javier in the Cathedral to begin the formal initiation for knighthood.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thank you, Sir Auric. I will go speak with Lord Javier.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Lord Javier
+State=826TAXFR
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Auric Checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Temple District
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 attack auric
+Text=Guards! Remove this miscreant!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 Demon Magic
+Text=Demon Magic! Arrest this heretic!
+Should Have Voiceover=0
+}

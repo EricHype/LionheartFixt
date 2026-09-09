@@ -1165,6 +1165,62 @@ resolve, which is this project's top recurring failure mode.
 
 ---
 
+### 0.9.0 - the Temple District
+
+Eight items across three acts. **Two land in `3 Montaillou`, which no release has touched
+before**, so Gate 1 for this release needs a character who has not entered Act 3 -- not merely
+one who has not entered the affected level.
+
+Reaching it: the Inquisition cases want a character who joins the Inquisition and kills the
+Goblin Khan for Torquemada. The Machiavelli cases want his Barcelona bodyguard job played to a
+conclusion. The Auric and Javier cases want a Templar initiate route.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TD1 | Torquemada, Inquisition Chambers | Join the Inquisition, take the Khan task, kill him, report | You reach **`407 killed khan`** -- *"I have known, child... Are you ready for another task?"* -- and are paid 150 gold |
+| TD2 | " | Same, as a **non**-Inquisitor | You still reach `408` -> `409`, *"I feel there is now hope for your soul"*, and are paid 150 gold. **Unchanged from vanilla** |
+| TD3 | " | Report as an Inquisitor and read the reply list | Exactly **one** Khan report reply is offered, not two |
+| TD4 | Na Roqua, Montaillou witch hovel | Promise no harm will come to the Cathars, leave the hut, return | She greets you with **`100 Favorable Return`** -- *"Welcome spiritbearer and Cathar friend"* |
+| TD5 | " | Same, as an Inquisitor using *"I am willing to spare the Cathars"* | Same greeting. An Inquisitor who spares them counts as a friend |
+| TD6 | " | Refuse or never make the promise | You get `03 Return Dialogue if Heard 50` as before. **Unchanged from vanilla** |
+| TD7 | " | On the favourable greeting, ask about the shapeshifting Daeva your spirit named | She admits *"we once hunted together"* and describes the periapt in her cave |
+| TD8 | " | Take that branch to its end | The **cave opens** -- she says *"Step through the fire"* -- exactly as the other phrasing of the question already does. **This is the trap case**: if the door stays shut, the relay did not fire |
+| TD9 | Witch cave | Walk through the fire, open the chest | You get the **Ring of the Prophet**, and it kills the shapeshifting Daeva permanently |
+| TD10 | Montaillou inn | Save Machiavelli in Barcelona, then enter the inn | He is **at the bar**, greets you with `300`, and the speech runs through to *"Beware the Old Man from the east"*. **500 gold** is paid |
+| TD11 | " | Refuse his partnership in Barcelona (`215 reject offer`), then enter the inn | He gloats -- *"you forced me to seek aid from those that seek to do us harm"* -- and **assassins attack**. He is gone afterwards |
+| TD12 | " | Let him die, or kill him yourself, then enter the inn | He is **absent**. No ghost, no error |
+| TD13 | " | Never take his bodyguard job at all | He is absent |
+| TD14 | Sir Auric | Complete his first task as a **tainted** character | You get **`100 join tainted`** -- *"I didn't think someone like you could have completed the task"* -- and the sponsorship is granted |
+| TD15 | " | Same as a **human** | You get `100 join`, the vanilla wording. Only one of the two is ever offered |
+| TD16 | Lord Javier | Ask to become an initiate with **no** sponsorship and no second chance | **`190 need sponsor`** -- *"you'll need a sponsor. Perhaps Sir Auric will do it"* -- and the reply sets the *Seek out Sir Auric* quest |
+| TD17 | " | Same **with** Auric's sponsorship | The old route to `100 auric initiate` still fires, and the no-sponsor reply is absent |
+| TD18 | " | On his Montserrat directions, ask about the Sacred Lance | The lore node plays and its reply still leads to *Leave for Montserrat* |
+| TD19 | Cervantes, Temple District | Talk to him, walk away, talk again | The **second** conversation opens `3 Return Dialogue` -- *"It was just here! Perhaps you saw it this time?"* -- with its four replies |
+
+TD8 and TD11 are the two that carry real risk. TD8 is a relay this release added to a node that
+shipped without one, and if it fails the player gets advice about a cave whose door never opens.
+TD11 is a **scripted fight in a map this project has never edited** -- new generators, new
+positions, and enemies that must aggro on spawn. `Monster Cans/Assassin Machiavelli` is copied
+from House of Ilk's working generator, including its empty `After Action`, but that is an
+inference from one working case and only play can confirm it.
+
+TD12 and TD13 are the negative cases for TD10/TD11 and matter as much: an arrival trigger that
+fires unconditionally would put a dead man in the inn.
+
+**Not in this release, deliberately** -- do not test for them:
+
+- `Purify the Shadow Dryad` cannot be completed and is not wired. Na Roqua cannot be killed:
+  AC 1000, HP 10000, full damage resistances, and a `Gotocombat` handler that banishes the
+  player. Being banished is vanilla, and the live Fournier questline has dialogue for it.
+- `401 already dead` and `402 tasks 3`'s pre-emptive Khan report stay orphaned, because the only
+  thing they lead to is that chain.
+- `105 join feralkin` is left alone: it carries no reply records, so a Feralkin gets the tainted
+  variant.
+- `ShylockeChests / 600 gold chest opened 2` is a superseded draft -- `... 3` already contains
+  the whole verse.
+
+---
+
 ## Gate 3 - negative testing
 
 The most important gate, and the easiest to skip.
@@ -1263,6 +1319,12 @@ both completed Gate 2. Record the result here per release.
 | 0.3.0 | PASS (automated) | PASS | partial | - | - | - | **published as full** |
 | 0.4.0 | PASS (automated) | - | - | - | - | - | **published as full, entirely unplayed** |
 | 0.4.1 | PASS (automated) | - | partial | - | - | - | **published as repair** |
+| 0.5.0 | PASS (automated) | - | - | - | - | - | **superseded, crashes on entering the vault** |
+| 0.5.1 | PASS (automated) | - | - | - | - | - | **published as repair, unplayed** |
+| 0.6.0 | PASS (automated) | PASS | partial | - | - | - | **published; played only as far as the Juan rescue** |
+| 0.7.0 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
+| 0.8.0 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
+| 0.9.0 | PASS (automated) | - | - | - | - | - | **not started, entirely unplayed** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's
@@ -1272,3 +1334,15 @@ wrongly, which is the failure mode this release carries most of.
 
 Character B has never walked any release. That is the outstanding hole in the whole
 project, not a 0.2.0 problem.
+
+**Four consecutive releases are now unplayed, and the debt compounds.** 0.6.0 stops at the Juan
+rescue; 0.7.0, 0.8.0 and 0.9.0 have never been launched. 0.7.0 changed a late-game promotion for
+every faction combination and 0.9.0 edits two maps in Act 3, so the untested surface is no longer
+confined to the features each release names. Gate 0 has caught real defects throughout -- a brace
+on the wrong line, a missing structural blank line, two map parts that lost their indentation --
+but it has never once caught a check that resolves *wrongly*, which is the failure mode all four
+of these releases carry.
+
+**0.6.0, 0.7.0 and 0.8.0 have no Gate 2 cases in this document.** That is a gap, not a claim that
+they need none: their features are described in `docs/releases.md` and were never translated into
+cases here. 0.9.0 is the first release since 0.5 to get a section.

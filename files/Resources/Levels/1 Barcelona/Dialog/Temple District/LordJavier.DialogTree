@@ -1,0 +1,1489 @@
+CDialogTree
+{
+Name=Lord Javier Fernandez
+Portrait=Dialog/NPC Portraits/Knight Trainer
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Welcome to the Barcelona Cathedral, traveler. I am Lord Javier Fernandez of the Knights Templar. How can I be of service?
+Should Have Voiceover=1
+
+Requirement=Javier req spoke with Auric
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=Sir Auric said he will sponsor me to become a Knight Templar.
+Go to node ID=100 auric initiate
+Action work in progress=(spoke with Auric)
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Lord Javier
+}
+Icon=Quest Icon
+
+Requirement=Templar IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=The relic of Montserrat has been stolen. Brother Montgomerie asked me to travel to Montaillou and safeguard a relic hidden in a secret Crypt.
+Go to node ID=530 montserrat
+Action work in progress=(completed montserrat)
+Icon=Quest Icon
+
+Requirement=Javier req initiate quest & 1000 gold
+Reply Text=I would like to donate the thousand gold.
+Go to node ID=210 give gold
+Action work in progress=(have initiate quest and have gold)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Donate Gold to Knights Templar
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1000
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Javier req complete esteban quest
+Reply Text=I have completed Esteban's quests.
+Go to node ID=300 speak with auric
+Action work in progress=(completed esteban quest)
+Icon=Quest Icon
+
+Requirement=Javier req complete sewer knight quest
+Reply Text=I have completed Auric's quests.
+Go to node ID=350 lion shield
+Action work in progress=(completed sewer knights quest)
+Icon=Quest Icon
+
+Requirement=Javier req complete lion shield quest
+Reply Text=I have forged my Lion Shield.
+Go to node ID=400 slavers quest
+Action work in progress=(completed lion shield quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Forged Lion Shield
+Experience Points To Add=1
+}
+Action=CConvertQuestItemToNormalInventoryItem
+{
+Inventory Item To Change=Inventory/Specific Item Cans/Quest Items/Lion Shield Templar Quest
+New Catagory for display Grouping=Inventory/Grouping Catagories/Shield
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about this Cathedral.
+Go to node ID=20 cathedral
+
+Requirement=!None
+Reply Text=Can you tell me about the Knights Templar?
+Go to node ID=30 templar
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Welcome back, traveler. How can I be of service today?
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=The relic of Montserrat has been stolen. Brother Montgomerie asked me to travel to Montaillou and safeguard a relic hidden in a secret Crypt.
+Go to node ID=530 montserrat
+Action work in progress=(completed montserrat)
+Icon=Quest Icon
+
+Requirement=Javier req spoke with Auric
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=Sir Auric said he will sponsor me in becoming a Knight Templar.
+Go to node ID=100 auric initiate
+Action work in progress=(spoke with Auric)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Lord Javier
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=second chance
+Desired Minimum Count=1
+}
+}
+Reply Text=I have decided that I would like to become an initiate.
+Go to node ID=105 auric initiate 2
+Icon=Quest Icon
+
+Requirement=Javier req initiate quest & 1000 gold
+Reply Text=I would like to donate the thousand gold.
+Go to node ID=520 before I accept
+Action work in progress=(have initiate quest and have gold)
+Icon=Quest Icon
+
+Requirement=Javier req complete esteban quest
+Reply Text=I have completed Esteban's quests.
+Go to node ID=300 speak with auric
+Action work in progress=(completed esteban quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Complete Esteban's Quests
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Small Karma 15
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=15
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Javier req complete sewer knight quest
+Reply Text=I have completed Auric's quest.
+Go to node ID=350 lion shield
+Action work in progress=(completed sewer knights quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Completed Auric's quest
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Medium Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Javier req complete lion shield quest
+Reply Text=I have forged my Lion Shield.
+Go to node ID=400 slavers quest
+Action work in progress=(completed lion shield quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Forged Lion Shield
+Experience Points To Add=1
+}
+Action=CConvertQuestItemToNormalInventoryItem
+{
+Inventory Item To Change=Inventory/Specific Item Cans/Quest Items/Lion Shield Templar Quest
+New Catagory for display Grouping=Inventory/Grouping Catagories/Shield
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Small Karma 15
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=15
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+State=T8DCM1FK
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Slaver captain driven away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have convinced the leader of the slavers to leave. He will not trouble Barcelona again.
+Go to node ID=450 made a knight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Slavers
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Large Karma 50
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=Slaver captain driven away
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Javier requires elimination of Slavers
+Reply Text=I have eliminated the slavers.
+Go to node ID=450 made a knight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Slavers
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Large Karma 50
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about this Cathedral.
+Go to node ID=20 cathedral
+
+Requirement=!None
+Reply Text=Can you tell me about the Knights Templar?
+Go to node ID=30 templar
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Javier requires initiate quest NOT begun
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=second chance
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have decided that I would like to become an initiate.
+Go to node ID=190 need sponsor
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=5 questions
+Text=What would you like to ask about?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=second chance
+Desired Minimum Count=1
+}
+}
+Reply Text=I have decided that I would like to become an initiate.
+Go to node ID=105 auric initiate 2
+Icon=Quest Icon
+
+Requirement=Templar IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=The relic of Montserrat has been stolen. Brother Montgomerie asked me to travel to Montaillou and safeguard a relic hidden in a secret Crypt.
+Go to node ID=530 montserrat
+Action work in progress=(completed montserrat)
+Icon=Quest Icon
+
+Requirement=Javier req spoke with Auric
+Reply Text=Sir Auric said he will sponsor me to become a Knight Templar.
+Go to node ID=100 auric initiate
+Action work in progress=(spoke with Auric)
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Lord Javier
+}
+Icon=Quest Icon
+
+Requirement=Javier req initiate quest & 1000 gold
+Reply Text=I would like to donate the thousand gold.
+Go to node ID=520 before I accept
+Action work in progress=(have initiate quest and have gold)
+Icon=Quest Icon
+
+Requirement=Javier req complete esteban quest
+Reply Text=I have completed Esteban's quests.
+Go to node ID=300 speak with auric
+Action work in progress=(completed esteban quest)
+Icon=Quest Icon
+
+Requirement=Javier req complete lion shield quest
+Reply Text=I have completed Auric's quests.
+Go to node ID=350 lion shield
+Action work in progress=(completed sewer knights quest)
+Icon=Quest Icon
+
+Requirement=Javier req complete lion shield quest
+Reply Text=I have forged my Lion Shield.
+Go to node ID=400 slavers quest
+Action work in progress=(completed lion shield quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Forged Lion Shield
+Experience Points To Add=1
+}
+Action=CConvertQuestItemToNormalInventoryItem
+{
+Inventory Item To Change=Inventory/Specific Item Cans/Quest Items/Lion Shield Templar Quest
+New Catagory for display Grouping=Inventory/Grouping Catagories/Shield
+}
+}
+}
+
+Requirement=Javier requires elimination of Slavers
+Reply Text=I have eliminated the slavers.
+Go to node ID=450 made a knight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Slavers
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+State=T8DCM1FK
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Slaver captain driven away
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have convinced the leader of the Slavers to leave. He will not trouble Barcelona again.
+Go to node ID=450 made a knight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Slavers
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Large Karma 50
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=Slaver captain driven away
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about this Cathedral.
+Go to node ID=20 cathedral
+
+Requirement=!None
+Reply Text=Can you tell me about the Knights Templar?
+Go to node ID=30 templar
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Javier requires initiate quest NOT begun
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=second chance
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have decided that I would like to become an initiate.
+Go to node ID=190 need sponsor
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Good fortune to you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 cathedral
+Text=You stand within one of the few edifices that has survived the dark times since the Disjunction. The Cathedral of Barcelona has become a symbol of strength and stability for many of us. Within this Cathedral, the Knights Templar guard the True Cross, the most valuable of the holy relics rescued during the crusades.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions before I go.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I'll be leaving now. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 templar
+Text=We are a knight order dedicated to protecting Europe against the forces of darkness. We strive to uphold the honorable name of King Richard the Lionhearted and promote virtue and chivalry. We are also charged with the protection of the holy relics.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions before I go.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I'll be leaving now. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 auric initiate
+Text=Auric is a shrewd judge of character, so you must possess some great potential. Are you sure you want to become an initiate?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=105 auric initiate 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=105 auric initiate 2
+Text=The life of a Knight Templar is not all honor and glory. It is a hard, ascetic life. We have many duties and responsibilities to safeguard the peace of Europe.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I would like to become an initiate.
+Go to node ID=200 initiate path
+Custom Action=CDeactivateAction
+{
+Target Name=second chance
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I've decided not to become an initiate.
+Go to node ID=150 no initiate
+Custom Action=CActivateAction
+{
+Target Name=second chance
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 no initiate
+Text=I understand, our way is not for everyone. I wish you luck in all your endeavors. Is there anything else?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes, I have other questions before I go.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=No, I'll be going now. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=190 need sponsor
+Text=I'm sorry, but you'll need a sponsor. Perhaps Sir Auric will do it. I have heard he is seeking an apprentice.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will seek out Auric.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=VY9SPW8H
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I would rather not.
+Go to node ID=150 no initiate
+------------------------------------------------------------
+Node ID=200 initiate path
+Text=Very well. Every initiate is required to donate a thousand gold to the order. Do you have the gold, or do you need more time?
+Should Have Voiceover=1
+
+Requirement=Javier Requires 1000 gold
+Reply Text=I have it - here it is.
+Go to node ID=210 give gold
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll need more time.
+Go to node ID=220 get it
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 give gold
+Text=Very good. You are now an initiate of the Knights Templar. In order to be knighted, you will need to complete quests for the order to prove your honor.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=215 give gold 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=11
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Donate Gold to Knights Templar
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1000
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Donate Tithe
+Experience Points To Add=1
+}
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Templar Squire
+Character To assign=$Instigator
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Initiation Quest for the Inquisition
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Wielders
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Bind Spirit to Rod
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=joined other faction
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Inquisition Foyer1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=215 give gold 2
+Text=Seek out Esteban at the Wilderness crossroads and do as he asks. Return to me when you complete his tasks. Good luck, initiate.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=prior completion of estebans tasks
+Desired Minimum Count=1
+}
+}
+Reply Text=I have already completed Esteban's tasks.
+Go to node ID=300 speak with auric
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Complete Esteban's Quests
+Experience Points To Add=1
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=prior completion of estebans tasks
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Before I go, I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=prior completion of estebans tasks
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll go seek Esteban now.
+Go to node ID=10 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+State=RYAQYKOS
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 get it
+Text=Very well, return when you have the gold. The donation is a practical way of showing us that you are serious about your initiation. There are no exceptions.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Donate Gold to Knights Templar
+State=VWZ5K1D5
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 speak with auric
+Text=Your progress is most impressive. For your next task, you will need to speak with Sir Auric.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=305 speak with auric 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=305 speak with auric 2
+Text=It seems one of our patrols has failed to report back. Speak with Auric to find out what is going on, then return here when you have done as he has asked.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll go speak with Auric now.
+Go to node ID=10 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=VY9SPW8H
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Before I go, I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+State=VY9SPW8H
+}
+------------------------------------------------------------
+Node ID=350 lion shield
+Text=Well done, young one! You show great promise. For your next task, you will create your own Lion Shield, a symbol of honor and commitment to the Knights Templar.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=355 lion shield 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=355 lion shield 2
+Text=To forge the Lion Shield, seek out Eduardo the blacksmith - he will be able to fashion it for you, or, at the least, tell you what he needs to make it. Once you have your shield, return here, and we will speak more.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll go speak with Eduardo now.
+Go to node ID=10 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'll speak with Eduardo. But before I go, I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=400 slavers quest
+Text=Splendid. Your shield is of remarkable craftsmanship, may it guard you well. You will need it in your next and final task.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=405 slavers quest 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=405 slavers quest 2
+Text=Slavers have been preying on the citizens of Barcelona for too long, and it is time to put an end to them. I would like you to find the slaver pits and deal with their leader. When you have completed your mission, return here.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Slaver captain driven away
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already convinced the leader of the slavers to leave. He will not trouble Barcelona again.
+Go to node ID=450 made a knight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Slavers
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Large Karma 50
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=Slaver captain driven away
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Slavers already dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already dealt with those slavers.
+Go to node ID=450 made a knight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Eliminated Slavers
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Large Karma 50
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=Slavers already dead
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Slavers already dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will find the slavers. But before I go, I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+State=BI9N3PWX
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Slavers already dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will seek out the slavers, then. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Eliminate Slaver menace in Barcelona
+State=BI9N3PWX
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=450 made a knight
+Text=You are one of the most promising knights I have seen in years. I am proud to bestow upon you the title of Knight and welcome you to the order of the Knights Templar.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=455 made a knight
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CActivateAction
+{
+Target Name=if templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CIsGender
+{
+Acceptable Genders=Array
+{
+Item Count=1
+Acceptable Gender=Male
+}
+}
+Character to get attributes from=$Instigator
+Then=CSetCharacterDisplayNameAction
+{
+Scriping name of LayerPart=$instigator
+New Display Name=Sir %s[OldName]
+}
+Else=CSetCharacterDisplayNameAction
+{
+Scriping name of LayerPart=$instigator
+New Display Name=Dame %s[OldName]
+}
+}
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Initiation Quest of the Knights Templar
+}
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Templar Warden
+Character To assign=$Instigator
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=455 made a knight
+Text=Now that you have joined the order, I can confide in you - it concerns a matter that imperils all of Europe. I have convened a council of my most trusted knights to see what can be done - I would like you to join us.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I would be honored to join you, Lord Javier.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=if templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Choose NIS Player
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 pyrenees
+Text=While the True Cross remains safe within this Cathedral, we fear the other relics may be in jeopardy - one of them is hidden in the abbey at Montserrat. We have not heard from our brothers at the abbey for some time now, and I fear the worst. I need you to travel to Montserrat at once and see what has happened.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(montserrat quest given - world map unlocked)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=WB7EAGTQ
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=530 montserrat
+Text=It is grim news that Montserrat has fallen. We must double our efforts to safeguard the relics. Do as Brother Montgomerie said and travel to the Crypt outside of Montaillou. You must ensure that the seal still protects the entrance. Go with speed, young one.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will do as you ask, Lord Javier. I will make my way to Montaillou and find the Crypt.
+Go to node ID=
+Action work in progress=(crypt quest given)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=FX3UY821
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 NIS Dialogue 4b
+Text=To ensure the safety of the other hidden relics, I dispatched a party of knights to Montserrat to protect the Crown of Thorns. They have not returned, so we must assume the worst.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=What is the Crown of Thorns?
+Go to node ID=400 crown of thorns
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=400 NIS Montserrat Directions
+Text=Montserrat Abbey lies some fifty miles to the northeast. I shall mark the path on your map. You must travel with all speed to Montserrat to see if our enemies have stolen the Crown of Thorns. Use the crystal in the Crossroads outside of town to take you there.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I am ready to depart for Montserrat.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=WB7EAGTQ
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Montserrat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=determine ending relay
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=First, what is the Crown of Thorns? 
+Go to node ID=400 crown of thorns
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Before I go, tell me about the Sacred Lance.
+Go to node ID=500 Sacred Lance
+------------------------------------------------------------
+Node ID=400 crown of thorns
+Text=It is a holy relic, the same thorn-covered Crown worn by Christ during the crucifixion. The Crown was hidden long ago in Montserrat so that the forces of darkness could never use its powers again.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Tell me more about the relics.
+Go to node ID=400 relics explanation
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=400 relics explanation
+Text=The holy relics are objects of great divine power, each possessing the power of creation. In the hands of the pious, they can bring about great things, though wicked hands can use their power to bring about terrible evil. For centuries, it has been the duty of both knight orders to keep the holy relics of the east and west safe.  
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montserrat, just tell me where to go.
+Go to node ID=400 NIS Montserrat Directions
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What is the Crown of Thorns? 
+Go to node ID=400 crown of thorns
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=238 Leave for Montserrat
+Text=I wish you luck and Godspeed on your quest.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 NIS Start
+Text=Amir, we are honored that you and the Knights of Saladin are with us in these dark times.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 NIS Dialogue 2
+------------------------------------------------------------
+Node ID=500 Sacred Lance
+Text=The Sacred Lance is an ancient relic, wielded by a Roman soldier who used it to pierce the body of Christ, drawing his blood and imbuing it with powers. It was one of the relics used by the evil one to invoke the Disjunction. It was hidden centuries ago, but we fear our enemies might have discovered its resting place.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will leave for Montserrat to recover the Lance. 
+Go to node ID=238 Leave for Montserrat
+------------------------------------------------------------
+Node ID=600 nis torquemada joins
+Text=Grand Inquisitor, your presence alone strengthens my resolve and bolsters my hope that we will persevere through these dark times.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 start inquisition nis
+Text=Inquisitor Raphael, it is good to see you again. Thank you for your support.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 nis inquisition jafar explains threat
+Text=As you have no doubt heard, there have been several attempts to steal the True Cross from our care. Even worse, Amir of the Knights of Saladin has reported that several of the relics of the east have been stolen.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 inquisition nis threat explained
+Text=I fear that dark forces intend to gather the relics and use them for some sinister purpose.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 templar nis begin
+Text=My fellow knights, thank you for coming so promptly. We are faced with a grave threat.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=520 before I accept
+Text=Before I accept this gold, please note that once you have given it, and begin your training, you will bear the unmistakable mark of a Knight Templar.  No other faction in Barcelona will have you as their own.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I would like to join the Knights Templar. My resolve is firm.
+Go to node ID=210 give gold
+Action work in progress=Note: (all actions related to taking gold execute on 210 give gold
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need more time to decide.
+Go to node ID=150 no initiate
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 attack javier
+Text=You dare to attack a Knights Templar! Guards! Arrest this criminal!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 return after attack
+Text=If you blaspheme this cathedral again, you will regret it.   
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 Esteban Slain
+Text=This news weighs heavy on my heart. I pray Sir Esteban's killer suffers for this deed. My one comfort is that one day you might fill the void he has left. To that end, you must seek out Sir Auric for the next part of your initiation.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=305 speak with auric 2
+Is Default Reply=1
+}

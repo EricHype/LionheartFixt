@@ -1,0 +1,1231 @@
+CDialogTree
+{
+Name=Machiavelli
+Portrait=Dialog/NPC Portraits/Machiavelli
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=So, are you a mercenary, a soldier, or an aspiring general? By your looks, I would surmise a bit of each, no?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm a mercenary - what I do, I do for gold.
+Go to node ID=10 Mercenary
+Action work in progress=flag warrior
+Custom Action=CActivateAction
+{
+Target Name=Mercenary Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'm a soldier, I follow orders.
+Go to node ID=20 Soldier
+Action work in progress=flag soldier
+Custom Action=CActivateAction
+{
+Target Name=Soldier Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I'm a general, I make my own way.
+Go to node ID=30 General
+Action work in progress=flag general
+Custom Action=CActivateAction
+{
+Target Name=General Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+------------------------------------------------------------
+Node ID=5 Return Dialogue Warrior
+Text=Well, mercenary, have you come to hire out your sword?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=For the right price, yes.
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=I'm not looking for work right now.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=7 Return Dialogue General
+Text=Greetings, general. I still have need of your tactics.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you have in mind?
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you again?
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=I'm not interested in working for you.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=9 Return Dialogue Soldier
+Text=Welcome, I still have need of a loyal soldier.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you need help with?
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you again?
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=I'm not interested in working for you.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Mercenary
+Text=I might have uses for you then, mercenary. A wise ruler needs those who are willing to wage war for gold, unfettered by the chains of morality - though it is the wisest ruler who is wary of the idle mercenary once the war is done.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=For the right price, I might be persuaded to help you.
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=I'm not looking for work right now.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Goodbye
+Text=I trust we will meet again soon.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 Soldier
+Text=A successful ruler knows that there is no component of a nation's army greater than the loyal soldier. I might have need of an honest soul who can be trusted to carry out vital tasks precisely.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I can be trusted. What tasks do you need help with?
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm not interested in working for you.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 General
+Text=An intelligent ruler listens to the strategy of his trusted generals, but a foolish ruler ignores their ambitions. I might have need of your tactics and your discretion. Do you think you could be of service?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you have in mind?
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm not interested in working for you.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Machiavelli
+Text=As I already know you, what you ask is a fair question. I am Niccolo Machiavelli, statesman and philosopher of the nation once known as Florence.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=What do you have in mind?
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm not interested in working for you.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=How do you know me?
+Go to node ID=90 Mach heard of you
+
+Requirement=!None
+Reply Text=What happened to Florence?
+Go to node ID=80 Florence
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Task
+Text=There is nothing more difficult to take in hand, more perilous to conduct, or more uncertain in its success, than to take the lead in the introduction of a new order of things. I have plans to bring about great changes to Barcelona and my homeland of Florence, to restore authority and power to those more deserving than the current regime.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=75 Task 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=75 Task 2
+Text=These plans have earned me dangerous opponents that seek to end my ambitions and my life. I need a guardian that would protect me against these unseen enemies. In return for your help, I would recompense you substantially.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm interested. You can count on me for support.
+Go to node ID=100 accept task
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+State=ARQVI29J
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm not interested. Find someone else.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Florence
+Text=Cultural and political genocide. First, the Mongols invaded Italy. Then our *allies* from the Spanish Inquisition saved Italy, but never relinquished the reins of power. Few remember the days when Italian Princes ruled my beloved land.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm interested in this job you mentioned.
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Reply Text=Nevertheless, I imagine Italy has been strengthened under the protection of the Inquisition.
+Go to node ID=81 Inquisition
+Action work in progress=(Faction bonus for Inquisition, once only)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=gavekarma
+Desired Minimum Count=1
+}
+}
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add 75 Karma
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=gavekarma
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+
+Requirement=Inquisitor NOT
+Reply Text=Nevertheless, I imagine Italy has been strengthened under the protection of the Inquisition.
+Go to node ID=82 Not Inquisition
+Action work in progress=(Faction bonus for Inquisition, once only)
+
+Requirement=!None
+Reply Text=Tell me about the Mongol invasion.
+Go to node ID=85 Mongols
+
+Requirement=!None
+Reply Text=Why does the Inquisition still control Italy?
+Go to node ID=87 Spain
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm not interested in working for you. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=81 Inquisition
+Text=No, in fact, it has weakened both Italy *and* Spain, Inquisitor. Ask your brothers of the cloth how much time is spent in petty Italian politics, when they could be seeking heretics and serving God?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=84 Inquisition 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=82 Not Inquisition
+Text=Can it be you are an Inquisition spy, sent to find out what I know? No, if you were, I would know it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=83 Not Inquisition 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=83 Not Inquisition 2
+Text=But to answer your question, the Inquisition's presence in Italy has weakened both Italy *and* Spain. The Inquisition loses its strength and focus when it is forced to deal in petty Italian politics when it should be seeking magic-using heretics, no?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm interested in this job you mentioned.
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I see. Tell me about the Mongol invasion.
+Go to node ID=85 Mongols
+
+Requirement=!None
+Reply Text=Why does Spain still control Italy?
+Go to node ID=87 Spain
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm not interested in working for you. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=84 Inquisition 2
+Text=I do not deny the good the Inquisition has done...I would just have it done elsewhere, *not* in Italy.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm interested in this job you mentioned.
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I see. Tell me about the Mongol invasion.
+Go to node ID=85 Mongols
+
+Requirement=!None
+Reply Text=Why does Spain still control Italy?
+Go to node ID=87 Spain
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm not interested in working for you. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=85 Mongols
+Text=In 1249, the Golden Horde, led by Batu Khan, crushed the armies of Eastern Europe and rampaged through the states of Italy. Most of the politicians and clergy fled to Spain.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=86 Mongols 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=86 Mongols 2
+Text=It took the combined might of eastern and western armies to drive the horde back, but not before they ruined my beautiful homeland. Since then, Spain and the Inquisition have ruled Italy.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm interested in that task you spoke of earlier.
+Go to node ID=70 Task
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Reply Text=I imagine Italy has been strengthened under the protection of the Inquisition.
+Go to node ID=81 Inquisition
+Action work in progress=(Faction bonus for Inquisition, once only)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=gavekarma
+Desired Minimum Count=1
+}
+}
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add 75 Karma
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=gavekarma
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+
+Requirement=Inquisitor NOT
+Reply Text=I imagine Italy has been strengthened under the protection of the Inquisition.
+Go to node ID=82 Not Inquisition
+Action work in progress=(Faction bonus for Inquisition, once only)
+
+Requirement=!None
+Reply Text=Why does Spain still control Italy?
+Go to node ID=87 Spain
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm not interested in working for you. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=87 Spain
+Text=Reinforcements from Spain and France helped to drive the Mongols away, but Spain never removed their armies from my homeland. Now their Inquisition still rules there.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=88 Spain 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=88 Spain 2
+Text=I seek to gain the title of Regent of Barcelona so that one day I may help Italy regain its independence. It is ambitious, yes; though ambition is so powerful a passion in the human breast, that however high we reach we are never satisfied. 
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm interested in that task you spoke of earlier.
+Go to node ID=70 Task
+
+Requirement=Inquisitor IS
+Reply Text=I imagine Italy has been strengthened under the protection of the Inquisition.
+Go to node ID=81 Inquisition
+Action work in progress=(Faction bonus for Inquisition, once only)
+
+Requirement=Inquisitor NOT
+Reply Text=I imagine Italy has been strengthened under the protection of the Inquisition.
+Go to node ID=82 Not Inquisition
+Action work in progress=(Faction bonus for Inquisition, once only)
+
+Requirement=!None
+Reply Text=Tell me about the Mongol invasion.
+Go to node ID=85 Mongols
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Reply Text=I'm not interested in working for you. Goodbye.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Mach heard of you
+Text=Few events transpire in Barcelona without my knowledge. Again, are you interested in a task?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What do you have in mind?
+Go to node ID=70 Task
+
+Requirement=!None
+Reply Text=I'm not interested in working for you. Goodbye.
+Go to node ID=15 Goodbye
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 accept task
+Text=One of the most efficacious remedies that a ruler can have against conspiracies is not to be hated. But if you are hated, one must prepare for the eventuality of conflict. Guard my house well, inside and out, and you will be rewarded handsomely.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mach Under Attack Poly
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Temple District
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Machiavelli Attacked when you leave his building
+Text=<Screams from inside the house> Wait! Stop! This is a misunderstanding! I honored the contract! What...Get away from me! Nooo!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 Saved Machiavelli Return Greeting
+Text=Thank you for saving me, you have certainly earned your payment. I had no idea they could reach me so soon! It is not safe for me here now...I must depart immediately.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Before you go anywhere, you must tell me about those creatures.
+Go to node ID=210 Assassins
+
+Requirement=!None
+Reply Text=Good luck then and farewell.
+Go to node ID=
+Custom Action=CSendAIDoneMessage
+{
+Target=Machiavelli
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=201 not helping
+Text=You think they only wish to harm *me*? I will tell you a secret, for now I have nothing to lose.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=202 not helping 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=202 not helping 2
+Text=You must understand, those assassins coerced me to enter a contract to find one such as yourself, a person imbued with a spirit with great power. They manipulated me and the slavers to find *you*.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 45
+Reply Text=You must pay for your crimes, Machiavelli. You would be wise to compensate me well for your deeds.
+Go to node ID=2000 ransom
+Icon=Barter Skill Icon
+
+Requirement=Speech moreequal 45
+Reply Text=There is more to this story. A man such as yourself must stand to gain from such a relationship.
+Go to node ID=203 not helping 3
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You are a coward and liar. Leave my sight before I decide not to spare you.
+Go to node ID=215 reject offer
+
+Requirement=!None
+Reply Text=For allying with the assassins, you have earned a swift death.
+Go to node ID=250 combat
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Character to get attributes from=$Instigator
+}
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Character to get attributes from=$Instigator
+}
+}
+Early Exit=0
+}
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add positive faction
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have heard enough, Machiavelli. Leave Barcelona and do not return.
+Go to node ID=215 reject offer
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=203 not helping 3
+Text=Yes, in exchange for my aid, they performed a deed for me. But when I moved to end the partnership, they sent their assassins. Forgive me, I did not want to wrong you.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 45
+Reply Text=You must pay for your crimes, Machiavelli. You would be wise to compensate me well for your deeds.
+Go to node ID=2000 ransom
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Wait, what "deed" did they do for you?
+Go to node ID=207 Phillip II
+
+Requirement=!None
+Reply Text=I forgive you, Machiavelli. You may go in peace.
+Go to node ID=220 partners
+
+Requirement=!None
+Reply Text=If you sent those slavers after me, then I hope you're ready to die.
+Go to node ID=250 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I want nothing more to do with you. Goodbye.
+Go to node ID=215 reject offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=207 Phillip II
+Text=Both the Master of Assassins and I had a mutual enemy - Phillip II, King of Spain. Phillip's refusal to remove Spanish forces from Italy interfered with my plans to bring independence to my homeland.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=208 Phillip II 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=208 Phillip II 2
+Text=My blind ambitions clouded my judgement and I regret my actions. But the deed is done and the blood is spilled. We must both take precautions against the assassins.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 45
+Reply Text=You must pay for your crimes, Machiavelli. You would be wise to compensate me well for your deeds.
+Go to node ID=2000 ransom
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=You sent slavers after me, orchestrated the death of the King of Spain, now you ask if we can be allies? An alliance with you is the last thing I need.
+Go to node ID=215 reject offer
+
+Requirement=!None
+Reply Text=Justice demands that you die for slaying the sovereign of Spain.
+Go to node ID=250 combat
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Character to get attributes from=$Instigator
+}
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Character to get attributes from=$Instigator
+}
+}
+Early Exit=0
+}
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add positive faction
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You allied with the assassins to capture me and now you ask forgiveness? You should ask for a swift death!
+Go to node ID=250 combat
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Character to get attributes from=$Instigator
+}
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Character to get attributes from=$Instigator
+}
+}
+Early Exit=0
+}
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add positive faction
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I want nothing to do with you. Goodbye.
+Go to node ID=215 reject offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 Assassins
+Text=Those were creatures sent by the infidel assassins from the East, the same assassins that attempted to take you as you lay in the Slaver Cells. If you protect me, I will help you find out their identities. We must help each other!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How did you know about the assassins and the slavers? Explain yourself immediately, or you'll have more to fear from me!
+Go to node ID=202 not helping 2
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I've heard enough. Be on your way.
+Go to node ID=215 reject offer
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=215 reject offer
+Text=So be it. We go our separate paths. Know that I will do what I must to survive this, and I expect you to do the same. Farewell, Scion of Lionheart.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(flag future ambush)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+State=YXM0VKCC
+}
+Action=CSendAIDoneMessage
+{
+Target=Machiavelli
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 partners
+Text=Since I neither possess your combat prowess nor can I trust anyone in the city, I must go into hiding. A wise prince knows that there is no avoiding conflict, it can only be postponed to the advantage of others. Farewell, and thank you for your aid.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Mach leaves)
+Custom Action=CSendAIDoneMessage
+{
+Target=Machiavelli
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=230 ambush greeting if you don't help mach
+Text=Since you were unwilling to form a partnership, you forced me to seek aid from those that seek to do us harm. It turns out that you have a most formidable enemy, Lionheart.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=231 ambush greeting if you don't help mach 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=231 ambush greeting if you don't help mach 2
+Text=It is fortunate for me and unfortunate for you that events transpired as they did. Farewell, we will not see each other again.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=machiavelli ambush
+}
+Action work in progress=(Mach ambushes you at his building with assasins)
+------------------------------------------------------------
+Node ID=250 combat
+Text=If it's violence you seek, you will soon discover I am not entirely without combat skills.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=Machiavelli
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=255 help me
+Text=Help me! Stop these assassins!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=16 Return Dialogue Warrior Have Quest
+Text=Mercenary, welcome back. Have you seen anything suspicious yet?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have seen nothing yet. Now, tell me about yourself.
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=No, but I am still vigilant. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=17 Return Dialogue Soldier Have Quest
+Text=Soldier, welcome back. Have you seen anything suspicious yet?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have seen nothing yet. Now, tell me about yourself.
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=No, but I am still vigilant. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=18 Return Dialogue General Have Quest
+Text=General, welcome back. Have you seen anything suspicious yet?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have seen nothing yet. Now, tell me about yourself.
+Go to node ID=50 Machiavelli
+
+Requirement=!None
+Reply Text=No, but I am still vigilant. Goodbye.
+Go to node ID=15 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 machiavelli helps you in montaillou
+Text=I am a man of my word. You saved my life in Barcelona and I would like to repay my debt to you. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=300 machiavelli helps you in montaillou 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 machiavelli helps you in montaillou 2
+Text=The assassins have been tracking me since I fled the city, and they are still seeking *you* as well. They are here, in France, seeking to slay us both.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=300 machiavelli helps you in montaillou 3
+------------------------------------------------------------
+Node ID=300 machiavelli helps you in montaillou 3
+Text=I have managed to gather resources from allies in this region. I will share my supplies with you, and with that, repay my debt. Beware the Old Man from the east, his assassins will never stop hunting you. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=2000 ransom
+Text=If gold will buy my life, so be it. Take these coins and guard yourself well. We will not see each other again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CSendAIDoneMessage
+{
+Target=Machiavelli
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+}
