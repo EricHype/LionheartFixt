@@ -1,0 +1,54 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_potion.ogg
+				Position=$Trigger
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_potion.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=100
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Potion_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Fernand's Healing Draught
+	Description=A potent healing draught from the sailor Fernand, meant for his brother Juan. It is not for drinking.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Misc Items/Potion Extra Healing
+		Better=Items/Inventory Images/Misc Items/Potion Extra Healing
+		Special=Items/Inventory Images/Misc Items/Potion Extra Healing
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/!None
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Quest Items
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
+}
