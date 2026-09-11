@@ -74739,11 +74739,10 @@ CLayerSaveData
 								Who to give to=Player#1-9#
 								Delete Trigger=0
 								Notify Player=1
-								Inventory Item To Give=Inventory Items/Potion
+								Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
 								Additions to add=Array
 								{
-									Item Count=1
-									Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Extra Healing
+									Item Count=0
 								}
 							}
 							Action=CRemoveAIAction
@@ -78167,26 +78166,26 @@ CLayerSaveData
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
 							Action=CIfAction
 							{
-								If=CIsQuestStateTheCurrentStateAction
+								If=CCheckExistenceAction
 								{
-									Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
-									State=JUA1LIVE
+									Name To Check For=told fernand juan lives
+									Desired Minimum Count=1
 								}
-								Then=CIfAction
+								Then=CDisplayDialogTreeAction
 								{
-									If=CCheckExistenceAction
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
+									Node ID=1 return after saving juan
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
+								}
+								Else=CIfAction
+								{
+									If=CIsQuestStateTheCurrentStateAction
 									{
-										Name To Check For=told fernand juan lives
-										Desired Minimum Count=1
+										Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+										State=JUA1LIVE
 									}
-									Then=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
-										Node ID=1 return after saving juan
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
-									}
-									Else=CMultipleActionsAction
+									Then=CMultipleActionsAction
 									{
 										Action=Array
 										{
@@ -78216,27 +78215,27 @@ CLayerSaveData
 											}
 										}
 									}
-									Return failure if the If failes=0
-								}
-								Else=CIfAction
-								{
-									If=CWasQuestEverActivatedAction
+									Else=CIfAction
 									{
-										Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
-									}
-									Then=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
-										Node ID=1 Return 2
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
-									}
-									Else=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
-										Node ID=1 Return
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										If=CWasQuestEverActivatedAction
+										{
+											Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
+											Node ID=1 Return 2
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
+											Node ID=1 Return
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Return failure if the If failes=0
 									}
 									Return failure if the If failes=0
 								}
@@ -79027,7 +79026,7 @@ CLayerSaveData
 											If=CActionCheckForInventoryItem
 											{
 												Who to give check=$instigator
-												Inventory Item To Check For=Inventory Items/Potion
+												Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
 											}
 											Then=CMultipleActionsAction
 											{
@@ -79037,7 +79036,7 @@ CLayerSaveData
 													Action=CActionRemoveInventoryItem
 													{
 														Who to remove from=$instigator
-														Inventory Item To remove=Inventory Items/Potion
+														Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
 													}
 													Action=CRemoveCategoryAction
 													{
