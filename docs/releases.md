@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.8.2 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.8.3 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -696,6 +696,15 @@ Hold Tier 3 (now nine items, including Sanchez's money-ladder arm) and Tier 4 fo
 Juan rescue and 0.7.0 is entirely unplayed, including a change to a late-game promotion that
 affects every faction combination. Tier 1 here would add a second Inquisition quest on top of
 that untested pile. Playing what exists is still worth more than building more of it.
+
+## 0.8.3 - repairs
+
+**Published.** Repair only, cut on a branch from `v0.8.2`. The Amir / Favored One change -- see
+the 0.9.0 section "One faction, one rank -- and Amir's replies on the wrong node" for the full
+account. In short: Amir's Montserrat replies moved to the greeting a Favored One actually gets;
+Saladin content gates on the Crescent title rather than the faction, because a character holds
+one faction and the trials had been defrocking sworn players; the Djinni assigns Saladin Aswaran
+only to a player with no order.
 
 ## 0.8.2 - repairs
 
