@@ -10231,16 +10231,11 @@ State=QN8HD4LM
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CIsGreaterThanOrEqual
+Custom Requirement=CActionExpression
 {
-Operand1=CVariableDerivedCharacterAttribute
+Action=CIsQuestCompletedAction
 {
-Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
-}
-Operator=
-Operand2=CConstant
-{
-Constant Value=1
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
 }
 }
 Reply Text=What have you set aside for me?
@@ -12173,16 +12168,11 @@ Text=<He reaches under the counter without being asked.> I keep a little back fo
 Should Have Voiceover=0
 
 Requirement=!None
-Custom Requirement=CIsGreaterThan
+Custom Requirement=CActionExpression
 {
-Operand1=CVariableDerivedCharacterAttribute
+Action=CIsQuestCompletedAction
 {
-Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
-}
-Operator=
-Operand2=CConstant
-{
-Constant Value=2
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
 }
 }
 Reply Text=Let me see it.
@@ -12195,16 +12185,25 @@ After Closed Action=
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CIsEqualTo
+Custom Requirement=CAND
 {
-Operand1=CVariableDerivedCharacterAttribute
+Operand1=CActionExpression
 {
-Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
 }
 Operator=
-Operand2=CConstant
+Operand2=CActionExpression
 {
-Constant Value=2
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
 }
 }
 Reply Text=Let me see it.
@@ -12217,16 +12216,25 @@ After Closed Action=
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CIsEqualTo
+Custom Requirement=CAND
 {
-Operand1=CVariableDerivedCharacterAttribute
+Operand1=CActionExpression
 {
-Character Attribute=Derived Character Attributes/Game Scripting Variables/Quinn Reagents Delivered
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
 }
 Operator=
-Operand2=CConstant
+Operand2=CActionExpression
 {
-Constant Value=1
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
 }
 }
 Reply Text=Let me see it.
