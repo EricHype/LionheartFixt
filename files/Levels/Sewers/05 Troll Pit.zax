@@ -230,12 +230,17 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=9
+							Item Count=12
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=Lava Troll
 								Name To Target=
 								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Lava Troll
+								Categories To Remove=Enemy
 							}
 							Action=CRemoveAIAction
 							{
@@ -315,6 +320,11 @@ CLayerSaveData
 								Name To Target=
 								Valid Targets=
 							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Troll Chief
+								Categories To Remove=Enemy
+							}
 							Action=CRemoveAIAction
 							{
 								Target Name=Troll Chief
@@ -365,6 +375,11 @@ CLayerSaveData
 								Entity Name=warning troll
 								Name To Target=
 								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=warning troll
+								Categories To Remove=Enemy
 							}
 							Action=CRemoveAIAction
 							{
@@ -2011,13 +2026,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=5.02655
 					Angle Variation=0.785398
@@ -2779,13 +2901,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=0.349066
 					Angle Variation=1.0472
@@ -3955,13 +4184,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=0.20944
 					Angle Variation=0.785398
@@ -5359,13 +5695,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=3.14159
@@ -6320,13 +6763,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=3.07178
 					Angle Variation=0.785398
@@ -8373,13 +8923,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=0.349066
 					Angle Variation=1.0472
@@ -8968,13 +9625,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=3.14159
@@ -11597,13 +12361,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=3.14159
@@ -11929,13 +12800,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=0.785398
@@ -12812,13 +13790,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=3.14159
@@ -14268,13 +15353,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=4.66003
 					Angle Variation=0.785398
@@ -17570,13 +18762,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=3.14159
@@ -17869,31 +19168,111 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CMultipleActionsAction
+						Action=Array
 						{
-							Action=Array
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
 							{
-								Item Count=3
-								Action=CTriggerRelayAction
+								New Destroyed Action=CMultipleActionsAction
 								{
-									Relay Name=Trolls dead quest
+									Action=Array
+									{
+										Item Count=3
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Trolls dead quest
+										}
+										Action=CDeactivateAction
+										{
+											Target Name=Ambient just monsters Sewers SFX
+										}
+										Action=CActivateAction
+										{
+											Target Name=Ambient NO MONSTERS Sewers SFX
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+									}
 								}
-								Action=CDeactivateAction
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
 								{
-									Target Name=Ambient just monsters Sewers SFX
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
 								}
-								Action=CActivateAction
+								Then=CMultipleActionsAction
 								{
-									Target Name=Ambient NO MONSTERS Sewers SFX
-									Play Activate Sound=0
-									Delay Between Activations=0
-									Warp Behavior=
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+													Node ID=95 the chief
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												X Radius=70
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
 								}
+								Else=
+								Return failure if the If failes=0
 							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=2.70526
 					Angle Variation=0.785398
@@ -20743,13 +22122,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=3.14159
@@ -25680,13 +27166,120 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Trolls dead quest
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=Trolls dead quest
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=Troll Peace Keeper
+									Desired Minimum Count=1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CShuffledSeriesAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 1
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 2
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+															Node ID=90 troll bark 3
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												X Radius=55
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=Any Direction
 					Angle Variation=3.14159
