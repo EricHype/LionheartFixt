@@ -25226,6 +25226,16 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
+					After Action=CDelayAction
+					{
+						Next Action=CTriggerRelayAction
+						{
+							Relay Name=Make unspawned beggar mad at player
+						}
+						Delay=0
+						Plus or Minus=0
+						Forget Trigger=0
+					}
 					New Facing Angle=3.14159
 					Angle Variation=0
 				}
@@ -51385,7 +51395,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=7
+							Item Count=8
 							Action=CDeactivateAction
 							{
 								Target Name=Beggar enemy trigger
@@ -51422,6 +51432,16 @@ CLayerSaveData
 								Next Action=CGoToCombatAction
 								{
 									Enemy Name=Enrique Garcia
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CGoToCombatAction
+								{
+									Enemy Name=Helpful Wererat
 								}
 								Delay=0
 								Plus or Minus=0
