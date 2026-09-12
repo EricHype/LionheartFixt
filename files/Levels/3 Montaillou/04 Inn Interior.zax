@@ -1684,7 +1684,7 @@ CLayerSaveData
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
 							Action=CIfAction
 							{
-								If=CIsQuestStateTheCurrentStateAction
+								If=CWasQuestStateActivatedAction
 								{
 									Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
 									State=YXM0VKCC
@@ -2788,7 +2788,7 @@ CLayerSaveData
 					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
 					Action=CIfAction
 					{
-						If=CIsQuestStateTheCurrentStateAction
+						If=CWasQuestStateActivatedAction
 						{
 							Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
 							State=W2WPNZJI
@@ -2802,7 +2802,7 @@ CLayerSaveData
 						}
 						Else=CIfAction
 						{
-							If=CIsQuestStateTheCurrentStateAction
+							If=CWasQuestStateActivatedAction
 							{
 								Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
 								State=YXM0VKCC
