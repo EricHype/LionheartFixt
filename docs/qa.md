@@ -1324,6 +1324,7 @@ both completed Gate 2. Record the result here per release.
 | 0.6.0 | PASS (automated) | PASS | partial | - | - | - | **published; played only as far as the Juan rescue** |
 | 0.7.0 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
 | 0.8.0 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
+| 0.8.1 | PASS (automated) | - | - | - | - | - | **published as repair; fixes three played defects, itself unplayed** |
 | 0.9.0 | PASS (automated) | - | - | - | - | - | **not started, entirely unplayed** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were

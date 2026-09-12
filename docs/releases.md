@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.8.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.8.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -639,6 +639,34 @@ Hold Tier 3 (now nine items, including Sanchez's money-ladder arm) and Tier 4 fo
 Juan rescue and 0.7.0 is entirely unplayed, including a change to a late-game promotion that
 affects every faction combination. Tier 1 here would add a second Inquisition quest on top of
 that untested pile. Playing what exists is still worth more than building more of it.
+
+## 0.8.1 - repairs
+
+**Published.** Repair only, cut on a branch from `v0.8.0` so the unpublished 0.9.0 work on `main`
+did not ship with it. Three fixes, each found by playing the feature it fixes, and each the same
+class of defect: byte-correct on disk, green on every automated gate, wrong on a timing or state
+detail only the running game shows.
+
+- **The wrong bottle.** The Juan rescue checked for `Inventory Items/Potion`, the generic base,
+  and the engine's inventory check has no addition filter -- exactly two fields across 653 vanilla
+  uses -- so any potion satisfied it. Vanilla's own answer to "a specific potion" is a specific
+  item can, so Fernand now gives `Potion Fernand Healing`, a quest item cloned from the
+  Lycanthropy Cure that cannot be drunk, and the rescue checks for it by name. Open question,
+  deliberately left: making the draught drinkable would restore the *sacrifice* of spending a
+  real healing potion on him, at the cost of letting a player strand the rescue by drinking it.
+- **Fernand forgets.** Reporting back completes the quest; a completed quest has no current
+  state; the `told fernand juan lives` flag sat inside the JUA1LIVE test and was never consulted
+  again. It is now the outermost test. A wrong theory is recorded in the commit -- that the 2.5s
+  delayed block never fired -- disproved by the tester having seen the acknowledgment.
+- **The troll that won the race.** Trolls spawn hostile and the keeper pacifies on a 2-second
+  timer; a troll spawning beside the player in the far-left alcove can lock on inside that
+  window, and no vanilla action releases a locked target. All 15 generators now pacify at spawn
+  while the keeper is active, and both use vanilla's full stand-down idiom (target type *and*
+  `CRemoveCategoryAction{Enemy}`).
+- **The Helpful Wererat.** His tree's header was the writers' working title; now
+  `Helpful Wererat`. He is on `Beggar enemy trigger`'s named list and his generator pings
+  `Make unspawned beggar mad at player`, so he turns with the beggars whether already present or
+  spawned into a hall turned from the other Sewers map.
 
 ## 0.8.0 - the Gate District remainder (scope)
 
