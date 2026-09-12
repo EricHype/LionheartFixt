@@ -651,9 +651,12 @@ detail only the running game shows.
   and the engine's inventory check has no addition filter -- exactly two fields across 653 vanilla
   uses -- so any potion satisfied it. Vanilla's own answer to "a specific potion" is a specific
   item can, so Fernand now gives `Potion Fernand Healing`, a quest item cloned from the
-  Lycanthropy Cure that cannot be drunk, and the rescue checks for it by name. Open question,
-  deliberately left: making the draught drinkable would restore the *sacrifice* of spending a
-  real healing potion on him, at the cost of letting a player strand the rescue by drinking it.
+  Lycanthropy Cure that cannot be drunk, and the rescue checks for it by name. 0.8.1 shipped it
+  undrinkable. **Decided after: drinkable.** On `main` the draught is now a real Extra Healing
+  potion -- Potion Luck's envelope with the Extra Healing addition's drink behaviour copied
+  verbatim -- so saving Juan costs a potion you could have used yourself. A player who drinks it
+  cannot save him; that is the sacrifice, made real for the first time, since in 0.6.0 as shipped
+  any other bottle would do. Ships with 0.9.0.
 - **Fernand forgets.** Reporting back completes the quest; a completed quest has no current
   state; the `told fernand juan lives` flag sat inside the JUA1LIVE test and was never consulted
   again. It is now the outermost test. A wrong theory is recorded in the commit -- that the 2.5s
