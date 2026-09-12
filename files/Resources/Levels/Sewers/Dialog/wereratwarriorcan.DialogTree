@@ -1,0 +1,57 @@
+CDialogTree
+{
+Name=Helpful Wererat
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Since you are a friend of beasts, I'll give you some advice. Never trust a thief and beware of the lava trolls.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where are the thieves?
+Go to node ID=20 thieves
+
+Requirement=!None
+Reply Text=Where are the lava trolls?
+Go to node ID=30 trolls
+
+Requirement=!None
+Reply Text=Goodbye
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=<The wererat nods>.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 thieves
+Text=They control the eastern sewer corridors and hide within a maze of secret corridors. Their passageways are filled with traps, so be careful when you hunt them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where are the lava trolls?
+Go to node ID=30 trolls
+
+Requirement=!None
+Reply Text=Goodbye
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 trolls
+Text=The lava trolls are in the lower levels of the sewers. I suggest you avoid them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where are the thieves?
+Go to node ID=20 thieves
+
+Requirement=!None
+Reply Text=Goodbye
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+}
