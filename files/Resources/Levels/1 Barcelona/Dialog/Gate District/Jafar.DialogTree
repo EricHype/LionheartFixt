@@ -71,7 +71,7 @@ Custom Requirement=CAND
 {
 Operand1=CUseCannedExpressionExpression
 {
-Canned Expression=Dialog/Requirements/Faction/Saladin IS
+Canned Expression=Dialog/Requirements/Faction/Saladin Favored
 }
 Operator=
 Operand2=CExpressionNot
@@ -94,7 +94,7 @@ Custom Requirement=CAND
 {
 Operand1=CUseCannedExpressionExpression
 {
-Canned Expression=Dialog/Requirements/Faction/Saladin IS
+Canned Expression=Dialog/Requirements/Faction/Saladin Favored
 }
 Operator=
 Operand2=CActionExpression
@@ -2516,6 +2516,49 @@ Desired Minimum Count=1
 }
 Reply Text=Do you know anything about the hidden corpse to the east?
 Go to node ID=500 report murder continued
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin Favored
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat
+}
+}
+}
+}
+Reply Text=What troubles the Order, Amir?
+Go to node ID=400 next duty
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin Favored
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Reply Text=I have returned from Montserrat.
+Go to node ID=500 Return from Montaillou
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=1000 infidel
 Text=Infidel!

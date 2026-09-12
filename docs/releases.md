@@ -402,6 +402,63 @@ architecture and the Inquisition is written to be exactly like this, so it ships
 noted here rather than left implicit, because it is a real change in what the mod hands a player
 and it should be a decision on the record rather than a side effect.
 
+### One faction, one rank -- and Amir's replies on the wrong node
+
+**Played, and it overturned a premise two releases were built on.** Amir offered no Montserrat
+directions to a tester who had just won the Dream Djinni's trials. Two causes, one shallow and
+one deep.
+
+**The shallow one.** Amir's generator picks his greeting in this order: `passed trials` ->
+`650 Favored one`; `passed on Dream Djinn` -> `600 ready to resume`; the initiation quest
+current -> `230 knight of saladin`; otherwise `3 Return Dialogue`. 0.7.0 put both replies on
+`3 Return Dialogue`, which a Favored One never sees again. Same shape as the Trapper fix on one
+of seven copies: content on a node the player no longer reaches.
+
+**The deep one.** The tester's saves, read in order:
+
+| save | `Faction=` | rank attribute |
+|---|---|---|
+| before the trials | Inquisitor Acolyte | Inquisition Rank=1 |
+| after the trials | **Saladin Aswaran** | Saladin Rank=1, **Inquisition gone** |
+| after Raphael's promotion | Inquisitor Inquisitor | Inquisition Rank=1, **Saladin gone** |
+
+A character holds one `Faction=`. `CAssignFactionToCharacterAction` replaces it, and the
+`.Faction` record's `CPlugInBehaviorModifyCharacterWhenSelected` modifiers -- including the +1
+rank -- are removed on deselection despite `Modification is permanent=1`. So `Saladin IS`
+(Saladin Rank > 0) is true only while Saladin is the player's *current* order, 0.3.0's
+"join Saladin alongside your order" was never possible, and the trials were silently defrocking
+sworn Inquisitors and Templars -- and their next promotion was silently defrocking the Knight.
+Vanilla knew: Cedric refuses Wielder initiation to anyone already sworn. 0.3.0 added no such
+guard.
+
+**Decision: gate Saladin content on being a Favored One, not on the faction.** That is
+vanilla's own vocabulary -- `650 Favored one` is gated on `passed trials`, not on rank -- and the
+Crescent perks survive faction changes, which the tester's save proves.
+
+- `Dialog/Requirements/Faction/Saladin Favored` -- new canned expression: has Dervish OR Scholar
+  of the Crescent. `CHasPerkExpression` is used bare in three vanilla `Custom Requirement`s and
+  as an `Operand` fourteen times, so both positions are shipped idiom.
+- Amir's two replies gate on it and now sit on `650 Favored one` as well as `3 Return Dialogue`.
+- The Knight of Saladin's brother/sister greeting gates on it (map-side; fresh save).
+- **The Djinni no longer defrocks.** Both `Saladin Aswaran` assignments are guarded on holding
+  no order: `NOT Templar or Inquisitor`, `Wielder NOT`, `Goblin Horde NOT`. A sworn player keeps
+  their order and gains the title; an unaffiliated one becomes a Knight of Saladin with the
+  stat bonuses.
+
+**Left rank-based on purpose**, because each of them would otherwise overwrite a real order:
+the Ways Crystal promotes the order you currently hold; the Cathedral summit plays the scene for
+the order that sent you north (its dispatcher reads the `if inquisition` / `if templar` /
+`if wielder` event flags, with Saladin as the fall-through -- so the Saladin summit plays only
+for a character who went north through Amir and nobody else); Amir's Blessed promotion stays
+guarded on `Saladin Rank == 1`.
+
+**Still open, and the saves cannot settle it:** whether same-family promotion accumulates
+(Acolyte -> Inquisitor = rank 2) or replaces (= 1). Every `.Faction` says
+`Allow Accumulation=1`, which reads as intent to stack, but the tester's path had Saladin in
+between and cannot distinguish the cases. If promotion replaces, every `Mid Level` and
+`Highlevel` check in the game is dead, including 0.7.0's Blessed/Exalted ladder. The next clean
+data point is this character's promotion to Hallowed.
+
 ### The Cathar friend, and the cave that was not empty
 
 Not in the original scope at all. It came out of the dryad investigation and is the better find.
@@ -1052,6 +1109,13 @@ This is the fourth instance of one shape: a faction branch with three arms and a
 fourth. `Choose NIS Player` in the Cathedral has the same gap.
 
 #### The orders are not exclusive, so the crystal now honours all of them
+
+**CORRECTED BY PLAY -- see the 0.9.0 section "One faction, one rank". The paragraph below is
+wrong.** A character holds one `Faction=` and one live rank; assigning another faction replaces
+it and removes the old rank, "permanent" or not. A tester's saves showed the Djinni trials
+replacing Inquisitor Acolyte with Saladin Aswaran (Inquisition rank gone), and Raphael's
+promotion then replacing Saladin (Saladin rank gone). The four-arm crystal below still behaves
+acceptably, by accident: only one rank is ever above zero, so only one arm fires.
 
 Adding a fourth arm to the chain was not enough, and the reason is worth recording:
 **faction membership is not exclusive.** None of the four joins -- Templar Squire,
