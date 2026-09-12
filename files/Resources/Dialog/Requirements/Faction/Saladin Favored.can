@@ -1,0 +1,24 @@
+CCannedObject
+{
+	Object=COR
+	{
+		Operand1=CHasPerkExpression
+		{
+			Perks To Check For=Array
+			{
+				Item Count=1
+				Perk To Check For=Perks/!NPC or Event Given Perks/Dervish of the Crescent
+			}
+		}
+		Operator=
+		Operand2=CHasPerkExpression
+		{
+			Perks To Check For=Array
+			{
+				Item Count=1
+				Perk To Check For=Perks/!NPC or Event Given Perks/Scholar of the Crescent
+			}
+		}
+	}
+	Use=Shared Global Instance
+}
