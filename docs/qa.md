@@ -963,7 +963,7 @@ is in the Gate District; the offers sit under *"I have other questions"*.
 | Q3 | " | Same **with** the Trapper perk | The quality pelts are accepted too. **This is the case that was broken**: a Trapper gets `Wolf Pelt Perk Quality` and the turn-in only took the plain pelt, so the perk locked you out of the errand |
 | Q3b | " | Mix them -- some plain, some quality | Any three count, in any combination |
 | Q4 | Quinn, after Q2/Q3 | Ask again | He asks for **five wasp stingers**. The pelt errand is gone |
-| Q5 | " | Try to turn in with four | Nothing happens, and no stingers are taken |
+| Q5 | " | Try to turn in with four | He counts, pushes them back, and says to bring all five. **No stingers are taken** -- 0.8.2; before it, four were consumed and the success speech played |
 | Q6 | Ravine Cave West / Scar Ravine | Kill **Cursed or Tainted** wasps | Stingers drop. Plain wasps give none -- 6 of the 9 cans carry it |
 | Q7 | Quinn | Turn in five | Accepted; the errand advances |
 | Q8 | " | Ask again | He asks for a **lava troll hide**, and mentions the trolls are not animals |
@@ -1325,6 +1325,7 @@ both completed Gate 2. Record the result here per release.
 | 0.7.0 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
 | 0.8.0 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
 | 0.8.1 | PASS (automated) | - | - | - | - | - | **published as repair; fixes three played defects, itself unplayed** |
+| 0.8.2 | PASS (automated) | - | - | - | - | - | **published as repair; five played Quinn defects, itself unplayed** |
 | 0.9.0 | PASS (automated) | - | - | - | - | - | **not started, entirely unplayed** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were

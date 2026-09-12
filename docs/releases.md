@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.8.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.8.2 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -640,6 +640,36 @@ Juan rescue and 0.7.0 is entirely unplayed, including a change to a late-game pr
 affects every faction combination. Tier 1 here would add a second Inquisition quest on top of
 that untested pile. Playing what exists is still worth more than building more of it.
 
+## 0.8.2 - repairs
+
+**Published.** Repair only, cut on a branch from `v0.8.1`. Quinn's three reagent errands from
+0.4.0, played for the first time, plus the drinkable draught decided after 0.8.1.
+
+- **A `[TEST]` XP reply was live**, ungated, inherited from the very first mod. Removed.
+- **Completed errands were re-offered**, and re-activated. The offer guard was
+  `NOT CIsQuestStateTheCurrentStateAction`, which passes again the moment the quest completes.
+  All three now gate on `NOT CWasQuestEverActivatedAction`.
+- **Short turn-ins consumed the reagents and played the success text.** The reply's destination
+  was unconditional and the remove-then-check chain removed a unit per step. Every failing arm
+  now refunds exactly what its path removed -- computed by walking the parsed chain, since the
+  quality-pelt tree makes refunds path-dependent -- and the reply lands on a neutral counting
+  node whose empty replies are gated on `CIsQuestCompletedAction`. Gated empty replies are a
+  shipped idiom (34 uses). The counting line and two refusals are new prose.
+- **0.4.0's Trapper fix was on one of seven turn-in copies.** The quest-reply duplication
+  convention means a fix applied to one copy is applied to one copy. All seven are now the
+  quality-aware chain.
+- **The reserve never opened.** Only that same one copy advanced `Quinn Reagents Delivered`. An
+  Inquisitor's first greeting, and every return greeting, used the other six. Increments are on
+  all seven now, and the reserve gates on completed-quest flags instead of the counter -- the
+  errands are strictly sequential, so `completed(pelts)` / `completed(wasps)` /
+  `completed(troll)` carry the same information and repair saves already at 0.
+- **The draught is drinkable** -- see the 0.8.1 note.
+
+A sweep of all 61 Fixt-added `CIsQuestStateTheCurrentStateAction` uses found no further misuse:
+the four fixed this week (Fernand, the inn, Quinn's offers) were the only two positions where it
+is wrong -- negated as a not-yet-offered guard, or as a did-this-happen test after a completion.
+The rule is now in the modding skill.
+
 ## 0.8.1 - repairs
 
 **Published.** Repair only, cut on a branch from `v0.8.0` so the unpublished 0.9.0 work on `main`
@@ -656,7 +686,7 @@ detail only the running game shows.
   potion -- Potion Luck's envelope with the Extra Healing addition's drink behaviour copied
   verbatim -- so saving Juan costs a potion you could have used yourself. A player who drinks it
   cannot save him; that is the sacrifice, made real for the first time, since in 0.6.0 as shipped
-  any other bottle would do. Ships with 0.9.0.
+  any other bottle would do. Shipped in 0.8.2.
 - **Fernand forgets.** Reporting back completes the quest; a completed quest has no current
   state; the `told fernand juan lives` flag sat inside the JUA1LIVE test and was never consulted
   again. It is now the outermost test. A wrong theory is recorded in the commit -- that the 2.5s
