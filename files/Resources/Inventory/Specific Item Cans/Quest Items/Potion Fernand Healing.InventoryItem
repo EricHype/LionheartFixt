@@ -2,7 +2,317 @@ CInventoryItem
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=2
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorUseAction
+		{
+			Use Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=4
+					Action=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CExpressionHitPointsRemaining
+							{
+							}
+							Operator=
+							Operand2=CMultiply
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/(HP) Hit Points
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=1.5
+								}
+							}
+						}
+						Character to get attributes from=$Instigator
+						Then=CIfExpressionAction
+						{
+							If Expression=CHasTrait
+							{
+								Traits To Check For=Array
+								{
+									Item Count=1
+									Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+								}
+							}
+							Character to get attributes from=$Instigator
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CAdd
+											{
+												Operand1=CConstant
+												{
+													Constant Value=9
+												}
+												Operator=
+												Operand2=CMultiply
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/(HP) Hit Points
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0.05
+													}
+												}
+											}
+											Operator=
+											Operand2=CSubtract
+											{
+												Operand1=CMultiply
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/(HP) Hit Points
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=1.5
+													}
+												}
+												Operator=
+												Operand2=CExpressionHitPointsRemaining
+												{
+												}
+											}
+										}
+										Character to get attributes from=$Instigator
+										Then=CUseCannedActionAction
+										{
+											Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+										}
+										Else=
+									}
+									Action=CGiveHealthToCharacterAction
+									{
+										Character to give health to=$instigator
+										Amount of health to give=CExpressionAggregateFunctionMin
+										{
+											Parameters=Array
+											{
+												Item Count=2
+												Parameter=CAdd
+												{
+													Operand1=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=9
+														}
+														Maximum=CConstant
+														{
+															Constant Value=11
+														}
+													}
+													Operator=
+													Operand2=CMultiply
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/(HP) Hit Points
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=0.05
+														}
+													}
+												}
+												Parameter=CSubtract
+												{
+													Operand1=CMultiply
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/(HP) Hit Points
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=1.5
+														}
+													}
+													Operator=
+													Operand2=CExpressionHitPointsRemaining
+													{
+													}
+												}
+											}
+										}
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CAdd
+											{
+												Operand1=CConstant
+												{
+													Constant Value=18
+												}
+												Operator=
+												Operand2=CMultiply
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/(HP) Hit Points
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0.1
+													}
+												}
+											}
+											Operator=
+											Operand2=CSubtract
+											{
+												Operand1=CMultiply
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/(HP) Hit Points
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=1.5
+													}
+												}
+												Operator=
+												Operand2=CExpressionHitPointsRemaining
+												{
+												}
+											}
+										}
+										Character to get attributes from=$Instigator
+										Then=CUseCannedActionAction
+										{
+											Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+										}
+										Else=
+									}
+									Action=CGiveHealthToCharacterAction
+									{
+										Character to give health to=$instigator
+										Amount of health to give=CExpressionAggregateFunctionMin
+										{
+											Parameters=Array
+											{
+												Item Count=2
+												Parameter=CAdd
+												{
+													Operand1=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=18
+														}
+														Maximum=CConstant
+														{
+															Constant Value=22
+														}
+													}
+													Operator=
+													Operand2=CMultiply
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/(HP) Hit Points
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=0.1
+														}
+													}
+												}
+												Parameter=CSubtract
+												{
+													Operand1=CMultiply
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/(HP) Hit Points
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=1.5
+														}
+													}
+													Operator=
+													Operand2=CExpressionHitPointsRemaining
+													{
+													}
+												}
+											}
+										}
+										Expression Context=$Instigator
+									}
+								}
+							}
+						}
+						Else=CUseCannedActionAction
+						{
+							Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+						}
+					}
+					Action=CSpawnEffectAction
+					{
+						Explosion Model=Spell Effects/Hits and Effects/Heal/Extra Heal Potions
+						Location Entity=$instigator
+						Make effect a child of the location entity=1
+						X Offset=0
+						Y Offset=0
+						Height Offset=0
+						Play Default Sound=1
+						Action to execute After Effect=
+					}
+					Action=CActionRemoveCriticalHits
+					{
+						Remove critical hits from=$Instigator
+						Remove All=1
+						Remove Specific=Critical Hits/Blinded
+					}
+					Action=CPlaySoundAction
+					{
+						Sound=Potions/spel_extra_heal_potions.ogg
+						Position=$Trigger
+						Multiplayer=Heard by all players
+					}
+				}
+			}
+			Selected Action=
+			Deselected Action=
+		}
 		PlugIn Behavior=CPlugInBehaviorPickUpAction
 		{
 			Pick Up Action=CPlaySoundAction
@@ -22,17 +332,17 @@ CInventoryItem
 	}
 	Value=CConstant
 	{
-		Constant Value=100
+		Constant Value=27
 	}
 	Is Magic=1
-	Encumbrance=0
+	Encumbrance=1
 	On the ground=Items/PickUps/Misc Items/Potion_PU
 	Requirements=Array
 	{
 		Item Count=0
 	}
 	Display Name=Fernand's Healing Draught
-	Description=A potent healing draught from the sailor Fernand, meant for his brother Juan. It is not for drinking.
+	Description=A potent healing draught from the sailor Fernand, meant for his brother Juan. Drinking it will heal you as an Extra Healing potion would - and leave nothing for him.
 	Inventory Window Images=Array
 	{
 		Basic=Items/Inventory Images/Misc Items/Potion Extra Healing
@@ -42,12 +352,12 @@ CInventoryItem
 	Whole Item Display Name=
 	Whole Item Description=
 	Number Of Additions Added=0
-	Slot Used In=Character Slot Types/!None
+	Slot Used In=Character Slot Types/HotKey
 	Sub Slot Used In=0
 	Number Hands Needed=None
 	Unique Select ID=0
 	IsCurrentlyUsedByPlayer=0
-	Catagory for display Grouping=Inventory/Grouping Catagories/Quest Items
+	Catagory for display Grouping=Inventory/Grouping Catagories/Miscellaneous
 	Inventory Addition Group=Inventory/!None
 	Item Grade=Basic
 	Origonal Item=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
