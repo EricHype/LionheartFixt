@@ -1347,6 +1347,7 @@ both completed Gate 2. Record the result here per release.
 | 0.9.0 | PASS (automated) | PASS | partial | - | - | - | **published; Na Roqua chain and Machiavelli's refused branch played and passing, the rest unplayed** |
 | 0.9.1 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
 | 0.9.2 | PASS (automated) | PASS | PASS | - | - | - | **published as repair; every piece played on a fresh Port District** |
+| 0.9.3 | PASS (automated) | PASS | PASS | - | - | - | **published as repair; the perk proven from the combat log, the goblin's answers played** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's
