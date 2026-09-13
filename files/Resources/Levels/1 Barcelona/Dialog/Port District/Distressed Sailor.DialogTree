@@ -1,0 +1,810 @@
+CDialogTree
+{
+Name=Fernand Desoto
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Help
+Text=Help! Someone, I need help quickly!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Hurry
+Text=Hurry! Juan doesn't have much time!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Start Conversation
+Text=Those creatures crawled from the water and grabbed my brother and dragged him to the island to the north. Will you help me save him?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=discoverd brother dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I'll help you save your brother.
+Go to node ID=30 take the job
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=First, who are you?
+Go to node ID=10 name
+Custom Action=CActivateAction
+{
+Target Name=asked who are you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=What dragged your brother away?
+Go to node ID=10 vodyanoi
+Custom Action=CActivateAction
+{
+Target Name=asked about creatures
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=You mistake me for someone who cares. No thanks.
+Go to node ID=5 rude goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop Karma 25
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActivateAction
+{
+Target Name=told him you don't care
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=No thanks. I'm leaving.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 rude goodbye
+Text=Dios mio! You have no heart, and karma will judge you harshly some day.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Refused to help Juan
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 wrong way
+Text=They went the other way. We must hurry, to the north!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 leave
+Text=If you're not going to help me, I'm leaving!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sailor leaves
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 vodyanoi
+Text=A small group of slimy creatures - they're called sailor's bane or vodyanoi. They'll eat Juan if we don't hurry!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 return
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 still breathing
+Text=Dios mio! He's still breathing! Thank you, stranger, you saved my brother's life!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 not breathing
+Text=He...he's not breathing - we are too late. Thank you for trying to help, stranger.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 dont need gold
+Text=I suppose Juan would probably want us to have his armor...and his gold...Take what you want, stranger.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=sailor is mournful
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 saved juan
+Text=Claro que si! You don't think I would let those devil fish kill my little brother, eh? You should thank this stranger too for saving your life.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=30 take the job
+Text=Bueno! Take this potion of healing, you might need it against those creatures.  Please hurry, Juan does not have much time!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+State=S1NPX04I
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Return
+Text=Please, help me find my brother.  He is being attacked by some very vicious creatures.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=discoverd brother dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I'll help you save your brother.
+Go to node ID=30 take the job
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=discoverd brother dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I offer my condolences, but I saw your brother's body - he has perished.
+Go to node ID=110 dead
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=discoverd brother dead
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=asked who are you
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=Who are you?
+Go to node ID=10 name
+Custom Action=CActivateAction
+{
+Target Name=asked who are you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=discoverd brother dead
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about creatures
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=What dragged your brother away?
+Go to node ID=10 vodyanoi
+Custom Action=CActivateAction
+{
+Target Name=asked about creatures
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=discoverd brother dead
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=told him you don't care
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=You mistake me for someone who cares. No thanks.
+Go to node ID=5 rude goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Drop Karma 25
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActivateAction
+{
+Target Name=told him you don't care
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=discoverd brother dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Sorry, I don't have time.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Return 2
+Text=What news do you bring... were you able to save him from those vicious creatures?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+State=VMS91BAX
+}
+}
+Reply Text=No, I was not. I'm very sorry, but your brother has perished.
+Go to node ID=110 dead
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=saved juan but died
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+State=VMS91BAX
+}
+}
+}
+Reply Text=I have not found him yet.
+Go to node ID=30 take the job 2
+------------------------------------------------------------
+Node ID=30 take the job 2
+Text=Well....please hurry, Juan does not have much time!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 return after saving juan
+Text=Thank you again for saving my brother's life. You have a friend in the Spanish Armada - if you need anything from me, you can ask.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like you to accompany me for a time.
+Go to node ID=40 companion
+
+Requirement=Barter moreequal 20
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=fernand gave barter
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I did save your brother - don't you think his life is worth more than I was paid?
+Go to node ID=40 hard barter
+Custom Action=CActivateAction
+{
+Target Name=fernand gave barter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=Barter moreequal 20
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=fernand gave barter
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have great need of gold. Perhaps you could spare some?
+Go to node ID=40 barter
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=fernand gave barter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Tell me about yourself.
+Go to node ID=50 who are you
+
+Requirement=!None
+Reply Text=Your gratitude is enough, friend.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 return sad
+Text=<The sailor looks at you and smiles weakly, his eyes are brimming with tears.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 name
+Text=My name is Fernand, eldest of the Desoto family. My brother is Juan Desoto, and he desperately needs our help.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Return
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 name 2
+Text=My name is Fernand, eldest of the Desoto family. My brother is Juan Desoto, and he desperately needs our help.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Return
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 barter
+Text=It fills my heart with happiness that I can be of help to you, friend. Here is all the gold I have - no need to pay me back.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=40 hard barter
+Text=I...I do feel guilty that I could not give you more, but...my brother and I are of modest means. Here, take these...they are the most valuable things I own.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=Player#1-9#
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/ArmorChainMail
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=Player#1-9#
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Extra Healing
+}
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 companion
+Text=You want me to follow you? I'm a sailor with the Spanish Armada...I cannot leave my ship.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 20
+Reply Text=I only need your services for a short time...We will return *before* the Armada departs.
+Go to node ID=80 companion
+Icon=Speach Skill Icon
+
+Requirement=Barter moreequal 20
+Reply Text=You owe me a debt of blood. I *saved* your brother and I need your help now.
+Go to node ID=80 companion
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=But my quest is more important. There are enough sailors in the Armada.
+Go to node ID=70 rejection
+
+Requirement=!None
+Reply Text=Of course, you are needed by the Armada. Nevermind.
+Go to node ID=
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=60 what more can i do
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 who are you
+Text=My name is Fernand, eldest of the Desoto family. The man you saved is my brother, Juan Desoto. We are both in your debt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=60 what more can i do
+------------------------------------------------------------
+Node ID=60 what more can i do
+Text=What more can I do to repay you, friend?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like you to accompany me for a time.
+Go to node ID=40 companion
+
+Requirement=Barter moreequal 20
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=fernand gave barter
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I did save your brother, my *friend* - don't you think his life is worth *more* than I was paid?
+Go to node ID=40 hard barter
+Custom Action=CActivateAction
+{
+Target Name=fernand gave barter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=Barter moreequal 20
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=fernand gave barter
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have great need of gold. Perhaps you could spare some?
+Go to node ID=40 barter
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=fernand gave barter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Tell me about yourself.
+Go to node ID=50 who are you
+
+Requirement=!None
+Reply Text=Your gratitude is enough, friend.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 rejection
+Text=I...I am sorry. While I do owe you a debt, I cannot leave my ship and break my vow of duty.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=80 companion
+Text=But...oh, very well. I will accompany you and trust that we will return in short time. Where you go, I will follow...to repay my debt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=fernand joins you
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=Distressed Sailor
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 companion banter
+Text=Where you go, I follow.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=110 dead
+Text=<Grief stricken>  No!  My brother is dead! How can this be? How can I ever face my father again?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sailor leaves
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Dead
+Text=He is dead!  Why could I not save him? <crying>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=130 then I must try
+Text=If you will not help then I must hold out hope that someone else will.  I battled those creaturs as  long as I could, but even with my potion of healing I could do nothing. There is not much time!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=Perhaps someone else will come by.  Please pray for my brother if you would.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=31 chide
+Text=Saved, si. And how did you come to need saving? I told you not to fish off the north island alone. Twice I told you, Juan.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=32 chide 2
+Text=Go and lie down on the ship before you bleed on my boots. We will talk about this later, hermanito.
+Should Have Voiceover=0
+}
