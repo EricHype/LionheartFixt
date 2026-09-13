@@ -19,7 +19,7 @@ Go to node ID=20 feast
 
 Requirement=ST 8+
 Reply Text=<Say nothing. Step over him, pick the child up, and look down.> Try.
-Go to node ID=70 scared
+Go to node ID=71 backs down
 Custom Action=CGiveExperiencePointsToAllPlayersAction
 {
 Get XP Frome=Saved woodcutter's daughter though speech
@@ -111,7 +111,7 @@ Should Have Voiceover=0
 
 Requirement=Barter moreequal 55
 Reply Text=A delicacy you will eat once. I am offering you a season of them - salt pork, twice your weight, waiting at the Crossroads under my name. Refuse that and you are not a gourmet, you are simply hungry.
-Go to node ID=70 scared
+Go to node ID=72 the trade
 Custom Action=CGiveExperiencePointsToAllPlayersAction
 {
 Get XP Frome=Saved woodcutter's daughter though speech
@@ -159,6 +159,240 @@ Should Have Voiceover=0
 ------------------------------------------------------------
 Node ID=70 scared
 Text=Y-you know the Khan?  You will speak well of me?  Then take the child!  I shall not interfere with the wishes of the Khan!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=$Trigger
+Temporary Task AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Goblin flee marker
+Offset=0.000000,0.000000
+Starting Action=CDelayAction
+{
+Next Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=CDeleteAction
+{
+Target Name=$Trigger
+}
+Run=1
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=0
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+Suppress can't assign error=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Girl leaves safely
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=71 backs down
+Text=<He looks at you, and at the child in your arms, and at the distance to the ravine mouth. He does not try.> Take her. Take her! She is all bones anyway.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=$Trigger
+Temporary Task AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Goblin flee marker
+Offset=0.000000,0.000000
+Starting Action=CDelayAction
+{
+Next Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=CDeleteAction
+{
+Target Name=$Trigger
+}
+Run=1
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=0
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+Suppress can't assign error=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Girl leaves safely
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=72 the trade
+Text=<He wets his lips.> Twice my weight... under your name... <He looks at the child a long moment.> Salt pork keeps. Children do not. Take her, trader, and I will hold you to it.
 Should Have Voiceover=0
 
 Requirement=!None

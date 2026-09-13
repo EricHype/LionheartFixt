@@ -523,6 +523,15 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**The goblin in Scar Ravine thought everyone knew the Khan.** 0.5's variance pass gave the
+goblin holding the woodcutter's daughter a Strength route (*"Step over him, pick the child up,
+and look down. Try."*) and a Barter route (the salt-pork offer), and pointed both at `70
+scared` -- the vanilla node written for the two routes that invoke the Khan: *"Y-you know the
+Khan? You will speak well of me?"* Neither added route mentions him. Each now has its own
+answer, unvoiced like the replies, with `70`'s flee-and-free actions verbatim: `71 backs
+down` for the strong, `72 the trade` for the trader. Fixt's own defect, found by the tester
+on the second playthrough. Dialogue only, any save.
+
 **Fernand handed out the wrong bottle, and it was 0.8.1's fault.** 0.8.1 made Juan's rescue
 check for `Potion Fernand Healing` by name and repointed a give to hand it out -- but the give
 it repointed was `mute sailor rewards for solving quest`, which is the Mute Sailor's reward,

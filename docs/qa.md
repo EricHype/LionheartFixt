@@ -1264,6 +1264,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS17 | Michel, Montaillou | After questioning the assassin | *"I know who attacked Montserrat..."* replaces the vanilla question; `141 out of the east` |
 | MS18 | Negative | Sahar's tree cancelled with Escape | The fight starts anyway |
 | MS19 | Port District, Fernand and Juan | Take Fernand's job; go to Juan | Fernand hands over *Fernand's Draught* (not a plain potion); Juan shows the interaction cursor, and Absorb Spirit cannot target him from any range; the draught saves him: he stands, walks to Fernand, and six balloons play -- three vanilla, three of Fernand chiding him -- before he walks to the ship. Leave him instead: *fading* at 20 seconds, the too-late line and the failed state at 45. The Mute Sailor's reward is a plain potion again. **PASSED** on a fresh Port District |
+| MS20 | Scar Ravine, the goblin holding the girl | ST 8+: *Try.* / Barter 55: the salt-pork offer | The goblin backs down (`71`) or takes the trade (`72`) in his own words; neither mentions the Khan. The Horde and Speech routes still get *"Y-you know the Khan?"* |
 
 ---
 
