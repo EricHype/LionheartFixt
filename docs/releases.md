@@ -172,25 +172,25 @@ player line; the node and its reply are the game's. Dialogue only, any save.
 ### Tier 1 - the roster matches the text
 
 Montgomerie: *"Horrible, powerful beasts. Monsters, assassins."* The maps are one enemy in
-eight recolours. The snakebreed are the monsters; nothing on the maps is a beast, except the
-bears and wasps sealed in two optional side caves.
+eight recolours. The snakebreed are the monsters. The *assassins* -- the other half of his
+sentence -- are nowhere: every human assassin can the game ships is Act 4 or later (`Assasin`
+is HP 150 / AC 280, the race 0.9.0 gave Machiavelli's two ambushers, and a tester called those
+tough). The beasts are the bears and wasps in the two side caves, and they stay there.
 
+**Decided: human assassins and Summoners join the packs; no bears, no titans, no ogres.**
 Every outdoor generator is a `CSimpleGeneratorForCannedEntitiesAI` holding the six snakebreed
-tiers so the pick scales with party mojo. The change is to the *mix*, not the count. Two
-additions, both already in the act's band, both already on the road the player has walked:
+tiers so the pick scales with party mojo. The change is to the *mix*, not the count:
 
-| Family | HP / AC | Already placed | Role |
+| Addition | HP / AC | Source | Role |
 |---|---|---|---|
-| Bear / Tough / Super | 39-53 / 80-130 | this act's own den | the beast Montgomerie means |
-| Snakebreed Summoner / Tough / Super | 100-160 / 175-250 | Act 5, and `Random Forest Map 1` in the Wilderness | the same family's caster: Poison Touch, Rigor Mortis, cure spells, summoning. The one enemy whose kill order matters |
+| Montserrat assassin, three tiers | 60 / 80 / 100, AC in the snakebreed band | a clone of the unused `Assasin EarlyLevels` can (Act 4 model, no map places it) on a **new `.Race`** authored on the shipped preset shape -- the first race file Fixt writes | the men behind the creatures; the same organisation as Tier 3's wounded handler and Tier 4's boss |
+| Snakebreed Summoner / Tough / Super | 100-160 / 175-250 | Act 5, and `Random Forest Map 1` in the Wilderness | the family's caster: Poison Touch, Rigor Mortis, cure spells, summoning. The one enemy whose kill order matters |
 
-Snakebreed for reference: 50-160 / 150-250. **Not** Rock Titans, which the player first meets
-on the Mountain Pass *after* Montserrat, and not ogres, whose only earlier appearance is an
-optional Wilderness cave; introducing either here would put them out of the game's own order.
-Proposed mix: Grove outdoors one third bears, a Summoner in every remaining pack of three or
-more; Level 1 a Summoner in every pack; Level 2 as Tier 4 lays it out. Counts unchanged.
-This is tuning, it is a taste call, and it is reversible with no trace -- which is why it is
-recorded as a choice and not as a repair.
+Shares: Grove and Level 1, one human in every pack of three or more and a Summoner in every
+pack of four; Level 2, the boss's crew is human and snakebreed together. Counts unchanged, so
+XP is unchanged. Act 4's Crypt mixes human assassins with creatures the same way, which is
+the precedent. This is tuning, it is a taste call, and it is reversible with no trace --
+which is why it is recorded as a choice and not as a repair.
 
 ### Tier 2 - the fallen party gets a voice
 
@@ -293,16 +293,16 @@ Summoner in every pack, so the priestess is always the first problem. The **last
 of the hall's final pack is scripted to break off and run for the sanctum on the walk-off
 shape -- the player sees it go, and meets it again.
 
-*Level 2, the sanctum.* The **rearguard's captain** on `Snakebreed Boss Super` (HP 160, AC
-250 -- already the strongest can placed here), named, standing at the reliquary between the
+*Level 2, the sanctum.* The **rearguard's captain, Sahar**, on `Snakebreed Boss Super` (HP
+160, AC 250 -- already the strongest can placed here), standing at the reliquary between the
 door and Montgomerie, with two Venom bodyguards on guard-AI and a Summoner behind her. A
-short exchange on approach in the Crypt assassins' register (*"You are too late, Lionheart"*),
-three or four replies, one the fight; the lore rule of Tiers 2 and 3 applies -- *the Master*,
+short exchange on approach -- cold, amused, the Crypt assassins' register: *"You are too late,
+Lionheart. The Master has what he came for."* -- three replies and the fight; the lore rule of Tiers 2 and 3 applies -- *the Master*,
 *the East*, never *the Old Man*. **At 60%** the side doors open and the hall's runner comes in
 with whatever retreated; **at 25%** she falls back to the reliquary and the priestess heals
 her -- the player learns to kill the priestess. Then Montgomerie's own gate does what vanilla
 wrote it to do. The sacristy chest (`Hidden Treasure`) is **trapped** on the Chamber of
-Torment shape: open it and two assassins fade in.
+Torment shape: open it and two assassins fade in -- unless it is disarmed first (Tier 6).
 
 **Roster and difficulty.** Total spawns unchanged; XP unchanged. Difficulty moves from sixty
 identical fights to six different ones and some walking. The boss is the only new template
@@ -386,7 +386,7 @@ passively by the Find Traps skill; a prop can carry a second description node (`
 alt` on the Columbus statue) chosen by the opener. Nothing simulates stealth or tactics -- a
 check is a threshold read at a trigger. That is what this tier builds on, and nothing more.
 
-**Six levers, each riding a scene the scope already builds. No new scenes.**
+**Seven levers, each riding a scene the scope already builds. No new scenes.**
 
 | Lever | Where | Shape |
 |---|---|---|
@@ -395,12 +395,13 @@ check is a threshold read at a trigger. That is what this tier builds on, and no
 | **Perception** | Alternate lines on the Tier 5 trail at `PE 7+`: the tracks lead north, the wax is hours old, the captain's wounds are from *behind*. The same props, a second node | `1 Description alt` |
 | **Outwit / Speech** | The boss (Tier 4) and the wounded assassin (Tier 3). The assassins hold Machiavelli's contract *"to find one such as yourself"*; at `Outwit 7+` the player claims to be his courier and the bodyguards stand down before the fight -- she still fights, alone. Speech at the assassin as Tier 3 already has it. Bounded by the lore rule | `Outwit N greater or equal` (13 shipped cans, almost unused) |
 | **Race** | The unused assassin can is **Demokin**: a Demokin player is recognised -- *"one of the Master's own?"* -- and hears a line the others do not. A **Sylvant** opens the druid door by touch, no skill: the tainted races are the game's nature-magic people, and the door is a druid's | `Demokin IS`, `Sylvant IS` |
+| **Lockpick / Disarm** | The trapped sacristy chest (Tier 4): at `Lockpick Disarm Traps` >= 35 the trap is found and defused and the chest opens quietly; below it, the two assassins come. Pulled forward from the held list by decision | `Lock Pick Adjustment` / the store-room threshold shape |
 | **Faction** | Templar: the fallen are the player's brothers -- Javier's journal reply (Tier 2) and one Templar-only line from Montgomerie. Inquisitor: the Inquisition dead carry a sealed order, one hover text. Saladin: the assassin's *"the East"* lands differently on an Aswaran -- one line. Wielder: the Ways Crystal already pays a Wielder; the druid gate answers spirit, one line. Horde: nothing, and it should be nothing | the faction cans |
 
 **Held for a later cut, with the reason.** *Strength* -- forcing the barricade to skip the
 switch and its ambush is a good trade but the one vanilla ST check is a dialogue variant, not
-a door; untested shape. *Lockpick / Disarm* on the trapped chest and the cells -- cheap,
-deferred only to keep this tier to scenes that exist. *Divine* consecration of the
+a door; untested shape. *Lockpick / Disarm* on the jailors' cells -- cheap, deferred; the trapped
+chest's disarm is pulled forward into the six (decided). *Divine* consecration of the
 re-dressed altar for a blessing -- the *Torquemada Divine Boon* perk shape, a new reward
 that needs its own design. *Karma* -- selling the assassin what he wants, Michel's
 whereabouts, for gold, has a consequence at Montaillou that has to be designed before it is
@@ -422,18 +423,19 @@ with no Sneak, no Perception and no faction gets exactly the abbey Tiers 0 throu
 
 ### Decisions before build
 
-1. Tier 1's mix -- bears and Summoners at the shares above, or none. With Tier 4 it is
-   the part of this release that changes vanilla's balance, and neither can be called
-   restoration.
-2. The captain's name, and whether Javier reacts.
-3. How much the assassin gives up: the three lines above, or only "north".
-4. Michel's reply -- in, or leave Act 3 untouched.
-5. The captain's name and her lines; whether the trapped chest is in (it costs the player
-   a fight for loot the map already gives away).
-6. Decided: the sanctum is re-dressed as an abbey, and the monks' absence is noted and not
-   explained.
-7. Decided: Tier 6 at the six levers above. The necromancer is tested on a live save before
-   anything is written.
+All taken, in order:
+
+1. **Roster**: human assassins and Summoners at the shares in Tier 1; bears stay in the den.
+   The tester's words: the animals in the caves are enough for beasts.
+2. **The captain** is *Sir Tomas de Vilanova*; Javier reacts for a Templar, XP only.
+3. **The assassin** gives up all three lines -- who (Speech-gated), where, why -- under the
+   lore rule.
+4. **Michel** accepts what the player learned, one unvoiced node beside his voiced ones.
+5. **The boss** is *Sahar*, contemptuous, three replies and the fight.
+6. **The chest** is trapped and disarmable at Lockpick / Disarm 35.
+7. The sanctum is re-dressed as an abbey; the monks' absence is noted and not explained.
+8. Tier 6 at seven levers. The necromancer is tested on a live save before anything is
+   written.
 
 ### Gates before this ships
 
