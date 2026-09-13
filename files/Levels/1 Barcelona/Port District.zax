@@ -87,6 +87,271 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=juan beside fernand
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=5060
+			Position Y=1060
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=juan to fernand
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CAssignTemporaryTaskAction
+					{
+						Target=Juan
+						Temporary Task AI=CGoToAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Destination=juan beside fernand
+							Offset=0.000000,0.000000
+							Starting Action=
+							Finished=0
+							Move Finished=0
+							Failed Path=0
+							Target Was Set By Goto AI=0
+							Move Behavior=CEntityBehaviorMoveToPos
+							{
+								Old Stationary Flag=0
+								Angle To Turn To=0
+								Facing Backwards=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+								Play Ratio=1
+								Smooth Turning=0
+								Do Path Finding=1
+								Finished=1
+								Failed Last Path=0
+								Idle Begin Called=0
+								Move To Rate=0
+								CurTargetNormalX=0
+								CurTargetNormalY=0
+								Path Finding Params=CWayPointPath
+								{
+									Start Point=0,0
+									End Point=0,0
+									Length=0
+									Max Dist To Travel=0
+									Num Failed Paths=0
+									Max Failed Paths=0
+									Pos To Move Index=0
+									Dist So Far=0
+									Path=
+								}
+								Pos Moving From=0.000000,0.000000
+								Final Dest=0.000000,0.000000
+								Dest Radius=0
+								Cur Dest Move To=0.000000,0.000000
+								Last Neg Dist=0
+								NumTimesLostGound=0
+								Sequence=
+								Planed Path For=
+							}
+							Done action=CTriggerRelayAction
+							{
+								Relay Name=brothers reunion
+							}
+							Run=1
+							Make New Home=0
+							Play Ratio=0
+							Time To Try To Move=0
+							Set Facing Angle=0
+							Turn Sequence Name=Idle
+							Facing Angle=CEntityBehaviorTurnToAngle
+							{
+								Old Stationary Flag=0
+								Angle To Turn To=0
+								Facing Backwards=0
+							}
+							Need to Call Start=1
+						}
+						Original AI Type=CSkeletonAI
+						Completion Message to wait for=AI Done
+						Suppress can't assign error=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=5250
+			Position Y=300
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=brothers reunion
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CIsAliveAction
+						{
+							Name To Check For=Distressed Sailor
+							Desired Minimum Count=1
+						}
+						Then=CDisplayDialogBalloonAction
+						{
+							Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Sailor Juan
+							Node ID=1 Save Juan
+							Name of Position=Juan
+							Position Offset=0.000000,-75.000000
+							After Action=CDelayAction
+							{
+								Next Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
+									Node ID=30 saved juan
+									Name of Position=Distressed Sailor
+									Position Offset=0.000000,-75.000000
+									After Action=CDelayAction
+									{
+										Next Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
+											Node ID=31 chide
+											Name of Position=Distressed Sailor
+											Position Offset=0.000000,-75.000000
+											After Action=CDelayAction
+											{
+												Next Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Sailor Juan
+													Node ID=2 chide back
+													Name of Position=Juan
+													Position Offset=0.000000,-75.000000
+													After Action=CDelayAction
+													{
+														Next Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
+															Node ID=32 chide 2
+															Name of Position=Distressed Sailor
+															Position Offset=0.000000,-75.000000
+															After Action=CTriggerRelayAction
+															{
+																Relay Name=juan goes home
+															}
+															Include In Log=1
+														}
+														Delay=0.7
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+													Include In Log=1
+												}
+												Delay=0.7
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Include In Log=1
+										}
+										Delay=0.7
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Include In Log=1
+								}
+								Delay=0.7
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Include In Log=1
+						}
+						Else=CTriggerRelayAction
+						{
+							Relay Name=juan goes home
+						}
+						Return failure if the If failes=0
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=5260
+			Position Y=300
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=juan saved
 			Child List=
 			Visible=1
@@ -79167,16 +79432,7 @@ CLayerSaveData
 														{
 															Action=Array
 															{
-																Item Count=5
-																Action=CDisplayDialogBalloonAction
-																{
-																	Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Sailor Juan
-																	Node ID=1 Save Juan
-																	Name of Position=Juan
-																	Position Offset=0.000000,-75.000000
-																	After Action=
-																	Include In Log=1
-																}
+																Item Count=4
 																Action=CActivateQuestStateAction
 																{
 																	Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
@@ -79228,9 +79484,23 @@ CLayerSaveData
 																	}
 																	Delay Between Adds=0
 																}
-																Action=CTriggerRelayAction
+																Action=CDisplayDialogBalloonAction
 																{
-																	Relay Name=juan goes home
+																	Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Sailor Juan
+																	Node ID=1 Juan lives thanks you
+																	Name of Position=Juan
+																	Position Offset=0.000000,-75.000000
+																	After Action=CDelayAction
+																	{
+																		Next Action=CTriggerRelayAction
+																		{
+																			Relay Name=juan to fernand
+																		}
+																		Delay=0.5
+																		Plus or Minus=0
+																		Forget Trigger=0
+																	}
+																	Include In Log=1
 																}
 															}
 														}
@@ -79321,67 +79591,102 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Action=CDelayAction
+					Action=CMultipleActionsAction
 					{
-						Next Action=CIfAction
+						Action=Array
 						{
-							If=CNotAction
+							Item Count=2
+							Action=CDelayAction
 							{
-								Action=CCheckExistenceAction
+								Next Action=CIfAction
 								{
-									Name To Check For=juan saved
-									Desired Minimum Count=1
-								}
-							}
-							Then=CMultipleActionsAction
-							{
-								Action=Array
-								{
-									Item Count=3
-									Action=CRemoveAIAction
+									If=CNotAction
 									{
-										Target Name=Juan
-										AI=CAIInteractionSpecifier
-										Delay Between Removes=0
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=juan saved
+											Desired Minimum Count=1
+										}
 									}
-									Action=CDisplayDialogBalloonAction
+									Then=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Sailor Juan
-										Node ID=101 too late
+										Node ID=102 fading
 										Name of Position=Juan
 										Position Offset=0.000000,-75.000000
 										After Action=
 										Include In Log=1
 									}
-									Action=CIfAction
-									{
-										If=CIsQuestStateTheCurrentStateAction
-										{
-											Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
-											State=S1NPX04I
-										}
-										Then=CActivateQuestStateAction
-										{
-											Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
-											State=VMS91BAX
-										}
-										Else=CActivateAction
-										{
-											Target Name=discoverd brother dead
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
-										}
-										Return failure if the If failes=0
-									}
+									Else=
+									Return failure if the If failes=0
 								}
+								Delay=20
+								Plus or Minus=0
+								Forget Trigger=0
 							}
-							Else=
-							Return failure if the If failes=0
+							Action=CDelayAction
+							{
+								Next Action=CIfAction
+								{
+									If=CNotAction
+									{
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=juan saved
+											Desired Minimum Count=1
+										}
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=3
+											Action=CRemoveAIAction
+											{
+												Target Name=Juan
+												AI=CAIInteractionSpecifier
+												Delay Between Removes=0
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Sailor Juan
+												Node ID=101 too late
+												Name of Position=Juan
+												Position Offset=0.000000,-75.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CIfAction
+											{
+												If=CIsQuestStateTheCurrentStateAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+													State=S1NPX04I
+												}
+												Then=CActivateQuestStateAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Port District/help distressed sailor
+													State=VMS91BAX
+												}
+												Else=CActivateAction
+												{
+													Target Name=discoverd brother dead
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Return failure if the If failes=0
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Delay=45
+								Plus or Minus=0
+								Forget Trigger=0
+							}
 						}
-						Delay=45
-						Plus or Minus=0
-						Forget Trigger=0
 					}
 				}
 			}

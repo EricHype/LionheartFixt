@@ -553,6 +553,26 @@ consumables, and *Fernand's Healing Draught of Healing* was the result.
 Proven by the report along the way: a Dead-sequence entity takes a click through an ordinary
 interaction specifier, which is what Tier 3's belt-and-braces polygon was hedging.
 
+**The brothers' reunion was written and never played.** Vanilla has three lines for it:
+Juan's *"Mi hermano! You saved me!"* (`1 Save Juan`), Fernand's `30 saved juan` -- *"Claro que
+si! You don't think I would let those devil fish kill my little brother, eh? You should thank
+this stranger too"* -- and Juan's *"And many thanks to you, stranger"*. `30 saved juan` is a
+balloon nothing fires. 0.6.0 had played the first at the rescue spot and made the third a
+click. Now the rescue stands Juan up and sends him to a marker beside his brother (the vanilla
+walk-off's own `CGoToAI`, one leg); on arrival a relay plays the three vanilla lines and
+**three new ones** in which Fernand chides him for fishing off the north island alone --
+*"Twice I told you, Juan"* / *"You did not say what was doing the fishing"* / *"before you
+bleed on my boots"* -- and then the vanilla walk to the ship. If Fernand is not alive, Juan
+goes straight home. The rescue's click on Juan (*"And many thanks..."*) stays, for a player
+who catches him on the way. And he does not run off the instant he stands: his thanks to
+the player plays over his head at the rescue spot first, and the walk starts when it closes.
+
+**The timer is visible now.** The bleed-out relay always ran 45 seconds from the first
+approach with nothing to say so; a second delay at 20 seconds plays *"<His breathing is
+shallower. He has minutes, not hours.>"* if he is not yet saved. Both are gated on the checker.
+Played and passing on a fresh Port District: the draught, the cursor, the thanks, the
+reunion, the chiding and the walk.
+
 ### Gates before this ships
 
 - Gate 0: `validate.py` clean; the new template's `Race=` real, its `Model=` and every `Cur
