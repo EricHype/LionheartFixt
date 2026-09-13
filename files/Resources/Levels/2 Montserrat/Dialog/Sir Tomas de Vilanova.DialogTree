@@ -1,0 +1,90 @@
+CDialogTree
+{
+Name=Sir Tomas de Vilanova
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 the body
+Text=<A knight of the Temple, his shield still on his arm. Every wound is from the front. His other hand is closed around a small leather book.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Read the book.
+Go to node ID=10 first entry
+
+Requirement=!None
+Reply Text=Leave him.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 taken
+Text=<A knight of the Temple, his shield still on his arm. Every wound is from the front. His hand is open now; you have what it held.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Read it again.
+Go to node ID=10 first entry
+
+Requirement=!None
+Reply Text=Leave him.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 first entry
+Text=<"We reached the abbey at dusk. The abbot met us at the gate and would not hear of swords in his sanctuary, so we camp outside the wall tonight. Twelve of us, and the abbey's own brothers within. He says the Crown has been safe here three hundred years. Ferran says three hundred years is how long it takes anyone to get careless.">
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=11 second entry
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 second entry
+Text=<"Third day. They came out of the trees at first light. Snakes with the faces of women, and men in black behind them who did not shout and did not break. Ferran took a poisoned blade at the gate and was dead before he fell. We hold the door. I have sent word to the brothers to bar the sanctuary.">
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=12 last entry
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 last entry
+Text=<"The door is lost. We fall back to the hall. If any man finds this: the relic is what they came for, and they will not stop at one. Tell Brother Michel at Montaillou. Tell Lord Javier we did not run. Tomas de Vilanova, Knight of the Temple.">
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+}
+Reply Text=Take the book.
+Go to node ID=
+Custom Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Leave it with him.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

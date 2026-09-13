@@ -1,0 +1,584 @@
+CDialogTree
+{
+Name=Assassin
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 found
+Text=<A man in black lies propped against a dead knight, a Templar's sword still through his side. He watches you come, and laughs, and the laugh costs him.> You are late. They have gone on without me.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=Who sent you?
+Go to node ID=10 who
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=Who sent you?
+Go to node ID=11 who fail
+
+Requirement=Demokin IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Reply Text=<Let him see your hands.> Look at me. Now tell me where they went.
+Go to node ID=12 one of ours
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=Where did they go?
+Go to node ID=20 where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=Why the relics?
+Go to node ID=30 why
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=Karma equalless 650
+Reply Text=The relics will be mine. Die knowing it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Finish him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 return
+Text=<He is still breathing.> Still here? Finish it, or go.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=Who sent you?
+Go to node ID=10 who
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=Who sent you?
+Go to node ID=11 who fail
+
+Requirement=Demokin IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Reply Text=<Let him see your hands.> Look at me. Now tell me where they went.
+Go to node ID=12 one of ours
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=Where did they go?
+Go to node ID=20 where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=Why the relics?
+Go to node ID=30 why
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=Karma equalless 650
+Reply Text=The relics will be mine. Die knowing it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Finish him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 who
+Text=We serve the Master. In the East. You will meet him, Lionheart - he has paid a great deal for it.
+Should Have Voiceover=0
+
+Requirement=Saladin IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Reply Text=I serve the Crescent. I know the East's enemies better than you. Name him.
+Go to node ID=13 crescent
+
+Requirement=!None
+Reply Text=Where did they go?
+Go to node ID=20 where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=Why the relics?
+Go to node ID=30 why
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=Karma equalless 650
+Reply Text=The relics will be mine. Die knowing it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Finish him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 who fail
+Text=<He spits, and it is mostly blood.> Ask the snakes.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where did they go?
+Go to node ID=20 where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=Why the relics?
+Go to node ID=30 why
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=Karma equalless 650
+Reply Text=The relics will be mine. Die knowing it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Finish him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 one of ours
+Text=<He looks at your hands, and something in his face lets go.> One of the Master's own. Then he did not tell me everything. North - over the mountains. There is a second one, and she does not stop at one. Tell him I held the hall.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why the relics?
+Go to node ID=30 why
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=<Finish him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 crescent
+Text=<He laughs, and it costs him more than the last one.> The Crescent. Aswaran, he has men in your order too. Ask them his name, and watch which of them will not say it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where did they go?
+Go to node ID=20 where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 where
+Text=North. Over the mountains. There is a second one, and she does not stop at one.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=Who sent you?
+Go to node ID=10 who
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=Who sent you?
+Go to node ID=11 who fail
+
+Requirement=!None
+Reply Text=Why the relics?
+Go to node ID=30 why
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=Karma equalless 650
+Reply Text=The relics will be mine. Die knowing it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Finish him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 why
+Text=Because they are power, and the Master collects power. What did the monks want with them - to pray at?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=Who sent you?
+Go to node ID=10 who
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=Who sent you?
+Go to node ID=11 who fail
+
+Requirement=!None
+Reply Text=Where did they go?
+Go to node ID=20 where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=assassin questioned
+}
+
+Requirement=Karma equalless 650
+Reply Text=The relics will be mine. Die knowing it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Finish him.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=assassin executed
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Assassin executed XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave him to die.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

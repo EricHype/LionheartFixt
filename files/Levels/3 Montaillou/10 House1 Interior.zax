@@ -1,0 +1,2384 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/Montserrat
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=5
+		Full Mix Song=3 Montaillou/AMB_Mntllou_Mayor.ogg
+		Med Mix Song=3 Montaillou/AMB_Mntllou_Mayor.ogg
+		Ambiant Song=3 Montaillou/AMB_Mntllou_Mayor.ogg
+	}
+	Width=1408
+	Height=1024
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=QuestMode
+	Has Begin Been Called=0
+	Map Description=Brother Michel's Home
+	First Fire Action=
+	First Load Action=
+	View Position=168.000000,284.000000
+	Int View Position=168,284
+	Partial File Name=3 Montaillou/10 House1 Interior
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CEntityBase
+		{
+			Name=questioned the assassin
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=10
+			Position Y=10
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=0, 895, 0, 0, 568, 0, 572, 324, 438, 326, 341, 524, 545, 592, 561, 723, 779, 627, 779, 895, 0, 895
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=This relocatees you to the Mayor's house
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=probably soon
+						New Map Name=3 Montaillou/03 Mayor Interior
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=270.25
+			Position Y=508.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=This relocatees you to theCrypt Entrancee
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=probably soon
+						New Map Name=4 Crypt/2 Retreat of Souls Entry
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=253.25
+			Position Y=567.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=This relocatees you to the church interior
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=3 Montaillou/05 Church Interior
+						New Location=Start Here
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=286.25
+			Position Y=656.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Michel already gave you an amulet
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=325
+			Position Y=428
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet House 1Interior/House1Interior
+			Position X=541
+			Position Y=419
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=The relay that kicks Lucious out of town activates this checker, which Michel uses to decide whether or not to talk to you
+			}
+			Name=Lucius gone
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=373
+			Position Y=619
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet House 1Interior/CandleLight
+			Position X=540
+			Position Y=401
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Pot1/Pot1 A
+			Position X=410
+			Position Y=489
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Brother Michel Gen
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/3 Montaillou/Character Templates/Brother Michel
+					New Name=Brother Michel
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=1
+									Action=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Lucious dead
+											Desired Minimum Count=1
+										}
+										Then=CSeriesAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDisplayDialogTreeAction
+														{
+															Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+															Node ID=05 Conversation Start if Andre Slain
+															Speaker=$trigger
+															Player Being Spoken To=$Instigator
+														}
+														Action=COtherMapAction
+														{
+															Action=CActivateAction
+															{
+																Target Name=Esclarmonde Activator
+																Play Activate Sound=0
+																Delay Between Activations=0
+																Warp Behavior=
+															}
+															Other Map Name=3 Montaillou/01 Hamlet Exterior
+														}
+													}
+												}
+												Action=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+													Node ID=03 Return Dialogue
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+											}
+											When Done=Repeat Last Action
+											Require Success To Advance=1
+											Next Action Index=0
+										}
+										Else=CSeriesAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDisplayDialogTreeAction
+														{
+															Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+															Node ID=01 Conversation Start
+															Speaker=$trigger
+															Player Being Spoken To=$Instigator
+														}
+														Action=CMultipleActionsAction
+														{
+															Action=Array
+															{
+																Item Count=1
+																Action=COtherMapAction
+																{
+																	Action=CActivateAction
+																	{
+																		Target Name=Esclarmonde Activator
+																		Play Activate Sound=0
+																		Delay Between Activations=0
+																		Warp Behavior=
+																	}
+																	Other Map Name=3 Montaillou/01 Hamlet Exterior
+																}
+															}
+														}
+													}
+												}
+												Action=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+													Node ID=03 Return Dialogue
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+											}
+											When Done=Repeat Last Action
+											Require Success To Advance=0
+											Next Action Index=0
+										}
+										Return failure if the If failes=0
+									}
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
+							X Radius=100
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CRemoveAIAction
+										{
+											Target Name=Map
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAddAIAction
+											{
+												Target Name=Map
+												AI=CAIInteractionSpecifier
+												{
+													Marked For Deletion=0
+													Publisher=
+													Trigger Only Once=0
+													Was Triggered=0
+													Auto-Flip Switch=1
+													Trigge Must Have HP=0
+													Triggered By Anything=0
+													Triggered By Players=1
+													Triggered By Player Friends=0
+													Triggered By Enemies=0
+													Triggered By Projectiles=0
+													Triggered By Name=
+													Interaction Description=
+													Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CEnablePointOfInterestOnWorldMapAction
+															{
+																Point Of Interest to Enable=Interface/World Map/Crypt
+															}
+															Action=CDisplayDialogBalloonAction
+															{
+																Dialog Tree File=Levels/7 English Shrine/Dialog/ManaTomes
+																Node ID=99 Crypt Location
+																Name of Position=$Trigger
+																Position Offset=0.000000,-80.000000
+																After Action=
+																Include In Log=1
+															}
+														}
+													}
+													X Radius=60
+													Attacker Range Modifier=0
+													YX Ratio=0.712766
+													Highlight Self Time=0
+													Highlight Until Clicked=0
+													Is Locked=0
+													Allow Interact If Has Target=1
+													Lock Pick Adjustment=0
+													Inventory item to use as key=Inventory Items/!None
+													Is Bussy Talking=0
+												}
+												Delay Between Adds=0
+											}
+											Delay=0.3
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Action=CIfAction
+										{
+											If=CAndAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CNotAction
+													{
+														Action=CIsQuestCompletedAction
+														{
+															Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+														}
+													}
+													Action=CNotAction
+													{
+														Action=CIsQuestFailedAction
+														{
+															Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+														}
+													}
+													Action=CWasQuestEverActivatedAction
+													{
+														Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+													}
+												}
+												Early Exit=0
+											}
+											Then=CSetQuestSatusToFailedAction
+											{
+												Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+									}
+								}
+								Target Name=$Instigator
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=GoToCombat
+									Action=CRemoveAIAction
+									{
+										Target Name=Map
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+								}
+								Delay Between Adds=0
+							}
+						}
+					}
+					New Facing Angle=0.785395
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=479
+			Position Y=438
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Lucious dead
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=439
+			Position Y=627
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=505, 370, 515, 389, 506, 402, 483, 400, 505, 370
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=When Michel dies, his after action adds a new AI to this book, which will give you a new message and enable the crypt's world map icon
+			}
+			Name=Map
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CSeriesAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+								Node ID=2003 Leave the book alone
+								Name of Position=Brother Michel
+								Position Offset=0.000000,-75.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+								Node ID=2004 really leave that alone
+								Name of Position=Brother Michel
+								Position Offset=0.000000,-75.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+								Node ID=2005 Rilly rilly leave it alone
+								Name of Position=Brother Michel
+								Position Offset=0.000000,-75.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+								Node ID=2006 Fed up
+								Name of Position=Brother Michel
+								Position Offset=0.000000,-75.000000
+								After Action=
+								Include In Log=1
+							}
+						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
+					}
+					X Radius=60
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Shrine Level/Objects/Book2/Book2 H
+			Position X=695
+			Position Y=451.5
+			Rendering Height=60
+			Rendering Height Float=60
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=fight
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Lucious dead
+							Desired Minimum Count=1
+						}
+						Then=
+						Else=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=COtherMapAction
+								{
+									Action=CDeleteAction
+									{
+										Target Name=Lucius
+									}
+									Other Map Name=3 Montaillou/01 Hamlet Exterior
+								}
+								Action=CActivateAction
+								{
+									Target Name=Lucius
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=COtherMapAction
+								{
+									Action=CDeactivateAction
+									{
+										Target Name=Lucius generator
+									}
+									Other Map Name=3 Montaillou/01 Hamlet Exterior
+								}
+							}
+						}
+						Return failure if the If failes=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=489
+			Position Y=656
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=779, 895, 779, 626, 696, 524, 741, 453, 634, 323, 570, 323, 563, 0, 1279, 0, 1279, 895, 779, 895
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=start here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=COtherMapAction
+					{
+						Action=CActivateAction
+						{
+							Target Name=already found michel
+							Play Activate Sound=0
+							Delay Between Activations=0
+							Warp Behavior=
+						}
+						Other Map Name=3 Montaillou/01 Hamlet Exterior
+					}
+					Per Character Spawn Action=
+					Set Facing Angle=0
+					Facing Angle=240
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=568
+			Position Y=498
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=3 Montaillou/01 Hamlet Exterior
+						New Location=From House1
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=565, 553, 648, 504, 689, 514, 765, 622, 575, 703, 540, 581, 565, 553
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=Lucius
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=15
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=3
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/3 Montaillou/Character Templates/Andre the Titan 2
+								}
+							}
+						}
+					}
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CGoToCombatAction
+							{
+								Enemy Name=$Instigator
+							}
+						}
+					}
+					New Facing Angle=4.15388
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=582
+			Position Y=509
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=543, 591, 581, 686, 748, 612, 688, 513, 781, 628, 560, 726, 543, 591
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=toulouse
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=554
+			Position Y=630
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Misc/Table Items/BowlGroupOne E
+			Position X=603
+			Position Y=356
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Druid Grove/CampSiteStuff/Bedding/BedRoll1 E
+			Position X=628
+			Position Y=419.572
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=588, 504, 616, 549, 588, 504
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=This lowers Karma to 600
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CAddCharacterModifierToCharacterAction
+					{
+						Modifier Description=
+						Modification is permanent=0
+						Character to modify=$Instigator
+						Modifiers=Array
+						{
+							Item Count=1
+							Modifier=CCharacterModifierDerivedAttribute
+							{
+								Modification Amount=CConstant
+								{
+									Constant Value=-400
+								}
+								Modification amount is a percent=0
+								Allow Accumulation=1
+								Derived character attribute to modify=Derived Character Attributes/Karma
+							}
+						}
+						OPTIONAL Duration=
+						Expression Context=$Instigator
+					}
+					X Radius=300
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=671.25
+			Position Y=616.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=1000
+			}
+			Name=Told Michel you have the real lance
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=668
+			Position Y=238
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=500
+			}
+			Name=told michel about relics
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=724
+			Position Y=340
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=This gives you the REAL Sacred Lance
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActionGiveStandardInventoryItem
+					{
+						Who to give to=$instigator
+						Delete Trigger=0
+						Notify Player=1
+						Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/SACRED LANCE
+						Additions to add=Array
+						{
+							Item Count=0
+						}
+					}
+					X Radius=300
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=715.25
+			Position Y=592.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Good karma
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CAddCharacterModifierToCharacterAction
+					{
+						Modifier Description=Give a karma bonus
+						Modification is permanent=1
+						Character to modify=Player#1-9#
+						Modifiers=Array
+						{
+							Item Count=1
+							Modifier=CCharacterModifierDerivedAttribute
+							{
+								Modification Amount=CConstant
+								{
+									Constant Value=60
+								}
+								Modification amount is a percent=0
+								Allow Accumulation=1
+								Derived character attribute to modify=Derived Character Attributes/Karma
+							}
+						}
+						OPTIONAL Duration=
+						Expression Context=$Instigator
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=671
+			Position Y=672
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Activated when player has told Michel that they have the FALSE Lance
+			}
+			Name=First time told Michel have FALSE Lance
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=769
+			Position Y=243
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Inquisitor bonus for node 197 Warning
+			}
+			Name=faction bonus for Inquisitor
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CAddCharacterModifierToCharacterAction
+					{
+						Modifier Description=
+						Modification is permanent=0
+						Character to modify=Player#1-9#
+						Modifiers=Array
+						{
+							Item Count=1
+							Modifier=CCharacterModifierDerivedAttribute
+							{
+								Modification Amount=CConstant
+								{
+									Constant Value=50
+								}
+								Modification amount is a percent=0
+								Allow Accumulation=1
+								Derived character attribute to modify=Derived Character Attributes/Karma
+							}
+						}
+						OPTIONAL Duration=
+						Expression Context=$Instigator
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=758
+			Position Y=389
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=If this is active, you found out about the crypt from Michel's dialog
+			}
+			Name=know about crypt
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=778
+			Position Y=468
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=This gives you the FALSE Sacred Lance
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActionGiveStandardInventoryItem
+					{
+						Who to give to=$instigator
+						Delete Trigger=0
+						Notify Player=1
+						Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/SACRED LANCE False
+						Additions to add=Array
+						{
+							Item Count=0
+						}
+					}
+					X Radius=300
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=745.25
+			Position Y=561.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Bad karma
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CAddCharacterModifierToCharacterAction
+					{
+						Modifier Description=Give a karma bonus
+						Modification is permanent=1
+						Character to modify=Player#1-9#
+						Modifiers=Array
+						{
+							Item Count=1
+							Modifier=CCharacterModifierDerivedAttribute
+							{
+								Modification Amount=CConstant
+								{
+									Constant Value=-60
+								}
+								Modification amount is a percent=0
+								Allow Accumulation=1
+								Derived character attribute to modify=Derived Character Attributes/Karma
+							}
+						}
+						OPTIONAL Duration=
+						Expression Context=$Instigator
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=735
+			Position Y=675
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Activated when player has told Michel that they ACTUALLY HAVE the REAL Lance
+			}
+			Name=First time told Michel have REAL Lance
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=831
+			Position Y=266
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Inquisitor bonus for calling Nostradamus a heritic in node 315
+			}
+			Name=Inquisitor bonus 2
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CAddCharacterModifierToCharacterAction
+					{
+						Modifier Description=
+						Modification is permanent=0
+						Character to modify=Player#1-9#
+						Modifiers=Array
+						{
+							Item Count=1
+							Modifier=CCharacterModifierDerivedAttribute
+							{
+								Modification Amount=CConstant
+								{
+									Constant Value=50
+								}
+								Modification amount is a percent=0
+								Allow Accumulation=1
+								Derived character attribute to modify=Derived Character Attributes/Karma
+							}
+						}
+						OPTIONAL Duration=
+						Expression Context=$Instigator
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=828
+			Position Y=394
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Activated once first Joke has been said
+			}
+			Name=Low Karma joking Michel have REAL Lance
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=922
+			Position Y=220
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=0.5
+		Num Textures=1
+		Texture 0=14 Black
+		Elevations Row 0=0202020202020202020202020202020000000000000000
+		Elevations Row 1=0202020202020202020202020202020000000000000000
+		Elevations Row 2=020202020202EAEAEA0202020202020000000000000000
+		Elevations Row 3=0202028C8C8C027CEA7C7C7C0202020000000000000000
+		Elevations Row 4=02028C02028C7C2F2EEAEA02028C020000000000000000
+		Elevations Row 5=02028C8C8C8C7C2F8C7CEAEA2F8C020000000000000000
+		Elevations Row 6=0202028C8CEAEAEAEAEAEABCEA8C020000000000000000
+		Elevations Row 7=0202028CEAEAEAEAEAEA6366EA8C020000000000000000
+		Elevations Row 8=0202028CEA503E567C7C575EEA8C020000000000000000
+		Elevations Row 9=020202EAEA8C8C8C8C7C7CEA008C020000000000000000
+		Elevations Row 10=02020202EA8C8C8C0202EAEA028C020000000000000000
+		Elevations Row 11=02028C8C8CEAEAEAEA8CEA8C8C02020000000000000000
+		Elevations Row 12=0202020202020202020202020202020000000000000000
+		Elevations Row 13=0200020202020202020202020202000000000000000000
+		Elevations Row 14=0000000000020202020202020200000000000000000000
+		Elevations Row 15=0000000000000000000000000000000000000000000000
+		Elevations Row 16=0000000000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 16=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+	}
+}

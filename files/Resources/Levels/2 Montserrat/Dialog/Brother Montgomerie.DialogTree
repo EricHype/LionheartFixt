@@ -1,0 +1,568 @@
+CDialogTree
+{
+Name=Brother Montgomerie
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Thanks be to God, I knew someone would come...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=You must tell me what has happened here.
+Go to node ID=20 attack
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 attack
+Text=I am Brother Montgomerie. I fear I am the last survivor of Montserrat. But I don't think I'll make it much longer. I was afraid it would happen eventually. Those horrible beasts charged in here and...they took the relic.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=I found Sir Tomas de Vilanova's journal at the gate.
+Go to node ID=21 the captain
+Icon=Quest Icon
+
+Requirement=Templar IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Reply Text=I am of the Temple, brother. Javier sent me.
+Go to node ID=22 brother
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are these creatures? Where did they go?
+Go to node ID=40 beasts
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 beasts
+Text=Horrible, powerful beasts. Monsters, assassins. They went...North. They seek more relics. They must not have them. 
+Should Have Voiceover=1
+
+Requirement=Karma equalless 650
+Reply Text=I seek these relics for my own power. Tell me more before death claims you!
+Go to node ID=45 prophecy 2
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Fear not, I will help. I have been tasked to secure these relics.
+Go to node ID=45 prophecy 2
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 the captain
+Text=Tomas... They came from Barcelona two days before the beasts did. He would not sleep inside the wall - said a knight's place was the gate. He held it long enough for the brothers to bar the sanctuary. It bought us an hour. Carry his words to Lord Javier. The Temple should know how its knights died.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will. Who are these creatures? Where did they go?
+Go to node ID=40 beasts
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=22 brother
+Text=<He reaches for your hand and cannot find it.> Then it is ours to carry, and not some hireling's. Good. Tell Javier the abbey held as long as men can hold. Tell him what took it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will. Who are these creatures? Where did they go?
+Go to node ID=40 beasts
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 prophecy 2
+Text=Listen...you must see Brother Michel on the other side of the Pyrenees. He must be told. I will mark the way on your map...the beasts must *not* get the relics...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How long ago did they come?
+Go to node ID=60 not long
+
+Requirement=!None
+Reply Text=Who is this 'Brother Michel'?
+Go to node ID=50 Bro michelle
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Bro michelle
+Text=He is a friend who will help you find the crypt. You must go. The relics must be protected. I can't.... <dies>.
+Should Have Voiceover=1
+
+Requirement=Karma equalless 650
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+}
+Reply Text=It's about time you perished. I want you to know before your soul departs that the relics will be mine.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=10
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=3M07PDZC
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=4SD5SKSO
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=J1VVBB3T
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=R8ZD5CU6
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=WB7EAGTQ
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=UODGMVBJ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CDelayAction
+{
+Next Action=COpenDoorAction
+{
+Door Name=Exit Door, Exit Door2
+Delay Between Doors=0
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=$Trigger
+Temporary Task AI=CPlaySequenceOnceAI
+{
+Marked For Deletion=0
+Publisher=
+Behavior=CEntityBehaviorPlaySequenceOnce
+{
+Sequence=death
+Speed To Play=1
+Done Sequence=dead
+Done Frame=0
+Was Stationary=0
+Old Play Ratio=0
+Move With Sequence=0
+After Action=
+Cur Speed To Play=1
+}
+Stop Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSendAIDoneMessage
+{
+Target=$Trigger
+}
+Action=CSetCurSequenceAction
+{
+Sequence=Dead
+Target Name=$Trigger
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=$Trigger
+Temporary Task AI=CWaitAI
+{
+Marked For Deletion=0
+Publisher=
+Time To Wait=0
+Time Left=0
+Done Action=
+Behavior to run=
+Delete AI When Done=0
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=Raise Enemy
+}
+}
+}
+Execute Action Only Once=1
+Stop Action Executed=0
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+}
+Action=CPlaySoundAction
+{
+Sound=Enemies/People/Knight Death.wav
+Position=$Trigger
+}
+Action=CEndNonInteractiveSequenceAction
+{
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I will find Brother Michel. Rest now, warrior.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=10
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=3M07PDZC
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=4SD5SKSO
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=J1VVBB3T
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=R8ZD5CU6
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=WB7EAGTQ
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=UODGMVBJ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CDelayAction
+{
+Next Action=COpenDoorAction
+{
+Door Name=Exit Door, Exit Door2
+Delay Between Doors=0
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=$Trigger
+Temporary Task AI=CPlaySequenceOnceAI
+{
+Marked For Deletion=0
+Publisher=
+Behavior=CEntityBehaviorPlaySequenceOnce
+{
+Sequence=death
+Speed To Play=1
+Done Sequence=dead
+Done Frame=0
+Was Stationary=0
+Old Play Ratio=0
+Move With Sequence=0
+After Action=
+Cur Speed To Play=1
+}
+Stop Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSendAIDoneMessage
+{
+Target=$Trigger
+}
+Action=CSetCurSequenceAction
+{
+Sequence=Dead
+Target Name=$Trigger
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=$Trigger
+Temporary Task AI=CWaitAI
+{
+Marked For Deletion=0
+Publisher=
+Time To Wait=0
+Time Left=0
+Done Action=
+Behavior to run=
+Delete AI When Done=0
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=Raise Enemy
+}
+}
+}
+Execute Action Only Once=1
+Stop Action Executed=0
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+}
+Action=CPlaySoundAction
+{
+Sound=Enemies/People/Knight Death.wav
+Position=$Trigger
+}
+Action=CEndNonInteractiveSequenceAction
+{
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 not long
+Text=Not long ago. a few days maybe. I tried to stay alive until someone...came. I'm glad you did.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who is Brother Michel?
+Go to node ID=50 Bro michelle
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Kill
+Text=<Voice from the wounded knight> You must...kill them all...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Protect
+Text=<The wounded knight rasps: Assassins...they stole it...>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 come back
+Text=<Wounded Knight rasps: Come back when they are dead...>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 <rasp>
+Text=<Voice from the wounded knight> Beware...their poisons...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 <gurgle>
+Text=<The wounded knight makes a faint gurgling sound>
+Should Have Voiceover=0
+}

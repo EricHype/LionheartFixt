@@ -1,0 +1,3037 @@
+CDialogTree
+{
+Name=Brother Michel
+Portrait=Dialog/NPC Portraits/Brother Michel
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Peace be with you, traveler. I am Brother Michel. What brings you here?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+}
+}
+Reply Text=You're a demokin, aren't you?
+Go to node ID=950 Human
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+}
+}
+Reply Text=You're a demokin, aren't you?
+Go to node ID=950 Human and Inquisitor
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Operator=
+Operand2=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Feralkin IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Sylvant IS
+}
+}
+}
+Reply Text=You're a demokin, aren't you?
+Go to node ID=950 Sylvant or Feralkin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+Reply Text=You're a demokin, aren't you?
+Go to node ID=950 Demokin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+}
+}
+Reply Text=You're a demokin, aren't you?
+Go to node ID=950 Demokin and Knight or Inquisitor
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=You might want to tell your titan to go easy on your visitors.
+Go to node ID=30 Andre
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Peace, friend. What may old Michel do for you now?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found Brother Michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already found brother michel
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/SACRED LANCE
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have REAL Lance
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have recovered the Bleeding Lance the Knights Templar were guarding in the ancient crypt.
+Go to node ID=2002 REAL Lance Dialog
+Custom Action=CActivateAction
+{
+Target Name=First time told Michel have REAL Lance
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/SACRED LANCE
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have REAL Lance
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=What should I do with this Lance now that I have it?
+Go to node ID=2003 REAL Lance Dialog Return
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/SACRED LANCE False
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have FALSE Lance
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I believe I have found the Bleeding Lance.
+Go to node ID=2000 Sacred Lance False
+Custom Action=CActivateAction
+{
+Target Name=First time told Michel have FALSE Lance
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/SACRED LANCE False
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have FALSE Lance
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Are you sure this isn't the Bleeding Lance?
+Go to node ID=2001 Sacred Lance False Again
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+}
+}
+Reply Text=I didn't notice before, but you're a demokin, aren't you?
+Go to node ID=950 Human
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+}
+}
+Reply Text=I didn't notice before, but you're a demokin, aren't you?
+Go to node ID=950 Human and Inquisitor
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Operator=
+Operand2=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Feralkin IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Sylvant IS
+}
+}
+}
+Reply Text=I didn't notice before, but you're a demokin, aren't you?
+Go to node ID=950 Sylvant or Feralkin
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+Reply Text=I didn't notice before, but you're a demokin, aren't you?
+Go to node ID=950 Demokin
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+}
+}
+Reply Text=I didn't notice before, but you're a demokin, aren't you?
+Go to node ID=950 Demokin and Knight or Inquisitor
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=toulouse
+Desired Minimum Count=1
+}
+}
+Reply Text=Have you heard of Toulouse?
+Go to node ID=900 Toulouse
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Conversation Start if Andre Slain
+Text=By God, is it true? Have you slain the titan that guarded my home?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=E57VYXHG
+}
+}
+Early Exit=0
+}
+}
+Reply Text=It was not done out of malice, Michel. His soul contained the memory of his tribe and had to be returned to its keeping.
+Go to node ID=40 Soothing
+
+Requirement=!None
+Reply Text=<Lie> It was the work of vile assassins who fled just before I arrived. He cried out your name as his last breath expired.
+Go to node ID=40 Soothing
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=He gave me no choice! I am truly sorry, but in his zealousness to protect your privacy he attacked me. I will strive to do penance.
+Go to node ID=40 Soothing
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=07 Andre Dead greeting 2
+Text=Leave now or you shall spend eternity in the deepest part of the swamp beneath us.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=My prayers are with you. Godspeed.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 Montserrat
+Text=Montserrat? Ah, it has suffered an ill fate, I can see it in your face. What has happened?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have REAL Lance
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=The relic at Montserrat has been stolen. The monks fear the relic here is in jeopardy.
+Go to node ID=60 Grief
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=told michel about relics
+Experience Points To Add=1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+
+Requirement=!None
+Reply Text=The monastery has been destroyed. The monks suggested I seek your counsel.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Andre
+Text=He is a harmless, gentle soul - if a bit zealous about my privacy. But if you made it past him, then your errand must be urgent indeed.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Soothing
+Text=I see - it seems there is much evil in the world of late. Tell me, what brings you to this crippled old Knight?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/SACRED LANCE False
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have FALSE Lance
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I believe I have found the Bleeding Lance.
+Go to node ID=2000 Sacred Lance False
+Custom Action=CActivateAction
+{
+Target Name=First time told Michel have FALSE Lance
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=toulouse
+Desired Minimum Count=1
+}
+}
+Reply Text=Have you heard of Toulouse?
+Go to node ID=900 Toulouse
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Dismissal
+Text=A pointless loss of life - and such tragedies will never end as long as the likes of you walk Europe. Leave and bother me no more.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=60 Grief
+Text=The relic you speak of is indeed nearby - sealed within an ancient crypt, forgotten by all but a few...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What can you tell me about this crypt?
+Go to node ID=90 The Crypt
+Action work in progress=(Set Know Crypt, same as 130)
+Custom Action=CActivateAction
+{
+Target Name=know about crypt
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=This relic - was it one of those responsible for the Disjunction?
+Go to node ID=100 History
+Action work in progress=(Set Know Crypt, same as 130)
+Custom Action=CActivateAction
+{
+Target Name=know about crypt
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=80 Advice
+Action work in progress=(Set Know Crypt, same as 130)
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Advice
+Text=What I know, I will tell.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=know about crypt
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=The relic at Montserrat has been stolen. The monks fear the relic here is in jeopardy.
+Go to node ID=60 Grief
+Action work in progress=(Don't Know Crypt from 60 or 130)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=told michel about relics
+Experience Points To Add=1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=know about crypt
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have REAL Lance
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What can you tell me about the vault holding the relic?
+Go to node ID=90 The Crypt
+Action work in progress=(Know Crypt from 60 or 130)
+
+Requirement=!None
+Reply Text=What can you tell me of Montaillou?
+Go to node ID=110 Montaillou
+
+Requirement=!None
+Reply Text=Have you heard of the war with England?
+Go to node ID=120 War
+
+Requirement=!None
+Reply Text=Is there anything you can tell me about this area?
+Go to node ID=130 Area Secrets
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=questioned the assassin
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Do you know who attacked Montserrat and stole the relic?
+Go to node ID=140 Dark Forces
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=questioned the assassin
+Desired Minimum Count=1
+}
+}
+Reply Text=I know who attacked Montserrat. Assassins, out of the East. One of them told me before he died.
+Go to node ID=141 out of the east
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=141 out of the east
+Text=Assassins. Out of the East. <He crosses himself.> Then whoever sent them can reach across the whole of Christendom, and cares nothing for what stands in the way. That is worse than not knowing, young one. Say the word 'East' to no one in this village; the Inquisition hears it and thinks of witchcraft.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 The Crypt
+Text=Two hundred years ago, my order fought a great battle against the army of a necromancer within Le Crypte de la Lance Sainte. Therein Lies a mighty relic, and in the end we could protect it only by sealing the complex - and trapping the undead horde within.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Templar Crypt and recover the Sacred Lance
+}
+}
+}
+Reply Text=Is the relic still there?
+Go to node ID=150 Crypt Intact
+
+Requirement=Saladin NOT
+Reply Text=How was the complex sealed?
+Go to node ID=160 The Seals
+
+Requirement=Saladin IS
+Reply Text=How was the complex sealed?
+Go to node ID=165 The Seals Saladin
+
+Requirement=!None
+Reply Text=Are the undead still there?
+Go to node ID=170 Undead
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 History
+Text=Oui <Yes>, the very same relic was present on that dark day. If someone seeks it, it may be for a goal as dreaded as that event.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you know who might be behind this?
+Go to node ID=140 Dark Forces
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Montaillou
+Text=This is a simple village, but even here, there is no peace from the outside world - and few have a titan to shield them from unwanted visitors. An Inquisitor is scouring the village, looking for heretics.
+Should Have Voiceover=1
+
+Requirement=Inquisitor NOT
+Reply Text=Are there heretics here?
+Go to node ID=190 Cathars
+
+Requirement=Inquisitor IS
+Reply Text=Are there heretics here?
+Go to node ID=195 Cathars Inquisition
+
+Requirement=!None
+Reply Text=Can anyone in the village aid my journey?
+Go to node ID=200 Aid in Montaillou
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 War
+Text=It is a fool's errand, to attack a powerful enemy and leave your shores defenseless.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you think the English will counterattack?
+Go to node ID=210 Counterattack
+
+Requirement=!None
+Reply Text=Are the English responsible for the thefts of the relics?
+Go to node ID=140 Dark Forces
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 Area Secrets
+Text=There are two places of note in this area - the Caverns of Nostradamus and Le Crypte de la Lance Sainte, the Crypt of the Holy Lance.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=First time told Michel have REAL Lance
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Tell me about the Crypt.
+Go to node ID=90 The Crypt
+Action work in progress=(Set Know Crypt, same as 60)
+Custom Action=CActivateAction
+{
+Target Name=know about crypt
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Caverns of Nostradamus?
+Go to node ID=220 Caverns
+Action work in progress=(Set Know Crypt, same as 60)
+Custom Action=CActivateAction
+{
+Target Name=know about crypt
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+Action work in progress=(Set Know Crypt, same as 60)
+Custom Action=CActivateAction
+{
+Target Name=know about crypt
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Set Know Crypt, same as 60)
+Custom Action=CActivateAction
+{
+Target Name=know about crypt
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Dark Forces
+Text=I do not know for certain. But whoever was bold enough to attack Montserrat and steal the relic must be quite powerful - and have little fear of consequences.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Crypt Intact
+Text=The relic is safely sealed within its crypt thus far, but now this mad war with the English and the Inquisition's hunt for heresy among the peasants has robbed the Crypt of its guardians. I fear its secrets will not be kept for long.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What can be done?
+Go to node ID=230 Explore the Crypt
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 The Seals
+Text=Sorcerers from the Order of Saladin sealed the entrance to the Crypt with magic. The seals they devised are powerful, but they are not impregnable - they can be broken. Once inside, there are all manner of false doors and decoys and, of course, the remnants of the necromancer's army.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What about the Crypt's other guardians?
+Go to node ID=150 Crypt Intact
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=165 The Seals Saladin
+Text=Here, the members of your order have preceded you. Sorcerers from the Knights of Saladin sealed the entrance to the Crypt with magic. The seals they devised are powerful, but they are not impregnable - they can be broken.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What about the Crypt's other guardians?
+Go to node ID=150 Crypt Intact
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 Undead
+Text=I fear they still are. The undead do not rest, and they do not give up their second life, however wretched, without a fight.
+Should Have Voiceover=1
+
+Requirement=Saladin NOT
+Reply Text=How are they kept within?
+Go to node ID=160 The Seals
+
+Requirement=Saladin IS
+Reply Text=How are they kept within?
+Go to node ID=165 The Seals Saladin
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=190 Cathars
+Text=Oh, no doubt - it is difficult not to find heretics these days if one looks hard enough. The heretics the Inquisition seeks are called Cathars, who believe in reincarnation. While heretics, they are relatively harmless.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=195 Cathars Inquisition
+Text=Perhaps - it is difficult not to find heretics these days if one looks hard enough, is it, Inquisitor? I think the efforts of the Inquisition would be better served if they searched for evil elsewhere than in Montaillou.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=If heretics Lie in Montaillou, then it is the Inquisition's duty to find them - and punish them.
+Go to node ID=197 Warning
+Action work in progress=(Faction Bonus for Inquisition)
+
+Requirement=!None
+Reply Text=I'm sure I do not need to remind you that shielding heretics is a crime.
+Go to node ID=197 Warning
+Action work in progress=(Faction Bonus for Inquisition)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=197 Warning
+Text=I am aware of the law, Inquisitor. Yet there are times when the law and the good of the people are not the same thing. You would do well to remember that.
+Should Have Voiceover=1
+
+Requirement=Inquisitor IS
+Reply Text=I do not think *I* am the one who needs to be reminded of my duty to God.
+Go to node ID=198 Warning 2
+Action work in progress=(Additional Faction Bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=faction bonus for Inquisitor
+}
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=198 Warning 2
+Text=Have you come all this way for a debate, then? If so, you will find my time limited indeed.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=No, but I had other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=Then I will go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Aid in Montaillou
+Text=Perhaps the mayor can. At last word, he was asking around for help with a delicate matter - if you aid him, he might return the favor.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 Counterattack
+Text=They would be fools not to. I suspect the English may already be on their way to Spain's shores.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 Caverns
+Text=Haven't heard of the great Nostradamus? Oh, yes, he lives in this region - or did, at last I heard.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who is he?
+Go to node ID=240 Nostradamus
+
+Requirement=!None
+Reply Text=I know of him. What does he have to do with these caves?
+Go to node ID=250 Nostradamus' Visit
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=230 Explore the Crypt
+Text=Make certain that whoever attacked Montserrat does not get their hands on the second relic - otherwise, the world may share Montserrat's fate. If our foes have managed to steal the relics guarded by the Order of Saladin, it is all but certain that the crypt will prove but little impediment against them. You must journey to the crypt, recover the lance from the perils within, and keep it safe in your possession.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Templar Crypt and recover the Sacred Lance
+}
+}
+}
+Reply Text=I will go to the Crypt - tell me where to go.
+Go to node ID=1000 crypt location
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have other questions about the crypt.
+Go to node ID=231 Other Crypt questions
+
+Requirement=!None
+Reply Text=I must speak to you of other matters.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I will have to think about this. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=231 Other Crypt questions
+Text=Beware, it is a dangerous place full of trickery, traps, and deception. You would do well to arm yourself with knowledge before venturing there. What more can I tell you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Is the relic still there?
+Go to node ID=150 Crypt Intact
+
+Requirement=Saladin NOT
+Reply Text=How was the complex sealed?
+Go to node ID=160 The Seals
+
+Requirement=Saladin IS
+Reply Text=How was the complex sealed?
+Go to node ID=165 The Seals Saladin
+
+Requirement=!None
+Reply Text=Are the undead still there?
+Go to node ID=170 Undead
+
+Requirement=!None
+Reply Text=Actually, I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=240 Nostradamus
+Text=He was a French fortune-teller. His predictions were vague, coded Latin rhymes. Bad poetry; bad fortune-telling, too - the worst sort of drivel and nonsense. But then he acquired a spirit.
+Should Have Voiceover=1
+
+Requirement=Inquisitor IS
+Reply Text=A spirit? I think the Inquisition would be interested in this heretic.
+Go to node ID=245 Nostradamus Inquisitor
+
+Requirement=!None
+Reply Text=How did he come to Montaillou?
+Go to node ID=250 Nostradamus' Visit
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=245 Nostradamus Inquisitor
+Text=They no doubt would be. You see, the threat of the Inquisition was what drove Nostradamus into the caves in the first place.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What was he doing in Montaillou?
+Go to node ID=250 Nostradamus' Visit
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=250 Nostradamus' Visit
+Text=He was on a pilgrimage to Spain; he wintered in Montaillou while waiting for the passes to clear. Stayed in his room the whole time, prophesying.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What were the prophecies?
+Go to node ID=260 The Minor Prophecies
+
+Requirement=!None
+Reply Text=How did he get connected with the caves?
+Go to node ID=270 Nostradamus Flees
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=260 The Minor Prophecies
+Text=Small things, minor predictions - Nostradamus couldn't resist showing off his abilities. He used them like parlor tricks, telling one of the local farm girls she'd have twins, or telling a fisherman he'd land a prize catch, and so on.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Then what happened?
+Go to node ID=270 Nostradamus Flees
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=270 Nostradamus Flees
+Text=Eventually, word got to the Inquisition, who were already watching this area. Nostradamus fled to the caves and never came back. Or maybe he foresaw the whole thing...
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+}
+}
+}
+Reply Text=Is Nostradamus still at the cave?
+Go to node ID=280 Nostradamus' Fate
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=280 Nostradamus' Fate
+Text=Some say he crossed the mountains in the spring. As for Nostradamus, no one has heard from him since.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Perhaps I will ask around and get directions to these caverns...then I will go there and get to the bottom of this.
+Go to node ID=300 Michel Suspicious
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=290 Warning
+Text=Hmmm. Very well. But if you go, take care. Strange creatures are said to make their home in the caves, and they may not welcome your arrival.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=295 Another Warning
+Text=And your instincts led you all the way here, did they? Hmmm. Perhaps there is something driving you onwards.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Whatever it is, I intend to go the Caves.
+Go to node ID=290 Warning
+
+Requirement=!None
+Reply Text=I control my own actions.
+Go to node ID=290 Warning
+
+Requirement=!None
+Reply Text=Before I go, I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 Michel Suspicious
+Text=May I ask why?
+Should Have Voiceover=1
+
+Requirement=IN 5-
+Reply Text=Why? Why what?
+Go to node ID=310 Why
+Action work in progress=(IN < 5)
+Icon=Attribute Icon
+
+Requirement=IN greater than or equal to 4
+Reply Text=Why do I wish to go to the caves?
+Go to node ID=315 Why 2
+Action work in progress=(IN > 4)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Maybe I wont go. Anyway, I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I'd rather not say. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=310 Why
+Text=Yes, whatever would possess you to go into those caves? Did you come to Montaillou seeking Nostradamus, or do you just wish to see what trouble you can get yourself into?
+Should Have Voiceover=1
+
+Requirement=Inquisitor IS
+Reply Text=If Nostradamus lives, then he is a heretic and must be found.
+Go to node ID=290 Warning
+Action work in progress=(Faction Bonus Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Inquisitor bonus 2
+}
+
+Requirement=!None
+Reply Text=This Nostradamus may know something that could help me on my journey.
+Go to node ID=290 Warning
+
+Requirement=!None
+Reply Text=I merely wish to know what happened to Nostradamus.
+Go to node ID=290 Warning
+
+Requirement=!None
+Reply Text=I do not know - I am following my instincts.
+Go to node ID=295 Another Warning
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I'd rather not say. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=It is not your concern. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=315 Why 2
+Text=Yes - did you come to Montaillou seeking Nostradamus, or do you just wish to delve into the caves to see what trouble you can get yourself into?
+Should Have Voiceover=1
+
+Requirement=Inquisitor IS
+Reply Text=If Nostradamus lives, then he is a heretic and must be found.
+Go to node ID=290 Warning
+Action work in progress=(Faction Bonus Inquisition)
+
+Requirement=!None
+Reply Text=This Nostradamus may know something that could help me on my journey.
+Go to node ID=290 Warning
+
+Requirement=!None
+Reply Text=I merely wish to know what happened to Nostradamus.
+Go to node ID=290 Warning
+
+Requirement=!None
+Reply Text=I do not know - I am following my instincts.
+Go to node ID=295 Another Warning
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I'd rather not say. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=It is not your concern. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 Lucius thrown out of town
+Text=Lucius, despite his flaws, was a harmless, lonely soul. Your meddling has cast him out of the only home he is likely ever to have. I have nothing to say to you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 Lucius thrown out of town 2
+Text=Leave. Now. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 Toulouse
+Text=Yes, it is grim news indeed. What's worse, I fear that the Inquisitors, with their single-minded obsession for the so-called "heretics" around here, will be late in helping the people who need it most.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I am an agent of the Inquisition, Michel. Do you not think that the immortal souls of these heretics are more important than the mere bodies of the people of Toulouse?
+Go to node ID=901 Michel refutes the Inquisition
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I am an agent of the Inquisition, Michel. It troubles me that my brothers and sisters have not yet lent aid to Toulouse.
+Go to node ID=902 Michel help the Inquisition
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=As a Knight Templar I will face the titans myself, alone if need be.
+Go to node ID=903 Michel the Templar
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma moreequal 1000
+}
+Reply Text=Join me, Michel, and together we will face the titans.
+Go to node ID=904 Michel will join
+Action work in progress=only if good karma
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1000
+}
+}
+Character to get attributes from=$Instigator
+}
+}
+Reply Text=Join me, Michel, and together we will face the titans.
+Go to node ID=904 Michel will not join
+Action work in progress=only if bad karma
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=The Inquisitors and Templars are unnecessary. I will deal with the titans myself.
+Go to node ID=905 Bravado
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=901 Michel refutes the Inquisition
+Text=No, I don't. Good day, Inquisitor.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=902 Michel help the Inquisition
+Text=You have an open mind, a rare thing in the Inquisition. I wish you luck in your endeavor, and I think you will need it. I have something that might help you, a magical medallion that may help protect you...if you are willing to accept such things, Inquisitor.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Magic, properly employed in a righteous cause serves the greater good.  I will take it, and you have my thanks. Before I leave, I have other questions for you.
+Go to node ID=80 Advice
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Michel's Amulet
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Keep your trinket. I have other questions for you.
+Go to node ID=80 Advice
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Magic used in the cause of good is no sin, Templar. Farewell, and thank you.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Michel's Amulet
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I do not need trinkets to kill mere titans. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=903 Michel the Templar
+Text=Then good luck, Knight. I have something that may help you. I acquired this amulet many years ago, and have no need of it. Its magic may help you.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Thank you. Before I leave, I have other questions.
+Go to node ID=80 Advice
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Michel's Amulet
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Thank you. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Michel's Amulet
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=904 Michel will join
+Text=I must warn you, I brook no underhanded tactics nor will I parlay with monsters that have sacked a town and imprisoned its inhabitants. <Sigh> This is all wishful thinking. My sword arm is not what it used to be...and I have accepted a higher calling. One of which I can not speak of to anyone. I must refuse.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=As a Knight Templar I will face the titans myself, alone if need be.
+Go to node ID=903 Michel the Templar
+
+Requirement=!None
+Reply Text=That is too bad. However, if you will not join me, may I ask you some other questions instead?
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=Very well. I will go it alone. Goodbye.
+Go to node ID= 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=904 Michel will not join
+Text=Though you may seek to do justice in this instance, I suspect you are either motivated by greed or confused. I do not think I want any part in your travels. Is there anything else I can help you with?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+}
+}
+Reply Text=I didn't notice before, but you're not a demokin, aren't you?
+Go to node ID=950 Human
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+}
+}
+Reply Text=I didn't notice before, but you're not a demokin, aren't you?
+Go to node ID=950 Human and Inquisitor
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+Operator=
+Operand2=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Feralkin IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Sylvant IS
+}
+}
+}
+Reply Text=I didn't notice before, but you're not a demokin, aren't you?
+Go to node ID=950 Sylvant or Feralkin
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+}
+}
+}
+Reply Text=I didn't notice before, but you're not a demokin, aren't you?
+Go to node ID=950 Demokin
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+Operator=
+Operand2=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+}
+Reply Text=I didn't notice before, but you're not a demokin, aren't you?
+Go to node ID=950 Demokin and Knight or Inquisitor
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=905 Bravado
+Text=I hope your prowess is a match for your bravado. If you intend to take that course, I have something that might help you. This amulet's protective magic will protect you against the titans...to a degree. Take care.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Michel already gave you an amulet
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Thank you. Before I leave, I have other questions.
+Go to node ID=80 Advice
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Michel's Amulet
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Thank you. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Unique Magic Items/Michel's Amulet
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Michel already gave you an amulet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=950 Human
+Text=Yes, you are very perceptive. I am, in fact..."tainted." It has been at times a heavy burden to bear, especially since I chose to serve the Knights Templar, not all of whom are accepting of people like me. Does my heritage bother you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, not at all.
+Go to node ID=951 Good Attitude
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=No, it doesn't bother me. Does your heritage have something to do with your friendship with Lucius?
+Go to node ID=951 Lucius
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I'm sure you're an honorable man, but can somebody so infused with magic really be trusted?
+Go to node ID=951 trustworthyness
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+
+Requirement=!None
+Reply Text=Yes, it does.
+Go to node ID=951 you suck
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+------------------------------------------------------------
+Node ID=950 Human and Inquisitor
+Text=Nothing escapes you, Inquisitor. I am what many people would call a demokin. Does that offend you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You spent your life in the service of a noble cause. That is more important to me than the circumstances of your birth.
+Go to node ID=951 Good Attitude
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=No, it is unimportant. Does your heritage have anything to do with your friendship for the titan outside?
+Go to node ID=951 Lucius
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Tainted individuals, especially demokin, cannot be trusted. Even when they strive to lead honorable lives, the pull of their taint draws them to heresy.
+Go to node ID=951 trustworthyness
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+------------------------------------------------------------
+Node ID=950 Sylvant or Feralkin
+Text=Yes, like you no doubt are, I am called "tainted" by many when I walk down the street. Not even a life spent in the service of the Knights Templar has erased that prejudice. Here, though, in the midst of these Cathar 'heretics' I have found at last peace and acceptance, though I must admit the Inquisitors are an unwelcome interruption to my retirement.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Indeed, I wish we lived in a more accepting world. 
+Go to node ID=951 Good Attitude
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=Does your heritage have anything to do with your friendship for the titan outside?
+Go to node ID=951 Lucius
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Do not lump me in with your kind, Michel, I may be 'tainted' but I'm no *demokin*.
+Go to node ID=951 you suck
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+------------------------------------------------------------
+Node ID=950 demokin
+Text=Yes, like you I am a demokin, a fact I have taken pains to hide. Not even a life spent in the service of the Knights Templar has erased the prejudice that surrounds me. Here, though, in the midst of these Cathar 'heretics' I have found at last peace and acceptance, though I must admit the Inquisitors are an unwelcome interruption to my retirement.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Indeed, I wish we lived in a more accepting world. 
+Go to node ID=951 Good Attitude
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=Does your heritage have anything to do with your friendship for the titan outside?
+Go to node ID=951 Lucius
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=You are a fool to serve an organization like the Knights Templar.
+Go to node ID=951 bad attitude
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+------------------------------------------------------------
+Node ID=950 Demokin and Knight or Inquisitor
+Text=Yes, like you I am a demokin, a fact I have taken pains to hide. Not even a life spent in the service of the Knights Templar has erased the prejudice that surrounds me. It has been difficult; I have had to struggle hard to overcome the prejudice against my kind shared by many in the Knights. I have a great deal of empathy for you, young one.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=I have come from Montserrat to seek your help.
+Go to node ID=20 Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I do not let the small minds of simpletons deter me from doing my duty. 
+Go to node ID=951 Good Attitude
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=Does your heritage have anything to do with your friendship for the titan outside?
+Go to node ID=951 Lucius
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=One day I will have my revenge on those who have put me down for no better reason than my birthright.
+Go to node ID=951 bad attitude
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+------------------------------------------------------------
+Node ID=951 Good Attitude
+Text=You are a good person, and I can only wish there were more in this world like you. Is there something I can help you with?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=toulouse
+Desired Minimum Count=1
+}
+}
+Reply Text=Have you heard of Toulouse?
+Go to node ID=900 Toulouse
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=951 Lucius
+Text=Yes, perhaps it does. Although I'd like to think I would have helped Lucius in any event, my experience has likely given me a certain empathy for outcasts and misfits. Although we could likely talk all day about the faults of this world, I suspect you have more pressing business. What can I help you with?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=toulouse
+Desired Minimum Count=1
+}
+}
+Reply Text=Have you heard of Toulouse?
+Go to node ID=900 Toulouse
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=951 trustworthyness
+Text=When you have spent a lifetime serving the greater good as I have, *then* you can talk to me about who is trustworthy or not. Now then, ask what you will quickly and then get out of my sight.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=toulouse
+Desired Minimum Count=1
+}
+}
+Reply Text=Have you heard of Toulouse?
+Go to node ID=900 Toulouse
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=951 you suck
+Text=It pains me that the heavens allow people like you to continue to draw breath, yet I do not pretend to understand the plan of our creator. <sigh> Why have you come to bother me?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=toulouse
+Desired Minimum Count=1
+}
+}
+Reply Text=Have you heard of Toulouse?
+Go to node ID=900 Toulouse
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=951 bad attitude
+Text=You shouldn't let the pettiness of those with small minds bother you. You must learn to trust that their opinions are of no consequence and that one day they will learn to see the light. Now what might I help you with?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have some questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=toulouse
+Desired Minimum Count=1
+}
+}
+Reply Text=Have you heard of Toulouse?
+Go to node ID=900 Toulouse
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=999 Michel pushed to the edge
+Text=By God you are a fiend that doesn't deserve life!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=100 michel the demon
+Text=One of the reasons why I prefer to pray in private, away from the cold stares and sneers of strangers. All my life I have strived to overcome the burden of my heritage - it took extraordinary...patience to endure the tests for knighthood, made all the more difficult because of my appearance.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 crypt location
+Text=Would that my scarred old body could join you on this quest, my sword would be yours - I will pray for you. The Crypt is to the north, beyond Toulouse. I will mark the location on the map.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=231 Other Crypt questions
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Templar Crypt and recover the Sacred Lance
+State=AKSCHQPR
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Crypt
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 Michel Attacked
+Text=Brothers! Help me! 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 After Michel Attacked
+Text=Restrain your barbaric ways while in my presence.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=2000 Sacred Lance False
+Text=Ha! I see you have taken the bait that was left for grave robbers hundreds of years ago. What you carry is *not* the real lance...that is a forgery that has started to fall apart at the seams.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are you sure this isn't the Bleeding Lance?
+Go to node ID=2001 Sacred Lance False Again
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Well then, I have some other questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I suppose I should go and try to recover the *real* Lance. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2001 Sacred Lance False Again
+Text=Yes, I am *very* sure. That replica was forged to throw off those that would rob and steal the relic from the grasp of the Knights Tempar. The visual differences are subtle, but there is no mistaking the aura of the *real* lance. There should be a secret door close by to where you recovered that forgery.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Well then, I have some other questions for you.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I suppose I should go and try to recover the *real* Lance. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2002 REAL Lance Dialog
+Text=The aura...the power...it can be no other but the relic that my forebearers guarded with their very lives! Deep...deep in the recesses of my soul I am afraid, young one. Afraid of the power contained within that holy relic....and yet, I also sense your power. Perhaps you *can* meet the demands the Lance will make of you. In any case, do not speak of the Lance to anyone, and guard it with your very life. More may hinge on you now than you can possibly imagine.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=This is a huge weight to carry, but I shall be triumphant.  I do have some other questions for you.
+Go to node ID=80 Advice
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+
+Requirement=!None
+Reply Text=That is a huge responsibility. We shall not speak of it again.
+Go to node ID=
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma equalless 650
+}
+Reply Text=Too bad I plan on using the Lance to bring about the destruction of the world. Ha! Just kidding. Sure, I'll keep it safe.
+Go to node ID=
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Then I should be taking the Lance elsewhere. Goodbye.
+Go to node ID=
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2003 REAL Lance Dialog Return
+Text=Protect it, guard it, use it's power against the forces of darkness...but do not speak of it! Many in this world would kill you for much less!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I do have some other questions for you.
+Go to node ID=80 Advice
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Low Karma joking Michel have REAL Lance
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma equalless 650
+}
+}
+Reply Text=So I shouldn't sell the thing to the Necromancer that asked me for it yesterday? Just kidding! I won't mention it to anyone else.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Low Karma joking Michel have REAL Lance
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Low Karma joking Michel have REAL Lance
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma equalless 650
+}
+}
+Reply Text=So, let's say...theoretically...an evil being obtained the Lance, and then...oh, never mind. Goodbye.
+Go to node ID=
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Of course. Goodbye.
+Go to node ID=
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told Michel you have the real lance
+Experience Points To Add=1
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2003 Leave the book alone
+Text=Please leave that alone.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=2004 really leave that alone
+Text=I must insist that you leave that alone.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=2005 Rilly rilly leave it alone
+Text=Would I come into your house and rifle through your possessions?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=2006 Fed up
+Text=<Sigh> There's nothing written in there that I couldn't tell you, anyway.
+Should Have Voiceover=0
+}

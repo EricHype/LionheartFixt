@@ -1235,6 +1235,35 @@ on any save but wants a character with Luck 3 or less who has not yet taken Bren
 | AB6 | Port District tavern, Brendan (Luck >= 4) | Take his drink | Straight to *"Grand. Now, what can I do fer ye?"*; no clover |
 | AB7 | Brendan, negative | Talk to him again after the clover | The drink is not offered again (vanilla `took irish drink`), so no second clover |
 
+### 0.10.0 - Montserrat
+
+**Needs a character who has never entered Montserrat**; Tier 0 (MS1) and the Javier and
+Michel replies are dialogue and work on any save. Play order: Grove -> Level 1 -> Level 2 ->
+Barcelona (Javier) -> Montaillou (Michel). Positions were chosen from the maps' own body
+clusters without a walk mesh, so the first pass is as much about *where things landed* as
+whether they work; note any body, polygon or prop that is off the floor or in a wall.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MS1 | Montgomerie | Reach `45 prophecy 2` | *"How long ago did they come?"* plays the voiced `60 not long`, then Michel |
+| MS2 | Grove gate fight (2730,705) | Click the knight | `<...shield still on his arm...>`; Read -> three entries -> Take. Second click: `2 taken`, Read it again offered, Take not |
+| MS3 | Grove | Walk the ruins | Packs are mixed: snakebreed, a human assassin in most packs of three, a Summoner in packs of four. One assassin near (2650,1150) calls *"The Scion! To me!"* on his first wound and two packs arrive |
+| MS4 | Grove, negative | Kill the sentry in one blow | No call, no reinforcements |
+| MS5 | Grove hovers | Click the campfire (near 4400,3400), the dead snakebreed at the gate | Balloons; the campfire's second line at PE 7+ |
+| MS6 | Level 1, y=1700 | Cross the hall southward | `<Behind you...>` and three assassins fade in north of you. With Sneak 40+: nothing |
+| MS7 | Level 1 (2000,1900) | Click the man in black among the dead | Laughs; who (Speech 40 / *"Ask the snakes"*), where, why; Demokin and Saladin lines if applicable; Finish him -> pain sound, corpse, polygon gone, +100 XP; questions +150 XP once |
+| MS8 | Level 1, before the inner door (y~2800) | Cross it | Poison and the needle line; at Find Traps 35+ the tripwire line and no damage |
+| MS9 | Level 1 (2450,2450) | Approach | One assassin breaks and runs for the inner door and vanishes there |
+| MS10 | Level 1 hovers | Barricade at the entrance, jailor body (2312,2450), a candle stand (2479,1263), the druid gate | Balloons; jailor and candles have PE 7+ lines; the gate reads four ways (Wielder / Sylvant / IN 6 or Educated / plain) |
+| MS11 | Level 2, west chest (1143,365) | Open it | Two assassins fade in a second later; at Lockpick/Disarm 35+ the needle line and no assassins |
+| MS12 | Level 2, sanctum threshold (x~3500) | Cross | Sahar spawns and speaks; Outwit 7 offers the courier line. Enough talk / closing the window -> she and two Venom and a Summoner fight (courier: she fights alone) |
+| MS13 | Sahar at 60% and 25% | Fight her | *"To me!"* and two assassins at the threshold (three if MS9's runner got through); at 25% the heal effect and *"The Master is not done with me"* |
+| MS14 | After Sahar | Kill everything near Montgomerie | He speaks (vanilla gate). Templar: *"I am of the Temple, brother"*; journal: `21 the captain` |
+| MS15 | Level 2 hovers | Altar (3900,2200), the dead at (3975,2365), the Inquisitor at (2685,1020) | The reliquary line; the missing-monks line; Inquisitor IS sees the sealed order |
+| MS16 | Javier, Temple District | Report Montserrat carrying the journal | The Tomas reply -> `531 tomas`, book taken, +500 XP, quest state advances as the vanilla reply does |
+| MS17 | Michel, Montaillou | After questioning the assassin | *"I know who attacked Montserrat..."* replaces the vanilla question; `141 out of the east` |
+| MS18 | Negative | Sahar's tree cancelled with Escape | The fight starts anyway |
+
 ---
 
 ## Gate 3 - negative testing
@@ -1346,6 +1375,7 @@ both completed Gate 2. Record the result here per release.
 | 0.8.4 | PASS (automated) | - | - | - | - | - | **published as repair; the fifteenth sale itself not yet played** |
 | 0.9.0 | PASS (automated) | PASS | partial | - | - | - | **published; Na Roqua chain and Machiavelli's refused branch played and passing, the rest unplayed** |
 | 0.9.1 | PASS (automated) | - | - | - | - | - | **published, entirely unplayed** |
+| 0.10.0 | PASS (automated) | - | - | - | - | - | **built, unpublished, unplayed** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's

@@ -1303,6 +1303,19 @@ Text=It is grim news that Montserrat has fallen. We must double our efforts to s
 Should Have Voiceover=1
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=Sir Tomas de Vilanova led your knights. I have his journal. His last words were for you: they did not run.
+Go to node ID=531 tomas
+Icon=Quest Icon
+
+Requirement=!None
 Reply Text=I will do as you ask, Lord Javier. I will make my way to Montaillou and find the Crypt.
 Go to node ID=
 Action work in progress=(crypt quest given)
@@ -1315,6 +1328,38 @@ Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=FX3UY821
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=531 tomas
+Text=Tomas de Vilanova. I chose him for this myself. <He takes the book and does not open it.> It will go to his family under the Temple's seal, and his name will be read at chapter. You have done them an honour, young one. Now do as I ask: Montaillou, and the Crypt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will make my way to Montaillou and find the Crypt.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=FX3UY821
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Sir Tomas journal XP
+Experience Points To Add=1
 }
 }
 }
