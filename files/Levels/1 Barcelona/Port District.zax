@@ -87,6 +87,36 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=juan saved
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=20
+			Position Y=20
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=
 			Child List=
 			Visible=1
@@ -74739,7 +74769,7 @@ CLayerSaveData
 								Who to give to=Player#1-9#
 								Delete Trigger=0
 								Notify Player=1
-								Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
+								Inventory Item To Give=Inventory Items/Potion
 								Additions to add=Array
 								{
 									Item Count=0
@@ -78823,9 +78853,52 @@ CLayerSaveData
 						Action=Array
 						{
 							Item Count=4
-							Action=CUseCannedActionAction
+							Action=CMultipleActionsAction
 							{
-								Canned Object=Common Objects and Scripts/Genderate Dead Body
+								Action=Array
+								{
+									Item Count=4
+									Action=CDelayAction
+									{
+										Next Action=CSetCurSequenceAction
+										{
+											Sequence=Dead
+											Target Name=$Instigator
+										}
+										Delay=0
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CAssignTemporaryTaskAction
+									{
+										Target=$Instigator
+										Temporary Task AI=CWaitAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Time To Wait=0
+											Time Left=0
+											Done Action=
+											Behavior to run=
+											Delete AI When Done=0
+											Remove Wait AI If Actor Dies=1
+										}
+										Original AI Type=CSkeletonAI
+										Completion Message to wait for=Raise Enemy
+										Suppress can't assign error=0
+									}
+									Action=CSetCollidableAction
+									{
+										Target Name=$Instigator
+										Collidable=0
+									}
+									Action=CRemoveAIAction
+									{
+										Target Name=$Instigator
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+								}
 							}
 							Action=CGenerateInventoryItemAction
 							{
@@ -78978,7 +79051,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=6
+							Item Count=7
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Juan
+								Categories To Remove=Corpse
+							}
 							Action=CDisplayDialogBalloonAction
 							{
 								Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Sailor Juan
@@ -79016,10 +79094,13 @@ CLayerSaveData
 									Interaction Type=Interaction Specifiers/GetCloseThenTrigger
 									Action=CIfAction
 									{
-										If=CCheckCategoryAction
+										If=CNotAction
 										{
-											Target Name=Juan
-											Category to check for=Corpse
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=juan saved
+												Desired Minimum Count=1
+											}
 										}
 										Then=CIfAction
 										{
@@ -79038,10 +79119,12 @@ CLayerSaveData
 														Who to remove from=$instigator
 														Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Potion Fernand Healing
 													}
-													Action=CRemoveCategoryAction
+													Action=CActivateAction
 													{
-														Target Name=Juan
-														Categories To Remove=Corpse
+														Target Name=juan saved
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
 													}
 													Action=CSetCollidableAction
 													{
@@ -79242,10 +79325,13 @@ CLayerSaveData
 					{
 						Next Action=CIfAction
 						{
-							If=CCheckCategoryAction
+							If=CNotAction
 							{
-								Target Name=Juan
-								Category to check for=Corpse
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=juan saved
+									Desired Minimum Count=1
+								}
 							}
 							Then=CMultipleActionsAction
 							{

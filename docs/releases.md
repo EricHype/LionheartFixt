@@ -521,6 +521,38 @@ monks' absence be a question. Nobody answers it.
 `CLimitedTimeAI` inside canned AIs, more shape than the value warranted); guard-AI bodyguards
 and the secret door, above; the necromancer, untested.
 
+### Repairs from the 0.10.0 playthrough, as they come in
+
+**Fernand handed out the wrong bottle, and it was 0.8.1's fault.** 0.8.1 made Juan's rescue
+check for `Potion Fernand Healing` by name and repointed a give to hand it out -- but the give
+it repointed was `mute sailor rewards for solving quest`, which is the Mute Sailor's reward,
+not Fernand's. Fernand's own gives are in his tree, `Distressed Sailor.DialogTree`, on `30
+take the job` and `40 hard barter`, and both still gave the vanilla `Inventory Items/Potion`.
+A fresh character reached Juan with a plain potion and was told a potion might have saved
+him. Now Fernand's two gives hand out the draught and the Mute Sailor's reward is vanilla
+again. The lesson is the one 0.8.2 already wrote down about Quinn: **count the copies, and
+check whose reward it is.**
+
+**Juan was a corpse, and draining him soft-locked the quest.** He was spawned through the
+game's dead-body script, which is what Fixt's 0.6.0 restoration inherited from vanilla's
+unsaveable Juan. Two wrong fixes before the right one, recorded because the reads matter:
+stripping the `Corpse` category on approach (the drain still worked from range), then
+stripping it at spawn (the drain still worked). **Absorb Spirit does not target the category.**
+Its targeting is `Interaction Filter=After Death Spell`, which matches the
+`GetCloseThenFightWhenDead` specifier the dead-body script attaches -- "allows dead entities
+to still be interactable (for spells on the dead)". Juan now spawns the way the wounded
+assassin at Montserrat does, on Montgomerie's dying pose: `Dead` sequence, hit points intact,
+a `CWaitAI` listening for the rescue's `Raise Enemy` message, his sailor-banter click removed,
+non-collidable, and no dead-body script at all -- so the specifier the skill filters on never
+exists on him. The rescue and the 45-second bleed-out both key on a checker `juan saved` now;
+the bleed-out had keyed on `Corpse` too, so the first "fix" would have disarmed it and
+soft-locked a slow player the other way. Whatever happens to Juan, one of the two branches
+fires. The item is *Fernand's Draught*; the engine appends the effect's name to magic
+consumables, and *Fernand's Healing Draught of Healing* was the result.
+
+Proven by the report along the way: a Dead-sequence entity takes a click through an ordinary
+interaction specifier, which is what Tier 3's belt-and-braces polygon was hedging.
+
 ### Gates before this ships
 
 - Gate 0: `validate.py` clean; the new template's `Race=` real, its `Model=` and every `Cur
