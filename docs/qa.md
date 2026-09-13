@@ -1187,7 +1187,8 @@ conclusion. The Auric and Javier cases want a Templar initiate route.
 | TD8 | " | Take that branch to its end | The **cave opens** -- she says *"Step through the fire"* -- exactly as the other phrasing of the question already does. **This is the trap case**: if the door stays shut, the relay did not fire |
 | TD9 | Witch cave | Walk through the fire, open the chest | You get the **Ring of the Prophet**, and it kills the shapeshifting Daeva permanently |
 | TD10 | Montaillou inn | Save Machiavelli in Barcelona, then enter the inn | He is **at the bar**, greets you with `300`, and the speech runs through to *"Beware the Old Man from the east"*. **500 gold** is paid |
-| TD11 | " | Refuse his partnership in Barcelona (`215 reject offer`), then enter the inn | He gloats -- *"you forced me to seek aid from those that seek to do us harm"* -- and **assassins attack**. He is gone afterwards |
+| TD11 | " | Refuse his partnership in Barcelona (`215 reject offer`), then enter the inn | He is at the bar on the customer side. He gloats -- *"you forced me to seek aid from those that seek to do us harm"* -- then **walks out the door**, and **two assassins** come in behind him and attack at once. They wear the game's assassin model, not the snake-women, and hit harder than Montaillou's guards. **PASSED** on the reporting save |
+| TD11b | " | During that fight, cast spirit magic within sight of the Inquisition agent at the far table | He shouts *"Heretic!"* (or one of its variants) and **turns hostile**. **This is expected, not a bug**: the agent runs the shipped `Detect Spellcast` reaction that 107 Inquisitors and guards across the game share, and no vanilla spell-detect exempts an Inquisition member. Fight with steel and he stays a bystander |
 | TD12 | " | Let him die, or kill him yourself, then enter the inn | He is **absent**. No ghost, no error |
 | TD13 | " | Never take his bodyguard job at all | He is absent |
 | TD14 | Sir Auric | Complete his first task as a **tainted** character | You get **`100 join tainted`** -- *"I didn't think someone like you could have completed the task"* -- and the sponsorship is granted |
@@ -1197,7 +1198,7 @@ conclusion. The Auric and Javier cases want a Templar initiate route.
 | TD18 | " | On his Montserrat directions, ask about the Sacred Lance | The lore node plays and its reply still leads to *Leave for Montserrat* |
 | TD19 | Cervantes, Temple District | Talk to him, walk away, talk again | The **second** conversation opens `3 Return Dialogue` -- *"It was just here! Perhaps you saw it this time?"* -- with its four replies |
 
-TD8 and TD11 are the two that carry real risk. TD8 is a relay this release added to a node that
+TD11 has now been played through to working -- see the commit history for the six passes it took, each a vanilla idiom replacing an assumption. TD8 still carries risk. TD8 is a relay this release added to a node that
 shipped without one, and if it fails the player gets advice about a cave whose door never opens.
 TD11 is a **scripted fight in a map this project has never edited** -- new generators, new
 positions, and enemies that must aggro on spawn. `Monster Cans/Assassin Machiavelli` is copied
