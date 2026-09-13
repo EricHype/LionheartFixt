@@ -124,6 +124,337 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.10.0 - Montserrat (scope)
+
+**Not started.** Planned after a tester's report that the act is "nothing but combat with
+repetitive enemies". The report is accurate, and the survey below shows why: Montserrat was
+built as a corridor. This is the first release whose centre of gravity is new content rather
+than restoration, because it is the first place the game *plainly ran out* in the sense the
+charter means -- not a dark branch, but an act with one conversation in it.
+
+Measured against `data.dat.vanilla.bak` as this mod leaves the game
+(`python tools/reachability.py --survey "Montserrat" --with-mod`, plus the part-level scan
+0.9.0 and 0.9.1 used).
+
+### What Montserrat is
+
+| Map | Scripted content | Enemies |
+|---|---|---|
+| `01 Grove Exterior` | the Ways Crystal and its undead node; the doors; the script that dismisses the Barcelona companions (Cervantes, Cortes and Darsh all leave here, by design); two loot spots | 8 snakebreed variants, vodyanoi |
+| `02 Druid Council Level1` | a switch and a big door | snakebreed |
+| `02 Druid Council Level2` | ten snakebreed generators, a treasure, and **Brother Montgomerie -- the act's only conversation** | snakebreed |
+| `3 Animal Den` | ambient sound | bears |
+| `4 Animal Cave` | ambient sound | wasps |
+
+One character template, one tree (11 nodes, 6 voiced), two quests, 32 identical mojo drops.
+Every Montserrat quest state -- Templar, Inquisition, Saladin, both Wielder variants, and the
+three report-backs to Javier, Raphael and Cedric -- is activated somewhere. The relic icons
+that sit unused in the cache belong to other acts. The Mountain Pass's sealed door is still
+the one cut area on the road, and there is no map behind it.
+
+**One thing is genuinely cut**: Montgomerie's `60 not long` -- *"Not long ago. A few days
+maybe. I tried to stay alive until someone... came. I'm glad you did."* Voiced, and nothing
+reaches it. Its own reply leads to Brother Michel, so it belongs on `45 prophecy 2`, where
+Michel is first named.
+
+**What the survey got wrong on first pass.** I said nothing on the map accounts for the
+knights Javier and Torquemada dispatched. It does, silently: the three maps carry **31 dead
+bodies** from `Dead Body Generator` parts -- Dead Knight Templar 1 through 4, Inquisitors, the
+abbey's jailors, and dead snakebreed among them. The battle is depicted. What is missing is
+anyone acknowledging it: no journal, no line, no name. That changes Tier 2 from "place a
+fallen party" to "give the one that is there a voice".
+
+### Tier 0 - the voiced orphan
+
+`45 prophecy 2` gains a reply, *"How long ago did they come?"*, to `60 not long`. One authored
+player line; the node and its reply are the game's. Dialogue only, any save.
+
+### Tier 1 - the roster matches the text
+
+Montgomerie: *"Horrible, powerful beasts. Monsters, assassins."* The maps are one enemy in
+eight recolours. The snakebreed are the monsters; nothing on the maps is a beast, except the
+bears and wasps sealed in two optional side caves.
+
+Every outdoor generator is a `CSimpleGeneratorForCannedEntitiesAI` holding the six snakebreed
+tiers so the pick scales with party mojo. The change is to the *mix*, not the count. Two
+additions, both already in the act's band, both already on the road the player has walked:
+
+| Family | HP / AC | Already placed | Role |
+|---|---|---|---|
+| Bear / Tough / Super | 39-53 / 80-130 | this act's own den | the beast Montgomerie means |
+| Snakebreed Summoner / Tough / Super | 100-160 / 175-250 | Act 5, and `Random Forest Map 1` in the Wilderness | the same family's caster: Poison Touch, Rigor Mortis, cure spells, summoning. The one enemy whose kill order matters |
+
+Snakebreed for reference: 50-160 / 150-250. **Not** Rock Titans, which the player first meets
+on the Mountain Pass *after* Montserrat, and not ogres, whose only earlier appearance is an
+optional Wilderness cave; introducing either here would put them out of the game's own order.
+Proposed mix: Grove outdoors one third bears, a Summoner in every remaining pack of three or
+more; Level 1 a Summoner in every pack; Level 2 as Tier 4 lays it out. Counts unchanged.
+This is tuning, it is a taste call, and it is reversible with no trace -- which is why it is
+recorded as a choice and not as a repair.
+
+### Tier 2 - the fallen party gets a voice
+
+The bodies are there. Add one that matters: a named knight at the Grove's gate (`Montserrat
+Entrance door`, 2790,317 -- two Dead Knight Templar 4s already lie at 2770,793 and 715,3590),
+on the shipped `Dead Body Generator` shape, with the one thing the shipped bodies lack -- an
+`Action` on their `GetCloseThenTalk` specifier. Clicking him opens a small tree in the voice
+of the *Saint Bartholomew coffin text* balloon: `<His hand is closed around a leather
+journal.>` -> read it (three or four entries, one node each) -> take it / leave it. The
+journal is a quest item on the Darkwood envelope, no Use Action -- the reading happens at the
+body, which is the only readable-object idiom the game ships (no vanilla item opens text when
+used; the four that have Use Actions open the generic no-talk bubble).
+
+**The journal's content, and its limits.** Three entries: arrival and the abbot's welcome; the
+attack -- snake-creatures out of the treeline and men in black behind them, from the south
+road; the last -- the Crown is taken, they have gone north over the mountains, *"if you find
+this, tell Brother Michel at Montaillou"*. It must not name who sent them. The player's first
+naming of the Old Man of the Mountain is the Crypt assassins' `20 threat` in Act 4;
+Machiavelli's *"Beware the Old Man from the east"* (`300`, restored in 0.9.0) is the earliest
+the game lets it slip, and that is Act 3. Michel's `140 Dark Forces` -- *"I do not know for
+certain"* -- must stay true when the player reaches him.
+
+**Who reacts.** Montgomerie, one new reply on `20 attack` gated on holding the journal --
+*"I found your captain's journal."* -- to one new node (unvoiced, beside six voiced ones; the
+same compromise as Rakeb's additions) that names the captain and gives the *"they went north"*
+beat a person to grieve. Lord Javier, one reply on his report-back for a Templar carrying the
+journal, XP only. The Inquisition and Cedric get nothing extra: the journal is a Templar's.
+
+The captain needs a name. Vanilla Templars are *Sir Auric*, *Sir Jorge*, *Sir Roger
+Templeton*; the name is a decision for the maintainer, not the scope.
+
+### Tier 3 - the assassin who talks
+
+**The body exists and is unused.** `Resources/Levels/Start Game/Character Templates/Assasin
+EarlyLevels.can`: a human assassin on the `Characters/Monsters/Assasin` model (the Act 4 model
+0.9.0 gave Machiavelli's assassins), `Races/Demokin`, no inventory, placed by no map. An
+"early levels" assassin the game built and never used -- exactly the enemy a Montserrat handler
+would be.
+
+**The pose is Montgomerie's.** His generator sets `Cur Sequence=Dead` at spawn and leaves the
+talk specifier live; that is how a dying man is done here. Same shape: a wounded handler among
+the dead knights in Level 1's great hall, past the big door (bodies cluster around 1600-2500,
+1200-2500), where a fight both sides lost is already on the floor.
+
+**The tree, about seven nodes.** He laughs at being found. Asks: who are you (Speech check ->
+*"We serve the Master. In the East. You will meet him."*; fail -> *"Ask the snakes."*); where
+did they go (*"North. Over the mountains. There is a second one."* -- Michel's `230 Explore
+the Crypt` says the same from the other side); why (the relics, no more). Three exits: finish
+him (XP; a Wielder variant in the register of Montgomerie's *"the relics will be mine"*),
+leave him to die, or -- Karma good -- a mercy line. The fight exit is the proven 0.9.0 shape:
+a template with `Category=Enemy` and a fight specifier, converted by `CGoToCombatAction` on the
+reply; his race is cloned with HP in the twenties so "finish him" is one blow.
+
+**The lore rule, stated once.** He may say *the Master* and *the East*. He may not say *the
+Old Man of the Mountain*, *Alamut*, or *Hashashin*. Act 4 owns the name.
+
+**Who reacts.** A checker `questioned the assassin`; at Brother Michel's `80 Advice`, the
+player's question *"Do you know who attacked Montserrat?"* gains a sibling reply -- *"Assassins
+out of the East. One of them told me before he died."* -- to a new unvoiced Michel node that
+accepts it without contradicting his `140 Dark Forces`. Optional; the scene stands without it.
+
+### Tier 4 - the fights
+
+**What the combat is now.** 64 generators across three maps, each holding the same six
+snakebreed tiers, each spawning two to four when the player comes within radius 40. No roles,
+no ranged, no casters, no traps, no scripted encounter, no boss with a name. The one scripted
+beat is real and invisible: Level 2's `Snakebreed dead relay` lets Montgomerie speak only once
+the snakebreed near him are dead -- a "clear the sanctum" rule the player never perceives.
+
+**What the AI is.** Scan, chase, attack; patrol; guard a moving position; go to a point. Across
+the 700-odd monster cans there is no flee, flank, focus-fire or kite. Tactics in this game are
+never innate; they are set pieces scripted over a simple AI, and the game ships every hook:
+
+| Hook | Shipped use | The tactic |
+|---|---|---|
+| `CAIHealthPercentThresholdTrigger` (crosses below N%) | Wizard Tremblethorn: relays at 60% and 25% | boss phases |
+| Damaged Script on a can (relay on first hit) | Goblin Bludjund: hit him and the camp turns | a sentry that calls for help |
+| Destroyed Script (relay on death) | the troll pit, Jafar | consequences: the priestess dies, her summons drop |
+| Go-to marker + delete (the walk-off) | Machiavelli, 184 vanilla uses | a scripted retreat |
+| `CGaurdNearMovingPosAI` | Fernand as companion | bodyguards that stay on the boss |
+| Fade-in generator on an interaction | the assassins' trapped chest | an ambush, not a radius spawn |
+| `Valid Targets=Summoned Creature` | 50 uses | enemies that go for the player's summons first |
+| razor / spike / fire trap repeaters | Maw of the Assassin, Alamut, the Crypt | the assassins mined their retreat |
+
+None of this makes an enemy decide anything. It makes encounters with a shape. That is the
+honest ceiling, and it is stated here so nobody reads "tactics" as "smarter AI".
+
+**Encounter by encounter.**
+
+*Grove.* Bears replace a third of the packs (Tier 1). One patrol group walks the ruins on
+`CPatrolAreaAI` instead of standing at a radius. One pack has a **sentry**: a Snakebreed Venom
+with a Damaged Script that activates two reinforcement generators behind the player (the
+Mongol Camp's `Goblin Reinforcements` shape). Kill him in one blow, or sneak past, and they
+never come.
+
+*Level 1, the hall.* The **big door is an ambush**: pulling the switch opens it and activates
+a fade-in pack behind the player (Port District's `Ambush Generator Poly`). A **razor
+corridor** on the far side, telegraphed by a dead knight lying in it, on the Maw's repeater. A
+Summoner in every pack, so the priestess is always the first problem. The **last** snakebreed
+of the hall's final pack is scripted to break off and run for the sanctum on the walk-off
+shape -- the player sees it go, and meets it again.
+
+*Level 2, the sanctum.* The **rearguard's captain** on `Snakebreed Boss Super` (HP 160, AC
+250 -- already the strongest can placed here), named, standing at the reliquary between the
+door and Montgomerie, with two Venom bodyguards on guard-AI and a Summoner behind her. A
+short exchange on approach in the Crypt assassins' register (*"You are too late, Lionheart"*),
+three or four replies, one the fight; the lore rule of Tiers 2 and 3 applies -- *the Master*,
+*the East*, never *the Old Man*. **At 60%** the side doors open and the hall's runner comes in
+with whatever retreated; **at 25%** she falls back to the reliquary and the priestess heals
+her -- the player learns to kill the priestess. Then Montgomerie's own gate does what vanilla
+wrote it to do. The sacristy chest (`Hidden Treasure`) is **trapped** on the Chamber of
+Torment shape: open it and two assassins fade in.
+
+**Roster and difficulty.** Total spawns unchanged; XP unchanged. Difficulty moves from sixty
+identical fights to six different ones and some walking. The boss is the only new template
+(0.9.0's clone pattern: shipped race, shipped model, a name).
+
+**Risks, all paid for once already.** A spawned enemy that will not fight (0.9.0 first pass:
+no specifier, no Enemy category); an ambush that fires on the wrong side of a door (0.9.0's
+inn polygon, three passes); bodyguards that attack a neutral (0.9.0's assassins and
+Machiavelli). Gate 3 cases for each.
+
+### Tier 5 - the abbey tells its own story
+
+**The primitive is shipped.** A prop with a `GetCloseThenTrigger` specifier whose action is a
+`CDisplayDialogBalloonAction` on a "HOVER TEXT" tree: the Columbus statue, the Montaillou
+headstones, the Crossroads signpost, the telescope, the *Saint Bartholomew coffin*, and
+`Cervantes Dead Body text` -- *"<Examining the body, you observe it to be that of Cervantes...
+the result of very apparent torture.>"* Click a thing, read a line. The burned hamlet in
+Montaillou is sixty bodies and Beatrice narrating; Montserrat is thirty-one bodies and silence.
+
+**What is on the maps and says nothing.**
+
+- *31 bodies* in three clusters -- at the gate, in the hall around the big door, in the
+  sanctum -- Templar knights, Inquisitors, the abbey's jailors, dead snakebreed among them.
+  The placement already tells the story (they held the gate, fell back to the hall, died at
+  the reliquary). Nobody narrates it.
+- *A camp* in the Grove at 4400,3400: five bedrolls, a campfire, a woodpile. Unlabelled.
+- *98 candles and 80 torches, all lit.* Montgomerie says "a few days". Lit candles mean
+  someone is still tending them.
+- *The big door's model is `DruidGroveGate`*, and the level is named Druid Council. The abbey
+  stands on a druid site; the game's Act 7 is *Stop the Druids*. Its own thread, three acts
+  early, unremarked.
+- *The sacristy chest* (`Hidden Treasure`, L2 1806,1111) is where the Crown was. It is a loot
+  chest.
+- *No monks.* Knights, inquisitors, jailors -- not one monk among the dead. Montgomerie is
+  "the last survivor of Montserrat".
+
+**The sanctum is re-dressed as an abbey.** Level 2 is a candle-lit cave: candles, torches,
+pots, brick. The sanctum around Montgomerie (3878,2391) and the reliquary gains, from the
+shipped prop library: an `altar cross` on an `altar wall`, a `last book` on the altar, two
+rows of `pew` with two knocked over, a `burned banner` on the wall, `debris` and `bones` at
+the reliquary, and the chest replaced by an open `chest_gold` that is the Crown's empty case.
+The hall gains a `broken barracade` at the big door -- the thing the knights died behind.
+This is a visual change to two vanilla rooms and is recorded as such. Every prop is checked
+against the walkable floor before placement (the 0.9.0 inn anchor lesson), and none of them
+is collidable where a path runs.
+
+**The monks are missing, and the game says so.** One hover text in the sanctum: `<Knights of
+the Temple, men of the Inquisition, the abbey's own jailors. Not one monk among them. The
+cells below are empty.>` It notes the absence and does not explain it. The game never does
+either; the Crypt assassins take a seer alive in Act 4, and a player who remembers this line
+there will draw the line themselves. Nothing in Fixt will ever confirm it.
+
+**The trail -- about ten hover texts, gate to sanctum**, each a thing the player can see:
+
+| Where | On | The line says |
+|---|---|---|
+| Grove, the camp | the campfire | cold ash; bedrolls slept in once. The party camped here the night before they went in |
+| Grove, the gate | Tier 2's captain | the journal; his shield still raised, wounds from the front |
+| Grove, the gate | a dead snakebreed | the first thing that came out of the treeline |
+| Hall, the big door | the barricade | broken from the inside -- they opened it to sally, and died in the doorway |
+| Hall | a jailor's body | the abbey kept cells; his keys are gone |
+| Hall, the razor corridor | the knight lying in it | Tier 4's telegraph |
+| Hall or sanctum | a candle stand | the wax is fresh. Someone lit these today |
+| The druid gate | the door | carved long before any abbey; the monks built over it and did not remove it |
+| Sanctum | the reliquary | open, empty, the velvet still shaped to what it held |
+| Sanctum | the dead | the missing monks, above |
+
+All unvoiced. All `.zax` edits, so the same save constraint as the rest of the release. The
+lore rule of Tiers 2, 3 and 4 applies to every line: nothing names who sent them, nothing
+contradicts Montgomerie's *"a few days"* or Michel's *"I do not know for certain"*.
+
+### Tier 6 - the abbey reads the player
+
+**What vanilla maps read.** Across every shipped `.zax` (test maps excluded): Karma 160
+times, gender 39, race 38, Sneak 32, perks 28 (almost all the *title* perks -- Merchant
+Slayer, Child Killer, Stargazer), Perception 22, the factions about 80, Speech 7, Find Traps /
+Secret Doors 1, Strength 1. The shapes are simple: `Sneak < 50` at the Khan's chest wakes the
+guards; `Find Traps >= 35` at a Temple store room reveals the cache; a Fenclaw line varies on
+`ST <= 5 OR female`; a secret is a `CAISecretReveal` with a skill adjustment, revealed
+passively by the Find Traps skill; a prop can carry a second description node (`1 Description
+alt` on the Columbus statue) chosen by the opener. Nothing simulates stealth or tactics -- a
+check is a threshold read at a trigger. That is what this tier builds on, and nothing more.
+
+**Six levers, each riding a scene the scope already builds. No new scenes.**
+
+| Lever | Where | Shape |
+|---|---|---|
+| **Sneak** | The Grove sentry and the big-door ambush (Tier 4) read `Sneak >= 40` while the player is sneaking: pass, and neither fires; the hall's runner never runs. A stealth build reaches the wounded assassin (Tier 3) with the pack still asleep | the Khan's chest |
+| **Find Traps / Secret Doors** | The razor corridor (Tier 4) reveals itself at skill >= 35 instead of cutting. A **secret door** in the druid level -- the druids' back way into the sanctum -- is the only flank in the boss fight; the AI cannot take it, so it belongs to the build that finds it. A Sylvant opens it by touch (below) | the Temple store room; `CAISecretReveal` |
+| **Perception** | Alternate lines on the Tier 5 trail at `PE 7+`: the tracks lead north, the wax is hours old, the captain's wounds are from *behind*. The same props, a second node | `1 Description alt` |
+| **Outwit / Speech** | The boss (Tier 4) and the wounded assassin (Tier 3). The assassins hold Machiavelli's contract *"to find one such as yourself"*; at `Outwit 7+` the player claims to be his courier and the bodyguards stand down before the fight -- she still fights, alone. Speech at the assassin as Tier 3 already has it. Bounded by the lore rule | `Outwit N greater or equal` (13 shipped cans, almost unused) |
+| **Race** | The unused assassin can is **Demokin**: a Demokin player is recognised -- *"one of the Master's own?"* -- and hears a line the others do not. A **Sylvant** opens the druid door by touch, no skill: the tainted races are the game's nature-magic people, and the door is a druid's | `Demokin IS`, `Sylvant IS` |
+| **Faction** | Templar: the fallen are the player's brothers -- Javier's journal reply (Tier 2) and one Templar-only line from Montgomerie. Inquisitor: the Inquisition dead carry a sealed order, one hover text. Saladin: the assassin's *"the East"* lands differently on an Aswaran -- one line. Wielder: the Ways Crystal already pays a Wielder; the druid gate answers spirit, one line. Horde: nothing, and it should be nothing | the faction cans |
+
+**Held for a later cut, with the reason.** *Strength* -- forcing the barricade to skip the
+switch and its ambush is a good trade but the one vanilla ST check is a dialogue variant, not
+a door; untested shape. *Lockpick / Disarm* on the trapped chest and the cells -- cheap,
+deferred only to keep this tier to scenes that exist. *Divine* consecration of the
+re-dressed altar for a blessing -- the *Torquemada Divine Boon* perk shape, a new reward
+that needs its own design. *Karma* -- selling the assassin what he wants, Michel's
+whereabouts, for gold, has a consequence at Montaillou that has to be designed before it is
+promised. *Title perks* at the dead of the player's own victims -- one line each, cheap,
+later. **The necromancer** -- raising the thirty-one dead to fight the boss is the best idea
+on the list and is **untested**: whether Raise Undead works on generator-spawned bodies is a
+question for a live save, not for the archive, and nothing is written into the scope until
+it has an answer.
+
+**Rule for all of it.** A lever opens a route or adds a line. None removes one. The player
+with no Sneak, no Perception and no faction gets exactly the abbey Tiers 0 through 5 build.
+
+### What is NOT in it
+
+- The Mountain Pass's sealed door. There is no map behind it.
+- Companions at Montserrat. Their dismissal at the Grove is scripted and deliberate.
+- The Wilderness "beasts" cut from other acts (the `undead to kill cortes` pair, etc.).
+- Voice. Every new line is unvoiced. The two voiced nodes touched (`45`, `60`) keep theirs.
+
+### Decisions before build
+
+1. Tier 1's mix -- bears and Summoners at the shares above, or none. With Tier 4 it is
+   the part of this release that changes vanilla's balance, and neither can be called
+   restoration.
+2. The captain's name, and whether Javier reacts.
+3. How much the assassin gives up: the three lines above, or only "north".
+4. Michel's reply -- in, or leave Act 3 untouched.
+5. The captain's name and her lines; whether the trapped chest is in (it costs the player
+   a fight for loot the map already gives away).
+6. Decided: the sanctum is re-dressed as an abbey, and the monks' absence is noted and not
+   explained.
+7. Decided: Tier 6 at the six levers above. The necromancer is tested on a live save before
+   anything is written.
+
+### Gates before this ships
+
+- Gate 0: `validate.py` clean; the new template's `Race=` real, its `Model=` and every `Cur
+  Sequence=` ones vanilla uses; every new quest item icon a path that exists.
+- Gate 1: **needs a character who has not entered Montserrat.** Every tier but 0 edits the
+  three `.zax` files. Play order: Grove gate (journal) -> Level 1 (assassin) -> Level 2
+  (Montgomerie, `60`, the journal reply) -> Montaillou (Michel).
+- Gate 3: the assassin must be attackable from the fight reply (0.9.0's first-pass defect) and
+  must not attack Montgomerie or the player's companions -- there are none here, which is one
+  reason the scene is placed at Montserrat.
+
+### The honest recommendation
+
+Tier 0 costs nothing and ships regardless. Tiers 2 and 3 are the release: a body with a name
+and an enemy with a voice are what a corridor needs to become a place, and both are built from
+templates and idioms the game already has, with the lore boundary written down. Tiers 1 and 4 are
+the maintainer's call; the recommendation is to do both, because the tester's complaint was
+as much about the sixty identical fights as the empty rooms, and Tier 4 is where the act
+stops being a corridor with a conversation at the end.
+
 ## 0.9.1 - the areas around Barcelona
 
 **Published.** A survey of the Wilderness maps that ring Barcelona -- Rio Ebro / the
