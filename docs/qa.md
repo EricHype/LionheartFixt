@@ -1220,6 +1220,21 @@ fires unconditionally would put a dead man in the inn.
 - `ShylockeChests / 600 gold chest opened 2` is a superseded draft -- `... 3` already contains
   the whole verse.
 
+### 0.9.1 - the areas around Barcelona
+
+Two items. The gate wants a character who has not entered the Mongol Camp; the clover works
+on any save but wants a character with Luck 3 or less who has not yet taken Brendan's drink.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AB1 | Mongol Camp gate | Enter the camp for the first time; take any of the four peaceful routes past the guard (Grumdjum's friend, Horde messenger, Schmooze, Speech) | The challenge plays once as before. Leave the camp and come back through the gate: **`3 Return Dialogue`** -- *"Greetings goblin friend. What do you want?"* -- with the audience ask (Speech 40), the Darsh ask only while the Darsh quest is current, and *"Nothing today. I will be on my way."* |
+| AB2 | Mongol Camp gate | On the return greeting, pick *"I have come to rid this forest of your existence, monster."* | The camp turns hostile, exactly as the same line does on the first meeting |
+| AB3 | Mongol Camp gate, negative | Enter, get challenged, and leave without being welcomed or fighting (e.g. *"I come in peace"* goes hostile, so this needs the Darsh route or a quick exit); come back | Silence at the gate, as vanilla. No second challenge |
+| AB4 | Mongol Camp gate, negative | Make the camp hostile by any route, then cross the gate again | Nothing fires |
+| AB5 | Port District tavern, Brendan (Luck <= 3) | Take his drink | After *"Take a healthy tug from the Serpent's Bile..."* he notices your luck (`200 low luck`, or the `lass` twin for a woman), and you receive **Sullivan's Clover**; then *"Grand. Now, what can I do fer ye?"*. The clover equips at the neck and shows +1 Luck |
+| AB6 | Port District tavern, Brendan (Luck >= 4) | Take his drink | Straight to *"Grand. Now, what can I do fer ye?"*; no clover |
+| AB7 | Brendan, negative | Talk to him again after the clover | The drink is not offered again (vanilla `took irish drink`), so no second clover |
+
 ---
 
 ## Gate 3 - negative testing
@@ -1330,6 +1345,7 @@ both completed Gate 2. Record the result here per release.
 | 0.8.3 | PASS (automated) | - | - | - | - | - | **published as repair; Amir's fix played on the reporting save** |
 | 0.8.4 | PASS (automated) | - | - | - | - | - | **published as repair; the fifteenth sale itself not yet played** |
 | 0.9.0 | PASS (automated) | PASS | partial | - | - | - | **published; Na Roqua chain and Machiavelli's refused branch played and passing, the rest unplayed** |
+| 0.9.1 | PASS (automated) | - | - | - | - | - | **built, unpublished, unplayed** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's

@@ -118,7 +118,98 @@ Node ID=200 drink
 Text=Take a healthy tug from the Serpent's Bile - sure'n it's the only drink that comes close to the sweetness of pure Irish whiskey. Sláinte! <Health!>
 Should Have Voiceover=0
 
+Requirement=LK 1-3
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/LK 1-3
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Male IS
+}
+}
+Reply Text=
+Go to node ID=200 low luck
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Serpent's Bile
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=took irish drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+
+Requirement=LK 1-3
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/LK 1-3
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Female IS
+}
+}
+Reply Text=
+Go to node ID=200 low luck lass
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Serpent's Bile
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=took irish drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/LK 1-3
+}
+}
 Reply Text=
 Go to node ID=1500 other questions for irish
 Custom Action=CMultipleActionsAction
@@ -208,6 +299,42 @@ Is Default Reply=1
 Node ID=200 low luck
 Text=Forgive me, but I can't help but notice that you be a bit down on yer luck, now, eh lad? Here, perhaps this will bring you some good fortune - it's clover, plucked from the last patch of dry ground 'afore me island sank. <Whispers> Legend says it be magic, so keep it safe...
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=1500 other questions for irish
+Custom Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Clover
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 low luck lass
+Text=Forgive me, but I can't help but notice that you be a bit down on yer luck, now, eh lass? Here, perhaps this will bring you some good fortune - it's clover, plucked from the last patch of dry ground 'afore me island sank. <Whispers> Legend says it be magic, so keep it safe...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=1500 other questions for irish
+Custom Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Clover
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=200 health to you
 Text=Goodbye and may the road rise to meet you.

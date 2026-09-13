@@ -23,7 +23,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
+Action=CActivateAction
+{
+Target Name=welcomed at the gate
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 Action=CDeactivateAction
 {
 Target Name=Goblin Hate Switch
@@ -86,7 +93,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
+Action=CActivateAction
+{
+Target Name=welcomed at the gate
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 Action=CDeactivateAction
 {
 Target Name=Goblin Hate Switch
@@ -107,7 +121,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
+Action=CActivateAction
+{
+Target Name=welcomed at the gate
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 Action=CDeactivateAction
 {
 Target Name=Goblin Hate Switch
@@ -129,7 +150,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
+Action=CActivateAction
+{
+Target Name=welcomed at the gate
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 Action=CDeactivateAction
 {
 Target Name=Goblin Hate Switch
@@ -189,9 +217,54 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=I have come to rid this forest of your existence, monster.
 Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Make Goblins Hostile Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Make Goblins Hostile Relay
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
 Icon=Fight Icon
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Rescue Inquisitor Darsh from the Goblin Camp
+State=
+}
+}
+Early Exit=0
+}
+}
 Reply Text=I have come to find Inquisitor Darsh.
 Go to node ID=10 darsh
 
@@ -204,6 +277,13 @@ Reply Text=I have come to seek an audience with your great leader.
 Go to node ID=30 khan
 Action work in progress=(speech 40)
 Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Nothing today. I will be on my way.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
 ------------------------------------------------------------
 Node ID=10 darsh
 Text=If you have come to find our prisoner, you may join him...In our slave pens!

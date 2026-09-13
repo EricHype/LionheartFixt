@@ -1,0 +1,75 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Character attribute to modify=Character Attributes/(LK) Luck
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_quest.ogg
+				Position=$Trigger
+				Multiplayer=Heard by all players
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_jewelry.ogg
+				Position=$Trigger
+				Multiplayer=Heard by all players
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=50
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Amulet_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Sullivan's Clover
+	Description=A four-leaf clover, pressed flat and gone brittle, plucked from the last patch of dry ground before Ireland sank. Brendan Sullivan swears it is magic. Worn at the neck, it adds +1 to Luck.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Quest Items/Clover
+		Better=Items/Inventory Images/Quest Items/Clover
+		Special=Items/Inventory Images/Quest Items/Clover
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Neck
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Quest Items
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Clover
+}
