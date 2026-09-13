@@ -1655,12 +1655,35 @@ CLayerSaveData
 			Activity=Array
 			{
 				Item Count=1
-				Activity=CSimpleGeneratorForCannedEntitiesAI
+				Activity=CGeneratorAI
 				{
 					Marked For Deletion=0
 					Publisher=
 					Already Generated=0
-					Entity=Levels/1 Barcelona/Character Templates/Temple District/Machiavelli
+					Area=COvalGeneratorArea
+					{
+						Radius=45
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=3
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/1 Barcelona/Character Templates/Temple District/Machiavelli
+								}
+							}
+						}
+					}
 					New Name=Machiavelli
 					Remove Default AIs=0
 					AIs to Add=Array
@@ -1723,6 +1746,7 @@ CLayerSaveData
 					}
 					After Action=
 					New Facing Angle=1.51844
+					Angle Variation=0
 				}
 			}
 			Category=
@@ -1732,7 +1756,7 @@ CLayerSaveData
 			Publisher=
 			Model=Editor/Character Generator Point
 			Position X=870
-			Position Y=540
+			Position Y=640
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1778,7 +1802,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Assassin Machiavelli
+									Entity=Levels/3 Montaillou/Character Templates/Machiavelli Assassin
 								}
 							}
 						}
@@ -2197,7 +2221,10 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CGoToCombatAction
+					{
+						Enemy Name=$Instigator
+					}
 					New Facing Angle=5.5675
 					Angle Variation=0
 				}
@@ -2255,7 +2282,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Assassin Machiavelli
+									Entity=Levels/3 Montaillou/Character Templates/Machiavelli Assassin
 								}
 							}
 						}
@@ -2674,7 +2701,10 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CGoToCombatAction
+					{
+						Enemy Name=$Instigator
+					}
 					New Facing Angle=5.5675
 					Angle Variation=0
 				}
@@ -2716,24 +2746,109 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CActivateAction
+							Item Count=1
+							Action=CSetPatrolAIAction
 							{
-								Target Name=Machiavelli Assassin Generator 1
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=CActivateAction
-							{
-								Target Name=Machiavelli Assassin Generator 2
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=CDeleteAction
-							{
-								Target Name=Machiavelli
+								Patrol AI=CGoToAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Destination=Machiavelli inn exit
+									Offset=0.000000,0.000000
+									Starting Action=CRemoveAIAction
+									{
+										Target Name=Machiavelli
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+									Finished=0
+									Move Finished=0
+									Failed Path=0
+									Target Was Set By Goto AI=0
+									Move Behavior=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
+									}
+									Done action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=3
+											Action=CDeleteAction
+											{
+												Target Name=Machiavelli
+											}
+											Action=CActivateAction
+											{
+												Target Name=Machiavelli Assassin Generator 1
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Action=CActivateAction
+											{
+												Target Name=Machiavelli Assassin Generator 2
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+										}
+									}
+									Run=1
+									Make New Home=1
+									Play Ratio=0
+									Time To Try To Move=0
+									Set Facing Angle=0
+									Turn Sequence Name=Idle
+									Facing Angle=CEntityBehaviorTurnToAngle
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+									}
+									Need to Call Start=1
+								}
+								Target=Machiavelli
 							}
 						}
 					}
@@ -2770,22 +2885,10 @@ CLayerSaveData
 			Activity=Array
 			{
 				Item Count=1
-				Activity=CAIInteractionSpecifier
+				Activity=CRelayAI
 				{
 					Marked For Deletion=0
 					Publisher=
-					Trigger Only Once=1
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Name=
-					Interaction Description=
-					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
 					Action=CIfAction
 					{
 						If=CWasQuestStateActivatedAction
@@ -2819,16 +2922,8 @@ CLayerSaveData
 						}
 						Return failure if the If failes=0
 					}
-					X Radius=400
-					Attacker Range Modifier=0
-					YX Ratio=0.712766
-					Highlight Self Time=0
-					Highlight Until Clicked=0
-					Is Locked=0
-					Allow Interact If Has Target=1
-					Lock Pick Adjustment=0
-					Inventory item to use as key=Inventory Items/!None
-					Is Bussy Talking=0
+					Trigger Only Once=0
+					Was Triggered=0
 				}
 			}
 			Category=
@@ -2836,9 +2931,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Editor/Test Interaction
-			Position X=951
-			Position Y=767
+			Model=Editor/Relay
+			Position X=870
+			Position Y=580
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3849,15 +3944,32 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CDelayAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Next Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=bar scene with davinci
+							Item Count=2
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=bar scene with davinci
+								}
+								Delay=0.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Machiavelli arrival trigger
+								}
+								Delay=0.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
 						}
-						Delay=0.1
-						Plus or Minus=0
-						Forget Trigger=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -3914,6 +4026,36 @@ CLayerSaveData
 			Model=Editor/Relay
 			Position X=986
 			Position Y=747
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Machiavelli inn exit
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=850
+			Position Y=880
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
