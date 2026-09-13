@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.9.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.9.2 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -592,6 +592,46 @@ templates and idioms the game already has, with the lore boundary written down. 
 the maintainer's call; the recommendation is to do both, because the tester's complaint was
 as much about the sixty identical fights as the empty rooms, and Tier 4 is where the act
 stops being a corridor with a conversation at the end.
+## 0.9.2 - repairs
+
+**Published.** Repair only, cut on a branch from `v0.9.1`, four files, all in the Port District,
+all found on a fresh character's first visit and each played to passing before the cut.
+
+**Fernand handed out the wrong bottle, and it was 0.8.1's fault.** 0.8.1 made Juan's rescue
+check for `Potion Fernand Healing` by name and repointed a give to hand it out -- but the give
+it repointed was `mute sailor rewards for solving quest`, the Mute Sailor's reward. Fernand's
+own gives are in his tree, on `30 take the job` and `40 hard barter`, and both still gave the
+vanilla potion, so a fresh character reached Juan with a plain potion and was told a potion
+might have saved him. Both of Fernand's gives now give the draught; the Mute Sailor's reward is
+vanilla again. The item is *Fernand's Draught*: the engine appends the effect's name to magic
+consumables, and *Fernand's Healing Draught of Healing* was the result.
+
+**Juan was a corpse, and draining him soft-locked the quest.** Two wrong fixes before the
+right one, recorded because the reads matter: stripping the `Corpse` category on approach
+(the drain still worked from range), then at spawn (still worked). Absorb Spirit does not
+target the category; its `Interaction Filter=After Death Spell` matches the
+`GetCloseThenFightWhenDead` specifier the game's dead-body script attaches. Juan now spawns
+on Montgomerie's dying pose -- `Dead` sequence, hit points intact, a `CWaitAI` listening for
+the rescue's `Raise Enemy`, no dead-body script -- so the thing the skill filters on never
+exists. Rescue and bleed-out both key on a checker `juan saved`; the bleed-out had keyed on
+`Corpse` too, so the first "fix" would have disarmed it and soft-locked a slow player the
+other way. Whatever happens to Juan, one branch fires.
+
+**The brothers' reunion was written and never played.** Vanilla has Juan's *"Mi hermano! You
+saved me!"*, Fernand's `30 saved juan` -- *"Claro que si! You don't think I would let those
+devil fish kill my little brother, eh? You should thank this stranger too"* -- and Juan's
+thanks; `30 saved juan` is a balloon nothing fires. Now Juan stands, thanks the player over
+his head, walks to a marker beside his brother on the vanilla walk-off's own `CGoToAI`, the
+two vanilla lines play, and then **three new ones** in which Fernand chides him for fishing
+off the north island alone; then the vanilla walk to the ship. If Fernand is not alive, Juan
+goes straight home.
+
+**The timer is visible.** The bleed-out ran 45 silent seconds from the first approach; it now
+says *"<His breathing is shallower. He has minutes, not hours.>"* at twenty if he is not yet
+saved.
+
+Needs a character who has not entered the Port District; Fernand's tree and the item name
+work on any save.
 
 ## 0.9.1 - the areas around Barcelona
 
