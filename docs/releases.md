@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.9.2 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.9.3 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -621,6 +621,40 @@ templates and idioms the game already has, with the lore boundary written down. 
 the maintainer's call; the recommendation is to do both, because the tester's complaint was
 as much about the sixty identical fights as the empty rooms, and Tier 4 is where the act
 stops being a corridor with a conversation at the end.
+## 0.9.3 - repairs
+
+**Published.** Repair only, cut on a branch from `v0.9.2`: one dialogue file, one perk, one
+shared script and the twelve vodyanoi cans. Both found on the second playthrough; both proven
+before the cut.
+
+**The Vodyanoi Anatomist perk did nothing.** 0.6.0 built it as a `CPlugInBehaviorStrikeAction`
+with a model check on `$trigger` inside the strike -- an invented shape. Rebuilt on the game's
+own Necrosage shape (a strike that re-strikes the current target plus a `CPlugInBehaviorDamage`
+gated by a `Hit Or Miss` condition), it *still* did nothing for an unarmed character, and the
+archive says why: every vanilla use of that shape is a weapon addition or a perk written for
+weapons, and the game's own unarmed perks never touch it. The working build is on the target
+side: `Common Objects and Scripts/Vodyanoi Anatomist Strike` is the `Damaged Script Action` of
+all twelve vodyanoi cans -- the shape Goblin Bludjund uses to raise the camp when he is hit,
+which fires on any damage from any source -- and if the attacker holds the perk it deals 4-10
+piercing through `CActionDoDamage`, with a 0.3-second category guard so the bonus cannot
+re-trigger itself. The perk file is now a title with no behaviours. Proven from the save's
+combat log: *"Grall hit Vodyanoi for 14 (14 Crushing Damage)"* / *"Grall hit Vodyanoi for 6
+(6 Piercing Damage)"*, fifteen bonus hits in the band.
+
+Two things learned on the way, both now in the modding notes: a generated creature carries
+the can it was spawned from, so this reaches only vodyanoi spawned after the install; and the
+save's event log records every hit with its damage type, which is how the next question of
+this kind gets answered.
+
+**The goblin in Scar Ravine thought everyone knew the Khan.** 0.5's variance pass gave the
+goblin holding the woodcutter's daughter a Strength route and a Barter route and pointed both
+at `70 scared`, the vanilla node for the two routes that invoke the Khan -- *"Y-you know the
+Khan? You will speak well of me?"* Each now has its own answer, unvoiced like the replies,
+with `70`'s flee-and-free actions verbatim: `71 backs down` for the strong, `72 the trade` for
+the trader.
+
+Both work on any save; the perk's bonus on any vodyanoi spawned after installing.
+
 ## 0.9.2 - repairs
 
 **Published.** Repair only, cut on a branch from `v0.9.1`, four files, all in the Port District,
