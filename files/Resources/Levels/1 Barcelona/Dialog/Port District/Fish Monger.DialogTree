@@ -111,6 +111,8 @@ Is Default Reply=1
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
@@ -129,15 +131,202 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Sk
 }
 }
 }
+Operator=
+Operand2=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
 Reply Text=I have a vodyanoi skull to sell you.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
 }
 
 Requirement=!None
 Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
 {
 Operand1=CActionExpression
 {
@@ -157,11 +346,196 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Sk
 }
 }
 }
+Operator=
+Operand2=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
 Reply Text=I have a vodyanoi skull to sell you.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full of skulls
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
 }
 
 Requirement=!None
@@ -1277,13 +1651,59 @@ Icon=Barter Skill Icon
 Is Default Reply=1
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
 Reply Text=Very well, I accept your price. Here is another skull.
 Go to node ID=
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=5
+Item Count=6
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 Action=CDeactivateAction
 {
 Target Name=barter on
@@ -1309,6 +1729,134 @@ Warp Behavior=
 Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+Reply Text=Very well, I accept your price. Here is another skull.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=barter on
+}
+Action=CDeactivateAction
+{
+Target Name=heard vodyanoi skull
+}
+Action=CActivateAction
+{
+Target Name=vendor full
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=vendor full of skulls
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
 }
 }
 }
@@ -1355,6 +1903,8 @@ Should Have Voiceover=0
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
@@ -1373,11 +1923,196 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Sk
 }
 }
 }
+Operator=
+Operand2=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
 Reply Text=I have a vodyanoi skull to sell you.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full of skulls
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
 }
 
 Requirement=!None
@@ -1405,6 +2140,8 @@ Should Have Voiceover=0
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
@@ -1423,11 +2160,196 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Sk
 }
 }
 }
+Operator=
+Operand2=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
 Reply Text=I have a vodyanoi skull to sell you.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
 }
 
 Requirement=!None
@@ -1453,13 +2375,59 @@ Text=You are right. Your bravery benefits me twice, with skulls for my new trade
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
 Reply Text=I accept your price. Here is another skull for you.
 Go to node ID=
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 Action=CActivateAction
 {
 Target Name=already bartered with monger
@@ -1470,6 +2438,120 @@ Warp Behavior=
 Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+Reply Text=I accept your price. Here is another skull for you.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActivateAction
+{
+Target Name=already bartered with monger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
 }
 }
 }
@@ -1495,6 +2577,8 @@ Should Have Voiceover=0
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
@@ -1513,11 +2597,196 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Sk
 }
 }
 }
+Operator=
+Operand2=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
 Reply Text=I have a vodyanoi skull to sell you.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full of skulls
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
 }
 
 Requirement=!None
@@ -1545,6 +2814,8 @@ Should Have Voiceover=0
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
@@ -1563,11 +2834,196 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Sk
 }
 }
 }
+Operator=
+Operand2=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
 Reply Text=I have a vodyanoi skull to sell you.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
 {
 Relay Name=determine vendor node after full
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+}
+Reply Text=I have a vodyanoi skull to sell you.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=vendor full and barter
+Desired Minimum Count=1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+}
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=10
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+}
+Return failure if the If failes=0
+}
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
 }
 
 Requirement=!None
