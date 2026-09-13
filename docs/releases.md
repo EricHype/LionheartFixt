@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.9.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.9.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -126,7 +126,7 @@ into a release it does not fit.
 
 ## 0.9.1 - the areas around Barcelona
 
-**Built, unpublished.** A survey of the Wilderness maps that ring Barcelona -- Rio Ebro / the
+**Published.** A survey of the Wilderness maps that ring Barcelona -- Rio Ebro / the
 River, the Crossroads, Darkwood, Scar Ravine, the Plains, the Lake, Cortez Cave, the Mongol Camp,
 the Bounty Hunter Camp, the Woodcutter's forest and the coast -- for content that was written
 and never reached. Two things came out of it. The rest of what the scan flagged was read and
