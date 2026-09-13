@@ -1180,12 +1180,12 @@ conclusion. The Auric and Javier cases want a Templar initiate route.
 | TD1 | Torquemada, Inquisition Chambers | Join the Inquisition, take the Khan task, kill him, report | You reach **`407 killed khan`** -- *"I have known, child... Are you ready for another task?"* -- and are paid 150 gold |
 | TD2 | " | Same, as a **non**-Inquisitor | You still reach `408` -> `409`, *"I feel there is now hope for your soul"*, and are paid 150 gold. **Unchanged from vanilla** |
 | TD3 | " | Report as an Inquisitor and read the reply list | Exactly **one** Khan report reply is offered, not two |
-| TD4 | Na Roqua, Montaillou witch hovel | Promise no harm will come to the Cathars, leave the hut, return | She greets you with **`100 Favorable Return`** -- *"Welcome spiritbearer and Cathar friend"* |
-| TD5 | " | Same, as an Inquisitor using *"I am willing to spare the Cathars"* | Same greeting. An Inquisitor who spares them counts as a friend |
+| TD4 | Na Roqua, Montaillou witch hovel | Promise no harm will come to the Cathars, leave the hut, return | She greets you with **`100 Favorable Return`** -- *"Welcome spiritbearer and Cathar friend"*. **PASSED** |
+| TD5 | " | Same, as an Inquisitor using *"I am willing to spare the Cathars"* | Same greeting. An Inquisitor who spares them counts as a friend. **PASSED** (the reporting character is an Inquisitor) |
 | TD6 | " | Refuse or never make the promise | You get `03 Return Dialogue if Heard 50` as before. **Unchanged from vanilla** |
-| TD7 | " | On the favourable greeting, ask about the shapeshifting Daeva your spirit named | She admits *"we once hunted together"* and describes the periapt in her cave |
-| TD8 | " | Take that branch to its end | The **cave opens** -- she says *"Step through the fire"* -- exactly as the other phrasing of the question already does. **This is the trap case**: if the door stays shut, the relay did not fire |
-| TD9 | Witch cave | Walk through the fire, open the chest | You get the **Ring of the Prophet**, and it kills the shapeshifting Daeva permanently |
+| TD7 | " | On the favourable greeting, ask about the shapeshifting Daeva your spirit named | She admits *"we once hunted together"* and describes the periapt in her cave. **PASSED**. The ask needs `met the demon` and vanishes once the cave is open |
+| TD8 | " | Take that branch to its end | The **cave opens** -- she says *"Step through the fire"* -- exactly as the other phrasing of the question already does. **PASSED** -- the relay fires |
+| TD9 | Witch cave | Walk through the fire, open the chest | You get the **Ring of the Prophet**, and it kills the shapeshifting Daeva permanently. **PASSED** as far as the Ring; the permanent kill is vanilla and untested here |
 | TD10 | Montaillou inn | Save Machiavelli in Barcelona, then enter the inn | He is **at the bar**, greets you with `300`, and the speech runs through to *"Beware the Old Man from the east"*. **500 gold** is paid |
 | TD11 | " | Refuse his partnership in Barcelona (`215 reject offer`), then enter the inn | He is at the bar on the customer side. He gloats -- *"you forced me to seek aid from those that seek to do us harm"* -- then **walks out the door**, and **two assassins** come in behind him and attack at once. They wear the game's assassin model, not the snake-women, and hit harder than Montaillou's guards. **PASSED** on the reporting save |
 | TD11b | " | During that fight, cast spirit magic within sight of the Inquisition agent at the far table | He shouts *"Heretic!"* (or one of its variants) and **turns hostile**. **This is expected, not a bug**: the agent runs the shipped `Detect Spellcast` reaction that 107 Inquisitors and guards across the game share, and no vanilla spell-detect exempts an Inquisition member. Fight with steel and he stays a bystander |
@@ -1198,7 +1198,7 @@ conclusion. The Auric and Javier cases want a Templar initiate route.
 | TD18 | " | On his Montserrat directions, ask about the Sacred Lance | The lore node plays and its reply still leads to *Leave for Montserrat* |
 | TD19 | Cervantes, Temple District | Talk to him, walk away, talk again | The **second** conversation opens `3 Return Dialogue` -- *"It was just here! Perhaps you saw it this time?"* -- with its four replies |
 
-TD11 has now been played through to working -- see the commit history for the six passes it took, each a vanilla idiom replacing an assumption. TD8 still carries risk. TD8 is a relay this release added to a node that
+TD4, TD5, TD7, TD8 and TD9 have passed on the reporting save -- the whole Cathar-friend chain through to the Ring. TD11 has now been played through to working -- see the commit history for the six passes it took, each a vanilla idiom replacing an assumption. TD8 still carries risk. TD8 is a relay this release added to a node that
 shipped without one, and if it fails the player gets advice about a cave whose door never opens.
 TD11 is a **scripted fight in a map this project has never edited** -- new generators, new
 positions, and enemies that must aggro on spawn. `Monster Cans/Assassin Machiavelli` is copied
