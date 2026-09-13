@@ -38,12 +38,27 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
@@ -284,12 +299,27 @@ Reply Text=I have spoken to the seer. I seek information about your 'opposite tw
 Go to node ID=305 twin
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
@@ -403,12 +433,27 @@ Reply Text=I have spoken to the seer. I seek information about your 'opposite tw
 Go to node ID=305 twin
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
@@ -518,12 +563,27 @@ Reply Text=I have spoken to the seer. I seek information about your 'opposite tw
 Go to node ID=305 twin
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
@@ -620,12 +680,27 @@ Reply Text=I have spoken to the seer. I seek information about your 'opposite tw
 Go to node ID=305 twin
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
@@ -709,12 +784,27 @@ Reply Text=I have spoken to the seer. I seek information about your 'opposite tw
 Go to node ID=305 twin
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
@@ -1551,12 +1641,27 @@ Go to node ID=950 Chicken 1
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
@@ -1850,6 +1955,29 @@ Reply Text=I have spoken to the seer. I seek information about your 'opposite tw
 Go to node ID=305 twin
 
 Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=met the demon
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
+}
+}
 Reply Text=I'm hunted by a shapeshifting Daeva. My spirit said that you could help me fight it.
 Go to node ID=100 Shapeshifting Daeva
 
@@ -1867,12 +1995,27 @@ Go to node ID=950 Chicken 1
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=met the demon
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=secret cave entrance
+Desired Minimum Count=1
+}
+}
 }
 }
 Reply Text=I have found a foe I cannot defeat, a demon that can change shape at will and is seemingly invulnerable.
