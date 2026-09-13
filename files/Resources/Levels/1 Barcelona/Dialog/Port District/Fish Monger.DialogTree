@@ -801,12 +801,40 @@ Text=A point well taken, those creatures can be difficult to slay. Very well, I'
 Should Have Voiceover=0
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CActionCheckForInventoryItem
 {
 Who to give check=$instigator
 Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
 }
 }
 Reply Text=You have a deal. Here is the head.
@@ -815,7 +843,120 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Action=CTriggerRelayAction
+{
+Relay Name=barter responses relay
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+}
+Reply Text=You have a deal. Here is the head.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -844,13 +985,137 @@ Text=Very good. I believe you haggled me to the price of fifty gold a skull, eh?
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
 Reply Text=Yes, here is your skull.
 Go to node ID=
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Vodyanoi Skull
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Action=CTriggerRelayAction
+{
+Relay Name=barter responses relay
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=14
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+}
+}
+}
+}
+Reply Text=Yes, here is your skull.
+Go to node ID=65 soft spot
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGiveCharacterPerkAction
+{
+Perk To Give=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+Character to give perk to=$instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Vodyanoi Skulls Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
