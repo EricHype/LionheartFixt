@@ -523,6 +523,26 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**The Vodyanoi Anatomist perk did nothing.** 0.6.0 built it as a `CPlugInBehaviorStrikeAction`
+with a model check on `$trigger` inside the strike -- an invented shape. The game's own
+Necrosage uses two behaviours, a strike that re-strikes the current target and a
+`CPlugInBehaviorDamage` gated by a `Hit Or Miss` condition file; rebuilt on that, with a
+`Vodyanoi IS` monster-race can and a `HitVodyanoiOnly` condition, it *still* did nothing for
+the tester's unarmed character -- and the archive says why: every vanilla use of that shape is
+a weapon addition or a perk written for weapons, and the game's own unarmed perks (Pugilist,
+Bonus HtH Damage) never touch it; they raise the unarmed damage attributes directly. The
+working build is on the target side: `Common Objects and Scripts/Vodyanoi Anatomist Strike`
+is the `Damaged Script Action` of all twelve vodyanoi cans (the Bludjund shape, which fires on
+any damage from any source) -- if the attacker holds the perk, 4-10 piercing through
+`CActionDoDamage`, with a 0.3-second category guard so the bonus hit cannot re-trigger
+itself. The perk file is a title with no behaviours. **Proven from the save's combat log**:
+*"Grall hit Vodyanoi for 14 (14 Crushing Damage)"* / *"Grall hit Vodyanoi for 6 (6 Piercing
+Damage)"*, fifteen bonus hits in a row, all in the band -- and the log is how the next such
+question gets answered, since the save keeps it. Two things learned on the way: a spawned
+creature carries the can it was spawned from, so a can change reaches only creatures
+generated after it (the tester's first fight was against vodyanoi spawned before the
+install); and the save's event log records every hit with its damage type.
+
 **The goblin in Scar Ravine thought everyone knew the Khan.** 0.5's variance pass gave the
 goblin holding the woodcutter's daughter a Strength route (*"Step over him, pick the child up,
 and look down. Try."*) and a Barter route (the salt-pork offer), and pointed both at `70

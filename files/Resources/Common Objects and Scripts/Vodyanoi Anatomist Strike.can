@@ -1,0 +1,87 @@
+CCannedObject
+{
+	Object=CIfAction
+	{
+		If=CAndAction
+		{
+			Action=Array
+			{
+				Item Count=2
+				Action=CExpressionAction
+				{
+					Expression=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/!NPC or Event Given Perks/Vodyanoi Anatomist
+						}
+					}
+					Character to get attributes from=$Instigator
+				}
+				Action=CNotAction
+				{
+					Action=CCheckCategoryAction
+					{
+						Target Name=$Trigger
+						Category to check for=Scripted Custom 2
+					}
+				}
+			}
+			Early Exit=0
+		}
+		Then=CMultipleActionsAction
+		{
+			Action=Array
+			{
+				Item Count=3
+				Action=CAddCategoryAction
+				{
+					Target Name=$Trigger
+					Categories to add=Scripted Custom 2
+				}
+				Action=CActionDoDamage
+				{
+					Character Doing Damage=$Instigator
+					Character To Damage=$Trigger
+					Defend Against=0
+					No Friendly Fire Check=0
+					Damages=Array
+					{
+						Item Count=1
+						Damage=CXRPGDamage
+						{
+							Damage Type=Damage Types/Piercing
+							Damage Amount=CRandom
+							{
+								Operator=
+								Minimum=CConstant
+								{
+									Constant Value=4
+								}
+								Maximum=CConstant
+								{
+									Constant Value=10
+								}
+							}
+						}
+					}
+				}
+				Action=CDelayAction
+				{
+					Next Action=CRemoveCategoryAction
+					{
+						Target Name=$Trigger
+						Categories To Remove=Scripted Custom 2
+					}
+					Delay=0.3
+					Plus or Minus=0
+					Forget Trigger=0
+				}
+			}
+		}
+		Else=
+		Return failure if the If failes=0
+	}
+	Use=Shared Global Instance
+}
