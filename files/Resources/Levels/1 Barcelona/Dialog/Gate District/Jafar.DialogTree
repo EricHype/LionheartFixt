@@ -2077,12 +2077,16 @@ Should Have Voiceover=1
 
 Requirement=!None
 Reply Text=I am ready to depart for Montserrat.
-Go to node ID=238 Leave for Montserrat
+Go to node ID=
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=determine ending relay
+}
 Action=CActivateQuestStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Travel to Montserrat

@@ -91,6 +91,9 @@ for _n in zf.namelist():
         VANILLA_SEQ.setdefault(_m.group(1).strip().lower(), set()).add(_m.group(2).strip())
 
 fails = []
+# a class-valued field whose value starts with whitespace; built from chr() so no escape
+# sequence can be mangled on the way into this file (that is how the shipped defect happened)
+WS_CLASS = re.compile(("^[^" + chr(13) + chr(10) + "=]*=[ " + chr(9) + "]+C[A-Z][A-Za-z0-9]*" + chr(13) + chr(10)).encode("latin-1"), re.M)
 LF = chr(10)
 
 
@@ -283,6 +286,12 @@ def check_resource(p, raw):
     except Exception as e:
         fails.append(p.name + ": parse failed: " + str(e))
         return
+    # A class-valued field whose value begins with whitespace is a crash: the engine looks up
+    # a class named "<tabs>CMultipleActionsAction" and refuses to load the map. 0.9.1 shipped
+    # one, from re-indenting a nested block without stripping the first line's leading tabs.
+    # The parser keeps such whitespace as part of the value, so only a byte check catches it.
+    for m in WS_CLASS.finditer(raw):
+        fails.append(p.name + ": CRASH -- class value led by whitespace: " + repr(m.group(0)[:70]))
     tmp = Path(tempfile.gettempdir()) / "_rf_check.txt"
     rf.write_resource_file(node, tmp)
     if tmp.read_bytes() != raw:
