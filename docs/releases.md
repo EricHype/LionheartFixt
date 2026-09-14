@@ -523,6 +523,19 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**The peaceful road through the sewers ended two steps short.** A player who reached troll
+peace by the parley, ran the chief's errands and then argued Enrique out of the contract had
+done more for the trolls than anyone -- and could not get a hide for Quinn without either
+killing a Lava Troll Boss (breaking the peace) or having settled the wererats first. And
+Enrique's chain is linear: kill the trolls, take the gold, *"there is one thing more"*, the
+cure quest -- so withdrawing the contract stopped the chain and the beggars stayed wererats.
+Two additions, both on the chain's own facts. **The chief gives a hide from his dead** once
+*Speak for the Trolls* is complete, Quinn's errand is open and no hide is held -- the field of
+thirteen the player counted for him. **Enrique still asks for the cure** after the
+withdrawal: one new reply on both greetings, one line of his acknowledging the argument, and
+then vanilla's own confession flowing into the shipped `155 Potion 2`. Four routes to the
+hide now, and the peaceful one is complete.
+
 **Enrique's red-ore door was shut.** The third way to talk him out of the troll contract --
 *"There is red ore moving up out of that pit now"* -- was gated on `current(final state)` of
 The Red Ore Trade alone, and that quest completes in the same reply that sets its final

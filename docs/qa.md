@@ -1267,6 +1267,8 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS20 | Scar Ravine, the goblin holding the girl | ST 8+: *Try.* / Barter 55: the salt-pork offer | The goblin backs down (`71`) or takes the trade (`72`) in his own words; neither mentions the Khan. The Horde and Speech routes still get *"Y-you know the Khan?"* |
 | MS21 | Any vodyanoi spawned after install, with the Anatomist perk | Hit one | A second damage entry per landed hit, 4-10 Piercing, in the combat log and on screen. **PASSED** from the save's log |
 | MS22 | Amir, as a Favored One | *"What troubles the Order, Amir?"* -> *"Of course, I will accompany you"* | The cathedral summit plays for Saladin: Javier's opening, Amir's two lines, the exchange, the directions, *"May the Prophet guide you"*, fade, and back to the Gate District with Montserrat on the map. Amir never hostile. **PASSED**, on a save that had not entered the cathedral |
+| MS23 | Troll chief, after *Speak for the Trolls* completes, Quinn's hide errand open, no hide held | Talk to him | *"The herbalist in the city needs the hide of a lava troll..."* -> he gives one from his dead. Absent with a hide in hand or the errand turned in |
+| MS24 | Enrique, after the contract is withdrawn | Either greeting | *"You said there was one thing more you needed, before the trolls came between us."* -> his confession -> the cure quest, exactly as the kill route gives it. Absent once the cure quest has ever been given |
 
 ---
 

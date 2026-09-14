@@ -502,11 +502,84 @@ Reply Text=They have a word for what I am, up there. I would guess they have muc
 Go to node ID=151 the bell
 
 Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+}
+}
+}
+}
+}
+Reply Text=The herbalist in the city needs the hide of a lava troll. I would rather not take one from a living one.
+Go to node ID=133 the hide
+Icon=Quest Icon
+
+Requirement=!None
 Reply Text=Nothing yet. I am only looking.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
 
+------------------------------------------------------------
+Node ID=133 the hide
+Text=<He looks toward the far end of the rock, where his dead lie.> There are hides out there that nobody is wearing, and you are the one who counted them. Take one, with my word on it. <A pause.> It is a strange thing to be asked for. Everything is, up there.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Take it.> Your dead can spare it.
+Go to node ID=
+Custom Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=96 the boy
 Text=<He does not pretend not to know which child.>  The small one. He came in the dark and put his hands in our ore, and not the first time, and not the first of him. Your city has eaten this rock for years and paid us in nothing.  <He shrugs, and the shrug is enormous.>  We keep him because he is what we caught.

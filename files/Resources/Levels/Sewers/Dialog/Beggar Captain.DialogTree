@@ -112,6 +112,33 @@ Icon=Exit Icon
 Is Default Reply=1
 
 Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK5N3BQ
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+}
+}
+}
+}
+Reply Text=You said there was one thing more you needed, before the trolls came between us.
+Go to node ID=157 the other thing
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
@@ -291,6 +318,33 @@ Go to node ID=
 Action work in progress=if they choose this, end dialogue
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK5N3BQ
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
+}
+}
+}
+}
+Reply Text=You said there was one thing more you needed, before the trolls came between us.
+Go to node ID=157 the other thing
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -1072,6 +1126,15 @@ Quest=Levels/Sewers/Quests/Discover a cure for wererat lycanthropy
 State=HNZJ0I2W
 }
 Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=157 the other thing
+Text=<He is quiet for a moment.> There is. And since you have already seen the worst of me today, you may as well hear the rest of it. We beggars have all been poisoned by an infectious bite from a Wererat. We were once part of Juanita's clan, but they shunned us when we began to change. When we venture into Barcelona, we must disguise ourselves as common beggars - looking much like what you see before you. In reality I am a wererat like the others you have encountered here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=155 Potion 2
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=160 Rejoice
