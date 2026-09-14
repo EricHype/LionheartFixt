@@ -523,6 +523,25 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**The Saladin summit froze, then Amir attacked.** 0.7.0 built the Knights of Saladin's cathedral
+scene by cloning the Templar chain, and the Templar chain has a precondition the clone did not
+carry. The summit's script lives on a *generated* Javier: `RESET MAP for Invulnerable Javier`
+deletes the placed one and spawns one whose AI waits for "AI Done" and then starts the
+faction's conversation. That reset fires on entering the cathedral through the door -- which
+every Templar has done before their summit, and which the Inquisition relay calls explicitly
+because an Inquisitor may not have. A Saladin arrives by Amir's relocate, never through the
+door; "AI Done" went to a Javier with no script, and nothing happened. The Saladin relay now
+calls the reset as the Inquisition's does. Amir, meanwhile, was spawned from `Jafar Generator
+Wielder NIS` -- the Wielder summit's Jafar, scripted to hunt the dark wielder as an
+uninteractable actor -- so when the tester skipped the frozen scene he attacked and could not
+be attacked. A `Jafar Generator Saladin NIS` with the target type blanked replaces it.
+
+**Then the scene would not end.** Javier's *"I am ready to depart for Montserrat"* fires
+`determine ending relay`; Amir's copy of the reply jumped to his goodbye node instead and left
+the sequence running with nothing to end it. Amir's reply now fires the relay; his goodbye is
+the end relay's own balloon. Played to passing: the scene, the exchange, the fade, and the
+return to the Gate District.
+
 **The Vodyanoi Anatomist perk did nothing.** 0.6.0 built it as a `CPlugInBehaviorStrikeAction`
 with a model check on `$trigger` inside the strike -- an invented shape. The game's own
 Necrosage uses two behaviours, a strike that re-strikes the current target and a

@@ -1266,6 +1266,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS19 | Port District, Fernand and Juan | Take Fernand's job; go to Juan | Fernand hands over *Fernand's Draught* (not a plain potion); Juan shows the interaction cursor, and Absorb Spirit cannot target him from any range; the draught saves him: he stands, walks to Fernand, and six balloons play -- three vanilla, three of Fernand chiding him -- before he walks to the ship. Leave him instead: *fading* at 20 seconds, the too-late line and the failed state at 45. The Mute Sailor's reward is a plain potion again. **PASSED** on a fresh Port District |
 | MS20 | Scar Ravine, the goblin holding the girl | ST 8+: *Try.* / Barter 55: the salt-pork offer | The goblin backs down (`71`) or takes the trade (`72`) in his own words; neither mentions the Khan. The Horde and Speech routes still get *"Y-you know the Khan?"* |
 | MS21 | Any vodyanoi spawned after install, with the Anatomist perk | Hit one | A second damage entry per landed hit, 4-10 Piercing, in the combat log and on screen. **PASSED** from the save's log |
+| MS22 | Amir, as a Favored One | *"What troubles the Order, Amir?"* -> *"Of course, I will accompany you"* | The cathedral summit plays for Saladin: Javier's opening, Amir's two lines, the exchange, the directions, *"May the Prophet guide you"*, fade, and back to the Gate District with Montserrat on the map. Amir never hostile. **PASSED**, on a save that had not entered the cathedral |
 
 ---
 
