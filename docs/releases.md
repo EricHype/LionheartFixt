@@ -523,6 +523,15 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**0.9.1 crashed the game on entering the Mongol Camp from the cave.** *"Tried to use an unknown
+class 'CMultipleActionsAction' for a 'Then'"* -- the gate polygon's `Then=` value began with
+three tabs, left over from re-indenting the vanilla challenge block under the new `Else`. The
+canonical re-serialiser keeps leading whitespace as part of a value, so the file passed every
+check and the engine looked up a class that does not exist. The only such value in the mod.
+`validate.py` now fails any class-valued field whose value starts with whitespace, and it
+names the 0.9.1 file when run against it. Shipped in 0.9.1, 0.9.2 and 0.9.3; hotfixed as
+0.9.4.
+
 **The peaceful road through the sewers ended two steps short.** A player who reached troll
 peace by the parley, ran the chief's errands and then argued Enrique out of the contract had
 done more for the trolls than anyone -- and could not get a hide for Quinn without either
