@@ -1386,12 +1386,23 @@ Go to node ID=702 withdrawn
 Icon=Barter Skill Icon
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/The Red Ore Trade
+}
+}
+Operator=
+Operand2=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/Sewers/Quests/The Red Ore Trade
 State=TRD9V5XC
+}
 }
 }
 Reply Text=There is red ore moving up out of that pit now, bought and paid for, through your district. That trade is worth more to you standing than the trolls are dead -- and it does not survive you killing the people at the other end of it.

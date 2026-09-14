@@ -523,6 +523,14 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**Enrique's red-ore door was shut.** The third way to talk him out of the troll contract --
+*"There is red ore moving up out of that pit now"* -- was gated on `current(final state)` of
+The Red Ore Trade alone, and that quest completes in the same reply that sets its final
+state. The chief's own tier gates on the same quest are `completed OR current(final)`; the
+door now is too. Fifth confirmed instance of the rule, 0.5's own, and one the sweep missed
+because it looked at the state being *set*, not at the completion beside it. Played to
+passing.
+
 **The Saladin summit froze, then Amir attacked.** 0.7.0 built the Knights of Saladin's cathedral
 scene by cloning the Templar chain, and the Templar chain has a precondition the clone did not
 carry. The summit's script lives on a *generated* Javier: `RESET MAP for Invulnerable Javier`

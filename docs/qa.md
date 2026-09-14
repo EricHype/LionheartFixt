@@ -662,7 +662,7 @@ for a player who never took it.
 | SF4 | " | Deliver it | Node 701 -- he gets faster and less comfortable |
 | SF5 | " | **Speech 50+** | *"You are paying to create the problem you are paying to solve"* |
 | SF6 | " | **Barter 45+** | The ledger argument. Both absent below the thresholds |
-| SF7 | " | With **The Red Ore Trade** complete | A third door, no skill needed -- the trade is worth more than the trolls are dead |
+| SF7 | " | With **The Red Ore Trade** complete | A third door, no skill needed -- the trade is worth more than the trolls are dead. **PASSED**, once the gate was made `completed OR current(final)` |
 | SF8 | " | Without it | That third reply is absent |
 | SF9 | " | Any of the three | Contract withdrawn. `Destroy the Lava Trolls` shows **failed** if it was active, untouched if not |
 | SF10 | " | Say nothing (node 703) | He keeps the offer open. Nothing is lost |
