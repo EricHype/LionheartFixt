@@ -804,7 +804,16 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=3
+								Item Count=4
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+									Node ID=21 tripwire
+									Name of Position=$Instigator
+									Position Offset=0.000000,-70.000000
+									After Action=
+									Include In Log=1
+								}
 								Action=CSpawnEffectAction
 								{
 									Explosion Model=Spell Effects/Hits and Effects/Target Affected/Wand of Poison Touch
