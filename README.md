@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.10.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.10.0).
+-- currently [0.10.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.10.1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -71,7 +71,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.10.0 are published.** The current playthrough is walking 0.10.0 as it goes; what
+**0.1.0 through 0.10.1 are published.** The current playthrough is walking 0.10.0 as it goes; what
 it finds is repaired on `main` and cut as patch releases. Every release's
 automated gate (`tools/validate.py`) passes; the human gates are recorded per release in
 [`docs/qa.md`](docs/qa.md), and most of what shipped after 0.4.0 has been played once by one
