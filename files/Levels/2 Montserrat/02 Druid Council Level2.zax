@@ -106,9 +106,27 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Action=CGoToCombatAction
+					Action=CMultipleActionsAction
 					{
-						Enemy Name=Sahar
+						Action=Array
+						{
+							Item Count=3
+							Action=CActivateAction
+							{
+								Target Name=Snakebreed Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CGoToCombatAction
+							{
+								Enemy Name=Snakebreed
+							}
+							Action=CGoToCombatAction
+							{
+								Enemy Name=Sahar
+							}
+						}
 					}
 					Trigger Only Once=1
 					Was Triggered=0
@@ -1376,7 +1394,18 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=5
+							Item Count=7
+							Action=CActivateAction
+							{
+								Target Name=Snakebreed Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CGoToCombatAction
+							{
+								Enemy Name=Snakebreed
+							}
 							Action=CGoToCombatAction
 							{
 								Enemy Name=Sahar
@@ -1621,7 +1650,17 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=5
+							Action=CDeactivateAction
+							{
+								Target Name=Snakebreed Generator
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed
+								Name To Target=
+								Valid Targets=
+							}
 							Action=CActivateAction
 							{
 								Target Name=Sahar Generator

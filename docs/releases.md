@@ -523,6 +523,21 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**The sanctum attacked during Sahar's talk.** Its vanilla generators spawn on approach and do
+not know a conversation is happening. The approach strip now pauses every snakebreed already on
+the map (empty target type, the name-based action the troll peace uses) and switches the ten
+`Snakebreed Generator` parts off; both fight relays switch them back on and send everything
+standing to combat.
+
+**The journal had nowhere to go.** "Javier reacts" assumed Javier could be reached, and he
+exists only in the cathedral -- the summit map, which a Saladin cannot re-enter. The 500-XP
+part was on the wrong map even for a Templar (his node plays in the cathedral). Now every
+patron's Montserrat report-back takes the book -- Amir, Raphael, Cedric, and Javier -- each in
+his own register, each paying from an XP part on his own map, each returning to the report
+node so the vanilla reply still gives the quest state. And it is a quest now, *Sir Tomas's
+Journal*, given at the body and closed at any patron, whose log entry names all four; the item
+and Montgomerie stop pointing only at Javier.
+
 **The goodbye was in the middle of the menu.** A reply's position in the menu is its position in
 the file, and every reply Fixt spliced into an existing node went wherever the splice was
 easiest -- after the goodbye, on Quinn, Enrique, the Warning Troll, the Blacksmith, Amir,

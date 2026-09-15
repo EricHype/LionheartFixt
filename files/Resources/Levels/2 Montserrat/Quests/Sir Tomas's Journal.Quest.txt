@@ -1,0 +1,19 @@
+CQuestDefinition
+{
+	Name=Sir Tomas's Journal
+	States=Array
+	{
+		Item Count=2
+		State=CQuestStateDefinition
+		{
+			Text=You took a journal from the body of Sir Tomas de Vilanova, who led the Knights Templar at Montserrat's gate. His last entry is addressed to Lord Javier. Whoever sent you to Montserrat will see that it reaches him - Javier himself, or Amir, Raphael or Cedric on his behalf.
+			ID=TJ1VK4RN
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Sir Tomas's journal is on its way to Lord Javier, and his name will be read at chapter.
+			ID=TJ2DN8SX
+		}
+	}
+	Sub-Quest of=!None
+}

@@ -1,0 +1,1044 @@
+CDialogTree
+{
+Name=Cedric Alsen
+Portrait=Dialog/NPC Portraits/Wielder Trainer
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=You there, how did you find this place? Answer me! 
+Should Have Voiceover=1
+
+Requirement=Speech lessthan 025
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=I seek the Wielders, and if they will allow it, to join with them.
+Go to node ID=30 magicians, Impolite
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=I apologize for my intrusion - I wanted to join the Wielders.
+Go to node ID=31 magicians, Polite
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=43 Cedric
+
+Requirement=!None
+Reply Text=Watch your tone - or else I shall see to it the Inquisition finds this place as well.
+Go to node ID=20 please do not
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm here to put you all to the sword. Prepare to die!
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CTriggerRelayAction
+{
+Relay Name=Cedric sends you to a random map
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I seem to have taken a wrong turn. Goodbye. 
+Go to node ID=40 Calle
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 please do not
+Text=If you breathe a word of this place to the Inquisition, both of us will pay the price. La Calle Perdida will be destroyed - but not before you answer for your crime. I urge you to...reconsider.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=I apologize for my intrusion - I would like to join the Wielders.
+Go to node ID=31 Magicians, Polite
+Action work in progress=(Speech >=25%)
+Icon=Quest Icon
+
+Requirement=Speech lessthan 025
+Reply Text=Very well. I'm here to join your group.
+Go to node ID=30 Magicians, Impolite
+Action work in progress=(Speech < 25%)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Your threats mean nothing to me, Wielder. 
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cedric sends you to a random map
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I seem to have taken a wrong turn.
+Go to node ID=40 Calle
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 Attack
+Text=Wielders, to me! La Calle Perdida is under attack! The intruder must not leave here alive!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=30 Magicians, Impolite
+Text=Oh? Perhaps you believe our lives to be somewhat adventurous or glamorous? Know you that we exist here as hunted prey, always living in fear of the Inquisition. If that does not diminish your resolve *and* you believe you have the courage to become part of the Wielders, then you may prove it by passing our rites of initiation.
+Should Have Voiceover=1
+
+Requirement=Cedric Player is NOT Inquisitor Knight or Saladin
+Reply Text=I accept your challenge. What must I do?
+Go to node ID=70 first task
+Icon=Quest Icon
+
+Requirement=Cedric Player is Feralkin AND is NOT Inq Temp or Saladin
+Reply Text=Since you are a feralkin, it seems your order is tolerant of the tainted races. I accept your challenge.
+Go to node ID=70 first task
+Action work in progress=(Feralkin IS)
+Icon=Quest Icon
+
+Requirement=Cedric Player IS Templar Inquisitor or Saladin
+Reply Text=Nevermind. I have already joined a faction.
+Go to node ID=55 dismissal warning
+
+Requirement=!None
+Reply Text=I think I'll prove it by killing all of you instead.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cedric sends you to a random map
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry, I'll just be leaving now.
+Go to node ID=50 warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 Magicians, Polite
+Text=Well, perhaps that will come to pass. I find it strange that your arrival was not foreseen by any of our order, though I sense there is something about you that fate cannot predict...If you are resolved to join the Wielders, you must prove your loyalty and earn the right to walk along La Calle Perdida.
+Should Have Voiceover=1
+
+Requirement=Cedric Player is NOT Inquisitor Knight or Saladin
+Reply Text=I will do what must be done to join the Wielders.
+Go to node ID=70 first task
+Action work in progress=(Wielder Faction Bonus for politeness)
+Icon=Quest Icon
+
+Requirement=Cedric Player IS Templar Inquisitor or Saladin
+Reply Text=Nevermind. I have already joined a faction.
+Go to node ID=55 dismissal warning
+
+Requirement=!None
+Reply Text=I think I'll prove it by killing all of you instead.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cedric sends you to a random map
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have changed my mind. I do not wish to join you.
+Go to node ID=50 warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Calle
+Text=This place you have *stumbled* upon is La Calle Perdida, a haven of those who practice magic. I must warn you...if you are in any way sympathetic to the Inquisition, you shall find no friends here. 
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=I apologize for my intrusion - I hope to join with your group.
+Go to node ID=31 magicians, Polite
+Action work in progress=(Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Speech lessthan 025
+Reply Text=I'm here to join your group.
+Go to node ID=30 magicians, Impolite
+Action work in progress=(Speech < 25%)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=A nest of mages? Then I am here to expose you.
+Go to node ID=20 please do not
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I seem to have taken a wrong turn. Goodbye.
+Go to node ID=50 warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=43 Cedric
+Text=I am Cedric Alsen. It is my duty to keep this place secret - and your presence here indicates the wards on La Calle Perdida are not as strong as they should be. I warn you...if you are in any way sympathetic to the Inquisition, you shall find no friends here.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Reply Text=I apologize for my intrusion - I hope to join with your group.
+Go to node ID=31 magicians, Polite
+Action work in progress=(Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Speech lessthan 025
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=I'm here to join your group.
+Go to node ID=30 Magicians, Impolite
+Action work in progress=(Speech < 25%)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I am here to expose you to the Inquisition, Wielder. 
+Go to node ID=20 please do not
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I seem to have taken a wrong turn. Goodbye.
+Go to node ID=50 warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 warning
+Text=Then I suggest you forget you ever saw this place - if you choose to speak of it, you will be hunted down and killed.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=I apologize for my intrusion - I hope to join with your group.
+Go to node ID=31 magicians, Polite
+Action work in progress=(Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=Speech lessthan 025
+Reply Text=And what if I want to join you instead?
+Go to node ID=30 Magicians, Impolite
+Action work in progress=(Speech < 25%)
+
+Requirement=!None
+Reply Text=I tire of your threats. Prepare to die!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cedric sends you to a random map
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Fair enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=55 dismissal warning
+Text=Then I suggest you cease trying my patience. Leave now, and forget you ever saw this place. We have eyes and ears throughout Barcelona, and we will know if you betray us. Now leave.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=56 growing tired
+Text=I am growing tired of you coming here uninvited. Only Wielders and friends of the Wielders are welcome here.
+Should Have Voiceover=1
+
+Requirement=Speech lessthan 025
+Reply Text=Then I want to become a Wielder.
+Go to node ID=30 Magicians, Impolite
+Action work in progress=(Speech < 25%)
+Icon=Quest Icon
+
+Requirement=Speech moreequal 25
+Reply Text=I apologize for my intrusion - I hope to join with your group.
+Go to node ID=31 magicians, Polite
+Action work in progress=(Speech >=25%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=And what if I were to tell others of your location?
+Go to node ID=20 please do not
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I am here to wipe you out. Prepare to die!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cedric sends you to a random map
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Fair enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 too much
+Text=Let's just say that if you are in any way affiliated with the Inquisition, you will not pass our initiation.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+}
+Reply Text=No problem, how do I join?
+Go to node ID=70 first task
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=So you are a wielder. Die Scum!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cedric sends you to a random map
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Fair enough, I'll be going now.
+Go to node ID=50 warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 first task
+Text=Your first task will be to create a Wand of Spirits. To do that, you will need a special kind of wood known as Darkwood. There is a woodcutter in the forest west of Barcelona that can help you - seek him out, and heed his advice.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Reply Text=I already have the Darkwood.
+Go to node ID=105 Faction Warning
+Icon=Quest Icon
+
+Requirement=Cedric Woodcutter Dead Player NO Darkwood
+Reply Text=Uh, I *believe* the woodcutter had an accident.
+Go to node ID=71 woodcutter accident
+Action work in progress=(Woodcutter's Dead, No Darkwood)
+
+Requirement=Cedric Woodcutter NOT dead Player NO Darkwood
+Reply Text=Very well. I shall return when I have the Darkwood.
+Go to node ID=
+Action work in progress=(Woodcutter's Not Dead, No Darkwood)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Took Wielder Quests from Cedric
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+State=SD5TXT69
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I'd rather not join.
+Go to node ID=55 dismissal warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=71 woodcutter accident
+Text=Indeed? That is most unfortunate. Still, the Darkwood must be close to where he lived - seek out his home, then search the area. He may even have been carrying some on him when he had his accident.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Reply Text=Actually, I already have the Darkwood.
+Go to node ID=105 Faction Warning
+Icon=Quest Icon
+
+Requirement=Cedric Woodcutter NOT dead Player NO Darkwood
+Reply Text=Very well. I shall return when I have the Darkwood.
+Go to node ID=
+Action work in progress=(Woodcutter's Not Dead, No Darkwood)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Took Wielder Quests from Cedric
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Wielders
+State=SD5TXT69
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I'd rather not join.
+Go to node ID=55 dismissal warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Secondary Greeting
+Text=You are back. What is on your mind?
+Should Have Voiceover=1
+
+Requirement=Wielder IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=The relic of Montserrat has been stolen. Before his death, a knight named Brother Montgomerie told me to go to Montaillou and safeguard a relic hidden within a secret Crypt.
+Go to node ID=530 montserrat
+Icon=Quest Icon
+
+Requirement=Cedric Player has Darkwood
+Reply Text=I have the Darkwood you asked for.
+Go to node ID=105 Faction Warning
+Action work in progress=(Darkwood Snagged, Have Darkwood)
+Icon=Quest Icon
+
+Requirement=Cedric Player wand has spirit
+Reply Text=My wand has a spirit bound to it.
+Go to node ID=120 Relican
+Action work in progress=(Have Wand With Spirit)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=First time approach Cedric with wand
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return Spirit Wand to Wielders XP step 2
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Bind Spirit to Rod
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Relican Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Hunt down Relican
+State=XAJZW4J8
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Hunt down Relican
+State=XAJZW4J8
+}
+}
+}
+}
+Reply Text=I have defeated Relican.
+Go to node ID=130 initiated
+Action work in progress=(Relican Ass Kicked)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=First time approach Cedric Kill Relican
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Hunt down Relican
+}
+Action=CMixInSongAndPlayAmbientTrackAction
+{
+Song To Mix In=1 Barcelona/MX_FACT_WIELDERS2.ogg
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nothing at the moment. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=105 Faction Warning
+Text=You have reached a turning point, young one. Once you have given me this Darkwood, your spirit will be bound to the Wielders cause. You will gain new enhanced abilities, but no other faction in Barcelona will have you. Do you wish to proceed?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes, I will join the Wielders.
+Go to node ID=110 fashion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=10
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Wielder Conjurer
+Character To assign=$Instigator
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return Darkwood to Wielders XP step 1
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Initiation Quest for the Inquisition
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Initiation Quest of the Knights Templar
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I'd rather not join.
+Go to node ID=55 dismissal warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 fashion
+Text=Excellent! I shall fashion the darkwood into a wand for you. Observe...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Fade to Black)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=fashion wand
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=111 fashion 2
+Text=There, it is done. This is but the first step in fashioning the wand - now you must bind a spirit to the wand to give it power. To do this, you must obtain a friendly spirit from Galileo. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=112 fashion 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=112 fashion 3
+Text=Unfortunately, Galileo is being held in the Chambers of the Inquisition. He alone has spirits that I trust with such awesome responsibility. This "inhabited" wand will remain with you for the remainder of your days as a Wielder. When you have performed the binding, return to me and I will give you your next initiation task.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Bind Spirit to Rod
+State=J5WOL4C2
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Relican
+Text=Well done - well done, indeed. Now, for your last task. Since your introduction to us was rather...out of the ordinary, we have decided that your final initiation task shall be extraordinary as well.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=122 more Relican
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=122 more Relican
+Text=We need you to bring the Arch Necromancer Relican to justice. He is a Dark Wielder that hides in the wilderness near the Slaver Pits. Relican was once a pupil of ours before he turned away from us.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Relican Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=I have met this Relican - and defeated him.
+Go to node ID=130 initiated
+Action work in progress=(Relican is dead)
+Custom Action=CDeactivateAction
+{
+Target Name=First time approach Cedric Kill Relican
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Relican Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=
+Go to node ID=123 more Relican 2
+Action work in progress=(Relican is not dead)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=123 more Relican 2
+Text=Relican hates us with a passion, and he will prove a difficult foe. If you eliminate him, your initiation will be complete, and we will accept you fully as a Wielder.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Hunt down Relican
+State=P0UMI6N6
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 initiated
+Text=Excellent work, my friend. You have calmed the last of my fears. I was so worried that you were an agent of the Inquisition.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=131 initiated 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=131 initiated 2
+Text=You have passed your initiation and are welcome here in La Calle Perdida any time. Congratulations...Wielder.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=500 chapter 2 mission
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Wielder Mage
+Character To assign=$Instigator
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Wielders
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Hunt down Relican
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tell Wielders Kill Relican XP step 3
+Experience Points To Add=1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 chapter 2 mission
+Text=It is fortunate you have progressed so quickly. We have need of your magical talents. Our divinations have been...troubled of late, but the nature of the disturbance is unclear.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Wielders Start Church Movie
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=501 chapter 2 mission
+Text=The only thing we have been able to determine is that someone is seeking to steal holy relics from the care of the Knights Templar - but for what purpose, we do not know.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will protect these relics then. Tell me where I need to go.
+Go to node ID=515 holy relics 4
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=What are these holy relics?
+Go to node ID=510 holy relics
+
+Requirement=!None
+Reply Text=Where are these relics kept?
+Go to node ID=514 holy relics 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=510 holy relics
+Text=The relics are sacred objects, each possessing a power tied with creation itself. Centuries ago, these same relics were used in a ritual that brought about the Disjunction - and brought chaos and destruction to the world.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=512 holy relics 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=512 holy relics 2
+Text=I fear the world would not survive another such catastrophe, so we must prevent the theft of these relics. While we know the True Cross is safe within the Cathedral of Barcelona, we need to ensure that the other relics are protected.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=514 holy relics 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=514 holy relics 3
+Text=Unknown to many, a relic is hidden within Montserrat Abbey - and we have learned of a rumor that the Knights Templar have lost contact with the monks there. If the abbey has been attacked, then the relic may have been the reason.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=515 holy relics 4
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=515 holy relics 4
+Text=We must make sure the relic at Montserrat is safe - and if it has been stolen, we must recover it. I need you to travel to the abbey and see what you can discover. I will mark the location on your map. Use the crystal in the Crossroads outside of town to take you there.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(montserrat quest given - world map unlocked)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=J1VVBB3T
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Montserrat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Get rid of Fake Cedric
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=530 montserrat
+Text=It is grim news that Montserrat has fallen. We must double our efforts to safeguard the relics. Do as Brother Montgomerie said and travel to the crypt outside Montaillou. You must ensure that the seal still protects the entrance.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=Sir Tomas de Vilanova led the Templars at Montserrat. I have his journal; his last words were for Lord Javier.
+Go to node ID=531 tomas
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Very well, I will go to Montaillou and find Brother Michel.
+Go to node ID=
+Action work in progress=(montserrat quest given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=XQX0TUT7
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=531 tomas
+Text=<He turns the book over without opening it.> A knight's last words to his master. We are no friends of the Temple, but we are not thieves of the dead either. I will see it reaches Javier - quietly, and without your name on it, which is a kindness to you both.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then it is in the right hands.
+Go to node ID=530 montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+State=TJ2DN8SX
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Sir Tomas journal XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 Wielder NIS Start
+Text=And nothing more was said in the Cathedral?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=515 holy relics 4
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 Wielder Servant
+Text=No, Master Cedric. An Inquisitor approached the Cathedral, so I fled before being detected.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 Wielder NIS Cedric 2
+Text=You did well, your service is complete.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=515 holy relics 4
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 Wielder Servant 2
+Text=Thank you Master Cedric.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 Attack Cedric
+Text=I will not tolerate this. I banish thee! 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 After Attack Cedric
+Text=You have strained what little welcome you had in this place. We will tolerate no more aggression from you.
+Should Have Voiceover=1
+}

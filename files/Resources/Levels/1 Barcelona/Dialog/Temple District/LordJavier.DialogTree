@@ -1345,7 +1345,16 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=5
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+State=TJ2DN8SX
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+}
 Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel

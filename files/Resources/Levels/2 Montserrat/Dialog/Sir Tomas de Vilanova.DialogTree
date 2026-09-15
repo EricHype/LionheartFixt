@@ -69,7 +69,12 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir T
 }
 Reply Text=Take the book.
 Go to node ID=
-Custom Action=CActionGiveStandardInventoryItem
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
 {
 Who to give to=$instigator
 Delete Trigger=0
@@ -78,6 +83,13 @@ Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas 
 Additions to add=Array
 {
 Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+State=TJ1VK4RN
+}
 }
 }
 Icon=Quest Icon

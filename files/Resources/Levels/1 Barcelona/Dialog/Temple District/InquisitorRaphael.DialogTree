@@ -1,0 +1,2592 @@
+CDialogTree
+{
+Name=Inquisitor Raphael
+Portrait=Dialog/NPC Portraits/Spanish Inquisitor
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Welcome, child. I am Inquisitor Raphael. What do you seek within these hallowed halls?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What does an Inquisitor do?
+Go to node ID=20 inquisitor
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 chambers
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Welcome back, child. What do you seek now?
+Should Have Voiceover=1
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=balked at tithe
+Desired Minimum Count=1
+}
+}
+Reply Text=I have reconsidered, I would like to become an initiate afterall.
+Go to node ID=1050 human initiation after initial pass
+Action work in progress=non tainted resume initiation
+Custom Action=CDeactivateAction
+{
+Target Name=balked at tithe
+}
+Icon=Quest Icon
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=balked at tithe
+Desired Minimum Count=1
+}
+}
+Reply Text=I have reconsidered, I would like to become an initiate afterall.
+Go to node ID=1060 tainted join after intital pass
+Action work in progress=non tainted resume initiation
+Custom Action=CDeactivateAction
+{
+Target Name=balked at tithe
+}
+Icon=Quest Icon
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+State=JO5E5CH0
+}
+}
+Reply Text=I have completed the task assigned by Inquisitor Dominguez.
+Go to node ID=105 initiation 2
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+Icon=Quest Icon
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+State=JO5E5CH0
+}
+}
+Reply Text=I have completed the task assigned by Inquisitor Dominguez.
+Go to node ID=120 conditions
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+State=0CDS9G1N
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+State=LW7LISGJ
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I still seek the gold to pay the initiation tithe.
+Go to node ID=1000 still need gold for tithe
+Icon=Quest Icon
+
+Requirement=Raphel req NO taint blood & 1K gold
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+}
+}
+}
+Reply Text=I have the tithe of a thousand gold to begin the initiation.
+Go to node ID=200 tithe warning
+Action work in progress=(not tainted and have 1,000 gold)
+Icon=Quest Icon
+
+Requirement=IQ Raphel req tain blood & 1500 gold
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+}
+}
+}
+Reply Text=I am ready to pay my tithe and begin my initiation.
+Go to node ID=200 tithe warning
+Action work in progress=(tainted and have 1,500 gold)
+Icon=Quest Icon
+
+Requirement=Raphael req kill beggars quest complete
+Reply Text=I have dealt with the Afflicted.
+Go to node ID=220 rod of inquisitor
+Action work in progress=(completed inquisition kill beggars quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Eliminate wererat beggars in the sewers
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Wererats XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raphael Reqs IQ rod quest assigned & darkwood
+Reply Text=I have obtained some Darkwood for the Rod of the Inquisitor.
+Go to node ID=500 hair
+Action work in progress=(have inquisitor rod quest and have darkwood)
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Obtain Darkwood XP
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=88E4C1Q0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Reply Text=I have obtained the hair of a saint.
+Go to node ID=225 have darkwood
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=return hair of saint
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=Raphael requires completion of Rod
+Reply Text=I have created the Rod of the Inquisitor.
+Go to node ID=230 rescue darsh
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+}
+Icon=Quest Icon
+
+Requirement=Raphael reqs rescue darsch alive
+Reply Text=I rescued Inquisitor Darsh from the goblins.
+Go to node ID=240 find la calle perdida
+Action work in progress=(have rescued darsch alive)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Save DArsch Alive XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raphael reqs Darsh rescue but dead
+Reply Text=Inquisitor Darsh has died. I was unable to save him.
+Go to node ID=242 darsh died find la calle perdida
+Action work in progress=(have rescued Darsh but he died)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=relay news of darsch death XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I could not find La Calle Perdida. <Lie>
+Go to node ID=300 no calle perdida
+Action work in progress=(have find calle quest and been to la calle)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Found Calle Perdida XP
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Initiation Quest for the Inquisition
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+State=AT88QQLU
+}
+}
+Reply Text=Can you give me any insights about La Calle Perdida?
+Go to node ID=245 clues
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I found La Calle Perdida.
+Go to node ID=315 last chance
+Action work in progress=(have find calle quest and been to la calle)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Found Calle Perdida XP
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Initiation Quest for the Inquisition
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=The Relic was stolen from Monserrat. Before his death, Brother Montgomerie asked me to go to France and safeguard the relic of a secret Crypt.
+Go to node ID=330 return from montserrat
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=V8439DKP
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+}
+}
+Reply Text=What does an Inquisitor do?
+Go to node ID=20 inquisitor
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=1000 raphael
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 chambers
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 questions
+Text=Well then, speak your mind.
+Should Have Voiceover=1
+
+Requirement=Inquisitor IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Reply Text=The Relic was stolen from Monserrat. Before his death, Brother Montgomerie asked me to go to France and safeguard the relic of a secret Crypt.
+Go to node ID=330 return from montserrat
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=V8439DKP
+}
+Icon=Quest Icon
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+}
+Reply Text=How do I join the Inquisition?
+Go to node ID=100 initiation
+Action work in progress=(not tainted race)
+Icon=Quest Icon
+
+Requirement=Human NOT
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+}
+Reply Text=How do I join the Inquisition?
+Go to node ID=110 tainted
+Action work in progress=(tainted race)
+Icon=Quest Icon
+
+Requirement=Raphel req NO taint blood & 1K gold
+Reply Text=I am ready to begin the initiation. Here is the gold.
+Go to node ID=200 tithe warning
+Action work in progress=(not tainted and have 1,000 gold)
+Icon=Quest Icon
+
+Requirement=IQ Raphel req tain blood & 1500 gold
+Reply Text=I am ready to begin the initiation. Here is the gold.
+Go to node ID=200 tithe warning
+Action work in progress=(tainted and have 1,500 gold)
+Icon=Quest Icon
+
+Requirement=Raphael req kill beggars quest complete
+Reply Text=I have dealt with the Afflicted.
+Go to node ID=220 rod of inquisitor
+Action work in progress=(completed inquisition kill beggars quest)
+Icon=Quest Icon
+
+Requirement=Raphael Reqs IQ rod quest assigned & darkwood
+Reply Text=I have obtained some Darkwood for the Rod of the Inquisitor.
+Go to node ID=225 have darkwood
+Action work in progress=(have inquisitor rod quest and have darkwood)
+Icon=Quest Icon
+
+Requirement=Raphael reqs rescue darsch alive
+Reply Text=I rescued Inquisitor Darsh from the goblin camps.
+Go to node ID=240 find la calle perdida
+Action work in progress=(have rescued Darsch alive)
+Icon=Quest Icon
+
+Requirement=Raphael reqs Darsh rescue but dead
+Reply Text=I found Inquisitor Darsh, but he died in the goblin camps.
+Go to node ID=242 darsh died find la calle perdida
+Action work in progress=(rescued darsh, but he died)
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I could not find La Calle Perdida. <Lie>
+Go to node ID=300 no calle perdida
+Action work in progress=(have find calle quest and been to la calle)
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I have found the Lost Street. Their lair lies past a secret door along the north wall.
+Go to node ID=310 betray la calle
+Action work in progress=(have find calle quest and been to la calle)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+}
+}
+Reply Text=What does an Inquisitor do?
+Go to node ID=20 inquisitor
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 chambers
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=1000 raphael
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Vaya con dios, my child. <Go with God>
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 inquisitor
+Text=Inquisitors protect the populace from the heresy of evil magic. There is a darkness that pervades our world, so the Inquisition must remain ever-vigilant to root out corrupt spirits and those who practice the black arts.
+Should Have Voiceover=1
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+}
+Reply Text=How do I join the Inquisition?
+Go to node ID=100 initiation
+Action work in progress=(not tainted race)
+Icon=Quest Icon
+
+Requirement=Human NOT
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+}
+Reply Text=How do I join the Inquisition?
+Go to node ID=110 tainted
+Action work in progress=(tainted race)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What is evil magic?
+Go to node ID=60 heretical magic
+
+Requirement=!None
+Reply Text=What if your interrogations harm innocents?
+Go to node ID=50 innocents
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 chambers
+Text=These are the Chambers of the Inquisition. Here we extract confessions from those unwilling to see the error of their ways, and purify them once they have confessed.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 innocents
+Text=Child, you will learn in life that there are few who are truly innocent. The Inquisition is infallible; we only interrogate those guilty of practicing heretical magic.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is heretical magic?
+Go to node ID=60 heretical magic
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 heretical magic
+Text=There are despicable men who allow their souls to be possessed by evil spirits in exchange for the power to cast black magic. Magic that does not come from divine spirits, or blessed magic, is dangerous and must be exorcised from civilization.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 initiation
+Text=You seek to join our crusade against the darkness? Aspiring to purity is indeed a noble goal.  However, I have my doubts that you have the faith required to be an Inquisitor.  Before we can consider you, you must prove you are worthy to walk the path we travel.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What does that mean?
+Go to node ID=1000 hazing
+
+Requirement=!None
+Reply Text=On second thought, I'll just be going.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=105 initiation 2
+Text=Good work. Perhaps my doubts about you were unfounded. Now then, if it remains your desire to join us and to begin the path of initiation, you must  demonstrate your unwavering dedication. To that end, we ask all aspirants to pay a tithe of coin to the Inquisition. A thousand gold pieces, I think, will confirm your convictions. Will you sacrifice the coin for our cause now?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I wish to begin the path of initiation, but I lack gold and must pay later.
+Go to node ID=130 pay later
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+State=LW7LISGJ
+}
+Icon=Quest Icon
+
+Requirement=raphael requires 1000 gold only
+Reply Text=Yes, here is a thousand gold for the tithe.
+Go to node ID=200 tithe warning
+Action work in progress=(not tainted and have 1,000 gold)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, I must go. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=balked at tithe
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 tainted
+Text=Well...Of course, there are a few rare cases where people such as yourself have risen above their station to become an Inquisitor. However, it is very difficult for someone of your...*heritage* to join the Inquisition, unless certain conditions are met.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What does that mean?
+Go to node ID=1005 tainted hazing
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I'll just be on my way, then. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 conditions
+Text=I must say that is truly surprising for one such as you. Good work. Now then, as I am sure you know, most initiates must pay a tithe in order to become an aspirant of the Inquisition. Due to your heritage, however, your tithe will be slightly larger than others.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=125 conditions 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=125 conditions 2
+Text=The extra coin will be used to cleanse the taint of magic from your soul, purifying you. If you wish to join, you must donate a tithe of 1500 gold to me so that we may begin your initiation.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1500
+}
+}
+Reply Text=Very well. Here is the 1500 gold.
+Go to node ID=200 tithe warning
+Action work in progress=(tainted and have 1,500 gold)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will return when I have the gold.
+Go to node ID=130 pay later
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+State=0CDS9G1N
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=My race should not matter - the Inquisition should be open to all.
+Go to node ID=150 discriminate
+
+Requirement=!None
+Reply Text=I'll just be on my way, then. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=balked at tithe
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 pay later
+Text=Very well, child, return to these halls when you are ready to begin the initiation.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=150 discriminate
+Text=We do not discriminate, child. It is simply that the people expect the Inquisition to be pure in flesh and deed. If you are not willing to submit to our conditions, then you cannot become an initiate.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will return when I have the gold, then.
+Go to node ID=130 pay later
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+State=0CDS9G1N
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1500
+}
+}
+Reply Text=Very well. Here is the 1500 gold.
+Go to node ID=200 tithe warning
+Action work in progress=(tainted and have 1,500 gold)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will be on my way, then. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=balked at tithe
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 keep tithe and reconsider
+Text=I understand, child. Return to me when your heart knows your path.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=200 tithe warning
+Text=Before you give this tithe to me, you should know that you will be recognized by others as an initiate of our order and will be judged differently as such - as new paths open, others will close. Are you sure that you would like to join the Inquisition and spread the light of truth through Europe?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1000
+}
+}
+}
+Reply Text=Yes, I wish to join the Inquisition.
+Go to node ID=200 tithe paid
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=12
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1000
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+State=LW7LISGJ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Pay Tithe XP
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Initiation Quest of the Knights Templar
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Wielders
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Lord Javier
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Donate Gold to Knights Templar
+}
+Action=CMixInSongAndPlayAmbientTrackAction
+{
+Song To Mix In=1 Barcelona/MX_FACT_INQUISITION1.ogg
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1500
+}
+}
+}
+Reply Text=Yes, I wish to join the Inquisition.
+Go to node ID=200 tithe paid
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=12
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1500
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+State=0CDS9G1N
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Pay Tithe XP
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Donate Gold to Knights Templar
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Initiation Quest of the Knights Templar
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Wielders
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Lord Javier
+}
+Action=CMixInSongAndPlayAmbientTrackAction
+{
+Song To Mix In=1 Barcelona/MX_FACT_INQUISITION1.ogg
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Human IS
+Reply Text=I want more time to consider my decision.
+Go to node ID=200 keep tithe and reconsider
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+State=LW7LISGJ
+}
+Then=
+Else=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+State=LW7LISGJ
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Human NOT
+Reply Text=I want more time to consider my decision.
+Go to node ID=200 keep tithe and reconsider
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+State=0CDS9G1N
+}
+Then=
+Else=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+State=0CDS9G1N
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 tithe paid
+Text=Splendid, child, splendid! You have taken the first step toward saving your soul. Now, as part of your initiation, I must place a task upon you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=205 tithe paid 2
+Custom Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Inquisitor Acolyte
+Character To assign=$Instigator
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=205 tithe paid 2
+Text=We believe a large group of heretics are living in the sewers. These *creatures* masquerade as humans, but we believe them to be the Afflicted, beasts that take animal form. Find these monsters and dispatch them, then return to me.
+Should Have Voiceover=1
+
+Requirement=Raphael requires wererats to be dead already
+Reply Text=I've already killed them all.
+Go to node ID=221 impressive
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Eliminate wererat beggars in the sewers
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Wererats XP
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=Raphael requires beggars NOT killed yet
+Reply Text=Very well, I'll do it.
+Go to node ID=
+Action work in progress=(inquisition kill beggars quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Eliminate wererat beggars in the sewers
+State=0BIVGDAQ
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Raphael requires beggars NOT killed yet
+Reply Text=Sure, but before I go I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Eliminate wererat beggars in the sewers
+State=0BIVGDAQ
+}
+------------------------------------------------------------
+Node ID=220 rod of inquisitor
+Text=Impressive, young one. You showed great skill in rooting out that nest of heretics below our city. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=221 rod of inquisitor 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=221 rod of inquisitor 2
+Text=Now, for your next task, you must construct a Rod of the Inquisitor, a powerful item that will serve you well against magic-using heretics. To make the Rod, you must seek out a supply of Darkwood.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=222 rod of inquisitor 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=222 rod of inquisitor 3
+Text=I have heard there is a supplier of Darkwood in the western wilderness, a woodcutter, I believe. Once you have the Darkwood, return to me.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+Reply Text=I already have some Darkwood.
+Go to node ID=500 hair
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Obtain Darkwood XP
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+}
+Reply Text=I'll get it now.
+Go to node ID=
+Action work in progress=(get inquisitor rod quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=FIBR96AF
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Darkwood
+}
+}
+}
+Reply Text=Very well - before I go, I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=FIBR96AF
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=225 have darkwood
+Text=You continue to surprise me, young one. You are well on your way to becoming a valuable member of the Inquisition. But first, the Darkwood you have brought must be shaped and blessed to turn it into a Rod of the Inquisitor.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=226 have darkwood 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=226 have darkwood 2
+Text=For that, you must seek an audience with Grand Inquisitor Torquemada. He is within these very chambers, behind a hidden door. If you are cunning enough to find him, he will be expecting you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll go find him now.
+Go to node ID=10 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=TIJPUML8
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'll seek him out. But first, I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=TIJPUML8
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=230 rescue darsh
+Text=Very good, child, you have constructed a fine implement. Now, I have a mission of great urgency. One of our brothers has been captured by foul goblins in the western forest.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=235 rescue darsh 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=235 rescue darsh 2
+Text=The beasts sent his severed ear with a crudely written ransom note. We do not bargain with such heathens. Go to the goblin camp, deal with them, and rescue Inquisitor Darsh.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darsh is Dead
+Desired Minimum Count=1
+}
+}
+Reply Text=Unfortunately, I have personally witnessed his death.
+Go to node ID=243 darsh dead already
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=relay news of darsch death XP
+Experience Points To Add=1
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darsh rescued
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+}
+}
+}
+Reply Text=I've already rescued Inquisitor Darsh from the goblins.
+Go to node ID=240 find la calle perdida
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darsh is Dead
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darsh rescued
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I'll find and rescue Inquisitor Darsh.
+Go to node ID=
+Action work in progress=(give rescue darsh quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=Raphael Requires player to have NOT rescued Darsch yet
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darsh is Dead
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darsh rescued
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Before I leave to rescue Inquisitor Darsh, I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+State=DKHILB8Z
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=240 find la calle perdida
+Text=My young initiate, you have shown great skill and prowess. Now comes the last of your initiation quests - and perhaps you may succeed where other Inquisitors have failed.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=241 find la calle perdida 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=241 find la calle perdida 2
+Text=Unknown to many, there are wizards hiding in Barcelona. We have heard whispers of a secret haven called La Calle Perdida, the Lost Street, where these wizards are said to gather. Inquire around the city discreetly, find La Calle Perdida, and report back to me so that the Inquisition may bring these heretics to justice. 
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=found LCP
+Desired Minimum Count=1
+}
+}
+Reply Text=I have learned that La Calle Perdida is a fantasy conjured by the Wielders. There is *no* secret haven. <Lie>
+Go to node ID=300 no calle perdida
+Action work in progress=(speech requirement)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Initiation Quest for the Inquisition
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Found Calle Perdida XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=found LCP
+Desired Minimum Count=1
+}
+}
+Reply Text=I have already found La Calle Perdida.
+Go to node ID=315 last chance
+Action work in progress=(have find calle quest and been to la calle)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Initiation Quest for the Inquisition
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Found Calle Perdida XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=found LCP
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will endeavor to find this Lost Street.
+Go to node ID=
+Action work in progress=(give la calle quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+State=AT88QQLU
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=found LCP
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Can you give me any insights about La Calle Perdida.
+Go to node ID=245 clues
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+State=AT88QQLU
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=found LCP
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will find this Lost Street, but before I go I have other questions.
+Go to node ID=5 questions
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+State=AT88QQLU
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=242 darsh died find la calle perdida
+Text=A tragic ending to a loyal Inquisitor. We appreciate your efforts. Now comes the last of your initiation quests.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=241 find la calle perdida 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=245 clues
+Text=Though we do not suspect him of heresy, we do believe that Signor DaVinci may associate with some Wielders. Perhaps he has some knowledge of La Calle Perdida. In addition, I do have my suspicions about Quinn, the Herbalist.  I suggest you speak with both of them discreetly and inquire about La Calle Perdida. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 no calle perdida
+Text=A pity you could not find the lair of those heretics. I suppose I expected too much of you - it has eluded the eyes of the Inquisition for many years.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=301 no calle perdida 2
+Custom Action=CMixInSongAndPlayAmbientTrackAction
+{
+Song To Mix In=1 Barcelona/MX_FACT_INQUISITION2.ogg
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=301 no calle perdida 2
+Text=Still, you have proven yourself several times over, and it is with great pleasure that I welcome you to the Inquisition. Your successes in the name of the Inquisition speak well of your future - and, as it happens, I have a crucial mission for you that I cannot trust to anyone else.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is this mission?
+Go to node ID=320 chapter 2 mission
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Inquisitor Inquisitor
+Character To assign=$Instigator
+}
+Action=CSetCharacterDisplayNameAction
+{
+Scriping name of LayerPart=$instigator
+New Display Name=Inquisitor %s[OldName]
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=310 betray la calle
+Text=Remarkable! *Finally*, we shall be able to rid the city of those heathens. You have done a great service for the Inquisition this day, and you will be rewarded well for your efforts.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=311 betray la calle 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Player has turned Calle over to Inquisition
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Calle Perdida
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Exposer of Calle Perdida
+}
+}
+}
+Character to get attributes from=$Instigator
+Then=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Exposer of Calle Perdida
+}
+Else=
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Mateo
+}
+Other Map Name=1 Barcelona/Temple District
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Inquisitor Mateo Baloon trigger
+}
+Other Map Name=1 Barcelona/Temple District
+}
+Action=CMixInSongAndPlayAmbientTrackAction
+{
+Song To Mix In=1 Barcelona/MX_FACT_INQUISITION2.ogg
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=311 betray la calle 2
+Text=It is with great pleasure that I welcome you to the Inquisition. Your successes in the name of the Inquisition speaks well of your future - and, as it happens, I have a crucial mission for you that I cannot trust to anyone else.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is this mission?
+Go to node ID=320 chapter 2 mission
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Inquisitor Inquisitor
+Character To assign=$Instigator
+}
+Action=CSetCharacterDisplayNameAction
+{
+Scriping name of LayerPart=$instigator
+New Display Name=Inquisitor %s[OldName]
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Large Karma 50
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=320 chapter 2 mission
+Text=Unknown enemies have attempted to steal the True Cross and other sacred relics. I would like you to accompany me to the Cathedral, where we will convene with Lord Javier of the Knights Templar to discuss these disturbing events.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Of course, I will accompany you.
+Go to node ID=
+Action work in progress=(start Inquisitor NIS)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Inquisition Start Church Movie
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=321 chapter 2 mission 2
+Text=To the north is the Abbey of Montserrat, where a brotherhood of monks and Knights Templar guard the holy Crown of Thorns. We have not heard anything from Montserrat for some time now, and we fear the worst. I wish you to head north to the abbey and determine what has happened.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(travel to Montserrat)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Investigate the fate of Montserrat
+State=EO8YL2JE
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=330 return from montserrat
+Text=We have heard the terrible news about Montserrat. It is disturbing that our enemies have captured another holy relic. Do as Brother Montgomerie told you and head north to Montaillou. Seek out Brother Michel, and make sure the Sacred Lance is secure. Let faith guide you, young one.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=Sir Tomas de Vilanova led the Templars at Montserrat. I have his journal; his last words were for Lord Javier.
+Go to node ID=331 tomas
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Yes, I will go to Montaillou and find Brother Michel.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=V8439DKP
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=331 tomas
+Text=A Templar's journal. <He reads the last line, and closes it.> Lord Javier will have this from my own hand. The Inquisition and the Temple are one Church when it comes to burying knights. You did well to carry it out of that place.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then it is in the right hands.
+Go to node ID=330 return from montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+State=TJ2DN8SX
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Sir Tomas journal XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=340 siege of barcelona
+Text=Inquisitor! The English are invading the city! Help us repel the invaders! To arms!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=350 cross stolen
+Text=They have stolen the True Cross from the Cathedral! You must not let them get away! They are retreating to the west. Hurry!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=315 last chance
+Text=Truly? You have seen it! Where is it?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Behind a secret door along a wall in the Gate District.
+Go to node ID=310 betray la calle
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I have learned that La Calle Perdida is a fantasy conjured by the Wielders. There is *no* secret haven. <Lie>
+Go to node ID=300 no calle perdida
+Action work in progress=(speech requirement)
+------------------------------------------------------------
+Node ID=221 impressive
+Text=Really? Most impressive! It must have taken great skill to defeat those heretics below our city.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=221 rod of inquisitor 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=243 darsh dead already
+Text=You have? A most tragic ending to a loyal Inquisitor. He shall be missed.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=244 find La Calle
+Action work in progress=(give la calle quest)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=244 find La Calle
+Text=But we must press on, so now comes the last of your initiation quests. Perhaps you may succeed where other Inquisitors have failed.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=241 find la calle perdida 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 NIS Begin
+Text=Lord Javier, it is indeed an honor to meet you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 NIS Dialogue 2b
+Text=As living proof of this bond, I have brought the Scion of Lionheart, who has recently joined our Order. Tell us what has happened.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 NIS Dialogue 4
+------------------------------------------------------------
+Node ID=500 Return from Montaillou
+Text=The tragic deaths of the monks at Montserrat saddens me. I fear that our enemy now possesses several of the holy relics. You must follow the trail of these assassins and recover the Sacred Lance. Travel north to Montaillou and find the one named Brother Michel. May the Prophet give us strength in these endeavors.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will go to Montaillou now.
+Go to node ID=238 Leave for Montserrat
+
+Requirement=!None
+Reply Text=Before I go, tell me about the Sacred Lance.
+Go to node ID=500 Sacred Lance 
+------------------------------------------------------------
+Node ID=400 inquisition cathedral nis
+Text=Of course, Lord Javier. The Inquisition stands with the Knights Templar, as we have through many dark times before.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 nis inquisition raphael speaks
+Text=As living proof of this bond, I have brought the Scion of Lionheart, who has recently joined our Order. Tell us what has happened.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 hair
+Text=Excellent. Next you must acquire a true relic of a saint. All true Inquisitor's Rods have a relic fused in their structure. The Relic is the source of the Rod's heavenly powers. We are fortunate that the holy remains of Saint Bartholomew are currently lying in state underneath Barcelona's Cathedral. I suspect that a lock of his hair will do. Return to me when you have acquired this.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+Reply Text=I already have the hair of the Saint.
+Go to node ID=225 have darkwood
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=return hair of saint
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Reply Text=I will go now and find the hair of a saint.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=7PL8VY1D
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=1000 raphael
+Text=I am Inquisitor Raphael, a humble servant of the Inquisition and primary interrogator of these holy chambers. What business do you have within these hallowed walls?
+Should Have Voiceover=1
+
+Requirement=Raphel req NO taint blood & 1K gold
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+}
+}
+}
+Reply Text=I have the tithe of a thousand gold.
+Go to node ID=200 tithe warning
+Action work in progress=(not tainted and have 1,000 gold)
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Pay Tithe XP
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=IQ Raphel req tain blood & 1500 gold
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+}
+}
+}
+Reply Text=I am ready to pay my tithe and begin my initiation.
+Go to node ID=200 tithe warning
+Action work in progress=(tainted and have 1,500 gold)
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Pay Tithe XP
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=Raphael req kill beggars quest complete
+Reply Text=I have dealt with the Afflicted.
+Go to node ID=220 rod of inquisitor
+Action work in progress=(completed inquisition kill beggars quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Eliminate wererat beggars in the sewers
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Wererats XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raphael Reqs IQ rod quest assigned & darkwood
+Reply Text=I have obtained some Darkwood for the Rod of the Inquisitor.
+Go to node ID=500 hair
+Action work in progress=(have inquisitor rod quest and have darkwood)
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Obtain Darkwood XP
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=88E4C1Q0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Hair of a Saint
+}
+}
+}
+Reply Text=I have obtained the hair of a saint.
+Go to node ID=225 have darkwood
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=return hair of saint
+Experience Points To Add=1
+}
+Icon=Quest Icon
+
+Requirement=Raphael requires completion of Rod
+Reply Text=I have completed my Rod of the Inquisitor.
+Go to node ID=230 rescue darsh
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+}
+Icon=Quest Icon
+
+Requirement=Raphael reqs rescue darsch alive
+Reply Text=I rescued Inquisitor Darsh from the goblins.
+Go to node ID=240 find la calle perdida
+Action work in progress=(have rescued darsch alive)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Save DArsch Alive XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raphael reqs Darsh rescue but dead
+Reply Text=Inquisitor Darsh died in the goblin camps.
+Go to node ID=242 darsh died find la calle perdida
+Action work in progress=(have rescued Darsh but he died)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=relay news of darsch death XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I could not find La Calle Perdida. <Lie>
+Go to node ID=300 no calle perdida
+Action work in progress=(have find calle quest and been to la calle)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Found Calle Perdida XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+State=AT88QQLU
+}
+}
+Reply Text=Can you give me any insights about La Calle Perdida
+Go to node ID=245 clues
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I found La Calle Perdida.
+Go to node ID=315 last chance
+Action work in progress=(have find calle quest and been to la calle)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find La Calle Perdida
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Found Calle Perdida XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raphael requires knowledge of Montserrat
+Reply Text=The Relic was stolen from Monserrat.
+Go to node ID=330 return from montserrat
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Investigate the fate of Montserrat
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+}
+}
+Reply Text=What does an Inquisitor do?
+Go to node ID=20 inquisitor
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 chambers
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1000 still need gold for tithe
+Text=Excellent, child. Stay true to your path, and you will find the way. Now, how else can I help you?
+Should Have Voiceover=1
+
+Requirement=Raphael req NO taint race
+Reply Text=How do I join the Inquisition?
+Go to node ID=100 initiation
+Action work in progress=(not tainted race)
+Icon=Quest Icon
+
+Requirement=Raphael req tainted race
+Reply Text=How do I join the Inquisition?
+Go to node ID=110 tainted
+Action work in progress=(tainted race)
+Icon=Quest Icon
+
+Requirement=Raphel req NO taint blood & 1K gold
+Reply Text=I am ready to begin the initiation. Here is the gold.
+Go to node ID=200 tithe warning
+Action work in progress=(not tainted and have 1,000 gold)
+Icon=Quest Icon
+
+Requirement=IQ Raphel req tain blood & 1500 gold
+Reply Text=I am ready to begin the initiation. Here is the gold.
+Go to node ID=200 tithe warning
+Action work in progress=(tainted and have 1,500 gold)
+Icon=Quest Icon
+
+Requirement=Raphael req kill beggars quest complete
+Reply Text=I have dealt with the Afflicted.
+Go to node ID=220 rod of inquisitor
+Action work in progress=(completed inquisition kill beggars quest)
+Icon=Quest Icon
+
+Requirement=Raphael Reqs IQ rod quest assigned & darkwood
+Reply Text=I have obtained some Darkwood for the Rod of the Inquisitor.
+Go to node ID=225 have darkwood
+Action work in progress=(have inquisitor rod quest and have darkwood)
+Icon=Quest Icon
+
+Requirement=Raphael reqs rescue darsch alive
+Reply Text=I rescued Inquisitor Darsh from the goblin camps.
+Go to node ID=240 find la calle perdida
+Action work in progress=(have rescued Darsch alive)
+Icon=Quest Icon
+
+Requirement=Raphael reqs Darsh rescue but dead
+Reply Text=I found Inquisitor Darsh, but he died in the goblin camps.
+Go to node ID=242 darsh died find la calle perdida
+Action work in progress=(rescued darsh, but he died)
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I could not find La Calle Perdida. <Lie>
+Go to node ID=300 no calle perdida
+Action work in progress=(have find calle quest and been to la calle)
+Icon=Quest Icon
+
+Requirement=Raphael reqs find & enter Calle
+Reply Text=I have found the Lost Street. Their lair lies past a secret door along the north wall.
+Go to node ID=310 betray la calle
+Action work in progress=(have find calle quest and been to la calle)
+Icon=Quest Icon
+
+Requirement=Raphael requires not paid tithe yet
+Reply Text=What does an Inquisitor do?
+Go to node ID=20 inquisitor
+
+Requirement=!None
+Reply Text=What is this place?
+Go to node ID=30 chambers
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=1000 raphael
+
+Requirement=!None
+Reply Text=I must be on my way. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 attack raphael
+Text=To the hellfire with you, heathen! 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 after attack raphael
+Text=For your sake, I pray your time in prison has soothed your belligerence.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 hazing
+Text=It means you must prove that you have special talents that will benefit us. You must understand that there are thousands of young ones such as yourself that see joining the Inquisition as an easy way to achieve status and position.  We need to determine that all initiates are above such base goals.  Thus, you must perform some act that sets you apart from the normal population.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1010 hazing 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1010 hazing 2
+Text=I believe Inquisitor Dominguez has just the task for you. He is in the Temple District as we speak, doing the Lord's work.  Find him and see if you can assist him.
+Should Have Voiceover=1
+
+Requirement=Human IS
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+State=59EPDVC0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+State=YNBINQ9C
+}
+}
+}
+Reply Text=Yes, I am in the process of completing that task already.  I shall continue it now.
+Go to node ID=10 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+State=JCYIDRWR
+}
+Icon=Quest Icon
+
+Requirement=Human NOT
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+State=59EPDVC0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+State=YNBINQ9C
+}
+}
+}
+Reply Text=Yes, I am in the process of completing that task already.  I shall continue it now.
+Go to node ID=10 Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+State=JCYIDRWR
+}
+Icon=Quest Icon
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+}
+}
+Reply Text=I have already completed his work.
+Go to node ID=105 initiation 2
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+Icon=Quest Icon
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+}
+}
+Reply Text=I have already completed his work.
+Go to node ID=120 conditions
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Rid Temple District of Spirit Mana
+}
+}
+}
+Reply Text=I will do as you say, Inquisitor.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Complete Dominguez task for Raphael
+State=JK1LWBL6
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=After thinking about it further, I have decided against joining just now.  Perhaps later.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1005 tainted hazing
+Text=It means you must prove that you have fully separated yourself from the filth that was part and parcel of your spawning.  You must perform a task that truly sets you apart and convinces us that you have the required focus and loyalty that will be required of you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1010 hazing 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1050 human initiation after initial pass
+Text=You are prepared to pay your tithe of one thousand gold then?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I wish to begin the path of initiation, but I lack gold and must pay later.
+Go to node ID=130 pay later
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/non tainted give 1000 gold
+State=LW7LISGJ
+}
+Icon=Quest Icon
+
+Requirement=raphael requires 1000 gold only
+Reply Text=Yes, here is a thousand gold for the tithe.
+Go to node ID=200 tithe warning
+Action work in progress=(not tainted and have 1,000 gold)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, I must go. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=balked at tithe
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1060 tainted join after intital pass
+Text=You are prepared to pay your tithe of 1500 gold then?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1500
+}
+}
+Reply Text=Very well. Here is the 1500 gold.
+Go to node ID=200 tithe warning
+Action work in progress=(tainted and have 1,500 gold)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will return when I have the gold.
+Go to node ID=130 pay later
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Donate Gold to the Inquisition
+State=0CDS9G1N
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=My race should not matter - the Inquisition should be open to all.
+Go to node ID=150 discriminate
+
+Requirement=!None
+Reply Text=I'll just be on my way, then. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=balked at tithe
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1070 Guards arrest
+Text=You overestemate your power. Guards! Arrest this criminal!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1070 Spellcast detect
+Text=Unfathomable! Magic in these chambers? Guards! Arrest this heretic!
+Should Have Voiceover=0
+}
