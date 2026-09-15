@@ -692,6 +692,24 @@ shallower. He has minutes, not hours.>"* if he is not yet saved. Both are gated 
 Played and passing on a fresh Port District: the draught, the cursor, the thanks, the
 reunion, the chiding and the walk.
 
+**The thieves turned hostile at a chest, and nothing said why.** Five chests in the guild's
+two secret stashes -- three behind the top-left secret door of the Sewer Main Entrance, two
+behind `secret door1` in the Thieves' Congregation -- run a silent `Sneak < 25` / `< 30` check
+*after* the loot drops. Fail it and `Thief enemy trigger` fires: every thief, guard dog and
+Juanita go to combat, every later spawn arrives hostile, the guard's warning dialogue is
+deleted, and the relay propagates to the other two thief maps. No line of sight, no distance,
+no roll shown; Lockpick does not enter into it. Every *other* stealing chest in the game barks
+on failure -- Khan's *"Thief! You would steal from the Great Khan?"*, the goblins' *"Thief!"*,
+Auric's arrest, the Montaillou Templar -- and most bark on success with the shared
+*"<You pick the lock without attracting anybody's attention.>"*; these five had neither. Now
+they do, on the goblin-house shape: failure plays *"Oi! Hands off the guild's take! Thief in
+the stash - get them!"* over `Sewer Thief` before the relay, success plays *"<Nobody is
+looking your way. You help yourself to the guild's take.>"* over the chest. Both log. And the
+check has a witness now, as the goblin house's does: `CIsAliveAction{Sewer Thief}` around the
+failure branch, so a stash emptied after every thief on the map is dead raises no alarm. The
+threshold itself is untouched. Chests are level parts: the barks need a character who has not
+entered the map.
+
 ### Gates before this ships
 
 - Gate 0: `validate.py` clean; the new template's `Race=` real, its `Model=` and every `Cur

@@ -1271,6 +1271,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS24 | Enrique, after the contract is withdrawn | Either greeting | *"You said there was one thing more you needed, before the trolls came between us."* -> his confession -> the cure quest, exactly as the kill route gives it. Absent once the cure quest has ever been given |
 | MS25 | Quinn, fresh shop | Complete an errand, then *"Can I see what you have for sale?"* | One shop window with the earned tiers in it (Great Healing after pelts; Superior after stingers; Supreme after the hide); no reserve reply anywhere. On a save that entered the shop before 0.10.0: the plain shop, and *"What have you set aside for me?"* on the greeting |
 | MS26 | Quinn, any greeting | *"Is there anything around here I could help you with?"* | `805 errands`: the next open errand offered; the reply gone once the troll errand has been given |
+| MS27 | Thieves' stash chest (Main Entrance top-left, or Congregation SA1), Sneak below 25/30 | Open it | Loot drops, then *"Oi! Hands off the guild's take!"* over a thief, then the guild turns; the line is in the log |
+| MS28 | Same chest, Sneak at or above the threshold | Open it | Loot drops and *"<Nobody is looking your way...>"* over the chest; nobody turns |
+| MS29 | Same chest, Sneak below the threshold, every `Sewer Thief` on the map dead | Open it | Loot drops, no bark, nobody turns (Juanita and the dogs stay as they were) |
 
 ---
 

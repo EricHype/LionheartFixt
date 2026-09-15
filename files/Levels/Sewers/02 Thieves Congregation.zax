@@ -47605,25 +47605,52 @@ CLayerSaveData
 									}
 								}
 								Character to get attributes from=$Instigator
-								Then=CMultipleActionsAction
+								Then=CIfAction
 								{
-									Action=Array
+									If=CIsAliveAction
 									{
-										Item Count=2
-										Action=CActivateAction
+										Name To Check For=Sewer Thief
+										Desired Minimum Count=1
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
 										{
-											Target Name=Thief enemy trigger
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
-										}
-										Action=CTriggerRelayAction
-										{
-											Relay Name=Thief enemy trigger
+											Item Count=3
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/Sewers/Dialog/Sewer Stash
+												Node ID=2 caught
+												Name of Position=Sewer Thief
+												Position Offset=0.000000,-75.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CActivateAction
+											{
+												Target Name=Thief enemy trigger
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Thief enemy trigger
+											}
 										}
 									}
+									Else=
+									Return failure if the If failes=0
 								}
-								Else=
+								Else=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Sewers/Dialog/Sewer Stash
+									Node ID=1 unseen
+									Name of Position=$Trigger
+									Position Offset=0.000000,-75.000000
+									After Action=
+									Include In Log=1
+								}
 							}
 						}
 					}
@@ -48283,25 +48310,52 @@ CLayerSaveData
 									}
 								}
 								Character to get attributes from=$Instigator
-								Then=CMultipleActionsAction
+								Then=CIfAction
 								{
-									Action=Array
+									If=CIsAliveAction
 									{
-										Item Count=2
-										Action=CActivateAction
+										Name To Check For=Sewer Thief
+										Desired Minimum Count=1
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
 										{
-											Target Name=Thief enemy trigger
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
-										}
-										Action=CTriggerRelayAction
-										{
-											Relay Name=Thief enemy trigger
+											Item Count=3
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/Sewers/Dialog/Sewer Stash
+												Node ID=2 caught
+												Name of Position=Sewer Thief
+												Position Offset=0.000000,-75.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CActivateAction
+											{
+												Target Name=Thief enemy trigger
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Thief enemy trigger
+											}
 										}
 									}
+									Else=
+									Return failure if the If failes=0
 								}
-								Else=
+								Else=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Sewers/Dialog/Sewer Stash
+									Node ID=1 unseen
+									Name of Position=$Trigger
+									Position Offset=0.000000,-75.000000
+									After Action=
+									Include In Log=1
+								}
 							}
 						}
 					}
