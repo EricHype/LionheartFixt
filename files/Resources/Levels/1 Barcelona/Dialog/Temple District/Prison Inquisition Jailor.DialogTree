@@ -1,0 +1,513 @@
+CDialogTree
+{
+Name=Inquisition Jailor
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start Normal
+Text=Halt! These Chambers are closed to normal citizens. Go away.
+Should Have Voiceover=0
+
+Requirement=Prison Inq Jailor High Speech or Knights Templar
+Reply Text=I'm here on important business from the Knights Templar. I wish to inspect your facilities.
+Go to node ID=10 Knights Sent Me
+Action work in progress=(High Speech OR Knight Templar AND not selected this option before)
+Icon=Speach Skill Icon
+
+Requirement=Prison Inq Jailor Low Speech only once
+Reply Text=Uhh..I'm here to visit some friends of mine.
+Go to node ID=15 Visitors
+Action work in progress=(Low Speech not selected this option before)
+Custom Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player try low speech entry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I am considering becoming an Inquisitor. Can I look around?
+Go to node ID=20 Becoming Inquisitor
+
+Requirement=!None
+Reply Text=You have killed many poor souls. Die, tortuous one!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Jailor Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry to bother you. I was just leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Inquisition
+Text=Welcome to the Confession Chambers, recruit. Sorry about the smell...we have had a glut of confessions come through recently. Come to learn the tricks of the trade, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Right now, I just want to look around your torture..uh..confessional chamber.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Of course. I am eagerly awaiting training on the Rites of Confession.
+Go to node ID=30 Rites Confession Train
+
+Requirement=!None
+Reply Text=Not now. I was just leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Conversation Return Normal
+Text=What now?
+Should Have Voiceover=0
+
+Requirement=Prison Inq Jailor High Speech or Knights Templar
+Reply Text=I'm here on important business from the Knights Templar. I wish to inspect your facilities.
+Go to node ID=10 Knights Sent Me
+Action work in progress=(High Speech OR Knight Templar AND not selected this option before)
+Icon=Speach Skill Icon
+
+Requirement=Prison Inq Jailor Low Speech only once
+Reply Text=Uhh..I'm here to visit some friends of mine.
+Go to node ID=15 Visitors
+Action work in progress=(Low Speech not selected this option before)
+Custom Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player try low speech entry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Prison Inq Jailor USED low speech
+Reply Text=I am considering becoming an Inquisitor. Can I look around?
+Go to node ID=21 Become Inquisitor after Say Friend Here
+
+Requirement=Prison Inq Jailor NOT used low speech
+Reply Text=I am considering becoming an Inquisitor. Can I look around?
+Go to node ID=20 Becoming Inquisitor
+
+Requirement=!None
+Reply Text=You have killed many poor souls. Die, tortuous one!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Jailor Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I was just leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Conversation Return Inquisitor
+Text=How can I assist you, brother?
+Should Have Voiceover=0
+
+Requirement=Prison Inq Jailor NOT undergone Rites Confession
+Reply Text=How do you get inside these cells?
+Go to node ID=40 Inside Cells Inquisitor
+Action work in progress=(Not undergone Rites Confession)
+
+Requirement=Prison Inq Jailor NOT undergone Rites Confession
+Reply Text=I am eagerly awaiting training on the Rites of Confession.
+Go to node ID=30 Rites Confession Train
+Action work in progress=(Not undergone Rites Confession)
+
+Requirement=Prison Inq Jailor HAS undergone Rites Confession
+Reply Text=I have spoken with the possessed and heard their lamentations.
+Go to node ID=50 Undergone Rites
+Action work in progress=(Undergone Rites Confession and talked to at least 1 person)
+
+Requirement=!None
+Reply Text=Nevermind. I was just leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Conversation Return Freindly
+Text=What can I do for you?
+Should Have Voiceover=0
+
+Requirement=Prison Inq Jailor NOT used high speech convince
+Reply Text=How do you get inside these cells?
+Go to node ID=40 Inside Cells NOT Inquisitor
+Action work in progress=Not used High Speech
+
+Requirement=!None
+Reply Text=You have killed many poor souls. Die, tortuous one!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Jailor Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I was just leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Knights Sent Me
+Text=Oh, I dislike these formal inspections. Why can't the Knights just...<sigh> very well. Here are some keys to inspect the cells as usual. Be forewarned, some of our new arrivals are quite...touched. Do not expect help from me if they get out of hand.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Of course.
+Go to node ID=
+Action work in progress=(Ok for player to open cells, Give 2 Keys to Player)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Convince Jailor that player OK trigger
+}
+Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player use high speech entry
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Open Cell Doors NOT OKAY
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Give Player keys to cells
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Visitors
+Text=You have friends here, eh? What does that make you, a Wizard friend? This isn't a normal jail. No visitors. Ever. Now leave us alone.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You have killed many poor souls. Die, tortuous one!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Jailor Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I was just leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Becoming Inquisitor
+Text=<Grunts> We have a need for fresh blood around here, what with the Armada outside taking all the able bodies they can find. Alright, look around, but dont touch anything! Stay out of the cells under penalty of death!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Ok for player to look around)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Convince Jailor that player OK trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 Become Inquisitor after Say Friend Here
+Text=Highly suspicious, don't you think...you asking to look around after saying you had a friend here. I think you're up to no good. How's about we lock you up in here instead? Your demeanor would be much improved after a few bouts with a hot poker, I reckon.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 20
+Reply Text=Sorry, I mispoke before. I am really considering joining and I was not sure what to say.
+Go to node ID=20 Becoming Inquisitor
+Action work in progress=(Medium speech skill)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I think it is *you* who will feel *my* wrath!
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Jailor Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I don't want any trouble. I just want to leave.
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Try Leave Dialog Piss off INQ
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Piss off Jailor Inquisitor
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Rites Confession Train
+Text=Ah! A new empty vessel into which the knowledge of the Confessional can be poured. The first step is one of my favorites...examining the demons within. The cells in here are filled with some of the more tainted elements of society. Examine them freely, but be careful. Their stories are meant to confuse your soul...do not listen to them, just pay attention to yourself.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=31 Rites Confession continue
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 Rites Confession continue
+Text=Know that when your heart feels compassion, it is their magic at work. It can be quite a surge of power to quell their control over you! Take these keys and examine one up close if you must, but be not concerned if you haven't the strength to open its cell. These are mean demons, through and through. Think of this as a test...I will not save you if they attack. Trial by fire is the best way to achieve saintliness.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Ok for player to open cells, Gives 2 Keys to Player)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Give Player keys to cells
+}
+Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player Undergone Training Rites Confession
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Inside Cells NOT Inquisitor
+Text=You do not! They contain villains and demons of the highest order! Only Inquisitors and those undergoing training by the Inquisition can do such a thing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It's time for you to pay for your sins, torturer!
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Jailor Inquisitor
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Of course. 
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Inside Cells Inquisitor
+Text=These cells contain villains and demons of the highest order. In your position, only those undergoing training in the Rites of Confession may do such a thing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like to undergo these Rites.
+Go to node ID=30 Rites Confession Train
+
+Requirement=!None
+Reply Text=Maybe later. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Undergone Rites
+Text=Excellent. This small step is but one stone in the long road towards enlightenment. The Rites of Confession begin with a simple conversation with the damned. What did you learn?
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 45
+Reply Text=The moral choices that lie on the road ahead are rife with the foul trappings of demons and sinners. The Inquisition is doing holy work and saves the world on a daily basis.
+Go to node ID=51 High Speech Lesson
+Action work in progress=(High Speech Skill)
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 30
+Reply Text=The compunctions of man do not apply when dealing with demons. The Inquisition is a bastion of strength.
+Go to node ID=52 Medium Speech Lesson
+Action work in progress=(Medium Speech Skill)
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 15
+Reply Text=The Inquisition is just and good.
+Go to node ID=53 Low Speech Lesson
+Action work in progress=(Low Speech Skill)
+
+Requirement=!None
+Reply Text=I am not sure.
+Go to node ID=54 Not Sure learned lesson
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 High Speech Lesson
+Text=Very well said! I think you have learned more today than I would have thought possible. You will be one to look out for in the Church hierarchy someday, I assure you! Please, take this token of appreciation of your keen awareness, and dont forget about me when you make Monsignor!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=
+Action work in progress=(Give XP and some trinket)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=RItes Confession HIGH SPEECH
+Experience Points To Add=1
+}
+Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player Done Rites Confession
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Belt
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Belts/Monk
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=52 Medium Speech Lesson
+Text=Well said. I think you have learned much today, perhaps more than you think. Take this gold coin and carry it with you in your pocket as a reminder of your lesson learned here today.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=
+Action work in progress=(Give XP and 1 gold coin)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=RItes Confession MEDIUM SPEECH
+Experience Points To Add=1
+}
+Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player Done Rites Confession
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=53 Low Speech Lesson
+Text=Fine. I think you have a handle on the basic qualities of the Inquisition. Perhaps more reflection on what you have seen here today will assist you in your studies.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Give XP)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=RItes Confession Low SPEECH
+Experience Points To Add=1
+}
+Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player Done Rites Confession
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=54 Not Sure learned lesson
+Text=Quite all right. The torture chamber can be a harrowing place for many. Reflect on what you have seen here today, and be thankful that the Inquisition exists to save society from itself.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Give low XP)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=RItes Confession NO SPEECH
+Experience Points To Add=1
+}
+Action=CActivateAction
+{
+Target Name=Inquisitor Jailor Player Done Rites Confession
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Goodbye baloon Try Leave
+Text=Too late for that, tainted one!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=90 Goodbye baloon Combat
+Text=Guards! Intruder!
+Should Have Voiceover=0
+}

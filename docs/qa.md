@@ -1274,6 +1274,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS27 | Thieves' stash chest (Main Entrance top-left, or Congregation SA1), Sneak below 25/30 | Open it | Loot drops, then *"Oi! Hands off the guild's take!"* over a thief, then the guild turns; the line is in the log |
 | MS28 | Same chest, Sneak at or above the threshold | Open it | Loot drops and *"<Nobody is looking your way...>"* over the chest; nobody turns |
 | MS29 | Same chest, Sneak below the threshold, every `Sewer Thief` on the map dead | Open it | Loot drops, no bark, nobody turns (Juanita and the dogs stay as they were) |
+| MS30 | Inquisition Chambers jailor, as an Inquisitor | *"I am eagerly awaiting training on the Rites of Confession"*, take the keys, talk to any cell prisoner, return | *"I have spoken with the possessed..."* offered; the lesson pays 250/100/25/5 XP by Speech, the belt at the top; not offered again |
+| MS31 | Same jailor, as a Templar or with Speech 30, not an Inquisitor | *"I'm here on important business from the Knights Templar"* | Keys given; the reply is gone on the next greeting, and *"How do you get inside these cells?"* is not offered |
+| MS32 | Montserrat Level 1 needle trap, Find Traps below 35, fresh map | Walk the strip before the inner door | Poison, the generic trap message, and *"<Something gives under your foot...>"* over the character |
 
 ---
 

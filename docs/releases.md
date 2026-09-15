@@ -226,6 +226,49 @@ bell and woodpile parts. Every line of dialogue is ours. No new map.
 - Gate 3: the delivered state must not be reachable twice (the sentry's reply hides once
   `delivered` exists); striking Sahar must not wake the Grove; the bear must not turn on the
   player who freed it (its target type is the invaders').
+## Unreleased on main - the Inquisition dungeon's map side
+
+The dungeon's dialogue was surveyed for 0.9.0 (Torquemada's dryad quest, Sanchez's leniency
+arms). Its four maps never were, and the map side is where the one real piece was.
+
+**The Rites of Confession: an Inquisitor's lesson nobody could pass.** The jailor in the
+Inquisition Chambers has a training arc for a member of the Inquisition, greeted as
+*"recruit"* on a faction-selected greeting. Ask for *"training on the Rites of Confession"*
+(`30`/`31`) and he hands over the cell keys and sends you to talk to the damned. Three
+prisoners -- the dying wizard, the Wielder, the rogue Inquisitor -- each flip the map
+checker `Talked to at least 1 person` when spoken to. Come back and *"I have spoken with the
+possessed and heard their lamentations"* opens `50 Undergone Rites`: *"What did you learn?"*,
+three Speech tiers (45/30/15) and a fallback, four XP parts on the map (250/100/25/5), a belt
+as the trinket at the top -- *"don't forget about me when you make Monsignor!"* -- and a
+`Done` checker so it cannot repeat. All of it built, none of it reachable: the return reply
+also requires `Inquisitor Jailor Player Undergone Training Rites Confession`, whose editor
+comment reads *"Active HAS undergone it. Inactive NOT undergone it"*, and **nothing in the
+game activates it**. `31` fires only the keys relay. So every Inquisitor who took the training
+and did the work came back to a jailor offering the training again. The reachability survey
+could not see it -- every node is reachable by `Go to`; it is a requirement that can never be
+true. `31`'s reply now activates the checker. Dialogue-side, so it works on any save.
+
+**The same omission on the inspection route.** `Inquisitor Jailor Player use high speech
+entry` (*"Active HAS tried it"*) was never activated either, so the Templar / Speech 30
+inspection reply (`10 Knights Sent Me`), written to be once-only, was not, and a player who had
+been given keys that way was then told at `40 Inside Cells NOT Inquisitor` that they may not
+open the cells. `10`'s reply now activates it.
+
+**Read and left alone.** `Galileo Attacked` (Pit) is a relay nothing fires and Galileo's
+`400 return after attack` its orphaned greeting -- an attacked-and-came-back consequence never
+wired; the engine already makes him hostile, and the relay adds only a door effect. The
+inactive `Sanchez Generator`, the Foyer's four inactive guard generators and the Pit's
+`Trapped Demon Clone Generator` are clone sources, inactive by design. `Scepter Pickup Mod
+Cross AI` is fired by the scepter item, not dead. Sanchez's reduced-fine arms remain the 0.9.0
+Tier 3 item: a new money-ladder arm in the map, not a wire.
+
+**And one of ours, caught by the gate.** 0.10.0's needle trap authored a sprung bark --
+`Montserrat Barks / 21 tripwire`, *"<Something gives under your foot, and a needle finds your
+ankle.>"* -- and never opened it; the trap fired its poison and vanilla's generic trap message
+only. The build gate (`reachability.py`) named it. Wired as the first action of the trap's
+sprung branch, beside the found-bark on the other arm. Map-side: a character who has not
+entered Level 1.
+
 ## 0.10.1 - repairs
 
 **Published.** Cut on a branch from `v0.10.0`. One repair, from the playthrough's sewers.
