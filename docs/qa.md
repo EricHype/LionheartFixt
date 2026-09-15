@@ -1394,6 +1394,7 @@ both completed Gate 2. Record the result here per release.
 | 0.9.4 | PASS (automated) | PASS | PASS | - | - | - | **published as hotfix; the crash reproduced from the screenshot, every repair played** |
 | 0.10.0 | PASS (automated) | PASS | partial | - | - | - | **published; Grove, wounded assassin, Sahar's approach and the journal played on one run, the rest unplayed** |
 | 0.10.1 | PASS (automated) | - | - | - | - | - | **published; the stash barks built and unplayed (MS27-MS29)** |
+| 0.10.2 | PASS (automated) | - | - | - | - | - | **published; the jailor's lesson and the sprung bark built and unplayed (MS30-MS32)** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's

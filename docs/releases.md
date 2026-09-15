@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.10.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.10.2 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -226,7 +226,9 @@ bell and woodpile parts. Every line of dialogue is ours. No new map.
 - Gate 3: the delivered state must not be reachable twice (the sentry's reply hides once
   `delivered` exists); striking Sahar must not wake the Grove; the bear must not turn on the
   player who freed it (its target type is the invaders').
-## Unreleased on main - the Inquisition dungeon's map side
+## 0.10.2 - repairs
+
+**Published.** Cut on a branch from `v0.10.1`. The Inquisition dungeon's map side, and one of ours.
 
 The dungeon's dialogue was surveyed for 0.9.0 (Torquemada's dryad quest, Sanchez's leniency
 arms). Its four maps never were, and the map side is where the one real piece was.
