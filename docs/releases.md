@@ -124,6 +124,163 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.12.0 - La Calle Perdida (scope)
+
+**Not started.** Numbered after the Prisoner of Montserrat; nothing in it depends on 0.11.0,
+and Tiers 1-3 are a patch-sized build if wanted earlier. Surveyed 2026-09-14.
+
+### What the district is
+
+La Calle Perdida is the Wielders' hidden street: 499 parts on `Calle Perdida.zax` plus the
+248-part `TrappedEtherPlane.zax` behind the crystal, 21 dialogue trees. The map carries three
+complete routes and the machinery to switch between them: the **Wielder initiation** (Cedric's
+tasks, *Hunt down Relican*), the **Dark Wielder initiation** (Relican's tasks after he takes
+the street -- 14 `Relican Take over Calle Generator` parts, a fake Relican, two conquest
+cameras), and the **Inquisition wipeout** (Raphael's *find and enter* quest; `Player has
+turned Calle over to Inquisition` fires from `Start Here`, force-generates the Wielders as
+targets, posts six Inquisition guard generators, breaks the bridge, deletes Cedric). All three
+are live. The district was never surveyed as a district -- 0.9.0 touched Cedric for the
+journal and nothing else -- and the survey finds **24 orphaned nodes, 8 carrying replies**,
+plus four map parts nothing reaches. The Weng Choi / Auric shapes recur; one find is the
+cleanest of its kind in the project.
+
+Tools note from the survey: entity-name matching in the engine is case-insensitive (69
+case-only mismatches in shipped content that demonstrably work -- `Auric Generator` /
+`Auric generator`, the Port District thug, the tavern conspirators); the map scan now
+compares lower-cased. `CForceGenerateAction{Generator Name=}` is a reference the scan
+missed and now counts. Two false positives recorded so nobody re-reads them: Marco Polo's
+seven travel quips are opened by six maps through the duplicate `MarcoPoloSpirit Boots`
+tree, and `Marco Pick up his boots` is fired by the boots' own `.InventoryItem`.
+
+### Tier 1 - the honest way out of the Mad Enchanter
+
+**Build.** In the Trapped Ether Plane the Enchanter's `50 Escape` offers two ways past him:
+a lie (Speech 35, then 45 at `60 Lie Speech`) or the crystal -- and the crystal reply,
+*"the crystal you fashioned before you lost your mind"*, goes to `53 Whoops`: he takes
+offence at *lost your mind* and attacks. The honest continuation was written and is reached
+by nothing: `55 Escape 2` (*"You tell me nothing I do not already know"*) -> `57 Escape 3`
+(*"none of them possess the power that you speak of. Perhaps it is another of your clever
+lies?"*) -> `59 Winner` (*"Very well. I shall grant you your life to test your theory - but
+my undead servants are another matter. Now leave - and know that I will be watching
+you."*). `59`'s reply fires `Pacify Enchanter in Dialog`, a relay **on the map, fired by
+nothing**, which strips his talk specifier and gives him a `GetCloseThenTalk` opening
+`05 Return Dialogue 1`. Both ends built, entrance orphaned: the Weng Choi shape, with the
+map half already in place.
+
+- One new reply on `50 Escape`, the same claim without the insult -- *"The crystal you
+  fashioned. It only needs enough energy to power it, and it can take us both out of
+  here."* -- `Go to node ID=55 Escape 2`. No skill gate: the route's cost is that `55` and
+  `57` each offer two fight replies beside the one that continues, and `57` calls it a lie
+  to your face. The player who holds their nerve gets out without a roll.
+- Keep `53 Whoops` and its reply exactly as shipped; the insult stays a trap.
+- Read before build: `05 Return Dialogue 1` (what he says afterwards) and what the undead
+  do once he is pacified -- *"my undead servants are another matter"* says they stay
+  hostile; confirm the relay does not touch them.
+- Dialogue-only, so any save that has not yet resolved the Enchanter.
+
+### Tier 2 - the Wielders know you killed Relican
+
+**Build.** `WizardCan1 / 01 Conversation Start Wielder Killed Relican` -- *"Welcome, fellow
+Wielder. We have heard much of your victory over Relican, and much about the strength of
+the spirit that resides within you"* -- with a new branch `60 Membership` (*"we did not have
+one such as Relican to contend with. You were truly brave to face him"*). The five `Generic
+Wielder Generator` parts choose between `01 Conversation Start` and `01 Conversation Start
+Wielder` on `Faction/Wielder NOT` and nothing else; `Cedric Player has defeated Relican.can`
+already exists as the requirement. Third arm on each of the five selectors: Wielder AND
+defeated Relican -> the killed-Relican greeting. Map-side (the generators are level parts):
+a character who has not entered the street. Decision: `60 Membership` carries a
+*"Save your flattery and begone"* reply with a Fight Icon and no action -- the 0.1.4 blank-
+reply shape. Give it the generic wizards' existing hostile relay, or drop it. Recommend
+dropping it; the wizards are the player's own faction by then.
+
+### Tier 3 - Cedric and Relican remember being attacked
+
+**Build.** The shape 0.10.3 built for Auric and Javier, third and fourth instance. Attack
+Cedric and `Cedric sends you to a random map` plays `600 Attack Cedric`, has him cast, and
+relocates you; `RESET MAP for Invulnerable Cedric` re-clones him on entry and forgets. `600
+After Attack Cedric` -- *"You have strained what little welcome you had in this place. We
+will tolerate no more aggression from you."* -- is **voiced** and orphaned. Relican has the
+same pair: `Relican sends you to a random map` / `RESET MAP for Invulnerable Relican` (both
+inactive until his takeover) and `500 After Attack Relican` -- *"I trust you have come to
+your senses? Let us continue with our plans."* -- unvoiced, orphaned. One checker each, set
+by the attack relay, played once by the reset over the re-cloned man. Map-side. Read
+before build: Relican's reset is `Active=0` and is switched on by the takeover; the
+checker must be set only while he is the one standing there, and the Dark Wielder's
+`Relican Clone Generator` is what the reset clones.
+
+### Tier 4 - the break with Relican (decide)
+
+`Lord Relican / 50 relican mad` -> `60 reconcile` / `80 war`. *"You would be wise to
+reconsider your words, brother. You would discover me to be a terrible opponent. Tell me now
+where your loyalties lie."* / *"Very well. There is much work to do"* / *"So be it. I had
+hoped you would have quelled your traitorous instincts long enough for me to have betrayed
+you, but a quick resolution is logical. Goodbye, scion of Lionheart."* -> `CGoToCombatAction`.
+A written confrontation for a Dark Wielder who turns on him, with the reconcile exit and the
+war exit both authored on his side. What is missing is the player's side: `30 power` (*"Of
+course, Power is everything"*) has no defiant reply into `50`, and `50` has only the
+reconcile reply, so `80 war` needs a line. Two authored player lines, both short. The
+consequence is the question: fighting Relican inside his own initiation means the Dark
+Wielder route ends and Cedric's *defeated Relican* state should follow, and Relican in the
+Dark Wielder route is a clone with a reset behind it. **Read the takeover machinery before
+deciding**; if the consequence cannot be made honest, leave the branch dark and record it,
+as 0.9.0 did with the shadow dryad.
+
+### Tier 5 - reads, each to end in a decision
+
+- **`Lord Relican / 1 Conversation Start NOT WIELDER`** and `5 Return Dialogue NOT WIELDER`
+  -- *"Our partnership has worked out well for you and I. Getting rid of the Wielders has
+  served both our purposes. Now leave me to my dark contemplations."* A greeting for a
+  non-Wielder who partnered with Relican. The takeover relay force-generates `Wielder to
+  Kill When Relican and Inquisition enter`, whose name says Relican enters *with* the
+  Inquisition. Does he, and can he be spoken to? If the wipeout puts a silent Relican on the
+  map, these two nodes are his half of that scene and belong on a fourth selector arm. If he
+  is not there at all, they are a draft of a cut alliance and stay dark.
+- **`Gives Pain to Wielders for Inquisition`** -- a relay nothing fires, whose job is to
+  switch on the two relays that make Wielders hostile on generation in the wipeout
+  (`Gives XtraPain to Cedric n Pedro...`, `Gives Pain to Wielder when generate for
+  Inquisiton and Relican`, both `Active=0`). If the wipeout's generated Wielders stand
+  passive while the Inquisition cuts them down, this is the missing call and a live defect,
+  not cut content. Needs a fresh Inquisitor run to the street to know; `Make All Calle
+  Wielders mad at Player` may already cover it.
+- **`Cedric / 60 too much`** -- *"if you are in any way affiliated with the Inquisition, you
+  will not pass our initiation"*, reached by nothing; its join reply is gated on Templar AND
+  Inquisitor, which no character can be. Five live replies reach `50 warning` instead.
+  Superseded draft, unless a read of the first-meeting path (`Trigger Cedric To Talk`) shows
+  the Inquisition warning was meant to precede the initiation offer for a sworn Inquisitor.
+- **`Brambles / 150-152 Random thanks dialog`** -- three barks after the cure; the map opens
+  `140 cure relican` and `160 dark wielder greeting` but never these. A `CRandomAction` over
+  the three on the cure relay is a five-minute wire if the cure scene has a moment for it.
+- **`Has talked to Cedric already`** -- a checker nothing sets. His selector keys on `Took
+  Wielder Quests from Cedric` instead; probably vestigial, confirm and leave.
+- **`Cedric / 25 Attack`** -- *"Wielders, to me! La Calle Perdida is under attack!"* -- a bark;
+  `600 Attack Cedric` plays instead. Duplicate; leave.
+
+### Out now, with reasons
+
+Marco Polo's quips and boots (false positives, above). The Wielder and Dark Wielder
+initiations themselves and the Inquisition wipeout: live, and large enough that anything
+found in them is a repair release, not this one.
+
+### What is new, plainly
+
+One reply on the Enchanter; a third arm on five wizard selectors; two checkers, two
+activates and two balloons on the attack/reset pairs; possibly two player lines for the
+break with Relican; possibly one random bark on Brambles' cure. Every NPC line is the
+game's; the player lines are ours and there are at most three.
+
+### Gates
+
+- Gate 0 as ever. Tier 1 is dialogue-only: any save that has not passed the Enchanter.
+  Tiers 2 and 3 are level parts: **a character who has not entered La Calle Perdida.**
+- Gate 1: the honest route walked to `59 Winner` and the Enchanter passive afterwards, the
+  undead still hostile; the lie route unchanged; `53 Whoops` still a fight. A Wielder who
+  killed Relican greeted as such by every generic wizard, a Wielder who has not greeted as
+  before, a non-Wielder unchanged. Cedric attacked, the random-map relocate, the return with
+  the voiced line once; Relican the same after his takeover.
+- Gate 3: a Wielder who has *not* killed Relican must never see the victory greeting (the
+  `defeated Relican` can is the one Cedric's own tree trusts); the pacified Enchanter must
+  not re-arm on a second visit; Cedric's after-attack line must not play on a first entry.
+
 ## 0.11.0 - the Prisoner of Montserrat (scope)
 
 **Not started.** Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
