@@ -226,6 +226,30 @@ bell and woodpile parts. Every line of dialogue is ours. No new map.
 - Gate 3: the delivered state must not be reachable twice (the sentry's reply hides once
   `delivered` exists); striking Sahar must not wake the Grove; the bear must not turn on the
   player who freed it (its target type is the invaders').
+## Unreleased on main - the Knights Templar armory
+
+The barracks is one of the tightest maps in the game: 50 parts, every relay fired, every
+checker set, and its dialogue covered by the 0.9.0 survey. Three orphans remain in Auric's
+tree; one is worth wiring.
+
+**Auric remembers being attacked.** Draw on him and `400 attack auric` sends you to the
+Inquisition's cell. Walk back in and the map's `Start Here` fires `RESET MAP for Invulnerable
+Auric`, which deletes and re-clones him and the guards -- and nothing remembers what you did;
+he gives the ordinary return greeting. The line for that moment, `400 return after attack
+auric` -- *"Save your belligerence for the creatures of the wilderness. I will not tolerate
+your foolishness."* -- is written, **recorded**, and reached by nothing. Now: a checker `Auric
+jailed you` beside the map's others, activated by the jail relay before it fades (the reset
+deletes only the people, so it survives), and the reset, 1.5 seconds after Auric is back,
+plays the balloon over him and clears the checker -- once per jailing. Map-side: a character
+who has not entered the armory.
+
+**Read and left alone.** `105 join feralkin` offers a Feralkin sponsorship *without*
+Benito's task, contradicting the tainted route the game shipped (bias to overcome, task to
+do, `100 join tainted` at the end); flagged as voiced, no recording exists -- a superseded
+draft. `11 please return` (*"this will not help your chances"*) is a walk-out rebuke for a
+`Default Canceled Node Action` the tree leaves empty, unrecorded; hooking it would scold every
+player who presses Escape.
+
 ## 0.10.2 - repairs
 
 **Published.** Cut on a branch from `v0.10.1`. The Inquisition dungeon's map side, and one of ours.
