@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.9.4 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.10.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -124,9 +124,9 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
-## 0.10.0 - Montserrat (scope)
+## 0.10.0 - Montserrat
 
-**Built, unplayed, unpublished.** What follows is the scope as written; "What was built" at the end records where the build departed from it and why.
+**Published.** Played in part before the cut -- the Grove, the wounded assassin, Sahar's approach, the journal's return -- and repaired from what that found; the rest built and unplayed. What follows is the scope as written; "What was built" at the end records where the build departed from it and why.
 
 **Originally:** Planned after a tester's report that the act is "nothing but combat with
 repetitive enemies". The report is accurate, and the survey below shows why: Montserrat was
