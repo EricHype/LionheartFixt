@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.10.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.10.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -123,6 +123,28 @@ scoped the counter-contract inside the goblin faction ladder -- 0.1.0's own them
 no longer has to be rung 2 of that ladder, since rank 2 now comes from the shaman's eyes
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
+
+## 0.10.1 - repairs
+
+**Published.** Cut on a branch from `v0.10.0`. One repair, from the playthrough's sewers.
+
+**The thieves turned hostile at a chest, and nothing said why.** Five chests in the guild's
+two secret stashes -- three behind the top-left secret door of the Sewer Main Entrance, two
+behind `secret door1` in the Thieves' Congregation -- run a silent `Sneak < 25` / `< 30` check
+*after* the loot drops. Fail it and `Thief enemy trigger` fires: every thief, guard dog and
+Juanita go to combat, every later spawn arrives hostile, the guard's warning dialogue is
+deleted, and the relay propagates to the other two thief maps. No line of sight, no distance,
+no roll shown; Lockpick does not enter into it. Every *other* stealing chest in the game barks
+on failure -- Khan's *"Thief! You would steal from the Great Khan?"*, the goblins' *"Thief!"*,
+Auric's arrest, the Montaillou Templar -- and most bark on success with the shared
+*"<You pick the lock without attracting anybody's attention.>"*; these five had neither. Now
+they do, on the goblin-house shape: failure plays *"Oi! Hands off the guild's take! Thief in
+the stash - get them!"* over `Sewer Thief` before the relay, success plays *"<Nobody is
+looking your way. You help yourself to the guild's take.>"* over the chest. Both log. And the
+check has a witness now, as the goblin house's does: `CIsAliveAction{Sewer Thief}` around the
+failure branch, so a stash emptied after every thief on the map is dead raises no alarm. The
+threshold itself is untouched. Chests are level parts: this takes effect on a character who
+has not entered the sewers.
 
 ## 0.10.0 - Montserrat
 
@@ -691,24 +713,6 @@ approach with nothing to say so; a second delay at 20 seconds plays *"<His breat
 shallower. He has minutes, not hours.>"* if he is not yet saved. Both are gated on the checker.
 Played and passing on a fresh Port District: the draught, the cursor, the thanks, the
 reunion, the chiding and the walk.
-
-**The thieves turned hostile at a chest, and nothing said why.** Five chests in the guild's
-two secret stashes -- three behind the top-left secret door of the Sewer Main Entrance, two
-behind `secret door1` in the Thieves' Congregation -- run a silent `Sneak < 25` / `< 30` check
-*after* the loot drops. Fail it and `Thief enemy trigger` fires: every thief, guard dog and
-Juanita go to combat, every later spawn arrives hostile, the guard's warning dialogue is
-deleted, and the relay propagates to the other two thief maps. No line of sight, no distance,
-no roll shown; Lockpick does not enter into it. Every *other* stealing chest in the game barks
-on failure -- Khan's *"Thief! You would steal from the Great Khan?"*, the goblins' *"Thief!"*,
-Auric's arrest, the Montaillou Templar -- and most bark on success with the shared
-*"<You pick the lock without attracting anybody's attention.>"*; these five had neither. Now
-they do, on the goblin-house shape: failure plays *"Oi! Hands off the guild's take! Thief in
-the stash - get them!"* over `Sewer Thief` before the relay, success plays *"<Nobody is
-looking your way. You help yourself to the guild's take.>"* over the chest. Both log. And the
-check has a witness now, as the goblin house's does: `CIsAliveAction{Sewer Thief}` around the
-failure branch, so a stash emptied after every thief on the map is dead raises no alarm. The
-threshold itself is untouched. Chests are level parts: the barks need a character who has not
-entered the map.
 
 ### Gates before this ships
 
