@@ -1278,6 +1278,8 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS31 | Same jailor, as a Templar or with Speech 30, not an Inquisitor | *"I'm here on important business from the Knights Templar"* | Keys given; the reply is gone on the next greeting, and *"How do you get inside these cells?"* is not offered |
 | MS32 | Montserrat Level 1 needle trap, Find Traps below 35, fresh map | Walk the strip before the inner door | Poison, the generic trap message, and *"<Something gives under your foot...>"* over the character |
 | MS33 | Knights Templar armory, fresh map | Attack Auric, wake in the cell, walk back to the armory | About a second after entering, *"Save your belligerence..."* (voiced) over Auric, logged; not again on the next entry; he talks normally after |
+| MS34 | Javier, after Esteban has died with the Esteban step given and not done | Any greeting | *"Sir Esteban is dead."* -> the weighs-heavy line -> the Auric step given; the reply gone once Seek out Sir Auric exists |
+| MS35 | Cathedral, fresh map | Attack Javier, wake in the cell, walk back in | About a second after entering, *"If you blaspheme this cathedral again..."* over Javier once; an extra guard beside him on this and every later visit |
 
 ---
 

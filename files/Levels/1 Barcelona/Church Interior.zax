@@ -3659,6 +3659,66 @@ CLayerSaveData
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
+		Level Part=CEntityBase
+		{
+			Name=Javier jailed you
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=649
+			Position Y=627
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Javier warned you
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=649
+			Position Y=607
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CEntityWalking
 		{
 			Name=push fog for wielder movie
@@ -4826,7 +4886,14 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=9
+							Item Count=10
+							Action=CActivateAction
+							{
+								Target Name=Javier jailed you
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
 							Action=CDeactivateAction
 							{
 								Target Name=Javier Sends you to jail
@@ -10463,7 +10530,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=10
+							Item Count=11
 							Action=CActivateAction
 							{
 								Target Name=Javier Sends you to jail
@@ -10571,6 +10638,76 @@ CLayerSaveData
 							Action=CDeleteAction
 							{
 								Target Name=Used Guard Generator
+							}
+							Action=CDelayAction
+							{
+								Next Action=CIfAction
+								{
+									If=CCheckExistenceAction
+									{
+										Name To Check For=Javier jailed you
+										Desired Minimum Count=1
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=3
+											Action=CCloneAction
+											{
+												New Location=Guards After Attack
+												Copy Height=0
+												Random Location Delta=0
+												Source Name=Guards After Attack
+												New Name=Used Guard Generator
+												Set Facing Angle=0
+												New Facing Angle=0
+											}
+											Action=CDeleteAction
+											{
+												Target Name=Used Guard Generator
+											}
+											Action=CIfAction
+											{
+												If=CCheckExistenceAction
+												{
+													Name To Check For=Javier warned you
+													Desired Minimum Count=1
+												}
+												Then=
+												Else=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/LordJavier
+															Node ID=600 return after attack
+															Name of Position=Lord Javier
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CActivateAction
+														{
+															Target Name=Javier warned you
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
+													}
+												}
+												Return failure if the If failes=0
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
 							}
 						}
 					}

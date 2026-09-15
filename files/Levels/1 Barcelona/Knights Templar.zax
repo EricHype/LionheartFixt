@@ -267,42 +267,42 @@ CLayerSaveData
 							Action=CDeleteAction
 							{
 								Target Name=Used Guard Generator
-								Action=CDelayAction
+							}
+							Action=CDelayAction
+							{
+								Next Action=CIfAction
 								{
-									Next Action=CIfAction
+									If=CCheckExistenceAction
 									{
-										If=CCheckExistenceAction
+										Name To Check For=Auric jailed you
+										Desired Minimum Count=1
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
 										{
-											Name To Check For=Auric jailed you
-											Desired Minimum Count=1
-										}
-										Then=CMultipleActionsAction
-										{
-											Action=Array
+											Item Count=2
+											Action=CDisplayDialogBalloonAction
 											{
-												Item Count=2
-												Action=CDisplayDialogBalloonAction
-												{
-													Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/SirAuric
-													Node ID=400 return after attack auric
-													Name of Position=Sir Auric
-													Position Offset=0.000000,-80.000000
-													After Action=
-													Include In Log=1
-												}
-												Action=CDeactivateAction
-												{
-													Target Name=Auric jailed you
-												}
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/SirAuric
+												Node ID=400 return after attack auric
+												Name of Position=Sir Auric
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDeactivateAction
+											{
+												Target Name=Auric jailed you
 											}
 										}
-										Else=
-										Return failure if the If failes=0
 									}
-									Delay=1.5
-									Plus or Minus=0
-									Forget Trigger=0
+									Else=
+									Return failure if the If failes=0
 								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
 							}
 						}
 					}
