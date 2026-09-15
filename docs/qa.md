@@ -1277,6 +1277,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS30 | Inquisition Chambers jailor, as an Inquisitor | *"I am eagerly awaiting training on the Rites of Confession"*, take the keys, talk to any cell prisoner, return | *"I have spoken with the possessed..."* offered; the lesson pays 250/100/25/5 XP by Speech, the belt at the top; not offered again |
 | MS31 | Same jailor, as a Templar or with Speech 30, not an Inquisitor | *"I'm here on important business from the Knights Templar"* | Keys given; the reply is gone on the next greeting, and *"How do you get inside these cells?"* is not offered |
 | MS32 | Montserrat Level 1 needle trap, Find Traps below 35, fresh map | Walk the strip before the inner door | Poison, the generic trap message, and *"<Something gives under your foot...>"* over the character |
+| MS33 | Knights Templar armory, fresh map | Attack Auric, wake in the cell, walk back to the armory | About a second after entering, *"Save your belligerence..."* (voiced) over Auric, logged; not again on the next entry; he talks normally after |
 
 ---
 
