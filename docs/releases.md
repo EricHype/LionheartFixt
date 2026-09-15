@@ -225,6 +225,47 @@ Dark Wielder route is a clone with a reset behind it. **Read the takeover machin
 deciding**; if the consequence cannot be made honest, leave the branch dark and record it,
 as 0.9.0 did with the shadow dryad.
 
+### Tier 4b - the Magic Nodes get their quest (new content; decide)
+
+The red crystals are Magic Nodes: four of them (Barcelona Coast, the Plains, the Lake,
+Montserrat's Grove), each ringed by seven inactive generators, five Spirit Energy pickups
+and an ambient hum. Click: a summoning effect and two skeletons; again: two greater
+skeletons; a third time: three soul reavers -- the Crypt's undead, in Act 1 -- and the node
+strips its own click, deletes its hum and goes dark. A voluntary escalating undead trial with
+no quest, no reward past the drops, and no line that says what it is. (The other colours are
+all wired: blue are the Ways Crystals, yellow the cave teleports, green the Wielders' own.)
+
+Two quest files say what the nodes were for, and both shipped with **zero states**:
+`Calle Perdida/Determine the Nature of the Magic Crystal` (a Cedric quest) and `Wielder
+Initiation Quests/Find the Yellow Node within the Sewers` (a Dark Wielder task; the Wererat
+Cave has a yellow node). Their only reference is the Siege map failing them in its cleanup
+sweep beside the live Calle quests. The River Dryad's live reply *"I was exploring and
+happened upon the magic crystal to the east"* treats the Lake's node as a landmark. The
+trials were built on the map; the quests never got their states or their dialogue.
+
+This is authoring, and the project does it only where the game plainly ran out. Here it did,
+with the encounter already standing. Proposed shape, smallest first:
+
+- **Cedric's node.** *Determine the Nature of the Magic Crystal* gets three states -- sent
+  to the Lake's node (nearest the Crossroads, and the one the dryad already points at),
+  the node's nature learned (set by the node's own third wave: a relay the script does not
+  have yet, fired when the click is stripped), report to Cedric. Cedric's ask sits beside
+  his live initiation tasks and reads as the Wielders' curiosity about their own lore; his
+  reaction is one node, the answer being that the crystal draws the dead to it, and a
+  Wielder with a spirit can feel it. XP from a part on his map. Every line ours; Cedric is
+  unvoiced on his live task nodes too, so the register matches.
+- **Relican's yellow node.** *Find the Yellow Node within the Sewers* is the Dark Wielder
+  mirror and needs only a walk: the Wererat Cave's yellow crystal gets a once-only click
+  that sets the state, Relican's task list gains the ask and the acknowledgement. Only if
+  the Dark Wielder tasks have a slot that reads naturally; they are tightly sequenced
+  (Sceptre, Quinn, the Church, the relics) and the read may say no.
+- **The nodes say what they are.** Independently of either quest: a hover line on each red
+  node (*"<A crystal the colour of old blood. The ground around it is disturbed.>"*), PE
+  reading the buried dead, a Wielder reading the pull. The 0.10.0 hover primitive; four maps.
+
+Decide after Tiers 1-3 are built. If only the hover line ships, the nodes at least stop
+being a mystery with no answer.
+
 ### Tier 5 - reads, each to end in a decision
 
 - **`Lord Relican / 1 Conversation Start NOT WIELDER`** and `5 Return Dialogue NOT WIELDER`
@@ -265,7 +306,9 @@ found in them is a repair release, not this one.
 
 One reply on the Enchanter; a third arm on five wizard selectors; two checkers, two
 activates and two balloons on the attack/reset pairs; possibly two player lines for the
-break with Relican; possibly one random bark on Brambles' cure. Every NPC line is the
+break with Relican; possibly one random bark on Brambles' cure. If the Magic Nodes ship: three
+quest states, two or three Cedric nodes, a relay on the Lake's node, an XP part, and four hover
+lines -- the most authoring in the release, and the part to cut first if it reads thin. Every NPC line is the
 game's; the player lines are ours and there are at most three.
 
 ### Gates
