@@ -226,6 +226,47 @@ bell and woodpile parts. Every line of dialogue is ours. No new map.
 - Gate 3: the delivered state must not be reachable twice (the sentry's reply hides once
   `delivered` exists); striking Sahar must not wake the Grove; the bear must not turn on the
   player who freed it (its target type is the invaders').
+## Unreleased on main - the cathedral
+
+**The initiation died with Esteban, and Javier had the line that saves it.** The Templar
+initiation's second step is *Seek out Guard Esteban* at the Crossroads. If Esteban dies -- a
+goblin patrol, or the counter-contract 0.1.1 built -- 0.1.4's `Esteban Death Consequences`
+fails that quest, and Javier's only way forward (`Javier req complete esteban quest`) needs
+it current. Vanilla left the quest hanging; Fixt made the lockout clean, and clean meant a
+character who lost Esteban could never be a Templar. `LordJavier / 400 Esteban Slain` --
+*"This news weighs heavy on my heart. I pray Sir Esteban's killer suffers for this deed. My
+one comfort is that one day you might fill the void he has left. To that end, you must seek
+out Sir Auric"* -- feeds the live `305 speak with auric 2`, which gives the Auric step. 0.9.0
+deferred it as wanting a map relay on the death; 0.1.4 had already given us the flag,
+`Esteban Dead`, a game-scripting variable. So it is a dialogue wire: *"Sir Esteban is dead."*
+on Javier's three greetings, gated on `Esteban Dead > 0`, the Esteban step ever given and
+not completed, and the Auric step not yet given. Any save. A player who killed Esteban for
+the goblins hears the line to their face and is admitted; the game cannot know, vanilla's
+text reads as irony either way, and the Horde's standing already prices the choice.
+
+**Javier remembers being attacked, with the guard the map built for it.** The Auric shape:
+`600 attack javier` sends you to the cell, `RESET MAP for Invulnerable Javier` re-clones
+everyone on entry and forgets. `600 return after attack` -- *"If you blaspheme this cathedral
+again, you will regret it."* -- was orphaned (flagged voiced, no recording). And the map went
+further than the armory: a generator named `Guards After Attack` stands at (721,724) beside
+Javier's spot, the cathedral's own three-tier guard set, inactive, never cloned by the reset.
+Now: `Javier jailed you`, set by the jail relay and permanent; on every later entry the reset
+clones the extra post beside him; the line plays once (`Javier warned you`). Map-side.
+
+**Read and left alone.** `500 pyrenees` (0.9.0's out-list); `Temple Guard Gen`, a fifth post
+the reset never clones; `Jafar Generator Wielder NIS`, unreferenced since 0.9.4 replaced it.
+The scan's "never activated" on `Auric generator` was a false positive: the relay writes
+`Auric Generator`, and 69 such case-only mismatches in shipped content that demonstrably
+work show entity names are case-insensitive.
+
+**And a bug of mine, in both reset relays.** The array's closing brace is indented one deeper
+than `Action=Array`, so an `rfind` for the shallower brace matched the tail of the last
+item's deeper one, and the new delayed action landed *inside* the previous `CDeleteAction`
+as an unknown field, with the count bumped and no item added. The Auric commit shipped that
+way on `main` (unreleased). Both repaired; `validate.py` now fails any Array whose count
+disagrees with its items -- vanilla never does -- and names the bad file when run against
+it.
+
 ## Unreleased on main - the Knights Templar armory
 
 The barracks is one of the tightest maps in the game: 50 parts, every relay fired, every

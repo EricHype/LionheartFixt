@@ -296,6 +296,28 @@ def check_resource(p, raw):
     rf.write_resource_file(node, tmp)
     if tmp.read_bytes() != raw:
         fails.append(p.name + ": not in canonical engine formatting")
+    check_array_counts(p, node)
+
+
+def check_array_counts(p, node, path=""):
+    # Every Array's `Item Count` (or `Array Count`) must equal its number of items; vanilla
+    # never disagrees. A splice that lands a new item inside the previous item's braces --
+    # the array's closing brace is indented one deeper than `Action=Array`, so an rfind for
+    # the shallower brace matches the tail of a deeper one -- bumps the count without adding
+    # an item, and the stray block becomes an unknown field of its neighbour. Two of the
+    # armory/cathedral reset relays shipped that way before this check existed.
+    if node.type_name == "Array":
+        count = None; items = 0
+        for k, v in node.fields:
+            if k in ("Item Count", "Array Count") and count is None:
+                count = int(v)
+            elif k not in ("Item Count", "Array Count"):
+                items += 1
+        if count is not None and count != items:
+            fails.append(p.name + ": Array at " + (path or "<root>") + " says " + str(count) + " items, holds " + str(items))
+    for k, v in node.fields:
+        if isinstance(v, rf.ResourceNode):
+            check_array_counts(p, v, path + "/" + k)
 
 
 # Binary payloads -- icon art, sprites, audio, models. They are shipped verbatim and are

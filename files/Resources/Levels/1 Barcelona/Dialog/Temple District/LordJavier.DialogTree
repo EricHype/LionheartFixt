@@ -73,6 +73,62 @@ Value to take=1000
 }
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+	Operand1=CVariableDerivedCharacterAttribute
+	{
+		Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+	}
+	Operator=
+	Operand2=CConstant
+	{
+		Constant Value=0
+	}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+	Action=CWasQuestEverActivatedAction
+	{
+		Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+	}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+	Operand1=CActionExpression
+	{
+		Action=CIsQuestCompletedAction
+		{
+			Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+		}
+	}
+}
+Operator=
+Operand2=CExpressionNot
+{
+	Operand1=CActionExpression
+	{
+		Action=CWasQuestEverActivatedAction
+		{
+			Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+		}
+	}
+}
+}
+}
+}
+Reply Text=Sir Esteban is dead.
+Go to node ID=400 Esteban Slain
+Icon=Quest Icon
+
 Requirement=Javier req complete esteban quest
 Reply Text=I have completed Esteban's quests.
 Go to node ID=300 speak with auric
@@ -196,6 +252,62 @@ Requirement=Javier req initiate quest & 1000 gold
 Reply Text=I would like to donate the thousand gold.
 Go to node ID=520 before I accept
 Action work in progress=(have initiate quest and have gold)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+	Operand1=CVariableDerivedCharacterAttribute
+	{
+		Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+	}
+	Operator=
+	Operand2=CConstant
+	{
+		Constant Value=0
+	}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+	Action=CWasQuestEverActivatedAction
+	{
+		Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+	}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+	Operand1=CActionExpression
+	{
+		Action=CIsQuestCompletedAction
+		{
+			Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+		}
+	}
+}
+Operator=
+Operand2=CExpressionNot
+{
+	Operand1=CActionExpression
+	{
+		Action=CWasQuestEverActivatedAction
+		{
+			Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+		}
+	}
+}
+}
+}
+}
+Reply Text=Sir Esteban is dead.
+Go to node ID=400 Esteban Slain
 Icon=Quest Icon
 
 Requirement=Javier req complete esteban quest
@@ -528,6 +640,62 @@ Requirement=Javier req initiate quest & 1000 gold
 Reply Text=I would like to donate the thousand gold.
 Go to node ID=520 before I accept
 Action work in progress=(have initiate quest and have gold)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+	Operand1=CVariableDerivedCharacterAttribute
+	{
+		Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+	}
+	Operator=
+	Operand2=CConstant
+	{
+		Constant Value=0
+	}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+	Action=CWasQuestEverActivatedAction
+	{
+		Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+	}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+	Operand1=CActionExpression
+	{
+		Action=CIsQuestCompletedAction
+		{
+			Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Guard Esteban
+		}
+	}
+}
+Operator=
+Operand2=CExpressionNot
+{
+	Operand1=CActionExpression
+	{
+		Action=CWasQuestEverActivatedAction
+		{
+			Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek out Sir Auric
+		}
+	}
+}
+}
+}
+}
+Reply Text=Sir Esteban is dead.
+Go to node ID=400 Esteban Slain
 Icon=Quest Icon
 
 Requirement=Javier req complete esteban quest
