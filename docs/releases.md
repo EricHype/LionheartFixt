@@ -124,6 +124,109 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.11.0 - the Prisoner of Montserrat (scope)
+
+**Not started.** Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
+invasion -- 75 generators, about 150 enemies at the *solo* party-mojo tier, three to eight
+times any Act 1 area, tuned for parties -- and that is right for what it is. What the act lacks
+is any way through it that is not a fight against every pack in turn. The 0.10.0 levers (Sneak
+past one ambush, Outwit at the boss) are two rolls that skip an act, which is a shortcut, not a
+route. This release builds the route.
+
+**The premise is the game's.** Machiavelli's contract was *"to find one such as yourself"*;
+Sahar says the arrangement predates the slavers' cells. The garrison wants the Scion alive.
+So a character can give themselves up -- and be treated as what they are to the occupiers: a
+delivery. Nothing in this release removes an enemy. It changes how many a player *must* fight.
+
+### The route, stage by stage
+
+**1. The gate.** *"Take me to your captain."* The sentry (Tier 4's, given a talk specifier)
+does not need convincing; he has been told to expect this. What the stage decides is how you
+go: hand over your weapon (into a chest at the gate, recoverable), keep it on Outwit 6 (*"I
+was told to arrive armed. Ask her."*), or be looked at differently as a Demokin or Sylvant
+(*"One of the Master's own?"*) and not searched. A fade, and you are delivered -- not to
+Sahar. To the den.
+
+**2. The den -- the holding pen.** The Animal Den is a separate cave off the Grove with its own
+door, 78 placed parts, three bears and nothing else; a garrison with prisoners to keep would use
+exactly that. It gains a cage door across the mouth (the shipped `cage door` model on a locked
+`CDoorAI`, `cagebar` and `cagebarframe` pieces beside it), a bored handler outside, one bear
+still chained at the back, and what the monks left behind: a rosary, a tally scratched on the
+rock, a cowl. Noted; still not explained. Ways out, no two alike:
+
+| Way | Check | What it costs |
+|---|---|---|
+| The lock | Lockpick / Disarm 35 | nothing; you come out behind the handler |
+| The hinge | Strength 8 | loud: the handler fights, and the Grove's nearest pack hears |
+| The handler | Speech 40, or Charisma 7 | *"Tell her the Scion is bored."* He fetches an escort; you walk under guard |
+| The bear | Sylvant, or meat from the kitchens | the bear goes through the handler and the door and the first pack it meets |
+| Waiting | none | a timer; the escort comes anyway, and you go under guard with nothing kept |
+
+The no-build path exists. The builds buy initiative.
+
+**3. The hall -- through the occupation.** Escorted or escaped, Level 1 is crossed with the
+packs passive (a `delivered` checker the generators read at spawn -- the troll-peace shape --
+and a name-based stand-down for what has already spawned), and the hover trail turns inward:
+the assassins eating the abbey's stores, the priestesses lighting candles, handlers dicing over
+the knights' gear. An escaped character can do what an escorted one cannot -- backstab a
+priestess and watch her pack drift, take the weapon back from the gate chest, doctor the well
+-- each of which can wake the hall. An escorted one pays a toll at the sanctum door: the
+handler takes the purse, *"the captain's share"*, unless Barter 45 keeps it.
+
+**4. Sahar -- on her terms or yours.** Delivered and unarmed, her talk opens differently
+(*"You walked in. Good. It saves rope."*), and there are three ends, not two: fight her with
+what you kept or took back; the courier bluff (Outwit 7, built in 0.10.0); or **accept her
+offer** -- carry her word north to the Master and go free. That is the cunning ending: the
+invasion stands, the Crown is gone, you leave under her seal, Michel has a line for it, and it
+is the one route that leaves her alive for the Crypt to remember.
+
+**5. Out.** Kill her and the garrison routs -- every pack still standing goes passive and
+walks north off the map on the walk-off shape, because the captain was the contract. Bluff or
+accept and it stays, unalert, and you leave by Montgomerie's doors under her word. No route
+fights its way out. A player who wants to can strike a departing pack, and it turns.
+
+### The stealth layer, folded in
+
+- **Unalert garrison.** Sneak 40+ has packs spawn passive; they wake within a few paces, at a
+  drawn weapon, or when anything on the map is struck -- except inside the sanctum once
+  delivered, where the fight is Sahar's alone. Generator After Action reads Sneak at spawn (the
+  Khan-chest threshold); a proximity oval per pack; a Damaged Script per pack waking all by name.
+- **Their own tripwires.** The seven vanilla trap polygons and the needle trap are `Triggered
+  By Players` only; `Triggered By Enemies=1` and a chasing pack runs through its own poison.
+- **The bell.** The sanctum's bell, clickable: everything in the room walks to it (name-based
+  go-to to a marker) and the corridor past is open for twenty seconds. The Grove's woodpile,
+  kicked, does the same for the camp.
+- **The priestess.** A Summoner's Destroyed Script pacifies her own pack by name; the packs get
+  their own names so it can.
+- **Perception routes.** At PE 7+ the hover trail also says where the packs are thick.
+
+### Not in it, with reasons
+
+Fire in the treeline (a map cost that deserves its own decision), poisoning the well (a second
+poison idea; the priestess is the thief's multiplier already), and raising the dead knights
+(a set piece for its own release). Disarming by inventory: the engine removes items by name,
+not by slot, so "hand over your weapon" takes the *equipped* item only if a check for the
+equipped slot exists -- to read before build; the fallback is the chest taking a named class.
+
+### What is new, plainly
+
+The cage door and the den's dressing (shipped models on the pew envelope); one handler on the
+`Assasin EarlyLevels` can with a small tree; a gate chest; a timer relay; the escort handlers
+at two doors; the `delivered` and `routed` checkers and the generators reading them; Sahar's
+opening variant and her offer; Michel's line; the rout relay; four or five hover texts; the
+bell and woodpile parts. Every line of dialogue is ours. No new map.
+
+### Gates
+
+- Gate 0 as ever; the den, the Grove and both interiors are level parts, so **a character who
+  has never entered Montserrat**.
+- Gate 1, in order: give up at the gate; each of the five ways out of the den on the build
+  that has it; the hall passive; the toll; each of Sahar's three ends; the rout and the
+  unbroken garrison both walked out through.
+- Gate 3: the delivered state must not be reachable twice (the sentry's reply hides once
+  `delivered` exists); striking Sahar must not wake the Grove; the bear must not turn on the
+  player who freed it (its target type is the invaders').
+
 ## 0.10.0 - Montserrat
 
 **Published.** Played in part before the cut -- the Grove, the wounded assassin, Sahar's approach, the journal's return -- and repaired from what that found; the rest built and unplayed. What follows is the scope as written; "What was built" at the end records where the build departed from it and why.
