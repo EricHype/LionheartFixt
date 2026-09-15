@@ -1646,22 +1646,30 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=3
 								Action=CPlaySoundAction
 								{
 									Sound=Enemies/Assasins/Assassin Pain2.ogg
 									Position=$Instigator
 								}
-								Action=CDeleteAction
+								Action=CActionDoDamage
 								{
-									Target Name=Wounded Assassin
-								}
-								Action=CActivateAction
-								{
-									Target Name=Wounded Assassin Corpse Generator
-									Play Activate Sound=0
-									Delay Between Activations=0
-									Warp Behavior=
+									Character Doing Damage=$Instigator
+									Character To Damage=Wounded Assassin
+									Defend Against=0
+									No Friendly Fire Check=1
+									Damages=Array
+									{
+										Item Count=1
+										Damage=CXRPGDamage
+										{
+											Damage Type=Damage Types/Piercing
+											Damage Amount=CConstant
+											{
+												Constant Value=500
+											}
+										}
+									}
 								}
 								Action=CDeactivateAction
 								{

@@ -23,11 +23,6 @@ Go to node ID=20 no trust
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=Sorry, I'll be going now.
-Go to node ID=
-Icon=Exit Icon
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CAND
@@ -141,6 +136,11 @@ Target Name=Troll Peace Keeper
 Icon=Fight Icon
 Is Default Reply=1
 
+
+Requirement=!None
+Reply Text=Sorry, I'll be going now.
+Go to node ID=
+Icon=Exit Icon
 ------------------------------------------------------------
 Node ID=20 no trust
 Text=We no trust Eduardo no more.  We no trust no one.  Too many dead Trolls.  Wererats sneaky.  Leave or face problem.
@@ -978,12 +978,6 @@ Reply Text=<Stand over him, and count. One for him, and one for each of his lyin
 Go to node ID=121 the counting
 Icon=Quest Icon
 
-Requirement=!None
-Reply Text=<Leave him as he lies.>
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
 Requirement=PE 7+
 Reply Text=<Look at how they are lying, and not just at how many.>
 Go to node ID=122 the ground says
@@ -996,6 +990,12 @@ Requirement=IN below 4
 Reply Text=<Count them.>
 Go to node ID=124 a lot of them
 
+
+Requirement=!None
+Reply Text=<Leave him as he lies.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=121 the counting
 Text=<You count him first, because he is the reason. Then the four of his lying near enough to have been coming to him when it finished -- and they were coming to him, all four are facing the same way and it is his way.>  <Five. It takes no time at all. That is the part that stays with you: a thing that has waited this long, and it takes less than a minute to do, and it needed nothing but somebody who was not there.>

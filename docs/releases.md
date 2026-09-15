@@ -523,6 +523,32 @@ and the secret door, above; the necromancer, untested.
 
 ### Repairs from the 0.10.0 playthrough, as they come in
 
+**The goodbye was in the middle of the menu.** A reply's position in the menu is its position in
+the file, and every reply Fixt spliced into an existing node went wherever the splice was
+easiest -- after the goodbye, on Quinn, Enrique, the Warning Troll, the Blacksmith, Amir,
+Javier, the Saladin knight, the Goblin Girl and the Khan. Twenty-eight nodes, each compared
+against its vanilla copy and reordered only if Fixt had touched it: the Exit-icon replies move
+to the end, everything else keeps its order, and the pass asserted per node that no line
+changed. Vanilla's own convention, restored.
+
+**Quinn's reserve joins his shop, and the errands come out from under "questions".** The
+tester's question was why the potion tiers needed a separate store at all. Because the engine
+has no action that adds an item to a merchant: a shop's stock is a fixed list on a `CMerchantAI`
+map part, and the only runtime knobs are price multipliers. So the choice was a second window
+(what 0.4.0 built) or a second copy of the whole shop with the tiers folded in. Now the
+latter: six merged merchants -- Good Store and the Templar/Inquisition store, each with Reserve
+One / Two / Three appended -- and every one of the 23 replies that opens a base store opens
+the richest merged one the player has earned instead. Each step also checks that the merged
+part *exists*, so a save that entered the shop before this build falls through to the plain
+store and gets the old reserve reply -- on the greeting, not buried. The three errand offers
+sit on a hub, `805 errands`, reachable from every greeting by *"Is there anything around here
+I could help you with?"*; the copies under `05 Other Questions` stay.
+
+**The wounded assassin vanished when finished.** Delete-and-respawn-a-corpse in one tick left
+nothing behind. "Finish him" is now a 500-point blow from the player through
+`CActionDoDamage`, so he dies where he lies and stays. Level part; a character who has not
+entered Level 1.
+
 **0.9.1 crashed the game on entering the Mongol Camp from the cave.** *"Tried to use an unknown
 class 'CMultipleActionsAction' for a 'Then'"* -- the gate polygon's `Then=` value began with
 three tabs, left over from re-indenting the vanilla challenge block under the new `Else`. The

@@ -337,12 +337,6 @@ Reply Text=I have other questions for you.
 Go to node ID=3 Return Dialogue
 
 Requirement=!None
-Reply Text=Ah, I see.  Goodbye.
-Go to node ID=10 Goodbye
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CExpressionNot
@@ -392,6 +386,12 @@ Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a
 Reply Text=I carry a blade of Eduardo's making now. Would you teach me to use it as you teach your brother?
 Go to node ID=55 the lesson
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Ah, I see.  Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=50 name
 Text=My name is Farshad ibn Almassizad, Knight of the Order of Saladin, and protector of the sacred relics of the East. My brothers and I have traveled far to come to Barcelona.

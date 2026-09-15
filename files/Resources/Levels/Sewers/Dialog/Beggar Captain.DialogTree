@@ -106,12 +106,6 @@ Return failure if the If failes=0
 Icon=Fight Icon
 
 Requirement=!None
-Reply Text=Sorry, not today.  I'll be going now.
-Go to node ID=40 come on back
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -151,6 +145,12 @@ Reply Text=I have been down to the lava trolls, and they have something to say t
 Go to node ID=700 the trolls case
 Icon=Quest Icon
 
+
+Requirement=!None
+Reply Text=Sorry, not today.  I'll be going now.
+Go to node ID=40 come on back
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=20 subsequent returns
 Text=You are back, how can I help you?
@@ -313,13 +313,6 @@ Return failure if the If failes=0
 Icon=Fight Icon
 
 Requirement=!None
-Reply Text=Nothing. I'll be on my way.
-Go to node ID=
-Action work in progress=if they choose this, end dialogue
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -359,6 +352,13 @@ Reply Text=I have been down to the lava trolls, and they have something to say t
 Go to node ID=700 the trolls case
 Icon=Quest Icon
 
+
+Requirement=!None
+Reply Text=Nothing. I'll be on my way.
+Go to node ID=
+Action work in progress=if they choose this, end dialogue
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=21 will you kill Juanita
 Text=Have you decided to Kill Juanita after all?
@@ -1472,12 +1472,6 @@ Reply Text=There is red ore moving up out of that pit now, bought and paid for, 
 Go to node ID=702 withdrawn
 Icon=Quest Icon
 
-Requirement=!None
-Reply Text=<Say nothing more.>
-Go to node ID=703 not persuaded
-Icon=Exit Icon
-Is Default Reply=1
-
 Requirement=Templar IS
 Reply Text=<Let him notice, at his leisure, exactly who is standing in his hall arguing on behalf of trolls.>
 Go to node ID=710 a knight argues
@@ -1490,6 +1484,12 @@ Requirement=CH lessthan 6
 Reply Text=They live down. You live up. That is all of it.
 Go to node ID=712 blunt
 
+
+Requirement=!None
+Reply Text=<Say nothing more.>
+Go to node ID=703 not persuaded
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=702 withdrawn
 Text=<He is quiet for a moment, and when he speaks again he has stopped performing.>  ...Bueno. Bueno. The contract is withdrawn. I will tell the men the lower level is closed and not to go past the fourth turning at all, which is what they have been doing anyway without my permission.  <He rubs his face.>  Tell your trolls that Enrique Garcia has never in his life been argued out of a grudge before and would prefer it did not get about.

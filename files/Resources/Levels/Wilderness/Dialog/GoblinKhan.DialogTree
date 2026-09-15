@@ -298,12 +298,6 @@ Relay Name=Khan dialog player said kill him
 }
 Icon=Fight Icon
 
-Requirement=!None
-Reply Text=Sorry, Great Khan, I seem to have taken a wrong turn. I'll be on my way.
-Go to node ID=11 Earn Goodbye
-Icon=Exit Icon
-Is Default Reply=1
-
 Requirement=Goblin Horde Highlevel
 Custom Requirement=CIsGreaterThan
 {
@@ -325,6 +319,12 @@ Requirement=Goblin Horde Highlevel
 Reply Text=Great Khan, I would serve the Horde again. What does the war need?
 Go to node ID=350 next task
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry, Great Khan, I seem to have taken a wrong turn. I'll be on my way.
+Go to node ID=11 Earn Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=10 Goodbye
 Text=It's fortunate for you I had a large lunch.  Very well, I'll allow you to leave... this time.

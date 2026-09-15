@@ -93,6 +93,11 @@ Text=I'll just keep an eye on you and make sure nobody else tries to eat you, ok
 Should Have Voiceover=0
 
 Requirement=!None
+Reply Text=Keep your eyes to yourself.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
 Reply Text=Keep up, then.
 Go to node ID=
 Custom Action=CMultipleActionsAction
@@ -129,11 +134,6 @@ Target Name=$Trigger
 }
 }
 Icon=Exit Icon
-
-Requirement=!None
-Reply Text=Keep your eyes to yourself.
-Go to node ID=
-Is Default Reply=1
 ------------------------------------------------------------
 Node ID=100 Combat
 Text=Eeeeeeeeek!
@@ -193,6 +193,11 @@ Text=I'd better follow you around and help you eat your snails!
 Should Have Voiceover=0
 
 Requirement=!None
+Reply Text=Eat them yourself.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
 Reply Text=Bring the snails.
 Go to node ID=
 Custom Action=CMultipleActionsAction
@@ -229,15 +234,15 @@ Target Name=$Trigger
 }
 }
 Icon=Exit Icon
-
-Requirement=!None
-Reply Text=Eat them yourself.
-Go to node ID=
-Is Default Reply=1
 ------------------------------------------------------------
 Node ID=195 Follow 2 no snails
 Text=Goody, I'll help you look for people to get in our way!
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I hunt alone.
+Go to node ID=
+Is Default Reply=1
 
 Requirement=!None
 Reply Text=Then stay behind me.
@@ -276,11 +281,6 @@ Target Name=$Trigger
 }
 }
 Icon=Exit Icon
-
-Requirement=!None
-Reply Text=I hunt alone.
-Go to node ID=
-Is Default Reply=1
 ------------------------------------------------------------
 Node ID=200 Returning after killing the woodsman 
 Text=How many innocents did you kill? Did you bring Rakeb the eyes? What did you bring me? 
@@ -380,6 +380,11 @@ Text=Momma says a girl should keep close to what she has cooked for. I will be r
 Should Have Voiceover=0
 
 Requirement=!None
+Reply Text=Stay with your momma.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
 Reply Text=Right behind me, then.
 Go to node ID=
 Custom Action=CMultipleActionsAction
@@ -416,15 +421,15 @@ Target Name=$Trigger
 }
 }
 Icon=Exit Icon
-
-Requirement=!None
-Reply Text=Stay with your momma.
-Go to node ID=
-Is Default Reply=1
 ------------------------------------------------------------
 Node ID=295 goblin girl stays behind
 Text=<She stops short of the cave mouth, toes right up to the line where the dark ends.> Momma says outside is all big-folk and open sky and no roof to speak of. I'll be here. I'll be right here, so don't you go getting eaten out there.
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Not yet. There is more down here.
+Go to node ID=
+Is Default Reply=1
 
 Requirement=!None
 Reply Text=Wait here for me.
@@ -471,15 +476,15 @@ Forget Trigger=0
 }
 }
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=296 goblin girl stays behind waterfall
+Text=<She stops where the spray starts and will not be coaxed past it.> That way is all water and wet and outside. I'll wait by the dry part. Come back before momma notices you're gone.
+Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=Not yet. There is more down here.
 Go to node ID=
 Is Default Reply=1
-------------------------------------------------------------
-Node ID=296 goblin girl stays behind waterfall
-Text=<She stops where the spray starts and will not be coaxed past it.> That way is all water and wet and outside. I'll wait by the dry part. Come back before momma notices you're gone.
-Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=Wait here for me.
@@ -526,9 +531,4 @@ Forget Trigger=0
 }
 }
 Icon=Exit Icon
-
-Requirement=!None
-Reply Text=Not yet. There is more down here.
-Go to node ID=
-Is Default Reply=1
 }

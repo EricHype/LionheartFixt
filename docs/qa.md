@@ -1269,6 +1269,8 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS22 | Amir, as a Favored One | *"What troubles the Order, Amir?"* -> *"Of course, I will accompany you"* | The cathedral summit plays for Saladin: Javier's opening, Amir's two lines, the exchange, the directions, *"May the Prophet guide you"*, fade, and back to the Gate District with Montserrat on the map. Amir never hostile. **PASSED**, on a save that had not entered the cathedral |
 | MS23 | Troll chief, after *Speak for the Trolls* completes, Quinn's hide errand open, no hide held | Talk to him | *"The herbalist in the city needs the hide of a lava troll..."* -> he gives one from his dead. Absent with a hide in hand or the errand turned in |
 | MS24 | Enrique, after the contract is withdrawn | Either greeting | *"You said there was one thing more you needed, before the trolls came between us."* -> his confession -> the cure quest, exactly as the kill route gives it. Absent once the cure quest has ever been given |
+| MS25 | Quinn, fresh shop | Complete an errand, then *"Can I see what you have for sale?"* | One shop window with the earned tiers in it (Great Healing after pelts; Superior after stingers; Supreme after the hide); no reserve reply anywhere. On a save that entered the shop before 0.10.0: the plain shop, and *"What have you set aside for me?"* on the greeting |
+| MS26 | Quinn, any greeting | *"Is there anything around here I could help you with?"* | `805 errands`: the next open errand offered; the reply gone once the troll errand has been given |
 
 ---
 

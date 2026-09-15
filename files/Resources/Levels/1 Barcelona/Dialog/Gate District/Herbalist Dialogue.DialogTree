@@ -68,6 +68,98 @@ Go to node ID=30 Special Order
 Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+}
+}
+Reply Text=Is there anything around here I could help you with?
+Go to node ID=805 errands
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What have you set aside for me?
+Go to node ID=860 quinns reserve
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -1047,12 +1139,6 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=I need nothing today. Goodbye.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -1475,6 +1561,12 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=1 Conversation Start Normal Female Not Inquisitor
 Text=Welcome, senorita, to Quinn's Apothecary, providing tonics and potions to all Nueva Barcelona for twenty years - and God willing, twenty more. Please, tell me what ails you, and we will see what I have that may help.
@@ -1539,6 +1631,98 @@ Go to node ID=30 Special Order
 Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+}
+}
+Reply Text=Is there anything around here I could help you with?
+Go to node ID=805 errands
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What have you set aside for me?
+Go to node ID=860 quinns reserve
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -2518,12 +2702,6 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=I need nothing today. Goodbye.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -2946,6 +3124,12 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=1 Conversation Start Inquisitor
 Text=Eh...it is truly an honor to have one of the Inquisition grace Quinn's Apothecary. In all my twenty years, the Inquisition has always been welcome in this shop, and my health permitting, they shall be for twenty more.
@@ -3040,6 +3224,98 @@ Go to node ID=30 Special Order
 Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+}
+}
+Reply Text=Is there anything around here I could help you with?
+Go to node ID=805 errands
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What have you set aside for me?
+Go to node ID=860 quinns reserve
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -4019,12 +4295,6 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=I need nothing today. Goodbye.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -4447,6 +4717,12 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=03 Return Dialogue
 Text=Welcome back, traveler. How can Quinn be of service?
@@ -4468,12 +4744,96 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=3
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 Action=CActivateAction
 {
@@ -4533,12 +4893,96 @@ Requirement=Herbalist HAS explained how store works
 Reply Text=Can I see what you have for sale?
 Go to node ID=
 Action work in progress=If How make Potions HAS BEEN Explained
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=Herbalist Speech 25 OR NOT Inquisitor or Templar
@@ -4572,6 +5016,98 @@ Requirement=Herbalist if NOT have quest to get Lycanthropy potion
 Reply Text=Can you make any special cures?
 Go to node ID=30 Special Order
 Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+}
+}
+Reply Text=Is there anything around here I could help you with?
+Go to node ID=805 errands
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What have you set aside for me?
+Go to node ID=860 quinns reserve
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CAND
@@ -5553,12 +6089,6 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=I need nothing today. Goodbye.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -5981,6 +6511,12 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=03 Return Dialogue Inquisitor and Templar
 Text=Eh...welcome back. Was there something you forgot concerning my natural ingredients the last time you were here?
@@ -6002,12 +6538,96 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=3
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 Action=CActivateAction
 {
@@ -6062,12 +6682,96 @@ Requirement=!None
 Reply Text=Can I see what you have for sale?
 Go to node ID=
 Action work in progress=(Go directly into store)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=!None
@@ -6134,6 +6838,98 @@ Go to node ID=30 Special Order
 Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+}
+}
+Reply Text=Is there anything around here I could help you with?
+Go to node ID=805 errands
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What have you set aside for me?
+Go to node ID=860 quinns reserve
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -7113,12 +7909,6 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=I need nothing today. Goodbye.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -7541,6 +8331,12 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=03 Return Dialogue Wielder Friend
 Text=Welcome back, friend of the Wielders. How can Quinn be of service?
@@ -7573,12 +8369,96 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=3
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 Action=CActivateAction
 {
@@ -7627,12 +8507,96 @@ Requirement=Herbalist HAS explained how store works
 Reply Text=Can I see what you have for sale?
 Go to node ID=
 Action work in progress=If How make Potions HAS BEEN Explained
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=Herbalist Speech less 25 AND Templar or Inquisition
@@ -7644,6 +8608,98 @@ Requirement=!None
 Reply Text=Can you make any special cures?
 Go to node ID=30 Special Order
 Action work in progress=(If you HAVEN'T been told to find a cure for the Wererats)
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+}
+}
+Reply Text=Is there anything around here I could help you with?
+Go to node ID=805 errands
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What have you set aside for me?
+Go to node ID=860 quinns reserve
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CAND
@@ -8625,12 +9681,6 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=I need nothing today. Goodbye.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -9053,6 +10103,12 @@ Else=
 Return failure if the If failes=0
 }
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=05 Other Questions
 Text=What would you like to know about?
@@ -9108,24 +10164,192 @@ Requirement=Herbalist if Templer OR Inq AND NOT convinced OK
 Reply Text=Let's see what you have for sale.
 Go to node ID=
 Action work in progress=(If Inquisitor and Templar NOT convinced OK)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
 }
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
 
 Requirement=Herbalist HAS explained how store works AND NOT Inq or Templar
 Reply Text=Can I see what you have for sale?
 Go to node ID=
 Action work in progress=(If Set Quinn Store Dialogue Intro Done OR if Inquisitor and Templar convinced OK)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=Herbalist Has NOT explained how store works AND NOT Inq or Temp
@@ -10161,12 +11385,6 @@ Return failure if the If failes=0
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=Nothing today. Goodbye.
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -10228,18 +11446,6 @@ Custom Action=CActivateQuestStateAction
 Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
 State=QN8HD4LM
 }
-Icon=Quest Icon
-
-Requirement=!None
-Custom Requirement=CActionExpression
-{
-Action=CIsQuestCompletedAction
-{
-Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
-}
-}
-Reply Text=What have you set aside for me?
-Go to node ID=860 quinns reserve
 Icon=Quest Icon
 
 Requirement=!None
@@ -10666,6 +11872,12 @@ Return failure if the If failes=0
 }
 Icon=Quest Icon
 
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
 ------------------------------------------------------------
 Node ID=10 Potions response if Inquisitor or Knight Templar
 Text=Eh...again, many apologies, my stock is limited today, but I do have a few *natural* tonics that can help speed the healing of wounds...
@@ -10707,12 +11919,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -10732,12 +12028,96 @@ Requirement=!None
 Reply Text=Let me see what you have left in stock, then.
 Go to node ID=
 Action work in progress=(Open Store)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=!None
@@ -10778,12 +12158,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -10793,12 +12257,96 @@ Requirement=!None
 Reply Text=Let me see what you have left in stock, then.
 Go to node ID=
 Action work in progress=(Open Store)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=!None
@@ -10827,12 +12375,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -10854,12 +12486,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -10881,12 +12597,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -10908,12 +12708,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -10961,12 +12845,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -10976,12 +12944,96 @@ Requirement=!None
 Reply Text=Let me see what you have left in stock, then.
 Go to node ID=
 Action work in progress=(Open Store)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=!None
@@ -11010,12 +13062,96 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -11029,24 +13165,192 @@ Requirement=Herbalist if Templer OR Inq AND NOT convinced OK
 Reply Text=Let's see what you have for sale.
 Go to node ID=
 Action work in progress=(If Inquisitor and Templar NOT convinced OK)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Templar and Inquisition Inventory for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Templar and Inquisition Inventory for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
 }
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
 
 Requirement=Herbalist HAS explained how store works AND NOT Inq or Templar
 Reply Text=Can I see what you have for sale?
 Go to node ID=
 Action work in progress=(If Set Quinn Store Dialogue Intro Done OR if Inquisitor and Templar convinced OK)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=Herbalist Has NOT explained how store works AND NOT Inq or Temp
@@ -11511,12 +13815,96 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=2
-Action=CDisplayMerchantWindowAction
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 Action=CActivateAction
 {
@@ -11547,12 +13935,96 @@ Requirement=!None
 Reply Text=Hmmm. Very well. Let me see what you have in stock.
 Go to node ID=
 Action work in progress=(Open Store)
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Three
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Three
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus Two
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus Two
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Good Store for Herbalist Plus One
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+Then=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Good Store for Herbalist Plus One
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Else=CDisplayMerchantWindowAction
 {
 LayerPart name of merchants inventory=Good Store for Herbalist
 LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
 }
 
 Requirement=!None
@@ -12094,6 +14566,101 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=I will see what I can find.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=805 errands
+Text=<He looks up from the bench.> There might be. It depends how far out of your way you are willing to go.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+}
+Reply Text=What do you need found?
+Go to node ID=800 wolf pelts request
+Action work in progress=(Offers the Wolf Pelts for Quinn quest if not already given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+State=008HTXBM
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+}
+}
+Reply Text=Anything else I could bring you?
+Go to node ID=820 wasp stingers request
+Action work in progress=(Offers the Wasp Stingers for Quinn quest if not already given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+State=QN5TG7XR
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+}
+}
+Reply Text=You have something harder in mind, I think.
+Go to node ID=840 troll hide request
+Action work in progress=(Offers the Troll Hide for Quinn quest if not already given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+State=QN8HD4LM
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Not today.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1

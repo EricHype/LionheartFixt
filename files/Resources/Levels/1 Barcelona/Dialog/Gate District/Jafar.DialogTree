@@ -804,19 +804,6 @@ Reply Text=Where are you from?
 Go to node ID=30 persia
 
 Requirement=!None
-Reply Text=Goodbye.
-Go to node ID=10 Goodbye
-Custom Action=CActivateAction
-{
-Target Name=amir can use bubble talk
-Play Activate Sound=0
-Delay Between Activations=0
-Warp Behavior=
-}
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=COR
 {
 Operand1=CUseCannedExpression
@@ -865,6 +852,19 @@ Custom Action=CSetQuestSatusToCompletedAction
 Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
 }
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=amir can use bubble talk
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=10 Goodbye
 Text=Farewell then, and may the Prophet guide you.

@@ -454,12 +454,6 @@ Reply Text=Can you tell me about the Knights Templar?
 Go to node ID=30 templar
 
 Requirement=!None
-Reply Text=I must go. Goodbye.
-Go to node ID=10 Goodbye
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CUseCannedExpressionExpression
@@ -482,6 +476,12 @@ Desired Minimum Count=1
 Reply Text=I have decided that I would like to become an initiate.
 Go to node ID=190 need sponsor
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=5 questions
 Text=What would you like to ask about?
@@ -665,12 +665,6 @@ Reply Text=Can you tell me about the Knights Templar?
 Go to node ID=30 templar
 
 Requirement=!None
-Reply Text=Nothing today. Goodbye.
-Go to node ID=10 Goodbye
-Icon=Exit Icon
-Is Default Reply=1
-
-Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CUseCannedExpressionExpression
@@ -693,6 +687,12 @@ Desired Minimum Count=1
 Reply Text=I have decided that I would like to become an initiate.
 Go to node ID=190 need sponsor
 Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=10 Goodbye
 Text=Good fortune to you.

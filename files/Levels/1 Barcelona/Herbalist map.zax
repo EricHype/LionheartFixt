@@ -85,6 +85,1023 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=Good Store for Herbalist Plus Three
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Herbalist
+					Price Multiplier=1.1
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=9
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Mana Recharge
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Misc Items/Potion selection MAGIC
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Healing Potion
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Antidote
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Cure-All
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Extra Healing
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Superior Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Supreme Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=30
+			Position Y=584
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Good Store for Herbalist Plus Two
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Herbalist
+					Price Multiplier=1.1
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=8
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Mana Recharge
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Misc Items/Potion selection MAGIC
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Healing Potion
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Antidote
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Cure-All
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Extra Healing
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Superior Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=40
+			Position Y=584
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Good Store for Herbalist Plus One
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Herbalist
+					Price Multiplier=1.1
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=7
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Mana Recharge
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Misc Items/Potion selection MAGIC
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Healing Potion
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Antidote
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Cure-All
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Specific Item Cans/Misc Items/Potion Extra Healing
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=50
+			Position Y=584
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar and Inquisition Inventory for Herbalist Plus Three
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Herbalist
+					Price Multiplier=1.25
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=6
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Antidote
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Superior Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Supreme Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=60
+			Position Y=489
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar and Inquisition Inventory for Herbalist Plus Two
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Herbalist
+					Price Multiplier=1.25
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=5
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Antidote
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Superior Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=70
+			Position Y=489
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar and Inquisition Inventory for Herbalist Plus One
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Herbalist
+					Price Multiplier=1.25
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=4
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Antidote
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=80
+			Position Y=489
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=
