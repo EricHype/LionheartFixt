@@ -87,6 +87,329 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Dynamic Properties=1
+			{
+				Experience Points=50
+			}
+			Name=Hidden Treasure
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=20
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Hidden Treasure
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CUseCannedActionAction
+									{
+										Canned Object=Common Objects and Scripts/Taken Hidden Treasure
+									}
+									Action=CGenerateInventoryItemAction
+									{
+										Number of items to generate=1
+										Level of item to generate=
+										Location=$Trigger
+										Location Offset=0,0
+										Generate Within Radius=128
+										Aspect Ratio=0.712766
+										Item List=CInventoryItemGeneratorMixedList
+										{
+											Items=Array
+											{
+												Array Count=1
+												Array Item=CInventoryItemGeneratorMixedListItem
+												{
+													Weighting=10
+													Item=CInventoryItemGeneratorCannedList
+													{
+														Canned Item List=Inventory/Enemy Drop Items Cans/Gold/Gold 2Small Pile
+													}
+												}
+											}
+										}
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Hidden Treasure
+										Node ID=1 Loose Stone
+										Name of Position=$trigger
+										Position Offset=0.000000,-75.000000
+										After Action=
+										Include In Log=1
+									}
+								}
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Secret Icon
+			Position X=180
+			Position Y=420
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=50
+			}
+			Name=Hidden Treasure
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=20
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Hidden Treasure
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CUseCannedActionAction
+									{
+										Canned Object=Common Objects and Scripts/Taken Hidden Treasure
+									}
+									Action=CGenerateInventoryItemAction
+									{
+										Number of items to generate=1
+										Level of item to generate=CUseCannedExpressionExpression
+										{
+											Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Average
+										}
+										Location=$Trigger
+										Location Offset=0,0
+										Generate Within Radius=128
+										Aspect Ratio=0.712766
+										Item List=CInventoryItemGeneratorMixedList
+										{
+											Items=Array
+											{
+												Array Count=1
+												Array Item=CInventoryItemGeneratorMixedListItem
+												{
+													Weighting=10
+													Item=CInventoryItemGeneratorCannedList
+													{
+														Canned Item List=Inventory/Creating Random Magic Items/All Potions
+													}
+												}
+											}
+										}
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Hidden Treasure
+										Node ID=1 Loose Stone
+										Name of Position=$trigger
+										Position Offset=0.000000,-75.000000
+										After Action=
+										Include In Log=1
+									}
+								}
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Secret Icon
+			Position X=730
+			Position Y=220
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Spirit 2 Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CActionAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Spirit 2 Generate Action
+					}
+					Executed Action=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spirit Generator Level2
+			Position X=640
+			Position Y=200
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Spirit 2 Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CActionAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Spirit 2 Generate Action
+					}
+					Executed Action=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spirit Generator Level2
+			Position X=760
+			Position Y=850
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=
 			Child List=
 			Visible=1
@@ -109,8 +432,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Hamlet/General/Boxes/Barrel1/Barrel1 A
-			Position X=560
-			Position Y=140
+			Position X=455.962
+			Position Y=289.094
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -139,8 +462,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Hamlet/General/Boxes/Barrel2/Barrel2 A
-			Position X=590
-			Position Y=128
+			Position X=486.125
+			Position Y=274.555
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -169,8 +492,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Hamlet/General/Boxes/Barrel2/Barrel2 B
-			Position X=620
-			Position Y=148
+			Position X=507.032
+			Position Y=293.572
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -229,8 +552,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Rethgorad/Town/House Items/Shelves2/Shelves2 B
-			Position X=690
-			Position Y=140
+			Position X=631.826
+			Position Y=116.314
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -409,8 +732,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Crypt Of Vika/Chests/Chest2
-			Position X=760
-			Position Y=250
+			Position X=782.118
+			Position Y=239.35
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Closed
