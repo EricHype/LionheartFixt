@@ -1286,13 +1286,15 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | PM4 | After PM3, get out and return to the gate | Look at the ground by the sentry | The named weapon itself, a plain base for each rolled one, and two good weapons; the garrison passive, *"Keep walking, Scion"* on a click |
 | PM5 | PM1 with Outwit 6 | The armed reply | Delivered with everything kept |
 | PM6 | PM1 as Demokin or Sylvant | *"Look at me..."* | Delivered unsearched |
-| PM7 | In the pen | Click the door | Locked; with Lockpick 35 it opens; outside it you are in the Grove at the den mouth |
-| PM8 | In the pen, ST 8 | Click the south bar | *"The pin shears..."*, the door opens, the handler attacks; with ST below 8, *"They do not give"* |
-| PM9 | In the pen, Speech 40 or CH 7 | Talk to the handler through the bars | *"...Fine. Ahead of me, and slow"*, the door opens, *"Walk"* over him; the monks and bears questions answer |
-| PM10 | In the pen as a Sylvant | Talk to the chained bear | The ring comes away; the bear goes for the handler through the open door; his alarm plays |
-| PM11 | In the pen, do nothing for five minutes | - | The door opens and *"The captain will see you now"* plays |
-| PM12 | Den entered on foot, never delivered | - | A closed, unlocked cage door across the mouth that opens on a click; three bears as before; the hovers read |
-| PM13 | Any of PM7-PM11, then re-enter the den | - | The pen state persists; no second setup; no timer restart |
+| PM7 | In the cell | Click the door | Locked; with Lockpick 35 it opens; the guard room, the stair, Level 1's south-west room |
+| PM8 | In the cell, ST 8 | Click the floor by the door's pins | *"The lower pin shears..."*, the door opens, the handler attacks; with ST below 8, *"Old iron, old stone"* |
+| PM9 | In the cell, Speech 40 or CH 7 | Talk to the handler through the bars | *"...Fine. Ahead of me, and slow"*, the door opens, *"Up the stair"* over him; the monks and the old man questions answer |
+| PM10 | In the cell | Talk to Brother Pau through the bars, ask how to get out | The drain; click the straw -> *"a square of darkness"* and you are in his cell; his door opens on a click |
+| PM10b | In the cell, PE 7, without talking to him | Click the straw | The same, unaided; below PE 7 and untold, *"Straw, old and flat"* |
+| PM11 | In the cell, do nothing for five minutes | - | The door opens and *"The captain will see you now"* plays |
+| PM12 | Level 1, never delivered | Walk down the stair in the south-west room | The undercroft: two cells, doors closed and unlocked, no handler, no monk; the stair hover reads |
+| PM13 | Any of PM7-PM11, then walk back down | - | The pen state persists; no second setup; no timer restart |
+| PM14 | The Animal Den | Enter | Vanilla: three bears, no door |
 
 ---
 

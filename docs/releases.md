@@ -477,12 +477,55 @@ waiting. Hover: the cage from inside, a tally of forty-one on the back wall, a c
 corner. Not yet: the escort as a walking guard (he stays; the checker is what the later
 stages read), the Grove's alarm on a loud escape, any hall behaviour (stage C).
 
-**Unknowns the first test settles, in order:** whether the door and two bars actually block
-the throat (a gap and the pen is decoration); whether a passive sentry with a talk specifier
+**The den did not work, and the pen moved.** Tested the same evening: the Slave Pits' cage
+pieces are 200-300 px fence sections built for room-sized cells, so two of them across a
+100-unit throat were a wall; swapped for stalagmite posts, still a wall; the door alone,
+placed by hotspot into the tunnel base, was *"a wooden door floating in space"* -- because
+the mouth is a single tunnel with open floor beside it, and no arrangement of shipped
+pieces reads as a pen there. The tester opened the editor to lay it out and found the same:
+there is no room in that cave. Two lessons kept: **a sprite's hotspot is where the entity
+stands, not the sprite's centre** (`cage door b` anchors at its top-left corner; every
+placement must be rendered before it is believed), and the editor's overlap rule now
+ignores overlaps the file already had when opened, or a cave map shows 281 errors that
+are nobody's.
+
+**The undercroft.** The abbey has no cells on any map, and the jailor's hover already said it
+kept them. So the cells are a new map, `4 Undercroft.zax`, and it is not invented: it is the
+Inquisition Chambers' south-west cell block -- Prisoner3's cell, Prisoner2's, the room
+between with the stocks, the north-east wall with its doorway -- lifted verbatim (walls,
+bars, door frames, torches, chains, the black masks, the collision polygons and the
+waypoint hints), the terrain tile map cropped from the same region with the cell floors
+painted stone, and two doors placed fresh on the jail's own door shape. 1280 x 1152, 89
+scenery parts, nothing scripted survives the copy. It is reached by a stair (`Outpost/Dwarf
+Region/Stairs/Down 03 A`) in the crook of the west wall of Level 1's south-west room at
+(1470,2420), beside the two candle sconces and before the jailor's body: the doorway in the
+undercroft's north-east wall is the foot of that stair, and a prisoner who comes up it has
+the ambush and the wounded assassin behind them and the needle trap and Level 2 ahead --
+the two-thirds the delivery should buy.
+
+**Stage B, second attempt.** `Pen Start` inside cell A; `pen setup` on both spawn points
+locks the cell door (the jail's `GetCloseThen OpenDoor` specifier with `Lock Pick
+Adjustment=35`), seats the handler in the guard room by the stocks, raises the monk in cell
+B, and starts the 300-second timer. The bear is gone and the fourth way out is **Brother
+Pau**, the cellarer, the first living monk in the act, legless in the next cell: he says
+where the monks went (*"up the stair and out, with their hands tied... North, with the
+wagons, the way the snakes came"*), why he was kept (*"somebody has to answer the door
+when the next one comes"*), and about the drain under the straw that runs under the wall
+into his cell -- *"and my door was never locked. They did not think an old man needed
+locking."* Talking to him sets `drain known`; the straw in cell A is a click that, with that
+or Perception 7, moves you to `Drain Out` in his cell (a same-map `CRelocateAction`, the
+Final Encounter's shape), and his door opens. Otherwise: the lock, the pins (Strength 8,
+`loud`), the handler (Speech 40 / CH 7, `escort`), the timer. The handler's tree lost its
+bears and gained the keys on his belt and *"Do not talk to him. He lies."* Hovers: the
+tally, the cowl, the straw, the pins, the stair from above. The den is vanilla again.
+
+**Unknowns the first test settles, in order:** whether the undercroft loads at all and its
+floor and walls read (a new map; the engine generates its own pathing); whether the
+cell's door and bars hold a player as they hold the jail's prisoners; whether a passive sentry with a talk specifier
 lets the forced dialog open before his pack sees you; whether `COtherMapAction` activations
 reach a map the save has never loaded (the sewers' `Thief enemy trigger` says yes); whether
-the bear, loosed, goes through an open door for a man in the exit zone; whether magic
-weapons match their base on removal.
+the same-map relocate through the drain lands in cell B; whether magic weapons match their
+base on removal.
 
 ### Gates
 

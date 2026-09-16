@@ -10,10 +10,10 @@ CLayerSaveData
 		Num Seconds To Switch=5
 		Full Mix Song=2 Montserrat/MX_MONT_RUINS_MED.ogg
 		Med Mix Song=2 Montserrat/MX_MONT_RUINS_MED.ogg
-		Ambiant Song=2 Montserrat/AMB_Monts_Cave.ogg
+		Ambiant Song=2 Montserrat/AMB_Monts_Druid1.ogg
 	}
-	Width=2432
-	Height=1600
+	Width=1280
+	Height=1152
 	Action Queue=CActionQueue
 	{
 		Items=Array
@@ -26,12 +26,12 @@ CLayerSaveData
 	Default Game Type=QuestMode
 	Allowable Games=
 	Has Begin Been Called=0
-	Map Description=Animal Den
+	Map Description=Montserrat Undercroft
 	First Fire Action=
 	First Load Action=
-	View Position=521.000000,474.000000
-	Int View Position=521,474
-	Partial File Name=2 Montserrat/3 Animal Den
+	View Position=400.000000,300.000000
+	Int View Position=400,300
+	Partial File Name=2 Montserrat/4 Undercroft
 	Team Info=Array
 	{
 		Item Count=1
@@ -109,8 +109,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Checker
-			Position X=900
-			Position Y=620
+			Position X=1000
+			Position Y=60
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -139,8 +139,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Checker
-			Position X=920
-			Position Y=620
+			Position X=1020
+			Position Y=60
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -169,8 +169,38 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Checker
-			Position X=940
-			Position Y=620
+			Position X=1040
+			Position Y=60
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=drain known
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1060
+			Position Y=60
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -196,10 +226,13 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CTriggerRelayAction
+					{
+						Relay Name=pen setup
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
-					Facing Angle=200
+					Facing Angle=120
 				}
 			}
 			Category=
@@ -208,15 +241,15 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Spawn Point
-			Position X=980
-			Position Y=860
+			Position X=250
+			Position Y=360
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
-		Level Part=CEntityAnimated
+		Level Part=CEntityBase
 		{
-			Name=cage door
+			Name=From 02 Druid Council Level1
 			Child List=
 			Visible=1
 			Collideable=1
@@ -230,59 +263,18 @@ CLayerSaveData
 			Is Marked For Deletion=0
 			Activity=Array
 			{
-				Item Count=2
-				Activity=CDoorAI
+				Item Count=1
+				Activity=CSpawnPointAI
 				{
 					Marked For Deletion=0
 					Publisher=
-					Is Locked=0
-					Allow Open or Close?=
-					Before Open=
-					After Opened=
-					Before Closed=
-					After Closed=
-					After Locked=
-					After Unlocked=
-					Auto-Close Timeout=0
-					State=Unknown
-					Timeout Time Left=0
-					Frame Andvance=0
-					Next Pain=0
-					Triggered By Players=1
-					Triggered By Enemies=1
-				}
-				Activity=CAIInteractionSpecifier
-				{
-					Marked For Deletion=0
-					Publisher=
-					Trigger Only Once=0
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Companions=0
-					Triggered By Name=
-					Interaction Description=
-					Interaction Type=Interaction Specifiers/GetCloseThen OpenDoor
-					Action=CToggleDoorAction
+					Per Party Spawn Action=CTriggerRelayAction
 					{
-						Door Name=$Trigger
-						Delay Between Doors=0
+						Relay Name=pen setup
 					}
-					X Radius=80
-					Attacker Range Modifier=0
-					YX Ratio=0.712766
-					Highlight Self Time=0
-					Highlight Until Clicked=0
-					Is Locked=0
-					Allow Interact If Has Target=1
-					Lock Pick Adjustment=0
-					Inventory item to use as key=Inventory Items/!None
-					Is Bussy Talking=0
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=230
 				}
 			}
 			Category=
@@ -290,50 +282,18 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Rethgorad/Town/cage door b
-			Position X=770
-			Position Y=700
+			Model=Editor/Spawn Point
+			Position X=820
+			Position Y=300
 			Rendering Height=0
 			Rendering Height Float=0
-			Cur Sequence=closed
-			Cur Damage=0
-			Destroyed Script Action=
-			Destroyed Effect Action=
-			Damaged Script Action=
-			Damaged Effect Action=
-			Hit Action=
-			Default Death Type=!None
-			Has Done Death Processing=0
-			Play Ratio=0
-			Aiming Angle=0
-			Movement Angle=0
-			Start FacingAngle=0
-			Current Frame=0
-			Created By=
-			BehaviorStack=CEntityBehaviorStack
-			{
-				InProcess=0
-				Blocking Priority=Idle
-				BehaviorList=Array
-				{
-					Item Count=0
-				}
-			}
-			Facing Backwards=0
-			Last Facing Backwards=0
-			Upper Body Present=0
-			Synch Aiming And Moving=1
-			Frame Index Locked=0
-			Waiting For Discharge=0
-			Still Shooting=0
-			Trying To Move=0
-			Tracking Updates Since Relocate=0
+			Cur Sequence=Idle
 		}
-		Level Part=CEntityAnimated
+		Level Part=CEntityBase
 		{
-			Name=cage bar north
+			Name=Drain Out
 			Child List=
-			Visible=1
+			Visible=0
 			Collideable=1
 			Half Height=0
 			Full Height=1
@@ -352,51 +312,200 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Rethgorad/Town/cage bar/cagebar a
-			Position X=803
-			Position Y=678
+			Model=Editor/Position Marker
+			Position X=690
+			Position Y=760
 			Rendering Height=0
 			Rendering Height Float=0
-			Cur Sequence=idle
-			Cur Damage=0
-			Destroyed Script Action=
-			Destroyed Effect Action=
-			Damaged Script Action=
-			Damaged Effect Action=
-			Hit Action=
-			Default Death Type=!None
-			Has Done Death Processing=0
-			Play Ratio=0
-			Aiming Angle=0
-			Movement Angle=0
-			Start FacingAngle=0
-			Current Frame=0
-			Created By=
-			BehaviorStack=CEntityBehaviorStack
-			{
-				InProcess=0
-				Blocking Priority=Idle
-				BehaviorList=Array
-				{
-					Item Count=0
-				}
-			}
-			Facing Backwards=0
-			Last Facing Backwards=0
-			Upper Body Present=0
-			Synch Aiming And Moving=1
-			Frame Index Locked=0
-			Waiting For Discharge=0
-			Still Shooting=0
-			Trying To Move=0
-			Tracking Updates Since Relocate=0
+			Cur Sequence=Idle
 		}
-		Level Part=CEntityAnimated
+		Level Part=CFreeRangePoly
 		{
-			Name=cage bar south
+			Name=To 02 Druid Council Level1
 			Child List=
 			Visible=1
-			Collideable=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Continue On
+					Action=CRelocateAction
+					{
+						Return to map=definitely soon
+						New Map Name=2 Montserrat/02 Druid Council Level1
+						New Location=From 4 Undercroft
+						Who To Switch=$Instigator
+						Relative Position=0
+					}
+					X Radius=55
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=830, 230, 930, 230, 930, 300, 830, 300, 830, 230
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=cell drain
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CIfAction
+					{
+						If=COrAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=drain known
+									Desired Minimum Count=1
+								}
+								Action=CExpressionAction
+								{
+									Expression=CUseCannedExpressionExpression
+									{
+										Canned Expression=Dialog/Requirements/Attributes/PE 7+
+									}
+									Character to get attributes from=$Instigator
+								}
+							}
+							Early Exit=0
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
+									Node ID=22 straw
+									Name of Position=$Instigator
+									Position Offset=0.000000,-70.000000
+									After Action=
+									Include In Log=1
+								}
+								Action=CDelayAction
+								{
+									Next Action=CRelocateAction
+									{
+										Return to map=definitely soon
+										New Map Name=2 Montserrat/4 Undercroft
+										New Location=Drain Out
+										Who To Switch=$Instigator
+										Relative Position=0
+										Ignore Party Ready Rules=1
+									}
+									Delay=1.5
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+							}
+						}
+						Else=CDisplayDialogBalloonAction
+						{
+							Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
+							Node ID=26 drain hidden
+							Name of Position=$Instigator
+							Position Offset=0.000000,-70.000000
+							After Action=
+							Include In Log=1
+						}
+						Return failure if the If failes=0
+					}
+					X Radius=55
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=300, 400, 345, 400, 345, 440, 300, 440, 300, 400
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=cell pins
+			Child List=
+			Visible=1
+			Collideable=0
 			Half Height=0
 			Full Height=1
 			Tries To Collide=0
@@ -443,7 +552,7 @@ CLayerSaveData
 								Action=CDisplayDialogBalloonAction
 								{
 									Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
-									Node ID=24 hinge broken
+									Node ID=24 pins broken
 									Name of Position=$trigger
 									Position Offset=0.000000,-50.000000
 									After Action=
@@ -458,7 +567,7 @@ CLayerSaveData
 						Else=CDisplayDialogBalloonAction
 						{
 							Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
-							Node ID=23 hinge
+							Node ID=23 pins
 							Name of Position=$trigger
 							Position Offset=0.000000,-50.000000
 							After Action=
@@ -483,106 +592,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Rethgorad/Town/cage bar/cagebar a
-			Position X=737
-			Position Y=722
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=idle
-			Cur Damage=0
-			Destroyed Script Action=
-			Destroyed Effect Action=
-			Damaged Script Action=
-			Damaged Effect Action=
-			Hit Action=
-			Default Death Type=!None
-			Has Done Death Processing=0
-			Play Ratio=0
-			Aiming Angle=0
-			Movement Angle=0
-			Start FacingAngle=0
-			Current Frame=0
-			Created By=
-			BehaviorStack=CEntityBehaviorStack
-			{
-				InProcess=0
-				Blocking Priority=Idle
-				BehaviorList=Array
-				{
-					Item Count=0
-				}
-			}
-			Facing Backwards=0
-			Last Facing Backwards=0
-			Upper Body Present=0
-			Synch Aiming And Moving=1
-			Frame Index Locked=0
-			Waiting For Discharge=0
-			Still Shooting=0
-			Trying To Move=0
-			Tracking Updates Since Relocate=0
-		}
-		Level Part=CFreeRangePoly
-		{
-			Name=hover cage
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CAIInteractionSpecifier
-				{
-					Marked For Deletion=0
-					Publisher=
-					Trigger Only Once=0
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Companions=0
-					Triggered By Name=
-					Interaction Description=
-					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
-					Action=CDisplayDialogBalloonAction
-					{
-						Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
-						Node ID=22 cage
-						Name of Position=$trigger
-						Position Offset=0.000000,-50.000000
-						After Action=
-						Include In Log=1
-					}
-					X Radius=55
-					Attacker Range Modifier=0
-					YX Ratio=0.712766
-					Highlight Self Time=0
-					Highlight Until Clicked=0
-					Is Locked=0
-					Allow Interact If Has Target=1
-					Lock Pick Adjustment=0
-					Inventory item to use as key=Inventory Items/!None
-					Is Bussy Talking=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=740, 735, 790, 735, 790, 770, 740, 770, 740, 735
+			Polygon=355, 425, 400, 425, 400, 465, 355, 465, 355, 425
 			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CFreeRangePoly
@@ -645,7 +655,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1440, 880, 1480, 880, 1480, 920, 1440, 920, 1440, 880
+			Polygon=150, 260, 195, 260, 195, 300, 150, 300, 150, 260
 			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CFreeRangePoly
@@ -708,7 +718,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1180, 1080, 1220, 1080, 1220, 1120, 1180, 1120, 1180, 1080
+			Polygon=330, 250, 370, 250, 370, 290, 330, 290, 330, 250
 			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CEntityBase
@@ -833,7 +843,7 @@ CLayerSaveData
 										Require Success To Advance=1
 										Next Action Index=0
 									}
-									X Radius=90
+									X Radius=110
 									Attacker Range Modifier=0
 									YX Ratio=0.712766
 									Highlight Self Time=0
@@ -848,7 +858,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Facing Angle=2.4
+					New Facing Angle=3.9
 					Angle Variation=0.785398
 				}
 			}
@@ -858,15 +868,15 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Enemy Generator Spot
-			Position X=737
-			Position Y=650
+			Position X=600
+			Position Y=330
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
 		{
-			Name=Chained Bear Generator
+			Name=Monk Generator
 			Child List=
 			Visible=0
 			Collideable=1
@@ -905,12 +915,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Animals/Bear
+									Entity=Levels/2 Montserrat/Character Templates/Brother Montgomerie
 								}
 							}
 						}
 					}
-					New Name=Chained Bear
+					New Name=Brother Pau
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -962,14 +972,31 @@ CLayerSaveData
 									Triggered By Name=
 									Interaction Description=
 									Interaction Type=Interaction Specifiers/GetCloseThenTalk
-									Action=CDisplayDialogTreeAction
+									Action=CSeriesAction
 									{
-										Dialog Tree File=Levels/2 Montserrat/Dialog/Chained Bear
-										Node ID=1 chained
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/2 Montserrat/Dialog/Brother Pau
+												Node ID=1 straw
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Action=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/2 Montserrat/Dialog/Brother Pau
+												Node ID=3 again
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+										}
+										When Done=Repeat Last Action
+										Require Success To Advance=1
+										Next Action Index=0
 									}
-									X Radius=80
+									X Radius=110
 									Attacker Range Modifier=0
 									YX Ratio=0.712766
 									Highlight Self Time=0
@@ -984,7 +1011,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Facing Angle=Any Direction
+					New Facing Angle=0.8
 					Angle Variation=0.785398
 				}
 			}
@@ -994,8 +1021,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Enemy Generator Spot
-			Position X=1360
-			Position Y=895
+			Position X=700
+			Position Y=800
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1032,20 +1059,20 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=9
+								Item Count=8
 								Action=CCloseDoorAction
 								{
-									Door Name=cage door
+									Door Name=cell door
 								}
 								Action=CRemoveAIAction
 								{
-									Target Name=cage door
+									Target Name=cell door
 									AI=CAIInteractionSpecifier
 									Delay Between Removes=0
 								}
 								Action=CAddAIAction
 								{
-									Target Name=cage door
+									Target Name=cell door
 									AI=CAIInteractionSpecifier
 									{
 										Marked For Deletion=0
@@ -1081,21 +1108,6 @@ CLayerSaveData
 									}
 									Delay Between Adds=0
 								}
-								Action=CDeactivateAction
-								{
-									Target Name=Bear Generator
-								}
-								Action=CActivateAction
-								{
-									Target Name=Chained Bear Generator
-									Play Activate Sound=0
-									Delay Between Activations=0
-									Warp Behavior=
-								}
-								Action=CForceGenerateAction
-								{
-									Generator Name=Chained Bear Generator
-								}
 								Action=CActivateAction
 								{
 									Target Name=Handler Generator
@@ -1106,6 +1118,17 @@ CLayerSaveData
 								Action=CForceGenerateAction
 								{
 									Generator Name=Handler Generator
+								}
+								Action=CActivateAction
+								{
+									Target Name=Monk Generator
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CForceGenerateAction
+								{
+									Generator Name=Monk Generator
 								}
 								Action=CDelayAction
 								{
@@ -1142,8 +1165,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Relay
-			Position X=900
-			Position Y=640
+			Position X=1000
+			Position Y=80
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1183,7 +1206,7 @@ CLayerSaveData
 							}
 							Action=COpenDoorAction
 							{
-								Door Name=cage door
+								Door Name=cell door
 							}
 							Action=CDisplayDialogBalloonAction
 							{
@@ -1206,8 +1229,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Relay
-			Position X=920
-			Position Y=640
+			Position X=1020
+			Position Y=80
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1247,7 +1270,7 @@ CLayerSaveData
 							}
 							Action=COpenDoorAction
 							{
-								Door Name=cage door
+								Door Name=cell door
 							}
 							Action=CGoToCombatAction
 							{
@@ -1265,84 +1288,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Relay
-			Position X=940
-			Position Y=640
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=bear loosed
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CRelayAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=5
-							Action=CActivateAction
-							{
-								Target Name=escaped loud
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=CDisplayDialogBalloonAction
-							{
-								Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
-								Node ID=51 handler alarm
-								Name of Position=Handler
-								Position Offset=0.000000,-70.000000
-								After Action=
-								Include In Log=1
-							}
-							Action=COpenDoorAction
-							{
-								Door Name=cage door
-							}
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=Chained Bear
-								Name To Target=Handler
-								Valid Targets=
-							}
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=Handler
-								Name To Target=Chained Bear
-								Valid Targets=
-							}
-						}
-					}
-					Trigger Only Once=1
-					Was Triggered=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Relay
-			Position X=960
-			Position Y=640
+			Position X=1040
+			Position Y=80
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1370,9 +1317,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 E
-			Position X=583
-			Position Y=620
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne G
+			Position X=99.77
+			Position Y=292.99
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1400,72 +1347,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceThree/CP1 G
-			Position X=536
-			Position Y=666
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=443, 551, 586, 585, 560, 828, 403, 836, 443, 551
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=98
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceThree/CP1 F
-			Position X=551
-			Position Y=742
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne E
+			Position X=200.36
+			Position Y=250.19
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1493,9 +1377,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 E
-			Position X=545
-			Position Y=802
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne G
+			Position X=198.36
+			Position Y=413.19
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1523,105 +1407,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 C
-			Position X=556
-			Position Y=872
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=546, 746, 703, 984, 564, 1159, 397, 837, 546, 746
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=181
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=799.5, 311.25, 881.5, 473.25, 637.5, 578.25, 536.5, 589.25, 465, 350, 799.5, 311.25
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=98
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 D
-			Position X=599
-			Position Y=941
+			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars H
+			Position X=260.27
+			Position Y=471.24
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1649,9 +1437,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 B
-			Position X=631
-			Position Y=989
+			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 E
+			Position X=260.71
+			Position Y=517.29
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1679,9 +1467,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CaveArches/Carch2
-			Position X=756
-			Position Y=618
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne G
+			Position X=270.77
+			Position Y=595.99
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1709,9 +1497,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag3 H
-			Position X=691
-			Position Y=791
+			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 G
+			Position X=312.33
+			Position Y=233.5
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1739,72 +1527,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 E
-			Position X=694
-			Position Y=1037
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=691.5, 973.5, 784.5, 1404.5, 579.5, 1381.5, 542.5, 1064.5, 691.5, 973.5
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=181
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 H
-			Position X=704.6
-			Position Y=1150.8
+			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars H
+			Position X=425.36
+			Position Y=606.19
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1832,126 +1557,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 G
-			Position X=696.6
-			Position Y=1243.8
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CFreeRangePoly
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=639, 819, 583, 519, 629, 429, 807, 460, 909, 632, 838, 698, 752, 526, 671, 490, 618, 591, 733, 783, 639, 819
-			Center Position Offset=0.000000,0.000000
-		}
-		Level Part=CFreeRangePoly
-		{
-			Name=To 01 Grove Exterior
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CAIInteractionSpecifier
-				{
-					Marked For Deletion=0
-					Publisher=
-					Trigger Only Once=0
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Name=
-					Interaction Description=
-					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
-					Action=CRelocateAction
-					{
-						Return to map=probably soon
-						New Map Name=2 Montserrat/01 Grove Exterior
-						New Location=From 3 Animal Den
-						Who To Switch=$Instigator
-						Relative Position=0
-					}
-					X Radius=30
-					Attacker Range Modifier=0
-					YX Ratio=0.712766
-					Highlight Self Time=0
-					Highlight Until Clicked=0
-					Is Locked=0
-					Allow Interact If Has Target=1
-					Lock Pick Adjustment=0
-					Inventory item to use as key=Inventory Items/!None
-					Is Bussy Talking=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=704, 727, 608, 588, 670, 479, 830, 535, 820, 651, 704, 727
-			Center Position Offset=0.000000,0.000000
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Mountain Walls/Ground Art/Ravines/RavineOne E
-			Position X=875
-			Position Y=797
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne G
+			Position X=372.77
+			Position Y=722.99
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1979,9 +1587,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 B
-			Position X=685
-			Position Y=634
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne E
+			Position X=454.36
+			Position Y=144.19
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2009,9 +1617,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 B
-			Position X=696
-			Position Y=733
+			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 E
+			Position X=398.71
+			Position Y=204
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2039,9 +1647,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 F
-			Position X=707
-			Position Y=1097
+			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars F
+			Position X=406.27
+			Position Y=282.24
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2069,9 +1677,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 D
-			Position X=723
-			Position Y=765
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door2Frame/DoorTop
+			Position X=422.5
+			Position Y=448.75
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2099,9 +1707,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 F
-			Position X=779.4
-			Position Y=1254.4
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door2Frame/DoorRtLeg
+			Position X=422.5
+			Position Y=448.75
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2129,9 +1737,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 D
-			Position X=885
-			Position Y=561
+			Model=Environments/Heart of Fire/Misc Pieces/Torch A
+			Position X=333
+			Position Y=570
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2159,51 +1767,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 D
-			Position X=822
-			Position Y=546
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=From 01 Grove Exterior
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CSpawnPointAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Per Party Spawn Action=CTriggerRelayAction
-					{
-						Relay Name=pen setup
-					}
-					Per Character Spawn Action=
-					Set Facing Angle=1
-					Facing Angle=50
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spawn Point
-			Position X=802
-			Position Y=755
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne C
+			Position X=501.27
+			Position Y=38.74
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2231,9 +1797,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 G
-			Position X=741
-			Position Y=1007.71
+			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 D
+			Position X=497.33
+			Position Y=354.67
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2261,9 +1827,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 G
-			Position X=870.9
-			Position Y=1164.5
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door2Frame/DoorLftLeg
+			Position X=422.5
+			Position Y=448.75
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2291,9 +1857,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 B
-			Position X=841.429
-			Position Y=1080.57
+			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 F
+			Position X=486.71
+			Position Y=427.29
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2321,45 +1887,12 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 G
-			Position X=865.9
-			Position Y=1260.5
-			Rendering Height=0
-			Rendering Height Float=0
+			Model=Special Effects/Torch Fire
+			Position X=342
+			Position Y=516
+			Rendering Height=84
+			Rendering Height Float=84
 			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=727.5, 1155.5, 918.5, 1168.5, 995.5, 1410.5, 741.5, 1405.5, 727.5, 1155.5
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=181
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
 		}
 		Level Part=CEntityBase
 		{
@@ -2384,9 +1917,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 E
-			Position X=865
-			Position Y=642
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne G
+			Position X=473.77
+			Position Y=846
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2414,51 +1947,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 H
-			Position X=818
-			Position Y=601
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Start Here
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CSpawnPointAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Per Party Spawn Action=CTriggerRelayAction
-					{
-						Relay Name=pen setup
-					}
-					Per Character Spawn Action=
-					Set Facing Angle=1
-					Facing Angle=50
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spawn Point
-			Position X=840
-			Position Y=760
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne F
+			Position X=563.77
+			Position Y=853
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2486,53 +1977,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 G
-			Position X=913
-			Position Y=1097
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Spirit 2 Generator
-			}
-			Name=
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CActionAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Spirit 2 Generate Action
-					}
-					Executed Action=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spirit Generator Level2
-			Position X=827
-			Position Y=1073
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne E
+			Position X=608.27
+			Position Y=79.74
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2560,9 +2007,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceThree/CP1 D
-			Position X=987
-			Position Y=589
+			Model=Environments/Rethgorad/Stockade/Walls/Torch Stands/TorchOne/Torch1 Lite
+			Position X=575
+			Position Y=193.75
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2590,9 +2037,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag3 A
-			Position X=968
-			Position Y=596
+			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 C
+			Position X=532.5
+			Position Y=601.75
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2620,9 +2067,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 H
-			Position X=971
-			Position Y=1126
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/BoxOpen B
+			Position X=460
+			Position Y=652
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2650,9 +2097,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 F
-			Position X=1019
-			Position Y=1192
+			Model=Environments/Rethgorad/Stockade/Walls/Wall Posts/WallPost1
+			Position X=494
+			Position Y=170
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2680,56 +2127,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 H
-			Position X=1062
-			Position Y=591
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CWayPointsPolygon
-		{
-			Tries To Collide=0
-			Team Number=Nutral
-			Used In=QuestMode
-			Polygon=958, 748, 984, 758, 1017, 748, 1017, 776, 957, 777, 958, 748
-			Center Position Offset=0.000000,0.000000
-			Insertion Priority=Secondary
-			Include Closing Segment=1
-		}
-		Level Part=CEntityBase
-		{
-			Name=AMBIENT Cave SFX
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CCannedAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Canned AI=Common Objects and Scripts/Environmental SFX/Cave AI NO Monsters
-					AI Instance=
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Repeat Timer Trigger
-			Position X=929
-			Position Y=746
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/Stockade A
+			Position X=557.75
+			Position Y=279
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2757,225 +2157,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 B
-			Position X=1012
-			Position Y=777
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=897.75, 1071.5, 1352.75, 1104.5, 1411.75, 1370.5, 911.75, 1321.5, 897.75, 1071.5
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=181
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 C
-			Position X=1046
-			Position Y=787
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Bear Generator
-			}
-			Name=Bear Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=CRectangleGeneratorArea
-					{
-						Width=91
-						Height=145
-						Angle=-0.122173
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=3
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=8
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=18
-							Quantity to generate min=1
-							Quantity to generate max=2
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=40
-							Quantity to generate min=2
-							Quantity to generate max=2
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear Super
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=
-					New Facing Angle=3.12414
-					Angle Variation=0.785398
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1075
-			Position Y=769
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Spirit 1 Generator
-			}
-			Name=
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CActionAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Spirit 1 Generate Action
-					}
-					Executed Action=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spirit Generator Level1
-			Position X=1052
-			Position Y=878
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door3Frame/DoorTop
+			Position X=614.25
+			Position Y=624.5
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3003,9 +2187,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 H
-			Position X=1022
-			Position Y=772
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door3Frame/DoorRtLeg
+			Position X=614.25
+			Position Y=624.5
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3033,9 +2217,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 G
-			Position X=1100
-			Position Y=1175
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/BoxDoor2 B
+			Position X=461
+			Position Y=652
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3063,22 +2247,18 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 G
-			Position X=1026.43
-			Position Y=1056.57
-			Rendering Height=0
-			Rendering Height Float=0
+			Model=Environments/Outpost/Dwarf Region/Misc Pieces/Bones 02 A
+			Position X=520
+			Position Y=715
+			Rendering Height=28
+			Rendering Height Float=28
 			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
 		{
-			Dynamic Properties=1
-			{
-				Comment=Bear Generator
-			}
-			Name=Bear Generator
+			Name=
 			Child List=
-			Visible=0
+			Visible=1
 			Collideable=1
 			Half Height=0
 			Full Height=1
@@ -3090,91 +2270,16 @@ CLayerSaveData
 			Is Marked For Deletion=0
 			Activity=Array
 			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=CRectangleGeneratorArea
-					{
-						Width=180
-						Height=413
-						Angle=1.71042
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=3
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=8
-							Quantity to generate min=2
-							Quantity to generate max=2
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=18
-							Quantity to generate min=2
-							Quantity to generate max=3
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=40
-							Quantity to generate min=3
-							Quantity to generate max=3
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear Super
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=
-					New Facing Angle=4.90438
-					Angle Variation=0.785398
-				}
+				Item Count=0
 			}
 			Category=
 			Team Number=Nutral
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1023
-			Position Y=1102
+			Model=Environments/Rethgorad/Stockade/Walls/TortureEquipment/Wood_Debris/Shackles2
+			Position X=543
+			Position Y=190
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3202,9 +2307,39 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceThree/CP1 B
-			Position X=1176
-			Position Y=608
+			Model=Special Effects/Big Fire
+			Position X=595
+			Position Y=156
+			Rendering Height=54
+			Rendering Height Float=54
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Torch Stands/TorchOne/Torch1
+			Position X=575
+			Position Y=193.75
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3232,93 +2367,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Mountain Walls/Ground Art/Ravines/Ravine Two C
-			Position X=1369
-			Position Y=823
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Spirit 1 Generator
-			}
-			Name=
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CActionAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Spirit 1 Generate Action
-					}
-					Executed Action=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spirit Generator Level1
-			Position X=1118
-			Position Y=735
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CWayPointsPolygon
-		{
-			Tries To Collide=0
-			Team Number=Nutral
-			Used In=QuestMode
-			Polygon=1106, 748, 1122, 775, 1136, 807, 1137, 836, 1118, 825, 1106, 807, 1091, 789, 1076, 778, 1066, 765, 1085, 769, 1106, 748
-			Center Position Offset=0.000000,0.000000
-			Insertion Priority=Secondary
-			Include Closing Segment=1
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 H
-			Position X=1200
-			Position Y=1175
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door3Frame/DoorLftLeg
+			Position X=614.25
+			Position Y=624.5
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3346,9 +2397,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceThree/CP1 C
-			Position X=1302
-			Position Y=614
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne F
+			Position X=745.94
+			Position Y=888.4
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3376,8 +2427,278 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 A
-			Position X=1238
+			Model=Special Effects/Torch Fire
+			Position X=625
+			Position Y=50
+			Rendering Height=116
+			Rendering Height Float=116
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 E
+			Position X=753.33
+			Position Y=54.67
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 G
+			Position X=687.33
+			Position Y=73.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars F
+			Position X=776.86
+			Position Y=117.44
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Wall Posts/WallPost1
+			Position X=648
+			Position Y=106
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Broken IronMaiden/Ground Maiden C
+			Position X=701.75
+			Position Y=72
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/Stockade C
+			Position X=688.33
+			Position Y=237.67
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars E
+			Position X=767.36
+			Position Y=615.19
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door4Frame/DoorTop
+			Position X=877
+			Position Y=270.25
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/TortureEquipment/Wood_Debris/Shackles1
+			Position X=759
 			Position Y=657
 			Rendering Height=0
 			Rendering Height Float=0
@@ -3406,9 +2727,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag3 A
-			Position X=1228
-			Position Y=680
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne H
+			Position X=846.44
+			Position Y=906.96
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3436,9 +2757,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 E
-			Position X=1282
-			Position Y=1133
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door4Frame/DoorLftLeg
+			Position X=877
+			Position Y=270.25
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3466,9 +2787,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 F
-			Position X=1294.2
-			Position Y=1176.8
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door4Frame/DoorRtLeg
+			Position X=877
+			Position Y=270.25
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3496,9 +2817,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 E
-			Position X=1221
-			Position Y=962
+			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 A
+			Position X=891.33
+			Position Y=316.5
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3526,22 +2847,18 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 F
-			Position X=1191
-			Position Y=948
-			Rendering Height=0
-			Rendering Height Float=0
+			Model=Special Effects/Torch Fire
+			Position X=847
+			Position Y=552
+			Rendering Height=84
+			Rendering Height Float=84
 			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
 		{
-			Dynamic Properties=1
-			{
-				Comment=Spirit 2 Generator
-			}
 			Name=
 			Child List=
-			Visible=0
+			Visible=1
 			Collideable=1
 			Half Height=0
 			Full Height=1
@@ -3553,26 +2870,16 @@ CLayerSaveData
 			Is Marked For Deletion=0
 			Activity=Array
 			{
-				Item Count=1
-				Activity=CActionAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Spirit 2 Generate Action
-					}
-					Executed Action=0
-				}
+				Item Count=0
 			}
 			Category=
 			Team Number=Nutral
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Editor/Spirit Generator Level2
-			Position X=1221
-			Position Y=1051
+			Model=Environments/Heart of Fire/Misc Pieces/Torch A
+			Position X=838
+			Position Y=606
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3600,9 +2907,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 E
-			Position X=1359.2
-			Position Y=1225.8
+			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 D
+			Position X=896.5
+			Position Y=672
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3630,9 +2937,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 F
-			Position X=1425
-			Position Y=631
+			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne H
+			Position X=899.94
+			Position Y=768.4
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3660,446 +2967,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceThree/CP1 C
-			Position X=1487.3
-			Position Y=705.9
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Spirit 1 Generator
-			}
-			Name=
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CActionAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Spirit 1 Generate Action
-					}
-					Executed Action=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spirit Generator Level1
-			Position X=1369
-			Position Y=750
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Bear Generator
-			}
-			Name=Bear Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=CRectangleGeneratorArea
-					{
-						Width=180
-						Height=551
-						Angle=-0.122173
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=3
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=8
-							Quantity to generate min=2
-							Quantity to generate max=2
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=18
-							Quantity to generate min=3
-							Quantity to generate max=3
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=40
-							Quantity to generate min=4
-							Quantity to generate max=4
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=2
-									Entity=Monster Cans/Animals/Bear Super
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=
-					New Facing Angle=3.12414
-					Angle Variation=0.785398
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1360
-			Position Y=895
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 C
-			Position X=1475
-			Position Y=1047
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 G
-			Position X=1467.5
-			Position Y=1231.1
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 H
-			Position X=1406.56
-			Position Y=759.333
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceThree/CP1 A
-			Position X=1526
-			Position Y=912
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 G
-			Position X=1542
-			Position Y=987
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Spirit 4 Generator
-			}
-			Name=
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CActionAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Spirit 4 Generate Action
-					}
-					Executed Action=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spirit Generator Level4
-			Position X=1450
-			Position Y=898
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag1 G
-			Position X=1369
-			Position Y=970.714
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 F
-			Position X=1501
-			Position Y=1102
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 F
-			Position X=1364
-			Position Y=1118.25
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/BoxOpen H
+			Position X=820.5
+			Position Y=718.75
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4127,11 +2997,11 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1345.75, 1133.5, 1720.75, 1120.5, 1721.75, 1338.5, 1359.75, 1383.5, 1345.75, 1133.5
+			Polygon=118.5, 191.5, 115, 219, 63.5, 357.5, 10.5, 301.5, 44.5, 118.5, 118.5, 191.5
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
-			YSort=181
+			YSort=162
 			Cur Frame=0
 			Animated Texture=!None
 			Static Texture=14 Black
@@ -4160,195 +3030,15 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1430.75, 542.5, 1562.75, 493.5, 1647.75, 586.5, 1511.75, 651.5, 1430.75, 542.5
+			Polygon=260.5, 394.5, 228, 471, 130.5, 573.5, 59.5, 356.5, 113.5, 217.5, 260.5, 394.5
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
-			YSort=181
+			YSort=162
 			Cur Frame=0
 			Animated Texture=!None
 			Static Texture=14 Black
 			Warp Effect=!None
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 A
-			Position X=1562
-			Position Y=723
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 G
-			Position X=1607
-			Position Y=861
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag2 F
-			Position X=1465
-			Position Y=811
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 F
-			Position X=1562.2
-			Position Y=1184.8
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceTwo/CP1 B
-			Position X=1666.2
-			Position Y=694.5
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/Stalagmites/Stalag3 A
-			Position X=1614.22
-			Position Y=759.889
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
 		}
 		Level Part=CRenderablePolygon
 		{
@@ -4373,15 +3063,107 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1521.75, 803.5, 1871.75, 725.5, 1791.75, 1169.5, 1537.75, 1164.5, 1521.75, 803.5
+			Polygon=211.5, 144.5, 198.5, 184.5, 149.5, 171.5, 172.5, 135.5, 211.5, 144.5
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
-			YSort=181
+			YSort=162
 			Cur Frame=0
 			Animated Texture=!None
 			Static Texture=14 Black
 			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=481.5, 760.5, 372.5, 880.5, 134.5, 564.5, 229.5, 462.5, 481.5, 760.5
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=162
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=555.5, 22.5, 435.5, 74.5, 285.5, -104.5, 328.5, -254.5, 555.5, 22.5
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=162
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=369, 510, 299, 545, 285, 522, 354, 497, 369, 510
+			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CFreeRangePoly
 		{
@@ -4406,17 +3188,17 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1512, 920, 1526, 892, 1553, 891, 1535, 940, 1512, 920
+			Polygon=383, 284, 349, 300, 341, 289, 371, 276, 383, 284
 			Center Position Offset=0.000000,0.000000
 		}
-		Level Part=CEntityBase
+		Level Part=CFreeRangePoly
 		{
 			Name=
 			Child List=
 			Visible=1
 			Collideable=1
 			Half Height=0
-			Full Height=1
+			Full Height=0
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
@@ -4432,21 +3214,125 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 G
-			Position X=1710.4
-			Position Y=772.1
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
+			Polygon=455, 423, 351, 299, 384, 286, 474, 408, 455, 423
+			Center Position Offset=0.000000,0.000000
 		}
-		Level Part=CEntityBase
+		Level Part=CRenderablePolygon
+		{
+			Name=Magic door effect second area
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=396, 392, 441, 377, 455, 391, 454, 462, 380, 493, 383, 420, 396, 392
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Animated Texture Transparent
+			YSort=0
+			Cur Frame=0
+			Animated Texture=Force Field
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=380, 425, 439, 515, 380, 425
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=Magic door poly second area
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CollideTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=1
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=1
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Action=CActionDoDamage
+					{
+						Character Doing Damage=$trigger
+						Character To Damage=$instigator
+						Defend Against=1
+						No Friendly Fire Check=0
+						Damages=Array
+						{
+							Item Count=1
+							Damage=CXRPGDamage
+							{
+								Damage Type=Damage Types/Electrical
+								Damage Amount=CConstant
+								{
+									Constant Value=5
+								}
+							}
+						}
+					}
+					Disallow Retrigger=1
+					Last Trigger Time=0
+					Retrigger Disallow Time For=All Objects
+					Action for Failed Retrigger=
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=455.33, 464.5, 380.33, 498.5, 373.33, 488.5, 454.33, 456.5, 455.33, 464.5
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
 		{
 			Name=
 			Child List=
 			Visible=1
 			Collideable=1
 			Half Height=0
-			Full Height=1
+			Full Height=0
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
@@ -4462,12 +3348,8 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Druid Grove/Cave Walls/CavePieceOne/CP1 G
-			Position X=1714.4
-			Position Y=843.1
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
+			Polygon=326, 704, 514, 632, 527, 651, 342, 727, 326, 704
+			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CRenderablePolygon
 		{
@@ -4492,79 +3374,725 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1623.75, 541.5, 1782.75, 518.5, 1874.75, 731.5, 1734.75, 800.5, 1623.75, 541.5
+			Polygon=856.5, 832.5, 857.5, 1088.5, 518, 1016, 366.5, 875.5, 478.5, 756.5, 856.5, 832.5
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
-			YSort=181
+			YSort=162
 			Cur Frame=0
 			Animated Texture=!None
 			Static Texture=14 Black
 			Warp Effect=!None
 		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=591, 193, 537, 218, 591, 193
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=552, 262, 597, 274, 552, 262
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=Magic door effect second area
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=579.83, 550.5, 636.83, 559.5, 647.83, 589.5, 649.83, 655.5, 562.83, 640.5, 565.83, 567.5, 579.83, 550.5
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Animated Texture Transparent
+			YSort=0
+			Cur Frame=0
+			Animated Texture=Force Field
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=Magic door poly second area
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CollideTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=1
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=1
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Action=CActionDoDamage
+					{
+						Character Doing Damage=$trigger
+						Character To Damage=$instigator
+						Defend Against=1
+						No Friendly Fire Check=0
+						Damages=Array
+						{
+							Item Count=1
+							Damage=CXRPGDamage
+							{
+								Damage Type=Damage Types/Electrical
+								Damage Amount=CConstant
+								{
+									Constant Value=5
+								}
+							}
+						}
+					}
+					Disallow Retrigger=1
+					Last Trigger Time=0
+					Retrigger Disallow Time For=All Objects
+					Action for Failed Retrigger=
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=648.5, 663.5, 558.5, 647.5, 565.5, 635.5, 652.5, 650.5, 648.5, 663.5
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=620, 276, 642, 316, 620, 276
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=612, 614, 600, 670, 612, 614
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=917, 33, 703, 121, 692, 106, 905, 18, 917, 33
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=671, 192, 738, 216, 671, 192
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=870, 711, 667, 673, 672, 654, 878, 688, 870, 711
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=828, 258, 728, 139, 757, 126, 846, 250, 828, 258
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=902, 277, 829, 316, 902, 277
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=792, 642, 878, 656, 792, 642
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1000.5, 695.5, 917.5, 991.5, 844, 1055, 847.5, 844.5, 933.5, 622.5, 1000.5, 695.5
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=162
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=880, 656, 917, 618, 880, 656
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=Magic door effect second area
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=921.83, 288.5, 921.83, 380.5, 912.83, 369.5, 911.83, 298.5, 921.83, 288.5
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Animated Texture Transparent
+			YSort=-8
+			Cur Frame=0
+			Animated Texture=Force Field
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=Magic door effect second area
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=930.75, 298.25, 930.75, 390.25, 921.75, 379.25, 921.75, 289.25, 930.75, 298.25
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Animated Texture Transparent
+			YSort=-8
+			Cur Frame=0
+			Animated Texture=Force Field
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=Magic door poly second area
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CollideTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=1
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=1
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Action=CActionDoDamage
+					{
+						Character Doing Damage=$trigger
+						Character To Damage=$instigator
+						Defend Against=1
+						No Friendly Fire Check=0
+						Damages=Array
+						{
+							Item Count=1
+							Damage=CXRPGDamage
+							{
+								Damage Type=Damage Types/Electrical
+								Damage Amount=CConstant
+								{
+									Constant Value=5
+								}
+							}
+						}
+					}
+					Disallow Retrigger=1
+					Last Trigger Time=0
+					Retrigger Disallow Time For=All Objects
+					Action for Failed Retrigger=
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=954.25, 425.25, 909.25, 370.25, 920.25, 366.25, 965.25, 421.25, 954.25, 425.25
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=971, 374, 900, 412, 971, 374
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=cell door
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen OpenDoor
+					Action=CToggleDoorAction
+					{
+						Door Name=$Trigger
+						Delay Between Doors=0
+					}
+					X Radius=80
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Doors Sw/Door2
+			Position X=411.5
+			Position Y=453.75
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=monk door
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen OpenDoor
+					Action=CToggleDoorAction
+					{
+						Door Name=$Trigger
+						Delay Between Doors=0
+					}
+					X Radius=80
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Doors Sw/Door3
+			Position X=596.75
+			Position Y=624.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
 	}
 	Plasma Ground=CPlasmaTileMap
 	{
-		Blending=0.75
+		Blending=0.9
 		Num Textures=7
 		Texture 0=14 Black
 		Texture 1=14 Black
-		Texture 2=Druid Grove/CrackedMUDSp2
-		Texture 3=Druid Grove/CrackedMUDSp1
-		Texture 4=Druid Grove/CrackedMUD
-		Texture 5=Druid Grove/CrackedMUDDRK
-		Texture 6=Druid Grove/RokGroundOne
-		Elevations Row 0=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 1=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 2=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 3=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 4=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 5=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 6=222222222222222222222222222222222222222222222222222222222222222222222222222200
-		Elevations Row 7=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 8=222222222222222222222222222222222222222222222222222222222222222222222222222222
-		Elevations Row 9=2222222222222222222222F5D72222222222222222222222222222222222222222222222222222
-		Elevations Row 10=2222222222222222222222BED32222222222222222222222222222222222222222222222222222
-		Elevations Row 11=2222222222222222222222D3D3D3D3225583222222222222222222222222222222222222222222
-		Elevations Row 12=2222222222222222222222D3BAD1D322220A222222512222222222222222222222222222222222
-		Elevations Row 13=222222222222222222222222D3BF77D12222222222224A22222222222222222222222222222222
-		Elevations Row 14=2222222222222222222222224E65EBA9C922222222222222222222222222222222222222222200
-		Elevations Row 15=222222222222222222222222334E4C6D5886862222222222222222222222222222222222222200
-		Elevations Row 16=222222222222222222222222423986863453792216EB7E22222222222222222222222222222200
-		Elevations Row 17=222222222222222222222222554E8686652310562273AE22222222222222222222222222222200
-		Elevations Row 18=222222222222222222222222222222228686222222227B22222222222222222222222222222200
-		Elevations Row 19=222222222222222222222222222222222222222222222222222222222222222222222222222200
-		Elevations Row 20=222222222222222222222222222222222222222222222222222222222222222222222222222200
-		Elevations Row 21=222222222222222222222222222222222222222222222222222222222222222222222222222200
-		Elevations Row 22=222222222222222222222222222222222222222222222222222222222222222222222222222200
-		Elevations Row 23=222222222222222222222222222222222222222222222222222222222222222222222222222200
-		Elevations Row 24=191919182222222222222222222222222222222222222222222222222222222222222222222200
-		Elevations Row 25=000000000000000000000000000000000000000000000000000000000000000000000000222200
-		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 16=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 17=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 18=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 19=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 20=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 21=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 22=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 23=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 24=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
-		Light Overlay Row 25=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Texture 2=Rethgorad/Stockade/CrackyStoneMUD
+		Texture 3=Rethgorad/Stockade/CrackyStoneOne
+		Texture 4=Rethgorad/Stockade/CrackyStoneSprse
+		Texture 5=Rethgorad/Stockade/CrackyStoneTwo
+		Texture 6=Rethgorad/Stockade/DruidMud1NEW
+		Elevations Row 0=000000000000005E76767676767668470000000000
+		Elevations Row 1=000000000000000076765876767647470000000000
+		Elevations Row 2=0000000000000000006976760047403E0000000000
+		Elevations Row 3=00007676767676007693B676804736470000000000
+		Elevations Row 4=0000767676766976DFBDFDE1767647400000000000
+		Elevations Row 5=00007676763D7676B8FD9AAE767676400000000000
+		Elevations Row 6=000076762E767676767676766A575A400000000000
+		Elevations Row 7=00007676763F76464E5260554E656B450000000000
+		Elevations Row 8=0000000040406D618086446F767676760000000000
+		Elevations Row 9=000000000076767676485876767676530000000000
+		Elevations Row 10=000000000076767676445B76767676760000000000
+		Elevations Row 11=000000000076767676765148764000000000000000
+		Elevations Row 12=000000000000767676767676764040000000000000
+		Elevations Row 13=000000000000767676767676764040000000000000
+		Elevations Row 14=000000000000767676767676764040000000000000
+		Elevations Row 15=000000000000000000000000000000000000000000
+		Elevations Row 16=000000000000000000000000000000000000000000
+		Elevations Row 17=000000000000000000000000000000000000000000
+		Elevations Row 18=000000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 16=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 17=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 18=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
 	}
 }
