@@ -1,0 +1,117 @@
+CDialogTree
+{
+Name=Grove Sentry
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=sentry draws
+}
+------------------------------------------------------------
+Node ID=1 halt
+Text=<An arrow is on the string before you are near enough to speak.> Far enough. The captain said one might come up the road on their own feet, and that we were to take that one alive. The Scion. Are you it?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am. Take me to your captain.
+Go to node ID=10 steel
+Icon=Quest Icon
+
+Requirement=Outwit 6 greater or equal
+Reply Text=I am, and I was told to come as I am. Armed. She will want to see what I carry. Ask her, if you like.
+Go to node ID=20 armed
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Sylvant IS
+}
+}
+Reply Text=Look at me. Do I look like one of theirs?
+Go to node ID=25 own
+
+Requirement=!None
+Reply Text=I am not. <Draw.>
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sentry draws
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 steel
+Text=Then your steel stays here. All of it - the blade, the bow, the knife in your boot. <He whistles, and two more come out of the trees.> Hand it over, or they take it off you, and they are not gentle.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take it.
+Go to node ID=30 taken
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sentry search
+}
+Icon=Quest Icon
+
+Requirement=Outwit 6 greater or equal
+Reply Text=I was told to come armed. She will want to see what I carry. Ask her.
+Go to node ID=20 armed
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have changed my mind.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sentry draws
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 armed
+Text=<He looks at the steel, then at you, for a long moment.> If she says otherwise, it is your neck and not mine. <A sack goes over your head.> Walk.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=deliver
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 own
+Text=<He looks at what you are, and the bow comes down a little.> ...She said nothing about that. Keep your hands where I can see them. <A sack goes over your head.> Walk.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=deliver
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 taken
+Text=<They take it all, and they are not gentle about it. A sack goes over your head.> Walk.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=deliver
+}
+Is Default Reply=1
+}

@@ -326,7 +326,7 @@ game's; the player lines are ours and there are at most three.
 
 ## 0.11.0 - the Prisoner of Montserrat (scope)
 
-**Not started.** Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
+**In build.** Stages A and B (the delivery, the den) built 2026-09-15 and unplayed; see *Build log* at the end of this section. Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
 invasion -- 75 generators, about 150 enemies at the *solo* party-mojo tier, three to eight
 times any Act 1 area, tuned for parties -- and that is right for what it is. What the act lacks
 is any way through it that is not a fight against every pack in turn. The 0.10.0 levers (Sneak
@@ -415,6 +415,74 @@ The cage door and the den's dressing (shipped models on the pew envelope); one h
 at two doors; the `delivered` and `routed` checkers and the generators reading them; Sahar's
 opening variant and her offer; Michel's line; the rout relay; four or five hover texts; the
 bell and woodpile parts. Every line of dialogue is ours. No new map.
+
+### Build log
+
+**Two reads before anything, both changed the scope.**
+
+*The weapon handover.* The engine has no notion of the equipped item a script can reach:
+`CActionRemoveInventoryItem` names a base can, `CActionSelectInventoryItemSlot` and
+`CActionSetWeaponMode` only switch the active slot (Andre the Titan and the daeva use them
+mid-fight), and nothing drops, transfers or ejects an item to the ground -- the inventory
+vocabulary is exactly check, give, remove, generate. The chest-takes-your-gear idea is dead
+(a chest generates loot; it cannot hold the player's). What *can* be done, and is: the search
+runs `CConditionalAction{Try: remove X; Succeed: generate X at the gear pile}` per item --
+first the fourteen hand-authored named weapons (the Everlasting, the Sacred Scimitar, the
+uniques...), which are specific cans and come back exactly; then the sixteen weapon bases
+and the two ammunitions, three passes for stacks, which come back as plain bases (a rolled
+"Longsword of Flame" is the LongSword can plus additions the script cannot read); then two
+rolls from the good random-weapon table as compensation. The pile is at the gate in the
+Grove, under the sentry's nose, where it was taken. Whether a magic sword matches its base
+on removal is unknowable from the files and does not matter: matched, it returns plain;
+unmatched, it was never taken. The sentry says the price before the reply commits, and
+Outwit 6 keeps everything. Decided with the tester: named weapons preserved exactly, the
+rest replaced with similar.
+
+*The den floor.* The waypoint graph decodes (`Cache/.../3 Animal Den.way`: 3713 nodes,
+28-byte records plus an edge list; positions reliable, connectivity not). The cave floor
+runs x 760-1460, y 740-1130; the mouth climbs north-west from the arrival spawn (802,755)
+through a throat about a hundred units wide at (720-820, 680-720) to the exit region, whose
+lower edge crosses the throat at y ~ 684. So the cage line sits at (770,700) with a bar each
+side at (803,678) and (737,722), the whole cave is the pen, and there is no ground outside
+the door that is not the exit trigger -- the handler stands in it (NPCs do not trigger it),
+the prisoner talks to him across the bars at radius 90, and stepping out of the cage *is*
+leaving. Which is why the gear pile is in the Grove. The arrival spawn is inside the line,
+so the door is closed and unlocked for anyone who wanders in, and the delivery is what
+locks it. The Slave Pits' `cage door b` on `CDoorAI` is the door -- the slavers' cells
+Sahar mentions -- with the Chambers2 cell-door shape (the lock on a `GetCloseThen
+OpenDoor` specifier, `Lock Pick Adjustment=35`), swapped in by the delivery.
+
+**Stage A, the Grove.** `gate parley poly` (2350-2950 x 950-1450) once, unless `delivered`:
+force-generates the sentry and opens `Montserrat Sentry / 1 halt` on him after 0.8 s -- the
+Sahar approach shape. The sentry generator's After Action now spawns him passive with a talk
+specifier (he can be re-opened by a click); `sentry draws` (the fight reply, the walk-away,
+the damaged script) sends him to combat and calls the reinforcements as Tier 4 did.
+`sentry search` is the search above. `deliver` activates `delivered` here and by
+`COtherMapAction` on the den and both interiors, stands the garrison down by name (eleven
+names, target type blanked and `Enemy` removed), and fades to `Pen Start`. All 21 invader
+generators gained an After Action that reads `delivered` at spawn and comes up passive with
+a *"Keep walking, Scion"* click -- the troll-peace shape. Wolves and vodyanoi are not the
+garrison and stay wild.
+
+**Stage B, the den.** Both spawn points fire `pen setup` once when `delivered` exists: close
+the door, swap in the locked specifier, retire the three bear generators (now named `Bear
+Generator`), raise `Chained Bear` at the back (passive, talkable) and `Handler` outside the
+door (passive, `Montserrat Handler`, first greeting then *"Still here"*), and start the
+300-second timer that fires `escort` if `escorted` is not yet set. Ways out: the door's
+lock (Lockpick 35); the south bar's hinge, a Strength 8 click that opens the door and fires
+`loud` (handler to combat, `escaped loud` set); the handler's Speech 40 / CH 7 replies ->
+`escort` (door open, `escorted`, his *"Walk"* over him); the bear's Sylvant reply -> `bear
+loosed` (door open, bear and handler set on each other, his alarm, `escaped loud`); and
+waiting. Hover: the cage from inside, a tally of forty-one on the back wall, a cowl in the
+corner. Not yet: the escort as a walking guard (he stays; the checker is what the later
+stages read), the Grove's alarm on a loud escape, any hall behaviour (stage C).
+
+**Unknowns the first test settles, in order:** whether the door and two bars actually block
+the throat (a gap and the pen is decoration); whether a passive sentry with a talk specifier
+lets the forced dialog open before his pack sees you; whether `COtherMapAction` activations
+reach a map the save has never loaded (the sewers' `Thief enemy trigger` says yes); whether
+the bear, loosed, goes through an open door for a man in the exit zone; whether magic
+weapons match their base on removal.
 
 ### Gates
 

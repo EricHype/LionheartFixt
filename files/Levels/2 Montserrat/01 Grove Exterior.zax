@@ -85,6 +85,3431 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=delivered
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=2600
+			Position Y=1230
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=parley
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=2620
+			Position Y=1230
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=gear pile
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=2600
+			Position Y=1190
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=sentry search
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=70
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Beggar Short Sword in Sewers
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Quest Items/Beggar Short Sword in Sewers
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Quest Items/Felgnash Sword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Kublai Khans Sword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Quest Items/Kublai Khans Sword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Quest Items/Sacred Scimitar Saladin Quest
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Repeating Crossbow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Quest Items/DaVinci Repeating Crossbow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Special Objects for RED file/Sword of Undead Ice
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Quest Items/Special Objects for RED file/Sword of Undead Ice
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Unique Magic Items/Axe Unholy Smite
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Unique Magic Items/Axe Unholy Smite
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Unique Magic Items/Blade of Berserker
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Unique Magic Items/Blade of Berserker
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Unique Magic Items/Bow of Electricity
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Unique Magic Items/Bow of Electricity
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Unique Magic Items/Bow of Fiery Smite
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Unique Magic Items/Bow of Fiery Smite
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Unique Magic Items/Bow of Icy Death
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Unique Magic Items/Bow of Icy Death
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Unique Magic Items/Holy Mace
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Unique Magic Items/Holy Mace
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory/Specific Item Cans/Unique Magic Items/Sword of Fire
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory/Specific Item Cans/Unique Magic Items/Sword of Fire
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Scimitar
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Scimitar
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BastardSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BastardSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/ShortSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/ShortSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/TwoHandedSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/TwoHandedSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/TwoHandedSwordGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/TwoHandedSwordGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BattleAxe
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BattleAxe
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BattleAxeGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BattleAxeGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Mace
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Mace
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/MaceGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/MaceGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/MorningStar
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/MorningStar
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/WarHammer
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/WarHammer
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Club
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Club
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongBow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongBow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongBow Composite
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongBow Composite
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Crossbow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Crossbow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Arrow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Arrow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Bolt
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Bolt
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Scimitar
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Scimitar
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BastardSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BastardSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/ShortSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/ShortSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/TwoHandedSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/TwoHandedSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/TwoHandedSwordGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/TwoHandedSwordGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BattleAxe
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BattleAxe
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BattleAxeGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BattleAxeGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Mace
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Mace
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/MaceGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/MaceGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/MorningStar
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/MorningStar
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/WarHammer
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/WarHammer
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Club
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Club
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongBow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongBow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongBow Composite
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongBow Composite
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Crossbow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Crossbow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Arrow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Arrow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Bolt
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Bolt
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Scimitar
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Scimitar
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BastardSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BastardSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/ShortSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/ShortSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/TwoHandedSword
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/TwoHandedSword
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/TwoHandedSwordGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/TwoHandedSwordGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BattleAxe
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BattleAxe
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/BattleAxeGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/BattleAxeGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Mace
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Mace
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/MaceGreat
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/MaceGreat
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/MorningStar
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/MorningStar
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/WarHammer
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/WarHammer
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Club
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Club
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongBow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongBow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/LongBow Composite
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/LongBow Composite
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Crossbow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Crossbow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Arrow
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Arrow
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CConditionalAction
+							{
+								Try Action=CActionRemoveInventoryItem
+								{
+									Who to remove from=$instigator
+									Inventory Item To remove=Inventory Items/Bolt
+								}
+								Succeed Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=gear pile
+									Location Offset=0,0
+									Generate Within Radius=40
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorBasic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Bolt
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CGenerateInventoryItemAction
+							{
+								Number of items to generate=1
+								Level of item to generate=CUseCannedExpressionExpression
+								{
+									Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Good
+								}
+								Location=gear pile
+								Location Offset=0,0
+								Generate Within Radius=40
+								Aspect Ratio=0.712766
+								Item List=CInventoryItemGeneratorMixedList
+								{
+									Items=Array
+									{
+										Array Count=1
+										Array Item=CInventoryItemGeneratorMixedListItem
+										{
+											Weighting=1
+											Item=CInventoryItemGeneratorCannedList
+											{
+												Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+											}
+										}
+									}
+								}
+							}
+							Action=CGenerateInventoryItemAction
+							{
+								Number of items to generate=1
+								Level of item to generate=CUseCannedExpressionExpression
+								{
+									Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Good
+								}
+								Location=gear pile
+								Location Offset=0,0
+								Generate Within Radius=40
+								Aspect Ratio=0.712766
+								Item List=CInventoryItemGeneratorMixedList
+								{
+									Items=Array
+									{
+										Array Count=1
+										Array Item=CInventoryItemGeneratorMixedListItem
+										{
+											Weighting=1
+											Item=CInventoryItemGeneratorCannedList
+											{
+												Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2600
+			Position Y=1250
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=deliver
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=30
+							Action=CActivateAction
+							{
+								Target Name=delivered
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=delivered
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=2 Montserrat/3 Animal Den
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=delivered
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=2 Montserrat/02 Druid Council Level1
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=delivered
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=2 Montserrat/02 Druid Council Level2
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Montserrat Assassin
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Montserrat Assassin
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Montserrat Assassin Tough
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Montserrat Assassin Tough
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Montserrat Assassin Super
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Montserrat Assassin Super
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Snakebreed
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed Super
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Snakebreed Super
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed Tough
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Snakebreed Tough
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed Boss
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Snakebreed Boss
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed Boss Tough
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Snakebreed Boss Tough
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed Boss Super
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Snakebreed Boss Super
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Grove Sentry
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Grove Sentry
+								Categories To Remove=Enemy
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Assassin
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Assassin
+								Categories To Remove=Enemy
+							}
+							Action=CBeginNonInteractiveSequenceAction
+							{
+								Options=CNonInteractiveSequence
+								{
+									Pause Characters=0
+									Disable Player Controls=1
+									Can Fast Forward=1
+								}
+							}
+							Action=CDelayAction
+							{
+								Next Action=CFadeScreenDownAction
+								{
+									Time Until Auto Fade Up=2
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CRelocateAction
+								{
+									Return to map=probably soon
+									New Map Name=2 Montserrat/3 Animal Den
+									New Location=Pen Start
+									Who To Switch=Player#1-9#
+									Relative Position=0
+									Ignore Party Ready Rules=1
+								}
+								Delay=1.7
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=1.6
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2620
+			Position Y=1250
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=sentry draws
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CGoToCombatAction
+							{
+								Enemy Name=Grove Sentry
+							}
+							Action=CTriggerRelayAction
+							{
+								Relay Name=sentry calls
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2640
+			Position Y=1250
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=gate parley poly
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Triggered By Players=1
+					Triggered By Enemies=0
+					Enter Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=
+						Else=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CActivateAction
+								{
+									Target Name=parley
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CForceGenerateAction
+								{
+									Generator Name=Grove Sentry Generator
+								}
+								Action=CDelayAction
+								{
+									Next Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Sentry
+										Node ID=1 halt
+										Speaker=Grove Sentry
+										Player Being Spoken To=$Instigator
+									}
+									Delay=0.8
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+							}
+						}
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=2350, 950, 2950, 950, 2950, 1450, 2350, 1450, 2350, 950
+			Center Position Offset=0.000000,0.000000
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=hover campfire
@@ -304,14 +3729,66 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=4
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=CTriggerRelayAction
 								{
-									Relay Name=sentry calls
+									Relay Name=sentry draws
 								}
 								Target Name=$Instigator
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Sentry
+										Node ID=1 halt
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									X Radius=80
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -3488,7 +6965,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=0.610865
 					Angle Variation=0.785398
 				}
@@ -15593,7 +19145,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=1.90241
 					Angle Variation=0.785398
 				}
@@ -16119,7 +19746,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.79966
 					Angle Variation=0.785398
 				}
@@ -18418,7 +22120,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.79966
 					Angle Variation=0.785398
 				}
@@ -21035,7 +24812,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=6.21327
 					Angle Variation=0.785398
 				}
@@ -22690,7 +26542,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.79966
 					Angle Variation=0.785398
 				}
@@ -23409,7 +27336,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=Any Direction
 					Angle Variation=0.785398
 				}
@@ -25922,7 +29924,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=1.79769
 					Angle Variation=0.785398
 				}
@@ -26029,7 +30106,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=1.67552
 					Angle Variation=0.785398
 				}
@@ -26226,7 +30378,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=1.09956
 					Angle Variation=0.785398
 				}
@@ -26949,7 +31176,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=0.907467
 					Angle Variation=0.785398
 				}
@@ -28069,7 +32371,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=3.83972
 					Angle Variation=0.785398
 				}
@@ -30419,7 +34796,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.79966
 					Angle Variation=0.785398
 				}
@@ -32448,7 +36900,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=3.56047
 					Angle Variation=0.785398
 				}
@@ -33260,7 +37787,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=2.98451
 					Angle Variation=0.785398
 				}
@@ -34464,7 +39066,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=3.00197
 					Angle Variation=0.785398
 				}
@@ -38204,7 +42881,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=2.56563
 					Angle Variation=0.785398
 				}
@@ -38311,7 +43063,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=2.54818
 					Angle Variation=0.785398
 				}
@@ -38582,7 +43409,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=2.30383
 					Angle Variation=1.11701
 				}
@@ -38796,7 +43698,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.79966
 					Angle Variation=0.785398
 				}
@@ -38903,7 +43880,82 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=delivered
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=52 sentry passive
+											Name of Position=$trigger
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										X Radius=55
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.69494
 					Angle Variation=0.785398
 				}

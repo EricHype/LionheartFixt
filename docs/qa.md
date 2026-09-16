@@ -1280,6 +1280,19 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MS33 | Knights Templar armory, fresh map | Attack Auric, wake in the cell, walk back to the armory | About a second after entering, *"Save your belligerence..."* (voiced) over Auric, logged; not again on the next entry; he talks normally after |
 | MS34 | Javier, after Esteban has died with the Esteban step given and not done | Any greeting | *"Sir Esteban is dead."* -> the weighs-heavy line -> the Auric step given; the reply gone once Seek out Sir Auric exists |
 | MS35 | Cathedral, fresh map | Attack Javier, wake in the cell, walk back in | About a second after entering, *"If you blaspheme this cathedral again..."* over Javier once; an extra guard beside him on this and every later visit |
+| PM1 | Grove, fresh Montserrat, walk to the gate | Enter the gate area | The sentry appears passive and *"Far enough..."* opens on him; no pack attacks during the talk |
+| PM2 | PM1, *"I am not. <Draw.>"* or Escape | - | He draws, *"The Scion! To me!"*, both reinforcement packs come (Tier 4 unchanged) |
+| PM3 | PM1, *"Take me to your captain"* -> *"Take it"*, carrying a named weapon and a rolled magic one | - | Every weapon and all ammunition gone from the inventory; fade; wake in the den at the back |
+| PM4 | After PM3, get out and return to the gate | Look at the ground by the sentry | The named weapon itself, a plain base for each rolled one, and two good weapons; the garrison passive, *"Keep walking, Scion"* on a click |
+| PM5 | PM1 with Outwit 6 | The armed reply | Delivered with everything kept |
+| PM6 | PM1 as Demokin or Sylvant | *"Look at me..."* | Delivered unsearched |
+| PM7 | In the pen | Click the door | Locked; with Lockpick 35 it opens; outside it you are in the Grove at the den mouth |
+| PM8 | In the pen, ST 8 | Click the south bar | *"The pin shears..."*, the door opens, the handler attacks; with ST below 8, *"They do not give"* |
+| PM9 | In the pen, Speech 40 or CH 7 | Talk to the handler through the bars | *"...Fine. Ahead of me, and slow"*, the door opens, *"Walk"* over him; the monks and bears questions answer |
+| PM10 | In the pen as a Sylvant | Talk to the chained bear | The ring comes away; the bear goes for the handler through the open door; his alarm plays |
+| PM11 | In the pen, do nothing for five minutes | - | The door opens and *"The captain will see you now"* plays |
+| PM12 | Den entered on foot, never delivered | - | A closed, unlocked cage door across the mouth that opens on a click; three bears as before; the hovers read |
+| PM13 | Any of PM7-PM11, then re-enter the den | - | The pen state persists; no second setup; no timer restart |
 
 ---
 
