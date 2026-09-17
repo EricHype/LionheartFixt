@@ -3402,7 +3402,32 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=6
+							Action=CActivateAction
+							{
+								Target Name=Gate Pack West Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CActivateAction
+							{
+								Target Name=Gate Pack Boss Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CActivateAction
+							{
+								Target Name=Gate Pack East Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CGoToCombatAction
+							{
+								Enemy Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Snakebreed Super
+							}
 							Action=CGoToCombatAction
 							{
 								Enemy Name=Grove Sentry
@@ -3466,7 +3491,30 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=3
+								Item Count=8
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Snakebreed Super
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Snakebreed Super
+									Categories To Remove=Enemy
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Gate Pack West Generator
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Gate Pack Boss Generator
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Gate Pack East Generator
+								}
 								Action=CActivateAction
 								{
 									Target Name=parley
@@ -24708,7 +24756,7 @@ CLayerSaveData
 			{
 				Comment=Snakebreed Generator
 			}
-			Name=
+			Name=Gate Pack West Generator
 			Child List=
 			Visible=0
 			Collideable=1
@@ -30294,7 +30342,7 @@ CLayerSaveData
 			{
 				Comment=Snakebreed Boss Generator
 			}
-			Name=
+			Name=Gate Pack Boss Generator
 			Child List=
 			Visible=0
 			Collideable=1
@@ -31062,7 +31110,7 @@ CLayerSaveData
 			{
 				Comment=Snakebreed Generator
 			}
-			Name=
+			Name=Gate Pack East Generator
 			Child List=
 			Visible=0
 			Collideable=1

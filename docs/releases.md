@@ -519,6 +519,22 @@ Final Encounter's shape), and his door opens. Otherwise: the lock, the pins (Str
 bears and gained the keys on his belt and *"Do not talk to him. He lies."* Hovers: the
 tally, the cowl, the straw, the pins, the stair from above. The den is vanilla again.
 
+**First test of A+B (2026-09-16), three findings.** *The undercroft crashed on entry*:
+`"Idle" is missing... closed / open / opening`. Not the doors -- two barrel props I dressed
+the room with were `Barrel Explode`, art no shipped map ever places (it exists for an
+exploding-barrel effect and has no `Idle`), and `validate.py`'s sequence check had nothing
+vanilla to compare it to and passed it. Both swapped for plain barrels; the check now fails
+any model no vanilla map places, which also caught the stair (`Down 03 A`, never placed;
+now `Down 02 A`). *The snakebreed attacked during the sentry's talk*: the parley forced the
+dialogue but the three packs around the gate were spawned and hunting. The parley now does
+what Sahar's approach does first -- target types blanked and `Enemy` removed on every
+snakebreed name, the three gate generators (now named `Gate Pack West/Boss/East`) switched
+off -- and `sentry draws` switches them back on and sends them to combat. *Sir Tomas was
+out of reach*: he lies at (2730,705), beyond the sentry from the road, so a fresh character
+meets the parley first and a prisoner is taken before reaching him. That is right -- the
+invaders do not let a prisoner root through their dead -- and he is there for anyone who
+fights, keeps their arms, or comes back out of the abbey through a passive garrison.
+
 **Unknowns the first test settles, in order:** whether the undercroft loads at all and its
 floor and walls read (a new map; the engine generates its own pathing); whether the
 cell's door and bars hold a player as they hold the jail's prisoners; whether a passive sentry with a talk specifier

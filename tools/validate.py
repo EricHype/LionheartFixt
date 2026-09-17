@@ -275,7 +275,13 @@ def check_models(p, raw):
                 + re.escape(seq), vanilla_same_map):
             continue
         known = VANILLA_SEQ.get(mod.lower())
-        if known and seq not in known:
+        if not known:
+            # Art no shipped map ever places (Barrel Explode: effect art with no Idle) --
+            # the undercroft crashed on entry with "Idle is missing" from exactly this.
+            fails.append(p.name + ": CRASH -- Model=" + repr(mod) + " is placed on no vanilla map,"
+                         " so no Cur Sequence is known to be safe for it")
+            continue
+        if seq not in known:
             fails.append(p.name + ": CRASH -- Cur Sequence=" + repr(seq) + " on Model="
                          + repr(mod) + "; vanilla uses " + repr(sorted(known)))
 
