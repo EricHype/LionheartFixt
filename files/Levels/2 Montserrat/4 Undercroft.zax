@@ -1305,7 +1305,7 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=2
+								Item Count=6
 								Action=CDisplayDialogBalloonAction
 								{
 									Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
@@ -1314,6 +1314,25 @@ CLayerSaveData
 									Position Offset=0.000000,-70.000000
 									After Action=
 									Include In Log=1
+								}
+								Action=CBeginNonInteractiveSequenceAction
+								{
+									Options=CNonInteractiveSequence
+									{
+										Pause Characters=0
+										Disable Player Controls=1
+										Can Fast Forward=1
+									}
+								}
+								Action=CDelayAction
+								{
+									Next Action=CFadeScreenDownAction
+									{
+										Time Until Auto Fade Up=2.5
+									}
+									Delay=1.2
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 								Action=CDelayAction
 								{
@@ -1326,7 +1345,31 @@ CLayerSaveData
 										Relative Position=0
 										Ignore Party Ready Rules=1
 									}
-									Delay=1.5
+									Delay=2.4
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+								Action=CDelayAction
+								{
+									Next Action=CEndNonInteractiveSequenceAction
+									{
+									}
+									Delay=3.8
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+								Action=CDelayAction
+								{
+									Next Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
+										Node ID=27 drain out
+										Name of Position=$Instigator
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									Delay=4.0
 									Plus or Minus=0
 									Forget Trigger=0
 								}
@@ -1778,7 +1821,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/2 Montserrat/Character Templates/Brother Montgomerie
+									Entity=Levels/2 Montserrat/Character Templates/Brother Pau
 								}
 							}
 						}
