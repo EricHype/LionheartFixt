@@ -170,7 +170,27 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=5
+							Action=CDelayAction
+							{
+								Next Action=CGoToCombatAction
+								{
+									Enemy Name=Stair Assassin
+								}
+								Delay=6.0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CGoToCombatAction
+								{
+									Enemy Name=Stair Assassin
+								}
+								Delay=10.0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
 							Action=CActivateAction
 							{
 								Target Name=escaped loud
