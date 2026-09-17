@@ -1306,6 +1306,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | PM20 | Delivered, loud escape (pins, or caught) | Walk Level 1 | Packs that spawn after are hostile |
 | PM21 | Holding the ring, Montaillou inn, saved Machiavelli | After his supplies line, *"You have seen this before"* | `301`/`302`; the reply absent without the ring |
 | PM22 | Holding the ring, Montaillou inn, refused Machiavelli | *"Before your friends come in"* | `232`; he walks out alone, no assassins; without the ring the 0.9.0 ambush as before |
+| PM23 | Holding the ring, Crypt Burial Chamber assassin | *"Your captain at Montserrat sent me north under this"* | `21 her mark`, then the vanilla vanish-and-fight exactly as `20 threat`; the reply absent without the ring |
 
 ---
 

@@ -596,8 +596,9 @@ meet him -- saved, `301 the ring` (*"I did not think anyone would come out of it
 that"*) and `302 the name`; refused, `232 the ring` at the inn, where the ambush he paid for
 collapses (*"I have paid them for nothing... Get out of my sight before I decide which of us
 they are here for"*) and he walks out alone on `machiavelli leaves`; and the **Crypt's
-Burial Chamber assassin**, still to write, who should name Sahar's fate for spending it --
-the cunning route's late cost, and an Act 4 debt recorded for 0.12+. Nobody stands down for
+Burial Chamber assassin** (`21 her mark`, a ring-gated reply on his greeting into the same
+exit as `20 threat`): *"She will answer for the ring. You will answer to me"* -- the cunning
+route's late cost, built the same day. Nobody stands down for
 it. A player who meets none of them has what the ring is: her word, worth one abbey. Stage
 directions across the act cut to one per node at most, on the tester's note.
 

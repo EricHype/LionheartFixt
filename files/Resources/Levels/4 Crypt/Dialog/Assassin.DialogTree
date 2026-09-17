@@ -1,0 +1,292 @@
+CDialogTree
+{
+Name=Assassin
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=You are too late, Lionheart! You cannot stop us from taking the relic!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
+}
+}
+Reply Text=Your captain at Montserrat sent me north under this. <Show him the ring.>
+Go to node ID=21 her mark
+
+Requirement=!None
+Reply Text=Who are you working for?
+Go to node ID=20 threat
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 threat
+Text=It is our master, the Old Man of the Mountain, who leads us. And it is he who has decided that you must die.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CActivateAction
+{
+Target Name=Assassin stealth mode checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=CDelayAction
+{
+Next Action=CSetPatrolAIAction
+{
+Patrol AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Assissin goto2
+Offset=0.000000,0.000000
+Starting Action=
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Run=0
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=1
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=6.10865
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Target=$Trigger
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 her mark
+Text=Sahar's mark. Then she let you go, and sent you to us wearing it, and thought that would be the end of her part. The master decided otherwise the day the seer named you. She will answer for the ring. You will answer to me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CActivateAction
+{
+Target Name=Assassin stealth mode checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=CDelayAction
+{
+Next Action=CSetPatrolAIAction
+{
+Patrol AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Assissin goto2
+Offset=0.000000,0.000000
+Starting Action=
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Run=0
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=1
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=6.10865
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Target=$Trigger
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Relic
+Text=You'll never get the Relic!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=40 Die
+Text=You will go no farther - the Old Man of the Mountain has ordered your death. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Before Death
+Text=We will meet again, interloper.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Silence
+Text=Silence!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 seer
+Text=The Old Man of the Mountain has demanded your sight, Nostradamus. Tell us what you see!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 lies
+Text=You speak lies, seer!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 scion of lionheart
+Text=Wait, what is this? The scion of Lionheart *lives*? Is this your champion of fate, seer? Scion of Lionheart, you will die and prove the prophet's words false!
+Should Have Voiceover=0
+}
