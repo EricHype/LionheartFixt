@@ -1427,6 +1427,7 @@ both completed Gate 2. Record the result here per release.
 | 0.10.1 | PASS (automated) | - | - | - | - | - | **published; the stash barks built and unplayed (MS27-MS29)** |
 | 0.10.2 | PASS (automated) | - | - | - | - | - | **published; the jailor's lesson and the sprung bark built and unplayed (MS30-MS32)** |
 | 0.10.3 | PASS (automated) | - | - | - | - | - | **published; Esteban's line, the two returns-after-attack and the extra guard built and unplayed (MS33-MS35)** |
+| 0.11.0 | PASS (automated) | PASS | partial | - | - | - | **published; the gate, the undercroft's five exits, the escort, the hall's stand-down and the Wasp Queen played (PM1-PM14, PM24); Sahar's prisoner talk, the ring and the rout unplayed (PM15-PM23)** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's

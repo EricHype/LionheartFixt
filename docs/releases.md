@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.10.3 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.11.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -324,9 +324,9 @@ game's; the player lines are ours and there are at most three.
   `defeated Relican` can is the one Cedric's own tree trusts); the pacified Enchanter must
   not re-arm on a second visit; Cedric's after-attack line must not play on a first entry.
 
-## 0.11.0 - the Prisoner of Montserrat (scope)
+## 0.11.0 - the Prisoner of Montserrat
 
-**In build.** All five stages built by 2026-09-17; A, B and C played and repaired, D and E unplayed. See *Build log* at the end of this section. Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
+**Published.** Cut from `main` 2026-09-17. All five stages built; A, B and C played and repaired as they were built, D and E (Sahar's prisoner talk, her word, the rout) and the ring's three readers unplayed. What follows is the scope as written, then the build log. Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
 invasion -- 75 generators, about 150 enemies at the *solo* party-mojo tier, three to eight
 times any Act 1 area, tuned for parties -- and that is right for what it is. What the act lacks
 is any way through it that is not a fight against every pack in turn. The 0.10.0 levers (Sneak
@@ -635,7 +635,7 @@ base on removal.
 - Gate 3: the delivered state must not be reachable twice (the sentry's reply hides once
   `delivered` exists); striking Sahar must not wake the Grove; the bear must not turn on the
   player who freed it (its target type is the invaders').
-## Unreleased on main - the trolls' ore chest
+## 0.11.0 also - the trolls' ore chest
 
 **The chief pays from the chest, and the chest is theirs.** The tester's read: a chest of red
 ore stands in the pit, and taking from it should cost the peace. Vanilla's chest at (3958,1164)
