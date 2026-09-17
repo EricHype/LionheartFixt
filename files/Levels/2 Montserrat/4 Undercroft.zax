@@ -87,6 +87,66 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=drain grate cell
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Sewers/Sewer4
+			Position X=322
+			Position Y=430
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=drain grate out
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Sewers/Sewer4
+			Position X=880
+			Position Y=440
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Dynamic Properties=1
 			{
 				Experience Points=25
@@ -1239,8 +1299,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Position Marker
-			Position X=690
-			Position Y=760
+			Position X=880
+			Position Y=420
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4673,9 +4733,9 @@ CLayerSaveData
 					YX Ratio=0.712766
 					Highlight Self Time=0
 					Highlight Until Clicked=0
-					Is Locked=0
+					Is Locked=1
 					Allow Interact If Has Target=1
-					Lock Pick Adjustment=0
+					Lock Pick Adjustment=35
 					Inventory item to use as key=Inventory Items/!None
 					Is Bussy Talking=0
 				}
