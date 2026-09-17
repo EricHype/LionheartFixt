@@ -610,7 +610,7 @@ so this is the project's first authored model manifest: `Characters/Monsters/Was
 (`Wasp2` -> `WaspQ`, so no length prefix moves), pointing at a byte copy of Wasp2's
 `MODEL.gr2` under `Models3D/Enemies/WaspQ/` whose sidecar says `Render Scaling=0.9` --
 Wasp2's is 0.3, and the field is live across 250 shipped sidecars (the wererat tiers are
-1 / 1.15 / 1.5). The animations stay Wasp2's. Race from Wasp Cursed Super: 220 HP, AC 170,
+1 / 1.15 / 1.5). The animations stay Wasp2's. Race from Wasp Cursed Super: 220 HP, AC 115 (170 was untouchable for a level-9 brawler),
 piercing threshold 5, melee 45; 900 XP; two stingers for Quinn's errand. She stands in the
 deep west chamber at (900,1050); a hover at the entrance says the nest is made of the
 abbey's timber. Played the same day: the manifest loads and **Render Scaling is live** -- she was three
