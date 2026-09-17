@@ -1304,6 +1304,8 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | PM18 | Kill Sahar by any route | - | *"...every one of them, everywhere, turning for the door"*; every pack on Level 2 runs for the Grove exit; on Level 1 and the Grove the same; nothing new spawns hostile |
 | PM19 | Delivered, quiet escape (lock + Sneak, or drain), walk Level 1 | - | Packs passive with the Keep-walking click |
 | PM20 | Delivered, loud escape (pins, or caught) | Walk Level 1 | Packs that spawn after are hostile |
+| PM21 | Holding the ring, Montaillou inn, saved Machiavelli | After his supplies line, *"You have seen this before"* | `301`/`302`; the reply absent without the ring |
+| PM22 | Holding the ring, Montaillou inn, refused Machiavelli | *"Before your friends come in"* | `232`; he walks out alone, no assassins; without the ring the 0.9.0 ambush as before |
 
 ---
 

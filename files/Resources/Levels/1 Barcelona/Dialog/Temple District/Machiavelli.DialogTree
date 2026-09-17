@@ -1100,6 +1100,18 @@ Text=It is fortunate for me and unfortunate for you that events transpired as th
 Should Have Voiceover=1
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
+}
+}
+Reply Text=Before your friends come in. <Show him the ring.>
+Go to node ID=232 the ring
+
+Requirement=!None
 Reply Text=
 Go to node ID=
 Custom Action=CTriggerRelayAction
@@ -1107,6 +1119,44 @@ Custom Action=CTriggerRelayAction
 Relay Name=machiavelli ambush
 }
 Action work in progress=(Mach ambushes you at his building with assasins)
+------------------------------------------------------------
+Node ID=301 the ring
+Text=Take it off. Put it in your boot, and do not show it to anyone else in this village. I know what it is. I brokered the arrangement it came out of, and I did not think anyone would come out of it wearing that. If they see it on you here they will take you for one of his, and they will not be wrong to.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Whose? Say the name.
+Go to node ID=302 the name
+
+Requirement=!None
+Reply Text=I will keep it where it is.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=302 the name
+Text=I have said it once already tonight, and I do not say it twice. The Old Man. From the east. That ring is his mark, and the woman who gave it to you had no right to spend it on you, and he will know that before you do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then we are both in his debt.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=232 the ring
+Text=Where did you -- <He stops.> She gave you that. Then they were never going to touch you, and I have paid them for nothing, and they will want to know why the man who hired them did not know his own master's mark when it walked in. We have both been used, Lionheart. Get out of my sight before I decide which of us they are here for.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Go, then.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=machiavelli leaves
+}
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=250 combat
 Text=If it's violence you seek, you will soon discover I am not entirely without combat skills.
@@ -1199,6 +1249,18 @@ Go to node ID=300 machiavelli helps you in montaillou 3
 Node ID=300 machiavelli helps you in montaillou 3
 Text=I have managed to gather resources from allies in this region. I will share my supplies with you, and with that, repay my debt. Beware the Old Man from the east, his assassins will never stop hunting you. 
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
+}
+}
+Reply Text=You have seen this before. <Show him the ring.>
+Go to node ID=301 the ring
 
 Requirement=!None
 Reply Text=

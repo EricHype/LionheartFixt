@@ -2870,6 +2870,132 @@ CLayerSaveData
 		}
 		Level Part=CEntityBase
 		{
+			Name=machiavelli leaves
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=1
+							Action=CSetPatrolAIAction
+							{
+								Patrol AI=CGoToAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Destination=Machiavelli inn exit
+									Offset=0.000000,0.000000
+									Starting Action=CRemoveAIAction
+									{
+										Target Name=Machiavelli
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+									Finished=0
+									Move Finished=0
+									Failed Path=0
+									Target Was Set By Goto AI=0
+									Move Behavior=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
+									}
+									Done action=CDeleteAction
+									{
+										Target Name=Machiavelli
+									}
+									Run=1
+									Make New Home=1
+									Play Ratio=0
+									Time To Try To Move=0
+									Set Facing Angle=0
+									Turn Sequence Name=Idle
+									Facing Angle=CEntityBehaviorTurnToAngle
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+									}
+									Need to Call Start=1
+								}
+								Target=Machiavelli
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=890
+			Position Y=580
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Machiavelli arrival trigger
 			Child List=
 			Visible=0

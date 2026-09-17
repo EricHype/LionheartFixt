@@ -584,6 +584,23 @@ arrival -- *"every one of them, everywhere, turning for the door."* Generators o
 read `routed` as well, so nothing fresh spawns hostile on the way out. Under her word the
 garrison is already passive and you leave by the doors.
 
+**The ring's contract (decided 2026-09-17).** What Sahar's ring is worth was left vague and
+then argued to the bone. It is not a safe-conduct: by Act 4 the Old Man has ordered the
+Scion dead (`Assassin / 20 threat`), and no assassin honours a captain's mark over the
+master's order. Her line now says exactly what it buys -- *"nothing of ours on the road
+north will touch you... Past Montaillou it is his country, and I do not speak for him"* --
+and her motive is in her own words: no wagons, no sisters to spare, a parcel that carries
+itself, and then she can leave. Who sees it: **Michel** (*"take it off before you walk into
+the Inquisition's sight"*); **Machiavelli**, the man who brokered the arrangement, if you
+meet him -- saved, `301 the ring` (*"I did not think anyone would come out of it wearing
+that"*) and `302 the name`; refused, `232 the ring` at the inn, where the ambush he paid for
+collapses (*"I have paid them for nothing... Get out of my sight before I decide which of us
+they are here for"*) and he walks out alone on `machiavelli leaves`; and the **Crypt's
+Burial Chamber assassin**, still to write, who should name Sahar's fate for spending it --
+the cunning route's late cost, and an Act 4 debt recorded for 0.12+. Nobody stands down for
+it. A player who meets none of them has what the ring is: her word, worth one abbey. Stage
+directions across the act cut to one per node at most, on the tester's note.
+
 **Unknowns the first test settles, in order:** whether the undercroft loads at all and its
 floor and walls read (a new map; the engine generates its own pathing); whether the
 cell's door and bars hold a player as they hold the jail's prisoners; whether a passive sentry with a talk specifier
