@@ -1,0 +1,640 @@
+CDialogTree
+{
+Name=Brambles
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=<As you approach this tree, you hear something.  It almost sounds like the tree is moving somehow - a creaking or splitting, then silence.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Is someone there?
+Go to node ID=20 Rustling
+
+Requirement=!None
+Reply Text=I guess I'll be *leaving* now. <Wait>
+Go to node ID=15 Wait
+
+Requirement=!None
+Reply Text=<Leave>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1 Conversation Start Feralkin
+Text=<As you approach this tree, you hear something.  It almost sounds like the tree is moving somehow - a creaking or splitting - then silence. Your first feralkin instinct is that it's an animal, but the creaking is coming from a number of different branches at once, all of which fall silent at your approach.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Is someone up there?
+Go to node ID=20 Rustling
+
+Requirement=!None
+Reply Text=I guess I'll be *leaving* now. <Wait>
+Go to node ID=15 Wait
+
+Requirement=!None
+Reply Text=<Leave>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=1 Conversation Start Sylvant
+Text=<As you approach this tree, you hear something.  It almost sounds like the tree is moving somehow - a creaking or splitting - then silence. Perhaps it is your sylvant instincts, but something about the tree strikes you as peculiar, but you can't quite figure out what.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Is someone there?
+Go to node ID=20 Rustling
+
+Requirement=!None
+Reply Text=I guess I'll be *leaving* now. <Wait>
+Go to node ID=15 Wait
+
+Requirement=!None
+Reply Text=<Leave>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=3 Return Dialogue 1
+Text=Why, hello again! I can't tell you how glad I am to have visitors. I thought I was going to grow another ring before I would get the chance to speak to anyone again.
+Should Have Voiceover=0
+
+Requirement=Brambles has transformation potion
+Reply Text=I have the Potion of Transformation you need.
+Go to node ID=135 Have Potion
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+}
+}
+}
+Reply Text=How did this happen to you?
+Go to node ID=60 explanation
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+}
+}
+}
+Reply Text=What did you do to deserve being turned into a tree?
+Go to node ID=50 mean to tree
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=15 Wait
+Text=<You wait for a minute or two in silence, then you hear creaking again, but fainter this time.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Please show yourself. I just want to talk to you.
+Go to node ID=40 Show yourself
+Custom Action=CActivateAction
+{
+Target Name=Got Brambles to Talk to Player
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Show yourself immediately.  I tire of this.
+Go to node ID=30 Threat
+Custom Action=CActivateAction
+{
+Target Name=Got Brambles to Talk to Player
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 Rustling
+Text=<More creaking, slightly louder now.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Please show yourself. I just want to talk to you.
+Go to node ID=40 Show yourself
+Custom Action=CActivateAction
+{
+Target Name=Got Brambles to Talk to Player
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Show yourself immediately.  I tire of this.
+Go to node ID=30 Threat
+Custom Action=CActivateAction
+{
+Target Name=Got Brambles to Talk to Player
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Threat
+Text=Come now, there's no need for that kind of talk! Youth today, so eager for violence. I'm not up *in* the tree. Regrettably, I *am* the tree you see before you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A talking tree? What happened to you?
+Go to node ID=60 explanation
+Action work in progress=(Set Brambles Talks)
+
+Requirement=!None
+Reply Text=No doubt you deserved such a fate.
+Go to node ID=50 mean to tree
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Action work in progress=(Set Brambles Talks)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=40 Show yourself
+Text=I can not show myself any more plainly than what you already see. Regrettably, I am the tree you see before you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A talking tree? What happened to you?
+Go to node ID=60 explanation
+Action work in progress=(Set Brambles Talks)
+
+Requirement=!None
+Reply Text=No doubt you deserved such a fate.
+Go to node ID=50 mean to tree
+Action work in progress=(Set Brambles Talks)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Action work in progress=(Set Brambles Talks)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 mean to tree
+Text=Young one, please believe me when I say that *no one* deserves such a fate, not even the fiend who did this to me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who did this to you?
+Go to node ID=70 Relican
+
+Requirement=!None
+Reply Text=How did this happen?
+Go to node ID=60 explanation
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 explanation
+Text=Several years ago, I was experimenting with a new formula for a vitality potion. Unfortunately, someone tampered with the mixture, and it transformed me into a tree. I immediately dropped down roots, and have been here ever since.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who tampered with the potion?
+Go to node ID=70 Relican
+
+Requirement=!None
+Reply Text=Is there a way to cure you?
+Go to node ID=100 cure
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=70 Relican
+Text=I believe it to have been Relican, an outcast of La Calle Perdida and an enemy of the Wielders. He was once one of us, until we discovered he was practicing the forbidden arts. We cast him out, and being the wickedly vengeful sort, he swore retribution against us. With his customary flair for the dramatic, I might add.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forbidden arts?
+Go to node ID=110 Necromancy
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=90 calle
+
+Requirement=!None
+Reply Text=So how did you become a tree?
+Go to node ID=60 explanation
+
+Requirement=!None
+Reply Text=Is there a way to cure you?
+Go to node ID=100 cure
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=90 calle
+Text=La Calle Perdida, the Lost Street. A century ago, the Inquisition outlawed the use of heretical magic. They persecuted many innocent wizards, those possessed of non-divine spirits, regardless of whether the spirits were benign or malevolent. The wizards of Barcelona created the Lost Street as a haven for wizards not willing to flee into exile.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What can you tell me about the forbidden arts?
+Go to node ID=110 Necromancy
+
+Requirement=!None
+Reply Text=So how did you become a tree?
+Go to node ID=60 explanation
+
+Requirement=!None
+Reply Text=Is there a way to cure you?
+Go to node ID=100 cure
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 cure
+Text=Many good wizards have tried. Quinn the herbalist has been trying for years to reverse the condition with various mixtures, but with no success. Leonardo, however, believes that Relican cursed my vitality potion. If so, Relican will need to lift the curse, or someone must force him to.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Potion of Transformation
+}
+}
+Reply Text=I have a potion that I retrieved from Relican.  Perhaps it will help you.
+Go to node ID=135 Have Potion
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Potion of Transformation
+}
+}
+}
+Reply Text=Tell me about Relican.
+Go to node ID=70 Relican
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Potion of Transformation
+}
+}
+}
+Reply Text=I will help you lift this curse.
+Go to node ID=120 accept tree quest
+Action work in progress=flag tree quest accepted
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=110 Necromancy
+Text=Necromancy, magic that raises the dead by placing spirits into the husks of the deceased. When placed in a lifeless body, the spirit corrupts the corpse into an abomination, creating a mindless destructive monster. The Inquisition had rooted out most of the Necromancers during the Fifth Crusade, but somehow Relican learned of these arts from lost tomes.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about Relican.
+Go to node ID=70 Relican
+
+Requirement=!None
+Reply Text=Tell me more about the Fifth Crusade.
+Go to node ID=130 crusade
+
+Requirement=!None
+Reply Text=Tell me more about La Calle Perdida.
+Go to node ID=90 calle
+
+Requirement=!None
+Reply Text=So how did you become a tree?
+Go to node ID=60 explanation
+
+Requirement=!None
+Reply Text=Is there a way to cure you?
+Go to node ID=100 cure
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=120 accept tree quest
+Text=I appreciate your kindness, friend, but I do not wish to put you in harm's way. Relican is a most unreasonable man, and aside from his tendency to speak in sinister whispers and veiled threats, he is a powerful wizard.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=121 accept tree quest 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=121 accept tree quest 2
+Text=Furthermore, the practice of Necromancy takes its toll on the spirit, and Necromancers, by nature, have little respect for the lives of others. I fear he will not lift the curse willingly. If you approach him, please be prepared to find him unwilling to speak - and ready to harm you. He may be found deep in the forest to the west of Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Give cure Rambles Quest
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+State=LM2RL4A8
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 crusade
+Text=In 1467, a cabal of dark wizards created the Bone Legion, an army of undead raised from forgotten mass graves of fallen crusaders. The necromancers sent their armies to conquer all of Europe, and even launched bone-laden vessels to attack lands across the oceans. In the end, the might of the Inquisition and the desert magic of the Order of Saladin stopped the undead army.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about Relican.
+Go to node ID=70 Relican
+
+Requirement=!None
+Reply Text=Tell me more about La Calle Perdida.
+Go to node ID=90 calle
+
+Requirement=!None
+Reply Text=So how did you become a tree?
+Go to node ID=60 explanation
+
+Requirement=!None
+Reply Text=Is there a way to cure you?
+Go to node ID=100 cure
+
+Requirement=!None
+Reply Text=I think I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=135 Have Potion
+Text=Do not toy with me on such matters. I have been planted on this spot...wait, I can sense a power I have not felt since... You do have it!  Quickly, pour it on my roots!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=136 Pour Potion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Potion of Transformation
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=136 Pour Potion
+Text=<The potion drains onto the ground and is quickly absorbed. A faint rumbling can be heard of splitting wood and wailing spirits, and is slowly increasing in intensity.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Transform Brambles into a man
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 cure relican
+Text=My word! Quite extraordinary! I cannot begin to thank you enough. Perhaps a little gold will begin to show my gratitude. Even better, let me share with you a skill I learned while I was rooted to the spot. It's the very least I can do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(grant xp and gold and special perk)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/La Calle Perdida/Brambles
+Node ID=150 Random thanks dialog
+Name of Position=Brambles the Man
+Position Offset=0.000000,-80.000000
+After Action=
+Include In Log=1
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/La Calle Perdida/Brambles
+Node ID=151 Random thanks dialog
+Name of Position=Brambles the Man
+Position Offset=0.000000,-80.000000
+After Action=
+Include In Log=1
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/La Calle Perdida/Brambles
+Node ID=152 Random thanks dialog
+Name of Position=Brambles the Man
+Position Offset=0.000000,-80.000000
+After Action=
+Include In Log=1
+}
+Delay=1.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Cure Brambles Quest XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Brambles Patience
+}
+}
+}
+Character to get attributes from=$Instigator
+Then=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!NPC or Event Given Perks/Brambles Patience
+}
+Else=
+}
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CPlayAnimationAction
+{
+Animation=SpellCast
+Random From Sequencial Set=0
+Target Name=Brambles the Man
+When Done=Stop on last frame
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+Action=CDelayAction
+{
+Next Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=Brambles the Man
+Make effect a child of the location entity=1
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Delay=0.4
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=0.6
+Part To Fade=Brambles the Man
+}
+Delay=0.4
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDeleteAction
+{
+Target Name=Brambles the Man
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Random thanks dialog
+Text=I am overwhelmed with gratitude.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=151 Random thanks dialog
+Text=My heart is more thankful than my body. My legs are a bit stiff.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=152 Random thanks dialog
+Text=Many thanks, but I have to go. I have to see the city, my grandchildren...so much I have missed!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=160 dark wielder greeting
+Text=<As you approach the tree it creaks and groans and somehow seems to be afraid of you. It could be the wind, but it seems as if you can make out the words 'curse you, dark wielder'>
+Should Have Voiceover=0
+}

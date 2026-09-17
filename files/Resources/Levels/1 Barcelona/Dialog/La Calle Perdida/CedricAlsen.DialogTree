@@ -555,6 +555,42 @@ Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Bind Spi
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Determine the nature of the magic crystal
+State=NDE2LRND
+}
+}
+Reply Text=I went to the crystal by the lake. It raises the dead.
+Go to node ID=141 the crystal report
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Determine the nature of the magic crystal
+}
+}
+}
+}
+Reply Text=Is there anything else the Wielders need?
+Go to node ID=140 the crystal
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CIsEqualTo
@@ -851,6 +887,68 @@ Experience Points To Add=1
 }
 }
 }
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 the crystal
+Text=There is one more thing, and it is not an initiation - it is a favour, and you may refuse it. North-west of the Crossroads, by the lake, there is a crystal the colour of blood. It was there before the Wielders came to Barcelona, and none of us has ever put a hand on it. We do not know what it is. You have a spirit in you and a way of surviving things. Go and find out.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will look at it.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Determine the nature of the magic crystal
+State=NDE1SENT
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I have had enough of crystals for one life.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=141 the crystal report
+Text=The dead. <He is quiet for a moment.> Then it is not ours and never was; it is something older, and it feeds on the ground it stands in. We will leave it alone, and I will see that the others do. You have my thanks, and this.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Keep clear of it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Determine the nature of the magic crystal
+State=NDE3RPRT
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Determine the nature of the magic crystal
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Node quest XP
+Experience Points To Add=1
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Cedric Ward Scroll
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=500 chapter 2 mission

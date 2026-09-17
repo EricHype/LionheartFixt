@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=Determine the Nature of the Magic Crystal
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=Cedric Alsen has asked you to find the red crystal by the lake north-west of the Crossroads and learn what it is. He says the Wielders have never dared to touch it.
+			ID=NDE1SENT
+		}
+		State=CQuestStateDefinition
+		{
+			Text=The crystal draws the dead up out of the ground and spends itself doing it. Tell Cedric what you saw.
+			ID=NDE2LRND
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You have told Cedric what the crystal is.
+			ID=NDE3RPRT
+		}
+	}
+	Sub-Quest of=!None
+}

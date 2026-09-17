@@ -1313,6 +1313,14 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | CP3 | La Calle Perdida, fresh, a Wielder who has not, and a non-Wielder | Talk to a wizard | The greetings as before |
 | CP4 | La Calle Perdida, fresh | Attack Cedric, the random map, walk back in | *"You have strained what little welcome you had..."* (voiced) once over him; not on a first entry |
 | CP5 | After Relican's takeover | Attack Relican, the random map, walk back in | *"I trust you have come to your senses?"* once over him |
+| CP6 | Dark Wielder, Relican's `30 power` | *"Power is what you took from the Wielders..."* -> *"With the ones you drove out of here..."* | `80 war`; Relican, the Undead Guard and Brambles the Man attack; Relican takes damage and spells; no random-map relocate |
+| CP7 | CP6, kill Relican | - | *"<He goes down the way he stood...>"*; XP; the four Dark Wielder quests failed in the journal; a generic wizard then greets you as the one who killed Relican |
+| CP8 | Wielder, Cedric's secondary greeting | *"Is there anything else the Wielders need?"* | `140`; accept -> the crystal quest in the journal; the reply gone after; a non-Wielder never sees it |
+| CP9 | Fresh Lake map, quest active | Click the node three times, kill the waves | The journal advances to *"The crystal draws the dead..."* when the third wave strips the click |
+| CP10 | CP9, Cedric | *"I went to the crystal by the lake. It raises the dead."* | `141`; quest complete; 400 XP; Cedric's Ward in inventory (no slot, sellable) |
+| CP11 | Fresh Plains / Coast / Lake / Grove, walk near the red node | - | *"<A crystal the colour of old blood...>"*; the PE 7+ and Wielder variants; after the third wave the spent line |
+| CP12 | Inquisitor, turn the Calle over | Watch the wipeout | Wielders that appear during it die on generation as the shipped relay intends |
+| CP13 | Brambles, pour the potion, the man | - | After his thanks, one of three random barks over him 1.5 s later |
 
 ---
 

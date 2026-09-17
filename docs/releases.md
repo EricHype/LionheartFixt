@@ -126,7 +126,7 @@ into a release it does not fit.
 
 ## 0.12.0 - La Calle Perdida (scope)
 
-**In build.** Tiers 1-3 built 2026-09-17, unplayed; Tiers 4-5 to decide. Surveyed 2026-09-14.
+**In build.** All tiers built 2026-09-17, unplayed. Tier 4 and 4b decided for; Tier 5's six reads each ended in a decision (build log). Surveyed 2026-09-14.
 
 ### What the district is
 
@@ -309,6 +309,41 @@ Relican's relay and reset are inactive until his takeover, so his checker cannot
 Cedric stands there. One workflow slip recorded: resetting the map with `git checkout` to
 rerun Tier 3 also discarded Tier 2's edit to the same file; both re-applied and checked.
 
+**Tier 4, built 2026-09-17, unplayed.** The takeover machinery read: Relican on the Calle is a
+clone from `Relican Clone Generator`, built to be unkillable -- `Spell Immunity`, a damaged hook
+and a `gotocombat` message handler that both fire `Relican sends you to a random map`. The two
+player lines are ours: on `30 power`, *"Power is what you took from the Wielders, and it is all
+you are. I did not come here to be your pupil"* into `50 relican mad`; on `50`, *"With the ones
+you drove out of here. This is their street, and I am taking it back"* into `80 war`. `80 war`
+fires one relay, `dark wielder war`, which strips the clone by name before anything else --
+removes the message handler, empties the damaged hook (the Duke of Medina shape), removes both
+categories, hooks his death -- and only then sends him, the Undead Guard and Brambles the Man to
+combat. The vanilla `$Trigger` GoToCombat had to go: it would have hit the handler first and the
+war would have ended as a relocation. His death (`relican clone dies`) sets `Relican Dead`, fails
+the four Dark Wielder quests, plays `81 dies` and pays the shipped `Kill Relican` XP part. One
+build slip: the death hook first landed on a balloon's `After Action` inside the same generator,
+where `$Instigator` is the player; caught reading the part back, moved to the relay.
+
+**Tier 4b, built 2026-09-17, unplayed.** *Determine the Nature of the Magic Crystal* gets its
+three states (sent, learned, reported). The Lake's node advances it from its own third wave, on
+the same action that strips the click. Cedric's `100 Secondary Greeting` gains the ask for a
+Wielder who has not been asked (`140 the crystal`, sent to the Lake's node, the one the dryad
+points at) and the report for a player who has learned (`141 the crystal report`: *"Then it is
+not ours and never was"*; complete, 400 XP from `Node quest XP`, and *Cedric's Ward* -- a scroll
+on the Clover's item, no slot, no effect). Four hover polys on the red nodes (Plains, Coast,
+Lake, the Grove), a PE 7+ line, a Wielder line, a spent line once the node's SFX part is gone.
+Relican's yellow node stays dark: the Dark Wielder tasks have no slot that reads.
+
+**Tier 5, read 2026-09-17.** *`NOT WIELDER` greetings:* `Relican NIS Generator` is referenced
+only by `Start Dark Wielder NIS`; the wipeout puts no Relican on the map. A draft of a cut
+alliance; dark. *`Gives Pain to Wielders for Inquisition`:* the wipeout's generator fires the
+200-damage kill-on-generate relay directly, but that relay ships `Active=0` and nothing ever
+activated it, so the Wielders it re-generates stood while the Inquisition cut down only the ones
+already there. A live defect: `Player has turned Calle over to Inquisition` now fires the
+activating relay as its thirteenth action. *`Brambles / 150-152`:* wired -- `140 cure relican`'s
+action gains a `CRandomAction` over the three, each a balloon over Brambles the Man 1.5 s on.
+*`60 too much`, `Has talked to Cedric already`, `25 Attack`:* left, as the read said.
+
 ### Out now, with reasons
 
 Marco Polo's quips and boots (false positives, above). The Wielder and Dark Wielder
@@ -318,16 +353,19 @@ found in them is a repair release, not this one.
 ### What is new, plainly
 
 One reply on the Enchanter; a third arm on five wizard selectors; two checkers, two
-activates and two balloons on the attack/reset pairs; possibly two player lines for the
-break with Relican; possibly one random bark on Brambles' cure. If the Magic Nodes ship: three
-quest states, two or three Cedric nodes, a relay on the Lake's node, an XP part, and four hover
-lines -- the most authoring in the release, and the part to cut first if it reads thin. Every NPC line is the
-game's; the player lines are ours and there are at most three.
+activates and two balloons on the attack/reset pairs; two player lines for the break
+with Relican and one relay that makes him killable; one random bark on Brambles' cure; one call
+that makes the wipeout's pain relay live. The Magic Nodes: three quest states, two Cedric nodes,
+an advance on the Lake's node, an XP part, a ward, and four hover lines -- the most authoring in
+the release. Every NPC line is the game's except Cedric's two node nodes and the hovers; the
+player lines are ours and there are four.
 
 ### Gates
 
 - Gate 0 as ever. Tier 1 is dialogue-only: any save that has not passed the Enchanter.
   Tiers 2 and 3 are level parts: **a character who has not entered La Calle Perdida.**
+  Tier 4 and the hovers are level parts too: the Calle, and each node's map (Plains, Coast,
+  Lake, Grove) needs a character who has not entered it.
 - Gate 1: the honest route walked to `59 Winner` and the Enchanter passive afterwards, the
   undead still hostile; the lie route unchanged; `53 Whoops` still a fight. A Wielder who
   killed Relican greeted as such by every generic wizard, a Wielder who has not greeted as

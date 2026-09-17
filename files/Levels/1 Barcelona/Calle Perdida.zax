@@ -87,6 +87,229 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Dynamic Properties=1
+			{
+				Experience Points=400
+			}
+			Name=Node quest XP
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=0
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=1350
+			Position Y=3400
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=dark wielder war
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=6
+							Action=CRemoveAIAction
+							{
+								Target Name=Relican
+								AI=CHandleMessageAI
+								Delay Between Removes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=
+								Target Name=Relican
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Relican
+								Categories To Remove=Spell Immunity,NonInteractiveSequence Actor
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=relican clone dies
+								}
+								Target Name=Relican
+							}
+							Action=CGoToCombatAction
+							{
+								Enemy Name=Relican, Undead Guard, Brambles the Man
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Undead Guard
+								Name To Target=Player#1-9#
+								Valid Targets=
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1310
+			Position Y=3400
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=relican clone dies
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=7
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=
+								Modification is permanent=0
+								Character to modify=Player#1-9#
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=1
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Relican Dead
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CSetQuestSatusToFailedIfActiveAction
+							{
+								Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+							}
+							Action=CSetQuestSatusToFailedIfActiveAction
+							{
+								Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+							}
+							Action=CSetQuestSatusToFailedIfActiveAction
+							{
+								Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Enter Inquisitor's House and Learn about Relics
+							}
+							Action=CSetQuestSatusToFailedIfActiveAction
+							{
+								Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Dark Wielders
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/1 Barcelona/Dialog/La Calle Perdida/Lord Relican
+								Node ID=81 dies
+								Name of Position=$Instigator
+								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CGiveExperiencePointsToAllPlayersAction
+							{
+								Get XP Frome=Tell Wielders Kill Relican XP step 3
+								Experience Points To Add=1
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1330
+			Position Y=3400
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Cedric jailed you
 			Child List=
 			Visible=1
@@ -13932,7 +14155,11 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=12
+							Item Count=13
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Gives Pain to Wielders for Inquisition
+							}
 							Action=CDeactivateAction
 							{
 								Target Name=RESET MAP for Invulnerable Cedric

@@ -1,0 +1,835 @@
+CDialogTree
+{
+Name=Lord Relican
+Portrait=Dialog/NPC Portraits/Relican
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Brother, see what glorious things you have wrought! Now that I control La Calle Perdida, we are free to expand our power and knowledge even further. The remaining secrets of death and creation will be laid bare before us, and we will be the most powerful beings on Earth.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=These events please me. I look forward to sharing power with you.
+Go to node ID=40 tasks
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Is that all you can think about, power?
+Go to node ID=30 power
+------------------------------------------------------------
+Node ID=1 Conversation Start NOT WIELDER
+Text=Our partnership has worked out well for you and I. Getting rid of the Wielders has served both our purposes. Now leave me to my dark contemplations. Farewell.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=5 Return Dialogue
+Text=Greetings, dark brother. What do you seek?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=UFG3W5T9
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=HZTN20XD
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone WITH Spirit
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+}
+}
+}
+}
+}
+Reply Text=I have recovered the Sceptre of Bone.
+Go to node ID=45 Rod Bone Returned
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Find Scepter of Bone Relican XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+State=QQ2PE9WJ
+}
+}
+Reply Text=I have eliminated the Herbalist.  He will no longer be a threat to us.
+Go to node ID=46 Herbalist dealt with
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Convince Herbalist to turn to Dark Side XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+State=FPC9941A
+}
+}
+Reply Text=I bent Quinn's will with my words and he will now serve us faithfully, Lord Relican.
+Go to node ID=46 Herbalist dealt with
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Convince Herbalist to turn to Dark Side XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Enter Inquisitor's House and Learn about Relics
+State=4XUQR7B3
+}
+}
+Reply Text=Let us talk about the events that transpired in the Church.
+Go to node ID=40 dark wielder task 4
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Enter Inquisitor's House and Learn about Relics
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Find out Info From Knights Relican XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me more about the tasks.
+Go to node ID=40 tasks
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Return Dialogue NOT WIELDER
+Text=Do not strain our past relationship.  I am busy in meditation and cannot be bothered.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Farewell, dark brother.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=30 power
+Text=Of course, Power is everything. All else is superfluous.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I agree. So what is next, Relican?
+Go to node ID=40 tasks
+
+Requirement=!None
+Reply Text=Power is what you took from the Wielders, and it is all you are. I did not come here to be your pupil.
+Go to node ID=50 relican mad
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+------------------------------------------------------------
+Node ID=40 tasks
+Text=Before I will share the dark secrets of necromancy, you must prove to me that you are worthy of being my pupil. Complete these services and you will become a Dark Wielder, and you will not want for power again.
+Should Have Voiceover=0
+
+Requirement=Relican Player has NOT started getting quests
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+}
+}
+}
+Reply Text=I agree, what would you have me do?
+Go to node ID=40 dark wielder task 1
+Icon=Quest Icon
+
+Requirement=Relican Player has gotten started getting quests
+Reply Text=I want those secrets. I will get back to work.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 dark wielder task 1
+Text=First, you must recover an item of power to help you with your dark studies, the Sceptre of Bone. I can sense that the Sceptre is somewhere in Barcelona, possibly protected by a wizard of some power or even the Inquisition. Return when it is found.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone WITH Spirit
+}
+}
+Reply Text=I already have the Sceptre
+Go to node ID=45 Rod Bone Returned
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone WITH Spirit
+}
+}
+}
+Reply Text=I will find the Sceptre.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=Relican started giving quests already to player
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=UFG3W5T9
+}
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CSucceedAction
+{
+Action=
+}
+Fail Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Return failure if the TryAction failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone WITH Spirit
+}
+}
+}
+Reply Text=Tell me more about this Sceptre.
+Go to node ID=40 sceptre
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 sceptre
+Text=Amontep, Vizier to Ramses II and the last Necromancer Lord of the Fourth Crusade, forged the Sceptre of Bone from the remains of the risen pharaohs Ramses had defeated. Within the scepter lies the great power to raise the dead upon command.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will find the Sceptre.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=Relican started giving quests already to player
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=UFG3W5T9
+}
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CSucceedAction
+{
+Action=
+}
+Fail Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Return failure if the TryAction failes=0
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 dark wielder task 2
+Text=Although we now possess La Calle Perdida, there are a few wizards that refuse to join our faction. The herbalist, Quinn, ignores my calling and still defies me. Convince him to join us or destroy him, and the rest will follow.
+Should Have Voiceover=0
+
+Requirement=Relican Player has already killed Herbalist
+Reply Text=I have already taken care of him.
+Go to node ID=46 Herbalist dealt with
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=First time approach Relican with Rod Bone
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Find Scepter of Bone Relican XP
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Relican Player has NOT killed Herbalist
+Reply Text=I shall do it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=First time approach Relican with Rod Bone
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+State=JJIRZNCN
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Find Scepter of Bone Relican XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 dark wielder task 3
+Text=There has been a great deal of activity within the city. The Inquisition and the Knights Templar are preparing for an important event involving relics that I cannot see yet. Use your guile and discover what they are plotting.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Let's send one of these dark minions to do the job instead.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=First time approach Relican Convince Herbalist
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Convince Herbalist to turn to Dark Side XP
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Dark Wielder Start Church Movie
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 dark wielder task 4
+Text=My dark apprentice, we must take these relics, for as long as they are in the hands of the Knights, our own power can be undone.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will search for these relics.
+Go to node ID=100 find the relics
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=2
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CSucceedAction
+{
+Action=
+}
+Fail Action=CExpressionAction
+{
+Expression=CAdd
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Return failure if the TryAction failes=0
+}
+Action=CDeactivateAction
+{
+Target Name=First time approach Relican Tell about Relics
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Find out Info From Knights Relican XP
+Experience Points To Add=1
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=3M07PDZC
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Dark Wielders
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+}
+Character to get attributes from=$Instigator
+Then=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Necromancer
+}
+Else=
+}
+}
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Wielder Mage
+Character To assign=$Instigator
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Tell me more about these relics.
+Go to node ID=40 holy relics
+------------------------------------------------------------
+Node ID=40 holy relics
+Text=The relics are ancient objects of divine power, responsible for the creation of man, magic, and the world. Such relics of creation must come into our hands for our domination to be complete.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I agree. I will help you find these relics.
+Go to node ID=100 find the relics
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=2
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CSucceedAction
+{
+Action=
+}
+Fail Action=CExpressionAction
+{
+Expression=CAdd
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Return failure if the TryAction failes=0
+}
+Action=CDeactivateAction
+{
+Target Name=First time approach Relican Tell about Relics
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Find out Info From Knights Relican XP
+Experience Points To Add=1
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=3M07PDZC
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Dark Wielders
+}
+Action=CForEachPlayerAction
+{
+Action=CIfExpressionAction
+{
+If Expression=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+}
+Character to get attributes from=$Instigator
+Then=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Necromancer
+}
+Else=
+}
+}
+Action=CAssignFactionToCharacterAction
+{
+Faction To Assign=Factions/Wielder Mage
+Character To assign=$Instigator
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=45 Rod Bone Returned
+Text=Excellent! However...upon closer inspection it seems the spirit inside has a peculiar aversion to me. I don't think I could wield the Scepter. Perhaps it would be best if you hold onto it, young one. Your next task looms, and you may need its power.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 dark wielder task 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=46 Herbalist dealt with
+Text=Perhaps now the other wielders in the community will accept our leadership. Events are proceeding exactly as planned. Now, for the next step.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 dark wielder task 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 relican mad
+Text=You would be wise to reconsider your words, brother. You would discover me to be a terrible opponent. Tell me now where your loyalties lie.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I meant no disrespect, Relican. We are still allies.
+Go to node ID=60 reconcile
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=With the ones you drove out of here. This is their street, and I am taking it back.
+Go to node ID=80 war
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=60 reconcile
+Text=Very well. There is much work to do and several tasks that we need to complete.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=80 war
+Text=So be it. I had hoped you would have quelled your traitorous instincts long enough for me to have betrayed you, but a quick resolution is logical. Goodbye, scion of Lionheart.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=dark wielder war
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=81 dies
+Text=<He goes down the way he stood: without hurry, and looking at you. Whatever held the street holds it no longer.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 find the relics
+Text=Very well. The Knights are concerned that they have not heard from their brothers at Montserrat. Go north to Montserrat and seek out the relic there. I will mark it on your map. Use the crystal in the Crossroads outside of town to take you there. Make haste, I sense that another great evil power seeks to claim these relics. Remember brother, we are outcasts, trust nothing but your own power.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(montserrat quest given - world map unlocked)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=3M07PDZC
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Montserrat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Get rid of Fake Relican AND Modify real Relican
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Arrive in La Calle
+Text=Finally! These damned wielders will pay for their insolence!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 dark wielder NIS start
+Text=And that is all that was said in the Cathedral?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Dark Wielder NIS wraith speaks
+Text=Yess...Masterss...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Dark Wielder NIS Dismiss Undead
+Text=Very well, wraith. Leave us now.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Attack Relican
+Text=You think you can hurt me? Your ambition is amusing, but I have little time for it. Return after you have cooled your fires.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 After Attack Relican
+Text=I trust you have come to your senses? Let us continue with our plans.
+Should Have Voiceover=0
+}

@@ -137,7 +137,12 @@ def check_dialogtree(p, raw):
     if t.count(LF + "{") != t.count(LF + "}"):
         fails.append(name + ": brace imbalance")
 
-    ids = [x.strip() for x in re.findall(r"^Node ID=(.*)$", t, re.M)]
+    # only top-level records count: a balloon inside a Custom Action carries its own Node ID= line
+    ids, depth = [], 0
+    for line in t.split(LF):
+        if line == "{": depth += 1
+        elif line == "}": depth -= 1
+        elif depth == 1 and line.startswith("Node ID="): ids.append(line[8:].strip())
     dupes = {i for i in ids if ids.count(i) > 1}
     if dupes:
         fails.append(name + ": duplicate node IDs " + repr(sorted(dupes)))
