@@ -168,69 +168,6 @@ CLayerSaveData
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
-		Level Part=CFreeRangePoly
-		{
-			Name=hover nest
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CAIInteractionSpecifier
-				{
-					Marked For Deletion=0
-					Publisher=
-					Trigger Only Once=0
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Companions=0
-					Triggered By Name=
-					Interaction Description=
-					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
-					Action=CDisplayDialogBalloonAction
-					{
-						Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
-						Node ID=29 nest
-						Name of Position=$trigger
-						Position Offset=0.000000,-50.000000
-						After Action=
-						Include In Log=1
-					}
-					X Radius=55
-					Attacker Range Modifier=0
-					YX Ratio=0.712766
-					Highlight Self Time=0
-					Highlight Until Clicked=0
-					Is Locked=0
-					Allow Interact If Has Target=1
-					Lock Pick Adjustment=0
-					Inventory item to use as key=Inventory Items/!None
-					Is Bussy Talking=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1780, 1500, 1840, 1500, 1840, 1560, 1780, 1560, 1780, 1500
-			Center Position Offset=0.000000,0.000000
-		}
 		Level Part=CRenderablePolygon
 		{
 			Name=
@@ -7857,7 +7794,24 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=COnlyOnceAction
+					{
+						Action=CDelayAction
+						{
+							Next Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
+								Node ID=29 nest
+								Name of Position=$Instigator
+								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=1
+							}
+							Delay=1.0
+							Plus or Minus=0
+							Forget Trigger=0
+						}
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=125

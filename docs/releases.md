@@ -613,9 +613,9 @@ Wasp2's is 0.3, and the field is live across 250 shipped sidecars (the wererat t
 1 / 1.15 / 1.5). The animations stay Wasp2's. Race from Wasp Cursed Super: 220 HP, AC 170,
 piercing threshold 5, melee 45; 900 XP; two stingers for Quinn's errand. She stands in the
 deep west chamber at (900,1050); a hover at the entrance says the nest is made of the
-abbey's timber. Unknowns: whether the same-length manifest patch loads at all (a crash on
-entering the cave is the failure), and whether Render Scaling applies in play -- the
-wererat-2x test set it and was never played.
+abbey's timber. Played the same day: the manifest loads and **Render Scaling is live** -- she was three
+times a wasp, which the tester called too big; now 0.6, twice. The nest line was a click
+zone nobody clicked; it plays once on arrival from the Grove instead.
 
 **Unknowns the first test settles, in order:** whether the undercroft loads at all and its
 floor and walls read (a new map; the engine generates its own pathing); whether the
