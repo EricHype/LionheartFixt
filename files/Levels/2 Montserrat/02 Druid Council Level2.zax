@@ -106,14 +106,72 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CDisplayDialogBalloonAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
-						Node ID=56 escort arrival
-						Name of Position=$Instigator
-						Position Offset=0.000000,-70.000000
-						After Action=
-						Include In Log=1
+						Action=Array
+						{
+							Item Count=3
+							Action=CDeactivateAction
+							{
+								Target Name=sahar approach poly
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=5
+									Action=CDeactivateAction
+									{
+										Target Name=Snakebreed Generator
+									}
+									Action=CSetTargetTypeAction
+									{
+										Entity Name=Snakebreed
+										Name To Target=
+										Valid Targets=
+									}
+									Action=CActivateAction
+									{
+										Target Name=Sahar Generator
+										Play Activate Sound=0
+										Delay Between Activations=0
+										Warp Behavior=
+									}
+									Action=CForceGenerateAction
+									{
+										Generator Name=Sahar Generator
+									}
+									Action=CDelayAction
+									{
+										Next Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+											Node ID=1 too late
+											Speaker=Sahar
+											Player Being Spoken To=$Instigator
+										}
+										Delay=2.8
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+									Node ID=56 escort arrival
+									Name of Position=$Instigator
+									Position Offset=0.000000,-70.000000
+									After Action=
+									Include In Log=1
+								}
+								Delay=1.0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
