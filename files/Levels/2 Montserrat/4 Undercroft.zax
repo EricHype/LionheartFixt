@@ -89,6 +89,69 @@ CLayerSaveData
 		{
 			Dynamic Properties=1
 			{
+				Experience Points=25
+			}
+			Name=drain secret
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=20
+					Reveal Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Found Hidden Treasure
+							}
+							Action=CActivateAction
+							{
+								Target Name=drain known
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+						}
+					}
+					AIs To Add=Array
+					{
+						Item Count=0
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Secret Icon
+			Position X=322
+			Position Y=420
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
 				Experience Points=50
 			}
 			Name=Hidden Treasure
@@ -1305,7 +1368,7 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=6
+								Item Count=4
 								Action=CDisplayDialogBalloonAction
 								{
 									Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Hover
@@ -1315,22 +1378,13 @@ CLayerSaveData
 									After Action=
 									Include In Log=1
 								}
-								Action=CBeginNonInteractiveSequenceAction
-								{
-									Options=CNonInteractiveSequence
-									{
-										Pause Characters=0
-										Disable Player Controls=1
-										Can Fast Forward=1
-									}
-								}
 								Action=CDelayAction
 								{
 									Next Action=CFadeScreenDownAction
 									{
-										Time Until Auto Fade Up=2.5
+										Time Until Auto Fade Up=2
 									}
-									Delay=1.2
+									Delay=1.0
 									Plus or Minus=0
 									Forget Trigger=0
 								}
@@ -1343,18 +1397,8 @@ CLayerSaveData
 										New Location=Drain Out
 										Who To Switch=$Instigator
 										Relative Position=0
-										Ignore Party Ready Rules=1
 									}
-									Delay=2.4
-									Plus or Minus=0
-									Forget Trigger=0
-								}
-								Action=CDelayAction
-								{
-									Next Action=CEndNonInteractiveSequenceAction
-									{
-									}
-									Delay=3.8
+									Delay=2.0
 									Plus or Minus=0
 									Forget Trigger=0
 								}
@@ -1369,7 +1413,7 @@ CLayerSaveData
 										After Action=
 										Include In Log=1
 									}
-									Delay=4.0
+									Delay=3.5
 									Plus or Minus=0
 									Forget Trigger=0
 								}
