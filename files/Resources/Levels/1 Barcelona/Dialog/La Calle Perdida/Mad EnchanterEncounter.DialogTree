@@ -1,0 +1,404 @@
+CDialogTree
+{
+Name=Mad Enchanter
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Ah, so the portals have brought another visitor. Such a devious trap - and one few can resist, it seems. The price of your intrusion into my private plane is imprisonment on this island - for however long you can last. But I suspect my undead servants shall dispose of you soon enough.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Teleports Away)
+------------------------------------------------------------
+Node ID=03 Conversation Start at Island
+Text=Wh-? Impossible! How can this be? This island was sealed off, none can reach me here!
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 35
+Reply Text=I have no wish to fight you - I have come to negotiate with you.
+Go to node ID=40 Barter
+Action work in progress=(Barter >=35%)
+Icon=Barter Skill Icon
+
+Requirement=Speech moreequal 35
+Reply Text=I have arrived, and I will not be the last. I have come to warn you - you must flee, before the others arrive. <Lie>
+Go to node ID=60 Lie Speech
+Action work in progress=(Speech >=35%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have come to tell you how you can escape this place.
+Go to node ID=50 Escape
+Action work in progress=(Know how to escape)
+
+Requirement=!None
+Reply Text=With the help of the spirits, I was able to bridge the ether. Now I am here to stop you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Told about spirits helping in conversation Enchanter
+}
+
+Requirement=!None
+Reply Text=I found my way here. Now prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to fight in conversation Enchanter
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I seem to have taken a wrong path - I did not mean to intrude. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to leave conversation Enchanter
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Return Dialogue 1
+Text=I am still watching you. If what you have said proves untrue, I will see you join the spirits in this place.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I did not lie to you - you will see that my words are true. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I've changed my mind. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to fight in conversation Enchanter
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=10 combat
+Text=You are on a fool's errand, intruder, and your spirit will soon join the others in this place.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 spirits
+Text=Then they shall be punished. The suffering those spirits have endured will be *nothing* compared to what I will inflict on them for this intrusion.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=30 Goodbye
+Text=I have not given you permission to leave, intruder - and once I strip the spirit from your body, you will *never* leave.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=40 Barter
+Text=Negotiate? You have nothing I want - and you shall soon join the spirits in this place.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Oh, but I do have something you want. Does the prospect of gathering more spirits interest you? <Bluff>
+Go to node ID=43 Barter 2
+
+Requirement=!None
+Reply Text=If you attack me, I will never tell you how to escape this place.
+Go to node ID=50 Escape
+Action work in progress=(Know how to escape)
+
+Requirement=Speech moreequal 35
+Reply Text=Very well, but before you do anything foolish, I have come to warn you - you must flee, before the others arrive. <Lie>
+Go to node ID=60 Lie Speech
+Action work in progress=(Speech >=35%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=We'll see. Prepare to die.
+Go to node ID=
+Action work in progress=(Enchanter Attacks)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to fight in conversation Enchanter
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=43 Barter 2
+Text=Eh? *More* spirits? What is this nonsense you speak of?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am from the far south, and my people carry a strange binding enchantment to each other...as long as I live, they will know and search for me, leading them here. If I die, however, they will give up the search. <Lie>
+Go to node ID=45 Barter 3
+
+Requirement=!None
+Reply Text=I am a heretic, and have committed crimes against the Inquisition. As long as their divinations determine I am alive, they will send their agents after me...even to here.
+Go to node ID=45 Barter 3
+
+Requirement=Speech moreequal 35
+Reply Text=Nevermind. But before you do anything foolish, I have come to warn you - you must flee, before the others arrive. <Lie>
+Go to node ID=60 Lie Speech
+Action work in progress=(Speech >=35%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=It was pointless to try and reason with you. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to fight in conversation Enchanter
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Barter 3
+Text=So, you barter with your life, do you? Very well...we shall see if what you say proves true. I shall let you live - but my undead servants are under no such compulsion, so I would avoid them if you can. Now leave - and know that I will be watching you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Action work in progress=(Enchanter Pacify, Won't Attack Unless Attacked First)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Pacify Enchanter in Dialog
+}
+
+Requirement=!None
+Reply Text=Forget it, I've changed my mind. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to fight in conversation Enchanter
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Escape
+Text=Escape? There is no escape from this place! You are lying to save your miserable hide! If there was an escape, I would have already found it!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=But the crystal you fashioned before you lost your mind - all it needs is enough energy to power it, and you can use it to escape.
+Go to node ID=53 Whoops
+
+Requirement=!None
+Reply Text=The crystal you fashioned. It only needs enough energy to power it, and it can take us both out of here.
+Go to node ID=55 Escape 2
+
+Requirement=Speech moreequal 35
+Reply Text=You're right. I was just trying to save your life. When the others come, they will not be as forgiving as I am. <LIE>
+Go to node ID=60 Lie Speech
+Action work in progress=(Speech >=35%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=It was pointless to try and reason with you. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to fight in conversation Enchanter
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=53 Whoops
+Text=*Lost my mind*?! You will pay for those words, intruder - I will kill you, then raise your spirit to join the others here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have tried to reason with you. If it is a battle you want, so be it.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=We'll see. Prepare to die.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 Escape 2
+Text=You tell me nothing I do not already know - and nothing that will make me spare your life.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The spirits on this plane have absorbed power...enough power to enable the crystal to work and take us out of here.
+Go to node ID=57 Escape 3
+
+Requirement=!None
+Reply Text=I have tried to reason with you. If it is a battle you want, so be it.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=We'll see. Prepare to die.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=57 Escape 3
+Text=I have collected many spirits here, and none of them possess the power that you speak of. Perhaps it is another of your clever lies?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then at least allow me to prove my theory - should I fail, you will kill me anyway, so what do you have to lose? Spare my life, and I may be able to help us all escape.
+Go to node ID=59 Winner
+
+Requirement=!None
+Reply Text=I have tried to reason with you. If it is a battle you want, so be it.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=If you won't believe me, then prepare to die.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=59 Winner
+Text=Very well. I shall grant you your life to test your theory - but my undead servants are another matter. Now leave - and know that I will be watching you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well. I shall see if I can open the portal by talking to the spirits.
+Go to node ID=
+Action work in progress=(Enchanter Pacify, Won't Attack Unless Attacked First)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Pacify Enchanter in Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Lie Speech
+Text=Others?! Whoever they are, let them come! I will kill them and then raise them to do my bidding, as I have done with all that have come here!
+Should Have Voiceover=0
+
+Requirement=Speech lessthan 045
+Reply Text=But, uh, the creatures...I mean, wizards...coming here, they are very powerful. As wizards go.
+Go to node ID=
+Action work in progress=(Speech < 45%)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Trying to lie badly in conversation Enchanter
+}
+
+Requirement=Speech moreequal 45
+Reply Text=But the ones that are coming are already dead, and these necromancers seek to punish you for your crimes.
+Go to node ID=62 Others
+Action work in progress=(Speech >=45%)
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 45
+Reply Text=Do you think you can stop all of the Inquisition? They know of this place, and they seek to kill all within! You can't fight them all.
+Go to node ID=62 Others
+Action work in progress=(Speech >=45%)
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 45
+Reply Text=Among your prisoners is a Knight Templar - and the Knights Templar protect their own. They will come for you until justice is done.
+Go to node ID=62 Others
+Action work in progress=(Speech >=45%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have tried to reason with you. If it is a battle you want, so be it.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=If you won't believe me, then prepare to die.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=61 Lie Fails
+Text=You stumble over your lies like a drunken man. Soon your spirit will join the others here, to remain forever in undeath.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=62 Others
+Text=Y-you speak with a conviction...a conviction that no liar would possess. But if these others are coming...why, there is no place for me to flee! What can be done?!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=There is only one way that I can see - deny them their victory. By preventing them from capturing you and torturing you, you can defeat them by killing yourself first.
+Go to node ID=63 Self Destruct 1
+Action work in progress=(Evil Response)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Karma negative talk meanly to Enchanter
+}
+
+Requirement=!None
+Reply Text=There must be something you can do. Otherwise, they'll capture you, torture you, then...I dare not say it, it is too horrible for words. You must think of something.
+Go to node ID=65 Self Destruct 2
+
+Requirement=!None
+Reply Text=There is nothing to be done - except die by my hand.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=63 Self Destruct 1
+Text=You are right. I refuse to allow myself to be delivered into the hands of my enemies. Being trapped here for so long...death has long been the only choice open to me. It is time to say farewell to this place.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Self Destruct)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Talk Enchanter to Death
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 Self Destruct 2
+Text=You are right. But there is only one way that I can see. Being trapped here for so long...death has long been since the only escape open to me. It is time to say farewell to this place.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Self Destruct)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Talk Enchanter to Death
+}
+Is Default Reply=1
+}

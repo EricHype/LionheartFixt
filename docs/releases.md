@@ -126,8 +126,7 @@ into a release it does not fit.
 
 ## 0.12.0 - La Calle Perdida (scope)
 
-**Not started.** Numbered after the Prisoner of Montserrat; nothing in it depends on 0.11.0,
-and Tiers 1-3 are a patch-sized build if wanted earlier. Surveyed 2026-09-14.
+**In build.** Tiers 1-3 built 2026-09-17, unplayed; Tiers 4-5 to decide. Surveyed 2026-09-14.
 
 ### What the district is
 
@@ -295,6 +294,20 @@ being a mystery with no answer.
   Wielder Quests from Cedric` instead; probably vestigial, confirm and leave.
 - **`Cedric / 25 Attack`** -- *"Wielders, to me! La Calle Perdida is under attack!"* -- a bark;
   `600 Attack Cedric` plays instead. Duplicate; leave.
+
+### Build log
+
+**Tiers 1-3, built 2026-09-17, unplayed.** *Tier 1:* one reply on `50 Escape` -- the crystal
+without the insult -- into the shipped `55 -> 57 -> 59 Winner` chain; the reads held (the
+pacify relay touches only the Enchanter; `05 Return Dialogue 1` is his greeting after). The
+tree drops out of the orphan survey entirely. *Tier 2:* the five `Generic Wielder Generator`
+selectors gained a third arm on `Cedric Player has defeated Relican` (the shipped can reads
+the `Relican Dead` scripting variable, so no map checker), and `60 Membership` lost its blank
+Fight-icon reply. *Tier 3:* the Auric shape twice -- `Cedric jailed you` / `Relican jailed you`
+set first thing in the attack relays, played once by the resets 1.5 s after the re-clone.
+Relican's relay and reset are inactive until his takeover, so his checker cannot be set while
+Cedric stands there. One workflow slip recorded: resetting the map with `git checkout` to
+rerun Tier 3 also discarded Tier 2's edit to the same file; both re-applied and checked.
 
 ### Out now, with reasons
 

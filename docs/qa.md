@@ -1308,6 +1308,11 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | PM22 | Holding the ring, Montaillou inn, refused Machiavelli | *"Before your friends come in"* | `232`; he walks out alone, no assassins; without the ring the 0.9.0 ambush as before |
 | PM23 | Holding the ring, Crypt Burial Chamber assassin | *"Your captain at Montserrat sent me north under this"* | `21 her mark`, then the vanilla vanish-and-fight exactly as `20 threat`; the reply absent without the ring |
 | PM24 | Grove, the second cave (wasp nest), fresh | Enter; the hover at the mouth; go to the deep west chamber | The cave loads; *"The floor of the cave is paper..."* a second after arriving; a cursed wasp twice the size, named Wasp Queen, 200 HP; two stingers on death |
+| CP1 | Trapped Ether Plane, the Enchanter, `50 Escape` | *"The crystal you fashioned. It only needs enough energy..."* -> the continue replies at 55 and 57 | `59 Winner`; he stands down and *"I am still watching you"* on a click; the undead stay hostile; the lie route and `53 Whoops` unchanged |
+| CP2 | La Calle Perdida, fresh, a Wielder who killed Relican | Talk to any generic wizard | *"Welcome, fellow Wielder. We have heard much of your victory over Relican"*; `60 Membership` has no fight reply |
+| CP3 | La Calle Perdida, fresh, a Wielder who has not, and a non-Wielder | Talk to a wizard | The greetings as before |
+| CP4 | La Calle Perdida, fresh | Attack Cedric, the random map, walk back in | *"You have strained what little welcome you had..."* (voiced) once over him; not on a first entry |
+| CP5 | After Relican's takeover | Attack Relican, the random map, walk back in | *"I trust you have come to your senses?"* once over him |
 
 ---
 

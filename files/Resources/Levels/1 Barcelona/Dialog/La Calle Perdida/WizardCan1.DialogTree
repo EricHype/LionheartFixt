@@ -1,0 +1,157 @@
+CDialogTree
+{
+Name=Wielder
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Welcome to La Calle Perdida, the lost street. Can I help you with something?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=20 shelter
+
+Requirement=!None
+Reply Text=I wish to leave. Can you tell me how to find the exit?
+Go to node ID=30 exit
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=01 Conversation Start Wielder
+Text=Welcome, fellow Wielder. Word of your presence within our ranks has spread quickly, and much has been said about the strength of the spirit that resides within you. How may I help you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you know of my spirit?
+Go to node ID=50 Spirit
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=20 shelter
+
+Requirement=!None
+Reply Text=I wish to leave. Can you tell me how to find the exit?
+Go to node ID=30 exit
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 shelter
+Text=La Calle Perdida is a magical plane, separated from the normal world. It is a shelter for the wizards of Barcelona, protecting us from the Inquisition. You are safe here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I wish to leave. Can you tell me how to find the exit?
+Go to node ID=30 exit
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 exit
+Text=You may walk out through the secret passage. Or you can speak with Pedro, and cross through the Room of Ways.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Room of Ways?
+Go to node ID=40 Room of Ways?
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=20 shelter
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=40 Room of Ways?
+Text=Pedro, the Keeper of Ways, can explain better than I. Seek him out when you wish to leave La Calle Perdida, and he can tell you of the Room of Ways.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=20 shelter
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 Spirit
+Text=It is said that you carry the strength of many generations within your spirit - and that it is capable of great displays of power. Lesser Wielders might be consumed by such a spirit, but you hold it within you effortlessly. It is impressive, indeed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=20 shelter
+
+Requirement=!None
+Reply Text=I wish to leave. Can you tell me how to find the exit?
+Go to node ID=30 exit
+
+Requirement=!None
+Reply Text=Thank you for your words. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Membership
+Text=Indeed, I did not have to pass such tests when I became a member, although we did not have one such as Relican to contend with. You were truly brave to face him - it is not something many Wielders could have survived.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you know of my spirit?
+Go to node ID=50 Spirit
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=20 shelter
+
+Requirement=!None
+Reply Text=I wish to leave. Can you tell me how to find the exit?
+Go to node ID=30 exit
+
+Requirement=!None
+Reply Text=Save your flattery and begone.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Thank you for your words. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=01 Conversation Start Wielder Killed Relican
+Text=Welcome, fellow Wielder. We have heard much of your victory over Relican, and much about the strength of the spirit that resides within you. How may I help you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you know of my spirit?
+Go to node ID=50 Spirit
+
+Requirement=!None
+Reply Text=Passing the initiation rites was...difficult. I am pleased to finally be a member of the Wielders.
+Go to node ID=60 Membership
+
+Requirement=!None
+Reply Text=What can you tell me about La Calle Perdida?
+Go to node ID=20 shelter
+
+Requirement=!None
+Reply Text=I wish to leave. Can you tell me how to find the exit?
+Go to node ID=30 exit
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+}
