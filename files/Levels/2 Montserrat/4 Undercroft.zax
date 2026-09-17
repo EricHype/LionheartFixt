@@ -2386,7 +2386,7 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=8
+								Item Count=9
 								Action=CCloseDoorAction
 								{
 									Door Name=cell door
@@ -2461,19 +2461,90 @@ CLayerSaveData
 								{
 									Next Action=CIfAction
 									{
-										If=CCheckExistenceAction
+										If=COrAction
 										{
-											Name To Check For=escorted
-											Desired Minimum Count=1
+											Action=Array
+											{
+												Item Count=3
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=escorted
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=escaped loud
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=drain used
+													Desired Minimum Count=1
+												}
+											}
+											Early Exit=0
 										}
 										Then=
-										Else=CTriggerRelayAction
+										Else=CDisplayDialogBalloonAction
 										{
-											Relay Name=escort
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
+											Node ID=55 handler glances
+											Name of Position=Handler
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
 										}
 										Return failure if the If failes=0
 									}
-									Delay=300
+									Delay=45
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+								Action=CDelayAction
+								{
+									Next Action=CIfAction
+									{
+										If=COrAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=escorted
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=escaped loud
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=drain used
+													Desired Minimum Count=1
+												}
+											}
+											Early Exit=0
+										}
+										Then=
+										Else=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Handler
+												Desired Minimum Count=1
+											}
+											Then=CTriggerRelayAction
+											{
+												Relay Name=escort
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
+									}
+									Delay=100
 									Plus or Minus=0
 									Forget Trigger=0
 								}
