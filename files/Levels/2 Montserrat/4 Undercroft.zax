@@ -87,36 +87,6 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
-			Name=stair rally
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Position Marker
-			Position X=560
-			Position Y=400
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
 			Name=drain used
 			Child List=
 			Visible=1
@@ -444,43 +414,10 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=1
 							Action=CGoToCombatAction
 							{
 								Enemy Name=$Instigator
-							}
-							Action=CAssignTemporaryTaskAction
-							{
-								Target=$Instigator
-								Temporary Task AI=CGoToAI
-								{
-									Marked For Deletion=0
-									Publisher=
-									Destination=stair rally
-									Offset=0.000000,0.000000
-									Starting Action=
-									Move Finished=0
-									Target Was Set By Goto AI=0
-									Move Behavior=CEntityBehaviorMoveToPos
-									{
-									}
-									Done action=CGoToCombatAction
-									{
-										Enemy Name=$Trigger
-									}
-									Run=1
-									Make New Home=1
-									Time To Try To Move=0
-									Set Facing Angle=0
-									Turn Sequence Name=Idle
-									Facing Angle=CEntityBehaviorTurnToAngle
-									{
-									}
-									Need to Call Start=1
-								}
-								Original AI Type=CSkeletonAI
-								Completion Message to wait for=AI Done
-								Suppress can't assign error=0
 							}
 						}
 					}
@@ -494,8 +431,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Enemy Generator Spot
-			Position X=860
-			Position Y=290
+			Position X=740
+			Position Y=310
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
