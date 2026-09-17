@@ -316,6 +316,10 @@ Node ID=90 troll bark 3
 Text=<A low sound, more rock than throat. Whatever it means, it is not welcome.>
 Should Have Voiceover=0
 ------------------------------------------------------------
+Node ID=91 that is ours
+Text=That is ours. <And the room is moving.>
+Should Have Voiceover=0
+------------------------------------------------------------
 Node ID=95 the chief
 Text=<He is a head taller than the others and does not grumble. He looks at you the way a man looks at weather.>  You walk in my rock and my people do not stop you. So. Say the thing you came to say.
 Should Have Voiceover=0
@@ -811,27 +815,27 @@ Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=102 word carried
-Text=<He takes this in the way he takes everything, without moving. Then he turns and says something short over his shoulder, and somewhere behind him a great deal of rock begins to shift.>  In daylight. And the same face.  <He looks back at you.>  You carried it whole. So.  <A younger troll brings up a piece of ore and the chief does not take it from him -- he lets him hand it to you himself, which is a thing you suspect has never happened in this room before.>  The first is not sold. The first is to show we can.
+Text=<He takes this in the way he takes everything, without moving. Then he turns and says something short over his shoulder, and somewhere behind him a great deal of rock begins to shift.>  In daylight. And the same face.  <He looks back at you.>  You carried it whole. So.  <He tips his head toward the far side of the pit, where a chest sits against the rock with a troll on either side of it who were not there a moment ago.>  Take one. Yourself, with your own hands, and they will watch you do it and not move. The first is not sold. The first is to show we can.
 Should Have Voiceover=0
 
 Requirement=!None
-Reply Text=I will see he keeps to it.
+Reply Text=I will see he keeps to it. <Go and take it.>
 Go to node ID=
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
-Action=CActionGiveStandardInventoryItem
+Item Count=5
+Action=CActivateAction
 {
-Who to give to=$instigator
-Delete Trigger=0
-Notify Player=1
-Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Red Ore
-Additions to add=Array
-{
-Item Count=0
+Target Name=ore paid
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
 }
+Action=CTriggerRelayAction
+{
+Relay Name=ore chest opens
 }
 Action=CActivateQuestStateAction
 {

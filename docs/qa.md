@@ -1295,6 +1295,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | PM12 | Level 1, never delivered | Walk down the stair in the south-west room | The undercroft: two cells, doors closed and unlocked, no handler, no monk; the stair hover reads |
 | PM13 | Any of PM7-PM11, then walk back down | - | The pen state persists; no second setup; no timer restart |
 | PM14 | The Animal Den | Enter | Vanilla: three bears, no door |
+| TP1 | Troll Pit, at peace, the Red Ore Trade carried to the chief | *"I will see he keeps to it. <Go and take it.>"* | The chest across the pit opens with the ore sound; one Red Ore on it; the trolls do not move |
+| TP2 | Troll Pit, at peace, chief alive, ore not yet paid | Open the ore chest | *"That is ours"* over the chief, then the desecration scene and the trolls turn |
+| TP3 | Troll Pit, fought in, no peace | Open the ore chest | Plain: animation, one ore, no reaction |
 
 ---
 

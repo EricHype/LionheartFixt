@@ -87,6 +87,142 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=ore paid
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=3900
+			Position Y=1100
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=ore chest opens
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=Idle
+								Random From Sequencial Set=0
+								Target Name=red ore chest
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CGenerateInventoryItemAction
+										{
+											Number of items to generate=1
+											Level of item to generate=
+											Location=red ore chest
+											Location Offset=33,35
+											Generate Within Radius=17
+											Aspect Ratio=0.712766
+											Item List=CInventoryItemGeneratorMixedList
+											{
+												Items=Array
+												{
+													Array Count=1
+													Array Item=CInventoryItemGeneratorMixedListItem
+													{
+														Weighting=1
+														Item=CInventoryItemGeneratorBasic
+														{
+															Items=Array
+															{
+																Array Count=1
+																Array Item=CInventoryItemGeneratorBasicItem
+																{
+																	Weighting=10
+																	Item=Inventory/Specific Item Cans/Quest Items/Red Ore
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+										Action=CPlaySoundAction
+										{
+											Sound=Pickups/Red Ore Drop.ogg
+											Position=red ore chest
+											Multiplayer=Heard by all players
+										}
+									}
+								}
+								Delay=0.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=3920
+			Position Y=1100
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Tomas debt settled
 			Child List=
 			Visible=1
@@ -17953,7 +18089,7 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Trigger Only Once=1
+					Trigger Only Once=0
 					Was Triggered=0
 					Auto-Flip Switch=1
 					Trigge Must Have HP=0
@@ -17965,74 +18101,64 @@ CLayerSaveData
 					Triggered By Name=
 					Interaction Description=
 					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
-					Action=CMultipleActionsAction
+					Action=CIfAction
 					{
-						Action=Array
+						If=CCheckExistenceAction
 						{
-							Item Count=2
-							Action=CPlayAnimationAction
+							Name To Check For=ore paid
+							Desired Minimum Count=1
+						}
+						Then=CTriggerRelayAction
+						{
+							Relay Name=ore chest opens
+						}
+						Else=CIfAction
+						{
+							If=CAndAction
 							{
-								Animation=Idle
-								Random From Sequencial Set=0
-								Target Name=$Trigger
-								When Done=Stop on last frame
-								End Sequence Name=Idle
-								Delay Between Targets=0
-								Play In Reverse=0
-								AI To Interrupt=CSkeletonAI
-							}
-							Action=CDelayAction
-							{
-								Next Action=CMultipleActionsAction
+								Action=Array
 								{
-									Action=Array
+									Item Count=2
+									Action=CCheckExistenceAction
 									{
-										Item Count=2
-										Action=CGenerateInventoryItemAction
-										{
-											Number of items to generate=1
-											Level of item to generate=
-											Location=$Trigger
-											Location Offset=33,35
-											Generate Within Radius=17
-											Aspect Ratio=0.712766
-											Item List=CInventoryItemGeneratorMixedList
-											{
-												Items=Array
-												{
-													Array Count=1
-													Array Item=CInventoryItemGeneratorMixedListItem
-													{
-														Weighting=1
-														Item=CInventoryItemGeneratorBasic
-														{
-															Items=Array
-															{
-																Array Count=1
-																Array Item=CInventoryItemGeneratorBasicItem
-																{
-																	Weighting=10
-																	Item=Inventory/Specific Item Cans/Quest Items/Red Ore
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-										Action=CPlaySoundAction
-										{
-											Sound=Pickups/Red Ore Drop.ogg
-											Position=$Trigger
-											Multiplayer=Heard by all players
-										}
+										Name To Check For=Troll Peace Keeper
+										Desired Minimum Count=1
+									}
+									Action=CIsAliveAction
+									{
+										Name To Check For=Troll Chief
+										Desired Minimum Count=1
 									}
 								}
-								Delay=0.5
-								Plus or Minus=0
-								Forget Trigger=0
+								Early Exit=0
 							}
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+										Node ID=91 that is ours
+										Name of Position=Troll Chief
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Troll desecration relay
+									}
+								}
+							}
+							Else=CTriggerRelayAction
+							{
+								Relay Name=ore chest opens
+							}
+							Return failure if the If failes=0
 						}
+						Return failure if the If failes=0
 					}
 					X Radius=0
 					Attacker Range Modifier=0

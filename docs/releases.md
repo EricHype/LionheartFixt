@@ -537,6 +537,19 @@ base on removal.
 - Gate 3: the delivered state must not be reachable twice (the sentry's reply hides once
   `delivered` exists); striking Sahar must not wake the Grove; the bear must not turn on the
   player who freed it (its target type is the invaders').
+## Unreleased on main - the trolls' ore chest
+
+**The chief pays from the chest, and the chest is theirs.** The tester's read: a chest of red
+ore stands in the pit, and taking from it should cost the peace. Vanilla's chest at (3958,1164)
+had no such idea -- animation, one ore, the drop sound, and the peace held; a player at peace
+could take a second ore free. Now the chief's payment (`102 word carried`) sets `ore paid` and
+fires `ore chest opens` (the chest's own open, moved to a once-only relay), and his line sends
+you across the pit to take it *"with your own hands, and they will watch you do it and not
+move"*. Opening the chest unpaid, with `Troll Peace Keeper` standing and the chief alive, is
+theft: *"That is ours. <And the room is moving.>"* over the chief and the map's own `Troll
+desecration relay`. Without the peace (fought in) it is a plain chest. The chest is a level
+part; the chief's node is dialogue.
+
 ## 0.10.3 - repairs
 
 **Published.** Cut on a branch from `v0.10.2`. The cathedral and the Templar armory, and a check.
