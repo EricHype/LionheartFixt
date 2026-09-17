@@ -261,9 +261,13 @@ for p in mod_trees:
         continue
 
     # What was already unreachable in the shipped tree is not this mod's to answer for.
+    # Match the shipped tree by full archive path, not basename: vanilla has two
+    # `Assassin.DialogTree`s (Crypt and Wilderness), and the Crypt edit was being judged
+    # against the Wilderness tree's orphans.
     inherited = set()
-    if key in VANILLA:
-        base = dt.parse(zf.read(VANILLA[key]).decode("latin-1"))
+    rel = "Resources/" + p.relative_to(F).as_posix() if not p.relative_to(F).as_posix().startswith("Resources/") else p.relative_to(F).as_posix()
+    if rel in zf.namelist():
+        base = dt.parse(zf.read(rel).decode("latin-1"))
         inherited = {dt.normalise_id(n.node_id)
                      for n in unreachable(base, entries[key])}
 
