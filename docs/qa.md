@@ -1298,6 +1298,12 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | TP1 | Troll Pit, at peace, the Red Ore Trade carried to the chief | *"I will see he keeps to it. <Go and take it.>"* | The chest across the pit opens with the ore sound; one Red Ore on it; the trolls do not move |
 | TP2 | Troll Pit, at peace, chief alive, ore not yet paid | Open the ore chest | *"That is ours"* over the chief, then the desecration scene and the trolls turn |
 | TP3 | Troll Pit, fought in, no peace | Open the ore chest | Plain: animation, one ore, no reaction |
+| PM15 | Delivered, arrive at Sahar (escort or walk) | - | *"You walked in. Good. It saves rope"*; the offer reply present; a fighter who walked in gets *"You are late"* as before |
+| PM16 | PM15, *"Then send me north..."* -> *"<Take the ring.>"* | - | Sahar's Ring in inventory; nothing in the sanctum attacks; the Montaillou quest in the journal; walk out by the doors through a passive garrison |
+| PM17 | PM16, Montaillou, Brother Michel, Advice | *"...Their captain sent me north with this"* | *"A snake eating its tail..."*; the reply absent without the ring |
+| PM18 | Kill Sahar by any route | - | *"...every one of them, everywhere, turning for the door"*; every pack on Level 2 runs for the Grove exit; on Level 1 and the Grove the same; nothing new spawns hostile |
+| PM19 | Delivered, quiet escape (lock + Sneak, or drain), walk Level 1 | - | Packs passive with the Keep-walking click |
+| PM20 | Delivered, loud escape (pins, or caught) | Walk Level 1 | Packs that spawn after are hostile |
 
 ---
 

@@ -326,7 +326,7 @@ game's; the player lines are ours and there are at most three.
 
 ## 0.11.0 - the Prisoner of Montserrat (scope)
 
-**In build.** Stages A and B (the delivery, the den) built 2026-09-15 and unplayed; see *Build log* at the end of this section. Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
+**In build.** All five stages built by 2026-09-17; A, B and C played and repaired, D and E unplayed. See *Build log* at the end of this section. Planned from the 0.10.0 playthrough. The tester's finding: Montserrat is an
 invasion -- 75 generators, about 150 enemies at the *solo* party-mojo tier, three to eight
 times any Act 1 area, tuned for parties -- and that is right for what it is. What the act lacks
 is any way through it that is not a fight against every pack in turn. The 0.10.0 levers (Sneak
@@ -534,6 +534,55 @@ out of reach*: he lies at (2730,705), beyond the sentry from the road, so a fres
 meets the parley first and a prisoner is taken before reaching him. That is right -- the
 invaders do not let a prisoner root through their dead -- and he is there for anyone who
 fights, keeps their arms, or comes back out of the abbey through a passive garrison.
+
+**Second and third tests of B (2026-09-16).** Pau was a Templar knight (Montgomerie's template is
+`Knight 3`); now a Montserrat clone of the generic Inquisition monk, robed and unarmed. The
+drain crawl in a cutscene wrapper did nothing; the plain fade and relocate does, with a line
+on arrival. The drain went to Pau's own cell, which is a passage to nowhere (his door was
+"never locked", so what was it for?); it now surfaces in the stair passage behind the
+handler's stool, on the Druid Grove's own well grate (the tester's swap, the same fitting
+the hall upstairs uses), Pau's door is locked like yours, and his legs are why forty years
+of knowing did him no good. `Find Traps/Secret Doors` reveals the drain too (the
+hidden-treasure `CAISecretReveal`, adjustment 20), so a thief never has to ask him. The
+handler was passive and let anyone out of the cell walk past, which made every route the
+same: a watch polygon across the guard room now catches an unescorted prisoner who did not
+come up the drain unless Sneak 30; every fight with him brings two assassins in from the
+passage mouth, and *those* stood still twice -- a `CGoToAI` temporary task replaces the
+skeleton AI on the way and the arrival hook does not restore it (recorded; the shape the
+Grove's reinforcements use, plain spawn close by, is what works). The 300-second escort
+never fired; vanilla's longest relay delay is 120, so it is 100 now with a visible glance
+at 45. The tester's own layout pass, two hidden treasures on vanilla's reveal shape, two
+spirit orbs, and the torture set out and the abbey's stores in -- with three Rethgorad house
+props whose hotspots sit hundreds of pixels off their sprites swapped for ones that anchor
+where they draw.
+
+**Stage C, as played.** The escort's *"Up the stair, ahead of me"* opened the door and left you
+to walk a hostile hall. Now it fades and relocates you to `Escort Arrival` on Level 2, just
+west of Sahar's approach strip, with the walk as a line (*"the knife at your back the whole
+way. He stops at the sanctum door and does not come in"*). The arrival runs the strip's own
+actions while the screen is still black -- crowd paused, generators off, Sahar raised -- and
+switches the strip off, because she had popped into view. Level 1's sixteen and Level 2's ten
+pack generators read `delivered AND NOT escaped loud` at spawn (the Grove's twenty-one gained
+the NOT) and come up passive with the *"Keep walking, Scion"* click: a quiet escape walks the
+abbey as a delivery; a loud one is hunted. Sahar's crew, the hall ambush and the runner stay
+scripted.
+
+**Stages D and E, built 2026-09-17, unplayed.** *D.* A delivered prisoner gets `1 delivered`
+(*"You walked in. Good. It saves rope"*) on both the arrival point and the strip, with the
+Outwit 7 courier bluff kept and a new reply -- *"Then send me north. Your word for my life, and
+I carry whatever you want carried"* -- into `50 her word`: an iron ring, a snake eating its
+tail, *"give it to whoever asks you for it; do not give it to anyone who does not"*, the sanctum
+stood down, `sahar word` set here, on the Grove and on Michel's map, and the Montaillou quest
+state given, since Montgomerie will not speak with her alive beside him. The ring is a quest
+item on the clover's envelope (finger slot, no effect). Brother Michel has a line for it,
+gated on the checker: *"Whoever asks you for that is the one who sent them... take it off
+before you walk into the Inquisition's sight."* The offer is also on her three question nodes
+for a delivered player who asks first. *E.* Her destroyed script now also fires `sahar dies`:
+`routed` on all three maps, and every pack still standing goes passive and runs for an exit
+marker (the walk-off shape, `CSetPatrolAIAction` on fourteen names) and is deleted on
+arrival -- *"every one of them, everywhere, turning for the door."* Generators on all three maps
+read `routed` as well, so nothing fresh spawns hostile on the way out. Under her word the
+garrison is already passive and you leave by the doors.
 
 **Unknowns the first test settles, in order:** whether the undercroft loads at all and its
 floor and walls read (a new map; the engine generates its own pathing); whether the

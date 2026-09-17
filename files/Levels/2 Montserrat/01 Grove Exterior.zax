@@ -87,6 +87,186 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=routed
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=60
+			Position Y=100
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=rout exit
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=3870
+			Position Y=500
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=garrison routs
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CActivateAction
+							{
+								Target Name=routed
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Categories To Remove=Enemy
+							}
+							Action=CSetPatrolAIAction
+							{
+								Patrol AI=CGoToAI
+								{
+									Destination=rout exit
+									Offset=0.000000,0.000000
+									Starting Action=
+									Move Finished=0
+									Target Was Set By Goto AI=0
+									Move Behavior=CEntityBehaviorMoveToPos
+									{
+									}
+									Done action=CDeleteAction
+									{
+										Target Name=$Trigger
+									}
+									Run=1
+									Make New Home=1
+									Time To Try To Move=0
+									Set Facing Angle=0
+									Turn Sequence Name=Idle
+									Facing Angle=CEntityBehaviorTurnToAngle
+									{
+									}
+									Need to Call Start=1
+								}
+								Target=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=60
+			Position Y=120
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=sahar word
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=80
+			Position Y=100
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=delivered
 			Child List=
 			Visible=1
@@ -7015,23 +7195,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -19211,23 +19404,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -19828,23 +20034,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -22218,23 +22437,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -24926,23 +25158,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -26672,23 +26917,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -27482,23 +27740,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -30086,23 +30357,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -30284,23 +30568,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -30572,23 +30869,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -31386,23 +31696,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -32597,23 +32920,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -35038,23 +35374,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -37158,23 +37507,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -38061,23 +38423,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -39356,23 +39731,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -43187,23 +43575,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -43385,23 +43786,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -43747,23 +44161,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -44052,23 +44479,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0
@@ -44250,23 +44690,36 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CAndAction
+						If=COrAction
 						{
 							Action=Array
 							{
 								Item Count=2
+								Action=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CCheckExistenceAction
+										{
+											Name To Check For=delivered
+											Desired Minimum Count=1
+										}
+										Action=CNotAction
+										{
+											Action=CCheckExistenceAction
+											{
+												Name To Check For=escaped loud
+												Desired Minimum Count=1
+											}
+										}
+									}
+									Early Exit=0
+								}
 								Action=CCheckExistenceAction
 								{
-									Name To Check For=delivered
+									Name To Check For=routed
 									Desired Minimum Count=1
-								}
-								Action=CNotAction
-								{
-									Action=CCheckExistenceAction
-									{
-										Name To Check For=escaped loud
-										Desired Minimum Count=1
-									}
 								}
 							}
 							Early Exit=0

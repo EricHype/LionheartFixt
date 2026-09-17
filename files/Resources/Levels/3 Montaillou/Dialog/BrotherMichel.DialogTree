@@ -1048,6 +1048,18 @@ Custom Requirement=CActionExpression
 {
 Action=CCheckExistenceAction
 {
+Name To Check For=sahar word
+Desired Minimum Count=1
+}
+}
+Reply Text=I did not fight my way out of Montserrat. Their captain sent me north with this. <Show him the ring.>
+Go to node ID=142 her word
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
 Name To Check For=questioned the assassin
 Desired Minimum Count=1
 }
@@ -1063,6 +1075,20 @@ Is Default Reply=1
 ------------------------------------------------------------
 Node ID=141 out of the east
 Text=Assassins. Out of the East. <He crosses himself.> Then whoever sent them can reach across the whole of Christendom, and cares nothing for what stands in the way. That is worse than not knowing, young one. Say the word 'East' to no one in this village; the Inquisition hears it and thinks of witchcraft.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=142 her word
+Text=<He does not touch it. He looks at it for a long time, and then at you, and it is not an unkind look, but it is a careful one.> A snake eating its tail. That is older than the Church, young one, and it was old when the Church was young. <He lowers his voice.> Whoever asks you for that is the one who sent them. When they ask - and they will ask - you will be standing in front of the thing that emptied Montserrat. Be ready for that. And take it off before you walk into the Inquisition's sight.
 Should Have Voiceover=0
 
 Requirement=!None
