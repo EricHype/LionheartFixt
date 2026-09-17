@@ -7015,10 +7015,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -19195,10 +19211,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -19796,10 +19828,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -22170,10 +22218,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -24862,10 +24926,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -26592,10 +26672,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -27386,10 +27482,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -29974,10 +30086,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -30156,10 +30284,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -30428,10 +30572,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -31226,10 +31386,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -32421,10 +32597,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -34846,10 +35038,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -36950,10 +37158,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -37837,10 +38061,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -39116,10 +39356,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -42931,10 +43187,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -43113,10 +43385,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -43459,10 +43747,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -43748,10 +44052,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{
@@ -43930,10 +44250,26 @@ CLayerSaveData
 					}
 					After Action=CIfAction
 					{
-						If=CCheckExistenceAction
+						If=CAndAction
 						{
-							Name To Check For=delivered
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=delivered
+									Desired Minimum Count=1
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=escaped loud
+										Desired Minimum Count=1
+									}
+								}
+							}
+							Early Exit=0
 						}
 						Then=CMultipleActionsAction
 						{

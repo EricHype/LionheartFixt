@@ -2614,7 +2614,32 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=5
+							Action=CDelayAction
+							{
+								Next Action=CFadeScreenDownAction
+								{
+									Time Until Auto Fade Up=2
+								}
+								Delay=3.0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CRelocateAction
+								{
+									Return to map=definitely soon
+									New Map Name=2 Montserrat/02 Druid Council Level2
+									New Location=Escort Arrival
+									Who To Switch=Player#1-9#
+									Relative Position=0
+									Ignore Party Ready Rules=1
+								}
+								Delay=4.0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
 							Action=CActivateAction
 							{
 								Target Name=escorted
