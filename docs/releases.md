@@ -344,6 +344,17 @@ activating relay as its thirteenth action. *`Brambles / 150-152`:* wired -- `140
 action gains a `CRandomAction` over the three, each a balloon over Brambles the Man 1.5 s on.
 *`60 too much`, `Has talked to Cedric already`, `25 Attack`:* left, as the read said.
 
+**Also, 2026-09-20: Fernand swings from spellcasting range.** Reported from play: the Port
+District companion lands mace hits from much further than his reach. The AI `fernand joins you`
+installs on him when he joins (vanilla) was copied from a caster: `Attack/Max Dist=350`, the
+range at which pursuit ends and attacking begins, where every melee template including his own
+says 70 (the 52 templates that pair a melee `Minimum Attack Distance` with 350 are the Wielders,
+shamans, priests and vodyanoi). NPC attacks have no reach check (`Check Range When Firing` is 0
+on all 1,510 attack AIs and does something else), so once the attack state begins the swing
+lands. Cervantes gets 75 from the same machinery. One value, 350 -> 70. Level part: a character
+who has not entered the Port District, and a companion already in the party keeps the AI he
+was given.
+
 ### Out now, with reasons
 
 Marco Polo's quips and boots (false positives, above). The Wielder and Dark Wielder

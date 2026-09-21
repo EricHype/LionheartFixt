@@ -1321,6 +1321,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | CP11 | Fresh Plains / Coast / Lake / Grove, walk near the red node | - | *"<A crystal the colour of old blood...>"*; the PE 7+ and Wielder variants; after the third wave the spent line |
 | CP12 | Inquisitor, turn the Calle over | Watch the wipeout | Wielders that appear during it die on generation as the shipped relay intends |
 | CP13 | Brambles, pour the potion, the man | - | After his thanks, one of three random barks over him 1.5 s later |
+| CP14 | Fresh Port District, recruit Fernand, fight beside him | - | He closes to arm's length before swinging; no hits from across the room |
 
 ---
 
