@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.11.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.11.0).
+-- currently [0.12.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.12.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -65,6 +65,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.10.0** Montserrat | Montserrat, Montaillou | The act was five maps and one conversation. Now: human assassins and Summoners in the packs; Sir Tomas de Vilanova's journal at the gate; a wounded assassin who talks; Sahar, the rearguard's captain, with phases before Montgomerie; a mid-hall ambush, a needle trap, a sentry who calls for help, a trapped chest; the sanctum re-dressed as an abbey with ten hover-text stops; and seven build levers, from Sneak to the Inquisition's sealed order |
 | **0.10.1 - 0.10.3** repairs | | The thieves' stash chests say what they do and need a witness; the Inquisition jailor's Rites of Confession can be passed; the Templar initiation survives Esteban; Auric and Javier remember being attacked |
 | **0.11.0** The Prisoner of Montserrat | Montserrat, Montaillou, the Crypt | A way through the invasion that is not a fight against every pack: give yourself up at the gate; wake in the abbey's undercroft (a new map) with five ways out of the cell; a garrison that stands down for a delivery; Sahar with three ends and a ring that three people read differently; the rout. Also the trolls' ore chest and a Wasp Queen |
+| **0.12.0** La Calle Perdida | La Calle Perdida, the Ether Plane, the four Magic Nodes, Galileo's cell | The Enchanter can be told the truth; the wizards know you killed Relican; Cedric, Relican and Galileo remember being attacked; a Dark Wielder can break with Relican and fight him; the red Magic Nodes get Cedric's quest, a hover line and a ward; the wipeout kills the Wielders it generates. Also Fernand's reach |
 
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
@@ -73,9 +74,9 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.11.0 are published.** 0.11.0's gate, undercroft and hall were played while they
-were built; Sahar's prisoner talk, her ring and the rout are built and unplayed. What the playthrough
-finds is repaired on `main` and cut as patch releases. Every release's
+**0.1.0 through 0.12.0 are published.** 0.12.0, La Calle Perdida, is built and entirely unplayed;
+0.11.0's Sahar, ring and rout are too. What the playthrough finds is repaired on `main` and cut as
+patch releases. Every release's
 automated gate (`tools/validate.py`) passes; the human gates are recorded per release in
 [`docs/qa.md`](docs/qa.md), and most of what shipped after 0.4.0 has been played once by one
 tester, which is how the 0.8.x repairs were found.

@@ -1,0 +1,21 @@
+# Lionheart Fixt 0.12.0 - La Calle Perdida
+
+The Wielders' hidden street is where the game's writers ran out of time, and it shows in
+small ways: an Enchanter you can only escape by insulting him, wizards who never hear that you
+killed their tyrant, a confrontation with Relican that was written on his side and not yours,
+and four red crystals scattered across the map that summon three waves of undead for no reason
+anyone in the game will ever give you.
+
+This release finishes those. The Enchanter can be told the truth. The wizards know. A Dark
+Wielder can break with Relican inside his own initiation and fight a man the game had built
+to be unkillable. The Magic Nodes get the quest their file was named for -- Cedric asks, the
+crystal answers, he pays -- and a line each so they stop being a mystery with no answer.
+Cedric, Relican and Galileo remember being attacked. The Inquisition's wipeout of the street
+kills the Wielders it was always meant to.
+
+Also: Fernand the sailor no longer swings a mace from across the room.
+
+**Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run `Mod Manager.bat`. Most of it needs a character who has never entered
+La Calle Perdida. None of it has been played yet -- what you find goes into 0.12.1.
