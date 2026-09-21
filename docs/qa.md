@@ -1322,6 +1322,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | CP12 | Inquisitor, turn the Calle over | Watch the wipeout | Wielders that appear during it die on generation as the shipped relay intends |
 | CP13 | Brambles, pour the potion, the man | - | After his thanks, one of three random barks over him 1.5 s later |
 | CP14 | Fresh Port District, recruit Fernand, fight beside him | - | He closes to arm's length before swinging; no hits from across the room |
+| CP15 | Fresh Inquisition Pit3 (Galileo's cell) | Attack Galileo, the random map, walk back in | *"Beware braggart, I have less tolerance now for your idiocy"* (voiced) once over him; not on a first entry |
 
 ---
 

@@ -355,6 +355,17 @@ lands. Cervantes gets 75 from the same machinery. One value, 350 -> 70. Level pa
 who has not entered the Port District, and a companion already in the party keeps the AI he
 was given.
 
+**Also, 2026-09-20: Galileo remembers being attacked.** The sweep for Wielder content outside
+the Calle found one authored line: `Galileo / 400 return after attack Galileo` -- *"Beware
+braggart, I have less tolerance now for your idiocy"* -- voiced, and Inquisition Pit3 has the
+whole Auric machinery (`Galileo sends you to a random map`, `RESET map for invulnerable Galileo`
+fired from the spawn points) playing `400 attack Galileo` on the attack and nothing on the
+return. Fifth instance of the shape: `Galileo jailed you` set first thing in the attack relay,
+played once by the reset 1.5 s after the re-clone. The rest of that sweep -- the six zero-state
+Wielder quests (names only; what they describe is live under another name or has no dialogue),
+the four unawarded *Enemy of the ...* titles, the Blacksmith's duplicate Wizard return, the
+Wilderness Relican's death bark -- is recorded and left.
+
 ### Out now, with reasons
 
 Marco Polo's quips and boots (false positives, above). The Wielder and Dark Wielder
