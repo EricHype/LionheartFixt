@@ -1323,6 +1323,15 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | CP13 | Brambles, pour the potion, the man | - | After his thanks, one of three random barks over him 1.5 s later |
 | CP14 | Fresh Port District, recruit Fernand, fight beside him | - | He closes to arm's length before swinging; no hits from across the room |
 | CP15 | Fresh Inquisition Pit3 (Galileo's cell) | Attack Galileo, the random map, walk back in | *"Beware braggart, I have less tolerance now for your idiocy"* (voiced) once over him; not on a first entry |
+| RN1 | Fresh Plains, any spirit-bearing race, walk to the rogue camp from the south-east | - | The spirit manifests ahead of you and says *"Beware, the dark inquisitors wield the power to cancel magic by touch..."* (voiced), fades; once; a Pureblood sees nothing |
+| RN2 | Fresh Plains, fight the rogue camp | Kill them | As the last one or two fall: the summoning flare on the pentagram, *"<The men stop. The circle does not...>"*, a Terror rises and attacks; once |
+| RN3 | Fresh Plains, kill Diego, tell the rogues | `30 join`, close the store | The flare, *"<The circle flares and holds what it called...>"*, a Terror that stands in the circle and does not attack |
+| RN4 | RN3, then attack a rogue | - | The Terror joins the fight; no second rising when the rogues die |
+| RN5 | Plains, no loan, trip the goons | *"Who sends you?"*; then Barter 40 / Outwit 7 / guild / Church / ST 10 threat / Speech 30 lie | Shylocke's name; 100 taken; let pass; stand down; stand down; the intimidation menu then *"K-keep your gold"*; *"A pauper"* -- each once, the leader silent after |
+| RN6 | Plains, in debt, trip the goons | Barter 40 *"Shylocke's rate is six hundred"* | 600 taken; in Barcelona Shylocke offers no repayment and will lend again |
+| RN7 | Plains, in debt, a Templar or Inquisitor | *"You'd put hands on a sworn brother..."* | *"...his ledger doesn't close for a cross"*; they let you pass; Shylocke still expects payment |
+| RN8 | Plains, in debt, scare them off (any of the four) | Then Shylocke | No repayment offer; a new loan possible |
+| RN9 | Plains, the goons, a character with Salesman / Eloquence / Educated / Thief / Master Thief / Brutish Hulk / Dark Majesty / Blademaster / Summoning | The perk line | The haggle without Barter 40; let pass; the 600; the purse back (Thief +0, Master Thief +50); the four intimidations into the stammer; each once |
 
 ---
 

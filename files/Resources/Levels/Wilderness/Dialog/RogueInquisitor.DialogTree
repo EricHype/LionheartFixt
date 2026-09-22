@@ -1,0 +1,323 @@
+CDialogTree
+{
+Name=Dark Inquisitor
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=How dare you disturb our ritual!
+Should Have Voiceover=0
+
+Requirement=Rogue Inquisitor requires PC to NOT have joined Diego
+Reply Text=I've come to study your dark rituals.
+Go to node ID=20 ally
+
+Requirement=!None
+Reply Text=I've come to stop your heresy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry to disturb you, I'll just be moving along.
+Go to node ID=10 combat
+Custom Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=friend of rogue Inquisitor
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor allows you to leave
+}
+Else=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=You've returned?  What do you want from us?
+Should Have Voiceover=0
+
+Requirement=Rogue Inquisitor requires Bishop Diego Dead
+Reply Text=Diego is dead, long live the Dark Inquisitors!
+Go to node ID=30 join
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+State=AS4T5BB5
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Bishop Diego for Rogue Inquisitors XP
+Experience Points To Add=1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CActivateAction
+{
+Target Name=rogure inquisitor response limiter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Rogue Inquisitor requires PC to NOT have joined Diego
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+}
+}
+}
+Reply Text=I've come to study your dark rituals.
+Go to node ID=20 ally
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Store is open
+Desired Minimum Count=1
+}
+}
+Reply Text=I've come to buy some goods.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Rogue Inquisitor
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I've come to stop your heresy.
+Go to node ID=10 combat
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry to disturb you, I'll just be moving along.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=friend of rogue Inquisitor
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor allows you to leave
+}
+Else=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=You won't be leaving here alive!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=11 friendly goodby
+Text=Goodbye then, and good luck.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 ally
+Text=So, you wish to learn more about the dark arts? I sense power in you, definitely, but will you serve us or betray us to the Inquisition? In order to earn our favor, you must kill one of our enemies, the Inquisitor Diego. Return when the deed is done and you shall be rewarded.
+Should Have Voiceover=0
+
+Requirement=Rogue Inquisitor requires Diego NOT Dead
+Reply Text=I shall do it.
+Go to node ID=11 friendly goodby
+Action work in progress=(give quest to kill Diego)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+State=OVCZ9ZVT
+}
+Action=CActivateAction
+{
+Target Name=friend of rogue Inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Rogue Inquisitor requires Bishop Diego Dead
+Reply Text=I have already killed him.
+Go to node ID=30 join
+Icon=Quest Icon
+
+Requirement=Rogue Inquisitor requires Diego NOT Dead
+Reply Text=I will do no such thing.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be leaving now
+Go to node ID=
+Custom Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=friend of rogue Inquisitor
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor allows you to leave
+}
+Else=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 join
+Text=Excellent work! That fool has troubled us for too long. Now we will be free to expand our ranks. I have a few items for you as a reward. Feel free to purchase anything from my personal cache.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(show vendor screen)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Rogue Inquisitor
+After Closed Action=CTriggerRelayAction
+{
+Relay Name=ritual bound
+}
+}
+Action=CActivateAction
+{
+Target Name=friend of rogue Inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Store is open
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=rogure inquisitor response limiter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+State=AS4T5BB5
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 ritual answers
+Text=<The men stop. The circle does not; it finishes what they began, and something answers it.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=61 ritual bound
+Text=<The circle flares and holds what it called. It is theirs, and it knows you for a friend of theirs.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 Player Has Diego
+Text=I see you have brought that fool of an Inquisitor to our dark ritual! Prepare to die!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Too busy bubble
+Text=Do you mind leaving us alone? We have demons to summon...
+Should Have Voiceover=0
+}

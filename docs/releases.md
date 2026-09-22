@@ -124,6 +124,143 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.13.0 - the Road North (scope)
+
+**In build.** Surveyed 2026-09-21 from the question "the Plains feels barren"; Tier 1 built the
+same day, unplayed. The maps between Montserrat and Montaillou: the Plains, the Mountain Pass,
+and the ogre caves off it.
+
+### What the Plains is
+
+1,111 parts, four trees, two quests, and all of it reachable: every node in `RogueInquisitor`,
+`Diego`, `ShylockeGoons` and `Wilderness Merchant` is opened by something, both quests have
+their states and their XP parts, and nothing on the map is inactive-and-never-activated except
+the red node's undead generators, which are meant to be. What is there: the **Dark Inquisitors'
+camp** in the north-west (five rogues, a pentagram, eight torches, a chant loop, a hidden
+treasure) against **Bishop Diego** on the south road -- help him, or kill him for them and their
+shop opens; **Shylocke's goons** if the Barcelona debt was skipped; **Mauldo** the wilderness
+merchant with an evil greeting; 39 poison pods; wolves, goblin patrols, soul reavers; the red
+node; a trapped chest; the three Barcelona companions' dismissal points.
+
+Diego at the kill is already built: the kill relay releases him, gives him a temporary skeleton
+AI that walks to the player, and the Attack-state transition plays `150 Congratulations` with
+the XP, gold and potions, then fades him out. The checker `Bishop is near player when the rogues
+are killed` (`Active=0`, referenced by nothing) and the four empty action slots ahead of that
+release are leftovers of the same scene, not a missing one.
+
+**Why it feels barren.** The camp promises a thing that never happens. Diego: *"they perform
+rituals to summon the ilk of demons ... plotting to start another ritual soon"*; the rogues:
+*"we have demons to summon"*; a pentagram and a chant. No demon template, no ritual relay, no
+timer. Five men standing around a drawing. That is not a file with writing in it; it is a
+scene the map dresses and the script never wrote.
+
+### Tier 1 - the spirit's warning (restoration)
+
+All three spirit companions carry `45 Rogue Inquisitors` -- *"Beware, the dark inquisitors
+wield the power to cancel magic by touch, so do not let them get close to us"* -- voiced in all
+three, opened by nothing. **Built:** a strip across the south-east approach, ahead of the
+rogues' own `Rogue inquisitor dialog starter` poly, fires `spirit senses the rogues` once: the
+game's own manifestation (Witch Interior / Dark Temple shape) -- `CHasSpirit` picks Ancestral,
+Beastial or Demonic; the spirit-call effect at a marker; the spirit model appears; the balloon;
+a 3 s fade and delete. The third arm checks too rather than falling through, so a Pureblood,
+who has no spirit, gets nothing. Not a non-interactive sequence: the player is not locked on a
+wilderness map for a warning.
+
+### Tier 2 - the ritual (authoring)
+
+**Built 2026-09-21, unplayed.** The rogues' ritual, so the camp does what everyone on the map
+says it does. What rises is a *Terror Tough* (HP 60, AC 260, melee 45, slashing 2-8, the Terror
+family's resistances -- 65% to fire, cold and lightning; 136 XP of its own). The Terror is what
+the Inquisition's own cells summon in Inquisition Pit3, so it is the right ilk. The tier was
+chosen against the road's own scale: the Plains' natives sit at AC 125-150, Montserrat's packs
+at 150-220, the Mountain Pass's ogres and rock titans at 240-256, and the Terror Super first
+built here at 325 was above all of it -- Crypt scale, and with 2-10 damage not a danger but a
+whiff-fest. To-hit is d100 + skill/speed-factor + Fortune against AC, so 260 is a coin flip
+for a fighter around 130 in their weapon at the default speed, or 100 swinging slow, and a
+character who cannot hit it can walk away from it: it hits for 2-8. Two risings from one circle, a marker on the pentagram:
+
+- **Fight the camp** and the circle finishes what the men began. Every rogue's death already
+  fires `Killed all of the Rogue Inquisitors`, whose series shipped with four empty slots; the
+  first now fires `ritual rogue falls`: no bound demon, fewer than two rogues standing -> `ritual
+  answers` (once): the Monster Summoning flare, 1.5 s, the generator, *"<The men stop. The circle
+  does not; it finishes what they began, and something answers it.>"*; the Terror goes to combat.
+- **Side with them** (`30 join`, after the reward store closes -- its `After Closed Action`) and
+  `ritual bound` sets `ritual done`, flares, and raises it passive: *"<The circle flares and
+  holds what it called. It is theirs, and it knows you for a friend of theirs.>"* Turn on them
+  after that and `Piss off Rogue Inquisitors` sends the Summoned Terror to combat with them.
+
+No new model, no timer: the timer punishes exploring. Every line is ours and there are two.
+
+### Tier 3 - Shylocke's collector (repair, and the road's best-written scene given its other half)
+
+The "Hired Beastman": Shylocke's collector, a Hired Goon Plate leader and two swordsmen camped
+mid-Plains with two once-only trip polys on the road. One scene with two faces, chosen by the
+`Player owes debt to Shylocke` checker the Port District loan sets: the **shakedown** (750 with
+interest and his fee; pay, stall, fight, or threaten him into the game's best intimidation menu --
+magic 75, forty-inch arms, *"I am feralkin, so you know my heart is fierce"*, a bluff of hidden
+archers -- and he stammers off) and, for a player who never borrowed, the **robbery** (*"Quickly!
+Give me 250 gold, or die!"*: pay or fight, nothing else, and not a word of who they are). Reported
+from play as a bandit met without ever having taken the loan.
+
+**Built 2026-09-22, unplayed. All dialogue, any save.**
+
+- *Repair.* `210 intimidate` -- *"Consider your debt forgiven!"* -- cleared the Plains' checker
+  and not the two on Shylocke's own map that his tree reads, so a forgiven debtor went home to a
+  Shylocke still offering repayment and refusing a new loan. Paying the goons (`90`) cleared
+  them through `COtherMapAction`; scaring them off now does the same.
+- *The robbery gets the talk-out.* The `ST 10+` threat on `3` / `230` / `232` into `201 bold
+  threat robbery` -- `200`'s menu verbatim, with the pay line taking 250 and the two failures on
+  the robbery relay -- and its own stammer, `211`, that keeps your gold without a debt to forgive.
+- *Barter 40+.* Robbery: *"A hundred, and we both walk"* -> `240`, takes 100. Debt: *"Shylocke's
+  rate is six hundred"* -> `245`, takes 600 (one of the four figures Shylocke's own tree accepts)
+  and clears the debt on both maps. The collectors lose their fee; Shylocke is paid at his rate.
+- *Outwit 7+* (robbery): the hand that never cleared leather -> `243`, they let you pass.
+- *Thief Friend* and *Templar / Inquisitor*: robbery -> `241` / `242`, they stand down (it is their
+  purse to forgo). Debt -> `247` / `246`: they will not put hands on you, **and the debt stands**
+  -- a moneylender's ledger does not close for a cross or a guild, and only the goons' own fear
+  ever forgave it. The trip polys are once-only, so they do not waylay you twice.
+- *Speech 30+* on the `<Lie>`, which was offered when you had the gold and led to the same
+  disbelief as the truth: he buys it (`231`); without Speech, as before.
+- *"Who sends you?"* -> `232`: Shylocke's name, so the camp is a place on the road home and not
+  random highwaymen. Its replies are the robbery's.
+
+Fourteen nodes of ours, one tree. Selectable perks were first left out -- vanilla gates dialogue
+on attributes, skills, Outwit/Schmooze, races, factions, karma and title perks, and almost never
+on chosen perks -- and then put in at the user's call, on the one shape vanilla does use for it
+(Galileo's Necromancer line: a bare `CHasPerkExpression` as the Custom Requirement):
+
+- *Salesman* opens both Barter haggles (Master Trader requires Salesman, so it is covered).
+- *Eloquence*: robbery -> `244`, the traders between here and Montaillou will hear you were
+  civil, they let you pass; debt -> `248`, you will bring it to Shylocke yourself, they let you
+  pass **and the debt stands**.
+- *Educated*: the usury argument -> `245`, Shylocke's own rate.
+- *Thief* / *Master Thief*: pay, and the purse comes back while he laughs -> `249` (`220`'s
+  text with a trailing *"Eh? Where did I put that--"*); the Thief keeps the 250, the Master
+  Thief gains 50 of his besides. Each shows only for its own rank.
+- *Brutish Hulk*, *Dark Majesty*, *Blademaster*, *Summoning*: four more lines on both
+  intimidation menus, each into the stammer.
+
+### Also read
+
+- `Inquisitor Darsh / 100 attack` -- *"Before I die in this place, I will send you to your
+  fate!"* -- a bark with no attack machinery on any map; leave.
+- The spirits' `35 undead encounter` (all three) -- written for the Crypt approach, not this
+  road; carry to the Crypt's release.
+
+### Gates
+
+- Gate 0 as ever. Tier 1 is a level part: **a character who has not entered the Plains.**
+- Gate 1: walk to the camp from the south-east with each spirit; the spirit appears, speaks its
+  line, fades; once only. A Pureblood sees nothing.
+- Gate 1, Tier 2: kill the camp -> the flare and the Terror as the last rogues fall, hostile,
+  once; join them -> the store, then the flare and a Terror that stands; attack them after and
+  it fights. Gate 3: the hostile rising must never follow the bound one.
+- Gate 1, Tier 3 (any save that has not tripped the goons): the robbery with a Barter 40 /
+  ST 10 / Outwit 7 / guild / Church / Speech 30 character, each ending as written; the debt with
+  Barter 40 (600 taken, Shylocke satisfied in Barcelona) and with the Church (debt stands);
+  scaring them off then visiting Shylocke shows no repayment offer. Gate 3: 250 must never be
+  taken twice; the Church must never clear a debt.
+
 ## 0.12.0 - La Calle Perdida
 
 **Published.** Cut from `main` 2026-09-20, entirely unplayed. All tiers built 2026-09-17; Tier 4 and 4b decided for; Tier 5's six reads each ended in a decision; Fernand's reach and Galileo's return line added 2026-09-20 (build log). What follows is the scope as written, then the build log. Surveyed 2026-09-14.

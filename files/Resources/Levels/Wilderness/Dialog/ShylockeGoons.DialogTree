@@ -1,0 +1,1705 @@
+CDialogTree
+{
+Name=Hired Beastman
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=All GoToCombat
+}
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=We knew you would eventually come this way. We've been waiting quite awhile for you to show up. And believe me, that time will be added to your interest.
+Should Have Voiceover=0
+
+Requirement=Shylocke Goon requires player to not be human
+Reply Text=What are you talking about?
+Go to node ID=10 debt
+Action work in progress=(not human human)
+
+Requirement=!None
+Reply Text=I think you have the wrong person.
+Go to node ID=20 wrong person
+
+Requirement=!None
+Reply Text=Don't make me hurt you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I think I'll just be moving along.
+Go to node ID=20 wrong person
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=3 Robbery
+Text=Quickly!  Give me 250 gold, or die!
+Should Have Voiceover=0
+
+Requirement=Shylock goon checks for 250 gold
+Reply Text=Please do not hurt me, here is the gold.
+Go to node ID=220 coward
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Thief: and while he laughs, it comes back>
+Go to node ID=249 light fingers
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Master Thief: and while he laughs, it comes back with his own>
+Go to node ID=249 light fingers
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=I do not have 250 gold.
+Go to node ID=230 lie or die
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 30
+}
+}
+Reply Text=I do not have 250 gold. <Lie>
+Go to node ID=231 believed
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 30
+}
+}
+}
+Reply Text=I do not have 250 gold. <Lie>
+Go to node ID=230 lie or die
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=240 haggled
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=201 bold threat robbery
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/Outwit 7+
+}
+Reply Text=Your hand has been on that hilt since you started talking, and it hasn't cleared leather. You're not going to do it.
+Go to node ID=243 called
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=241 guild
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd rob a sworn brother on the Church's own road?
+Go to node ID=242 church
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that Shylocke's men work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Who sends you?
+Go to node ID=232 who sends you
+
+Requirement=!None
+Reply Text=I will not be robbed today.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Robbery combat relay
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=10 Debt
+Text=I'm talking about the 750 gold pieces you owe to Shylocke. You haven't paid him back yet, so now the loan is due. With interest - or penalties.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How do you figure 750?
+Go to node ID=40 loan amount
+
+Requirement=!None
+Reply Text=I don't have the money.
+Go to node ID=50 test patience
+
+Requirement=!None
+Reply Text=I'm not going to pay you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+
+Requirement=!None
+Reply Text=I need more time to gather the gold.
+Go to node ID=50 test patience
+
+Requirement=ST 8+
+Reply Text=You would have better luck milking the teat of a stone.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Shylocke's rate is six hundred. The rest is your pocket, and I'm not filling it.
+Go to node ID=245 shylocke's rate
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=247 guild debt
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd put hands on a sworn brother on the Church's own road?
+Go to node ID=246 church debt
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Reply Text=Tell Shylocke I will bring it to him myself, at the rate he set and not the one you invented. He would rather have it from my hand than yours.
+Go to node ID=248 eloquence debt
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Educated
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Fifty on the hundred is usury under the Crown's statute and the Church's. Shylocke's paper is worth nothing before a magistrate. He gets his own rate, and you get nothing.
+Go to node ID=245 shylocke's rate
+Icon=Attribute Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=200 bold threat
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=20 wrong person
+Text=No, I don't think so. You're definitely the person we've been looking for, the same person who owes Shylocke a large sum of gold. You can say that we're Shylocke's business associates and we've come to collect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How much do I owe?
+Go to node ID=40 loan amount
+
+Requirement=!None
+Reply Text=I don't have the money.
+Go to node ID=50 test patience
+
+Requirement=!None
+Reply Text=I'm not going to pay you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+
+Requirement=!None
+Reply Text=I need more time to gather the gold.
+Go to node ID=50 test patience
+
+Requirement=ST 8+
+Reply Text=You would have better luck milking the teat of a stone.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Shylocke's rate is six hundred. The rest is your pocket, and I'm not filling it.
+Go to node ID=245 shylocke's rate
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=247 guild debt
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd put hands on a sworn brother on the Church's own road?
+Go to node ID=246 church debt
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Reply Text=Tell Shylocke I will bring it to him myself, at the rate he set and not the one you invented. He would rather have it from my hand than yours.
+Go to node ID=248 eloquence debt
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Educated
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Fifty on the hundred is usury under the Crown's statute and the Church's. Shylocke's paper is worth nothing before a magistrate. He gets his own rate, and you get nothing.
+Go to node ID=245 shylocke's rate
+Icon=Attribute Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=200 bold threat
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=40 loan amount
+Text=Shylocke tells me that you borrowed 500 gold.  So including interest, you owe Shylocke ... well, math is not my strong suit, but including my collectors fee, I think 750 gold should cover it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I don't have the gold.
+Go to node ID=50 test patience
+
+Requirement=Shylock goon checks for 750 gold
+Reply Text=Very well. Here is your money.
+Go to node ID=90 withdrawal
+
+Requirement=!None
+Reply Text=I'm not going to pay you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+
+Requirement=!None
+Reply Text=I need more time to gather the gold.
+Go to node ID=50 test patience
+
+Requirement=ST 8+
+Reply Text=You would have better luck milking the teat of a stone.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Shylocke's rate is six hundred. The rest is your pocket, and I'm not filling it.
+Go to node ID=245 shylocke's rate
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=247 guild debt
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd put hands on a sworn brother on the Church's own road?
+Go to node ID=246 church debt
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Reply Text=Tell Shylocke I will bring it to him myself, at the rate he set and not the one you invented. He would rather have it from my hand than yours.
+Go to node ID=248 eloquence debt
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Educated
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Fifty on the hundred is usury under the Crown's statute and the Church's. Shylocke's paper is worth nothing before a magistrate. He gets his own rate, and you get nothing.
+Go to node ID=245 shylocke's rate
+Icon=Attribute Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=200 bold threat
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=50 test patience
+Text=You're testing our patience. No more stalling. Pay us the money you owe.
+Should Have Voiceover=0
+
+Requirement=Shylock goon checks for 750 gold
+Reply Text=Very well. Here is your money.
+Go to node ID=90 withdrawal
+
+Requirement=!None
+Reply Text=Why don't you come and try to collect from me.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Shakedown combat relay
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Shylocke's rate is six hundred. The rest is your pocket, and I'm not filling it.
+Go to node ID=245 shylocke's rate
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=247 guild debt
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd put hands on a sworn brother on the Church's own road?
+Go to node ID=246 church debt
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Reply Text=Tell Shylocke I will bring it to him myself, at the rate he set and not the one you invented. He would rather have it from my hand than yours.
+Go to node ID=248 eloquence debt
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Educated
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=Fifty on the hundred is usury under the Crown's statute and the Church's. Shylocke's paper is worth nothing before a magistrate. He gets his own rate, and you get nothing.
+Go to node ID=245 shylocke's rate
+Icon=Attribute Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=200 bold threat
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=80 combat
+Text=I was hoping you would choose the hard way. I must admit, the hard way is what we do best. We're going to enjoy beating you debtless.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=combat
+------------------------------------------------------------
+Node ID=82 robbery combat
+Text=Fool!  It would have been less painful for you to just give us the gold!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=90 withdrawal
+Text=You made the wisest decision of your life. Thank you for doing business with Shylocke and Associates. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=remove X+Y gold from player
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=750
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay, Tainted Borrowed Money Relay
+}
+Other Map Name=1 Barcelona/Shylocke Shop
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 bold threat
+Text=That's a bold threat friend. And what makes you so certain that you have the power to back that threat up?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=On second thought, I better pay the loan to you.
+Go to node ID=40 loan amount
+
+Requirement=Shylocke Goon requires any magic type of 75
+Reply Text=I have a spell that will burn your skin like paper and boil your internal organs.
+Go to node ID=210 intimidate
+Action work in progress=(divine, thought, or tribal skill is >75)
+
+Requirement=Shylocke Goon requires strength of 10
+Reply Text=My arms are forty inches wide and thicker than your skull. 
+Go to node ID=210 intimidate
+Action work in progress=(strength is 10)
+
+Requirement=Shylocke Goon requires strength 10 & player to be Feralkin
+Reply Text=I am feralkin, so you know my heart is fierce. You will all die if you attack me. 
+Go to node ID=210 intimidate
+Action work in progress=(feralkin and strength is 9 or 10)
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Brutish Hulk
+}
+}
+Reply Text=Look at what you are threatening. Then look at your friends. Then decide.
+Go to node ID=210 intimidate
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Dark Majesty
+}
+}
+Reply Text=Look me in the eye and say it again.
+Go to node ID=210 intimidate
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Blademaster
+}
+}
+Reply Text=I have killed better than the three of you before breakfast, and I was not hungry.
+Go to node ID=210 intimidate
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Summoning
+}
+}
+Reply Text=I could call up something from under this road that would eat the three of you without waking.
+Go to node ID=210 intimidate
+Icon=Attribute Icon
+
+Requirement=Shylocke good requires stregth under 10
+Reply Text=You wouldn't survive a combat with me.
+Go to node ID=80 combat
+Action work in progress=(strength less than 10)
+
+Requirement=Shylocke Goons require intelligence under 10
+Reply Text=I have friends that will help me against you. 
+Go to node ID=80 combat
+Action work in progress=(intelligence not 10)
+
+Requirement=Shylocke goons require intelligence 10+
+Reply Text=You are surrounded by a score of hidden archers all awaiting my word to kill you. 
+Go to node ID=210 intimidate
+Action work in progress=(intelligence is 10/outwit)
+------------------------------------------------------------
+Node ID=210 intimidate
+Text=You have a frightening point. I'll tell you what - we'll go back to Shylocke and pay the gold you owe. Consider your debt forgiven! We're very sorry to have disturbed you, it's been a t-t-errible mistake. G-g-good day!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Debt removed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay, Tainted Borrowed Money Relay
+}
+Other Map Name=1 Barcelona/Shylocke Shop
+}
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 coward
+Text=Coward! You could at least put up a fight! <hearty laugh>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=230 lie or die
+Text=Ha!  No traveller would dare leave home without such a paltry sum.  If you do not give me the gold, I shall kill you and sell your belongings.
+Should Have Voiceover=0
+
+Requirement=Shylock goon checks for 250 gold
+Reply Text=Please do not hurt me, here is the gold.
+Go to node ID=220 coward
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Thief: and while he laughs, it comes back>
+Go to node ID=249 light fingers
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Master Thief: and while he laughs, it comes back with his own>
+Go to node ID=249 light fingers
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=240 haggled
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=201 bold threat robbery
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/Outwit 7+
+}
+Reply Text=Your hand has been on that hilt since you started talking, and it hasn't cleared leather. You're not going to do it.
+Go to node ID=243 called
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=241 guild
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd rob a sworn brother on the Church's own road?
+Go to node ID=242 church
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that Shylocke's men work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You bore me.  Get out of my way.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Robbery combat relay
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You have attempted to rob the wrong person!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Robbery combat relay
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=201 bold threat robbery
+Text=That's a bold threat friend. And what makes you so certain that you have the power to back that threat up?
+Should Have Voiceover=0
+
+Requirement=Shylock goon checks for 250 gold
+Reply Text=On second thought, here is your gold.
+Go to node ID=220 coward
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+
+Requirement=Shylocke Goon requires any magic type of 75
+Reply Text=I have a spell that will burn your skin like paper and boil your internal organs.
+Go to node ID=211 intimidate robbery
+Action work in progress=(divine, thought, or tribal skill is >75)
+
+Requirement=Shylocke Goon requires strength of 10
+Reply Text=My arms are forty inches wide and thicker than your skull. 
+Go to node ID=211 intimidate robbery
+Action work in progress=(strength is 10)
+
+Requirement=Shylocke Goon requires strength 10 & player to be Feralkin
+Reply Text=I am feralkin, so you know my heart is fierce. You will all die if you attack me. 
+Go to node ID=211 intimidate robbery
+Action work in progress=(feralkin and strength is 9 or 10)
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Brutish Hulk
+}
+}
+Reply Text=Look at what you are threatening. Then look at your friends. Then decide.
+Go to node ID=211 intimidate robbery
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Dark Majesty
+}
+}
+Reply Text=Look me in the eye and say it again.
+Go to node ID=211 intimidate robbery
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Blademaster
+}
+}
+Reply Text=I have killed better than the three of you before breakfast, and I was not hungry.
+Go to node ID=211 intimidate robbery
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Summoning
+}
+}
+Reply Text=I could call up something from under this road that would eat the three of you without waking.
+Go to node ID=211 intimidate robbery
+Icon=Attribute Icon
+
+Requirement=Shylocke good requires stregth under 10
+Reply Text=You wouldn't survive a combat with me.
+Go to node ID=82 robbery combat
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Robbery combat relay
+}
+Action work in progress=(strength less than 10)
+
+Requirement=Shylocke Goons require intelligence under 10
+Reply Text=I have friends that will help me against you. 
+Go to node ID=82 robbery combat
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Robbery combat relay
+}
+Action work in progress=(intelligence not 10)
+
+Requirement=Shylocke goons require intelligence 10+
+Reply Text=You are surrounded by a score of hidden archers all awaiting my word to kill you. 
+Go to node ID=211 intimidate robbery
+Action work in progress=(intelligence is 10/outwit)
+------------------------------------------------------------
+Node ID=211 intimidate robbery
+Text=Y-you have a point, friend. K-keep your gold. It's been a t-terrible mistake. G-g-good day!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=231 believed
+Text=Hm. Boots worn through and not a coin on you. A pauper. Go on, before I take the boots for my trouble.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=232 who sends you
+Text=Nobody sends us today. Shylocke pays us to sit on this road for the ones who owe him, and none have come this month. A man has to eat.
+Should Have Voiceover=0
+
+Requirement=Shylock goon checks for 250 gold
+Reply Text=Please do not hurt me, here is the gold.
+Go to node ID=220 coward
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Thief: and while he laughs, it comes back>
+Go to node ID=249 light fingers
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Master Thief: and while he laughs, it comes back with his own>
+Go to node ID=249 light fingers
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=240 haggled
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=201 bold threat robbery
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/Outwit 7+
+}
+Reply Text=Your hand has been on that hilt since you started talking, and it hasn't cleared leather. You're not going to do it.
+Go to node ID=243 called
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=241 guild
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd rob a sworn brother on the Church's own road?
+Go to node ID=242 church
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that Shylocke's men work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Then eat somewhere else.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Robbery combat relay
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=240 haggled
+Text=...A hundred. Shylocke isn't here to count it. Go on, before I remember what I said.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=241 guild
+Text=Juanita's. Bah. We don't cross the guild for a purse. Go on, and tell her Shylocke's men were civil about it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=242 church
+Text=...We rob travellers, not the Church. Move along, and we never met.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=243 called
+Text=...Get out of here. Before I find out whether you're right.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=245 shylocke's rate
+Text=Six hundred is Shylocke's own rate; the rest was mine. Fine. He gets his six hundred and you get the road. Thank you for doing business with Shylocke and Associates.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=600
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay, Tainted Borrowed Money Relay
+}
+Other Map Name=1 Barcelona/Shylocke Shop
+}
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=246 church debt
+Text=We'll not put hands on the Church. But Shylocke will hear you came this way, and his ledger doesn't close for a cross.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=247 guild debt
+Text=Juanita's. We'll not put hands on a friend of the guild. But Shylocke's ledger doesn't close for her either.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=244 eloquence
+Text=...Civil. Hm. Go on, then. And say it loud, and say the toll was fair.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=248 eloquence debt
+Text=...He would. Bring it, then, and bring it soon. If we find you on this road again with his gold still in your purse, there'll be no talking.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=249 light fingers
+Text=Coward! You could at least put up a fight! <hearty laugh> ...Eh? Where did I put that--
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 shop loop talk 1
+Text=Talk to Shylocke, he's the boss. I have nothin' to say to ya.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 shop loop talk 2
+Text=<Grunts>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 shop loop talk 3
+Text=I noticed you lookin' at Shylocke's treasure chests. You better look somewhere else.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 shop loop talk 4
+Text=Don't try anything stupid here. We're watching you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=400 what are you doing
+Text=Hey, how did you get through that door?  Shylocke didn't mention he was expecting anyone.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=M71QQWA2
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+}
+}
+Reply Text=I need to speak with Shylocke.  I have business to do with him.
+Go to node ID=800 in tavern
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I explain nothing - especially to the likes of you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Goons attack when shylocke not here
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be leaving now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 in tavern
+Text=I think he's in the tavern over in the Port District.  Go see him there.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=5 Return
+Text=You are back. Have you come to give me more money?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You are lucky I paid you the first time.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I think I'll just be moving along.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Balloon return
+Text=<He has nothing to say to you>
+Should Have Voiceover=0
+}
