@@ -1473,6 +1473,7 @@ both completed Gate 2. Record the result here per release.
 | 0.10.3 | PASS (automated) | - | - | - | - | - | **published; Esteban's line, the two returns-after-attack and the extra guard built and unplayed (MS33-MS35)** |
 | 0.11.0 | PASS (automated) | PASS | partial | - | - | - | **published; the gate, the undercroft's five exits, the escort, the hall's stand-down and the Wasp Queen played (PM1-PM14, PM24); Sahar's prisoner talk, the ring and the rout unplayed (PM15-PM23)** |
 | 0.12.0 | PASS (automated) | PASS | - | - | - | - | **published, entirely unplayed (CP1-CP15); repairs go to 0.12.1** |
+| 0.13.0 | PASS (automated) | PASS | - | - | - | - | **published, entirely unplayed (RN1-RN29); repairs go to 0.13.1** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's

@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.12.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.12.0).
+-- currently [0.13.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.13.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -66,6 +66,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.10.1 - 0.10.3** repairs | | The thieves' stash chests say what they do and need a witness; the Inquisition jailor's Rites of Confession can be passed; the Templar initiation survives Esteban; Auric and Javier remember being attacked |
 | **0.11.0** The Prisoner of Montserrat | Montserrat, Montaillou, the Crypt | A way through the invasion that is not a fight against every pack: give yourself up at the gate; wake in the abbey's undercroft (a new map) with five ways out of the cell; a garrison that stands down for a delivery; Sahar with three ends and a ring that three people read differently; the rout. Also the trolls' ore chest and a Wasp Queen |
 | **0.12.0** La Calle Perdida | La Calle Perdida, the Ether Plane, the four Magic Nodes, Galileo's cell | The Enchanter can be told the truth; the wizards know you killed Relican; Cedric, Relican and Galileo remember being attacked; a Dark Wielder can break with Relican and fight him; the red Magic Nodes get Cedric's quest, a hover line and a ward; the wipeout kills the Wielders it generates. Also Fernand's reach |
+| **0.13.0** The Road North | The Plains, the Mountain Pass, the ogre caves, the Abandoned Cave | The spirits' warning about the Dark Inquisitors; the rogues' ritual finishes; Shylocke's collector says whose men they are and can be haggled, talked or perk-routed past; the crosses read; a Wielder and a Dark Wielder greeted as such; an Inquisitor helps Diego as a brother and reports to Torquemada; the ogres' charm ends when Aka Manah does; Tremblethorn's dark half; and Bernat Sicre, stuck six weeks in the Abandoned Cave |
 
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
@@ -74,8 +75,8 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.12.0 are published.** 0.12.0, La Calle Perdida, is built and entirely unplayed;
-0.11.0's Sahar, ring and rout are too. What the playthrough finds is repaired on `main` and cut as
+**0.1.0 through 0.13.0 are published.** 0.13.0, The Road North, and 0.12.0, La Calle Perdida, are
+built and entirely unplayed; 0.11.0's Sahar, ring and rout are too. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's
 automated gate (`tools/validate.py`) passes; the human gates are recorded per release in
 [`docs/qa.md`](docs/qa.md), and most of what shipped after 0.4.0 has been played once by one

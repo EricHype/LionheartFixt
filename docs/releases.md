@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.12.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.13.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -124,10 +124,9 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
-## 0.13.0 - the Road North (scope)
+## 0.13.0 - the Road North
 
-**In build.** Surveyed 2026-09-21 from the question "the Plains feels barren"; Tier 1 built the
-same day, unplayed. The maps between Montserrat and Montaillou: the Plains, the Mountain Pass,
+**Published.** Cut from `main` 2026-09-23, entirely unplayed. Surveyed 2026-09-21 from the question "the Plains feels barren", then 2026-09-22 from "this is the second combat area in a row"; ten tiers built 2026-09-21 to 2026-09-23. The maps between Montserrat and Montaillou: the Plains, the Mountain Pass,
 and the ogre caves off it.
 
 ### What the Plains is
