@@ -124,6 +124,107 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.14.0 - Montaillou (scope)
+
+**Surveyed 2026-09-23. Not started.** The second-largest act in the game after Barcelona and the
+densest writing left in it: **17 maps, 51 dialogue trees, 17 quests, 1,087 dialogue nodes.** 140
+of those nodes are unreachable and **49 of them carry replies** -- the largest block of authored,
+unreachable branching the project has found anywhere, the Gate District included.
+
+### What the act is
+
+A Cathar village of a hundred souls with an Inquisitor sitting in it, questioning people one at a
+time; a mayor standing between them and the worst of it; a witch in the woods who is a shadow
+daeva; a fugitive rock titan hiding in the village under a human name while his own people camp
+at Toulouse and demand him back; Nostradamus somewhere past it all; and the English coming.
+Every one of those threads has live content and at least one cut branch.
+
+### Tier 1 - the gate challenge (restoration; the act's first scene)
+
+`MontaillouGuard` has **13 unreachable nodes**, and three of them are a complete entry challenge
+that nothing opens: `100 stop player` -- *"You there! What business do you have in Montaillou?"*
+-- with **seven** replies, and its follow-ups `100 challenge` and `100 traveler`. The answers are
+faction-aware in a way almost nothing else in the game is: the Inquisition, the Templars (with a
+separate line for a woman -- *"Forgive me sister"*), the **Knights of Saladin** (*"You don't have
+the look of a saracen, but if you serve that order, then you are an ally of the Templars"*), a
+generic relic-hunter, a trader, and *"My business is my own"*, which gets you told the town is
+under investigation for heresy and that arriving suspiciously is itself suspicious. The map opens
+only `01 Conversation Start`, `03 Return Dialogue` and the knights' food banter.
+
+This is the strongest single find in the act: it is the arrival scene, it is written, it reads
+the four factions Fixt has spent five releases making real, and it is reachable by nothing.
+`100 heresy` has **no text** -- one node would have to be ours.
+
+### Tier 2 - the titans of Toulouse can be talked out of it
+
+`ToulouseLethos`, the titan envoy: `110 Good help` (kill Memnos, bring his mneme) and `130
+Mercenary help` (kill him or trick him into coming) are live. **`120 Nonviolent help` -- "What do
+you propose, small one?" -- and its two outcomes `121 Nonviolent success` and `122 Nonviolent
+failure` are not.** Read them and the whole third route is there: the titans agree to let the
+fugitive *make his case* for why he should outlive his office, or failing that to spare him if he
+comes back of his own will -- and both then run into the same live reward menu (freedom for the
+town, gold, magic, or both). What is missing is the player's proposal: `120`'s only live reply is
+*"Nevermind, perhaps I will do it your way."*
+
+The fugitive is Andre the Titan, the "human" in the village. So this is the peaceful end of the
+act's central conflict, three nodes short.
+
+### Tier 3 - Andre's own dark half, and what is marked removed
+
+`TitanAndre` is 83 nodes, 10 unreachable, 9 carrying replies: `02 corpse` (nine replies), `20
+Introductory` (six), `800 Both lies`, `900 Lucius extorted and thrown out of town`, `1002 Hearts
+in Hand but Lucius betrayed`. **Four of them begin `[REMOVED FROM GAME]`** -- the trick-Lucius and
+convince-Lucius routes -- which is the authors saying so in the text, and the project leaves what
+the authors deliberately cut. The rest is a read: how much of the lie-to-the-mayor branch is
+reachable, and whether `02 corpse` is the scene that starts it.
+
+### Tier 4 - Na Roqua (carried over from 0.9.0)
+
+11 unreachable, 7 with replies, and 0.9.0 deliberately left them because it was a Barcelona
+release: her return greetings after the chicken and the shapeshifted Beatrice, **`5 Return if
+Inquisitor`** (a sworn Inquisitor who has been told the Cathars are innocent -- five replies),
+**`60 Stash in Caverns`** (*"There is a place I keep secret, where items of power are stored.
+These things could be yours if you are a friend to the cathars"* -- a whole reward the game never
+offers), `100 Return`, and `300 confront the weird woman 1`, where she admits her past.
+
+### Tier 5 - the Inquisitor's third task
+
+`MontailluInquisitor`: `300 cave` and `300 cave into` are unreachable -- *"On the outskirts of
+town there is some kind of door barring entry to what we assume to be a cave... Most disturbing
+is the aura of magic coming from the cave."* Two small maps exist and have nothing in them: `08
+Secret Cave` (22 parts: two spirit generators, a way back, a spawn point) and `15 Witch
+SecretCave` (12 parts, a relocater and a *"Secret area up top"*). `200 Tainted Audience` -- his
+offer of service to a tainted character -- is also dark. Read whether the cave task was cut or
+merely unwired before deciding.
+
+### Tier 6 - four quests with no states
+
+`Defend Montaillou from the invaders` and `Find the portals used by the English forces` have zero
+states **and zero references anywhere in the game**. `Prevent the Inquisitor from killing the
+Cathars` and `Root out the heretic Cathars` -- the two sides of the act's central conflict -- have
+zero states and are referenced only by `02 Hamlet Burned`'s cleanup sweep. `Help Andre the Titan
+with his tasks` has two written states (*"Find Marcus' cousin and take sphere from him"*, *"Return
+Sphere to Marcus"*) and **no references at all**. Whether any of these has content behind it, or
+whether they are names for threads that ship under other quests, is the first thing to read.
+
+### Also standing
+
+- `Cathar Warden / 1 Conversation Start Not Saw Bear` (six replies) -- the grove warden's other
+  greeting.
+- `shepherd / 260 Guillaume` -- a former friend who *"may treat you well at first"*.
+- `Mayor Interior Templar / 03 Return Dialogue`.
+- The two **Shapeshifting Daeva** trees are 31 nodes each and carry the same scenes twice, one
+  set for a player with the Zarathustra amulet and one without; each map picks a tree and asks it
+  for the matching node, so 26 nodes across the pair are the unused half of a deliberate
+  duplication. Recorded, not a defect.
+
+### Sequencing
+
+Tier 1 first: it is the act's front door, it is entirely the game's own writing, and it pays off
+every faction the project has built. Tier 2 next, as the largest piece of cut *design* rather
+than cut text. Tiers 4 and 5 are reads that will each end in a decision. Tier 6 governs how big
+this release gets, and should be read before any of the building starts.
+
 ## 0.13.0 - the Road North
 
 **Published.** Cut from `main` 2026-09-23, entirely unplayed. Surveyed 2026-09-21 from the question "the Plains feels barren", then 2026-09-22 from "this is the second combat area in a row"; ten tiers built 2026-09-21 to 2026-09-23. The maps between Montserrat and Montaillou: the Plains, the Mountain Pass,
