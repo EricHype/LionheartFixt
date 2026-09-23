@@ -359,6 +359,55 @@ Montaillou, Titan Village, the Crypt entrance and the Heart entrance alike -- Ce
 and Darsh leave at whichever of those you reach first, which is the Grove. A "Barcelona lets go
 of you at the border" beat was scoped and dropped for that reason.
 
+### Tier 9 - Bernat's caravan (new content)
+
+The Abandoned Cave is the emptiest map on the road: 506 parts, eight grey wolf generators, two
+hidden treasures, no dialogue at all, and nothing that forces you in. **Built 2026-09-22,
+unplayed,** from the user's idea: a wool and cloth merchant out of Toulouse, six weeks into a
+two-day crossing, who turned back into the first hole he could find when the ogres and the
+titans started killing each other across the only road. Two hired swords, **Guilhem** and
+**Peire**, have held the mouth in shifts since, which is why the wolves have not had him.
+
+Why here: it explains what the map is (wolves circling a hole someone is living in), it puts the
+road's one traveller coming the *other* way in front of you, so Montaillou stops arriving cold,
+and it gives Tier 7 a second place to show. The war is what shut the pass -- the titans were
+always there -- so breaking Aka Manah's charm opens Bernat's road home. `the charm breaks` now
+reaches the Abandoned Cave as well.
+
+- **Trade.** `Inventory for Bernat`, cloned off Mauldo's and trimmed: potions, arrows, armour.
+  Mauldo's two unique magic weapons were cut -- a wool man does not carry them.
+- **News.** Montaillou with an Inquisitor sitting in it, calling people in one at a time; the
+  mayor standing between them and the worst of it; the woman past the fields the shepherds go
+  to when a ewe will not take her lamb. Every line points at live Act 3 content and invents
+  nothing.
+- **Peire.** The second sword took a wolf on his arm in the second week and it has not closed.
+  A healing potion out of your own pack is the errand; he has his colour back afterwards, and
+  Bernat sells at cost.
+- **The road is open.** Gated on the `ogre charm broken` checker rather than on a claim, so it
+  cannot be bluffed: he pays 400 gold, hands over a book he took in trade at Foix (the Tome of
+  Geomancy, which Weng Choi buys), 600 XP, and goes. The camp is deleted and the cold-fire hover
+  is left where it was.
+- The three wolf generators within 700 px of the camp stand off so the scene is not fought
+  through; the other five are untouched.
+
+- **The bodies.** The cave is dressed with **56 wrapped cocoon bodies** -- a model set the game
+  uses in only two other places, the Crypt's Retreat of Souls and a test map -- four of them
+  within 180 px of the fire. They are what this map *is*, so neither they nor the camp moved;
+  instead the scene notices them. A hover on the nearest cluster, and a reply on every one of
+  Bernat's hub nodes: *"They were here when I crawled in... I counted forty in the first week
+  and then I stopped counting. Whatever did that has not been back -- the wolves would not come
+  to the mouth if it had... We keep the fire between us and the dark end."* Grey wolves do not
+  wrap bodies, so the cave already implied something else had lived there; this says so without
+  inventing it.
+
+Fourteen nodes of ours, three character templates cloned (Wilderness Merchant, and the Montaillou
+Guard twice), one shop, one XP part, four checkers, a departure relay, and the camp dressing --
+which the user placed in the map editor. Two repairs came out of reading that back: `BottleBroke
+A` has a model file but appears on no shipped map, so no `Cur Sequence` is known safe for it (the
+0.5.1 check) and it became `BottleBroke B`, which vanilla places; and the placeholder campfire
+this script had dropped was removed in favour of the placed `CampFireNewBig A`, with Bernat's and
+Peire's lines changed from a dead fire to a live one to match what is on screen.
+
 ### Also read on the Pass
 
 - `Deactivate Teleport Trap` activates `Remove Blue Color` on the Ogre Sprawl; the part there is
@@ -384,6 +433,7 @@ of you at the border" beat was scoped and dropped for that reason.
   Plains.** Tier 3 is dialogue: any save that has not tripped the goons.
 - Tiers 7 and 8 are level parts on four more maps: **a character who has not entered the
   Mountain Pass, the Ogre Sprawl, the Ogre Cave or the Ogre Conjurer Cave.**
+- Tier 9 is the Abandoned Cave: **a character who has not entered it.**
 - Gate 1: walk to the camp from the south-east with each spirit; the spirit appears, speaks its
   line, fades; once only. A Pureblood sees nothing.
 - Gate 1, Tier 2: kill the camp -> the flare and the Terror as the last rogues fall, hostile,

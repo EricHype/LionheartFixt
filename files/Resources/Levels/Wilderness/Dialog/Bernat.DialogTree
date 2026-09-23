@@ -1,0 +1,764 @@
+CDialogTree
+{
+Name=Bernat
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 conversation start
+Text=Hold -- hold! Guilhem, down. <A man in a good coat, gone at the elbows, behind two swords and a fire built small to last.> You are the first thing to come up that tunnel on two legs in six weeks. Bernat Sicre, of Toulouse. Cloth.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 who
+
+Requirement=!None
+Reply Text=What is the news out of Montaillou?
+Go to node ID=20 news
+
+Requirement=!None
+Reply Text=There are bodies in here.
+Go to node ID=23 the bodies
+
+Requirement=!None
+Reply Text=Show me what you are carrying.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Bernat
+After Closed Action=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=peire has been treated
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Your man by the fire is hurt. I have a draught that will help him.
+Go to node ID=30 peire
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActivateAction
+{
+Target Name=peire has been treated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=ogre charm broken
+Desired Minimum Count=1
+}
+}
+Reply Text=The road south is open. Whatever was fighting over it has stopped.
+Go to node ID=40 the road
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep your watch, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 return dialogue
+Text=You again. Good. Guilhem had money on the wolves.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 who
+
+Requirement=!None
+Reply Text=What is the news out of Montaillou?
+Go to node ID=20 news
+
+Requirement=!None
+Reply Text=There are bodies in here.
+Go to node ID=23 the bodies
+
+Requirement=!None
+Reply Text=Show me what you are carrying.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Bernat
+After Closed Action=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=peire has been treated
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Your man by the fire is hurt. I have a draught that will help him.
+Go to node ID=30 peire
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActivateAction
+{
+Target Name=peire has been treated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=ogre charm broken
+Desired Minimum Count=1
+}
+}
+Reply Text=The road south is open. Whatever was fighting over it has stopped.
+Go to node ID=40 the road
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep your watch, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 who
+Text=A wool man. I buy the clip off the Montaillou shepherds in the spring and I sell it in Barcelona before the fairs, and I have done it eleven years without losing a bale. This year I am eleven years' profit in a hole with two men I am paying by the day and a mule the wolves have already eaten.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 who
+
+Requirement=!None
+Reply Text=What is the news out of Montaillou?
+Go to node ID=20 news
+
+Requirement=!None
+Reply Text=There are bodies in here.
+Go to node ID=23 the bodies
+
+Requirement=!None
+Reply Text=Show me what you are carrying.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Bernat
+After Closed Action=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=peire has been treated
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Your man by the fire is hurt. I have a draught that will help him.
+Go to node ID=30 peire
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActivateAction
+{
+Target Name=peire has been treated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=ogre charm broken
+Desired Minimum Count=1
+}
+}
+Reply Text=The road south is open. Whatever was fighting over it has stopped.
+Go to node ID=40 the road
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep your watch, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 news
+Text=Montaillou is a village of a hundred souls with an Inquisitor sitting in it. They are calling people in one at a time and writing down what they say -- what they eat on a Friday, who they saw on the road, who their mother prayed with. The mayor stands between them and the worst of it, and the mayor is not a young man. That is the news, and I would not carry it if the road were open.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do the shepherds say about it?
+Go to node ID=21 the woods
+
+Requirement=!None
+Reply Text=And the road?
+Go to node ID=22 the road shut
+
+Requirement=!None
+Reply Text=There are bodies in here.
+Go to node ID=23 the bodies
+
+Requirement=!None
+Reply Text=Show me what you are carrying.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Bernat
+After Closed Action=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=peire has been treated
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Your man by the fire is hurt. I have a draught that will help him.
+Go to node ID=30 peire
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActivateAction
+{
+Target Name=peire has been treated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=ogre charm broken
+Desired Minimum Count=1
+}
+}
+Reply Text=The road south is open. Whatever was fighting over it has stopped.
+Go to node ID=40 the road
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep your watch, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 the woods
+Text=They say what shepherds say. That there is a woman living out past the fields who was there before the church was, and that when a ewe will not take her lamb you go to her and not to the priest. The Inquisitor has heard it too; he has heard everything by now. I sell wool. I did not hear any of it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 who
+
+Requirement=!None
+Reply Text=What is the news out of Montaillou?
+Go to node ID=20 news
+
+Requirement=!None
+Reply Text=There are bodies in here.
+Go to node ID=23 the bodies
+
+Requirement=!None
+Reply Text=Show me what you are carrying.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Bernat
+After Closed Action=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=peire has been treated
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Your man by the fire is hurt. I have a draught that will help him.
+Go to node ID=30 peire
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActivateAction
+{
+Target Name=peire has been treated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=ogre charm broken
+Desired Minimum Count=1
+}
+}
+Reply Text=The road south is open. Whatever was fighting over it has stopped.
+Go to node ID=40 the road
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep your watch, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=22 the road shut
+Text=Titans. Great grey things that pull the mountain apart to throw it, and they have the high ground the whole way. And ogres, and the two of them at each other's throats across the only path wide enough for a cart. I have watched a boulder the size of my house come down that road. So I sit here, and my men keep the mouth, and the wolves come and look at us every night and go away again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 who
+
+Requirement=!None
+Reply Text=What is the news out of Montaillou?
+Go to node ID=20 news
+
+Requirement=!None
+Reply Text=There are bodies in here.
+Go to node ID=23 the bodies
+
+Requirement=!None
+Reply Text=Show me what you are carrying.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Bernat
+After Closed Action=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=peire has been treated
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Your man by the fire is hurt. I have a draught that will help him.
+Go to node ID=30 peire
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActivateAction
+{
+Target Name=peire has been treated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=ogre charm broken
+Desired Minimum Count=1
+}
+}
+Reply Text=The road south is open. Whatever was fighting over it has stopped.
+Go to node ID=40 the road
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep your watch, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=23 the bodies
+Text=They were here when I crawled in, and they will be here when I am gone. Dry as kindling, every one, and wrapped like a fleece for market. I counted forty in the first week and then I stopped counting. Whatever did that has not been back -- the wolves would not come to the mouth if it had -- and I do not intend to be here when it remembers the address. We keep the fire between us and the dark end, and we do not go down there for any reason at all.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sensible.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 peire
+Text=<He takes it without a word and goes to the fire.> ...His name is Peire. He took a wolf on his arm the second week and it has not closed since. That was decently done, and I have not got much in me to be decent about lately. Take something off my stock at what it cost me; I will still be ahead of where I was this morning.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 who
+
+Requirement=!None
+Reply Text=What is the news out of Montaillou?
+Go to node ID=20 news
+
+Requirement=!None
+Reply Text=There are bodies in here.
+Go to node ID=23 the bodies
+
+Requirement=!None
+Reply Text=Show me what you are carrying.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Bernat
+After Closed Action=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=peire has been treated
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Your man by the fire is hurt. I have a draught that will help him.
+Go to node ID=30 peire
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActivateAction
+{
+Target Name=peire has been treated
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=ogre charm broken
+Desired Minimum Count=1
+}
+}
+Reply Text=The road south is open. Whatever was fighting over it has stopped.
+Go to node ID=40 the road
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep your watch, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 the road
+Text=Open. <He stands, and looks at you, and does not sit down again.> Guilhem! The road is open! ...I will not ask how you know. I have six weeks of paying two men and nothing to show any shepherd in the spring, and I am going before it shuts again. Here -- gold, and a book I took in trade in Foix that I cannot read and you will not sell for less than it is worth. Go carefully up there. I am going carefully down.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Travel well, Bernat.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=400
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Bernat gets out XP
+Experience Points To Add=1
+}
+Action=CActivateAction
+{
+Target Name=bernat has gone
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=bernat packs up
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 guilhem
+Text=Six weeks of wolves and one of you. Talk to him, not to me -- I am watching the tunnel.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=51 peire
+Text=<The second sword sits by the fire with his arm bound in a strip of good cloth. It has been bound a while.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=52 peire healed
+Text=<He has the colour back in his face, and his sword is across his knees instead of on the ground.> The arm holds. My thanks.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 camp cold
+Text=<Three sets of boot-prints going east, a burnt-out fire, and the straps they could not carry. The wolves have been over it since and found nothing worth the trouble.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=61 the bodies hover
+Text=<Bodies, wrapped and stacked against the wall like faggots of wood. Dry, and old. Whatever bound them has not been back in a long time, and the wolves have not been able to get into them.>
+Should Have Voiceover=0
+}

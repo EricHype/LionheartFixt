@@ -110,7 +110,18 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=6
+							Item Count=7
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=ogre charm broken
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=Wilderness Maps/Abandoned Cave
+							}
 							Action=COtherMapAction
 							{
 								Action=CActivateAction

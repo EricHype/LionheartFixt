@@ -1342,6 +1342,11 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | RN17 | Fresh ogre maps, kill Aka Manah | Walk back out through the Cave, the Sprawl and the Pass | Every ogre stands down, once, with *"<The ogre stops mid-swing...>"*; rock titans and wolves still attack; ogres spawning near you afterwards are passive |
 | RN18 | RN17 by the Speech route instead (`160 tricked aka manah`) | - | The same stand-down; the XP and Alamut hook as before |
 | RN19 | Fresh Pass, walk the road south to north | - | The dead ground, the titans' quarry and the cairn, once each; after the charm breaks the cairn reads its quiet version |
+| RN20 | Fresh Abandoned Cave, walk west to the camp | Talk to Bernat | *"Hold -- hold! Guilhem, down."*; who/news/shop all answer; Guilhem and Peire have their own barks; no wolves spawn on top of the camp; a second visit opens `3 return dialogue` |
+| RN21 | RN20 carrying a healing potion | *"Your man by the fire is hurt..."* | The potion is taken, Peire's bark changes to *"The arm holds. My thanks."*, XP once; the reply gone afterwards |
+| RN22 | RN20 before beating Aka Manah | - | The "road south is open" reply is absent |
+| RN23 | RN20 after the charm breaks | *"The road south is open."* | 400 gold, the Tome of Geomancy, 600 XP; Bernat, Guilhem and Peire and the camp props are gone; the cold-camp hover plays where they were |
+| RN24 | Fresh Abandoned Cave, the camp | Walk to the bodies north-west of the fire; ask Bernat *"There are bodies in here."* | The hover once; his answer on every greeting; the fire is lit and his opening line matches it |
 
 ---
 
