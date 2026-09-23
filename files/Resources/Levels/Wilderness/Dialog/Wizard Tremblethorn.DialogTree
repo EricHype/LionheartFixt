@@ -1,0 +1,529 @@
+CDialogTree
+{
+Name=Aka Manah
+Portrait=Dialog/NPC Portraits/aka mana
+Should Have Voiceovers=1
+Default Canceled Node Action=CEndNonInteractiveSequenceAction
+{
+}
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=My Master has called upon all of his children to harvest your power. Though you have survived so far, you now face the most wicked of the Daevas. My Master's will must be done, so your quest ends here.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 75
+Reply Text=Why would a mighty Daeva such as yourself agree to serve a lesser being like your *Master*?
+Go to node ID=160 use speech path
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 40
+Reply Text=Perhaps we could discuss a peaceful solution to this conflict?
+Go to node ID=170 failed speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=10 Wizard explains
+
+Requirement=!None
+Reply Text=What do you want with me?
+Go to node ID=30 Destruction
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Reply Text=You have felt what I carry since I walked in. Say what it is.
+Go to node ID=80 Wizard off guard
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=Your master has made terms with the Titans of Toulouse. I came up here to see whether you knew.
+Go to node ID=90 Wizard grieved
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=Your master has made terms with the Titans of Toulouse. I came up here to see whether you knew.
+Go to node ID=120 wizard recovers
+
+Requirement=!None
+Reply Text=Save your words demon. I live to slay your kind.
+Go to node ID=20 Wizard attacks
+Action work in progress=Combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You seem to be an intelligent creature. Let me pass and no more blood will be spilled.
+Go to node ID=20 Wizard attacks
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Wizard explains
+Text=I heard your pitiful spirit companion warn you about me. I am Aka Manah, the evil urge that corrupts human minds and twists them to do wicked acts. It is time that you succumb and relinquish your power to my Master.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 75
+Reply Text=A mighty Daeva such as yourself would agree to serve a lesser being like your *Master*?
+Go to node ID=160 use speech path
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 40
+Reply Text=Perhaps we could discuss a peaceful solution to this conflict?
+Go to node ID=170 failed speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Who is your Master?
+Go to node ID=170 Master
+
+Requirement=!None
+Reply Text=Save your words demon. I live to slay your kind.
+Go to node ID=20 Wizard attacks
+Action work in progress=Combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You seem to be an intelligent creature. Let me pass and no more blood will be spilled.
+Go to node ID=20 Wizard attacks
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Wizard attacks
+Text=In death, your power will be taken and perverted to bring about a great new age of blight.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Destruction
+Text=Your destruction, of course.  I have known that you were coming, and I have gone to great lengths to prepare for your arrival.  I've even taken time out from what my master really wants me to do.  But you have proven to be - let's just say, difficult.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who is your master?  What does he want from you?
+Go to node ID=170 Master
+
+Requirement=!None
+Reply Text=Preparations?  So, I have you to thank for all the Ogres in this cave?
+Go to node ID=50 Ogre Spells
+
+Requirement=!None
+Reply Text=I will show you that you have not yet seen difficult!
+Go to node ID=40 a few ogres
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 a few ogres
+Text=A threat!  Let's not get delusional, my friend.  I will now show you that defeating a few Ogres has not prepared you for a Wizard like me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Ogre Spells
+Text=I have spent a great deal of time and effort charming these Ogres that are common around these Mountains.  They have proven effective combatants against the Titans.  I thought you would be no trouble for them.  Alas, I shall have to do the job myself!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Barcelona
+Text=Hmmmm.  I'm surprised at your questions.  I took you for an uninterested mercenary.  Still, I see no harm in satisfying a soon to be dead person's curiosity.  My master is a very powerful man, worthy of my greatest respect.  He has entrusted me with attacking the miserable town of Nueva Barcelona - a process that I will return to after disposing of the problem you have become!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 wizard warns
+Text=Fine, but go back from where you came, and leave with this warning:  should I ever see you again, I shall not treat you so kindly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=Aka Manah
+Name To Target=
+Valid Targets=
+}
+Action=CRemoveCategoryAction
+{
+Target Name=Aka Manah
+Categories To Remove=Enemy
+}
+Action=CActivateAction
+{
+Target Name=Tremblethorn let you go
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Wizard off guard
+Text=Yes, I sense that you have a relic of Zarathushtra. Even with that paltry trinket, you are no equal to my power.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let me walk out, and neither of us learns anything today.
+Go to node ID=70 wizard warns
+
+Requirement=!None
+Reply Text=Then it is no trinket to you, and we are done talking.
+Go to node ID=20 Wizard attacks
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CEndNonInteractiveSequenceAction
+{
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Wizard grieved
+Text=It can't be true, I-I trusted him.  I must go verify this, and find the truth of this matter.  I warn you, if I discover you are telling me an untruth, woe to you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You dare threaten me, old man!  I'll kill you now!
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Fair enough, and farewell.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CActivateAction
+{
+Target Name=Tremblethorn angry at second visit
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Aka Manah Leaves
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 wizard recovers
+Text=Liar!  Anyone who hates Titans would not be travelling in the direction you are travelling nor would you have killed so many ogres!  Defend yourself, you self-interested lying fiend!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 (Second Greeting)
+Text=Fool!  Was my warning not sufficient?  Die, you meddling marauder!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress= only show this if player parted ways after node 70.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 (Alternate Second Greeting)
+Text=Liar!  There is no such alliance between my master and the Titans!  You will die a most painful death!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Show this only if player parted ways after node 90 and then go to combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 skull laughs
+Text=<There is a laughing voice from the skull> You cannot leave just yet!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=160 use speech path
+Text=Lesser being? My Master's soul swims in power, he is possessed by the strongest of my brothers. Your words cannot sway me. Submit to me, mortal.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 85
+Reply Text=But how can a being of pure evil thought serve another? Is your own soul not a perfect reflection of darkness? You should rule instead!
+Go to node ID=160 continue speech
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 40
+Reply Text=Perhaps we could discuss a peaceful solution to this conflict?
+Go to node ID=170 failed speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You don't want to oppose me. Listen to reason.
+Go to node ID=170 failed speech
+
+Requirement=!None
+Reply Text=Save your words demon. I live to slay your kind.
+Go to node ID=20 Wizard attacks
+Action work in progress=Combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You seem to be an intelligent creature. Let me pass and no more blood will be spilled.
+Go to node ID=20 Wizard attacks
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 continue speech
+Text=Yes, I am the most wicked of my brood, my thoughts are pure and vile, my genius is unrivaled. But...my master is strong...I cannot oppose him...I must carry out his will.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 80
+Reply Text=Your genius will overcome his strength. Confront your 'Master' and claim what is rightfully yours!
+Go to node ID=160 tricked aka manah
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You don't want to oppose me. Listen to reason.
+Go to node ID=170 failed speech
+
+Requirement=!None
+Reply Text=Save your words demon. I live to slay your kind.
+Go to node ID=20 Wizard attacks
+Action work in progress=Combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You seem to be an intelligent creature. Let me pass and no more blood will be spilled.
+Go to node ID=20 Wizard attacks
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 tricked aka manah
+Text=You are right, mortal. Soon, my Master will serve me. Perhaps *I* will send him to capture you later. <Laughs>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Aka Manah Leaves
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 failed speech
+Text=Your words are as weak and frail as your flesh. In death, your power will be taken and perverted to bring about a great new age of blight.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Begin Combat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEndNonInteractiveSequenceAction
+{
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 Master
+Text=My Master was a mortal before he was possessed by the most powerful Daeva. He rules the East with fear and is served faithfully by his obediant assassins.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 75
+Reply Text=A mighty Daeva such as yourself would agree to serve a lesser being like your *Master*?
+Go to node ID=160 use speech path
+Icon=Speach Skill Icon
+
+Requirement=Speech moreequal 40
+Reply Text=Perhaps we could discuss a peaceful solution to this conflict?
+Go to node ID=170 failed speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Save your words demon. I live to slay your kind.
+Go to node ID=20 Wizard attacks
+Action work in progress=Combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=You seem to be an intelligent creature. Let me pass and no more blood will be spilled.
+Go to node ID=20 Wizard attacks
+Icon=Exit Icon
+Is Default Reply=1
+}

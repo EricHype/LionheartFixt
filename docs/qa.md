@@ -1347,6 +1347,11 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | RN22 | RN20 before beating Aka Manah | - | The "road south is open" reply is absent |
 | RN23 | RN20 after the charm breaks | *"The road south is open."* | 400 gold, the Tome of Geomancy, 600 XP; Bernat, Guilhem and Peire and the camp props are gone; the cold-camp hover plays where they were |
 | RN24 | Fresh Abandoned Cave, the camp | Walk to the bodies north-west of the fire; ask Bernat *"There are bodies in here."* | The hover once; his answer on every greeting; the fire is lit and his opening line matches it |
+| RN25 | Ogre Conjurer Cave, fresh | *"What do you want with me?"* -> *"So, I have you to thank for all the Ogres in this cave?"* | `30` then `50 Ogre Spells`; *"Who is your master?"* reaches `170 Master`, not the Nueva Barcelona node |
+| RN26 | As a tainted character | *"You have felt what I carry..."* -> *"Then let me walk out..."* | `80`, then `70`; he does not attack, you can leave the cave; a second visit opens `130`; the ogres are still hostile and Bernat is still stuck |
+| RN27 | Speech 40+ | *"Your master has made terms with the Titans of Toulouse."* | `90`; *"Fair enough, and farewell"* makes him leave as the Speech route does -- XP, and the ogres stand down |
+| RN28 | Speech under 40 | The same reply | `120`, and he attacks |
+| RN29 | Flee the fight and come back without either outcome | - | The first greeting again, not *"Was my warning not sufficient?"* |
 
 ---
 

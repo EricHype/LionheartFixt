@@ -416,9 +416,42 @@ Peire's lines changed from a dead fire to a live one to match what is on screen.
 - The Speech route is **live**, not cut: `160 tricked aka manah` -> `Aka Manah Leaves` -> XP from
   `Talked Aka Manah into leaving through speech`, and a `COtherMapAction` into Alamut's Dark
   Temple so the Old Man's house knows he is loose.
-- `Tremblethorn / 130` and `140` are second greetings for outcomes that cannot happen (`70
-  wizard warns`, `90 Wizard grieved`), selected by `Tremblethorn angry at second visit`, a
-  checker nothing activates. The Rakeb shape. Left for a decision with the eight-node draft.
+### Tier 10 - Tremblethorn's dark half
+
+**Built 2026-09-23, unplayed.** Nineteen nodes, eight unreachable and every one of them carrying
+replies: an earlier draft in which he is a human wizard charming ogres for a master who means to
+attack *"Nueva Barcelona"*. The shipped character is Aka Manah, a Daeva whose master is the Old
+Man of the Mountain (`170 Master`, live), so the master nodes are superseded -- but the rest of
+the draft is still true of the Daeva, and one of its lines is the only place the game explains
+the whole area: *"I have spent a great deal of time and effort charming these Ogres... They have
+proven effective combatants against the Titans."*
+
+The two second greetings carry the authors' own comments -- `130` *"only show this if player
+parted ways after node 70"*, `140` *"only if player parted ways after node 90"* -- and `90`'s
+peaceful exit already activates the checker `140` is selected on. Neither node could be reached,
+so `130` played on **every** second meeting, about a warning that could not have happened.
+
+- *The hub.* `What do you want with me?` on the greeting reaches `30 Destruction`, and through it
+  `50 Ogre Spells` and `40 a few ogres`. `30`'s *"Who is your master?"* was repointed from the
+  dead `60 Barcelona` to the live `170 Master`, so the question can be asked and gets the
+  shipped answer. `60` stays dark: its master attacks a city by a name nothing else in the game
+  uses.
+- *The relic.* A tainted character (the spirit in the blood is the relic of Zarathushtra he
+  senses) can make him say what he senses -- `80` -- and then ask to walk out, which is `70`:
+  he warns you off, and the reply now stands him down by name as well as ending the sequence, so
+  you can actually leave. It sets `Tremblethorn let you go`. **The charm stays on**: the coward's
+  exit leaves the ogres charmed and Bernat stuck, which is the price of it.
+- *The lie.* Speech 40+ offers the Titan alliance -- *"Your master has made terms with the Titans
+  of Toulouse"* -- into `90`, where he breaks off to go and see for himself; the same reply
+  without the Speech reaches `120`, where he sees through it (*"Anyone who hates Titans would not
+  be travelling in the direction you are travelling nor would you have killed so many ogres!"*)
+  and attacks. `90`'s exit fires `Aka Manah Leaves`, the relay his other departure already uses,
+  so the lie is a third way to clear the mountain -- and it breaks the charm.
+- *The second greeting.* The selector now reads: angry (the lie) -> `140`; let you go -> `130`;
+  otherwise the first greeting again, instead of a stranger being accused of ignoring a warning.
+
+Four player lines of ours; every NPC line is the game's. `140` is reachable only in principle --
+the lie sends him away for good -- and is left in the selector as the authors wired it.
 
 ### Also read
 
