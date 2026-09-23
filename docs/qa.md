@@ -1332,6 +1332,10 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | RN7 | Plains, in debt, a Templar or Inquisitor | *"You'd put hands on a sworn brother..."* | *"...his ledger doesn't close for a cross"*; they let you pass; Shylocke still expects payment |
 | RN8 | Plains, in debt, scare them off (any of the four) | Then Shylocke | No repayment offer; a new loan possible |
 | RN9 | Plains, the goons, a character with Salesman / Eloquence / Educated / Thief / Master Thief / Brutish Hulk / Dark Majesty / Blademaster / Summoning | The perk line | The haggle without Barter 40; let pass; the 600; the purse back (Thief +0, Master Thief +50); the four intimidations into the stammer; each once |
+| RN10 | Fresh Plains, walk to Mauldo's stall, then to the camp's east stake | - | *"<A stake cut into a rough cross...>"* once at each; at the camp a PE 7+ character reads the re-set ring instead |
+| RN11 | Fresh Plains, a Wielder of Cedric's (no Necromancer), walk into the camp | - | *"...You are off the hidden street in Barcelona"*; the warning reply -> `21`; study/fight/leave as before |
+| RN12 | Fresh Plains, a Dark Wielder (Necromancer) | *"I know what the circle is for..."* | `22 dark tribute`; accepting arms the Diego quest as before; *"Keep your circle. I have my own."* lets you walk |
+| RN13 | Fresh Plains, a non-Wielder, and a Wielder with Diego in tow | - | The vanilla greeting and `50 Player Has Diego` respectively |
 
 ---
 

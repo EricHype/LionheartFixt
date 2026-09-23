@@ -45,6 +45,187 @@ Return failure if the If failes=0
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=1 wielder
+Text=How dare you disturb our-- No. Stand easy. I know that look. You are off the hidden street in Barcelona, and you have come to watch priests do your art badly.
+Should Have Voiceover=0
+
+Requirement=Rogue Inquisitor requires PC to NOT have joined Diego
+Reply Text=You will have every Inquisitor in Aragon in these woods by spring, and it is not you they will find. It is us.
+Go to node ID=21 wielder warning
+
+Requirement=Rogue Inquisitor requires PC to NOT have joined Diego
+Reply Text=I've come to study your dark rituals.
+Go to node ID=20 ally
+
+Requirement=!None
+Reply Text=I've come to stop your heresy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry to disturb you, I'll just be moving along.
+Go to node ID=10 combat
+Custom Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=friend of rogue Inquisitor
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor allows you to leave
+}
+Else=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 dark wielder
+Text=How dare you disturb our-- hold. That mark on you is not ours, and it is not the Church's. You have stood where we are standing and come back with something.
+Should Have Voiceover=0
+
+Requirement=Rogue Inquisitor requires PC to NOT have joined Diego
+Reply Text=I know what the circle is for. You are doing it badly.
+Go to node ID=22 dark tribute
+
+Requirement=Rogue Inquisitor requires PC to NOT have joined Diego
+Reply Text=I've come to study your dark rituals.
+Go to node ID=20 ally
+
+Requirement=!None
+Reply Text=I've come to stop your heresy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry to disturb you, I'll just be moving along.
+Go to node ID=10 combat
+Custom Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=friend of rogue Inquisitor
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor allows you to leave
+}
+Else=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 wielder warning
+Text=Let them come. They burned us out of our own order; there is nothing left of us for them to take. If they ride out here they will ride past your street to do it, and that is your trouble, wizard, not ours.
+Should Have Voiceover=0
+
+Requirement=Rogue Inquisitor requires PC to NOT have joined Diego
+Reply Text=I've come to study your dark rituals.
+Go to node ID=20 ally
+
+Requirement=!None
+Reply Text=I've come to stop your heresy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry to disturb you, I'll just be moving along.
+Go to node ID=10 combat
+Custom Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=friend of rogue Inquisitor
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor allows you to leave
+}
+Else=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=22 dark tribute
+Text=Badly. Yes. We had priests to teach us and no one else. Then take the circle, and take us with it: there is an Inquisitor on the south road who has hunted us to this stone. Bring us his head and we are yours.
+Should Have Voiceover=0
+
+Requirement=Rogue Inquisitor requires Diego NOT Dead
+Reply Text=He is already dead and does not know it.
+Go to node ID=11 friendly goodby
+Action work in progress=(give quest to kill Diego)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+State=OVCZ9ZVT
+}
+Action=CActivateAction
+{
+Target Name=friend of rogue Inquisitor
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Rogue Inquisitor requires Bishop Diego Dead
+Reply Text=His head is already off. Kneel.
+Go to node ID=30 join
+Icon=Quest Icon
+
+Requirement=Rogue Inquisitor requires Diego NOT Dead
+Reply Text=I did not come here to run errands for apostates.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Keep your circle. I have my own.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Rogue Inquisitor allows you to leave
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=3 Return Dialogue
 Text=You've returned?  What do you want from us?
 Should Have Voiceover=0

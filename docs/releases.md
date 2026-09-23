@@ -240,6 +240,49 @@ on chosen perks -- and then put in at the user's call, on the one shape vanilla 
 - *Brutish Hulk*, *Dark Majesty*, *Blademaster*, *Summoning*: four more lines on both
   intimidation menus, each into the stammer.
 
+### Tier 4 - the crosses (texture)
+
+Mauldo's `50 Crosses`: a witch scattered her blood on the rocks to wake demons; the Inquisition
+marked the spots with crosses *"where her foul magic was the strongest"*; *"many people have
+come over the years to harness this power."* The crosses are thirteen ground-stake props, eight
+around Mauldo's pitch and five ringing the pentagram -- the designers put the Inquisition's
+markers exactly where the Dark Inquisitors drew their circle -- and none carried anything.
+**Built 2026-09-22, unplayed:** a hover on the pair at Mauldo's pitch (*"The Inquisition's mark.
+The ground at its foot is darker than the ground around it"*) and one on the ring's east stake
+with a PE 7+ read that the stakes were pulled and re-set to fit the circle. Two polys, once
+each; a new `Plains Hover` tree with two nodes of ours.
+
+### Tier 5 - the rogues know a wizard when they see one
+
+The Dark Inquisitors are apostate priests, not wizards: their race still casts Fire Orb and
+Celestial Smite, the Church's own Thought and Divine schools, and they are using them at a blood
+site the Inquisition itself marked. To a Wielder of Cedric's street they are the men who hunt his
+kind, doing his art badly in the open -- and a demon loose on the Barcelona road means another
+purge, which the Calle pays for and they do not. To a Dark Wielder they are five apostates with a
+circle and no teacher. Vanilla greets both with *"How dare you disturb our ritual!"* and offers
+the same recruitment: *"I sense power in you, definitely, but will you serve us or betray us?"*
+
+**Built 2026-09-22, unplayed.** The camp's selector gains two arms ahead of the plain greeting,
+after the Diego-companion check: `Necromancer` (Relican's title perk, granted on the dark
+initiation and already the check Galileo's tree uses) -> `1 dark wielder`; `Wielder IS` -> `1
+wielder`; else as before.
+
+- `1 wielder` -- *"How dare you disturb our-- No. Stand easy. I know that look. You are off the
+  hidden street in Barcelona, and you have come to watch priests do your art badly."* Its own
+  reply warns them what they are calling down on Barcelona's wizards, and `21 wielder warning`
+  answers it: *"They burned us out of our own order; there is nothing left of us for them to
+  take... that is your trouble, wizard, not ours."* Node 1's replies otherwise, so the study,
+  the fight and the exit are unchanged.
+- `1 dark wielder` -- *"...hold. That mark on you is not ours, and it is not the Church's."* Its
+  reply, *"I know what the circle is for. You are doing it badly,"* reaches `22 dark tribute`,
+  where the Diego contract is offered as fealty rather than as a test: *"Then take the circle,
+  and take us with it... Bring us his head and we are yours."* Its four replies are `20 ally`'s
+  verbatim machinery (the quest, the friend checker, the fight) re-voiced, except that walking
+  away is allowed rather than treated as betrayal -- they have just sworn to you.
+
+Four nodes of ours. Note the shape: the second arm is `Wielder IS` without the perk, so a Dark
+Wielder never sees the Wielder greeting.
+
 ### Also read
 
 - `Inquisitor Darsh / 100 attack` -- *"Before I die in this place, I will send you to your
@@ -249,7 +292,8 @@ on chosen perks -- and then put in at the user's call, on the one shape vanilla 
 
 ### Gates
 
-- Gate 0 as ever. Tier 1 is a level part: **a character who has not entered the Plains.**
+- Gate 0 as ever. Tiers 1, 2 and 4 are level parts: **a character who has not entered the
+  Plains.** Tier 3 is dialogue: any save that has not tripped the goons.
 - Gate 1: walk to the camp from the south-east with each spirit; the spirit appears, speaks its
   line, fades; once only. A Pureblood sees nothing.
 - Gate 1, Tier 2: kill the camp -> the flare and the Terror as the last rogues fall, hostile,
