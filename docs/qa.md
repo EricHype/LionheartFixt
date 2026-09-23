@@ -1336,6 +1336,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | RN11 | Fresh Plains, a Wielder of Cedric's (no Necromancer), walk into the camp | - | *"...You are off the hidden street in Barcelona"*; the warning reply -> `21`; study/fight/leave as before |
 | RN12 | Fresh Plains, a Dark Wielder (Necromancer) | *"I know what the circle is for..."* | `22 dark tribute`; accepting arms the Diego quest as before; *"Keep your circle. I have my own."* lets you walk |
 | RN13 | Fresh Plains, a non-Wielder, and a Wielder with Diego in tow | - | The vanilla greeting and `50 Player Has Diego` respectively |
+| RN14 | Plains, a sworn Inquisitor, talk to Diego | *"I am of the Order myself, Inquisitor."* | `21 brother`; "Tell me." reaches his own quest offer unchanged; a non-Inquisitor never sees the reply |
+| RN15 | RN14, kill the rogues, return to Torquemada | *"There was a cult on the northern plains wearing our habit"* | `413`; 800 XP and 250 gold; the reply gone afterwards; never offered to a non-Inquisitor or before the quest completes |
+| RN16 | Plains, after either rising, talk to Mauldo again | - | *"Something answered on the north road..."*; before the rising, the plain return greeting; the low-karma greeting and his shop unchanged |
 
 ---
 

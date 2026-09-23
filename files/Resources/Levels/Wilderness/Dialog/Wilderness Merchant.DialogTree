@@ -1,0 +1,362 @@
+CDialogTree
+{
+Name=Mauldo the Wilderness Merchant
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Greetings friend. I'm Mauldo, purveyor of a wide variety of goods for needy travelers. Can I interest you in some equipment or armor?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are there Wooden Crosses everywhere?
+Go to node ID=50 Crosses
+
+Requirement=!None
+Reply Text=What are you doing out here in the woods?
+Go to node ID=20 In the Woods
+
+Requirement=!None
+Reply Text=Show me what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Wilderness Merchant
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Tell me what you know about the forest.
+Go to node ID=40
+
+Requirement=!None
+Reply Text=A pleasure meeting you. I'll be going now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start EVIL
+Text=Ah, the chaotic one appears! Your grand reputation of slaying everyone that deserves it preceeds you. Well done! While I applaud your methods, I do hope you can calm your bloodlust and buy a few things from Mauldo at a discount, no?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are there Wooden Crosses everywhere?
+Go to node ID=50 Crosses
+
+Requirement=!None
+Reply Text=What are you doing out here in the woods?
+Go to node ID=20 In the Woods
+
+Requirement=!None
+Reply Text=Show me what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Wilderness Merchant
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Tell me what you know about the forest.
+Go to node ID=40
+
+Requirement=!None
+Reply Text=No. You have to die too.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mauldo merchant goto combat
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I wont kill you right now. I'm leaving.
+Go to node ID=15 Evil Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Hello again, traveler.  What can I do for you today?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are there Wooden Crosses everywhere?
+Go to node ID=50 Crosses
+
+Requirement=!None
+Reply Text=What are you doing out here in the woods?
+Go to node ID=20 In the Woods
+
+Requirement=!None
+Reply Text=Show me what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Wilderness Merchant
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Tell me what you know about the forest.
+Go to node ID=40
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll be going now.
+Go to node ID=15 Evil Goodbye
+Action work in progress=player has low Karma
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+Reply Text=A pleasure meeting you. I'll be going now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 Return after the ritual
+Text=Hello again, traveler. Something answered on the north road; I heard it from here and my mule has not been right since. The crosses did not hold it, whatever it was. Trade quickly, and let us both be elsewhere by dark.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are there Wooden Crosses everywhere?
+Go to node ID=50 Crosses
+
+Requirement=!None
+Reply Text=What are you doing out here in the woods?
+Go to node ID=20 In the Woods
+
+Requirement=!None
+Reply Text=Show me what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Wilderness Merchant
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Tell me what you know about the forest.
+Go to node ID=40
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll be going now.
+Go to node ID=15 Evil Goodbye
+Action work in progress=player has low Karma
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+Reply Text=A pleasure meeting you. I'll be going now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Travel safely my friend.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=15 Evil Goodbye
+Text=Goodbye. Kill those that deserve it, maim the rest...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 In the Woods
+Text=I despise the crowds of big cities. I like to travel to distant places and do business in foreign lands. I have a reputation for obtaining rare items that no other merchant can obtain. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are there Wooden Crosses everywhere?
+Go to node ID=50 Crosses
+
+Requirement=!None
+Reply Text=Then show me what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Wilderness Merchant
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Tell me what you know about the forest.
+Go to node ID=40
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+Reply Text=A pleasure meeting you. I'll be going now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll be going now.
+Go to node ID=15 Evil Goodbye
+Action work in progress=player has low Karma
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40
+Text=There are many creatures lurking in the shadows of these woods, including the goblins. Stay away from them! They are trying to harness some magical droppings and will kill anyone they meet. All the more reason you should prepare yourself for battle.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are there Wooden Crosses everywhere?
+Go to node ID=50 Crosses
+
+Requirement=!None
+Reply Text=What are you doing out here in the woods?
+Go to node ID=20 In the Woods
+
+Requirement=!None
+Reply Text=Show me what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Wilderness Merchant
+After Closed Action=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+Reply Text=A pleasure meeting you. I'll be going now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll be going now.
+Go to node ID=15 Evil Goodbye
+Action work in progress=player has low Karma
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Crosses
+Text=Legend has it there was a witch in these parts that scattered her blood on the rocks trying to awaken demons. The Inquisition came years later and marked the spots with these crosses where her foul magic was the strongest. They tried to eradicate it, but to no avail. Many people have come over the years to harness this power.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you doing out here in the woods?
+Go to node ID=20 In the Woods
+
+Requirement=!None
+Reply Text=Tell me what you know about the forest.
+Go to node ID=40
+
+Requirement=!None
+Reply Text=Show me what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Wilderness Merchant
+After Closed Action=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+Reply Text=A pleasure meeting you. I'll be going now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mauldo sees player with low karma
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll be going now.
+Go to node ID=15 Evil Goodbye
+Action work in progress=player has low Karma
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Bubble attack back
+Text=I will kill you first!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 thief
+Text=Eh? What was that? Thief! THIEF!
+Should Have Voiceover=0
+}

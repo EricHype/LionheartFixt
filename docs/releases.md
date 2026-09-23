@@ -283,6 +283,34 @@ wielder`; else as before.
 Four nodes of ours. Note the shape: the second arm is `Wielder IS` without the perk, so a Dark
 Wielder never sees the Wielder greeting.
 
+### Tier 6 - the Inquisitor's thread, and Mauldo hears it
+
+Diego opens with *"If you are a friend of the Inquisition, perhaps you would like to help me"*
+and closes with *"The Grand Inquisitor will be most pleased!"*, and neither line knows whether
+you **are** the Inquisition; Torquemada never hears of it. The 0.9.0 shape.
+
+**Built 2026-09-22, unplayed.**
+
+- *Diego.* An `Inquisitor IS` reply on `20 name` -- *"I am of the Order myself... it is mine as
+  much as yours"* -- into `21 brother`: *"A brother. Then God is kind today, for I had resigned
+  myself to hiring a sword and praying it stayed bought. What I have is not a hiring. It is our
+  work."* Both replies land on his own `30 quest` and `40 rejection`, so the quest machinery is
+  untouched.
+- *Torquemada.* A reply on all three return greetings -- the hub where the Khan's report already
+  sits -- gated on `Inquisitor IS` AND the quest completed AND not already told: *"There was a
+  cult on the northern plains wearing our habit, your grace."* `413` answers it: *"Then they
+  were ours once, and the rot came from inside the house... It is finished, and it will not be
+  written down."* 800 XP from a part cloned off `Killed Khan` on Inquisition Chambers2 (which is
+  where his XP parts live, not the Temple District), 250 gold, and a checker so it is told once.
+- *Mauldo.* His return greeting becomes conditional: after either rising, `4 Return after the
+  ritual` -- *"Something answered on the north road; I heard it from here and my mule has not
+  been right since. The crosses did not hold it, whatever it was."* Both ritual relays now set
+  a `ritual was answered` checker; the karma greeting and the shop are untouched.
+
+Three nodes of ours. Build note: `add_parts` splices before the first `Level Part=`, and a part
+sliced with `balanced()` ends **at** its closing brace -- the XP clone had to be terminated with
+a newline or the map would not re-parse. Caught by validate.py at once.
+
 ### Also read
 
 - `Inquisitor Darsh / 100 attack` -- *"Before I die in this place, I will send you to your

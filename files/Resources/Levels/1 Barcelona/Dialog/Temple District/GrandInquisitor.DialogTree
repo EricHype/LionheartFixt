@@ -410,6 +410,41 @@ Reply Text=Does the Inquisition have any tasks for me?
 Go to node ID=400 tasks
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStatusCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told Torquemada of the Dark Inquisitors
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=There was a cult on the northern plains wearing our habit, your grace. Bishop Diego and I put it down.
+Go to node ID=413 rogue inquisitors
+Icon=Quest Icon
+
 Requirement=Torquemada requires goblin Khan dead
 Custom Requirement=CUseCannedExpressionExpression
 {
@@ -567,6 +602,41 @@ Icon=Exit Icon
 Node ID=3 Return Dialogue
 Text=You return. What do you seek? 
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStatusCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told Torquemada of the Dark Inquisitors
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=There was a cult on the northern plains wearing our habit, your grace. Bishop Diego and I put it down.
+Go to node ID=413 rogue inquisitors
+Icon=Quest Icon
 
 Requirement=Torquemada requires goblin Khan dead
 Custom Requirement=CUseCannedExpressionExpression
@@ -881,6 +951,41 @@ Early Exit=0
 }
 Reply Text=Does the Inquisition have any tasks for me?
 Go to node ID=400 tasks
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStatusCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Told Torquemada of the Dark Inquisitors
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=There was a cult on the northern plains wearing our habit, your grace. Bishop Diego and I put it down.
+Go to node ID=413 rogue inquisitors
 Icon=Quest Icon
 
 Requirement=Torquemada requires goblin Khan dead
@@ -2234,6 +2339,39 @@ Reply Text=Not today. Goodbye.
 Go to node ID=10 Goodbye
 Action work in progress=(Speech < 25%)
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=413 rogue inquisitors
+Text=Our habit. <He is silent a moment.> Then they were ours once, and the rot came from inside the house. Diego is a good man and a poor judge of what to write in a letter; I will hear it from you and no one else. It is finished, and it will not be written down. You have my gratitude, child, and something of more use to you than that.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Your grace.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Told of Dark Inquisitors XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CActivateAction
+{
+Target Name=Told Torquemada of the Dark Inquisitors
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=1000 inquisitor cathedral nis intro
 Text=My apologies for not arriving earlier.

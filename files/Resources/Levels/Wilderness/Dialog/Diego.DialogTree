@@ -1,0 +1,344 @@
+CDialogTree
+{
+Name=Inquisitor Diego
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Greetings, I am Inquisitor Diego. I was told you were coming this way. You are the Scion of Lionheart, yes?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, but how do you know who I am?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=No, I'll be leaving now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Greetings, you have returned. I thought you might, Lionheart.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+State=OVCZ9ZVT
+}
+}
+Reply Text=The Dark Inquisitors have asked me to kill you and I am here to do just that!
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=How do you know who I am?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=No, I'll be leaving now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=My eyes, they are not so good these days. Go with the holy spirit, my child.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 name
+Text=My brothers in the order mentioned you passed through Barcelona. If you are a friend of the Inquisition, perhaps you would like to help me with a task?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I am of the Order myself, Inquisitor. Whatever the task is, it is mine as much as yours.
+Go to node ID=21 brother
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Yes Inquisitor, what would you ask me?
+Go to node ID=30 quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I am no friend of the Inquisition. I'm not interested.
+Go to node ID=40 rejection
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 brother
+Text=A brother. Then God is kind today, for I had resigned myself to hiring a sword and praying it stayed bought. What I have is not a hiring. It is our work.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me.
+Go to node ID=30 quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Our work will have to wait, Inquisitor.
+Go to node ID=40 rejection
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 quest
+Text=A cult of heretics masquerading as Inquisitors are committing atrocities against the people. They wield dark magic and perform rituals to summon the ilk of demons. I would ask you to walk with me to bring them to justice.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=All Rogue Inquisitors killed
+Desired Minimum Count=1
+}
+}
+Reply Text=I have dealt with the rogue Inquisitors.
+Go to node ID=150 Congratulations
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=All Rogue Inquisitors killed
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Of course Inquisitor, I will help you.
+Go to node ID=50 rogues
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry, this does not concern me. I must decline.
+Go to node ID=40 rejection
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 rejection
+Text=And so you must pave your own way through life. Go with the Holy Spirit, my child.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 rogues
+Text=Our faith will guide us. The heathen Inquisitors are plotting to start another ritual soon. I believe they are congregating to the north somewhere. Let us begin our holy work.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Diego companion dialog switcher
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Action=CActivateAction
+{
+Target Name=Diego is currently your companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+State=QUUZ5Q1O
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+State=OVCZ9ZVT
+}
+Then=CActivateAction
+{
+Target Name=Diego makes rogue inquisistors mad
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Leave area no kill Rogues
+Text=I must stay and find a way to vanquish the Rogue Inquisitors. Goodbye.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=150 Congratulations
+Text=I knew you could do it! May the Lord shine upon you and bless your actions, young one! The Grand Inquisitor will be most pleased! I will take my leave of you now, but I will give you these potions and some gold for your efforts.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=8
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill Rogue Inquisitors for Bishop Diego XP
+Experience Points To Add=1
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Potion
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Extra Healing
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Potion
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Mana Recharge
+}
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=100
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=100
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDelayAction
+{
+Next Action=CDeleteAction
+{
+Target Name=$Trigger
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Companion dialog
+Text=Shall we continue?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=All Rogue Inquisitors killed
+Desired Minimum Count=1
+}
+}
+Reply Text=I have dealt with the rogue Inquisitors.
+Go to node ID=150 Congratulations
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sure, follow me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Action=CActivateAction
+{
+Target Name=Diego is currently your companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=No, stay right here.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}
