@@ -1339,6 +1339,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | RN14 | Plains, a sworn Inquisitor, talk to Diego | *"I am of the Order myself, Inquisitor."* | `21 brother`; "Tell me." reaches his own quest offer unchanged; a non-Inquisitor never sees the reply |
 | RN15 | RN14, kill the rogues, return to Torquemada | *"There was a cult on the northern plains wearing our habit"* | `413`; 800 XP and 250 gold; the reply gone afterwards; never offered to a non-Inquisitor or before the quest completes |
 | RN16 | Plains, after either rising, talk to Mauldo again | - | *"Something answered on the north road..."*; before the rising, the plain return greeting; the low-karma greeting and his shop unchanged |
+| RN17 | Fresh ogre maps, kill Aka Manah | Walk back out through the Cave, the Sprawl and the Pass | Every ogre stands down, once, with *"<The ogre stops mid-swing...>"*; rock titans and wolves still attack; ogres spawning near you afterwards are passive |
+| RN18 | RN17 by the Speech route instead (`160 tricked aka manah`) | - | The same stand-down; the XP and Alamut hook as before |
+| RN19 | Fresh Pass, walk the road south to north | - | The dead ground, the titans' quarry and the cairn, once each; after the charm breaks the cairn reads its quiet version |
 
 ---
 

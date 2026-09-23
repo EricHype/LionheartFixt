@@ -311,6 +311,66 @@ Three nodes of ours. Build note: `add_parts` splices before the first `Level Par
 sliced with `balanced()` ends **at** its closing brace -- the XP clone had to be terminated with
 a newline or the map would not re-parse. Caught by validate.py at once.
 
+### The Mountain Pass, and why it is not more combat
+
+Surveyed 2026-09-22, after the observation that the Pass is the second combat area in a row.
+It is: 1,173 parts of rock titans (60 spawns), ogres (24) and grey wolves (20) with **no
+dialogue of its own** -- the only speech on the map is Marco Polo's boots quipping and the
+Barcelona companions' departure. The Abandoned Cave off it is 506 parts of wolves, one hidden
+treasure and nothing else. The Sprawl and the Ogre Cave are ogres; the Conjurer Cave at the end
+is Aka Manah.
+
+Three things in the map say the fighting is **a curse, not a nature**: the Woozy Ogre, who is
+reachable -- *"Voices in my head... Aka Manah demands that I destroy you... He tricked our tribe
+into helping him, cursed us with a charm... I must try to warn my tribe!"* -- Tremblethorn's
+unreachable `50 Ogre Spells` -- *"I have spent a great deal of time and effort charming these
+Ogres... They have proven effective combatants against the Titans"* -- and the Daeva himself.
+And nothing lifts it: the only `RemoveCategory Enemy` on those maps is the Woozy Ogre pacifying
+himself and Aka Manah pacifying himself as he teleports out. So restoring Tremblethorn's old
+branch would have added a conversation to the end of a corridor without touching the corridor.
+
+### Tier 7 - the charm has an end
+
+**Built 2026-09-22, unplayed.** `Deactivate Teleport Trap` is fired by **both** of the Daeva's
+endings -- the destroyed hook on his last phase and `Aka Manah Leaves`, the Speech route -- so
+it is the game's own "he is gone" signal. It now also fires `the charm breaks`, which reaches
+the Mountain Pass, the Ogre Sprawl and the Ogre Cave through `COtherMapAction` (which works on
+maps never loaded): each gets an `ogre charm broken` checker and a `the charm lifts` relay that
+stands the ogres down by name -- `Ogre`, `Brutish Ogre`, `Ogre Hurler`, with vanilla's full
+idiom, empty target type **and** `CRemoveCategoryAction{Enemy}`, the shape the troll peace uses.
+Entrance sweeps at every spawn point re-run it when you walk back in, and all 43 ogre generators
+pacify what they spawn while the checker stands, so nothing spawns hostile behind you. One line,
+ours, over the tribe: *"<The ogre stops mid-swing, and its arms come down. Whatever was in its
+head is not there any more.>"*
+
+Rock titans and wolves are untouched. The mountains stay dangerous; the cursed stop fighting.
+
+### Tier 8 - the Pass reads as a crossing
+
+**Built 2026-09-22, unplayed.** Three hovers along the road, placed on waypoints (the corridor
+runs south to north): the ogre dead and the stones that killed them at the lower switchback, the
+titans' quarried and *stacked* rock higher up, and a cairn at the top -- *"Aragon behind you, and
+the counts of Toulouse ahead."* The cairn has a second version for a player who has broken the
+charm, when the road is quiet. Four nodes of ours in a new `Mountain Pass Hover` tree.
+
+**Corrected on the way:** the companions' departure is **not** a Pass event. `Remover of
+Barcelona Companions` is a clone-based relay that exists on the Grove, the Plains, the Pass,
+Montaillou, Titan Village, the Crypt entrance and the Heart entrance alike -- Cervantes, Cortes
+and Darsh leave at whichever of those you reach first, which is the Grove. A "Barcelona lets go
+of you at the border" beat was scoped and dropped for that reason.
+
+### Also read on the Pass
+
+- `Deactivate Teleport Trap` activates `Remove Blue Color` on the Ogre Sprawl; the part there is
+  named `remove blue color`. If the engine's name lookup is case-sensitive the Sprawl's blue
+  overlay never clears. Not reproduced, not changed; recorded.
+- The Speech route is **live**, not cut: `160 tricked aka manah` -> `Aka Manah Leaves` -> XP from
+  `Talked Aka Manah into leaving through speech`, and a `COtherMapAction` into Alamut's Dark
+  Temple so the Old Man's house knows he is loose.
+- `Tremblethorn / 130` and `140` are second greetings for outcomes that cannot happen (`70
+  wizard warns`, `90 Wizard grieved`), selected by `Tremblethorn angry at second visit`, a
+  checker nothing activates. The Rakeb shape. Left for a decision with the eight-node draft.
+
 ### Also read
 
 - `Inquisitor Darsh / 100 attack` -- *"Before I die in this place, I will send you to your
@@ -322,6 +382,8 @@ a newline or the map would not re-parse. Caught by validate.py at once.
 
 - Gate 0 as ever. Tiers 1, 2 and 4 are level parts: **a character who has not entered the
   Plains.** Tier 3 is dialogue: any save that has not tripped the goons.
+- Tiers 7 and 8 are level parts on four more maps: **a character who has not entered the
+  Mountain Pass, the Ogre Sprawl, the Ogre Cave or the Ogre Conjurer Cave.**
 - Gate 1: walk to the camp from the south-east with each spirit; the spirit appears, speaks its
   line, fades; once only. A Pureblood sees nothing.
 - Gate 1, Tier 2: kill the camp -> the flare and the Terror as the last rogues fall, hostile,
