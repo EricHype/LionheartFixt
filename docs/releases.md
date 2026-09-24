@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.14.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.15.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -184,7 +184,7 @@ awarded. `Goblin Champion`, on the same node, is awarded by the Goblin Khan.
 
 ## 0.15.0 - Toulouse
 
-**Surveyed 2026-09-24. Nine tiers built 2026-09-24, unplayed.** Tiers 1-6 finished the act's repairs; 7-9 are enrichment, added because the act turned out to be in good enough shape to deserve it. The sacked town in the
+**Published.** Cut from `main` 2026-09-24, entirely unplayed. Surveyed and built the same day, nine tiers. Tiers 1-6 finished the act's repairs; 7-9 are enrichment, added because the act turned out to be in good enough shape to deserve it. The sacked town in the
 northeast corner of act 3, where a tribe of rock titans is camped in the ruins with a pen full
 of human prisoners behind their guard. One map (`Levels/3 Montaillou/Titan Village.zax`, 959
 level parts), 24 dialogue trees, **739 player replies**, and five quests: *Kill the Titans of

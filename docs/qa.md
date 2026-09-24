@@ -1551,6 +1551,7 @@ both completed Gate 2. Record the result here per release.
 | 0.12.0 | PASS (automated) | PASS | - | - | - | - | **published, entirely unplayed (CP1-CP15); repairs go to 0.12.1** |
 | 0.13.0 | PASS (automated) | PASS | - | - | - | - | **published, entirely unplayed (RN1-RN29); repairs go to 0.13.1** |
 | 0.14.0 | PASS (automated) | PASS | - | - | - | - | **published, entirely unplayed (MO1-MO30); repairs go to 0.14.1** |
+| 0.15.0 | PASS (automated) | PASS | - | - | - | - | **published, entirely unplayed (TO1-TO34, TD1-TD6, MO31-MO33, CP16, GD1); repairs go to 0.15.1** |
 
 0.2.0 was published as a full release on the maintainer's call, not because the gates were
 green. Of its five items only the Goblin Girl's follow has been played; the Khan's
