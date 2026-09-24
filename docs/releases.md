@@ -427,6 +427,16 @@ node:
   Church?"* -- has three ungated answers. A sworn Inquisitor answering *"The Church"* should be
   a different scene from a stranger's opinion, and a Cathar-friendly player (`cathar friend`,
   which Na Roqua's promise now sets) should be recognised rather than tested.
+- **The Relaxed Thug in the square** -- the act's mugger, who opens as a beggar and escalates to
+  *"I *really* need some gold... from you"*. His tree already reads the player once, with a PE 7+
+  line -- *"Your hands do not look like the hands of a farmer"* -- and it already has a
+  `thug likes you` state and a `999 Return Friend` greeting to land on. What it does not read is
+  the obvious one: a **Thief** or **Master Thief**, or a friend of Juanita's guild (`Thief Friend`,
+  the title perk 0.13.0's collector already keys on), should not be shaken down by a colleague.
+  One reply each, into the existing friendly state. **Note for the build:** the game has **no
+  rest or sleep mechanic anywhere** -- no inn in Lionheart lets you stay the night, and nothing
+  in the act steals from a sleeping player -- so this is the thief the square actually has.
+
 - **The Inquisition's agent in the inn** offers you meat in a Cathar village to see whether you
   take it -- the game's own entrapment scene -- with no reaction to the player being an
   Inquisitor, a Templar, or a tainted soul who has already been threatened by the Church.
