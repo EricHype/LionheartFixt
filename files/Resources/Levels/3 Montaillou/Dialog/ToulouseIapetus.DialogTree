@@ -438,6 +438,10 @@ Go to node ID=66 tracks
 Icon=Attribute Icon
 
 Requirement=!None
+Reply Text=Is there anything that can pin such a thing into one shape?
+Go to node ID=67 the prophets
+
+Requirement=!None
 Reply Text=How do you plan on dealing with it? 
 Go to node ID=70 Quest
 ------------------------------------------------------------
@@ -452,6 +456,24 @@ Go to node ID=70 Quest
 Requirement=!None
 Reply Text=Tell me about the attack on your brother.
 Go to node ID=55 It attacked a titan
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=67 the prophets
+Text=Not steel, and not our magic; we have tried both. The old stories say that the relics of your prophets bite a Daeva as nothing else does -- that a talisman of Zarathustra's making will strip a shape off one and hold it in its own face until the thing is dealt with. If such a thing has come into your hands, small one, carry it when you go looking. Rhea knows the tales better than I do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will remember it.
+Go to node ID=70 Quest
+
+Requirement=!None
+Reply Text=What forms has it taken?
+Go to node ID=65 Forms
 
 Requirement=!None
 Reply Text=Goodbye.

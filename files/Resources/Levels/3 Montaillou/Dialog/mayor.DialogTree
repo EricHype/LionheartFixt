@@ -1,0 +1,2317 @@
+CDialogTree
+{
+Name=Mayor
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Bonjour, good fellow. I am Pierre Clergue, mayor, at your service. Tell me - what brings you to our humble village?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already found Brother Michel
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek a knight named Brother Michel.
+Go to node ID=20 Brother Michel
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=ZQSA71EU
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+}
+}
+}
+}
+}
+Reply Text=What were you and that woman talking about in the town square?
+Go to node ID=900 Toulouse
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/04 Inn Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/10 House1 Interior
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius lied
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=ZQSA71EU
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucious dead
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+}
+}
+Reply Text=I've spoken with Lucius. He has been lying about protecting your town.
+Go to node ID=950 Lucius has been lying
+Action work in progress=once this is resolved, this response shouldn't come up again
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor knows chicken is pushing up daisies
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=You appear to be a man of means... I'm at *your* service.
+Go to node ID=30 The Problem
+
+Requirement=!None
+Reply Text=I'm just passing through. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Well met again, friend. How may I help you now?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+State=5JYSPXBT
+}
+}
+Reply Text=The curse on your...friend...has been undone.
+Go to node ID=110 Beatrice Freed
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already found Brother Michel
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek a knight named Brother Michel.
+Go to node ID=20 Brother Michel
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=ZQSA71EU
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+}
+}
+}
+}
+}
+Reply Text=What were you and that woman talking about in the town square?
+Go to node ID=900 Toulouse
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/04 Inn Interior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/10 House1 Interior
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius lied
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=ZQSA71EU
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucious dead
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+}
+}
+Reply Text=I've spoken with Lucius. He has been lying about protecting your town.
+Go to node ID=950 Lucius has been lying
+Action work in progress=once this is resolved, this response shouldn't come up again
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor knows chicken is pushing up daisies
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=You mentioned services before. What can I do for you?
+Go to node ID=30 The Problem
+Action work in progress=(Beatrice Quest not complete)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor knows chicken is pushing up daisies
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=You appear to be a man of means...so how can I help you?
+Go to node ID=30 The Problem
+Action work in progress=(Beatrice Quest not complete)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Beatrice freed
+Desired Minimum Count=1
+}
+}
+Reply Text=Do you have more magic to help me?
+Go to node ID=
+Action work in progress=(Vendor Screen only if Beatrice Quest complete)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Mayor Inventory
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=titans are gone
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans have gone from Toulouse. Whatever bargain you were promised, nobody kept it.
+Go to node ID=941 the titans have left
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=4 Return Dialogue from Toulouse branch
+Text=Certainly. What can I help you with?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already found Brother Michel
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek a knight named Brother Michel.
+Go to node ID=20 Brother Michel
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor knows chicken is pushing up daisies
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=You mentioned services before. What can I do for you?
+Go to node ID=30 The Problem
+Action work in progress=(Beatrice Quest not complete)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor knows chicken is pushing up daisies
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=You appear to be a man of means...so how can I help you?
+Go to node ID=30 The Problem
+Action work in progress=(Beatrice Quest not complete)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Beatrice freed
+Desired Minimum Count=1
+}
+}
+Reply Text=Do you have more magic to help me?
+Go to node ID=
+Action work in progress=(Vendor Screen only if Beatrice Quest complete)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Mayor Inventory
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=I have some more questions about Toulouse.
+Go to node ID=900 Toulouse Return From Node 4
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=titans are gone
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans have gone from Toulouse. Whatever bargain you were promised, nobody kept it.
+Go to node ID=941 the titans have left
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=5 friendly goodby
+Text=Goodbye then.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=10 Bad Goodbye
+Text=Oui, oui, of course! I am an extremely pious man myself. This was a test, the better to ferret out heretics, of which there are many in this region...or so I've heard. You passed! Right this way to the door. Good day!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=15 Attack
+Text=I shall not abide your mockery, stranger. *En garde*!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 Brother Michel
+Text=Brother Michel doesn't get many social calls. Perhaps you are interested in the caverns, or the crypt - Rennes Le Chateau? I'm no expert on those ruins, but I can offer you something that might help if you are going there.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I'm interested. Tell me more.
+Go to node ID=30 The Problem
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I'm interested. Tell me more.
+Go to node ID=520 For Sale - One Dead Chicken
+
+Requirement=!None
+Reply Text=No, I'm just visiting Brother Michel. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Not today. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 The Problem
+Text=I have a small task for someone resourceful and unafraid of magic. I can reward you amply. It requires absolute discretion, however. Can you be trusted with such a task?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=You can trust my discretion. What is the task?
+Go to node ID=40 The Task
+
+Requirement=!None
+Reply Text=If the reward is enough, then consider the task done.
+Go to node ID=40 The Task
+
+Requirement=!None
+Reply Text=I'd rather not spend my time in Montaillou in a jail cell.
+Go to node ID=10 Bad Goodbye
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+Reply Text=You know that the Church forbids meddling in wizardry, don't you?
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Faction Bonus for Templar and Inquisitor once only)
+
+Requirement=!None
+Reply Text=I'm not interested. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 The Task
+Text=Excellent. Let me tell you a story. Now, suppose a good woman in a small village was a free-thinker whose faith was a...uh, minority view. Suppose that this woman had a magic spirit within her, which she used strictly for the well-being of all good folk.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I see - go on.
+Go to node ID=50 The Task 2
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+Reply Text=She ought to be tried for witchcraft - magic is forbidden by the church.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Faction Bonus for Templar and Inquisitor once only)
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+Reply Text=If she used the magic for the well-being of others, then that is admirable.
+Go to node ID=53 The Task 2 Alternate
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 The Task 2
+Text=Suppose that this gentle lady was called before the Inquisition, to be subjected to their tender mercies and their excruciating techniques for detecting spirits.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=55 The Task 2 End
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=53 The Task 2 Alternate
+Text=Indeed. Suppose that this gentle lady was called before the Inquisition, to be subjected to their tender mercies and their excruciating techniques for detecting spirits.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=55 The Task 2 End
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 The Task 2 End
+Text=Now suppose further that this young lady, named Beatrice, was a close friend of a man technically wed to another, a man of some importance and standing in the community.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I would hear more of the story - go on.
+Go to node ID=60 The Task 3
+Action work in progress=(Heard Mayor's Story for Bishop Accusation)
+
+Requirement=!None
+Reply Text=Then this woman would be a harlot and a witch.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Faction Bonus for Templar and Inquisitor once only)
+
+Requirement=!None
+Reply Text=Doubtless she was carried away by good intentions and stories of courtly romance.
+Go to node ID=63 The Task 3 Alternate
+Action work in progress=(Heard Mayor's Story for Bishop Accusation)
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 The Task 3
+Text=Let us imagine that her male friend tried to use a special ritual to temporarily move her magical spirit into another entity, say...a large, healthy chicken.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=65 The Task 3 End
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=63 The Task 3 Alternate
+Text=No doubt. Let us imagine that her male friend tried to use a special ritual to temporarily move her magical spirit into another entity, say...a large, healthy chicken.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=65 The Task 3 End
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 The Task 3 End
+Text=But then the ritual was disrupted, and, instead of the magic spirit, Beatrice's own mind was transplanted into the chicken.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=body destroyed
+Desired Minimum Count=1
+}
+}
+Reply Text=And this lady's body..?
+Go to node ID=70 Task 4
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Else=
+Return failure if the If failes=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mayor guilty
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+Reply Text=Uh-oh. And this chicken...
+Go to node ID=70 Task 4
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Else=
+Return failure if the If failes=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mayor guilty
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I see. What can I do to help?
+Go to node ID=70 Task 4
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Else=
+Return failure if the If failes=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mayor guilty
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=The Church does not look kindly on such tales of nonsense - especially when they concern magic.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Faction Bonus for Templar and Inquisitor, one-Time bonus only)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Else=
+Return failure if the If failes=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mayor guilty
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Are you telling me you love a *chicken*? What manner of sick fiend are you?
+Go to node ID=15 Attack
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Mayor attacks
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Else=
+Return failure if the If failes=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mayor guilty
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps it is not Beatrice's mind that has been transplanted, but your own. Goodbye.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Mayor attacks
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Else=
+Return failure if the If failes=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mayor guilty
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Else=
+Return failure if the If failes=0
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Mayor guilty
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/05 Church Interior
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Task 4
+Text=I'll get to that. Now Beatrice's body would wander about with the mind of a fowl, pecking and scratching at dirt, clucking nonsense. Her body would surely be taken in by the Inquisition, suspecting possession or mere insanity.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=body destroyed
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Sorry to interrupt you, but...
+Go to node ID=80 Task 5
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Then a grave injustice would be done.
+Go to node ID=80 Task 5
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=If they knew about the possession, then yes. Is she in danger?
+Go to node ID=80 Task 5
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I fear only the Inquisition could be of help to this poor soul.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Faction Bonus for Templar and Inquisitor, one-Time bonus only)
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Why don't you transplant her soul into an even more comely wench, then continue your affair?
+Go to node ID=15 Attack
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Task 5
+Text=Yes. Meanwhile, the Inquisition and its Knights, requiring regular food and supplies, have requested a certain prize chicken for their consumption in an upcoming feast. Furthermore, that prize chicken, being somewhat smarter than others of its kind, has fled into the woods at the mere suggestion of dinner and even now is in danger of becoming food for the wolves.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 75
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=<Lie> Yes, about those wolves. I was in the woods earlier, and I came across a pack devouring a talking chicken. I am truly sorry.
+Go to node ID=500 Beatrice eaten by wolves
+Custom Action=CActivateAction
+{
+Target Name=Mayor knows chicken is pushing up daisies
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=Yes, I came across this devil chicken in the woods and dispatched it in the name of the Inquisition.
+Go to node ID=510 Mayor attacks
+Custom Action=CActivateAction
+{
+Target Name=Mayor knows chicken is pushing up daisies
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=I encountered and slew this chicken in the woods. It was careless of you to let it wander.
+Go to node ID=510 Mayor attacks
+Custom Action=CActivateAction
+{
+Target Name=Mayor knows chicken is pushing up daisies
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I'm afraid I accidentally killed this chicken earlier in the woods. I'm sorry, it was a tragic accident.
+Go to node ID=500 Beatrice eaten by wolves
+Custom Action=CActivateAction
+{
+Target Name=Mayor knows chicken is pushing up daisies
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=body destroyed
+Desired Minimum Count=1
+}
+}
+Reply Text=I must interrupt you. I met the body of this woman and thinking her possessed, slew her.
+Go to node ID=510 Mayor attacks
+Custom Action=CActivateAction
+{
+Target Name=Mayor knows chicken is pushing up daisies
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=body destroyed
+Desired Minimum Count=1
+}
+}
+Reply Text=<Lie> I'm sorry to interrupt you, but the woman you spoke of is dead. The chicken's mind was unable to control a human body and she walked off the dock.
+Go to node ID=500 Beatrice eaten by wolves
+Custom Action=CActivateAction
+{
+Target Name=Mayor knows chicken is pushing up daisies
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=body destroyed
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=chicken in dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=
+Go to node ID=85 Task 5 End
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=85 Task 5 End
+Text=Naturally, the chicken-Beatrice must be found and the transposition of souls undone. Yet Beatrice's friend cannot intervene lest he reveal what has happened. A sad story, I'm sure you agree.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Sad, yes, but Beatrice's story is not over yet - and perhaps I could give it a happier ending.
+Go to node ID=90 Task 6
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=This is what happens when one traffics with magic - no good can ever come from it.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Faction Bonus for Templar and Inquisitor, one-Time bonus only)
+
+Requirement=!None
+Reply Text=Perhaps I should kill you where you stand for dealing with the black arts?
+Go to node ID=10 Bad Goodbye
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Task 6
+Text=That would be welcome. An outside party, with no local entanglements, could perhaps solve the problem - in exchange for potent magic items, perhaps?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Beatrice checker
+Desired Minimum Count=1
+}
+}
+Reply Text=I believe I have seen this woman, I will see what I can do.
+Go to node ID=100 Task 7
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+State=SMSE08NH
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Beatrice checker
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will see what I can do.
+Go to node ID=100 Task 7
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+State=SMSE08NH
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+}
+Reply Text=I think the Church would find your story to be in poor taste - if they did not accuse you of heresy first.
+Go to node ID=10 Bad Goodbye
+Action work in progress=(Faction Bonus for Templar and Inquisitor, one-Time bonus only)
+
+Requirement=!None
+Reply Text=I cannot help you. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Task 7
+Text=Most excellent! You must, without delay, find Beatrice in the woods and take her to Na Roqua, the witch who lives southeast of town, whose magic can undo my blundering. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=110 Beatrice Freed
+Text=It is done! Thank you, stranger - as a reward please take this gold - and - if you are interested, I have a few magic items for sale.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Action=CActivateAction
+{
+Target Name=Beatrice freed
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Mayor Inventory
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 Toulouse Return From Node 4
+Text=It is a calamity. What would you like to know?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about the titan's control of Toulouse.
+Go to node ID=910 titans in control
+
+Requirement=!None
+Reply Text=Why haven't you tried to counterattack the titans?
+Go to node ID=920 counterattack
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=Is Montaillou in danger?
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=Where is Toulouse?
+Go to node ID=901 Toulouse revealed
+Custom Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Titan Village
+}
+
+Requirement=!None
+Reply Text=Nevermind, I must be going.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 Toulouse
+Text=It is a tragedy. Some weeks ago the town of Toulouse was sacked by a band of feral titans.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=The titans control Toulouse?
+Go to node ID=910 titans in control
+
+Requirement=!None
+Reply Text=Haven't you tried to counterattack the titans?
+Go to node ID=920 counterattack
+
+Requirement=!None
+Reply Text=Is Montaillou in danger?
+Go to node ID=930 lucius defends
+
+Requirement=!None
+Reply Text=Where is Toulouse?
+Go to node ID=901 Toulouse revealed
+Custom Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Titan Village
+}
+
+Requirement=!None
+Reply Text=I must be going.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=901 Toulouse revealed
+Text=Toulouse is not far. Not nearly as far as I'd prefer, all things considered. I'll mark its location on your map.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=And titans are in control of the town?
+Go to node ID=910 titans in control
+
+Requirement=!None
+Reply Text=If the town is close, why haven't you sent help?
+Go to node ID=920 counterattack
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=Do you think the titans will come here?
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=I must be going.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=910 titans in control
+Text=Yes, from the reports I've received from the few scouts daring enough to approach the village, the titans have remained in town and have enslaved the populace.  This is very unusual behavior for them, usually they are content to conduct hit-and-run raids on outlying hamlets and isolated farms.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Shouldn't you try to retake the town?
+Go to node ID=920 counterattack
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=Do you fear Montaillou will be attacked next?
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=I must be going.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=920 counterattack
+Text=What would you have me do? The Inquisitors and their obedient dogs, the Templars, are content to sit on their hands here while Toulouse suffers under the heels of the titans. What can I do that they would not be better-suited to?
+Should Have Voiceover=1
+
+Requirement=Inquisitor IS
+Reply Text=I am an Inquisitor, mayor, so watch your wagging tongue. If the Inquisition has not dealt with the titans, it is not because they fear facing them. 
+Go to node ID=921 Offended
+
+Requirement=Templar IS
+Reply Text=I am one of the "obedient dogs" you mentioned, mayor, so watch your wagging tongue. If the Knights here have not dealt with the titans, it is not because they fear battle.
+Go to node ID=921 Offended
+
+Requirement=!None
+Reply Text=You must fight them, if only to protect yourselves.
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=Do you fear Montaillou will be attacked next?
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=Perhaps you are right.
+Go to node ID=4 Return Dialogue from Toulouse branch
+
+Requirement=!None
+Reply Text=I must be going.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=921 Offended
+Text=I am sorry. Truly, I meant no offense. It has just been very... trying lately. A thousand pardons, my friend.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you fear Montaillou will be attacked next?
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=You must prepare to fight the titans.
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=I have other questions about Toulouse, mayor, and I expect you to keep a civil tongue.
+Go to node ID=922 More Questions
+
+Requirement=!None
+Reply Text=Let us talk...politely...of something else, mayor.
+Go to node ID=4 Return Dialogue from Toulouse branch
+
+Requirement=!None
+Reply Text=If need be, I will deal with these titans myself. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=922 More Questions
+Text=What would you like to know?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about the titan's control of Toulouse.
+Go to node ID=910 titans in control
+
+Requirement=!None
+Reply Text=Is Montaillou in danger?
+Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=Where is Toulouse?
+Go to node ID=901 Toulouse revealed
+Custom Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Titan Village
+}
+
+Requirement=!None
+Reply Text=Nevermind, I must be going.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=930 lucius defends
+Text=Montaillou is well-defended. Lucius has kept the titans at bay. Do you think we would harbor such a dangerous creature without purpose? As long as he's here, we have nothing to fear.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Really? Lucius has been defending your town from these titans?
+Go to node ID=931 lucius caught
+Action work in progress=turn on B
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius lied
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=ZQSA71EU
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucious dead
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+}
+}
+Reply Text=I've spoken with Lucius. He has been lying about protecting your town.
+Go to node ID=950 Lucius has been lying
+Action work in progress=once this is resolved, this response shouldn't come up again
+
+Requirement=!None
+Reply Text=I have more questions about Toulouse.
+Go to node ID=900 Toulouse Return From Node 4
+Action work in progress=turn on B
+
+Requirement=!None
+Reply Text=I have other things to discuss with you.
+Go to node ID=4 Return Dialogue from Toulouse branch
+Action work in progress=turn on B
+
+Requirement=!None
+Reply Text=I must be going.
+Go to node ID=
+Action work in progress=turn on B
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=931 lucius caught
+Text=Well, he has struck a deal with the titans to leave Montaillou in peace. His presence guarantees peace in our town. Why do you ask?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=No reason. I have more questions about Toulouse.
+Go to node ID=900 Toulouse Return From Node 4
+
+Requirement=!None
+Reply Text=I have other things to discuss with you.
+Go to node ID=4 Return Dialogue from Toulouse branch
+
+Requirement=!None
+Reply Text=Perhaps I should go speak with Lucius. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=950 Lucius has been lying
+Text=What! Mon Dieu! What are you talking about?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Lucius invented the story about making a truce with the titans in Toulouse because he was afraid you wouldn't allow him to stay here if he wasn't useful to the town.
+Go to node ID=951 Furious Mayor
+
+Requirement=!None
+Reply Text=Sorry, I misspoke. I should really be going. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=951 Furious Mayor
+Text=And he was right! Will my bad fortune ever end? First the Inquisition and now titans!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Lucius meant no harm. Allow him to stay and I will take care of the titans myself.
+Go to node ID=952 Mollified Mayor
+Action work in progress=seal of this branch 
+
+Requirement=!None
+Reply Text=I could be hired to personally arrange for the town's safety.
+Go to node ID=953 Mayor gives no quest
+Action work in progress=kick luscious out, seal of this branch 
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius thrown out
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+
+Requirement=!None
+Reply Text=I just thought you should know. Goodbye.
+Go to node ID=
+Action work in progress=kick luscious out, seal of this branch
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=952 Mollified Mayor
+Text=Actually, this town is less dependent on that blue lummox than I originally let on. I...suppose I will allow him to stay if he stops his habitual lying. Please do what you can to deal with the titans, but they are not the most immediate threat facing this town. If you plan on facing the titans, have a word with Brother Michel before you leave. He was a great warrior and may be able to help you or at least offer advice.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What threatens the town more than the titans?
+Go to node ID=954 Coy Mayor
+
+Requirement=!None
+Reply Text=I'd like to talk about something else.
+Go to node ID=4 Return Dialogue from Toulouse branch
+
+Requirement=!None
+Reply Text=I have other things to do. Goodbye.
+Go to node ID=
+Action work in progress=kick luscious out, seal of this branch
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=953 Mayor gives no quest
+Text=Hah. Thank you for your offer, but this town is less dependent on that lummox than I perhaps led you to believe. But...as much as I'd like to see him leave town, he may yet prove useful. Your news has given me much to think about, I must ask you to return another time. Good day.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=954 Coy Mayor
+Text=Just look around you, my friend, compared to other events in motion the titans are of trivial concern to me. Your news has given me much to think about, I must ask you to return another time. Good day.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=960 Mayor leaving square no VO
+Text=If you wish to speak to me, please come to my office later.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 A Bubble
+Text=How can you just turn your back on us?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 B Bubble
+Text=But what can we do?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 C Bubble
+Text=You must fight! Your town could be next!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 D Bubble
+Text=I wish we could help, but we have our own troubles. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 E Bubble
+Text=But they've begun *eating* us!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 F Bubble
+Text=Mon Dieu! I...I will make arrangements for you to stay here, but that is all I can do for you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Beatrice eaten by wolves
+Text=No! Surely you must be mistaken! Such a tragedy, to have so beautiful a flower plucked so young...and in such a small town. Truly, she had no equal for miles around.  Although... Have you met Adelie?  She's quite cute, don't you think?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That's the spirit, "there's more fish in the sea" as they say. But perhaps I'll leave you with your...grief...for a time.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=510 Mayor attacks
+Text=I'll have your throat, you cur!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=520 For Sale - One Dead Chicken
+Text=I have a few items for sale that might prove to be of help if you will be traveling a dangerous path.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Let me see what you have.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Mayor Inventory
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=No, thanks.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mayor goodbye
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=666 Mayor Confronts the chicken
+Text=Oh, my poor Beatrice! Please, you must find a cure quickly, I cannot bear to see her like this!  But please leave, I fear her presence here will only give that rapacious knight an idea for a meal!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=941 the titans have left
+Text=<The mayor sits down without being invited to.> Gone. Gone where, exactly -- home, or down the valley towards us? No. No, forgive me. If they are gone then Montaillou is spared and I am grateful, and I shall have a mass said for Toulouse. And I shall say nothing whatever about deals or bargains, and neither, I hope, will you. A man in office says a great many things in a bad month.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I know exactly what you said, and to whom.
+Go to node ID=951 Furious Mayor
+
+Requirement=!None
+Reply Text=Your secret is no use to me. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

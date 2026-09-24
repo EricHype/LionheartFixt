@@ -98,6 +98,19 @@ Requirement=Female IS
 Reply Text=Nothing, friend. My life is but service to God.
 Go to node ID=50 god female
 Action work in progress=(Inquisitor and Templar faction bonus?)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=titans are gone
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans that sacked Toulouse have left the valley.
+Go to node ID=110 the titans have left
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=20 michel
 Text=Brother Michel? The old man with the giant? You'll find him in town, stranger.
@@ -415,4 +428,14 @@ Should Have Voiceover=0
 Node ID=100 knight banter 5
 Text=You must provide food and shelter to any knight who asks for aid.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=110 the titans have left
+Text=Left. You are certain? <The knight's hand comes off his sword for the first time in the conversation.> Then a rider goes to the commandery within the hour, and the Marshal will want to know how a thing that size leaves a valley without anyone seeing it go. You have done this town a service, whatever else you have done in it. I will remember your face for the right reason.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=See that your Marshal remembers it too.
+Go to node ID=03 Return Dialogue
+Icon=Exit Icon
+Is Default Reply=1
 }

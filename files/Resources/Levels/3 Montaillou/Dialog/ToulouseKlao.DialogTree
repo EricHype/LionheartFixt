@@ -1,0 +1,76 @@
+CDialogTree
+{
+Name=Klao
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 bubble 1
+Text=I agree with you, but we must bide our time.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 2
+Text=Bah, we could do it easily. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 3
+Text=We must be patient, Baktron.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 4
+Text=But...what have we here?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 5
+Text=We should speak of this later... it seems we have a little spy.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=Ignores player
+Text=<This titan completely ignores you>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=Threatens player
+Text=Bother me just once more, you pest, and I'll kill you.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=overheard the north end
+Desired Minimum Count=1
+}
+}
+Reply Text=Baktron wants to march on Montaillou. You told him to be patient.
+Go to node ID=02 patience is not obedience
+
+Requirement=!None
+Reply Text=As you were.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Fight!
+Text=You asked for it... TO ARMS!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 patience is not obedience
+Text=I told him to be patient, runt, which is not the same as telling him he is wrong. The elders have staked this tribe's memory on an oracle and a fleshling. If that fails, somebody will have to say what should be done instead, and the tribe will remember who counselled waiting and who counselled running down a valley. Go away. You have heard nothing you can use.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have heard enough to know which of you is the dangerous one.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

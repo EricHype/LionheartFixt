@@ -126,7 +126,7 @@ into a release it does not fit.
 
 ## 0.15.0 - Toulouse
 
-**Surveyed 2026-09-24. Tiers 1, 2, 4, 5 and 6 built 2026-09-24, unplayed. Toulouse is finished apart from one optional piece of polish.** The sacked town in the
+**Surveyed 2026-09-24. Nine tiers built 2026-09-24, unplayed.** Tiers 1-6 finished the act's repairs; 7-9 are enrichment, added because the act turned out to be in good enough shape to deserve it. The sacked town in the
 northeast corner of act 3, where a tribe of rock titans is camped in the ruins with a pen full
 of human prisoners behind their guard. One map (`Levels/3 Montaillou/Titan Village.zax`, 959
 level parts), 24 dialogue trees, **739 player replies**, and five quests: *Kill the Titans of
@@ -419,6 +419,94 @@ walk away, exactly as he does after the shipped Speech bluff. Sending him off to
 `Poimaino Drinking` (1280, 1707) the way the Mathuo route does needs a patrol authored on the
 map and a save that has never entered Toulouse to test it, and it changes nothing the player
 cannot already do. It is the only piece of Toulouse work left, and it is polish.
+
+### Tier 7 - the people nobody could talk to (built)
+
+**Ephebos.** The tribe's child is a live, talkable NPC whose entire player-facing content was one
+line and no replies: *"I don't talk to disgusting fleshlings."* He now has a conversation built
+out of what the map already says about him. He repeats Rhea's chain of being and gets it slightly
+wrong (he asked where ogres go and Tereo laughed for a long time, so he does not think anybody
+truly knows). He is one hundred and forty years old, has no name yet, intends to be Atlas, and has
+stopped announcing it because Tereo told him nobody ever earned a name by announcing it -- which
+is Tereo's tier 5 scene seen from the other side. If the player has overheard Rhea catching him at
+Mathuo's mercury, he protests that it was one mouthful and gives away where the stash is. If the
+player is carrying the flask, **he will take it** -- the third use for a single flask, against
+Mathuo's route and Poimaino's bribe -- and pays for it with the one piece of intelligence a child
+who is ignored all day would have: Baktron and Klao at the north end saying the elders are cowards.
+And asked about the pen, he says Rhea calls them a herd, Tereo calls them unlucky people, and the
+one who cries at night is smaller than he is, and he has not worked out what that means yet. Told
+what it means, he asks the player not to tell him the plan first, so that he will not have lied to
+anybody.
+
+**The pen speaks.** The two prisoners were look-at descriptions with no replies, and the child's
+description (`60 Villager Child 1`) was written and placed nowhere at all. The man explains what
+the night visits are for -- the titans point at somebody, the ogres carry him over the fence as
+bait, none has come back, *"so either it is a very clever thing or they are very poor fishermen.
+My brother went out on Tuesday"* -- and says plainly that being afraid is not the same as being
+cattle. The woman describes what came to the fence: her neighbour's shape, speaking with Grazide's
+voice, three days after Grazide died; pressed, she remembers a deer at the treeline that did not
+run when the ogres shouted. To a tainted player she explains that she looked away because the
+player was the first thing at that fence in a week that was not hungry. And the child, who has
+nothing to do in there but count, has counted the thing that matters: *"Another one brings him
+silver to drink and then they both go away and nobody watches us at all. I have counted it four
+times."* That is the mercury route, discoverable by talking to the people it is meant to free.
+
+**The ogres.** Fifteen days of mutton and a bark that says *"Tasty people under thumb and we eat
+sheep"*. A skin of wine buys the thing the titans never got out of them: the ogres carry the bait
+to the treeline, nothing comes while they stand there, and when they retreat to the rocks in the
+southeast it arrives -- a deer that walked on two legs when it thought they had gone. The ogre told
+the guard-titan, and the guard-titan said ogres cannot count.
+
+**And a way to pin the Daeva down.** Iapetus can now be asked whether anything holds a
+shapeshifter in one shape, and answers with the old stories: a relic of Zarathustra's making
+strips the shape off a Daeva and holds it in its own face. The Daeva's own tree already branches on
+the Amulet of the Prophet in eight places, and `31 amulet speech` is written for exactly that
+moment; until now nothing in the game told the player the connection existed.
+
+### Tier 8 - the child, the ground, and Menoetius' own name (built)
+
+Three map changes, two of them repairs:
+
+* A third villager generator puts the written-and-unplaced child in the pen, using the
+  `Barcelona Boy` template and his own node.
+* `triggers mercury relay`, the designers' abandoned proximity trigger, sits in the cul-de-sac
+  where the ogres and the woman in the pen both say the ground is trampled. It is renamed
+  `spoor in the cul-de-sac`, switched on, and fires a one-time balloon about churned ground -- and
+  at Perception 7 a second line: *"Deer slots, pressed deep, with no stride between them."* Three
+  independent sources now point at the same dead end, and the ground confirms them.
+* **`Monoetius Generator` names its titan `Rhea`.** Nothing on the map was called Menoetius, so
+  the `Titan deactivator` that empties Toulouse at the end and the `Titan alarm relay` that turns
+  the tribe on an attacker both missed him entirely, while their two `Rhea` entries hit whichever
+  of the two identically-named titans the engine found first. His spawn now takes his own name.
+
+### Tier 9 - the news that never reached Montaillou (built)
+
+All three endings of Toulouse -- the mneme handed over, Memnos walked home on his own feet, or the
+tribe killed to the last -- finish by firing
+`COtherMapAction{CActivateAction{Target Name=titans are gone}}` at `01 Hamlet Exterior`. **No part
+of that name exists on the Hamlet**, so the signal landed nowhere and the village the titans were
+arguing about marching on never learned that they had gone. The checker is added, which switches on
+wiring that has been sitting there since release, and three people who would care are given
+something to say:
+
+* **The mayor**, whose position rests on Andre's lie that he struck a deal with them, sits down
+  without being invited to, asks *"Gone where, exactly -- home, or down the valley towards us?"*,
+  and then asks the player to say nothing whatever about bargains. Pressing him goes to his own
+  `951 Furious Mayor`.
+* **Maury**, who has watched that road every morning since the smoke and counted his sheep twice a
+  day, will still count them twice -- but the flock goes up to the high pasture this week and his
+  son goes with him, *"and that is the first thing I have decided for myself since the spring."*
+* **The Templar knights at the gate**, whose hand comes off the sword for the first time in the
+  conversation: a rider goes to the commandery within the hour, and the Marshal will want to know
+  how a thing that size leaves a valley without anyone seeing it go.
+
+And **Baktron and Klao**, who stand at the north end arguing that the elders are cowards and get
+caught at it (*"it seems we have a little spy"*), had no replies at all. The relay that plays their
+argument now records that the player heard it, and each can be asked what he meant. Baktron, the
+eager one, would take Montaillou between sunrise and noon and is unimpressed that the tribe is
+waiting on an oracle and a runt in boots. Klao, who told him to be patient, is the more dangerous
+answer: patience is not the same as agreement, and when the elders' plan fails the tribe will
+remember who counselled waiting and who counselled running down a valley.
 
 ### How little Toulouse knows about the player
 

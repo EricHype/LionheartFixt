@@ -1,0 +1,197 @@
+CDialogTree
+{
+Name=Ephebos
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Greeting
+Text=I don't talk to disgusting fleshlings. Go pester somebody else.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Rhea teaches that your kind stands above mine. Do you believe her?
+Go to node ID=10 the chain
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Ephebos-tereo trigger
+Desired Minimum Count=1
+}
+}
+Reply Text=Rhea caught you at Mathuo's mercury. I heard the whole lecture.
+Go to node ID=20 caught
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Titan Mercury
+}
+}
+Reply Text=I am carrying a flask of quicksilver. Say the word and it is yours.
+Go to node ID=30 mercury
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=What do you make of the humans in the pen?
+Go to node ID=40 the pen
+
+Requirement=!None
+Reply Text=Then I will go and pester somebody else.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=Bubble 1
+Text=And that is why you must never, never do that again.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 2
+Text=But I liked it! 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 3
+Text=If you keep doing it, you'll go blind, young one.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 4
+Text=That's a lie, you just say that to frighten me! 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 5
+Text=It's a dirty habit, Ephebos.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 6
+Text=I should have been more careful not to get caught.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=Tereo Bubble 1
+Text=Hehe, Rhea caught you, huh?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=Tereo Bubble 2
+Text=Yes, and she gave me quite a lecture.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=Tereo Bubble 3
+Text=I know that lecture. I've been at the receiving end of it a few times myself.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 the chain
+Text=Rhea says there is one great chain and everything has its place on it, and we are above you and you are above the sheep. I asked her where the ogres go and she said below humans, and Tereo laughed at that for a long time, so I do not think anybody truly knows. You are smaller than she made you sound. And you do not smell as bad as Mathuo says.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Do you agree with her?
+Go to node ID=11 no name yet
+
+Requirement=!None
+Reply Text=What do you make of the humans in the pen?
+Go to node ID=40 the pen
+
+Requirement=!None
+Reply Text=That is the kindest thing a titan has said to me. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 no name yet
+Text=I am one hundred and forty years old and I have no name, so I am not permitted an opinion. When I have earned one I am going to be Atlas. Rhea says that is ambitious and Tereo says nobody ever earned a name by announcing it, so I have stopped announcing it. Do not tell them I told you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tereo has not earned his either.
+Go to node ID=12 Tereo
+
+Requirement=!None
+Reply Text=What do you make of the humans in the pen?
+Go to node ID=40 the pen
+
+Requirement=!None
+Reply Text=Good luck with it.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 Tereo
+Text=No, but he stands at the road and asks every creature that comes up it what it wants, and he has not squashed one of you yet, and Rhea says that is what earning looks like from the inside. I would rather have squashed something by now. I expect that is the whole problem.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It probably is.
+Go to node ID=40 the pen
+
+Requirement=!None
+Reply Text=Goodbye, Ephebos.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 caught
+Text=<The young titan's whole face goes stony.> It was one mouthful. One. And Mathuo keeps a whole stash of it in that cul-de-sac on the southeast edge, wedged in the rocks where he thinks nobody has looked, so I do not see why one mouthful should cost me a lecture and my afternoon. Do not tell Rhea we spoke of it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Your secret is safe.
+Go to node ID=40 the pen
+
+Requirement=!None
+Reply Text=Nobody will hear it from me. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 mercury
+Text=<He looks at the flask, and then at the path to the south, and then at the flask again.> ...Give it here. Quickly. If Rhea comes past, you were showing me a human trinket and I was being polite to it. You are a better fleshling than the others. I will tell you something for it: Baktron and Klao stand up at the north end all day saying the elders are cowards and that the tribe should go down to that other human town now and take it. The elders say wait. Nobody asks me, but I would not stand near those two.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That is worth a flask. Enjoy it.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=What do you make of the humans in the pen?
+Go to node ID=40 the pen
+------------------------------------------------------------
+Node ID=40 the pen
+Text=Rhea says they are a herd and you do not ask a herd what it wants. Tereo says they are people who have been unlucky, which is not the same thing at all, and when I said so Rhea made me write out the chain of being twice. The one that cries at night is smaller than I am. I have not worked out what that means yet.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It means she is a child, like you.
+Go to node ID=41 like me
+
+Requirement=!None
+Reply Text=Nothing. Do not think about it.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Work it out. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 like me
+Text=...I am not a child, I am one hundred and forty. But I take your meaning and I do not care for it. If you are going to do something about that pen, small one, do it while Poimaino is at his silver and do not tell me about it first. Then I will not have lied to anybody.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You are going to be a better titan than your elders.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Goodbye
+Text=Go away now. And do not tell Rhea.
+Should Have Voiceover=0
+}

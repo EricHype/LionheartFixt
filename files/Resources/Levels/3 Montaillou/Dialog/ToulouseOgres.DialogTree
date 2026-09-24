@@ -1,0 +1,149 @@
+CDialogTree
+{
+Name=Ogre
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 Mutton 1 
+Text=<This ogre looks at you hungrily and slowly licks it lips.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Mutton 2 
+Text=<The ogre momentarily stops gnawing on a sheep leg as you approach, then looks away and goes back to eating.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Mutton 3 
+Text=<As you approach, the ogre eyes you, then the fire, then you again.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 Ogre 1
+Text=<This ogre looks at you in a bored, indifferent manner.>
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wine
+}
+}
+Reply Text=I have a skin of wine. What is it worth to you?
+Go to node ID=51 wine
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wine
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Nothing. Enjoy your mutton.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Ogre 2
+Text=<A spasm of rage briefly crosses this ogre's face as you pass by.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 Ogre 3
+Text=<You have the sneaking suspicion that this ogre regards you as food.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 Mutton bubble 1
+Text=Mutton again.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 Mutton bubble 2
+Text=Nothing but mutton days and days.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 Mutton bubble 3
+Text=Tasty people under thumb and we eat sheep.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 Mutton bubble 4
+Text=Look, I'm starting to grow wool.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 Ogre 4
+Text=<This ogre is ugly, even for an ogre.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 Ogre 5
+Text=<The ogre regards you impassively with squinting, piggish eyes.>
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Wine
+}
+}
+Reply Text=I have a skin of wine. What is it worth to you?
+Go to node ID=51 wine
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Wine
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Nothing. Enjoy your mutton.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Scared
+Text=<This ogre looks tired and scared.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=501 scared
+Text=<This ogre is breathing heavily and is obviously frightened.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=51 wine
+Text=<The ogre takes the skin in one hand and looks around for the titans before it drinks.> Mutton. Mutton and mutton. Fifteen days of mutton and a stone giant to tell us we are lucky. You are a good manling. Ask.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What have you seen out there at night?
+Go to node ID=52 what the ogre saw
+
+Requirement=!None
+Reply Text=Nothing. Drink it in peace.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=52 what the ogre saw
+Text=We carry the meat out for the giants, the little screaming meat, and we put it at the treeline and we wait like they say. Nothing comes while we stand there. We go behind the rocks in the southeast, where the giant keeps his silver, and then it comes. It is a deer and then it is not a deer. Twice I saw the deer walk on two legs when it thought we had gone. I told the guard-giant. The guard-giant said ogres cannot count.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where in the southeast, exactly?
+Go to node ID=53 where
+
+Requirement=!None
+Reply Text=I believe you. Drink your wine.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=53 where
+Text=The dead end past the last wall, where the ground is all trampled and the rocks sit together. The giant Mathuo goes there to drink his silver and thinks nobody knows. That is where it took him, and that is where it will be, because the meat is easy there and the giants do not look.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then that is where I will go.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

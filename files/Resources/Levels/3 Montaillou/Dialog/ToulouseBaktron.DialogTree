@@ -1,0 +1,95 @@
+CDialogTree
+{
+Name=Baktron
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Go away
+Text=You should not speak unless spoken to, runt. Now go away.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=overheard the north end
+Desired Minimum Count=1
+}
+}
+Reply Text=You told Klao you could do it easily. Do what, exactly?
+Go to node ID=02 the plot
+
+Requirement=!None
+Reply Text=Nothing, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Go away 2
+Text=Must I swat you, bug?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 Fight
+Text=I'm going to teach you a very painful lesson.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 bubble 1
+Text=I agree with you, but we must bide our time.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 2
+Text=Bah, we could do it easily. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 3
+Text=We must be patient, Baktron.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 4
+Text=But...what have we here?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 bubble 5
+Text=We should speak of this later... it seems we have a little spy.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=02 the plot
+Text=So the little spy has ears after all. Very well: the other human town, the one down the valley with the walls and the priests in it. We could take it between sunrise and noon and be eating its sheep by dark. Instead we sit in a ruin because an oracle told Menoetius to wait for a fleshling, and here you stand, and I am not impressed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The elders told you to be patient.
+Go to node ID=03 patience
+
+Requirement=!None
+Reply Text=Try it and I will be waiting in the gate.
+Go to node ID=01 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Keep sitting, then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 patience
+Text=Klao says patience. Lethos says patience. Rhea says a great deal about chains and nothing about what we do when the chain is hungry. I say a tribe that waits on the word of a cave-dwelling oracle and a runt in boots has already begun to forget what it is. Ask me again when Memnos is dealt with.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will remember you said it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

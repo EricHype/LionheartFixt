@@ -251,6 +251,19 @@ Reply Text=Is there anyone here I should be careful of?
 Go to node ID=260 Guillaume
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=titans are gone
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans have gone from Toulouse.
+Go to node ID=270 the road is quiet
+Icon=Quest Icon
+
+Requirement=!None
 Reply Text=Nothing today. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
@@ -640,4 +653,14 @@ Should Have Voiceover=0
 Node ID=563 Help 4
 Text=What horrible beasts!
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=270 the road is quiet
+Text=Gone, are they. <The shepherd is quiet a while, looking north.> I have watched that road every morning since the smoke, monsieur, and counted my sheep twice a day like a man expecting to lose them. I will still count them twice. But I will take the flock up to the high pasture this week, and my son will come with me, and that is the first thing I have decided for myself since the spring.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take the high pasture. I will watch the road.
+Go to node ID=110 Maury Explains It All
+Icon=Exit Icon
+Is Default Reply=1
 }

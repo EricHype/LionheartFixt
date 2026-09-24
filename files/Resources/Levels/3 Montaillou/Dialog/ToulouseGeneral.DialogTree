@@ -1,0 +1,209 @@
+CDialogTree
+{
+Name=Prisoner
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=50 Ogre 1
+Text=This ogre looks at you in a bored, indifferent manner.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 Ogre 2
+Text=A spasm of rage briefly crosses this ogre's face as you pass by.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 Villager Man 1
+Text=This man avoids looking in your eyes, as though his spirit has been completely crushed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who has been taking people out of this pen?
+Go to node ID=61 the bait
+
+Requirement=!None
+Reply Text=Thierry says you will follow him out. Will you?
+Go to node ID=62 will you run
+
+Requirement=!None
+Reply Text=Keep your head down.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Villager Woman 1
+Text=The woman avoids looking at you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Has the thing that hunts you a shape?
+Go to node ID=63 the shape
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=You are looking away because of my face, not because of them.
+Go to node ID=64 the face
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I will not trouble you.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Villager Child 1
+Text=Please don't hurt me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am not going to hurt you.
+Go to node ID=65 the child
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=Do I frighten you more than they do?
+Go to node ID=66 the child and the devil
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Stay away from the fence.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=85 Mutton bubble 1
+Text=Mutton again.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 Mutton bubble 2
+Text=Nothing but mutton days and days.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 Mutton bubble 3
+Text=Tasty people under thumb and we eat sheep.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 Mutton bubble 4
+Text=Look, I'm starting to grow wool.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=555 Tree stump
+Text=A faint glint of gold glimmers from beneath the roots of this tree stump.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=556 Mercury
+Text=You find a flask of silver fluid  wedged between these rocks.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=61 the bait
+Text=The blue ones come at night and point at somebody and the ogres carry him out over the fence. They tell us it is to catch the thing that has been eating us. Not one of them has come back, monsieur, so either it is a very clever thing or they are very poor fishermen. My brother went out on Tuesday.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thierry says you will follow him out. Will you?
+Go to node ID=62 will you run
+
+Requirement=!None
+Reply Text=I will see it stopped.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=62 will you run
+Text=Thierry has a plan and I have a wife who got out of this town alive, so yes. When he says run I will run until my heart bursts. And do not let anybody tell you we are cattle because we are quiet. Being afraid is not the same as being cattle.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Nobody will say it to me.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=63 the shape
+Text=It had my neighbour's shape. It came to the fence in the dark and spoke with Grazide's voice and asked to be let in, and Grazide had been three days dead. The titans believe we do not know what is eating us. We know. We knew before they did.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Did it wear anything else you recognised?
+Go to node ID=63 the shape 2
+
+Requirement=!None
+Reply Text=Thank you. That is more than the titans could tell me.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=63 the shape 2
+Text=A deer, twice, at the treeline where the ground is trampled. A deer that stood and watched the pen for an hour and did not run when the ogres shouted at it. After that I stopped looking out at night.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A deer that does not run. That is enough to go on.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=64 the face
+Text=<She looks up, and then keeps looking.> I looked away because you are the first thing to come to this fence in a week that was not hungry. Your face is your own business, monsieur, and I have a cousin the same. There is a great deal at this fence more frightening than a pair of eyes.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Has the thing that hunts you a shape?
+Go to node ID=63 the shape
+
+Requirement=!None
+Reply Text=Keep your head down.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 the child
+Text=The big blue one that guards us is called Poimaino and he is the stupid one. Another one brings him silver to drink and then they both go away and nobody watches us at all, not one of them. I have counted it four times. It is the only thing I have to do in here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You have been very useful. Sit down and stay quiet.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=66 the child and the devil
+Text=...Are you a devil? Maman says devils are made up to frighten children who will not sleep. But I have watched a blue giant eat a whole sheep and a man walk out of that gate and never come back, so I do not think anybody has been telling me the truth about anything. You are less frightening than they are. You are the right size.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am the right size. Sit down and stay quiet.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=557 trampled ground
+Text=The ground in this dead end is churned to mud, and something has been standing in it long enough to leave more than footprints.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=558 the deer
+Text=Deer slots, pressed deep, with no stride between them: whatever left these stood on two legs in a deer's feet.
+Should Have Voiceover=0
+}
