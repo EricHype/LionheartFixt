@@ -1,0 +1,837 @@
+CDialogTree
+{
+Name=Iapetus
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 
+Text=It is good to meet you, small one. I must admit that I doubted Menoetius when he told me that an oracle said we should wait here for the improbable arrival of...well, of you. I thought he'd been dipping into the mercury again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=04 Iapetus' job
+
+Requirement=!None
+Reply Text=Dipping into the mercury?
+Go to node ID=99 mercury
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+}
+}
+Reply Text=What have you been doing to the humans you've captured? 
+Go to node ID=05 Doing nothing to the humans
+------------------------------------------------------------
+Node ID=02 Go talk to Lethos
+Text=I am quite surprised to see you, fleshling. Perhaps we can talk later, but I am busy at the moment starting this fire. You should speak with Lethos, he can be found southwest of here. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=04 Iapetus' job
+Text=My name is Iapetus. As an elder, I help to lead the tribe. Right now, I'm in charge of keeping the humans we captured safe and secure. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And how does eating them make them either safe or secure? 
+Go to node ID=10 Titans don't eat people
+
+Requirement=!None
+Reply Text=You've already destroyed their town, why are you now trying to keep them "safe"? 
+Go to node ID=04 Keep the humans safe
+------------------------------------------------------------
+Node ID=04 Keep the humans safe
+Text=As long as they are in our custody, we are responsible for their welfare. Where possible, we should do our best to ensure their survival. But if you wish to discuss ethics, you'd best talk to Rhea.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where is Rhea? 
+Go to node ID=04 Where is Rhea
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=PC has spoken to Rhea
+Desired Minimum Count=1
+}
+}
+Reply Text=I've already spoken to her.
+Go to node ID=04 Already spoken to Rhea
+Action work in progress=check for flag 3 PC has spoken to Rhea
+
+Requirement=!None
+Reply Text=Nevermind, but if you're so concerned with their welfare, why are you eating them? 
+Go to node ID=10 Titans don't eat people
+------------------------------------------------------------
+Node ID=04 Already spoken to Rhea
+Text=She's quite talkative isn't she? Well, then, what can I help you with?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I've come to ask you to stop eating your prisoners.
+Go to node ID=10 Titans don't eat people
+
+Requirement=!None
+Reply Text=Nothing. Goodbye. 
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=04 Where is Rhea
+Text=She's can usually be found on the south side of this settlement tutoring Ephebos. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will speak to her later. First, I must ask you to stop eating your prisoners.
+Go to node ID=10 Titans don't eat people
+
+Requirement=!None
+Reply Text=Perhaps I will speak with her. Farewell.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Doing nothing to the humans
+Text=Nothing untoward. The humans doubtless dislike the treatment they've received from us, but then I'm sure the flocks they keep feel the same way.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I've been told you're *eating* them, 
+Go to node ID=10 Titans don't eat people
+------------------------------------------------------------
+Node ID=10 Titans don't eat people
+Text=Neither ourselves nor our ogres have been eating anybody, small one, but I am afraid you are right in thinking that something has.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you mean? 
+Go to node ID=15 Explanation
+------------------------------------------------------------
+Node ID=15 Explanation
+Text=I will explain. When Menoetius told us that we would be staying in this village for a time, we initially took hostage the youth of this town. I know this sounds harsh to you, but it was the only way to ensure the townspeople wouldn't seek to flee and raise an army against us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What did you do with the adults? 
+Go to node ID=20 Adults are free range
+
+Requirement=!None
+Reply Text=Speaking of fleeing, I must be going. Farewell.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Adults are free range
+Text=We felt secure enough with the children under guard to let the humans police themselves and allowed them free movement within the village.  All was well until a week ago when we discovered a pair of them dead on the outskirts of town. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What happened next? 
+Go to node ID=25 More deaths
+------------------------------------------------------------
+Node ID=25 More deaths
+Text=We said nothing to the humans lest we panic them and thought that perhaps the pair had merely fallen victim to some sort of wild animal, but the deaths did not stop there. A couple days later we found another body. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What have you done to prevent further deaths?
+Go to node ID=30 Humans caged
+------------------------------------------------------------
+Node ID=30 Humans caged
+Text=We decided that the best course of action would be to put all of the humans in a single, enclosed area. No building in town was large or intact enough to hold the entire population, so we have caged them under the open sky. While they may not find this comfortable, they are at least better protected from the creature that stalks them. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Have you told your prisoners about the creature?
+Go to node ID=35 Humans not informed
+
+Requirement=!None
+Reply Text=I must be going. Goodbye. 
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 Humans not informed
+Text=No, we have not told the humans of the predator that stalks their village. It would serve only to frighten them further, spurring them to attempt escape. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Your prisoners think you've begun feeding on them. 
+Go to node ID=40 Humans confused
+
+Requirement=!None
+Reply Text=I want to talk to the prisoners. 
+Go to node ID=37 Not allowed to talk to the prisoners
+Custom Action=CActivateAction
+{
+Target Name=PC has spoken to Iapetus
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=What do you know about the predator?
+Go to node ID=50 The facelessness of the beast
+------------------------------------------------------------
+Node ID=37 Not allowed to talk to the prisoners
+Text=I'm sorry, I cannot allow that. Who knows what you might incite them to do?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Your prisoners think you've begun feeding on them. 
+Go to node ID=40 Humans confused
+
+Requirement=!None
+Reply Text=What do you know about the predator?
+Go to node ID=50 The facelessness of the beast
+------------------------------------------------------------
+Node ID=40 Humans confused
+Text=Do they really think *we've* been consuming them? Don't they realize that we do not eat flesh? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I've been told that some prisoners have been taken from their cage, never to be seen again. What happened to them?
+Go to node ID=45 Human bait
+
+Requirement=!None
+Reply Text=What do you know about the predator?
+Go to node ID=50 The facelessness of the beast
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Human bait
+Text=We have...used some. In attempt to draw out the creature that was preying on them, we left some humans as bait. We waited, and thought that once the beast appeared we would easily deal with it...but that hasn't been the case. In every instance, the fiend has managed to seize the bait and escape. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is the beast like?
+Go to node ID=50 The facelessness of the beast
+
+Requirement=!None
+Reply Text=You used humans as bait?
+Go to node ID=46 Fishermen use worms
+
+Requirement=!None
+Reply Text=I have nothing more to say to you. 
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=46 Fishermen use worms
+Text=Do not human fishermen use worms to draw a fish? It is the same principle, surely you understand. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That is truly evil.
+Go to node ID=46 More worms
+
+Requirement=!None
+Reply Text=What is the beast like?
+Go to node ID=50 The facelessness of the beast
+------------------------------------------------------------
+Node ID=46 More worms
+Text=What? It was just a few humans, there are plenty more. And we did it partly for them, the creature was eating them, anyway. We were trying to protect them by capturing the beast.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That's truly evil, monster.
+Go to node ID=50 The facelessness of the beast
+
+Requirement=!None
+Reply Text=What is the beast like?
+Go to node ID=50 The facelessness of the beast
+
+Requirement=!None
+Reply Text=I have nothing more to say to you. 
+Go to node ID=100 Goodbye 
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 The facelessness of the beast
+Text=The creature is no mere bear, as we at first thought. It is, I fear, a Daeva or one of their ilk. We've managed to track it down twice, both times in or around this town. Unfortunately, it has thus far managed to elude us by changing forms and slipping away. It has even grown so bold as to strike at one of us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It has attacked a titan? 
+Go to node ID=55 It attacked a titan
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=PC was told Mathuo was attacked
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=heard about demon
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=What forms has it taken? 
+Go to node ID=65 Forms
+Custom Action=CActivateAction
+{
+Target Name=heard about demon
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Interesting, but I must be going.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=heard about demon
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 It attacked a titan
+Text=Last night the creature struck at Mathuo, who was deep into the mercury. Fortunately, his cries of alarm alerted several of us and we managed to drive it off, but I fear it has acquired a taste for our rock.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It can eat stone? 
+Go to node ID=60 It feeds off titan magic
+Custom Action=CActivateAction
+{
+Target Name=PC was told Mathuo was attacked
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=How do you plan on dealing with it? 
+Go to node ID=70 Quest
+Custom Action=CActivateAction
+{
+Target Name=PC was told Mathuo was attacked
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I will leave you to your fate, then. Goodbye. 
+Go to node ID=100 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=PC was told Mathuo was attacked
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 It feeds off titan magic
+Text=The nature of the attack on Mathuo has convinced me it is a Daeva. They are ancient enemies of our race, and while they rarely consume the stone of which we are made, they can feed off of our magical aura, our souls. They are a terrifying foe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What forms can it take? 
+Go to node ID=65 Forms
+
+Requirement=!None
+Reply Text=How do you plan on dealing with it? 
+Go to node ID=70 Quest
+
+Requirement=!None
+Reply Text=A foe you richly deserve. Goodbye. 
+Go to node ID=100 Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 Forms
+Text=It can seemingly take any form it chooses. We have seen it take the forms of a bear, an ogre, a bird...I do not think there is any limit to the shapes this fiend can adopt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It has attacked a titan? 
+Go to node ID=55 It attacked a titan
+
+Requirement=!None
+Reply Text=How do you plan on dealing with it? 
+Go to node ID=70 Quest
+------------------------------------------------------------
+Node ID=70 Quest
+Text=We would appreciate your help in dealing with this beast, small one. Perhaps you will find it less elusive than we have.  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why should I help you?
+Go to node ID=75 Why you should help
+
+Requirement=!None
+Reply Text=I could be hired to track the shapeshifter down. 
+Go to node ID=75 Mercenary help
+
+Requirement=!None
+Reply Text=This is your problem, not mine. 
+Go to node ID=75 Why you should help
+
+Requirement=!None
+Reply Text=Perhaps. But we will have to speak of this later. Goodbye. 
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=75 Mercenary help
+Text=Seeing as how it is not confining its attacks to humans any longer, I could offer you a reward for killing this monster. I have a collection of gems that I think one of your persuasion would find quite pleasing.  
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I met and killed the monster you describe near Montaillou, it will trouble you no longer.
+Go to node ID=250 Killed the Daeva
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=seen demon in Montaillou
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I've met this monster near Montaillou. I will deal with it and return to you.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=AOQWIC0K
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen demon in Montaillou
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Very well, I will return for my reward once the beast is dead. 
+Go to node ID=100 Quest Goodbye
+Action work in progress=assign kill the shapeshifter quest, set reward flag for gems
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=1SL71I4J
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I want no part of this right now. Goodbye. 
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=75 Why you should help
+Text=With the exception of the single, unsuccessful attack on Mathuo, all of the Daeva's efforts have been directed against the humans here. Killing this monster would benefit them greatly.  
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I met and killed the monster you describe near Montaillou, it will trouble you no longer.
+Go to node ID=250 Killed the Daeva
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=seen demon in Montaillou
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I've met this monster near Montaillou. I will deal with it and return to you.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=AOQWIC0K
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Very well, I will kill this beast...for *them*.
+Go to node ID=76 Good guy help
+Action work in progress=assign kill the shapeshifter quest, set reward flag for karma
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=1SL71I4J
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=The people here are strangers to me. I'll help you kill this beast, but only for a price. 
+Go to node ID=75 Mercenary help
+Action work in progress=assign kill the shapeshifter quest, set reward flag for gems
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=1SL71I4J
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I want no part of this right now. Goodbye. 
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=76 Good guy help
+Text=Excellent. The monster lurks somewhere around the town, I would suggest a careful search. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+Reply Text=I met and killed the monster you describe near Montaillou, it will trouble you no longer.
+Go to node ID=250 Killed the Daeva
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=seen demon in Montaillou
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed the demon
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I've met this monster near Montaillou. I will deal with it and return to you.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=AOQWIC0K
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Very well, I will find the Daeva and destroy it.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=1SL71I4J
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=100 Quest Goodbye
+Text=I cannot tell you exactly where you will find this monster, but it can surely be found somewhere within the town. Be careful, you face a cunning foe.  
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=250 Killed the Daeva
+Text=You have rid the world of a most treacherous pest, fleshling. You are full of surprises! Please take these as a token of our appreciation for your efforts. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Expensive Gem
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Expensive Gem
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Expensive Gem
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 return Dialogue
+Text=What may I do for you now, small one?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+State=3O40A4EN
+}
+}
+Reply Text=I've slain the shapeshifting Daeva. 
+Go to node ID=250 Killed the Daeva
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill the shapeshifting Daeva
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+}
+}
+Reply Text=Who are you?
+Go to node ID=04 Iapetus' job
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+}
+}
+Reply Text=What have you been doing to the humans you've captured? 
+Go to node ID=05 Doing nothing to the humans
+
+Requirement=!None
+Reply Text=Nothing at the moment.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=11 Bubble 2
+Text=Yes, you were right again, Menoetius.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=99 mercury
+Text=Mercury affects us in much the same way I'd imagine wine or alcohol affects fleshlings.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+}
+}
+Reply Text=Who are you?
+Go to node ID=04 Iapetus' job
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+}
+}
+Reply Text=What have you been doing to the humans you've captured? 
+Go to node ID=05 Doing nothing to the humans
+}

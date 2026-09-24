@@ -1,0 +1,266 @@
+CDialogTree
+{
+Name=Poimaino
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Greeting
+Text=You aren't allowed to be here, this is the human prisoner pen behind me. Now leave before I squash you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Wait, I want to ask you some questions.
+Go to node ID=20 Questions
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=PC has spoken to Iapetus
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 95
+}
+}
+Reply Text=It's okay, Iapetus said I could speak with the prisoners.
+Go to node ID=30 bluff SUCCESS
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=PC has spoken to Iapetus
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 095
+}
+}
+Reply Text=It's okay, Iapetus said I could speak with the prisoners.
+Go to node ID=30 bluff FAILURE
+Action work in progress=Speech less than 50
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Titan Mercury
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+}
+Reply Text=I bet guarding a bunch of prisoners is hot work. Wouldn't a little mercury be good right about now?
+Go to node ID=40 Mercury SUCCESS
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Titan Mercury
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 050
+}
+}
+Reply Text=I bet guarding a bunch of prisoners is hot work. Wouldn't a little mercury be good right about now?
+Go to node ID=40 Mercury FAILURE
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=20 Questions
+Text=It isn't enough that I have to guard these animals, but now one wants to *talk* to me? Go away, runt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=30 bluff SUCCESS
+Text=Alright, you can talk to the humans...but don't try anything, runt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=deactivate guard polygon
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=Poimaino kill box
+}
+Action=CDeactivateAction
+{
+Target Name=Poimaino guarded area
+}
+Action=CDeactivateAction
+{
+Target Name=trigger guard dialogue
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 bluff FAILURE
+Text=I doubt that very much, you pest. Now leave me alone before I smash you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=40 Mercury SUCCESS
+Text=Haw haw, you puny fleshlings. Can't stand a little mercury, can you? It doesn't surprise me, your kind is weak and stupid. Very well, I will do you a favor and take it off of you.  Hehe, stupid flseshings.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=take mercury away, have guard go away somehow
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Titan Mercury
+}
+Action=CActivateAction
+{
+Target Name=Titans gone drinking
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Poimaino kill box
+}
+Action=CDeactivateAction
+{
+Target Name=trigger guard dialogue
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Mercury FAILURE
+Text=You are a shifty little one, aren't you. Are you trying to get me in trouble with Iapetus? I won't take a drink from the likes of *you*. You'll have more luck with Mathuo than with me, now begone before my patience wears thin. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=100 Busted by the guard
+Text=Stop, you are entering the human pen. If you insist on proceeding I'll have the pleasure of killing you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Lure
+Text=Hello, runt. I think you forgot one of the humans. Why don't you go back into the pen and check.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Drinking
+Text=Leave me alone, runt.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 1
+Text=You look like you need a drink, Poimaino
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 2
+Text=I need a drink more than you know. Guarding these flesh runts would drive Rhea herself into the bottle.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 3
+Text=I have a bottle right here. The best quicksilver you've ever seen. You could use a few minutes of relaxation.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 4
+Text=Are you sure? We could get in a lot of trouble!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury Bubble 5
+Text=Look, where are those cowardly runts going to go? Nothing will happen, let's go.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 6
+Text=You're probably right, they're not going anywhere.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury interrupted
+Text=Wait, I think we have an eavesdropper. By Atlas I wish I could squash that bug, but Lethos would have my head.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped A
+Text=Damn you and your mercury, Mathuo. What do we do now?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped B
+Text=If the elders find out they'll have us chewing gravel for months.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped C
+Text=I'll wager that puny fleshling engineered this. <Sigh> What do we do?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped D
+Text=I know, I'll hide in the pen and make human noises. You go stand guard like nothing has happened.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped E
+Text=Is that the best you can do?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped F
+Text=Do you have a better plan? Now go stand guard and see if you can lure that damn fleshling into the pen.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=103 Noise 1
+Text=Crap.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=103 Noise 2
+Text=Crap.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=103 Noise 3
+Text=Crap.
+Should Have Voiceover=0
+}

@@ -338,6 +338,13 @@ Action work in progress=open this if PC is tainted
 Requirement=!None
 Reply Text=Why should I help you?
 Go to node ID=50 Lucius is the fugitive
+Custom Action=CActivateAction
+{
+Target Name=PC is told Toulouse was harboring Lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 ------------------------------------------------------------
 Node ID=22 Sacking Toulouse was appropriate (tainted)
 Text=Sacking this town was unfortunate, but hardly a tragedy. It is just a small herd of humans, do you really care so much what happens to them? From what I've seen of human "civilization" I doubt many of them would care if your kind was wiped out. In any case, we killed only those who resisted us, you will find the others safe under guard.
@@ -349,7 +356,7 @@ Go to node ID=23 Toulouse brought this upon themselves
 Action work in progress=activate flag 1 PC was told Toulouse was harboring Lucius
 Custom Action=CActivateAction
 {
-Target Name=PC was told Toulouse was harboring Lucius
+Target Name=PC is told Toulouse was harboring Lucius
 Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
@@ -358,6 +365,13 @@ Warp Behavior=
 Requirement=!None
 Reply Text=A few humans are of little concern to me. I'm more interested in why you came here.
 Go to node ID=50 Lucius is the fugitive
+Custom Action=CActivateAction
+{
+Target Name=PC is told Toulouse was harboring Lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 ------------------------------------------------------------
 Node ID=22 Sacking Toulouse was appropriate
 Text=Sacking this town was unfortunate, but hardly a tragedy. It is just a small herd of humans. There are a seemingly endless number of you, who will miss a few? We killed only those who tried to harm us, you will find the others safe under guard. 
@@ -368,7 +382,7 @@ Reply Text=That is no excuse, the blood of innocents is on your hands.
 Go to node ID=23 Toulouse brought this upon themselves
 Custom Action=CActivateAction
 {
-Target Name=PC was told Toulouse was harboring Lucius
+Target Name=PC is told Toulouse was harboring Lucius
 Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
@@ -377,6 +391,13 @@ Warp Behavior=
 Requirement=!None
 Reply Text=The people here are of no great concern to me. I'm more interested in why you came here.
 Go to node ID=50 Lucius is the fugitive
+Custom Action=CActivateAction
+{
+Target Name=PC is told Toulouse was harboring Lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 ------------------------------------------------------------
 Node ID=23 Toulouse brought this upon themselves
 Text=<Sigh> Dealing with humans is never easy. Despite what your kind thinks of us, we do not go out of our way to harm lesser creatures. The fleshlings here were harboring a fugitive who stole a priceless legacy from us, and we cannot be blamed for attempting to recover it. 
@@ -389,6 +410,13 @@ Go to node ID=24 Harboring a fugitive
 Requirement=!None
 Reply Text=So what, exactly, are you looking for?
 Go to node ID=50 Lucius is the fugitive
+Custom Action=CActivateAction
+{
+Target Name=PC is told Toulouse was harboring Lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 
 Requirement=!None
 Reply Text=I really must be going. Farewell
@@ -686,6 +714,13 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Who...or what...is this fugitive?
 Go to node ID=50 Lucius is the fugitive
+Custom Action=CActivateAction
+{
+Target Name=PC is told Toulouse was harboring Lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 ------------------------------------------------------------
 Node ID=100 Return from Rhea
 Text=So, do you understand why we are here now, small one?

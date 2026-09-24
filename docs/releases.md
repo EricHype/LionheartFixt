@@ -124,6 +124,141 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.15.0 - Toulouse
+
+**Surveyed 2026-09-24. Tiers 1 and 2 built 2026-09-24, unplayed.** The sacked town in the
+northeast corner of act 3, where a tribe of rock titans is camped in the ruins with a pen full
+of human prisoners behind their guard. One map (`Levels/3 Montaillou/Titan Village.zax`, 959
+level parts), 24 dialogue trees, **739 player replies**, and five quests: *Kill the Titans of
+Toulouse*, *Recover Lucius' Mneme*, *Rescue the people of Toulouse*, *Destroy the shapeshifting
+Daeva*, and the release of Inquisitor Darsh, who is a companion carried in from act 1.
+
+0.14.0 already opened this map's biggest piece of cut content -- the negotiated ending, where
+the titans are talked into hearing Lucius out and Lucius is talked into going back to them.
+What was left is small, and all of it is broken wiring rather than unwritten content.
+
+### Two false alarms, and what they cost
+
+The first pass of this survey made two claims that were wrong, and they are recorded here
+because both came from the same flaw in the audit rather than from the game.
+
+**The mercury is obtainable.** I reported Titan Mercury unreachable because the proximity
+trigger beside the rock that holds it (`triggers mercury relay`, Active=0, at 1760,2248) is
+referenced nowhere in the game. But `mercury relay` is fired from dialogue instead: the reply
+*"Where were you when the attack occurred?"* on `ToulouseMathuo / 10 Shapeshifter` carries
+`CTriggerRelayAction{Relay Name=mercury relay}`, which swaps the plain rock (`no mercury rock`)
+for the interactive one. The proximity trigger is an abandoned first attempt at the same thing.
+Everything downstream of it -- Mathuo takes the mercury, the two titans talk each other into a
+drink across six balloons, both walk off to their drinking spots, the prisoners escape, and the
+pair panic in six more balloons while Poimaino tries to lure the player back into the empty pen
+-- is live, map-driven and reachable.
+
+**Thierry's treasure and the chickens are fine too.** The sweep that found them "dead"
+compared part names to activation targets **case-sensitively**, and the designers were not
+consistent: the reward is activated as `Thierry Reward` and named `thierry reward`, and
+`eavesdrop relay` activates `Interrupted relay` while firing `interrupted relay`. Folding case
+and excluding the two other idioms that hide activation -- generators are *cloned*
+(`CCloneAction{Source Name=}`) rather than activated, and `CAISecretReveal` runs on the
+engine's own secret mechanic -- takes the list of genuinely dead Toulouse parts from 28 to
+four: the two flags below, the abandoned mercury trigger, one unused generator prototype
+(`clone gen`), and thirteen developer warp markers. In particular `200 Montaillou Greeting`
+already does exactly what I proposed as a repair: `COtherMapAction{CActivateAction{Target
+Name=Thierry Reward}}`, the quest state, `COtherMapAction{CDeactivateAction{Target
+Name=Thierry Reward hard}}` and the XP, all on one reply.
+
+### Tier 1 - the two flags the act reads and never sets (built)
+
+**The prisoners can be asked about Lucius.** `ToulouseAlexander` -- the tree for Thierry, who
+speaks for the penned villagers -- gates the same reply on two nodes: *"The titans said this
+town was harboring one of their kind, is that true?"* It needs `PC is told Toulouse was
+harboring Lucius`, which is the name of a checker part sitting on the map. Lethos's reply
+activates **`PC was told Toulouse was harboring Lucius`** -- one word off, a name that exists
+nowhere in the game, and its own designer note says *"activate flag 1 PC was told Toulouse was
+harboring Lucius"*, so the typo is in the note as well. Both copies of that activation (node
+`22 Sacking Toulouse was appropriate` and its tainted twin) now target the part that exists,
+and the same activation was added to every reply that reaches `50 Lucius is the fugitive` --
+the node that actually says a titan was hidden here -- from nodes 20, 22, 22-tainted, 23 and
+24, so the question opens on any path through the conversation rather than only the one that
+scolds him. Behind it: `30 Lucius`, `32 Lucius 2` and `34 Alexander eaten`, the story of the
+farmer who sheltered the fugitive on a secluded farm, loved a bottle, and was one of the first
+bodies found half-eaten.
+
+**The bluff at the pen can be told.** `ToulousePoimaino / 01 Greeting` carries two
+Speech-gated replies -- *"It's okay, Iapetus said I could speak with the prisoners"* -- one to
+`30 bluff SUCCESS` at Speech 95 or better and one to `30 bluff FAILURE` below it, both
+requiring `PC has spoken to Iapetus`. Nothing in the game sets it, and unlike the Lucius flag
+there is no typo twin: it has no setter at all. It now goes on the reply where the player asks
+Iapetus for exactly the permission the bluff claims to have -- *"I want to talk to the
+prisoners"* on `35 Humans not informed`, which he refuses in `37 Not allowed to talk to the
+prisoners` (*"Who knows what you might incite them to do?"*). He says no, and then you go and
+tell his guard he said yes. Poimaino keeps a `GetCloseThenTalk` interaction on `01 Greeting`
+for as long as he is on duty, so the lie can be told on any later approach.
+
+### Tier 2 - the guard's own bribe (built)
+
+`40 Mercury SUCCESS` was the only reply-carrying orphan in the act: Poimaino taking the flask
+himself rather than having it routed through Mathuo. *"Haw haw, you puny fleshlings. Can't
+stand a little mercury, can you? ... Very well, I will do you a favor and take it off of
+you."* The reply that should have reached it carries the spec in its own designer note --
+*"Speech greater than/equal to 50, must have the mercury"* -- and shipped checking
+`Inventory Items/Wine` and pointing at `40 Mercury FAILURE`, so the success text was
+unreachable and the failure was the only outcome.
+
+The reply is now gated as its note says, and split on Speech the way the bluff above it is:
+`Quest Items/Titan Mercury` with Speech 50 or better reaches SUCCESS, and the same flask below
+50 reaches FAILURE, whose text was already written for exactly that case and even points the
+player at the route that does work (*"You'll have more luck with Mathuo than with me"*). The
+SUCCESS node's blank reply got the action its note asks for -- *"take mercury away, have guard
+go away somehow"*: remove the mercury, activate `Titans gone drinking`, and deactivate
+`Poimaino kill box` and `trigger guard dialogue`. That is the same surrender the shipped
+`30 bluff SUCCESS` performs, plus the drinking flag, which is what the map's own
+`replace poimaino AI Interaction spec` polygon reads to decide that Poimaino is off duty and
+should answer with `102 Drinking` (*"Leave me alone, runt"*) instead of his guard challenge.
+Access to the pen is the whole prize: the rescue itself runs from Thierry's `100 See you in
+Montaillou`, which fires `Prisoners escape`.
+
+After both tiers the Toulouse trees have **no reply-carrying unreachable nodes left** (13
+trees, 315 nodes, 38 unreachable, all of them map-fired balloons and barks).
+
+### How little Toulouse knows about the player
+
+| gate | replies | share |
+|---|---|---|
+| quest / state / item | 162 | 21.9% |
+| Speech | 26 | 3.5% |
+| attributes | 21 | 2.8% |
+| faction | 9 | 1.2% |
+| race | 8 | 1.1% |
+| Barter | 8 | 1.1% |
+| **chosen perks** | **0** | |
+| **which spirit you carry** | **0** | |
+| **karma** | **0** | |
+| **gender** | **0** | |
+
+Toulouse tracks what you have *done* about as well as Montaillou does, and knows even less
+about who you are: 1.2% of its replies read a faction against Montaillou's 2.4%, and not one
+reply in the act reads a perk, a spirit, a karma score or the player's sex. **Iapetus is the
+act's largest completely un-gated tree** -- 70 replies, none of them character-aware -- and he
+is the elder who explains the daeva, the mercury, and why the humans are caged. Mathuo's 29
+replies have none either. This is the place whose plot is a stolen crystal of collective
+memory and a shapeshifting demon that feeds on titan magic, and it never asks what the player
+carries or what the player is.
+
+### What is left
+
+3. **The chickens, reconsidered.** Not a defect: the three `Chicken Generator` parts are
+   activated elsewhere. Nothing to do.
+4. **Iapetus, Mathuo and Rhea learn to read the player** -- the act's own vocabulary where its
+   writing already forks: a Wielder or a tainted soul in front of the elders, a necromancer
+   hearing what a mneme is, the spirit answering Rhea, Barter on the reward negotiation that
+   already has four outcomes.
+5. **Poimaino walks off.** The bribe leaves him standing at his post, off duty, the way the
+   shipped bluff does. Having him walk to `Poimaino Drinking` (1280,1707) the way the Mathuo
+   route does needs a patrol authored on the map, which also means a save that has never
+   entered Toulouse to test it. Worth doing only alongside other map work here.
+6. **Andre's two betrayal variants** (`900`, `1002`), carried over from 0.14.0 and still
+   needing the extortion path walked before they can be read honestly.
+
 ## 0.14.0 - Montaillou
 
 **Published.** Cut from `main` 2026-09-24, entirely unplayed. Eight tiers built 2026-09-23 and 2026-09-24; Tier 6 was a read that ended in building nothing. Surveyed 2026-09-23. The second-largest act in the game after Barcelona and the
