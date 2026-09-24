@@ -454,6 +454,34 @@ node:
   *Brutish Hulk* on the Cathar toughs' challenge, *Snake Eater* or *Fortune Finder* where the
   act's caves are discussed.
 
+**The allegiances the act cannot see.** Montaillou checks a faction 55 times and every one of
+them is Inquisitor, Templar, Saladin or Wielder. Its five Wielder-aware replies are two of
+Brother Michel's demokin lines, the Bishop being threatened with undeath over the gem, and two
+of Andre's *"I am a powerful wizard"* bluffs. Nothing in the act knows that the player is a
+**Dark Wielder** (`Necromancer`), a friend of the **beggars** or the **thieves**, or anything at
+all to the **Goblin Horde** -- and the reason generalises past this act:
+
+| title the player can earn | awarded by | read by |
+|---|---|---|
+| Beggar Friend | the Beggar Captain | the Beggar Captain |
+| Thief Friend | Juanita | Juanita (and 0.13.0's collector) |
+| Exposer of Calle Perdida | Inquisitor Raphael | Inquisitor Raphael |
+| Goblin Champion | the Goblin Khan | **nobody** |
+| Ruler of Calle Perdida | **nobody** | **nobody** |
+| Necromancer | Relican, the Pit | five places, including 0.12.0's and 0.13.0's work |
+
+**Every allegiance title in the game except Necromancer is read only by the faction that issued
+it.** They are receipts, not reputations. The checks to change that already exist: the four
+vanilla faction cans, Fixt's own `Goblin Horde IS / Midlevel / Highlevel` and `Thief Friend IS`
+from 0.1.x and 0.13.0, and a bare `CHasPerkExpression` for the rest.
+
+Montaillou is the right place to start because it is the first act after Barcelona and the
+Wilderness, and the obvious readers are already written: the gate knights ask your business and
+would have something to say to a man wearing goblin honours into a Templar garrison; the Bishop
+of Pamiers hunts wizards and would know a necromancer standing in his church; Na Roqua is a
+spirit-witch who should recognise a Wielder before he speaks; the Relaxed Thug, Guillaume the con
+man and the Bartender all live on the guild's side of the law.
+
 **Sizing.** Every item above is one or two replies on a node the game already wrote, plus an
 answer node only where the existing answers would not fit. That is the same shape and roughly
 the same size as 0.13.0's collector tier. It is also the most *authored* work the project would
