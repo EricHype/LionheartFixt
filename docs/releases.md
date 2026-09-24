@@ -126,7 +126,7 @@ into a release it does not fit.
 
 ## 0.15.0 - Toulouse
 
-**Surveyed 2026-09-24. Tiers 1, 2, 4 and 5 built 2026-09-24, unplayed.** The sacked town in the
+**Surveyed 2026-09-24. Tiers 1, 2, 4, 5 and 6 built 2026-09-24, unplayed. Toulouse is finished apart from one optional piece of polish.** The sacked town in the
 northeast corner of act 3, where a tribe of rock titans is camped in the ruins with a pen full
 of human prisoners behind their guard. One map (`Levels/3 Montaillou/Titan Village.zax`, 959
 level parts), 24 dialogue trees, **739 player replies**, and five quests: *Kill the Titans of
@@ -383,6 +383,43 @@ should ask, the two of them have not spoken. His generator already carried a ful
 the district's guard-reaction wiring (spellcast detection, the damaged-guard relay), so he
 behaves exactly like the Temple Guard around him.
 
+### Tier 6 - the warning the pen guard never gave (built)
+
+`ToulousePoimaino / 100 Busted by the guard` -- *"Stop, you are entering the human pen. If you
+insist on proceeding I'll have the pleasure of squashing you."* -- was fired by nothing in the
+game. `Poimaino kill box` is Active=1 and triggered by players, and its Enter Action was two
+`CSetTargetTypeAction`s: cross the line and both titans turn on you, in silence. The one line the
+guard was written to say before he attacks was the one line he never said. It now plays from the
+same Enter Action, ahead of the two switches.
+
+### What a full sweep of the act found, and what it did not
+
+The survey closed with three sweeps rather than one, because the first two each produced a
+phantom.
+
+**Dead level parts.** Folding case, and excluding parts that are cloned rather than activated and
+secrets the engine switches on itself, the act has four genuinely dead parts left and all four are
+deliberate: `triggers mercury relay` (the abandoned proximity trigger beside the flask, replaced
+by the relay Mathuo's dialogue fires), `clone gen` (an unused generator prototype), and thirteen
+developer `warp` markers. The two dead flags are fixed in tier 1.
+
+**Unreachable dialogue.** All 13 Toulouse trees, 330 nodes: **no node carrying a player reply is
+unreachable**, down from one at the start of the release. The 38 remaining unreachable nodes are
+all balloons, and 36 of them are only "unreachable" to the tool, which reads the node named in a
+map action but does not follow the `After Action` chains that fire the rest of a two-sided
+exchange -- the six mercury bubbles, the six prisoners-escaped bubbles, the ogres' mutton
+complaints, Rhea's lecture to Ephebos. Two were genuinely unfired: `100 Busted by the guard`,
+which tier 6 wires, and `99 Tereo Bubble 2`, which is **not** a defect -- the middle line of the
+Tereo-and-Ephebos exchange is fired from `ToulouseEphebos / Tereo Bubble 2`, and the copy in
+Tereo's own tree is a duplicate nobody uses. That one was two minutes from being "fixed" before
+the check that found the real copy.
+
+**What is deliberately left.** After the bribe at the pen, Poimaino stops guarding but does not
+walk away, exactly as he does after the shipped Speech bluff. Sending him off to
+`Poimaino Drinking` (1280, 1707) the way the Mathuo route does needs a patrol authored on the
+map and a save that has never entered Toulouse to test it, and it changes nothing the player
+cannot already do. It is the only piece of Toulouse work left, and it is polish.
+
 ### How little Toulouse knows about the player
 
 | gate | replies | share |
@@ -415,10 +452,7 @@ carries or what the player is.
    are Pablo's draft, and the rest sit on the Duke's demokin witness and two other Barcelona
    scenes. Each needs the same treatment the Bishop's got: check whether the NPC spawns and the
    reply is reachable *before* calling it a defect.
-5. **Poimaino walks off.** The bribe leaves him standing at his post, off duty, the way the
-   shipped bluff does. Having him walk to `Poimaino Drinking` (1280,1707) the way the Mathuo
-   route does needs a patrol authored on the map, which also means a save that has never
-   entered Toulouse to test it. Worth doing only alongside other map work here.
+5. **Poimaino walks off** after the bribe (see above). The last Toulouse item, and polish.
 6. **Andre's two betrayal variants** (`900`, `1002`), carried over from 0.14.0 and still
    needing the extortion path walked before they can be read honestly.
 

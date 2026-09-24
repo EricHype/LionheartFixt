@@ -11570,7 +11570,16 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/ToulousePoimaino
+								Node ID=100 Busted by the guard
+								Name of Position=Poimaino
+								Position Offset=0.000000,-80.000000
+								After Action=
+								Include In Log=1
+							}
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=Poimaino
