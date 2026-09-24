@@ -252,7 +252,7 @@ him and then tell the mayor anyway. `Lucius extorted` is a real checker the tree
 map chooses the betrayed return (`1003`) from a scene we have not traced, and guessing wrong
 would play the wrong line at the delivery. Left for a playthrough of the extortion path.
 
-### Tier 4 - Na Roqua (carried over from 0.9.0)
+### Tier 4 - Na Roqua (built 2026-09-23, unplayed)
 
 11 unreachable, 7 with replies, and 0.9.0 deliberately left them because it was a Barcelona
 release: her return greetings after the chicken and the shapeshifted Beatrice, **`5 Return if
@@ -260,6 +260,34 @@ Inquisitor`** (a sworn Inquisitor who has been told the Cathars are innocent -- 
 **`60 Stash in Caverns`** (*"There is a place I keep secret, where items of power are stored.
 These things could be yours if you are a friend to the cathars"* -- a whole reward the game never
 offers), `100 Return`, and `300 confront the weird woman 1`, where she admits her past.
+
+**Built.** 0.9.0 had already wired her Cathar-friend greeting and the promise that sets
+`cathar friend`; what remained needed two more checkers her own map carries and **nothing in the
+game ever set**, the same shape as Tremblethorn's `angry at second visit`:
+
+- `Beatrice present` is now set by `Beatrice Relay` -- the moment she turns the chicken back into
+  the mayor's wife -- and the greeting selector reads it, so both *"No chickens this time?"*
+  variants play. They sit inside 0.9.0's structure: Cathar friend first, then the chicken, then
+  the Inquisition, then the plain return.
+- `5 Return if Inquisitor` gets its arm: a sworn Inquisitor is greeted *"Greetings your holiness.
+  I trust your investigation in Montaillou goes well, and you are closer to discovering the
+  innocence of the Cathars"*, which is the game quietly taking a side.
+- `60 Stash in Caverns` -- *"There is a place I keep secret, where items of power are stored"* --
+  hangs off a node the writers left with the literal ID `Unknown`, whose text is her answer about
+  the Cathars' allies. One reply on the live Cathar explanation reaches it, and the stash with it.
+- `300 confront the weird woman 1` -- *"Then you know of my past, that I once led a very different
+  life"* -- is offered on her return greetings to a player who has `spoke with seer about weird
+  woman`, the checker the seer's own scene sets.
+
+Her tree goes from 11 unreachable nodes to 5, one carrying replies: `100 Return` is a duplicate
+of `03 Return Dialogue if Heard 50` with one reply changed, and stays dark as a superseded draft.
+
+**Worth noting for the act's antagonist.** `100 Favorable Return` is the only node that reaches
+`100 Shapeshifting Daeva`, whose answer is *"Within my cave, there is an old periapt -- it will
+let you see the daeva's true form and strike it down. Forever."* That periapt is the Zarathustra
+relic the **two** Shapeshifting Daeva trees switch on -- the 26 "duplicate" nodes recorded in the
+survey are its half of the encounter. Since 0.9.0 the directions exist; whether the periapt can
+actually be taken from her cave is the next read.
 
 ### Tier 5 - the Inquisitor's third task
 

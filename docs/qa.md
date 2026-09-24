@@ -1336,6 +1336,10 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MO11 | Montaillou, Andre, first meeting | *"I want to talk to you."* | `20 Introductory`, with the gatekeeper, the gullible line and his story |
 | MO12 | Andre, a return visit, having seen the corpse | *"There is a gruesome corpse..."* | `02 corpse` -- the same answer, but the hearts, the accusations and Michel are still offered |
 | MO13 | MO12 having heard both the mayor's story and Esclarmonde's | *"I spoke to a woman from Toulouse... and the mayor..."* | `800 Both lies`: he admits the lie and asks you to keep his secret |
+| MO14 | Witch hut, after she restores Beatrice | Talk to her again | *"No chickens this time? Perhaps a weasel or stoat who is really the King of Persia..."*; the not-promised variant if you never promised |
+| MO15 | Witch hut as a sworn Inquisitor, having promised | - | *"Greetings your holiness..."* rather than the plain return |
+| MO16 | Witch hut, ask about the Cathars | *"And when the Inquisition has finished writing its book...?"* -> *"I must know what sort of *aid* you intend to give."* | Her answer about the allies, then the secret stash offer |
+| MO17 | Witch hut after speaking to Nostradamus about her | *"The seer told me what you were, and what you did."* | `300 confront the weird woman 1`; the reply is absent before the seer |
 | RN1 | Fresh Plains, any spirit-bearing race, walk to the rogue camp from the south-east | - | The spirit manifests ahead of you and says *"Beware, the dark inquisitors wield the power to cancel magic by touch..."* (voiced), fades; once; a Pureblood sees nothing |
 | RN2 | Fresh Plains, fight the rogue camp | Kill them | As the last one or two fall: the summoning flare on the pentagram, *"<The men stop. The circle does not...>"*, a Terror rises and attacks; once |
 | RN3 | Fresh Plains, kill Diego, tell the rogues | `30 join`, close the store | The flare, *"<The circle flares and holds what it called...>"*, a Terror that stands in the circle and does not attack |

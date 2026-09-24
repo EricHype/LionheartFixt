@@ -385,6 +385,19 @@ Return failure if the If failes=0
 }
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=The seer told me what you were, and what you did.
+Go to node ID=300 confront the weird woman 1
+Icon=Speach Skill Icon
+
+Requirement=!None
 Reply Text=I must go. Goodbye.
 Go to node ID=10 goodbye
 Icon=Exit Icon
@@ -513,6 +526,19 @@ State=F3RZMV0O
 Else=
 Return failure if the If failes=0
 }
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=The seer told me what you were, and what you did.
+Go to node ID=300 confront the weird woman 1
+Icon=Speach Skill Icon
 
 Requirement=!None
 Reply Text=I must go. Goodbye.
@@ -822,6 +848,19 @@ State=NML4JYFE
 Reply Text=Perhaps you can help me. I seek the seer known as Nostradamus.
 Go to node ID=45 nostradamus
 Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=The seer told me what you were, and what you did.
+Go to node ID=300 confront the weird woman 1
+Icon=Speach Skill Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -1212,6 +1251,10 @@ Requirement=!None
 Reply Text=I know of these Cathars - they are heretics and should be burned by the Inquisition.
 Go to node ID=10 bad goodbye
 Icon=Fight Icon
+
+Requirement=!None
+Reply Text=And when the Inquisition has finished writing its book, what happens to these people?
+Go to node ID=Unknown
 
 Requirement=!None
 Reply Text=Nevermind. Goodbye.
@@ -2024,6 +2067,19 @@ Go to node ID=100 shapeshifting demon 1
 Requirement=!None
 Reply Text=I seek the ancient relics guarded by the Knights.
 Go to node ID=40 Relics
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=spoke with seer about weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=The seer told me what you were, and what you did.
+Go to node ID=300 confront the weird woman 1
+Icon=Speach Skill Icon
 
 Requirement=!None
 Reply Text=Goodbye.

@@ -1246,12 +1246,47 @@ CLayerSaveData
 											Speaker=$trigger
 											Player Being Spoken To=$Instigator
 										}
-										Else=CDisplayDialogTreeAction
+										Else=CIfAction
 										{
-											Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
-											Node ID=03 Return Dialogue if Heard 50
-											Speaker=$trigger
-											Player Being Spoken To=$Instigator
+											If=CCheckExistenceAction
+											{
+												Name To Check For=Beatrice present
+												Desired Minimum Count=1
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+												Node ID=03 Return Dialogue if Heard 50 AND shapechanged Beatrice
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Else=CIfAction
+											{
+												If=CExpressionAction
+												{
+													Expression=CUseCannedExpressionExpression
+													{
+														Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+													}
+													Character to get attributes from=$Instigator
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+													Node ID=5 Return if Inquisitor
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+													Node ID=03 Return Dialogue if Heard 50
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
 										}
 										Return failure if the If failes=0
 									}
@@ -1267,12 +1302,28 @@ CLayerSaveData
 													Name To Check For=Return dialog if not heard node 50
 													Desired Minimum Count=1
 												}
-												Then=CDisplayDialogTreeAction
+												Then=CIfAction
 												{
-													Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
-													Node ID=05 Return Dialogue if Not Heard 50
-													Speaker=$trigger
-													Player Being Spoken To=$Instigator
+													If=CCheckExistenceAction
+													{
+														Name To Check For=Beatrice present
+														Desired Minimum Count=1
+													}
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+														Node ID=05 Return Dialogue if Not Heard 50 AND shapechanged Beatrice
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+														Node ID=05 Return Dialogue if Not Heard 50
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+													Return failure if the If failes=0
 												}
 												Else=CMultipleActionsAction
 												{
@@ -2813,7 +2864,14 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=14
+							Item Count=15
+							Action=CActivateAction
+							{
+								Target Name=Beatrice present
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
 							Action=CPlayAnimationAction
 							{
 								Animation=spellcast
