@@ -36,6 +36,10 @@ Reply Text=Why have you destroyed Toulouse?
 Go to node ID=20 Why are you here
 
 Requirement=!None
+Reply Text=What is it you want of me, then?
+Go to node ID=60 Go speak to Rhea
+
+Requirement=!None
 Reply Text=Actually, I have nothing to say to you.
 Go to node ID=70 Rude Goodbye
 Icon=Exit Icon
@@ -72,6 +76,10 @@ Reply Text=I've been told you're eating your prisoners.
 Go to node ID=40 Why are you eating people
 
 Requirement=!None
+Reply Text=What is it you want of me, then?
+Go to node ID=60 Go speak to Rhea
+
+Requirement=!None
 Reply Text=Actually, I have nothing to say to you.
 Go to node ID=70 Rude Goodbye 
 Icon=Exit Icon
@@ -92,6 +100,10 @@ Go to node ID=13 Who is Menoetius
 Requirement=!None
 Reply Text=Why have you destroyed Toulouse?
 Go to node ID=20 Why are you here
+
+Requirement=!None
+Reply Text=What is it you want of me, then?
+Go to node ID=60 Go speak to Rhea
 
 Requirement=!None
 Reply Text=Actually, I have nothing to say to you.
@@ -118,6 +130,10 @@ Go to node ID=20 Why are you here
 Requirement=!None
 Reply Text=I've been told you're eating your prisoners.
 Go to node ID=40 Why are you eating people
+
+Requirement=!None
+Reply Text=What is it you want of me, then?
+Go to node ID=60 Go speak to Rhea
 
 Requirement=!None
 Reply Text=Actually, I have nothing to say to you.
@@ -626,6 +642,14 @@ Go to node ID=5 other questions
 Requirement=!None
 Reply Text=I will speak with Rhea.
 Go to node ID= 
+Custom Action=CActivateAction
+{
+Target Name=told to see Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------

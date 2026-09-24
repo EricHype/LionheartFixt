@@ -1,0 +1,624 @@
+CDialogTree
+{
+Name=Maury the Shepherd
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Maury Attacked by Monsters
+Text=Aah! You there! Help me! 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=02 Conversation Start
+Text=A thousand thanks. Without you I would be a monster's supper, like my poor sheep. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What happened to your sheep?
+Go to node ID=40 The Problem
+
+Requirement=!None
+Reply Text=Your thanks is welcome, but I was hoping for something more substantial. 
+Go to node ID=30 Maury Owes You
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Return Dialogue for Maury the Shepherd in Montaillou (if Maury Was Rescued)
+Text=Good day, friend! Pierre Maury, a simple shepherd, at your service. Again, a thousand thanks for saving me from those monsters.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Shepherd? Where are your sheep?
+Go to node ID=40 The Problem
+Action work in progress=(If titan not defeated; if titan already defeated, this reply text does not appear)
+
+Requirement=!None
+Reply Text=What can you tell me about this town?
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=It was my pleasure, Maury. Take care, and goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Alright then! Thank you and goodbye.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=30 Maury Owes You
+Text=Aye, well, I have neither coin nor sheep, but such is my lot in life. Pierre Maury of Montaillou - at your service. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Montaillou? What can you tell me about it?
+Go to node ID=50 Montaillou
+
+Requirement=!None
+Reply Text=What happened to your sheep?
+Go to node ID=40 The Problem
+
+Requirement=!None
+Reply Text=What little coin you have would be payment enough, I think.
+Go to node ID=60 Maury Enslaved
+Action work in progress=(One coin of lowest value to player, Maury runs away)
+
+Requirement=!None
+Reply Text=First a meal for monsters, now a shepherd with no sheep? You are an unlucky man, indeed. 
+Go to node ID=90 Unflappable Maury
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 The Problem
+Text=Yes, well, ogres have a taste for sheep. Unfortunately I learned this the hard way when I started grazing my sheep in these pastures. Apparently there's a tribe of them somewhere nearby. Nasty creatures, ogres.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'd be interested to know where these ogres are, if only to stay out of their way.
+Go to node ID=70 The Titan
+
+Requirement=!None
+Reply Text=Why let your sheep graze in such an area?
+Go to node ID=80 Justification
+
+Requirement=!None
+Reply Text=First a meal for monsters, now a shepherd with no sheep? You are an unlucky man, indeed. 
+Go to node ID=90 Unflappable Maury
+
+Requirement=!None
+Reply Text=I have to go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Montaillou
+Text=Montaillou's just a little village. A few farmers, fishers, and shepherds, that's it. Hardly Barcelona, but what other city is? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=Is there anything interesting near or in the town?
+Go to node ID=120 Maury on Caves
+
+Requirement=!None
+Reply Text=Any treasure or gold in Montaillou?
+Go to node ID=160 shopping
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 Maury Enslaved
+Text=Very well, then. Here you are. Take my last gold coin.  It was to buy my son's supper for the next week.  But don't worry about us, we shall get by on grasshoppers and leaves.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=On second thought, keep it.
+Go to node ID=500 poor
+
+Requirement=!None
+Reply Text=Just give me the gold and spare me the sob story.
+Go to node ID=510 shirt too
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1
+}
+Action=CActivateAction
+{
+Target Name=shepherd mad
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+------------------------------------------------------------
+Node ID=70 The Titan
+Text=I'm not sure where they're coming from, and to tell the truth I'm not overly anxious to find out. Until a few weeks ago everything was peaceful.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What can you tell me about Montaillou?
+Go to node ID=50 Montaillou
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 Justification
+Text=Sometimes it is good to leave Montaillou for a while these days. I haven't been in town for a couple of weeks now, and I can't say that I miss it very much.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'd be interested to know where these ogres are, if only to stay out of their way.
+Go to node ID=70 The Titan
+
+Requirement=!None
+Reply Text=What's wrong with Montaillou?
+Go to node ID=130 The Inquisition
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Unflappable Maury
+Text=Aye, so I am. A man cannot escape his fate, as the perfecti say.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perfecti?
+Go to node ID=140 Parfaits
+
+Requirement=!None
+Reply Text=Where can I find the ogres' lair?
+Go to node ID=70 The Titan
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Magic
+Text=Magic? Well, the perfecti like the Lady are said to have magic. And there are the old caves...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text= Perfecti?
+Go to node ID=140 Parfaits
+
+Requirement=!None
+Reply Text=What Lady?
+Go to node ID=210 The Lady
+
+Requirement=!None
+Reply Text=Old caves?
+Go to node ID=120 Maury on Caves
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Maury Explains It All
+Text=What would you like to know about Montaillou?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who's in charge?
+Go to node ID=150 The Mayor
+
+Requirement=!None
+Reply Text=Are there problems in town?
+Go to node ID=130 The Inquisition
+
+Requirement=!None
+Reply Text=Where can I get supplies?
+Go to node ID=160 Shopping
+
+Requirement=!None
+Reply Text=Do you know Brother Michel?
+Go to node ID=170 Brother Michel
+
+Requirement=!None
+Reply Text=Is there any word of magic in Montaillou?
+Go to node ID=100 Magic
+
+Requirement=!None
+Reply Text=Is there anyone here I should be careful of?
+Go to node ID=260 Guillaume
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Maury on Caves
+Text=Well, there are ancient caves outside of town. Legend says some magician haunts them. I've seen monsters there; I'd stay away.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 The Inquisition
+Text=The Bishop is now in the village, calling citizens before the Inquisition.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Why?
+Go to node ID=191 Catharism from 130
+
+Requirement=Inquisitor IS
+Reply Text=Then perhaps I am needed. Are there are heretics in Montaillou, then?
+Go to node ID=191 Catharism from 130
+
+Requirement=!None
+Reply Text=What happens to the citizens?
+Go to node ID=200 The Toll
+
+Requirement=!None
+Reply Text=I had some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Parfaits
+Text=The perfecti are good folk, pure of sin, who are ready to go to heaven. Like the Apostles, they say. More like recluses who, like Cathars, shun meat I say.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who says this?
+Go to node ID=190 Catharism
+
+Requirement=!None
+Reply Text=Where could I meet one of these perfecti?
+Go to node ID=210 The Lady from 140
+
+Requirement=!None
+Reply Text=Why don't they eat meat?
+Go to node ID=220 Vegetarianism
+
+Requirement=!None
+Reply Text=I had some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=150 The Mayor
+Text=The Mayor, Pierre Clergue, is a clever man. Learned - and popular with the ladies, if you catch my meaning. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=160 Shopping
+Text=Montaillou is a simple village, friend. Perhaps you should stop by the inn or the Mayor's office.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=So no treasure or gold in Montaillou, then?
+Go to node ID=120 Maury on Caves
+
+Requirement=!None
+Reply Text=I had some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=170 Brother Michel
+Text=Oh, he is an old Knight who lives in one of the dock houses. He has a big friend and doesn't mingle much.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=190 Catharism
+Text=There are true believers in Montaillou, who worship differently than the Church does. The Inquisition calls them Cathars and hunts them as heretics.
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=And what do these heretics believe?
+Go to node ID=230 Cathar Belief
+
+Requirement=Inquisitor NOT
+Reply Text=What do these Cathars believe?
+Go to node ID=230 Cathar Belief
+
+Requirement=!None
+Reply Text=I have other questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=191 Catharism from 130
+Text=There are true believers in Montaillou, who worship differently than the Church does. The Inquisition calls them Cathars and hunts them as heretics.
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=And what do these heretics believe?
+Go to node ID=230 Cathar Belief
+
+Requirement=Inquisitor NOT
+Reply Text=What do these Cathars believe?
+Go to node ID=230 Cathar Belief
+
+Requirement=!None
+Reply Text=What happens to those brought before the bishop?
+Go to node ID=200 The Toll
+
+Requirement=!None
+Reply Text=I have other questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=200 The Toll
+Text=Several families have been rounded up and imprisoned. There is talk of some being burned at the stake.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Well, what is the heresy?
+Go to node ID=190 Catharism
+
+Requirement=!None
+Reply Text=I have other questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=210 The Lady
+Text=The Lady, Mother Roqua, is a wise and old perfecti. She lives in secret somewhere near Montaillou, preparing for the end.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What's a perfecti?
+Go to node ID=140 Parfaits
+
+Requirement=!None
+Reply Text=I have other questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=210 The Lady from 140
+Text=The Lady, Mother Roqua, is a wise and old perfecti. She lives in secret somewhere near Montaillou, preparing for the end.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=220 Vegetarianism
+Text=They say all things have souls, and we should not eat meat since it could have a soul that was once a man.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=So they link animals and men? Their beliefs seem like madness.
+Go to node ID=240 Alternate Goodbye
+Action work in progress=(Inquisitor or Templar small faction bonus, once only)
+
+Requirement=!None
+Reply Text=Interesting. Tell me more.
+Go to node ID=190 Catharism
+
+Requirement=!None
+Reply Text=I have other questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=230 Cathar Belief
+Text=They think this world is bad, that we need to purify our souls, by avoiding earthly things and meat. Only then can we escape being reborn in new bodies and go to heaven.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sheer apostasy. The Inquisition teaches us the true doctrine. 
+Go to node ID=240 Alternate Goodbye
+Action work in progress=(Inquisitor small faction Bonus, once only)
+
+Requirement=!None
+Reply Text=Sounds like a wise doctrine.
+Go to node ID=250 Maury Confides
+
+Requirement=!None
+Reply Text=I have other questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=240 Alternate Goodbye
+Text=Oui, you may be right. My apologies, I have surely been talking your ear off - adieu.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=250 Maury Confides
+Text=I believe so as well. If you are interested in more, you should seek the Lady in her house. She can tell you more.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The Lady?
+Go to node ID=210 The lady
+
+Requirement=!None
+Reply Text=I have some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=260 Guillaume
+Text=There is a former friend of mine, Guillaume Belibaste. He may treat you well at first, but it is only to abuse you at some later date. Do not trust him.  He cost me a half dozen sheep once.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have some more questions about the town.
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=500 poor
+Text=Oh thank you ever so much.  Your kindness will not be forgotten.  Is there anything else that I can do for you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You said you are a shepherd? Where are your sheep?
+Go to node ID=40 The Problem
+Action work in progress=(If titan not defeated; if titan already defeated, this reply text does not appear)
+
+Requirement=!None
+Reply Text=What can you tell me about this town?
+Go to node ID=110 Maury Explains It All
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=510 shirt too
+Text=Why not take my shirt and shoes as well then.  Insensitive cur.  Taking advantage of poor folk like that, you ought to be ashamed of yourself.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=520 mad greeting
+Text=What do you want now?  My underclothes?  Leave me and my starving son alone.  At least spare us our dignity.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+Reply Text=Allow me to apologize, I did not know you were so poor, here are 2 gold pieces.
+Go to node ID=500 poor
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=shepherd mad
+}
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=2
+}
+}
+}
+
+Requirement=!None
+Reply Text=Just be thankful I don't put you out of your misery
+Go to node ID=540 really mad
+
+Requirement=!None
+Reply Text=Goodbye
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=540 really mad
+Text=Never in all my years have I encountered someone as cruel as you.  I hope you meet a painful end.  Curse you!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=550 never again
+Text=I have nothing left to give or say to you.  Leave me alone.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=560 Help 1
+Text=Help me!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=561 Help 2
+Text=Please! My son needs me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=562 Help 3
+Text=Please! You must help me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=563 Help 4
+Text=What horrible beasts!
+Should Have Voiceover=0
+}

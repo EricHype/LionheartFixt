@@ -359,6 +359,34 @@ the five cases the content it would describe is already live and working.
 So Tier 6 adds nothing to the release, which is the right outcome: the act's conflict is already
 told, and these are the shelf the designers never filled.
 
+### Tier 7 - the act's last readable orphans (built 2026-09-23, unplayed)
+
+- **The Cathar Warden** greeted everyone with *"How long have you been there? What did you
+  **see**?"* -- even a player who never watched him change out of the bear. `1 Conversation Start
+  Not Saw Bear` is the other version and nothing opened it. A checker, `saw the warden change`,
+  is set by the bear-to-cathar sequence itself, and the greeting now picks on it. His return
+  greetings (bribed, friendly, unfriendly) are untouched.
+- **Maury the shepherd** gains a topic on his information hub -- *"Is there anyone here I should
+  be careful of?"* -- which reaches `260 Guillaume`: Guillaume Belibaste, *"a former friend of
+  mine. He may treat you well at first, but it is only to abuse you at some later date. He cost
+  me a half dozen sheep once."* Guillaume the con man is standing in the square.
+- **Lethos** told nobody to go and see Rhea: `60 Go speak to Rhea` -- *"It would be best if you
+  spoke to Rhea about our society and customs and then returned to me"* -- was reachable from
+  nothing, while his greeting selector keys the whole conversation on `PC has spoken to Rhea`.
+  *"What is it you want of me, then?"* now reaches it from his first meeting, his question hub
+  and both returns, and accepting sets `told to see Rhea`. His two return greetings were dark for
+  the same reason -- before Rhea, a second visit replayed the first meeting -- so the pre-Rhea
+  branch is now a series: the introduction once, then `2 Return`, or `2 Return told to speak to
+  Rhea but haven't` if you said you would go.
+
+The act's reply-carrying orphans go from 27 to 22, and **16 of those 22 are the Shapeshifting
+Daeva duplication**. What is left after that is six: Andre's two betrayal variants, Na Roqua's
+duplicate `100 Return`, Beatrice's `50 come with me`, the Templar's `03 Return Dialogue` in the
+mayor's house, and `ToulousePoimaino / 40 Mercury SUCCESS` -- the success half of a mercury-laced
+drink offered to the titan guarding the prisoners, whose live half (`101 Mercury bubble` 1-6,
+`102 Drinking`) is driven from the map. That one needs the item traced before it can be wired,
+and is left for a read.
+
 ### Also standing
 
 - `Cathar Warden / 1 Conversation Start Not Saw Bear` (six replies) -- the grove warden's other

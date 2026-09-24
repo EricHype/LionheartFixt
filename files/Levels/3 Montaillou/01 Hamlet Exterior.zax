@@ -87,6 +87,36 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=saw the warden change
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=4900
+			Position Y=1500
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Montaillou gate challenge done
 			Child List=
 			Visible=1
@@ -72281,12 +72311,28 @@ CLayerSaveData
 								Action=Array
 								{
 									Item Count=2
-									Action=CDisplayDialogTreeAction
+									Action=CIfAction
 									{
-										Dialog Tree File=Levels/3 Montaillou/Dialog/Cathar Warden
-										Node ID=1 Conversation Start Saw Bear
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										If=CCheckExistenceAction
+										{
+											Name To Check For=saw the warden change
+											Desired Minimum Count=1
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/3 Montaillou/Dialog/Cathar Warden
+											Node ID=1 Conversation Start Saw Bear
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/3 Montaillou/Dialog/Cathar Warden
+											Node ID=1 Conversation Start Not Saw Bear
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Return failure if the If failes=0
 									}
 									Action=CIfAction
 									{
@@ -73259,7 +73305,14 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=5
+							Item Count=6
+							Action=CActivateAction
+							{
+								Target Name=saw the warden change
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
 							Action=CBeginNonInteractiveSequenceAction
 							{
 								Options=CNonInteractiveSequence
