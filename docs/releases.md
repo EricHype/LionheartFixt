@@ -319,7 +319,7 @@ Acting in the service of the Inquisition could be the only salvation for your ve
 now reached from all three tainted greetings, where the only replies were to claim a faction, to
 threaten him, or to leave. His tree goes to **zero unreachable nodes**.
 
-### Tier 6 - four quests with no states
+### Tier 6 - the stateless quests (read 2026-09-23; all five left, with reasons)
 
 `Defend Montaillou from the invaders` and `Find the portals used by the English forces` have zero
 states **and zero references anywhere in the game**. `Prevent the Inquisitor from killing the
@@ -328,6 +328,36 @@ zero states and are referenced only by `02 Hamlet Burned`'s cleanup sweep. `Help
 with his tasks` has two written states (*"Find Marcus' cousin and take sphere from him"*, *"Return
 Sphere to Marcus"*) and **no references at all**. Whether any of these has content behind it, or
 whether they are names for threads that ship under other quests, is the first thing to read.
+
+**Read, and the answer is that every one of them is an empty container for a thread that ships
+without it.** Nothing here is buildable as a quest without inventing the quest, and in four of
+the five cases the content it would describe is already live and working.
+
+- `Defend Montaillou from the invaders` -- the file has **no name at all**, `Name=` is blank and
+  `Item Count=0`: it was never written. What it would describe is `02 Hamlet Burned`, 1,487 parts
+  of live invasion with its own `Attackers`, `Defenders` and `Defenders win a fight` trees. The
+  battle ships; the quest container does not, and never did.
+- `Find the portals used by the English forces` -- zero states, zero references, and the thread
+  is live without it: the burned hamlet has `Hamlet Burned Knight near portal` -- *"You go ahead
+  through the portal. I must remain here to fend off the Druids"* -- and the portals themselves
+  are wired in the Burial Chamber, the church and Nostradamus's demesne.
+- `Prevent the Inquisitor from killing the Cathars` and `Root out the heretic Cathars` -- the two
+  sides of the act's central conflict, zero states each, and referenced only by the burned
+  hamlet's cleanup sweep, which fails whatever is active when the village goes up. Their content
+  ships under two quests that **do** have states and are fully live: `Find the Witch for the
+  Inquisitor` and `Talk with The Mayor for the Inquisitor`. Giving these two states would put
+  entries in the journal that nothing advances and nothing completes.
+- `Help Andre the Titan with his tasks` -- two written states and no references, and the read
+  explains why: its name is *"Help **Marcus** the Titan with his tasks"* and its states are *"Find
+  Marcus' cousin and take sphere from him"* / *"Return Sphere to Marcus"*. **Marcus appears
+  nowhere else in the game.** It is a draft from before the character became Andre-who-is-really-
+  Lucius, and his errand became the four stone hearts of the Toulouse elders, which is live and
+  pays 2,000 gold on `666 Done`. A matching orphan sits beside it: `Titan Sphere.InventoryItem`
+  (*"Spirit gem"*, value 200) exists complete, with an inventory icon and a pick-up model, and is
+  referenced by no can, map or tree.
+
+So Tier 6 adds nothing to the release, which is the right outcome: the act's conflict is already
+told, and these are the shelf the designers never filled.
 
 ### Also standing
 
