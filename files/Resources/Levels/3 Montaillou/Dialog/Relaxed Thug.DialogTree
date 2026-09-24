@@ -1,0 +1,667 @@
+CDialogTree
+{
+Name=Louis the Beggar
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Bonjour! Do you have a few coins to spare for a man in need?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, not really.
+Go to node ID=10 No
+
+Requirement=!None
+Reply Text=Sure, what do you need?
+Go to node ID=20 Yes
+
+Requirement=!None
+Reply Text=Get out of my sight, beggar!
+Go to node ID=30 Out of sight
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita Suarez keeps a house in Barcelona. Ask her what happens to men who work her friends.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+}
+}
+Reply Text=Church square, in daylight, with your hands showing. Whoever taught you should be ashamed.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+}
+}
+Reply Text=You are working a church square in daylight. That is not how it is done.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=10 No
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return
+Text=You're back...and I still need gold...
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Relaxed Thug Gave gold to
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Dont we all? But you can't have mine.
+Go to node ID=10 No
+Action work in progress=(DID NOT Already pay) 
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Relaxed Thug Gave gold to
+Desired Minimum Count=1
+}
+}
+Reply Text=Dont we all? But you can't have mine.
+Go to node ID=60 Ok not pay
+Action work in progress=(Already paid) 
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita Suarez keeps a house in Barcelona. Ask her what happens to men who work her friends.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+}
+}
+Reply Text=Church square, in daylight, with your hands showing. Whoever taught you should be ashamed.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+}
+}
+Reply Text=You are working a church square in daylight. That is not how it is done.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 No
+Text=Ahh...maybe I did not explain as well as I should have...I *really* need some gold...from you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Is this a robbery?
+Go to node ID=20 Yes
+
+Requirement=!None
+Reply Text=Sure, what do you need?
+Go to node ID=20 Yes
+
+Requirement=!None
+Reply Text=You try to rob me near a church? Get out of my sight!
+Go to node ID=30 Out of sight
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Reply Text=Juanita Suarez keeps a house in Barcelona. Ask her what happens to men who work her friends.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+}
+}
+Reply Text=Church square, in daylight, with your hands showing. Whoever taught you should be ashamed.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+}
+}
+Reply Text=You are working a church square in daylight. That is not how it is done.
+Go to node ID=80 guild
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I will stain the ground with your blood, thief!
+Go to node ID=
+Action work in progress=(goto combat) 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Combat Relaxed Thug
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Yes
+Text=Two gold coins is all I require to feed my family, mon ami...it is a hard life in the fields, tending crops, what with all of the evil in the countryside ...
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 60
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=got gold from thug
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I wish I had some gold. I am out of gold with having to pay Inquisition taxes.
+Go to node ID=75 Not have money Inquisition
+Action work in progress=(Speech>60) 
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=2
+}
+}
+Reply Text=No problem. Here you go.
+Go to node ID=100 Thanks
+Action work in progress=(Have 2 gold coins) 
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=2
+}
+Action=CActivateAction
+{
+Target Name=thug likes you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=2
+}
+}
+}
+Reply Text=I wish I had two gold coins. I am out of gold.
+Go to node ID=70 Not have money
+Action work in progress=(Do not have 2 gold coins) 
+
+Requirement=PE 7+
+Reply Text=Your hands do not look like the hands of a farmer. You have no callouses to speak of.
+Go to node ID=40 Hands Farmer
+Action work in progress=(Perception of 7+)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Get out of my sight, beggar!
+Go to node ID=30 Out of sight
+
+Requirement=!None
+Reply Text=I will stain the ground with your blood, thief!
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Combat Relaxed Thug
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=10 No
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Out of sight
+Text=Your disrespectful tone is quite unnerving, mon ami. The life of a farmer is hard, but no one needs to be yelled at in such a fashion. I would think that it would take at least ten of your gold coins to soothe my ravaged nerves.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+Reply Text=Here you go.
+Go to node ID=100 Thanks
+Action work in progress=(Have 10 gold coins) 
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=10
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+Reply Text=I wish I had 10 gold coins. I am flat broke.
+Go to node ID=70 Not have money
+Action work in progress=(Do not have 10 gold coins) 
+
+Requirement=PE 7+
+Reply Text=Your hands do not look like the hands of a farmer. You have no callouses to speak of.
+Go to node ID=40 Hands Farmer
+Action work in progress=(Perception of 7+)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I will stain the ground with your blood, thief!
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Combat Relaxed Thug
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Combat Relaxed Thug
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Hands Farmer
+Text=Hah! You noticed that, eh? Well, it will go to provide for my bar tab, then. Wine and cheese, they are not cheap, eh? Your bravado is amusing, stranger. For that I will make you a most generous offer, one that I offer only to my closest friends and favored relatives...one gold coin for my night's lodging and we can part company with no hard feelings.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 60
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=got gold from thug
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I wish I had some gold. I am flat broke with having to pay Inquisition taxes.
+Go to node ID=75 Not have money Inquisition
+Action work in progress=(Speech>60) 
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1
+}
+}
+Reply Text=Here you go.
+Go to node ID=100 Thanks
+Action work in progress=(Have 1 gold coin) 
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1
+}
+}
+}
+Reply Text=I wish I had one gold coin. I am flat broke.
+Go to node ID=70 Not have money
+Action work in progress=(Do not have 1 gold coin)
+
+Requirement=!None
+Reply Text=I will stain the ground with your blood, thief!
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Combat Relaxed Thug
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=
+Action work in progress=(goto combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Combat Relaxed Thug
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 Ok not pay
+Text=The generosity of your heart has spoken volumes already. Trouble is coming. Be ready for anything.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=thug likes you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Not have money
+Text=I can see that your purse is light and that beating you would be profitless. I will let you go your way this day, and do not let it ever be said that I am not a generous man!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=thug likes you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=75 Not have money Inquisition
+Text=Those fiends are diabolical in their lust for gold and power, eh? I tell you what, pickings have been good today. Take this gold coin and buy yourself a sword...trouble is brewing, and the Inquisition will pay...in blood.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Give player 1 gold coin) 
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1
+}
+Action=CActivateAction
+{
+Target Name=got gold from thug
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=thug likes you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Thanks
+Text=Many thanks, traveler!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Set paid me trigger to paid) 
+Custom Action=CDeactivateAction
+{
+Target Name=Relaxed Thug Gave gold to
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 combat bubble
+Text=You will die here!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=199 Flight from demon
+Text=Gaaaah!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=80 guild
+Text=<He looks at your hands, and then at your face, and the farmer goes out of him all at once.> Ahh. Mon ami. You will forgive a working man his little theatre - one does not ask the guild for its papers on the road. Keep your coins. And keep off the church square on a feast day, that is my patch and I was here first.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Good hunting.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=thug likes you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=999 Return Friend
+Text=I hope you are well, friend.
+Should Have Voiceover=0
+}

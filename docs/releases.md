@@ -387,7 +387,7 @@ drink offered to the titan guarding the prisoners, whose live half (`101 Mercury
 `102 Drinking`) is driven from the map. That one needs the item traced before it can be wired,
 and is left for a read.
 
-### Tier 8 - how Montaillou reads the player (scope, not started)
+### Tier 8 - how Montaillou reads the player (first three built 2026-09-24, unplayed)
 
 **Measured 2026-09-23 across all 51 trees and 2,281 player replies.** The act tracks what you
 have *done* reasonably well and who you *are* barely:
@@ -492,6 +492,31 @@ would have something to say to a man wearing goblin honours into a Templar garri
 of Pamiers hunts wizards and would know a necromancer standing in his church; Na Roqua is a
 spirit-witch who should recognise a Wielder before he speaks; the Relaxed Thug, Guillaume the con
 man and the Bartender all live on the guild's side of the law.
+
+**Built: the three allegiance readers whose scenes were already written.**
+
+- **The Relaxed Thug.** Three replies on his beggar's opening, his escalation and his return, for
+  a friend of Juanita's guild (`Thief Friend`), a **Master Thief** and a **Thief**, each in its own
+  register -- the guild one names Juanita, the master one is contemptuous about his tradecraft,
+  the plain thief just notes it. All three reach `80 guild` (ours): the farmer goes out of him
+  all at once, he keeps the theatre, you keep your coins, and he warns you off his patch on a
+  feast day. It sets the `thug likes you` state his own tree already uses, so he greets you
+  afterwards with the shipped *"I hope you are well, friend."*
+- **The gate knights.** A seventh answer to Tier 1's challenge, for a member of the **Goblin
+  Horde**: *"I ride with the Horde of the Khan, and my business is my own."* `100 horde` (ours) is
+  the Templar answer -- he will not draw on the Scion in the open street, and you will be watched
+  every hour you are in the village. Its two replies land on the shipped goodbye and the shipped
+  traveller warning, so nothing new hangs off it.
+- **The Bishop of Pamiers.** He recites his statistics of heresy -- ninety-eight cases, five
+  hundred and seventy-eight depositions -- and a **Necromancer** can now answer *"You have missed
+  one, your grace, and he is standing in front of you."* `61 the ninety-ninth` (ours) is the only
+  place in the act that knows what Relican made of you: he sets down his pen, says he has neither
+  the men nor the fire for you today, and gives his word before God that he will find both. Its
+  replies land on his shipped goodbye and his shipped `10 Combat`.
+
+Three nodes and seven replies of ours. The remaining Tier 8 candidates -- the Cathar toughs'
+loyalty test, the Inquisition agent's plate of meat, Fabrisse, Aidan, Maury's hub, the spirit,
+and the rest of the perks -- are **not** built and stay scoped above.
 
 **Sizing.** Every item above is one or two replies on a node the game already wrote, plus an
 answer node only where the existing answers would not fit. That is the same shape and roughly

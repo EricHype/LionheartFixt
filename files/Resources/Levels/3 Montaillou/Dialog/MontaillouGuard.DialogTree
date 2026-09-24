@@ -239,6 +239,15 @@ Reply Text=I'm on an urgent mission to protect the relics of this region.
 Go to node ID=100 relics
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+}
+Reply Text=I ride with the Horde of the Khan, and my business is my own.
+Go to node ID=100 horde
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=I'm a simple traveler seeking trade and adventure.
 Go to node ID=100 challenge
 
@@ -303,6 +312,15 @@ Reply Text=I'm on an urgent mission to protect the relics of this region.
 Go to node ID=100 relics
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+}
+Reply Text=I ride with the Horde of the Khan, and my business is my own.
+Go to node ID=100 horde
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=My business is my own. Leave me alone.
 Go to node ID=100 traveler
 Is Default Reply=1
@@ -347,6 +365,20 @@ Reply Text=I will keep that in mind.
 Go to node ID=100 goodbye
 Icon=Exit Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 horde
+Text=<His hand does not leave the hilt.> The goblins. We have had word of what the Horde did at the Crossroads, and now one of them walks up the road to a Templar house and says so to my face. I will not draw on the Scion of Lionheart in the open street. But you will be watched every hour you are in Montaillou, and if a single villager comes to harm I will know exactly whose door to break.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Watch away.
+Go to node ID=100 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=The Horde and I are not the same thing.
+Go to node ID=100 traveler
 ------------------------------------------------------------
 Node ID=100 relics inquisition
 Text=Forgive me Inquisitor, I meant no disrespect. Our duties here have been difficult of late. The populace of Montaillou harbors dark secerts, and the very creatures of this forest violently oppose us.

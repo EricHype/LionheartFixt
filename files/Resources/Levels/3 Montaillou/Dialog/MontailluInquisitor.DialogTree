@@ -1469,6 +1469,19 @@ Reply Text=I had some other questions.
 Go to node ID=20 Audience
 
 Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+Reply Text=Ninety-eight. You have missed one, your grace, and he is standing in front of you.
+Go to node ID=61 the ninety-ninth
+Icon=Speach Skill Icon
+
+Requirement=!None
 Reply Text=I see. Goodbye.
 Go to node ID=10 Goodbye
 Icon=Exit Icon
@@ -1536,6 +1549,21 @@ Go to node ID=120 Decline
 Requirement=!None
 Reply Text=I am not good at such things. Is some other way I could help?
 Go to node ID=120 Decline
+------------------------------------------------------------
+Node ID=61 the ninety-ninth
+Text=<The Bishop sets down his pen with great care.> Ninety-nine, then. I have written down farmers who kept the wrong company and widows who would not eat meat on a Friday, and God sends me a necromancer who announces himself in my own church. Go out of this village, child. I have neither the men nor the fire for you today, and you have my word before God that I will find both.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will be gone by morning.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Find them now, then.
+Go to node ID=10 Combat
+Icon=Fight Icon
 ------------------------------------------------------------
 Node ID=80 Results
 Text=I have sentenced fifty-nine to imprisonment, thirty-four to the wearing of yellow crosses, and five to the stake. 
