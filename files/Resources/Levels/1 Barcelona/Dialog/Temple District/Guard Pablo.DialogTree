@@ -1,0 +1,124 @@
+CDialogTree
+{
+Name=Guard Pablo at Temple District
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Greeting
+Text=Greetings stranger. I hope your day in the Temple District is a pleasant one.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who is allowed inside these walls?
+Go to node ID=10 the rules
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=You are looking at a tainted citizen standing on holy ground.
+Go to node ID=30 tainted
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Good day to you.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Return
+Text=Hello again citizen. I hope your day is a pleasant one.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who is allowed inside these walls?
+Go to node ID=10 the rules
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=You are looking at a tainted citizen standing on holy ground.
+Go to node ID=30 tainted
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Good day to you.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 the rules
+Text=The Temple District is restricted to members of the nobility and the Inquisition. Tainted citizens are not allowed within the sacred walls of the Temple District.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you mean by tainted citizens?
+Go to node ID=20 Tainted Explanation
+
+Requirement=!None
+Reply Text=Good day to you.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Tainted Explanation
+Text=Any person that shows a taint of magic in their lineage. You can spot one of the tainted by their telltale features, like pointed teeth and ears, cat-like eyes, and other mystical marks. Tainted folk are not allowed on holy grounds.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=You have been describing me for some time now.
+Go to node ID=30 tainted
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Thank you, guardsman.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 tainted
+Text=<The guard's eyes go to your face, and then carefully past it.> You came up the road and through the gate, citizen, and the gate is not mine to argue with. You have your permission and I have my orders, and I would as soon neither of us tested the other today. Keep to the plaza, and if an Inquisitor asks, you and I have not spoken.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That suits me.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Goodbye
+Text=On your way then stranger.
+Should Have Voiceover=0
+}

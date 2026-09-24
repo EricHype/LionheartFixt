@@ -31181,7 +31181,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=0
+			Active=1
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -31245,15 +31245,15 @@ CLayerSaveData
 									Item Count=2
 									Action=CDisplayDialogTreeAction
 									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/TempleGateGuard
-										Node ID=1 Conversation Start
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Guard Pablo
+										Node ID=1 Greeting
 										Speaker=$trigger
 										Player Being Spoken To=$Instigator
 									}
 									Action=CDisplayDialogTreeAction
 									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/TempleGateGuard
-										Node ID=3 Return for the bribe
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Guard Pablo
+										Node ID=2 Return
 										Speaker=$trigger
 										Player Being Spoken To=$Instigator
 									}

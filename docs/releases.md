@@ -347,20 +347,41 @@ Mayors quest`) is left alone for now: unlike the witch report it is at least nam
 it gates, and its own Custom Requirement is the same shape, so it is the cleaner test case for
 which way an empty can resolves. **MO31 and MO32 exist to answer that.**
 
-**The other 17 replies are Barcelona's, and they are worth a release of their own.** All of them
-are the Temple District gate -- Pablo, the guard who has to be talked, bribed or bluffed past on
-the way into the Temple District, in act 1, on every playthrough. His tree (23 replies, and a
-byte-identical twin under two file names) gates six branches on empty cans: *"I will make a 100
-gold donation"* and *"I will need time to procure the funds"* (`Pablo req 100 gold`,
-`Pablo req under 100 gold`), the nobility bluff (`Pablo req Charisma 15`), *"I am an initiate
-attempting to join the Inquisition"* and the Templar version (`Pablo req faction is Inquisition`,
-`Pablo req faction is KT`), and `Pablo req NO faction & no bribe`. His two race gates
-(`Pablo req tainted or imbued`, `Pablo req NO Feralkin or imbued`) **are** filled in, which is
-the tell: the shells were all created together and only some were finished. If empty cans fail
-open, the player can donate a hundred gold they do not have, claim an order they do not belong
-to, and pass a Charisma check at Charisma 3. Filling the six in is a small, high-value repair
-with an obvious shape -- every primitive needed already exists as a populated can elsewhere --
-but it is act 1, not Toulouse, so it is scoped here and not built.
+**The other 17 replies are Guard Pablo's, and they are not a defect -- they are cut content.**
+This is a correction to what the previous pass of this survey claimed. I reported the Temple
+District gate as broken on every playthrough, having read the tree and not the spawner.
+`Guard Pablo generator` on `Levels/1 Barcelona/Temple District.zax` is **Active=0 with no
+reference anywhere in the game** -- nothing activates it, nothing clones it -- so Pablo never
+appeared in the shipped game at all.
+
+His tree is an earlier draft of a scene that shipped finished on somebody else: the Gate
+District's `Temple Entrance Guard`, standing at the outside of the same gate, has the same node
+IDs (`20 Temple District`, `100 Bribe`, `110 Welcome to Temple`, `55 Normal Denial`,
+`60 Permission Granted`), the same 100-gold donation, and then everything the draft lacks --
+Speech, Charisma and Barter gates on every branch, separate tainted variants for Sylvant,
+Feralkin and Demokin, a Knight of Saladin branch, Barter discounts that bring the bribe down to
+75 and then 50 gold, and `CTriggerRelayAction{Relay to open Temple District gate}` on both payoff
+nodes, which is the part Pablo's draft never had: his `110 Welcome to Temple` and
+`60 Permission Granted` carry no action at all, so paying him could never have opened anything.
+The six empty cans are that draft's unfinished gates. Note also that the finished guard's own
+`Player come through from Temple District` checker, which gates his entry replies, **is** Active=1
+at map load and is deactivated only when the player arrives from the Temple District side or once
+the gate opens -- so the live gate scene is intact, and there was never anything to repair there.
+
+**What was built instead: Pablo restored as a greeter.** He is activated where the designers
+placed him, at (1724, 2933), a few steps inside the gate the player has just been let through,
+and his conversation is rebuilt from his own written lines in a new tree of his own
+(`Dialog/Temple District/Guard Pablo`): his greeting, the rule he stands there to enforce, and
+his explanation of what the Church means by tainted -- *"pointed teeth and ears, cat-like eyes,
+and other mystical marks"* -- which is the only place in the game that spells out how a tainted
+citizen is recognised on sight. The gate challenge is deliberately **not** restored: a second
+challenge inside a gate the player has already passed would contradict the guard who passed
+them, and an existence check cannot see across maps, so Pablo has no way to know they paid. A
+Feralkin, Sylvant or Demokin gets the one piece of new writing in the restoration (`30 tainted`),
+in which he looks at their face, declines to make anything of it, and asks that if an Inquisitor
+should ask, the two of them have not spoken. His generator already carried a full skeleton AI and
+the district's guard-reaction wiring (spellcast detection, the damaged-guard relay), so he
+behaves exactly like the Temple Guard around him.
 
 ### How little Toulouse knows about the player
 
@@ -390,8 +411,10 @@ carries or what the player is.
 
 3. **The chickens, reconsidered.** Not a defect: the three `Chicken Generator` parts are
    activated elsewhere. Nothing to do.
-4. **The six empty cans at the Temple District gate** (above). Act 1, every playthrough, and
-   the highest-value repair the project currently has scoped.
+4. **The 27 other empty canned requirements.** Twelve are act 3 shells nothing references, six
+   are Pablo's draft, and the rest sit on the Duke's demokin witness and two other Barcelona
+   scenes. Each needs the same treatment the Bishop's got: check whether the NPC spawns and the
+   reply is reachable *before* calling it a defect.
 5. **Poimaino walks off.** The bribe leaves him standing at his post, off duty, the way the
    shipped bluff does. Having him walk to `Poimaino Drinking` (1280,1707) the way the Mathuo
    route does needs a patrol authored on the map, which also means a save that has never
