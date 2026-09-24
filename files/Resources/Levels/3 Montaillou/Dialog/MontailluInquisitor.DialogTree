@@ -1,0 +1,2577 @@
+CDialogTree
+{
+Name=Inquisitor Fournier
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start Not Tainted, Not an Inquisitor or Templar
+Text=I am the Bishop of Pamiers. Do you seek an audience?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, if you could spare but a few moments.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Not at this time. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Sylvant, Not an Inquisitor or Templar
+Text=It seems this filthy little town attracts tainted heretics by the droves. I am the Bishop of Pamiers. Tell me, what brings one tainted with the blood of vile faeries among us?
+Should Have Voiceover=0
+
+Requirement=Templar IS
+Reply Text=Your grace, I'm a Knight Templar, at your service.
+Go to node ID=01 Conversation Start Templar
+
+Requirement=Inquisitor IS
+Reply Text=Your grace, I'm an Inquisitor, at your service.
+Go to node ID=01 Conversation Start Inquisitor
+
+Requirement=Speech moreequal 20
+Reply Text=Your holiness, though my heritage is tainted, my heart is true. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I wanted to ask you some questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Vile? Watch your tongue, Inquisitor, or I'll cut it out.
+Go to node ID=15 Confront
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=My blood is what it is. Is there nothing a tainted soul can do for the Church?
+Go to node ID=200 Tainted Audience
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Feralkin, Not an Inquisitor or Templar
+Text=It seems this filthy little town attracts tainted heretics by the droves. I am the Bishop of Pamiers. My time is precious, beast-child, so be quick about it.
+Should Have Voiceover=0
+
+Requirement=Templar IS
+Reply Text=Your grace, I'm a Knight Templar, at your service.
+Go to node ID=01 Conversation Start Templar
+
+Requirement=Inquisitor IS
+Reply Text=Your grace, I'm an Inquisitor, at your service.
+Go to node ID=01 Conversation Start Inquisitor
+
+Requirement=Speech moreequal 20
+Reply Text=Your holiness, though my heritage is tainted, my heart is true. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I wanted to ask you some questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Beast? Watch your tongue, Inquisitor, or I'll cut it out.
+Go to node ID=15 Confront
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=My blood is what it is. Is there nothing a tainted soul can do for the Church?
+Go to node ID=200 Tainted Audience
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Demokin, Not an Inquisitor or Templar
+Text=It seems this filthy little town attracts heretics by the droves, now it brings demonspawn, too. As the Bishop of Pamiers and Inquisitor Primus of this region, I am far too busy to deal with heathens like you, so be quick about it.
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=Your grace, I'm an Inquisitor, at your service.
+Go to node ID=01 Conversation Start Inquisitor
+
+Requirement=Templar IS
+Reply Text=Your grace, I'm a Knight Templar, at your service.
+Go to node ID=01 Conversation Start Templar
+
+Requirement=Speech moreequal 20
+Reply Text=Your holiness, though my heritage is tainted, my heart is true. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I wanted to ask you some questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Demonspawn? Watch your tongue, Inquisitor, or I'll cut it out.
+Go to node ID=15 Confront
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=My blood is what it is. Is there nothing a tainted soul can do for the Church?
+Go to node ID=200 Tainted Audience
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Inquisitor
+Text=Ah, welcome, Inquisitor! I am the Bishop of Pamiers. Do you seek an audience?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes. 
+Go to node ID=200 Pleasant Audience
+
+Requirement=!None
+Reply Text=Not at this time. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Templar
+Text=It is a good to see another of the Knights Templar here in Montaillou, as trusted souls are few here. I am the Bishop of Pamiers. Do you seek an audience?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes. 
+Go to node ID=200 Pleasant Audience
+
+Requirement=!None
+Reply Text=Not at this time. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 Return Dialogue
+Text=You have returned. Your business is of import, I trust?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=<Lie> During the course of my investigations for you, I have learned of a magical gem that is somewhere in the area and must be destroyed immediately.
+Go to node ID=666 Gem
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=I have performed several duties for you, Inquisitor, and now I must ask a favor of you. I seek an unusual gem that has come into your possession. It must be...dealt with.
+Go to node ID=667 gem inquisitor
+
+Requirement=Shephered Maury requires Titan to be alive
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+}
+Reply Text=I have found the witch you seek - she is in a little hovel to the southeast of here.
+Go to node ID=03 Return Dialogue if spoke to Weird Woman
+Action work in progress=(If accepted Inquisitor task 1 and spoke with Weird Woman and Inquisition faction bonus and possibly Templar faction bonus)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Weird woman
+Experience Points To Add=1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=teleported by witch
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+}
+}
+Reply Text=The witch was in a little hovel, but when I confronted her she used her magic to send me to a den of wolves.
+Go to node ID=05 witch missing
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Weird woman
+Experience Points To Add=1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Montaillou Inquisitor requires PC to have accepted task 2 and accepted Mayor quest
+Reply Text=I have spoken to the Mayor - he is a heretic and an adulterer.
+Go to node ID=04 Return Dialogue if accepted Mayor's quest
+Action work in progress=(If accepted Inquisitor task 2 and accepted Mayor's quest and Inquisition faction bonus and possibly Templar faction bonus)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Mayor
+Experience Points To Add=1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I hoped I might ask you some questions.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue if spoke to Weird Woman
+Text=Excellent! Soon we will move against her and drive these heretics from Montaillou.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+Reply Text=I am happy to serve in whatever capacity is required, Inquisitor.
+Go to node ID=110 Acceptance
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=<Lie> During the course of my investigations for you, I have learned of a magical gem that is somewhere in the area and must be destroyed immediately.
+Go to node ID=666 Gem
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=I have performed several duties for you, Inquisitor, and now I must ask a favor of you. I seek an unusual gem that has come into your possession. It must be...dealt with.
+Go to node ID=667 gem inquisitor
+
+Requirement=!None
+Reply Text=I expect a reward for the information I have given you.
+Go to node ID=30 Dismissal
+
+Requirement=!None
+Reply Text=Then the work of the Inquisition has been done this day.
+Go to node ID=10 Goodbye
+Action work in progress=(Additional Inquisition faction bonus for not taking reward)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=04 Return Dialogue if accepted Mayor's quest
+Text=I suspected as much. Now he will face God's justice.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+}
+Reply Text=<Lie> During the course of my investigations for you, I have learned of a magical gem that is somewhere in the area and must be destroyed immediately.
+Go to node ID=666 Gem
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=I have performed several duties for you, Inquisitor, and now I must ask a favor of you. I seek an unusual gem that has come into your possession. It must be...dealt with.
+Go to node ID=667 gem inquisitor
+
+Requirement=!None
+Reply Text=I expect a reward for the information I have given you.
+Go to node ID=30 Dismissal
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=200 Pleasant Audience
+
+Requirement=!None
+Reply Text=Is there anything else in this district that troubles the Inquisition?
+Go to node ID=300 cave into
+
+Requirement=!None
+Reply Text=Then the work of the Inquisition has been done. Farewell, your grace.
+Go to node ID=10 Goodbye
+Action work in progress=(Additional Inquisition faction bonus for not taking reward)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=05 witch missing
+Text=Ah, excellent work. I see you managed the wolves quite nicely. I will send for an Inquisitor who is proficient at countering such magic and we will arrest her before the month is out.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+Reply Text=I am happy to serve in whatever capacity is required, Inquisitor.
+Go to node ID=110 Acceptance
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+}
+Reply Text=<Lie> During the course of my investigations for you, I have learned of a magical gem that is somewhere in the area and must be destroyed immediately.
+Go to node ID=666 Gem
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+}
+Reply Text=I have performed several duties for you, Inquisitor, and now I must ask a favor of you. I seek an unusual gem that has come into your possession. It must be...dealt with.
+Go to node ID=667 gem inquisitor
+
+Requirement=!None
+Reply Text=I expect a reward for the information I have given you.
+Go to node ID=30 Dismissal
+
+Requirement=!None
+Reply Text=Then the work of the Inquisition has been done this day.
+Go to node ID=10 Goodbye
+Action work in progress=(Additional Inquisition faction bonus for not taking reward)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Off with you, then. I have other matters that demand my attention.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Combat
+Text=You dare to spill blood here? You will die for your heresy!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=all go to combat
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Confront
+Text=So, there *is* the spark of hellfire in your diabolic soul. You are brash and uncouth, but even one such as you can be redeemed...through deed and action befitting one such as yourself. Are you interested in redemption, or do you wish to continue to wallow in wickedness?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Your holiness, I seek redemption and will do what you ask.
+Go to node ID=70 Tasks
+
+Requirement=!None
+Reply Text=I'm interested in work, but spare me the redemption sermon.
+Go to node ID=15 Confront Goodbye
+
+Requirement=!None
+Reply Text=I warned you before to drop the sanctimonious attitude.
+Go to node ID=15 Confront goodbye
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Confront goodbye
+Text=Though you would be an asset to my cause, your unwillingness to seek forgiveness is too serious to ignore. You are beyond my help - leave this place until until such time as you seek redemption for your sins.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 english influence
+Text=The English long have held the territories in northern France, and their pagan influence has spread across France like an infection. It has become harder of late to convince the common folk not to accept the dark embrace of magic. It will only become more difficult unless we can squelch the heretical practices of the wizards and druids of the English Isles.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I should go now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 heresy
+Text=Heresy of the worst sort, I assure you. There are Cathars in this village who practice all kinds of heretical rituals and blaspheme this good land with their worship of magic and nature.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about these Cathars.
+Go to node ID=100 Catharism
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=20 audience
+
+Requirement=!None
+Reply Text=I must leave.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Audience
+Text=Well? Out with it.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Did you confiscate a magical gem from Guillaume the trader?
+Go to node ID=500 guillome
+Icon=Quest Icon
+
+Requirement=Montaillou Inquisitor requires PC to have found Weird Woman
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+}
+Reply Text=I have found the witch you seek - she is in a little hovel to the southeast of here.
+Go to node ID=03 Return Dialogue if spoke to Weird Woman
+Action work in progress=(If accepted Inquisitor task 1 and spoke with Weird Woman and Inquisition faction bonus and possibly Templar faction bonus)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=teleported by witch
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=The witch was in a little hovel, but when I confronted her she cast a spell on me, sending me to a den of wolves.
+Go to node ID=05 witch missing
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=Montaillou Inquisitor requires PC to have accepted task 2 and accepted Mayor quest
+Reply Text=I have spoken to the Mayor - he is a heretic Cathar.
+Go to node ID=04 Return Dialogue if accepted Mayor's quest
+Action work in progress=(If accepted Inquisitor task 2 and accepted Mayor's quest and Inquisition faction bonus and possibly Templar faction bonus)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already found brother michel
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek Brother Michel. 
+Go to node ID=50 Michel
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+}
+Reply Text=I am on a mission to safeguard holy relics. Can you help?
+Go to node ID=40 Offer
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+}
+Reply Text=What troubles this community?
+Go to node ID=60 Heresy
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=mayor is dead
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=What else troubles this community?
+Go to node ID=130 Another Task
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 name
+Text=I am Inquisitor Jacques Fournier. I am not the first of my family to be ordered by the Inquisition to investigate this town for crimes of heresy. It has a deep root here that has endured centuries of pruning by the Inquisition.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Reply Text=What heresy do you suspect here?
+Go to node ID=20 heresy
+
+Requirement=!None
+Reply Text=Tell me about this ancestor.
+Go to node ID=20 Ancestor
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Ancestor
+Text=A great ancestor of mine, also named Jacques, came to Montaillou more than two centuries ago to remove heresy from this village. It seems the weeds of catharism have returned to this tainted garden. It will require tremendous work and faith to save these heathens from damnation.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How did catharism return to this village?
+Go to node ID=20 english influence
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Dismissal
+Text=Is a learned Bishop, an Inquisitor Primus, to be your moneylender? Seek not your reward in gold, child, but in heaven.  
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=A thousand pardons, your Grace...but a gift from the church might inspire others to report heretics.
+Go to node ID=150 Vendor
+Action work in progress=(Speech >= 50% or Inquisitor)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 50
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 050
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+}
+}
+Reply Text=A thousand pardons, your Grace...but a gift from the church might inspire others to report heretics.
+Go to node ID=150 Vendor
+Action work in progress=(Barter >= 50% and Speech < 50% and not Inquisitor)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=You go on and seek your reward in heaven - I'll take the gold now.
+Go to node ID=210 Coercion
+
+Requirement=!None
+Reply Text=I see. I meant no offense.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Offer
+Text=Relics? My concern is far more important - men's souls. You must prove your worth in that righteous endeavor before I could help you in your trivial task.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+}
+Reply Text=I see. What must I do?
+Go to node ID=70 Tasks
+Action work in progress=neither quest assigned yet
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+}
+Reply Text=I see. What else must I do?
+Go to node ID=130 Another Task
+Action work in progress=this one is if you have accepted witch quest, but not mayor.
+
+Requirement=!None
+Reply Text=I have some other questions.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Goodbye then.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Michel
+Text=That old Knight? You can find him in one of the small houses on the docks.  But I'd be wary of his titan companion if I were you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I had some other questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Heresy
+Text=I have investigated precisely ninety-eight cases of heresy in this county, collecting no fewer than five hundred and seventy-eight depositions in the last six years. This tiny village alone has supplied twenty-five heretics. There is still so much work to be done to save more precious souls.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Reply Text=I see you are a devoted spiritual leader.
+Go to node ID=90 Variant Offer
+
+Requirement=!None
+Reply Text=What happened to these heretics?
+Go to node ID=80 Results
+
+Requirement=!None
+Reply Text=I had some other questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Tasks
+Text=There is an old woman they call Na Roqua hiding somewhere in town. She is the ringleader of these heretics - and a witch. Find her and I shall tear this heresy out by the roots.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Been to the weird woman
+Desired Minimum Count=1
+}
+}
+Reply Text=This witch lives in a hut southeast of town, Inquisitor.
+Go to node ID=03 Return Dialogue if spoke to Weird Woman
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Weird woman
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Been to the weird woman
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will find this witch and bring her to justice.
+Go to node ID=110 Acceptance
+Action work in progress=(Inquisitor and Templar Faction Bonus)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no interest in tracking down old women.
+Go to node ID=120 Decline
+
+Requirement=!None
+Reply Text=I am not good at such things. Is some other way I could help?
+Go to node ID=120 Decline
+------------------------------------------------------------
+Node ID=80 Results
+Text=I have sentenced fifty-nine to imprisonment, thirty-four to the wearing of yellow crosses, and five to the stake. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Most impressive. 
+Go to node ID=90 Variant Offer
+
+Requirement=!None
+Reply Text=What is the nature of the heresy?
+Go to node ID=100 Catharism
+
+Requirement=!None
+Reply Text=I had some other questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Variant Offer
+Text=The salvation of but one sinner brings more joy to heaven than a thousand good deeds. Would you like to help?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes. What must I do?
+Go to node ID=70 Tasks
+
+Requirement=!None
+Reply Text=I had some other questions first. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I cannot at the moment. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Catharism
+Text=These...'Cathars' believe they can win release from a cycle of reincarnation if they give up meat and other earthly pleasures. Ridiculous! Yet peasants seem to believe them, even flock to them.  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It sounds as if your work is sorely needed. 
+Go to node ID=90 Variant Offer
+
+Requirement=!None
+Reply Text=I had some other questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Acceptance
+Text=Excellent. Would you like another matter to inquire into?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, please.
+Go to node ID=130 Another Task
+
+Requirement=!None
+Reply Text=Is there anything else in this district that troubles the Inquisition?
+Go to node ID=300 cave into
+
+Requirement=!None
+Reply Text=Maybe another time.
+Go to node ID= 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Decline
+Text=A weak stomach, eh? I have a different task, then... one that might be suited to someone with a weak constitution.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is it?
+Go to node ID=130 Another Task
+
+Requirement=!None
+Reply Text=I would prefer not to.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 Another Task
+Text=I have suspicions about the Mayor - he acts nervous around me, as if guilty of some crime. Gain his confidence and find out the nature of his guilt, and then we will deal with him.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor guilty
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=mayor is dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=mayor is dead
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+}
+}
+}
+Reply Text=I have spoken to the Mayor - he is a heretic and an adulterer.
+Go to node ID=04 Return Dialogue if accepted Mayor's quest
+Action work in progress=(If accepted Inquisitor task 2 and accepted Mayor's quest and Inquisition faction bonus and possibly Templar faction bonus)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Mayor
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor guilty
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=mayor is dead
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Help the Mayor restore his wife's soul
+}
+}
+}
+}
+}
+Reply Text=I will gain his confidence and see what he is hiding.
+Go to node ID=140 Happy Inquisitor
+Action work in progress=(Negative Karma once only plus Inquisitor Faction bonuses maybe)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=ZSZEHN7N
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=mayor is dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Gain his confidence just to betray him? I don't think I could do it.
+Go to node ID=10 Goodbye
+Action work in progress=(Positive Karma once only plus Inquisitor Faction penalties maybe)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=mayor is dead
+Desired Minimum Count=1
+}
+}
+Reply Text=I'm sorry to say, but the mayor has passed on.
+Go to node ID=999 Mayor is dead
+
+Requirement=!None
+Reply Text=I would prefer not to.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Happy Inquisitor
+Text=Splendid. Go forth and do God's work.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Before I go, I had a few questions.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Is there anything else in this district that troubles the Inquisition?
+Go to node ID=300 cave into
+
+Requirement=!None
+Reply Text=I am on my way. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Vendor
+Text=These are a select group of rewards the Inquisition can offer you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Fournier inventory
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 Coercion
+Text=It is unwise to test my patience. If you are due a reward, it will be granted to you in the next life.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 cave
+Text=On the outskirts of town there is some kind of door barring entry to what we assume to be a cave. We suspect it is a storage area for something, but we are not sure. Most disturbing is the aura of magic coming from the cave. We know nothing more than that.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What happened to the heretics you mentioned?
+Go to node ID=80 Results
+
+Requirement=!None
+Reply Text=I had some other questions. 
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Pleasant Audience
+Text=Well then child, what do you wish to speak of?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Did you confiscate a magical gem from Guillaume the trader?
+Go to node ID=500 guillome
+Icon=Quest Icon
+
+Requirement=Montaillou Inquisitor requires PC to have found Weird Woman
+Custom Requirement=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+}
+}
+Reply Text=I have found the witch you seek - she is in a little hovel to the southeast of here.
+Go to node ID=03 Return Dialogue if spoke to Weird Woman
+Action work in progress=(If accepted Inquisitor task 1 and spoke with Weird Woman and Inquisition faction bonus and possibly Templar faction bonus)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=teleported by witch
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=The witch was in a little hovel, but when I confronted her she vanished.
+Go to node ID=05 witch missing
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=Montaillou Inquisitor requires PC to have accepted task 2 and accepted Mayor quest
+Reply Text=I have spoken to the Mayor - he is a heretic and an adulterer.
+Go to node ID=04 Return Dialogue if accepted Mayor's quest
+Action work in progress=(If accepted Inquisitor task 2 and accepted Mayor's quest and Inquisition faction bonus and possibly Templar faction bonus)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+State=COVCTGKR
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+Else=
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already found brother michel
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek Brother Michel. 
+Go to node ID=50 Michel
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+}
+Reply Text=I am on a mission to safeguard holy relics. Can you help?
+Go to node ID=40 Offer
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+}
+Reply Text=What troubles this community?
+Go to node ID=60 Heresy
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Mayor guilty
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=What else troubles this community?
+Go to node ID=130 Another Task
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Tainted Audience
+Text=Well then tainted one, have you come to cleanse yourself of sin? Acting in the service of the Inquisition could be the only salvation for your very soul.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I seek to cleanse my sins. What can I do to help you?
+Go to node ID=70 tasks
+
+Requirement=!None
+Reply Text=I'm interested, what do you have in mind?
+Go to node ID=70 tasks
+
+Requirement=!None
+Reply Text=I refuse to be in your *service*.
+Go to node ID=10 goodbye
+
+Requirement=!None
+Reply Text=I'm leaving. Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 cave into
+Text=Now that you have proven yourself to be a capable servant of our work, I would ask of you another favor for the Inquisition, something of great importance.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is it, your grace?
+Go to node ID=300 cave
+
+Requirement=!None
+Reply Text=Another time, your grace.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 guillome
+Text=Guillaume? That miserable cretin? He's fortunate that I didn't haul him to the stockade. He sputtered a convenient story that he had 'found' a trove of magic items and was in the process of turning them over to me. I intend to keep my eye on him, of course.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+}
+Reply Text=<Lie> During the course of my investigations for you, I have learned of a magical gem that is somewhere in the area and must be destroyed immediately.
+Go to node ID=666 Gem
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Talk with The Mayor for the Inquisitor
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=okay to open chest
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=I have performed several duties for you, Inquisitor, and now I must ask a favor of you. I seek an unusual gem that has come into your possession. It must be...dealt with.
+Go to node ID=667 gem inquisitor
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 95
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+}
+Reply Text=Perhaps I could do you a service and take the gem and destroy it? <Lie>
+Go to node ID=500 used speech to take the gem
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+Reply Text=Could you give me the gem?
+Go to node ID=500 refuse to give treasure
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+Reply Text=Hand over Guillaume's gem, Inquisitor, or there will be blood.
+Go to node ID=10 Combat
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma equalless 600
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=TN10C2WO
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+State=5IG38QBI
+}
+}
+}
+}
+}
+Reply Text=Relinquish the gem or I will slay you and your flock, and raise you all to serve me in undeath.
+Go to node ID=500 dread power
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 used speech to take the gem
+Text=Indeed? You would be doing me a service if you could dispel the curse on this vile gem. Take this key and use it on the chest by Cristobal. Then use your abilities to destroy the magic inside.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Keys/Fourniers Key
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=okay to open chest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 refuse to give treasure
+Text=And who are you to ask this of me? Those items are evidence against certain criminals under suspicion of heresy. As they are items of obvious diabolic nature, they will be properly exorcised and cleansed of all foul magic.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 dread power
+Text=<Whispers> It...it's true isn't it? I sense your dread power...too much for me to exorcise...Take this key and the treasure within that nearby chest. Now leave and defile this place no more.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Keys/Fourniers Key
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=okay to open chest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=999 Mayor is dead
+Text=Well then, he will be judged in heaven, may the Lord have mercy on his soul.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=666 Gem
+Text=You have proven yourself trustworthy. I suspect you are right about the gem. Here, take this key. You will find the gem in the chest by Cristobal.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Keys/Fourniers Key
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=okay to open chest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=667 Gem inquisitor
+Text=Very well, Inquisitor, take this key. You will find the gem in the chest by Cristobal.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Keys/Fourniers Key
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=okay to open chest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+}
