@@ -139,7 +139,7 @@ daeva; a fugitive rock titan hiding in the village under a human name while his 
 at Toulouse and demand him back; Nostradamus somewhere past it all; and the English coming.
 Every one of those threads has live content and at least one cut branch.
 
-### Tier 1 - the gate challenge (restoration; the act's first scene)
+### Tier 1 - the gate challenge (built 2026-09-23, unplayed)
 
 `MontaillouGuard` has **13 unreachable nodes**, and three of them are a complete entry challenge
 that nothing opens: `100 stop player` -- *"You there! What business do you have in Montaillou?"*
@@ -154,6 +154,29 @@ only `01 Conversation Start`, `03 Return Dialogue` and the knights' food banter.
 This is the strongest single find in the act: it is the arrival scene, it is written, it reads
 the four factions Fixt has spent five releases making real, and it is reachable by nothing.
 `100 heresy` has **no text** -- one node would have to be ours.
+
+**Built.** Reading it for the build answered why it was never wired: **three of its targets do
+not exist.** `100 relics knights` (a node by that name is not in the tree -- there are only the
+male and female variants), `100 relics` (nothing), and `100 heresy`, which is a node with an
+empty `Text=`. A scripter wiring this scene would have hit a dead link on the first Templar
+reply.
+
+- The strip: the knights stand at (4943,1260) and (4971,1432), the road in arrives at
+  (5451,1133), and a trip poly across it at x 5180-5320 fires `100 stop player` once, spoken by
+  Knight 1, with a `CActionResetPointClickAI` so the player stops walking. It is guarded on
+  Knight 1 being alive.
+- The faction claims are gated as the rest of the tree gates its gendered lines: `Inquisitor IS`,
+  `Templar IS` AND `Male IS` / `Female IS` (which also repairs the dangling `100 relics knights`
+  by splitting it the way the two answer nodes already assume), and `Saladin IS`. The generic
+  relic-hunter, the trader and *"My business is my own"* stay open to anyone.
+- `100 challenge`'s *"My business is my own"* looped back to `100 challenge` itself; it now
+  reaches `100 traveler`, which is where the heresy warning is.
+- Two nodes are ours, and only because the game left holes where they go: `100 heresy` (the
+  answer to *"Why is this town under investigation?"* -- Cathars, a man with a book, every soul
+  answering one at a time) and `100 relics` (what a knight says to an unaffiliated relic-hunter).
+- Having been stopped at the gate, a later click on either knight opens `03 Return Dialogue`
+  instead of `01 Conversation Start`, so he does not demand your business twice.
+
 
 ### Tier 2 - the titans of Toulouse can be talked out of it
 

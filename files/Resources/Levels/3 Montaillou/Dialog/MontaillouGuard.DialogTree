@@ -1,0 +1,386 @@
+CDialogTree
+{
+Name=Montaillou Guard
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Halt, and state your business.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already found michel
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek Brother Michel. I am from Montserrat on an urgent mission.
+Go to node ID=20 michel
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I am merely a traveler seeking rest and supplies.
+Go to node ID=30 shelter
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 30
+}
+Reply Text=I am a merchant, looking to trade in Montaillou. 
+Go to node ID=25 merchant
+Action work in progress=(Barter >=50%)
+Icon=Barter Skill Icon
+
+Requirement=Male IS
+Reply Text=Business? My life is but service to God.
+Go to node ID=40 god
+Action work in progress=(Inquisitor and Templar faction bonus?)
+
+Requirement=Female IS
+Reply Text=Business? My life is but service to God.
+Go to node ID=50 god female
+Action work in progress=(Inquisitor and Templar faction bonus?)
+
+Requirement=!None
+Reply Text=My business is my own, and the less a town's guards have to do with it, the better.
+Go to node ID=
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=What can I help you with, stranger?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already found michel
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I seek Brother Michel. I am from Montserrat on an urgent mission.
+Go to node ID=20 michel
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I am a traveler seeking rest and supplies.
+Go to node ID=30 shelter
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 50
+}
+Reply Text=I am a merchant, looking to trade in Montaillou. 
+Go to node ID=25 merchant
+Action work in progress=(Barter >=50%)
+Icon=Barter Skill Icon
+
+Requirement=Male IS
+Reply Text=Nothing, friend. My life is but service to God.
+Go to node ID=40 god
+Action work in progress=(Inquisitor and Templar faction bonus?)
+
+Requirement=Female IS
+Reply Text=Nothing, friend. My life is but service to God.
+Go to node ID=50 god female
+Action work in progress=(Inquisitor and Templar faction bonus?)
+------------------------------------------------------------
+Node ID=20 michel
+Text=Brother Michel? The old man with the giant? You'll find him in town, stranger.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=25 merchant
+Text=Trade, eh? Well, town's just down the road, stranger.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=30 shelter
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 shelter
+Text=Off you go then, you'll find what you're looking for in the tavern. It's the large building in the center of town.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=35 shelter 2
+Text= Off you go then, you'll find what you're looking for in the tavern. It's the large building in the center of town.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=40 god
+Text=Is it? <Whispers> Are you a pure man, a 'perfecti'?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What's a perfecti?
+Go to node ID=70 cathar
+
+Requirement=!None
+Reply Text=Yes, I am a pure man.
+Go to node ID=65 inquisitors
+Action work in progress=(Inquisitor arrives, cue next dialogue)
+
+Requirement=!None
+Reply Text=I suppose it depends on how many bottles of wine I've had.
+Go to node ID=35 shelter 2
+
+Requirement=!None
+Reply Text=I'm no priest, if that's what you mean.
+Go to node ID=35 shelter 2
+------------------------------------------------------------
+Node ID=50 god female
+Text=Is it? <Whispers> Are you a pure woman, a 'perfecti'?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What's a perfecti?
+Go to node ID=70 cathar
+
+Requirement=!None
+Reply Text=Yes, I am a pure woman.
+Go to node ID=65 inquisitors
+Action work in progress=(Inquisitor arrives, cue next dialogue)
+
+Requirement=!None
+Reply Text=I suppose it depends on how much gold you have on you.
+Go to node ID=35 shelter 2
+
+Requirement=!None
+Reply Text=I haven't taken up the habit, if that's what you mean.
+Go to node ID=35 shelter 2
+------------------------------------------------------------
+Node ID=65 inquisitors
+Text=Then perhaps you should seek out one of the inquisitors here in town.  They may have use for you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=70 cathar
+Text=What is it? You really aren't from around here! A perfecti is a magic-wielding Cathar heretic who thinks he's pure of sins.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=30 shelter
+------------------------------------------------------------
+Node ID=100 knight attacked by wolves
+Text=Infernal wolves! They just keep coming!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 knight attacked by wolves 2
+Text=Then we will keep slaying them, brother. Until all of the gloom has been driven from this dark village.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 stop player
+Text=You there! What business do you have in Montaillou?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I'm on an urgent mission for the Inquisition to protect relics.
+Go to node ID=100 relics inquisition
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Male IS
+}
+}
+Reply Text=I'm on an urgent mission for the Knights Templar to protect relics.
+Go to node ID=100 relics knights male
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Female IS
+}
+}
+Reply Text=I'm on an urgent mission for the Knights Templar to protect relics.
+Go to node ID=100 relics knights female
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Reply Text=I'm on an urgent mission for the Knights of Saladin to protect sacred relics.
+Go to node ID=100 relics saladin
+
+Requirement=!None
+Reply Text=I'm on an urgent mission to protect the relics of this region.
+Go to node ID=100 relics
+
+Requirement=!None
+Reply Text=I'm a simple traveler seeking trade and adventure.
+Go to node ID=100 challenge
+
+Requirement=!None
+Reply Text=My business is my own. Leave me alone.
+Go to node ID=100 traveler
+------------------------------------------------------------
+Node ID=100 challenge
+Text=Is that so? You should know that this town is under investigation for heresy. Those coming into this town under suspicious circumstances might also find themselves under investigation. So, what is your business in Montaillou?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I'm on an urgent mission for the Inquisition to protect relics.
+Go to node ID=100 relics inquisition
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Male IS
+}
+}
+Reply Text=I'm on an urgent mission for the Knights Templar to protect relics.
+Go to node ID=100 relics knights male
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Female IS
+}
+}
+Reply Text=I'm on an urgent mission for the Knights Templar to protect relics.
+Go to node ID=100 relics knights female
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Reply Text=I'm on an urgent mission for the Knights of Saladin to protect sacred relics.
+Go to node ID=100 relics saladin
+
+Requirement=!None
+Reply Text=I'm on an urgent mission to protect the relics of this region.
+Go to node ID=100 relics
+
+Requirement=!None
+Reply Text=My business is my own. Leave me alone.
+Go to node ID=100 traveler
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 traveler
+Text=There is not much trade here in Montaillou. You should know that this town is under investigation for heresy and the villagers are a strange and suspicious lot. You would be wise to leave this place. If you do enter town, abide the laws and stay out of trouble.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why is this town under investigation?
+Go to node ID=100 heresy
+
+Requirement=!None
+Reply Text=I won't stay long. Farewell.
+Go to node ID=100 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 goodbye
+Text=Remember, stay out of trouble. The Knights will not abide any disturbances from travelers.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 heresy
+Text=Cathars. The village has been full of them for a generation, and the Inquisition has come to write down who. That is all it is: a man with a book, asking questions, and every soul in Montaillou answering him one at a time. Whether that ends in penances or in fire is not for me to say. Keep out of it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will. Farewell.
+Go to node ID=100 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 relics
+Text=Relics? Then you are on the Order's business whether you wear the cross or not, and you had best speak to the Inquisitor before you go digging. The Templars hold what is worth holding in this region, and we did not carry it up here to have it prised out of the ground by a stranger.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Understood. Who commands here?
+Go to node ID=100 goodbye
+
+Requirement=!None
+Reply Text=I will keep that in mind.
+Go to node ID=100 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 relics inquisition
+Text=Forgive me Inquisitor, I meant no disrespect. Our duties here have been difficult of late. The populace of Montaillou harbors dark secerts, and the very creatures of this forest violently oppose us.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 relics knights female
+Text=Forgive me sister, I meant no disrespect.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 relics knights male
+Text=Forgive me brother, I meant no disrespect.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 relics saladin
+Text=A Knight of Saladin? You don't have the look of a saracen, but if you serve that order, then you are an ally of the Templars - and thus welcome here.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 knight banter 1
+Text=What kind of host are you, Pierre? I am *starving*! Surely the mayor has more food?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 knight banter 2
+Text=Why don't you roast one of those delicious chickens you have outside?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 knight banter 3
+Text=My hunger is quickly outpacing my patience. Bring more food, Pierre. You know the code...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 knight banter 4
+Text=Bring more food! And more ale!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 knight banter 5
+Text=You must provide food and shelter to any knight who asks for aid.
+Should Have Voiceover=0
+}

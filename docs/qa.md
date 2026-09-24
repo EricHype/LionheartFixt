@@ -1323,6 +1323,11 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | CP13 | Brambles, pour the potion, the man | - | After his thanks, one of three random barks over him 1.5 s later |
 | CP14 | Fresh Port District, recruit Fernand, fight beside him | - | He closes to arm's length before swinging; no hits from across the room |
 | CP15 | Fresh Inquisition Pit3 (Galileo's cell) | Attack Galileo, the random map, walk back in | *"Beware braggart, I have less tolerance now for your idiocy"* (voiced) once over him; not on a first entry |
+| MO1 | Fresh Montaillou, walk in from the east | - | A knight stops you: *"You there! What business do you have in Montaillou?"*; once only |
+| MO2 | MO1 as an Inquisitor / male Templar / female Templar / Knight of Saladin | The matching claim | *"Forgive me Inquisitor"* / *"Forgive me brother"* / *"Forgive me sister"* / *"A Knight of Saladin? ... then you are an ally of the Templars"*; each claim is offered only to that faction |
+| MO3 | MO1 as anyone | *"I'm on an urgent mission to protect the relics of this region."* | The relic answer, no dead link |
+| MO4 | MO1 | *"My business is my own."* -> *"Why is this town under investigation?"* | The heresy answer, then the goodbye; the reply never loops back on itself |
+| MO5 | After MO1, click either knight | - | *"What can I help you with, stranger?"*, not *"Halt, and state your business"* |
 | RN1 | Fresh Plains, any spirit-bearing race, walk to the rogue camp from the south-east | - | The spirit manifests ahead of you and says *"Beware, the dark inquisitors wield the power to cancel magic by touch..."* (voiced), fades; once; a Pureblood sees nothing |
 | RN2 | Fresh Plains, fight the rogue camp | Kill them | As the last one or two fall: the summoning flare on the pentagram, *"<The men stop. The circle does not...>"*, a Terror rises and attacks; once |
 | RN3 | Fresh Plains, kill Diego, tell the rogues | `30 join`, close the store | The flare, *"<The circle flares and holds what it called...>"*, a Terror that stands in the circle and does not attack |
