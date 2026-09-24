@@ -286,8 +286,9 @@ of `03 Return Dialogue if Heard 50` with one reply changed, and stays dark as a 
 `100 Shapeshifting Daeva`, whose answer is *"Within my cave, there is an old periapt -- it will
 let you see the daeva's true form and strike it down. Forever."* That periapt is the Zarathustra
 relic the **two** Shapeshifting Daeva trees switch on -- the 26 "duplicate" nodes recorded in the
-survey are its half of the encounter. Since 0.9.0 the directions exist; whether the periapt can
-actually be taken from her cave is the next read.
+survey are its half of the encounter. The directions have been reachable since 0.9.0 and the
+route was **played and confirmed working in that release**: through the fire, into her cave, and
+the true-form encounter follows. Nothing further is needed here.
 
 ### Tier 5 - the Inquisitor's third task
 
