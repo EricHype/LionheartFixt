@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.13.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.14.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -124,9 +124,9 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
-## 0.14.0 - Montaillou (scope)
+## 0.14.0 - Montaillou
 
-**Surveyed 2026-09-23. Not started.** The second-largest act in the game after Barcelona and the
+**Published.** Cut from `main` 2026-09-24, entirely unplayed. Eight tiers built 2026-09-23 and 2026-09-24; Tier 6 was a read that ended in building nothing. Surveyed 2026-09-23. The second-largest act in the game after Barcelona and the
 densest writing left in it: **17 maps, 51 dialogue trees, 17 quests, 1,087 dialogue nodes.** 140
 of those nodes are unreachable and **49 of them carry replies** -- the largest block of authored,
 unreachable branching the project has found anywhere, the Gate District included.
