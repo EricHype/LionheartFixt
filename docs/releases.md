@@ -387,6 +387,69 @@ drink offered to the titan guarding the prisoners, whose live half (`101 Mercury
 `102 Drinking`) is driven from the map. That one needs the item traced before it can be wired,
 and is left for a read.
 
+### Tier 8 - how Montaillou reads the player (scope, not started)
+
+**Measured 2026-09-23 across all 51 trees and 2,281 player replies.** The act tracks what you
+have *done* reasonably well and who you *are* barely:
+
+| gate | replies | share |
+|---|---|---|
+| quest / state / item | 403 | 17.7% |
+| Speech | 79 | 3.5% |
+| faction | 55 | 2.4% |
+| attributes | 43 | 1.9% |
+| race | 27 | 1.2% |
+| Barter | 24 | 1.1% |
+| gender | 14 | 0.6% |
+| karma | 5 | 0.2% |
+| Outwit / Schmooze | 4 | 0.2% |
+| **chosen perks** | **0** | |
+| **which spirit you carry** | **0** | |
+
+About one reply in nine is gated on a trait, and not one on a perk or on the spirit -- in the act
+whose antagonist is a shapeshifting daeva, whose most important NPC is a spirit-witch, and whose
+key item is a relic of Zarathustra. Brother Michel carries more character reactivity on his own
+(21 attribute, 16 faction, 15 race, 4 karma -- the only karma checks in the act) than the rest of
+the village put together.
+
+**Eighteen trees and 357 replies have no character gating at all.** In order of size: the
+shepherd (95 replies -- the act's information hub), Iapetus at Toulouse (70), the generic
+villagers (32), the Cathar toughs (29), Mathuo (29), the gravestone puzzle (18), the town guards
+(15), the Inquisition's agent in the inn (15), Menoetius (13), the Templar in the mayor's house
+(10), Aidan the weapon-seller (10), Fabrisse (9), and the rest small.
+
+**What Tier 8 would be.** Not new scenes: the act's own vocabulary applied where the writing
+already forks, so that being a Feralkin, an Inquisitor, a Wielder, a brawler or a thief changes
+what you can say. The candidates the reading turned up, each one reply or two on an existing
+node:
+
+- **The Cathar toughs' loyalty test** -- *"Well, whose side are you on? The goodmen or the
+  Church?"* -- has three ungated answers. A sworn Inquisitor answering *"The Church"* should be
+  a different scene from a stranger's opinion, and a Cathar-friendly player (`cathar friend`,
+  which Na Roqua's promise now sets) should be recognised rather than tested.
+- **The Inquisition's agent in the inn** offers you meat in a Cathar village to see whether you
+  take it -- the game's own entrapment scene -- with no reaction to the player being an
+  Inquisitor, a Templar, or a tainted soul who has already been threatened by the Church.
+- **Fabrisse** greets everyone as a city stranger, including a Feralkin or Sylvant walking
+  through a village under investigation for consorting with the unnatural.
+- **Aidan** sells blades to everyone at one price, in a tree with a Barter branch nowhere.
+- **The shepherd's information hub** is the act's biggest un-gated tree: 95 replies, and a
+  Perception or an Outwit read of what Maury is not saying about his neighbours costs one reply.
+- **The spirit** has nothing to say anywhere in the act -- `CHasSpirit` is used in 0.13.0's Plains
+  warning and in the game's own Witch Interior scene, so the primitive is proven; Na Roqua, the
+  daeva and the periapt are the obvious places.
+- **Perks**: 0.13.0's collector showed the shape (a bare `CHasPerkExpression` as the Custom
+  Requirement, as Galileo's Necromancer line does). *Thief* and *Master Thief* around the
+  gravestone treasure, *Educated* on the Inquisitor's statistics of heresy, *Dark Majesty* or
+  *Brutish Hulk* on the Cathar toughs' challenge, *Snake Eater* or *Fortune Finder* where the
+  act's caves are discussed.
+
+**Sizing.** Every item above is one or two replies on a node the game already wrote, plus an
+answer node only where the existing answers would not fit. That is the same shape and roughly
+the same size as 0.13.0's collector tier. It is also the most *authored* work the project would
+have done in a single tier, so it should be scoped tightly and cut first if the release is
+getting long.
+
 ### Also standing
 
 - `Cathar Warden / 1 Conversation Start Not Saw Bear` (six replies) -- the grove warden's other
