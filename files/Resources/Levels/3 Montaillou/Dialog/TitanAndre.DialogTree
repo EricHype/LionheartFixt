@@ -38,6 +38,10 @@ Reply Text=What are you doing here?
 Go to node ID=70 Andre's Story
 
 Requirement=!None
+Reply Text=I want to talk to you.
+Go to node ID=20 Introductory
+
+Requirement=!None
 Reply Text=I must go. Goodbye.
 Go to node ID=
 Icon=Exit Icon
@@ -135,7 +139,7 @@ Desired Minimum Count=1
 }
 }
 Reply Text=There is a gruesome corpse in the home at the end of the pier, it looks as though all of the fluids have been drained from it.
-Go to node ID=01 Corpse
+Go to node ID=02 corpse
 Custom Action=CDeactivateAction
 {
 Target Name=seen the corpse

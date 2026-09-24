@@ -222,7 +222,7 @@ writing was finished and the consequence was not, and the map next door had ever
 
 Six player lines and one NPC node are ours; everything else is the game's.
 
-### Tier 3 - Andre's own dark half, and what is marked removed
+### Tier 3 - Andre's other dark nodes (built 2026-09-23, unplayed)
 
 `TitanAndre` is 83 nodes, 10 unreachable, 9 carrying replies: `02 corpse` (nine replies), `20
 Introductory` (six), `800 Both lies`, `900 Lucius extorted and thrown out of town`, `1002 Hearts
@@ -230,6 +230,27 @@ in Hand but Lucius betrayed`. **Four of them begin `[REMOVED FROM GAME]`** -- th
 convince-Lucius routes -- which is the authors saying so in the text, and the project leaves what
 the authors deliberately cut. The rest is a read: how much of the lie-to-the-mayor branch is
 reachable, and whether `02 corpse` is the scene that starts it.
+
+**Built, and the answer to the read is that two of them were mis-pointed, not cut.**
+
+- `02 corpse` is the *return* version of the corpse scene: same opening -- *"My people have the
+  memory of a formless Daeva who drains the blood of its victims"* -- but with the hearts, the
+  three accusations and Brother Michel still on the menu, where `01 corpse` (the first-meeting
+  version) has only the three tail replies. **Both greetings pointed at `01 Corpse`.** The return
+  greeting now reaches `02 corpse`, which also makes `800 Both lies` reachable: the accusation
+  that catches him in the mayor's version *and* Esclarmonde's at once, and the only one where he
+  breaks and admits it -- *"I knew I would be caught eventually."*
+- `20 Introductory` is the first-meeting twin of the live `20 Introductory 2`. The return greeting
+  has *"I want to talk to you"*; the first meeting did not, so his deeper menu -- the gatekeeper,
+  the gullible line, his own story -- was return-only. The reply is added to `01 Conversation
+  Start`.
+
+`TitanAndre` goes from 10 unreachable nodes to 3, two with replies, and **both of those are
+variants of live nodes for a state we cannot yet locate**: `1002 Hearts in Hand but Lucius
+betrayed` and `900 Lucius extorted and thrown out of town` belong to the path where you extort
+him and then tell the mayor anyway. `Lucius extorted` is a real checker the tree sets, but the
+map chooses the betrayed return (`1003`) from a scene we have not traced, and guessing wrong
+would play the wrong line at the delivery. Left for a playthrough of the extortion path.
 
 ### Tier 4 - Na Roqua (carried over from 0.9.0)
 

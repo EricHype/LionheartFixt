@@ -1333,6 +1333,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | MO8 | Montaillou, Andre, Lethos quest accepted, Speech 50+ / Outwit 8+ | *"Go back to them and say it to their faces"* / *"Walk in under a truce"* | The success nodes, with no [REMOVED FROM GAME] in the text; below the skill, the written refusals, which still offer the fight |
 | MO9 | MO8 success | - | Andre leaves Montaillou; the mneme quest reads *"allow Lucius to live"*; *Kill the Titans of Toulouse* completes; pacifist XP |
 | MO10 | MO9, back to Lethos | *"Memnos is coming back to you."* | `502`; the reward paid; the titans pack up and leave Toulouse as they do for the crystal |
+| MO11 | Montaillou, Andre, first meeting | *"I want to talk to you."* | `20 Introductory`, with the gatekeeper, the gullible line and his story |
+| MO12 | Andre, a return visit, having seen the corpse | *"There is a gruesome corpse..."* | `02 corpse` -- the same answer, but the hearts, the accusations and Michel are still offered |
+| MO13 | MO12 having heard both the mayor's story and Esclarmonde's | *"I spoke to a woman from Toulouse... and the mayor..."* | `800 Both lies`: he admits the lie and asks you to keep his secret |
 | RN1 | Fresh Plains, any spirit-bearing race, walk to the rogue camp from the south-east | - | The spirit manifests ahead of you and says *"Beware, the dark inquisitors wield the power to cancel magic by touch..."* (voiced), fades; once; a Pureblood sees nothing |
 | RN2 | Fresh Plains, fight the rogue camp | Kill them | As the last one or two fall: the summoning flare on the pentagram, *"<The men stop. The circle does not...>"*, a Terror rises and attacks; once |
 | RN3 | Fresh Plains, kill Diego, tell the rogues | `30 join`, close the store | The flare, *"<The circle flares and holds what it called...>"*, a Terror that stands in the circle and does not attack |
