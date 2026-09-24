@@ -1,0 +1,2191 @@
+CDialogTree
+{
+Name=Lethos
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation start 
+Text=You have come, small one, just as Menoetius said you would. I am glad you have decided to speak with us rather than coming here with murder on your mind.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I've been told you're eating your prisoners.
+Go to node ID=40 Why are you eating people
+
+Requirement=!None
+Reply Text=Who are you? 
+Go to node ID=10 Who are you?
+
+Requirement=!None
+Reply Text=Who is Menoetius? 
+Go to node ID=13 Who is Menoetius
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Why have you destroyed Toulouse?
+Go to node ID=20 Why are you here
+
+Requirement=!None
+Reply Text=Actually, I have nothing to say to you.
+Go to node ID=70 Rude Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Return
+Text=Ah, the fleshling returns.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you? 
+Go to node ID=10 Who are you?
+
+Requirement=!None
+Reply Text=Who is Menoetius? 
+Go to node ID=13 Who is Menoetius
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Why have you destroyed Toulouse?
+Go to node ID=20 Why are you here
+
+Requirement=!None
+Reply Text=I've been told you're eating your prisoners.
+Go to node ID=40 Why are you eating people
+
+Requirement=!None
+Reply Text=Actually, I have nothing to say to you.
+Go to node ID=70 Rude Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Return told to speak to Rhea but haven't 
+Text=Hello again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you? 
+Go to node ID=10 Who are you?
+
+Requirement=!None
+Reply Text=Who is Menoetius? 
+Go to node ID=13 Who is Menoetius
+
+Requirement=!None
+Reply Text=Why have you destroyed Toulouse?
+Go to node ID=20 Why are you here
+
+Requirement=!None
+Reply Text=Actually, I have nothing to say to you.
+Go to node ID=70 Rude Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 other questions
+Text=What would you like to know?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you? 
+Go to node ID=10 Who are you?
+
+Requirement=!None
+Reply Text=Who is Menoetius? 
+Go to node ID=13 Who is Menoetius
+
+Requirement=!None
+Reply Text=Why have you destroyed Toulouse?
+Go to node ID=20 Why are you here
+
+Requirement=!None
+Reply Text=I've been told you're eating your prisoners.
+Go to node ID=40 Why are you eating people
+
+Requirement=!None
+Reply Text=Actually, I have nothing to say to you.
+Go to node ID=70 Rude Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Who are you?
+Text=I am Lethos, which means forgetfulness in our tongue. I am one of the four elders in my tribe.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Titan naming conventions explained
+Desired Minimum Count=1
+}
+}
+Reply Text=Wait, I thought elders were named for the first fathers of your race, so why the funny name? 
+Go to node ID=11 Why are you named forgetfulness?
+Action work in progress=only if the PC has activated flag 6 titan naming conventions
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Titan naming conventions explained
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=That's an odd name.
+Go to node ID=11 Why are you named forgetfulness?
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Who is Menoetius? 
+Go to node ID=13 Who is Menoetius
+
+Requirement=!None
+Reply Text=I've been told you're eating your prisoners.
+Go to node ID=40 Why are you eating people
+
+Requirement=!None
+Reply Text=Why have you destroyed Toulouse?
+Go to node ID=20 Why are you here
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 Why are you named forgetfulness?
+Text=I have a special role in our society that you do not yet understand. I am called this because I do not yet have memory. Rhea can explain much to you. She can be found to the south tutoring the youngest member of our tribe. Once you have spoken with her, please talk to me again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions first. 
+Go to node ID=5 other questions
+
+Requirement=!None
+Reply Text=Fine, I will speak to you later
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 Who is Menoetius
+Text=Menoetius, my brother, is a very clever titan. When we failed to find what we were looking for here, we started searching farther afield. He soon happened upon a cave and found inside a strange being wrapped in a chrysalis. This being, which called itself Nostradamus, claimed it could see all things across all time.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=14 Who is Menoetius 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=14 Who is Menoetius 2
+Text=Menoetius was amazed and skeptical, but confirmed its power by asking the being several questions. He then asked the being how we might find the object of our search and the being cryptically replied that our best chance to find it would be to let a spinning coin decide our fate.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Reply Text=I can see where this is headed...
+Go to node ID=14 Who is Menoetius 3 human
+Action work in progress=if human
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Sylvant IS
+}
+Reply Text=I can see where this is headed...
+Go to node ID=14 Who is Menoetius 3 sylvant
+Action work in progress=if sylvant
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Feralkin IS
+}
+Reply Text=I can see where this is headed...
+Go to node ID=14 Who is Menoetius 3 feralkin
+Action work in progress=if feralkin
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+}
+Reply Text=I can see where this is headed...
+Go to node ID=15 Who is Menoetius 3 demokin
+Action work in progress=if demokin
+
+Requirement=!None
+Reply Text=This is the part where I turn tail. Goodbye.
+Go to node ID=70 rude goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=14 Who is Menoetius 3 human
+Text=Menoetius was understandably confused at first, but he continued his interrogation and determined that the spinning coin represented a spirit-bonded human who would come to Toulouse. The two faces of the coin were restoration and destruction, and so we have waited to see how it would land. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=But why did you come to Toulouse at all?
+Go to node ID=20 Why are you here
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=14 Who is Menoetius 3 sylvant
+Text=Menoetius was understandably confused at first, but he continued his interrogation and determined that the spinning coin represented a spirit-bonded sylvant who would come to Toulouse. The two faces of the coin were restoration and destruction, and so we have waited to see how it would land. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=But why did you come to Toulouse at all?
+Go to node ID=20 Why are you here
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=14 Who is Menoetius 3 feralkin
+Text=Menoetius was understandably confused at first, but he continued his interrogation and determined that the spinning coin represented a spirit-bonded man-beast who would come to Toulouse. The two faces of the coin were restoration and destruction, and so we have waited to see how it would land. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=But why did you come to Toulouse at all?
+Go to node ID=20 Why are you here
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Who is Menoetius 3 demokin
+Text=Menoetius was understandably confused at first, but he continued his interrogation and determined that the spinning coin represented a spirit-bonded man-demon who would come to Toulouse. The two faces of the coin were restoration and destruction, and so we have waited to see how it would land. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=But why did you come to Toulouse at all?
+Go to node ID=20 Why are you here
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Why are you here
+Text=We have come here to right a wrong, small one, and I suspect you can help us. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Reply Text=You call sacking a town and enslaving its inhabitants "righting a wrong"? 
+Go to node ID=22 Sacking Toulouse was appropriate
+Action work in progress=open this if PC is NOT tainted
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Reply Text=You call sacking a town and enslaving its inhabitants "righting a wrong"? 
+Go to node ID=22 Sacking Toulouse was appropriate (tainted)
+Action work in progress=open this if PC is tainted
+
+Requirement=!None
+Reply Text=Why should I help you?
+Go to node ID=50 Lucius is the fugitive
+------------------------------------------------------------
+Node ID=22 Sacking Toulouse was appropriate (tainted)
+Text=Sacking this town was unfortunate, but hardly a tragedy. It is just a small herd of humans, do you really care so much what happens to them? From what I've seen of human "civilization" I doubt many of them would care if your kind was wiped out. In any case, we killed only those who resisted us, you will find the others safe under guard.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The blood of innocents is on your hands.
+Go to node ID=23 Toulouse brought this upon themselves
+Action work in progress=activate flag 1 PC was told Toulouse was harboring Lucius
+Custom Action=CActivateAction
+{
+Target Name=PC was told Toulouse was harboring Lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=A few humans are of little concern to me. I'm more interested in why you came here.
+Go to node ID=50 Lucius is the fugitive
+------------------------------------------------------------
+Node ID=22 Sacking Toulouse was appropriate
+Text=Sacking this town was unfortunate, but hardly a tragedy. It is just a small herd of humans. There are a seemingly endless number of you, who will miss a few? We killed only those who tried to harm us, you will find the others safe under guard. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That is no excuse, the blood of innocents is on your hands.
+Go to node ID=23 Toulouse brought this upon themselves
+Custom Action=CActivateAction
+{
+Target Name=PC was told Toulouse was harboring Lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=The people here are of no great concern to me. I'm more interested in why you came here.
+Go to node ID=50 Lucius is the fugitive
+------------------------------------------------------------
+Node ID=23 Toulouse brought this upon themselves
+Text=<Sigh> Dealing with humans is never easy. Despite what your kind thinks of us, we do not go out of our way to harm lesser creatures. The fleshlings here were harboring a fugitive who stole a priceless legacy from us, and we cannot be blamed for attempting to recover it. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Toulouse was providing a refuge for whatever it is you're looking for?
+Go to node ID=24 Harboring a fugitive
+
+Requirement=!None
+Reply Text=So what, exactly, are you looking for?
+Go to node ID=50 Lucius is the fugitive
+
+Requirement=!None
+Reply Text=I really must be going. Farewell
+Go to node ID=61 Go speak to Rhea general
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Why are you eating people
+Text=Who told you this?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A woman who escaped your clutches.
+Go to node ID=41 the woman is confused
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Talk to Iapetus
+}
+
+Requirement=!None
+Reply Text=I have my sources.
+Go to node ID=42 You are confused
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Talk to Iapetus
+}
+------------------------------------------------------------
+Node ID=41 the woman is confused
+Text=Tsk. Ignorance typical of humankind. We are made of *stone*, fleshling. What need would we have to consume human flesh? The very idea is distasteful. Still, she knows half a truth. Speak to the elder Iapetus of your concerns, he is around here somewhere and can shed light on your fears.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 other questions
+------------------------------------------------------------
+Node ID=42 You are confused
+Text=Well, your sources, whatever they may be, are wrong. You know half a truth. If you would know the other half, speak to the elder Iapetus, he's around here somewhere.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 other questions
+------------------------------------------------------------
+Node ID=50 Lucius is the fugitive
+Text=We're looking for a titan who is running from his obligations. His selfish disregard for his children and sacred duty has brought our wrath down upon the inhabitants of this community, which foolishly tried to hide him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=50 Lucius is the fugitive 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Lucius is the fugitive 2
+Text=Unfortunately, he foresaw our move on the town and fled just in time to avoid us. If he has taken refuge in another community, it will suffer the same fate. By helping us locate him, you can spare these lands a great deal of grief. Have you seen this titan?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=His name wouldn't be Lucius, would it?
+Go to node ID=51 Lucius is an AKA
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=X0EEE227
+}
+}
+}
+}
+Reply Text=You must mean Lucius. He's hired me to kill the lot of you.
+Go to node ID=52 Lucius put out a hit
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 100
+}
+Reply Text=<Lie> Nope, no titans around here. Sure aren't.
+Go to node ID=55 failed lie
+Action work in progress=low speech skill, activate flag 2 PC has been told to speak to Rhea
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 45
+}
+Reply Text=<Lie> You're the only titans I've seen around here.
+Go to node ID=56 Successful lie
+Action work in progress=high speech skill, activate flag 2 PC has been told to speak to Rhea
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=51 Lucius is an AKA
+Text=Hehe, is that the name he has adopted? Senility must have its claws deep into him if he thinks adopting a human name and hiding in their filth will save his soft skin. We knew him as Memnos, memory, and that is exactly what he owes us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What?
+Go to node ID=53 Rhea can explain
+Action work in progress=activate flag 2 PC has been told to speak to Rhea
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Reply Text=You sacked this town because Lucius...Memnos... was hiding here.  And he owes you...memory?
+Go to node ID=52 Lucius stole our memory
+Action work in progress=if PC has a high int, activate flag 2 PC has been told to speak to Rhea
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Attribute Icon
+------------------------------------------------------------
+Node ID=52 Lucius put out a hit
+Text= Hehe, his infamy is truly limitless. Is "Lucius" the name he has adopted? Senility must have its claws deep into him if he thinks adopting a human name and hiding in their filth will save his soft skin. We knew him as Memnos, memory, and that is exactly what he owes us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What?
+Go to node ID=53 Rhea can explain
+Action work in progress=activate flag 2 PC has been told to speak to Rhea
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Reply Text=You sacked this town because Lucius... Memnos... was hiding here.  And he owes you... memory?
+Go to node ID=52 Lucius stole our memory
+Action work in progress=if PC has a high int, activate flag 2 PC has been told to speak to Rhea
+Custom Action=CActivateAction
+{
+Target Name=PC has been told to speak to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=What he owes you is no concern to me. I owe him your heart, and I intend to deliver it. 
+Go to node ID=99 Combat
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=53 Rhea can explain
+Text=It is a concept foreign to your species. Speak to Rhea and she will dispel your ignorance. You will find her to the south tutoring a young member of our tribe. You could learn much from the lecture.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 other questions
+
+Requirement=!None
+Reply Text=I will speak with Rhea.
+Go to node ID= 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=52 Lucius stole our memory
+Text=It is difficult to explain, but his crime is far worse than any other a titan could commit. Speak to Rhea and she will make everything clear. You can find her south of here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 other questions
+
+Requirement=!None
+Reply Text=I will speak with Rhea.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 failed lie
+Text=Heh, I suspect you know more than you are willing to admit, fleshling. For now, speak to Rhea and she will bring you to understand why we seek this thief. She can be found to the south, tutoring a young member of our tribe. You could learn much from the lecture.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 other questions
+
+Requirement=!None
+Reply Text=I will speak with Rhea.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=56 Successful lie
+Text=Please let me know if you should come across him, it is vital that we find him. In the meantime, please seek out Rhea and have her educate you about our society. She can be found to the south, tutoring the youngest member of our tribe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 other questions
+
+Requirement=!None
+Reply Text=I will speak with Rhea.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Go speak to Rhea
+Text=It is not simply the fugitive that we seek, nor any object that he carries. It would be best if you spoke to Rhea about our society and customs and then returned to me. She is south of here tutoring a young member of our tribe. Once you understand our ways it will be clear to you why we were driven to such distasteful extremes.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 other questions
+
+Requirement=!None
+Reply Text=I will speak with Rhea.
+Go to node ID= 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Rude Goodbye
+Text=You will help us yet, fleshling.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=99 Combat
+Text=Are you sure this is what you want, fleshling? You know only one side of the story.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well, I have questions for you.
+Go to node ID=5 other questions
+
+Requirement=!None
+Reply Text=You can tell your stories in hell, monster.
+Go to node ID= 
+Action work in progress=go to combat
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=61 Go speak to Rhea general
+Text=I urge you to sepeak with Rhea. She can explain much about our culture and motivations. You will find her south of here, tutoring a young member of our tribe.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=24 Harboring a fugitive
+Text=Yes, we tracked him to this village.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who...or what...is this fugitive?
+Go to node ID=50 Lucius is the fugitive
+------------------------------------------------------------
+Node ID=100 Return from Rhea
+Text=So, do you understand why we are here now, small one?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Is there any way to resolve this problem nonviolently? 
+Go to node ID=101 Lucius must die
+
+Requirement=!None
+Reply Text=I've been told you're eating your prisoners.
+Go to node ID=42RFR You are confused
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Yes, Rhea explained everything to me and I am willing to help you in order to spare more towns the fate of Toulouse. 
+Go to node ID=110 Good help
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Yes, I understand why you are here and I can help you if the price is right. 
+Go to node ID=130 Mercenary help
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Perhaps you should explain it to me again.
+Go to node ID=140 Explanation for the very dim
+
+Requirement=!None
+Reply Text=I need some time to think this over. Goodbye.
+Go to node ID=160 Goodbye 2
+Custom Action=CActivateAction
+{
+Target Name=player thinking it over
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Memnos agreed to return
+Desired Minimum Count=1
+}
+}
+Reply Text=Memnos is coming back to you. He will speak for himself.
+Go to node ID=502 Memnos returns
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=100 Return from Rhea return
+Text=You are back. What do you have to say?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+Reply Text=I have the mneme. 
+Go to node ID=
+Action work in progress=check inventory for the mneme
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Quest complete relay
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Reply Text=I have spoken to Memnos. While I understand your side of the story, I cannot consent to being a hired killer for either side.
+Go to node ID=101 Didn't Kill Memnos
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=R8FFDJBY
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+}
+}
+Reply Text=I have spoken to Memnos. While I understand your side of the story, I cannot kill him for you. There is, however, the matter of him hiring me to kill *you*.
+Go to node ID=101 Didn't Kill Memnos might kill Lethos
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+}
+}
+}
+Reply Text=I've reconsidered, and I'm afraid that means that all of you will have to die.
+Go to node ID=150 Fight 2
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 5-
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=X0EEE227
+}
+}
+}
+}
+}
+Reply Text=This whole situation is so confusing. I think if you were all dead it would be much simpler.
+Go to node ID=99 Combat
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=X0EEE227
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+}
+}
+Reply Text=Is there any way to resolve this problem nonviolently? 
+Go to node ID=101 Lucius must die
+Action work in progress=check quest state
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=I am willing to help you in order to spare more towns the fate of Toulouse. 
+Go to node ID=110 Good help
+Action work in progress=check quest state
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Action=CDeactivateAction
+{
+Target Name=player thinking it over
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=I've decided I can help you if the price is right. 
+Go to node ID=130 Mercenary help
+Action work in progress=check quest state 
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Action=CDeactivateAction
+{
+Target Name=player thinking it over
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=X0EEE227
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+}
+}
+Reply Text=Perhaps you should explain your problem to me again.
+Go to node ID=140 Explanation for the very dim
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=I need to think this over.
+Go to node ID=160 Goodbye 2
+Custom Action=CActivateAction
+{
+Target Name=player thinking it over
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Reply Text=I'll be back, I have work to do.
+Go to node ID=70 Rude Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Memnos agreed to return
+Desired Minimum Count=1
+}
+}
+Reply Text=Memnos is coming back to you. He will speak for himself.
+Go to node ID=502 Memnos returns
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=101 Lucius must die
+Text=Memnos knew what he was getting into. To die is his duty. If he wasn't willing to see it through, he shouldn't have taken the responsibility and endangered our tribe's legacy with his cowardice.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Very well, I will help you in order to spare more towns the fate of Toulouse. 
+Go to node ID=110 Good help
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Very well, I'll do it for a price. 
+Go to node ID=130 Mercenary help
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Perhaps you should again explain to me why he must die.
+Go to node ID=140 Explanation for the very dim
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=I need some time to think this over. Goodbye.
+Go to node ID=160 Goodbye 2
+Custom Action=CActivateAction
+{
+Target Name=player thinking it over
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+}
+Reply Text=Very well. Farewell.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+Reply Text=Duty is what you say it is, and you are the ones saying it. Hear a proposal before you spend him.
+Go to node ID=120 Nonviolent help
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=105 Return from thinking
+Text=Have you reconsidered?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Yes, I am willing to help you in order to spare more towns the fate of Toulouse. 
+Go to node ID=110 Good help
+Action work in progress=deactivate checker
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=player thinking it over
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Yes, I can help you if the price is right. 
+Go to node ID=130 Mercenary help
+Action work in progress=deactivate checker
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=player thinking it over
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Perhaps you should explain it to me again.
+Go to node ID=140 Explanation for the very dim
+Action work in progress=deactivate checker 
+Custom Action=CDeactivateAction
+{
+Target Name=player thinking it over
+}
+
+Requirement=!None
+Reply Text=Sorry, I need more time. Goodbye.
+Go to node ID=160 Goodbye 2
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Memnos agreed to return
+Desired Minimum Count=1
+}
+}
+Reply Text=Memnos is coming back to you. He will speak for himself.
+Go to node ID=502 Memnos returns
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=110 Good help
+Text=You are wise for one of your kind, fleshling. You must slay Memnos and bring me the large crystal you will find in his chest. And what do you want in return? Merely the freedom of the humans we have under guard?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, you must free the people of this town.
+Go to node ID=111 Freedom
+Action work in progress=karma reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=freedom
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I have a fondness for gold.
+Go to node ID=112 Gold
+Action work in progress=gold reward
+Custom Action=CActivateAction
+{
+Target Name=gold
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=You doubtless have powerful magic. Share some with me.
+Go to node ID=113 Magic
+Action work in progress=magic reward
+Custom Action=CActivateAction
+{
+Target Name=magic
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter less than 50
+}
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic failure
+Action work in progress=magic reward
+Custom Action=CActivateAction
+{
+Target Name=magic
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 50
+}
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic
+Action work in progress=barter 65 uber reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=gold
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=magic
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Barter Skill Icon
+------------------------------------------------------------
+Node ID=111 Freedom
+Text=Certainly, we will release the humans once we have recovered our mneme. Good luck, fleshling.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+Reply Text=Excellent, and since I happen to already have the crystal you seek, we can resolve this now.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Quest complete relay
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=112 Gold
+Text=Certainly, we have gold in abundance. You will be richly rewarded should you succeed. Good luck, fleshling.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+Reply Text=Excellent, and since I happen to already have the crystal you seek, we can resolve this now.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Quest complete relay
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=113 Magic
+Text=We have something that I think would be most satisfactory to you should you succeed. Good luck, small one.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+Reply Text=Excellent, and since I happen to already have the crystal you seek, we can resolve this now.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Quest complete relay
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=114 Gold and magic
+Text=You drive a hard bargain, small one, but it will be well worth it should you succeed. Good luck, then, a great reward awaits you.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+Reply Text=Excellent, and since I happen to already have the crystal you seek, we can resolve this now.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Quest complete relay
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=114 Gold and magic failure
+Text=We have brought little with us from our mountain home, fleshling, I am afraid we cannot offer you as much as you demand, though I am sure you are worth the price. We have an ancient magic we could give you, should you succeed. I am sure you will find it most satisfactory. Good luck, small one.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+}
+Reply Text=Excellent, and since I happen to already have the crystal you seek, we can resolve this now.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/LuciusMneme
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Quest complete relay
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Nonviolent help
+Text=What do you propose, small one? 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Derived Attributes/Outwit 8 greater or equal
+}
+Reply Text=Let him stand in front of you and say why he should outlive his office. If his reasons are poor you have lost nothing but an afternoon.
+Go to node ID=121 Nonviolent success
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Derived Attributes/Outwit 8 greater or equal
+}
+}
+Reply Text=Let him stand in front of you and say why he should outlive his office. If his reasons are poor you have lost nothing but an afternoon.
+Go to node ID=122 Nonviolent failure
+
+Requirement=!None
+Reply Text=Nevermind, perhaps I will do it your way.
+Go to node ID=130 Mercenary help
+------------------------------------------------------------
+Node ID=121 Nonviolent success
+Text=Very well, we will agree to allow him to make his case for why he, of all who held his office, should be allowed to live past his term. Is the life of an individual worth more than the memory of the tribe? I do not know, but perhaps he can convince us. Good luck convincing him, small one. If you find you cannot, we would be just as happy to see his mneme as we would him. Now then, name your price.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You must free the people of this town.
+Go to node ID=111 Freedom
+Action work in progress=karma reward
+
+Requirement=!None
+Reply Text=I have a fondness for gold.
+Go to node ID=112 Gold
+Action work in progress=gold reward
+
+Requirement=!None
+Reply Text=You doubtless have powerful magic. Share some with me.
+Go to node ID=113 Magic
+Action work in progress=magic reward
+
+Requirement=!None
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic failure
+Action work in progress=magic reward
+
+Requirement=!None
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic
+Action work in progress=barter 85 uber reward
+------------------------------------------------------------
+Node ID=122 Nonviolent failure
+Text=Very well, we will let him live so long as he returns to us. If he won't, we will reward you just as richly for his mneme. Now then, name your price.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You must free the people of this town.
+Go to node ID=111 Freedom
+Action work in progress=karma reward
+
+Requirement=!None
+Reply Text=I have a fondness for gold.
+Go to node ID=112 Gold
+Action work in progress=gold reward
+
+Requirement=!None
+Reply Text=You doubtless have powerful magic. Share some with me.
+Go to node ID=113 Magic
+Action work in progress=magic reward
+
+Requirement=!None
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic failure
+Action work in progress=magic reward
+
+Requirement=!None
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic
+Action work in progress=barter 85 uber reward 
+------------------------------------------------------------
+Node ID=130 Mercenary help
+Text=Good. You must slay Memnos and bring me the large crystal you will find in his chest or trick him into coming here, in which case we will deal with him ourselves. What is your price? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, you must free the people of this town.
+Go to node ID=111 Freedom
+Custom Action=CActivateAction
+{
+Target Name=freedom
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I have a fondness for gold.
+Go to node ID=112 Gold
+Custom Action=CActivateAction
+{
+Target Name=gold
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=You doubtless have powerful magic. Share some with me.
+Go to node ID=113 Magic
+Custom Action=CActivateAction
+{
+Target Name=magic
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter less than 50
+}
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic failure
+Custom Action=CActivateAction
+{
+Target Name=magic
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 50
+}
+Reply Text=I am quite capable...and quite expensive. I want both a fortune in gold and a share of your titan magic.
+Go to node ID=114 Gold and magic
+Action work in progress=barter at 50
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=gold
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=magic
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Barter Skill Icon
+------------------------------------------------------------
+Node ID=140 Explanation for the very dim
+Text=Memnos, or Lucius, holds the collective memory of this tribe within his mneme, a crystal within his chest. We need to recover this crystal before his advancing age starts to degrade the memories it holds. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=I am willing to help you in order to spare more towns the fate of Toulouse. 
+Go to node ID=110 Good help
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Action=CDeactivateAction
+{
+Target Name=player thinking it over
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=I can help you if the price is right. 
+Go to node ID=130 Mercenary help
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Action=CDeactivateAction
+{
+Target Name=player thinking it over
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=I think killing all of you is the best solution to the problem. 
+Go to node ID=150 Fight 2
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+}
+Reply Text=That's... interesting. Farewell.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=150 Fight 2
+Text=Your kind is so very, very tiresome. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 Goodbye 2
+Text=Do not think overlong, fleshling. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=502 Memnos returns
+Text=Coming back. On his own feet. <The titan is quiet for a while.> Then he is still Memnos, and the tribe will hear him, and what we decide after that is ours to decide and not yours. You have done a strange thing today, fleshling, and I do not know yet whether it was a kindness. Take what we promised you and go.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then it is finished.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Memnos returns to his tribe
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Quest completed
+Text=The Mneme! Excellent! Hehe, this Nostrodamus is quite a seer and you, fleshling, are a mighty runt to bring down so powerful a foe. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=501 Completed 2
+Text=Here is your reward, fleshling. You can have the town, too, for all I care. Now that we have this we shall return to our mountains. Goodbye, fleshling, and hope, for your own sake, that we never meet again!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Didn't Kill Memnos
+Text=I see, fleshling. It is doubtful that one of your stature would be capable of it, in any event. As it happens, we were just about to leave. Menoetius has become aware of events about to unfold that will flush that miserable coward out of the pile of human filth he's been hiding in.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What events do you mean?
+Go to node ID=102 Events in Toulouse
+
+Requirement=!None
+Reply Text=Then I will let you settle this matter amongst yourselves.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Peaceful Ending Relay
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=titans got lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/02 Hamlet Burned
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=Q8U40TYQ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=101 Didn't Kill Memnos might kill Lethos
+Text=Heheheh, and what do you propose to do about that, fleshling?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Nothing, I will let you settle this matter between yourselves.
+Go to node ID=101 Didn't Kill Memnos
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=peaceful ending
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=titans got lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/02 Hamlet Burned
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=Q8U40TYQ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm going to kill you, Lethos.
+Go to node ID=150 fight 2
+Custom Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=102 Events in Toulouse
+Text=Montaillou is but a small settlement, but larger events are bearing down on it, fleshling. Lucius will not be able to hide there for long. You will see.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Reply Text=Then I will let you settle this matter amongst yourselves.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Peaceful Ending Relay
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=titans got lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/02 Hamlet Burned
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=Q8U40TYQ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Reply Text=Farewell.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Peaceful Ending Relay
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=titans got lucius
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/02 Hamlet Burned
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=Q8U40TYQ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=42RFR You are confused
+Text=You know half a truth. If you would know the other half, speak to the elder Iapetus, he's around here somewhere.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Is there any way to resolve your problem nonviolently? 
+Go to node ID=101 Lucius must die
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Perhaps I will. Rhea explained everything to me and I am willing to help you in order to spare more towns the fate of Toulouse. 
+Go to node ID=110 Good help
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Very well. I understand why you are here and I can help you if the price is right. 
+Go to node ID=130 Mercenary help
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Reply Text=Perhaps you should explain your problem with Lucius to me again.
+Go to node ID=140 Explanation for the very dim
+
+Requirement=!None
+Reply Text=I need some time to think this over. Goodbye.
+Go to node ID=160 Goodbye 2
+Custom Action=CActivateAction
+{
+Target Name=player thinking it over
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+}

@@ -1,0 +1,4722 @@
+CDialogTree
+{
+Name=Lucius
+Portrait=Dialog/NPC Portraits/Andre the Rocktitan
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=What do you want, little one? Keep it...short. Brother Michel may be sleeping.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What business is it of yours? Get out of my way.
+Go to node ID=30 Ready to Rumble
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=There is a gruesome corpse in the home at the end of the pier, it looks as though all of the fluids have been drained from it.
+Go to node ID=01 Corpse
+Custom Action=CDeactivateAction
+{
+Target Name=seen the corpse
+}
+
+Requirement=!None
+Reply Text=What kind of creature are you?
+Go to node ID=70 Rock Titan
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=70 Andre's Story
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 corpse
+Text=Is it true? That is awful news! My people have the memory of a formless Daeva who drains the blood of its victims. If what you saw is indeed true, you should exercise extreme caution in the woods around town and I must redouble my vigilance in guarding Michel.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What kind of creature are you?
+Go to node ID=70 Rock Titan
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=70 Andre's Story
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 Return Dialogue
+Text=Hello down there! Back again?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+}
+}
+Reply Text=I have four stone hearts.
+Go to node ID=1000 Hearts in Hand
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=There is a gruesome corpse in the home at the end of the pier, it looks as though all of the fluids have been drained from it.
+Go to node ID=01 Corpse
+Custom Action=CDeactivateAction
+{
+Target Name=seen the corpse
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=4
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has been to Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Early Exit=0
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans had sacked the town. I traveled to Toulouse and found her story to be true. Do you have a role in this?
+Go to node ID=800 New Lucius Lies
+Action work in progress=heard Lucius' story then talked to both Esclarmonde and the mayor
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=5
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Early Exit=0
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=The mayor told me that Toulouse was sacked by titans and that you're protecting Montaillou from them.
+Go to node ID=800 New Lucius Lies
+Action work in progress=talked to the mayor and not Esclarmonde and didn't hear Lucius' story
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=5
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has been to Toulouse
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Early Exit=0
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans sacked the town and were eating its inhabitants. Do you know anything about this?
+Go to node ID=800 Esclarmonde lies
+Action work in progress=talked only to Eslcarmonde
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=5
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Early Exit=0
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans had sacked the town. The mayor said that you were protecting Montaillou from these titans. Would you care to explain?
+Go to node ID=800 New Lucius Lies
+Action work in progress=heard Lucius' story then talked to both Esclarmonde and the mayor
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=6
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has been to Toulouse
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Early Exit=0
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans had sacked the town. The mayor said that you were protecting Montaillou from these titans. Would you care to explain?
+Go to node ID=800 New Lucius Lies
+Action work in progress=heard Lucius' story then talked to mayor only
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=6
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has been to Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Early Exit=0
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans had sacked the town. I traveled to Toulouse and saw them myself. Mayor Clergue said that you were protecting Montaillou from these titans. Would you care to explain?
+Go to node ID=800 New Lucius Lies
+Action work in progress=heard Lucius' story then talked to mayor only
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+Reply Text=I'd like to speak with Brother Michel.
+Go to node ID=15 go right in
+Action work in progress=(If spoken with Brother Michel before)
+
+Requirement=!None
+Reply Text=I want to talk to you.
+Go to node ID=20 Introductory 2
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 corpse
+Text=Is it true? That is awful news! My people have the memory of a formless Daeva who drains the blood of its victims. If what you saw is indeed true, you should exercise extreme caution in the woods around town and I must redouble my vigilance in guarding Michel.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+Reply Text=I have four stone hearts.
+Go to node ID=1000 Hearts in Hand
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=4
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=The mayor told me that Toulouse was sacked by titans and that you're protecting Montaillou from them.
+Go to node ID=800 New Lucius Lies
+Action work in progress=talked to the mayor and not Esclarmonde and didn't hear Lucius' story
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans sacked the town and were eating its inhabitants. Do you know anything about this?
+Go to node ID=800 Esclarmonde lies
+Action work in progress=talked only to Eslcarmonde
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=4
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans had sacked the town. The mayor said that you were protecting Montaillou from these titans. Would you care to explain?
+Go to node ID=800 Both Lies
+Action work in progress=heard Lucius' story then talked to both Esclarmonde and the mayor
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=4
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans had sacked the town. The mayor said that you were protecting Montaillou from these titans. Would you care to explain?
+Go to node ID=800 New Lucius Lies
+Action work in progress=heard Lucius' story then talked to both Esclarmonde and the mayor
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=4
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Mayor about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius told his story
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I spoke to a woman from Toulouse who said that titans had sacked the town. The mayor said that you were protecting Montaillou from these titans. Would you care to explain?
+Go to node ID=800 New Lucius Lies
+Action work in progress=heard Lucius' story then talked to mayor only
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+Reply Text=I'd like to speak with Brother Michel.
+Go to node ID=15 go right in
+Action work in progress=(If spoken with Brother Michel before)
+
+Requirement=!None
+Reply Text=I want to talk to you.
+Go to node ID=20 Introductory 2
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return accepted Lethos quest
+Text=Greetings again, small one. I hope you bear good news. 
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+}
+}
+Reply Text=I have your four stone hearts.
+Go to node ID=1000 Hearts in Hand
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+}
+}
+}
+}
+Reply Text=We need to talk, Memnos. 
+Go to node ID=950 Talk with Memnos
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+}
+}
+}
+}
+Reply Text=Sorry, Memnos, but I need something you have. 
+Go to node ID=950 Fight with Memnos
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=Z8MNFNAP
+}
+}
+}
+Reply Text=I've washed my hands of the situation, Lucius. I won't be a killer for either side.
+Go to node ID=970 Lucius allowed to escape goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=pacifist
+Experience Points To Add=1
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=Q8U40TYQ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=10 Rebuff Goodbye
+Text=Go on, now. Little one.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=11 Worried Goodbye
+Text=I hope I see you again soon, small one.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=15 Pass Goodbye
+Text=You may pass.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=already passed Titan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeleteAction
+{
+Target Name=Titan block player poly
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Talked past Lucius
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Bribed
+Text=Very well, a thousand and one golden coins would convince me that you are here on serious business. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I would refuse to pay half that!
+Go to node ID=115 Andre Unfooled
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1001
+}
+}
+}
+Reply Text=I don't have that much money.
+Go to node ID=115 Andre Unfooled
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1001
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=<Lie> I don't have that much money.
+Go to node ID=115 Andre Unfooled
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1000
+}
+}
+Reply Text=Very well, here is your money.
+Go to node ID=15 Pass Goodbye
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1001
+}
+------------------------------------------------------------
+Node ID=20 Introductory
+Text=So, what do you want here, little one? Keep it...short.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+}
+Reply Text=Is this not where the wise Brother Michel lives?
+Go to node ID=50 Andre the Gullible
+Action work in progress=(Speech >=50%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I need to speak with Brother Michel.
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=What business is it of yours? Get out of my way.
+Go to node ID=30 Ready to Rumble
+
+Requirement=!None
+Reply Text=What kind of creature are you?
+Go to node ID=70 Rock Titan
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=70 Andre's Story
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Introductory 2
+Text=What do you want to talk about?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+}
+Reply Text=Is this not where the wise Brother Michel lives?
+Go to node ID=50 Andre the Gullible
+Action work in progress=(Speech >=50%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I need to speak with Brother Michel.
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=What business is it of yours? Get out of my way.
+Go to node ID=30 Ready to Rumble
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+}
+Reply Text=What kind of creature are you?
+Go to node ID=70 Rock Titan
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+}
+Reply Text=What are you doing here?
+Go to node ID=70 Andre's Story
+
+Requirement=!None
+Reply Text=On second thought, nothing. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Ready to Rumble
+Text=No. Brother Michel has asked me to make sure none of you Cathars or Inquisitors or whoevers bothers him today. Think you can move a mountain, little wind?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I've moved bigger.
+Go to node ID=60 Wrasslin
+
+Requirement=!None
+Reply Text=I don't want to fight you, but if that's what it takes to see Brother Michel, so be it.
+Go to node ID=60 Wrasslin
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Reply Text=Given time, a wind can erode a mountain, but that only wastes the wind's time and makes the mountain angry. Perhaps there is another way?
+Go to node ID=80 My Chat with Andre
+Action work in progress=(IN > 7)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Gatekeeper
+Text=I'm sorry, but I'm not going to let you disturb my friend.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Montserrat was attacked, the monks there were slain, but they told me that Brother Michel could help.
+Go to node ID=80 My Chat with Andre
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter less than 35
+}
+Reply Text=Perhaps some gold might change your mind?
+Go to node ID=113 Andre Unfooled
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 35
+}
+Reply Text=My business is urgent. As proof of my sincerity, I am willing to pay you a substantial sum if you let me pass.
+Go to node ID=15 Bribed
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Reply Text=As a Knight Templar, a comrade-in-arms of Brother Michel, I demand that you let me pass.
+Go to node ID=81 My Chat with Andre
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=<Lie> As a Knight Templar, a comrade-in-arms of Brother Michel, I demand that you let me pass.
+Go to node ID=81 My Chat with Andre
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=If you don't let me pass you'll spend the rest of your days rotting in an Inquisition dungeon, monster. 
+Go to node ID=61 Wrasslin
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Reply Text=I am no mere simpleton you are dealing with. I am a powerful wizard and you would do well not to anger me.
+Go to node ID=60 Wrasslin
+
+Requirement=!None
+Reply Text=And I won't let you stop me. Now stand aside.
+Go to node ID=30 Ready to Rumble
+
+Requirement=!None
+Reply Text=Fair enough. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Gatekeeper Variant
+Text=My friend is deep in meditation. He doesn't want any visitors.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=But it is very important I talk to him!
+Go to node ID=80 My Chat with Andre
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter less than 35
+}
+Reply Text=How about I give you a few gold coins. You could go somewhere far away and buy some decent clothes and I could talk to Michel. We would both benefit.
+Go to node ID=114 Andre Unfooled
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 35
+}
+Reply Text=My business is urgent. As proof of my sincerity, I am willing to pay you a substantial sum if you let me pass.
+Go to node ID=15 Bribed
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Reply Text=Your friend and I belong to the same order and it is very important that we speak.
+Go to node ID=81 My Chat with Andre
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar NOT
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+}
+Reply Text=<Lie> Your friend and I belong to the same order and it is very important that we speak.
+Go to node ID=81 My Chat with Andre
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=In the name of the Inquisition, I demand you step aside! 
+Go to node ID=80 My Chat with Andre
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Reply Text=I am a wizard of some power and if you don't let me pass you'll feel my wrath.
+Go to node ID=60 Wrasslin
+
+Requirement=!None
+Reply Text=And I won't let you stop me. Now stand aside.
+Go to node ID=30 Ready to Rumble
+
+Requirement=!None
+Reply Text=I will be back later.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Andre the Gullible
+Text=Many people seek his wisdom. They come day and night, night and day, always pestering and needling poor Michel. That's why he asked me to make sure none of you pesterers and needlers get in.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 60
+}
+Reply Text=Let me see him. If he decides I am a nuisance, there is little I could do to stop you from throwing me into the lake.
+Go to node ID=90 Andre the Dupe
+Action work in progress=(Speech >= 60%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Reply Text=As a wise man, he is a better judge of character than you, correct? He should see me to judge for himself whether or not he wants to see me.
+Go to node ID=100 Andre Outwitted
+Action work in progress=(IN > 7)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=But I am no pest!
+Go to node ID=112 Andre Unfooled
+
+Requirement=!None
+Reply Text=If he were really so wise he would have chosen a smarter guard. Now get out of my way.
+Go to node ID=30 Ready to Rumble
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Wrasslin
+Text=I'll put you to the test. If you can best me in a gentleman's duel, I may let you see Brother Michel.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=If that's what it takes, then I accept your challenge.
+Go to node ID=
+Action work in progress=(if PC chooses this, fignt ensues...if player wins non-lethal fight, Go to node ID=120. If player loses non-lethal fight go to Node 10Rebuff Goodbye.)
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Instigator
+Then=CTriggerRelayAction
+{
+Relay Name=355 no match balloon displayer
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CForEachPlayerAction
+{
+Action=CAddAIAction
+{
+Target Name=$Instigator
+AI=CRepeatTimerTriggerAI
+{
+Marked For Deletion=0
+Publisher=
+Action=CTriggerRelayAction
+{
+Relay Name=Player stops attacking
+}
+Delay Between Actions=0.1
+Plus or Minus=0
+Seconds Till Next Execute=0
+}
+Delay Between Adds=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Lucius Wrasslin
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Player stops attacking
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Anti-lure trigger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Fine. It'll be my pleasure to take you down a few notches.
+Go to node ID=
+Action work in progress=(if PC chooses this, fignt ensues...if player wins non-lethal fight, Go to node ID=120. If player loses non-lethal fight go to Node 10Rebuff Goodbye.)
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Instigator
+Then=CTriggerRelayAction
+{
+Relay Name=355 no match balloon displayer
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CAddAIAction
+{
+Target Name=$Instigator
+AI=CRepeatTimerTriggerAI
+{
+Marked For Deletion=0
+Publisher=
+Action=CTriggerRelayAction
+{
+Relay Name=Player stops attacking
+}
+Delay Between Actions=0.1
+Plus or Minus=0
+Seconds Till Next Execute=0
+}
+Delay Between Adds=0
+}
+Action=CActivateAction
+{
+Target Name=Lucius Wrasslin
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Player stops attacking
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Anti-lure trigger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough of this! I am here on an important mission, not to play with you.
+Go to node ID=130 Andre Embarrassed
+
+Requirement=!None
+Reply Text=Maybe some other time. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=61 Wrasslin
+Text=I do not think there is a dungeon big or strong enough to contain me, small one. But if you think you have the power to move me, I'll let you try. If you can beat me in a gentleman's duel, I'll let you pass. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=If that's what it takes, then I accept your challenge.
+Go to node ID=
+Action work in progress=(if PC chooses this, fignt ensues...if player wins non-lethal fight, Go to node ID=120. If player loses non-lethal fight go to Node 10Rebuff Goodbye.)
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Instigator
+Then=CTriggerRelayAction
+{
+Relay Name=355 no match balloon displayer
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CAddAIAction
+{
+Target Name=$Instigator
+AI=CRepeatTimerTriggerAI
+{
+Marked For Deletion=0
+Publisher=
+Action=CTriggerRelayAction
+{
+Relay Name=Player stops attacking
+}
+Delay Between Actions=0.1
+Plus or Minus=0
+Seconds Till Next Execute=0
+}
+Delay Between Adds=0
+}
+Action=CActivateAction
+{
+Target Name=Lucius Wrasslin
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Player stops attacking
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Anti-lure trigger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Fine. It'll be my pleasure to take you down a few notches.
+Go to node ID=
+Action work in progress=(if PC chooses this, fight ensues...if player wins non-lethal fight, Go to node ID=120. If player loses non-lethal fight go to Node 10Rebuff Goodbye.)
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Instigator
+Then=CTriggerRelayAction
+{
+Relay Name=355 no match balloon displayer
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CAddAIAction
+{
+Target Name=$Instigator
+AI=CRepeatTimerTriggerAI
+{
+Marked For Deletion=0
+Publisher=
+Action=CTriggerRelayAction
+{
+Relay Name=Player stops attacking
+}
+Delay Between Actions=0.1
+Plus or Minus=0
+Seconds Till Next Execute=0
+}
+Delay Between Adds=0
+}
+Action=CActivateAction
+{
+Target Name=Lucius Wrasslin
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Player stops attacking
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Anti-lure trigger
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough of this! I am here on an important mission, not to play with you.
+Go to node ID=130 Andre Embarrassed
+
+Requirement=!None
+Reply Text=Maybe some other time. Goodbye.
+Go to node ID=10 Rebuff Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Rock Titan
+Text=I am a rock titan, a son of the Earth. My name is Lucius.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+Reply Text=You seem very fleshy for a "rock" titan.
+Go to node ID=140 Titan Physiology
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=70 Andre's Story
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Andre's Story
+Text=I am here serving my friend, Brother Michel. He saved my life when my fellow rock titans turned on me for being soft.  To repay his kindness, I do odd jobs for him.  Right now I'm making sure nobody disturbs his meditation.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=How fortuitous, I've journeyed quite far to see the wise brother.
+Go to node ID=50 Andre the Gullible
+Action work in progress=(Speech >=50%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I need to speak with Brother Michel, I'm sure he won't mind the interruption.
+Go to node ID=40 Gatekeeper Variant
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Well, Lucius, I need to see the Brother. Now get out of my way.
+Go to node ID=30 Ready to Rumble
+
+Requirement=!None
+Reply Text=You've become...soft?
+Go to node ID=140 Titan Physiology
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 60
+}
+}
+Reply Text=Let his charity be a model for you. In the spirit of good will, let me pass.
+Go to node ID=90 Andre the Dupe
+Action work in progress=(Speech >=60%)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Your relatives were right. Since when do titans talk when they should fight?
+Go to node ID=60 Wrasslin
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 My Chat with Andre
+Text=Hmm...perhaps. Make your case, small one.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 60
+}
+}
+Reply Text=My mission is quite urgent and concerns brother Michel. Every moment you make me wait is another nail in his coffin.
+Go to node ID=100 Andre Outwitted
+Action work in progress=(IN > 7)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I am on a mission with the fate of the world in the balance.
+Go to node ID=110 Andre Unfooled
+
+Requirement=!None
+Reply Text=Forces of darkness hunt for the relics I seek. Brother Michel may be threatened.
+Go to node ID=111 Andre Unfooled
+
+Requirement=!None
+Reply Text=Forget it. What gives you the right to stop me?
+Go to node ID=60 Wrasslin
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=81 My Chat with Andre
+Text=Michel is old and has devoted his life to the service of the Knights; he should be allowed his rest. What is so urgent that it cannot wait?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 60
+}
+}
+Reply Text=My mission concerns brother Michel. Every moment you make me wait is another nail in his coffin.
+Go to node ID=100 Andre Outwitted
+Action work in progress=(IN > 7)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I am on a mission from God.
+Go to node ID=110 Andre Unfooled
+
+Requirement=!None
+Reply Text=A great evil stalks the land, and Brother Michel has vital information I need to combat it.
+Go to node ID=111 Andre Unfooled
+
+Requirement=!None
+Reply Text=I do not have time to parlay with an overstuffed gargoyle!
+Go to node ID=60 Wrasslin
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Andre the Dupe
+Text=I don't know, but I guess you are alright. Please do not make me regret letting you pass, small one.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 Pass Goodbye
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Andre Outwitted
+Text=Perhaps you should speak to Michel, after all. Please do not waste his time, I would feel terrible if he were angry with me. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 Pass Goodbye
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Andre Unfooled
+Text=You won't get past me with words.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 Gatekeeper variant
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=111 Andre Unfooled
+Text=I'm sorry, small one, but you don't seem very convincing to me.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 Gatekeeper variant
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=112 Andre Unfooled
+Text=I don't know, you seem pretty pesky to me.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 Gatekeeper
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=113 Andre Unfooled
+Text=No, my friendship with Michel is not for sale, small one.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 Gatekeeper Variant
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=114 Andre Unfooled
+Text=My people are fond of human leather, small one. If you truly think I need new clothes, insult me again.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 Gatekeeper
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=115 Andre Unfooled
+Text=Well, if your business isn't worth such a sum, it isn't worth disturbing the good brother, for many times he has said to me "a clearness of mind and the peace of meditation is worth more to a man than a bar of gold." 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 Gatekeeper Variant 
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Andre Defeated
+Text=I have lost, to a little person. How cruel are the ravages of time.  In my youth I could have defeated an army of you, but my age has ground my stone to flesh and I diminish with each passing day.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+Reply Text=You do seem...soft...for a *rock* titan.
+Go to node ID=140 Titan Physiology 
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Look, I don't have time for this. May I see him?
+Go to node ID=15 Pass Goodbye
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=15 Pass Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 Andre Embarrassed
+Text=Ahhh, maybe you are right, Brother Michel would not want us to fight needlessly. I fear that in my dotage my thoughts grow as soft as my flesh. 
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 4+
+}
+Reply Text=You do seem...soft...for a *rock* titan.
+Go to node ID=140 Titan Physiology
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I really need to see Brother Michel. Will you let me by?
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Reply Text=Look, I don't have time for this. Can I pass?
+Go to node ID=40 Gatekeeper Variant
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Titan Physiology
+Text=As we rock titans grow old, our stone skins decay and become soft like yours. The young often prey upon the old. One day the tribe decided my time to die had come, so I fled and came here to live out the rest of my days with Brother Michel.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Your own tribe tried to kill you?
+Go to node ID=150 Andre's Family
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=That's awful, but I really need to see Brother Michel. Will you let me by?
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Look, I don't have time for this. Can I pass?
+Go to node ID=40 Gatekeeper Variant
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Andre's Family
+Text=Yes, when a titan reaches old age he is ritually stoned to death by the rest of the tribe. Fortunately, I learned of their intentions the night before it was my turn and fled. I met Brother Michel and he convinced the town to shelter me, and for that I owe him a great debt of gratitude. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Where does your tribe live?
+Go to node ID=155 Tribe Location Lie
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Are there any other titans around here? 
+Go to node ID=160 No Other Titans Lie
+Custom Action=CActivateAction
+{
+Target Name=Lucius told his story
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I also need Brother Michel's help. Will you let me by?
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 Met titans on the way here
+Text=If you crossed those mountains then I don't doubt that you did more than simply meet them. My people can be very vicious when trespassers wander into their lands. 
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Are there any other titans around here? 
+Go to node ID=160 No Other Titans Lie
+Custom Action=CActivateAction
+{
+Target Name=Lucius told his story
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I also need Brother Michel's help. Will you let me by?
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=10 Rebuff Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=155 Tribe Location Lie
+Text=I lived a long way from here, in the Pyrenees.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=That sounds like a long journey, surely you had many adventures. 
+Go to node ID=156 No Adventures Lie
+
+Requirement=!None
+Reply Text=Ah, I think I... met... a few of them on my way here. 
+Go to node ID=150 Met titans on the way here
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Have you come across any other titans since you left? 
+Go to node ID=160 No Other Titans Lie
+Custom Action=CActivateAction
+{
+Target Name=Lucius told his story
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=That's interesting, but I really do need to see Brother Michel.
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Reply Text=Yours is an interesting story, but I must be going.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=156 No Adventures Lie
+Text=No, none at all. I traveled only at night and with great caution lest I be recaptured by my kin or slain by Spaniards. Alas, not all people are as kind as Brother Michel and the people of this town. I was especially careful to avoid humans and encountered none until I met Brother Michel.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=town square scene triggered
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=And you haven't seen any titans? 
+Go to node ID=160 No Other Titans Lie
+Custom Action=CActivateAction
+{
+Target Name=Lucius told his story
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I, too, am peaceful like Brother Michel. Please, may I see him?
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=If you face me, Spaniards are the least of your worries. Now let me pass.
+Go to node ID=
+Action work in progress=(if PC chooses this, fignt ensues...if player wins non-lethal fight, Go to node ID=120. If player loses non-lethal fight go to Node 10Rebuff Goodbye.)
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Instigator
+Then=CTriggerRelayAction
+{
+Relay Name=355 no match balloon displayer
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CSetDamagedScriptActionAction
+{
+New Damaged Action=CTriggerRelayAction
+{
+Relay Name=Player stops attacking
+}
+Target Name=$Instigator
+}
+Action=CAddAIAction
+{
+Target Name=$Instigator
+AI=CRepeatTimerTriggerAI
+{
+Marked For Deletion=0
+Publisher=
+Action=CTriggerRelayAction
+{
+Relay Name=Player stops attacking
+}
+Delay Between Actions=0.1
+Plus or Minus=0
+Seconds Till Next Execute=0
+}
+Delay Between Adds=0
+}
+}
+}
+}
+
+Requirement=!None
+Reply Text=Yours is an interesting story, but I must be going.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 No Other Titans Lie
+Text=No, I haven't seen another of my kind since I fled. I would say that I've been lonely, but if I were to come across any of my brethren, they would surely try to kill me.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=161 Promise
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=161 Promise
+Text=You have the look of someone who has traveled many miles. If you want, I could give you some valuable advice should you ever find yourself face to face with a titan.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Certainly, such knowledge may prove useful. 
+Go to node ID=162 Titan Advice
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Reply Text=Yes, such advice might prove useful should I ever need to get past a titan. Hypothetically speaking, of course.
+Go to node ID=162 Titan Advice
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps another time, now may I see Brother Michel? 
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed Titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think I can handle a titan... especially one that stands in my way.
+Go to node ID=60 Wrasslin
+Action work in progress=(if PC chooses this, fignt ensues...if player wins non-lethal fight, Go to node ID=120. If player loses non-lethal fight go to Node 10Rebuff Goodbye.)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=No, I'll just be going.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=162 Titan Advice
+Text=The most important thing to remember when face to face with titans is that, no matter who you are in the world of men, you are nothing more than an animal so far as they are concerned. If you must deal with titans, remember that they are both compulsive liars and calculating killers. And one more thing...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes?
+Go to node ID=162 Titan Advice 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=162 Titan Advice 2
+Text=Please don't mention you saw me here. Not just for my sake, but for the sake of Brother Michel and the town.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already passed titan
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll take it under advisement. Now may I see the Brother? 
+Go to node ID=40 Gatekeeper
+
+Requirement=!None
+Reply Text=I'll consider it. Farewell.
+Go to node ID=10 Rebuff Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=350 no match
+Text=Bah! Little one, you are no match for Lucius.  Be on your way.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=355 no match low health
+Text=Bah! Come back when you are in better shape. It looks like you've been hurt already.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 Esclarmonde lies
+Text=She must be confused. Titans do not eat the flesh of mankind, it is unclean and frequently carries parasites and disease. I can imagine no circumstances in which they would do what you describe.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=She seemed very sure.
+Go to node ID=800 Esclarmonde lies 2
+
+Requirement=!None
+Reply Text=Perhaps I should speak to the mayor about this.
+Go to node ID=800 Esclarmonde lies goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 Esclarmonde lies 2
+Text=Hmmmm. I would be wary of approaching her again, small one. She may have a contagious mind fever or insanity.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 Esclarmonde lies goodbye
+Text=I would not bother the mayor with this, small one. He is very busy and this woman obviously speaks nonsense.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 New Lucius Lies
+Text= Yes... the mayor... he believes I am protecting this town. I need your help, small one. But even more than your help, I need you to keep a secret for me.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Your secret is safe with me, Lucius.
+Go to node ID=810 New Lies 2
+
+Requirement=!None
+Reply Text=<Lie> I won't tell a soul. 
+Go to node ID=810 New Lies 2
+
+Requirement=!None
+Reply Text=If you need my help, you'll have to make do without any promises from me.
+Go to node ID=805 Sticky Situation
+
+Requirement=!None
+Reply Text=Perhaps I'll return later.
+Go to node ID=11 Worried Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 Both lies
+Text=I knew I would be caught eventually. I...it's true, I lied to the mayor. But truly I do not know why the woman says titans are eating men. I cannot imagine that it is true...but if it is both the people of Toulouse...and I...need your help. But first, I must ask you to keep a secret for me.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Your secret is safe with me, Lucius.
+Go to node ID=810 New Lies 2
+
+Requirement=!None
+Reply Text=<Lie> I won't tell a soul. 
+Go to node ID=810 New Lies 2
+
+Requirement=!None
+Reply Text=If you need my help, you'll have to make do without any promises from me.
+Go to node ID=805 Sticky Situation
+
+Requirement=!None
+Reply Text=Perhaps I'll return later.
+Go to node ID=11 Worried Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=805 Sticky Situation
+Text=I understand. When you hear my story, I hope that you'll see that you must keep it in strictest confidence.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=810 New Lies 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=810 New Lies 2
+Text=The mayor of this town would not allow me to stay unless I agreed to protect the town. I thought the worst I would have to deal with was the occasional wild beast...although I was soon disabused of that notion.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=811 New Lies 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=811 New Lies 3
+Text=When I was told Toulouse was attacked by others of my kind, the mayor demanded I do something. I didn't know what to do! I took a long walk in the woods to think things over, and I had an idea.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=811 New Lies 4
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Lucius lied
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/03 Mayor Interior
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=811 New Lies 4
+Text=I stayed away from town for a few days, and when I returned I told the mayor that I had struck a deal with the titans that attacked Toulouse. I said that they would honor the peace of this town so long as I remained here.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+Reply Text=So you lied to preserve your position, and the titans could attack here any day.
+Go to node ID=811 New Lies 5
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+Reply Text=So you lied to preserve your position.
+Go to node ID=811 New Lies 5
+
+Requirement=!None
+Reply Text=What can I do to help?
+Go to node ID=820 PC Saves the day
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+Reply Text=I'm afraid the mayor must be informed of this danger.
+Go to node ID=840 Going to tell the mayor
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius extorted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=It sounds to me like you have a problem. A very, very expensive problem.
+Go to node ID=821 PC Saves the day but wants hush money
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Action=CActivateAction
+{
+Target Name=Lucius extorted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius extorted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=It would be a shame if the mayor found out about this. Especially since it would cost you only a few hundred gold to make sure he didn't.
+Go to node ID=830 Extortion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+Action=CActivateAction
+{
+Target Name=Lucius extorted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I'll be back later.
+Go to node ID=11 Worried Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=811 New Lies 5
+Text=Yes, I am afraid it is only a matter of time before they turn their eyes toward Montaillou. I am not a good judge of your kind, but Brother Michel seemed to think you a formidable person. Perhaps you could save Montaillou?  
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+Reply Text=Well, it just so happens that I've already dealt with the titans.
+Go to node ID=666 Done
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will do what I can to protect Montaillou and keep your secret.
+Go to node ID=820 PC Saves the day
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will deal with the titans if I can, but I must tell the mayor so he may make plans in the event I should fail.
+Go to node ID=820 PC Saves the day
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=This task is beyond me. I'm afraid the mayor must be informed of this danger.
+Go to node ID=840 Going to tell the mayor
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius extorted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps. And perhaps you could offer me a substantial sum to keep the mayor from hearing of this.
+Go to node ID=821 PC Saves the day but wants hush money
+Custom Action=CActivateAction
+{
+Target Name=Lucius extorted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius extorted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=If I were you, I'd worry more about the mayor discovering your deception. Of course, if you were to pay me well, I'm sure he never would.
+Go to node ID=830 Extortion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+Action=CActivateAction
+{
+Target Name=Lucius extorted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I'll be back later.
+Go to node ID=11 Worried Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=820 PC Saves the day
+Text=Thank you, thank you very much! What needs to be done is uncomplicated, though it certainly isn't simple: you must slay all of the titans in Toulouse. You must do it quickly, and without mercy.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+Reply Text=Relax, the titans are already dead.
+Go to node ID=666 Done
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+}
+Reply Text=
+Go to node ID=820 PC Saves the day 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=820 PC Saves the day 2
+Text=You *must* speak with your blade. Do not attempt to parlay with them, they will recognize your strength and try to divert you from your purpose or trick you into helping them.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Reply Text=I will not be a hired killer for either side. I will wish you luck and farewell, Lucius.
+Go to node ID=970 Lucius allowed to escape goodbye
+Action work in progress=Lucius leaves town
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=Q8U40TYQ
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=pacifist
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Don't worry, Lucius, I'll take care of everything.
+Go to node ID=825 Titan Slaying
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll deal with the situation as I see fit. 
+Go to node ID=825 Titan Slaying
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius extorted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I could take care of the titans for you. Of course, I'll need to buy some equipment to do it. Normally I'd ask the mayor, but since we can't risk him hearing about this, I'll have to ask *you*.
+Go to node ID=830 Extortion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Action=CActivateAction
+{
+Target Name=Lucius extorted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I need to think about this. 
+Go to node ID=11 Worried Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=821 PC Saves the day but wants hush money
+Text=Yes... Yes, I suppose so. I will give you a heavy purse of gold if you promise to keep my secret, and will have more for you if you take care of the titans.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+Reply Text=Relax, the titans are already dead. But that doesn't mean I don't expect payment.
+Go to node ID=666 Done
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+}
+Reply Text=Don't worry, Lucius, those titans are as good as dead. 
+Go to node ID=825 Titan Slaying
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll deal with the situation as I see fit. 
+Go to node ID=825 Titan Slaying
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=825 Titan Slaying
+Text=Good luck, And one more thing...this is very important. Inside the chest of each elder titan you will find a stone heart. Please, bring the hearts of these larger titans back to me. I hope to see you soon, small one. Remember my warnings! 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Wait, why do you want their hearts?
+Go to node ID=825 Crystals Explained
+
+Requirement=!None
+Reply Text=Fine then, I'll return with their hearts as proof I've slain the titans.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=X0EEE227
+}
+Action=CIfAction
+{
+If=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=R8FFDJBY
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=825 Crystals Explained
+Text=It is difficult to explain to you, fleshling. I must perform certain funerary rites on them or I risk being haunted by their slain spirits. I must insist they be brought to me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Fine then, I'll return with their hearts as proof I've slain the titans.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=X0EEE227
+}
+Action=CIfAction
+{
+If=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=R8FFDJBY
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=830 Extortion
+Text=This town has become my home, small one. This world is hostile to misfits and outcasts. I thought you might be able to appreciate that. Very well, I will give you a heavy purse of gold if you promise to keep my secret, and will have more for you if you take care of the titans.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+Reply Text=Relax, the titans are already dead. But that doesn't mean I don't expect payment.
+Go to node ID=666 Done
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+}
+Reply Text=Your cooperation is appreciated. I'll return for my reward after the titans are slain.
+Go to node ID=825 Titan slaying
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+}
+}
+Reply Text=You're pretty smart for somebody with a head full of rocks. Thanks for the money and good luck with the titans.
+Go to node ID=831 Angry Worried Goodbye 
+
+Requirement=!None
+Reply Text=It's been a pleasure doing business with you. Goodbye. 
+Go to node ID=831 Angry Worried Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=831 Angry Worried Goodbye
+Text=Do not toy with me, weakling. I may be feeble for one of *my* race, but I'm no puny fleshling *you* can push around.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=840 Going to tell the mayor
+Text=I beg you not to! Please, understand that I never intended to put anybody in danger. But I am an outcast, a fugitive...it is a lonely life, small one, and if I were thrown out of this town I fear I would not last long in the wilderness.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am sorry, Lucius, it is the right thing to do. I cannot kill the titans myself and the town must know of the danger.
+Go to node ID=841 Scared Goodbye
+
+Requirement=!None
+Reply Text=I will deal with the titans if I can, but I must tell the mayor so he may make plans in the event I should fail.
+Go to node ID=841 Scared Goodbye
+
+Requirement=!None
+Reply Text=I am not without mercy. I'll take care of the titans if I can. 
+Go to node ID=820 PC Saves the day
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius extorted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Slaying titans is expensive work, Lucius.
+Go to node ID=830 Extortion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Action=CActivateAction
+{
+Target Name=Lucius extorted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Lucius extorted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=If I could keep your secret. For a price.
+Go to node ID=830 Extortion
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+Action=CActivateAction
+{
+Target Name=Lucius extorted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I will consider the matter. Goodbye. 
+Go to node ID=11 Worried Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=841 Scared Goodbye
+Text=Do what you think is right, small one. I have brought this upon myself.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 Lucius thrown out of town
+Text=You are a very, very bad man and you lead a trite and meaningless existence. Now leave me alone.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 Lucius extorted and thrown out of town
+Text=I paid you your blood money and still you betray me! I have had all I can stand from you, runt!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=950 Talk with Memnos
+Text=I see that you have spoken with my tribe, small one. What do you propose to do? 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=We should talk about your obligations.
+Go to node ID=980 Obligations
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Reply Text=I might be persuaded to help you.
+Go to node ID=820 PC Saves the day
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=player attacked titans
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=Nobody should be forced into suicide. I will not be a hired killer for either side. I will wish you luck and farewell, Lucius.
+Go to node ID=970 Lucius allowed to escape goodbye
+Action work in progress=Lucius leaves town
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=Q8U40TYQ
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=pacifist
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Kill you, of course.
+Go to node ID=950 Fight with Memnos
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I must think more about this. I will return later, farewell. 
+Go to node ID=970 Lucius going to flee goodbye
+Action work in progress=Lucius takes off, remove him from the game world and set "Lucius fled" flag and alter Brother Michel dialogue
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+Reply Text=Go back to them and say it to their faces. You were their Memnos; make them remember it.
+Go to node ID=965 convince Lucius success
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+}
+Reply Text=Go back to them and say it to their faces. You were their Memnos; make them remember it.
+Go to node ID=965 convince Lucius failure
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Derived Attributes/Outwit 8 greater or equal
+}
+Reply Text=They have already agreed to hear you. Walk in under a truce and they will not touch you.
+Go to node ID=960 Trick Lucius success
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Derived Attributes/Outwit 8 greater or equal
+}
+}
+Reply Text=They have already agreed to hear you. Walk in under a truce and they will not touch you.
+Go to node ID=960 Trick Lucius failure
+------------------------------------------------------------
+Node ID=950 Fight with Memnos
+Text=I do not like your tone, fleshling. So they've hired you to rip out my heart, have they? Well, you won't have it without a fight.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=960 Trick Lucius success
+Text=Thank you, small one! They will see that my memory is as good as it ever was. I have missed their company greatly, I was not meant for the world of humans. So small and soft and...ugly. No offense, my friend. You have done me a great service!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I hope you find everything you desrve, my friend. 
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=QYINZUKM
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=pacifist
+Experience Points To Add=1
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Memnos agreed to return
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Lucius flees
+}
+}
+}
+Icon=Quest Icon
+Action work in progress=Lucius goes to Toulouse scene, PC get a reward
+------------------------------------------------------------
+Node ID=960 Trick Lucius failure
+Text=I will not go so easily, small one. Do you think me stupid? They would kill me in a moment should I come within sight of them. No, I will remain here, thank you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Then I am afraid you leave me little choice. 
+Go to node ID=950 Fight with Memnos
+Action work in progress=go to combat
+
+Requirement=!None
+Reply Text=I must think more about this. I will return later, farewell. 
+Go to node ID=970 Lucius going to flee goodbye
+Action work in progress=Lucius takes off, remove him from the game world and set "Lucius fled" flag and alter Brother Michel dialogue
+------------------------------------------------------------
+Node ID=965 convince Lucius success
+Text=Thank you, small one! They will see that my memory is as good as it ever was. I have missed their company greatly, I was not meant for the world of humans. So small and soft and...ugly. No offense, my friend. You have done me a great service!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I hope you find everything you desrve, my friend. 
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=QYINZUKM
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=pacifist
+Experience Points To Add=1
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Memnos agreed to return
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Lucius flees
+}
+}
+}
+Icon=Quest Icon
+Action work in progress=Lucius goes to Toulouse scene, PC get a reward
+------------------------------------------------------------
+Node ID=965 convince Lucius failure
+Text=I will not go so easily, small one. Do you think me stupid? They would kill me in a moment should I come within sight of them. No, I will remain here, thank you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Then I am afraid you leave me little choice. 
+Go to node ID=950 Fight with Memnos
+Action work in progress=go to combat
+
+Requirement=!None
+Reply Text=I must think more about this. I will return later, farewell. 
+Go to node ID=970 Lucius going to flee goodbye
+Action work in progress=Lucius takes off, remove him from the game world and set "Lucius fled" flag and alter Brother Michel dialogue
+------------------------------------------------------------
+Node ID=970 Lucius allowed to escape goodbye
+Text=Thank you for respecting my right to live, small one. If I tried to use you, it was only out of desperation. Please, wish me luck and do not think ill of me... I think it would be best if I found somewhere else to hide, don't you? Maybe the woods...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=have Lucius start walking out of town
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=Q8U40TYQ
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=pacifist
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Lucius flees
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=970 Lucius going to flee goodbye
+Text=I will be waiting, small one.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=have Lucius wait ten seconds, then start walking out of town
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+Action=CTriggerRelayAction
+{
+Relay Name=lucius flees by surprise
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=980 Obligations
+Text=Obligations? Am I obligated to willingly walk to my own funeral? Small one, when I took up the role of Memnos, the Eater of Memories, I was young and foolish. Idealistic. I wanted to serve the tribe to the best of my abilities. But I am not yet ready to die.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Reply Text=Is there anything I can do to help?
+Go to node ID=820 PC Saves the day
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Dynamic Properties=1
+{
+Comment=Kill Titan Quest Still Active
+}
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Dynamic Properties=1
+{
+Comment=Recover Mneme Still Active
+}
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+}
+}
+}
+}
+Reply Text=Your words have swayed me. I'll be back with those hearts in no time.
+Go to node ID=841 Scared Goodbye
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=player attacked titans
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I believe the good of your tribe is more important than the good of any one individual. You knew the price you would pay when you accepted your role. 
+Go to node ID=950 Fight with Memnos
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=player attacked titans
+Desired Minimum Count=1
+}
+}
+}
+}
+}
+Reply Text=Nobody should be forced into suicide. I will not be a hired killer for either side. I will wish you luck and farewell, Lucius.
+Go to node ID=970 Lucius allowed to escape goodbye
+Action work in progress=Lucius leaves town
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=496ZH7F7
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=Z8MNFNAP
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=pacifist
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+State=V4L0SE1V
+}
+}
+Reply Text=I must think more about this. I will return later, farewell. 
+Go to node ID=970 Lucius going to flee goodbye
+Action work in progress=Lucius takes off, remove him from the game world and set "Lucius fled" flag and alter Brother Michel dialogue
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 Hearts in Hand
+Text=Ah, I see it is true, you have slain them. Ah, Rhea, I am sorry I had to do this to you, but it was you or me.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+}
+}
+}
+Reply Text=What? You knew these titans?
+Go to node ID=1001 Lucius Exposed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Destroy all titans
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=2500
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
+}
+}
+}
+Reply Text=I know they were your tribesmen, Lucius.
+Go to node ID=1001 Lucius Exposed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Destroy all titans
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=2500
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1001 Lucius Exposed
+Text=Yes, small one, I knew the bodies that surrounded these hearts, and they knew me. These cold hearts belonged to the other elders of my tribe, the ones who forced me to run for my life. But, all's well that ends well, I suppose.  Thank you, and please accept this reward as well as my sincerest gratitude. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1002 Hearts in Hand but Lucius betrayed
+Text=Ah, I see it is true, you have slain them. Ah, Rhea, I am sorry I had to do this to you, but it was you or me.  And as for you, runt, I've heard that you exposed me to the mayor despite the agreement we reached. I'll thank you for taking care of the problem for me, but you'll get not one more ounce of gold from me. Good day.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Well, then, we'll call it even.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Destroy all titans
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Fine, then I'll take my reward out of your hide.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Destroy all titans
+Experience Points To Add=1
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=1003 Return after the quest is complete but Lucius betrayed
+Text=I think our dealings are at an end, fleshling.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1100 Surrender
+Text=I give up! You win!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=15 go right in
+Text=Well then, go right in. Michel is inside.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3000 Unlocked the door
+Text=There, I've unlocked the door.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=666 Done
+Text=This is excellent news indeed, small one! You must be much stronger than you look. I must ask you, though, if you happened to recover some large spheres from the bodies of the large titans, I will pay you hadsomely for them. I must perform certain funerary rites or risk being haunted by their ghosts.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well they're yours so long as the price is right.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=8
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=2000
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Destroy all titans
+Experience Points To Add=1
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+State=FRW5TNEN
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=9999 Lucius Dead
+Text=You recognize the crumpled, bruised body of the titan Lucius. There is a gaping hole in his chest as if something has been torn out.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=9999 Lucius flees
+Text=Hehe.. or not! Farewell, foolish fleshling - they'll never catch me!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=9999 No running away
+Text=Bah, fight if you want to fight, don't run. I will not chase you up and down these planks. Come back when you find your courage, small one.
+Should Have Voiceover=0
+}

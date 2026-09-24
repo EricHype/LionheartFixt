@@ -178,7 +178,7 @@ reply.
   instead of `01 Conversation Start`, so he does not demand your business twice.
 
 
-### Tier 2 - the titans of Toulouse can be talked out of it
+### Tier 2 - the titans of Toulouse can be talked out of it (built 2026-09-23, unplayed)
 
 `ToulouseLethos`, the titan envoy: `110 Good help` (kill Memnos, bring his mneme) and `130
 Mercenary help` (kill him or trick him into coming) are live. **`120 Nonviolent help` -- "What do
@@ -191,6 +191,36 @@ town, gold, magic, or both). What is missing is the player's proposal: `120`'s o
 
 The fugitive is Andre the Titan, the "human" in the village. So this is the peaceful end of the
 act's central conflict, three nodes short.
+
+**Built, both halves.** Andre's side is the four nodes flagged `[REMOVED FROM GAME]` in their
+display text -- `960 Trick Lucius` and `965 convince Lucius`, each with a success and a failure.
+The failures already pointed at live nodes; only the success had nowhere to go, which is what
+the flag is about: Lethos's own live `130` still offers *"or trick him into coming here"*, so the
+game shipped advertising a route whose ending was cut. The judgement recorded here is that the
+writing was finished and the consequence was not, and the map next door had every piece of one.
+
+- *Lethos.* His live `100 Return from Rhea` already lets you ask whether this can end without
+  killing; `101 Lucius must die` is the refusal. Pressing him (Speech 50+) now reaches the
+  written `120 Nonviolent help` -- *"What do you propose, small one?"* -- and the proposal itself
+  splits on Outwit 8+ into the two written outcomes: `121`, where the tribe will hear Memnos out,
+  and `122`, where they will spare him if he comes back of his own will. Both already ran into
+  the live reward menu, so the negotiated route is paid at the same rates as the violent one.
+- *Andre.* `950 Talk with Memnos` -- *"What do you propose to do?"* -- gains the two routes:
+  persuade him (Speech 50+) and trick him with a truce that the titans have in fact agreed to
+  (Outwit 8+), each falling to its written failure without the skill. The four removal markers
+  are stripped from the node texts and nothing else in those nodes changed.
+- *The ending.* The success reply now sets the mneme quest to its own shipped state `QYINZUKM`
+  (*"You have decided to allow Lucius to live"*), completes *Kill the Titans of Toulouse*, pays
+  the `pacifist` XP part the live mercy ending uses, fires `Lucius flees` to walk him out of
+  Montaillou, and sets a checker on Titan Village through `COtherMapAction`.
+- *And the titans go home.* With that checker set, Lethos's return greetings offer *"Memnos is
+  coming back to you. He will speak for himself."* -> `502` (ours, one node): *"Coming back. On
+  his own feet... You have done a strange thing today, fleshling, and I do not know yet whether
+  it was a kindness."* It fires a new relay that pays the XP and then runs the **cloned**
+  send-the-titans-home block out of the vanilla `Quest complete relay`, so the army leaves
+  Toulouse exactly as it does when you bring the crystal.
+
+Six player lines and one NPC node are ours; everything else is the game's.
 
 ### Tier 3 - Andre's own dark half, and what is marked removed
 
