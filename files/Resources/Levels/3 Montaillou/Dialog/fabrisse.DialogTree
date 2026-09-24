@@ -1,0 +1,118 @@
+CDialogTree
+{
+Name=Woman
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Bon jour! You are new to the village, no? I do hope your stay is pleasant here in Montaillou, though I sense that you are more accustomed to the bustling streets of larger cities, yes?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=Tell me about Montaillou.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Where can I replenish my supplies?
+Go to node ID=
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=You greet me very kindly, with an Inquisitor sitting in your church and a face like mine on your street.
+Go to node ID=25 tainted
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I should go now.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Please, you must help!  I shall soon be the main course at the next Knights Templar banquet.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=05 Return Dialogue
+Text=There is no time to spare!  My life is in danger.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=07 Return Dialogue
+Text=I fear the hatchet.  Please save me!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=09 Return Dialogue
+Text=I miss my legs, and these useless wings are - well useless!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=25 tainted
+Text=<She looks at your face properly for the first time, and does not step back.> Bah. My grandmother had a cousin the same, and the priest who came before this one christened him and said nothing. Half this village is on a list for what it eats on a Friday, monsieur. If they start on faces as well there will be nobody left to bring the hay in. Keep to the square and do not give the Bishop's men a story.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That is kinder than I usually get.
+Go to node ID=10 goobye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 goobye
+Text=Au revoir!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 Saved
+Text=Thank you, traveler! I was beginning to fear my life would end in the belly of a Knight Templar.  I shall be eternally grateful.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 return
+Text=Good to see you again. I trust you are enjoying your time in our village. How can I help you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=Tell me about Montaillou.
+Go to node ID=20 montaillou
+
+Requirement=!None
+Reply Text=Where can I replenish my supplies?
+Go to node ID=
+
+Requirement=!None
+Reply Text=I should go now.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 name
+Text=My name is Fabrisse, wife of Pierre, mayor of Montaillou.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 montaillou
+Text=It is an old town, with good, pious people and honorable traditions. Lately, our lives have been more...difficult. But like all troubles, this will pass. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What troubles do you speak of?
+Go to node ID=
+------------------------------------------------------------
+Node ID=100 random ped
+Text=<This woman appears nervous and refuses to look you in the eye>
+Should Have Voiceover=0
+}

@@ -514,9 +514,37 @@ man and the Bartender all live on the guild's side of the law.
   the men nor the fire for you today, and gives his word before God that he will find both. Its
   replies land on his shipped goodbye and his shipped `10 Combat`.
 
-Three nodes and seven replies of ours. The remaining Tier 8 candidates -- the Cathar toughs'
-loyalty test, the Inquisition agent's plate of meat, Fabrisse, Aidan, Maury's hub, the spirit,
-and the rest of the perks -- are **not** built and stay scoped above.
+**And the village itself:**
+
+- **The Cathar toughs' loyalty test** -- *"Whose side are you on? The goodmen or the Church?"* --
+  had three answers that anyone could give. A sworn **Inquisitor** can now answer honestly, *"The
+  Church. I am the Inquisition, and I am standing in your tavern,"* into their own hostile node;
+  and on *"Give us one good reason to believe you"* a **Wielder** has the reason the scene was
+  asking for -- *"Because the Church burns my kind long before it gets around to yours"* -- into
+  their own welcome.
+- **The Inquisition's agent in the inn** eats roast meat in a Cathar village and watches who
+  flinches. A fellow **Inquisitor** can now name the trick, and `36 brother` (ours) is him not
+  bothering to deny it: *"It is a good test and it costs the Church nothing: a Cathar perfect
+  would sooner starve than eat what I am eating, and half of them cannot help saying so."*
+- **Fabrisse** greeted every stranger as a visitor from the city, including one a village under
+  investigation might be expected to fear. A **Feralkin, Sylvant or Demokin** can say so, and
+  `25 tainted` (ours) is a villager who does not step back: *"Half this village is on a list for
+  what it eats on a Friday, monsieur. If they start on faces as well there will be nobody left
+  to bring the hay in."*
+- **Aidan** sold blades at one price with no Barter branch anywhere in his tree. At **Barter 40+**
+  he gives the peace price -- a real `CAdjustMerchantPriceMultiplierAction` of -0.2 on his store,
+  the shape Mauldo's karma greeting uses -- and opens the shop in the same reply.
+- **Maury the shepherd**, the act's information hub, is the one tree where the reactivity is a
+  read rather than a claim: at **PE 7+**, *"You look at the church door every time you say the
+  Bishop's name."* `131 careful` (ours) drops his voice: the mayor has been called in, and the
+  baker, and a woman who has not left her house since; he has told the Bishop's clerk nothing but
+  the weather and would be obliged if you did the same about him.
+
+Eight nodes and twelve replies of ours across the tier; every landing node is the game's. **Not
+built and recorded instead:** the spirit. `CHasSpirit` works in dialogue and 0.13.0 proved the
+primitive, but no scene in Montaillou is written for it -- putting the spirit's voice in would be
+inventing a character's lines rather than reaching the game's, which is the line this project
+does not cross without a draft to stand on.
 
 **Sizing.** Every item above is one or two replies on a node the game already wrote, plus an
 answer node only where the existing answers would not fit. That is the same shape and roughly

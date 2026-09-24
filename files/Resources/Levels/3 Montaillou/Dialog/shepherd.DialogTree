@@ -291,8 +291,27 @@ Reply Text=I had some more questions about the town.
 Go to node ID=110 Maury Explains It All
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Reply Text=You look at the church door every time you say the Bishop's name.
+Go to node ID=131 careful
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=I must go. Goodbye.
 Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=131 careful
+Text=<The shepherd is quiet for a moment, and when he speaks he has dropped his voice.> You have a shepherd's eyes, monsieur. Aye, I look. Everybody looks. He has had the mayor in, and the baker, and a woman who has not left her house since. I have sheep on the high pasture and a son, and I have told the Bishop's clerk nothing but the weather. I would be obliged if you did the same about me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The weather it is.
+Go to node ID=110 Maury Explains It All
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------

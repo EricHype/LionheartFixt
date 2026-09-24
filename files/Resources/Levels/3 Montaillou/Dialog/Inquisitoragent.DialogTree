@@ -1,0 +1,574 @@
+CDialogTree
+{
+Name=Inquisitor Agent
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=You look famished! Here, share my plate of roast meats and I'll pour you some wine.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=cathar dietary habits explained
+Desired Minimum Count=1
+}
+}
+Reply Text=Doesn't it bother you that, by eating meat here, you're insulting the tavernkeeper?
+Go to node ID=35 Insult
+
+Requirement=!None
+Reply Text=Thank you - I will.
+Go to node ID=
+Action work in progress=flag inquisition and End Dialogue
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar confrontation poly
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=eaten meat
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=CDeactivateAction
+{
+Target Name=passed on meat checker
+}
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=5
+}
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=meat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=cathar leaves
+}
+}
+}
+
+Requirement=Inquisitor IS
+Reply Text=Roast meat, in this village, at this table, offered to strangers. Who are you reporting to, brother?
+Go to node ID=36 brother
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=No, I am not hungry. Goodbye.
+Go to node ID=40 good day then
+Action work in progress=End Dialogue and flag cathar
+Custom Action=CActivateAction
+{
+Target Name=passed on meat checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=36 brother
+Text=<He does not stop chewing.> His grace the Bishop, same as you, presumably. It is a good test and it costs the Church nothing: a Cathar perfect would sooner starve than eat what I am eating, and half of them cannot help saying so. Sit down, have some, and do not stand over me looking clever -- you are drawing eyes.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Whose names have you sent him?
+Go to node ID=22 Good day
+
+Requirement=!None
+Reply Text=Enjoy your meal.
+Go to node ID=40 good day then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=22 Good day
+Text=Good day to you.  Would you like some roast meat after all?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=cathar dietary habits explained
+Desired Minimum Count=1
+}
+}
+Reply Text=Doesn't it bother you that, by eating meat here, you're insulting the tavernkeeper?
+Go to node ID=35 Insult
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=no meat for you
+Desired Minimum Count=1
+}
+}
+Reply Text=Thank you - I will.
+Go to node ID=70 meat for sale
+Action work in progress=flag inquisition and End Dialogue
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=no meat for you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Thank you - I will.
+Go to node ID=
+Action work in progress=flag inquisition and End Dialogue
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar confrontation poly
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=eaten meat
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=CDeactivateAction
+{
+Target Name=passed on meat checker
+}
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=5
+}
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=meat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=cathar leaves
+}
+}
+}
+
+Requirement=!None
+Reply Text=No, I am not hungry. Goodbye.
+Go to node ID=40 good day then
+Action work in progress=End Dialogue and flag cathar
+Custom Action=CActivateAction
+{
+Target Name=passed on meat checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 suit yourself
+Text=Suit yourself... I do not understand how these Cathars can abstain from meat.  Good day.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=35 Insult
+Text=No, it doesn't bother me in the slightest. Why? Don't tell me you pay heed to their heretical beliefs!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I think it is incredibly rude to flaunt your total disregard for their customs.
+Go to node ID=50 no meat for you
+Action work in progress=set the no meat for you flag
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=no meat for you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=passed on meat checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=no meat for you
+Desired Minimum Count=1
+}
+}
+Reply Text=Not at all, in fact I'd love a platter.
+Go to node ID=70 meat for sale
+Action work in progress=flag inquisition and End Dialogue
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar confrontation poly
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=eaten meat
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=CDeactivateAction
+{
+Target Name=passed on meat checker
+}
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=5
+}
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=meat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=cathar leaves
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=no meat for you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Not at all, in fact I'd love a platter.
+Go to node ID=
+Action work in progress=flag inquisition and End Dialogue
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar confrontation poly
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=eaten meat
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=CDeactivateAction
+{
+Target Name=passed on meat checker
+}
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=5
+}
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=meat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=cathar leaves
+}
+}
+}
+
+Requirement=!None
+Reply Text=Of course not, I am simply not hungry. Goodbye.
+Go to node ID=40 good day then
+Action work in progress=End Dialogue and flag cathar
+Custom Action=CActivateAction
+{
+Target Name=passed on meat checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 good day then
+Text=Good day then.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 hello
+Text=Hello again.  I trust you are having a good day.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 no meat for you
+Text=Well then, more meat for me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 no meat return
+Text=You're back. A day without meat and you're ready to reconsider your respect for the locals' heathen customs, aren't you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perhaps I was overconcerned with local customs. May I have a leg?
+Go to node ID=70 meat for sale
+
+Requirement=!None
+Reply Text=No. Goodbye.
+Go to node ID=50 no meat for you
+Action work in progress=End Dialogue and flag cathar
+Custom Action=CActivateAction
+{
+Target Name=passed on meat checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 meat for sale
+Text=Certainly. Of course, meat is hard to come by around here, and I have already consumed much of the small supply that was available...and then there's the fact that I don't think I like you or your attitude very much. However, I am a fair man and I'll give you some for, oh, say...one hundred pieces of gold.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are you mad? I wouldn't pay that for the whole animal!
+Go to node ID=50 no meat for you
+Action work in progress=End Dialogue and flag cathar
+Custom Action=CActivateAction
+{
+Target Name=passed on meat checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+Reply Text=Fine, here is your money.
+Go to node ID=80 Amazement
+Action work in progress=flag inquisition and End Dialogue
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=cathar confrontation poly
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=eaten meat
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Action=CDeactivateAction
+{
+Target Name=passed on meat checker
+}
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$instigator
+Amount of health to give=CConstant
+{
+Constant Value=5
+}
+Expression Context=$Instigator
+}
+Action=CDeactivateAction
+{
+Target Name=meat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=cathar leaves
+}
+}
+}
+------------------------------------------------------------
+Node ID=80 Amazement
+Text=Caramba! I have never seen a man so desperate for meat!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 meat gone
+Text=Alas, I think it will be a while before we share so fine a meal again, my friend.
+Should Have Voiceover=0
+}
