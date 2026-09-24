@@ -290,7 +290,7 @@ survey are its half of the encounter. The directions have been reachable since 0
 route was **played and confirmed working in that release**: through the fire, into her cave, and
 the true-form encounter follows. Nothing further is needed here.
 
-### Tier 5 - the Inquisitor's third task
+### Tier 5 - the Inquisitor's third lead (built 2026-09-23, unplayed)
 
 `MontailluInquisitor`: `300 cave` and `300 cave into` are unreachable -- *"On the outskirts of
 town there is some kind of door barring entry to what we assume to be a cave... Most disturbing
@@ -299,6 +299,25 @@ Secret Cave` (22 parts: two spirit generators, a way back, a spawn point) and `1
 SecretCave` (12 parts, a relocater and a *"Secret area up top"*). `200 Tainted Audience` -- his
 offer of service to a tainted character -- is also dark. Read whether the cave task was cut or
 merely unwired before deciding.
+
+**Built, and the read says half-written rather than cut.** `300 cave into` -- *"Now that you
+have proven yourself to be a capable servant of our work, I would ask of you another favor for
+the Inquisition, something of great importance"* -- ships with **two replies whose text is
+blank**: the offer exists and the player's side of it was never typed. `300 cave` is what he has
+to say when asked, and its own replies already return to his hub, so the pair is an offer and a
+piece of intelligence, not a quest object -- there is no quest file, no state and no reward for
+it anywhere in the game.
+
+So it is restored as what it is: after you take the witch task or bring him word of the mayor,
+*"Is there anything else in this district that troubles the Inquisition?"* reaches the offer, and
+*"What is it, your grace?"* reaches the cave -- a barred door on the outskirts with an aura of
+magic coming off it, which the Bishop's men have not opened. No quest is invented for it; the
+player is pointed at a cave the act already has, and the two blank replies are ours.
+
+`200 Tainted Audience` -- *"Well then tainted one, have you come to cleanse yourself of sin?
+Acting in the service of the Inquisition could be the only salvation for your very soul"* -- is
+now reached from all three tainted greetings, where the only replies were to claim a faction, to
+threaten him, or to leave. His tree goes to **zero unreachable nodes**.
 
 ### Tier 6 - four quests with no states
 
