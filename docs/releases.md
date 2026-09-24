@@ -468,6 +468,17 @@ all to the **Goblin Horde** -- and the reason generalises past this act:
 | Exposer of Calle Perdida | Inquisitor Raphael | Inquisitor Raphael |
 | Goblin Champion | the Goblin Khan | **nobody** |
 | Ruler of Calle Perdida | **nobody** | **nobody** |
+
+**Why nothing awards `Ruler of Calle Perdida`: it is `Necromancer` under an earlier name.** The
+two perks carry the same description word for word -- *"You have mastered the Dark Arts under the
+tutelage of Relican and delivered La Calle Perdida to the cruel whims of your mentor"* -- and
+differ only in display name: **Dark Lord of Calle Perdida** against **Necromancer**. The pairing
+was deliberate: exposing the street to the Inquisition is displayed as **Hero of the
+Inquisition**, so delivering it to Relican was to be **Dark Lord of Calle Perdida**. The shipped
+version keeps the Inquisition's deed-title and replaces the Dark Wielder's with a class label
+whose own description still describes the deed. Not renamed here -- five readers depend on
+`Necromancer` and the gain would be cosmetic -- but it is evidence that the dark ending was meant
+to be a public title, which is the case for Montaillou noticing it.
 | Necromancer | Relican, the Pit | five places, including 0.12.0's and 0.13.0's work |
 
 **Every allegiance title in the game except Necromancer is read only by the faction that issued
