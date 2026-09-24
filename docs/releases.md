@@ -126,7 +126,7 @@ into a release it does not fit.
 
 ## 0.15.0 - Toulouse
 
-**Surveyed 2026-09-24. Tiers 1 and 2 built 2026-09-24, unplayed.** The sacked town in the
+**Surveyed 2026-09-24. Tiers 1, 2 and 4 built 2026-09-24, unplayed.** The sacked town in the
 northeast corner of act 3, where a tribe of rock titans is camped in the ruins with a pen full
 of human prisoners behind their guard. One map (`Levels/3 Montaillou/Titan Village.zax`, 959
 level parts), 24 dialogue trees, **739 player replies**, and five quests: *Kill the Titans of
@@ -220,6 +220,60 @@ Montaillou`, which fires `Prisoners escape`.
 After both tiers the Toulouse trees have **no reply-carrying unreachable nodes left** (13
 trees, 315 nodes, 38 unreachable, all of them map-fired balloons and barks).
 
+### Tier 4 - the act reads the player back (built)
+
+Nine replies and nine nodes across the three trees that had the least to say about who the
+player is. Each one turns a subject the act already wrote on its head, rather than inventing a
+new scene.
+
+**Iapetus.** He explains that a Daeva feeds on a titan's magical aura, *"our souls"* -- and
+says it to somebody carrying a bound spirit in the open. A spirit-bearer can now ask whether it
+would feed on that as readily (`61 your spirit`): it would, and the hunter is also the bait.
+A Feralkin or Sylvant can ask the question nine titans in a trampled cul-de-sac did not think
+to ask -- what was on the ground (`66 tracks`) -- and gets the one piece of physical evidence
+in the act, spoor by the rocks belonging to nothing that walks there. And his reward for the
+hunt, *"a collection of gems that I think one of your persuasion would find quite pleasing"*,
+can be haggled at Barter 40 into gems **and** coin (`77 haggle`): the bargain sets a new
+checker, `bargained with Iapetus`, and `250 Killed the Daeva` pays 2,000 gold on top of the
+three gems when it is set. That is the act's first Barter branch of any kind.
+
+**Mathuo.** He says the Daeva took him while he was *"...unready..."*; Iapetus says he was
+*"deep into the mercury"*. At Perception 7 the player can say so to his face (`11 drunk`): he
+admits it, threatens to bury anyone who repeats it to Lethos, and names the cul-de-sac where he
+keeps his stash. The reply also fires `mercury relay`, the same relay his polite branch fires,
+so a sharp eye reaches the flask by the short road.
+
+**Rhea.** Her history of the world turns on humans learning *"to bind spirits and wield
+magic"* until magic grew a mind of its own and Utnapishtim drowned the world to be rid of it.
+Three replies, one per spirit, let the player hold up what they are carrying: an Ancestral
+spirit is *"the gentlest theft ... you keep your grandmother in a jar and call it
+inheritance"*; a Beastial one is older than the player's line and she warns them to be careful
+which of the two turns out to be the rider; a Demonic one makes her look up for the first time
+-- *"that is the binding that pulled the sky down on Atlantis, and you wear it into a human
+village like a travelling coat."* An Inquisitor can call Utnapishtim the first of his order and
+the only one who finished the work (`31 the first inquisitor`), which she declines to take as a
+compliment to either of them. And a Necromancer, hearing that the tribe cuts a crystal out of a
+living elder so the dead keep speaking, can say what his own art calls that (`53 necromancer`):
+she steps back, tells him the air around him is crowded, and draws the distinction that matters
+to her -- titans carry their dead so the tribe stays itself, and he carries his so they will
+fetch and dig.
+
+These are the first uses of `CHasSpirit` in a dialogue requirement anywhere in the game --
+vanilla uses it only inside map actions, wrapped in `CExpressionAction` -- so the bare
+expression as a `Custom Requirement`, on the pattern of vanilla's three
+`Custom Requirement=CHasPerkExpression` uses, is the one thing here that the automated gate
+cannot prove. `Spirits/Demonic` is likewise extrapolated from the model name: vanilla's maps
+only ever check Ancestral and Beastial. TO12 and TO13 exist to catch both.
+
+**One defect this tier introduced and `validate.py` now catches.** The first build of the
+Iapetus bargain put a blank line inside the `CIfAction` block, because the block helper was
+handed an already-rendered child block and appended its own terminator after it. Vanilla has
+zero blank lines inside a block in 10,915 replies, and the reply separator *is* a blank line,
+so a stray one inside a Custom Action is exactly the shape of the bug that silently broke 47
+replies between 0.2.0 and 0.5. It was reverted, rebuilt by passing the child as a field rather
+than a string, and `validate.py` grew a check for it, verified by injecting the pattern and
+watching it fail.
+
 ### How little Toulouse knows about the player
 
 | gate | replies | share |
@@ -248,10 +302,9 @@ carries or what the player is.
 
 3. **The chickens, reconsidered.** Not a defect: the three `Chicken Generator` parts are
    activated elsewhere. Nothing to do.
-4. **Iapetus, Mathuo and Rhea learn to read the player** -- the act's own vocabulary where its
-   writing already forks: a Wielder or a tainted soul in front of the elders, a necromancer
-   hearing what a mneme is, the spirit answering Rhea, Barter on the reward negotiation that
-   already has four outcomes.
+4. **Lethos and Tereo** are the two trees this tier did not reach. Lethos already has a
+   tainted variant and a faction-aware spine; Tereo, the gate guard, has 54 replies and one
+   character gate.
 5. **Poimaino walks off.** The bribe leaves him standing at his post, off duty, the way the
    shipped bluff does. Having him walk to `Poimaino Drinking` (1280,1707) the way the Mathuo
    route does needs a patrol authored on the map, which also means a save that has never

@@ -1,0 +1,1024 @@
+CDialogTree
+{
+Name=Rhea
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 
+Text=Hello, small one. If Lethos has sent you to see me, it is doubtless to learn about our society and so understand why we were driven to the desperate measure of coming to this human community. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I have many questions for you.
+Go to node ID=10 Introduction
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+
+Requirement=!None
+Reply Text=No, save your lectures for another time.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Sorry to interrupt, I was just passing by. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 Return
+Text=Back so soon, small one? Do you have more questions for Rhea?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I have many questions for you.
+Go to node ID=10 Introduction
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+
+Requirement=!None
+Reply Text=No, save your lectures for another time.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Sorry to interrupt, I was just passing by. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Change subject
+Text=What would you like to speak about?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 55
+}
+Reply Text=A lesson on morality in the midst of the rubble of the town you destroyed sounds entertaining.
+Go to node ID=10 Morality
+Action work in progress=high speech only
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 055
+}
+Reply Text=Tell me about morality.
+Go to node ID=10 Morality
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 040
+}
+Reply Text=Tell me about memory.
+Go to node ID=50 Memory
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=Tell me about memory. 
+Go to node ID=50 Memory
+
+Requirement=!None
+Reply Text=Actually, I should be going.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Introduction
+Text=Very well, Ephebos, why don't you go see if you can help Tereo, and remember what I told you! Small one, I can offer you short lessons in our culture on the subjects of Morality, History, and Memory. The last is likely the most relevant to Lethos' desires, but the other two might provide you with valuable insight into our motives.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 55
+}
+Reply Text=A lesson on morality in the midst of the rubble of the town you destroyed sounds entertaining.
+Go to node ID=10 Morality
+Action work in progress=high speech only
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 055
+}
+Reply Text=Tell me about morality.
+Go to node ID=10 Morality
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+
+Requirement=!None
+Reply Text=Tell me the history of your people.
+Go to node ID=30 History
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 040
+}
+Reply Text=Tell me about memory.
+Go to node ID=50 Memory
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
+}
+Reply Text=Memory? That sounds like an odd companion to the other two, tell me about that. 
+Go to node ID=50 Memory
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Ephebos scram
+}
+------------------------------------------------------------
+Node ID=10 Morality
+Text=You doubtless marvel at my gall, speaking as I do in the midst of a town I helped tear apart. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Feralkin NOT
+}
+Reply Text=Yes, I do. 
+Go to node ID=11 Morality 2
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Feralkin IS
+}
+Reply Text=Yes, I do. 
+Go to node ID=11 Morality 2 Feralkin
+Action work in progress=only if feralkin
+
+Requirement=!None
+Reply Text=No, it doesn't concern me. 
+Go to node ID=19 Amoral
+------------------------------------------------------------
+Node ID=11 Morality 2
+Text=Do humans consider it immoral when a huntsman kills a deer to feed his family? Or is it immoral for a herdsman to keep a flock of sheep or cattle? Of course not. They are above these other animals in the great chain of being and so they have dominion over them. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=11 Morality 3
+------------------------------------------------------------
+Node ID=11 Morality 2 Feralkin
+Text=You of all people should understand, beast-man. Nature is red in tooth and claw. Do humans consider it immoral when a huntsman kills a deer to feed his family? Of course not. They are above these other animals and so they have dominion over them. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=11 Morality 3
+------------------------------------------------------------
+Node ID=11 Morality 3
+Text=We, as titans, are above mere humans in the chain of being and so they are not fit to judge us by their standards. It is important you realize this. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 7+
+}
+Reply Text=Even if we assume what you say is true, is it still not immoral to needlessly torment another living being irrespective of its location on your "great chain." 
+Go to node ID=12 Needless torment smart
+Action work in progress=show only if high intelligence
+
+Requirement=!None
+Reply Text=I don't care what you think, destroying this town was evil. 
+Go to node ID=13 Needless torment dumb
+Action work in progress=show only if not high int
+
+Requirement=!None
+Reply Text=What gives you the right to determine who is above or below you? 
+Go to node ID=15 Might makes right
+
+Requirement=!None
+Reply Text=Your philosophy sickens me. 
+Go to node ID=19 Disagree with morality
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good Karma
+}
+
+Requirement=!None
+Reply Text=I see, please continue.
+Go to node ID=13 Needless torment dumb
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=12 Needless torment smart
+Text=You are correct, small one, it is immoral willingly to cause needless suffering. If you mean to imply that we are guilty of such a sin in taking this town, you are mistaken. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=12 Needless torment 2 smart
+------------------------------------------------------------
+Node ID=12 Needless torment 2 smart
+Text=Just as a herdsman is justified in eating from his flock to sustain his family's need, we had a great need when we came to this town. We caused no more suffering than we had to, and have killed none who didn't forcefully resist us. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You hide behind unwarranted assumptions and facile analogies. Your "morality" is nothing but a poor rationalization of the atrocities you are guilty of.
+Go to node ID=19 Disagree with morality smart
+Action work in progress=show only if very high intelligence, give karma bonus
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good Karma
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=You ignore the fact that humans are intelligent and thus are qualitatively different from animals, despite what you say.
+Go to node ID=12 Needless torment 3 smart
+Action work in progress=show only if very high intelligence
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I see your point, I cannot help but agree with you.
+Go to node ID=19 Agree with morality
+Action work in progress=trigger a relay that give you a one-time karma hit
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+------------------------------------------------------------
+Node ID=12 Needless torment 3 smart
+Text=It is a human failing to assume that there is a clear divide between themselves and other animals. You are not special nor are you unique, you are just another organism on the chain with rights and abilities appropriate to your place. The animals you consume or harness doubtless feel a drive to live just as you do. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What gives you the right to determine who is above or below you? 
+Go to node ID=15 Might makes right
+
+Requirement=!None
+Reply Text=Your philosophy sickens me. 
+Go to node ID=19 Disagree with morality
+Action work in progress=give karma bonus
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good Karma
+}
+
+Requirement=!None
+Reply Text=I cannot stand to hear any more of this. Goodbye. 
+Go to node ID=19 Disagree with morality
+Action work in progress=give karma bonus
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good Karma
+}
+
+Requirement=!None
+Reply Text=I see your point.
+Go to node ID=19 Agree with morality
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 Needless torment dumb
+Text=No, it wasn't. Because we had a great need in coming to this town, and because we are above its inhabitants on the chain of being, the damage we have caused cannot be judged to be immoral. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What gives you the right to determine who is above or below you? 
+Go to node ID=15 Might makes right
+
+Requirement=!None
+Reply Text=Your philosophy sickens me. 
+Go to node ID=19 Disagree with morality
+Action work in progress=give karma bonus
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good Karma
+}
+
+Requirement=!None
+Reply Text=I cannot stand to hear any more of this. Goodbye. 
+Go to node ID=19 Disagree with morality
+Action work in progress=give karma bonus
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good Karma
+}
+
+Requirement=!None
+Reply Text=I see your point, I cannot help but agree with you.
+Go to node ID=19 Agree with morality
+Action work in progress=trigger a relay that give you a one-time karma hit
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Might makes right
+Text=What doesn't give us that right? Will you appeal to the gods, perhaps? And what authority might they invoke? It is the law of the nature: we are superior to you because we are the stronger race. That puts us above you and exempts us from your petty morality.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 55
+}
+Reply Text=Might doesn't make right. Perhaps your failure to understand that is the reason human society flourishes and your kind is so few in number.
+Go to node ID=19 Disagree with morality
+Action work in progress=only if very high intelligence give karma bonus
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I cannot stand to hear any more of this. Goodbye. 
+Go to node ID=19 Disagree with morality
+Action work in progress=give karma bonus
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+
+Requirement=!None
+Reply Text=Your philosophy sickens me. 
+Go to node ID=19 Disagree with morality
+Action work in progress=give karma bonus
+
+Requirement=!None
+Reply Text=I see your point, I cannot help but agree with you.
+Go to node ID=19 Agree with morality
+Action work in progress=trigger a relay that give you a one-time karma hit
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=19 Disagree with morality
+Text=I do not care whether or not you agree with me, fleshling, it is only important that you realize that this is the way we see the world. Would you care to hear of History or Memory? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me the history of your people.
+Go to node ID=30 History
+
+Requirement=!None
+Reply Text=Tell me about memory. 
+Go to node ID=50 Memory
+
+Requirement=!None
+Reply Text=I must be going, goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=19 Disagree with morality smart
+Text= I do not care whether or not you agree with me, fleshling, it is only important that you realize that this is the way we see the world. Would you care to hear of History or Memory? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me the history of your people.
+Go to node ID=30 History
+
+Requirement=!None
+Reply Text=Tell me about memory. 
+Go to node ID=50 Memory
+
+Requirement=!None
+Reply Text=I must be going, goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=19 Agree with morality
+Text=Excellent. Would you care to hear of History or Memory?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me the history of your people.
+Go to node ID=30 History
+
+Requirement=!None
+Reply Text=Tell me about memory. 
+Go to node ID=50 Memory
+
+Requirement=!None
+Reply Text=I must be going, goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=19 Amoral
+Text=Excellent. You are obviously much more advanced than many of your kind. What would you have me speak of next?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me the history of your people.
+Go to node ID=30 History
+
+Requirement=!None
+Reply Text=Tell me about memory. 
+Go to node ID=50 Memory
+
+Requirement=!None
+Reply Text=I must be going, goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 History
+Text=Our civilization is many thousands of years old. We existed long before the cities of Atlantis, where mankind learned to harness the power of magic the first time. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The first time?
+Go to node ID=30 History 2
+
+Requirement=!None
+Reply Text=What were the first titans like?
+Go to node ID=30 Forefathers
+
+Requirement=!None
+Reply Text=Actually, I would like to speak of a different topic.
+Go to node ID=03 Change subject
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Forefathers
+Text=Our forebears were creatures of legend. Great demigods like Atlas and my namesake, Rhea. Theirs was a glorious legacy that still exists in the mythology of your kind.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What was the world like then?
+Go to node ID=30 History 2
+
+Requirement=!None
+Reply Text=You're more ugly than glorious, really.
+Go to node ID=31 Beauty is in the eye
+
+Requirement=!None
+Reply Text=I'm sorry, I don't have time for this. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 History 2
+Text=In the old days, many thousands of years ago, magic was a fundamental part of the world. It wasn't viewed with mistrust as it is today, it was as natural as the sky or grass.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=30 History 3
+------------------------------------------------------------
+Node ID=30 History 3
+Text=In those days humankind was first learning to bind spirits and wield magic. Tragically, their ability to use its power increased much more quickly than their wisdom. Over the course of centuries magic began to grow out of control, taking on an elemental mind of its own until soon the world was little more than a playground for powerful spirits.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Ancestral
+}
+Reply Text=The spirit I carry is one of my own dead. Is that the binding you mean?
+Go to node ID=30 spirit ancestral
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Beastial
+}
+Reply Text=Mine is no ancestor. It is a beast, and it was in the world before either of us.
+Go to node ID=30 spirit beastial
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Demonic
+}
+Reply Text=The thing bound to me is neither an ancestor nor a beast.
+Go to node ID=30 spirit demonic
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=What happened?
+Go to node ID=30 Utnapishtim
+------------------------------------------------------------
+Node ID=30 spirit ancestral
+Text=Yes, and of the three thefts your people learned, it is the gentlest: you keep your grandmother in a jar and call it inheritance. Consider what you are carrying, small one. She stood under the sky I have been describing to you. Ask her what it looked like, if anything of her is left that remembers.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Go on with your history.
+Go to node ID=30 Utnapishtim
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 spirit beastial
+Text=The beast, yes. Older than your line and far simpler in its wants. Rhea's own children wore such shapes when the world was young and we thought no shame in it. But you have bound a piece of the first world to a creature that lives eighty years. Be careful which of you turns out to be the rider.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Go on with your history.
+Go to node ID=30 Utnapishtim
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 spirit demonic
+Text=<For the first time the titan looks at you with something other than patience.> A demon. Then your kind learned nothing whatever. That is the binding that pulled the sky down on Atlantis, and you wear it into a human village like a travelling coat. Utnapishtim drowned the world for less than what is standing in front of me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Go on with your history.
+Go to node ID=30 Utnapishtim
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Utnapishtim
+Text=Utnapishtim, a powerful sorcerer, took it upon himself to save the world by ridding it of all magic. It was a foolish, evil decision, taken without the counsel of calmer minds. To rid the world of magic, he called down a global cataclysm, a massive worldwide flood that scoured and ravaged all creation.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=Utnapishtim was the first Inquisitor, then. And the only one who finished the work.
+Go to node ID=31 the first inquisitor
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=What happened to civilization?
+Go to node ID=30 Civilization destroyed by the flood
+
+Requirement=!None
+Reply Text=What happened to your people?
+Go to node ID=30 Civilization destroyed by the flood
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=I have heard a similar story.
+Go to node ID=30 Flood myths
+Action work in progress=moderately high int
+Icon=Attribute Icon
+------------------------------------------------------------
+Node ID=31 the first inquisitor
+Text=<She is quiet for a moment.> You are the first of your order to say it out loud, and I do not think it flatters either of you. He drowned every city on the earth to be rid of a thing he had not troubled to understand, and your Church has gone on drowning it in smaller batches ever since. He at least had the excuse of an emergency.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=He had the right of it. What happened to your people?
+Go to node ID=30 Civilization destroyed by the flood
+
+Requirement=!None
+Reply Text=I have heard enough of your history.
+Go to node ID=39 History end
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Flood myths
+Text=Yes, I have learned many of your human flood myths, though all misinterpret it in one way or another. The Babylonians knew of the Flood, and even the name of its instigator. The Greeks remembered it as the story of Deucalion, and the Hebrews as the story of Noah. Nearly every culture remembers the event, but none still know its purpose. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Wasn't everything destroyed?
+Go to node ID=30 Civilization destroyed by the flood
+
+Requirement=!None
+Reply Text=What happened to your people?
+Go to node ID=30 Civilization destroyed by the flood
+
+Requirement=!None
+Reply Text=That's enough history for one day.
+Go to node ID=39 History end
+
+Requirement=!None
+Reply Text=A great need to sleep is overwhelming me. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Civilization destroyed by the flood
+Text=Every civilization -- ours, the Atlanteans, a dozen others -- was destroyed, and magic was banished. In its absence, the race of titans vanished as well, falling into a deep sleep within the womb of our mother, the earth. No titan again walked the world until the Disjunction awoke us. When we reawoke it was as if from a long slumber, and we found ourselves greatly diminished. Some of our kind have become little more than feral beasts.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I think I have met some of these feral titans. Why are you different?
+Go to node ID=30 Explanation
+
+Requirement=!None
+Reply Text=What has happened since then?
+Go to node ID=30 Recent history
+
+Requirement=!None
+Reply Text=I've heard enough. Can we speak of something else?
+Go to node ID=39 History end
+
+Requirement=!None
+Reply Text=I must be going. Goodbye
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Explanation
+Text=When we awoke, our race no longer had the might and understanding that we had in the old days. Much of our memory was gone. As elemental creatures of the earth we... possess an impulse to revert to a primal, animalistic state. It is only by strong custom and constant force of will that we remain the civilized paragons you see before you here. This is why it is vital that you assist Lethos.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What does this have to do with Lethos?
+Go to node ID=30 memory transition
+
+Requirement=!None
+Reply Text=What has happened since the reawakening?
+Go to node ID=30 Recent history
+
+Requirement=!None
+Reply Text=I've heard enough. Can we speak of something else?
+Go to node ID=39 History end
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 memory transition
+Text=To understand this, I must tell you about memory.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me of memory, then.
+Go to node ID=50 memory
+
+Requirement=!None
+Reply Text=I'd rather talk about something else.
+Go to node ID=03 Change subject
+
+Requirement=!None
+Reply Text=Perhaps another time.
+Go to node ID=90 goodbye
+------------------------------------------------------------
+Node ID=30 Recent history
+Text=Since our reawakening, our race has lived high in the mountains, as far away as possible from the towns and fields of man. We seek only to preserve our race, and to try to recapture the secret to our lost glory. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=39 History end
+------------------------------------------------------------
+Node ID=31 Beauty is in the eye
+Text=I can assure you that you are as unattractive to me as I am to you. But that is neither here nor there. May I continue? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If you must.
+Go to node ID=30 History 2
+
+Requirement=!None
+Reply Text=No, I've heard enough. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=39 History end
+Text=Would you like to talk about Morality or Memory? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Morality.
+Go to node ID=10 Morality
+
+Requirement=!None
+Reply Text=Memory.
+Go to node ID=50 Memory
+
+Requirement=!None
+Reply Text=Neither, I must be going.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 Memory
+Text=Memory is the core of our society. A titan's memories are written in his mneme, a crystal deep within his chest. When he dies, this crystal is consumed by a special member of the tribe, the Memnosesthion, or "eater of memories."  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're cannibals?
+Go to node ID=55 Titans aren't cannibals
+
+Requirement=!None
+Reply Text=Tell me about the Memnosesthion.
+Go to node ID=51 Memnosesthion
+------------------------------------------------------------
+Node ID=51 Memnosesthion
+Text=He is responsible for keeping within his mneme the collective memory of all the past members of the tribe. He is the guardian of tradition, the living center of our civilization. Without his knowledge we would, over the course of but a few generations, revert to a... less civilized state, like the lost tribes of the Pyrenees. As our cultural heart, he is held in high esteem and lives a life of luxury, zealously protected from all harm by the rest of the tribe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It sounds like a good job.
+Go to node ID=52 Price of memory
+
+Requirement=!None
+Reply Text=How could one individual handle so many memories?
+Go to node ID=56 Many memories
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=52 Price of memory
+Text=There is a cost. In return for the many privelages accorded to him, the Memnosesthion has a sacred obligation. Late in life we titans, much like your species, are prone to forgetfulness. The mind, memory, starts to fade. This, you might imagine, poses a particular problem for the individual charged with harboring the memories and culture of the entire tribe. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If his memory were lost, it would be like losing the history of your tribe.
+Go to node ID=53 Sacrifice
+------------------------------------------------------------
+Node ID=53 Sacrifice
+Text=It is the Memnosesthion's duty to submit to a ritual sacrifice before age begins to rob him of the tribe's memory, so that his still-pristine mneme can be passed on intact to the next generation. It is a heavy burden to bear, but one that is chosen, not thrust upon the titan who takes it up.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+Reply Text=You cut a crystal out of a living elder and swallow it so the dead keep speaking. My art has a name for that, and your Church has a fire for it.
+Go to node ID=53 necromancer
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Why not simply learn to read? You could write your history and not rely on memories.
+Go to node ID=56 Titans are literate
+
+Requirement=!None
+Reply Text=Does this have something to do with why you are here?
+Go to node ID=54 Seeking the Memnosesthion
+------------------------------------------------------------
+Node ID=54 Seeking the Memnosesthion
+Text=Yes, we have come here seeking our Memnosesthion. When the time came for him to pass on his mneme, the coward chose to run from his responsibility, stealing our memory. His selfish disregard for his children and his duty has forced us to follow him into your lands.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And that is why you are here in Toulouse.
+Go to node ID=55 Toulouse
+------------------------------------------------------------
+Node ID=55 Toulouse
+Text=We followed his trail as far as this village, but he escaped before we could make good his capture and the trail has grown cold. It was then that Menoetius happened upon the oracle that advised us to await your arrival. And thus we have stayed here amidst the wreckage of this town.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=That explains much, but why did you destroy the town?
+Go to node ID=57 Ripped Toulouse apart
+
+Requirement=!None
+Reply Text=What do you expect me to do for you?
+Go to node ID=60 What the titans want done
+
+Requirement=!None
+Reply Text=I think I know who you are looking for.
+Go to node ID=70 Talk to Lethos
+
+Requirement=!None
+Reply Text=I won't be an accomplice to a ritual sacrifice and cannibalism. 
+Go to node ID=71 Talk to Lethos threat
+------------------------------------------------------------
+Node ID=55 Titans aren't cannibals
+Text=Please do not confuse the passing on of our memories, our souls, with the barbaric practice of cannibalism, which aside from its presence in certain human societies is practiced only by the basest of animals.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about the Memnosesthion.
+Go to node ID=51 Memnosesthion
+------------------------------------------------------------
+Node ID=53 necromancer
+Text=<Rhea's stone face does not move, but she takes a step back from you.> I know what you are. The air around you is crowded. Do not mistake the two of us for each other, small one: we carry our dead so that the tribe remains itself, and you carry yours so that they will fetch and dig. If our Memnosesthion could be raised as a puppet we would not need to take him alive, and I would not be standing in a ruined village explaining myself to a fleshling.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let us talk about taking him alive.
+Go to node ID=54 Seeking the Memnosesthion
+
+Requirement=!None
+Reply Text=Write it down and you would not need either of us.
+Go to node ID=56 Titans are literate
+
+Requirement=!None
+Reply Text=As you like. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=56 Titans are literate
+Text=Tsk. Who do you think taught the earliest humans to write? Of course we have a strong literary tradition, fleshling, but words in stone cannot convey all of the nuance, the subtlety, the *feelings* of those long since gone.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Does this have something to do with why you are here?
+Go to node ID=54 Seeking the Memnosesthion
+------------------------------------------------------------
+Node ID=56 Many memories
+Text=The Memnosesthion is usually not consciously aware of the weight of history he bears. Although he can enter a trancelike state to call up the specific memories of an individual, the collective memory generally manifests itself as a powerful intuition.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It sounds like a good job.
+Go to node ID=52 Price of memory
+
+Requirement=!None
+Reply Text=I see, please continue.
+Go to node ID=52 Price of memory
+
+Requirement=!None
+Reply Text=I must be going. Goodbye.
+Go to node ID=90 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=57 Ripped Toulouse apart
+Text=We were desperate to find him. In our zeal to recover his mneme we were perhaps a bit...hasty...in searching the crude structures the humans had erected.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you expect me to do for you?
+Go to node ID=60 What the titans want done
+
+Requirement=!None
+Reply Text=I think I know who you are looking for.
+Go to node ID=70 Talk to Lethos
+
+Requirement=!None
+Reply Text=I won't be an accomplice to a ritual sacrifice and cannibalism. 
+Go to node ID=71 Talk to Lethos threat
+------------------------------------------------------------
+Node ID=60 What the titans want done
+Text=We grow weary of the chase and don't wish to cause any more turmoil in these lands if it can be avoided. We hope that you can do both us and your kind a service. Speak to Lethos and perhaps he can make you a tempting offer.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like to learn more from you first.
+Go to node ID=10 Introduction
+Custom Action=CActivateAction
+{
+Target Name=PC has spoken to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I will speak to Lethos, then.
+Go to node ID=90 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=PC has spoken to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=70 Talk to Lethos
+Text=That is very good news. Please return to Lethos, I am sure he can entice you into helping us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=PC has spoken to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=71 Talk to Lethos threat
+Text=I urge you to reconsider and speak to Lethos, fleshling. If you will not help us with this, more people than the few in this town will feel our wrath.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, they won't, because I'm going to kill all of you.
+Go to node ID=
+Action work in progress=go to combat
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+
+Requirement=!None
+Reply Text= Perhaps. Goodbye.
+Go to node ID=90 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=PC has spoken to Rhea
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Goodbye
+Text=Farewell, small one.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=02 Go away
+Text=What do we have here? Toreo has allowed a fleshling into the village, has he? If I were you, fleshling, I would speak to Lethos before somebody accidentally steps on you. He can be found near the center of this settlement, north of here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll look for him.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Step on me, eh? I'll make a hat from your skull, monster.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=99 Welcome bubble
+Text=It appears we have a visitor, Ephebos. We'll talk later.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=Bubble 1
+Text=And that is why you must never, never do that again.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 2
+Text=But I liked it! 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 3
+Text=If you keep doing it, you'll go blind, young one.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 4
+Text=That's a lie, you just say that to frighten me! 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 5
+Text=It's a dirty habit, Ephebos.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID= Bubble 6
+Text=I should have been more careful not to get caught.
+Should Have Voiceover=0
+}

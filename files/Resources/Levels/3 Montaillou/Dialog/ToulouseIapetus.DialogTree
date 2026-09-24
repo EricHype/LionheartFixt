@@ -364,6 +364,31 @@ Text=The nature of the attack on Mathuo has convinced me it is a Daeva. They are
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=COR
+{
+Operand1=CHasSpirit
+{
+Spirit=Spirits/Ancestral
+}
+Operator=
+Operand2=CHasSpirit
+{
+Spirit=Spirits/Beastial
+}
+}
+Operator=
+Operand2=CHasSpirit
+{
+Spirit=Spirits/Demonic
+}
+}
+Reply Text=I carry a bound spirit of my own. Would it feed on that as readily?
+Go to node ID=61 your spirit
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=What forms can it take? 
 Go to node ID=65 Forms
 
@@ -377,6 +402,24 @@ Go to node ID=100 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=61 your spirit
+Text=<Iapetus looks at the air a little behind your shoulder.> You carry one, and you carry it openly. Yes, small one. It would take that from you and leave the rest of you standing empty in the road. Your kind bound spirits and called it mastery; to a Daeva it is a larder with the door left open. If you hunt this thing, understand that you are also the bait.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then it will come to me, and I will be ready.
+Go to node ID=70 Quest
+
+Requirement=!None
+Reply Text=What forms can it take?
+Go to node ID=65 Forms
+
+Requirement=!None
+Reply Text=That is a poor kind of comfort. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=65 Forms
 Text=It can seemingly take any form it chooses. We have seen it take the forms of a bear, an ogre, a bird...I do not think there is any limit to the shapes this fiend can adopt.
 Should Have Voiceover=0
@@ -386,8 +429,35 @@ Reply Text=It has attacked a titan?
 Go to node ID=55 It attacked a titan
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Reply Text=A bear leaves a bear's tracks, whatever is wearing the shape. Did anyone look at the ground?
+Go to node ID=66 tracks
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=How do you plan on dealing with it? 
 Go to node ID=70 Quest
+------------------------------------------------------------
+Node ID=66 tracks
+Text=We looked, and we trampled what we were looking at; there were nine of us in that cul-de-sac on the southeast edge of town and not one of us thought to stand still. But there was spoor by the rocks where Mathuo was taken that belonged to nothing that walks here. Perhaps a beast-man's nose is worth something after all.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will start there, then.
+Go to node ID=70 Quest
+
+Requirement=!None
+Reply Text=Tell me about the attack on your brother.
+Go to node ID=55 It attacked a titan
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=70 Quest
 Text=We would appreciate your help in dealing with this beast, small one. Perhaps you will find it less elusive than we have.  
@@ -505,10 +575,41 @@ State=1SL71I4J
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Reply Text=Gems are pretty. A hunt is expensive. Put gold beside the gems and I will take the work.
+Go to node ID=77 haggle
+Icon=Barter Skill Icon
+
+Requirement=!None
 Reply Text=I want no part of this right now. Goodbye. 
 Go to node ID=100 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=77 haggle
+Text=<He turns one of the gems over in his fingers and does not look up.> Coin. Of course. Very well, fleshling: the gems for the beast and gold for your trouble, and I will hear nothing further about the price. Bring the thing to me dead.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Agreed. I will find it.
+Go to node ID=100 Quest Goodbye
+Custom Action=CActivateAction
+{
+Target Name=bargained with Iapetus
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=On second thought, keep your gems.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
 ------------------------------------------------------------
 Node ID=75 Why you should help
 Text=With the exception of the single, unsuccessful attack on Mathuo, all of the Daeva's efforts have been directed against the humans here. Killing this monster would benefit them greatly.  
@@ -695,7 +796,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
 Action=CActionGiveStandardInventoryItem
 {
 Who to give to=$instigator
@@ -728,6 +829,20 @@ Additions to add=Array
 {
 Item Count=0
 }
+}
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=bargained with Iapetus
+Desired Minimum Count=1
+}
+Then=CGiveMoneyToAllPlayersAction
+{
+Value to give=2000
+}
+Else=
+Return failure if the If failes=0
 }
 }
 }

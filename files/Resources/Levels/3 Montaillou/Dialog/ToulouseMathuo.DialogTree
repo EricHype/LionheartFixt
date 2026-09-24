@@ -1,0 +1,408 @@
+CDialogTree
+{
+Name=Mathuo
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=101 Mercury bubble 1
+Text=You look like you need a drink, Poimaino
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 2
+Text=I need a drink more than you know. Guarding these flesh runts would drive Rhea herself into the bottle.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 3
+Text=I have a bottle right here. The best quicksilver you've ever seen. You could use a few minutes of relaxation.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 4
+Text=Are you sure? We could get in a lot of trouble!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury Bubble 5
+Text=Look, where are those cowardly runts going to go? Nothing will happen, let's go.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury bubble 6
+Text=You're probably right, they're not going anywhere.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 Greeting
+Text=Leave me alone, fleshling.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=PC was told Mathuo was attacked
+Desired Minimum Count=1
+}
+}
+Reply Text=Wait, I want to ask you about the shapeshifter.
+Go to node ID=10 Shapeshifter
+Action work in progress=Only if the shapeshifter quest is active
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Titan Mercury
+}
+}
+Reply Text=Can I ask your help with something? I found this bottle of mercury and...
+Go to node ID=50 Mercury
+
+Requirement=!None
+Reply Text=What were you just talking about?
+Go to node ID=02 Go away
+------------------------------------------------------------
+Node ID=10 Shapeshifter
+Text=That cowardly devil? Attacking me while I was...unready...and then fleeing into the night.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where were you when the attack occurred?
+Go to node ID=20 Where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=mercury relay
+}
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+Reply Text=Unready. You were deep in the mercury, and it walked up on you.
+Go to node ID=11 drunk
+Custom Action=CTriggerRelayAction
+{
+Relay Name=mercury relay
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=What was the monster like?
+Go to node ID=30 What
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 drunk
+Text=<The titan's jaw sets.> I had taken a little, yes. Say that where Lethos can hear it and I will put you in the ground myself. It came at me in the cul-de-sac southeast of here, where I keep my stash, and my guard was down. Take that and be satisfied.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where is this stash of yours?
+Go to node ID=25 Mercury
+
+Requirement=!None
+Reply Text=What was the monster like?
+Go to node ID=30 What
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Where
+Text=I was southeast of here, on the edge of town. There is a small cul-de-sac where I was... It is not important why I was there, but that is where I was ambushed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What were you doing when you were ambushed?
+Go to node ID=25 Mercury
+Action work in progress=activate Spoke to Mathuo relay to spawn mercury
+
+Requirement=!None
+Reply Text=What was the monster like?
+Go to node ID=30 What
+
+Requirement=!None
+Reply Text=Can you tell me anything else about it?
+Go to node ID=40 Anything else
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 Mercury
+Text=If you must know, I was enjoying a fine stash of mercury I brought with me to this village. It's a nice spot, quiet. There's a very comfortable rock to sit on and a tree stump that makes a serviceable table. It helps me forget that I'm stuck in this squalid pile of rotting organic filth. I bet that demon has already drank the bottle!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It took your mercury?
+Go to node ID=26 took it
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=What was the monster like?
+Go to node ID=30 What
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Can you tell me anything else about it?
+Go to node ID=40 Anything else
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=26 took it
+Text=Well, I don't have it today...and my head sure could use some. It's cruel, that monster, very cruel. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What was the monster like?
+Go to node ID=30 What
+
+Requirement=!None
+Reply Text=Can you tell me anything else about it?
+Go to node ID=40 Anything else
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 What
+Text=The devil took the form of a giant burrowing worm, a voracious monster that loves nothing more than the taste of our stone. I was holding my own against the beast, but the approach of my brothers caused it to turn into a small bird and fly away.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text= Where were you when the attack occurred?
+Go to node ID=20 Where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=mercury relay
+}
+
+Requirement=!None
+Reply Text=Can you tell me anything else about it?
+Go to node ID=40 Anything else
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Anything else
+Text=It is a coward and very elusive. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Mercury
+Text=You shouldn't be handling that, fleshling, it is poisonous to weak creatures like you. You had better give it to me. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why? What will you do with it?
+Go to node ID=51 Mercury is like wine
+
+Requirement=!None
+Reply Text=No, Goodbye.
+Go to node ID=100 Rude Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 Mercury is like wine
+Text=That's none of your business, fleshling. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Okay, you can have it, but...
+Go to node ID=52 Mercury trick
+Action work in progress=show speech skill icon, remove it from inventory
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Well, it's no use to me, so you might as well take it.
+Go to node ID=
+Action work in progress=remove it from inventory
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Titan Mercury
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=No, I'll hold on to this for now. Goodbye.
+Go to node ID=100 Rude Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=52 Mercury trick
+Text=But what? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It's just that drinking alone is a sign of weakness. I bet Poimaino would like to take a short break and have a drink with you.
+Go to node ID=100 Mercury Goodbye
+Action work in progress=show speech skill icon, remove it from inventory
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Titan Mercury
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Nevermind, goodbye.
+Go to node ID=100 Rude Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 Go away
+Text=Mind your own business, weakling.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=65 Bubble 1
+Text=I'll be ready for it this time.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=65 bubble 2
+Text=What was that noise?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=65 Bubble 3
+Text=Damn Memnos for bringing us to this place!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=70 None of his business
+Text=That's none of its business, Tereo!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Goodbye
+Text=Hmmph. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Rude Goodbye
+Text=Do not push me, bug. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Mercury goodbye
+Text=Hmmm, perhaps you are right. Goodbye, fleshling. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Action work in progress=remove mercury, trigger the Mathuo path 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mathuo Mercury relay
+}
+------------------------------------------------------------
+Node ID=101 Mercury interrupted
+Text=Wait, I think we have an eavesdropper. By Atlas I wish I could squash that bug, but Lethos would have my head.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 mercury interrupt 2
+Text=Go away, fleshling.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 mercury interrupt 3
+Text=I mean it, runt, if you aren't gone by the time I count to three I'll squash you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 mercury interrupt 4
+Text=1...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury interrupt 5
+Text=2...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Mercury interrupt 6
+Text=3! That's it! To arms! To arms! The fleshling is trying to release the prisoners!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 eavesdropper leaves
+Text=Stupid runt. Now where were we?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped A
+Text=Damn you and your mercury, Mathuo. What do we do now?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped B
+Text=If the elders find out they'll have us chewing gravel for months.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped C
+Text=I'll wager that puny fleshling engineered this. <Sigh> What do we do?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped D
+Text=I know, I'll hide in the pen and make human noises. You go stand guard like nothing has happened.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped E
+Text=Is that the best you can do?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=102 Prisoners escaped F
+Text=Do you have a better plan? Now go stand guard and see if you can lure that damn fleshling into the pen.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=103 Noise 1
+Text=Umm...<ahem> Why are these titans so mean?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=103 Noise 2
+Text=If only we humans weren't so weak...and stupid...and ugly.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=103 Noise 3
+Text=Boo-hoo, it is so hard being a puny human creature.
+Should Have Voiceover=0
+}

@@ -191,6 +191,21 @@ def check_dialogtree(p, raw):
                          + repr(where))
             break
 
+    # No blank line may fall inside an action or requirement block. Vanilla holds this
+    # without exception (0 occurrences in 10915 replies); a blank line there is the
+    # signature of a block helper that was handed an already-rendered child block and
+    # appended its own line terminator after it. Harmless-looking, but the reply separator
+    # is a blank line, so a stray one inside a Custom Action is the parser's cue to end the
+    # reply early. Caught while building 0.15.0's Iapetus bargain.
+    for m in re.finditer(LF + LF + r"(?!Requirement=)([A-Za-z][^" + LF + r"=]*)=", t):
+        if not t[:m.start()].endswith("}"):
+            continue
+        ctx = t[:m.start()].rsplit(LF + "Node ID=", 1)
+        where = ctx[1].split(LF)[0].strip() if len(ctx) > 1 else "?"
+        fails.append(name + ": blank line inside a block, before " + repr(m.group(1))
+                     + " in node " + repr(where))
+        break
+
     for m in re.finditer(r"^(?:Custom Action|Custom Requirement)=(\w+)\n\{\n", t, re.M):
         start = m.end() - 2
         depth, i = 0, start
