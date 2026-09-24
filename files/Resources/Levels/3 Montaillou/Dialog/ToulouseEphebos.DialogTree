@@ -24,6 +24,10 @@ Desired Minimum Count=1
 }
 Reply Text=Rhea caught you at Mathuo's mercury. I heard the whole lecture.
 Go to node ID=20 caught
+Custom Action=CTriggerRelayAction
+{
+Relay Name=mercury relay
+}
 
 Requirement=!None
 Custom Requirement=CActionExpression

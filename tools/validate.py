@@ -223,6 +223,55 @@ def check_dialogtree(p, raw):
             fails.append(name + ": embedded " + m.group(1) + " failed to parse: " + str(e))
 
 
+# Every path-shaped resource reference must resolve to a file, in the mod or in vanilla.
+# `Canned Expression=` and friends are explicit paths under Resources/, unlike a named
+# `Requirement=`, which the engine resolves by name across the Requirements folders -- so
+# writing a level-specific can's *name* in the path form silently yields an expression that
+# cannot evaluate true, and every branch behind it takes the Else forever. Three such
+# references (Calle Perdida's Cedric gate x10, Farshad's Order-of-Saladin greeting, Javier's
+# initiate gate x2) shipped in three separate releases before this check existed.
+REFERENCE_KINDS = [
+    (re.compile(r"Canned Expression=([^\r\n]*)"), (".can",)),
+    (re.compile(r"Canned Object=([^\r\n]*)"), (".can",)),
+    (re.compile(r"Perk To Check For=([^\r\n]*)"), (".Perk",)),
+    (re.compile(r"Inventory Item To (?:Check For|remove|Give)=([^\r\n]*)"), (".InventoryItem",)),
+    (re.compile(r"Dialog Tree File=([^\r\n]*)"), (".DialogTree",)),
+    (re.compile(r"Entity=([^\r\n]*)"), (".can",)),
+    (re.compile(r"Quest=([^\r\n]*)"), (".Quest.txt", ".Quest")),
+]
+
+
+def resource_exists(path, exts, have, mine):
+    for e in exts:
+        for cand in (("Resources/" + path + e).lower(), (path + e).lower()):
+            if cand in have or cand in mine:
+                return True
+    return False
+
+
+def check_references(fails):
+    have = set(n.lower() for n in zf.namelist())
+    mine = set()
+    for f in F.rglob("*"):
+        if f.is_file():
+            rel = str(f.relative_to(F)).replace("\\", "/")
+            mine.add(("Resources/" + rel).lower())
+            mine.add(rel.lower())
+    for f in sorted(F.rglob("*")):
+        if not f.is_file() or f.suffix.lower() not in (".dialogtree", ".zax", ".can"):
+            continue
+        text = f.read_bytes().decode("latin-1")
+        seen = set()
+        for rx, exts in REFERENCE_KINDS:
+            for m in rx.finditer(text):
+                v = m.group(1).strip()
+                if "/" not in v or v.startswith("!") or v.endswith("!None") or v in seen:
+                    continue
+                seen.add(v)
+                if not resource_exists(v, exts, have, mine):
+                    fails.append(f.name + ": reference does not resolve to any file: " + repr(v))
+
+
 def tree_node_ids(tree_path):
     """Exact node IDs of a tree, preferring the mod copy over vanilla."""
     raw = None
@@ -445,6 +494,7 @@ for q in F.rglob("*.Quest.txt"):
             fails.append(q.name + ": state " + repr(s)
                          + " is never activated -- the quest can be offered but never starts")
 
+check_references(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))

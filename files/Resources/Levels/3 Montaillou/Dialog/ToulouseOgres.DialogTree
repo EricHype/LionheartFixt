@@ -130,6 +130,10 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Where in the southeast, exactly?
 Go to node ID=53 where
+Custom Action=CTriggerRelayAction
+{
+Relay Name=mercury relay
+}
 
 Requirement=!None
 Reply Text=I believe you. Drink your wine.

@@ -124,6 +124,64 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.15.0 also - what the review pass found
+
+**Read back over the nine tiers on 2026-09-24, and audited rather than re-read.** Four things
+came out of it, three of them defects of mine in *earlier* releases.
+
+### A canned expression path is not a requirement name, and three references had it wrong
+
+A named `Requirement=` is resolved by the engine by name, searching the Requirements folders; a
+`Canned Expression=` is an explicit path under `Resources/`. Writing a level-specific can's
+*name* in the path form produces an expression that cannot evaluate true, silently, forever --
+every branch behind it takes the Else. A resolver run over all 11,552 path-shaped references in
+the mod found exactly three that do not resolve, all written by this project:
+
+| Where | Wrote | Should be | Cost |
+|---|---|---|---|
+| `Calle Perdida.zax` x10 | `Dialog/Requirements/Cedric Player has defeated Relican` | `Levels/1 Barcelona/Dialog/Requirements/...` | ten gates in 0.12.0's Calle Perdida |
+| `Gate District.zax` | `Dialog/Requirements/Requirements/Faction/Saladin Favored` | `Dialog/Requirements/Faction/Saladin IS` | Farshad's two "Welcome into the Order of Saladin" return greetings, the thing 0.3.0 restored him for |
+| `LordJavier.DialogTree` x2 | `Dialog/Requirements/Javier requires initiate quest NOT begun` | `Levels/1 Barcelona/Dialog/Temple District/Requirements/...` | Javier's initiate gate |
+
+The Farshad one is the worst of the three: the prefix was doubled *and* no `Saladin Favored`
+can exists anywhere in the game, so his interaction has been falling through to the stranger's
+opening for every player since 0.3.0 -- which is the exact bug shape 0.3.0 was written to fix.
+
+**`validate.py` now resolves every path-shaped reference** -- `Canned Expression`,
+`Canned Object`, `Perk To Check For`, the three inventory-item fields, `Dialog Tree File`,
+`Entity` and `Quest` -- against the mod and vanilla, and fails if one points at nothing.
+Verified by injecting a bad path and watching it fail. All three repairs above are in.
+
+### Two of my own new hints pointed at a flask that was not there
+
+Tier 7 gave Ephebos and the ogres lines that name the cul-de-sac where Mathuo's stash is, but
+only Mathuo's own conversation fires `mercury relay`, which is what puts the flask in the rocks.
+So both new hints sent the player to an empty dead end. Both replies now fire the relay, the
+same way Mathuo's do.
+
+### The Child Killer gate is honest but unprovable
+
+Tereo's reply for a player carrying the **Child Killer** title is gated on a perk that
+**nothing in the game awards** -- and vanilla checks that same perk eight times, on five of the
+Gate District's spawn points, which means the designers expected it to exist on arrival and
+almost certainly left it to the engine to award when a child dies. The reply is therefore in
+exactly the position vanilla's own eight checks are in, and it is flagged in the test list
+rather than quietly trusted: if it never appears after killing a child, the perk is dead and the
+reply should be repointed at `Goblin Slayer` or `Merchant Slayer`, both of which are demonstrably
+awarded. `Goblin Champion`, on the same node, is awarded by the Goblin Khan.
+
+### What the audit confirmed
+
+* Every one of the 47 nodes authored this session holds the prose rules: no node over 700
+  characters, at most one stage direction each (19 across 47 nodes), ASCII throughout.
+* All 232 mod files are byte-identical in the built `data.dat` except `Jafar` and
+  `Merchant Lope`, which the playtest kit overrides by design, and every archive entry is stored
+  uncompressed.
+* No node carrying a player reply is unreachable anywhere in the Toulouse trees; every node
+  added this session is reachable.
+* `Barcelona Boy`, the template the new child in the pen uses, exists and carries
+  `Races/NPCs/Generic Child` -- not one of the four templates whose `Race` dangles.
+
 ## 0.15.0 - Toulouse
 
 **Surveyed 2026-09-24. Nine tiers built 2026-09-24, unplayed.** Tiers 1-6 finished the act's repairs; 7-9 are enrichment, added because the act turned out to be in good enough shape to deserve it. The sacked town in the
