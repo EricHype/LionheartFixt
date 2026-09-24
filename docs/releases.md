@@ -126,7 +126,7 @@ into a release it does not fit.
 
 ## 0.15.0 - Toulouse
 
-**Surveyed 2026-09-24. Tiers 1, 2 and 4 built 2026-09-24, unplayed.** The sacked town in the
+**Surveyed 2026-09-24. Tiers 1, 2, 4 and 5 built 2026-09-24, unplayed.** The sacked town in the
 northeast corner of act 3, where a tribe of rock titans is camped in the ruins with a pen full
 of human prisoners behind their guard. One map (`Levels/3 Montaillou/Titan Village.zax`, 959
 level parts), 24 dialogue trees, **739 player replies**, and five quests: *Kill the Titans of
@@ -274,6 +274,94 @@ replies between 0.2.0 and 0.5. It was reverted, rebuilt by passing the child as 
 than a string, and `validate.py` grew a check for it, verified by injecting the pattern and
 watching it fail.
 
+### Tier 5 - the gatekeeper and the elder (built)
+
+**Tereo** is the titan the player meets first: the one whose name means *"guard"* because a
+titan is called by his function until he earns the right to choose a name, and whose stated job
+is to decide what the player's motives are. Fifty-four replies, one character gate. He gets
+four.
+
+The shipped tree lets a **Templar** announce himself at the gate (*"I've come to avenge the
+deaths of the Knights Templar that guarded this town"*) and has nothing for the Church's own
+investigator; an **Inquisitor** can now say so (`51 the Inquisition`), and Tereo -- who has been
+set here to decide what a thing is before anyone kills it -- recognises the office as very
+nearly his own.
+
+His speech about earning a name (`24 A titan must earn his name`) now hears back from players
+who have earned one. A **Child Killer** offers the title the game gave him: Tereo takes a step
+back, says no titan would carry it, and asks not to be told the player's birth-name, since he
+will remember them by the one they just gave him. A **Goblin Champion** offers a name given for
+a deed by the people the deed was done for, which is exactly the custom Tereo believes in, and
+he says he would not have expected it of goblins. These are the first uses anywhere in the game
+of the title perks as *conversation*, rather than as a score the issuing faction reads back to
+itself.
+
+A **Feralkin, Sylvant or Demokin** can answer his puzzlement at humans being named at birth
+(`23 named twice`) with the fact that their kind was named twice, the second time by the Church
+-- and he draws the conclusion a titan would: a name chosen for you by creatures afraid of you
+is no name at all, so go and earn another.
+
+And his one visible lie -- *"perhaps our servants ate one, possibly two humans ... Strictly
+mutton"* -- can be caught at Outwit 7 (`43 counting`): two, perhaps three, the ogres are not
+watched as closely as he would watch them, he has said so to Iapetus, and an ogre's appetite is
+low on an elder's list.
+
+**Lethos** was already the most reactive tree in the act, with race-specific versions of the
+oracle's prophecy, Speech-gated lies, Intelligence checks and a Barter split on the reward. He
+gets the two things he lacked. The negotiated ending 0.14.0 opened has exactly one door, a
+Speech 50 reply on `101 Lucius must die`; a **tainted** player now has a second, arguing from
+the one position in the story that matches Memnos's -- *"your tribe decided what he is, and now
+his duty is to die of it. Mine had that decided for us as well."* It lands on the same
+`120 Nonviolent help` node, so nothing new had to be written to make the act's best content
+reachable by a second kind of character. And a **Wielder**, hearing the mneme described as a
+crystal in a living chest that holds what is left of the dead, can say that his order binds
+spirits into stones and this is the same craft under another name (`141 a Wielder reads the
+mneme`) -- which Lethos denies, with the distinction that matters to him: a bound spirit is put
+in a box and made to work, and a mneme is what the tribe has been, kept where it cannot be
+argued with.
+
+### The empty canned requirements - 18 replies across the game, and one of them here
+
+Reading Tereo turned up a defect class the project had not measured. A reply can be gated by a
+named `Requirement=`, which resolves to a `.can` file holding one expression; **28 of the game's
+609 requirement cans are empty shells** -- `Object=` with nothing after it -- and 18 replies are
+gated on one.
+
+Twelve of the empty ones sit under act 3, nine of them named for Titan Andre's schmooze and
+outwit checks, and those nine are referenced by nothing at all: shells the designers created,
+named, and never filled or used. Andre gates his real branches inline instead.
+
+The one live case in this act is the Bishop of Pamiers. Two of his quest reports on
+`02 Return Dialogue` -- *"I have found the witch you seek"*, which completes **Find the Witch
+for the Inquisitor** and pays its XP, and *"I have spoken to the Mayor - he is a heretic and an
+adulterer"* -- carry named requirements pointing at empty cans, and the first of them is
+`Shephered Maury requires Titan to be alive`, which belongs to a different NPC and a different
+quest entirely: a copy-paste from the neighbouring reply. Both replies also carry precise
+`Custom Requirement` expressions that already encode the real condition, so the witch report's
+named requirement is now `!None` and the Custom Requirement decides. Whether an empty can fails
+open or closed cannot be settled without playing -- if it fails closed, this repairs a
+main-quest report that could not be made; if it fails open, the change is a no-op that removes a
+misfiled reference. Either way the Custom Requirement is strictly more precise than an empty
+shell. The mayor report's named requirement (`Montaillou Inquisitor requires PC to have accepted
+Mayors quest`) is left alone for now: unlike the witch report it is at least named for the thing
+it gates, and its own Custom Requirement is the same shape, so it is the cleaner test case for
+which way an empty can resolves. **MO31 and MO32 exist to answer that.**
+
+**The other 17 replies are Barcelona's, and they are worth a release of their own.** All of them
+are the Temple District gate -- Pablo, the guard who has to be talked, bribed or bluffed past on
+the way into the Temple District, in act 1, on every playthrough. His tree (23 replies, and a
+byte-identical twin under two file names) gates six branches on empty cans: *"I will make a 100
+gold donation"* and *"I will need time to procure the funds"* (`Pablo req 100 gold`,
+`Pablo req under 100 gold`), the nobility bluff (`Pablo req Charisma 15`), *"I am an initiate
+attempting to join the Inquisition"* and the Templar version (`Pablo req faction is Inquisition`,
+`Pablo req faction is KT`), and `Pablo req NO faction & no bribe`. His two race gates
+(`Pablo req tainted or imbued`, `Pablo req NO Feralkin or imbued`) **are** filled in, which is
+the tell: the shells were all created together and only some were finished. If empty cans fail
+open, the player can donate a hundred gold they do not have, claim an order they do not belong
+to, and pass a Charisma check at Charisma 3. Filling the six in is a small, high-value repair
+with an obvious shape -- every primitive needed already exists as a populated can elsewhere --
+but it is act 1, not Toulouse, so it is scoped here and not built.
+
 ### How little Toulouse knows about the player
 
 | gate | replies | share |
@@ -302,9 +390,8 @@ carries or what the player is.
 
 3. **The chickens, reconsidered.** Not a defect: the three `Chicken Generator` parts are
    activated elsewhere. Nothing to do.
-4. **Lethos and Tereo** are the two trees this tier did not reach. Lethos already has a
-   tainted variant and a faction-aware spine; Tereo, the gate guard, has 54 replies and one
-   character gate.
+4. **The six empty cans at the Temple District gate** (above). Act 1, every playthrough, and
+   the highest-value repair the project currently has scoped.
 5. **Poimaino walks off.** The bribe leaves him standing at his post, off duty, the way the
    shipped bluff does. Having him walk to `Poimaino Drinking` (1280,1707) the way the Mathuo
    route does needs a patrol authored on the map, which also means a save that has never

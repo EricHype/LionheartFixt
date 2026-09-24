@@ -1,0 +1,638 @@
+CDialogTree
+{
+Name=Tereo
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Why have you come here, fleshling
+Text=Ah, you are doubtless the one we have been waiting for. But have you come here to talk, or to die?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll talk. But what do you mean you've been waiting for me?
+Go to node ID=05 Talk
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=COtherMapAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Spoke to Esclarmonde about Toulouse
+Desired Minimum Count=1
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+}
+Reply Text=I've come to avenge the deaths of the Knights Templar that guarded this town.
+Go to node ID=50 Knights Templar
+Action work in progress=only if the PC is a Knight and has talked to Esclarmonde
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+Reply Text=I am the Inquisition. Everything in this village is my business, and you are the largest part of it.
+Go to node ID=51 the Inquisition
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I've come to put a halt to your consumption of the villagers.
+Go to node ID=40 Titans don't eat people
+
+Requirement=!None
+Reply Text=I speak with my blade, monster.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I didn't mean to come here at all. I'll just be going.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 Return
+Text=Hello again, I see you're as short as ever.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Ephebos-tereo trigger
+Desired Minimum Count=1
+}
+}
+Reply Text=If you don't mind my asking, what are you two talking about?
+Go to node ID=03 Ephebos
+Action work in progress=trigger a delayed bubble with Ephebos saying none of his busines 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=None of his business relay
+}
+
+Requirement=!None
+Reply Text= I'd like to ask you a few things.
+Go to node ID=06 Other questions
+
+Requirement=!None
+Reply Text=I've decided to kill you after all, Tereo.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Just passing by. Farewell.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Ephebos
+Text=Hehe, Rhea caught Ephebos here dipping into Mathuo's supply of mercury. It affects us much the same way wine affects humans. Rhea doesn't approve of a titan of Ephebos' age drinking when he should be studying.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text= I'd like to ask you a few things.
+Go to node ID=06 Other questions
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Funny story, now I've got one for you: I've decided to kill you after all, Tereo.
+Go to node ID=100 Fight
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Farewell.
+Go to node ID=90 Farewell
+Custom Action=CActivateAction
+{
+Target Name=heard about mercury
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Talk
+Text=A local oracle told an elder of my tribe that a person like you would come, bringing us either great help or terrible harm. I was given the unenviable task of discovering which. My name is Tereo. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tereo? That's an odd name.
+Go to node ID=20 What is your name
+
+Requirement=!None
+Reply Text=Why have you sacked this town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=I cannot allow you to continue eating the townspeople.
+Go to node ID=40 Titans don't eat people
+
+Requirement=!None
+Reply Text=Well, Tereo, you'll have the comfort of being the first to die.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I didn't mean to come here at all. I'll just be going.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=06 Other Questions
+Text=Yes? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tereo is an odd name.
+Go to node ID=20 What is your name
+
+Requirement=!None
+Reply Text=Why have you sacked this town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=I've heard you're eating the people who lived here.
+Go to node ID=40 Titans don't eat people
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=tereo mentioned lethos
+Desired Minimum Count=1
+}
+}
+Reply Text=I want to talk to Lethos.
+Go to node ID=95 Welcome
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Tereo welcome relay
+}
+
+Requirement=!None
+Reply Text=I think it would be best if you and the rest of your tribe were killed, Tereo.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I didn't mean to come here at all. I'll just be going.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 What is your name
+Text=It means "guard" in our language. It is my task this day, and so it is also my name. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're named for the tasks you perform?
+Go to node ID=22 Titans aren't named at birth
+Action work in progress=set flag 6 titan naming conventions explained
+Custom Action=CActivateAction
+{
+Target Name=Titan naming conventions explained
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Nice meeting you, I should really be going.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=22 Titans aren't named at birth
+Text=Yes, I understand that your kind is named at birth. It is, I think, a bizarre way of going about it. With my people, an individual is identified by his function or a defining characteristic until he has earned the right to choose a permanent name, usually in honor of one of the great forefathers.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=My kind was named twice. The second time the Church did the naming, and it was not meant kindly.
+Go to node ID=23 named twice
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Who are the "great forefathers"?
+Go to node ID=24 A titan must earn his name
+
+Requirement=!None
+Reply Text=Why have you sacked this town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=I cannot allow you to continue eating the townspeople.
+Go to node ID=40 Titans don't eat people
+
+Requirement=!None
+Reply Text=Well, Tereo, you'll have the comfort of being the first to die.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I didn't mean to come here at all. I'll just be going.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=23 named twice
+Text=Ah. Tainted, imbued, feralkin, demokin -- I have heard the words your priests use, and they are names for a function, exactly as mine is. The difference is that yours was chosen for you by creatures who are afraid of you, which is no basis for a name at all. Earn another one, manling. That is the only advice a guard can give you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are the "great forefathers"?
+Go to node ID=24 A titan must earn his name
+
+Requirement=!None
+Reply Text=Why have you sacked this town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=I will think about it.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=24 A titan must earn his name
+Text=The fathers of our race are not unknown to human mythology. Names like Atlas and Gaia are revered, as they should be. When I name myself, I will choose the name of one of these great forebears and, by living a moral life, bring honor to my namesake.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+Reply Text=I have earned a name among my own kind already. They call me a killer of children.
+Go to node ID=25 the name you have earned
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+}
+}
+Reply Text=The goblins of the Crossroads named me their champion. I did not choose it either.
+Go to node ID=25 a name that was earned
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Where is the honor in sacking a defenseless town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=Eating people is hardly moral, monster.
+Go to node ID=40 Titans don't eat people
+
+Requirement=!None
+Reply Text=No you won't, you aren't going to live long enough.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=That's all very interesting, but I must be going.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 the name you have earned
+Text=<Tereo takes a long step back from you.> Then you have understood the custom better than most of your kind and used it worse than any of us. No titan would carry that; we would set it down in the mountains and leave the one who earned it standing beside it. Do not tell me your birth-name. I will remember you by the one you have just given me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why have you sacked this town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=You keep a cage full of children yourself.
+Go to node ID=40 Titans don't eat people
+
+Requirement=!None
+Reply Text=Remember it well.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 a name that was earned
+Text=Champion. A name given for a deed, by the ones the deed was done for, and carried by a creature that had no say in it. That is how it should be done, manling, and I would not have expected it of goblins. When I take my own name I hope somebody has as much right to give it to me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why have you sacked this town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=What will you choose?
+Go to node ID=24 A titan must earn his name
+
+Requirement=!None
+Reply Text=Good luck with it.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Why have you sacked this town
+Text=We did not come here by choice, nor do we make a habit of interfering in the lives of lesser races. But it is not my place to speak to you of such things. It is my place only to ascertain your motives and ask you to speak to the elder Lethos, who can be found further up this path.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=32 Will you speak to Lethos
+Custom Action=CActivateAction
+{
+Target Name=tereo mentioned lethos
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=32 Will you speak to Lethos
+Text=I will let you pass if you have come to talk and not to add to the needless violence that has already occurred here. So, fleshling, what will it be?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions for you first.
+Go to node ID=06 Other questions
+
+Requirement=!None
+Reply Text=I will speak to Lethos before deciding how to deal with you.
+Go to node ID=95 Welcome
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Tereo welcome relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I've always been partial to needless violence.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough.  I'll just go back the way I came.
+Go to node ID=90 Farewell
+Custom Action=CActivateAction
+{
+Target Name=tereo mentioned lethos
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Titans don't eat people
+Text=I don't know where you got that notion, but it is obviously false. We are made of *stone*, manling, why would we need or even want to eat flesh? The very thought of it sickens me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why should I believe you?
+Go to node ID=42 Human stereotypes
+
+Requirement=!None
+Reply Text=And what of the ogre standing behind you, is he made of stone, too?
+Go to node ID=41 Ogres
+
+Requirement=!None
+Reply Text=I have other questions, then.
+Go to node ID=06 Other questions
+------------------------------------------------------------
+Node ID=41 Ogres
+Text=Ah, yes, well perhaps our servants ate one, possibly two humans when we first arrived here, but they have had a steady diet of mutton since then. Strictly mutton.  
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Derived Attributes/Outwit 7 greater or equal
+}
+Reply Text=One human, or two? You are set to guard a pen and you cannot count your own dead.
+Go to node ID=43 counting
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Why should I believe you?
+Go to node ID=42 Human stereotypes
+
+Requirement=!None
+Reply Text=I have other questions, then.
+Go to node ID=06 Other questions
+------------------------------------------------------------
+Node ID=43 counting
+Text=...Two. Perhaps three. The ogres are not watched as closely as I would watch them, and they are not made of stone, and they are hungry in a way we are not. I have said as much to Iapetus. He has a great deal on his mind and an ogre's appetite is low on the list. You may draw your own conclusions about how careful we have been here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why should I believe anything you say?
+Go to node ID=42 Human stereotypes
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=06 Other Questions
+
+Requirement=!None
+Reply Text=That is all I needed.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 Human stereotypes
+Text=How your understanding of our race has changed over the years! There was a time when we were properly revered as your superiors. Now we are perceived as frightful beasts who exist only to waylay and harass your pitiful species. Nothing could be farther from the truth.  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you consider the truth?
+Go to node ID=44 The truth
+
+Requirement=!None
+Reply Text=I have other questions, then.
+Go to node ID=06 Other questions
+------------------------------------------------------------
+Node ID=44 The truth
+Text=*My* truth is that I was given only the task of determining your motives in coming here. Much can be explained to you by Lethos and the other elders. If you wish to speak with him, you will find him further up this path.  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well, I will speak with Lethos.
+Go to node ID=95 Welcome
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Tereo welcome relay
+}
+Action=CActivateAction
+{
+Target Name=tereo mentioned lethos
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=06 Other questions
+Custom Action=CActivateAction
+{
+Target Name=tereo mentioned lethos
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I've heard all I need to hear. Your death is overdue.
+Go to node ID=100 Fight
+Custom Action=CActivateAction
+{
+Target Name=tereo mentioned lethos
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough.  I'll just go back the way I came.
+Go to node ID=90 Farewell
+Custom Action=CActivateAction
+{
+Target Name=tereo mentioned lethos
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Knights Templar
+Text=You must mean the warriors who attempted to defend this town. They refused to surrender and left us no choice but to squash them. It was regrettable, and I hope that you will not make the same mistake.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have a more temperate disposition. I will at least speak with you before passing judgement.
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=Then you hope in vain, monster.
+Go to node ID=100 Fight
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=51 the Inquisition
+Text=Then you are the one they send to decide what a thing is before they kill it. That is very nearly my own office today, manling, so we will understand one another. I was set here to learn your motives, and you have told me yours in one breath. Whether the elders answer to your Church is not mine to say.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why have you sacked this town?
+Go to node ID=30 Why have you sacked this town
+
+Requirement=!None
+Reply Text=I have heard you are eating the people who lived here.
+Go to node ID=40 Titans don't eat people
+
+Requirement=!None
+Reply Text=The Church answers to nobody. Draw.
+Go to node ID=100 Fight
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=We will speak again.
+Go to node ID=90 Farewell
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Farewell
+Text=I will await your return, small one.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=99 Tereo Bubble 1
+Text=Hehe, Rhea caught you, huh?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=99 Tereo Bubble 2
+Text=Yes, and she gave me quite a lecture.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=99 Tereo Bubble 3
+Text=I know that lecture. I've been at the receiving end of it a few times myself.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=95 Welcome
+Text=Welcome, then. You will find Lethos a short distance up the path..
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Tereo block relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Fight
+Text=So be it, you were offered the olive branch but chose the sword.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+}

@@ -1223,6 +1223,23 @@ State=V4L0SE1V
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Tainted race - feralkin or sylvant
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Demokin IS
+}
+}
+Reply Text=Your tribe decided what he is, and now his duty is to die of it. Mine had that decided for us as well. Hear a proposal.
+Go to node ID=120 Nonviolent help
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=Perhaps you should again explain to me why he must die.
 Go to node ID=140 Explanation for the very dim
 
@@ -1843,6 +1860,15 @@ Target Name=player thinking it over
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Reply Text=A crystal in a living chest that holds what is left of the dead. My order binds spirits into stones; this is the same craft with a different name.
+Go to node ID=141 a Wielder reads the mneme
+Icon=Attribute Icon
+
+Requirement=!None
 Custom Requirement=CExpressionNot
 {
 Operand1=CActionExpression
@@ -1905,6 +1931,24 @@ Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
 Reply Text=That's... interesting. Farewell.
 Go to node ID=
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=141 a Wielder reads the mneme
+Text=<Lethos considers you for longer than he has yet.> No. What your order does is put a living thing in a box and make it work. A mneme is not a spirit and it does not serve; it is what the tribe has been, kept where it cannot be argued with. If you understood the difference you would not have needed Rhea. But you understand crystals better than most fleshlings, and that may be worth something to us before this is finished.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am willing to help you.
+Go to node ID=110 Good help
+
+Requirement=!None
+Reply Text=I can help you if the price is right.
+Go to node ID=130 Mercenary help
+
+Requirement=!None
+Reply Text=That is all. Farewell.
+Go to node ID=70 Rude Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=150 Fight 2
 Text=Your kind is so very, very tiresome. 
