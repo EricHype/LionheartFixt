@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Tiers 1, 2 and 3 built 2026-09-24, unplayed.** `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Tiers 1 to 4 built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -344,6 +344,47 @@ all my enemies here would die"*. The wish-for-a-wish needs IN 6+ with Speech 95 
 or 80 from the return node; `210 get lost` needs IN 7+. Free, ungated, and currently the outcome of
 nothing the player did with the place.
 
+### Tier 4 - the garrison's camp (built)
+
+`Levels/4 Crypt/10 Garrison Camp.zax`, the third map this project has added to the game, and the
+first built the way the survey said to build it: **a copy of the act's own smallest map.**
+`3 Misc Crypt 1` is one of the four the act's writers left unnamed, unpopulated and silent -- 42
+entities, no conversation, four live horde spawners -- and copying it means the tileset, the
+`CPlasmaTileMap` floor, the lighting, the `VykaCrypt` textures and the waypointing are the Crypt's
+own rather than authored from nothing. That is also why no `.frm16` or `.way` is needed, which
+answers the question the survey left open: `4 Undercroft` shipped without them because its floor
+lives in the map's own `Plasma Ground`, and so does this one.
+
+What changed from the copy:
+
+* `Partial File Name` and `Map Description` renamed; the four live horde spawners **stood down**,
+  because the camp is behind the line, not on it. The two that were already inactive are left as
+  they were.
+* `Start Here` cloned into an arrival spawn, `From 1 Crypt Entrance`; the map's existing transition
+  polygon retargeted from `2 Retreat of Souls` to `1 Crypt Entrance`, landing at a new
+  `From 10 Garrison Camp` spawn there. So the camp has one way in and one way out, both using the
+  act's own polygon-and-relocate idiom rather than the inactive developer `warp` parts.
+* On `1 Crypt Entrance`, a stairwell -- `To Maps/StairWell One/StairWell1 F`, a model the Crypt
+  already places, with the sequence it already uses -- stands beside the sealed shrine door, inside
+  the walk polygon the player must cross to reach that door, with the transition polygon on it.
+* **Three of the garrison muster there**, cloned from `Undead Templar Dialog 1 Generator`: a sentry
+  on `01 Conversation Start`, so the act's *"Are you a Knight? Have you been sent to reinforce
+  us?"* finally lands somewhere a player will reach early, and two who speak for the camp. All
+  three carry `Scripted Custom 2` and `Valid Targets=Scripted Custom 1`, and all three defend
+  themselves the way tier 3's forward knight does.
+
+**And the camp has its own voices** (`Dialog/Garrison Camp`, 10 nodes, 21 replies -- the one piece
+of substantial new writing in this tier). The knight at the fire has counted: *"Two hundred and
+eleven years. I keep the count because somebody must, and because the elders cannot and Jehanne
+will not."* He is the one who says out loud what the act never does -- *"we are not besieged. We
+are the siege. Neither side can finish, so both of us keep count instead"* -- and he would rather
+be a knight than a corpse, so he says knight. The one on the wall has refused to count, holds
+because he was told to hold and has not been relieved, and *"whatever else is true about me can
+wait for the man who comes with the order."* Four of the tree's replies read tier 1's quest states,
+so the camp knows how far the player has got, and one reads `Joan player spoken to Spirit Council`,
+after which the man at the fire will admit that the voices have gone quiet on her -- *"Do not tell
+her I said it."*
+
 ### The new area: the ghost garrison's camp
 
 `plan.md` settled this and the survey supports it: the Crypt is already a war camp and the game
@@ -369,8 +410,9 @@ shipped maps disagree, and that question should be settled against the Undercrof
    the only survivor of what this tier was originally scoped to be. Built.
 3. **Place the garrison.** Built: nine barks instead of one, and a knight posted forward on
    `2 Retreat of Souls`.
-4. **The camp**, per the plan: the muster point, Jehanne in command, the Spirit Council
-   consultable, the Efreeti's wish discussed by the people it trapped.
+4. **The camp.** Built as `10 Garrison Camp`. Jehanne stays on the plateau, where she is placed
+   with 38 nodes and a companion flow: moving her would break more than it gained, and the camp
+   sends the player to her instead.
 5. **Give the 66 traps a skill.** `Find Traps Secret Doors` to see one, `Lockpick Disarm Traps` to
    disarm it, and -- where the horde is on the other side of it -- to re-lay it. The act's own
    `switch to trap ghouls` is the model, and it is one dead part away from being the model.

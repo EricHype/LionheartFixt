@@ -1,0 +1,196 @@
+CDialogTree
+{
+Name=The Garrison's Camp
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 the fire
+Text=<The knight does not look up from a fire that gives no heat.> Two hundred and eleven years. I keep the count because somebody must, and because the elders cannot and Jehanne will not. You are the first living thing down here that has not tried to take the Lance off us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Two hundred and eleven years of what?
+Go to node ID=10 the count
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=Your commander says the Council has not spoken to her in a long while.
+Go to node ID=20 the council
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY2CURS
+}
+}
+Reply Text=I am here to end it.
+Go to node ID=30 end it
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Keep counting.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 the count
+Text=Of holding. They come up the long corridors in their own time and we put them down and they are back inside a month, and none of us has taken a wound that mattered since the seals closed, because there is nothing left of us to wound. That is the part the living never follow: we are not besieged. We are the siege. Neither side can finish, so both of us keep count instead.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then why hold at all?
+Go to node ID=11 why hold
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY2CURS
+}
+}
+Reply Text=I am here to end it.
+Go to node ID=30 end it
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=That is a grim arithmetic. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 why hold
+Text=Because the Lance is behind us and the necromancer's army is in front, and whatever we have become, that has not changed. Ask the one on the wall what he thinks we are. He will tell you knights. I have had two hundred years to decide and I would rather be a knight than a corpse, so I say the same thing and I keep the count.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where is Jehanne?
+Go to node ID=12 Jehanne
+
+Requirement=!None
+Reply Text=You are a knight. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 Jehanne
+Text=Out on the plateau, where the ground is open and the fighting is worst, because that is where she has always put herself. She will call you a monster. She calls everything a monster now and she is not entirely wrong about most of it. Speak to her Council before you speak to her, if you can find a way to be heard by spirits.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will do that.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 the council
+Text=They have not, and she has not said so to any of us. <He turns a pauldron over in his hands.> If the voices that put her here have gone quiet, then either they are done with her or she cannot hear them any longer, and I do not know which of those is worse for a woman who takes her orders from heaven. Do not tell her I said it.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY2CURS
+}
+}
+Reply Text=I am here to end it.
+Go to node ID=30 end it
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=She will not hear it from me.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 end it
+Text=End it. <For the first time he looks at you properly.> Then you will have heard about the lamp, and about the Saracen, and you will know that what holds us here is a wish and not a wound. Break it if you can. And if it cannot be broken -- if all you can do is come down here and count with me -- come back anyway. It is a long watch.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will come back either way.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 the wall
+Text=Hold there. <The knight on the wall does not turn round.> If you are going down the corridors, go quietly and go in daylight, for whatever that is worth in here. We are Knights Templar of the garrison of Rennes le Chateau and we will not be moved. What is your business?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is down the corridors?
+Go to node ID=40 the corridors
+
+Requirement=!None
+Reply Text=Do you know what has happened to you?
+Go to node ID=41 what we are
+
+Requirement=!None
+Reply Text=Nothing. Hold your post.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 the corridors
+Text=Ghouls in the near ones, and the great skeletons where the roof has come down, and something in the deep gallery that the others will not name and I will not either. They do not tire and neither do we, which is the only reason any of this has lasted. Take the left wall and keep your shield up.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Do you know what has happened to you?
+Go to node ID=41 what we are
+
+Requirement=!None
+Reply Text=My thanks.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 what we are
+Text=We are the garrison. <A long pause.> The one at the fire counts the years and thinks that makes him clear-eyed. I have not counted and I do not intend to. We were told to hold this place until we were relieved, and no one has relieved us, so we hold it. Whatever else is true about me can wait for the man who comes with the order.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY2CURS
+}
+}
+Reply Text=I may be him.
+Go to node ID=42 the order
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=That is one way to bear it. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 the order
+Text=<He turns round at last.> Then say it plainly when you have it in your hand, and say it where Jehanne can hear, because she will not take it from me. And if you are lying to me, fleshling, I will know it before the rest of them do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You will hear it plainly.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}
