@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Nothing built.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Tier 1 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -195,19 +195,23 @@ roughly two hundred Hujark who **do** spawn live on that map -- swordsmen and le
 five flavours each -- are all anonymous, with no `New Name` at all, so attacking them fires nothing.
 The relay was only ever wired to the two named ones.
 
-Two more parts on that map point the same way: `Start Wielder intro scene` and
-`60 Harm Prophet dialog balloon` are both `Active=1` and **fired by nothing**, and the eight
-`Hujark dialog balloons` that position over the general's head are fired from inside his own
-disabled generator. This is not one flag left unset. The act's entire opening set-piece at the
-Heart Entrance -- the general, his guard, their barks, the Wielder scene, the side choice and both
-quests -- was switched off as a block, late.
+`60 Harm Prophet dialog balloon` is dead for the same reason -- it is fired only from the general's
+own conversation -- and so are the eight `Hujark dialog balloons` that position over his head, which
+are fired from inside his own disabled generator.
 
-**One complication for the repair.** Both disabled generators are
-`CSimpleGeneratorForCannedEntitiesAI`, the ambient-background class, not the `CGeneratorAI` that
-every real interactable NPC in the game uses. Flipping `Active=1` is therefore not expected to be
-sufficient on its own: the general likely needs rebuilding on `CGeneratorAI` with a
-`GetCloseThenTalk` specifier, the way Jafar, Amir and this project's own NPCs are built. That is
-also a plausible reason he was cut rather than fixed.
+**Correction to an earlier reading of this map.** `Start Wielder intro scene` was listed here as
+`Active=1` and fired by nothing. It is a `CTouchingPolygonTriggerAI` **polygon**, which needs no
+caller -- the player walking into it is the trigger -- and it fires `Wielder Start NIS` normally. The
+Wielder intro at the Heart Entrance works in the shipped game. Self-triggering polygons are the same
+false-positive class as unreferenced generators, and belong in `deadparts.py`'s exclusions.
+
+**And a complication that turned out not to be one.** Both disabled generators are
+`CSimpleGeneratorForCannedEntitiesAI`, which this project's notes call the ambient-background class,
+not the `CGeneratorAI` that real interactable NPCs use -- so the survey expected the general to need
+rebuilding. He does not. The counter-example is two maps away: the **Frightened Apprentice** on
+`06 Cave 1` is a scripted, talkable NPC spawned by `CSimpleGeneratorForCannedEntitiesAI` with a
+`CAIInteractionSpecifier` in its `AIs to Add`, and it works in the shipped game. The note's warning
+applies to *persistent* NPCs, not to a scripted one that appears for a single scene.
 
 **And the Hujark General never spawns.** `Hujark General Generator` on `01 Heart Entrance` is the
 only thing in the game that would produce him -- `Entity=Levels/5 Nostrodomus/Character
@@ -324,15 +328,67 @@ live at the Demesne. It is specifically the pair at the entrance that is switche
   Apprentice's lines** in a tree that shares its node IDs, and the apprentice's own five-step series
   on `06 Cave 1` is fully built. A copy-paste artifact, not cut content.
 
+### Tier 1 - Huko, and the two quests behind him (built)
+
+The set-piece is fully built and rather good, which is what makes its being switched off worth
+undoing rather than replacing. Huko, General to the Hujark, spawns **passive** -- `Valid Targets=` is
+empty in his template -- barks his eight lines on a five-second timer, and `General talks to player`
+hands him a `CSkeletonAI` whose `Trigger=First Time` transition into Attack fires
+`CDisplayDialogTreeAction` instead of a swing: he crosses the ground as though to attack and speaks
+instead. `CSendAIDoneMessage` then ends the temporary task and he reverts to his passive template AI.
+Hit him first and a damaged-script set in his generator's `After Action` fires the English flag. Side
+with him and he and his guard walk to `General goto` and `Guard goto`, fade over a second, and delete
+themselves.
+
+Three things were missing, and all three are one-line absences rather than missing content:
+
+| what was missing | what it cost | the repair |
+|---|---|---|
+| nothing activated `Hujark General Generator` | Huko never existed | `Active=1` |
+| nothing activated the **unnamed** generator that spawns `Swordsman ShieldHelmet` as `Hujark Guard` | his guard never existed, and with him the only non-dialogue caller of the English flag | `Active=1`, and a name -- `Hujark Guard Generator` -- so something can address it |
+| nothing fired `General talks to player` except the attack path | he could not open the conversation even if he existed | the arrival spawn point |
+| his template's `GetCloseThenTalk` specifier has an empty `Action=` | the player could never start a conversation, and `3 Return Dialogue` -- seven replies, both ways to commit -- was reachable from nowhere | the specifier now opens `1 Conversation Start`, and the talk transition swaps it to `3 Return Dialogue` afterwards |
+
+**The hook is the arrival point's empty `Per Party Spawn Action`.** `start here` at 1077,2552 is where
+the player lands coming in from the wilderness, and its spawn action was blank; `crystal start here`
+seventeen units away uses its own for the autosave and the Barcelona-companion cleanup, so the idiom
+is on this map already. It now activates both generators in one comma-listed `CActivateAction` and,
+half a second later, fires `General talks to player`. No new polygon and no geometry to get wrong,
+and because both generators have `Already Generated=0`, leaving the act and returning does not
+produce a second Huko.
+
+**The return conversation** uses Jehanne's idiom from the Crypt: the same `Trigger=First Time`
+transition that opens the conversation also swaps his specifier, so after he has spoken once,
+clicking him opens `3 Return Dialogue` -- *"You return? Have you changed your stance?"* -- with
+`Allow Interact If Has Target=0`, so a Huko who is trying to kill the player cannot be chatted to.
+
+**What it opens up.** Traced forwards, every link now has a live caller, and for the first time both
+of the act's quests can be entered:
+
+| step | reached from |
+|---|---|
+| `Hujark General Generator`, `Hujark Guard Generator` | `start here`, on arrival |
+| `General talks to player` | `start here`; still also the attack path |
+| `Player attacks any of the Hujark in this fight` | both generators' damaged-scripts, and seven fight replies |
+| `Player sides with the Hujark` -> quest state `DH253J5T` | *"I have come to help the Prophet"* |
+| `Player sides with the English` -> quest state `I4QTGAGA` | seven replies, and hitting either named Hujark |
+| `60 Harm Prophet dialog balloon`, `Hujark dialog balloons` | the conversation, and his spawn timer |
+
+Two things deliberately left for later tiers. The `Hujark dialog balloons` relay has two further
+callers on `03 Tourniquet of Pain` -- `English Generator` and `Hujark Generator`, both `Active=0`
+there -- which belong with tier 3's commentary. And the roughly two hundred **anonymous** Hujark on
+the entrance map still fire nothing when attacked: only the two named ones carry the damaged-script.
+Whether swinging at the rank and file should also commit the player to the English is a design
+question, not a defect, and it is tier 3's to answer.
+
+**Position is the one thing static reading cannot settle.** Huko's generator sits at 1316,2210, about
+350 units up the path from the arrival point, and `General goto` is at 734,2179. Those are the
+designers' own coordinates, but a spawn point that has never run is a spawn point nobody has watched.
+First thing to look at in play is whether he appears on the floor and can reach the player.
+
 ### Tiers, in the order they should be built
 
-1. **The general who never spawns, and the two quests behind him.** Rebuild him on `CGeneratorAI`
-   with a talk specifier, restore his named guard, and give him the return-conversation wiring the
-   rest of the game uses (`3 Return Dialogue`, seven replies, currently reached by nothing). This is
-   what makes **either** side of the act, and **either** of its two quests, reachable at all --
-   act 5 currently has two quests and no way into either. Also decide whether attacking the
-   anonymous Hujark should count as siding with the English, which is what the relay's name says it
-   was for.
+1. ~~**The general who never spawns, and the two quests behind him.**~~ **Built** -- see above.
 2. **The summoning.** Wire the eleven live checkers and the eleven placed clone sources to the
    shamans and shield-helmet swordsmen, on the Ogre Conjurer's `CHealthPercentThresholdTrigger`
    pattern. The one change that makes 1,130 spawners behave differently from each other.
