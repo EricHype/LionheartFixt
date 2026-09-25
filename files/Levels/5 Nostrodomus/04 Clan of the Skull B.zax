@@ -85,6 +85,425 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Swordsman Generator
+			}
+			Name=Hujark voice Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=116
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=15
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 01
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 02
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=20
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 01 Tough
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 02 Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=30
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 01 Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 02 Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=3
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 01 Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman 02 Super
+								}
+							}
+						}
+					}
+					New Name=Hujark voice
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CConditionalAction
+							{
+								Try Action=CCheckExistenceAction
+								{
+									Name To Check For=sided with the Hujark
+									Desired Minimum Count=1
+								}
+								Succeed Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=Scripted Custom 2
+								}
+								Fail Action=
+								Return failure if the TryAction failes=0
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Scripted Custom 2
+							}
+						}
+					}
+					New Facing Angle=0
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=851
+			Position Y=2626
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Lesser Shaman Generator
+			}
+			Name=English voice Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=116
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=15
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=20
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=30
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow Super
+								}
+							}
+						}
+					}
+					New Name=English voice
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CAddCategoryAction
+							{
+								Target Name=$Instigator
+								Categories to add=Scripted Custom 2
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Scripted Custom 1
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Scripted Custom 1
+							}
+						}
+					}
+					New Facing Angle=0
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=3808
+			Position Y=2336
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=the advance has been called
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=3818
+			Position Y=2336
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=sided with the English
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=3838
+			Position Y=2336
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Activate Hujark generators
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CActivateAction
+					{
+						Target Name=English voice Generator, sided with the English
+						Play Activate Sound=0
+						Delay Between Activations=0
+						Warp Behavior=
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=3858
+			Position Y=2336
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CRenderablePolygon
 		{
 			Dynamic Properties=2
@@ -4692,7 +5111,7 @@ CLayerSaveData
 					Publisher=
 					Action=CActivateAction
 					{
-						Target Name=English Generator, sided with the Hujark
+						Target Name=English Generator, sided with the Hujark, Hujark voice Generator
 						Play Activate Sound=0
 						Delay Between Activations=0
 						Warp Behavior=
@@ -7441,17 +7860,105 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=
-							Action=
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=
+									Action=
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=the advance has been called
+										Desired Minimum Count=1
+									}
+									Succeed Action=
+									Fail Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=sided with the Hujark
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+													Node ID=60 Hujark3
+													Name of Position=Hujark voice
+													Position Offset=0.000000,-75.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CActivateAction
+												{
+													Target Name=the advance has been called
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+											}
+										}
+										Fail Action=CConditionalAction
+										{
+											Try Action=CCheckExistenceAction
+											{
+												Name To Check For=sided with the English
+												Desired Minimum Count=1
+											}
+											Succeed Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+														Node ID=110 English3
+														Name of Position=English voice
+														Position Offset=0.000000,-75.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CActivateAction
+													{
+														Target Name=the advance has been called
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+												}
+											}
+											Fail Action=
+											Return failure if the TryAction failes=0
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -9049,9 +9556,97 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CUseCannedActionAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Canned Object=Common Objects and Scripts/Autosave
+						Action=Array
+						{
+							Item Count=2
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Autosave
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=the advance has been called
+										Desired Minimum Count=1
+									}
+									Succeed Action=
+									Fail Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=sided with the Hujark
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+													Node ID=60 Hujark3
+													Name of Position=Hujark voice
+													Position Offset=0.000000,-75.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CActivateAction
+												{
+													Target Name=the advance has been called
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+											}
+										}
+										Fail Action=CConditionalAction
+										{
+											Try Action=CCheckExistenceAction
+											{
+												Name To Check For=sided with the English
+												Desired Minimum Count=1
+											}
+											Succeed Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+														Node ID=110 English3
+														Name of Position=English voice
+														Position Offset=0.000000,-75.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CActivateAction
+													{
+														Target Name=the advance has been called
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+												}
+											}
+											Fail Action=
+											Return failure if the TryAction failes=0
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -9878,7 +10473,94 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=1
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=the advance has been called
+										Desired Minimum Count=1
+									}
+									Succeed Action=
+									Fail Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=sided with the Hujark
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+													Node ID=60 Hujark3
+													Name of Position=Hujark voice
+													Position Offset=0.000000,-75.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CActivateAction
+												{
+													Target Name=the advance has been called
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+											}
+										}
+										Fail Action=CConditionalAction
+										{
+											Try Action=CCheckExistenceAction
+											{
+												Name To Check For=sided with the English
+												Desired Minimum Count=1
+											}
+											Succeed Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+														Node ID=110 English3
+														Name of Position=English voice
+														Position Offset=0.000000,-75.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CActivateAction
+													{
+														Target Name=the advance has been called
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+												}
+											}
+											Fail Action=
+											Return failure if the TryAction failes=0
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=30
@@ -35541,7 +36223,94 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=1
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=the advance has been called
+										Desired Minimum Count=1
+									}
+									Succeed Action=
+									Fail Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=sided with the Hujark
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+													Node ID=60 Hujark3
+													Name of Position=Hujark voice
+													Position Offset=0.000000,-75.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CActivateAction
+												{
+													Target Name=the advance has been called
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+											}
+										}
+										Fail Action=CConditionalAction
+										{
+											Try Action=CCheckExistenceAction
+											{
+												Name To Check For=sided with the English
+												Desired Minimum Count=1
+											}
+											Succeed Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+														Node ID=110 English3
+														Name of Position=English voice
+														Position Offset=0.000000,-75.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CActivateAction
+													{
+														Target Name=the advance has been called
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+												}
+											}
+											Fail Action=
+											Return failure if the TryAction failes=0
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=85
@@ -36877,7 +37646,94 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=1
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=the advance has been called
+										Desired Minimum Count=1
+									}
+									Succeed Action=
+									Fail Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=sided with the Hujark
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+													Node ID=60 Hujark3
+													Name of Position=Hujark voice
+													Position Offset=0.000000,-75.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CActivateAction
+												{
+													Target Name=the advance has been called
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+											}
+										}
+										Fail Action=CConditionalAction
+										{
+											Try Action=CCheckExistenceAction
+											{
+												Name To Check For=sided with the English
+												Desired Minimum Count=1
+											}
+											Succeed Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/Losing side wins a fight
+														Node ID=110 English3
+														Name of Position=English voice
+														Position Offset=0.000000,-75.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CActivateAction
+													{
+														Target Name=the advance has been called
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+												}
+											}
+											Fail Action=
+											Return failure if the TryAction failes=0
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=190

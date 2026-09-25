@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Eight tiers built 2026-09-25, unplayed.** Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Nine tiers built 2026-09-25, unplayed.** Tier 3b places an army the shipped game built and never deployed; tier 8 gives its commentary a speaker. Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -841,6 +841,65 @@ So there are two tiers of summoning in the act now, and they are not the same th
 
 **The ring is not a blanket off-switch**, and that is the point of the distinction. The serpents know
 Sahar's mark. A rock titan does not.
+
+### Tier 8 - the commentary finally has somebody to say it (built)
+
+`Losing side wins a fight` is seventeen nodes of running narration from whichever side the player
+joined, and vanilla opened **two** of them. Tier 3 opened three more at the seer's door, where a named
+shaman and guard already existed. The remaining twelve needed the one thing the act has never had: an
+**allied entity, present and named, on each map**. The paired-skirmish cast they were written for --
+`English3`, `Hujark3a`, `Hujark3b` -- is created by nothing anywhere in the game.
+
+Tier 3b had already supplied the bodies. On the Hujark path every Hujark generator's spawn is pacified
+and fights the English instead of the player; on the English path the ninety-nine twins exist and are
+simply not switched on. What was missing was a name to hang a balloon on, and a reason for one of each
+side to be an escort rather than an enemy.
+
+Six maps now carry two escorts each, neither of which the player ever fights:
+
+| escort | copied from | raised by | targets |
+|---|---|---|---|
+| `Hujark voice Generator` | a live Hujark generator on that map | `Activate English generators` -- vanilla's own name for the Hujark-path call | `Scripted Custom 2`, the English |
+| `English voice Generator` | one of that map's English twins | `Activate Hujark generators` -- vanilla's name for the English-path call, which **existed on no map in the game** until now | `Scripted Custom 1`, the Hujark |
+
+Both ship `Active=0`, so a player who never commits sees neither. Six of vanilla's nine
+`Activate Hujark generators` calls now land; the other three are maps with no English twin to raise.
+
+**And the line is the stage of the advance that map represents**, spoken a second and a half after the
+player lands, once, by whichever escort belongs to the side they took:
+
+| map | Hujark path | English path |
+|---|---|---|
+| 02 Clan of the Hand A | *"Thank you for your help! You must get to the Seer quickly."* | *"Thank you for your help! We will secure this area. You keep moving."* |
+| 03 Tourniquet of Pain | *"You must get to the Seer before the Druids do!"* | *"We must bring the savages to their knees!"* |
+| 04 Clan of the Skull B | *"Stop the Druids before they reach the Seer!"* | *"We are breaking through their defenses!"* |
+| 08 Cave 3 | *"The Druids have entered the caves. You must hurry!"* | *"Soon we will prevail!"* |
+| 09 Cave 4 | *"Get to the Seer quickly! Time is running short."* | *"Death to the Hujark!"* |
+| 10 Cave 5 | *"Protect the Seer! The Druids must be stoped!"* | *"Hurry! We have almost broken through."* |
+
+`Losing side wins a fight` now has **no unopened node**, and crossing the act reads as an advance
+rather than ten rooms of the same fight.
+
+A corrective pass followed the audit: two of the six `Hujark voice` escorts still carried a bare
+`Valid Targets=Player` inside the AI copied from their source generator. Their `After Action` sets
+targets at spawn and would have overridden it, but a copy that still names the player is the sort of
+leftover that bites two tiers later, so every `Valid Targets` line in an escort now agrees with its
+side.
+
+### Act 5's unreachable dialogue, closed out
+
+Case-folded, the act had twenty nodes that nothing reached and nothing opened. What is left:
+
+| | nodes | why |
+|---|---|---|
+| tier 3 opened | 3 | the seer's door |
+| tier 4 opened | 4 | the seer's stranded answer and his combat lines |
+| tier 8 opened | 12 | the commentary, both series and both thanks |
+| **left** | **1** | `40 Ingame Movie Opening Line`, which belongs to a cinematic that is not in the retail build |
+
+Plus the three `Generic Hujark` nodes that are byte-identical copies of the Frightened Apprentice's
+lines in a tree that shares his node IDs -- a copy-paste artefact, not content, and correctly left
+alone.
 
 ### Tiers, in the order they should be built
 
