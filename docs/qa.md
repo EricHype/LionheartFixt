@@ -1407,6 +1407,14 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO30 | Reach the Demesne having sided with the **English** (NO6/NO8) | - | Vanilla behaviour exactly: assassin, then the shaman 1.5s later, then the guard, all hostile |
 | NO31 | Reach the Demesne having **never met Huko** | - | Same as NO30. The checker is off unless the Hujark flag fired |
 | NO32 | NO28, then check the journal | - | Only *Protect Nostradamus from the invading English forces* should be active -- confirm siding with the Hujark has not also activated the English quest |
+| NO33 | **A save that has never entered act 5.** Refuse Huko or kill him, then cross the whole act | - | **Vanilla, exactly**: Hujark everywhere, no English soldiers anywhere. This is the row that proves the swap is opt-in |
+| NO34 | Side with Huko (NO5), then fight through `01`, `02`, `03`, `04` and the caves | - | **English soldiers and bowmen** (`Nos Soldier1/2/3`, `Nos Soldier2 Bow`) instead of Hujark swordsmen. 99 generator parts across nine maps; `02` has the most (34) |
+| NO35 | NO34: watch what the Hujark do when you walk past them | - | They ignore you and fight the English. Their targets are set to `Scripted Custom 2` at spawn when the flag is set. **A Hujark still swinging at an allied player is the bug to report** |
+| NO36 | NO34: count enemies against NO33 on the same map | - | Roughly the same. If the Hujark path feels heavier, the pacify branch is not firing; if much lighter, the English parts are not activating |
+| NO37 | NO34 on `06 Cave 1` | - | Unchanged -- that map fields no Hujark, only the apprentice set-piece and fauna |
+| NO38 | NO34 anywhere: wound an English soldier past half health | - | **No snake.** Tier 2's trigger is stripped from every English twin |
+| NO39 | NO34: check the cave fauna | - | Snakebreed, spirits and vodyanoi attack you on both paths. They were deliberately left alone |
+| NO40 | NO34 then reload a save from before the choice and side with the English instead | - | The English parts stay off. The checker is per-map and set only by the Hujark relay |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

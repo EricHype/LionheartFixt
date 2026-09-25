@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Tiers 1, 2, 2b and 3 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Tiers 1, 2, 2b, 3 and 3b built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -532,7 +532,7 @@ exists on **none** of them. Creating it on the Demesne -- where its one action a
 `sided with the Hujark` checker -- makes vanilla's own cross-map call land for the first time, and
 costs nothing anywhere else.
 
-### What tier 3 found and did not build: the act's two armies
+### What tier 3 found: the act's two armies
 
 The two side relays are extensively commented, and the comments describe a system far larger than the
 quest flags:
@@ -561,17 +561,83 @@ So every player who has ever walked act 5 has fought the Hujark, on a map set bu
 either way, and the "battle between two sides" is one army plus six English ogres on the first two
 maps.
 
-**This is missing content, not a wiring fault, and it is not a decision to take quietly.** Building
-it means authoring an English army across four maps, and the shape of that build is a balance
-question with two very different answers: *add* the chosen enemy on top of what is already there,
-which doubles the enemy count in the grindiest act in the game, or *swap* -- deactivate the Hujark
-generators when the player sides with them -- which is replacement rather than thinning but still
-takes 200 spawners off the board on one path. Left for the next decision, not assumed.
+**It looked like missing content. It is not: the army exists and was never placed** -- see tier 3b
+below, which builds it.
 
 The same absence is why fourteen of the commentary tree's seventeen nodes are still unopened:
 `10 Hujark underdogs win`, `20 English underdogs win`, `30 Hurry`, `40 Quick` and the two escalation
 series need an **allied speaker per map**, and the act has no allied entity anywhere outside the
 Heart Entrance. Tier 3 opened the three that had a speaker available.
+
+### Tier 3b - the English army that was built and never placed (built)
+
+There is a folder in the shipped game called
+**`Resources/Monster Cans/English in Caverns of Nostrodomus/`**. It holds fourteen units made for
+this act and placed **nowhere**:
+
+| unit | tiers |
+|---|---|
+| `Nos Soldier1` | base, Tough, Super |
+| `Nos Soldier2` | base, Tough, Super |
+| `Nos Soldier2 Bow` | base, Tough, Super |
+| `Nos Soldier3` | base, Tough, Super |
+| `Nos Ogre2 English` | base, Tough |
+
+They are complete templates -- the same five activities as the `Ogre2 English` the act already fields,
+`Category=Enemy`, real XP values, backed by real races under `Races/Enemies/English Enemies/`. So the
+English army for act 5 was designed, statted, tiered, given archers, and then never given a generator
+to come out of. That reframes the whole thing: this is not authoring content, it is placing content.
+
+**The act is already trying to switch it on.** `Player sides with the Hujark` does
+`CActivateAction{Target Name=English Generator}` locally on the Heart Entrance and fires
+`Activate English generators` at the nine other maps. So the build is simply to create what those
+calls are reaching for, and the shape is dictated: twin the generators that already field the Hujark,
+at the same coordinates, with the English roster.
+
+**Ninety-nine English generator parts, on nine of the ten maps:**
+
+| map | English parts | from | size |
+|---|---|---|---|
+| 01 Heart Entrance | 12 | `Hujark Generator` | +101 KB |
+| 02 Clan of the Hand A | 34 | `Swordsman`/`Shield`/`Dual`/`Shaman` generators | +201 KB |
+| 03 Tourniquet of Pain | 16 | `Hujark Generator` | +136 KB |
+| 04 Clan of the Skull B | 16 | the same swordsman set | +95 KB |
+| 05 Nostrodomus Demesne | 1 | `Hujark Generator` | +19 KB |
+| 07-10 the caves | 20 | shamans and `Fight` sets | +122 KB |
+| 06 Cave 1 | -- | fields no Hujark at all, only fauna | -- |
+| **total** | **99** | | **+675 KB** |
+
+Twinning means the coordinates are the designers' own -- every English soldier stands where the game
+already spawns a swordsman, so there is no placement to get wrong. Tier 2's snake-summoning trigger is
+stripped from every copy: the English do not call serpents.
+
+**It is a swap, not a doubling, which is what makes it honest.** Each twin ships `Active=0`. Side with
+the English, or never commit, and **nothing changes from vanilla at all**. Side with the Hujark and
+two things happen at once: the ninety-nine English parts come on, and the hundred Hujark generators
+they were twinned from stop targeting you -- each one's `After Action` now asks
+`CCheckExistenceAction{sided with the Hujark}` and, if so, sets the spawned swordsman's targets to
+`Scripted Custom 2`, the English, instead of the player. So the enemy count stays about where it was;
+what changes is who is shooting at whom.
+
+**The two sides were already modelled and this just uses it.** Hujark carry `Scripted Custom 1` and
+target `Player,Player Friend,Scripted Custom 2`; the `Big Fight` English ogres carry
+`Scripted Custom 2` and target `Scripted Custom 1` only, which is why they have always ignored the
+player and fought the Hujark. Every twin now states its side outright in its own `After Action` --
+`Scripted Custom 2`, hunting `Player,Player Friend,Scripted Custom 1` -- because two of the maps set
+no categories at all and one `Hujark Generator` on `03` is itself configured for the English side, so
+copying its numbers blind produced a twin that fought its own army. Stating it beats inheriting it.
+
+The cave fauna is untouched everywhere. Snakebreed, spirits and vodyanoi answer to nobody and go on
+trying to kill everything.
+
+**Eight of vanilla's nine cross-map calls now land** -- the ninth is Cave 1, which has no Hujark to
+switch. On the Heart Entrance no new relay was needed, because vanilla already activates
+`English Generator` there by name.
+
+**What this makes of act 5.** Refuse Huko, or kill him, and the act is exactly the game that shipped.
+Agree to defend the Prophet and it becomes the other act: English soldiers and bowmen holding the
+corridors, Hujark swordsmen fighting beside you instead of at you, and at the end a shaman who stands
+aside and says the Seer has been expecting you. Both halves were in the box.
 
 ### Tiers, in the order they should be built
 
@@ -582,7 +648,8 @@ Heart Entrance. Tier 3 opened the three that had a speaker available.
    door lines are in; the other fourteen need an allied speaker per map, which needs the English
    army below. Also still open: whether attacking the anonymous Hujark should commit the player to
    the English, which is what `Player attacks any of the Hujark in this fight` is named for.
-3b. **The act's two armies** -- see the finding above. A design decision before a build.
+3b. ~~**The act's two armies.**~~ **Built** -- 99 English generator parts from the act's own unused
+   roster, as a swap rather than an addition.
 4. **The seer's three stranded nodes**, and the question in `5 questions` that was meant to reach
    the first of them.
 5. **The two silent maps and the ten trapless ones.** `07 Cave 2` and `09 Cave 4` have no voice of
