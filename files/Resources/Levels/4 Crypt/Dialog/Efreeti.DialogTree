@@ -46,6 +46,15 @@ Go to node ID=211 true wish
 Action work in progress=(speech 75 or int>=9)
 Icon=Speach Skill Icon
 
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Thought/General Thought Skills moreequal 80
+}
+Reply Text=<Read the wish itself.> Two hundred years ago a man asked you for aid and you gave him this. The wording has a seam in it, and I can see it. Grant mine straight.
+Go to node ID=211 true wish
+Icon=Attribute Icon
+
 Requirement=IN 7+
 Reply Text=I wish that you would get lost.
 Go to node ID=210 get lost
@@ -114,6 +123,15 @@ Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 80
 Reply Text=I've heard stories of your kind -- I wish that I had a wish granted in generous goodwill, not twisted into a curse to amuse yourself.
 Go to node ID=211 true wish
 Action work in progress=(speech 75 or int>=9)
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Thought/General Thought Skills moreequal 80
+}
+Reply Text=<Read the wish itself.> Two hundred years ago a man asked you for aid and you gave him this. The wording has a seam in it, and I can see it. Grant mine straight.
+Go to node ID=211 true wish
+Icon=Attribute Icon
 
 Requirement=IN 7+
 Reply Text=I wish that you would get lost.

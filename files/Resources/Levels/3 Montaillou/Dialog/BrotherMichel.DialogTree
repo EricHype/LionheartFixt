@@ -1029,71 +1029,8 @@ Reply Text=Is there anything you can tell me about this area?
 Go to node ID=130 Area Secrets
 
 Requirement=!None
-Custom Requirement=CExpressionNot
-{
-Operand1=CActionExpression
-{
-Action=CCheckExistenceAction
-{
-Name To Check For=questioned the assassin
-Desired Minimum Count=1
-}
-}
-}
 Reply Text=Do you know who attacked Montserrat and stole the relic?
 Go to node ID=140 Dark Forces
-
-Requirement=!None
-Custom Requirement=CActionExpression
-{
-Action=CCheckExistenceAction
-{
-Name To Check For=sahar word
-Desired Minimum Count=1
-}
-}
-Reply Text=I did not fight my way out of Montserrat. Their captain sent me north with this. <Show him the ring.>
-Go to node ID=142 her word
-
-Requirement=!None
-Custom Requirement=CActionExpression
-{
-Action=CCheckExistenceAction
-{
-Name To Check For=questioned the assassin
-Desired Minimum Count=1
-}
-}
-Reply Text=I know who attacked Montserrat. Assassins, out of the East. One of them told me before he died.
-Go to node ID=141 out of the east
-
-Requirement=!None
-Reply Text=I must go. Goodbye.
-Go to node ID=10 Goodbye
-Icon=Exit Icon
-Is Default Reply=1
-------------------------------------------------------------
-Node ID=141 out of the east
-Text=Assassins. Out of the East. <He crosses himself.> Then whoever sent them can reach across the whole of Christendom, and cares nothing for what stands in the way. That is worse than not knowing, young one. Say the word 'East' to no one in this village; the Inquisition hears it and thinks of witchcraft.
-Should Have Voiceover=0
-
-Requirement=!None
-Reply Text=I have other questions.
-Go to node ID=80 Advice
-
-Requirement=!None
-Reply Text=I must go. Goodbye.
-Go to node ID=10 Goodbye
-Icon=Exit Icon
-Is Default Reply=1
-------------------------------------------------------------
-Node ID=142 her word
-Text=<He does not touch it.> A snake eating its tail. That is older than the Church, young one, and it was old when the Church was young. It says you are his, and the ones who know it will treat you so, until the day he decides otherwise. Take it off before you walk into the Inquisition's sight.
-Should Have Voiceover=0
-
-Requirement=!None
-Reply Text=I have other questions.
-Go to node ID=80 Advice
 
 Requirement=!None
 Reply Text=I must go. Goodbye.
@@ -1309,6 +1246,23 @@ Text=Sorcerers from the Order of Saladin sealed the entrance to the Crypt with m
 Should Have Voiceover=1
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Divine/General Divine Skills moreequal 80
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Tribal/General Tribal Skills moreequal 80
+}
+}
+Reply Text=I know the working you are describing. A seal like that is not a wall, it is a promise, and promises can be answered.
+Go to node ID=161 how a seal is broken
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=What about the Crypt's other guardians?
 Go to node ID=150 Crypt Intact
 
@@ -1327,6 +1281,23 @@ Text=Here, the members of your order have preceded you. Sorcerers from the Knigh
 Should Have Voiceover=1
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Divine/General Divine Skills moreequal 80
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Tribal/General Tribal Skills moreequal 80
+}
+}
+Reply Text=I know the working you are describing. A seal like that is not a wall, it is a promise, and promises can be answered.
+Go to node ID=161 how a seal is broken
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=What about the Crypt's other guardians?
 Go to node ID=150 Crypt Intact
 
@@ -1337,6 +1308,24 @@ Go to node ID=80 Advice
 Requirement=!None
 Reply Text=I must go. Goodbye.
 Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=161 how a seal is broken
+Text=<The old knight looks at you for a long moment.> Then you are the first person in forty years to tell me that and not be guessing. My order sealed the complex with borrowed desert magic because we had nothing of our own that would hold, and we have prayed ever since that nobody would come along who understood it. Now one has. I would rather it were you than the men who took Montserrat.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are the undead still in there?
+Go to node ID=170 Undead
+
+Requirement=!None
+Reply Text=It will be me. Tell me where to go.
+Go to node ID=230 Explore the Crypt
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=80 Advice
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------

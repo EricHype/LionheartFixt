@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Tiers 1 to 5 built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Tiers 1 to 6 built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -369,6 +369,45 @@ three magic-school skills, which is notable because Brother Michel says the entr
 broken"*, and the `General Divine/Thought/Tribal Skills moreequal 80` gates exist and are used in
 exactly one composite expression in Barcelona.
 
+### Tier 6 - the magic schools, and reading the dead (built)
+
+**There are no seals.** The survey proposed the three magic-school gates for Brother Michel's
+Saracen seals, and act 4 has **no part called a seal anywhere**: the way in is `Door opener for
+Crypt`, a live relay that opens the door and activates the transition polygon. Michel's *"the seals
+they devised are powerful, but they are not impregnable -- they can be broken"* is backstory, not an
+obstacle, and inventing one would put the entrance to an act behind a skill check. So the magic
+gates went where the magic actually is.
+
+* **Thought 80 is a second key to a door the Efreeti's tree already has.** `211 true wish` -- the
+  wish granted straight instead of twisted -- was reachable by IN 6 with Speech 95, or 80 from the
+  return node, and a Thought-magic adept can now reach the same node by reading the wording of the
+  Saracen's wish instead of talking the efreet round: *"The wording has a seam in it, and I can see
+  it. Grant mine straight."* No new outcome, and no new node: a different key to the same door,
+  which is the cheapest honest way to spend a skill.
+* **Divine or Tribal 80 answers Michel** at `160 The Seals` and its Saladin variant, the only place
+  the seals are discussed -- *"a seal like that is not a wall, it is a promise, and promises can be
+  answered"* -- and he admits what the order has been praying about for forty years: they sealed the
+  complex with borrowed desert magic because they had nothing of their own that would hold, and they
+  hoped nobody who understood it would ever turn up.
+
+**And the dead can be read.** `Necrosage` -- *"your morbid fascination with the countless corpses
+you've left in your wake"* -- and the `Necromancer` title now get something out of four broken
+coffins, one each on `2 Retreat of Souls`, `7 Doomed Plateau`, `8 Ante Chamber` and
+`9 Burial Chamber` (`Dialog/The Dead`, 8 nodes). Anyone else sees bones and dust. A reader learns
+that the corpse in the retreat **died twice** and fought for the other side the second time; that
+the man on the plateau has been killed nine times in the same spot and the part of him that should
+have moved on is wound through the rock; that the coffin in the antechamber was opened **from the
+inside** and bears a mark older and cruder than the besieging necromancer's, which nobody in the act
+mentions; and that the crypt's original tenants are untouched, because *"a wish only binds what it
+was asked about, and these were not asked about."* That last one is the act's own fiction read back
+to it, which is what the perk is for.
+
+**Gate 0 caught a bad path of mine, again.** The magic-school cans are not at
+`Dialog/Requirements/Skills/General X Skills moreequal 80` but under per-school folders --
+`Skills/Magic Thought/General Thought Skills moreequal 80`, and likewise Divine and Tribal. All six
+references were wrong on the first build and the resolver added in 0.15.0's review pass failed them
+before they could ship, which is the second time that check has paid for itself.
+
 ### The Efreeti already is the war's control panel
 
 Eight wishes across `01 Conversation Start` and `10 efreeti`, and the two that settle the war are
@@ -449,9 +488,9 @@ shipped maps disagree, and that question should be settled against the Undercrof
    sends the player to her instead.
 5. **Give the 66 traps a skill.** Built, at `Lockpick Disarm Traps` 40. Seeing a trap before it
    fires, and re-laying one to face the horde, are still open.
-6. **The seals, and reading the dead.** The three magic-school gates for Michel's Saracen seals;
-   `Necrosage` and `Necromancer` for learning something from a body in an act that is nothing but
-   bodies.
+6. **The seals, and reading the dead.** Built, with the seals relocated: there is no seal in the
+   act to gate, so Thought 80 became a second key to the Efreeti's true wish and Divine or Tribal
+   80 answers Michel instead.
 7. **What each order actually means here** (below). The act has the game's densest faction
    gating and spends it on one speech with the noun swapped.
 
