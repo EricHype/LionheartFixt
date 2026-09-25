@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.15.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.16.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -124,7 +124,7 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
-## 0.15.1 - one regression from 0.15.0's review pass (not started)
+## 0.15.1 - one regression from 0.15.0's review pass (fixed, shipped in 0.16.0)
 
 The review pass repaired three canned-expression paths that resolve to nothing. Two were clean.
 The third was not: `Gate District.zax` referenced
@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Ten tiers built 2026-09-24 and 2026-09-25, unplayed.** Tier 4 adds the project's third new map; tier 8 came out of measuring the other seven. `plan.md` has carried a Crypt design since the back-half
+**Published.** Cut from `main` 2026-09-25, entirely unplayed. Surveyed 2026-09-24, ten tiers built 2026-09-24 and 2026-09-25. Tier 4 adds the project's third new map; tier 8 came out of measuring the other seven. `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
