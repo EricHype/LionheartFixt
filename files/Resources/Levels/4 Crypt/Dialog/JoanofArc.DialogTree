@@ -544,6 +544,16 @@ Relay Name=Joan Player chose combat in dialog
 }
 Icon=Fight Icon
 
+Requirement=Female IS
+Reply Text=They burned you for wearing a man's armour. I have worn one since Barcelona.
+Go to node ID=54 the same armour
+Icon=Attribute Icon
+
+Requirement=Male IS
+Reply Text=What was the charge, in the end?
+Go to node ID=55 the charge
+Icon=Attribute Icon
+
 Requirement=!None
 Reply Text=Then I will go. Goodbye.
 Go to node ID=5 Goodbye
@@ -1236,12 +1246,19 @@ Companion=$Trigger
 
 Requirement=!None
 Reply Text=No, wait here for my return.
-Go to node ID=
+Go to node ID=600 Companion Wait
 Icon=Exit Icon
 ------------------------------------------------------------
 Node ID=600 Companion Wait
 Text=If that is your order, I will wait and guard here until you return.
 Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Hold this ground until I return.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
 ------------------------------------------------------------
 Node ID=600 Companion Quest Done Relic Safe
 Text=Praise be to heaven, the relic is *safe* at last. I may finally...rest...and hear the angels sing. It has been an honor to shed blood with you, crusader.
@@ -1250,4 +1267,40 @@ Should Have Voiceover=1
 Node ID=601 Joan Leaves party and Attacks Player
 Text=I was a fool for trusting you!
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=54 the same armour
+Text=Then you know the part of it that nobody writes down. <She looks at what you are wearing rather than at you.> They asked me about the armour for three days and about the English for one, and the word they wrote at the end of it was heresy. Wear more of it than I did when you go into the lower galleries, and do not wait to be thanked for the sight of you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=Tell me about these voices of yours.
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=Enough of the past. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 the charge
+Text=Heresy, on paper. In the room it was the clothes. They asked me about the armour for three days and about the English for one, and nobody ever asked whether the army had held. I do not suppose you have ever been made to account for what you wear. Go down and kill the necromancer's dead, and we will both have spent ourselves on something.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=Tell me about these voices of yours.
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=Enough of the past. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
 }

@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Eight tiers built 2026-09-24, unplayed.** Tier 4 adds the project's third new map; tier 8 came out of measuring the other seven. `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Ten tiers built 2026-09-24 and 2026-09-25, unplayed.** Tier 4 adds the project's third new map; tier 8 came out of measuring the other seven. `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -526,6 +526,94 @@ Plateau remain the engine of the grind -- thinning was considered and rejected i
 the place more interesting. And the 67 skill checks transform a thief's route through the act while
 giving a fighter nothing but a loss, so how much less monotonous the act feels still depends on the
 build.
+
+### The gate census, and the two tiers it asked for
+
+Tier 8 measured combat against everything that is not combat. This measured the other axis: of
+the act's 281 player replies, which ones the game looks at the *character* to decide. Every gate
+the engine offers, counted across all twelve act-4 trees:
+
+| gate | after tier 8 | after tier 10 |
+|---|---|---|
+| faction | 26 | 26 |
+| quest state / item | 29 | 29 |
+| attribute | 8 | 8 |
+| perk | 5 | 5 |
+| Speech | 5 | 5 |
+| race | 4 | 4 |
+| war tide | 3 | 3 |
+| magic school | 2 | 2 |
+| **spirit** | **0** | **3** |
+| **karma** | **0** | **2** |
+| **gender** | **0** | **2** |
+| replies in the act | 281 | 305 |
+
+Tier 5's 67 trap and lockpick checks are all on map triggers -- walking into a thing -- so a
+thief's route through the act changed, but no *conversation* in the act knew a skill existed and
+none knew what the player was.
+
+Two things the census said that were checked and turned out not to be defects. The Crypt's
+assassin already recognises Sahar's mark, on a reply gated on the `Sahar Ring` this project added
+in 0.11.0, so act 4 does read act 2. And the three companions who can be carried this far --
+Darsh, Cervantes and Cortes -- are not mute at the Crypt Entrance: vanilla gives each of them a
+scripted farewell there (`10001 Darsh leaving for good`, `1500 cervantes leaves party`,
+`800 cortes leaves MALE pc`), fired by relays on `1 Crypt Entrance`.
+
+### Tier 9 - the companion nobody hears (built)
+
+Jehanne can be recruited on the Doomed Plateau, and vanilla wrote her four companion nodes. One
+of them has ever been reachable.
+
+| node | vanilla state | now |
+|---|---|---|
+| `600 Companion Continue Again` | opened by `Switch Joan of Arc interactions specifier for companion mode` | unchanged |
+| `600 Companion Wait` | answers the reply *"No, wait here for my return"*, which had `Go to node ID=` blank | that reply now reaches it, and it has an exit of its own so the conversation can close |
+| `600 Companion Banter General` | *"Let us cleanse this place of evil."* Fired by **no map in the game** | a ninth action on the companion-mode switch: she says it over her own head the moment she joins |
+| `600 Companion Quest Done Relic Safe` | *"the relic is safe at last. I may finally...rest"* Fired by no map | a polygon at the Lance's plinth in the Burial Chamber, on its **exit** action, so it lands when the player walks away carrying it with her beside them -- once, guarded by a checker |
+
+**And the garrison can tell who you brought.** In the Burial Chamber, four checks inside
+`Undead Templar Generator` and `Undead Templar Dialog 2 Generator` fire
+`Joan leaves party and attacks player` when the player attacks a garrison knight *while she is a
+companion* -- her whole loyalty turning on whether you cut down the men she has held a door with
+for two centuries. All four read `Joan is a companion`, a checker that is map-local, `Active=0`
+on this map, and switched on only back on the plateau. So it has never once been true here: you
+could kill her knights in front of her and she would keep following you.
+
+The fix is vanilla's own idiom for a carried companion. `1 Crypt Entrance` asks whether Darsh,
+Cervantes and Cortes came with you using `CIsAliveAction{Name To Check For=Darsh}` -- against the
+companion's own name, with no local part of that name anywhere on the map. Her generator lives on
+the plateau, so alive-in-the-Burial-Chamber means carried there, and the four checks now ask that.
+The now-unreferenced vanilla checker part is left in place.
+
+The Ante Chamber has the same `Joan leaves party and attacks player` relay and no caller for it,
+and it stays that way on purpose: that map spawns ghouls and zombies, not garrison knights, so
+there is nobody there for her to be betrayed over.
+
+### Tier 10 - what the Council sees, and what she was tried for (built)
+
+The Spirit Council's answer to *"Who do you think I am?"* was always about the player's soul --
+*"that which has no soul, save one borrowed from another, which was taken from yet another at the
+point of a sword"* -- and it said it in one voice to all three kinds of Scion. Now the player can
+make it say which, on the act's first three `CHasSpirit` gates:
+
+- **Ancestral**: *"A crowd stands where your soul should be, and every one of them is wearing your face... a thing you inherited cannot be put down. It also means that when this crypt asks you for something, it will be asking a creature that understands a debt."*
+- **Beastial**: *"It does not trouble us. It troubles the bargain. What you carry cannot hold a promise in its head, and every wrong thing in this place began as a promise made carelessly by someone who could."*
+- **Demonic**: *"The thing riding you was made by the same trade that made this crypt: a request granted exactly as it was worded. You, of all creatures walking, should be able to read a contract."*
+
+**And the Council can see who it is begging.** Its plea at `40 Pious Child` now reads karma --
+`Karma moreequal 1200` and `Karma equalless 800`, the act's first karma gates and the sixth and
+seventh in the game after Brother Michel's five. Good: *"we have watched a great many armed
+strangers cross that gallery without once seeing it... lift this, and it will be the largest thing
+on the page."* Bad: *"We see it, and we are asking anyway... the dead do not get to be particular.
+Do this one thing and we will not pretend it balances anything."*
+
+**Jehanne introduces herself as a maiden who commanded an army, and was burned by a court for
+it.** A female Scion has carried a sword through three acts to reach her, and act 4 had no gender
+gate anywhere -- against 37 uses in `KnightsTemplarCanned` alone. Two replies on `10 jehanne`,
+one subject, two ways in:
+
+- **Female**: *"They burned you for wearing a man's armour. I have worn one since Barcelona."* -> *"Then you know the part of it that nobody writes down. They asked me about the armour for three days and about the English for one, and the word they wrote at the end of it was heresy. Wear more of it than I did when you go into the lower galleries, and do not wait to be thanked for the sight of you."*
+- **Male**: *"What was the charge, in the end?"* -> *"Heresy, on paper. In the room it was the clothes... and nobody ever asked whether the army had held. I do not suppose you have ever been made to account for what you wear."*
 
 ### Tier 8 - four fronts, and a war with a result (built)
 

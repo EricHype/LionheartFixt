@@ -26674,7 +26674,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=8
+							Item Count=9
 							Action=CRemoveAIAction
 							{
 								Target Name=Joan of Arc
@@ -26791,6 +26791,15 @@ CLayerSaveData
 							{
 								Target Name=Joan of Arc
 								Categories to add=Companion
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/4 Crypt/Dialog/JoanofArc
+								Node ID=600 Companion Banter General
+								Name of Position=Joan of Arc
+								Position Offset=0.000000,-60.000000
+								After Action=
+								Include In Log=1
 							}
 						}
 					}

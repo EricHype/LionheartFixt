@@ -329,10 +329,7 @@ CLayerSaveData
 											Name To Check For=Joan is a companion
 											Desired Minimum Count=1
 										}
-										Then=CTriggerRelayAction
-										{
-											Relay Name=Joan leaves party and attacks player
-										}
+										Then=
 										Else=
 										Return failure if the If failes=0
 									}

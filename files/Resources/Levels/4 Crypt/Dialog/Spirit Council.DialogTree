@@ -148,6 +148,33 @@ Go to node ID=20 The Wish Explained
 Action work in progress=(Already heard story)
 
 Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Ancestral
+}
+Reply Text=The spirit I carry is one of my own dead. Say what you see.
+Go to node ID=11 we see your dead
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Beastial
+}
+Reply Text=What I carry was never human. Does that trouble you?
+Go to node ID=12 we see the beast
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Demonic
+}
+Reply Text=What I carry came out of hell. And still you want my help.
+Go to node ID=13 we see the pit
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=I'm leaving. Goodbye.
 Go to node ID=
 Icon=Exit Icon
@@ -300,7 +327,107 @@ State=CRY2CURS
 Icon=Exit Icon
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma moreequal 1200
+}
+Reply Text=You are asking a great deal of a stranger.
+Go to node ID=41 we know what you are
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma equalless 800
+}
+Reply Text=You are asking a great deal of someone like me.
+Go to node ID=42 we asked anyway
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=Sounds rough. I'm leaving. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 we see your dead
+Text=A crowd stands where your soul should be, and every one of them is wearing your face. That is the tidiest of the three bindings and the cruellest, because a thing you inherited cannot be put down. It also means that when this crypt asks you for something, it will be asking a creature that understands a debt. Few who come down here do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then tell me the rest of it.
+Go to node ID=20 The Wish Explained
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 we see the beast
+Text=It does not trouble us. It troubles the bargain. What you carry cannot hold a promise in its head, and every wrong thing in this place began as a promise made carelessly by someone who could. Perhaps that makes you the right one to end it. Only do not let the beast do your deciding when you stand in front of the efreet.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then tell me the rest of it.
+Go to node ID=20 The Wish Explained
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 we see the pit
+Text=Still. We were torn out of the head of a living girl by a wish, and we have had two hundred years to learn that nothing is sent down here from heaven. The thing riding you was made by the same trade that made this crypt: a request granted exactly as it was worded. You, of all creatures walking, should be able to read a contract.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then tell me the rest of it.
+Go to node ID=20 The Wish Explained
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 we know what you are
+Text=We are asking a stranger because we can see one. <The voices settle into a single line.> Whatever ledger is kept on you is kept in your favour, and we have watched a great many armed strangers cross that gallery without once seeing it. That is why we spoke to you rather than at you. Lift this, and it will be the largest thing on the page.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will see what I can do.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY2CURS
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 we asked anyway
+Text=Someone like you. We see it, and we are asking anyway. <The voices do not soften.> No one else in two hundred years has got this far, and the dead do not get to be particular. Do this one thing and we will not pretend it balances anything. It will simply be the one good act available to you in a crypt where nobody else has any left.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will see what I can do.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY2CURS
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
