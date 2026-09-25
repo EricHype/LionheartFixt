@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=Release the Doomed Knights from their Torment
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=The Templar dead in the Crypt are still holding the line against a necromancer's legion, two hundred years after the battle. One of them says their commander, Jehanne, could use another sword.
+			ID=CRY1KNGT
+		}
+		State=CQuestStateDefinition
+		{
+			Text=The Spirit Council says Jehanne and her knights were cursed into undeath by a wish a Saracen made on their behalf, and that only the efreet who granted it can undo what it did.
+			ID=CRY2CURS
+		}
+		State=CQuestStateDefinition
+		{
+			Text=The lamp of Jah'roosh is in your hands, and the efreet inside it will grant one wish. Word it carefully: the knights of this garrison are undead too.
+			ID=CRY3LAMP
+		}
+	}
+	Sub-Quest of=!None
+}

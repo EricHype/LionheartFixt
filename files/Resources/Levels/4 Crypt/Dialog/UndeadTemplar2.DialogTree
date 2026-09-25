@@ -1,0 +1,107 @@
+CDialogTree
+{
+Name=Undead Templar
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=You miserable cur! How dare you approach the relic. If you mean to take it, you shall not succeed!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I mean no harm to the relic.
+Go to node ID=10 relic
+
+Requirement=!None
+Reply Text=Out of my way, or I'll kill you twice.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Knights at Level Start attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I will leave. Goodbye.
+Go to node ID=
+Action work in progress=If they choose this, end dialogue
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=You have been warned! You will not be allowed to harm the Lance!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I mean no harm to the relic.
+Go to node ID=10 relic
+
+Requirement=!None
+Reply Text=Out of my way, or I'll kill you twice.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Knights at Level Start attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I will leave. Goodbye.
+Go to node ID=
+Action work in progress=(If they choose this, end dialogue)
+------------------------------------------------------------
+Node ID=10 relic
+Text=Then do you seek to join us - in protecting the relic?
+Should Have Voiceover=0
+
+Requirement=Templar IS
+Reply Text=I am a fellow Knight Templar, and I have come to aid you, yes.
+Go to node ID=40 help
+Action work in progress=(A Knight Templar)
+
+Requirement=Templar NOT
+Reply Text=I am a fellow Knight Templar, and I have come to aid you, yes. <LIE>
+Go to node ID=40 help
+Action work in progress=(A Knight Templar)
+
+Requirement=!None
+Reply Text=I wish to protect the relic, yes.
+Go to node ID=40 help
+
+Requirement=!None
+Reply Text=Join you? I came to bury you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Knights at Level Start attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 monster
+Text=Infidel, you shall not leave here alive!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Go to combat
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 help
+Text=Good, we can use the help. Hopefully Jehanne gave you a useful assignment.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then I will not keep you from the line.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY1KNGT
+}
+Icon=Quest Icon
+Is Default Reply=1
+}

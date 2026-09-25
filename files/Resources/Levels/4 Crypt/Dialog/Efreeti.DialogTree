@@ -1,0 +1,419 @@
+CDialogTree
+{
+Name=Spirit of the Lamp
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=New hands hold the lamp of Jah'roosh. Know that you possess an awesome power, mortal. What is your *one* wish?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=10 efreeti
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=<Say nothing yet, and look at the lamp.>
+Go to node ID=01 Conversation Start
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY3LAMP
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I wish to undo the curse laid upon Jehanne's soul and the souls of her fellow knights.
+Go to node ID=100 save inga
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 95
+}
+}
+Reply Text=I've heard stories of your kind -- I wish that I had a wish granted in generous goodwill, not twisted into a curse to amuse yourself.
+Go to node ID=211 true wish
+Action work in progress=(speech 75 or int>=9)
+Icon=Speach Skill Icon
+
+Requirement=IN 7+
+Reply Text=I wish that you would get lost.
+Go to node ID=210 get lost
+Action work in progress=(intelligence >=7)
+
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableCharacterAttribute
+{
+Character Attribute=Character Attributes/(CH) Charisma
+Enforce Value Range Limits=1
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=I wish I was stronger.
+Go to node ID=202 stronger
+
+Requirement=!None
+Reply Text=I wish I was more intelligent.
+Go to node ID=200 more smart
+
+Requirement=!None
+Reply Text=I wish I was rich.
+Go to node ID=207 rich
+
+Requirement=!None
+Reply Text=I wish that all my enemies here would die.
+Go to node ID=206 undead
+------------------------------------------------------------
+Node ID=10 efreeti
+Text=I am Faazad ibn Jah'roosh the omnipotent, the desert inferno, the Padishah of the Parched Sea, and Keeper of the Obsidian Chalice. I am friend to fools and dreamers alike, and, as I have done to a thousand and one mortals before you, I offer you one wish - that I will fulfill exactly as you request.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Say nothing yet, and look at the lamp.>
+Go to node ID=10 efreeti
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY3LAMP
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I wish to undo the curse laid upon Jehanne's soul and the souls of her fellow knights.
+Go to node ID=100 save inga
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 80
+}
+}
+Reply Text=I've heard stories of your kind -- I wish that I had a wish granted in generous goodwill, not twisted into a curse to amuse yourself.
+Go to node ID=211 true wish
+Action work in progress=(speech 75 or int>=9)
+
+Requirement=IN 7+
+Reply Text=I wish that you would get lost.
+Go to node ID=210 get lost
+Action work in progress=(intelligence >=7)
+
+Requirement=!None
+Reply Text=I wish I was stronger.
+Go to node ID=202 stronger
+
+Requirement=!None
+Reply Text=I wish I was more intelligent.
+Go to node ID=200 more smart
+
+Requirement=!None
+Reply Text=I wish I was rich.
+Go to node ID=207 rich
+
+Requirement=!None
+Reply Text=I wish that all my enemies here would die.
+Go to node ID=206 undead
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 save inga
+Text=You are most noble and incorruptible for helping others with your wish. A pity. I would have enjoyed tormenting you for centuries. Your wish is granted and my service has ended. The souls of these Templars have been freed. Kho'da Ha'fez! <Goodbye!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(inga materializes before you)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/4 Crypt/Quests/Doomed Knights XP
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Wished to Save Inga and Knights
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Efreet goes away
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 more smart
+Text=Very well, mortal. Did you know that the average amount of snowfall over the Alborz mountains varies between four and sixteen inches per year? No? Well now you have learned something, and thus you are more intelligent for the experience. Your wish is granted and my service has ended. Kho'da Ha'fez! <Goodbye!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Efreet goes away
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=202 stronger
+Text=Predictable mortal. Very well, you are now stronger...smelling! People will smell you from quite a long distance away! Your wish is granted and my service has ended. Kho'da Ha'fez! <Goodbye!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(reduce Charisma by -1)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Efreet goes away
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Character attribute to modify=Character Attributes/(CH) Charisma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=206 undead
+Text=Well, that will be a simple task, as your enemies here are already dead! Your wish is granted and my service has ended. Kho'da Ha'fez! <Goodbye!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(spawn a small horde of undead)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Efreet goes away
+}
+Action=CDelayAction
+{
+Next Action=CActivateAction
+{
+Target Name=Genie enemy to create
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=207 rich
+Text=Oh, you mortals simply cannot resist that one wish. Very well, henceforth, you are Rich. Frankly, I liked your name the way it was before, but your wish has been granted and my service has ended. Kho'da Ha'fez! <Goodbye!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Efreet goes away
+}
+Action=CSetCharacterDisplayNameAction
+{
+Scriping name of LayerPart=$instigator
+New Display Name=Rich
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 get lost
+Text=Wait...You cannot ask that! I am omnipotent, I cannot get lost...But I must...find a way...to get lost. No! NO!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(make Genie vanish in puff of smoke, gain XP)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Efreet goes away
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Wish Genie get lost XP
+Experience Points To Add=1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=211 true wish
+Text=Oh, by the searing winds! Why must you be so meticulous? Very well, mortal, you may have your one *true* wish.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I wish to undo the curse laid upon Jehanne's soul and the souls of her fellow knights.
+Go to node ID=100 save inga
+
+Requirement=!None
+Reply Text=I wish I was stronger.
+Go to node ID=212 true wish granted
+Action work in progress=(raise str +1)
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Character attribute to modify=Character Attributes/(ST) Strength
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=I wish I was more intelligent.
+Go to node ID=212 true wish granted
+Action work in progress=(raise int +1)
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Character attribute to modify=Character Attributes/(IN) Intelligence
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=I wish I had faster reflexes.
+Go to node ID=212 true wish granted
+Action work in progress=(raise agility +1)
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Character attribute to modify=Character Attributes/(AG) Agility
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=I wish that you would get lost.
+Go to node ID=210 get lost
+------------------------------------------------------------
+Node ID=212 true wish granted
+Text=Clever, mortal, I give you credit for your resourcefulness. Almost all mortals who speak a wish to me regret the utterance. But your wish is granted as asked and my service has ended. Kho'da Ha'fez! <Goodbye!>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Efreet goes away
+}
+Is Default Reply=1
+}

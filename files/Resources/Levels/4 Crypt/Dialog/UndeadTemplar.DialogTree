@@ -1,0 +1,163 @@
+CDialogTree
+{
+Name=Undead Templar
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Another monster seeking to capture the holy relic? You too will be destroyed!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm not here to steal the relic, I'm here to protect it.
+Go to node ID=10 relic
+
+Requirement=!None
+Reply Text=I'll pry the relic from your cold, dead hands, knight.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Knights at Level Start attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=No, I'll be leaving now. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Adds Dialog knight beginning
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 return dialogue
+Text=You seek the relic!  Do not deny it! You will be destroyed!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm not here to steal the relic, I'm here to protect it.
+Go to node ID=10 relic
+
+Requirement=!None
+Reply Text=If you only knew how many times I've heard that.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Knights at Level Start attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=No, I'll be leaving now. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 relic
+Text=Are you a Knight? Have you been sent to reinforce us?
+Should Have Voiceover=0
+
+Requirement=Templar IS
+Reply Text=Yes, I am a Knight Templar.
+Go to node ID=40 knight
+Action work in progress=(A Knight Templar)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Adds Dialog knight beginning
+}
+
+Requirement=Templar NOT
+Reply Text=<Lie> Yes, I am a Knight Templar.
+Go to node ID=40 knight
+Action work in progress=(Not a Knight Templar)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Adds Dialog knight beginning
+}
+
+Requirement=Templar NOT
+Reply Text=No, but I must help you protect the relic. Let me pass.
+Go to node ID=40 knight
+Action work in progress=(Not a Knight Templar)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Adds Dialog knight beginning
+}
+
+Requirement=!None
+Reply Text=No, I came to destroy you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Knights at Level Start attack
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 monster
+Text=Heretic, this will be your tomb.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress= If they choose this, begin combat
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make Knights at Level Start attack
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 knight
+Text=Excellent. We can use more swords. Find Jehanne, she can help you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then I am at your orders. Where is she?
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+State=CRY1KNGT
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Random Knight
+Text=We are ever vigilant.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=110 Random Knight
+Text=We stand strong against the black tide.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=120 Random Knight
+Text=We fight for our honor and the salvation of the world.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=130 Random Knight
+Text=Fighting the undead hordes is our task, even if it is unpleasant...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=140 Random Knight
+Text=We resist the powers of darkness with all of our strength!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=150 Random Knight
+Text=Evil things lurk in the darkness, despite our best efforts.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=160 Random Knight
+Text=I would lay down my life to protect the Lance!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=170 Random Knight
+Text=Sweet will be the taste of victory when the evil has been defeated!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=180 Random Knight
+Text=We shall be victorious...it is our destiny.
+Should Have Voiceover=0
+}

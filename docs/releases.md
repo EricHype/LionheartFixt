@@ -140,15 +140,45 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.16.0 - the Crypt (scope)
+## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Not started.** `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Tier 1 built 2026-09-24, unplayed.** `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
 **The act.** Ten maps, 9 dialogue trees, 95 nodes, **194 player replies**, 4,206 level parts, and
 one quest. Four of the ten maps are called "Misc Crypt" and hold no conversation at all.
 `1 Crypt Entrance` is the only hub; `7 Doomed Plateau` is the densest map in the game.
+
+### Tier 1 - the quest that was only a name (built)
+
+`Release the Doomed Knights from their Torment` shipped with `Item Count=0` and was touched by
+exactly one thing in the game: `02 Hamlet Burned`, which fails it if Montaillou burns. The act's
+spine was a title in a journal. Everything it should be made of was already written and reachable,
+so this tier is three journal entries and five hooks, with no new scenes.
+
+| State | ID | Set by |
+|---|---|---|
+| The Templar dead are still holding the line two hundred years on, and their commander could use another sword | `CRY1KNGT` | `UndeadTemplar / 40 knight` (*"Excellent. We can use more swords. Find Jehanne"*) and `UndeadTemplar2 / 40 help`, each gaining one reply |
+| The knights were cursed into undeath by a wish a Saracen made on their behalf, and only the efreet who granted it can undo it | `CRY2CURS` | the Spirit Council's *"I will see what I can do"* on `40 Pious Child` and `30 Efreet` -- the node where it asks, in as many words, that the curse be lifted |
+| The lamp of Jah'roosh is in your hands. Word the wish carefully: the knights of this garrison are undead too | `CRY3LAMP` | a new reply on the Efreeti's `01 Conversation Start` and `10 efreeti`, *"&lt;Say nothing yet, and look at the lamp.&gt;"* |
+
+**Completed** on `Efreeti / 100 save inga`, the wish that frees them -- its existing
+`CMultipleActionsAction` gains the completion and a 2,500 XP award through a
+`Doomed Knights XP.can` on the pattern this project already uses. **Failed** on the Spirit
+Council's `1 Conversation Start Joan Dead`, the greeting it gives a player who killed Jehanne:
+*"May you see the death of your children and your childrens' children..."* Two hundred years of
+siege end either way, and now the journal says which.
+
+The third state carries the act's sharpest warning into the interface, which is the point of
+writing it there: *"all my enemies here would die"* is the other ungated wish, and the garrison is
+tagged `Undead`.
+
+**Two splice bugs Gate 0 caught before they shipped.** `UndeadTemplar2 / 40 help` is the last node
+in its file, so appending a reply after the node put it after the tree's closing brace -- caught as
+"missing closing brace". And the Efreeti insert produced a reply with no blank line before the next
+one, which is the separator the parser needs -- caught by the check added in 0.15.0's tier 4. Both
+were rebuilt through one last-node-safe helper.
 
 ### The war is placed, running, and has no result
 
