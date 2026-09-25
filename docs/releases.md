@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Tiers 1 to 6 built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. All seven tiers built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -491,44 +491,66 @@ shipped maps disagree, and that question should be settled against the Undercrof
 6. **The seals, and reading the dead.** Built, with the seals relocated: there is no seal in the
    act to gate, so Thought 80 became a second key to the Efreeti's true wish and Divine or Tribal
    80 answers Michel instead.
-7. **What each order actually means here** (below). The act has the game's densest faction
-   gating and spends it on one speech with the noun swapped.
+7. **What each order actually means here.** Built: six claimants, six answers, and the vanilla
+   dead link the warm greeting was hiding.
 
-### Tier 7 - six claimants, one answer
+### Tier 7 - six claimants, six answers (built)
 
-The Crypt asks who the player serves more often than any act in the game -- 17 of its 194 replies,
-8.8% -- and then says the same thing to everyone. Jehanne carries a claim line for all four orders
-on `1 Conversation Start`, `3 Return Dialogue Hate Player` and `10 jehanne`:
+**Her rejection is kept.** *"You lie! ... your spirit betrays you as the monster you are"* is the
+right line for Jehanne -- she calls everything with a spirit in it a monster, and she is not
+entirely wrong -- so nothing shipped was rewritten. What each order gets is the reply that presses
+the point she has just refused to hear, and the two claims that had no answer node at all now have
+one. Eleven new nodes on her, one on the Spirit Council.
 
-* `Templar IS` -> `40 templar`
-* `Inquisitor IS` -> `41 inquisition`
-* `Saladin IS` -> `42 saladin`
-* `Wielder IS` -> `20 demand lance` (no node of its own)
+* **Templar** (`43 the successor`, `44 what we became`) -- *"look at the shield properly,
+  commander. It is your order's, and I am what is left of it."* She looks, and stops for the first
+  time in the conversation: *"Two hundred years. Then the order stands, and there are still men who
+  wear that, and somebody has been paying for masses I will never hear."* She still will not hand
+  over the Lance -- she is not permitted and *"you would not thank me"* -- but she will not call him
+  a liar again, and she asks what the order has become. Her verdict on her own two centuries:
+  *"either faithfulness or the deepest stupidity in Christendom, and I have had two hundred years to
+  decide and I have not."*
+* **Inquisition** (`45 jurisdiction`, `46 the same enemy`) -- the writ over the unquiet dead, met
+  with the one fact that disarms it: *"I was tried by a court of the Church in Rouen and burned by
+  it, and I am told that the same Church has since decided it was mistaken."* Then the practical
+  truth: judge away, and when you are finished the necromancer's army is still in the lower
+  galleries.
+* **Saladin** (`47 the lamp`, `48 undo it`) -- *"A Saracen of my order stood where I am standing and
+  offered you his lamp. Ask me how that ended, commander -- you were there."* Everything in her face
+  closes: *"He asked me to trust desert magic and I was desperate enough to say yes, and the thing
+  in his lamp heard exactly what I said and gave me precisely that."* If his order sent him to undo
+  it, she has waited a long time to hear somebody say so plainly.
+* **Wielder** (`49 the binder`) -- the craft, named by somebody who practises it: *"It was not a
+  curse. It was a contract, badly worded."* She turns the word over like a relic handed to her, and
+  concludes it is worse than a curse, *"because a curse has a caster you can hunt."*
+* **Dark Wielder** (`50 she was right`, `51 not your knights`) -- `Faction/Wielder IS` **with** the
+  `Necromancer` title, which is the whole distinction, since Relican assigns `Wielder Mage` and
+  Cedric `Wielder Conjurer` on the same rank ladder. He agrees with her accusation, and she is
+  almost relieved: *"Everything that has come down that corridor for two hundred years has told me
+  it was here to help, and you are the first one to stand there and admit what it is."* The army
+  below would take him gladly -- *"it is short of officers and long of corpses"* -- and if he raises
+  one of her knights she will find him wherever the Council has to carry her.
+* **Goblin Champion** (`52 the khan`, `53 nothing to weigh`) -- `Faction/Goblin Horde IS` or the
+  title. She says "the Horde" the way a soldier says a word she has not been briefed on: *"I
+  commanded the army of France and I have never heard of your Khan, which means either he is very new
+  or I have been down here a very long time, and I know which."* There is nothing in the claim for
+  her to weigh, and that is the point -- the one act where the Khan's honours buy nothing. Told as
+  much, she gives the act's best line about itself: names were what she had, *"maid, commander,
+  witch, saint, whatever the year required -- and down here I am a corpse holding a door, and so are
+  they."*
+* **And the Spirit Council tells a Knight of Saladin whose magic it was** (`31 the Saracen was
+  yours`): brave, the only man in the sanctum with a weapon that might work, and *"the man who did
+  not read what he was signing"* -- which the voices have had two hundred years to decide is worse
+  than treachery. *"If his order has sent another of its sons, let this one read."*
 
-and the three answer nodes are one speech with one noun changed -- *"You lie! Though you come
-bearing the shield of a noble Templar / wrapped in the garb of an Inquisitor / dressed in the guise
-of a noble Knight of Saladin, your spirit betrays you as the monster you are"* -- converging on the
-same five replies (`100 spoke to counsel`, `50 Counsel`, `30 insult`, fight, `5 Goodbye`). The
-Wielder claim skips its own answer entirely and lands in the generic demand, which forks by race
-into four nodes that differ only in the insult.
-
-The fiction gives each order a completely different footing, and every hook needed to read them
-already exists:
-
-| Claimant | Expression | What the Crypt should say |
-|---|---|---|
-| **Templar** | `Faction/Templar IS`, `Templar Highlevel` for rank | The garrison **is** Templar, two centuries older. `UndeadTemplar / 10 relic` already asks *"Are you a Knight? Have you been sent to reinforce us?"* and `40 knight` already answers *"Excellent. We can use more swords. Find Jehanne."* A Templar should be received as a successor and be able to prove it, not called a liar by his own order's commander |
-| **Saladin** | `Faction/Saladin IS`, and `Faction/Saladin Favored` (this project's 0.9.0 can, the Crescent titles) for an initiate | **The curse is their fault.** A Saracen of their order invoked the lamp; the Spirit Council recounts it in `20 The Wish Explained` through `23 The Wish Ending` -- *"as the Saracen wished"* -- **with no faction gate at all**, so a Knight of Saladin hears his own order's catastrophe told to him as a stranger. He should be made to answer for it, and `30 Efreet` (*"it may be the only thing that can reverse this atrocity"*) is where he can offer to undo it |
-| **Inquisition** | `Faction/Inquisitor IS` | The Church that burns spirit-bound souls, claiming a relic guarded by cursed undead -- which is, technically, exactly what the Inquisition exists to destroy. A jurisdiction scene, not a noun swap |
-| **Wielder** (Cedric's) | `Faction/Wielder IS` **without** the Necromancer perk | Binds spirits for a living, in an act where a bound spirit did as it was told and damned a garrison for two hundred years. Needs the one new node: the claim currently has none |
-| **Dark Wielder** (Relican's) | `Faction/Wielder IS` **with** `Perks/!Event Title Perks/Necromancer` | There is no Dark Wielder faction: Relican assigns `Factions/Wielder Mage` and awards the `Necromancer` title, Cedric assigns `Factions/Wielder Conjurer`, and both climb the same `Wielder Rank`. So the perk **is** the distinction, readable anywhere as a bare `CHasPerkExpression`. Jehanne's generic accusation -- *"a servant of the necromancers, an abomination"* -- is the only line in the act that is **literally true** of somebody, and he is the one claimant who can agree with her. It is also where the plan's "necromancy as logistics" belongs: the army besieging her is a necromancer's, and its generators already carry the categories |
-| **Goblin Champion** | `Faction/Goblin Horde IS / Midlevel / Highlevel` (this project's factions) and/or the vanilla `Goblin Champion` title | The Crypt is the one act where the Horde's honours buy **nothing**. Jehanne is a French commander two hundred years dead with a Divine Council for orders; the Horde did not exist in her world, and the horde besieging her is undead, not goblin. Blank incomprehension is a better beat than a sixth rejection, and it pairs with Tereo's *"a name given for a deed, by the ones the deed was done for"* |
-
-**Cost.** Four of the six answer nodes exist and need real content instead of a shared speech; the
-Wielder and the Horde need one node each; the Spirit Council needs one gated reply per order on its
-wish account; and the garrison's Templar branch needs placing rather than writing (tier 3). No new
-expressions, no new markers -- the Necromancer perk, the Crescent titles and the Goblin ranks are
-all already readable.
+**And a vanilla dead link that tier 2 uncovered.** `3 Return Dialogue Likes Player`, the warm
+greeting tier 2 made reachable, offers *"I have recovered the Bleeding Lance"* and points at
+`200 have lance` -- **a node that does not exist in the shipped game.** Vanilla never had to answer
+for it because the greeting was unreachable. It exists now (`200 have lance`, `201 what now`): she
+does not reach for the Lance, tells the player to guard it *"not with a wall, because walls are what
+we tried"*, and warns that the thing in the lamp grants exactly what it is given. That is the third
+defect this release found by making something reachable, which is the pattern the project keeps
+running into: repairs expose the next layer down.
 
 **And it is worth checking whether `if dark wielder` should be promoted.** The only other marker
 for Relican's path is a checker of that name on `Church Interior.zax`, set from Calle Perdida by a

@@ -9,6 +9,27 @@ Node ID=1 Conversation Start
 Text=Step no further, monster! I will not allow you to desecrate this sanctum nor take the Bleeding Lance from my care.
 Should Have Voiceover=1
 
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+}
+}
+}
+Reply Text=I claim nothing for a church. I ride with the Horde of the Khan, and they sent me for the Lance.
+Go to node ID=52 the khan
+Icon=Attribute Icon
+
 Requirement=Templar IS
 Reply Text=I have come to claim the Bleeding Lance for the Knights Templar.
 Go to node ID=40 templar
@@ -60,6 +81,27 @@ Is Default Reply=1
 Node ID=3 Return Dialogue Hate Player
 Text=I warn you, monster, leave this crypt with haste. It is the will of a higher power that this place remains unspoiled by your evil.
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+}
+}
+}
+Reply Text=I claim nothing for a church. I ride with the Horde of the Khan, and they sent me for the Lance.
+Go to node ID=52 the khan
+Icon=Attribute Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -174,6 +216,232 @@ Go to node ID=5 Goodbye Joan Likes You
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=43 the successor
+Text=<She does look, and for a moment she is not looking at you at all.> Two hundred years. Then the order stands, and there are still men who wear that, and somebody has been paying for masses I will never hear. I will not give you the Lance, Templar -- I am not permitted and you would not thank me -- but I will not call you a liar again. Tell me what my order has become and then tell me why you have come down here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It has become an order that burns what it does not understand.
+Go to node ID=44 what we became
+
+Requirement=!None
+Reply Text=It still holds the line. That is why I came.
+Go to node ID=44 what we became
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=Later. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=44 what we became
+Text=Then it is an order, and orders drift. Mine was told to hold a relic and it is still holding it, which is either faithfulness or the deepest stupidity in Christendom and I have had two hundred years to decide and I have not. Do not take that as permission. Take it as one soldier telling another that the watch is longer than the war.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=I will remember it. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 jurisdiction
+Text=Your writ. <The sword does not move, but her voice does.> I was tried by a court of the Church in Rouen and burned by it, and I am told that the same Church has since decided it was mistaken. So you will forgive me if your writ does not frighten me as much as you would like. Judge away, Inquisitor. When you are finished there is still an army of the necromancer's dead in the lower galleries, and they do not care what either of us was sentenced to.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then we have the same enemy, whatever the court said.
+Go to node ID=46 the same enemy
+
+Requirement=!None
+Reply Text=The Church does not answer to its own ashes.
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=This is not finished. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=46 the same enemy
+Text=We do. <A pause.> And if your Church wants this relic to keep it out of a necromancer's hands, then for once your Church and my Council want the same thing, and I will not be the one to tell either of them. Speak to my Council if you can hear them. They will tell you what I am not permitted to.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=I will find them. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=47 the lamp
+Text=<Everything in her face closes.> He asked me to trust desert magic and I was desperate enough to say yes, and the thing in his lamp heard exactly what I said and gave me precisely that. Two hundred years, Saracen. If your order sent you to take the Lance, you may tell them that the last man they sent took something far worse. If your order sent you to undo it -- say so, and say it plainly, because I have waited a long time to hear it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I came to undo it.
+Go to node ID=48 undo it
+
+Requirement=!None
+Reply Text=They sent me for the Lance. I am staying for the other thing.
+Go to node ID=48 undo it
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=I will not answer for a man dead two centuries. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=48 undo it
+Text=Then find the lamp, and be more careful with your words than he was. It is somewhere below us, and the thing inside it has had two centuries of our company and enjoyed every hour of it. Speak to my Council first. They watched the wish made and I did not -- I was busy dying.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=I will find it. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=49 the binder
+Text=A contract. <She turns the word over as though it were a relic she had been handed.> You mean that somebody wrote what happened to my knights, and wrote it carelessly, and the carelessness is what we have been living in. That is worse than a curse, spirit-binder. A curse has a caster you can hunt. Very well: you understand the craft that did this. Understand it quickly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It has a caster. It is in a lamp somewhere below us.
+Go to node ID=48 undo it
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=Quickly, then. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 she was right
+Text=<For the first time she sounds almost relieved.> At last. Everything that has come down that corridor for two hundred years has told me it was here to help, and you are the first one to stand there and admit what it is. The army in the lower galleries would take you gladly, necromancer -- it is short of officers and long of corpses. I am going to watch you every step you take in my crypt, and if you raise one of my knights I will find you wherever the Council has to carry me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I did not come for your knights.
+Go to node ID=51 not your knights
+
+Requirement=!None
+Reply Text=They would take me gladly. Consider that.
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Watch, then. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 not your knights
+Text=No. You came for the Lance, like all of them, and you will find it guarded. But you have told me one true thing, which is more than the Church managed, so I will tell you one: what holds my knights here is not my doing and not the necromancer's. Ask my Council about the Saracen. Then decide what sort of necromancer you intend to be in front of me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=I will decide. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=52 the khan
+Text=The Horde. <She says it the way a soldier says a word she has not been briefed on.> I commanded the army of France and I have never heard of your Khan, which means either he is very new or I have been down here a very long time, and I know which. You have told me that you serve no church and no crown I recognise, and that you were sent to take a relic of my order. There is nothing in that for me to weigh. You are simply a stranger with a spirit in him, and the dead below us will not care what the Khan calls you either.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Nobody down here cares what anybody is called. That is the first sensible thing I have heard.
+Go to node ID=53 nothing to weigh
+
+Requirement=!None
+Reply Text=Then I will take it and go.
+Go to node ID=20 demand lance
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=Suit yourself. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=53 nothing to weigh
+Text=It is the only sensible thing in this crypt. Names were what I had -- maid, commander, witch, saint, whatever the year required -- and down here I am a corpse holding a door, and so are they. If your Khan gave you honours, keep them. They will not help you in the lower galleries and they will not offend me. Speak to my Council.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=Understood. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 have lance
+Text=You have it. <She does not reach for it.> Then my watch is over and I find I do not know how to stand any other way. Guard it better than we did, crusader: not with a wall, because walls are what we tried, but by never once letting it out of your hands to somebody who says the right words. That is how it was nearly lost, and that is how I was lost with it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What will you do now?
+Go to node ID=201 what now
+
+Requirement=!None
+Reply Text=It will not leave my hands.
+Go to node ID=201 what now
+
+Requirement=!None
+Reply Text=I will guard it. Goodbye.
+Go to node ID=5 Goodbye Joan Likes You
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=201 what now
+Text=Hold this gallery, as I have held it, until somebody undoes what was done to us or the world ends and the question stops mattering. If you find the thing in the lamp, remember that it hears every word and grants exactly what it is given. Say as little as you can and say it carefully.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I mean to find it.
+Go to node ID=170 Efreet
+
+Requirement=!None
+Reply Text=God be with you, commander.
+Go to node ID=5 Goodbye Joan Likes You
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=5 Goodbye
 Text=Leave this place and never return.
 Should Have Voiceover=1
@@ -203,6 +471,27 @@ Is Default Reply=1
 Node ID=10 jehanne
 Text=I am Jehanne the maiden, commander of l'armée française <the French army> and the destroyer of your evil kin. The voices of the Divine Council have ordered me to defend this Crypt.
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+}
+}
+}
+Reply Text=I claim nothing for a church. I ride with the Horde of the Khan, and they sent me for the Lance.
+Go to node ID=52 the khan
+Icon=Attribute Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -268,6 +557,51 @@ Should Have Voiceover=1
 Node ID=20 demand lance
 Text=You invade this sanctum, then compound your trespass with demands? The Council warned me that one like you would come...
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+}
+}
+Reply Text=I bind spirits for a living, commander, which is how I know what was done to you. It was not a curse. It was a contract, badly worded.
+Go to node ID=49 the binder
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+}
+Reply Text=Your Council is right about me. I raise the dead and set them to work, and I am the only thing down here that can say so honestly.
+Go to node ID=50 she was right
+Icon=Attribute Icon
 
 Requirement=Demokin IS
 Reply Text=
@@ -498,6 +832,11 @@ Node ID=40 templar
 Text=You lie! Though you come bearing the shield of a noble Templar, your dark spirit betrays you as the monster you are. The Council would not tolerate your presence here!
 Should Have Voiceover=1
 
+Requirement=Templar IS
+Reply Text=Then look at the shield properly, commander. It is your order's, and I am what is left of it.
+Go to node ID=43 the successor
+Icon=Attribute Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -539,6 +878,11 @@ Node ID=41 inquisition
 Text=You lie! Though you come wrapped in the garb of an Inquisitor, your spirit betrays you as the monster you are. The Council would not tolerate your presence here!
 Should Have Voiceover=1
 
+Requirement=Inquisitor IS
+Reply Text=Monster or not, I hold the Church's writ over the unquiet dead. By that writ, commander, you are mine to judge.
+Go to node ID=45 jurisdiction
+Icon=Attribute Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -578,6 +922,11 @@ Is Default Reply=1
 Node ID=42 saladin
 Text=You lie! Though you come dressed in the guise of a noble Knight of Saladin, your spirit betrays you as the monster you are. The Council would not tolerate your presence here!
 Should Have Voiceover=1
+
+Requirement=Saladin IS
+Reply Text=A Saracen of my order stood where I am standing and offered you his lamp. Ask me how that ended, commander -- you were there.
+Go to node ID=47 the lamp
+Icon=Attribute Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression

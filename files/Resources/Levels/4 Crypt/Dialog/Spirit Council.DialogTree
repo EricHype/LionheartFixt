@@ -191,6 +191,11 @@ Node ID=23 The Wish Ending
 Text=In an instant, everything changed... for the worse. We were torn from the mind of our Pious Child as she, and the knights that served her, were cursed into undeath, condemned to keep the relic safe for all time... as the Saracen  wished. They are doomed to fight the Necromancers' undead legion for all eternity.
 Should Have Voiceover=0
 
+Requirement=Saladin IS
+Reply Text=The Saracen was of my order. Say the rest of it to me.
+Go to node ID=31 the Saracen was yours
+Icon=Attribute Icon
+
 Requirement=!None
 Reply Text=What about this efreet?
 Go to node ID=30 Efreet
@@ -218,6 +223,24 @@ Icon=Exit Icon
 
 Requirement=!None
 Reply Text=Sounds rough. I'm leaving. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 the Saracen was yours
+Text=Yours. <The voices come apart and knit again.> Then hear it as it happened: he was brave, he was the only one in that sanctum with a weapon that might work, and he asked the thing in his lamp for aid in front of a woman who had already agreed to accept it. We do not name him a traitor. We name him the man who did not read what he was signing, and we have had two hundred years to decide that this is worse. If his order has sent another of its sons, let this one read.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What about this efreet?
+Go to node ID=30 Efreet
+
+Requirement=!None
+Reply Text=I will read every word.
+Go to node ID=40 Pious Child
+
+Requirement=!None
+Reply Text=That is a heavy inheritance. Goodbye.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
