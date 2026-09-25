@@ -140,6 +140,211 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.17.0 - the Caverns of Nostradamus
+
+**Surveyed 2026-09-25. Nothing built.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+shipped game, and left that way here because every reference in every map spells it the same.
+
+**The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
+nodes, 176 player replies, two quests. For scale: the Crypt, which this project has just spent ten
+tiers on, has 273 live spawners. This act has **four times** as many, and the fewest voices of any
+act surveyed -- **eight of its ten maps open no conversation at all**, and two of them (`07 Cave 2`,
+`09 Cave 4`) have no balloon, no bark and no tree either.
+
+| map | parts | live spawners | conversations | balloons |
+|---|---|---|---|---|
+| 01 Heart Entrance | 517 | 216 | 5 | 19 |
+| 02 Clan of the Hand A | 1283 | 266 | 0 | 3 |
+| 03 Tourniquet of Pain | 662 | 272 | 0 | 4 |
+| 04 Clan of the Skull B | 1024 | 168 | 0 | 4 |
+| 05 Nostrodomus Demesne | 187 | 10 | 9 | 6 |
+| 06 Cave 1 | 124 | 6 | 0 | 5 |
+| 07 Cave 2 | 387 | 44 | **0** | **0** |
+| 08 Cave 3 | 430 | 72 | 0 | 4 |
+| 09 Cave 4 | 448 | 52 | **0** | **0** |
+| 10 Cave 5 | 116 | 24 | 0 | 2 |
+| **total** | **5178** | **1130** | **14** | **47** |
+
+### The act has a side to choose, and neither side can be chosen
+
+The English are storming the Hujark caves to reach the seer, and act 5 is built to let the player
+pick a side. Two quests, one per side, both with exactly one state:
+
+| quest | activated by | completed by |
+|---|---|---|
+| `Defeat the Hujark defenders and capture Nostradamus` | the relay `Player sides with the English` | arriving at `05 Nostrodomus Demesne` |
+| `Protect Nostradamus from the invading English forces` | the relay `Player sides with the Hujark` | the same arrival |
+
+Both are failed if the player leaves through the Hamlet portal. Each quest's own machinery is
+sound. What is not sound is that **neither flag can ever fire**, traced backwards through every
+`Relay Name` and `Target Name` in every map and every dialogue tree:
+
+| flag | fired from | reachable? |
+|---|---|---|
+| `Player sides with the Hujark` | one reply in the entire game: *"I have come to help the Prophet"* at `50 help prophet` in `hujarkgeneral.dialogtree` | only if the general exists |
+| `Player sides with the English` | seven more nodes of the same conversation, **and** the relay `Player attacks any of the Hujark in this fight` | that relay's only two callers are `Hujark General Generator` and an unnamed generator, **both `Active=0`** |
+
+So the whole of act 5's branching -- both quests -- hangs on one conversation with one character who
+never spawns. `05 Nostrodomus Demesne`'s `Start Here` completes both quests on arrival, and in the
+shipped game it completes nothing, because neither was ever activated.
+
+**The two named Hujark are disabled together.** `Hujark General Generator` (`New Name=Hujark
+General`) and the unnamed generator that produces `Swordsman ShieldHelmet` as `Hujark Guard` are
+both `Active=0`, and the second is what would have fired *"player attacks any of the Hujark"*. The
+roughly two hundred Hujark who **do** spawn live on that map -- swordsmen and lesser shamans in
+five flavours each -- are all anonymous, with no `New Name` at all, so attacking them fires nothing.
+The relay was only ever wired to the two named ones.
+
+Two more parts on that map point the same way: `Start Wielder intro scene` and
+`60 Harm Prophet dialog balloon` are both `Active=1` and **fired by nothing**, and the eight
+`Hujark dialog balloons` that position over the general's head are fired from inside his own
+disabled generator. This is not one flag left unset. The act's entire opening set-piece at the
+Heart Entrance -- the general, his guard, their barks, the Wielder scene, the side choice and both
+quests -- was switched off as a block, late.
+
+**One complication for the repair.** Both disabled generators are
+`CSimpleGeneratorForCannedEntitiesAI`, the ambient-background class, not the `CGeneratorAI` that
+every real interactable NPC in the game uses. Flipping `Active=1` is therefore not expected to be
+sufficient on its own: the general likely needs rebuilding on `CGeneratorAI` with a
+`GetCloseThenTalk` specifier, the way Jafar, Amir and this project's own NPCs are built. That is
+also a plausible reason he was cut rather than fixed.
+
+**And the Hujark General never spawns.** `Hujark General Generator` on `01 Heart Entrance` is the
+only thing in the game that would produce him -- `Entity=Levels/5 Nostrodomus/Character
+Templates/Hujark General`, `New Name=Hujark General` -- and it is `Active=0` with **no reference to
+it anywhere**, checked case-folded and comma-aware across every map and every dialogue tree. Yet
+eleven live parts on that map address him by name: `General talks to player`, which both opens his
+conversation and assigns him a combat AI; eight `Hujark dialog balloons` positioned over his head;
+`60 Harm Prophet dialog balloon`; and `Player attacks any of the Hujark in this fight`, which
+names him in a comma list with `Hujark Guard`. Two position markers, `General goto` and
+`Guard goto`, mark where he and his guard were to walk.
+
+So the Hujark side of act 5 -- a 41-reply conversation, the choice to defend the seer, and one of
+the act's two quests -- is unreachable in the shipped game, and the only path through is to attack.
+This is the Guard Pablo pattern at the scale of an act branch.
+
+His conversation has a second, smaller fault behind that one: `3 Return Dialogue` -- *"You return?
+Have you changed your stance?"*, seven replies including both ways to commit -- is reached by
+nothing and opened by nothing, so even with him spawned you could talk to him once. The idiom for
+this is on the map next door: Jehanne's `Joan Add talk AI after she talks first`.
+
+### The one mechanic that would make 1,130 spawners vary was specified and never connected
+
+Nine of the ten maps carry a checker named `hujark summoning enabled`, `Active=1`, with a designer
+comment on the part itself:
+
+> This checker enables shield-helmet swordsmen to summon snakes from the clone gen
+
+`02 Clan of the Hand A` and `04 Clan of the Skull B` carry `snakebreed summoning enabled` as well.
+Every one of those eleven checkers is read **zero times** -- by any key, in any map, in any
+dialogue tree, case-folded and comma-aware. The clone sources they were to gate are placed too:
+`Snakebreed Clone Generator` on nine maps and `Snakebreed Summoner Clone Generator` on two, all
+`Active=0`, and **named by nothing**, so no `CCloneAction` ever copies them.
+
+The engine supports exactly this, and the game does it elsewhere. `Ogre Conjurer Cave.zax` has
+`Aka Manah Illusion relay`, which fires `CCloneAction{Source Name=Wizard Tremblethorn Illusion
+100%/70%/35% Generator}` off a `CHealthPercentThresholdTrigger` -- a boss that summons copies of
+itself as it loses health, in three tiers. There are 371 `CCloneAction` sites naming a source
+across 45 maps, so the primitive is thoroughly precedented; act 5 simply never called it.
+
+This is the act's largest single opportunity. Every fight in it is a static wave, and the fix was
+placed, switched on, commented, and left unplugged.
+
+### The battle you are fighting alongside barely speaks
+
+`Losing side wins a fight.DialogTree` is seventeen nodes of running commentary from whichever side
+the player joined -- *"You must get to the Seer before the Druids do!"*, *"We are breaking through
+their defenses!"*, six escalating lines per side, plus `150 Final encounter`,
+`155 Final encounter shaman` and `157 go now` for the seer's door. **Two of the seventeen are ever
+opened**: `30 Hurry` and `40 Quick`, both from `03 Tourniquet of Pain`, by
+`Are English3 alive?` and `Are Hujark3 alive?2`. The escalation series and all three
+final-encounter lines are fired by nothing, on an act where the player crosses ten maps of
+identical fighting with no sense of progress.
+
+The barks are lopsided the same way. All eight nodes of `HujarkWarriorCanned` are wired to
+`Hujark dialog balloons`; only four of `EnglishMonsterWarriorCanned`'s eight are, leaving
+`10 Hey`, `11 wise`, `20` and `50` unused -- so the side you are most likely to be fighting
+alongside is the quieter one.
+
+### The seer's own lost answers
+
+`Nostradamus.DialogTree` is the act's real conversation: 38 nodes, 108 replies, four prophecies,
+and a karma-split farewell that works. Three nodes are stranded.
+
+| node | text | why it is stranded |
+|---|---|---|
+| `10 Nostradamus` | *"To the Hujark, I am a prophet, a power they revere and worship. But I was not always like this."* | Its reply returns to `5 questions`, exactly like every other answer, but nothing points at it. `5 questions` asks *"What are you?"* and routes to `35 Prophet` instead |
+| `100 Dragon Prophecy` | *"Uncaged by the Betrayer, the demon of storms waits for you in its forsaken lair."* | `60 visions` offers the Neutral, Evil and Good karma prophecies and not this one, though it is built identically and returns to the same two nodes. Its ID collides with `100 Neutral Karma Prophecy`, which is what replaced it |
+| `30 Combat` | *"<A voice laughs inside your head> Fool, you cannot fight your *fate*."* | The seer's line for being attacked, opened by no map |
+
+`40 Ingame Movie Opening Line` -- *"But before the spinning coin can land, it will be caught by the
+slaver's hand"* -- is also unopened, and belongs to a cinematic that is not in the retail build.
+Left alone.
+
+### What the act asks about the player: almost nothing
+
+| gate | act 5 |
+|---|---|
+| faction | 7 |
+| karma | 3 |
+| attribute | 3 |
+| race, Speech, Barter, magic school, perk, spirit, gender | **0 each** |
+| trap / lockpick, on replies **and** on map triggers | **0** |
+
+Ten maps of caves and tunnels, and not one trap or lock in any of them. The Crypt got 67 such
+checks in one tier and they changed a thief's whole route; this act has nothing for a thief, nothing
+for a talker, and nothing for any of the three spirits.
+
+### The assassin at the seer is a different character, and works
+
+Easy to confuse with the general, so recorded: `05 Nostrodomus Demesne` spawns `NIS Assassin1
+Generator` live (`Assasin` / Tough / Super, `New Name=Assassin`), and he speaks four nodes of the
+**Crypt's** `Assassin.DialogTree` -- `100 Silence`, `100 seer`, `100 lies` and
+`100 scion of lionheart` -- as balloons fired by `NIS Start` and `NIS Relay 2`. That is the Old Man
+of the Mountain's thread, which runs from the Slave Pits intro through Montserrat's wounded
+assassin, the Crypt and the English Shrine to Alamut, and it ships working.
+
+He carries **no interaction specifier at all**, only combat AIs, so he talks at the player in the
+opening sequence and is then fought; he is not a conversation. The talkable NPCs at the Demesne are
+Nostradamus himself, after `Kill all 3 guys get AI added to Nostrodamus` adds his talk AI, and the
+`Monk` (a `Wielder Apprentice` spawned under that name, using the La Calle Perdida Wizard trees).
+Hujark named NPCs do exist elsewhere in the act -- `Hujark Guard` and `Hujark Shaman` both spawn
+live at the Demesne. It is specifically the pair at the entrance that is switched off.
+
+### Checked and not defects
+
+- **The Ways Crystal works.** `01 Heart Entrance` holds a live one that writes `Green Way Crystal 3`
+  and can complete the Calle Perdida chain's `ALL FOUND` flag. The act-5 end of that quest is sound.
+- **Both quest files are well formed** and their completion and failure wiring is correct; the
+  fault is entirely upstream, in the fact that nothing can activate them.
+- **The karma farewells work.** `determine goodbye relay` on the Demesne picks between
+  `11 evil karma goodbye`, `12 neutral` and `13 good`.
+- **The Hujark Assassin's `4 sneak`, `5 barter` and `6 No`** looked like a cut alternative to the
+  ambush -- sneak past, or pay a ransom. They are **byte-identical copies of the Frightened
+  Apprentice's lines** in a tree that shares its node IDs, and the apprentice's own five-step series
+  on `06 Cave 1` is fully built. A copy-paste artifact, not cut content.
+
+### Tiers, in the order they should be built
+
+1. **The general who never spawns, and the two quests behind him.** Rebuild him on `CGeneratorAI`
+   with a talk specifier, restore his named guard, and give him the return-conversation wiring the
+   rest of the game uses (`3 Return Dialogue`, seven replies, currently reached by nothing). This is
+   what makes **either** side of the act, and **either** of its two quests, reachable at all --
+   act 5 currently has two quests and no way into either. Also decide whether attacking the
+   anonymous Hujark should count as siding with the English, which is what the relay's name says it
+   was for.
+2. **The summoning.** Wire the eleven live checkers and the eleven placed clone sources to the
+   shamans and shield-helmet swordsmen, on the Ogre Conjurer's `CHealthPercentThresholdTrigger`
+   pattern. The one change that makes 1,130 spawners behave differently from each other.
+3. **The commentary.** The fifteen unopened nodes of `Losing side wins a fight`, as a per-map
+   escalation so crossing the act reads as an advance, and the English side's four missing barks.
+4. **The seer's three stranded nodes**, and the question in `5 questions` that was meant to reach
+   the first of them.
+5. **The two silent maps and the ten trapless ones.** `07 Cave 2` and `09 Cave 4` have no voice of
+   any kind; no map in the act has a trap or a lock.
+6. **Reactivity.** Seven faction gates and three karma gates in 176 replies. The seer who reads
+   your karma could read a great deal more, and so could a general deciding whether to trust you.
+
 ## 0.16.0 - the Crypt
 
 **Published.** Cut from `main` 2026-09-25, entirely unplayed. Surveyed 2026-09-24, ten tiers built 2026-09-24 and 2026-09-25. Tier 4 adds the project's third new map; tier 8 came out of measuring the other seven. `plan.md` has carried a Crypt design since the back-half
