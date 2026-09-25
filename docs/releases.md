@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Tiers 1 and 2 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Tiers 1, 2, 2b and 3 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -491,13 +491,98 @@ the way it shipped, with the fights he expects; a player who did not gets the ac
 commented into the margin and never wired. The reward for a two-act-old mercy is that the serpents
 will not bite you, and nobody in the Caverns can explain why.
 
+### Tier 3 - the English get a voice, and the seer's door reads which side you took (built)
+
+Two more silences with the same cause as Huko: a part addressed by name that nobody creates.
+
+**The English have never said a word.** `English dialog balloons` on the Heart Entrance is a
+`CShuffledSeriesAction` of four `EnglishMonsterWarriorCanned` barks, every one positioned on an
+entity called `English loser` -- **created by nothing, anywhere in the game** -- and the relay itself
+is fired by nothing. Meanwhile the Hujark's eight barks work, because `Hujark General Generator`
+names `Hujark General` and drives them from a `CRepeatTimerTriggerAI` in its own `AIs to Add`. Tier 1
+brought those eight to life by activating that generator; this does the same for the English by the
+same means:
+
+| | Hujark (vanilla, live since tier 1) | English (this tier) |
+|---|---|---|
+| speaker | `Hujark General Generator` names `Hujark General` | one live `Big Fight` at 2096,1418 now names its ogre `English loser` |
+| driver | `CRepeatTimerTriggerAI`, 5s +/- 2, in `AIs to Add` | the same AI, the same timing |
+| lines | 8 of 8 | **4 of 8 -> 8 of 8** |
+
+`10 Hey`, `11 wise`, `20` and `50` were in the tree and in no relay. `EnglishMonsterWarriorCanned`
+now has **no unopened nodes**.
+
+**The seer's door turned three friends into enemies.** `NIS Relay 2` closes the arrival cutscene by
+firing `CGoToCombatAction` at the assassin, the `Hujark Shaman` and the `Hujark Guard` --
+unconditionally, including for a player who agreed with Huko to defend the Prophet an hour earlier.
+The commentary tree has had the line for the other case all along:
+
+> The Seer has been expecting you. You may enter now.
+
+So the closing array now asks first. Side with the English, or never commit, and it behaves exactly
+as it shipped -- the `Fail Action` is vanilla's two actions, in vanilla's order, with vanilla's
+1.5-second delay. Side with the Hujark and the shaman stands aside with `155 Final encounter shaman`,
+the guard follows with `150 Final encounter` -- *"Thank you! Now quickly come with me."* -- and twelve
+seconds later, if you are still standing about, `157 go now`: *"Do not keep the Seer waiting."* The
+assassin still attacks either way; he is the Old Man's, not the Hujark's.
+
+**The plumbing is vanilla's own.** `Player sides with the Hujark` already fires
+`Activate English generators` at all nine other maps through `COtherMapAction`, and that relay part
+exists on **none** of them. Creating it on the Demesne -- where its one action activates a
+`sided with the Hujark` checker -- makes vanilla's own cross-map call land for the first time, and
+costs nothing anywhere else.
+
+### What tier 3 found and did not build: the act's two armies
+
+The two side relays are extensively commented, and the comments describe a system far larger than the
+quest flags:
+
+> `Player sides with the Hujark`: This relay activates the English generators which can spawn both
+> types of enemies (english and hujark)
+
+Each relay holds twelve actions: the quest state, a local activation, and **nine
+`COtherMapAction`s** firing `Activate English generators` / `Activate Hujark generators` at every
+other map in the act. The design is plain -- **the act populates itself with whichever enemy you
+chose to fight**. That is also why `03 Tourniquet of Pain` has 21 `Hujark Generator` parts and
+`04 Clan of the Skull B` has none of either name: the armies were meant to be switched on by choice,
+and the Hujark half was simply left on by default.
+
+None of it exists:
+
+| named target | where it exists |
+|---|---|
+| `Activate English generators` | **no map in the game** |
+| `Activate Hujark generators` | **no map in the game** |
+| `English Generator` | one part, on `03`, `Active=0`, with an **empty entity list** -- it spawns nothing |
+| `england`, `Druid defaulter` | **no map in the game** |
+| `English3`, `English3a`, `English3b`, `Hujark3`, `Hujark3a`, `Hujark3b` | **created by nothing** -- the paired-skirmish cast the four live `Are ... alive?` relays on `03` were written to test |
+
+So every player who has ever walked act 5 has fought the Hujark, on a map set built to be populated
+either way, and the "battle between two sides" is one army plus six English ogres on the first two
+maps.
+
+**This is missing content, not a wiring fault, and it is not a decision to take quietly.** Building
+it means authoring an English army across four maps, and the shape of that build is a balance
+question with two very different answers: *add* the chosen enemy on top of what is already there,
+which doubles the enemy count in the grindiest act in the game, or *swap* -- deactivate the Hujark
+generators when the player sides with them -- which is replacement rather than thinning but still
+takes 200 spawners off the board on one path. Left for the next decision, not assumed.
+
+The same absence is why fourteen of the commentary tree's seventeen nodes are still unopened:
+`10 Hujark underdogs win`, `20 English underdogs win`, `30 Hurry`, `40 Quick` and the two escalation
+series need an **allied speaker per map**, and the act has no allied entity anywhere outside the
+Heart Entrance. Tier 3 opened the three that had a speaker available.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The general who never spawns, and the two quests behind him.**~~ **Built** -- see above.
 2. ~~**The summoning.**~~ **Built** -- see above. Extending it to the lesser shamans, and wiring
    `snakebreed summoning enabled`, are still open.
-3. **The commentary.** The fifteen unopened nodes of `Losing side wins a fight`, as a per-map
-   escalation so crossing the act reads as an advance, and the English side's four missing barks.
+3. ~~**The commentary.**~~ **Partly built** -- the English side's four missing barks and the three
+   door lines are in; the other fourteen need an allied speaker per map, which needs the English
+   army below. Also still open: whether attacking the anonymous Hujark should commit the player to
+   the English, which is what `Player attacks any of the Hujark in this fight` is named for.
+3b. **The act's two armies** -- see the finding above. A design decision before a build.
 4. **The seer's three stranded nodes**, and the question in `5 questions` that was meant to reach
    the first of them.
 5. **The two silent maps and the ten trapless ones.** `07 Cave 2` and `09 Cave 4` have no voice of

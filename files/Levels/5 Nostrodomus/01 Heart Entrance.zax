@@ -9092,7 +9092,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=8
 							Action=CDisplayDialogBalloonAction
 							{
 								Dialog Tree File=Levels/5 Nostrodomus/Dialog/EnglishMonsterWarriorCanned
@@ -9126,6 +9126,42 @@ CLayerSaveData
 								Node ID=70
 								Name of Position=English loser
 								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/5 Nostrodomus/Dialog/EnglishMonsterWarriorCanned
+								Node ID=10 Hey
+								Name of Position=English loser
+								Position Offset=0.000000,-60.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/5 Nostrodomus/Dialog/EnglishMonsterWarriorCanned
+								Node ID=11 wise
+								Name of Position=English loser
+								Position Offset=0.000000,-60.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/5 Nostrodomus/Dialog/EnglishMonsterWarriorCanned
+								Node ID=20
+								Name of Position=English loser
+								Position Offset=0.000000,-60.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/5 Nostrodomus/Dialog/EnglishMonsterWarriorCanned
+								Node ID=50
+								Name of Position=English loser
+								Position Offset=0.000000,-60.000000
 								After Action=
 								Include In Log=1
 							}
@@ -13315,11 +13351,11 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English loser
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=1
+						Item Count=2
 						AI=CAIInteractionSpecifier
 						{
 							Marked For Deletion=0
@@ -13355,6 +13391,18 @@ CLayerSaveData
 							Lock Pick Adjustment=0
 							Inventory item to use as key=Inventory Items/!None
 							Is Bussy Talking=0
+						}
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CTriggerRelayAction
+							{
+								Relay Name=English dialog balloons
+							}
+							Delay Between Actions=5
+							Plus or Minus=2
+							Seconds Till Next Execute=0
 						}
 					}
 					Canned AIs to Add=Array
