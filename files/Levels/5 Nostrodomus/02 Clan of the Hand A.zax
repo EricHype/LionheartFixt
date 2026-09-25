@@ -85,6 +85,66 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=serpents know the mark
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=2076
+			Position Y=603
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=the mark has been read
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=2096
+			Position Y=603
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=
@@ -5057,33 +5117,75 @@ CLayerSaveData
 											Name To Check For=hujark summoning enabled
 											Desired Minimum Count=1
 										}
-										Succeed Action=CMultipleActionsAction
+										Succeed Action=CConditionalAction
 										{
-											Action=Array
+											Try Action=CCheckExistenceAction
 											{
-												Item Count=2
-												Action=CCloneAction
+												Name To Check For=serpents know the mark
+												Desired Minimum Count=1
+											}
+											Succeed Action=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
 												{
-													New Location=$Trigger
-													Copy Height=0
-													Random Location Delta=75
-													Warp Behavior=
-													Source Name=Snakebreed Clone Generator
-													New Name=used snake gen
-													Set Facing Angle=0
-													New Facing Angle=0
+													Name To Check For=the mark has been read
+													Desired Minimum Count=1
 												}
-												Action=CDelayAction
+												Succeed Action=
+												Fail Action=CMultipleActionsAction
 												{
-													Next Action=CDeleteAction
+													Action=Array
 													{
-														Target Name=used snake gen
+														Item Count=2
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/The Caverns
+															Node ID=1 nothing answers
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CActivateAction
+														{
+															Target Name=the mark has been read
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
 													}
-													Delay=0.3
-													Plus or Minus=0
-													Forget Trigger=0
+												}
+												Return failure if the TryAction failes=0
+											}
+											Fail Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CCloneAction
+													{
+														New Location=$Trigger
+														Copy Height=0
+														Random Location Delta=75
+														Warp Behavior=
+														Source Name=Snakebreed Clone Generator
+														New Name=used snake gen
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=used snake gen
+														}
+														Delay=0.3
+														Plus or Minus=0
+														Forget Trigger=0
+													}
 												}
 											}
+											Return failure if the TryAction failes=0
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -11386,33 +11488,75 @@ CLayerSaveData
 											Name To Check For=hujark summoning enabled
 											Desired Minimum Count=1
 										}
-										Succeed Action=CMultipleActionsAction
+										Succeed Action=CConditionalAction
 										{
-											Action=Array
+											Try Action=CCheckExistenceAction
 											{
-												Item Count=2
-												Action=CCloneAction
+												Name To Check For=serpents know the mark
+												Desired Minimum Count=1
+											}
+											Succeed Action=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
 												{
-													New Location=$Trigger
-													Copy Height=0
-													Random Location Delta=75
-													Warp Behavior=
-													Source Name=Snakebreed Clone Generator
-													New Name=used snake gen
-													Set Facing Angle=0
-													New Facing Angle=0
+													Name To Check For=the mark has been read
+													Desired Minimum Count=1
 												}
-												Action=CDelayAction
+												Succeed Action=
+												Fail Action=CMultipleActionsAction
 												{
-													Next Action=CDeleteAction
+													Action=Array
 													{
-														Target Name=used snake gen
+														Item Count=2
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/The Caverns
+															Node ID=1 nothing answers
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CActivateAction
+														{
+															Target Name=the mark has been read
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
 													}
-													Delay=0.3
-													Plus or Minus=0
-													Forget Trigger=0
+												}
+												Return failure if the TryAction failes=0
+											}
+											Fail Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CCloneAction
+													{
+														New Location=$Trigger
+														Copy Height=0
+														Random Location Delta=75
+														Warp Behavior=
+														Source Name=Snakebreed Clone Generator
+														New Name=used snake gen
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=used snake gen
+														}
+														Delay=0.3
+														Plus or Minus=0
+														Forget Trigger=0
+													}
 												}
 											}
+											Return failure if the TryAction failes=0
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -39386,33 +39530,75 @@ CLayerSaveData
 											Name To Check For=hujark summoning enabled
 											Desired Minimum Count=1
 										}
-										Succeed Action=CMultipleActionsAction
+										Succeed Action=CConditionalAction
 										{
-											Action=Array
+											Try Action=CCheckExistenceAction
 											{
-												Item Count=2
-												Action=CCloneAction
+												Name To Check For=serpents know the mark
+												Desired Minimum Count=1
+											}
+											Succeed Action=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
 												{
-													New Location=$Trigger
-													Copy Height=0
-													Random Location Delta=75
-													Warp Behavior=
-													Source Name=Snakebreed Clone Generator
-													New Name=used snake gen
-													Set Facing Angle=0
-													New Facing Angle=0
+													Name To Check For=the mark has been read
+													Desired Minimum Count=1
 												}
-												Action=CDelayAction
+												Succeed Action=
+												Fail Action=CMultipleActionsAction
 												{
-													Next Action=CDeleteAction
+													Action=Array
 													{
-														Target Name=used snake gen
+														Item Count=2
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/The Caverns
+															Node ID=1 nothing answers
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CActivateAction
+														{
+															Target Name=the mark has been read
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
 													}
-													Delay=0.3
-													Plus or Minus=0
-													Forget Trigger=0
+												}
+												Return failure if the TryAction failes=0
+											}
+											Fail Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CCloneAction
+													{
+														New Location=$Trigger
+														Copy Height=0
+														Random Location Delta=75
+														Warp Behavior=
+														Source Name=Snakebreed Clone Generator
+														New Name=used snake gen
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=used snake gen
+														}
+														Delay=0.3
+														Plus or Minus=0
+														Forget Trigger=0
+													}
 												}
 											}
+											Return failure if the TryAction failes=0
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -40766,33 +40952,75 @@ CLayerSaveData
 											Name To Check For=hujark summoning enabled
 											Desired Minimum Count=1
 										}
-										Succeed Action=CMultipleActionsAction
+										Succeed Action=CConditionalAction
 										{
-											Action=Array
+											Try Action=CCheckExistenceAction
 											{
-												Item Count=2
-												Action=CCloneAction
+												Name To Check For=serpents know the mark
+												Desired Minimum Count=1
+											}
+											Succeed Action=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
 												{
-													New Location=$Trigger
-													Copy Height=0
-													Random Location Delta=75
-													Warp Behavior=
-													Source Name=Snakebreed Clone Generator
-													New Name=used snake gen
-													Set Facing Angle=0
-													New Facing Angle=0
+													Name To Check For=the mark has been read
+													Desired Minimum Count=1
 												}
-												Action=CDelayAction
+												Succeed Action=
+												Fail Action=CMultipleActionsAction
 												{
-													Next Action=CDeleteAction
+													Action=Array
 													{
-														Target Name=used snake gen
+														Item Count=2
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/The Caverns
+															Node ID=1 nothing answers
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CActivateAction
+														{
+															Target Name=the mark has been read
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
 													}
-													Delay=0.3
-													Plus or Minus=0
-													Forget Trigger=0
+												}
+												Return failure if the TryAction failes=0
+											}
+											Fail Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CCloneAction
+													{
+														New Location=$Trigger
+														Copy Height=0
+														Random Location Delta=75
+														Warp Behavior=
+														Source Name=Snakebreed Clone Generator
+														New Name=used snake gen
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=used snake gen
+														}
+														Delay=0.3
+														Plus or Minus=0
+														Forget Trigger=0
+													}
 												}
 											}
+											Return failure if the TryAction failes=0
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -43226,33 +43454,75 @@ CLayerSaveData
 											Name To Check For=hujark summoning enabled
 											Desired Minimum Count=1
 										}
-										Succeed Action=CMultipleActionsAction
+										Succeed Action=CConditionalAction
 										{
-											Action=Array
+											Try Action=CCheckExistenceAction
 											{
-												Item Count=2
-												Action=CCloneAction
+												Name To Check For=serpents know the mark
+												Desired Minimum Count=1
+											}
+											Succeed Action=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
 												{
-													New Location=$Trigger
-													Copy Height=0
-													Random Location Delta=75
-													Warp Behavior=
-													Source Name=Snakebreed Clone Generator
-													New Name=used snake gen
-													Set Facing Angle=0
-													New Facing Angle=0
+													Name To Check For=the mark has been read
+													Desired Minimum Count=1
 												}
-												Action=CDelayAction
+												Succeed Action=
+												Fail Action=CMultipleActionsAction
 												{
-													Next Action=CDeleteAction
+													Action=Array
 													{
-														Target Name=used snake gen
+														Item Count=2
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/The Caverns
+															Node ID=1 nothing answers
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CActivateAction
+														{
+															Target Name=the mark has been read
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
 													}
-													Delay=0.3
-													Plus or Minus=0
-													Forget Trigger=0
+												}
+												Return failure if the TryAction failes=0
+											}
+											Fail Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CCloneAction
+													{
+														New Location=$Trigger
+														Copy Height=0
+														Random Location Delta=75
+														Warp Behavior=
+														Source Name=Snakebreed Clone Generator
+														New Name=used snake gen
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=used snake gen
+														}
+														Delay=0.3
+														Plus or Minus=0
+														Forget Trigger=0
+													}
 												}
 											}
+											Return failure if the TryAction failes=0
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0

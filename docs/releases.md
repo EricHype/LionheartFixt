@@ -425,13 +425,18 @@ character, not a battlefield swordsman, and three were excluded on that rule: Hu
 `Hujark Guard` from tier 1, `xloserx` in the Cave 1 set-piece, and `xhujark1x` on Cave 3. The first
 draft of this tier caught all three, which is what the rule came out of.
 
-**This adds enemies to the grindiest act in the game, and that is the honest objection to it.** The
+**This adds enemies to the grindiest act in the game, and that was the honest objection to it.** The
 argument for doing it anyway is that it changes the *shape* of a fight rather than its length: the
 helmeted swordsman is now the one to kill first, and a player who ignores him fights the snake he
-called. Two dials exist if play says otherwise, and both are one-line changes. The threshold is a
-single `Constant Value=50`, and **each map's checker is its own off switch** -- flip one
-`hujark summoning enabled` to `Active=0` and that map stops summoning entirely, which is what the
-designers built those nine checkers to do.
+called. The objection was put and **the summoning is kept, by decision, 2026-09-25** -- the same call
+as the Crypt's spawner counts in 0.16.0, where thinning was considered and rejected in favour of
+making the place more interesting. Do not quietly tune it away.
+
+**And tier 2b puts the dial in the player's hands instead of the modder's** -- see below. The
+modder's dials still exist if *play* says otherwise, and both are one-line changes: the threshold is
+a single `Constant Value=50`, and each map's checker is its own off switch, which is what the
+designers built those nine checkers to do. `NO19` is the row that reads the balance in play; nothing
+changes before somebody has walked it.
 
 **Left for later, deliberately.** `05 Nostrodomus Demesne`, `09 Cave 4` and `10 Cave 5` carry the
 checker and the clone source but have **no anonymous shield-helmet swordsman** to hang a trigger on
@@ -444,6 +449,47 @@ Super`, an `Ogre1 Ranged` and a `Bear Super`, an odd set -- are still unwired.
 **If `$Trigger` does not resolve the way the Wave Cloner implies**, the clone does not happen and the
 act fights exactly as it does today. The failure mode is silence, not breakage, which is the main
 reason this was worth building before anybody has walked the act.
+
+### Tier 2b - the serpents know Sahar's mark (built)
+
+The snakebreed are the Old Man of the Mountain's serpents, and the game says so without ever saying
+it out loud:
+
+- `02 Druid Council Level1`, the Montserrat map where the **wounded assassin** is found, is held
+  almost entirely by them -- Snakebreed, Snakebreed Venom and Snakebreed Boss, in three tiers each,
+  more than a hundred spawns between them.
+- the bestiary carries a `Snakebreed Assassin.can` that **spawns nowhere** in the shipped game.
+- Sahar's ring, taken at `50 her word` for accepting her word, is already read as a safe-conduct by
+  the Crypt's assassin: *"Sahar's mark. Then she let you go, and sent you to us wearing it, and
+  thought that would be the end of it."*
+
+So a Hujark swordsman can call all he likes. If the player wears her mark, the serpents do not come:
+
+> The Hujark strikes the floor with the flat of his blade and calls, the way the others have been
+> calling all along this corridor. Nothing comes up out of it. He looks at the ring on your hand, and
+> he does not understand what he is looking at, and he goes back to fighting.
+
+**It is visible, which is the point.** A silent buff that removes content the player never knew was
+there is not reactivity; being shown the swordsman call and the floor not answer is. The line plays
+**once per map** -- a second checker, `the mark has been read`, holds it after the first time -- so
+five corridors give five readings of the same fact rather than thirty-one.
+
+**Two checkers per summoning map carry it**, and no self-reference is needed anywhere in the monster's
+AI, which is what makes it safe: `serpents know the mark`, switched on at the mouth of the caves, and
+`the mark has been read`, switched on by the first unanswered call. The summon now asks three
+questions in order -- is summoning enabled on this map, do the serpents know the mark, has that been
+explained yet -- and only the first path reaches the clone.
+
+**The ring is read where vanilla reads inventory from a spawn point.** `Calle Perdida`'s
+`From Gate District` does exactly this in its own `Per Party Spawn Action`, with
+`Who to give check=$instigator`, so the check sits in a context the shipped game already proves out.
+Arriving at the Heart Entrance carrying the ring activates the mark on this map and, through four
+`COtherMapAction`s, on the other four summoning maps at once.
+
+**What it means for the act.** A player who spared Sahar at Montserrat and kept her ring walks act 5
+the way it shipped, with the fights he expects; a player who did not gets the act the designers
+commented into the margin and never wired. The reward for a two-act-old mercy is that the serpents
+will not bite you, and nobody in the Caverns can explain why.
 
 ### Tiers, in the order they should be built
 
