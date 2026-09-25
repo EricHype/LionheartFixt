@@ -85,6 +85,55 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CFreeRangePoly
+		{
+			Name=the three crypts
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Triggered By Players=1
+					Triggered By Enemies=0
+					Enter Action=CDisplayDialogBalloonAction
+					{
+						Dialog Tree File=Levels/4 Crypt/Dialog/The Fronts
+						Node ID=1 the three crypts
+						Name of Position=$Instigator
+						Position Offset=0.000000,-60.000000
+						After Action=
+						Include In Log=1
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1820, 960, 2010, 960, 2010, 1120, 1820, 1120, 1820, 960
+			Center Position Offset=0.000000,0.000000
+		}
 		Level Part=CEntityBase
 		{
 			Name=
@@ -4103,7 +4152,38 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=6
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/4 Crypt/Dialog/The Fronts
+								Node ID=2 crypts opened
+								Name of Position=$Instigator
+								Position Offset=0.000000,-60.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Crypt war tide
+								Modification is permanent=1
+								Character to modify=Player#1-9#
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-1
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
 							Action=CRemoveAIAction
 							{
 								Target Name=Crypt01,Crypt02,Crypt03

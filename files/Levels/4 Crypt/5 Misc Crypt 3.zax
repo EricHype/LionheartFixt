@@ -85,6 +85,188 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityAnimated
+		{
+			Name=open the protect walls
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/4 Crypt/Dialog/The Fronts
+								Node ID=2 walls opened
+								Name of Position=$Instigator
+								Position Offset=0.000000,-60.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Crypt war tide
+								Modification is permanent=1
+								Character to modify=Player#1-9#
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-1
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=COpenDoorAction
+							{
+								Target Name=last coffin protect wall
+								Delay Between Doors=0
+							}
+						}
+					}
+					X Radius=55
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Switches/Switch 2
+			Position X=1790
+			Position Y=1700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=the last coffin
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Triggered By Players=1
+					Triggered By Enemies=0
+					Enter Action=CDisplayDialogBalloonAction
+					{
+						Dialog Tree File=Levels/4 Crypt/Dialog/The Fronts
+						Node ID=1 protect walls
+						Name of Position=$Instigator
+						Position Offset=0.000000,-60.000000
+						After Action=
+						Include In Log=1
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1700, 1660, 1960, 1660, 1960, 1840, 1700, 1840, 1700, 1660
+			Center Position Offset=0.000000,0.000000
+		}
 		Level Part=CEntityBase
 		{
 			Name=

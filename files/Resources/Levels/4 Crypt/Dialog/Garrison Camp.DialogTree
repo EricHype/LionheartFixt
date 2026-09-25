@@ -40,6 +40,72 @@ Go to node ID=30 end it
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=How does the line stand today?
+Go to node ID=60 the line has moved
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CIsLessThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=-1
+}
+}
+Reply Text=How does the line stand today?
+Go to node ID=61 the line has slipped
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsLessThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=How does the line stand today?
+Go to node ID=62 the line is where it was
+
+Requirement=!None
 Reply Text=Keep counting.
 Go to node ID=
 Icon=Exit Icon
@@ -190,6 +256,58 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=You will hear it plainly.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 the line has moved
+Text=Better than yesterday, and yesterday was the same as the two hundred years before it, so understand what I am telling you. The corridors behind us are shut, and a shut corridor is a corridor we do not have to stand in. Whatever you did down there, the count moved for the first time since the seals closed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It was the doors.
+Go to node ID=10 the count
+
+Requirement=!None
+Reply Text=Keep counting.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=61 the line has slipped
+Text=<He stops turning the pauldron over.> Worse. Something is loose in the lower galleries that was not loose last week, and the room where we kept our dead is open to the corridor now. I will not ask whether that was you. I will only say that I have kept this count for two hundred and eleven years and it has never gone the wrong way before.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It was me.
+Go to node ID=63 it was me
+
+Requirement=!None
+Reply Text=Keep counting.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=62 the line is where it was
+Text=Where it was. Where it has been. The corridors are held at both ends by people who cannot die properly, which is a stalemate and not a defence, and if you want to change that you will have to change it out there rather than asking me about it in here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What would change it?
+Go to node ID=11 why hold
+
+Requirement=!None
+Reply Text=Keep counting.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=63 it was me
+Text=Then you are the first living thing to make a difference in this crypt in either direction, and I am not going to thank you for the direction you chose. Go and look at Jehanne when you tell her. She has been holding a door for two centuries on the understanding that it mattered which side of it she stood on.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will tell her.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1

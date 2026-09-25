@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. All seven tiers built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Eight tiers built 2026-09-24, unplayed.** Tier 4 adds the project's third new map; tier 8 came out of measuring the other seven. `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -493,6 +493,75 @@ shipped maps disagree, and that question should be settled against the Undercrof
    80 answers Michel instead.
 7. **What each order actually means here.** Built: six claimants, six answers, and the vanilla
    dead link the warm greeting was hiding.
+
+### Did it break up the monotony? The measurement, and what it changed
+
+After tier 7 the act was measured per map rather than asserted about, counting live spawners
+against everything that is not combat. The answer was **at the ends, yes; in the middle, no**:
+
+| map | live spawners | conversations | balloons | trees | skill checks |
+|---|---|---|---|---|---|
+| 1 Crypt Entrance | 6 | - | - | 3 | - |
+| 2 Retreat of Souls Entry | 1 | 1 | 1 | 1 | 0 -> 1 |
+| 2 Retreat of Souls | 56 -> 57 | **0 -> 1** | 5 -> 8 | 4 -> 6 | 0 -> 20 |
+| 3 Misc Crypt 1 | 4 | 0 | **0 -> 2** | 0 -> 1 | 0 -> 1 |
+| 4 Misc Crypt 2 | 17 | 0 | **0 -> 2** | 0 -> 1 | 0 -> 5 |
+| 5 Misc Crypt 3 | 17 | 0 | **0 -> 2** | 0 -> 1 | 0 -> 6 |
+| 6 Misc Crypt 4 | 1 | 0 | **0 -> 2** | 0 -> 1 | 0 -> 2 |
+| 7 Doomed Plateau | 112 | 6 | 12 -> 22 | 4 -> 5 | 0 -> 15 |
+| 8 Ante Chamber | 34 | 0 | 1 -> 3 | 1 -> 2 | 0 -> 5 |
+| 9 Burial Chamber | 21 | 1 | 3 -> 5 | 4 -> 5 | 0 -> 11 |
+| 10 Garrison Camp | *new: 3* | *new: 3* | *new: 3* | *new: 2* | *new: 1* |
+| **act total** | 269 -> 273 | 8 -> 12 | **22 -> 50** | 17 -> 28 | **0 -> 67** |
+
+The bold column in the Misc Crypt rows is tier 8. Before it, those four maps held **zero
+conversations, zero balloons and zero dialogue trees between them** -- the act had five maps with no
+voice at all, and still had five after seven tiers of work. It has **one** now, and that one is the
+Crypt Entrance, whose three conversations are opened by relays rather than by talk interactions, so
+the metric undercounts it.
+
+Two things the measurement said that tier 8 deliberately did **not** fix. Live spawners went 269 ->
+273: this release added four knights and thinned nothing, and 112 live spawners on the Doomed
+Plateau remain the engine of the grind -- thinning was considered and rejected in favour of making
+the place more interesting. And the 67 skill checks transform a thief's route through the act while
+giving a fighter nothing but a loss, so how much less monotonous the act feels still depends on the
+build.
+
+### Tier 8 - four fronts, and a war with a result (built)
+
+`plan.md` said what the Misc Crypts are for -- each is a **front** in a siege that is already being
+fought, with 248 generators between them expressing nothing -- and that the vocabulary to fight it
+with is already placed. Each corridor now has one lever that moves the war and one voice that says
+what the corridor is:
+
+| corridor | lever | what it does | tide |
+|---|---|---|---|
+| 3 Misc Crypt 1 | bar the rear door | closes the door the garrison falls back through, which had no name until this release | **+1** |
+| 4 Misc Crypt 2 | bolt the stone door | shuts `Door1` behind the player, so the horde takes the long way round, which is where the knights are | **+1** |
+| 5 Misc Crypt 3 | open the protect walls | opens all thirteen `last coffin protect wall` doors at once -- the way to the last coffin, and the way to it from the galleries | **-1** |
+| 6 Misc Crypt 4 | the crypt-opening switch already there | vanilla's own `switch to open crypts` releases Crypt01 to 03 and their occupants; it now costs the garrison for doing it | **-1** |
+
+**The tide** is `Game Scripting Variables/Crypt War Tide`, a derived character attribute on the
+pattern vanilla uses for `DaVinci Tell player about Wielders` and this project uses for six flags of
+its own -- written with `CAddCharacterModifierToCharacterAction` and `Allow Accumulation=1`, read with
+`CVariableDerivedCharacterAttribute`. It rides on the character, so a lever thrown in one corridor is
+legible two maps away.
+
+**And it is legible**, which is the difference between a mechanic and bookkeeping. The knight at the
+fire in the camp -- who has been counting for two hundred and eleven years -- reports the line three
+ways: *"the corridors behind us are shut... the count moved for the first time since the seals
+closed"*; or *"something is loose in the lower galleries that was not loose last week, and the room
+where we kept our dead is open to the corridor now. I will not ask whether that was you"*; or the
+stalemate, *"which is a stalemate and not a defence, and if you want to change that you will have to
+change it out there rather than asking me about it in here."* Admit to the bad one and he will not
+thank you for it, and tells you to look at Jehanne when you say it to her.
+
+**The act's one real outcome now reads the war it ends.** The Efreeti's wish that frees the knights
+pays out three ways: freed *in good order*, going out like lamps from the corridors the player shut
+first, the last of them the man at the fire, who stops counting; freed *into a ruin*, where what is
+left holding the corridors is the thing they were holding it against, and *"you have freed a garrison
+out of a crypt you made worse, and both of those are true at once"*; or freed *from a stalemate*,
+all at once, mid-step, and *"the siege does not end. It simply stops having two sides."*
 
 ### Tier 7 - six claimants, six answers (built)
 
