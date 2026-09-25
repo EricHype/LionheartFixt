@@ -4960,7 +4960,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CAddCategoryAction
 							{
 								Target Name=$Instigator
@@ -4971,6 +4971,14 @@ CLayerSaveData
 								Entity Name=$Trigger
 								Name To Target=
 								Valid Targets=Scripted Custom 1
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CTriggerRelayAction
+								{
+									Relay Name=You killed the apprentice
+								}
+								Target Name=$Instigator
 							}
 						}
 					}

@@ -85,6 +85,66 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=serpents know the mark
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=140
+			Position Y=140
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=the mark has been read
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=140
+			Position Y=140
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CRenderablePolygon
 		{
 			Dynamic Properties=2
@@ -2134,7 +2194,106 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CConditionalAction
+										{
+											Try Action=CCheckExistenceAction
+											{
+												Name To Check For=serpents know the mark
+												Desired Minimum Count=1
+											}
+											Succeed Action=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
+												{
+													Name To Check For=the mark has been read
+													Desired Minimum Count=1
+												}
+												Succeed Action=
+												Fail Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/The Caverns
+															Node ID=1 nothing answers
+															Name of Position=$trigger
+															Position Offset=0.000000,-70.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CActivateAction
+														{
+															Target Name=the mark has been read
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
+													}
+												}
+												Return failure if the TryAction failes=0
+											}
+											Fail Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CCloneAction
+													{
+														New Location=$Trigger
+														Copy Height=0
+														Random Location Delta=75
+														Warp Behavior=
+														Source Name=Snakebreed Clone Generator
+														New Name=used snake gen
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=used snake gen
+														}
+														Delay=0.3
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+											Return failure if the TryAction failes=0
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{

@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. All six tiers built 2026-09-25, unplayed.** Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Eight tiers built 2026-09-25, unplayed.** Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -797,6 +797,50 @@ did not already have.
 
 Still zero: gender, Barter, perk, magic school, and Speech. The act has no merchant and no lock, which
 covers Barter; the rest are open.
+
+### Tier 7 - he ain't no Lazarus, except he was (built)
+
+`06 Cave 1` carries a relay named `You killed the apprentice`, `Active=1`, fired by nothing, and its
+own comment is the specification:
+
+> If you kill the apprentice after he's activated his generator on the next map, this deactivates it.
+> He ain't no Lazarus!
+
+The Frightened Apprentice runs from the player through a five-step scripted series on Cave 1 and
+reappears on `02 Clan of the Hand A` from an `apprentice generator` waiting there. Kill him in the cave
+and **nothing notices** -- his generator installs no destroyed script -- so he is standing on the next
+map, alive, having died in front of the player a minute earlier. The relay that deletes the second copy
+has been there the whole time with nobody to call it.
+
+One `CSetDestroyedScriptActionAction` on the generator that produced him, the same hook the seer got in
+tier 4 and Huko has carried all along.
+
+### Tier 7b - the rest of the summoning the act documented on itself (built)
+
+Tier 2 left two pieces open, and both were the act's own checkers going unread.
+
+**Three caves had the apparatus and nothing to trigger it.** `08 Cave 3`, `09 Cave 4` and `10 Cave 5`
+each carry `hujark summoning enabled` and a `Snakebreed Clone Generator`, and none has an anonymous
+shield-helmet swordsman -- they field shamans, and a shaman calling a serpent is a better fit than a
+swordsman doing it. Four generators between them now do, on the same gate as tier 2b, so Sahar's mark
+silences these too. `06 Cave 1` is left alone: it fields no Hujark at all.
+
+**And `snakebreed summoning enabled` had never been read once.** It sits on `02 Clan of the Hand A`
+and `04 Clan of the Skull B`, `Active=1`, beside a `Snakebreed Summoner Clone Generator` that nothing
+clones -- and that generator is not a snake. Across four `Max Party Mojo` tiers it fields a Mongol
+Goblin Archer Super, an Ogre1 Ranged, a Bear Super, a Vodyanoi Cave Super, a Mongol Goblin Shaman
+Super, a Wolf Black Super, a Festering Undead, a Desert Beast, a Ghoul Male Large Super and, at the
+top of the table, a **Rock Titan**. The `Snakebreed Summoner` that fields it was already on both maps.
+
+So there are two tiers of summoning in the act now, and they are not the same thing:
+
+| tier | who | at | calls | stopped by Sahar's ring |
+|---|---|---|---|---|
+| snakes | shield-helmet swordsmen and cave shamans, 35 generators | 50% health | one `Snakebreed Venom`, scaled by party mojo | **yes** |
+| summoners | `Snakebreed Summoner`, 7 generators | 25% health | whatever the four-tier table gives, up to a Rock Titan | **no** |
+
+**The ring is not a blanket off-switch**, and that is the point of the distinction. The serpents know
+Sahar's mark. A rock titan does not.
 
 ### Tiers, in the order they should be built
 
