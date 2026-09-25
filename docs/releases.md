@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Tier 1 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Tiers 1 and 2 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -386,12 +386,70 @@ question, not a defect, and it is tier 3's to answer.
 designers' own coordinates, but a spawn point that has never run is a spawn point nobody has watched.
 First thing to look at in play is whether he appears on the floor and can reach the player.
 
+### Tier 2 - the summoning the checker was placed to enable (built)
+
+The comment is on the part itself, in the shipped game, on nine of the ten maps:
+
+> This checker enables shield-helmet swordsmen to summon snakes from the clone gen
+
+`hujark summoning enabled` is `Active=1` on all nine and read **zero times** anywhere. The
+`Snakebreed Clone Generator` it points at is placed on the same nine, `Active=0`, and named by
+nothing, so no `CCloneAction` ever copies it. The act has 1,130 live spawners and not one of them
+behaves differently from any other.
+
+Every piece needed is precedented, in three different places:
+
+| piece | where vanilla does it |
+|---|---|
+| fire an action when a monster crosses a health percent | `Ogre Conjurer Cave`: a `CAIHealthPercentThresholdTrigger` in a generator's `AIs to Add`, so every spawned entity carries its own |
+| put a monster on the ground at a moment's notice | `4 Misc Crypt 2`: `CCloneAction{Source Name=<a generator>, Random Location Delta=75, New Name=used clone gen}` then a delayed `CDeleteAction`. The clone is **never activated** -- cloning a generator is what makes it run, and the temporary copy is swept up 0.3s later |
+| aim that clone at the entity whose own AI fired it | `Barcelona Coast`'s `Wave Cloner`, which clones at `$Trigger` from a per-part timer AI |
+
+So a shield-helmet swordsman driven below **half** health calls a snake out of the floor beside him,
+if this map's checker says he may. The snake is vanilla's own generator, whose four
+`Max Party Mojo` groups scale it from a `Snakebreed Venom` to a `Venom Tough` with the party's
+strength -- so it is a threat at the level the player actually arrives at.
+
+**Thirty-one generators, on five maps:**
+
+| map | summoning generators | which |
+|---|---|---|
+| 01 Heart Entrance | 9 | `Hujark Generator` |
+| 02 Clan of the Hand A | 5 | `Shield Helmet Swordsman Generator`, `apprentice generator` |
+| 03 Tourniquet of Pain | 13 | `Hujark Generator` |
+| 04 Clan of the Skull B | 3 | `Shield Helmet Swordsman Generator` |
+| 07 Cave 2 | 1 | `Fight` |
+
+**Named characters do not summon.** A generator that gives its spawn a `New Name` is making a
+character, not a battlefield swordsman, and three were excluded on that rule: Huko's own
+`Hujark Guard` from tier 1, `xloserx` in the Cave 1 set-piece, and `xhujark1x` on Cave 3. The first
+draft of this tier caught all three, which is what the rule came out of.
+
+**This adds enemies to the grindiest act in the game, and that is the honest objection to it.** The
+argument for doing it anyway is that it changes the *shape* of a fight rather than its length: the
+helmeted swordsman is now the one to kill first, and a player who ignores him fights the snake he
+called. Two dials exist if play says otherwise, and both are one-line changes. The threshold is a
+single `Constant Value=50`, and **each map's checker is its own off switch** -- flip one
+`hujark summoning enabled` to `Active=0` and that map stops summoning entirely, which is what the
+designers built those nine checkers to do.
+
+**Left for later, deliberately.** `05 Nostrodomus Demesne`, `09 Cave 4` and `10 Cave 5` carry the
+checker and the clone source but have **no anonymous shield-helmet swordsman** to hang a trigger on
+-- only lesser shamans. A shaman summoning a snake is arguably a better fit than a swordsman doing
+it, and extending the filter is one line, but the comment names shield-helmet swordsmen and this tier
+does what the comment says. `snakebreed summoning enabled` on maps 02 and 04, and the
+`Snakebreed Summoner Clone Generator` it presumably gates -- which spawns a `Mongol Goblin Archer
+Super`, an `Ogre1 Ranged` and a `Bear Super`, an odd set -- are still unwired.
+
+**If `$Trigger` does not resolve the way the Wave Cloner implies**, the clone does not happen and the
+act fights exactly as it does today. The failure mode is silence, not breakage, which is the main
+reason this was worth building before anybody has walked the act.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The general who never spawns, and the two quests behind him.**~~ **Built** -- see above.
-2. **The summoning.** Wire the eleven live checkers and the eleven placed clone sources to the
-   shamans and shield-helmet swordsmen, on the Ogre Conjurer's `CHealthPercentThresholdTrigger`
-   pattern. The one change that makes 1,130 spawners behave differently from each other.
+2. ~~**The summoning.**~~ **Built** -- see above. Extending it to the lesser shamans, and wiring
+   `snakebreed summoning enabled`, are still open.
 3. **The commentary.** The fifteen unopened nodes of `Losing side wins a fight`, as a per-map
    escalation so crossing the act reads as an advance, and the English side's four missing barks.
 4. **The seer's three stranded nodes**, and the question in `5 questions` that was meant to reach

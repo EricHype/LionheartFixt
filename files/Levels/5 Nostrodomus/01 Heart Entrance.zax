@@ -6417,7 +6417,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -7556,7 +7613,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -11423,7 +11537,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -11667,7 +11838,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -12467,7 +12695,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -15172,7 +15457,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -17629,7 +17971,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -17863,7 +18262,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -18290,7 +18746,64 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=1
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=50
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=hujark summoning enabled
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=75
+													Warp Behavior=
+													Source Name=Snakebreed Clone Generator
+													New Name=used snake gen
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used snake gen
+													}
+													Delay=0.3
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
