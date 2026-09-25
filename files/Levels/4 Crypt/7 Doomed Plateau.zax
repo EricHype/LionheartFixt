@@ -10652,9 +10652,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -21847,9 +21874,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -29894,9 +29948,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -38174,9 +38255,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -42925,9 +43033,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -46966,9 +47101,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -48402,9 +48564,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -49044,9 +49233,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -52073,9 +52289,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -55945,9 +56188,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -58854,9 +59124,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -60342,9 +60639,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -69592,9 +69916,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -74864,9 +75215,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0
@@ -80188,9 +80566,36 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Action=CConditionalAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
 							}
 							X Radius=50
 							Attacker Range Modifier=0

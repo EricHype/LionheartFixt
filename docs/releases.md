@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Tiers 1 to 4 built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Tiers 1 to 5 built 2026-09-24, unplayed.** Tier 4 adds the project's third new map. `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -309,11 +309,45 @@ the loss is at the placement layer, not the tree layer:
 The act carries **66 `GetCloseThen Disarm Trap`** specifiers, and every one calls `Disarm Trap.can`
 or `Disarm Trap on Chest.can`, which are pure action bundles: play a sound, delete the trap, print
 "Disarmed Trap", award 75 XP. **No skill is consulted** -- a character with nothing in
-`Lockpick Disarm Traps` disarms all 66 by walking up to them. There are also 87 `CAISecretReveal`
+`Lockpick Disarm Traps` disarms all 66 by clicking them. (An earlier draft of this survey said
+they fire automatically on approach. They are `GetCloseThen ...` interactions, so the player
+clicks and the character walks over: the point stands, but the mechanism is a click.) There are also 87 `CAISecretReveal`
 activities and 8 named secret doors, and the environmental vocabulary is placed and barely used:
 `Switch Barricade` x7, `last coffin protect wall` x13, `Center Trap Spike` x10, two corpse bombs, a
 fire trap, `Switch for Joan Pillars`, and the pulley whose entire dialogue is *"&lt;You hear a faint
 click from the north wall&gt;"*.
+
+### Tier 5 - 66 traps that finally test something (built)
+
+Each disarm interaction fired a `CMultipleActionsAction` that played a sound, deactivated the
+trap's trigger polygon, removed the disarm option and paid 75 XP. No check, anywhere: a character
+with nothing in `Lockpick Disarm Traps` cleared all 66 and collected **4,950 XP** for clicking on
+them.
+
+Every one of those 67 actions -- the 66 in vanilla plus the one trapped chest the new camp
+inherited from its base map -- is now the **Succeed** branch of a `CConditionalAction` testing
+`Skills/Thieving/Lockpick Disarm Traps` against 40, built on the shape `Gate District.zax` already
+uses to test `Skills/Fighting/Ranged`, with `CVariableSkill` (20 vanilla maps) as the primitive.
+Fail prints *"The mechanism is beyond you"* and leaves the trap armed, and `Trigger Only Once` goes
+to 0 on these interactions so a character who comes back better at it may try again -- which the
+vanilla value of 1 would have prevented.
+
+**The shared cans are deliberately untouched.** `Common Objects and Scripts/Disarm Trap` and
+`Disarm Trap on Chest` are invoked **241 times across every act in the game** -- Alamut 54, the
+English Shrine 37, the Sewers 34, the Wilderness 24, and so on -- and they are only the sound, the
+text and the XP; the actual disarming is the `CDeactivateAction` in each map. Turning all 241 into
+skill checks is a whole-game balance decision, not part of one act's release, so the change is made
+at the 67 Crypt sites and nowhere else.
+
+**What this costs a non-thief**, stated plainly because it is a real balance change: a character
+under 40 in that skill can no longer clear the Crypt's traps or collect their XP, and must route
+around them or eat them. That is the intent -- the act had 66 trap events and no trap checks -- but
+it is the first change in this project that takes something away from a build, and the threshold is
+the one number here worth arguing about.
+
+**Not done:** the other half of the survey's proposal, `Find Traps Secret Doors` deciding whether
+the player *sees* a trap before it fires, and the re-laying of a disarmed trap to face the horde.
+Both need the trap parts themselves reworked rather than their disarm interaction wrapped.
 
 ### What the act asks about the player
 
@@ -413,9 +447,8 @@ shipped maps disagree, and that question should be settled against the Undercrof
 4. **The camp.** Built as `10 Garrison Camp`. Jehanne stays on the plateau, where she is placed
    with 38 nodes and a companion flow: moving her would break more than it gained, and the camp
    sends the player to her instead.
-5. **Give the 66 traps a skill.** `Find Traps Secret Doors` to see one, `Lockpick Disarm Traps` to
-   disarm it, and -- where the horde is on the other side of it -- to re-lay it. The act's own
-   `switch to trap ghouls` is the model, and it is one dead part away from being the model.
+5. **Give the 66 traps a skill.** Built, at `Lockpick Disarm Traps` 40. Seeing a trap before it
+   fires, and re-laying one to face the horde, are still open.
 6. **The seals, and reading the dead.** The three magic-school gates for Michel's Saracen seals;
    `Necrosage` and `Necromancer` for learning something from a body in an act that is nothing but
    bodies.

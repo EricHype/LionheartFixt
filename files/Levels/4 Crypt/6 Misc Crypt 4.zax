@@ -1,0 +1,4819 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/Crypt
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=5
+		Full Mix Song=4 Crypt/MX_CRYPT_FAST.ogg
+		Med Mix Song=4 Crypt/MX_CRYPT_FAST.ogg
+		Ambiant Song=4 Crypt/AMB_crypt_vari.ogg
+	}
+	Width=3008
+	Height=2048
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=
+	Has Begin Been Called=0
+	Map Description=Crypte de Trois
+	First Fire Action=
+	First Load Action=
+	View Position=1059.000000,783.000000
+	Int View Position=1059,783
+	Partial File Name=4 Crypt/6 Misc Crypt 4
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr C
+			Position X=797.45
+			Position Y=972.25
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=824, 812, 1066, 736, 1175, 889, 1106, 925, 1103, 843, 1085, 825, 1044, 833, 1011, 858, 992, 889, 991, 964, 971, 990, 921, 992, 824, 812
+			Center Position Offset=-11.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/Straight Wall/StraightWall G
+			Position X=898.94
+			Position Y=1089.07
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnr B
+			Position X=1039.66
+			Position Y=1217.03
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/To Maps/Wooden Door/Wood Door A
+			Position X=1034.13
+			Position Y=862.375
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Open
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Ankh Symbols/AnkOne
+			Position X=919
+			Position Y=957
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=the tough and super large ghoul cans look for this and if this is here they can summon little ghouls in combat
+			}
+			Name=ghoul summoning enabled
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=984
+			Position Y=1021
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=ghoul clone generator
+			}
+			Name=ghoul clone generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=115
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=3
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=14
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=6
+									Entity=Monster Cans/Undead/Ghoul Female
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=6
+									Entity=Monster Cans/Undead/Ghoul Male
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=18
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=6
+									Entity=Monster Cans/Undead/Ghoul Female Tough
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=6
+									Entity=Monster Cans/Undead/Ghoul Male Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=22
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=6
+									Entity=Monster Cans/Undead/Ghoul Female Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=6
+									Entity=Monster Cans/Undead/Ghoul Male Super
+								}
+							}
+						}
+					}
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CSpawnEffectAction
+									{
+										Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+										Location Entity=$Instigator
+										Make effect a child of the location entity=1
+										X Offset=0
+										Y Offset=0
+										Height Offset=0
+										Play Default Sound=1
+										Action to execute After Effect=
+									}
+									Action=CPlaySoundAction
+									{
+										Sound=Spells/Monster Summon.ogg
+										Position=$Trigger
+										Multiplayer=Heard by all players
+									}
+								}
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDeleteAction
+								{
+									Target Name=used ghoul clone generator
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=1
+									Action=CDelayAction
+									{
+										Next Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Special Effects/Teleport Generic
+													Location Entity=$Instigator
+													Make effect a child of the location entity=0
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Instigator
+													}
+													Delay=0.2
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Delay=60
+										Plus or Minus=10
+										Forget Trigger=0
+									}
+								}
+							}
+						}
+					}
+					New Facing Angle=4.5204
+					Angle Variation=0.471239
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=1015
+			Position Y=1049
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnr E
+			Position X=1213.66
+			Position Y=801.027
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=transition poly to Doomed Plateau
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=4 Crypt/7 Doomed Plateau
+						New Location=From Misc Crypt 4
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=990, 961, 989, 886, 1010, 849, 1042, 827, 1086, 817, 1109, 833, 1105, 916, 990, 961
+			Center Position Offset=-5.000000,52.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=From Doomed Plateau
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=CSeriesAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=
+							Action=
+						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
+					}
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=45
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=1081
+			Position Y=975
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CBehaviorActivity
+				{
+					Marked For Deletion=0
+					Publisher=
+					Behavior Queue=CEntityBehaviorQueue
+					{
+						Behavior=Array
+						{
+							Item Count=2
+							Behavior=CEntityBehaviorPlaySequenceOnce
+							{
+								Sequence=Idle
+								Speed To Play=1
+								Done Sequence=Idle
+								Done Frame=-1
+								Was Stationary=0
+								Old Play Ratio=0
+								Move With Sequence=0
+								After Action=
+								Cur Speed To Play=1
+							}
+							Behavior=CEntityBehaviorMarkForDeletion
+							{
+							}
+						}
+						Current Behavior=0
+						Changed Behavior=1
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Items/Projectiles/Meat Chunk Hit
+			Position X=1109.25
+			Position Y=1010.22
+			Rendering Height=33
+			Rendering Height Float=33
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Start Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=CSeriesAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=
+							Action=
+						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
+					}
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=45
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=1099
+			Position Y=1020
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CBehaviorActivity
+				{
+					Marked For Deletion=0
+					Publisher=
+					Behavior Queue=CEntityBehaviorQueue
+					{
+						Behavior=Array
+						{
+							Item Count=2
+							Behavior=CEntityBehaviorPlaySequenceOnce
+							{
+								Sequence=Idle
+								Speed To Play=1
+								Done Sequence=Idle
+								Done Frame=-1
+								Was Stationary=0
+								Old Play Ratio=0
+								Move With Sequence=0
+								After Action=
+								Cur Speed To Play=1
+							}
+							Behavior=CEntityBehaviorMarkForDeletion
+							{
+							}
+						}
+						Current Behavior=0
+						Changed Behavior=1
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Items/Projectiles/Meat Chunk Hit
+			Position X=1103.42
+			Position Y=1028.31
+			Rendering Height=33
+			Rendering Height Float=33
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr F
+			Position X=1172.33
+			Position Y=1258.03
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr B
+			Position X=1194.11
+			Position Y=1376.49
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnrTorch D
+			Position X=1213.66
+			Position Y=801.027
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle Torch
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/TorturePoles/Pole A F
+			Position X=1164
+			Position Y=1165
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Spirit 1 Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CActionAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Spirit 1 Generate Action
+					}
+					Executed Action=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spirit Generator Level1
+			Position X=1151
+			Position Y=1235
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Dirt/DirtPile4
+			Position X=1253
+			Position Y=861
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr H
+			Position X=1415.02
+			Position Y=789.228
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=1243
+			Position Y=821
+			Rendering Height=64
+			Rendering Height Float=64
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/TorturePoles/Pole A B
+			Position X=1305
+			Position Y=830
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/VaseLamp/Vase2
+			Position X=1331
+			Position Y=1023
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnr A
+			Position X=1454.66
+			Position Y=1400.03
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnr D
+			Position X=1467.6
+			Position Y=710.66
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Big Fire
+			Position X=1344
+			Position Y=973
+			Rendering Height=82
+			Rendering Height Float=82
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/FloorArt/StoneDesign
+			Position X=1519
+			Position Y=1031
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Greater Skeleton
+			}
+			Name=Greater Skel Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=115
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=14
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=18
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=22
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=3
+							Quantity to generate max=3
+							Things to Generate=Array
+							{
+								Item Count=2
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Greater Skeleton Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton Super
+								}
+							}
+						}
+					}
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CSetDestroyedScriptActionAction
+					{
+						New Destroyed Action=COpenDoorAction
+						{
+							Door Name=Door 6 Misc Crypt 4 Switch Barricade
+							Delay Between Doors=0.5
+						}
+						Target Name=$Instigator
+					}
+					New Facing Angle=3.33347
+					Angle Variation=0.366519
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=1395
+			Position Y=1100
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnr H
+			Position X=1568
+			Position Y=1344.57
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Crypt01
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=Opening
+								Random From Sequencial Set=0
+								Target Name=$Trigger
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CSpawnEffectAction
+										{
+											Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+											Location Entity=Enemy to Create Crypt01
+											Make effect a child of the location entity=0
+											X Offset=0
+											Y Offset=0
+											Height Offset=0
+											Play Default Sound=0
+											Action to execute After Effect=
+										}
+										Action=CDelayAction
+										{
+											Next Action=CActivateAction
+											{
+												Target Name=Enemy to Create Crypt01
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Action=CPlaySoundAction
+										{
+											Sound=Spells/Monster Summon.ogg
+											Position=$Trigger
+											Multiplayer=Heard by all players
+										}
+									}
+								}
+								Delay=0.4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=-0.68723
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=1
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=-300
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Coffins/Opening Coffins/Coff E
+			Position X=1440
+			Position Y=1234
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr E
+			Position X=1597.24
+			Position Y=631
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnrTorch C
+			Position X=1467.6
+			Position Y=750.66
+			Rendering Height=40
+			Rendering Height Float=40
+			Cur Sequence=Idle Torch
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=big ghoul inside
+			}
+			Name=Enemy to Create Crypt01
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=15
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=14
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Large
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=18
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Large Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=22
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=3
+							Things to Generate=Array
+							{
+								Item Count=3
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Large
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Female Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Super
+								}
+							}
+						}
+					}
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=Any Direction
+					Angle Variation=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=1525
+			Position Y=1282
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=1514
+			Position Y=751
+			Rendering Height=95
+			Rendering Height Float=95
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=big ghoul inside
+			}
+			Name=Enemy to Create Crypt03
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=15
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=14
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Large
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=18
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Large Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=22
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=3
+							Things to Generate=Array
+							{
+								Item Count=3
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Large
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Female Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Ghoul Male Super
+								}
+							}
+						}
+					}
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=Any Direction
+					Angle Variation=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=1534
+			Position Y=863
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=position for effects opening Crypt03
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=1534
+			Position Y=862
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CRenderablePolygon
+		{
+			Dynamic Properties=2
+			{
+				Experience Points=250
+				Comment=Fire trap
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Fire Attacks/Fire Circle Medium
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=20
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Fire
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=20
+													}
+													Maximum=CConstant
+													{
+														Constant Value=30
+													}
+												}
+											}
+										}
+									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=14
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Fire
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=15
+														}
+														Maximum=CConstant
+														{
+															Constant Value=25
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Fire
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=10
+														}
+														Maximum=CConstant
+														{
+															Constant Value=20
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=0.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Triggered Trap
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=15
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Trap
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1604.31, 961.563, 1631.56, 1000.81, 1587, 1009, 1556, 1007, 1527, 998, 1490.56, 976.813, 1557.56, 947.813, 1604.31, 961.563
+			Center Position Offset=0.000000,0.000000
+			On Ground=1
+			Render Type=Trans Red
+			YSort=50
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Crypt02
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=Opening
+								Random From Sequencial Set=0
+								Target Name=$Trigger
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CSpawnEffectAction
+										{
+											Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+											Location Entity=Enemy to Create Crypt02
+											Make effect a child of the location entity=0
+											X Offset=0
+											Y Offset=0
+											Height Offset=0
+											Play Default Sound=0
+											Action to execute After Effect=
+										}
+										Action=CDelayAction
+										{
+											Next Action=CActivateAction
+											{
+												Target Name=Enemy to Create Crypt02
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Action=CPlaySoundAction
+										{
+											Sound=Spells/Monster Summon.ogg
+											Position=$Trigger
+											Multiplayer=Heard by all players
+										}
+									}
+								}
+								Delay=0.4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=-0.68723
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=1
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=-300
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Coffins/Opening Coffins/Coff C
+			Position X=1642.02
+			Position Y=1051.69
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CRenderablePolygon
+		{
+			Dynamic Properties=2
+			{
+				Experience Points=200
+				Comment=Cold Trap
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Ice Attacks/Cold Ground
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=20
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Cold
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=20
+													}
+													Maximum=CConstant
+													{
+														Constant Value=30
+													}
+												}
+											}
+										}
+									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=14
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Cold
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=15
+														}
+														Maximum=CConstant
+														{
+															Constant Value=25
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Cold
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=10
+														}
+														Maximum=CConstant
+														{
+															Constant Value=20
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=0.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Triggered Trap
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=0
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Trap
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1520.13, 1053.88, 1540, 1058, 1555, 1065, 1562.13, 1084.88, 1556.88, 1119.63, 1540, 1126, 1514, 1129, 1506, 1127, 1492, 1120, 1483, 1113, 1475.88, 1100.63, 1476, 1088, 1481, 1071, 1487, 1063, 1494, 1057, 1507, 1054, 1520.13, 1053.88
+			Center Position Offset=0.000000,0.000000
+			On Ground=1
+			Render Type=Trans Red
+			YSort=50
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr D
+			Position X=1630.02
+			Position Y=1252.23
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=position for effects opening Crypt01
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=1525
+			Position Y=1280
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Ankh Symbols/AnkOne
+			Position X=1590
+			Position Y=695
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=Opening
+								Random From Sequencial Set=0
+								Target Name=$Trigger
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=$Trigger
+									Location Offset=4,39
+									Generate Within Radius=32.5
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorAdditionalMagic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Gold
+														}
+													}
+													Chance Has Additional Magic=1
+													Additional Magic=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorAdditionalMagicItem
+														{
+															Weighting=10
+															Addition=Inventory/Inventory Additions/Gold/Gold 5Medium_Large Pile
+															Level=0
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Delay=0.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=1
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=20
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Chests/Chest1
+			Position X=1594.25
+			Position Y=748.25
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Crypt03
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=Opening
+								Random From Sequencial Set=0
+								Target Name=$Trigger
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CSpawnEffectAction
+										{
+											Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+											Location Entity=Enemy to Create Crypt03
+											Make effect a child of the location entity=0
+											X Offset=0
+											Y Offset=0
+											Height Offset=0
+											Play Default Sound=0
+											Action to execute After Effect=
+										}
+										Action=CDelayAction
+										{
+											Next Action=CActivateAction
+											{
+												Target Name=Enemy to Create Crypt03
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Action=CPlaySoundAction
+										{
+											Sound=Spells/Monster Summon.ogg
+											Position=$Trigger
+											Multiplayer=Heard by all players
+										}
+									}
+								}
+								Delay=0.4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=-0.68723
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=1
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=-300
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Misc/Coffins/Opening Coffins/Coff A
+			Position X=1598.02
+			Position Y=815.69
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=revenant inside
+			}
+			Name=Enemy to Create Crypt02
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=15
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=14
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=18
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=22
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Undead/Magical Greater Skeleton Super
+								}
+							}
+						}
+					}
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=Any Direction
+					Angle Variation=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=1650
+			Position Y=1056
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/Straight Wall/StraightWall G
+			Position X=1744.9
+			Position Y=761.96
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=position for effects opening Crypt02
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=1650
+			Position Y=1054
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/Straight Wall/StrtWallTorch C
+			Position X=1755.9
+			Position Y=790.96
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle Torch
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=1725
+			Position Y=817
+			Rendering Height=64
+			Rendering Height Float=64
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=Opening
+								Random From Sequencial Set=0
+								Target Name=$Trigger
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=CUseCannedExpressionExpression
+									{
+										Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Average
+									}
+									Location=$Trigger
+									Location Offset=-30,39
+									Generate Within Radius=32.5
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorCannedList
+												{
+													Canned Item List=Inventory/Creating Random Magic Items/1 MASTER ALL Items in the game
+												}
+											}
+										}
+									}
+								}
+								Delay=0.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=1
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=-20
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Chests/Chest2
+			Position X=1760.25
+			Position Y=920.25
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/Straight Wall/StraightWall F
+			Position X=1808.81
+			Position Y=1259.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/Straight Wall/StraightWall G
+			Position X=1817.9
+			Position Y=850.96
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnr B
+			Position X=1942.7
+			Position Y=956.671
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Door 6 Misc Crypt 4 Switch Barricade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Wood Post Doors/Wood Post 1/DoorPost F
+			Position X=1817.49
+			Position Y=923.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Door 6 Misc Crypt 4 Switch Barricade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Wood Post Doors/Wood Post 1/DoorPost H
+			Position X=1811.49
+			Position Y=1000.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Door 6 Misc Crypt 4 Switch Barricade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Wood Post Doors/Wood Post 1/DoorPost H
+			Position X=1800.49
+			Position Y=960.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Door 6 Misc Crypt 4 Switch Barricade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Wood Post Doors/Wood Post 1/DoorPost F
+			Position X=1849.49
+			Position Y=1024.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/FortyFiveCrnr/FrtyFveCrnrTorch A
+			Position X=1942.7
+			Position Y=956.671
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle Torch
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=switch to open crypts
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CRemoveAIAction
+							{
+								Target Name=Crypt01,Crypt02,Crypt03
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CPlayAnimationAction
+										{
+											Animation=Opening
+											Random From Sequencial Set=0
+											Target Name=Crypt01
+											When Done=Stop on last frame
+											End Sequence Name=Idle
+											Delay Between Targets=0
+											Play In Reverse=0
+											AI To Interrupt=CSkeletonAI
+										}
+										Action=CDelayAction
+										{
+											Next Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CSpawnEffectAction
+													{
+														Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+														Location Entity=position for effects opening Crypt01
+														Make effect a child of the location entity=0
+														X Offset=0
+														Y Offset=0
+														Height Offset=0
+														Play Default Sound=0
+														Action to execute After Effect=
+													}
+													Action=CDelayAction
+													{
+														Next Action=CActivateAction
+														{
+															Target Name=Enemy to Create Crypt01
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
+														Delay=0.1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+													Action=CPlaySoundAction
+													{
+														Sound=Spells/Monster Summon.ogg
+														Position=position for effects opening Crypt01
+														Multiplayer=Heard by all players
+													}
+												}
+											}
+											Delay=0.4
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Delay=1
+								Plus or Minus=0.5
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CPlayAnimationAction
+										{
+											Animation=Opening
+											Random From Sequencial Set=0
+											Target Name=Crypt02
+											When Done=Stop on last frame
+											End Sequence Name=Idle
+											Delay Between Targets=0
+											Play In Reverse=0
+											AI To Interrupt=CSkeletonAI
+										}
+										Action=CDelayAction
+										{
+											Next Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CSpawnEffectAction
+													{
+														Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+														Location Entity=position for effects opening Crypt02
+														Make effect a child of the location entity=0
+														X Offset=0
+														Y Offset=0
+														Height Offset=0
+														Play Default Sound=0
+														Action to execute After Effect=
+													}
+													Action=CDelayAction
+													{
+														Next Action=CActivateAction
+														{
+															Target Name=Enemy to Create Crypt02
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
+														Delay=0.1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+													Action=CPlaySoundAction
+													{
+														Sound=Spells/Monster Summon.ogg
+														Position=position for effects opening Crypt02
+														Multiplayer=Heard by all players
+													}
+												}
+											}
+											Delay=0.4
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Delay=1
+								Plus or Minus=0.5
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CPlayAnimationAction
+										{
+											Animation=Opening
+											Random From Sequencial Set=0
+											Target Name=Crypt03
+											When Done=Stop on last frame
+											End Sequence Name=Idle
+											Delay Between Targets=0
+											Play In Reverse=0
+											AI To Interrupt=CSkeletonAI
+										}
+										Action=CDelayAction
+										{
+											Next Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CSpawnEffectAction
+													{
+														Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+														Location Entity=position for effects opening Crypt03
+														Make effect a child of the location entity=0
+														X Offset=0
+														Y Offset=0
+														Height Offset=0
+														Play Default Sound=0
+														Action to execute After Effect=
+													}
+													Action=CDelayAction
+													{
+														Next Action=CActivateAction
+														{
+															Target Name=Enemy to Create Crypt03
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
+														Delay=0.1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+													Action=CPlaySoundAction
+													{
+														Sound=Spells/Monster Summon.ogg
+														Position=position for effects opening Crypt03
+														Multiplayer=Heard by all players
+													}
+												}
+											}
+											Delay=0.4
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Delay=1
+								Plus or Minus=0.5
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Switches/Switch 2
+			Position X=1913.79
+			Position Y=1039.68
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Door 6 Misc Crypt 4 Switch Barricade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Wood Post Doors/Wood Post 1/DoorPost H
+			Position X=1898.49
+			Position Y=1031.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr H
+			Position X=2003.45
+			Position Y=1270.25
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=1892
+			Position Y=1002
+			Rendering Height=64
+			Rendering Height Float=64
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Door 6 Misc Crypt 4 Switch Barricade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Wood Post Doors/Wood Post 1/DoorPost F
+			Position X=1946.49
+			Position Y=1027.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/InrOutrCrnr/InrOutrCrnr F
+			Position X=2074.33
+			Position Y=1000.03
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Walls/Straight Wall/StraightWall H
+			Position X=2053
+			Position Y=1148
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Door 6 Misc Crypt 4 Switch Barricade
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Unknown
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Crypt Of Vika/Wood Post Doors/Wood Post 1/DoorPost H
+			Position X=1990.49
+			Position Y=1000.17
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=0.9
+		Num Textures=9
+		Texture 0=14 Black
+		Texture 1=14 Black
+		Texture 2=VykaCrypt/Brown Dirt
+		Texture 3=VykaCrypt/Dark StoneGrnd
+		Texture 4=VykaCrypt/Floor1Sparse
+		Texture 5=VykaCrypt/Floor1
+		Texture 6=VykaCrypt/Floor1
+		Texture 7=VykaCrypt/MossyStoneGrnd
+		Texture 8=VykaCrypt/Floor1 darker
+		Elevations Row 0=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 1=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 2=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 3=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 4=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 5=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 6=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 7=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 8=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 9=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 10=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 11=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 12=000000000000000000000000000000000000000000000000C9C936000000000000000000000000000000000000000000
+		Elevations Row 13=00000000000000000000000000000000C9C900C9C900C9C9C9C9C9000000000000000000000000000000000000000000
+		Elevations Row 14=000000000000000000000000000000C9C9C9C9735CC9C9C9C9C9C9C90000000000000000000000000000000000000000
+		Elevations Row 15=00000000000000000000000000000000C9C9C9C96AC9C9C9C9C9C9C9C900000000000000000000000000000000000000
+		Elevations Row 16=0000000000000000000000000000C9C9C9C9C9C979DEC9C9C9C9C9C9C900000000000000000000000000000000000000
+		Elevations Row 17=000000000000000000000000000000C9C9C9C980C9DBC9C9C9C9C9C9C9C9C90000000000000000000000000000000000
+		Elevations Row 18=000000000000000000000000000000C9C9C9C9C9C9C9C9C9B8C9C9C9C9C9C9C900000000000000000000000000000000
+		Elevations Row 19=000000000000000000000000000000000000C9C9C9C9C9C9C9C9C9C9C9C9C9C900000000000000000000000000000000
+		Elevations Row 20=00000000000000000000000000000000000000C9C9C9C9C9C9C900000000000000000000000000000000000000000000
+		Elevations Row 21=0000000000000000000000000000000000000000C9C9C9C9C90000000000000000000000000000000000000000000000
+		Elevations Row 22=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 23=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 24=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 25=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 26=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 27=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 28=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 29=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 30=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 31=00000000000000000000000000000000000000000000000000000000000000000000000000000000FDFDFDFDFDFDFD00
+		Elevations Row 32=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080505050808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080000000808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 16=8080808080808080808080808080808080808080808080808080808080808080805555550000008080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080804A4A4A000000808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 17=808080808080808080808080808080808080808080808080808080808080808080808080000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080282828000000808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 18=808080808080808080808080808080808080808080808080808080808080808080808080808080000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 19=8080808080808080808080808080808080808080808080808080808080808080808080808080808080800000000000008080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080805D5D5D000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 20=8080808080808080808080808080808080808080808080808080808080808080808080808080808080800000000000000000000000008080808080808080808080808080808080808080808080801B1B1B000000000000303030414141676767000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 21=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080000000000000000000808080808080808080808080808080808080808080444444000000000000000000000000000000000000000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 22=8080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080800000000000002525250505050000004D4D4D5D5D5D000000000000000000000000000000000000000000000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 23=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080000000000000000000000000000000000000000000000000000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 24=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080000000000000000000000000000000000000000000808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 25=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 26=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 27=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 28=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 29=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 30=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 31=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 32=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+	}
+}
