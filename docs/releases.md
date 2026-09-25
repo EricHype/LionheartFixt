@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Tiers 1 and 2 built 2026-09-24, unplayed.** `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Tiers 1, 2 and 3 built 2026-09-24, unplayed.** `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -254,6 +254,40 @@ could now be gated on that state. It is left ungated: it is the reply that makes
 blocking gate, and narrowing a progression route on the strength of a designer note is not worth
 the risk when the alternatives are a Speech check and killing her.
 
+### Tier 3 - placing the garrison (built)
+
+**Nine barks, one used.** `UndeadTemplar` carries `100 Random Knight` through `180 Random Knight`
+-- *"We are ever vigilant"*, *"We stand strong against the black tide"*, *"Fighting the undead
+hordes is our task, even if it is unpleasant..."*, *"I would lay down my life to protect the
+Lance!"* -- and `Adds Dialog knight beginning`, the relay that gives the knight his talk AI, held a
+`CSeriesAction` of **one** balloon, `150 Random Knight`, with `When Done=Repeat Last Action`. So the
+garrison had one line and repeated it forever. That series is now a `CRandomAction` over all nine,
+which is what nodes named "Random Knight" were written for, and `CRandomAction` is a shipped class
+the Calle Perdida uses.
+
+**And the garrison was only ever met after the war was over.** `UndeadTemplar` appears on
+`7 Doomed Plateau` and `9 Burial Chamber` and nowhere else. A player walks the Crypt Entrance, both
+Retreats and four Misc Crypts first -- `2 Retreat of Souls` alone holds **873 spawns and not one
+`Scripted Custom 2`** -- so the entire first half of the act is undead killing a player who has no
+idea there are two sides down here, and the knights' *"Have you been sent to reinforce us?"* lands
+only once the player is already at the plateau.
+
+One knight is now posted forward, on the route in: `Undead Templar Dialog 1 Generator` cloned onto
+`2 Retreat of Souls` as `Knight of the forward post`, at (3060, 2140) -- inside the spawn radius of
+the nearest live horde generator, so the footing is ground the map already walks monsters across,
+and the fiction is a man holding the corridor the player is coming down. He carries the garrison's
+own `Scripted Custom 2` category and `Valid Targets=Scripted Custom 1`, so the horde fights him and
+he never targets the player, and his talk interaction opens `01 Conversation Start` -- the challenge
+that leads to *"Are you a Knight? Have you been sent to reinforce us?"* and, with tier 1, to the
+quest.
+
+**And he defends himself.** The clone's damaged script fired `Make Knights at Level Start attack`,
+a relay that exists only on the plateau, so struck he would have stood there and been cut down.
+His damaged script now does directly what that relay does: `CGoToCombatAction` on himself plus the
+garrison's own `20 monster` line. Three references in the cloned After Action still point at
+plateau-only names (`Joan is a companion`, `Joan leaves party and attacks player`) and are left
+alone: both sit behind conditions that cannot be true on this map.
+
 ### What is written and unreachable
 
 Only **one** reply-carrying orphan: `UndeadTemplar / 03 return dialogue` (3 replies). The rest of
@@ -333,9 +367,8 @@ shipped maps disagree, and that question should be settled against the Undercrof
    carries it, the Efreeti resolves it. Highest value in the act, no new writing.
 2. **The checker behind Jehanne's warm greeting** -- the one genuine dead part in the act, and
    the only survivor of what this tier was originally scoped to be. Built.
-3. **Place the garrison.** Fire the other eight `Random Knight` barks and put `UndeadTemplar`
-   somewhere before `7 Doomed Plateau`, so the player learns there are two sides while it still
-   matters. Placement, not writing.
+3. **Place the garrison.** Built: nine barks instead of one, and a knight posted forward on
+   `2 Retreat of Souls`.
 4. **The camp**, per the plan: the muster point, Jehanne in command, the Spirit Council
    consultable, the Efreeti's wish discussed by the people it trapped.
 5. **Give the 66 traps a skill.** `Find Traps Secret Doors` to see one, `Lockpick Disarm Traps` to
