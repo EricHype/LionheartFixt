@@ -85,6 +85,1416 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CRenderablePolygon
+		{
+			Dynamic Properties=2
+			{
+				Experience Points=250
+				Comment=Fire trap
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Fire Attacks/Fire Circle Medium
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=30
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Fire
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=30
+													}
+													Maximum=CConstant
+													{
+														Constant Value=45
+													}
+												}
+											}
+										}
+									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=20
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Fire
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=22
+														}
+														Maximum=CConstant
+														{
+															Constant Value=35
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Fire
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=15
+														}
+														Maximum=CConstant
+														{
+															Constant Value=25
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=0.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Triggered Trap
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=15
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Trap
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=50
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=745, 1457, 885, 1457, 885, 1597, 745, 1597, 745, 1457
+			Center Position Offset=0.000000,0.000000
+			On Ground=1
+			Render Type=Trans Red
+			YSort=50
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Dynamic Properties=2
+			{
+				Experience Points=250
+				Comment=Shaman ward
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Electrical Burst Med
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=30
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Electrical
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=30
+													}
+													Maximum=CConstant
+													{
+														Constant Value=45
+													}
+												}
+											}
+										}
+									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=20
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Electrical
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=22
+														}
+														Maximum=CConstant
+														{
+															Constant Value=35
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Electrical
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=15
+														}
+														Maximum=CConstant
+														{
+															Constant Value=25
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=0.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Triggered Trap
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=15
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Trap
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=50
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1120, 1546, 1260, 1546, 1260, 1686, 1120, 1686, 1120, 1546
+			Center Position Offset=0.000000,0.000000
+			On Ground=1
+			Render Type=Trans Red
+			YSort=50
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Dynamic Properties=2
+			{
+				Experience Points=250
+				Comment=Cold snare
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Ice Attacks/Ice Ring
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=30
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Cold
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=30
+													}
+													Maximum=CConstant
+													{
+														Constant Value=45
+													}
+												}
+											}
+										}
+									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=20
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Cold
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=22
+														}
+														Maximum=CConstant
+														{
+															Constant Value=35
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Cold
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=15
+														}
+														Maximum=CConstant
+														{
+															Constant Value=25
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=0.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Triggered Trap
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=15
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Trap
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=50
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=2111, 1399, 2251, 1399, 2251, 1539, 2111, 1539, 2111, 1399
+			Center Position Offset=0.000000,0.000000
+			On Ground=1
+			Render Type=Trans Red
+			YSort=50
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Dynamic Properties=2
+			{
+				Experience Points=250
+				Comment=Fire trap
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Fire Attacks/Fire Circle Medium
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=30
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Fire
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=30
+													}
+													Maximum=CConstant
+													{
+														Constant Value=45
+													}
+												}
+											}
+										}
+									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=20
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Fire
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=22
+														}
+														Maximum=CConstant
+														{
+															Constant Value=35
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Fire
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=15
+														}
+														Maximum=CConstant
+														{
+															Constant Value=25
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=0.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Triggered Trap
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=15
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Trap
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=50
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=2218, 490, 2358, 490, 2358, 630, 2218, 630, 2218, 490
+			Center Position Offset=0.000000,0.000000
+			On Ground=1
+			Render Type=Trans Red
+			YSort=50
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Dynamic Properties=2
+			{
+				Experience Points=250
+				Comment=Shaman ward
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Electrical Burst Med
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CIsGreaterThanOrEqual
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=30
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Electrical
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=30
+													}
+													Maximum=CConstant
+													{
+														Constant Value=45
+													}
+												}
+											}
+										}
+									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=20
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Electrical
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=22
+														}
+														Maximum=CConstant
+														{
+															Constant Value=35
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Electrical
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=15
+														}
+														Maximum=CConstant
+														{
+															Constant Value=25
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Delay=0.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Triggered Trap
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=15
+					Reveal Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Found Trap
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
+							Action=CConditionalAction
+							{
+								Try Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Thieving/Lockpick Disarm Traps
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=50
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Succeed Action=CUseCannedActionAction
+								{
+									Canned Object=Common Objects and Scripts/Disarm Trap
+								}
+								Fail Action=CPrintCombatTextAction
+								{
+									Text to print=The mechanism is beyond you
+									Character to show text to=
+									Emphasize=1
+									Suppress Duplicates=1
+								}
+								Executed Action=0
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=2317, 538, 2457, 538, 2457, 678, 2317, 678, 2317, 538
+			Center Position Offset=0.000000,0.000000
+			On Ground=1
+			Render Type=Trans Red
+			YSort=50
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
 		Level Part=CEntityBase
 		{
 			Dynamic Properties=1

@@ -26,12 +26,12 @@ CLayerSaveData
 	Default Game Type=QuestMode
 	Allowable Games=
 	Has Begin Been Called=0
-	Map Description=Contested Alcove
+	Map Description=Small Chamber
 	First Fire Action=
 	First Load Action=
-	View Position=835.000000,194.000000
-	Int View Position=835,194
-	Partial File Name=5 Nostrodomus/10 Cave 5
+	View Position=531.000000,396.000000
+	Int View Position=531,396
+	Partial File Name=5 Nostrodomus/06 Cave 1
 	Team Info=Array
 	{
 		Item Count=1
@@ -357,7 +357,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=823, 787, 963, 787, 963, 927, 823, 927, 823, 787
+			Polygon=777, 752, 917, 752, 917, 892, 777, 892, 777, 752
 			Center Position Offset=0.000000,0.000000
 			On Ground=1
 			Render Type=Trans Red
@@ -639,7 +639,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1055, 884, 1195, 884, 1195, 1024, 1055, 1024, 1055, 884
+			Polygon=1305, 861, 1445, 861, 1445, 1001, 1305, 1001, 1305, 861
 			Center Position Offset=0.000000,0.000000
 			On Ground=1
 			Render Type=Trans Red
@@ -921,7 +921,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1105, 724, 1245, 724, 1245, 864, 1105, 864, 1105, 724
+			Polygon=1353, 772, 1493, 772, 1493, 912, 1353, 912, 1353, 772
 			Center Position Offset=0.000000,0.000000
 			On Ground=1
 			Render Type=Trans Red
@@ -931,230 +931,6 @@ CLayerSaveData
 			Static Texture=14 Black
 			Warp Effect=!None
 		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Lesser Shaman Generator
-			}
-			Name=English Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=0
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=COvalGeneratorArea
-					{
-						Radius=116
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=4
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=15
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=20
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=30
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow Super
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=60
-							Quantity to generate min=2
-							Quantity to generate max=2
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/English in Caverns of Nostrodomus/Nos Soldier2 Bow Super
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=4
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Player,Player Friend,Scripted Custom 2
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 1
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 2
-							}
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Player,Player Friend,Scripted Custom 1
-							}
-						}
-					}
-					New Facing Angle=0
-					Angle Variation=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=893
-			Position Y=857
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=sided with the Hujark
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=0
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Checker
-			Position X=120
-			Position Y=120
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Activate English generators
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CRelayAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CActivateAction
-					{
-						Target Name=English Generator, sided with the Hujark
-						Play Activate Sound=0
-						Delay Between Activations=0
-						Warp Behavior=
-					}
-					Trigger Only Once=0
-					Was Triggered=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Relay
-			Position X=150
-			Position Y=120
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
 		Level Part=CFreeRangePoly
 		{
 			Name=
@@ -1178,10 +954,10 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=0, 0, 1402, 0, 1394, 153, 1204, 320, 1019, 449, 780, 449, 592, 503, 475, 725, 582, 782, 600, 1049, 0, 1054, 0, 0
+			Polygon=39, 1378, 39, -29, 958, -29, 958, 210, 853, 298, 890, 421, 769, 454, 642, 432, 523, 640, 385, 617, 395, 840, 578, 990, 688, 1297, 888, 1206, 1152, 1226, 1345, 1209, 1345, 1378, 39, 1378
 			Center Position Offset=0.000000,0.000000
 		}
-		Level Part=CFreeRangePoly
+		Level Part=CEntityBase
 		{
 			Name=
 			Child List=
@@ -1204,8 +980,12 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=0, 1048, 593, 1045, 673, 1156, 733, 1280, 1225, 1245, 1248, 1136, 1383, 1169, 1411, 1266, 1745, 1138, 1744, 1407, 0, 1407, 0, 1048
-			Center Position Offset=0.000000,0.000000
+			Model=Environments/Heart of Fire/Walls/Wall color 01 G
+			Position X=387.063
+			Position Y=800.438
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
 		}
 		Level Part=CRenderablePolygon
 		{
@@ -1230,7 +1010,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=524.5, 670.75, 664.5, 709.75, 725.5, 829.75, 647, 918, 437, 918, 365.5, 759.75, 524.5, 670.75
+			Polygon=446.5, 583.75, 411.5, 737.75, 266.5, 813.75, 269, 619, 408.5, 508.75, 446.5, 583.75
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
@@ -1240,6 +1020,36 @@ CLayerSaveData
 			Static Texture=14 Black
 			Warp Effect=!None
 		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 F
+			Position X=414.316
+			Position Y=706.789
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CRenderablePolygon
 		{
 			Name=
@@ -1263,7 +1073,100 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=697, 379, 575, 586, 436, 610, 394, 462, 697, 379
+			Polygon=416.5, 725.75, 556.5, 764.75, 617.5, 884.75, 455, 1015, 257.5, 814.75, 416.5, 725.75
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=111
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 F
+			Position X=469.765
+			Position Y=889.941
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 G
+			Position X=539.375
+			Position Y=1097.69
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=737, 329, 760, 362, 542, 560, 436, 610, 394, 462, 737, 329
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
@@ -1302,39 +1205,6 @@ CLayerSaveData
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=593.5, 568.75, 558.5, 722.75, 413.5, 798.75, 416, 604, 555.5, 493.75, 593.5, 568.75
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=111
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
 		}
 		Level Part=CEntityBase
 		{
@@ -1389,12 +1259,101 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 F
-			Position X=588.316
-			Position Y=834.789
+			Model=Environments/Heart of Fire/Walls/Wall color 01 H
+			Position X=574.063
+			Position Y=937.438
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=425, 811, 462, 723, 554, 790, 538, 853, 425, 811
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 02 B
+			Position X=603.375
+			Position Y=980.688
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=552.5, 943.75, 756.5, 1320.75, 587.5, 1408.75, 426.5, 1156.75, 410, 999, 552.5, 943.75
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=111
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
 		}
 		Level Part=CEntityBase
 		{
@@ -1449,72 +1408,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 G
-			Position X=647.375
-			Position Y=1029.69
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=619.5, 849.75, 823.5, 1226.75, 654.5, 1314.75, 493.5, 1062.75, 477, 905, 619.5, 849.75
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=111
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 02 B
-			Position X=687.375
-			Position Y=879.688
+			Model=Environments/Heart of Fire/Walls/Wall color 02 A
+			Position X=598.375
+			Position Y=1197.69
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1543,8 +1439,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Heart of Fire/Walls/Wall color 01 H
-			Position X=696.063
-			Position Y=934.438
+			Position X=655
+			Position Y=1266.82
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1572,9 +1468,39 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 02 A
-			Position X=681.375
-			Position Y=1135.69
+			Model=Environments/Heart of Fire/Orc Dwellings/Overhangs/Overhang 02 D
+			Position X=641
+			Position Y=856.667
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 E
+			Position X=653.286
+			Position Y=1055.71
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1632,9 +1558,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag 01 B
-			Position X=656.25
-			Position Y=727.75
+			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 C
+			Position X=681.286
+			Position Y=1114.71
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1669,39 +1595,6 @@ CLayerSaveData
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1008.75, 329.5, 943.75, 488.5, 681.75, 351.5, 932.75, 210.5, 1008.75, 329.5
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=111
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
 		Level Part=CEntityBase
 		{
 			Name=
@@ -1728,36 +1621,6 @@ CLayerSaveData
 			Model=Environments/Heart of Fire/Walls/Wall 01 H
 			Position X=810.231
 			Position Y=492.538
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 D
-			Position X=856.81
-			Position Y=517.125
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1815,6 +1678,106 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
+			Model=Environments/Heart of Fire/Misc Pieces/Skull Torch 2 A
+			Position X=798
+			Position Y=626.001
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Stalagmites/Stag 01 B
+			Position X=743.25
+			Position Y=733.75
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=661, 874, 716, 926, 661, 874
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Floor Pieces/Floor 01 B
+			Position X=706
+			Position Y=978
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
 			Model=Environments/Heart of Fire/Walls/Wall color 02 B
 			Position X=808
 			Position Y=1193.45
@@ -1845,7 +1808,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=788.5, 1050.75, 870, 1028, 927, 1075, 872.5, 1295.75, 697.5, 1326.75, 655.5, 1149.75, 788.5, 1050.75
+			Polygon=788.5, 1050.75, 870, 1028, 927, 1075, 872.5, 1295.75, 743.5, 1324.75, 655.5, 1149.75, 788.5, 1050.75
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
@@ -1855,7 +1818,7 @@ CLayerSaveData
 			Static Texture=14 Black
 			Warp Effect=!None
 		}
-		Level Part=CEntityBase
+		Level Part=CFreeRangePoly
 		{
 			Name=
 			Child List=
@@ -1878,377 +1841,8 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 02 D
-			Position X=835
-			Position Y=1156.82
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 D
-			Position X=911
-			Position Y=1227.82
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 H
-			Position X=957.316
-			Position Y=475.789
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 G
-			Position X=929.625
-			Position Y=584.375
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Torch A
-			Position X=932
-			Position Y=639
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 E
-			Position X=871.286
-			Position Y=1046.71
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Lesser Shaman Generator
-			}
-			Name=Lesser Shaman Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=COvalGeneratorArea
-					{
-						Radius=116
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=4
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=15
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Cursed Elves/Shaman Lesser
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=20
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Cursed Elves/Shaman Lesser Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=30
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Cursed Elves/Shaman Lesser Super
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=60
-							Quantity to generate min=2
-							Quantity to generate max=2
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Cursed Elves/Shaman Lesser Super
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=3
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Player,Player Friend,Scripted Custom 2
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 1
-							}
-							Action=CConditionalAction
-							{
-								Try Action=CCheckExistenceAction
-								{
-									Name To Check For=sided with the Hujark
-									Desired Minimum Count=1
-								}
-								Succeed Action=CSetTargetTypeAction
-								{
-									Entity Name=$Instigator
-									Name To Target=
-									Valid Targets=Scripted Custom 2
-								}
-								Fail Action=
-								Return failure if the TryAction failes=0
-							}
-						}
-					}
-					New Facing Angle=0
-					Angle Variation=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=893
-			Position Y=857
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 D
-			Position X=954.429
-			Position Y=1096.43
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 E
-			Position X=1003.76
-			Position Y=1225.94
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
+			Polygon=720, 1194, 706, 1253, 642, 1195, 648, 1129, 722, 1144, 720, 1194
+			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CRenderablePolygon
 		{
@@ -2273,7 +1867,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1159.5, 1030.75, 1133.5, 1316.75, 947, 1340, 859.5, 1301.75, 906.5, 1092.75, 1159.5, 1030.75
+			Polygon=1105.5, 158.75, 1124, 275, 1012.5, 366.75, 854.5, 375.75, 708, 333, 755.5, 180.75, 949, 88, 1105.5, 158.75
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
@@ -2306,9 +1900,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 B
-			Position X=1099.23
-			Position Y=454.538
+			Model=Environments/Heart of Fire/Entrances/Entrance 01 A
+			Position X=937
+			Position Y=475
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2336,9 +1930,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 C
-			Position X=1038.43
-			Position Y=524.429
+			Model=Environments/Druid Grove/Mountain Walls/Ground Art/Ravines/RavineOne F
+			Position X=949
+			Position Y=468
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2366,178 +1960,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Special Effects/Torch Fire
-			Position X=941
-			Position Y=586
-			Rendering Height=84
-			Rendering Height Float=84
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Blue ribbon B
-			Position X=932
-			Position Y=637
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Snakebreed Boss Generator
-			}
-			Name=Snakebreed Boss Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=COvalGeneratorArea
-					{
-						Radius=116
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=4
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=15
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=20
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=30
-							Quantity to generate min=2
-							Quantity to generate max=3
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=60
-							Quantity to generate min=3
-							Quantity to generate max=4
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss Tough
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=2
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Player,Player Friend,Scripted Custom 2
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 1
-							}
-						}
-					}
-					New Facing Angle=0
-					Angle Variation=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=990
-			Position Y=942
+			Model=Environments/Heart of Fire/Misc Pieces/Dead Rat B
+			Position X=754
+			Position Y=616
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2565,159 +1990,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 G
-			Position X=1091.63
-			Position Y=1198.38
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Floor Pieces/Mineral 01 B
-			Position X=1089
-			Position Y=511
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 C
-			Position X=1089.29
-			Position Y=841.71
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Floor Pieces/Floor 02 A
-			Position X=1053
-			Position Y=779
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Floor Pieces/Floor 01 C
-			Position X=1052
-			Position Y=852
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 D
-			Position X=1136.32
-			Position Y=1160.79
+			Model=Environments/Heart of Fire/Misc Pieces/Red ribbon B
+			Position X=800
+			Position Y=625
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2727,12 +2002,12 @@ CLayerSaveData
 			Tries To Collide=0
 			Team Number=Nutral
 			Used In=QuestMode
-			Polygon=985, 1140, 1028, 1106, 985, 1140
+			Polygon=801, 606, 751, 632, 801, 606
 			Center Position Offset=0.000000,0.000000
 			Insertion Priority=Secondary
 			Include Closing Segment=1
 		}
-		Level Part=CRenderablePolygon
+		Level Part=CEntityAnimated
 		{
 			Name=
 			Child List=
@@ -2748,436 +2023,35 @@ CLayerSaveData
 			Is Marked For Deletion=0
 			Activity=Array
 			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1467.5, 87.75, 1486, 204, 1374.5, 295.75, 1216.5, 304.75, 1070, 262, 1117.5, 109.75, 1311, 17, 1467.5, 87.75
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=111
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 C
-			Position X=1219.74
-			Position Y=377.895
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/Mountain Walls/Ground Art/Ravines/RavineOne G
-			Position X=1327
-			Position Y=423
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 D
-			Position X=1129.43
-			Position Y=517.429
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=AMBIENT Cave SFX
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
 				Item Count=1
-				Activity=CCannedAI
+				Activity=CBehaviorActivity
 				{
 					Marked For Deletion=0
 					Publisher=
-					Canned AI=Common Objects and Scripts/Environmental SFX/Cave AI NO Monsters
-					AI Instance=
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Repeat Timer Trigger
-			Position X=1095
-			Position Y=582
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag 01 E
-			Position X=1093
-			Position Y=839
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Floor Pieces/Floor 01 B
-			Position X=1107
-			Position Y=795
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag 03 E
-			Position X=1103.63
-			Position Y=870.5
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Torch A
-			Position X=1146
-			Position Y=879
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Ogre generator
-			}
-			Name=
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=COvalGeneratorArea
+					Behavior Queue=CEntityBehaviorQueue
 					{
-						Radius=116
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=4
-						Group=CGeneratorAIGroup
+						Behavior=Array
 						{
-							Max Party Mojo=15
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
+							Item Count=2
+							Behavior=CEntityBehaviorPlaySequenceOnce
 							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre2 English Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=20
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre2 English Super
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=30
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre2 English Super
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=60
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre2 English Super
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=1
-						AI=CAIInteractionSpecifier
-						{
-							Marked For Deletion=0
-							Publisher=
-							Trigger Only Once=0
-							Was Triggered=0
-							Auto-Flip Switch=1
-							Trigge Must Have HP=0
-							Triggered By Anything=0
-							Triggered By Players=1
-							Triggered By Player Friends=0
-							Triggered By Enemies=0
-							Triggered By Projectiles=0
-							Triggered By Name=
-							Interaction Description=
-							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CDisplayDialogBalloonAction
-							{
-								Dialog Tree File=Levels/3 Montaillou/Dialog/ToulouseOgres
-								Node ID=500 Scared
-								Name of Position=$trigger
-								Position Offset=0.000000,-75.000000
+								Sequence=Idle
+								Speed To Play=1
+								Done Sequence=Idle
+								Done Frame=-1
+								Was Stationary=0
+								Old Play Ratio=0
+								Move With Sequence=0
 								After Action=
-								Include In Log=1
+								Cur Speed To Play=1
 							}
-							X Radius=55
-							Attacker Range Modifier=0
-							YX Ratio=0.712766
-							Highlight Self Time=0
-							Highlight Until Clicked=0
-							Is Locked=0
-							Allow Interact If Has Target=1
-							Lock Pick Adjustment=0
-							Inventory item to use as key=Inventory Items/!None
-							Is Bussy Talking=0
-						}
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=3
-							Action=CSetTargetTypeAction
+							Behavior=CEntityBehaviorMarkForDeletion
 							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Scripted Custom 1
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 2
-							}
-							Action=CRemoveCategoryAction
-							{
-								Target Name=$Instigator
-								Categories To Remove=Enemy
 							}
 						}
+						Current Behavior=0
+						Changed Behavior=1
 					}
-					New Facing Angle=0
-					Angle Variation=0
 				}
 			}
 			Category=
@@ -3185,45 +2059,44 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1125
-			Position Y=954
-			Rendering Height=0
-			Rendering Height Float=0
+			Model=Spell Effects/Hits and Effects/Fire Attacks/Fire Orb Hit
+			Position X=803.11
+			Position Y=627.623
+			Rendering Height=31
+			Rendering Height Float=31
 			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
 			{
-				Item Count=0
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
 			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1255.5, 1095.75, 1256.5, 1338.75, 1085.5, 1358.75, 1105.5, 1075.75, 1118, 1071, 1255.5, 1095.75
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=111
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
 		}
 		Level Part=CEntityBase
 		{
@@ -3404,7 +2277,7 @@ CLayerSaveData
 												}
 											}
 										}
-										Delay=120
+										Delay=60
 										Plus or Minus=10
 										Forget Trigger=0
 									}
@@ -3422,10 +2295,156 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Enemy Generator Spot
-			Position X=1161
-			Position Y=567
+			Position X=813
+			Position Y=714
 			Rendering Height=0
 			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 02 D
+			Position X=835
+			Position Y=1156.82
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 D
+			Position X=911
+			Position Y=1227.82
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=850, 445, 817, 327, 918, 235, 1051, 305, 1060, 417, 1006, 440, 1021, 407, 980, 373, 898, 369, 871, 397, 881, 454, 850, 445
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Misc Pieces/Cave Ground light 01 A
+			Position X=944
+			Position Y=440
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=806
+			Position Y=572
+			Rendering Height=90
+			Rendering Height Float=90
 			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
@@ -3456,8 +2475,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Checker
-			Position X=1186
-			Position Y=570
+			Position X=831
+			Position Y=712
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3466,7 +2485,7 @@ CLayerSaveData
 		{
 			Dynamic Properties=1
 			{
-				Comment=Dead Ogre Generator 4
+				Comment=Dead Snakebreed Generator
 			}
 			Name=Fixed Dead Body Generator
 			Child List=
@@ -3488,7 +2507,7 @@ CLayerSaveData
 					Marked For Deletion=0
 					Publisher=
 					Already Generated=0
-					Entity=Monster Cans/Ogre1 Ranged
+					Entity=Monster Cans/Snakebreed Venom
 					New Name=
 					Remove Default AIs=0
 					AIs to Add=Array
@@ -3503,7 +2522,7 @@ CLayerSaveData
 					{
 						Canned Object=Common Objects and Scripts/Genderate Dead Body
 					}
-					New Facing Angle=2.74017
+					New Facing Angle=3.03687
 				}
 			}
 			Category=
@@ -3512,528 +2531,11 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Dead Body Generator
-			Position X=1158
-			Position Y=635
+			Position X=847
+			Position Y=822
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Special Effects/Torch Fire
-			Position X=1155
-			Position Y=826
-			Rendering Height=84
-			Rendering Height Float=84
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Spirit 1 Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CActionAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Spirit 1 Generate Action
-					}
-					Executed Action=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spirit Generator Level1
-			Position X=1197
-			Position Y=815
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Snakebreed Generator
-			}
-			Name=Snakebreed Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=COvalGeneratorArea
-					{
-						Radius=116
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=4
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=15
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Venom
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=20
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Venom Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=30
-							Quantity to generate min=2
-							Quantity to generate max=3
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Venom Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=60
-							Quantity to generate min=3
-							Quantity to generate max=4
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Venom Tough
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=2
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Player,Player Friend,Scripted Custom 2
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 1
-							}
-						}
-					}
-					New Facing Angle=0
-					Angle Variation=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1175
-			Position Y=794
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Dead Rat C
-			Position X=1169
-			Position Y=807
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Blue ribbon B
-			Position X=1147
-			Position Y=879
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Bones 01 B
-			Position X=1152
-			Position Y=857
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 A
-			Position X=1259.76
-			Position Y=1242.94
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Entrances/Entrance 01 D
-			Position X=1362
-			Position Y=422
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Start Here
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CSpawnPointAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Per Party Spawn Action=
-					Per Character Spawn Action=
-					Set Facing Angle=1
-					Facing Angle=120
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Spawn Point
-			Position X=1235
-			Position Y=490
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Dead Rat D
-			Position X=1181
-			Position Y=825
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Bones 02 B
-			Position X=1199
-			Position Y=797
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1568.5, 196.75, 1595.5, 329.75, 1456.5, 353.75, 1242.5, 248.75, 1470, 44, 1568.5, 196.75
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=249
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
-		}
-		Level Part=CFreeRangePoly
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1223, 306, 1379, 143, 1523, 172, 1514, 384, 1455, 400, 1463, 251, 1385, 219, 1242, 316, 1223, 306
-			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CFreeRangePoly
 		{
@@ -4071,8 +2573,8 @@ CLayerSaveData
 					Action=CRelocateAction
 					{
 						Return to map=unlikely soon
-						New Map Name=5 Nostrodomus/04 Clan of the Skull B
-						New Location=From Cave 5
+						New Map Name=5 Nostrodomus/02 Clan of the Hand A
+						New Location=From Cave 1
 						Who To Switch=$Instigator
 						Relative Position=0
 					}
@@ -4093,7 +2595,392 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1430, 467, 1287, 422, 1249, 305, 1390, 205, 1477, 250, 1465, 404, 1430, 467
+			Polygon=998, 466, 890, 473, 874, 451, 864, 395, 900, 359, 983, 368, 1028, 404, 998, 466
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=If you kill the apprentice after he's activated his generator on the next map, this deactivates it.  He ain't no Lazarus!
+			}
+			Name=You killed the apprentice
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=COtherMapAction
+					{
+						Action=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CDeleteAction
+								{
+									Target Name=apprentice generator
+								}
+								Action=CDeleteAction
+								{
+									Target Name=xapprenticex
+								}
+							}
+						}
+						Other Map Name=5 Nostrodomus/02 Clan of the Hand A
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=883
+			Position Y=559
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=apprentice leaving
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=889
+			Position Y=608
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Start Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=90
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=931
+			Position Y=692
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=AMBIENT Cave SFX
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CCannedAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Canned AI=Common Objects and Scripts/Environmental SFX/Cave AI NO Monsters
+					AI Instance=
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Repeat Timer Trigger
+			Position X=902
+			Position Y=805
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Dead Ogre Generator 1
+			}
+			Name=Fixed Dead Body Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/Ogre4 Variant
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Genderate Dead Body
+					}
+					New Facing Angle=1.90241
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Dead Body Generator
+			Position X=873
+			Position Y=888
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Spirit 1 Generator
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CActionAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Spirit 1 Generate Action
+					}
+					Executed Action=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spirit Generator Level1
+			Position X=907
+			Position Y=917
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 D
+			Position X=954.429
+			Position Y=1096.43
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 E
+			Position X=1003.76
+			Position Y=1225.94
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1159.5, 1030.75, 1133.5, 1316.75, 947, 1340, 859.5, 1301.75, 906.5, 1092.75, 1159.5, 1030.75
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=111
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1307, 1407, 1304, 1237, 1569, 1173, 1738, 1147, 1662, 876, 1758, 719, 1713, 582, 1500, 367, 1323, 391, 1199, 311, 1058, 412, 1030, 301, 917, 236, 919, 0, 2303, 0, 2303, 1407, 1307, 1407
 			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CEntityBase
@@ -4119,16 +3006,188 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Cave Ground light 01 A
-			Position X=1358
-			Position Y=396
+			Model=Environments/Heart of Fire/Walls/Wall color 01 B
+			Position X=1099.23
+			Position Y=454.538
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=0
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=xapprenticex
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=1
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=1
+									Action=CDeleteAction
+									{
+										Target Name=$Instigator
+									}
+								}
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=916.4, 474.2, 911, 416, 985.4, 394.2, 981.4, 460.2, 916.4, 474.2
+			Center Position Offset=0.000000,0.000000
+		}
 		Level Part=CEntityBase
 		{
-			Name=From Clan of the Skull
+			Name=2
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=955
+			Position Y=453
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=0
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=xapprenticex
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=1
+									Action=COtherMapAction
+									{
+										Action=CActivateAction
+										{
+											Target Name=apprentice generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Other Map Name=5 Nostrodomus/02 Clan of the Hand A
+									}
+								}
+							}
+							Action=CActivateAction
+							{
+								Target Name=apprentice leaving
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=917, 476, 1063, 424, 1221, 512, 1220, 626, 1066, 693, 908, 626, 917, 476
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=From Clan of the Hand
 			Child List=
 			Visible=0
 			Collideable=1
@@ -4150,169 +3209,52 @@ CLayerSaveData
 					Per Party Spawn Action=
 					Per Character Spawn Action=
 					Set Facing Angle=1
-					Facing Angle=120
+					Facing Angle=80
 				}
 			}
-			Category=
+			Category=Scripted Custom 2
 			Team Number=Nutral
 			Used In=QuestMode
 			Current Target=
 			Publisher=
 			Model=Editor/Spawn Point
-			Position X=1319
-			Position Y=490
+			Position X=959
+			Position Y=505
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
-		Level Part=CEntityBase
+		Level Part=CFreeRangePoly
 		{
-			Dynamic Properties=1
-			{
-				Comment=Snakebreed Boss Generator
-			}
-			Name=Snakebreed Boss Generator
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=COvalGeneratorArea
-					{
-						Radius=116
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=4
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=15
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=20
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=30
-							Quantity to generate min=2
-							Quantity to generate max=3
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=60
-							Quantity to generate min=3
-							Quantity to generate max=4
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Snakebreed Boss Tough
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=0
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=2
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Player,Player Friend,Scripted Custom 2
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 1
-							}
-						}
-					}
-					New Facing Angle=0
-					Angle Variation=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1330
-			Position Y=838
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Dynamic Properties=1
-			{
-				Comment=Ogre generator
-			}
 			Name=
 			Child List=
-			Visible=0
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1100, 868, 1016, 865, 954, 852, 938, 823, 959, 795, 998, 768, 1031, 793, 1110, 795, 1141, 806, 1100, 868
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
 			Collideable=1
 			Half Height=0
 			Full Height=1
@@ -4324,162 +3266,156 @@ CLayerSaveData
 			Is Marked For Deletion=0
 			Activity=Array
 			{
-				Item Count=1
-				Activity=CGeneratorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Already Generated=0
-					Area=COvalGeneratorArea
-					{
-						Radius=116
-					}
-					Has Started Generating=0
-					Groups=Array
-					{
-						Item Count=4
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=15
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre4 Variant Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=20
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre4 Variant Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=30
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre4 Variant Tough
-								}
-							}
-						}
-						Group=CGeneratorAIGroup
-						{
-							Max Party Mojo=60
-							Quantity to generate min=1
-							Quantity to generate max=1
-							Things to Generate=Array
-							{
-								Item Count=1
-								Thing to Generate=CSpawnableCannedEntity
-								{
-									Weight=1
-									Entity=Monster Cans/Ogre4 Variant Tough
-								}
-							}
-						}
-					}
-					New Name=
-					Remove Default AIs=0
-					AIs to Add=Array
-					{
-						Item Count=1
-						AI=CAIInteractionSpecifier
-						{
-							Marked For Deletion=0
-							Publisher=
-							Trigger Only Once=0
-							Was Triggered=0
-							Auto-Flip Switch=1
-							Trigge Must Have HP=0
-							Triggered By Anything=0
-							Triggered By Players=1
-							Triggered By Player Friends=0
-							Triggered By Enemies=0
-							Triggered By Projectiles=0
-							Triggered By Name=
-							Interaction Description=
-							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CDisplayDialogBalloonAction
-							{
-								Dialog Tree File=Levels/3 Montaillou/Dialog/ToulouseOgres
-								Node ID=500 Scared
-								Name of Position=$trigger
-								Position Offset=0.000000,-75.000000
-								After Action=
-								Include In Log=1
-							}
-							X Radius=55
-							Attacker Range Modifier=0
-							YX Ratio=0.712766
-							Highlight Self Time=0
-							Highlight Until Clicked=0
-							Is Locked=0
-							Allow Interact If Has Target=1
-							Lock Pick Adjustment=0
-							Inventory item to use as key=Inventory Items/!None
-							Is Bussy Talking=0
-						}
-					}
-					Canned AIs to Add=Array
-					{
-						Item Count=0
-					}
-					After Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=3
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=$Instigator
-								Name To Target=
-								Valid Targets=Scripted Custom 1
-							}
-							Action=CAddCategoryAction
-							{
-								Target Name=$Instigator
-								Categories to add=Scripted Custom 2
-							}
-							Action=CRemoveCategoryAction
-							{
-								Target Name=$Instigator
-								Categories To Remove=Enemy
-							}
-						}
-					}
-					New Facing Angle=0
-					Angle Variation=0
-				}
+				Item Count=0
 			}
 			Category=
 			Team Number=Nutral
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1281
-			Position Y=962
+			Model=Environments/Heart of Fire/Walls/Wall color 01 G
+			Position X=1091.63
+			Position Y=1198.38
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=943, 1153, 989, 1140, 943, 1153
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Floor Pieces/Mineral 01 B
+			Position X=1093
+			Position Y=732
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=987, 1140, 1033, 1103, 987, 1140
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 C
+			Position X=1219.74
+			Position Y=377.895
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 E
+			Position X=1189.76
+			Position Y=824.941
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Stalagmites/Stag 03 E
+			Position X=1103.63
+			Position Y=870.5
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4508,8 +3444,64 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Heart of Fire/Stalagmites/Stag 01 E
-			Position X=1276.25
-			Position Y=1127.75
+			Position X=1118
+			Position Y=900
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Dead Ogre Generator 3
+			}
+			Name=Fixed Dead Body Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/Ogre2 English
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Genderate Dead Body
+					}
+					New Facing Angle=4.06662
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Dead Body Generator
+			Position X=1077
+			Position Y=978
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4537,9 +3529,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag 02 C
-			Position X=1288.25
-			Position Y=1085.75
+			Model=Environments/Heart of Fire/Walls/Wall color 01 D
+			Position X=1210.32
+			Position Y=1165.79
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4567,9 +3559,405 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Stalagmites/Stag Group 01 D
-			Position X=1320
-			Position Y=1111
+			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 C
+			Position X=1230.43
+			Position Y=472.429
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Floor Pieces/Floor 01 C
+			Position X=1154
+			Position Y=506
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 D
+			Position X=1257.76
+			Position Y=786.941
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Bushes/Fern/Fern J
+			Position X=1137
+			Position Y=666
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Misc Pieces/Torch A
+			Position X=1200
+			Position Y=870
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 A
+			Position X=1259.76
+			Position Y=1242.94
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1264.5, 1039.75, 1250.5, 1326.75, 1129.5, 1314.75, 1149.5, 1031.75, 1162, 1027, 1264.5, 1039.75
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=111
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1535.5, 179.75, 1562.5, 312.75, 1423.5, 336.75, 1209.5, 231.75, 1535.5, 179.75
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=111
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 01 D
+			Position X=1329.81
+			Position Y=435.125
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 D
+			Position X=1284.43
+			Position Y=518.429
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=1209
+			Position Y=817
+			Rendering Height=84
+			Rendering Height Float=84
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Misc Pieces/Red ribbon A
+			Position X=1199
+			Position Y=871
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Misc Pieces/Torch A
+			Position X=1342
+			Position Y=520
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=1
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=1288
+			Position Y=620
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4660,9 +4048,288 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 02 A
-			Position X=1405.38
-			Position Y=1167.69
+			Model=Environments/Heart of Fire/Walls/Wall color 01 E
+			Position X=1465.76
+			Position Y=418.941
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Torch Fire
+			Position X=1351
+			Position Y=467
+			Rendering Height=84
+			Rendering Height Float=84
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Misc Pieces/Red ribbon C
+			Position X=1342
+			Position Y=520
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Shield Helmet Swordsman Generator
+			}
+			Name=apprentice generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=116
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=15
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman ShieldHelmet
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=20
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman ShieldHelmet Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=30
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman ShieldHelmet Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=3
+							Things to Generate=Array
+							{
+								Item Count=3
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman Dual Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman Shield Super
+								}
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Cursed Elves/Swordsman ShieldHelmet Super
+								}
+							}
+						}
+					}
+					New Name=xloserx
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Player,Player Friend,Scripted Custom 2
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=$Instigator
+								Categories to add=Scripted Custom 1
+							}
+						}
+					}
+					New Facing Angle=0
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=1375
+			Position Y=931
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Stalagmites/Stag 01 E
+			Position X=1336.25
+			Position Y=1119.75
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Spirit 4 Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CActionAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Spirit 4 Generate Action
+					}
+					Executed Action=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spirit Generator Level4
+			Position X=1384
+			Position Y=1010
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4691,64 +4358,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Heart of Fire/Walls/Wall color 01 F
-			Position X=1466.76
-			Position Y=1224.94
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CFreeRangePoly
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1744, 1407, 1698, 848, 1817, 733, 1643, 505, 1532, 350, 1448, 152, 1394, 148, 1400, 0, 2303, 0, 2303, 1407, 1744, 1407
-			Center Position Offset=0.000000,0.000000
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Walls/Wall color 01 E
-			Position X=1500.76
-			Position Y=432.941
+			Position X=1463.76
+			Position Y=1270.94
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4777,8 +4388,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Heart of Fire/Stalagmites/Stag Group 02 E
-			Position X=1445.63
-			Position Y=497.5
+			Position X=1451.63
+			Position Y=498.5
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4813,11 +4424,25 @@ CLayerSaveData
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=1454, 554, 1404, 572, 1454, 554
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
 		Level Part=CEntityBase
 		{
-			Name=
+			Dynamic Properties=1
+			{
+				Comment=Dead Snakebreed Generator
+			}
+			Name=Fixed Dead Body Generator
 			Child List=
-			Visible=1
+			Visible=0
 			Collideable=1
 			Half Height=0
 			Full Height=1
@@ -4829,26 +4454,286 @@ CLayerSaveData
 			Is Marked For Deletion=0
 			Activity=Array
 			{
-				Item Count=0
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/Snakebreed Venom
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Genderate Dead Body
+					}
+					New Facing Angle=2.56563
+				}
 			}
 			Category=
 			Team Number=Nutral
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Skull Torch 3 A
-			Position X=1495
-			Position Y=682
+			Model=Editor/Dead Body Generator
+			Position X=1425
+			Position Y=739
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
 		{
+			Dynamic Properties=1
+			{
+				Comment=Dead Ogre Generator 2
+			}
+			Name=Fixed Dead Body Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/Ogre3 Tough
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Genderate Dead Body
+					}
+					New Facing Angle=1.27409
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Dead Body Generator
+			Position X=1423
+			Position Y=842
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Dead Hujark Swordsman
+			}
+			Name=Fixed Dead Body Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/Cursed Elves/Swordsman 02
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Genderate Dead Body
+					}
+					New Facing Angle=0.15708
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Dead Body Generator
+			Position X=1385
+			Position Y=869
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Spirit 1 Generator
+			}
+			Name=
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CActionAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Spirit 1 Generate Action
+					}
+					Executed Action=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spirit Generator Level1
+			Position X=1398
+			Position Y=887
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
 			Name=
 			Child List=
 			Visible=1
 			Collideable=1
+			Half Height=0
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1350, 1128, 1421, 1113, 1472, 1056, 1517, 1026, 1567, 1018, 1604, 1030, 1588, 1171, 1350, 1128
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Dead Hujark Shield
+			}
+			Name=Fixed Dead Body Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/Cursed Elves/Swordsman Shield
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CUseCannedActionAction
+					{
+						Canned Object=Common Objects and Scripts/Genderate Dead Body
+					}
+					New Facing Angle=2.00713
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Dead Body Generator
+			Position X=1382
+			Position Y=987
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CRenderablePolygon
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
 			Half Height=0
 			Full Height=1
 			Tries To Collide=0
@@ -4866,12 +4751,15 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Floor Pieces/Floor 01 B
-			Position X=1409
-			Position Y=613
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
+			Polygon=1581.5, 1132.75, 1731.5, 1336.75, 1506, 1386, 1397.5, 1334.75, 1505.5, 1150.75, 1581.5, 1132.75
+			Center Position Offset=0.000000,0.000000
+			On Ground=0
+			Render Type=Black
+			YSort=111
+			Cur Frame=0
+			Animated Texture=!None
+			Static Texture=14 Black
+			Warp Effect=!None
 		}
 		Level Part=CEntityBase
 		{
@@ -4956,66 +4844,6 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Blue ribbon C
-			Position X=1495
-			Position Y=681
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Orc Dwellings/Overhangs/Overhang 02 G
-			Position X=1532.33
-			Position Y=789.333
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
 			Model=Environments/Heart of Fire/Walls/Wall color 01 B
 			Position X=1602.23
 			Position Y=907.538
@@ -5057,105 +4885,10 @@ CLayerSaveData
 		{
 			Name=
 			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Spiked Head 01 E
-			Position X=1473
-			Position Y=927
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Floor Pieces/Floor 01 C
-			Position X=1513
-			Position Y=917
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Bones 02 C
-			Position X=1459
-			Position Y=897
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Dynamic Properties=2
-			{
-				Experience Points=250
-				Comment=Cold Trap
-			}
-			Name=
-			Child List=
 			Visible=0
-			Collideable=0
+			Collideable=1
 			Half Height=0
-			Full Height=0
+			Full Height=1
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
@@ -5164,186 +4897,16 @@ CLayerSaveData
 			Is Marked For Deletion=0
 			Activity=Array
 			{
-				Item Count=2
-				Activity=CTouchingPolygonTriggerAI
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
 				{
 					Marked For Deletion=0
 					Publisher=
-					Trigger Only Once=1
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Name=
-					Enter Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=3
-							Action=CSpawnEffectAction
-							{
-								Explosion Model=Spell Effects/Hits and Effects/Ice Attacks/Cold Ground
-								Location Entity=$Instigator
-								Make effect a child of the location entity=1
-								X Offset=0
-								Y Offset=0
-								Height Offset=0
-								Play Default Sound=1
-								Action to execute After Effect=
-							}
-							Action=CDelayAction
-							{
-								Next Action=CConditionalAction
-								{
-									Try Action=CExpressionAction
-									{
-										Expression=CIsGreaterThanOrEqual
-										{
-											Operand1=CVariableDerivedCharacterAttribute
-											{
-												Character Attribute=Derived Character Attributes/Mojo
-											}
-											Operator=
-											Operand2=CConstant
-											{
-												Constant Value=25
-											}
-										}
-										Character to get attributes from=$Instigator
-									}
-									Succeed Action=CActionDoDamage
-									{
-										Character Doing Damage=$trigger
-										Character To Damage=$instigator
-										Defend Against=1
-										No Friendly Fire Check=0
-										Damages=Array
-										{
-											Item Count=1
-											Damage=CXRPGDamage
-											{
-												Damage Type=Damage Types/Cold
-												Damage Amount=CRandom
-												{
-													Operator=
-													Minimum=CConstant
-													{
-														Constant Value=45
-													}
-													Maximum=CConstant
-													{
-														Constant Value=65
-													}
-												}
-											}
-										}
-									}
-									Fail Action=CConditionalAction
-									{
-										Try Action=CExpressionAction
-										{
-											Expression=CIsGreaterThanOrEqual
-											{
-												Operand1=CVariableDerivedCharacterAttribute
-												{
-													Character Attribute=Derived Character Attributes/Mojo
-												}
-												Operator=
-												Operand2=CConstant
-												{
-													Constant Value=15
-												}
-											}
-											Character to get attributes from=$Instigator
-										}
-										Succeed Action=CActionDoDamage
-										{
-											Character Doing Damage=$trigger
-											Character To Damage=$instigator
-											Defend Against=1
-											No Friendly Fire Check=0
-											Damages=Array
-											{
-												Item Count=1
-												Damage=CXRPGDamage
-												{
-													Damage Type=Damage Types/Cold
-													Damage Amount=CRandom
-													{
-														Operator=
-														Minimum=CConstant
-														{
-															Constant Value=35
-														}
-														Maximum=CConstant
-														{
-															Constant Value=60
-														}
-													}
-												}
-											}
-										}
-										Fail Action=CActionDoDamage
-										{
-											Character Doing Damage=$trigger
-											Character To Damage=$instigator
-											Defend Against=1
-											No Friendly Fire Check=0
-											Damages=Array
-											{
-												Item Count=1
-												Damage=CXRPGDamage
-												{
-													Damage Type=Damage Types/Cold
-													Damage Amount=CRandom
-													{
-														Operator=
-														Minimum=CConstant
-														{
-															Constant Value=25
-														}
-														Maximum=CConstant
-														{
-															Constant Value=40
-														}
-													}
-												}
-											}
-										}
-										Return failure if the TryAction failes=0
-									}
-									Return failure if the TryAction failes=0
-								}
-								Delay=0.2
-								Plus or Minus=0
-								Forget Trigger=0
-							}
-							Action=CUseCannedActionAction
-							{
-								Canned Object=Common Objects and Scripts/Triggered Trap
-							}
-						}
-					}
-					Exit Action=
-					Repeat Action=
-					Repeat Every=0
-					Touching LayerPart=
-					Next Repeat Time=0
-				}
-				Activity=CAISecretReveal
-				{
-					Marked For Deletion=0
-					Publisher=
-					Skill Adjustment=-20
-					Reveal Action=CUseCannedActionAction
-					{
-						Canned Object=Common Objects and Scripts/Found Trap
-					}
-					AIs To Add=Array
+					Already Generated=0
+					Entity=Monster Cans/Cursed Elves/Frightened Apprentice
+					New Name=xapprenticex
+					Remove Default AIs=0
+					AIs to Add=Array
 					{
 						Item Count=1
 						AI=CAIInteractionSpecifier
@@ -5361,12 +4924,23 @@ CLayerSaveData
 							Triggered By Projectiles=0
 							Triggered By Name=
 							Interaction Description=
-							Interaction Type=Interaction Specifiers/GetCloseThen Disarm Trap
-							Action=CUseCannedActionAction
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CSeriesAction
 							{
-								Canned Object=Common Objects and Scripts/Disarm Trap
+								Action=Array
+								{
+									Item Count=2
+									Action=CTriggerRelayAction
+									{
+										Relay Name=apprentice relay
+									}
+									Action=
+								}
+								When Done=Do Nothing
+								Require Success To Advance=1
+								Next Action Index=0
 							}
-							X Radius=50
+							X Radius=55
 							Attacker Range Modifier=0
 							YX Ratio=0.712766
 							Highlight Self Time=0
@@ -5378,7 +4952,29 @@ CLayerSaveData
 							Is Bussy Talking=0
 						}
 					}
-					Has Been Revealed=0
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCategoryAction
+							{
+								Target Name=$Instigator
+								Categories to add=Scripted Custom 2
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Trigger
+								Name To Target=
+								Valid Targets=Scripted Custom 1
+							}
+						}
+					}
+					New Facing Angle=3.90954
 				}
 			}
 			Category=
@@ -5386,23 +4982,16 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1476.75, 967.25, 1460, 965.5, 1449, 957, 1440, 944.5, 1437, 931, 1439, 917.5, 1447, 909, 1457.75, 901.25, 1470, 898, 1485, 899, 1495, 902, 1500, 909.5, 1509, 928, 1512, 941, 1506.75, 951.25, 1500, 959, 1491.75, 965.25, 1476.75, 967.25
-			Center Position Offset=0.000000,0.000000
-			On Ground=1
-			Render Type=Trans Red
-			YSort=50
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
+			Model=Editor/Character Generator Point
+			Position X=1468
+			Position Y=987
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
 		{
-			Dynamic Properties=1
-			{
-				Experience Points=50
-			}
-			Name=Hidden Treasure
+			Name=apprentice relay
 			Child List=
 			Visible=0
 			Collideable=1
@@ -5417,92 +5006,263 @@ CLayerSaveData
 			Activity=Array
 			{
 				Item Count=1
-				Activity=CAISecretReveal
+				Activity=CRelayAI
 				{
 					Marked For Deletion=0
 					Publisher=
-					Skill Adjustment=0
-					Reveal Action=CUseCannedActionAction
+					Action=CSeriesAction
 					{
-						Canned Object=Common Objects and Scripts/Found Hidden Treasure
-					}
-					AIs To Add=Array
-					{
-						Item Count=1
-						AI=CAIInteractionSpecifier
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Trigger Only Once=0
-							Was Triggered=0
-							Auto-Flip Switch=1
-							Trigge Must Have HP=0
-							Triggered By Anything=0
-							Triggered By Players=1
-							Triggered By Player Friends=0
-							Triggered By Enemies=0
-							Triggered By Projectiles=0
-							Triggered By Name=
-							Interaction Description=
-							Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+							Item Count=5
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/5 Nostrodomus/Dialog/Frightened Apprentice
+								Node ID=1 Start Conversation
+								Name of Position=$trigger
+								Position Offset=0.000000,-75.000000
+								After Action=CTriggerRelayAction
+								{
+									Relay Name=apprentice relay
+								}
+								Include In Log=1
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAssignTemporaryTaskAction
+									{
+										Target=$Trigger
+										Temporary Task AI=CGoToAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Destination=1
+											Offset=0.000000,0.000000
+											Starting Action=
+											Finished=0
+											Move Finished=0
+											Failed Path=0
+											Target Was Set By Goto AI=0
+											Move Behavior=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Done action=CSendAIDoneMessage
+											{
+												Target=$Trigger
+											}
+											Run=0
+											Make New Home=0
+											Play Ratio=0
+											Time To Try To Move=0
+											Set Facing Angle=0
+											Turn Sequence Name=Idle
+											Facing Angle=CEntityBehaviorTurnToAngle
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+											}
+											Need to Call Start=1
+										}
+										Original AI Type=CSkeletonAI
+										Completion Message to wait for=AI Done
+										Suppress can't assign error=0
+									}
+									Action=CDelayAction
+									{
+										Next Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/5 Nostrodomus/Dialog/Frightened Apprentice
+											Node ID=2 fleeing
+											Name of Position=$trigger
+											Position Offset=0.000000,-75.000000
+											After Action=CTriggerRelayAction
+											{
+												Relay Name=apprentice relay
+											}
+											Include In Log=1
+										}
+										Delay=1
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
 							Action=CMultipleActionsAction
 							{
 								Action=Array
 								{
 									Item Count=3
-									Action=CUseCannedActionAction
+									Action=CSendAIDoneMessage
 									{
-										Canned Object=Common Objects and Scripts/Taken Hidden Treasure
+										Target=$Trigger
 									}
-									Action=CPrintCombatTextAction
+									Action=CAssignTemporaryTaskAction
 									{
-										Text to print=You have found an item buried at the base of the pole.
-										Character to show text to=$Instigator
-										Emphasize=0
-										Suppress Duplicates=0
-									}
-									Action=CGenerateInventoryItemAction
-									{
-										Number of items to generate=1
-										Level of item to generate=CUseCannedExpressionExpression
+										Target=$Trigger
+										Temporary Task AI=CGoToAI
 										{
-											Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Average
-										}
-										Location=$Trigger
-										Location Offset=0,0
-										Generate Within Radius=128
-										Aspect Ratio=0.712766
-										Item List=CInventoryItemGeneratorMixedList
-										{
-											Items=Array
+											Marked For Deletion=0
+											Publisher=
+											Destination=2
+											Offset=0.000000,0.000000
+											Starting Action=
+											Finished=0
+											Move Finished=0
+											Failed Path=0
+											Target Was Set By Goto AI=0
+											Move Behavior=CEntityBehaviorMoveToPos
 											{
-												Array Count=1
-												Array Item=CInventoryItemGeneratorMixedListItem
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
 												{
-													Weighting=10
-													Item=CInventoryItemGeneratorCannedList
-													{
-														Canned Item List=Inventory/Creating Random Magic Items/1 MASTER ALL Items in the game
-													}
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
 												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
 											}
+											Done action=CSendAIDoneMessage
+											{
+												Target=$Trigger
+											}
+											Run=0
+											Make New Home=0
+											Play Ratio=0
+											Time To Try To Move=0
+											Set Facing Angle=0
+											Turn Sequence Name=Idle
+											Facing Angle=CEntityBehaviorTurnToAngle
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+											}
+											Need to Call Start=1
 										}
+										Original AI Type=CSkeletonAI
+										Completion Message to wait for=AI Done
+										Suppress can't assign error=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/5 Nostrodomus/Dialog/Frightened Apprentice
+										Node ID=3 calm
+										Name of Position=$trigger
+										Position Offset=0.000000,-75.000000
+										After Action=CTriggerRelayAction
+										{
+											Relay Name=apprentice relay
+										}
+										Include In Log=1
 									}
 								}
 							}
-							X Radius=50
-							Attacker Range Modifier=0
-							YX Ratio=0.712766
-							Highlight Self Time=0
-							Highlight Until Clicked=0
-							Is Locked=0
-							Allow Interact If Has Target=1
-							Lock Pick Adjustment=0
-							Inventory item to use as key=Inventory Items/!None
-							Is Bussy Talking=0
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/5 Nostrodomus/Dialog/Frightened Apprentice
+								Node ID=4 sneak
+								Name of Position=$trigger
+								Position Offset=0.000000,-75.000000
+								After Action=CTriggerRelayAction
+								{
+									Relay Name=apprentice relay
+								}
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/5 Nostrodomus/Dialog/Frightened Apprentice
+								Node ID=5 barter
+								Name of Position=$trigger
+								Position Offset=0.000000,-75.000000
+								After Action=
+								Include In Log=1
+							}
 						}
+						When Done=Do Nothing
+						Require Success To Advance=1
+						Next Action Index=0
 					}
-					Has Been Revealed=0
+					Trigger Only Once=0
+					Was Triggered=0
 				}
 			}
 			Category=
@@ -5510,9 +5270,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Special Effects/Secret Icon
-			Position X=1478
-			Position Y=950
+			Model=Editor/Relay
+			Position X=1459
+			Position Y=1039
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -5541,44 +5301,11 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Environments/Heart of Fire/Walls/Wall color 01 H
-			Position X=1602.06
-			Position Y=1184.44
+			Position X=1620.06
+			Position Y=1258.44
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
-		}
-		Level Part=CRenderablePolygon
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=1630.5, 1065.75, 1742.5, 1305.75, 1517, 1355, 1408.5, 1303.75, 1472.5, 1103.75, 1630.5, 1065.75
-			Center Position Offset=0.000000,0.000000
-			On Ground=0
-			Render Type=Black
-			YSort=111
-			Cur Frame=0
-			Animated Texture=!None
-			Static Texture=14 Black
-			Warp Effect=!None
 		}
 		Level Part=CRenderablePolygon
 		{
@@ -5666,82 +5393,12 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Special Effects/Torch Fire
-			Position X=1504
-			Position Y=628.999
-			Rendering Height=90
-			Rendering Height Float=90
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Floor Pieces/Mineral 01 C
-			Position X=1606
-			Position Y=629
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
 			Model=Environments/Heart of Fire/Walls/Wall 01 H
 			Position X=1666.76
 			Position Y=835.294
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
-		}
-		Level Part=CWayPointsPolygon
-		{
-			Tries To Collide=0
-			Team Number=Nutral
-			Used In=QuestMode
-			Polygon=1528, 834, 1483, 868, 1528, 834
-			Center Position Offset=0.000000,0.000000
-			Insertion Priority=Secondary
-			Include Closing Segment=1
 		}
 		Level Part=CEntityBase
 		{
@@ -5863,6 +5520,36 @@ CLayerSaveData
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Walls/Wall color 02 A
+			Position X=1650.38
+			Position Y=1158.69
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CRenderablePolygon
 		{
 			Name=
@@ -5886,7 +5573,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1915.5, 772.75, 1819.5, 1007.75, 1654.5, 1003.75, 1615.5, 689.75, 1854, 604, 1915.5, 772.75
+			Polygon=1660.5, 989.75, 1825, 1000, 1796.5, 1241.75, 1706.5, 1315.75, 1575.5, 1128.75, 1660.5, 989.75
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
@@ -5919,7 +5606,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=1660.5, 989.75, 1825, 1000, 1796.5, 1241.75, 1706.5, 1315.75, 1624.5, 1089.75, 1660.5, 989.75
+			Polygon=1915.5, 772.75, 1819.5, 1007.75, 1654.5, 1003.75, 1615.5, 689.75, 1854, 604, 1915.5, 772.75
 			Center Position Offset=0.000000,0.000000
 			On Ground=0
 			Render Type=Black
@@ -5981,24 +5668,24 @@ CLayerSaveData
 		Texture 11=Heart of Fire/Heart Water 03
 		Texture 12=Heart of Fire/Heart Water 04
 		Elevations Row 0=000000000000000000000000000000000000000000000000000000000000000000000000000000
-		Elevations Row 1=000000000000000000000000000000000000000000000000000000000000000000000000000000
-		Elevations Row 2=000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 1=000000000000000000000000000000000000000000000000000000000000000000EF0000000000
+		Elevations Row 2=0000000000000000000000000000000000000000000000000000000000000000EFEF0000000000
 		Elevations Row 3=000000000000000000000000000000000000000000000000000000000000000000000000000000
 		Elevations Row 4=000000000000000000000000000000000000000000000000000000000000000000000000000000
-		Elevations Row 5=000000000000000000000000000000000000000096904C00000000000000000000000000000000
-		Elevations Row 6=0000000000000000000000000000494865650000767A8300000000000000000000000000000000
-		Elevations Row 7=000000000000000000000000004949336865000042490000000000000000000000000000000000
-		Elevations Row 8=000000000000000065333349494949493C384A3567494900000000000000000000000000000000
-		Elevations Row 9=000000000000000033334949494949494949494933494900000000000000000000000000000000
-		Elevations Row 10=000000000000000033334949656530989C284949494949924D9292920000000000000000000000
-		Elevations Row 11=0000000000000000656549656565655F3B274949494980928D8592920000000000000000000000
-		Elevations Row 12=00000000000000006565494949797C3B493D224949A591928D6D00000000000000000000000000
-		Elevations Row 13=00000000000000000000494949916A334A8E692F49496C92929200000000000000000000000000
-		Elevations Row 14=0000000000000000000049494975944A353F374849496C72929200000000000000000000000000
-		Elevations Row 15=0000000000000000000049494949498852474949498982858DA200000000000000000000000000
-		Elevations Row 16=00000000000000000049494949494949494949498A857197740000000000000000000000000000
-		Elevations Row 17=0000000000000000000049494900494949000000697ABA00002800000000000000000000000000
-		Elevations Row 18=0000000000000000000049490000000000000000000000BA0C0000000000000000000000000000
+		Elevations Row 5=000000000000000000000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 6=000000000000000000000000000049486565000000000000000000000000000000000000000000
+		Elevations Row 7=000000000000000000000000004949336865000000490000000000000000000000000000000000
+		Elevations Row 8=000000000000000065333349494949493C384A4C00494900000000000000000000000000000000
+		Elevations Row 9=000000000000000033334949494949494949494949494900000000000000000000000000000000
+		Elevations Row 10=000000000000000033334949656530989C28494949494992009292920000000000000000000000
+		Elevations Row 11=0000000000008900656549656565657749274949494949928B8592920000000000000000000000
+		Elevations Row 12=00000000000000006565494949799C94FF69494949A549928D6D00000000000000000000000000
+		Elevations Row 13=00000000000000656565B5A0499182EBDDE8694949494992929200000000000000000000000000
+		Elevations Row 14=0000000000000000000049A171758C8F929F634949494949929200000000000000000000000000
+		Elevations Row 15=000000000000000000494949494949886B674949498982858DA200000000000000000000000000
+		Elevations Row 16=00000000000000000049494949494949494949498A85719FACBA00000000000000000000000000
+		Elevations Row 17=0000000000000000000049494900494949000000697ABABABABA00000000000000000000000000
+		Elevations Row 18=0000000000000000000049490000000000000000000000BABA0000000000000000000000000000
 		Elevations Row 19=000000000000000000000000000000000000000000000000000000000000000000000000000000
 		Elevations Row 20=000000000000000000000000000000000000000000000000000000000000000000000000000000
 		Elevations Row 21=000000000000000000000000000000000000000000000000000000000000000000000000000000

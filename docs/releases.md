@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Tiers 1, 2, 2b, 3, 3b and 4 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Tiers 1 through 5 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -686,6 +686,59 @@ that nothing reached and nothing opened. Tier 3 opened three, tier 4 opens four,
 | 3 nodes of `Generic Hujark` | `4 sneak`, `5 barter`, `6 No` are **byte-identical copies** of the Frightened Apprentice's lines in a tree that shares his node IDs. A copy-paste artefact, not content |
 | `40 Ingame Movie Opening Line` | belongs to a cinematic that is not in the retail build |
 
+### Tier 5 - forty-three traps, and the two maps that said nothing (built)
+
+**There is no door on any of act 5's ten maps**, so there was never anything to lock -- and there was
+never a trap either, on a reply or on a trigger, anywhere in the act. Ten maps of caves and tunnels
+with nothing in them for a thief to do. The Crypt got 67 trap checks in 0.16.0 and they changed a
+thief's route through it completely.
+
+**The trap is not composed from scratch.** It is the Crypt's own trap part, read back out of
+`10 Garrison Camp` and edited -- a `CRenderablePolygon` carrying two activities:
+
+| activity | what it does |
+|---|---|
+| `CTouchingPolygonTriggerAI`, `Trigger Only Once=1` | the effect, then damage scaled by the player's Mojo: 30-45 above 30, 22-35 above 20, 15-25 below that |
+| `CAISecretReveal`, `Skill Adjustment=15` | a thief spots it (`Common Objects and Scripts/Found Trap`), which adds a `GetCloseThen Disarm Trap` specifier checking `Skills/Thieving/Lockpick Disarm Traps` against 50 -- pass and it is disarmed for 250 XP, fail and *"The mechanism is beyond you"* |
+
+Three flavours, each with an effect model that actually exists and a damage type that matches it: a
+**fire trap** (`Fire Circle Medium`), a **shaman ward** that discharges electricity
+(`Electrical Burst Med`), and a **cold snare** (`Ice Ring`). The Crypt's numbers were retiered upward
+for an act this late -- and positionally rather than by value, because `20` appears three times in the
+template and a value-based edit silently moved the wrong constants. The first cut of this tier did
+exactly that and shipped traps weaker than its own table claimed; it was reverted.
+
+| map | traps | | map | traps |
+|---|---|---|---|---|
+| 01 Heart Entrance | 5 | | 06 Cave 1 | 3 |
+| 02 Clan of the Hand A | 6 | | 07 Cave 2 | 4 |
+| 03 Tourniquet of Pain | 5 | | 08 Cave 3 | 5 |
+| 04 Clan of the Skull B | 5 | | 09 Cave 4 | 5 |
+| 05 Nostrodomus Demesne | 2 | | 10 Cave 5 | 3 |
+| | | | **total** | **43** |
+
+**Every trap sits on ground the shipped game already spawns a monster on** -- the same trick the
+English twins used in tier 3b. No trap is placed on a guess about what is walkable.
+
+### The two maps that said nothing
+
+`07 Cave 2` and `09 Cave 4` are dead-end caves off the main line: 393 and 458 level parts, forty-four
+and fifty-two live spawners, one drop of loot each, and between them not one conversation, balloon or
+dialogue tree. They were **the only two maps in the act with no voice of any kind**, and now there are
+none.
+
+Two lines each. The arrival line is fired from the spawn points rather than a polygon, so there is no
+geometry to get wrong, and a checker holds it after the first time:
+
+- **Cave 2**: *"The passage narrows and keeps narrowing. Snakebreed have nested in the cracks of it,
+  and the Hujark have left their own dead where they fell rather than come this far in to fetch them."*
+- **Cave 4**: *"A store cave, or it was. The shelves cut into the rock have been swept clean, the
+  sweepings are underfoot, and something has been breeding in the dark at the back of it."*
+
+And one at the loot each cave was built around -- on Cave 4 that is the part vanilla itself named
+`Hidden Treasure`: *"Somebody hid this and did not come back for it. The dust on it is the same dust
+as on everything else, which means nobody has looked here in a very long time."*
+
 ### Tiers, in the order they should be built
 
 1. ~~**The general who never spawns, and the two quests behind him.**~~ **Built** -- see above.
@@ -699,8 +752,8 @@ that nothing reached and nothing opened. Tier 3 opened three, tier 4 opens four,
    roster, as a swap rather than an addition.
 4. ~~**The seer's three stranded nodes.**~~ **Built** -- and they turned out to be a boss defence
    that was never switched on.
-5. **The two silent maps and the ten trapless ones.** `07 Cave 2` and `09 Cave 4` have no voice of
-   any kind; no map in the act has a trap or a lock.
+5. ~~**The two silent maps and the ten trapless ones.**~~ **Built** -- 43 traps, and neither map is
+   silent any more. There is no door anywhere in the act, so locks were never available.
 6. **Reactivity.** Seven faction gates and three karma gates in 176 replies. The seer who reads
    your karma could read a great deal more, and so could a general deciding whether to trust you.
 

@@ -1423,6 +1423,15 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO46 | Ask *"What are you?"* as well | - | Still `35 Prophet` -> `35 prophet 2` -> `45 element of prophecy`, unchanged |
 | NO47 | From `70 dangers`, take *"Tell me about the Betrayer."* and *"Tell me about the serpent."* | - | `70 Betrayer` and `100 Dragon Prophecy`. These were spelled in lowercase in vanilla; if they worked before they still work, and if they did not they do now |
 | NO48 | NO41 while **sided with the Hujark** (NO28) | - | The shaman and guard stood aside at the door, and the seer still defends himself. Confirm attacking him does not un-pacify the Hujark |
+| NO49 | **A save that has never entered act 5**, with a **low** Find Traps / Lockpick skill. Cross any map | - | Traps fire: a fire circle, an electrical burst or an ice ring, then damage scaled by Mojo. **Act 5 has never had a trap of any kind** |
+| NO50 | The same ground with **Lockpick Disarm Traps at 50 or better** | - | The trap is spotted before it fires, and can be disarmed for 250 XP. Below 50 on the disarm attempt: *"The mechanism is beyond you"* |
+| NO51 | Walk back over a trap that has already fired | - | Nothing. `Trigger Only Once=1` |
+| NO52 | Count traps per map against the table in the notes | - | 43 across ten maps, heaviest on `02` (6). If a trap seems to be inside rock or unreachable, report the map and rough position -- they are placed on monster spawn points, which should all be walkable |
+| NO53 | Compare trap damage against a Mojo-30 and a Mojo-15 character | - | 30-45 versus 15-25. The first cut of this tier shipped the Crypt's weaker numbers by mistake; these should be the higher ones |
+| NO54 | Enter `07 Cave 2` from either direction | - | *"The passage narrows and keeps narrowing..."* -- **once**, then never again on that save |
+| NO55 | Reach the far end of `07 Cave 2` where the loot is | - | *"The crack ends. Whatever the Hujark wanted out of this cave they stopped wanting some time ago..."* |
+| NO56 | Enter `09 Cave 4`, then find the `Hidden Treasure` | - | *"A store cave, or it was..."* on arrival, and at the cache *"Somebody hid this and did not come back for it."* |
+| NO57 | Re-enter either cave a second time | - | No repeat of the arrival line |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |
