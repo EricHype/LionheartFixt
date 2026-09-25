@@ -253,6 +253,33 @@ Reply Text=Tell me about these visions.
 Go to node ID=60 visions
 
 Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Ancestral
+}
+Reply Text=I carry a spirit too. One of my own dead.
+Go to node ID=46 the crowded joining
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Beastial
+}
+Reply Text=What I carry was never human, and it does not speak.
+Go to node ID=47 the unspeaking joining
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasSpirit
+{
+Spirit=Spirits/Demonic
+}
+Reply Text=What I carry came out of hell, and you can see it.
+Go to node ID=48 the burning joining
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=I'm not interested in hearing your ravings.
 Go to node ID=50 Nostradamus leaves
 
@@ -909,4 +936,58 @@ Should Have Voiceover=0
 Node ID=1001 Goto combat
 Text=<Laughs> you cannot escape your fate by fighting me, fool!
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=46 the crowded joining
+Text=Then you know a little of it, and less than you think. What I carry chose me, and I chose it, and we are becoming one thing. What you carry was put into you at a sword's point and is still a guest in a house it does not own. You are two, coinspinner, and you will be two until one of you gives way. I cannot see which.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=47 the unspeaking joining
+Text=A spirit without words. It cannot agree to anything, which means it cannot betray you either, and there is a safety in that which I do not have -- mine argues. When your own sight comes, and it will come, it will arrive as hunger rather than as pictures, and you will have to learn to read hunger.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=48 the burning joining
+Text=I know. It looked out of you as you entered, and it knows what I am becoming, and does not care for it. So hear this and do as you like with it: a thing from below can be joined with, exactly as a man can be joined with a spirit of time. Whether what results is you or it is not decided by either of you. It is decided by which of you is the more patient.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 }

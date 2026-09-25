@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Tiers 1 through 5 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. All six tiers built 2026-09-25, unplayed.** Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -739,6 +739,65 @@ And one at the loot each cave was built around -- on Cave 4 that is the part van
 `Hidden Treasure`: *"Somebody hid this and did not come back for it. The dust on it is the same dust
 as on everything else, which means nobody has looked here in a very long time."*
 
+### Tier 6 - the act reads the player (built)
+
+Act 5 asked about faction thirteen times and karma three, and about nothing else whatsoever: no race,
+no Speech, no Barter, no magic school, no perk, no spirit, no gender. Two of its voices were sitting
+directly on top of the questions they should have been asking.
+
+**Nostradamus is a man joined with a spirit.** The node is his, word for word:
+
+> I am what a spirit and a man become when a divide is breached and the two are made whole.
+
+The player is that sentence with the words in a worse order -- a spirit put into them at a sword's
+point -- and in the shipped game he never once notices. Three `CHasSpirit` replies, the act's first,
+and he answers each as the only other person in the game who has done what the player had done to
+them:
+
+- **Ancestral**: *"What I carry chose me, and I chose it, and we are becoming one thing. What you carry
+  was put into you at a sword's point and is still a guest in a house it does not own. You are two,
+  coinspinner, and you will be two until one of you gives way. I cannot see which."*
+- **Beastial**: *"It cannot agree to anything, which means it cannot betray you either, and there is a
+  safety in that which I do not have -- mine argues. When your own sight comes, it will arrive as
+  hunger rather than as pictures, and you will have to learn to read hunger."*
+- **Demonic**: *"It looked out of you as you entered, and it knows what I am becoming, and does not
+  care for it... Whether what results is you or it is not decided by either of you. It is decided by
+  which of you is the more patient."*
+
+**The Hujark are outsiders driven out for being touched by magic** -- Huko's own words at `40 people`.
+A Feralkin, Sylvant or Demokin Scion has heard those words in whatever town their own people were
+made to leave; a Human has not. Four race-gated replies, the act's first, and two answers:
+
+- the driven-out: *"Then you have heard the same words we heard... The Prophet took us in when no one
+  else would have us. If you have come to take him from the people who took you in, I will not say the
+  rest of that out loud."*
+- the Human: *"Your face is one they let through their gates, and you have never had to explain it to a
+  man with a spear. I say that without envy. It means you came down here by choosing to, which is worth
+  more than being driven."*
+
+**And Huko is a general deciding whether to believe a stranger**, which is what `10 explanation` is
+for. Two karma gates on the same cans Brother Michel's five use: above 1300 he finds he believes you
+and says so with his hand coming off the hilt; at 700 or below, *"I see hands, and yours have been
+busy. It makes no difference to me whose side that puts you on. Only which side you say."*
+
+Every new node routes back into vanilla's own choice -- help the Prophet, hear more, or fight, with the
+Inquisitor's variant where vanilla has one -- so none of this adds a way through the act that the act
+did not already have.
+
+**The census, on the same basis before and after:**
+
+| gate | vanilla | now |
+|---|---|---|
+| faction | 13 | 21 |
+| karma | 3 | 5 |
+| attribute | 3 | 3 |
+| **race** | **0** | **4** |
+| **spirit** | **0** | **3** |
+| replies in the act's trees | 149 | 185 |
+
+Still zero: gender, Barter, perk, magic school, and Speech. The act has no merchant and no lock, which
+covers Barter; the rest are open.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The general who never spawns, and the two quests behind him.**~~ **Built** -- see above.
@@ -754,8 +813,8 @@ as on everything else, which means nobody has looked here in a very long time."*
    that was never switched on.
 5. ~~**The two silent maps and the ten trapless ones.**~~ **Built** -- 43 traps, and neither map is
    silent any more. There is no door anywhere in the act, so locks were never available.
-6. **Reactivity.** Seven faction gates and three karma gates in 176 replies. The seer who reads
-   your karma could read a great deal more, and so could a general deciding whether to trust you.
+6. ~~**Reactivity.**~~ **Built** -- the seer reads the spirit you carry, and Huko reads your race and
+   your reputation. Gender, perk, magic school and Speech are still untouched in this act.
 
 ## 0.16.0 - the Crypt
 

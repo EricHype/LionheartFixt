@@ -1432,6 +1432,13 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO55 | Reach the far end of `07 Cave 2` where the loot is | - | *"The crack ends. Whatever the Hujark wanted out of this cave they stopped wanting some time ago..."* |
 | NO56 | Enter `09 Cave 4`, then find the `Hidden Treasure` | - | *"A store cave, or it was..."* on arrival, and at the cache *"Somebody hid this and did not come back for it."* |
 | NO57 | Re-enter either cave a second time | - | No repeat of the arrival line |
+| NO58 | Reach `45 element of prophecy` with each of the three spirits | - | Ancestral -> `46 the crowded joining`; Beastial -> `47 the unspeaking joining`; Demonic -> `48 the burning joining`. **Exactly one of the three should ever be offered**, and act 5 has never had a spirit check |
+| NO59 | NO58, then take each route out | - | `60 visions`, `5 questions`, and goodbye. No dead ends |
+| NO60 | Ask Huko *"Who are the Hujark?"* as a **Feralkin**, **Sylvant** or **Demokin** | - | `41 driven out as we were` -- he looks at you properly for the first time |
+| NO61 | The same as a **Human** | - | `42 you wear a face they accept`. Never both, and never neither |
+| NO62 | Reach `10 explanation` with karma **1300+** | *"Then let me say where I stand, and judge it as you like."* | `43 you ask to be believed`. At **700 or below**, `44 you ask to be believed anyway`. Between them, neither reply is offered and the node is exactly as vanilla left it |
+| NO63 | From each of Huko's four new nodes, take *"I have come to help the Prophet."* | - | `50 help prophet`, and the Hujark quest activates as in NO5 |
+| NO64 | From each of them, take the fight reply | - | The English quest activates and the fight starts, as in NO6. As an **Inquisitor** the reply is the Inquisition's version instead -- never both |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

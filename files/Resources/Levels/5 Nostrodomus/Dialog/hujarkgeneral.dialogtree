@@ -1,0 +1,695 @@
+CDialogTree
+{
+Name=Hujark General
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Where do you stand, stranger? Have you come to harm the Prophet, or help us save him from the Druids?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you mean?
+Go to node ID=10 explanation
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=Who is the Prophet?
+Go to node ID=30 Prophet
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=The Druids are not my friends. It looks as if we stand together.
+Go to node ID=50 help prophet
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Action work in progress=(Faction bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=You return? Have you changed your stance? I must ask you again, have you come to harm the Prophet, or help us save him?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you mean?
+Go to node ID=10 explanation
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 name
+
+Requirement=!None
+Reply Text=Who is the Prophet?
+Go to node ID=30 Prophet
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=The Druids are not my friends. It looks as if we stand together.
+Go to node ID=50 help prophet
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Action work in progress=(Faction bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 explanation
+Text=You walk upon a battlefield. The Druids have sent an army to seize the Prophet, the All-Seeing One. I ask again - are you with us or with the Druids?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The Prophet?
+Go to node ID=30 Prophet
+
+Requirement=!None
+Reply Text=What do the Druids want with the Prophet?
+Go to node ID=80 english
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=The Druids are not my friends. It looks as if we stand together.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma moreequal 1300
+}
+Reply Text=Then let me say where I stand, and judge it as you like.
+Go to node ID=43 you ask to be believed
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma equalless 700
+}
+Reply Text=Then let me say where I stand, and judge it as you like.
+Go to node ID=44 you ask to be believed anyway
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I am with the Druids, and the Prophet will soon be in our hands.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Action work in progress=(Faction bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 name
+Text=I am Huko, General to the Hujark people and protector of the Prophet. Our kind came to these shores long ago, descendants of the great tribe of the Huguenots. We are the hands and swords of the Prophet - and death to his enemies.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who is the Prophet?
+Go to node ID=30 Prophet
+
+Requirement=!None
+Reply Text=Who are the Hujark?
+Go to node ID=40 people
+
+Requirement=!None
+Reply Text=What do you mean about helping or killing the Prophet?
+Go to node ID=10 explanation
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Action work in progress=(Faction bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Prophet
+Text=He is the All-Seeing One. The man once known as Nostradamus, he who transcends this flawed existence and becomes something greater. Now, do seek to help us defend the Prophet against the Druids, or do you stand against us?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do the Druids want with the Prophet?
+Go to node ID=80 english
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=The Druids are not my friends. It looks as if we stand together.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=I am with the Druids, and the Prophet will soon be in our hands.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Action work in progress=(Faction bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 people
+Text=Like the Prophet, we are outsiders, driven out by people who fear those who are touched by magic. When Nostradamus came to our caves to hide from his people, we took him in. He shared visions with my people that helped us. Now we protect him from outsiders that wish to harm him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more of the Prophet.
+Go to node ID=30 Prophet
+
+Requirement=!None
+Reply Text=What do you mean about helping or killing the Prophet?
+Go to node ID=10 explanation
+
+Requirement=Feralkin IS
+Reply Text=My people were driven out of their towns with those same words.
+Go to node ID=41 driven out as we were
+Icon=Attribute Icon
+
+Requirement=Sylvant IS
+Reply Text=My people were driven out of their towns with those same words.
+Go to node ID=41 driven out as we were
+Icon=Attribute Icon
+
+Requirement=Demokin IS
+Reply Text=I have been called touched by worse than magic, and driven out for it.
+Go to node ID=41 driven out as we were
+Icon=Attribute Icon
+
+Requirement=Human IS
+Reply Text=Nobody has ever driven me out of anywhere.
+Go to node ID=42 you wear a face they accept
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I am with the Druids, and the Prophet will soon be in our hands.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Action work in progress=(Faction bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 help prophet
+Text=Good to hear, friend. It will be a difficult battle and your help will be sorely needed.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the Hujark
+}
+Action=CSetPatrolAIAction
+{
+Patrol AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=General goto
+Offset=0.000000,0.000000
+Starting Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDelayAction
+{
+Next Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Delay=8
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDeleteAction
+{
+Target Name=$Trigger
+}
+Delay=9.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=
+Run=0
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=0
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Target=Hujark General
+}
+Action=CSetPatrolAIAction
+{
+Patrol AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Guard goto
+Offset=0.000000,0.000000
+Starting Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDelayAction
+{
+Next Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Delay=8
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDeleteAction
+{
+Target Name=$Trigger
+}
+Delay=9.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=
+Run=0
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=0
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Target=Hujark Guard
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 harm prophet
+Text=Then I will kill you with my own hands!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=80 english
+Text=The All-Seeing One possesses power beyond those of mere mortals. The visions he sees come to pass, and the Druids desire this power for themselves. Now, do you stand with the Prophet, or with the Druids?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will help you protect the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=I am with the Druids, and the Prophet will soon be in our hands.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Action work in progress=(Faction bonus for Inquisition)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 driven out as we were
+Text=Then you have heard the same words we heard, in whatever town your people were made to leave. <He looks at you properly for the first time.> The Prophet took us in when no one else would have us, and we have kept him since. If you have come to take him from the people who took you in, I will not say the rest of that out loud. Tell me which you have come to do.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=Tell me more of the Prophet.
+Go to node ID=30 Prophet
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 you wear a face they accept
+Text=No. Whatever else you are, your face is one they let through their gates, and you have never had to explain it to a man with a spear. I say that without envy. It means you came down here by choosing to, which is worth more than being driven, and it means you can still choose the rest of it. Choose.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=Tell me more of the Prophet.
+Go to node ID=30 Prophet
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=43 you ask to be believed
+Text=You ask like someone who expects to be believed, and the trouble is that I do believe you, which is not how a man lives to be my age in a war. <His hand comes off the hilt.> The Druids have sent me no honest thing yet. Say it plainly and I will take it plainly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=Tell me more of the Prophet.
+Go to node ID=30 Prophet
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=44 you ask to be believed anyway
+Text=You have the look of someone who has done a great deal and regretted very little of it. I am not the Prophet; I do not see souls. I see hands, and yours have been busy. It makes no difference to me whose side that puts you on. Only which side you say. Say it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=Tell me more of the Prophet.
+Go to node ID=30 Prophet
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+}
