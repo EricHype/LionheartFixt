@@ -124,6 +124,208 @@ no longer has to be rung 2 of that ladder, since rank 2 now comes from the shama
 quest, so it is optional content that can be sequenced on its merits rather than forced
 into a release it does not fit.
 
+## 0.15.1 - one regression from 0.15.0's review pass (not started)
+
+The review pass repaired three canned-expression paths that resolve to nothing. Two were clean.
+The third was not: `Gate District.zax` referenced
+`Dialog/Requirements/**Requirements/**Faction/Saladin Favored`, and I searched *vanilla* for a
+`Saladin Favored` can, found none, and repointed Farshad's gate at `Faction/Saladin IS`. But
+`Saladin Favored.can` is **a file this project added in 0.9.0** -- "Saladin content gates on being
+a Favored One" -- and it checks for the Dervish or Scholar of the Crescent perks, not mere
+membership. The only thing wrong with the reference was the doubled `Requirements/` segment.
+
+So 0.15.0 shipped Farshad's two "Welcome into the Order of Saladin" greetings opening for any
+Saladin member rather than an initiated one. The path is now corrected to
+`Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
+intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
+before concluding a resource does not exist.
+
+## 0.16.0 - the Crypt (scope)
+
+**Surveyed 2026-09-24. Not started.** `plan.md` has carried a Crypt design since the back-half
+planning, including the new area; this survey measures the act as it actually stands and prices
+that plan.
+
+**The act.** Ten maps, 9 dialogue trees, 95 nodes, **194 player replies**, 4,206 level parts, and
+one quest. Four of the ten maps are called "Misc Crypt" and hold no conversation at all.
+`1 Crypt Entrance` is the only hub; `7 Doomed Plateau` is the densest map in the game.
+
+### The war is placed, running, and has no result
+
+Both armies exist and are already hostile to each other -- not through factions, which is why a
+faction search misses them, but through scripted-combat categories. The necromancer's horde
+carries `Categories to add=Scripted Custom 1` with `Valid Targets=Player,Scripted Custom 2`: it
+fights the player **and** the Templars. The Templar dead carry `Scripted Custom 2` with
+`Valid Targets=Scripted Custom 1`: they fight the horde and **never target the player**. Thirty-odd
+horde generators are live across `2 Retreat of Souls` and `7 Doomed Plateau`.
+
+What is missing is an outcome. Nothing anywhere records which side won, every generator in all ten
+maps is `Repeat Every=0`, and the quest built to hold the result --
+**`Release the Doomed Knights from their Torment`** -- has `Item Count=0`: **zero states**, touched
+only by Montaillou's failure sweep when the town burns. Nothing in any dialogue in the game
+mentions the Doomed Knights or the Retreat of Souls.
+
+**And the staged battle around Jehanne never runs.** On `7 Doomed Plateau`, `Joan Skeleton
+Generator` (whose category is `NonInteractiveSequence Actor,Scripted Custom 1`), `Joan Spirit1`,
+`Joan Spirit2`, `Joan Spirit3`, `Ghoul Male attacking Joan bottom Generator`, `Ghoul Generator` and
+`Zombie Skeleton Generator` are all **Active=0 with nothing anywhere activating them**. The
+set-piece that would show the player what this place is was built and never switched on.
+
+### Dead parts worth naming
+
+Audited case-insensitively, excluding cloned prototypes and engine-run secrets:
+
+| Part | Map | What it was for |
+|---|---|---|
+| `switch to trap ghouls` | `2 Retreat of Souls` | the act's **only** switch that turns the building on the horde, Active=0, referenced nowhere |
+| the seven Joan battle generators | `7 Doomed Plateau` | the scripted engagement (above) |
+| `Joan Likes Player through dialog` | `7 Doomed Plateau` | a checker the map reads and nothing sets -- her warm return greeting hangs off it |
+| `True Entrance` + `True Entrance Color Remover` | `2 Retreat of Souls Entry` | the false-lance puzzle's real door |
+| `NIS Assassin1 Generator`, `NIS Assassin2 Generator` | `1 Crypt Entrance` | a cutscene pair, both inactive |
+| `Crypt18/19/20`, `cr10/cr18/cr19/cr20` | `2 Retreat of Souls` | four interaction points and their four checkers, none of them set |
+| `2nd Main door monster`, `Door1`, `secret door6` | `2 Retreat of Souls` | door and ambush wiring |
+
+Checkers read but never set, beyond those: `Joan Spirits Asked about Pious Child`,
+`Joan Spirits chosen who think am dialog`, `Protector Assassin question checker`.
+
+### What is written and unreachable
+
+Only **one** reply-carrying orphan: `UndeadTemplar / 03 return dialogue` (3 replies). The rest of
+the loss is at the placement layer, not the tree layer:
+
+* `UndeadTemplar` has **nine `Random Knight` barks and the maps fire one of them.** Eight lines of
+  garrison voice -- *"We are ever vigilant"*, *"We stand strong against the black tide"* -- never
+  play.
+* The friendly branch (`10 relic` *"Have you been sent to reinforce us?"*, `40 knight` *"We can use
+  more swords. Find Jehanne, she can help you"*) is reachable by reply, but `UndeadTemplar` is
+  placed **seven times in the whole act**, only on `7 Doomed Plateau` and `9 Burial Chamber`, so
+  most players meet the hostile greeting and never learn there are two sides.
+* Jehanne has 38 nodes and can be recruited (`600 Companion Continue Again`), can turn on the
+  player (`601 Joan Leaves party and Attacks Player`), and has **race-specific** versions of the
+  demand for the lance (human, feralkin, sylvant, demokin).
+
+### 66 trap events, no trap checks
+
+The act carries **66 `GetCloseThen Disarm Trap`** specifiers, and every one calls `Disarm Trap.can`
+or `Disarm Trap on Chest.can`, which are pure action bundles: play a sound, delete the trap, print
+"Disarmed Trap", award 75 XP. **No skill is consulted** -- a character with nothing in
+`Lockpick Disarm Traps` disarms all 66 by walking up to them. There are also 87 `CAISecretReveal`
+activities and 8 named secret doors, and the environmental vocabulary is placed and barely used:
+`Switch Barricade` x7, `last coffin protect wall` x13, `Center Trap Spike` x10, two corpse bombs, a
+fire trap, `Switch for Joan Pillars`, and the pulley whose entire dialogue is *"&lt;You hear a faint
+click from the north wall&gt;"*.
+
+### What the act asks about the player
+
+194 replies. Corrected for named requirements, which an earlier pass of this survey missed:
+
+| gate | replies |
+|---|---|
+| quest / state / item | 24 |
+| faction (Templar 5, Templar NOT 3, Inquisitor 3, Saladin 3, Wielder 3) | 17 |
+| Speech (45, 65, 80) | 5 |
+| attributes (IN 7+ x2) | 5 |
+| race (human / feralkin / sylvant / demokin, all on Jehanne's lance demand) | 4 |
+| karma, gender, perk, spirit, magic school, trap skill | **0** |
+
+At 8.8% faction-gated it is the **most faction-aware act measured so far** -- Montaillou managed
+2.4% and Toulouse 1.2%. What it never asks about is a perk, a spirit, a karma score, or any of the
+three magic-school skills, which is notable because Brother Michel says the entrance was sealed by
+*"Sorcerers from the Order of Saladin"* and that the seals *"are not impregnable -- they can be
+broken"*, and the `General Divine/Thought/Tribal Skills moreequal 80` gates exist and are used in
+exactly one composite expression in Barcelona.
+
+### The Efreeti already is the war's control panel
+
+Eight wishes across `01 Conversation Start` and `10 efreeti`, and the two that settle the war are
+both `!None`: *"I wish to undo the curse laid upon Jehanne's soul and the souls of her fellow
+knights"* -> `100 save inga` (*"The souls of these Templars have been freed"*) and *"I wish that
+all my enemies here would die"*. The wish-for-a-wish needs IN 6+ with Speech 95 from the greeting
+or 80 from the return node; `210 get lost` needs IN 7+. Free, ungated, and currently the outcome of
+nothing the player did with the place.
+
+### The new area: the ghost garrison's camp
+
+`plan.md` settled this and the survey supports it: the Crypt is already a war camp and the game
+never shows it. `UndeadTemplar` 14 nodes, `UndeadTemplar2` 5, Jehanne 38, the Spirit Council 10 and
+the Efreeti 10 -- roughly 77 nodes of written garrison against an act whose maps average 34
+reachable nodes -- and no muster point anywhere.
+
+**The precedent is established twice.** The project has already shipped two maps that vanilla does
+not have: `Temple Ilk Store Room` (0.5) at 16 parts and 24 KB, with a rendered `.frm16` and a
+`.way` waypoint graph in `Cache/`, linked from Temple District by a single `New Map Name`; and
+`4 Undercroft` (0.11.0) at 130 parts and 117 KB, linked from the Druid Council, which shipped
+**without** cache files. So the cost of the camp is known: one `.zax` built from the Crypt's own
+tileset, one arrival spawn, one `New Map Name` transition on `1 Crypt Entrance` or
+`7 Doomed Plateau`, and a decision about whether it needs the `.frm16`/`.way` pair -- the two
+shipped maps disagree, and that question should be settled against the Undercroft before building.
+
+### Tiers, in the order they should be built
+
+1. **Write the quest.** `Release the Doomed Knights from their Torment` exists with zero states
+   against content that is entirely in place: Michel sets it, the garrison confirms it, Jehanne
+   carries it, the Efreeti resolves it. Highest value in the act, no new writing.
+2. **Switch on what was built and left off**: the Joan set-piece generators, `switch to trap
+   ghouls`, `True Entrance`, the `Crypt18/19/20` interaction points, and the checker behind
+   Jehanne's warm greeting. Each is a repair of the same shape as Toulouse's two flags.
+3. **Place the garrison.** Fire the other eight `Random Knight` barks and put `UndeadTemplar`
+   somewhere before `7 Doomed Plateau`, so the player learns there are two sides while it still
+   matters. Placement, not writing.
+4. **The camp**, per the plan: the muster point, Jehanne in command, the Spirit Council
+   consultable, the Efreeti's wish discussed by the people it trapped.
+5. **Give the 66 traps a skill.** `Find Traps Secret Doors` to see one, `Lockpick Disarm Traps` to
+   disarm it, and -- where the horde is on the other side of it -- to re-lay it. The act's own
+   `switch to trap ghouls` is the model, and it is one dead part away from being the model.
+6. **The seals, and reading the dead.** The three magic-school gates for Michel's Saracen seals;
+   `Necrosage` and `Necromancer` for learning something from a body in an act that is nothing but
+   bodies.
+7. **What each order actually means here** (below). The act has the game's densest faction
+   gating and spends it on one speech with the noun swapped.
+
+### Tier 7 - six claimants, one answer
+
+The Crypt asks who the player serves more often than any act in the game -- 17 of its 194 replies,
+8.8% -- and then says the same thing to everyone. Jehanne carries a claim line for all four orders
+on `1 Conversation Start`, `3 Return Dialogue Hate Player` and `10 jehanne`:
+
+* `Templar IS` -> `40 templar`
+* `Inquisitor IS` -> `41 inquisition`
+* `Saladin IS` -> `42 saladin`
+* `Wielder IS` -> `20 demand lance` (no node of its own)
+
+and the three answer nodes are one speech with one noun changed -- *"You lie! Though you come
+bearing the shield of a noble Templar / wrapped in the garb of an Inquisitor / dressed in the guise
+of a noble Knight of Saladin, your spirit betrays you as the monster you are"* -- converging on the
+same five replies (`100 spoke to counsel`, `50 Counsel`, `30 insult`, fight, `5 Goodbye`). The
+Wielder claim skips its own answer entirely and lands in the generic demand, which forks by race
+into four nodes that differ only in the insult.
+
+The fiction gives each order a completely different footing, and every hook needed to read them
+already exists:
+
+| Claimant | Expression | What the Crypt should say |
+|---|---|---|
+| **Templar** | `Faction/Templar IS`, `Templar Highlevel` for rank | The garrison **is** Templar, two centuries older. `UndeadTemplar / 10 relic` already asks *"Are you a Knight? Have you been sent to reinforce us?"* and `40 knight` already answers *"Excellent. We can use more swords. Find Jehanne."* A Templar should be received as a successor and be able to prove it, not called a liar by his own order's commander |
+| **Saladin** | `Faction/Saladin IS`, and `Faction/Saladin Favored` (this project's 0.9.0 can, the Crescent titles) for an initiate | **The curse is their fault.** A Saracen of their order invoked the lamp; the Spirit Council recounts it in `20 The Wish Explained` through `23 The Wish Ending` -- *"as the Saracen wished"* -- **with no faction gate at all**, so a Knight of Saladin hears his own order's catastrophe told to him as a stranger. He should be made to answer for it, and `30 Efreet` (*"it may be the only thing that can reverse this atrocity"*) is where he can offer to undo it |
+| **Inquisition** | `Faction/Inquisitor IS` | The Church that burns spirit-bound souls, claiming a relic guarded by cursed undead -- which is, technically, exactly what the Inquisition exists to destroy. A jurisdiction scene, not a noun swap |
+| **Wielder** (Cedric's) | `Faction/Wielder IS` **without** the Necromancer perk | Binds spirits for a living, in an act where a bound spirit did as it was told and damned a garrison for two hundred years. Needs the one new node: the claim currently has none |
+| **Dark Wielder** (Relican's) | `Faction/Wielder IS` **with** `Perks/!Event Title Perks/Necromancer` | There is no Dark Wielder faction: Relican assigns `Factions/Wielder Mage` and awards the `Necromancer` title, Cedric assigns `Factions/Wielder Conjurer`, and both climb the same `Wielder Rank`. So the perk **is** the distinction, readable anywhere as a bare `CHasPerkExpression`. Jehanne's generic accusation -- *"a servant of the necromancers, an abomination"* -- is the only line in the act that is **literally true** of somebody, and he is the one claimant who can agree with her. It is also where the plan's "necromancy as logistics" belongs: the army besieging her is a necromancer's, and its generators already carry the categories |
+| **Goblin Champion** | `Faction/Goblin Horde IS / Midlevel / Highlevel` (this project's factions) and/or the vanilla `Goblin Champion` title | The Crypt is the one act where the Horde's honours buy **nothing**. Jehanne is a French commander two hundred years dead with a Divine Council for orders; the Horde did not exist in her world, and the horde besieging her is undead, not goblin. Blank incomprehension is a better beat than a sixth rejection, and it pairs with Tereo's *"a name given for a deed, by the ones the deed was done for"* |
+
+**Cost.** Four of the six answer nodes exist and need real content instead of a shared speech; the
+Wielder and the Horde need one node each; the Spirit Council needs one gated reply per order on its
+wish account; and the garrison's Templar branch needs placing rather than writing (tier 3). No new
+expressions, no new markers -- the Necromancer perk, the Crescent titles and the Goblin ranks are
+all already readable.
+
+**And it is worth checking whether `if dark wielder` should be promoted.** The only other marker
+for Relican's path is a checker of that name on `Church Interior.zax`, set from Calle Perdida by a
+same-map `COtherMapAction` -- Barcelona-local, so nothing outside act 1 can read it. The Necromancer
+perk covers the Crypt, but if a later act needs "sided with Relican" distinct from "raises the
+dead", the durable pattern this project already uses is a
+`Derived Character Attributes/Game Scripting Variables/` flag, of which the mod ships six.
+
+
 ## 0.15.0 also - what the review pass found
 
 **Read back over the nine tiers on 2026-09-24, and audited rather than re-read.** Four things
