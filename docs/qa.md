@@ -1452,6 +1452,15 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO75 | Never commit to either side, then cross those maps | - | Neither escort appears and no line plays. Both ship inactive |
 | NO76 | Re-enter any of the six maps after hearing its line | - | No repeat. `the advance has been called` holds it per map |
 | NO77 | NO72 and NO74: confirm you only ever hear one side's line on a map | - | The Hujark line if you sided with Huko, the English line if you sided against him, never both |
+| NO78 | **A save that has never entered act 5**, with Speech **below 75**. Talk to Huko | - | Only the two vanilla doors. The third reply must not be offered |
+| NO79 | The same with Speech **75 or better** | *"I am not here for your Prophet and not here for the Druids."* | `46 safe conduct`. Offered from `1 Conversation Start`, `3 Return Dialogue` and `10 explanation` |
+| NO80 | Take it, then cross `01`, `02`, `03`, `04` and the caves | - | **The Hujark ignore you and the English hunt you.** No escort, no commentary line, and **nothing in the journal** -- neither quest activates |
+| NO81 | NO80 on `03 Tourniquet of Pain` specifically | - | The map is **full of English**. It has no cave fauna at all, so if the English are not coming on, this is the map that will be empty and the whole design has failed |
+| NO82 | NO80, then reach the Demesne | - | The shaman stands aside and says the Seer has been expecting you, exactly as for an ally. Huko's word covers his own men all the way to the door |
+| NO83 | NO80, then ask Nostradamus *"I took no side to get in here. Does that show, in your visions?"* | - | `49 the one who owed nobody`. Offered only while the safe conduct holds |
+| NO84 | NO80, then **strike any Hujark** | - | He fights back, and from then on every Hujark that spawns is hostile again -- on this map **and the next one**. The reply NO83 unlocks should also stop being offered |
+| NO85 | Side with Huko normally (NO5), then strike one of his men | - | The same revocation. Siding with him and then cutting his men down has to cost the alliance |
+| NO86 | Side with the English (NO6), then cross the act | - | Unchanged from tier 3b: Hujark hostile, no English, an English escort, the capture quest |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

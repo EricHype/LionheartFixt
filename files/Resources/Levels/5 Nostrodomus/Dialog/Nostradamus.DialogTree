@@ -105,6 +105,19 @@ Reply Text=What are you?
 Go to node ID=35 Prophet
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Huko granted passage
+Desired Minimum Count=1
+}
+}
+Reply Text=I took no side to get in here. Does that show, in your visions?
+Go to node ID=49 the one who owed nobody
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=I'm not interested in your ravings.
 Go to node ID=50 Nostradamus leaves
 
@@ -975,6 +988,24 @@ Is Default Reply=1
 ------------------------------------------------------------
 Node ID=48 the burning joining
 Text=I know. It looked out of you as you entered, and it knows what I am becoming, and does not care for it. So hear this and do as you like with it: a thing from below can be joined with, exactly as a man can be joined with a spirit of time. Whether what results is you or it is not decided by either of you. It is decided by which of you is the more patient.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=49 the one who owed nobody
+Text=It shows. Everyone who has ever come down that passage arrived belonging to something, and the belonging is the first thing I see; it sits on a man like a coat. You came in wearing nothing, which is rarer than you know and worth less than you hope. A coin that refuses to be flipped is still a coin, coinspinner, and the hand will come for it anyway.
 Should Have Voiceover=0
 
 Requirement=!None

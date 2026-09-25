@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Nine tiers built 2026-09-25, unplayed.** Tier 3b places an army the shipped game built and never deployed; tier 8 gives its commentary a speaker. Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Ten tiers built 2026-09-25, unplayed.** Tier 3b places an army the shipped game built and never deployed; tier 8 gives its commentary a speaker. Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -900,6 +900,63 @@ Case-folded, the act had twenty nodes that nothing reached and nothing opened. W
 Plus the three `Generic Hujark` nodes that are byte-identical copies of the Frightened Apprentice's
 lines in a tree that shares his node IDs -- a copy-paste artefact, not content, and correctly left
 alone.
+
+### Tier 9 - safe conduct, and a way to lose it (built)
+
+Huko has always offered two doors -- help the Prophet, or fight him for it -- and every other piece of
+this act hangs off which one the player takes. A Speech check at 75 buys a third, offered at all three
+places he demands a side:
+
+> I am not here for your Prophet and not here for the Druids. Let me pass and you will not see me
+> again.
+
+**The hollow version of this would have been an empty act**, and one map proves it: `03 Tourniquet of
+Pain` has twenty Hujark-side generators and **no cave fauna at all**, so a genuinely peaceful path
+would walk its middle map through a silent corridor. So neutrality is not peace. Huko can promise that
+his own men will not touch the player; he cannot promise anything about the army currently storming his
+caves, and he says so:
+
+> My men will not touch you, because I will tell them not to, and that is the only thing in this cave I
+> am able to promise you. The Druids are not mine to call off. And if you raise a hand to one of my
+> people, the word will be in the next gallery before you are.
+
+So the safe conduct raises the ninety-nine English generators from tier 3b exactly as the alliance
+does -- and they were already built targeting `Player, Player Friend, Scripted Custom 1`, because to the
+English a neutral is a body in the way. Three states now come out of two flags:
+
+| path | Hujark | English | escort | in the journal |
+|---|---|---|---|---|
+| help the Prophet | stand aside | hunting you | a Hujark soldier, calling the advance | *Protect Nostradamus* |
+| fight for the Lance | hunting you | off | an English soldier | *Defeat the Hujark defenders* |
+| **safe conduct** | **stand aside** | **hunting you** | **none** | **nothing** |
+
+The difference between the first and the third is that **nobody narrates for you**. Tier 8's commentary
+tests the two side flags and a neutral holds neither, so the act goes quiet around you while remaining
+extremely dangerous -- which is not the same thing as empty.
+
+**The plumbing is one gate and two relays.** The pacify branch on 104 Hujark generators used to read
+`sided with the Hujark`; it now reads `the Hujark let you live`, which the alliance and the safe conduct
+both open. `Player buys safe passage` raises the English and calls off the Hujark on the Heart Entrance
+and, through nine `COtherMapAction`s, on every other map. The commentary deliberately still reads the
+old flag: an escort is for somebody who picked a side.
+
+**And the deal is revocable.** All 104 pacified Hujark now carry a damaged script: raise a hand to one
+and `Passage revoked` voids the arrangement here and, through nine more cross-map calls, everywhere --
+so the next gallery already knows, exactly as Huko said. The struck man fights back, and every Hujark
+that spawns from then on comes up hostile. This applies to the **alliance** path too, which it always
+should have: side with Huko and then cut his men down and you have chosen again.
+
+A corrective pass after the audit: the seer's door still read the alliance flag, so the shaman and
+guard turned on a player Huko had personally guaranteed. They are his men and his word covers them, so
+the door reads the same gate now -- and *"The Seer has been expecting you"* sits as well on a neutral as
+on an ally, because being expected is the seer's whole business.
+
+**Nostradamus notices.** A player carrying safe conduct can ask whether it shows in his visions:
+
+> It shows. Everyone who has ever come down that passage arrived belonging to something, and the
+> belonging is the first thing I see; it sits on a man like a coat. You came in wearing nothing, which
+> is rarer than you know and worth less than you hope. A coin that refuses to be flipped is still a
+> coin, coinspinner, and the hand will come for it anyway.
 
 ### Tiers, in the order they should be built
 

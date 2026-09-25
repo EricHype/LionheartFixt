@@ -87,6 +87,282 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=the Hujark let you live
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1675
+			Position Y=654
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Huko granted passage
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1675
+			Position Y=654
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Passage revoked here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CDeactivateAction
+							{
+								Target Name=the Hujark let you live
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Huko granted passage
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1695
+			Position Y=654
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Passage revoked
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=10
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Passage revoked here
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/01 Heart Entrance
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/03 Tourniquet of Pain
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/04 Clan of the Skull B
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/05 Nostrodomus Demesne
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/06 Cave 1
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/07 Cave 2
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/08 Cave 3
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/09 Cave 4
+							}
+							Action=COtherMapAction
+							{
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Passage revoked here
+								}
+								Other Map Name=5 Nostrodomus/10 Cave 5
+							}
+						}
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1715
+			Position Y=654
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Passage granted
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CActivateAction
+					{
+						Target Name=the Hujark let you live, Huko granted passage, English Generator
+						Play Activate Sound=0
+						Delay Between Activations=0
+						Warp Behavior=
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1735
+			Position Y=654
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Dynamic Properties=1
 			{
 				Comment=Swordsman Generator
@@ -585,12 +861,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -607,6 +883,45 @@ CLayerSaveData
 								Entity Name=$Instigator
 								Name To Target=
 								Valid Targets=Scripted Custom 2
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -9490,7 +9805,7 @@ CLayerSaveData
 					Publisher=
 					Action=CActivateAction
 					{
-						Target Name=English Generator, sided with the Hujark, Hujark voice Generator
+						Target Name=English Generator, sided with the Hujark, Hujark voice Generator, the Hujark let you live
 						Play Activate Sound=0
 						Delay Between Activations=0
 						Warp Behavior=
@@ -13613,12 +13928,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -13629,6 +13944,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -14062,12 +14416,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -14078,6 +14432,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -14398,12 +14791,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -14414,6 +14807,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -14696,12 +15128,12 @@ CLayerSaveData
 															{
 																Action=Array
 																{
-																	Item Count=1
+																	Item Count=2
 																	Action=CConditionalAction
 																	{
 																		Try Action=CCheckExistenceAction
 																		{
-																			Name To Check For=sided with the Hujark
+																			Name To Check For=the Hujark let you live
 																			Desired Minimum Count=1
 																		}
 																		Succeed Action=CSetTargetTypeAction
@@ -14712,6 +15144,45 @@ CLayerSaveData
 																		}
 																		Fail Action=
 																		Return failure if the TryAction failes=0
+																	}
+																	Action=CSetDamagedScriptActionAction
+																	{
+																		New Damaged Action=CIfAction
+																		{
+																			If=CCheckCategoryAction
+																			{
+																				Target Name=$Instigator
+																				Category to check for=Player,Player Friend
+																			}
+																			Then=CConditionalAction
+																			{
+																				Try Action=CCheckExistenceAction
+																				{
+																					Name To Check For=the Hujark let you live
+																					Desired Minimum Count=1
+																				}
+																				Succeed Action=CMultipleActionsAction
+																				{
+																					Action=Array
+																					{
+																						Item Count=2
+																						Action=CTriggerRelayAction
+																						{
+																							Relay Name=Passage revoked
+																						}
+																						Action=CGoToCombatAction
+																						{
+																							Enemy Name=$Trigger
+																						}
+																					}
+																				}
+																				Fail Action=
+																				Return failure if the TryAction failes=0
+																			}
+																			Else=
+																			Return failure if the If failes=0
+																		}
+																		Target Name=$Instigator
 																	}
 																}
 															}
@@ -15323,12 +15794,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -15339,6 +15810,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -16483,12 +16993,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -16499,6 +17009,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -18913,12 +19462,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -18929,6 +19478,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -20062,12 +20650,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -20078,6 +20666,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -21265,12 +21892,12 @@ CLayerSaveData
 															{
 																Action=Array
 																{
-																	Item Count=1
+																	Item Count=2
 																	Action=CConditionalAction
 																	{
 																		Try Action=CCheckExistenceAction
 																		{
-																			Name To Check For=sided with the Hujark
+																			Name To Check For=the Hujark let you live
 																			Desired Minimum Count=1
 																		}
 																		Succeed Action=CSetTargetTypeAction
@@ -21281,6 +21908,45 @@ CLayerSaveData
 																		}
 																		Fail Action=
 																		Return failure if the TryAction failes=0
+																	}
+																	Action=CSetDamagedScriptActionAction
+																	{
+																		New Damaged Action=CIfAction
+																		{
+																			If=CCheckCategoryAction
+																			{
+																				Target Name=$Instigator
+																				Category to check for=Player,Player Friend
+																			}
+																			Then=CConditionalAction
+																			{
+																				Try Action=CCheckExistenceAction
+																				{
+																					Name To Check For=the Hujark let you live
+																					Desired Minimum Count=1
+																				}
+																				Succeed Action=CMultipleActionsAction
+																				{
+																					Action=Array
+																					{
+																						Item Count=2
+																						Action=CTriggerRelayAction
+																						{
+																							Relay Name=Passage revoked
+																						}
+																						Action=CGoToCombatAction
+																						{
+																							Enemy Name=$Trigger
+																						}
+																					}
+																				}
+																				Fail Action=
+																				Return failure if the TryAction failes=0
+																			}
+																			Else=
+																			Return failure if the If failes=0
+																		}
+																		Target Name=$Instigator
 																	}
 																}
 															}
@@ -22145,7 +22811,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetPatrolAIAction
 							{
 								Patrol AI=CPatrolPathAI
@@ -22212,7 +22878,7 @@ CLayerSaveData
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -22223,6 +22889,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -24426,12 +25131,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -24442,6 +25147,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -25477,12 +26221,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -25493,6 +26237,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -28067,12 +28850,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -28083,6 +28866,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -29095,12 +29917,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -29111,6 +29933,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -32822,12 +33683,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -32838,6 +33699,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -34348,7 +35248,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetPatrolAIAction
 							{
 								Patrol AI=CPatrolPathAI
@@ -34415,7 +35315,7 @@ CLayerSaveData
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -34426,6 +35326,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -34575,7 +35514,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetPatrolAIAction
 							{
 								Patrol AI=CPatrolPathAI
@@ -34642,7 +35581,7 @@ CLayerSaveData
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -34653,6 +35592,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -37418,12 +38396,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -37434,6 +38412,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -39375,12 +40392,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -39391,6 +40408,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -39988,12 +41044,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -40004,6 +41060,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -40468,12 +41563,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -40484,6 +41579,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -41111,12 +42245,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -41127,6 +42261,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -43578,12 +44751,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -43594,6 +44767,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -45007,12 +46219,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -45023,6 +46235,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -47896,12 +49147,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -47912,6 +49163,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -48140,12 +49430,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -48156,6 +49446,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -48815,12 +50144,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -48831,6 +50160,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -49072,12 +50440,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -49088,6 +50456,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -50064,12 +51471,12 @@ CLayerSaveData
 															{
 																Action=Array
 																{
-																	Item Count=1
+																	Item Count=2
 																	Action=CConditionalAction
 																	{
 																		Try Action=CCheckExistenceAction
 																		{
-																			Name To Check For=sided with the Hujark
+																			Name To Check For=the Hujark let you live
 																			Desired Minimum Count=1
 																		}
 																		Succeed Action=CSetTargetTypeAction
@@ -50080,6 +51487,45 @@ CLayerSaveData
 																		}
 																		Fail Action=
 																		Return failure if the TryAction failes=0
+																	}
+																	Action=CSetDamagedScriptActionAction
+																	{
+																		New Damaged Action=CIfAction
+																		{
+																			If=CCheckCategoryAction
+																			{
+																				Target Name=$Instigator
+																				Category to check for=Player,Player Friend
+																			}
+																			Then=CConditionalAction
+																			{
+																				Try Action=CCheckExistenceAction
+																				{
+																					Name To Check For=the Hujark let you live
+																					Desired Minimum Count=1
+																				}
+																				Succeed Action=CMultipleActionsAction
+																				{
+																					Action=Array
+																					{
+																						Item Count=2
+																						Action=CTriggerRelayAction
+																						{
+																							Relay Name=Passage revoked
+																						}
+																						Action=CGoToCombatAction
+																						{
+																							Enemy Name=$Trigger
+																						}
+																					}
+																				}
+																				Fail Action=
+																				Return failure if the TryAction failes=0
+																			}
+																			Else=
+																			Return failure if the If failes=0
+																		}
+																		Target Name=$Instigator
 																	}
 																}
 															}
@@ -50626,12 +52072,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -50642,6 +52088,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -51314,12 +52799,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -51330,6 +52815,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -52174,12 +53698,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -52190,6 +53714,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -52654,12 +54217,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -52670,6 +54233,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -55951,12 +57553,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CConditionalAction
 							{
 								Try Action=CCheckExistenceAction
 								{
-									Name To Check For=sided with the Hujark
+									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
 								Succeed Action=CSetTargetTypeAction
@@ -55967,6 +57569,45 @@ CLayerSaveData
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Passage revoked
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}

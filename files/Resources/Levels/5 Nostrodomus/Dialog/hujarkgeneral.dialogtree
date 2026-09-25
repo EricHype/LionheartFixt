@@ -29,6 +29,23 @@ Requirement=!None
 Reply Text=The Druids are not my friends. It looks as if we stand together.
 Go to node ID=50 help prophet
 
+Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Thieving/Speech
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Reply Text=I am not here for your Prophet and not here for the Druids. Let me pass and you will not see me again.
+Go to node ID=46 safe conduct
+Icon=Speach Skill Icon
+
 Requirement=Inquisitor NOT
 Reply Text=If getting to the Prophet means killing you, then you're my enemy.
 Go to node ID=
@@ -73,6 +90,23 @@ Go to node ID=50 help prophet
 Requirement=!None
 Reply Text=The Druids are not my friends. It looks as if we stand together.
 Go to node ID=50 help prophet
+
+Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Thieving/Speech
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Reply Text=I am not here for your Prophet and not here for the Druids. Let me pass and you will not see me again.
+Go to node ID=46 safe conduct
+Icon=Speach Skill Icon
 
 Requirement=Inquisitor NOT
 Reply Text=If getting to the Prophet means killing you, then you're my enemy.
@@ -141,6 +175,23 @@ Custom Action=CTriggerRelayAction
 Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
 }
 Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Thieving/Speech
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Reply Text=I am not here for your Prophet and not here for the Druids. Let me pass and you will not see me again.
+Go to node ID=46 safe conduct
+Icon=Speach Skill Icon
 
 Requirement=Inquisitor NOT
 Reply Text=If getting to the Prophet means killing you, then you're my enemy.
@@ -692,4 +743,31 @@ Relay Name=Player sides with the English, Player attacks any of the Hujark in th
 }
 Icon=Fight Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=46 safe conduct
+Text=You are the first thing to come down that passage and ask me for nothing. <He does not put the sword away.> Then hear the whole of it. My men will not touch you, because I will tell them not to, and that is the only thing in this cave I am able to promise you. The Druids are not mine to call off. And if you raise a hand to one of my people, the word will be in the next gallery before you are.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Understood. I will keep out of it.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player buys safe passage
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=On second thought -- I will help you hold this place.
+Go to node ID=50 help prophet
+
+Requirement=Inquisitor NOT
+Reply Text=Your people are already in my way.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
 }
