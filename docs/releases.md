@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.16.0 - the Crypt
 
-**Surveyed 2026-09-24. Tier 1 built 2026-09-24, unplayed.** `plan.md` has carried a Crypt design since the back-half
+**Surveyed 2026-09-24. Tiers 1 and 2 built 2026-09-24, unplayed.** `plan.md` has carried a Crypt design since the back-half
 planning, including the new area; this survey measures the act as it actually stands and prices
 that plan.
 
@@ -201,22 +201,58 @@ Generator` (whose category is `NonInteractiveSequence Actor,Scripted Custom 1`),
 `Zombie Skeleton Generator` are all **Active=0 with nothing anywhere activating them**. The
 set-piece that would show the player what this place is was built and never switched on.
 
-### Dead parts worth naming
+### Dead parts worth naming - corrected
 
-Audited case-insensitively, excluding cloned prototypes and engine-run secrets:
+**The first version of this table was mostly wrong, and the error is worth recording because it
+is the fourth of its family.** A `Target Name=` may name **several parts, comma-separated**:
 
-| Part | Map | What it was for |
+```
+Action=CActivateAction
+{
+    Target Name=Ghoul Male attacking Joan bottom Generator, Joan Skeleton Generator
+```
+
+My sweep split activation targets on lines only, so every part activated as part of a list looked
+unreferenced. That is how the Doomed Plateau set-piece came to be described here as "built and
+switched off" when it runs: `MASTER NIS top` and `MASTER NIS bottom` are both Active=1, they
+activate the Joan skeleton and ghoul generators through exactly such a list, and they are fired by
+`Joan NIS Poly top` / `Joan NIS Poly bottom`, two live trigger polygons the player walks into. The
+same error cleared `switch to trap ghouls`, `True Entrance`, the `Crypt18/19/20` ambush doors,
+`secret door6`, `2nd Main door monster` and both assassin generators -- all of them live.
+
+**`tools/deadparts.py` now does this sweep properly**, folding case, splitting comma lists, and
+excluding clone prototypes and `CAISecretReveal` secrets. It prints candidates rather than
+verdicts, because it still cannot tell whether the thing that activates a part is itself
+reachable. Run against act 4 it reports 23 parts, of which 21 are developer `warp` markers, a
+`ghoul clone generator` that appears once per map, two `tabview` debug parts and an `s48` action
+AI. What survives as content:
+
+| Part | Map | Note |
 |---|---|---|
-| `switch to trap ghouls` | `2 Retreat of Souls` | the act's **only** switch that turns the building on the horde, Active=0, referenced nowhere |
-| the seven Joan battle generators | `7 Doomed Plateau` | the scripted engagement (above) |
-| `Joan Likes Player through dialog` | `7 Doomed Plateau` | a checker the map reads and nothing sets -- her warm return greeting hangs off it |
-| `True Entrance` + `True Entrance Color Remover` | `2 Retreat of Souls Entry` | the false-lance puzzle's real door |
-| `NIS Assassin1 Generator`, `NIS Assassin2 Generator` | `1 Crypt Entrance` | a cutscene pair, both inactive |
-| `Crypt18/19/20`, `cr10/cr18/cr19/cr20` | `2 Retreat of Souls` | four interaction points and their four checkers, none of them set |
-| `2nd Main door monster`, `Door1`, `secret door6` | `2 Retreat of Souls` | door and ambush wiring |
+| `Joan Likes Player through dialog` | `7 Doomed Plateau` | the real defect -- tier 2, below |
+| `Ghoul Generator`, `Zombie Skeleton Generator` | `7 Doomed Plateau` | two spare spawn points at the map's east edge with no categories set, most likely deliberate reserves; left alone |
+| `Door1` | `2 Retreat of Souls` | a door nothing opens, with no ambush or checker behind it; left alone |
 
-Checkers read but never set, beyond those: `Joan Spirits Asked about Pious Child`,
-`Joan Spirits chosen who think am dialog`, `Protector Assassin question checker`.
+### Tier 2 - Jehanne never remembers being convinced (built)
+
+`7 Doomed Plateau` chooses her greeting for a returning player by testing two checkers together:
+`Joan Likes Player through dialog` **and** `Joan player spoken to Spirit Council`. The second is
+set in two places. **The first is set nowhere in the game**, so the test can never pass:
+`3 Return Dialogue Likes Player` -- *"You have returned"*, with its five civil replies including
+*"Do you know where the efreet is?"* -- and the warm farewell `5 Goodbye Joan Likes You` are
+unreachable, and a player who has just proved to her that she is cursed gets *"I warn you,
+monster, leave this crypt with haste"* the next time they walk up to her.
+
+The author marked the spot. The reply out of `140 speech convinces joan`, the node where she says
+*"You could not have known that unless you *have* spoken with them! That means you speak the
+truth..."*, carries `Action work in progress=(joan likes player)` and no action at all. Tier 2 is
+that note wired: one `CActivateAction`, and the whole warm branch behind it opens.
+
+**One thing deliberately not done.** The next node's reply *"I have come to lift your curse and
+protect the Lance"* carries the note `(have quest from spirit)`, and with tier 1's quest written it
+could now be gated on that state. It is left ungated: it is the reply that makes her raise the
+blocking gate, and narrowing a progression route on the strength of a designer note is not worth
+the risk when the alternatives are a Speech check and killing her.
 
 ### What is written and unreachable
 
@@ -295,9 +331,8 @@ shipped maps disagree, and that question should be settled against the Undercrof
 1. **Write the quest.** `Release the Doomed Knights from their Torment` exists with zero states
    against content that is entirely in place: Michel sets it, the garrison confirms it, Jehanne
    carries it, the Efreeti resolves it. Highest value in the act, no new writing.
-2. **Switch on what was built and left off**: the Joan set-piece generators, `switch to trap
-   ghouls`, `True Entrance`, the `Crypt18/19/20` interaction points, and the checker behind
-   Jehanne's warm greeting. Each is a repair of the same shape as Toulouse's two flags.
+2. **The checker behind Jehanne's warm greeting** -- the one genuine dead part in the act, and
+   the only survivor of what this tier was originally scoped to be. Built.
 3. **Place the garrison.** Fire the other eight `Random Knight` barks and put `UndeadTemplar`
    somewhere before `7 Doomed Plateau`, so the player learns there are two sides while it still
    matters. Placement, not writing.

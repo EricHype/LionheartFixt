@@ -1,0 +1,904 @@
+CDialogTree
+{
+Name=Jehanne d'Arc
+Portrait=Dialog/NPC Portraits/Joan of Arc
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Step no further, monster! I will not allow you to desecrate this sanctum nor take the Bleeding Lance from my care.
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=I have come to claim the Bleeding Lance for the Knights Templar.
+Go to node ID=40 templar
+Action work in progress=(is templar)
+
+Requirement=Inquisitor IS
+Reply Text=I have come to claim the Bleeding Lance for the Inquisition.
+Go to node ID=41 inquisition
+Action work in progress=(is inquisitor)
+
+Requirement=Saladin IS
+Reply Text=I have come to claim the Bleeding Lance for the Knights of Saladin.
+Go to node ID=42 saladin
+Action work in progress=(is saladin)
+
+Requirement=Wielder IS
+Reply Text=I have been charged to retrieve the Bleeding Lance before evil can claim it.
+Go to node ID=20 demand lance
+Action work in progress=(is wielder)
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 jehanne
+
+Requirement=!None
+Reply Text=I demand that you surrender the Lance.
+Go to node ID=20 demand lance
+Action work in progress=(Joan hates player)
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Then I will go. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Hate Player
+Text=I warn you, monster, leave this crypt with haste. It is the will of a higher power that this place remains unspoiled by your evil.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=Jehanne, I have spoken to your Council, and I bear their words.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke to Joan's Counsel spirit)
+
+Requirement=Templar IS
+Reply Text=I have come to claim the Bleeding Lance for the Knights Templar.
+Go to node ID=40 templar
+Action work in progress=(is templar)
+
+Requirement=Inquisitor IS
+Reply Text=I have come to claim the Bleeding Lance for the Inquisition.
+Go to node ID=41 inquisition
+Action work in progress=(is inquisitor)
+
+Requirement=Saladin IS
+Reply Text=I have come to claim the Bleeding Lance for the Knights of Saladin.
+Go to node ID=42 saladin
+Action work in progress=(is saladin)
+
+Requirement=Wielder IS
+Reply Text=I have been charged to retrieve the Bleeding Lance before evil can claim it.
+Go to node ID=20 demand lance
+Action work in progress=(is wielder)
+
+Requirement=!None
+Reply Text=Who are you again?
+Go to node ID=10 jehanne
+
+Requirement=!None
+Reply Text=I demand that you surrender the Lance.
+Go to node ID=20 demand lance
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Then I will go. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Likes Player
+Text=You have returned.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=Jehanne, I have spoken to your Council. You are the victim of a terrible curse.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke to Joan's Counsel spirit)
+
+Requirement=!None
+Reply Text=Tell me about yourself.
+Go to node ID=10 jehanne
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/SACRED LANCE
+}
+}
+Reply Text=I have recovered the Bleeding Lance.
+Go to node ID=200 have lance
+Action work in progress=(have lance)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=Do you know where the efreet is?
+Go to node ID=170 Efreet
+
+Requirement=!None
+Reply Text=No, I will return when I do. Goodbye.
+Go to node ID=5 Goodbye Joan Likes You
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Goodbye
+Text=Leave this place and never return.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Add talk AI after she talks first
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Goodbye Joan Likes You
+Text=Dieu est avec vous. <God be with you>
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Add talk AI after she talks first
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 jehanne
+Text=I am Jehanne the maiden, commander of l'armée française <the French army> and the destroyer of your evil kin. The voices of the Divine Council have ordered me to defend this Crypt.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=Listen to me, Jehanne, I have spoken to your Council.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke to Joan's Counsel spirit)
+
+Requirement=Templar IS
+Reply Text=I have come to claim the Bleeding Lance for the Knights Templar.
+Go to node ID=40 templar
+Action work in progress=(is templar)
+
+Requirement=Inquisitor IS
+Reply Text=I have come to claim the Bleeding Lance for the Inquisition.
+Go to node ID=41 inquisition
+Action work in progress=(is inquisitor)
+
+Requirement=Saladin IS
+Reply Text=I have come to claim the Bleeding Lance for the Knights of Saladin.
+Go to node ID=42 saladin
+Action work in progress=(is saladin)
+
+Requirement=Wielder IS
+Reply Text=I have been charged to retrieve the Bleeding Lance before evil can claim it.
+Go to node ID=20 demand lance
+Action work in progress=(is wielder)
+
+Requirement=!None
+Reply Text=I demand that you surrender the Lance.
+Go to node ID=20 demand lance
+Action work in progress=(Joan hates player)
+
+Requirement=!None
+Reply Text=The only evil one here is you, corpse. 
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Then I will go. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 combat
+Text=So be it, monster. We will send you back to the fires of perdition.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 demand lance
+Text=You invade this sanctum, then compound your trespass with demands? The Council warned me that one like you would come...
+Should Have Voiceover=1
+
+Requirement=Demokin IS
+Reply Text=
+Go to node ID=20 demand lance 2 demokin
+Action work in progress=(check race here then continue to next response)
+Is Default Reply=1
+
+Requirement=Feralkin IS
+Reply Text=
+Go to node ID=20 demand lance 2 feralkin
+Action work in progress=(check race here then continue to next response)
+Is Default Reply=1
+
+Requirement=Human IS
+Reply Text=
+Go to node ID=20 demand lance 2 human
+Action work in progress=(check race here then continue to next response)
+Is Default Reply=1
+
+Requirement=Sylvant IS
+Reply Text=
+Go to node ID=20 demand lance 2 sylvant
+Action work in progress=(check race here then continue to next response)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 demand lance 2 feralkin
+Text=A creature with the trappings of a human, but feral and monstrous to the soul. You are a servant of the necromancers, an abomination, and the Council demands that you be cleansed.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=The Council?
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 demand lance 2 demokin
+Text=A diabolic creature, one who could twist words as wickedly as souls. You are a servant of the necromancers, an abomination, and the Council demands that you be cleansed!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=The Council?
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 demand lance 2 sylvant
+Text=A corrupt being, merciless as fire and poisonous as the sylvan blood of fairies. You are a servant of the necromancers, an abomination, and the Council demands that you be cleansed.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=The Council?
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 demand lance 2 human
+Text=A mortal whose soul is possessed by dark powers, corrupted beyond salvation. You are a servant of the necromancers, an abomination, and the Council demands that you be cleansed.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=The Council?
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 insult
+Text=You taint this holy place with your presence, and now you defame God's servant with your venomous words! Speak quickly, and tell me why I should not call down the fires of heaven upon you!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=Speech moreequal 45
+Reply Text=My apologies for my outburst, I meant no disrespect.
+Go to node ID=5 Goodbye
+Action work in progress=(speech >=45)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 templar
+Text=You lie! Though you come bearing the shield of a noble Templar, your dark spirit betrays you as the monster you are. The Council would not tolerate your presence here!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=The Council?
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 inquisition
+Text=You lie! Though you come wrapped in the garb of an Inquisitor, your spirit betrays you as the monster you are. The Council would not tolerate your presence here!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=The Council?
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 saladin
+Text=You lie! Though you come dressed in the guise of a noble Knight of Saladin, your spirit betrays you as the monster you are. The Council would not tolerate your presence here!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=The Council?
+Go to node ID=50 Counsel
+
+Requirement=!None
+Reply Text=You call *me* a monster? What of you?
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Counsel
+Text=I hear and heed the voices, the divine spirits sent by Heaven to be my Council. I have listened to their sweet words since I was a child. They helped me crown the King of France, achieve victory at Orleans, and they have brought me here to protect the relic.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=You are misguided. Your Council has told me that you have been cursed.
+Go to node ID=100 spoke to counsel
+Action work in progress=(spoke with Counsel spirit)
+
+Requirement=!None
+Reply Text=I demand that you surrender the Lance.
+Go to node ID=20 demand lance
+
+Requirement=!None
+Reply Text=You speak nonsense. Undeath has driven you mad. 
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 spoke to counsel
+Text=What deviltry is this? True, I have not heard the voices of the Council for some time, but they would never speak to anyone but me! And the idea that they would accuse *me* of being cursed proves your words are false!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Jehanne, I speak for the Council. They want me to help their 'Pious Child'.
+Go to node ID=140 speech convinces joan
+
+Requirement=!None
+Reply Text=I demand that you surrender the Lance.
+Go to node ID=20 demand lance
+
+Requirement=!None
+Reply Text=You speak nonsense. Undeath has driven you mad. 
+Go to node ID=30 insult
+
+Requirement=!None
+Reply Text=Words are wasted with the dead. You must be destroyed.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I did not come here to fight you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 speech convinces joan
+Text=Enfant pieux? <Pious Child?> The Council calls me their Pious Child...You could not have known that unless you *have* spoken with them! That means you speak the truth...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=140 speech convinces joan 2
+Action work in progress=(joan likes player)
+Custom Action=CActivateAction
+{
+Target Name=Joan Likes Player through dialog
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 speech convinces joan 2
+Text=I sensed *something* was amiss, but...cursed? If that is God's will, so be it, but if he has sent you to aid me, I will help as well as I can. What is it that you seek?
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 80
+Reply Text=I have come to lift your curse, but the efreet is formidable and I will need help to defeat him.
+Go to node ID=165 convince joan to help
+Action work in progress=(Speech >65)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have come to lift your curse and protect the Bleeding Lance.
+Go to node ID=150 lift the curse
+Action work in progress=(have quest from spirit)
+
+Requirement=!None
+Reply Text=Tell me where to find the efreet.
+Go to node ID=170 Efreet
+
+Requirement=!None
+Reply Text=Enough of this. I am here to destroy you.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I must go. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 lift the curse
+Text=Very well, I will raise the gate and allow you to pass. The Bleeding Lance is sealed in a tomb at the bottom of this crypt, but there are still minions of the necromancers in the lower levels. Dieu est avec vous. <God be with you>
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(raise the blocking gate)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Opens the gate willingly
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=165 convince joan to help
+Text=Though the Council has not spoken to me, I know that it is their will that I accompany you to cleanse Rennes Le Chateau of the curse. I will follow you to the lower levels so that we can find this efreet, and dispel its vile demon sorceries.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(joan joins you as a companion as a reward for using speech)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Joan Opens the gate willingly
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Switch Joan of Arc interactions specifier for companion mode
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 Efreet
+Text=I have not seen the creature, but I have heard his howls echo throughout this crypt. It is as if he is far, but always dreadfully near. What else do you seek?
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 65
+Reply Text=I have come to lift your curse, but the efreet is formidable and I will neep help to defeat him.
+Go to node ID=165 convince joan to help
+Action work in progress=(Speech >65)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have been sent by the Spirit Council to lift your curse and protect the Bleeding Lance.
+Go to node ID=150 lift the curse
+Action work in progress=(have quest from spirit)
+
+Requirement=!None
+Reply Text=Enough of this. I am here to destroy you.
+Go to node ID=
+Action work in progress=(Joan hates player)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll leave now. Goodbye.
+Go to node ID=5 Goodbye Joan Likes You
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 combat banter 1
+Text=Hold strong, brothers! We will be victorious!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 combat banter 2
+Text=These creatures must not steal the relic!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 combat banter 3
+Text=En nom Dieu! <In God's Name!>
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 combat banter 4
+Text=Fight bravely! Pour la France, pour Dieu! <For France! For God!>
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 combat banter 5
+Text=Is there no end to these abominations?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=405 combat call help
+Text=Open the gates and assist me! They must be vanquished!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=410 Open the gates
+Text=Open the gates!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=420 wait
+Text=Wait...wait...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=421 Now
+Text=Now!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 Inga near Genie
+Text=You have a done a noble act, releasing my soul from this accursed crypt, and I pass the guarding of the relic into your keeping, as I transition to the place *beyond*. You have my eternal gratitude. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(give relic and bonus XP)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 Companion Banter General
+Text=Let us cleanse this place of evil.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 Companion Continue Again
+Text=Are you ready to continue our campaign?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes, follow me.
+Go to node ID=
+Custom Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+
+Requirement=!None
+Reply Text=No, wait here for my return.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=600 Companion Wait
+Text=If that is your order, I will wait and guard here until you return.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 Companion Quest Done Relic Safe
+Text=Praise be to heaven, the relic is *safe* at last. I may finally...rest...and hear the angels sing. It has been an honor to shed blood with you, crusader.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=601 Joan Leaves party and Attacks Player
+Text=I was a fool for trusting you!
+Should Have Voiceover=0
+}
