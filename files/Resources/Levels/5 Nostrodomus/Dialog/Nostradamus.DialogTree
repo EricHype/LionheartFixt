@@ -1,0 +1,912 @@
+CDialogTree
+{
+Name=Nostradamus
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+------------------------------------------------------------
+Node ID=1 Start Conversation
+Text=While I no longer see through human eyes, I sense you still. You are the coinspinner, the spiritbearer, and the Lionhearted. I have foreseen your arrival, though the horizon of your fate is strangely clouded.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How do you know of me?
+Go to node ID=20 Lionheart
+
+Requirement=!None
+Reply Text=Why did you call me the coinspinner?
+Go to node ID=27 coinspinner
+
+Requirement=!None
+Reply Text=Why were you attacked?
+Go to node ID=80 attacked
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=35 Prophet
+
+Requirement=!None
+Reply Text=I'm not interested in your ravings.
+Go to node ID=50 Nostradamus leaves
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialog
+Text=You return coinspinner? What more do you seek?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How do you know of me?
+Go to node ID=20 Lionheart
+
+Requirement=!None
+Reply Text=Why did you call me a coinspinner?
+Go to node ID=27 coinspinner
+
+Requirement=!None
+Reply Text=Why were you attacked?
+Go to node ID=80 attacked
+
+Requirement=!None
+Reply Text=The Hujark call you their Prophet. What are you to them?
+Go to node ID=10 Nostradamus
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=35 Prophet
+
+Requirement=!None
+Reply Text=I'm not interested in your ravings.
+Go to node ID=50 Nostradamus leaves
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 questions
+Text=What I have foreseen, I will tell.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How do you know of me?
+Go to node ID=20 Lionheart
+
+Requirement=!None
+Reply Text=Why did you call me the coinspinner?
+Go to node ID=27 coinspinner
+
+Requirement=!None
+Reply Text=Why were you attacked?
+Go to node ID=80 attacked
+
+Requirement=!None
+Reply Text=The Hujark call you their Prophet. What are you to them?
+Go to node ID=10 Nostradamus
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=35 Prophet
+
+Requirement=!None
+Reply Text=I'm not interested in your ravings.
+Go to node ID=50 Nostradamus leaves
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 evil karma goodbye
+Text=Beware scion of Lionheart, your path will lead only to ruin. There are dark times ahead for your black soul.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Portal Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=12 neutral karma goodbye
+Text=Take heed scion of Lionheart, there are enemies of the *balance* that would see you pulled into the eternal struggle, to flip the spinning coin to *their* side.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Portal Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=13 good karma goodbye
+Text=Take heed, the forces of the Betrayer will oppose you and seek to extinguish the light. You must not let them restore Ahriman, the enemy of truth and the embodiment of malevolence.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Portal Relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Lionheart
+Text=The paths of destiny reveal themselves to me like pages of an open tome. I have seen you in my visions. You are a thread woven through many fabrics and the traveler of paths still to be chosen. If you wish, I will speak of what I have seen.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me your visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=How do you see these visions?
+Go to node ID=35 Prophet
+
+Requirement=!None
+Reply Text=I'm not interested in your ravings.
+Go to node ID=50 Nostradamus leaves
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=27 coinspinner
+Text=You are a shadow, an anomaly clouding my sight, a word begging to be spoken, but forgotten as it is uttered.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=28 coinspinner 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=28 coinspinner 2
+Text=You are the coin that spins while destiny holds its breath. And soon the coin will reveal a side.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How do you know of me?
+Go to node ID=20 Lionheart
+
+Requirement=!None
+Reply Text=Why were you attacked?
+Go to node ID=80 attacked
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=35 Prophet
+
+Requirement=!None
+Reply Text=I'm not interested in your ravings.
+Go to node ID=50 Nostradamus leaves
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Combat
+Text=<A voice laughs inside your head> Fool, you cannot fight your *fate*. Did you think that *I* would not anticipate your actions?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Combat Nostradamus Defeated
+Text=I have already transcended this mortal coil. You will not prevent my transformation. Your failure has been foreseen.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=35 Prophet
+Text=Years ago, I was but a man named Nostradamus, practicing medicine in Lyon. My life changed when I *perceived* and joined with a unique spirit, a creature that sees through time as easily as you see through the clearest glass.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=35 prophet 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 element of prophecy
+Text=I am what a spirit and a man become when a divide is breached and the two are made whole. Now my eyes are opened to visions, flashes, and glimpses of possibilities... 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I'm not interested in hearing your ravings.
+Go to node ID=50 Nostradamus leaves
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Nostradamus leaves
+Text=If that is your will. I wish you luck in your journey, scion of Lionheart.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=60 visions
+Text=There are many visions before me. I see the paths that stretch behind *and* before you...the many dangers you will face...I am witness to profound events unfolding near and far.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1300
+}
+}
+Reply Text=Tell me about the paths you see before me.
+Go to node ID=107 Good Karma Prophecy
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=700
+}
+}
+Operator=
+Operand2=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1300
+}
+}
+}
+Reply Text=Tell me about the paths you see before me.
+Go to node ID=100 Neutral Karma Prophecy
+
+Requirement=!None
+Custom Requirement=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=700
+}
+}
+Reply Text=Tell me about the paths you see before me.
+Go to node ID=105 Evil Karma Prophecy
+
+Requirement=!None
+Reply Text=Tell me about the dangers you see.
+Go to node ID=70 dangers
+
+Requirement=!None
+Reply Text=What events are you talking about?
+Go to node ID=70 events
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 events
+Text=We are at the crossroads of a crucial time. I have visions of a great conflict between England and Spain. I see the fate of the beleaguered Cathars of France, even the Druids seeking a sleeping power are not hidden from my sight.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me your vision about the Druids.
+Go to node ID=70 druids
+
+Requirement=!None
+Reply Text=Tell me you vision about England and Spain.
+Go to node ID=70 england
+
+Requirement=!None
+Reply Text=Tell me your vision about the Cathars.
+Go to node ID=70 cathars
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 dangers
+Text=Your journey is fraught with terrible dangers. I see the dark ones, led by the Betrayer, scheming against you. They have roused the ancient serpent from its fiery prison.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer.
+Go to node ID=70 Betrayer
+
+Requirement=!None
+Reply Text=Tell me about the dark ones.
+Go to node ID=70 demons
+
+Requirement=!None
+Reply Text=Tell me about the serpent.
+Go to node ID=100 Dragon Prophecy
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Betrayer
+Text=I can recite the prophecy of the Betrayer, speak of his fall from grace, or tell you of the twin that once opposed him.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer's prophecy.
+Go to node ID=70 Betrayer Prophecy
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer's fall.
+Go to node ID=70 Betrayer Fall
+
+Requirement=!None
+Reply Text=Speak of the Betrayer's twin.
+Go to node ID=70 Betrayer Twin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=spoke with seer about weird woman
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/02 Hamlet Burned
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=spoke with seer about weird woman
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/06 Witch Interior
+}
+}
+}
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Betrayer Prophecy
+Text=Dark schemes threaten to break a fragile peace, as the Betrayer seeks an age once lost. A new war will be waged in the West and East, its outcome hanging on a coin just tossed.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer's fall.
+Go to node ID=70 Betrayer Fall
+
+Requirement=!None
+Reply Text=Speak of the Betrayer's twin.
+Go to node ID=70 Betrayer Twin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=spoke with seer about weird woman
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/02 Hamlet Burned
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=spoke with seer about weird woman
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/06 Witch Interior
+}
+}
+}
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Betrayer Fall
+Text=Once a divine spirit representing the greatest truth, Asha fought the darkness for centuries but questioned why darkness could not be defeated - why the struggle could not be won. Like a poison, this doubt spread and changed Asha so that he looked to the *darkness* for light.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=Speak of the Betrayer's twin.
+Go to node ID=70 Betrayer Twin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=spoke with seer about weird woman
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/02 Hamlet Burned
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=spoke with seer about weird woman
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/06 Witch Interior
+}
+}
+}
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer's prophecy.
+Go to node ID=70 Betrayer Prophecy
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Betrayer Twin
+Text=After countless battles, Druj, the daeva of lies, questioned her role in the struggle, and sought the *truth* in light. Balance demanded that Asha, her opposite and eternal foe, change to fill the void.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer's prophecy.
+Go to node ID=70 Betrayer Prophecy
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer's fall.
+Go to node ID=70 Betrayer Fall
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 demons
+Text=They are daevas, vile demons dedicated to spreading vice and corrupting humanity. Created by the darkness that is Ahriman, they now serve the Betrayer, continuing their eternal struggle against the truth spread by the divine spirits.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Betrayer.
+Go to node ID=70 Betrayer
+
+Requirement=!None
+Reply Text=Tell me about Ahriman.
+Go to node ID=73 brothers
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 england
+Text=Intrigue and conspiracy in England have stoked the fires of war. A battle of wind and thunder will rage on the great ocean, spilling the blood of Spain's bravest sons.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What other events do you see?
+Go to node ID=70 events
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 cathars
+Text=The pious children of the perfecti will seek aid from England against the Inquisition. Wrath and revenge will claim their land and innocents will perish, but the souls of the Cathars will be spared.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What other events do you see?
+Go to node ID=70 events
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 druids
+Text=The Celtic Druids, allies of the Betrayer, have whispered lies into the ear of the queen, and the English Drake has unfurled the banners of war. Though they plot to steal the relics, it is they who have been deceived...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What other events do you see?
+Go to node ID=70 events
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=73 brothers
+Text=Ahriman forever opposes his brother, Ahura Mazda, the creator of light. Both created servants to carry on an eternal struggle. Seven divine Amesha Spentas, angels, to speak the truth and seven unholy Daevas, demons, born to deceive.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=73 brothers 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=73 brothers 2
+Text=They wage a war within every human heart, a struggle of free will...each choice tips the scales, until at last, one side prevails.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions..
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 attacked
+Text=There are some that believe my visions always come to pass, that my words are the cause for every effect. They would enslave me to force their will on fate.
+Should Have Voiceover=1
+
+Requirement=IN 6+
+Reply Text=So can your visions *affect* the future?
+Go to node ID=70 affect the future
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Dragon Prophecy
+Text=The world has been spared this imprisoned evil for so long that its insatiable thirst for destruction has almost been forgotten. Uncaged by the Betrayer, the demon of storms waits for you in its forsaken lair.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Neutral Karma Prophecy
+Text=An unflipped coin holds two warring fates, light or dark, it must land on one face. But if the pull of the struggle can be denied, behold as the coin falls onto its side.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=105 Evil Karma Prophecy
+Text=Amidst an eternal struggle forever stalemated, Destiny tosses a coin singularly fated. And when the spinning coin comes to rest, behold the dark side reveals a bloody lion's crest.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=107 Good Karma Prophecy
+Text=Amidst an eternal struggle forever stalemated, Destiny tosses a coin singularly fated. And when the spinning coin comes to rest, behold the coin's side reveals the noble lion's crest.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Do you have other visions?
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Nostradamus
+Text=To the Hujark, I am a prophet, a power they revere and worship. But I was not always like this.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 affect the future
+Text=While I see possibilities of the future, I have no providence or control over the domain of destiny.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine goodbye relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 prophet 2
+Text=The form you see before you is but a shell, a cocoon for my metamorphosis. I am the two becoming *one*.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=45 element of prophecy
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Ingame Movie Opening Line
+Text=But before the spinning coin can land, it will be caught by the slaver's hand.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 NIS prophecy
+Text=Assassin, I see a golden coin with a lion's head on one side, and your feeble master, broken and defeated on the other.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1001 Goto combat
+Text=<Laughs> you cannot escape your fate by fighting me, fool!
+Should Have Voiceover=0
+}

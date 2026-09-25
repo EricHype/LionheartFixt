@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Tiers 1, 2, 2b, 3 and 3b built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Tiers 1, 2, 2b, 3, 3b and 4 built 2026-09-25, unplayed.** Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -278,7 +278,7 @@ and a karma-split farewell that works. Three nodes are stranded.
 | node | text | why it is stranded |
 |---|---|---|
 | `10 Nostradamus` | *"To the Hujark, I am a prophet, a power they revere and worship. But I was not always like this."* | Its reply returns to `5 questions`, exactly like every other answer, but nothing points at it. `5 questions` asks *"What are you?"* and routes to `35 Prophet` instead |
-| `100 Dragon Prophecy` | *"Uncaged by the Betrayer, the demon of storms waits for you in its forsaken lair."* | `60 visions` offers the Neutral, Evil and Good karma prophecies and not this one, though it is built identically and returns to the same two nodes. Its ID collides with `100 Neutral Karma Prophecy`, which is what replaced it |
+| ~~`100 Dragon Prophecy`~~ | *"Uncaged by the Betrayer, the demon of storms waits for you in its forsaken lair."* | **Not stranded -- this was an artefact of a case-sensitive audit.** `70 dangers` reaches it with *"Tell me about the serpent."*, spelled `100 dragon prophecy` in lowercase. Tier 4 makes the casing exact anyway |
 | `30 Combat` | *"<A voice laughs inside your head> Fool, you cannot fight your *fate*."* | The seer's line for being attacked, opened by no map |
 
 `40 Ingame Movie Opening Line` -- *"But before the spinning coin can land, it will be caught by the
@@ -639,6 +639,53 @@ Agree to defend the Prophet and it becomes the other act: English soldiers and b
 corridors, Hujark swordsmen fighting beside you instead of at you, and at the end a shaman who stands
 aside and says the Seer has been expecting you. Both halves were in the box.
 
+### Tier 4 - the seer defends himself (built)
+
+**Nostradamus was built to fight back, and nothing ever started it.**
+`Nostrodomus Attack Preparation` is `Active=1` and fired by **nothing**. It turns him hostile, waits
+four seconds, activates `Nostro Attacks Player timer`, and calls `Monster summoning`. The timer drives
+`Nostradamus attacks` -- a `CShuffledSeriesAction` of four ranged spells, lightning bolts and celestial
+smites for 3 to 15 electrical damage, cast from across the chamber. His generator already carries a
+destroyed-script that opens the portal when he falls. He has his own taunt for being struck
+(`30 Combat`: *"<A voice laughs inside your head> Fool, you cannot fight your fate. Did you think that
+I would not anticipate your actions?"*), a second for the fight itself (`1001 Goto combat`), and a line
+for beating you (`30 Combat Nostradamus Defeated`: *"I have already transcended this mortal coil. You
+will not prevent my transformation. Your failure has been foreseen."*).
+
+All of it was switched off. Strike the seer in the shipped game and he stands there and takes it.
+
+The trigger is the idiom this very act already uses on Huko: a `CSetDamagedScriptActionAction` that
+asks whether the damager is a player. His generator's `After Action` already sets a destroyed script, so
+the damaged script goes in beside it, and the sequence reads:
+
+| when | what |
+|---|---|
+| the first blow lands | `30 Combat` opens as a conversation -- he laughs inside your head -- then `1001 Goto combat` over him, and `Nostrodomus Attack Preparation` fires |
+| four seconds later | the spell timer starts, and he begins casting |
+| every blow after the first | the relay only, guarded by a `the seer has laughed once` checker, so the taunt does not repeat |
+| when he dies | `30 Combat Nostradamus Defeated`, then vanilla's `Portal Relay` as before |
+
+**`10 Nostradamus` answers a question nobody asked.** *"To the Hujark, I am a prophet, a power they
+revere and worship. But I was not always like this."* Its replies return to `5 questions` like every
+other answer of his, and nothing pointed at it; `5 questions` asks *"What are you?"* and routes to
+`35 Prophet`, which is the answer about the spirit he merged with -- a different question. Both of his
+hubs now also ask **"The Hujark call you their Prophet. What are you to them?"**
+
+**Two of his links were spelled in the wrong case** -- `70 dangers` offering *"Tell me about the
+Betrayer."* to `70 betrayer` and *"Tell me about the serpent."* to `100 dragon prophecy`, against nodes
+named `70 Betrayer` and `100 Dragon Prophecy`. Part names resolve case-insensitively in this engine and
+node IDs almost certainly do too, so these probably always worked; both are exact now, which costs
+nothing and repairs two replies and the Dragon Prophecy if they did not.
+
+**Where act 5's unreachable dialogue stands after this tier.** Case-folded, the act had twenty nodes
+that nothing reached and nothing opened. Tier 3 opened three, tier 4 opens four, and what is left is:
+
+| still unreachable | why, and what it would take |
+|---|---|
+| 12 nodes of `Losing side wins a fight` | the two escalation series and both *"thank you for your help"* lines need an **allied speaker per map**, and the paired-skirmish cast they were written for (`English3`, `Hujark3a`, `Hujark3b`) is created by nothing |
+| 3 nodes of `Generic Hujark` | `4 sneak`, `5 barter`, `6 No` are **byte-identical copies** of the Frightened Apprentice's lines in a tree that shares his node IDs. A copy-paste artefact, not content |
+| `40 Ingame Movie Opening Line` | belongs to a cinematic that is not in the retail build |
+
 ### Tiers, in the order they should be built
 
 1. ~~**The general who never spawns, and the two quests behind him.**~~ **Built** -- see above.
@@ -650,8 +697,8 @@ aside and says the Seer has been expecting you. Both halves were in the box.
    the English, which is what `Player attacks any of the Hujark in this fight` is named for.
 3b. ~~**The act's two armies.**~~ **Built** -- 99 English generator parts from the act's own unused
    roster, as a swap rather than an addition.
-4. **The seer's three stranded nodes**, and the question in `5 questions` that was meant to reach
-   the first of them.
+4. ~~**The seer's three stranded nodes.**~~ **Built** -- and they turned out to be a boss defence
+   that was never switched on.
 5. **The two silent maps and the ten trapless ones.** `07 Cave 2` and `09 Cave 4` have no voice of
    any kind; no map in the act has a trap or a lock.
 6. **Reactivity.** Seven faction gates and three karma gates in 176 replies. The seer who reads

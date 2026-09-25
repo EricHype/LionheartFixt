@@ -1415,6 +1415,14 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO38 | NO34 anywhere: wound an English soldier past half health | - | **No snake.** Tier 2's trigger is stripped from every English twin |
 | NO39 | NO34: check the cave fauna | - | Snakebreed, spirits and vodyanoi attack you on both paths. They were deliberately left alone |
 | NO40 | NO34 then reload a save from before the choice and side with the English instead | - | The English parts stay off. The checker is per-map and set only by the Hujark relay |
+| NO41 | **A save that has never entered act 5.** Reach Nostradamus and hit him once | - | He opens `30 Combat` -- *"Fool, you cannot fight your fate"* -- then taunts with `1001 Goto combat`, and four seconds later starts casting lightning at you from across the room. **In the shipped game he stood there and took it** |
+| NO42 | NO41, then hit him again several times | - | No repeat of the opening conversation. The `the seer has laughed once` checker holds it |
+| NO43 | NO41, then kill him | - | *"I have already transcended this mortal coil... Your failure has been foreseen."* and then the portal opens as it always did |
+| NO44 | Talk to him without ever attacking | - | No combat, no taunt. The whole thread hangs off the first blow |
+| NO45 | Ask him **"The Hujark call you their Prophet. What are you to them?"** | - | `10 Nostradamus`: *"To the Hujark, I am a prophet... But I was not always like this."* Offered from both `5 questions` and `3 Return Dialog`, and **never reachable before** |
+| NO46 | Ask *"What are you?"* as well | - | Still `35 Prophet` -> `35 prophet 2` -> `45 element of prophecy`, unchanged |
+| NO47 | From `70 dangers`, take *"Tell me about the Betrayer."* and *"Tell me about the serpent."* | - | `70 Betrayer` and `100 Dragon Prophecy`. These were spelled in lowercase in vanilla; if they worked before they still work, and if they did not they do now |
+| NO48 | NO41 while **sided with the Hujark** (NO28) | - | The shaman and guard stood aside at the door, and the seer still defends himself. Confirm attacking him does not un-pacify the Hujark |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

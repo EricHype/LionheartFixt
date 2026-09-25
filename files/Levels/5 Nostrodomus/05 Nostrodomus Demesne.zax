@@ -87,6 +87,36 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=the seer has laughed once
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1380
+			Position Y=764
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=English Generator
 			Child List=
 			Visible=0
@@ -7742,7 +7772,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CAddCategoryAction
 							{
 								Target Name=$Instigator
@@ -7754,7 +7784,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=3
 										Action=CTriggerRelayAction
 										{
 											Relay Name=Portal Relay
@@ -7763,7 +7793,77 @@ CLayerSaveData
 										{
 											Target Name=Nostro Attacks Player timer
 										}
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/5 Nostrodomus/Dialog/Nostradamus
+											Node ID=30 Combat Nostradamus Defeated
+											Name of Position=Nostradamus
+											Position Offset=0.000000,-80.000000
+											After Action=
+											Include In Log=1
+										}
 									}
+								}
+								Target Name=$Instigator
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the seer has laughed once
+											Desired Minimum Count=1
+										}
+										Succeed Action=CTriggerRelayAction
+										{
+											Relay Name=Nostrodomus Attack Preparation
+										}
+										Fail Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/Nostradamus
+													Node ID=30 Combat
+													Speaker=Nostradamus
+													Player Being Spoken To=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/Nostradamus
+													Node ID=1001 Goto combat
+													Name of Position=Nostradamus
+													Position Offset=0.000000,-80.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CActivateAction
+												{
+													Target Name=the seer has laughed once
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Nostrodomus Attack Preparation
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Else=
+									Return failure if the If failes=0
 								}
 								Target Name=$Instigator
 							}
