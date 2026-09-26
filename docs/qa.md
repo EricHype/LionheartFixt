@@ -1488,6 +1488,18 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 | ES7 | Fight the Druid Master | - | **A real boss fight now.** She shipped on the rank-and-file `Priestess Super` race at HP 95 / AC 150 / no resistance -- weaker than her own guards, and against an `Assasin Master` on the same map at HP 400 / AC 305. She is now HP 350 / AC 300 / 65% resist, four spells at 130 and Evasion 60 |
 | ES7a | Check the XP for killing her | - | **2,500**, up from 1,100. She shipped paying less than the 1,949 her own attendant priestesses pay |
 | ES7b | Fight a rank-and-file `Priestess Super` in the same room | - | Distinctly weaker than the Master: HP 135 / AC 310. They no longer share a race |
+| ES9 | **A save that has never entered act 7.** Accept Sir Roger's offer of help, then look around the entrance of `02 Temple Initiate` | - | A Templar post: a quartermaster, a field surgeon and a guard, around 2820,1300. **Act 7 had no merchant on any of its eleven maps** |
+| ES10 | **Refuse** his help instead -- *"I am not interested in help from any Englishman"* -- and look in the same place | - | **Nothing there.** No camp, no shop, no surgeon. That reply cost nothing at all before this |
+| ES11 | Reach `04 Antechamber of Lore` after accepting | - | A second post around 5880,1560. It is opened from `02` by a `COtherMapAction`, so it should already be there when you arrive |
+| ES12 | Talk to a camp guard | - | *"My sword is yours."* **The one dialogue tree in the act that nothing opened** |
+| ES13 | Buy from the quartermaster with **none** of Quinn's three errands done | - | One "Show me what you have" reply. Potions, 40 bolts, 40 arrows, hard leather, a medium shield |
+| ES14 | The same having done **one or two** of Quinn's errands | - | The reply mentions a herbalist who owes you, and the stock adds **Great Healing** potions |
+| ES15 | The same having done **all three** | - | The reply says you did the herbalist some favours, and the stock adds **Superior** and **Supreme Healing** -- the potions 0.4.0 unlocked, six acts earlier |
+| ES16 | Count the "Show me what you have" replies in any of ES13-ES15 | - | **Exactly one, ever.** The first draft would have shown three identical replies to a player who had done all three errands |
+| ES17 | As a **Templar**, then as a **Knight of Saladin**, ask the surgeon for help | - | Healed to full, free. He treats both orders as brothers |
+| ES18 | As a sworn **Inquisitor** | - | He heals you, and **charges the 200** like anyone else. Deliberate: the Inquisition is Spanish and ecclesiastical, not his brotherhood |
+| ES19 | With fewer than 200 gold and no order | - | The paid reply is not offered |
+| ES20 | Ask the surgeon how many he has lost, and the quartermaster whose stock it is | - | Two answers about the twenty who held the gate. Neither is a shop |
 | ES8 | Everything else about the act's spawns | - | Unchanged. No generator was added or removed and no vanilla spawn entry was dropped; only weighted entries were added to existing groups |
 
 ### 0.18.0 - the Barcelona Attack

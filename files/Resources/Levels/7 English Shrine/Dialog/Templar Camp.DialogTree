@@ -1,0 +1,276 @@
+CDialogTree
+{
+Name=Templar Camp
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 the quartermaster
+Text=Sir Roger said you might come by. <He has a crate open before he has finished the sentence.> Take what you need and do not thank me for it -- half of this was carried in by men who are not going to want it back.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Show me what you have. I have done a herbalist in Barcelona some favours.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Templar Stores full
+After Closed Action=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=COrAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+Early Exit=0
+}
+Action=CNotAction
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+Early Exit=0
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Show me what you have. A herbalist in Barcelona owes me something.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Templar Stores good
+After Closed Action=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wolf Pelts for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Wasp Stingers for Quinn
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Troll Hide for Quinn
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=Show me what you have.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Templar Stores field
+After Closed Action=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who did this stock belong to?
+Go to node ID=3 whose stock
+
+Requirement=!None
+Reply Text=Nothing today.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 the surgeon
+Text=<He does not look up from the man he is working on.> If you can walk you can wait. <Then he sees what you are, and he wipes his hands.> Or you are the one Sir Roger went off with, in which case sit down and let me see it.
+Should Have Voiceover=0
+
+Requirement=Templar IS
+Reply Text=I am of the Temple, brother. Do what you can.
+Go to node ID=4 healed
+Custom Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$Instigator
+Amount of health to give=CSubtract
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CExpressionHitPointsRemaining
+{
+}
+}
+Expression Context=$Instigator
+}
+Icon=Quest Icon
+
+Requirement=Saladin IS
+Reply Text=The Order of Saladin thanks you.
+Go to node ID=4 healed
+Custom Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$Instigator
+Amount of health to give=CSubtract
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CExpressionHitPointsRemaining
+{
+}
+}
+Expression Context=$Instigator
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=200
+}
+}
+Reply Text=I can pay. Two hundred.
+Go to node ID=4 healed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=200
+}
+Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$Instigator
+Amount of health to give=CSubtract
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CExpressionHitPointsRemaining
+{
+}
+}
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=How many have you lost?
+Go to node ID=5 the tally
+
+Requirement=!None
+Reply Text=I will manage.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 whose stock
+Text=Men who came up that road with us. <He does not stop packing.> The Order buys in bulk and buries in bulk, and I would rather it went into somebody who is still standing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let me see it.
+Go to node ID=1 the quartermaster
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 healed
+Text=<Whatever he does takes less time than it should, and hurts more than you expect.> There. Do not make me do that twice in one day -- I have others.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=My thanks.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 the tally
+Text=Twenty at the gate, and I knew nineteen of them by name. <He goes back to the man on the ground.> The druids do not take wounded, so there is no one to trade for and nothing to negotiate. Kill them and come back and I will still be here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will.
+Go to node ID=2 the surgeon
+Is Default Reply=1
+}

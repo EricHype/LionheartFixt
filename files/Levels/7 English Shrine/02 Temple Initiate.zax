@@ -85,6 +85,828 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=Templar quartermaster 02
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=11
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/7 English Shrine/Character Templates/Knight Templar
+								}
+							}
+						}
+					}
+					New Name=Templar quartermaster
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CDisplayDialogTreeAction
+							{
+								Dialog Tree File=Levels/7 English Shrine/Dialog/Templar Camp
+								Node ID=1 the quartermaster
+								Speaker=$trigger
+								Player Being Spoken To=$Instigator
+							}
+							X Radius=55
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=Any Direction
+					Angle Variation=0.785398
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=2820
+			Position Y=1300
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar surgeon 02
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=11
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/7 English Shrine/Character Templates/Knight Templar
+								}
+							}
+						}
+					}
+					New Name=Templar surgeon
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CDisplayDialogTreeAction
+							{
+								Dialog Tree File=Levels/7 English Shrine/Dialog/Templar Camp
+								Node ID=2 the surgeon
+								Speaker=$trigger
+								Player Being Spoken To=$Instigator
+							}
+							X Radius=55
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=Any Direction
+					Angle Variation=0.785398
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=2760
+			Position Y=1345
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar camp guard 02
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=11
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/7 English Shrine/Character Templates/Knight Templar
+								}
+							}
+						}
+					}
+					New Name=Templar camp guard
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/7 English Shrine/Dialog/EnglishKnightTemplarCan1
+								Node ID=1 Conversation Start
+								Name of Position=$trigger
+								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=1
+							}
+							X Radius=55
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=Any Direction
+					Angle Variation=0.785398
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=2880
+			Position Y=1330
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar Stores field
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Templar Stores
+					Price Multiplier=1
+					Time Between Restock=9000
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=5
+						Array Item=CMerchantListItem
+						{
+							Quantity=8
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=40
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Bolt
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=40
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Arrow
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ArmorHardLeather
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ShieldMedium
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=2700
+			Position Y=1400
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar Stores good
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Templar Stores
+					Price Multiplier=1
+					Time Between Restock=9000
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=6
+						Array Item=CMerchantListItem
+						{
+							Quantity=8
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=40
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Bolt
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=40
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Arrow
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ArmorHardLeather
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ShieldMedium
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=2720
+			Position Y=1400
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Templar Stores full
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Templar Stores
+					Price Multiplier=1
+					Time Between Restock=9000
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=8
+						Array Item=CMerchantListItem
+						{
+							Quantity=8
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=40
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Bolt
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=40
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Arrow
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ArmorHardLeather
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/ShieldMedium
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=5
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Great Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Superior Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorAdditionalMagic
+							{
+								Items=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Potion
+									}
+								}
+								Chance Has Additional Magic=1
+								Additional Magic=Array
+								{
+									Array Count=1
+									Array Item=CInventoryItemGeneratorAdditionalMagicItem
+									{
+										Weighting=10
+										Addition=Inventory/Inventory Additions/Miscellaneous/Potions/Supreme Healing
+										Level=0
+									}
+								}
+							}
+							Level=
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=2740
+			Position Y=1400
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=
@@ -18538,7 +19360,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=5
 							Action=CSendAIDoneMessage
 							{
 								Target=Templar NIS1
@@ -18550,6 +19372,24 @@ CLayerSaveData
 							Action=CSendAIDoneMessage
 							{
 								Target=Templar NIS3
+							}
+							Action=CActivateAction
+							{
+								Target Name=Templar quartermaster 02, Templar surgeon 02, Templar camp guard 02
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=Templar quartermaster 04, Templar surgeon 04, Templar camp guard 04
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=7 English Shrine/04 Antechamber of Lore
 							}
 						}
 					}

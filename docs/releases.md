@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.19.0 - the English Shrine
 
-**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tier 1 built 2026-09-26, unplayed.** Act 7,
+**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1 and 2 built 2026-09-26, unplayed.** Act 7,
 `Levels/7 English Shrine`. Eleven maps, 3,481 level parts, 2,035 live combatants, nine dialogue trees,
 91 player replies.
 
@@ -308,7 +308,7 @@ with Tremblethorn.
 Nothing else moved onto the new race: `Priestess Super.Race` still exists and the rank-and-file
 `Priestess Super.can` still uses it.
 
-**2. The Templars' help becomes substantial: a quartermaster and a field surgeon.** Designed with the
+**2. ~~The Templars' help becomes substantial.~~ Built:** a quartermaster and a field surgeon. Designed with the
 tester 2026-09-26; decisions below are theirs, not defaults.
 
 What the alliance currently amounts to is **three knights and Sir Roger** -- each of the three
@@ -355,6 +355,50 @@ chambers fall, giving three windows in all, exactly as Quinn has three.
 **And the whole post is gated on having accepted Sir Roger's help.** Refuse him -- *"I am not interested in
 help from any Englishman"* -- and there is no camp, no shop and no surgeon. That reply currently costs the
 player nothing at all; this is the first time it costs something.
+
+**What went in.** Two posts, `02 Temple Initiate` at 2820,1300 and `04 Antechamber of Lore` at 5880,1560 --
+the two ends of the act's spine, so no room is more than one map from resupply. Three staff at each, all on
+the act's own **`Knight Templar`** template, which shipped placed nowhere: a quartermaster, a field surgeon,
+and a guard who finally speaks `EnglishKnightTemplarCan1`'s *"My sword is yours."* -- the one tree in the act
+that nothing opened. `Templar Camp.DialogTree` is new: five nodes, thirteen replies.
+
+**Everything copies a shipped shape**, which is why the tier is small: `CMerchantAI` on its own
+`Editor/Store Inventory` entity opened by `CDisplayMerchantWindowAction` (the `Raylark` store in the Bounty
+Hunter Camp is the minimal model); the Farshad full-heal,
+`CGiveHealthToCharacterAction` with `CSubtract{(HP) Hit Points - CExpressionHitPointsRemaining}`;
+`CHasMoneyAction` and `CTakeMoneyAction` for the fee.
+
+**Gated on Sir Roger's help.** His `10 accept` already fired a relay called
+`Accept Sir Roger Offer of Help`, so that relay now also activates all six staff -- the `04` post through a
+`COtherMapAction`. Refuse him -- *"I am not interested in help from any Englishman"* -- and neither post
+exists. **That reply cost the player nothing before this.**
+
+**The surgeon heals free for a knight and charges everyone else 200**, `Templar IS` or `Saladin IS` free,
+*including a sworn Inquisitor paying* -- the Inquisition is Spanish and ecclesiastical, not his brotherhood.
+He also answers how many he has lost: *"Twenty at the gate, and I knew nineteen of them by name... The druids
+do not take wounded, so there is no one to trade for and nothing to negotiate."*
+
+**The stock reaches back six acts.** Three windows, chosen by the same quests Quinn uses for his own reserve
+-- *Wolf Pelts*, *Wasp Stingers*, *Troll Hide* -- because quest completion is global state readable from any
+map with no flag to mirror:
+
+| window | offered when | carries |
+|---|---|---|
+| `Templar Stores field` | no errand done | potions, 40 bolts, 40 arrows, hard leather, a medium shield |
+| `Templar Stores good` | **any** errand AND **not all three** | the above plus **Great Healing** |
+| `Templar Stores full` | **all three** errands | the above plus **Superior** and **Supreme Healing** |
+
+The potion lines copy `Quinn Reserve Three` exactly -- a base `Inventory Items/Potion` under
+`CInventoryItemGeneratorAdditionalMagic` carrying one of the three `.InventoryAddition` files 0.4.0
+authored. So Quinn's errands in act 1 are still paying out in act 7.
+
+Two things the audit caught before this shipped. The first draft stocked an **`Antidote`**, which does not
+exist in `Resources/Inventory Items/` -- the same class of mistake as the invented model path that crashed
+0.5.0, so every item and addition path is now verified present. And the three stock windows were **not
+mutually exclusive**: a player who had done all three errands would have seen *three identical "Show me what
+you have" replies*. The engine has `CAndAction`, `COrAction` and `CNotAction` all in use (245 / 164 / 579),
+so the windows are now `all three` / `any and not all three` / `not any`, order-independent, and the two
+better replies say *why* the stock is better so they read as different offers.
 
 **3. The allegiance to England, stored at last -- and read in the country it was sworn to.** Scoped
 2026-09-26 after the tester asked what helping Guy Fawkes does once you reach England. The answer was:
