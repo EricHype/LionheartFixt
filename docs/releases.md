@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.19.0 - the English Shrine
 
-**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1, 2 and 3 built 2026-09-26, unplayed.** Act 7,
+**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1 through 4 built 2026-09-26, unplayed.** Act 7,
 `Levels/7 English Shrine`. Eleven maps, 3,481 level parts, 2,035 live combatants, nine dialogue trees,
 91 player replies.
 
@@ -187,8 +187,11 @@ tester's "same 3-4 enemies" is literally the case.
   tree in the act is barks or hover text.
 - **one quest, with one state** (`Stop the Druids`, `EZIX7Q9L`).
 - **one unique item**: the `Ring of Richard Lionheart`, from the statue in `05 Exalted Chambers`.
-- **`10 Inner Sanctum`, the act's final room** -- 210 parts, 88 combatants, two containers -- has **no
-  dialogue tree, no balloon, no trap and no secret.** The act ends in a room that says nothing.
+- **`10 Inner Sanctum`** -- 210 parts, 88 combatants -- has **no dialogue tree, no balloon and no label
+  printer**: not one word anywhere on the map. *(Corrected in tier 4 below: it is **not** the act's final
+  room, which is `05 Exalted Chambers`, and it is **not** contentless -- it is an unmarked three-switch
+  vault. "No secrets" here counted `CAISecretReveal`, the Traps-skill spotting mechanism, which is not how
+  its doors open.)*
 - the three **Meditation Chambers** are one `ManaTomes` shelf each, plus golems and priests.
 
 ### Tiers, in the order they should be built
@@ -503,10 +506,54 @@ replies -- and stays recorded as a stub. Its two remaining dangling `Go to node 
 `5 Goodbye` resolves to the node `5 goodbye` once case is folded, and `10 no thanks` points at nothing in the
 shipped file too.
 
-**4. Something else to do in eleven rooms of fighting.** The Inner Sanctum first, since the act ends there
+**4. ~~Something else to do in eleven rooms of fighting.~~ Built** -- starting with the one the survey misread. The Inner Sanctum first, since the act ends there
 and currently ends in silence. Then the Meditation Chambers, which are named for contemplation and contain
 golems. The Crypt's four Misc Crypts and act 6's `Crossroads Siege` are the pattern: say what the place is,
 and give one lever per room that is not a sword.
+
+**The survey was wrong about this map twice, and the corrections are the tier.**
+
+It is **not the act's final room** -- `05 Exalted Chambers` is, holding the Druid Master, the Assassin Master,
+Galileo and the exit to `England to Alamut`. `10 Inner Sanctum` is a dead-end side chamber off `04`.
+
+And it is **not contentless**. It is a three-switch vault:
+
+| switch | opens | behind it |
+|---|---|---|
+| 1620,1364 | `Secret door1` at 2269,1176 | two ambush generators -- soldiers, bowmen, and now druids |
+| 1482,1379 | `Secret door2` at 2307,1501 | **two chests on `Chest Generator Good`** -- the all-weapons and all-arrows lists |
+| 1508,1471 | `Secret door3` at 1573,2195 | four ambush generators -- war golems, a priest, a druid, a priestess |
+
+What the survey counted as "no secrets" was `CAISecretReveal`, the **Traps-skill spotting** mechanism. These
+doors are not spotted, they are **switched**: three worn stones clustered in one west corner, opening three
+doors scattered across the room, one of which holds the only good loot in the act outside a boss.
+
+**And the map has no dialogue tree, no balloon and no label printer.** Three unmarked wall switches in a room
+of 88 enemies, with the doors they open up to 800 units away -- so a player who does find a switch and click
+it gets **no feedback at all**. That is the tester's complaint in miniature: the doing is there, and it is
+invisible.
+
+**So this tier adds no content. It makes what shipped findable.** `The Inner Sanctum.DialogTree` is new, five
+nodes, all five opened:
+
+- **on arrival:** *"This is not a chamber the druids use... What there is, is a great deal of wall for a room
+  this size -- and the wall does not ring the same all the way round."*
+- **a hover over the switch corner**, a polygon spanning 1430-1670 x 1320-1520, which contains all three
+  switches: *"Three stones are set into the wall here at shoulder height, worn paler than the rest by hands
+  that knew exactly where to reach. Three stones, and a very long way between them and whatever they open."*
+- **a line on each switch**, appended to its own relay so the feedback arrives with the click rather than
+  across the room: stone grinding to the north and *"a great many boots"*; the eastern panel opening on *"two
+  strongboxes with the Temple's mark still on the lids -- taken off the Order on the way in, and never opened
+  by whoever took them"*; and to the south, *"a smell of hot iron and wet stone... something in there that
+  does not need feeding."* Each closes with how many stones are left, so a player who finds one knows to look
+  for the others.
+
+Every vanilla action on all three relays is intact -- audited per relay, nothing lost.
+
+**Left alone:** the three Meditation Chambers. The survey called them one `ManaTomes` shelf each plus golems,
+which is right, but each already carries five or six balloons off that tree -- they are the one thing in the
+act that does talk. They want a reason to exist more than they want narration, and that is a bigger question
+than this tier.
 
 **5. Captain Isabella never arrives at the shrine, and act 1 already wired two ways she might not.**
 `01 Outside Shrine` is the landing beach, and it carries `Captain Isabella generator` (`Active=0`, nothing

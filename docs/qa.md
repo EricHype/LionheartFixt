@@ -1488,6 +1488,14 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 | ES7 | Fight the Druid Master | - | **A real boss fight now.** She shipped on the rank-and-file `Priestess Super` race at HP 95 / AC 150 / no resistance -- weaker than her own guards, and against an `Assasin Master` on the same map at HP 400 / AC 305. She is now HP 350 / AC 300 / 65% resist, four spells at 130 and Evasion 60 |
 | ES7a | Check the XP for killing her | - | **2,500**, up from 1,100. She shipped paying less than the 1,949 her own attendant priestesses pay |
 | ES7b | Fight a rank-and-file `Priestess Super` in the same room | - | Distinctly weaker than the Master: HP 135 / AC 310. They no longer share a race |
+| ES29 | **A save that has never entered act 7.** Enter `10 Inner Sanctum` from the Antechamber | - | About a second in: *"There is a great deal of wall for a room this size -- and the wall does not ring the same all the way round."* **This map had no tree, no balloon and no label printer at all** |
+| ES30 | Cross to the western corner, around 1500,1400, and look at the wall | - | *"Three stones are set into the wall here at shoulder height, worn paler than the rest..."* The hover covers all three switches |
+| ES31 | Click the switch at 1482,1379 | - | A panel opens in the **eastern** wall on two strongboxes with the Temple's mark, and you are told so -- the door is 800 units away and vanilla gave no feedback whatsoever |
+| ES32 | Open those two chests | - | Good weapons and arrows/bolts, on `Chest Generator Good`. **The best loot in the act outside a boss, behind an unmarked switch in vanilla** |
+| ES33 | Click the switch at 1620,1364 | - | Grinding to the **north** and *"a great many boots"* -- an ambush of soldiers, bowmen and druids |
+| ES34 | Click the switch at 1508,1471 | - | Grinding to the **south**, hot iron and wet stone -- war golems, a priest, a druid and a priestess |
+| ES35 | Read the end of each switch line | - | Each says how many stones are left, so finding one tells you to look for the others |
+| ES36 | Check that the doors, ambushes and chests behave as before | - | Unchanged. Only balloons were added to the three relays; every vanilla action on them is intact |
 | ES21 | **In act 1**, take Guy Fawkes' side and reach either good ending -- decline the Duke's murder, or carry it out and collect the Queen's gold | - | **Servant of the Queen** appears among your titles. Vanilla stored the allegiance nowhere at all |
 | ES22 | Betray him instead: expose him, or tell the Duke you will deal with him | - | **No title.** Both grants sit past every betrayal branch, which matters because the engine has no way to take a perk back |
 | ES23 | In act 1, accept the Duke's murder -- *"I'll lure the Duke to the trap."* | - | He answers: *"you will be remembered forever in English history... When the deed is done, return here."* **In vanilla that reply ended the conversation silently** |
