@@ -1,0 +1,64 @@
+CRaceWithPresets
+{
+	Display Name=
+	Description=
+	Head Model Name=Human
+	Number of Tagged Skills=0
+	Number of Racial Traits=0
+	Spendable Skill Points to Start With=5
+	Can be selected by player=0
+	Initial CharacterAttribute Values=Array
+	{
+		Character Attributes/(AG) Agility=5,2,10
+		Character Attributes/(CH) Charisma=5,2,10
+		Character Attributes/(EN) Endurance=5,2,10
+		Character Attributes/(IN) Intelligence=1,3,11
+		Character Attributes/(LK) Luck=5,2,10
+		Character Attributes/(PE) Perception=5,2,10
+		Character Attributes/(ST) Strength=5,1,10
+	}
+	Initial Character Attribute Maximum Total=40
+	Character Model=Array
+	{
+		Male=!Unknown Model
+		Female=!Unknown Model
+	}
+	DerivedCharacterAttribute=Array
+	{
+		Item Count=5
+		DerivedCharacterAttribute Preset=CPresetDerivedCharacterAttribute
+		{
+			Derived Character Attribute=Derived Character Attributes/(AC) Armor Class
+			Value To Preset=260
+		}
+		DerivedCharacterAttribute Preset=CPresetDerivedCharacterAttribute
+		{
+			Derived Character Attribute=Derived Character Attributes/(HP) Hit Points
+			Value To Preset=75
+		}
+		DerivedCharacterAttribute Preset=CPresetDerivedCharacterAttribute
+		{
+			Derived Character Attribute=Derived Character Attributes/Damage Related/Cold Damage Resistance
+			Value To Preset=50
+		}
+		DerivedCharacterAttribute Preset=CPresetDerivedCharacterAttribute
+		{
+			Derived Character Attribute=Derived Character Attributes/Damage Related/Electrical Damage Resistance
+			Value To Preset=50
+		}
+		DerivedCharacterAttribute Preset=CPresetDerivedCharacterAttribute
+		{
+			Derived Character Attribute=Derived Character Attributes/Damage Related/Fire Damage Resistance
+			Value To Preset=50
+		}
+	}
+	Skill=Array
+	{
+		Item Count=1
+		Skill Preset=CPresetSkill
+		{
+			Skill=Skills/Magic Thought/Offensive/Spike
+			Value To Preset=75
+		}
+	}
+}

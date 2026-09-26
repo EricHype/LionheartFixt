@@ -273,12 +273,40 @@ three-tier ladder; the Priestess line is not:
 The AC falls 180 points from base to Tough and never recovers, and no tier has any damage resistance. So
 **`Priestess Tough` is not fielded** -- `Priestess`, at AC 260 the strongest of the three, carries the order,
 and `Priestess Super` appears only in the Druid Master's chamber where a set-piece can carry it.
+(Superseded below: the ladder was repaired in the same release, so `Priestess Tough` is fielded after all.)
 
-**The race files are left untouched, deliberately.** `Druid Master`, the act's boss, has the race
-`Priestess Super`: HP 95, AC 150, no resistances, which makes her **squishier than her own `Priest Super`
-guards** at 150 / 280 / 65%. That is shipped, played content, and it may be part of why the act's climax
-lands flat -- but repairing it changes a fight the tester has already fought, so it is recorded here as a
-decision rather than taken.
+**Both were then repaired, on the tester's instruction**, in the same release.
+
+The priestess line's **spell** identity turned out to be the finished half, and genuinely distinct: the
+Super carries four offensive spells at 95 including `Static Charge`, which no priest gets, plus
+`Fighting/Evasion`. Only the defensive pass was never done -- and `Priestess Tough` does not even share a
+spell with the other two tiers. So the repair keeps the identity and fixes the ladder. The shipped base
+already says a priestess is harder to hit than a priest (AC 260 against 230) and slightly frailer (75
+against 80), so that is carried up the line: **+30 AC over the priest at every tier, about 90% of his HP,
+and his resistance values.** `ENEMY Magical Shield` is deliberately *not* added -- it is the priests'
+signature, and withholding it keeps the two lines apart: priests shield, priestesses out-damage and dodge.
+
+| | HP | AC | resist | Magical Shield | spells |
+|---|---|---|---|---|---|
+| Priest / Tough / Super | 80 / 110 / 150 | 230 / 250 / 280 | 50 / 60 / 65% | yes | 4 |
+| Priestess, shipped | 75 / 84 / 95 | **260 / 80 / 150** | **none** | no | 1 / 1 / 5 |
+| Priestess, repaired | 75 / **100** / **135** | 260 / **280** / **310** | **50 / 60 / 65%** | no | 1 / **2** / 5 |
+
+Both ladders are now monotonic in HP and AC, and `Priestess Tough` gains Spike 90 so all three tiers share
+a spell. **`Priestess Tough` is therefore fielded after all**, and the placement table above is unchanged
+otherwise.
+
+**And the Druid Master got her own race, because sharing one was the root of it.** She shipped on
+`Priestess Super` -- the rank-and-file race -- which is why she was HP 95 / AC 150 / no resistance, against
+the `Assasin Master` **on her own map** at HP 400 / AC 305, and act 5's Nostradamus at HP 500. Her attendant
+priestesses even paid **1,949 XP where she paid 1,100.** Fixing the ladder alone would have left a boss on a
+rank-and-file race, so `Races/Enemies/English Enemies/Priestess Master.Race` is new: **HP 350, AC 300, 65%
+resistance, her four spells at 130 and Evasion 60** -- just under the Assassin Master in HP, above him in
+resistance, and a caster where he is a blade. Her XP goes to **2,500**, above her own priestesses and level
+with Tremblethorn.
+
+Nothing else moved onto the new race: `Priestess Super.Race` still exists and the rank-and-file
+`Priestess Super.can` still uses it.
 
 **2. The Templars' help becomes substantial: a quartermaster and a field surgeon.** Designed with the
 tester 2026-09-26; decisions below are theirs, not defaults.

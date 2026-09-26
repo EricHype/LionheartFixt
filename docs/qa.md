@@ -1481,9 +1481,13 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 | ES2 | Compare `02 Temple Initiate` with `09 Secret Chamber` and `10 Inner Sanctum` | - | Druids are occasional at the entrance and common in the deep rooms. The placement is deepest-first on purpose |
 | ES3 | Fight through the three Meditation Chambers | - | Druids alongside the golems and priests. These rooms had no soldiers at all in vanilla |
 | ES4 | Reach `05 Exalted Chambers`, the Druid Master's chamber | - | **Priestesses**, including `Priestess Super`. All three Priestess templates were fielded nowhere in the entire game, while the Druid Master herself has the race `Priestess Super` |
-| ES5 | Watch for a priestess who dies unusually fast | - | **Should not happen: `Priestess Tough` is deliberately not fielded**, because its race has AC 80 against the base Priestess's 260. If a priestess feels like paper, note which map |
+| ES5 | Fight priestesses at all three tiers | - | They should feel like priests who hit harder and shield less. The shipped ladder had AC **260 / 80 / 150** and no damage resistance at any tier; it is now 260 / 280 / 310 with 50 / 60 / 65% |
+| ES5a | Hit a priestess with cold, electrical or fire damage | - | It resists, 50-65% by tier. In vanilla no priestess resisted anything |
+| ES5b | Watch whether priestesses ever cast `ENEMY Magical Shield` | - | **They should not.** That is the priests' signature and was deliberately withheld, so the two lines stay distinct |
 | ES6 | Check XP gain across the act against your notes, if you have any | - | Roughly **+15% act-wide**, concentrated in `05`, `09` and `10` (+40-54%). A Druid pays 950 where the identically-statted Soldier1 pays 348. **Report if this feels like too much; the weights are one table** |
-| ES7 | Fight the Druid Master | - | Unchanged from vanilla. Her race is untouched -- but note whether she feels weaker than the `Priest Super` guards around her, because on the shipped numbers she is |
+| ES7 | Fight the Druid Master | - | **A real boss fight now.** She shipped on the rank-and-file `Priestess Super` race at HP 95 / AC 150 / no resistance -- weaker than her own guards, and against an `Assasin Master` on the same map at HP 400 / AC 305. She is now HP 350 / AC 300 / 65% resist, four spells at 130 and Evasion 60 |
+| ES7a | Check the XP for killing her | - | **2,500**, up from 1,100. She shipped paying less than the 1,949 her own attendant priestesses pay |
+| ES7b | Fight a rank-and-file `Priestess Super` in the same room | - | Distinctly weaker than the Master: HP 135 / AC 310. They no longer share a race |
 | ES8 | Everything else about the act's spawns | - | Unchanged. No generator was added or removed and no vanilla spawn entry was dropped; only weighted entries were added to existing groups |
 
 ### 0.18.0 - the Barcelona Attack
