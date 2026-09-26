@@ -87,6 +87,192 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Shy Girl Near Murder generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=11
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/1 Barcelona/Character Templates/Gate District/Barcelona Female Citizen
+								}
+							}
+						}
+					}
+					New Name=Shy Girl Near Murder
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
+								Node ID=1 Conversation Start
+								Name of Position=$trigger
+								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=1
+							}
+							X Radius=55
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=1
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=Shy Girl Near Murder
+										Desired Minimum Count=1
+									}
+									Succeed Action=CTriggerRelayAction
+									{
+										Relay Name=Shy Girl requests help
+									}
+									Fail Action=
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
+							}
+						}
+					}
+					New Facing Angle=Any Direction
+					Angle Variation=0.785398
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=2551
+			Position Y=1520
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Damage a guard in the city district
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CDeactivateAction
+							{
+								Target Name=Damage a guard in the city district
+							}
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Spaniards Attack Player
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2571
+			Position Y=1540
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=
 			Child List=
 			Visible=0
@@ -19047,7 +19233,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -19056,6 +19242,59 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+												Node ID=31 Spanish Body on Ground
+												Name of Position=$Instigator
+												Position Offset=0.000000,-70.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CGiveMoneyToAllPlayersAction
+											{
+												Value to give=250
+											}
+										}
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -21601,7 +21840,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -21610,6 +21849,48 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+										Node ID=42 English Body on Ground
+										Name of Position=$Instigator
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -41006,89 +41287,114 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetPatrolAIAction
+					After Action=CMultipleActionsAction
 					{
-						Patrol AI=CScanAreaAI
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Play Ratio=0
-							Next Try To Move=0
-							State=Scanning
-							Go Home Range=300
-							Move To Behavior=CEntityBehaviorMoveToPos
+							Item Count=2
+							Action=CSetPatrolAIAction
 							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
+								Patrol AI=CScanAreaAI
 								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
+									Marked For Deletion=0
+									Publisher=
+									Play Ratio=0
+									Next Try To Move=0
+									State=Scanning
+									Go Home Range=300
+									Move To Behavior=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
+									}
+									Starting Angle=-45
+									Ending Angle=45
+									Turning Speed=25
+									Time Between Turning=0
+									Start Out Waiting=0
+									Start Counterclockwise=0
+									Turning Flag=0
+									Turn Sequence Name=Idle
+									End Turn Action=
+									Execute Each Turn=0
+									Reset Each Begin=1
+									Current Time To Wait=0
+									Current Start Angle=0
+									Current End Angle=0
+									Waiting=1
+									Starting Facing Angle=-999
+									Complete Turn Time=0
+									Current Turn Time=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
 								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
+								Target=$Instigator
 							}
-							Starting Angle=-45
-							Ending Angle=45
-							Turning Speed=25
-							Time Between Turning=0
-							Start Out Waiting=0
-							Start Counterclockwise=0
-							Turning Flag=0
-							Turn Sequence Name=Idle
-							End Turn Action=
-							Execute Each Turn=0
-							Reset Each Begin=1
-							Current Time To Wait=0
-							Current Start Angle=0
-							Current End Angle=0
-							Waiting=1
-							Starting Facing Angle=-999
-							Complete Turn Time=0
-							Current Turn Time=0
-							Idle Behavior=CEntityBehaviorIdle
+							Action=CSetDestroyedScriptActionAction
 							{
-								Num Seconds=1
-								Seconds Have Transitioned=0
-								Override Fidget Options=
-								Current Fidget Data=
-								Time Until Next Fidget=0
-								Fidgeting=0
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CCheckExistenceAction
+									{
+										Name To Check For=Shy Girl Near Murder
+										Desired Minimum Count=1
+									}
+									Succeed Action=CTriggerRelayAction
+									{
+										Relay Name=Shy Girl requests help
+									}
+									Fail Action=
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
-						Target=$Instigator
 					}
 					New Facing Angle=1.90241
 				}

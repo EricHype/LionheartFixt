@@ -1504,6 +1504,16 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | BA30 | Find Phillipe around 2694,1251, behind a barrel, **before** speaking to his father | - | He talks, but the reply that sends him home is not offered |
 | BA31 | Speak to the father first, then find Phillipe | - | The reply is offered; he runs; **1000 XP, once**, and a closing line about the man who stops saying one word |
 | BA32 | Go back to where Phillipe was | - | He is gone, and no second payment |
+| BA33 | **A save that has never entered act 6.** On `Gate District Siege`, find the woman around 2551,1520 and talk to her | - | An ordinary Barcelona citizen greeting. **She did not exist; the map's relay was positioning a balloon over her name** |
+| BA34 | Murder her, or murder the man searching for Phillipe, while she is alive to see it | - | *"Ayudame! Help me! Guards!"* and about two seconds later **the whole garrison turns on you**, with a +40% AC buff -- the same consequence vanilla gives for attacking a guard |
+| BA35 | Murder the man searching for Phillipe **after** killing her | - | No scream and no turn. The witness has to be alive |
+| BA36 | Let the English kill defenders all around you without lifting a hand | - | Nothing happens. The scream is armed on civilians only, so the garrison never blames you for the siege |
+| BA37 | Attack a defender directly, as in vanilla | - | The garrison turns, as before. Unchanged |
+| BA38 | Find the `Generic Gaurd NPC` body at 1618,845 and use it | - | *"Stranger...here...take my gold. Don't let those English have it..."* and **250 gold**, once |
+| BA39 | Find the `Soldier1` body at 1678,2914 | - | *"I am sorry Espana...I do not know why we came with swords drawn and bloodlust in our hearts..."* |
+| BA40 | On `Temple District Siege`, walk the length of the map using bodies | - | Six of them speak, three Spanish and three English, spread west to east. **Vanilla had 62 bodies and zero talkable ones on this map** |
+| BA41 | The dying Spaniard on the Temple District | - | Also pays 250, once |
+| BA42 | Re-use any body that has already spoken | - | Nothing. Each specifier is once-only, and no second payment |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

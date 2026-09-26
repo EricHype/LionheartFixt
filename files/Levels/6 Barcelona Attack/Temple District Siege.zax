@@ -3367,7 +3367,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -3376,6 +3376,48 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+										Node ID=30 Spanish Body on Ground
+										Name of Position=$Instigator
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -4185,7 +4227,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -4194,6 +4236,48 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+										Node ID=40 English Body on Ground
+										Name of Position=$Instigator
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -17378,7 +17462,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -17387,6 +17471,48 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+										Node ID=41 English Body on Ground
+										Name of Position=$Instigator
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -21414,7 +21540,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -21423,6 +21549,59 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+												Node ID=31 Spanish Body on Ground
+												Name of Position=$Instigator
+												Position Offset=0.000000,-70.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CGiveMoneyToAllPlayersAction
+											{
+												Value to give=250
+											}
+										}
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -39298,7 +39477,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -39307,6 +39486,48 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+										Node ID=32 Spanish Body on Ground
+										Name of Position=$Instigator
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -42162,7 +42383,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CUseCannedActionAction
 							{
 								Canned Object=Common Objects and Scripts/Genderate Dead Body
@@ -42171,6 +42392,48 @@ CLayerSaveData
 							{
 								Old Name=$Instigator
 								New Name=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=1
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Random Contacts in Barcelona
+										Node ID=42 English Body on Ground
+										Name of Position=$Instigator
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=1
+									}
+									X Radius=30
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}

@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
-**Surveyed 2026-09-25. Tiers 1 through 4 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+**Surveyed 2026-09-25. Tiers 1 through 5 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
 parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
 | map | parts | live spawners | conversations | balloons | MB |
@@ -454,6 +454,59 @@ Tell him and he goes -- *"Two streets, keep to the walls, I know it, I know the 
 XP, once**, and a closing line the player reads rather than watches, because by then the father has
 walked his own path off the top of the street.
 
+### Tier 5 - the witness with nobody to witness, and the two men nobody could hear (built)
+
+`Gate District Siege` carries a relay called **`Shy Girl requests help`**, active and once-only, which
+balloons `115 Citizen Attacked` -- *"Ayudame! Help me! Guards!"* -- over an entity named
+`Shy Girl Near Murder`, waits two seconds, and fires `Damage a guard in the city district`. On that map:
+
+- nothing calls `Shy Girl requests help`. **Zero callers.**
+- `Shy Girl Near Murder` does not exist, and was the map's only dangling name reference.
+- `Damage a guard in the city district` does not exist either.
+
+It is a copy-paste remnant of a scene the peacetime `Gate District` has in full: a
+`Barcelona Female Citizen` generator named `Shy Girl Near Murder`, whose destroyed action fires the
+relay if she is still there to see it, and a `Damage a guard in the city district` relay that turns the
+district's guards on the player. All three pieces are put back.
+
+**The consequence end is the map's own, not an invention.** Every `spaniard` generator already adds a
+`CHandleMessageAI{Message To Handle=GoToCombat, Action=Spaniards Attack Player}` to its spawn, so
+attacking a defender turns the whole garrison **and hands the player +40% AC for the trouble** -- a
+working vanilla mechanism. Murdering an unarmed civilian produces no `GoToCombat` to hang that on, which
+is exactly what the witness is for, so `Damage a guard in the city district` is rebuilt as a thin relay
+that delegates to `Spaniards Attack Player`. Both shipped names keep their shipped meaning, and the
+scene ends in the shipped consequence.
+
+**Only civilians arm it.** A destroyed script fires whoever the killer was, and the English kill
+defenders all through the siege, so hanging the scream on a guard's death would turn the garrison on the
+player for something the English did. Civilians are on nobody's target list, so a civilian only dies if
+the player kills one. She and the man searching for Phillipe are the two people on the map she can watch
+die -- which is the peacetime scene exactly.
+
+**Left alone deliberately:** `defenders hate player trigger`, on both siege maps, `Active=0`, activated
+by nothing, and pointed at the name `defender`, which no entity on either map carries. Its own comment
+-- *"When a player attacks a defender, this becomes active and makes the defenders nearby attack players
+as well"* -- describes the localized draft that `Spaniards Attack Player` replaced and wired. That is a
+superseded draft, not a defect, and it stays as it is.
+
+### The two men nobody could hear
+
+`Random Contacts in Barcelona` holds six dying-soldier lines; the act opens four. The two it never
+opened are the two best ones:
+
+| node | line | now |
+|---|---|---|
+| `31 Spanish Body on Ground` | *"Stranger...here...take my gold. Don't let those English have it..."* | a `Generic Gaurd NPC` at 1618,845, and **he hands over the 250 gold he is talking about** |
+| `42 English Body on Ground` | *"I am sorry Espana...I do not know why we came with swords drawn and bloodlust in our hearts..."* | a `Soldier1` at 1678,2914 |
+
+Both go on the generator's own `After Action` in the same `CAddAIAction` + `GetCloseThenTalk` shape the
+map's three talking bodies already use.
+
+And **`Temple District Siege` has 62 dead bodies and not one of them speaks** -- the whole map opens a
+single node of this tree, its arrival bark, and has zero talkable parts. Six of its bodies get voices
+now, each matched to its side: three Spanish and three English, spread west to east rather than
+clustered, and its dying Spaniard pays the same 250.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The silence.**~~ **Built** -- see above. The reserve waves `fight2` and `fight4`, whose
@@ -466,8 +519,9 @@ walked his own path off the top of the street.
 4. ~~**The child-killer reaction.**~~ **Built** -- the title is granted for the first time in the
    game's history, act 6 arms the flag it was already carrying, and the father searching for Phillipe
    stops accusing strangers. Phillipe himself is now on the map.
-5. **The shy girl with no speaker, and the two death lines**, including the man who tries to give the
-   player his purse.
+5. ~~**The shy girl with no speaker, and the two death lines.**~~ **Built** -- the witness exists, her
+   scream resolves, and it ends in the garrison relay vanilla already wired. Both dying men can be
+   heard, the Spaniard hands over his purse, and the Temple District's 62 corpses are no longer mute.
 6. **Reactivity.** Two Speech gates in 28 replies, and no trap, lock or secret anywhere in eight maps.
 
 Also from this survey, for a patch rather than this release: **0.14.1** -- `02 Hamlet Burned` carries the
