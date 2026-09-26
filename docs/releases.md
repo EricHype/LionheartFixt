@@ -264,12 +264,76 @@ chambers fall, giving three windows in all, exactly as Quinn has three.
 help from any Englishman"* -- and there is no camp, no shop and no surgeon. That reply currently costs the
 player nothing at all; this is the first time it costs something.
 
-**3. Something else to do in eleven rooms of fighting.** The Inner Sanctum first, since the act ends there
+**3. The allegiance to England, stored at last -- and read in the country it was sworn to.** Scoped
+2026-09-26 after the tester asked what helping Guy Fawkes does once you reach England. The answer was:
+nothing, anywhere.
+
+Act 1's *Help the Conspirator against the Spanish Armada* is a **ten-state** thread. You can drink with a
+sailor, learn he is Gerald de Guitterez and then that he is **Guy Fawkes**, declare for England, get the
+Armada's plans out of Captain Isabella, and murder the Duke of Medina to behead the defence of Barcelona.
+The shipped dialogue promises a great deal in return:
+
+> Do you mean to say that you **serve the Queen of England and renounce the Spanish Inquisition**?
+
+> Your service to England is appreciated and **will not be forgotten**.
+
+> I will see to it that **the Queen Mother herself knows of your valor**.
+
+> With the Duke gone, the Inquisition will proceed with the plan to invade England without proper
+> leadership -- **and we will be prepared for them.** ... It is **gold from the Queen herself**.
+
+And then:
+
+| question | answer |
+|---|---|
+| Is the allegiance stored anywhere? | **No.** No perk, no checker, no requirement can. `Conspirator generator` is set twice and read by nobody. |
+| Who reads the quest? | Seven files. **Six are act 1.** |
+| The seventh? | `6 Barcelona Attack/Temple District Siege.zax`, whose only action on it is `CSetQuestSatusToFailedIfActiveAction`, inside a bulk list failing every outstanding act-1 sidequest when the city falls. **Act 6's sole engagement with the player's English allegiance is to delete the record of it.** |
+| Acts 7 and 8? | Never read the player's stance on England at all. Act 7 gates only on `Templar IS` / `Saladin IS` / `Inquisitor IS` / `Templar NOT`; act 8 on Barter, Karma and Speech. |
+| Does Fawkes reappear? | No. Four files mention him, all act 1. |
+
+So a player can renounce the Inquisition, swear to the Queen and kill a Spanish duke to cripple Barcelona's
+defence -- and then watch England sack Barcelona in act 6 with nobody mentioning it, and walk into England
+itself in act 7 with nobody knowing.
+
+**The game already drew the connection this act needs.** Fawkes' `1000 opposed crown` explains why he is in
+Barcelona: *"I supported a revolt to overthrow the Queen and formed a plot to detonate explosives below the
+Parliament building of London. **Through the magic of her treacherous Druids**, the Queen learned of the
+plot and imprisoned my fellow conspirators and my family in the Tower of London."* **The Queen's Druids
+betrayed Guy Fawkes.** Act 7 is a Druid shrine in England where the player fights Druids beside an English
+Templar who says *"Not all of England stands against you. The druids orchestrated the attacks against you
+as a ruse."* The thread and the act are about the same faction and neither knows the other exists.
+
+**The missing piece is one perk**, and everything else follows from it. Three mechanics were checked first:
+
+- **A granted perk cannot be taken away.** Only `CGiveCharacterPerkAction` exists in the engine; there is no
+  remove. So the perk must be granted at a point the player can no longer betray, not at the first
+  *"my allegiance is with England"*.
+- **The two good endings both complete the quest.** `200 not accept the plan` (*"will not be forgotten"*)
+  and `200 destroyed church 2` (*"gold from the Queen herself"*) each fire
+  `CSetQuestSatusToCompletedAction`, and both sit past every betrayal branch.
+- **A completed quest survives act 6**, because the bulk fail is `IfActive`. So the quest's own completion
+  stays readable even after Barcelona falls.
+
+So: `Perks/!NPC or Event Given Perks/Servant of the Queen`, granted on those two nodes only -- the folder
+that already holds `Dervish of the Crescent`, `Stargazer` and `Weng Choi Perk`, following `Stargazer.Perk`
+as the file model. Then it is read where it means most:
+
+- **Sir Roger**, whose enemy is the Queen's own Druids, meeting someone the Queen owes a favour.
+- **The Templar camp** from tier 2 -- the surgeon and the quartermaster treat a sworn servant of England
+  the way they treat a brother knight.
+
+**Deliberately scoped and not committed:** a second perk for having actually killed the Duke of Medina.
+`duke is dead` is a Port District checker and cannot be read from another map, so distinguishing the deeper
+ending needs its own perk. Sir Roger is a Templar and might reasonably recoil from a player who murdered a
+Spanish noble -- which is a good scene and a separate decision, so it is recorded here rather than assumed.
+
+**4. Something else to do in eleven rooms of fighting.** The Inner Sanctum first, since the act ends there
 and currently ends in silence. Then the Meditation Chambers, which are named for contemplation and contain
 golems. The Crypt's four Misc Crypts and act 6's `Crossroads Siege` are the pattern: say what the place is,
 and give one lever per room that is not a sword.
 
-**4. Captain Isabella never arrives at the shrine, and act 1 already wired two ways she might not.**
+**5. Captain Isabella never arrives at the shrine, and act 1 already wired two ways she might not.**
 `01 Outside Shrine` is the landing beach, and it carries `Captain Isabella generator` (`Active=0`, nothing
 activates it) and `Captain Isabella fled`. The **"fled" part is activated**, by `COtherMapAction` reaching
 into this map from two act-1 nodes:
@@ -284,7 +348,7 @@ her generator is off and nothing switches it on, so the captain who sails you to
 you parted as allies or not. Her generator has no `New Name=` and no dialogue tree, so switching her on is
 restoration and giving her something to say at the beach is new writing; the tier should say which is which.
 
-**5. Sir Roger's five combat barks.** `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
+**6. Sir Roger's five combat barks.** `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
 Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* -- reached by nothing and opened by
 nothing. He is a companion (`CSetCompanionAction`), so these are his fighting lines, and the act already
 runs three `CShuffledSeriesAction` doing exactly this for the generic templars' eight bubbles.
@@ -318,6 +382,27 @@ of them are still placed nowhere: `Nos Ogre2 English`, `Nos Ogre2 English Tough`
 and the folder's own `Priest`, `Priest Tough` and `Priest Super`. Eight were fielded, not fourteen -- the
 two English ogres in particular are named in the notes and are not in the game. They belong in a 0.17.1
 alongside this act's work, since the same twinning pass handles them.
+
+## 0.18.2 - Surrey O'Connell and the servant of the Queen (scoped, not started)
+
+0.18.0 gave Surrey O'Connell two new ways past the Regent's chest: the **Clover from the drowned fields of
+Ireland**, and the **Holy Office**. **Both stay exactly as they shipped.** This adds a third, for a player
+carrying `Servant of the Queen` from act 1's conspiracy (see 0.19.0 tier 3), and it is deliberately the
+coldest of the three.
+
+Surrey is a pressed Irishman who is sarcastic about the work -- *"Happy I am to serve the English as
+supplies master"*, which the act's own `PE 8+` reply calls out as sarcasm. **A player wearing the Queen's
+favour is precisely the person who could hang him for saying it.** So the three routes are three different
+reasons, not three flavours of the same one:
+
+| route | why he helps | how he parts |
+|---|---|---|
+| the clover | kinship in grief -- *"Drowned. The whole of it drowned, and I am out here weighin' out bolts for the men that let it."* | warmly: *"Surrey O'Connell never saw a thing, and never heard a lid."* |
+| the Holy Office | terror of Spain, from his own *"dont... send me to the Spanish Inquisition"* | panicking, and already unbuckling the crate |
+| **Servant of the Queen** | self-preservation. He has been overheard mocking the Crown by somebody the Crown owes a favour | **coldly.** He complies, and he is worse off for having met you -- the only one of the three where helping the player costs him something |
+
+Mechanically all three end in `Surrey looks away`, so the chest alarm work from 0.18.0 is reused unchanged
+and no map edit beyond the new reply is needed.
 
 ## 0.18.1 - Slayer of Innocents, on the hooks the designers built for it
 
@@ -799,6 +884,12 @@ needs a blank line in front of it.
 
 Also from this survey, for a patch rather than this release: **0.14.1** -- `02 Hamlet Burned` carries the
 same three dead defender relays, so Montaillou's burned hamlet is silent for the same reason.
+
+And from the Guy Fawkes trace: **an act-1 repair**. `Conspirator.DialogTree` has two orphan nodes.
+`200 kill duke 6` -- *"If this deed is done, you will be remembered forever in English history as one of
+it's most heroic patriots. When the deed is done, return here."* -- is reached by nothing and opened by
+nothing, so part of the thread's own payoff text never plays even inside act 1. `100 Guy Fawkes` is a
+**blank node** (no text, no replies) and should be recorded as a stub rather than wired.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
