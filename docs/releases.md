@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.17.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.18.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -140,12 +140,9 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.18.0 - the Barcelona Attack
+## 0.18.1 - Slayer of Innocents, on the hooks the designers built for it
 
-
-### Slayer of Innocents, on the hooks the designers built for it (added after 0.18.0)
-
-The award above reads the perk's description -- *killing the helpless* -- and hangs the title on a murdered
+0.18.0's award reads the perk's description -- *killing the helpless* -- and hangs the title on a murdered
 citizen, because children cannot be killed. That was the best reading available without knowing about the
 mechanism the designers *did* build, which a question about the game's three child-rescue quests turned up:
 **each child's generator carries a working `CSetDamagedScriptActionAction`.** Children cannot be killed,
@@ -550,6 +547,9 @@ And **`Temple District Siege` has 62 dead bodies and not one of them speaks** --
 single node of this tree, its arrival bark, and has zero talkable parts. Six of its bodies get voices
 now, each matched to its side: three Spanish and three English, spread west to east rather than
 clustered, and its dying Spaniard pays the same 250.
+
+## 0.18.0 - the Barcelona Attack
+
 
 ### Tier 6 - the act learns to read you, and the crypt stops being an empty room (built)
 

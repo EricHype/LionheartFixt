@@ -1,0 +1,50 @@
+[size=150][b]Lionheart Fixt 0.18.1 - Slayer of Innocents, on the hooks the designers built for it[/b][/size]
+
+Repair only, and it comes out of a good question rather than a bug report.
+
+0.18.0 restored a title the game describes, reads eight times and had never once awarded: Child Killer,
+display name Slayer of Innocents, "TITLE PERK: Killing the helpless is what you like to do." It hung the
+award on murdering an unarmed citizen, because children cannot be killed -- Generic Child is AC 1000 /
+HP 10000 and every child in the game uses that one race.
+
+Then somebody asked about the three child-rescue quests: the woodcutter's daughter in the wilderness,
+Marisol outside the sewers, Tomas in the troll pit. Are any of them killable? No -- but checking turned up
+the mechanism the designers actually built. Every child's generator carries a working damaged hook. You
+cannot kill them, but hitting one has always been detected, and always had consequences.
+
+Hit the woodcutter's daughter and she screams, will not speak to you again, flees, the goblin guarding her
+turns on you, the whole peaceful-resolution script set is deleted, "Find the Woodcutter's lost son" fails, a
+flag called "daughter attacked" is set -- which her father's own dialogue reads, so he knows -- and a
+cross-map action deletes her generator at the house so she never turns up home. Hit Marisol and "Find the
+lost boy Tomas in the Sewers" fails. Hit the shepherd's son in Montaillou and two flags fire, one of them
+called "Make Maury mad for hurting son."
+
+Five children, six placements, every hook doing real work, and not one of them touching the title the game
+wrote for exactly this. The grant sits in all six now, with every vanilla action left in place and in the
+same order.
+
+Everything downstream already worked. The grant reaches the Gate District guards' challenge -- "There have
+been reports of a monstrous killer of helpless children...you loosely fit the description. Why should I not
+bring you before the Inquisition?" -- and the second reply, "I am the killer. You should back down before I
+kill you.", makes the guard shout "Have at thee, monster!" and the district turn on you. Five authored nodes
+across two guard trees, and the grant was the only link missing since release.
+
+The hooks cannot misfire: on all four maps nothing can target a neutral, which is what every child is, so
+only the player can trigger one. The goblin standing over the daughter and the trolls standing over Tomas
+cannot earn you a title.
+
+Children are still unkillable and still will be -- that invulnerability is a deliberate shipped decision and
+this mod does not touch it. The citizen grant from 0.18.0 stays alongside the new hooks, because a murdered
+citizen is one of the helpless too. Forty grants in total.
+
+One correction while I am here: 0.18.0's notes said Barcelona Boy sets Has Hit Points=0 as a second layer of
+protection. It does not. All 247 character templates set it, including the HP-12 citizens and the HP-1
+barstool patron in the Port District tavern. It is a level-part field about object hit points, not character
+invulnerability, and the race presets are the only thing protecting children.
+
+[b]Fixt[/b] is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run [i]Mod Manager.bat[/i]. These are level parts, so the new hooks need a character who has not
+yet entered Scar Ravine, the Port District, the Troll Pit or Montaillou.
+
+https://github.com/EricHype/LionheartFixt/releases/tag/v0.18.1

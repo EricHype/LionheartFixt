@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.18.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.18.0).
+-- currently [0.18.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.18.1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -72,6 +72,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.16.0** the Crypt | Act 4, the Crypt of the Bleeding Lance | A quest that was only a name; Jehanne never remembering being convinced; her garrison placed where a player meets it, with a camp of its own; 66 traps that finally test a thief; the magic schools and the six claimants to the Lance each answered; the four Misc Crypts turned into four fronts of the siege, with a war tide the ending reads three ways; Jehanne's four companion nodes, of which one was ever reachable; and a Spirit Council that now sees which soul the player is carrying, and whom it is begging |
 | **0.17.0** the Caverns of Nostradamus | Act 5, the Hujark caves and the seer | Two quests with no way into either, both hanging on a general whose generator nothing activated; the English army that was built and placed nowhere, now on ninety-nine generators; three routes through the act instead of one, including a revocable safe conduct at Speech 75; the seer's own boss defence, switched off since release; two tiers of summoning the act documented on its own checkers, one of which Sahar's ring silences; forty-three traps where there were none; and an apprentice who stops coming back from the dead |
 | **0.18.0** the Barcelona Attack | Act 6, the city under siege and the road west | The densest map in the project -- 472 live combatants -- with no conversation, no balloon and no dialogue tree at all; two of the act's three quests never written, one with a blank `Name=`, neither referenced anywhere in the game; the Slayer of Innocents title, described and read eight times and granted by nothing, awarded at last, with the siege map's own dead checkers finally read so the father searching for his son stops accusing strangers -- and a boy in a red cap to find; a witness relay with no witness, no caller and no consequence, made whole and ended in the garrison relay vanilla already wired; two dying men nobody could hear and 62 mute corpses; an Irishman who stops performing for the clover from drowned Ireland; and the emptiest map in the project given a secret, a trap, a lock and a voice |
+| **0.18.1** repair | | Slayer of Innocents moved onto the hooks the designers built for it: every child in the game carries a working damaged hook -- the woodcutter's daughter, Marisol, Tomas, the shepherd's son and the Gate District boy -- which screams, flees, fails the rescue quest and in two cases sets a flag an NPC already reads, and not one of them touched the title the game wrote for exactly this. Children stay unkillable, because that is deliberate |
 
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
@@ -80,7 +81,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.18.0 are published.** The last seven -- 0.18.0 the Barcelona Attack, 0.17.0 the Caverns of Nostradamus,
+**0.1.0 through 0.18.1 are published.** The last seven -- 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's

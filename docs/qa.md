@@ -1475,7 +1475,8 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 
 Act 6. Needs a character who has **never entered act 6**; BA22-BA26 additionally need one who has
 never entered the peacetime Gate, Temple or Port districts, since the title is granted by level
-parts on their citizen generators.
+parts on their citizen generators. **BA26a-BA26h are 0.18.1** and need a
+character who has never entered Scar Ravine, the Port District, the Troll Pit or Montaillou.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
