@@ -1488,6 +1488,16 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 | ES7 | Fight the Druid Master | - | **A real boss fight now.** She shipped on the rank-and-file `Priestess Super` race at HP 95 / AC 150 / no resistance -- weaker than her own guards, and against an `Assasin Master` on the same map at HP 400 / AC 305. She is now HP 350 / AC 300 / 65% resist, four spells at 130 and Evasion 60 |
 | ES7a | Check the XP for killing her | - | **2,500**, up from 1,100. She shipped paying less than the 1,949 her own attendant priestesses pay |
 | ES7b | Fight a rank-and-file `Priestess Super` in the same room | - | Distinctly weaker than the Master: HP 135 / AC 310. They no longer share a race |
+| ES37 | **In act 1**, accuse Captain Isabella, hear her out, and choose *"You have persuaded me to silence."* (not the `<Lie>` variant) | - | The Morales quest completes at state `JMBN5402` and she says *"I will not forget your kindness."* |
+| ES38 | **A save that has never entered act 7.** After ES37, land at `01 Outside Shrine` | - | **Grace is on the beach at 505,639**: *"You have found me! First you spared me in Barcelona and now you have come so far to rescue me."* Her generator shipped inactive, unnamed and with no AI |
+| ES39 | Ask her about the druids | - | *"Once they fought the English with us, but now they have formed an alliance with the Queen."* **The shipped text saying what Sir Roger says in tier 3** |
+| ES40 | Accept her with *"My dear, your companionship is most welcome."* | - | *"Together we cannot fail. My heart and my sword are yours!"* and **she joins as a companion** |
+| ES41 | Accept with *"Your sword is welcome, but I have no use for your heart."* | - | *"I will honor it, and serve you not for love, but for duty."* She joins anyway |
+| ES42 | Refuse with *"Sorry, I work alone."* | - | *"Do not worry - we will not cross paths again."* No companion |
+| ES43 | Instead reach act 7 having **driven her off or turned her in to the Duke** | - | **She is not on the beach at all.** The shipped `Captain Isabella fled` checker is what act 1 sets in both cases |
+| ES44 | Instead reach act 7 having **taken her bribe, or lied, or never accused her** | - | `500`: *"if I can't kill the English, I will settle the score with you"* -- and she attacks |
+| ES45 | With her as a companion, talk to her again | - | *"Are you ready to continue our quest?"* |
+| ES46 | Watch for her combat barks -- *"For Ireland."*, *"I need healing!"* | - | **Not yet wired.** Seven companion-state nodes remain orphaned and are tier 6's work, with Sir Roger's |
 | ES29 | **A save that has never entered act 7.** Enter `10 Inner Sanctum` from the Antechamber | - | About a second in: *"There is a great deal of wall for a room this size -- and the wall does not ring the same all the way round."* **This map had no tree, no balloon and no label printer at all** |
 | ES30 | Cross to the western corner, around 1500,1400, and look at the wall | - | *"Three stones are set into the wall here at shoulder height, worn paler than the rest..."* The hover covers all three switches |
 | ES31 | Click the switch at 1482,1379 | - | A panel opens in the **eastern** wall on two strongboxes with the Temple's mark, and you are told so -- the door is 800 units away and vanilla gave no feedback whatsoever |

@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.19.0 - the English Shrine
 
-**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1 through 4 built 2026-09-26, unplayed.** Act 7,
+**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1 through 5 built 2026-09-26, unplayed.** Act 7,
 `Levels/7 English Shrine`. Eleven maps, 3,481 level parts, 2,035 live combatants, nine dialogue trees,
 91 player replies.
 
@@ -555,7 +555,7 @@ which is right, but each already carries five or six balloons off that tree -- t
 act that does talk. They want a reason to exist more than they want narration, and that is a bigger question
 than this tier.
 
-**5. Captain Isabella never arrives at the shrine, and act 1 already wired two ways she might not.**
+**5. ~~Captain Isabella never arrives at the shrine.~~ Built --** and she is not who the survey thought, and neither is what she was for.
 `01 Outside Shrine` is the landing beach, and it carries `Captain Isabella generator` (`Active=0`, nothing
 activates it) and `Captain Isabella fled`. The **"fled" part is activated**, by `COtherMapAction` reaching
 into this map from two act-1 nodes:
@@ -569,6 +569,59 @@ Both *bad* endings of the Isabella thread were wired forward three acts. **The g
 her generator is off and nothing switches it on, so the captain who sails you to England is absent whether
 you parted as allies or not. Her generator has no `New Name=` and no dialogue tree, so switching her on is
 restoration and giving her something to say at the beach is new writing; the tier should say which is which.
+
+**The survey said switching her on would be restoration and giving her something to say would be new
+writing. The second half was wrong.** Her tree carries a complete, authored arrival-in-England arc, and
+**eleven of its forty-three nodes were orphaned** -- every one of them part of it:
+
+| node | |
+|---|---|
+| `500 arrive in england isabella hates you` | *"You nearly foiled my plans in Barcelona... if I can't kill the English, I will settle the score with you."* -- with a `CGoToCombatAction` |
+| `502 arrive in england grace friendly` | *"You have found me! First you spared me in Barcelona and now you have come so far to rescue me."* |
+| `502 grace joined romantic` | *"Together we cannot fail. My heart and my sword are yours!"* |
+| `502 grace rejoined companion`, `asks to return`, `left behind` | the release-and-rejoin cycle |
+| `502 grace companion near death`, `hurting`, `600 wild add 1/2/3` | her combat barks, including **"For Ireland."** |
+
+**She is Grace O'Malley**, the Irish pirate, posing as Captain Isabella: `300 isabella explains murder` has her
+admit she has *"pretended to be Captain Isabella"* for two years, and `310 against england` gives the reason.
+So the woman who sails the player to England is an Irish rebel against it -- which makes her the third leg of
+a thread this project has been assembling without knowing it, beside Brendan Sullivan's clover from drowned
+Ireland (0.9.1) and Surrey O'Connell pressed into England's supply train (0.18.0).
+
+**And `503 druids` says what tier 3 had me invent for Sir Roger:** *"Once they fought the English with us, but
+now they have formed an alliance with the Queen."* The game already said the Queen keeps druids. Tier 3's
+reveal is corroborated by the shipped text rather than merely consistent with it.
+
+**The gate is a quest state, which is global.** `JMBN5402` -- *"after hearing the explanation for the crime,
+you have agreed to keep her secret"* -- is activated **and the quest completed** by `310 against england`'s
+reply *"You have persuaded me to silence."* Lie instead and you get `26K1T1IB`; take her bribe and you get
+`FMYEYT9D`. So the beach reads three ways:
+
+| act 1 | at the shrine |
+|---|---|
+| she fled, or you gave her to the Duke | **not there at all** -- which is what the shipped `Captain Isabella fled` checker already meant |
+| you heard her out and kept her secret (`JMBN5402`) | `502 arrive in england grace friendly`, and she can join |
+| anything else -- bribed, lied, never asked | `500`, and she attacks |
+
+**Her body is Sir Roger's, sliced.** He is a working companion on this act, so his generator -- the full AI
+stack of `CSkeletonAI`, `CNormalAttackAI`, `CScanAreaAI`, `CScanInvestigateAI`, `CChaseInvestigateAI`,
+`CChasePursueAI` and an interaction specifier -- and two of his three switch relays are lifted and renamed
+rather than authored. His third, `Sir Roger Switch Talk AI`, is skipped: it has zero callers even for him.
+His specifier ships with an **empty `Action=`** (his tree is opened by a relay, not the generator), so hers is
+filled with the three-way conditional instead of replacing something.
+
+The three blank `Go to node ID=` fields on `502 arrive in england grace relived 2` and the one on
+`503 druids` are pointed at the nodes already written for them, and the two joining replies carry
+`CSetCompanionAction`. **The vanilla `Captain Isabella generator` is left inert exactly as it shipped** --
+it has no name, no AI and no specifier, so it could never have worked; the new one sits beside it.
+
+Gate 0 caught one invented path on the way: the first draft pointed at
+`Character Templates/**Port District**/Port Ship Captain`, and the template is at
+`Character Templates/Port Ship Captain` -- the path the beach's own inactive generator already used.
+
+**Seven orphans remain in her tree**, and they are all companion-state lines: `rejoined companion`,
+`companion left behind`, `near death`, `hurting`, and `600 wild add 1/2/3`. Those are the same shape as Sir
+Roger's own unwired barks, so tier 6 does both in one pass.
 
 **6. Sir Roger's five combat barks.** `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
 Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* -- reached by nothing and opened by

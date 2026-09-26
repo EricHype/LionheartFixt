@@ -1,0 +1,1583 @@
+CDialogTree
+{
+Name=Captain Isabella
+Portrait=Dialog/NPC Portraits/Spanish Captain
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Welcome aboard La Libertad de España, the fastest ship of the Spanish Armada. Speak quickly, I'm short on crew and have much work to do.
+Should Have Voiceover=1
+
+Requirement=Isabella requires having seen Ghost of Morales
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=You accused Isabella
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I encountered the ghost of Captain Morales by the coastline.
+Go to node ID=120 Saw Morales
+Action work in progress=(If spoke with Captain Morales)
+Icon=Quest Icon
+
+Requirement=Isabella requires you to have solved the Murder of Captain Morales
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella already paid you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I spoke with witnesses. I believe you killed Captain Morales.
+Go to node ID=200 accusation
+Custom Action=CActivateAction
+{
+Target Name=You accused Isabella
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Are you the Captain?
+Go to node ID=20 Captain
+
+Requirement=!None
+Reply Text=Can you tell me about the Spanish Armada?
+Go to node ID=40 Spanish Armada
+
+Requirement=!None
+Reply Text=Where is the rest of your crew?
+Go to node ID=50 The Crew
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Hello again. How can I help you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=change your mind about isabella pass
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+}
+}
+}
+}
+Reply Text=I have reconsidered, you must pay for your crime.
+Go to node ID=200 accusation
+
+Requirement=Isabella requires having seen Ghost of Morales
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=You accused Isabella
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I encountered the ghost of Captain Morales by the coastline.
+Go to node ID=120 Saw Morales
+Action work in progress=(If spoke with Captain Morales)
+Icon=Quest Icon
+
+Requirement=Isabella requires you to have solved the Murder of Captain Morales
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella already paid you
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=change your mind about isabella pass
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I spoke with witnesses. I believe you killed Captain Morales.
+Go to node ID=200 accusation
+Custom Action=CActivateAction
+{
+Target Name=You accused Isabella
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=WZU9LRDN
+}
+}
+}
+Reply Text=I have the scroll that you wanted.
+Go to node ID=4 Return Dialogue if have Wind Scroll
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Gave Wind Scroll
+Experience Points To Add=750
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=discovered grace
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Are you the Captain?
+Go to node ID=20 Captain
+
+Requirement=!None
+Reply Text=Can you tell me about the Spanish Armada?
+Go to node ID=40 Spanish Armada
+
+Requirement=!None
+Reply Text=Where is the rest of your crew?
+Go to node ID=50 The Crew
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 Return Dialogue if have Wind Scroll
+Text=Ah, muchas gracias. This magic could save the lives of many brave Spanish sailors. For your reward, I can compensate you with Spanish gold.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thanks, and I have another question for you.
+Go to node ID=5 Other Questions
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+
+Requirement=!None
+Reply Text=Thanks, and I should be leaving now.
+Go to node ID=10 Goodbye
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Other Questions
+Text=What would you like to know about?
+Should Have Voiceover=1
+
+Requirement=Isabella requires you to have solved the Murder of Captain Morales
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella already paid you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I spoke with witnesses. I believe you killed Captain Morales.
+Go to node ID=200 accusation
+Custom Action=CActivateAction
+{
+Target Name=You accused Isabella
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+
+Requirement=Isabella requires having seen Ghost of Morales
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=You accused Isabella
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I encountered the ghost of Captain Morales by the coastline.
+Go to node ID=120 Saw Morales
+Action work in progress=(If spoke with Captain Morales)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=WZU9LRDN
+}
+}
+}
+Reply Text=I have the scroll that you wanted.
+Go to node ID=4 Return Dialogue if have Wind Scroll
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Gave Wind Scroll
+Experience Points To Add=750
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=discovered grace
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Are you the Captain?
+Go to node ID=20 Captain
+
+Requirement=!None
+Reply Text=Can you tell me about the Spanish Armada?
+Go to node ID=40 Spanish Armada
+
+Requirement=!None
+Reply Text=Where is the rest of your crew?
+Go to node ID=50 The Crew
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Until we meet again. Mind your step when you cross the gangplank.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 Captain
+Text=Yes, I am Captain Isabella. I have assumed command of this ship since the death of our previous officer, Captain Morales. Despite the loss, we are ready for the coming battle.
+Should Have Voiceover=1
+
+Requirement=Isabella requires you to have solved the Murder of Captain Morales
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella already paid you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I spoke with witnesses. I believe you killed Captain Morales.
+Go to node ID=200 accusation
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=You accused Isabella
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What happened to Captain Morales?
+Go to node ID=30 Morales
+
+Requirement=!None
+Reply Text=What battle are you talking about?
+Go to node ID=60 Battle
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=5 Other Questions
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Morales
+Text=Sadly, the Captain was lost a month ago during a terrible storm. He was washed over the ship's rail in the dead of night and his body was never found.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have another question for you.
+Go to node ID=5 Other Questions
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be leaving now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Spanish Armada
+Text=An impressive display of military might, no? The Armada has been gathering for several weeks now. Over two hundred ships are docked at Barcelona or wait beyond the harbor, all prepared for the order to sail into battle.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What battle are you talking about?
+Go to node ID=60 Battle
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=5 Other Questions
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 The Crew
+Text=I have allowed the crew to take a well-deserved shoreleave before the coming battle. Likely the men are drinking heavily at the local tavern, La Serpienta Viaja.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=If you don't mind, I have another question for you.
+Go to node ID=5 Other Questions
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Battle
+Text=You must be a new arrival to Barcelona. Every citizen knows that the Inquisition has ordered the Armada to gather for an attack against England. The Inquisition wants to force the Queen to renounce the use of heretical magic.
+Should Have Voiceover=1
+
+Requirement=Isabella requires you to HAVE ALREADY accepted scroll quest
+Reply Text=Why do the English use magic?
+Go to node ID=67 English Magic if already have scroll quest
+
+Requirement=Isabella requires you to NOT have accepted Scroll Quest yet
+Reply Text=Why do the English use magic?
+Go to node ID=65 English Magic
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=P4SJ5BWM
+}
+}
+}
+Reply Text=How do you plan on attacking England?
+Go to node ID=70 Battle Plans
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=have heard battle plans
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=P4SJ5BWM
+}
+}
+Reply Text=How do you plan on attacking England?
+Go to node ID=70 Battle Plans
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=have heard battle plans
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=4TUHA5MY
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=5 Other Questions
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 English Magic
+Text=The English claim they only use magic for defense against dangerous sea creatures, but I have seen English pirates wield devastating magic against innocents. The Armada will be hard pressed against their Weather Wizards. Forgive me if I am too forward, but you have the unmistakable look of an adventurer, used to performing difficult and sometimes questionable tasks...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I can be counted on for discretion. What did you have in mind?
+Go to node ID=90 Isabella's Offer
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm not comfortable with where this is going. I should probably leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=67 English Magic if already have scroll quest
+Text=The English claim they only use magic for defense against dangerous sea creatures, but I have seen English pirates wield devastating magic against innocents. The Armada will be hard pressed against their Weather Wizards.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=5 Other Questions
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Battle Plans
+Text=The Armada will sail to the Netherlands to gather the land army under the command of the Duke of Parma. Then the entire Armada will sail straight to the Isle of London, the capital of the British Empire, and capture the Queen of England. It will be difficult, as the English are shrewd sailors and their magic makes them formidable.
+Should Have Voiceover=1
+
+Requirement=Isabella requires you to HAVE ALREADY accepted scroll quest
+Reply Text=Why do the English use magic?
+Go to node ID=67 English Magic if already have scroll quest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=activate gate district checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=activate gate district checker
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=have heard battle plans
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=Isabella requires you to NOT have accepted Scroll Quest yet
+Reply Text=Why do the English use magic?
+Go to node ID=65 English Magic
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=activate gate district checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=activate gate district checker
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=have heard battle plans
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I have other questions for you.
+Go to node ID=5 Other Questions
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=activate gate district checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=activate gate district checker
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=have heard battle plans
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Thanks for your time, but I should be on my way.
+Go to node ID=10 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=activate gate district checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=activate gate district checker
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=have heard battle plans
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Isabella's Offer
+Text=While I am not fond of the practice of magic, I fear that the Armada will be ill-equipped to deal with the powerful English wizards, despite assurances from the Inquisitors of victory. In my experience, a warrior must fight fire with fire, so to speak...
+Should Have Voiceover=1
+
+Requirement=WindScroll Quest NOT given
+Reply Text=I think I understand what you're asking for. You want me to obtain magic for you?
+Go to node ID=100 Wind Scroll
+Icon=Quest Icon
+
+Requirement=WindScroll Quest NOT given
+Reply Text=Sorry, this sounds pretty risky. I'm not interested.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=WindScroll Quest given
+Reply Text=I have another question for you.
+Go to node ID=5 Other Questions
+------------------------------------------------------------
+Node ID=100 Wind Scroll
+Text=I have heard that English Weather Wizards control the winds to speed their own vessels and slow their enemies. I would like to be prepared in case we face these Weather Wizards. If you could obtain a scroll of Wind Control, discreetly of course, I would be able to reward you handsomely. You would be doing a great service for the Armada.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+Reply Text=I just happen to have a Wind Scroll already.
+Go to node ID=4 Return Dialogue if have Wind Scroll
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=$Trigger
+Experience Points To Add=1
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=7AIRL8LN
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=Scroll Quest given
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+}
+Reply Text=I will try to find a Wind Scroll for you.
+Go to node ID=110 Accept Wind Scroll Quest
+Action work in progress=This activates the relay so can tell if quest given
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=7AIRL8LN
+}
+Action=CActivateAction
+{
+Target Name=Scroll Quest given
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+}
+Reply Text=On second thought, this sounds incredibly risky. I'm not interested.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=110 Accept Wind Scroll Quest
+Text=Excelente. Return when you have the scroll.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=120 Saw Morales
+Text=Imposible! Captain Morales is dead! What you say is ludicrous. I must insist that you leave my ship immediately.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 accusation
+Text=So, you must think me to be a cold blooded killer? But do you wish to hear why a woman would murder, or has your mind already judged me?
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 35
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella already paid you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps we can make an arrangement to keep my silence? Give me gold and I will not tell another living soul.
+Go to node ID=225 bribe
+Action work in progress=(low barter)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=I would like to hear your reasoning for killing Captain Morales.
+Go to node ID=300 isabella explains murder
+
+Requirement=!None
+Reply Text=I want you to surrender yourself. 
+Go to node ID=220 isabella flees
+
+Requirement=!None
+Reply Text=You have murdered a Spanish captain and you must be punished.
+Go to node ID=220 isabella flees
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=220 isabella flees
+Text=I will not be judged by Spanish law, I answer to a higher calling. The next time you attempt to cross my path, there will be blood.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CSkeletonAI
+Delay Between Removes=0
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1
+Part To Fade=$Trigger
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Captain Isabella fled
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=7 English Shrine/01 Outside Shrine
+}
+Action=CDelayAction
+{
+Next Action=CDeleteAction
+{
+Target Name=$Trigger
+}
+Delay=1.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+Location Entity=$Trigger
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+State=26K1T1IB
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Isabella Fled
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+}
+Action=CIfAction
+{
+If=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=P4SJ5BWM
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=activate gate district checker
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=8O3LLPQ4
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 isabella turns herself in
+Text=Yes, you are right. The guilt has weighed heavily on my heart. Morales was a good man and I had no right to end his life.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=used speech to get rid of isabella
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=225 bribe
+Text=I see. If gold will buy your silence, I will pay it, for my duty is much too important to jeopardize. Here is a thousand gold. Speak more of this to anyone, and I will remove *your* tongue.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 80
+Reply Text=A mere thousand gold for the life of a Spanish Captain? What is *your* life worth, Captain?
+Go to node ID=226 big bribe
+Action work in progress=(higher barter)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Good doing business with you. Goodbye.
+Go to node ID=228 disgusted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1000
+}
+Action=CActivateAction
+{
+Target Name=Isabella already paid you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+State=FMYEYT9D
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=226 big bribe
+Text=May you rot in hell for such greed. I will give you all the wealth I have, two thousand, five hundred gold coins. Now, leave before I give you my steel instead.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=A pleasure doing business with you.
+Go to node ID=228 disgusted
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=2500
+}
+Action=CActivateAction
+{
+Target Name=Isabella already paid you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+State=FMYEYT9D
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=228 disgusted
+Text=Bah! Just go away, and never return.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(remove dialogue AI)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=isabella said never return
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 isabella explains murder
+Text=You will hear the truth then. For the past two years, I have pretended to be Captain Isabella of España. My true name is Grace O'Malley, captain of the Irish fleet survived from the sunken isle of Ireland.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 35
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella already paid you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps we can make an arrangement to keep my silence? Give me gold and I will not tell another living soul.
+Go to node ID=225 bribe
+Action work in progress=(low barter)
+Custom Action=CActivateAction
+{
+Target Name=discovered grace
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Why did you pretend to be a Spanish captain?
+Go to node ID=310 against england
+Custom Action=CActivateAction
+{
+Target Name=discovered grace
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=You have murdered a Spanish captain and you must be punished.
+Go to node ID=220 isabella flees
+Custom Action=CActivateAction
+{
+Target Name=discovered grace
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have heard enough. You must surrender yourself. 
+Go to node ID=220 isabella flees
+Custom Action=CActivateAction
+{
+Target Name=discovered grace
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=310 against england
+Text=Long have the Irish, Scottish, and other Celtic tribes suffered under the rule of England's navy. They took away our islands and forced my proud people to live like pirates. We have waited too long for Spain to intervene and tame England's navy. I became Isabella to help convince Spain to enter war with England.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 40
+Reply Text=Turn yourself in and explain your story to the authorities. I assure you that justice will be lenient, so you will live to continue your struggle.
+Go to node ID=210 isabella turns herself in
+Action work in progress=(speech >=30)
+Icon=Speach Skill Icon
+
+Requirement=Barter moreequal 35
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella already paid you
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perhaps we can make an arrangement to keep my silence? Give me gold and I will not tell another living soul.
+Go to node ID=225 bribe
+Action work in progress=(none or low barter)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=You have persuaded me to silence. 
+Go to node ID=350 grace relieved
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=change your mind about isabella pass
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+State=JMBN5402
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Protected Isabellas Secret
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=!None
+Reply Text=You have persuaded me to silence. <Lie>
+Go to node ID=350 grace relieved
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=change your mind about isabella pass
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+State=26K1T1IB
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Lied to Isabella About Keeping Secret
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=!None
+Reply Text=You must surrender yourself and let justice decide your fate.
+Go to node ID=220 isabella flees
+
+Requirement=!None
+Reply Text=You have murdered a Spanish captain and I'm here to make sure that you are punished.
+Go to node ID=220 isabella flees
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=350 grace relieved
+Text=You could have turned me in, but you chose to listen to me. I will not forget your kindness.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=change your mind about isabella pass
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 arrive in england isabella hates you
+Text=At least there is some good fortune this day. You nearly foiled my plans in Barcelona - since I could not sail with the Spanish Armada, that fool Duke sank the fleet! But if I can't kill the English, I will settle the score with you. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(combat)
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=502 arrive in england grace friendly
+Text=You have found me! First you spared me in Barcelona and now you have come so far to rescue me. The English routed the Armada and that fool Duke sank with most of the ships. I drifted ashore a few hours ago.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=502 arrive in england grace relived 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=502 arrive in england grace relived 2
+Text=I am eager to continue the fight against the English. You are here to battle the traitorous dark druids who stole the Cross, no? My love, know that my blade and my heart are yours and I will follow you through the fire.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about these druids. 
+Go to node ID=503 druids
+Action work in progress=(add npc)
+
+Requirement=!None
+Reply Text=My dear, your companionship is most welcome.
+Go to node ID=502 grace joined romantic
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Switch Interaction Specifier when Grace becomes a companion
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Grace Join Player switch SkeletonAI
+}
+Delay=0.2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Action work in progress=(add npc)
+
+Requirement=!None
+Reply Text=Sorry, I work alone.
+Go to node ID=502 grace spurned
+
+Requirement=!None
+Reply Text=Your sword is welcome, but I have no use for your heart.
+Go to node ID=502 grace joined but spurned
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Switch Interaction Specifier when Grace becomes a companion
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Grace Join Player switch SkeletonAI
+}
+Delay=0.2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+------------------------------------------------------------
+Node ID=502 grace joined but spurned
+Text=If...if that is your wish, I will honor it, and serve you not for love, but for duty. Lead on.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=502 grace spurned
+Text=If...if that is your wish, I will honor it. Do not worry - we will not cross paths again.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=503 druids
+Text=<Spits in disgust> The Druids are the worst sort of traitors. Once they fought the English with us, but now they have formed an alliance with the Queen. These druids have used both the English and my people, anything to accomplish their dark ends. Will you let me accompany you to stop them?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about these druids. 
+Go to node ID=503 druids
+Action work in progress=(add npc)
+
+Requirement=!None
+Reply Text=My dear, your companionship is most welcome.
+Go to node ID=502 grace joined romantic
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Switch Interaction Specifier when Grace becomes a companion
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Grace Join Player switch SkeletonAI
+}
+Delay=0.2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Action work in progress=(add npc)
+
+Requirement=!None
+Reply Text=Sorry, I work alone.
+Go to node ID=502 grace spurned
+
+Requirement=!None
+Reply Text=Your sword is welcome, but I have no use for your heart.
+Go to node ID=502 grace joined but spurned
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Switch Interaction Specifier when Grace becomes a companion
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Grace Join Player switch SkeletonAI
+}
+Delay=0.2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+------------------------------------------------------------
+Node ID=502 grace joined romantic
+Text=Together we cannot fail. My heart and my sword are yours!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=502 grace rejoined companion
+Text=Let us continue our quest.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=502 grace companion asks to return
+Text=Are you ready to continue our quest?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=502 grace companion left behind
+Text=If that is your desire. I will await your return here.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=502 grace companion near death
+Text=I will not survive much longer...Help me!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=502 grace companion hurting
+Text=I require aid!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 wild add 1
+Text=I need healing!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 wild add 2
+Text=For Ireland.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 wild add 3
+Text=We cannot fail.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 greed
+Text=I have nothing to say to you.  You have taken all I have to give.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3000 admits guilt and leaves
+Text=I will now go to turn myself over to the guards. Tell my crew that I wish them luck.
+Should Have Voiceover=0
+}
