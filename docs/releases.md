@@ -142,8 +142,8 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
-**Surveyed 2026-09-25. Nothing built.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
-parts, **1,304 live enemy spawners**, six dialogue trees of its own, and **28 player replies in total**.
+**Surveyed 2026-09-25. Tier 1 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
 | map | parts | live spawners | conversations | balloons | MB |
 |---|---|---|---|---|---|
@@ -264,11 +264,49 @@ at all.
   entity spawns on `Barcelona Coast`, not the Crossroads. Probably a deliberate cut, and not worth
   restoring without a reason.
 
+### Tier 1 - the sack of Barcelona gets its voice (built)
+
+Four bark relays sit `Active=1` on the two big siege maps and hold nineteen written lines between them:
+`Defenders dialog balloons` and its interaction-specifier twin (six battle cries), `defender winner
+dialog balloons` (six steadier ones) and `Attackers dialog balloons` (seven English). Three are fired by
+nothing anywhere in the game; the fourth is called only from inside `fight4`, a reserve wave that is
+`Active=0`.
+
+All four position their balloons on **`$Trigger`**, which says how they were meant to be driven: by the
+speaker's own AI, exactly as `Hujark dialog balloons` is driven in act 5 by a `CRepeatTimerTriggerAI` in
+the general's generator. So the repair is a timer on a handful of soldiers.
+
+**A handful, deliberately.** Arming every generator would be a wall of text rather than a battlefield:
+
+| map | defenders armed | attackers armed |
+|---|---|---|
+| Gate District Siege | 4 of 4 | 6 of 13 |
+| Temple District Siege | 1 of 1 | 3 of 3 |
+
+Sides are decided by what a generator **fields**, not by what the part is called, because `fightN` parts
+hold both armies: anything spawning `Gate Guard Siege`, `Inquisitor Generic Siege`, `spanish defender` or
+a siege Templar is a defender, anything spawning from `English Enemies` is an attacker, and
+`Fixed Dead Body Generator` parts are skipped -- corpses do not shout.
+
+The defenders carry two timers because they have two trees: the six cries every eight seconds, and the
+six steadier lines every twenty-four. That slow timer is also the **only** way
+`defender winner dialog balloons` can be reached at all -- these maps raise exactly one kind of message,
+`GoToCombat`, so there is no end-of-fight event to hang a victory line on. The consequence is that one of
+its six lines, *"I'll secure this area."*, can land while the area is plainly not secure. Better than a
+tree nobody has ever heard, and worth revisiting if a fight-end hook turns up.
+
+**A correction to this survey's own headline number.** The 1,304 "live enemy spawners" counted every
+active spawn entry, and **415 of them are corpses** -- `Fixed Dead Body Generator` parts, 237 of them on
+the Temple District alone against 73 combatants. So the besieged Temple District is mostly a field of
+dead bodies with a handful of fighters still standing, which is a different and better-observed map than
+the raw figure suggested. The real combatant count is 889, and the densest map is still
+`Crossroads Siege` at 472 with 18 corpses.
+
 ### Tiers, in the order they should be built
 
-1. **The silence.** Wire the three defender relays and give the `Attackers` relay a live caller, on both
-   1 MB siege maps. Nineteen written barks, none of which has ever played, in the set-piece the act is
-   named for. Cheapest large win in the act.
+1. ~~**The silence.**~~ **Built** -- see above. The reserve waves `fight2` and `fight4`, whose
+   `activate fightN` relays are live and called by nothing, are a separate question and deliberately
+   untouched: the Gate District already fields 249 combatants.
 2. **The two quests that do not exist.** States and wiring for `Find Galileo and DaVinci` and the
    pursuit of the True Cross, which is also the hand-off to act 7.
 3. **`Crossroads Siege`.** 490 spawners and not one voice. It needs what the Misc Crypts got in 0.16.0:
