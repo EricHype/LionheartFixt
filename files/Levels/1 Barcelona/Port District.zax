@@ -54583,7 +54583,7 @@ CLayerSaveData
 									{
 										Action=Array
 										{
-											Item Count=5
+											Item Count=6
 											Action=CIfAction
 											{
 												If=CIsQuestStateTheCurrentStateAction
@@ -54695,6 +54695,28 @@ CLayerSaveData
 													Need to Call Start=1
 												}
 												Target=$Trigger
+											}
+											Action=CConditionalAction
+											{
+												Try Action=CExpressionAction
+												{
+													Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Child Killer
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Succeed Action=
+												Fail Action=CGiveCharacterPerkAction
+												{
+													Character to give perk to=$Instigator
+													Perk to give=Perks/!Event Title Perks/Child Killer
+												}
+												Return failure if the TryAction failes=0
 											}
 										}
 									}

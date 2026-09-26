@@ -142,6 +142,44 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
+
+### Slayer of Innocents, on the hooks the designers built for it (added after 0.18.0)
+
+The award above reads the perk's description -- *killing the helpless* -- and hangs the title on a murdered
+citizen, because children cannot be killed. That was the best reading available without knowing about the
+mechanism the designers *did* build, which a question about the game's three child-rescue quests turned up:
+**each child's generator carries a working `CSetDamagedScriptActionAction`.** Children cannot be killed,
+but hitting one has always been detected, and always had consequences.
+
+| child | map | what the hook already did |
+|---|---|---|
+| Woodcutter's daughter | `Scar Ravine` | screams `70 Ahhh!`, flees to `girl leave safe`, turns `Goblin guarding girl` on you, deletes the entire peaceful-resolution script set, fails *Find the Woodcutter's lost son*, activates `daughter attacked` -- which `Woodcutter.DialogTree` reads, so the father knows -- and runs a `COtherMapAction` deleting her generator at the house so she never turns up home |
+| Woodcutter's daughter | `Woodcutter Home interior` | the same, at home |
+| Marisol | `Port District` | screams `90 Ahhh!`, flees to `Marisol disappear location`, fails *Find the lost boy Tomas in the Sewers* |
+| Tomas | `05 Troll Pit` | screams `70 Ahhh!`, strips his talk specifier, flees |
+| Shepherd's son | `01 Hamlet Exterior` | screams `40 Ahhh!`, activates `Player hurt the son` and `Make Maury mad for hurting son` |
+| Barcelona Boy | `Gate District` | the `Child Leaving` boy, switched on by two comma-list activators |
+
+Five children, six placements, every hook doing real work -- and **not one of them touching the title the
+game wrote for exactly this.** The grant now sits in each of those six, on the same
+`CHasPerkExpression`-guarded shape, appended to the hook's own action array with every vanilla action left
+in place: the quest failures, the flags, the fleeing and the goblin all still happen.
+
+**Everything downstream already worked.** The grant reaches the guards' `2 Childkiller Intro`, and its
+*"I am the killer. You should back down before I kill you."* reply fires both
+`Damage a guard in the city district` and `Child killer bubble text` -- the guard shouting *"Have at thee,
+monster!"* That bubble part looked like a seventh orphan when counted in `.zax` files alone; its caller is
+in the DialogTree. The grant was the only link missing since release.
+
+**These hooks cannot misfire.** On all four maps involved every `Valid Targets` is some combination of
+`Player`, `Player Friend`, `Enemy` and `Scripted Custom N`; nothing can target a neutral, which is what
+every child is. So only the player can ever trigger one, and the goblin standing over the daughter and the
+trolls standing over Tomas cannot earn the player a title.
+
+The citizen grant stays alongside: a murdered citizen is one of the helpless too, it is the
+`Merchant Slayer` precedent, and it is what gives act 6's witness scene its consequence. **40 grants in
+total** -- 34 citizen generators and 6 child hooks.
+
 **Released 2026-09-26. Surveyed and built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
 parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
@@ -409,9 +447,15 @@ the polarity (*"Active Player NOT child killer. Inactive player IS"*) -- **are s
 `Gate District Siege`**, both active, and act 6 neither reads nor writes either one.
 
 **Children are not made killable, and that is not what the perk says.** `Races/NPCs/Generic Child` is
-HP 10000 / AC 1000, `Barcelona Boy.can` sets `Has Hit Points=0` on top of that, and the Gate District's
-only boy sits on a part named `Child Leaving` with `Active=0` -- the invulnerability is deliberate and
-it stays. The perk's own words are *killing the helpless*, and the helpless who can actually be killed
+HP 10000 / AC 1000, and **every child in the game uses that one race** -- the woodcutter's daughter,
+Marisol, Tomas, the shepherd's son and the Gate District boy alike. The invulnerability is deliberate and
+it stays.
+
+> *Corrected after release:* this section originally also cited `Barcelona Boy.can` setting
+> `Has Hit Points=0` as a second layer of protection. It is not one. **All 247 character templates in the
+> game set `Has Hit Points=0`**, including the HP-12 citizens this release makes killable for the title
+> and the HP-1 barstool patron. It is a level-part field about object hit points, not character
+> invulnerability. The race presets are the only thing protecting children. The perk's own words are *killing the helpless*, and the helpless who can actually be killed
 are the ordinary citizens at HP 12 / AC 60. So the title is awarded for murdering an unarmed citizen in
 peacetime Barcelona, on the exact idiom `Merchant Slayer` already uses 28 times: a
 `CSetDestroyedScriptActionAction` in the generator's `After Action`, whose destroyed action gives the

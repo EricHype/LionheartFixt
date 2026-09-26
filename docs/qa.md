@@ -1500,6 +1500,14 @@ parts on their citizen generators.
 | BA19 | Walk back over the western end again | - | No repeat and no second payment |
 | BA20 | Fight anywhere on the map for a minute | - | English soldiers shout: *"Press forward, men!"*, *"Attack! For England!"*, *"For the Queen!"* Six of the thirty-four generators are armed |
 | BA21 | Compare the volume against `Gate District Siege` (BA4) | - | Similar. This map has no defenders, so only the English are heard |
+| BA26a | Attack **Marisol** outside the sewers in the Port District | - | She screams *"Ahhh!"*, will not speak to you again, walks off to her disappear point, *Find the lost boy Tomas in the Sewers* fails -- all vanilla -- **and you are now Slayer of Innocents** |
+| BA26b | Attack the **woodcutter's daughter** in Scar Ravine | - | The same, plus the goblin turns on you and *Find the Woodcutter's lost son* fails. Then ask the woodcutter about her: he already reads `daughter attacked` in vanilla |
+| BA26c | Attack **Tomas** in the troll pit | - | He screams and flees; the title is granted |
+| BA26d | Attack the **shepherd's son** in Montaillou | - | He screams, `Player hurt the son` and `Make Maury mad for hurting son` activate as in vanilla, and the title is granted |
+| BA26e | Attack the **Gate District boy** while `Child Leaving` is switched on | - | The title is granted |
+| BA26f | Keep hitting the same child, or attack a second one after the first | - | No duplicate grant. Each hook is `COnlyOnce` and the grant checks the perk first |
+| BA26g | Let the goblin stand over the daughter, or the trolls over Tomas, and do nothing | - | **No title.** No enemy on those maps can target a neutral, so only the player can trigger a child's hook |
+| BA26h | After any of BA26a-e, walk up to a Gate District guard | - | *"There have been reports of a monstrous killer of helpless children..."* -- and on *"I am the killer"* he shouts **"Have at thee, monster!"** and the district turns on you. **This chain has never fired in any playthrough** |
 | BA22a | Let your own character be killed by anything, at any point in the game | - | **No title is granted by dying.** The first pass armed the player's own death by mistake; the hook belongs on the citizen, not on whoever the balloon was talking to |
 | BA22 | **A save that has never entered the Gate District.** In peacetime Barcelona, kill one unarmed citizen | - | **Slayer of Innocents** appears among your titles. Vanilla never granted this perk anywhere |
 | BA23 | BA22, then walk up to any gate guard in the Gate District | - | *"There have been reports of a monstrous killer of helpless children...you loosely fit the description."* Two replies: deny, or admit it and threaten him. **Five authored nodes that had never fired** |

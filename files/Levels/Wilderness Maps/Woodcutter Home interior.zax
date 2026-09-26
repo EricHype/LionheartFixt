@@ -1,0 +1,1419 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/!Unknown
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=2
+		Full Mix Song=1 Barcelona/AMB_GateDis_House2.ogg
+		Med Mix Song=1 Barcelona/AMB_GateDis_House2.ogg
+		Ambiant Song=1 Barcelona/AMB_GateDis_House2.ogg
+	}
+	Width=1600
+	Height=960
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=
+	Has Begin Been Called=0
+	Map Description=Woodcutter's Cabin
+	First Fire Action=
+	First Load Action=
+	View Position=303.000000,138.000000
+	Int View Position=303,138
+	Partial File Name=Wilderness Maps/Woodcutter Home interior
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Wilderness/woodcutter_interior/main
+			Position X=797.75
+			Position Y=362.625
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=0, 895, 1599, 891, 1599, 959, 0, 959, 0, 895
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=Wilderness Maps/Woodcutter Forest
+						New Location=From Woodcutter Interior
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=692, 464, 798, 529, 662, 671, 374, 476, 480, 380, 619, 420, 692, 464
+			Center Position Offset=48.000000,-44.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Wilderness/woodcutter_interior/door
+			Position X=661
+			Position Y=403
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Start Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=330
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=680
+			Position Y=419
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=684, 415, 611, 476, 615, 479, 684, 415
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Primary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityBase
+		{
+			Name=girl leave safe
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=599
+			Position Y=505
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Wilderness/woodcutter_interior/bed
+			Position X=807
+			Position Y=475
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=activate daughter
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateAction
+					{
+						Target Name=woodcutters daughter generator
+						Play Activate Sound=0
+						Delay Between Activations=0
+						Warp Behavior=
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=773.25
+			Position Y=601.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=799, 389, 862, 432, 965, 475, 964, 470, 799, 389
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Primary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=activate quest
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CActivateQuestStateAction
+					{
+						Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+						State=3LOXSARJ
+					}
+					X Radius=700
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=849.25
+			Position Y=594.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=woodcutters daughter generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/Wilderness/Character Templates/Woodcutters daughter
+					New Name=
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Woodcutterson
+										Node ID=50 happy to be home
+										Name of Position=$trigger
+										Position Offset=0.000000,-50.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Woodcutterson
+										Node ID=60 Gracias
+										Name of Position=$trigger
+										Position Offset=0.000000,-50.000000
+										After Action=
+										Include In Log=1
+									}
+								}
+								When Done=Repeat Series
+								Require Success To Advance=1
+								Next Action Index=0
+							}
+							X Radius=55
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=GoToCombat
+									Action=COnlyOnceAction
+									{
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=9
+												Action=CRemoveAIAction
+												{
+													Target Name=$Trigger
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Trigger
+													Categories To Remove=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Trigger
+													Name To Target=
+													Valid Targets=
+												}
+												Action=COtherMapAction
+												{
+													Action=CGoToCombatAction
+													{
+														Enemy Name=Woodcutter
+													}
+													Other Map Name=Wilderness Maps/Woodcutter Forest
+												}
+												Action=CIfAction
+												{
+													If=CIsQuestStateTheCurrentStateAction
+													{
+														Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+														State=3LOXSARJ
+													}
+													Then=CSetQuestSatusToFailedAction
+													{
+														Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+													}
+													Else=
+													Return failure if the If failes=0
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Woodcutterson
+													Node ID=70 Ahhh!
+													Name of Position=$trigger
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CSetPatrolAIAction
+												{
+													Patrol AI=CGoToAI
+													{
+														Marked For Deletion=0
+														Publisher=
+														Destination=girl leave safe
+														Offset=0.000000,0.000000
+														Starting Action=
+														Finished=0
+														Move Finished=0
+														Failed Path=0
+														Target Was Set By Goto AI=0
+														Move Behavior=CEntityBehaviorMoveToPos
+														{
+															Old Stationary Flag=0
+															Angle To Turn To=0
+															Facing Backwards=0
+															Idle Behavior=CEntityBehaviorIdle
+															{
+																Num Seconds=1
+																Seconds Have Transitioned=0
+																Override Fidget Options=
+																Current Fidget Data=
+																Time Until Next Fidget=0
+																Fidgeting=0
+															}
+															Play Ratio=1
+															Smooth Turning=0
+															Do Path Finding=1
+															Finished=1
+															Failed Last Path=0
+															Idle Begin Called=0
+															Move To Rate=0
+															CurTargetNormalX=0
+															CurTargetNormalY=0
+															Path Finding Params=CWayPointPath
+															{
+																Start Point=0,0
+																End Point=0,0
+																Length=0
+																Max Dist To Travel=0
+																Num Failed Paths=0
+																Max Failed Paths=0
+																Pos To Move Index=0
+																Dist So Far=0
+																Path=
+															}
+															Pos Moving From=0.000000,0.000000
+															Final Dest=0.000000,0.000000
+															Dest Radius=0
+															Cur Dest Move To=0.000000,0.000000
+															Last Neg Dist=0
+															NumTimesLostGound=0
+															Sequence=
+															Planed Path For=
+														}
+														Done action=
+														Run=1
+														Make New Home=0
+														Play Ratio=0
+														Time To Try To Move=0
+														Set Facing Angle=0
+														Turn Sequence Name=Idle
+														Facing Angle=CEntityBehaviorTurnToAngle
+														{
+															Old Stationary Flag=0
+															Angle To Turn To=0
+															Facing Backwards=0
+														}
+														Need to Call Start=1
+													}
+													Target=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CFadeToOpacityAction
+													{
+														Opacity To Fade To=0
+														Seconds To Fade=1
+														Part To Fade=$Trigger
+													}
+													Delay=0.5
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=Woodcutters daughter
+													}
+													Delay=1.5
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=COnlyOnceAction
+								{
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=10
+											Action=CRemoveAIAction
+											{
+												Target Name=$Trigger
+												AI=CAIInteractionSpecifier
+												Delay Between Removes=0
+											}
+											Action=CRemoveCategoryAction
+											{
+												Target Name=$Trigger
+												Categories To Remove=Enemy
+											}
+											Action=CSetTargetTypeAction
+											{
+												Entity Name=$Trigger
+												Name To Target=
+												Valid Targets=
+											}
+											Action=COtherMapAction
+											{
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Woodcutter
+												}
+												Other Map Name=Wilderness Maps/Woodcutter Forest
+											}
+											Action=CIfAction
+											{
+												If=CIsQuestStateTheCurrentStateAction
+												{
+													Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+													State=3LOXSARJ
+												}
+												Then=CSetQuestSatusToFailedAction
+												{
+													Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/Woodcutterson
+												Node ID=70 Ahhh!
+												Name of Position=$trigger
+												Position Offset=0.000000,-70.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CSetPatrolAIAction
+											{
+												Patrol AI=CGoToAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													Destination=girl leave safe
+													Offset=0.000000,0.000000
+													Starting Action=
+													Finished=0
+													Move Finished=0
+													Failed Path=0
+													Target Was Set By Goto AI=0
+													Move Behavior=CEntityBehaviorMoveToPos
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+														Idle Behavior=CEntityBehaviorIdle
+														{
+															Num Seconds=1
+															Seconds Have Transitioned=0
+															Override Fidget Options=
+															Current Fidget Data=
+															Time Until Next Fidget=0
+															Fidgeting=0
+														}
+														Play Ratio=1
+														Smooth Turning=0
+														Do Path Finding=1
+														Finished=1
+														Failed Last Path=0
+														Idle Begin Called=0
+														Move To Rate=0
+														CurTargetNormalX=0
+														CurTargetNormalY=0
+														Path Finding Params=CWayPointPath
+														{
+															Start Point=0,0
+															End Point=0,0
+															Length=0
+															Max Dist To Travel=0
+															Num Failed Paths=0
+															Max Failed Paths=0
+															Pos To Move Index=0
+															Dist So Far=0
+															Path=
+														}
+														Pos Moving From=0.000000,0.000000
+														Final Dest=0.000000,0.000000
+														Dest Radius=0
+														Cur Dest Move To=0.000000,0.000000
+														Last Neg Dist=0
+														NumTimesLostGound=0
+														Sequence=
+														Planed Path For=
+													}
+													Done action=
+													Run=1
+													Make New Home=0
+													Play Ratio=0
+													Time To Try To Move=0
+													Set Facing Angle=0
+													Turn Sequence Name=Idle
+													Facing Angle=CEntityBehaviorTurnToAngle
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+													}
+													Need to Call Start=1
+												}
+												Target=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Delay=0.5
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=Woodcutters daughter
+												}
+												Delay=1.5
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Action=CConditionalAction
+											{
+												Try Action=CExpressionAction
+												{
+													Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Child Killer
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Succeed Action=
+												Fail Action=CGiveCharacterPerkAction
+												{
+													Character to give perk to=$Instigator
+													Perk to give=Perks/!Event Title Perks/Child Killer
+												}
+												Return failure if the TryAction failes=0
+											}
+										}
+									}
+								}
+								Target Name=$Instigator
+							}
+						}
+					}
+					New Facing Angle=3.15905
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=868
+			Position Y=448
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Dad is dead relay
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CIfAction
+							{
+								If=CIsQuestStateTheCurrentStateAction
+								{
+									Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+									State=3LOXSARJ
+								}
+								Then=CSetQuestSatusToFailedAction
+								{
+									Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/Wilderness/Dialog/Woodcutterson
+								Node ID=70 Ahhh!
+								Name of Position=Woodcutters daughter
+								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=Woodcutters daughter
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAssignTemporaryTaskAction
+							{
+								Target=Woodcutters daughter
+								Temporary Task AI=CGoToAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Destination=girl leave safe
+									Offset=0.000000,0.000000
+									Starting Action=
+									Finished=0
+									Move Finished=0
+									Failed Path=0
+									Target Was Set By Goto AI=0
+									Move Behavior=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
+									}
+									Done action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeactivateAction
+												{
+													Target Name=Woodcutters daughter
+												}
+												Delay=1.1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Run=1
+									Make New Home=0
+									Play Ratio=0
+									Time To Try To Move=0
+									Set Facing Angle=0
+									Turn Sequence Name=Idle
+									Facing Angle=CEntityBehaviorTurnToAngle
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+									}
+									Need to Call Start=1
+								}
+								Original AI Type=CSkeletonAI
+								Completion Message to wait for=AI Done
+								Suppress can't assign error=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=904
+			Position Y=552
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=Opening
+								Random From Sequencial Set=0
+								Target Name=$Trigger
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=
+									Location=$Trigger
+									Location Offset=-47,-17
+									Generate Within Radius=32.5
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorAdditionalMagic
+												{
+													Items=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorBasicItem
+														{
+															Weighting=10
+															Item=Inventory Items/Gold
+														}
+													}
+													Chance Has Additional Magic=1
+													Additional Magic=Array
+													{
+														Array Count=1
+														Array Item=CInventoryItemGeneratorAdditionalMagicItem
+														{
+															Weighting=10
+															Addition=Inventory/Inventory Additions/Gold/Gold 3Small_Medium Pile
+															Level=0
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								Delay=0.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=0
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=1
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=50
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Outpost/Generic/Chests/Chest 02 C
+			Position X=953.75
+			Position Y=470.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1599, 959, 1519, 959, 1509, 0, 1599, 0, 1599, 959
+			Center Position Offset=0.000000,0.000000
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=1
+		Num Textures=1
+		Texture 0=14 Black
+		Elevations Row 0=B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B4B400
+		Elevations Row 1=B6A9A1988E849A928B2D93862E862C86898A832E8B288D8EB600
+		Elevations Row 2=8B8E8E929395989A279A989593908E8D8A9327328D9A8EA1B600
+		Elevations Row 3=89848A2C818A2E808A9327328B998EA1B4B6B6B6B6B6B6B6B600
+		Elevations Row 4=8188292F80888E952730858F998997A6B4B6B6B6B6B6B6B6B600
+		Elevations Row 5=8A8E9385858532858B0000848E97A1A9B4B6B6B6B6B6B6B6B600
+		Elevations Row 6=8B8E8585990202020200000000A4A9AFB4B4B4B4B4B6B6B6B600
+		Elevations Row 7=B485B4B40505050505C400000000B40202B402020202B4B4B400
+		Elevations Row 8=858505050505050505C47E00010002020202020202028D020200
+		Elevations Row 9=85B6050505050005C4C47E0E000002020202020202028E020200
+		Elevations Row 10=85B6050505050505C47E7E0E0000B602020202020202B6020200
+		Elevations Row 11=8592C405050505C4FF7E7E0E000000B6B4020202020202B60200
+		Elevations Row 12=8592C4C4C4C4C4FFFFFF7E00000000B6B4B602B6B602B6B6B600
+		Elevations Row 13=85859292FFFFFFFFFF7E00000000B4B4B4B4B4B4B4B6B6B6B600
+		Elevations Row 14=85858585850000000000000000B4B4B4B4B4B4B4B4B4B4B4B400
+		Elevations Row 15=0000000000000000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+	}
+}
