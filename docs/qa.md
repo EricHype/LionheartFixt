@@ -1471,6 +1471,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+### 0.19.0 - the English Shrine
+
+Act 7. Needs a character who has **never entered act 7** -- all of this is level parts.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| ES1 | **A save that has never entered act 7.** Fight through `02 Temple Initiate` | - | **Druids among the English soldiers.** Vanilla fielded the `Druid` template nowhere at all, in the act whose enemy faction is the Druids |
+| ES2 | Compare `02 Temple Initiate` with `09 Secret Chamber` and `10 Inner Sanctum` | - | Druids are occasional at the entrance and common in the deep rooms. The placement is deepest-first on purpose |
+| ES3 | Fight through the three Meditation Chambers | - | Druids alongside the golems and priests. These rooms had no soldiers at all in vanilla |
+| ES4 | Reach `05 Exalted Chambers`, the Druid Master's chamber | - | **Priestesses**, including `Priestess Super`. All three Priestess templates were fielded nowhere in the entire game, while the Druid Master herself has the race `Priestess Super` |
+| ES5 | Watch for a priestess who dies unusually fast | - | **Should not happen: `Priestess Tough` is deliberately not fielded**, because its race has AC 80 against the base Priestess's 260. If a priestess feels like paper, note which map |
+| ES6 | Check XP gain across the act against your notes, if you have any | - | Roughly **+15% act-wide**, concentrated in `05`, `09` and `10` (+40-54%). A Druid pays 950 where the identically-statted Soldier1 pays 348. **Report if this feels like too much; the weights are one table** |
+| ES7 | Fight the Druid Master | - | Unchanged from vanilla. Her race is untouched -- but note whether she feels weaker than the `Priest Super` guards around her, because on the shipped numbers she is |
+| ES8 | Everything else about the act's spawns | - | Unchanged. No generator was added or removed and no vanilla spawn entry was dropped; only weighted entries were added to existing groups |
+
 ### 0.18.0 - the Barcelona Attack
 
 Act 6. Needs a character who has **never entered act 6**; BA22-BA26 additionally need one who has

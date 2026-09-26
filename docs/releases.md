@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.19.0 - the English Shrine
 
-**Surveyed 2026-09-26, revised the same day after the tester's verdict. Not started.** Act 7,
+**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tier 1 built 2026-09-26, unplayed.** Act 7,
 `Levels/7 English Shrine`. Eleven maps, 3,481 level parts, 2,035 live combatants, nine dialogue trees,
 91 player replies.
 
@@ -193,7 +193,7 @@ tester's "same 3-4 enemies" is literally the case.
 
 ### Tiers, in the order they should be built
 
-**1. Give the act its own enemies. They exist, and they are placed nowhere.**
+**1. ~~Give the act its own enemies.~~ Built.** They existed, and they were placed nowhere.
 
 This is restoration, not rebalancing, and it goes first because it is the complaint:
 
@@ -215,6 +215,70 @@ also placed nowhere; it is spent on the allied side in tier 2 rather than here.)
 Following the 0.17.0 pattern, these go in by twinning existing Soldier generators so every new enemy
 stands where the game already spawns one, and it is a **swap, not an addition**: the tester prefers variety
 over thinning, and this raises variety without raising the count.
+
+**What went in.** 195 new `Thing to Generate` entries across nine maps, added to existing generator groups
+with weights rather than as new generators, so no spawner count changes and every vanilla entry is kept --
+audited per map, nothing lost. Placement is **deepest-first**: the front of the act stays an English army
+holding a shrine, and the further in you go the more it is actually the cult.
+
+| map | added | on |
+|---|---|---|
+| 02 Temple Initiate | Druid, weight 1 | 21 of 124 groups |
+| 03 Stone Chamber | Druid, weight 1 | 31 of 124 |
+| 04 Antechamber of Lore | Druid, weight 1 | 32 of 96 |
+| 05 Exalted Chambers | Druid w2, Priestess w1, **Priestess Super** w1 | 16 / 11 / 6 of 32 |
+| 06-08 Meditation Chambers | Druid, weight 2 | half the groups in each |
+| 09 Secret Chamber | Druid w2, Priestess w1 | 18 / 12 of 36 |
+| 10 Inner Sanctum | Druid w2, Priestess w1 | 14 / 14 of 28 |
+
+**The variety metric, computed the same way as the survey table:**
+
+| | before | after |
+|---|---|---|
+| spawn entries | 2,048 | 2,243 |
+| families | 19 | **21** |
+| top-4 families' share | 94% | **87%** |
+| `Soldier`'s share of everything | 73% | **67%** |
+
+For reference the Crypt is 82 families at 43%. Act 7 is still the least varied act in the game; it is no
+longer the least varied by the margin it was, and the change is concentrated where the player is deepest in
+the shrine.
+
+### Two balance findings this tier raised, and what was done about each
+
+**The swaps are not XP-neutral, so the placement is weighted rather than uniform.** `Druid` has the *same
+race as `Soldier1`* -- HP 75, AC 230 -- and pays **950 XP against Soldier1's 348**. `Priestess` pays 1,949
+against `Priest`'s 746. A uniform swap across 1,280 soldier entries would have inflated the act's XP roughly
+2.7x. The projected shift as built:
+
+| map | mean XP per spawn | |
+|---|---|---|
+| 02 / 03 / 04 -- the three big front maps | +4% / +6% / +8% | they carry most of the act's spawns and are touched lightest |
+| 06 / 07 / 08 Meditation Chambers | +13% / +15% / +10% | |
+| 05 Exalted Chambers | **+54%** | the Druid Master's own chamber, 120 entries |
+| 09 Secret Chamber / 10 Inner Sanctum | **+40% / +41%** | 140 and 88 entries |
+| **act-wide, over the maps touched** | **+15%** | |
+
+The deep maps move most and are the smallest, which is the trade this placement makes on purpose. It is a
+dial, not a fact: the weights are one table in the build script and can come down.
+
+**The Priestess race ladder is unfinished, and the act's boss runs on it.** The Priest line is a finished
+three-tier ladder; the Priestess line is not:
+
+| | HP | AC | cold / electrical / fire resistance |
+|---|---|---|---|
+| Priest -> Tough -> Super | 80 / 110 / 150 | 230 / 250 / 280 | 50 / 60 / 65% |
+| Priestess -> Tough -> Super | 75 / 84 / 95 | **260 / 80 / 150** | **none, at any tier** |
+
+The AC falls 180 points from base to Tough and never recovers, and no tier has any damage resistance. So
+**`Priestess Tough` is not fielded** -- `Priestess`, at AC 260 the strongest of the three, carries the order,
+and `Priestess Super` appears only in the Druid Master's chamber where a set-piece can carry it.
+
+**The race files are left untouched, deliberately.** `Druid Master`, the act's boss, has the race
+`Priestess Super`: HP 95, AC 150, no resistances, which makes her **squishier than her own `Priest Super`
+guards** at 150 / 280 / 65%. That is shipped, played content, and it may be part of why the act's climax
+lands flat -- but repairing it changes a fight the tester has already fought, so it is recorded here as a
+decision rather than taken.
 
 **2. The Templars' help becomes substantial: a quartermaster and a field surgeon.** Designed with the
 tester 2026-09-26; decisions below are theirs, not defaults.
