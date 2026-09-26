@@ -87,6 +87,36 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Grace has been left behind
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=525
+			Position Y=659
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Grace generator
 			Child List=
 			Visible=0
@@ -112,7 +142,7 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=2
+						Item Count=4
 						AI=CSkeletonAI
 						{
 							Marked For Deletion=0
@@ -560,6 +590,98 @@ CLayerSaveData
 							Inventory item to use as key=Inventory Items/!None
 							Is Bussy Talking=0
 						}
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CShuffledSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+										Node ID=600 wild add 1
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+										Node ID=600 wild add 2
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+										Node ID=600 wild add 3
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+								}
+								When Done=Repeat Series
+								Require Success To Advance=1
+								Next Action Index=0
+							}
+							Delay Between Actions=11
+							Plus or Minus=4
+							Seconds Till Next Execute=0
+						}
+						AI=CAIHealthPercentThresholdTrigger
+						{
+							Marked For Deletion=0
+							Publisher=
+							Previous Health Percent=0
+							Previous Health Percent Is Valid=0
+							Health Percent Triggers=Array
+							{
+								Item Count=2
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=60
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+										Node ID=502 grace companion hurting
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Has Been Triggered=0
+								}
+								Health Percent Trigger=CHealthPercentThresholdTrigger
+								{
+									When To Trigger=When Health Percent Crosses Below
+									Health Percent=CConstant
+									{
+										Constant Value=25
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+										Node ID=502 grace companion near death
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Has Been Triggered=0
+								}
+							}
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -716,12 +838,48 @@ CLayerSaveData
 									Triggered By Name=
 									Interaction Description=
 									Interaction Type=Interaction Specifiers/GetCloseThenTalk
-									Action=CDisplayDialogTreeAction
+									Action=CConditionalAction
 									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
-										Node ID=502 grace companion asks to return
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=Grace has been left behind
+											Desired Minimum Count=1
+										}
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+													Node ID=502 grace joined companion
+													Name of Position=$Trigger
+													Position Offset=0.000000,-60.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CSetCompanionAction
+												{
+													Player=$Instigator
+													Companion=$Trigger
+												}
+												Action=CDeactivateAction
+												{
+													Target Name=Grace has been left behind
+												}
+											}
+										}
+										Fail Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+											Node ID=502 grace companion asked to return
+											Name of Position=$Trigger
+											Position Offset=0.000000,-60.000000
+											After Action=
+											Include In Log=1
+										}
+										Return failure if the TryAction failes=0
 									}
 									X Radius=55
 									Attacker Range Modifier=0

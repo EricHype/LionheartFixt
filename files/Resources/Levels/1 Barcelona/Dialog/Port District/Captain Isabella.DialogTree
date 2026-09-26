@@ -1557,13 +1557,51 @@ Node ID=502 grace joined romantic
 Text=Together we cannot fail. My heart and my sword are yours!
 Should Have Voiceover=1
 ------------------------------------------------------------
-Node ID=502 grace rejoined companion
+Node ID=502 grace joined companion
 Text=Let us continue our quest.
 Should Have Voiceover=1
 ------------------------------------------------------------
-Node ID=502 grace companion asks to return
+Node ID=502 grace companion asked to return
 Text=Are you ready to continue our quest?
 Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Stay close to me.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Wait here. I will come back for you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=
+}
+Action=CActivateAction
+{
+Target Name=Grace has been left behind
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
+Node ID=502 grace companion left behind
+Name of Position=$Trigger
+Position Offset=0.000000,-60.000000
+After Action=
+Include In Log=1
+}
+}
+}
+
 ------------------------------------------------------------
 Node ID=502 grace companion left behind
 Text=If that is your desire. I will await your return here.

@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.19.0 - the English Shrine
 
-**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1 through 5 built 2026-09-26, unplayed.** Act 7,
+**Surveyed 2026-09-26, revised the same day after the tester's verdict. All six tiers built 2026-09-26, unplayed.** Act 7,
 `Levels/7 English Shrine`. Eleven maps, 3,481 level parts, 2,035 live combatants, nine dialogue trees,
 91 player replies.
 
@@ -670,10 +670,49 @@ stage, not abandoned in draft**. Two VO files also have no matching node (`502 g
 `companion left behind`, `near death`, `hurting`, and `600 wild add 1/2/3`. Those are the same shape as Sir
 Roger's own unwired barks, so tier 6 does both in one pass.
 
-**6. Sir Roger's five combat barks.** `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
+**6. ~~Sir Roger's five combat barks.~~ Built** -- both companions' voices, and two recordings made playable. **All six tiers of act 7 are built.** `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
 Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* -- reached by nothing and opened by
 nothing. He is a companion (`CSetCompanionAction`), so these are his fighting lines, and the act already
 runs three `CShuffledSeriesAction` doing exactly this for the generic templars' eight bubbles.
+
+**Two recorded lines had been renamed out of reach.** VO lookup is by node ID -- 36 of Captain Isabella's
+38 VO files match a node exactly -- and the two that did not were late renames:
+
+| recording | the node as it shipped |
+|---|---|
+| `502 grace companion asked to return` | `502 grace companion **asks** to return` |
+| `502 grace **joined** companion` | `502 grace **rejoined** companion` |
+
+Both nodes carry `Should Have Voiceover=1`, so the game looked for audio and found none. Renaming the nodes
+back to the recordings makes both audible. Nothing in the shipped game referenced either id.
+**All 38 of her recordings are now reachable.**
+
+**Eight barks had never played.** Sir Roger's `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
+Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* -- and Grace's `600 wild add 1/2/3` --
+*"I need healing!"*, **"For Ireland."**, *"We cannot fail."* Both go on act 6's `Attackers dialog balloons`
+pattern with one change that matters: **a companion walks between maps**, so the `CShuffledSeriesAction` goes
+inline in a `CRepeatTimerTriggerAI` on the character's own AI list rather than behind a map relay, which would
+only exist where the companion spawned.
+
+**And her two health barks got the trigger they were written for.** `502 grace companion hurting` and
+`near death`, both recorded, now fire off a `CAIHealthPercentThresholdTrigger` crossing below 60% and 25% --
+the shape act 5's snakebreed summoner uses.
+
+**The release-and-rejoin cycle** is wired both ways. Tell her to wait and she says the recorded
+*"If that is your desire. I will await your return here."*; come back and she says *"Let us continue our
+quest."* and rejoins, on a `Grace has been left behind` checker. Her `asked to return` node shipped with **no
+replies at all**, so the two player lines there are the only new writing in this tier.
+
+**Two defects of my own, both caught by this tier's audit:**
+
+- Tier 5 pointed her post-join specifier at a reply-less node with a `CDisplayDialogTreeAction`, which would
+  have opened a conversation the player could not answer. It is a balloon line and is now shown as one.
+- The first draft of these barks anchored the balloons on `$Instigator`. Act 6's working pattern uses
+  `$Trigger` -- the entity whose timer fired -- and in a timer on a character's own AI list `$Instigator` is
+  not the character. All ten balloons repointed.
+
+**Both companions' trees now have zero orphan nodes**, which is where act 7 finishes: Sir Roger's 17 nodes and
+Captain Isabella's 46 are all reachable.
 
 ### Two other findings I had to withdraw
 

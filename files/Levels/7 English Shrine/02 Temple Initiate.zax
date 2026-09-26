@@ -17620,7 +17620,7 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=2
+						Item Count=3
 						AI=CSkeletonAI
 						{
 							Marked For Deletion=0
@@ -18045,6 +18045,69 @@ CLayerSaveData
 							Lock Pick Adjustment=0
 							Inventory item to use as key=Inventory Items/!None
 							Is Bussy Talking=0
+						}
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CShuffledSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=5
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/SirRoger
+										Node ID=100 Random Attack Ballon
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/SirRoger
+										Node ID=101 Random Attack Ballon
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/SirRoger
+										Node ID=102 Random Attack Ballon
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/SirRoger
+										Node ID=103 Random Attack Ballon
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/SirRoger
+										Node ID=104 Random Attack Ballon
+										Name of Position=$Trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=1
+									}
+								}
+								When Done=Repeat Series
+								Require Success To Advance=1
+								Next Action Index=0
+							}
+							Delay Between Actions=13
+							Plus or Minus=5
+							Seconds Till Next Execute=0
 						}
 					}
 					Canned AIs to Add=Array

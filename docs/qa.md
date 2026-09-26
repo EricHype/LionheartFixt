@@ -1502,7 +1502,14 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 | ES43 | Instead reach act 7 having **driven her off or turned her in to the Duke** | - | **She is not on the beach at all.** The shipped `Captain Isabella fled` checker is what act 1 sets in both cases |
 | ES44 | Instead reach act 7 having **taken her bribe, or lied, or never accused her** | - | `500`: *"if I can't kill the English, I will settle the score with you"* -- and she attacks |
 | ES45 | With her as a companion, talk to her again | - | *"Are you ready to continue our quest?"* |
-| ES46 | Watch for her combat barks -- *"For Ireland."*, *"I need healing!"* | - | **Not yet wired.** Seven companion-state nodes remain orphaned and are tier 6's work, with Sir Roger's |
+| ES46 | With Grace as a companion, fight for a minute | - | She shouts *"For Ireland."*, *"We cannot fail."*, *"I need healing!"* **Never played in vanilla** |
+| ES47 | Let her drop below about 60% health, then below 25% | - | *"I require aid!"* then *"I will not survive much longer...Help me!"* -- **both are recorded lines that had no trigger** |
+| ES48 | With Sir Roger along, fight for a minute | - | *"For England!"*, *"For The Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* Five authored barks, opened by nothing in vanilla |
+| ES49 | Take a companion through a map transition and keep fighting | - | Barks still play. They ride on the character's own AI list, not a relay belonging to one map |
+| ES50 | Talk to Grace while she is a companion | - | *"Are you ready to continue our quest?"* -- **and you should now hear it**, because the node was renamed back to match its recording |
+| ES51 | Tell her *"Wait here. I will come back for you."* | - | *"If that is your desire. I will await your return here."* She stops following |
+| ES52 | Come back and talk to her | - | *"Let us continue our quest."* -- the second renamed recording -- and she rejoins |
+| ES53 | Check she is not still following after ES51 | - | She should stay put until ES52 |
 | ES29 | **A save that has never entered act 7.** Enter `10 Inner Sanctum` from the Antechamber | - | About a second in: *"There is a great deal of wall for a room this size -- and the wall does not ring the same all the way round."* **This map had no tree, no balloon and no label printer at all** |
 | ES30 | Cross to the western corner, around 1500,1400, and look at the wall | - | *"Three stones are set into the wall here at shoulder height, worn paler than the rest..."* The hover covers all three switches |
 | ES31 | Click the switch at 1482,1379 | - | A panel opens in the **eastern** wall on two strongboxes with the Temple's mark, and you are told so -- the door is 800 units away and vanilla gave no feedback whatsoever |
