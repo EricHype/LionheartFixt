@@ -198,6 +198,35 @@ Expression Context=$Instigator
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=England's own owes me better than a bill. Look at it.
+Go to node ID=4 healed
+Custom Action=CGiveHealthToCharacterAction
+{
+Character to give health to=$Instigator
+Amount of health to give=CSubtract
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CExpressionHitPointsRemaining
+{
+}
+}
+Expression Context=$Instigator
+}
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CActionExpression
 {
 Action=CHasMoneyAction

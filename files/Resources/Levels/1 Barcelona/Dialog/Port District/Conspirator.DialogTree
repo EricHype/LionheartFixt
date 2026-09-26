@@ -1,0 +1,1152 @@
+CDialogTree
+{
+Name=Guitterez
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=How now friend, perhaps you would let a weary old man buy you a drink, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, an ale would be nice.
+Go to node ID=10 take ale
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Ale
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard bile
+Desired Minimum Count=1
+}
+}
+Reply Text=The Serpent's Bile sounds good.
+Go to node ID=10 take ale
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Serpent's Bile
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+
+Requirement=!None
+Reply Text=First, I like to know who I'm drinking with.
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=Not right now, thanks.
+Go to node ID=10 no thanks
+
+Requirement=!None
+Reply Text=I'm not interested in drinking with *you*.
+Go to node ID=5 rude goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=rude response
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I'll just be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 return no drink
+Text=Have you returned for that drink? My offer still stands.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, an ale would be nice.
+Go to node ID=10 take ale
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard bile
+Desired Minimum Count=1
+}
+}
+Reply Text=The Serpent's Bile sounds good.
+Go to node ID=10 take ale
+
+Requirement=!None
+Reply Text=Who are you again?  I like to know who I'm drinking with.
+Go to node ID=10 name
+
+Requirement=!None
+Reply Text=No thank you, I don't drink.
+Go to node ID=10 no thanks
+
+Requirement=!None
+Reply Text=I'm not interested in drinking with *you*.
+Go to node ID=5 rude goodbye
+
+Requirement=!None
+Reply Text=I'll just be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 return took drink
+Text=Back again? Cheers to you! And cheers to the Armada!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3 return conspirator
+Text=I take it by your presence that you meant what you said in the tavern. If you are a patriot of England, your country sorely needs you. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Please continue, I would like to help you.
+Go to node ID=200 plan
+
+Requirement=!None
+Reply Text=Sorry to mislead you, but I cannot betray Spain.
+Go to node ID=5 goodbye conspirator
+
+Requirement=!None
+Reply Text=Actually, I brought you here to *end* your treachery against Spain. 
+Go to node ID=10 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I must go now.
+Go to node ID=5 goodbye conspirator
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=Until our paths cross again. Adios.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=5 rude goodbye
+Text=The feeling is mutual. Adios.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=5 goodbye conspirator
+Text=Perhaps it is for the best. What I would have asked you to do...well, the less you know, the better. Farewell, we will not see each other again, I trust.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=conspirator runs
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 combat
+Text=You are just as treacherous as a Spanish dog. Even *if* I don't take your head for this, you will never take me alive!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGoToCombatAction
+{
+Enemy Name=Conspirator
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=1CP2D3WF
+}
+Then=
+Else=CSetQuestSatusToFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+}
+Return failure if the If failes=0
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 name
+Text=My given name is Gerald de Guitterez. And now that you know my name, will you share that drink with me?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took drink
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Yes, an ale would be nice.
+Go to node ID=10 take ale
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=Player#1-9#
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Ale
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard bile
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took drink
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=The Serpent's Bile sounds good.
+Go to node ID=10 take ale
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=Player#1-9#
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Serpent's Bile
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+
+Requirement=!None
+Reply Text=No thank you, I don't drink.
+Go to node ID=10 no thanks
+
+Requirement=!None
+Reply Text=I'm not interested in drinking with *you*.
+Go to node ID=5 rude goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=rude response
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=I'll just be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 take ale
+Text=I make it a custom to order extra rounds for just such an occasion. Now, let's have a toast to health and victory to the Spanish Armada. Salud!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Why are you toasting for victory for the Armada?
+Go to node ID=20 armada
+
+Requirement=!None
+Reply Text=Thanks for the drink. I'll just be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 armada
+Text=I serve Spain as a sailor in the Armada and soon we will set sail to battle the English across their isles. My friends and fellow sailors celebrate now, for tomorrow there will be war and many of us may not return. What do you think of the coming war with England?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I hope Spain is victorious.
+Go to node ID=50 pro spain
+
+Requirement=!None
+Reply Text=I hope England repels the Spanish Armada.
+Go to node ID=50 pro england
+
+Requirement=!None
+Reply Text=I hold no grudge against England. I am neutral.
+Go to node ID=20 neutral
+
+Requirement=!None
+Reply Text=I don't really have an opinion on the matter.
+Go to node ID=20 neutral
+
+Requirement=!None
+Reply Text=I'll just be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 neutral
+Text=Fair enough. You will likely live long with a creed like that. Thank you for sharing a drink with me. I wish you safe travels.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Guy Fawkes
+Text=
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 pro spain
+Text=Well spoken! With the grace of God, the righteous will be victorious. Thank you for sharing a drink with me. I wish you safe travels.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=50 pro england
+Text=Indeed? A curiously dangerous response, my friend, and one I would caution you to whisper next time. Do you mean to say that you serve the Queen of England and renounce the Spanish Inquisition?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm not a citizen of Spain. My allegiance is with *England*.
+Go to node ID=100 ally of england
+
+Requirement=!None
+Reply Text=You misunderstand. My allegiance is with *Spain*.
+Go to node ID=50 pro spain
+
+Requirement=!None
+Reply Text=You misunderstand. I have swear allegiance to no one.
+Go to node ID=20 neutral
+
+Requirement=!None
+Reply Text=I don't have time for this. I need to go. 
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 ally of england
+Text=<Whispers> A brave response, my friend, and there are other valiant patriots in this city that share your views. But this is not a safe place to talk of such matters. Meet me outside the city walls, just beyond the Gate District, and I will tell you how you can serve the Queen.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will meet you outside the gates of Barcelona.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSendAIDoneMessage
+{
+Target=Conspirator
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Conspirator generator
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Gate District
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=VJZDD7I6
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=On second thought, I'm not interested in hearing what you have to say. Goodbye.
+Go to node ID=
+Custom Action=CSendAIDoneMessage
+{
+Target=Conspirator
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=200 plan
+Text=Well then, a bit of candor is in order then. First, my real name is Guy Fawkes. Though I once opposed the royalty of England, I am now an agent of Queen Elizabeth, sent here on a mission of great import. The Queen herself ordered me to infiltrate the Spanish Armada and learn what secrets I can of their invasion plans.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more.
+Go to node ID=200 plan 2
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=You said you once opposed England. What happened?
+Go to node ID=1000 opposed crown
+------------------------------------------------------------
+Node ID=200 plan 2
+Text=I have since enlisted with the Armada and gained the trust of the other sailors, but I have asked too many questions, and I believe some of the officers are getting suspicious, especially Captain Isabella. Unfortunately, she is one of the few to know the strategic plans of the Armada, since the Duke has turned over true tactical planning authority to her.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=200 plan 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 plan 3
+Text=Since I fear Captain Isabella suspects something, I dare not speak with her directly. But you...have an honest face, so she might be more forthcoming with valuable intelligence if you approached her.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=isabella is dead
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already heard the war plans
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Captain Isabella 'departed' before I could learn the plans.
+Go to node ID=250 distressing
+Custom Action=CDeactivateAction
+{
+Target Name=isabella is dead
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already heard the war plans
+Desired Minimum Count=1
+}
+}
+Reply Text=Captain Isabella has revealed the Armada's plans to me. Listen carefully...
+Go to node ID=200 kill duke 1
+Custom Action=CDeactivateAction
+{
+Target Name=have heard battle plans
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella Fled
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already heard the war plans
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+}
+}
+}
+Reply Text=Captain Isabella? It will be difficult to question her about this now. Let me explain what happened...
+Go to node ID=250 distressing
+Custom Action=CDeactivateAction
+{
+Target Name=Isabella Fled
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella Fled
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=isabella is dead
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already heard the war plans
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+}
+}
+}
+}
+}
+Reply Text=I'll speak with the Captain and learn what I can.
+Go to node ID=200 accept the plan
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=P4SJ5BWM
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sorry to mislead you, but I cannot betray Spain.
+Go to node ID=5 goodbye conspirator
+
+Requirement=!None
+Reply Text=Actually, I brought you here to *end* your treachery against Spain. 
+Go to node ID=10 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I must go now.
+Go to node ID=5 goodbye conspirator
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 accept the plan
+Text=I will await your return here then. Good luck and godspeed.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 not accept the plan
+Text=I understand. Your service to England is appreciated and will not be forgotten. I will do my best to carry out my last mission. Farewell, for I doubt we will see each other again. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=conspirator runs
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+}
+Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 kill duke 1
+Text=This information will save the lives of many brave English sailors. I will see to it that the Queen Mother herself knows of your valor. You have more than earned this humble token of England's gratitude for your services.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=200 kill duke 2
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=150
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 kill duke 2
+Text=There is another service you could perform for England, yet I hesitate to ask - the risks are...*extraordinary*.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will do more for England. Name the service.
+Go to node ID=200 kill duke 3
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, I have other matters to attend to.
+Go to node ID=200 not accept the plan
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 kill duke 3
+Text=The Spanish Armada is a daunting force, history has never seen its like. The Queen has ordered me to perform whatever actions I can to disrupt the war capabilities of Spain, and to that end I have a plot to kill the Duke involving a cache of gunpowder...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue on. I'm interested.
+Go to node ID=200 kill duke 4
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No, I have other matters to attend to.
+Go to node ID=200 not accept the plan
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 kill duke 4
+Text=I managed to plant a keg of gunpowder in the Port District, behind a fence just outside of Leonardo DaVinci's workshop. I have placed a small charm on the explosives, so if the Duke approaches it, the gunpowder will ignite...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=200 kill duke 5
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 kill duke 5
+Text=I need you to convince the Duke to leave his ship and approach the trap. If all goes well, he will be consumed in the blast, disrupting the chain of command for the Spanish Armada. What say you?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=duke is dead
+Desired Minimum Count=1
+}
+}
+Reply Text=The Duke has already been slain by my hand.
+Go to node ID=200 destroyed church 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=duke is dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'll lure the Duke to the trap.
+Go to node ID=200 kill duke 6
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=K3MMM906
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm appalled. I won't do it and I will report this to the knights!
+Go to node ID=10 combat
+
+Requirement=!None
+Reply Text=No, I've done enough. I'm leaving.
+Go to node ID=200 not accept the plan
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 kill duke 6
+Text=If this deed is done, you will be remembered forever in English history as one of it's most heroic patriots. When the deed is done, return here.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 destroyed church 1
+Text=You've caused quite an exquisite commotion! Your contribution to England's war effort is nothing short of a miracle. With the Duke gone, the Inquisition will proceed with the plan to invade England without proper leadership - and we will be prepared for them.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=200 destroyed church 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 destroyed church 2
+Text=For your heroism, I would like to give you this. It is gold from the Queen herself. Farewell, patriot, sadly we will not meet again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Kill the Duke or Killed the Conspirator
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=conspirator runs
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=350
+}
+Action=CPrintCombatTextAction
+{
+Text to print=Guy Fawkes has given you 350 gold pieces
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 return conspirator 2
+Text=Well now, how goes our mission?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=860O7OQK
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=K3MMM906
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=duke is dead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=The Duke has been slain by my hand.
+Go to node ID=200 destroyed church 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=4TUHA5MY
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=sided with Duke afterall
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=already heard the war plans
+Desired Minimum Count=1
+}
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=P4SJ5BWM
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=I have the plans for the Spanish Armada.
+Go to node ID=200 kill duke 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Gave Plans to Conspirator
+Experience Points To Add=1
+}
+Action=CPrintCombatTextAction
+{
+Text to print=Guy Fawkes has given you 150 gold pieces
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Action=CDeactivateAction
+{
+Target Name=have heard battle plans
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Isabella Fled
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already heard the war plans
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+}
+}
+}
+Reply Text=It will be difficult to question Captain Isabella about the plans now. Let me explain what happened...
+Go to node ID=250 distressing
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=8O3LLPQ4
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already heard the war plans
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Captain Isabella 'departed' before I could learn the plans.
+Go to node ID=250 distressing
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=1CP2D3WF
+}
+}
+Reply Text=I have exposed you and decided to switch my allegiance back to Spain.
+Go to node ID=10 combat
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=sided with Duke afterall
+Desired Minimum Count=1
+}
+}
+Reply Text=I could not bring myself to kill the Duke.
+Go to node ID=5 goodbye conspirator
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+State=TGN5Q8DH
+}
+}
+Reply Text=The trap worked - the Duke of Medina is dead.
+Go to node ID=200 destroyed church 1
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=sided with Duke afterall
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=There is more to be done. I'll go now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=250 distressing
+Text=Hmmm. Well, if we cannot question Isabella, perhaps there is something else we could do to sabotage the Spanish Armada.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=200 kill duke 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 opposed crown
+Text=My story is...complicated. I supported a revolt to overthrow the Queen and formed a plot to detonate explosives below the Parliament building of London. Through the magic of her treacherous Druids, the Queen learned of the plot and imprisoned my fellow conspirators and my family in the Tower of London. Knowing of my talents, she offered this one chance to save my family and my friends, to infiltrate Barcelona and spy against the Spanish Armada. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=An interesting story. Tell me more of your plans.
+Go to node ID=200 plan 2
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=You are no better than a common mercenary. I will end your treachery here!
+Go to node ID=10 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Sorry to mislead you, but I cannot betray Spain. Farewell.
+Go to node ID=5 goodbye conspirator
+Icon=Exit Icon
+}

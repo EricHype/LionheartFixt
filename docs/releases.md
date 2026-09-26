@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.19.0 - the English Shrine
 
-**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1 and 2 built 2026-09-26, unplayed.** Act 7,
+**Surveyed 2026-09-26, revised the same day after the tester's verdict. Tiers 1, 2 and 3 built 2026-09-26, unplayed.** Act 7,
 `Levels/7 English Shrine`. Eleven maps, 3,481 level parts, 2,035 live combatants, nine dialogue trees,
 91 player replies.
 
@@ -400,7 +400,7 @@ you have" replies*. The engine has `CAndAction`, `COrAction` and `CNotAction` al
 so the windows are now `all three` / `any and not all three` / `not any`, order-independent, and the two
 better replies say *why* the stock is better so they read as different offers.
 
-**3. The allegiance to England, stored at last -- and read in the country it was sworn to.** Scoped
+**3. ~~The allegiance to England, stored at last.~~ Built** -- and read in the country it was sworn to. Scoped
 2026-09-26 after the tester asked what helping Guy Fawkes does once you reach England. The answer was:
 nothing, anywhere.
 
@@ -463,6 +463,45 @@ as the file model. Then it is read where it means most:
 `duke is dead` is a Port District checker and cannot be read from another map, so distinguishing the deeper
 ending needs its own perk. Sir Roger is a Templar and might reasonably recoil from a player who murdered a
 Spanish noble -- which is a good scene and a separate decision, so it is recorded here rather than assumed.
+
+**What went in.** `Perks/!Event Title Perks/Servant of the Queen.Perk` is new -- a **title with no
+mechanical effect** (`PlugIn Behaviors` `Item Count=0`), on the `Beggar Friend` model, because this is a
+reputation and not a stat. It is granted at exactly the two act-1 endings where Fawkes parts on good terms
+and the quest completes, both of which sit past every betrayal branch, which matters because **the engine has
+no remove-perk action**:
+
+- `200 not accept the plan` -- *"Your service to England is appreciated and will not be forgotten."*
+- `200 destroyed church 2` -- *"It is gold from the Queen herself."*
+
+**Sir Roger reads it on all six of his entry nodes** -- the three first greetings and the three returns --
+and the answer is the one thing that ties act 1's conspiracy to act 7's enemy. Fawkes said the Queen learned
+of the Gunpowder Plot *"through the magic of her treacherous Druids"*; Sir Roger confirms what that means:
+
+> <He is quiet for long enough that you can hear the fighting two chambers away.> Then you know more of this
+> than I was going to tell you. **The Queen keeps druids, Lionheart.** She has kept them since before she had
+> a throne, and what they bring her she does not ask twice about. **My Order came to this shrine without her
+> leave** and we will be told off for it if we live. <He sets his shield straight.> So we are both here doing
+> England a service she has not asked for. Come on.
+
+Pressed further, he does not lower his voice: *"Whatever they are raising in there, she will call it hers when
+it is done, and the men who stopped it will have been brigands."* Both new nodes route into `10 accept`, so the
+reveal is a way *into* the alliance rather than a detour around it.
+
+**And tier 2's field surgeon counts it as a knighthood.** A servant of the Queen is treated free, beside
+`Templar IS` and `Saladin IS` -- four routes now, of which one still pays.
+
+### The act-1 repair that came with it
+
+`200 kill duke 6` -- *"If this deed is done, you will be remembered forever in English history as one of
+it's most heroic patriots. When the deed is done, return here."* -- was reached by nothing. The reply it
+belongs to, **"I'll lure the Duke to the trap."** on `200 kill duke 5`, had an **empty `Go to node ID=`**, so
+accepting the darkest job in act 1 ended the conversation without a word. Pointing that reply at node 6 was
+the entire fix.
+
+`Conspirator.DialogTree` now has one orphan left, `100 Guy Fawkes`, which is a **blank node** -- no text, no
+replies -- and stays recorded as a stub. Its two remaining dangling `Go to node ID=` targets are vanilla's:
+`5 Goodbye` resolves to the node `5 goodbye` once case is folded, and `10 no thanks` points at nothing in the
+shipped file too.
 
 **4. Something else to do in eleven rooms of fighting.** The Inner Sanctum first, since the act ends there
 and currently ends in silence. Then the Meditation Chambers, which are named for contemplation and contain

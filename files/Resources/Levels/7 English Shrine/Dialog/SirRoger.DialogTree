@@ -1,0 +1,607 @@
+CDialogTree
+{
+Name=Roger Templeton
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start Male, Not Inquisitor
+Text=It is you, the Scion of Lionheart! My Lord, it is an honor to meet you. I am Sir Roger Templeton of the Knights Templar. My sword is yours against these heathens that sully the name of fair England.
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=Well met, brother knight. Your aid is welcome.
+Go to node ID=10 accept
+Action work in progress=(PC is a Templar)
+
+Requirement=Saladin IS
+Reply Text=Well met, Knight Templar. I - and the Order of Saladin - welcomes your aid.
+Go to node ID=10 accept
+Action work in progress=(PC is a Knight of Saladin)
+
+Requirement=Templar NOT
+Reply Text=I welcome your help against the druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a wielder)
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=Tell me more about the druids.
+Go to node ID=30 druids
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=Your Queen already owes me a service, Sir Roger. I did England one in Barcelona.
+Go to node ID=60 the queens favour
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Switch Talk AI
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Female, Not Inquisitor
+Text=It is you, the Scion of Lionheart! My Lady, it is an honor to meet you. I am Sir Roger Templeton of the Knights Templar. My sword is yours against these heathens that sully the name of fair England.
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=Well met, brother knight. Your aid is welcome.
+Go to node ID=10 accept
+Action work in progress=(PC is a Templar)
+
+Requirement=Saladin IS
+Reply Text=Well met, Knight Templar. I - and the Order of Saladin - welcomes your aid.
+Go to node ID=10 accept
+Action work in progress=(PC is a Knight of Saladin)
+
+Requirement=Templar NOT
+Reply Text=I welcome your help against the druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a wielder)
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=Tell me more about the druids.
+Go to node ID=30 druids
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=Your Queen already owes me a service, Sir Roger. I did England one in Barcelona.
+Go to node ID=60 the queens favour
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Switch Talk AI
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start, Inquisitor
+Text=It is you, the Scion of Lionheart! It is an honor to meet you, Inquisitor. I am Sir Roger Templeton of the Knights Templar. It would be honor to ally with you against these heretics that threaten Spain and sully the name of fair England.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Well met, Sir Roger. I - and the Inquisition - welcome your aid.
+Go to node ID=10 accept
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=Tell me more about the druids.
+Go to node ID=30 druids
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=Your Queen already owes me a service, Sir Roger. I did England one in Barcelona.
+Go to node ID=60 the queens favour
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Switch Talk AI
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue Male Not Inquisitor
+Text=My Lord, as I've said, my sword is yours against these dark druids that sully the name of fair England.
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=Well met, brother knight. Your aid is welcome.
+Go to node ID=10 accept
+Action work in progress=(PC is a Templar)
+
+Requirement=Saladin IS
+Reply Text=Well met, Knight Templar. I - and the Order of Saladin - welcomes your aid.
+Go to node ID=10 accept
+Action work in progress=(PC is a Knight of Saladin)
+
+Requirement=Templar NOT
+Reply Text=I welcome your help against the druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a Wielder)
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=Tell me more about the druids.
+Go to node ID=30 druids
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=Your Queen already owes me a service, Sir Roger. I did England one in Barcelona.
+Go to node ID=60 the queens favour
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue Female Not Inquisitor
+Text=My Lady, as I've said, my sword is yours against these dark druids that sully the name of fair England.
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=Well met, brother knight. Your aid is welcome.
+Go to node ID=10 accept
+Action work in progress=(PC is a Templar)
+
+Requirement=Saladin IS
+Reply Text=Well met, Knight Templar. I - and the Order of Saladin - welcomes your aid.
+Go to node ID=10 accept
+Action work in progress=(PC is a Knight of Saladin)
+
+Requirement=Templar NOT
+Reply Text=I welcome your help against the druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a Wielder)
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=Tell me more about the druids.
+Go to node ID=30 druids
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=Your Queen already owes me a service, Sir Roger. I did England one in Barcelona.
+Go to node ID=60 the queens favour
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue Inquisitor
+Text=Inquisitor, it would be honor to ally with you against these heretics that threaten Spain and sully the name of fair England.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Well met, Sir Roger. I - and the Inquisition - welcome your aid.
+Go to node ID=10 accept
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=Tell me more about the druids.
+Go to node ID=30 druids
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=Your Queen already owes me a service, Sir Roger. I did England one in Barcelona.
+Go to node ID=60 the queens favour
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 accept
+Text=Superb! Together we shall vanquish the heretics. My men will spread out and clear the area while we proceed. We should make haste...they have fled to their unholy shrine. I would be honored if you would lead the way, Lionheart.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Of course. Isn't that always the way?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CTriggerRelayAction
+{
+Relay Name=Switch Interaction Specifier when Sir Roger becomes a companion
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Accept Templars Help XP
+Experience Points To Add=200
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Accept Sir Roger Offer of Help
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Join Player switch SkeletonAI
+}
+Delay=0.2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Very well. Let us deal with these druids.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CTriggerRelayAction
+{
+Relay Name=Switch Interaction Specifier when Sir Roger becomes a companion
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Accept Templars Help XP
+Experience Points To Add=200
+}
+Action=CDelayAction
+{
+Next Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Accept Sir Roger Offer of Help
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Join Player switch SkeletonAI
+}
+Delay=0.2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 not english
+Text=I beg you to reconsider. Not all of England stands against you. The druids orchestrated the attacks against you as a ruse to steal the True Cross. Despite England's conflict with the Inquisition, there are many English loyal to Richard the Lionheart's beliefs.
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=Then your aid is welcome, brother knight. Come - let the Knights Templar deal with these druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a Templar)
+
+Requirement=Saladin IS
+Reply Text=Then your aid is welcome. Come - let the Order of Saladin and the Knights Templar deal with these druids. 
+Go to node ID=10 accept
+Action work in progress=(PC is a Knight of Saladin)
+
+Requirement=Inquisitor IS
+Reply Text=Very well, then. I - and the Inquisition - welcome your aid.
+Go to node ID=10 accept
+Action work in progress=(PC is an Inquisitor)
+
+Requirement=!None
+Reply Text=Very well then, I welcome your company.
+Go to node ID=10 accept
+Action work in progress=(PC is a Wielder)
+
+Requirement=!None
+Reply Text=Your loyalty is appreciated, but I travel alone.
+Go to node ID=40 own way
+
+Requirement=!None
+Reply Text=Perhaps you did not *hear* me the first time. I will accept no help from an Englishman. Now leave me be.
+Go to node ID=40 own way
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Switch Talk AI
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 druids
+Text=They are a foul cult, dedicated to reviving ancient ley lines that run across the countryside. No one knows what they wish to use them for, but you can be sure their motives are sinister. We are here to help you stop them.
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=Then your aid is welcome, brother knight. Come - let the Knights Templar deal with these druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a Templar)
+
+Requirement=Saladin IS
+Reply Text=Then your aid is welcome. Come - let the Order of Saladin and the Knights Templar deal with these druids. 
+Go to node ID=10 accept
+Action work in progress=(PC is a Knight of Saladin)
+
+Requirement=Inquisitor IS
+Reply Text=Very well, then. I - and the Inquisition - welcome your aid.
+Go to node ID=10 accept
+Action work in progress=(PC is an Inquisitor)
+
+Requirement=!None
+Reply Text=I welcome your help against the druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a Wielder)
+
+Requirement=!None
+Reply Text=Tell me about the ley lines.
+Go to node ID=50 ley lines
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Switch Talk AI
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 own way
+Text=Very well. While it pains me to hear you say that, I will respect your wishes. Good luck, Lionheart.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Switch Talk AI
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 ley lines
+Text=Ley lines are unseen mystical conduits running across the land. Some say they encircle the world, remnants of a time when the Earth bathed in magic. Since the Disjunction, the ley lines of Europe have been dormant, but these druids intend to awaken their power. So, shall we fight together?
+Should Have Voiceover=1
+
+Requirement=Templar IS
+Reply Text=Your aid is welcome, brother knight. Come - let the Knights Templar deal with these druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a Templar)
+
+Requirement=Saladin IS
+Reply Text=Your aid is welcome. Come - let the Order of Saladin and the Knights Templar deal with these druids. 
+Go to node ID=10 accept
+Action work in progress=(PC is a Knight of Saladin)
+
+Requirement=Inquisitor IS
+Reply Text=Very well. I - and the Inquisition - welcome your aid.
+Go to node ID=10 accept
+Action work in progress=(PC is an Inquisitor)
+
+Requirement=!None
+Reply Text=I welcome your help against the druids.
+Go to node ID=10 accept
+Action work in progress=(PC is a Wielder)
+
+Requirement=!None
+Reply Text=England and its people are to blame for this - now begone.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=I am not interested in help from any Englishman.
+Go to node ID=20 not english
+
+Requirement=!None
+Reply Text=First, tell me about the druids.
+Go to node ID=30 druids
+
+Requirement=!None
+Reply Text=I have no time for this. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Sir Roger Switch Talk AI
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Random Attack Ballon
+Text=For England!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=101 Random Attack Ballon
+Text=For The Queen!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=102 Random Attack Ballon
+Text=For The Templars!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=103 Random Attack Ballon
+Text=We shall Prevail!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=104 Random Attack Ballon
+Text=On my honor!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=03 Return after released as a companion
+Text=Shall we continue our journey?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sure, come with me.
+Go to node ID=
+Custom Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I'd rather go it alone. Wait here for me.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 the queens favour
+Text=<He is quiet for long enough that you can hear the fighting two chambers away.> Then you know more of this than I was going to tell you. The Queen keeps druids, Lionheart. She has kept them since before she had a throne, and what they bring her she does not ask twice about. My Order came to this shrine without her leave and we will be told off for it if we live. <He sets his shield straight.> So we are both here doing England a service she has not asked for. Come on.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let us do it properly.
+Go to node ID=10 accept
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You are saying your own Queen protects them.
+Go to node ID=61 she protects them
+
+Requirement=!None
+Reply Text=That changes nothing. Stand aside.
+Go to node ID=
+------------------------------------------------------------
+Node ID=61 she protects them
+Text=I am saying she has not moved against them, which in a Queen is the same thing. <He does not lower his voice, which tells you what he thinks of being overheard.> Whatever they are raising in there, she will call it hers when it is done, and the men who stopped it will have been brigands. Ask me again when we are out.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then we had better not lose.
+Go to node ID=10 accept
+Icon=Quest Icon
+Is Default Reply=1
+}
