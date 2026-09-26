@@ -37482,39 +37482,7 @@ CLayerSaveData
 										Node ID=10 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -37551,7 +37519,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=COnlyOnceAction
@@ -37643,6 +37611,32 @@ CLayerSaveData
 									}
 								}
 								Target=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -41614,39 +41608,7 @@ CLayerSaveData
 								Node ID=10 No Talk bubble male
 								Name of Position=$trigger
 								Position Offset=0.000000,-70.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=70
@@ -41669,7 +41631,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=CMultipleActionsAction
@@ -42145,6 +42107,32 @@ CLayerSaveData
 									}
 								}
 								Delay Between Adds=0
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -49564,39 +49552,7 @@ CLayerSaveData
 										Node ID=10 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -49633,7 +49589,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=COnlyOnceAction
@@ -49840,6 +49796,32 @@ CLayerSaveData
 									Restart Series Next Begin=0
 								}
 								Target=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -49954,39 +49936,7 @@ CLayerSaveData
 										Node ID=10 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -50023,7 +49973,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=COnlyOnceAction
@@ -50230,6 +50180,32 @@ CLayerSaveData
 									Restart Series Next Begin=0
 								}
 								Target=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -62796,39 +62772,7 @@ CLayerSaveData
 								Node ID=15 No Talk bubble female
 								Name of Position=$trigger
 								Position Offset=0.000000,-75.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=120
@@ -62847,32 +62791,65 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDamagedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Damaged Action=COnlyOnceAction
+						Action=Array
 						{
-							Action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetDamagedScriptActionAction
 							{
-								Action=Array
+								New Damaged Action=COnlyOnceAction
 								{
-									Item Count=2
-									Action=CTriggerRelayAction
+									Action=CMultipleActionsAction
 									{
-										Relay Name=Damage a guard in the city district
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
-										Node ID=115 Citizen Attacked
-										Name of Position=$Trigger
-										Position Offset=0.000000,-75.000000
-										After Action=
-										Include In Log=1
+										Action=Array
+										{
+											Item Count=2
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Damage a guard in the city district
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
+												Node ID=115 Citizen Attacked
+												Name of Position=$Trigger
+												Position Offset=0.000000,-75.000000
+												After Action=
+												Include In Log=1
+											}
+										}
 									}
 								}
+								Target Name=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=0.122173
 				}
@@ -63326,39 +63303,7 @@ CLayerSaveData
 								Node ID=15 No Talk bubble female
 								Name of Position=$trigger
 								Position Offset=0.000000,-75.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=120
@@ -63377,32 +63322,65 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDamagedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Damaged Action=COnlyOnceAction
+						Action=Array
 						{
-							Action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetDamagedScriptActionAction
 							{
-								Action=Array
+								New Damaged Action=COnlyOnceAction
 								{
-									Item Count=2
-									Action=CTriggerRelayAction
+									Action=CMultipleActionsAction
 									{
-										Relay Name=Damage a guard in the city district
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
-										Node ID=115 Citizen Attacked
-										Name of Position=$Trigger
-										Position Offset=0.000000,-75.000000
-										After Action=
-										Include In Log=1
+										Action=Array
+										{
+											Item Count=2
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Damage a guard in the city district
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
+												Node ID=115 Citizen Attacked
+												Name of Position=$Trigger
+												Position Offset=0.000000,-75.000000
+												After Action=
+												Include In Log=1
+											}
+										}
 									}
 								}
+								Target Name=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=0.122173
 				}
@@ -63861,39 +63839,7 @@ CLayerSaveData
 										Node ID=20 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -63926,32 +63872,65 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDamagedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Damaged Action=COnlyOnceAction
+						Action=Array
 						{
-							Action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetDamagedScriptActionAction
 							{
-								Action=Array
+								New Damaged Action=COnlyOnceAction
 								{
-									Item Count=2
-									Action=CTriggerRelayAction
+									Action=CMultipleActionsAction
 									{
-										Relay Name=Damage a guard in the city district
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
-										Node ID=115 Citizen Attacked
-										Name of Position=$Trigger
-										Position Offset=0.000000,-75.000000
-										After Action=
-										Include In Log=1
+										Action=Array
+										{
+											Item Count=2
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Damage a guard in the city district
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
+												Node ID=115 Citizen Attacked
+												Name of Position=$Trigger
+												Position Offset=0.000000,-75.000000
+												After Action=
+												Include In Log=1
+											}
+										}
 									}
 								}
+								Target Name=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=0.122173
 				}
@@ -71049,39 +71028,7 @@ CLayerSaveData
 										Node ID=10 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -71118,7 +71065,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=4
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=COnlyOnceAction
@@ -71239,6 +71186,32 @@ CLayerSaveData
 										Delay Between Adds=0
 									}
 								}
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -72189,39 +72162,7 @@ CLayerSaveData
 										Node ID=25 No Talk bubble female
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -72258,7 +72199,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=4
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=COnlyOnceAction
@@ -72379,6 +72320,32 @@ CLayerSaveData
 										Delay Between Adds=0
 									}
 								}
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -74022,39 +73989,7 @@ CLayerSaveData
 											Node ID=55 No Talk Fear bubble female
 											Name of Position=$trigger
 											Position Offset=0.000000,-75.000000
-											After Action=CMultipleActionsAction
-											{
-												Action=Array
-												{
-													Item Count=1
-													Action=CSetDestroyedScriptActionAction
-													{
-														New Destroyed Action=CConditionalAction
-														{
-															Try Action=CExpressionAction
-															{
-																Expression=CHasPerkExpression
-																{
-																	Perks To Check For=Array
-																	{
-																		Item Count=1
-																		Perk To Check For=Perks/!Event Title Perks/Child Killer
-																	}
-																}
-																Character to get attributes from=$Instigator
-															}
-															Succeed Action=
-															Fail Action=CGiveCharacterPerkAction
-															{
-																Character to give perk to=$Instigator
-																Perk to give=Perks/!Event Title Perks/Child Killer
-															}
-															Return failure if the TryAction failes=0
-														}
-														Target Name=$Instigator
-													}
-												}
-											}
+											After Action=
 											Include In Log=1
 										}
 										Action=CDelayAction
@@ -74090,7 +74025,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=CDelayAction
@@ -74151,6 +74086,32 @@ CLayerSaveData
 									}
 								}
 								Delay Between Adds=0
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
 					}
@@ -84863,39 +84824,7 @@ CLayerSaveData
 								Node ID=15 No Talk bubble female
 								Name of Position=$trigger
 								Position Offset=0.000000,-75.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=85
@@ -85409,12 +85338,38 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=CTriggerRelayAction
 								{
 									Relay Name=Damage a guard in the city district
+								}
+								Target Name=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
 								}
 								Target Name=$Instigator
 							}
@@ -86101,39 +86056,7 @@ CLayerSaveData
 								Node ID=15 No Talk bubble female
 								Name of Position=$trigger
 								Position Offset=0.000000,-75.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=120
@@ -86152,32 +86075,65 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDamagedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Damaged Action=COnlyOnceAction
+						Action=Array
 						{
-							Action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetDamagedScriptActionAction
 							{
-								Action=Array
+								New Damaged Action=COnlyOnceAction
 								{
-									Item Count=2
-									Action=CTriggerRelayAction
+									Action=CMultipleActionsAction
 									{
-										Relay Name=Damage a guard in the city district
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
-										Node ID=115 Citizen Attacked
-										Name of Position=$Trigger
-										Position Offset=0.000000,-75.000000
-										After Action=
-										Include In Log=1
+										Action=Array
+										{
+											Item Count=2
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Damage a guard in the city district
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/BarcelonaCitizenCan
+												Node ID=115 Citizen Attacked
+												Name of Position=$Trigger
+												Position Offset=0.000000,-75.000000
+												After Action=
+												Include In Log=1
+											}
+										}
 									}
 								}
+								Target Name=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=3.33358
 				}
@@ -87345,39 +87301,7 @@ CLayerSaveData
 								Node ID=10 No Talk bubble male
 								Name of Position=$trigger
 								Position Offset=0.000000,-75.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=85
@@ -87891,12 +87815,38 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CSetDamagedScriptActionAction
 							{
 								New Damaged Action=CTriggerRelayAction
 								{
 									Relay Name=Damage a guard in the city district
+								}
+								Target Name=$Instigator
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
 								}
 								Target Name=$Instigator
 							}

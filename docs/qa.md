@@ -1492,6 +1492,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | BA19 | Walk back over the western end again | - | No repeat and no second payment |
 | BA20 | Fight anywhere on the map for a minute | - | English soldiers shout: *"Press forward, men!"*, *"Attack! For England!"*, *"For the Queen!"* Six of the thirty-four generators are armed |
 | BA21 | Compare the volume against `Gate District Siege` (BA4) | - | Similar. This map has no defenders, so only the English are heard |
+| BA22a | Let your own character be killed by anything, at any point in the game | - | **No title is granted by dying.** The first pass armed the player's own death by mistake; the hook belongs on the citizen, not on whoever the balloon was talking to |
 | BA22 | **A save that has never entered the Gate District.** In peacetime Barcelona, kill one unarmed citizen | - | **Slayer of Innocents** appears among your titles. Vanilla never granted this perk anywhere |
 | BA23 | BA22, then walk up to any gate guard in the Gate District | - | *"There have been reports of a monstrous killer of helpless children...you loosely fit the description."* Two replies: deny, or admit it and threaten him. **Five authored nodes that had never fired** |
 | BA24 | BA23, then talk to the same guard again | - | The `Childkiller Return` variant, not the intro again |

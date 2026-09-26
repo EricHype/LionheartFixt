@@ -421,6 +421,15 @@ and Port districts; the two `Barcelona Vendor` cans are left out, being merchant
 a crowd can earn it by accident -- which is the shipped behaviour for merchants and reads correctly
 either way: the guards say there have been *reports*, not that they watched you do it.
 
+The first pass put 22 of the 34 hooks in the wrong slot, and it is worth recording why:
+`CDisplayDialogBalloonAction` has a field called `After Action` too, so a helper that takes the first
+`After Action=` in the part lands inside a balloon whenever a balloon action appears before the
+generator's own slot. There `$Instigator` is the player rather than the spawned citizen, so the hook
+would have armed **the player's own death** to grant them the title. Both generator classes end
+`... | Canned AIs to Add | After Action | New Facing Angle | ...`, so the correct slot is the one whose
+value is followed by `New Facing Angle=`; all 34 are now verified to sit on a `CGeneratorAI` or
+`CSimpleGeneratorForCannedEntitiesAI`.
+
 **Then act 6 reads it.** All five spawn points on `Gate District Siege` now run the peacetime
 `From Temple District` check -- if the player holds the title, `Player is a child killer` is deactivated
 -- and the man searching the district for his son reads the flag:

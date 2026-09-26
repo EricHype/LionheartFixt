@@ -8805,39 +8805,7 @@ CLayerSaveData
 										Node ID=10 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -9370,23 +9338,56 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CAddAIAction
+					After Action=CMultipleActionsAction
 					{
-						Target Name=$Instigator
-						AI=CHandleMessageAI
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Message To Handle=Gotocombat
-							Action=COnlyOnceAction
+							Item Count=2
+							Action=CAddAIAction
 							{
-								Action=CTriggerRelayAction
+								Target Name=$Instigator
+								AI=CHandleMessageAI
 								{
-									Relay Name=Damage a guard in the port district
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=Gotocombat
+									Action=COnlyOnceAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Damage a guard in the port district
+										}
+									}
 								}
+								Delay Between Adds=0
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
-						Delay Between Adds=0
 					}
 					New Facing Angle=3.22875
 				}
@@ -11248,39 +11249,7 @@ CLayerSaveData
 										Node ID=15 No Talk bubble female
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -11322,90 +11291,123 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetPatrolAIAction
+					After Action=CMultipleActionsAction
 					{
-						Patrol AI=CFollowPathAI
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Path Poly=Path walker between buildings L2R poly
-							PathPolygonLayerPart=
-							Order=Go To End
-							Ignore last point=0
-							End of path action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetPatrolAIAction
 							{
-								Action=Array
+								Patrol AI=CFollowPathAI
 								{
-									Item Count=2
-									Action=CDelayAction
+									Marked For Deletion=0
+									Publisher=
+									Path Poly=Path walker between buildings L2R poly
+									PathPolygonLayerPart=
+									Order=Go To End
+									Ignore last point=0
+									End of path action=CMultipleActionsAction
 									{
-										Next Action=CActivateAction
+										Action=Array
 										{
-											Target Name=Spawn different guys walking between center buildings
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
+											Item Count=2
+											Action=CDelayAction
+											{
+												Next Action=CActivateAction
+												{
+													Target Name=Spawn different guys walking between center buildings
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Delay=4
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Action=CDeleteAction
+											{
+												Target Name=$Trigger
+											}
 										}
-										Delay=4
-										Plus or Minus=0
-										Forget Trigger=0
 									}
-									Action=CDeleteAction
+									TimeBeforCanReviseData=0
+									Revise Point=0.000000,0.000000
+									Revising Data=0
+									Target Point=0
+									Moving=CEntityBehaviorMoveToPos
 									{
-										Target Name=$Trigger
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
 									}
 								}
+								Target=$Instigator
 							}
-							TimeBeforCanReviseData=0
-							Revise Point=0.000000,0.000000
-							Revising Data=0
-							Target Point=0
-							Moving=CEntityBehaviorMoveToPos
+							Action=CSetDestroyedScriptActionAction
 							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
+								New Destroyed Action=CConditionalAction
 								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
 								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
+								Target Name=$Instigator
 							}
 						}
-						Target=$Instigator
 					}
 					New Facing Angle=0
 				}
@@ -11524,39 +11526,7 @@ CLayerSaveData
 										Node ID=10 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -11598,90 +11568,123 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetPatrolAIAction
+					After Action=CMultipleActionsAction
 					{
-						Patrol AI=CFollowPathAI
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Path Poly=Path walker between buildings L2R poly
-							PathPolygonLayerPart=
-							Order=Go To End
-							Ignore last point=0
-							End of path action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetPatrolAIAction
 							{
-								Action=Array
+								Patrol AI=CFollowPathAI
 								{
-									Item Count=2
-									Action=CDelayAction
+									Marked For Deletion=0
+									Publisher=
+									Path Poly=Path walker between buildings L2R poly
+									PathPolygonLayerPart=
+									Order=Go To End
+									Ignore last point=0
+									End of path action=CMultipleActionsAction
 									{
-										Next Action=CActivateAction
+										Action=Array
 										{
-											Target Name=Spawn different guys walking between center buildings
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
+											Item Count=2
+											Action=CDelayAction
+											{
+												Next Action=CActivateAction
+												{
+													Target Name=Spawn different guys walking between center buildings
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Delay=4
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Action=CDeleteAction
+											{
+												Target Name=$Trigger
+											}
 										}
-										Delay=4
-										Plus or Minus=0
-										Forget Trigger=0
 									}
-									Action=CDeleteAction
+									TimeBeforCanReviseData=0
+									Revise Point=0.000000,0.000000
+									Revising Data=0
+									Target Point=0
+									Moving=CEntityBehaviorMoveToPos
 									{
-										Target Name=$Trigger
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
 									}
 								}
+								Target=$Instigator
 							}
-							TimeBeforCanReviseData=0
-							Revise Point=0.000000,0.000000
-							Revising Data=0
-							Target Point=0
-							Moving=CEntityBehaviorMoveToPos
+							Action=CSetDestroyedScriptActionAction
 							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
+								New Destroyed Action=CConditionalAction
 								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
 								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
+								Target Name=$Instigator
 							}
 						}
-						Target=$Instigator
 					}
 					New Facing Angle=0
 				}
@@ -13415,39 +13418,7 @@ CLayerSaveData
 										Node ID=25 No Talk bubble female
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -13971,23 +13942,56 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CAddAIAction
+					After Action=CMultipleActionsAction
 					{
-						Target Name=$Instigator
-						AI=CHandleMessageAI
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Message To Handle=Gotocombat
-							Action=COnlyOnceAction
+							Item Count=2
+							Action=CAddAIAction
 							{
-								Action=CTriggerRelayAction
+								Target Name=$Instigator
+								AI=CHandleMessageAI
 								{
-									Relay Name=Damage a guard in the port district
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=Gotocombat
+									Action=COnlyOnceAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Damage a guard in the port district
+										}
+									}
 								}
+								Delay Between Adds=0
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
 							}
 						}
-						Delay Between Adds=0
 					}
 					New Facing Angle=3.22875
 				}
@@ -19105,39 +19109,7 @@ CLayerSaveData
 								Node ID=10 No Talk bubble male
 								Name of Position=$trigger
 								Position Offset=0.000000,-80.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=100
@@ -19549,13 +19521,46 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CSetQuestSatusToFailedIfActiveAction
+						Action=Array
 						{
-							Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CSetQuestSatusToFailedIfActiveAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+								}
+								Target Name=Heckler
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
+							}
 						}
-						Target Name=Heckler
 					}
 					New Facing Angle=0.488587
 					Angle Variation=0
@@ -29981,39 +29986,7 @@ CLayerSaveData
 								Node ID=10 No Talk bubble male
 								Name of Position=$trigger
 								Position Offset=0.000000,-80.000000
-								After Action=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CSetDestroyedScriptActionAction
-										{
-											New Destroyed Action=CConditionalAction
-											{
-												Try Action=CExpressionAction
-												{
-													Expression=CHasPerkExpression
-													{
-														Perks To Check For=Array
-														{
-															Item Count=1
-															Perk To Check For=Perks/!Event Title Perks/Child Killer
-														}
-													}
-													Character to get attributes from=$Instigator
-												}
-												Succeed Action=
-												Fail Action=CGiveCharacterPerkAction
-												{
-													Character to give perk to=$Instigator
-													Perk to give=Perks/!Event Title Perks/Child Killer
-												}
-												Return failure if the TryAction failes=0
-											}
-											Target Name=$Instigator
-										}
-									}
-								}
+								After Action=
 								Include In Log=1
 							}
 							X Radius=100
@@ -30425,13 +30398,46 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDestroyedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Destroyed Action=CSetQuestSatusToFailedIfActiveAction
+						Action=Array
 						{
-							Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CSetQuestSatusToFailedIfActiveAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+								}
+								Target Name=Heckler
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CConditionalAction
+								{
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
+								}
+								Target Name=$Instigator
+							}
 						}
-						Target Name=Heckler
 					}
 					New Facing Angle=0.488587
 					Angle Variation=0
@@ -49094,39 +49100,7 @@ CLayerSaveData
 										Node ID=10 No Talk bubble male
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -49168,90 +49142,123 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetPatrolAIAction
+					After Action=CMultipleActionsAction
 					{
-						Patrol AI=CFollowPathAI
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Path Poly=Path walker between Tavern L2R poly
-							PathPolygonLayerPart=
-							Order=Go To End
-							Ignore last point=0
-							End of path action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetPatrolAIAction
 							{
-								Action=Array
+								Patrol AI=CFollowPathAI
 								{
-									Item Count=2
-									Action=CDelayAction
+									Marked For Deletion=0
+									Publisher=
+									Path Poly=Path walker between Tavern L2R poly
+									PathPolygonLayerPart=
+									Order=Go To End
+									Ignore last point=0
+									End of path action=CMultipleActionsAction
 									{
-										Next Action=CActivateAction
+										Action=Array
 										{
-											Target Name=Spawn different guys walking between Tavern buildings
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
+											Item Count=2
+											Action=CDelayAction
+											{
+												Next Action=CActivateAction
+												{
+													Target Name=Spawn different guys walking between Tavern buildings
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Delay=4
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Action=CDeleteAction
+											{
+												Target Name=$Trigger
+											}
 										}
-										Delay=4
-										Plus or Minus=0
-										Forget Trigger=0
 									}
-									Action=CDeleteAction
+									TimeBeforCanReviseData=0
+									Revise Point=0.000000,0.000000
+									Revising Data=0
+									Target Point=0
+									Moving=CEntityBehaviorMoveToPos
 									{
-										Target Name=$Trigger
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
 									}
 								}
+								Target=$Instigator
 							}
-							TimeBeforCanReviseData=0
-							Revise Point=0.000000,0.000000
-							Revising Data=0
-							Target Point=0
-							Moving=CEntityBehaviorMoveToPos
+							Action=CSetDestroyedScriptActionAction
 							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
+								New Destroyed Action=CConditionalAction
 								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
 								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
+								Target Name=$Instigator
 							}
 						}
-						Target=$Instigator
 					}
 					New Facing Angle=0
 				}
@@ -59649,39 +59656,7 @@ CLayerSaveData
 										Node ID=15 No Talk bubble female
 										Name of Position=$trigger
 										Position Offset=0.000000,-75.000000
-										After Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=1
-												Action=CSetDestroyedScriptActionAction
-												{
-													New Destroyed Action=CConditionalAction
-													{
-														Try Action=CExpressionAction
-														{
-															Expression=CHasPerkExpression
-															{
-																Perks To Check For=Array
-																{
-																	Item Count=1
-																	Perk To Check For=Perks/!Event Title Perks/Child Killer
-																}
-															}
-															Character to get attributes from=$Instigator
-														}
-														Succeed Action=
-														Fail Action=CGiveCharacterPerkAction
-														{
-															Character to give perk to=$Instigator
-															Perk to give=Perks/!Event Title Perks/Child Killer
-														}
-														Return failure if the TryAction failes=0
-													}
-													Target Name=$Instigator
-												}
-											}
-										}
+										After Action=
 										Include In Log=1
 									}
 									Action=CDisplayDialogBalloonAction
@@ -59723,90 +59698,123 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetPatrolAIAction
+					After Action=CMultipleActionsAction
 					{
-						Patrol AI=CFollowPathAI
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Path Poly=Path walker between Tavern R2L poly
-							PathPolygonLayerPart=
-							Order=Go To End
-							Ignore last point=0
-							End of path action=CMultipleActionsAction
+							Item Count=2
+							Action=CSetPatrolAIAction
 							{
-								Action=Array
+								Patrol AI=CFollowPathAI
 								{
-									Item Count=2
-									Action=CDelayAction
+									Marked For Deletion=0
+									Publisher=
+									Path Poly=Path walker between Tavern R2L poly
+									PathPolygonLayerPart=
+									Order=Go To End
+									Ignore last point=0
+									End of path action=CMultipleActionsAction
 									{
-										Next Action=CActivateAction
+										Action=Array
 										{
-											Target Name=Spawn different guys walking between Tavern buildings
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
+											Item Count=2
+											Action=CDelayAction
+											{
+												Next Action=CActivateAction
+												{
+													Target Name=Spawn different guys walking between Tavern buildings
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Delay=4
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Action=CDeleteAction
+											{
+												Target Name=$Trigger
+											}
 										}
-										Delay=4
-										Plus or Minus=0
-										Forget Trigger=0
 									}
-									Action=CDeleteAction
+									TimeBeforCanReviseData=0
+									Revise Point=0.000000,0.000000
+									Revising Data=0
+									Target Point=0
+									Moving=CEntityBehaviorMoveToPos
 									{
-										Target Name=$Trigger
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
 									}
 								}
+								Target=$Instigator
 							}
-							TimeBeforCanReviseData=0
-							Revise Point=0.000000,0.000000
-							Revising Data=0
-							Target Point=0
-							Moving=CEntityBehaviorMoveToPos
+							Action=CSetDestroyedScriptActionAction
 							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
+								New Destroyed Action=CConditionalAction
 								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
+									Try Action=CExpressionAction
+									{
+										Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Child Killer
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=
+									Fail Action=CGiveCharacterPerkAction
+									{
+										Character to give perk to=$Instigator
+										Perk to give=Perks/!Event Title Perks/Child Killer
+									}
+									Return failure if the TryAction failes=0
 								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
+								Target Name=$Instigator
 							}
 						}
-						Target=$Instigator
 					}
 					New Facing Angle=3.14159
 				}
