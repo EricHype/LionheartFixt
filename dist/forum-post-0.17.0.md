@@ -1,0 +1,28 @@
+# Lionheart Fixt 0.17.0 - the Caverns of Nostradamus
+
+Act 5 has ten maps, 1,130 live enemy spawners and two quests with no way into either. Both hang on one
+conversation with the Hujark General, and his generator was switched off and activated by nothing -- so
+every player who has ever walked the act fought the Hujark, on a map set built to be populated either
+way, while the Demesne quietly completed two quests that could never be activated.
+
+He spawns now. And so does the English army: there is a folder in the shipped game called "English in
+Caverns of Nostrodomus" holding fourteen units made for this act -- soldiers, bowmen and ogres in three
+tiers -- every one of them placed nowhere. They have ninety-nine generators now, twinned from the ones
+that already field the Hujark, and it is a swap rather than an addition: side with the Hujark and the
+English come on while a hundred Hujark generators stop targeting you.
+
+There are three ways through the act instead of one. Help the Prophet, fight for the Lance, or talk your
+way past at Speech 75 and cross somebody else's war with a safe conduct only half the combatants
+recognise -- revocable the moment you raise a hand to a Hujark. If you are carrying the Child Killer
+title, Huko will not take your help at any price; there are children in these caves.
+
+Nostradamus defends himself with the four spells, three taunts and death line he was built with and
+nothing ever started. A swordsman at half health calls a snake out of the floor, unless you carry
+Sahar's ring, because the serpents know her mark. A snakebreed summoner at a quarter health calls
+something the ring does not stop. Forty-three traps appear in ten maps of caves that never held one. And
+the frightened apprentice finally stops turning up alive on the next map after you kill him.
+
+**Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run `Mod Manager.bat`. Almost all of this is level parts, so it needs a character who
+has not yet entered act 5. Unplayed -- what you find goes into 0.17.1.

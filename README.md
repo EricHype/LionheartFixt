@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.16.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.16.0).
+-- currently [0.17.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.17.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -70,6 +70,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.14.0** Montaillou | Montaillou, Toulouse, the witch's hut, the grove | The gate challenge that reads your order; the titans of Toulouse talked out of killing their fugitive, and the fugitive talked into going home; Na Roqua's Inquisitor greeting, her chicken, her secret stash and her past; the Bishop's third lead; Andre's corpse scene; the warden, the shepherd's warning and Lethos's errand. Then the village reads you: the guild, the Horde, the necromancer, the Wielder, the tainted face, the trader and the shepherd's careful eyes |
 | **0.15.0** Toulouse | Toulouse, the titan camp, the prisoner pen | The two flags the act read and never set, which cost the bluff at the pen and everything the prisoners know about the fugitive; the guard's mercury bribe; the warning he never gave; Menoetius, whose generator named him Rhea; and the news of the titans' leaving, which never reached Montaillou. Then Toulouse reads you -- the spirit you carry, the titles you earned, a necromancer on the eater of memories, an Inquisitor on the man who drowned the world -- and the child of the tribe, the pen, and the ogres get voices |
 | **0.16.0** the Crypt | Act 4, the Crypt of the Bleeding Lance | A quest that was only a name; Jehanne never remembering being convinced; her garrison placed where a player meets it, with a camp of its own; 66 traps that finally test a thief; the magic schools and the six claimants to the Lance each answered; the four Misc Crypts turned into four fronts of the siege, with a war tide the ending reads three ways; Jehanne's four companion nodes, of which one was ever reachable; and a Spirit Council that now sees which soul the player is carrying, and whom it is begging |
+| **0.17.0** the Caverns of Nostradamus | Act 5, the Hujark caves and the seer | Two quests with no way into either, both hanging on a general whose generator nothing activated; the English army that was built and placed nowhere, now on ninety-nine generators; three routes through the act instead of one, including a revocable safe conduct at Speech 75; the seer's own boss defence, switched off since release; two tiers of summoning the act documented on its own checkers, one of which Sahar's ring silences; forty-three traps where there were none; and an apprentice who stops coming back from the dead |
 
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
@@ -78,9 +79,9 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.16.0 are published.** The last five -- 0.16.0 the Crypt, 0.15.0 Toulouse,
-0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle Perdida -- are built and entirely
-unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
+**0.1.0 through 0.17.0 are published.** The last six -- 0.17.0 the Caverns of Nostradamus,
+0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
+Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's
 automated gate (`tools/validate.py`) passes; the human gates are recorded per release in
 [`docs/qa.md`](docs/qa.md), and most of what shipped after 0.4.0 has been played once by one
