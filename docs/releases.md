@@ -140,6 +140,148 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.18.0 - the Barcelona Attack
+
+**Surveyed 2026-09-25. Nothing built.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+parts, **1,304 live enemy spawners**, six dialogue trees of its own, and **28 player replies in total**.
+
+| map | parts | live spawners | conversations | balloons | MB |
+|---|---|---|---|---|---|
+| Temple District Siege | 920 | 310 | 0 | 26 | 1.57 |
+| Gate District Siege | 791 | 393 | 1 | 33 | 1.08 |
+| Crossroads Siege | 910 | **490** | **0** | **0** | 0.77 |
+| Crossroads to England map | 149 | 93 | 3 | 7 | 0.20 |
+| Church Interior ruined | 47 | 6 | 0 | 1 | 0.08 |
+| Weng Choi Shop Siege | 39 | 9 | 2 | 5 | 0.07 |
+| Blacksmith map | 28 | 2 | 3 | 0 | 0.04 |
+| Church Crypt Interior Siege | 13 | 1 | **0** | **0** | 0.02 |
+
+**The act's signature is different from act 5's.** Act 5 was content built and never switched on. Act 6
+is seven **re-dressed act-1 maps**: the siege versions kept the peacetime parts and dropped most of the
+wiring. Comparing each against its peacetime original -- 41 named parts on the besieged Gate District
+against 400 on the peaceful one -- most of that difference is deliberate, because a sacked city should
+not still have its shopkeepers standing about. What matters is the handful of things left present, live,
+and no longer connected to anything.
+
+### Nobody in the sack of Barcelona says a word
+
+Three relays exist `Active=1` on `Gate District Siege`, `Temple District Siege` **and**
+`02 Hamlet Burned` (act 3), and are **fired by nothing anywhere in the game**:
+
+| relay | speaks |
+|---|---|
+| `Defenders dialog balloons` | `Defenders.DialogTree` -- *"To Hell with these accursed druids!"*, *"God save Barcelona!"*, six lines |
+| `Defenders dialog balloons for interactionspecifier` | the same, on being spoken to |
+| `defender winner dialog balloons` | `Defenders win a fight.DialogTree` -- *"I'll secure this area."*, *"The gall of these druids!"*, six more |
+
+And the fourth, `Attackers dialog balloons`, **is** called -- only from `fight1`, `fight4` and `fight5`
+parts that are all `Active=0`, plus a switched-off `fight5` on `Bryce Folly`. So the English have seven
+lines (*"Attack! For England!"*, *"Let us crush these Inquisitors!"*, *"For the Queen!"*) with nobody live
+to call them either.
+
+**Nineteen barks across three trees, and the sack of Barcelona is silent on both sides.** The two 1 MB
+maps hold 33 and 26 balloon actions between them, every one inside a relay nothing fires.
+
+`02 Hamlet Burned` carries the same three dead relays, which makes it a **0.14.1** item: Montaillou
+shipped in 0.14.0 with the same silence.
+
+### Two quests, neither of which exists
+
+| file | inside |
+|---|---|
+| `Find Galileo and DaVinci.Quest.txt` | `Name=` **blank**, `Item Count=0`. An empty husk -- the file was created and never written |
+| `Pursue the retreating English forces and recover the True Cross.Quest.txt` | `Name=Pursue the Retreating Druid Forces and Recover the True Cross`, `Item Count=0` |
+
+**Neither is referenced by any map or any dialogue tree in the game.** The act's one working quest,
+`Defend Barcelona from the Forces of the Druids`, has a single state and is activated on
+`Temple District Siege`. So the act announces one objective and silently drops the two that frame it:
+finding the two men the player has spent the game working with, and the pursuit that hands over to act 7.
+
+Worth noting for the writing: the files say **English**, the quest names say **Druids**. The invaders
+were renamed late and the filenames were not, which is also why act 5's unused English roster lives in a
+folder called `English in Caverns of Nostrodomus` while Huko calls them Druids throughout.
+
+### The densest map in the project has nothing in it but soldiers
+
+`Crossroads Siege` holds **490 live spawners** -- `Soldier1` through `Soldier4` and their bowmen, from
+twenty `English BIG PILE Generator` parts and fourteen `English Archer Generator` parts, plus a
+`Fire Golem Generator`, two `English Priest Generator`s and two wolves. For scale, the Crypt's Doomed
+Plateau, which this project spent a tier making bearable, has 112.
+
+It has **no conversation, no balloon and no dialogue tree**, and its only other content is a
+`don quixote actions relay` (`Active=0`, called only by its own dead `warp`) and an `Assasin goto point3`.
+`Church Crypt Interior Siege` is silent too, at thirteen parts.
+
+### What the re-dress stripped and left behind
+
+| on the siege map | peacetime references | under siege |
+|---|---|---|
+| `Player is a child killer` (checker, `Active=1`) | **33** | **0** |
+| `Player gotten child killer dialog` (checker, `Active=1`) | **25** | **0** |
+| `Shy Girl requests help` (relay, `Active=1`) | 2 | 0, and its speaker `Shy Girl Near Murder` is never created on the siege map |
+
+The child-killer system is a real one in act 1 -- thirty-three references, read by the gate guards' own
+canned trees -- and the besieged district still carries both checkers, live, with nothing to set or read
+them. `Random Contacts in Barcelona` has the line that fits: `21 Children`, *"Leave me alone! Haven't
+you done enough?!"*, which the siege map does open. What it cannot do is tell whether the player is the
+reason.
+
+And two death lines are unopened, of seven in that tree:
+
+- `31 Spanish Body on Ground`: *"Stranger...here...take my gold. Don't let those English have it..."* --
+  the only one of three Spanish death lines that is unwired, and the only one that offers the player
+  something.
+- `42 English Body on Ground`: a dying invader who does not know why he came.
+
+### What the act asks about the player: two Speech checks
+
+| gate | count |
+|---|---|
+| Speech | 2 (the Surrey Vendor, a captured Irish quartermaster) |
+| faction, race, spirit, karma, gender, perk, magic school, Barter, attribute | **0 each** |
+| trap or lockpick checks, on replies **or** on map triggers | **0** |
+| `CAISecretReveal` secrets across all eight maps | **0** |
+
+The act's only real conversation is `Surrey Vendor` -- twelve nodes, twenty-three replies, an English
+supply clerk from Surrey who is very frightened of the Supplies Regent and will sell to the player
+anyway. He has male and female opening variants, which is the one thing in act 6 that reads the player
+at all.
+
+### Checked and not defects
+
+- **The blacksmith works.** `Blacksmith after Siege.dialogtree` has three recorded voice-overs and his
+  generator is `Active=1` and opens it. My first pass flagged it because the generator is unreferenced,
+  which is normal for a generator that fires on map load -- the same false positive the dead-part sweeps
+  are built to exclude.
+- **Weng Choi works**, with siege-specific nodes of his own (`500 Start Siege`, `502 Siege Return`) and
+  five scurrying balloons.
+- **The Temple District's unreferenced doors, polygons and goto markers** (`Shylocke Door`,
+  `Inquisition door on left`, `cervantes target`) are scenery left standing after the NPCs who used them
+  were removed. Correct for a siege.
+- **`Church Interior ruined` and `Church Crypt Interior Siege`** have nothing wired in peacetime and
+  unwired under siege.
+- **Don Quixote's relay** on `Crossroads Siege` is `Active=0` and called only by a dead `warp`; his
+  entity spawns on `Barcelona Coast`, not the Crossroads. Probably a deliberate cut, and not worth
+  restoring without a reason.
+
+### Tiers, in the order they should be built
+
+1. **The silence.** Wire the three defender relays and give the `Attackers` relay a live caller, on both
+   1 MB siege maps. Nineteen written barks, none of which has ever played, in the set-piece the act is
+   named for. Cheapest large win in the act.
+2. **The two quests that do not exist.** States and wiring for `Find Galileo and DaVinci` and the
+   pursuit of the True Cross, which is also the hand-off to act 7.
+3. **`Crossroads Siege`.** 490 spawners and not one voice. It needs what the Misc Crypts got in 0.16.0:
+   something to say what the place is, and something to do besides kill.
+4. **The child-killer reaction, restored from the peacetime original** -- a port rather than an
+   invention, since act 1 has 33 working references to copy from.
+5. **The shy girl with no speaker, and the two death lines**, including the man who tries to give the
+   player his purse.
+6. **Reactivity.** Two Speech gates in 28 replies, and no trap, lock or secret anywhere in eight maps.
+
+Also from this survey, for a patch rather than this release: **0.14.1** -- `02 Hamlet Burned` carries the
+same three dead defender relays, so Montaillou's burned hamlet is silent for the same reason.
+
 ## 0.17.0 - the Caverns of Nostradamus
 
 **Published.** Cut from `main` 2026-09-25, entirely unplayed. Surveyed and built the same day, eleven tiers. Tier 3b places an English army the shipped game built and never deployed; tier 8 gives its commentary a speaker; tier 9 adds a third way through the act. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
