@@ -10317,12 +10317,35 @@ CLayerSaveData
 										Action=Array
 										{
 											Item Count=4
-											Action=CDisplayDialogTreeAction
+											Action=CIfAction
 											{
-												Dialog Tree File=Levels/5 Nostrodomus/Dialog/hujarkgeneral
-												Node ID=1 Conversation Start
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
+												If=CExpressionAction
+												{
+													Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Child Killer
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/hujarkgeneral
+													Node ID=47 not from you
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/5 Nostrodomus/Dialog/hujarkgeneral
+													Node ID=1 Conversation Start
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Return failure if the If failes=0
 											}
 											Action=CSendAIDoneMessage
 											{

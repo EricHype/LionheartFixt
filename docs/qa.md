@@ -1461,6 +1461,16 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO84 | NO80, then **strike any Hujark** | - | He fights back, and from then on every Hujark that spawns is hostile again -- on this map **and the next one**. The reply NO83 unlocks should also stop being offered |
 | NO85 | Side with Huko normally (NO5), then strike one of his men | - | The same revocation. Siding with him and then cutting his men down has to cost the alliance |
 | NO86 | Side with the English (NO6), then cross the act | - | Unchanged from tier 3b: Hujark hostile, no English, an English escort, the capture quest |
+| NO87 | **A save that has never entered act 5**, carrying the **Child Killer** title. Let Huko approach, or click him | - | `47 not from you` -- he has the sword up before a word is said. He must **never** open `1 Conversation Start` for this character, from either hook |
+| NO88 | NO87: look for any way to offer him help, from every node you can reach including `30 Prophet` | - | There is none. All fifteen replies that reach `50 help prophet` are closed to the title. **The first cut of this tier leaked through `30 Prophet`** |
+| NO89 | NO87 with Speech 75+ | - | The safe conduct is still offered and still works -- he wants you gone, and that is a deal he will take |
+| NO90 | NO87 without Speech | - | Ask about the Prophet, or fight. Those are the only doors left |
+| NO91 | Without the title, talk to Huko | - | `1 Conversation Start`, exactly as before. Nothing about the ordinary path changes |
+| NO92 | Ask Huko *"Who are the Hujark?"* with **Tribal magic at 80+** | - | `48 your magic is ours` -- he looks at your hands rather than your face |
+| NO93 | Ask the seer his questions with **Divine 80+**, then **Thought 80+** | - | `51 the church would burn you` and `52 what you are becoming`. Each offered only to its own specialist |
+| NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
+| NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
+| NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

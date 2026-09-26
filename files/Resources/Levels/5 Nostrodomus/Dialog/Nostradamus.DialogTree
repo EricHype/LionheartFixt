@@ -118,6 +118,37 @@ Go to node ID=49 the one who owed nobody
 Icon=Attribute Icon
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Divine/General Divine Skills moreequal 80
+}
+Reply Text=My order has one word for what you are doing to yourself.
+Go to node ID=51 the church would burn you
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Thought/General Thought Skills moreequal 80
+}
+Reply Text=I have the training to follow it. Explain it properly.
+Go to node ID=52 what you are becoming
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+Reply Text=I have put spirits into bodies myself. It does not go like this.
+Go to node ID=53 the same trade
+Icon=Attribute Icon
+
+Requirement=!None
 Reply Text=I'm not interested in your ravings.
 Go to node ID=50 Nostradamus leaves
 
@@ -389,6 +420,19 @@ Go to node ID=70 events
 Requirement=!None
 Reply Text=I have other questions.
 Go to node ID=5 questions
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!NPC or Event Given Perks/Stargazer
+}
+}
+Reply Text=I read the sky too. Is that where you get it?
+Go to node ID=54 the stars you read
+Icon=Attribute Icon
 
 Requirement=!None
 Reply Text=I have heard enough. Goodbye.
@@ -1006,6 +1050,78 @@ Is Default Reply=1
 ------------------------------------------------------------
 Node ID=49 the one who owed nobody
 Text=It shows. Everyone who has ever come down that passage arrived belonging to something, and the belonging is the first thing I see; it sits on a man like a coat. You came in wearing nothing, which is rarer than you know and worth less than you hope. A coin that refuses to be flipped is still a coin, coinspinner, and the hand will come for it anyway.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 the church would burn you
+Text=It has. <He seems entirely unworried by it.> By your doctrine I am the thing your order was founded to end, and by mine you are a man who was handed a lit torch and told which house to carry it to. We are both instruments, coinspinner. Mine at least asked me first.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=52 what you are becoming
+Text=Then follow it. A spirit is a shape that persists without matter. A man is matter that persists without shape, or believes that he does. Put the two in one place long enough, with nothing left between them to divide, and you do not get a man with a spirit in him. You get a third thing, and the third thing remembers being both. Your schools will not write that down, because a scholar who writes it down has to consider doing it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=53 the same trade
+Text=No. It does not. <A pause long enough to be an answer of its own.> You have put them into bodies that were not willing, that were not yours, and not for long enough for the question to arise. You know the shape of the work and you know which way it fails. Mine is not failing. The difference is not skill and it is certainly not mercy. It is that I asked.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about these visions.
+Go to node ID=60 visions
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=54 the stars you read
+Text=You read them, so you already know the answer. Nothing up there moves on our account, and a man who tells you otherwise is selling something. The sky is a clock, astronomer. A clock can tell you when and it can never tell you what. I am telling you what. Be glad the sky is all you have -- the *when* is bearable.
 Should Have Voiceover=0
 
 Requirement=!None

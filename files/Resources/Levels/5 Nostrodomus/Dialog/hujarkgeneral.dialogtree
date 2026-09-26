@@ -22,10 +22,32 @@ Reply Text=Who is the Prophet?
 Go to node ID=30 Prophet
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=The Druids are not my friends. It looks as if we stand together.
 Go to node ID=50 help prophet
 
@@ -84,10 +106,32 @@ Reply Text=Who is the Prophet?
 Go to node ID=30 Prophet
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=The Druids are not my friends. It looks as if we stand together.
 Go to node ID=50 help prophet
 
@@ -142,10 +186,32 @@ Reply Text=What do the Druids want with the Prophet?
 Go to node ID=80 english
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=The Druids are not my friends. It looks as if we stand together.
 Go to node ID=50 help prophet
 
@@ -250,10 +316,32 @@ Reply Text=What do the Druids want with the Prophet?
 Go to node ID=80 english
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=The Druids are not my friends. It looks as if we stand together.
 Go to node ID=50 help prophet
 
@@ -317,6 +405,15 @@ Icon=Attribute Icon
 Requirement=Human IS
 Reply Text=Nobody has ever driven me out of anywhere.
 Go to node ID=42 you wear a face they accept
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Magic Tribal/General Tribal Skills moreequal 80
+}
+Reply Text=Your people are hunted for the same magic I work.
+Go to node ID=48 your magic is ours
 Icon=Attribute Icon
 
 Requirement=!None
@@ -583,6 +680,17 @@ Text=The All-Seeing One possesses power beyond those of mere mortals. The vision
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I will help you protect the Prophet.
 Go to node ID=50 help prophet
 
@@ -621,6 +729,17 @@ Text=Then you have heard the same words we heard, in whatever town your people w
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
@@ -653,6 +772,17 @@ Text=No. Whatever else you are, your face is one they let through their gates, a
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
@@ -685,6 +815,17 @@ Text=You ask like someone who expects to be believed, and the trouble is that I 
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
@@ -717,6 +858,17 @@ Text=You have the look of someone who has done a great deal and regretted very l
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=I have come to help the Prophet.
 Go to node ID=50 help prophet
 
@@ -759,6 +911,17 @@ Icon=Exit Icon
 Is Default Reply=1
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
 Reply Text=On second thought -- I will help you hold this place.
 Go to node ID=50 help prophet
 
@@ -770,4 +933,92 @@ Custom Action=CTriggerRelayAction
 Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
 }
 Icon=Fight Icon
+------------------------------------------------------------
+Node ID=48 your magic is ours
+Text=You work it the way we work it -- out of the ground and out of the blood, not out of a licence and a shelf of books. <He looks at your hands rather than your face.> Then I do not have to explain to you why the Druids want him, or what a people who are hunted for their magic will do to keep hold of the one man who makes the hunting worth it.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+}
+Reply Text=I have come to help the Prophet.
+Go to node ID=50 help prophet
+
+Requirement=!None
+Reply Text=Tell me more of the Prophet.
+Go to node ID=30 Prophet
+
+Requirement=Inquisitor NOT
+Reply Text=If getting to the Prophet means killing you, then you're my enemy.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=47 not from you
+Text=Stop there. <He has the sword up before you have finished walking.> I know what you are called. The word of it came down the valley a long way ahead of you, and there are children in these caves. You will not be helping us hold anything, at any price you care to name. Say what you actually want, and then be gone.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Thieving/Speech
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Reply Text=Then let me buy my way past you and out of your caves.
+Go to node ID=46 safe conduct
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Who is the Prophet, that you would die in a cave for him?
+Go to node ID=30 Prophet
+
+Requirement=Inquisitor NOT
+Reply Text=Then I will go through you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=In the name of the Inquisition, your cult dies here.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Player sides with the English, Player attacks any of the Hujark in this fight, 60 Harm Prophet dialog balloon
+}
+Icon=Fight Icon
+Is Default Reply=1
 }

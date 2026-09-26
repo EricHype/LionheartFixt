@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.17.0 - the Caverns of Nostradamus
 
-**Surveyed 2026-09-25. Ten tiers built 2026-09-25, unplayed.** Tier 3b places an army the shipped game built and never deployed; tier 8 gives its commentary a speaker. Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
+**Surveyed 2026-09-25. Eleven tiers built 2026-09-25, unplayed.** Tier 3b places an army the shipped game built and never deployed; tier 8 gives its commentary a speaker. Tier 3b places an English army the shipped game never deployed. Act 5, `Levels/5 Nostrodomus` -- misspelled in the
 shipped game, and left that way here because every reference in every map spells it the same.
 
 **The act.** Ten maps, 5,178 level parts, **1,130 live enemy spawners**, 8 dialogue trees, 103
@@ -957,6 +957,63 @@ on an ally, because being expected is the seer's whole business.
 > belonging is the first thing I see; it sits on a man like a coat. You came in wearing nothing, which
 > is rarer than you know and worth less than you hope. A coin that refuses to be flipped is still a
 > coin, coinspinner, and the hand will come for it anyway.
+
+### Tier 10 - what a general refuses, and four things only a specialist can say (built)
+
+**The Child Killer title costs the Hujark alliance.** The perk is a reputation rather than a secret --
+vanilla reads it in the Gate District -- so Huko does not wait to be told, and he does not wait for the
+player to speak either. Both of his talk hooks now branch on it: the `GetCloseThenTalk` specifier in his
+template, and the `Trigger=First Time` transition that makes him cross the ground to meet you. A player
+carrying the title never reaches `1 Conversation Start` at all.
+
+> Stop there. <He has the sword up before you have finished walking.> I know what you are called. The
+> word of it came down the valley a long way ahead of you, and there are children in these caves. You
+> will not be helping us hold anything, at any price you care to name. Say what you actually want, and
+> then be gone.
+
+What remains open to that player is the **safe conduct** from tier 9 -- a man who wants you gone will
+still take that deal -- and the fight. What is closed is the alliance, and it is closed properly: the
+first cut of this tier let the refusal route to `30 Prophet`, which offers to help, so the refusal
+leaked straight back into the thing being refused. All **fifteen** replies in his tree that reach
+`50 help prophet` now carry `CExpressionNot` around the Child Killer check, on the shape
+`Brambles.DialogTree` uses. One of the act's three routes closes on a title the player earned two acts
+earlier.
+
+**And four gates only one kind of character can open**, every one of them on a can or perk vanilla
+already uses:
+
+| gate | node | the line |
+|---|---|---|
+| `General Tribal Skills moreequal 80` | Huko, `48 your magic is ours` | *"You work it the way we work it -- out of the ground and out of the blood, not out of a licence and a shelf of books... Then I do not have to explain to you why the Druids want him."* |
+| `General Divine Skills moreequal 80` | the seer, `51 the church would burn you` | *"By your doctrine I am the thing your order was founded to end, and by mine you are a man who was handed a lit torch and told which house to carry it to. We are both instruments, coinspinner. Mine at least asked me first."* |
+| `General Thought Skills moreequal 80` | the seer, `52 what you are becoming` | *"You do not get a man with a spirit in him. You get a third thing, and the third thing remembers being both. Your schools will not write that down, because a scholar who writes it down has to consider doing it."* |
+| `Perks/!Event Title Perks/Necromancer` | the seer, `53 the same trade` | *"You have put them into bodies that were not willing, that were not yours... The difference is not skill and it is certainly not mercy. It is that I asked."* |
+| `Perks/!NPC or Event Given Perks/Stargazer` | the seer, `54 the stars you read` | *"The sky is a clock, astronomer. A clock can tell you when and it can never tell you what. I am telling you what. Be glad the sky is all you have -- the when is bearable."* |
+
+Stargazer is worth singling out: it is checked in **exactly one place in the whole game**, Galileo's
+solarium, and the game's own astrologer-prophet has never read it.
+
+### Gender stays at zero in act 5, deliberately
+
+There are no women in this act. Huko, Nostradamus, the Monk, the assassin and the apprentice are all
+men, and the Hujark are written as an undifferentiated tribe. Gender worked in the Crypt because Jehanne
+is the one character in the game's history for whom it is the whole story. Here it would mean inventing
+a Hujark custom to manufacture a reader, which is worse than the gap. Left for act 7 or 8, where there
+may be a real one.
+
+### The act's gate census, finally
+
+| gate | vanilla | now |
+|---|---|---|
+| faction | 13 | 21 |
+| karma | 3 | 5 |
+| race | 0 | 4 |
+| spirit | 0 | 3 |
+| magic school | 0 | 3 |
+| perk | 0 | 3 |
+| Speech | 0 | 4 |
+| attribute | 3 | 3 |
+| gender | 0 | 0 |
 
 ### Tiers, in the order they should be built
 
