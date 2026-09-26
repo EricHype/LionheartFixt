@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
-**Surveyed 2026-09-25. All six tiers built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+**Released 2026-09-26. Surveyed and built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
 parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
 | map | parts | live spawners | conversations | balloons | MB |

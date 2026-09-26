@@ -1,0 +1,61 @@
+[size=150][b]Lionheart Fixt 0.18.0 - the Barcelona Attack[/b][/size]
+
+Act 6 is the shortest act in the game and the one with the least left in it: eight maps, 889 live
+combatants, and twenty-eight player replies in total, of which two were gated on anything. So this
+release is less about unreachable branching than about a city that never reacted to the person walking
+through it.
+
+Crossroads Siege is 910 parts and 472 live combatants -- four times the Crypt's Doomed Plateau, the
+densest map in the project -- and it shipped with no conversation, no balloon and no dialogue tree at all.
+It has three narration lines now, and the relay that makes English soldiers shout while they fight, which
+existed on both district maps and not on the one map the English army is actually on.
+
+Two of the act's three quests were never written. "Find Galileo and DaVinci" shipped with a blank Name=
+and no states -- the file was created and never filled in -- and the True Cross pursuit has a name and no
+states either. Neither was referenced by any map or tree in the game. The blacksmith answers where the two
+inventors went now, and because he tells you they were marched out the west gate with a guard who had a
+list, the ruts at the western end of the crossroads become evidence rather than scenery: a cracked lens
+ground finer than any glazier in Barcelona could manage, and a wax tablet pressed with a hand you have
+watched draw. Without having asked him you get the plain line and no reward, which is the right way round.
+
+Then there is the title. "Child Killer" ships complete -- display name Slayer of Innocents, a description,
+and a requirements array holding a deliberately false expression, which is how this game marks a perk only
+script can grant. Nothing in the game grants it. It is read eight times on the peacetime Gate District and
+those reads drive five fully authored dialogue nodes with two replies each, deny it or admit it and
+threaten the guard, and none of it has ever fired in any playthrough. Children are not made killable and
+that is not what the perk says: they are HP 10000 / AC 1000 in vanilla and they stay that way. The perk's
+own words are killing the helpless, and the helpless who can be killed are the citizens at HP 12.
+
+Act 6 is where the consequence was meant to land. The two checker parts the whole mechanism runs on were
+already sitting on the siege map, active, carrying the designers' own comments on the polarity, and the act
+neither read nor wrote either one. The man searching the district for his son reads them now: a child killer
+gets the shipped "Leave me alone! Haven't you done enough?!", and everybody else gets a father asking you to
+look for a boy in a red cap. There is a red cap to find, behind a barrel, told to stay where he was put.
+
+Nearby, a relay called "Shy Girl requests help" was sitting active with zero callers, positioning a balloon
+over an entity that did not exist and firing a relay that did not exist either. All three pieces are back,
+and the consequence end is the map's own: every defender already carries a handler that turns the garrison
+on you for attacking a guard. Murdering an unarmed civilian produces no such message, which is exactly what
+a witness is for.
+
+Two dying-soldier lines the act never opened are wired, including the Spaniard who tries to give you his
+gold -- he hands over the 250 he is talking about. Temple District Siege had 62 dead bodies and not one of
+them speaks; six do now.
+
+And the act learns to read you. Surrey O'Connell is an Irish supplies master pressed into feeding the army
+that took his country, who calls himself happy to serve the English and begs not to be sent to the Spanish
+Inquisition. Show him the clover from the drowned fields of Ireland -- the one the Port District's Irish
+sailor hands over -- and the performance stops: take what you need off the Regent's pile, and Surrey
+O'Connell never saw a thing. A sworn Inquisitor gets there by a shorter road. Either way the alarm on the
+Regent's chest does not fire, which is two new routes past the act's one guarded prize beside the Sneak 100
+vanilla shipped. The blacksmith reads your order, your face and your reputation. And the Church Crypt --
+thirteen parts, three walls, a lamp, a broken door and one dead guard -- gets the act's first secret, first
+trap, first hidden lock and first voice.
+
+[b]Fixt[/b] is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run [i]Mod Manager.bat[/i]. Most of this is level parts, so it needs a character who has not
+yet entered act 6 -- and the title needs one who has not yet entered the peacetime districts either.
+Unplayed; what you find goes into 0.18.1.
+
+https://github.com/EricHype/LionheartFixt/releases/tag/v0.18.0

@@ -1471,6 +1471,14 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+### 0.18.0 - the Barcelona Attack
+
+Act 6. Needs a character who has **never entered act 6**; BA22-BA26 additionally need one who has
+never entered the peacetime Gate, Temple or Port districts, since the title is granted by level
+parts on their citizen generators.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
 | BA1 | **A save that has never entered act 6.** Stand in the fighting on `Gate District Siege` for a minute | - | Both sides shout. Spaniards: *"To Hell with these accursed druids!"*, *"God save Barcelona!"*; English: *"Attack! For England!"*, *"For the Queen!"* **Nineteen lines across three trees, none of which has ever played** |
 | BA2 | BA1 on `Temple District Siege` | - | The same, quieter -- that map has one defender generator and three attacker generators still standing |
 | BA3 | Watch where the balloons appear | - | Over the soldiers themselves, not over the player. They position on `$Trigger` |
