@@ -140,6 +140,98 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.19.0 - the English Shrine
+
+**Surveyed 2026-09-26. Not started.** Act 7, `Levels/7 English Shrine`. Eleven maps, 3,481 level parts,
+2,035 live combatants, nine dialogue trees of its own and 91 player replies.
+
+| map | parts | combatants | trees | balloons | locks | trap refs | secrets | chests | MB |
+|---|---|---|---|---|---|---|---|---|---|
+| 01 Outside Shrine | 55 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0.07 |
+| 02 Temple Initiate | 831 | 552 | 5 | 57 | 3 | 56 | 14 | 25 | 0.97 |
+| 03 Stone Chamber | 835 | 534 | 1 | 10 | 5 | 90 | 20 | 16 | 0.82 |
+| 04 Antechamber of Lore | 652 | 453 | 1 | 12 | 5 | 24 | 8 | 23 | 0.66 |
+| 05 Exalted Chambers | 318 | 128 | 4 | 14 | 1 | 0 | 0 | 10 | 0.31 |
+| 06 Meditation Chamber1 | 86 | 29 | 1 | 5 | 0 | 5 | 1 | 1 | 0.08 |
+| 07 Meditation Chamber2 | 62 | 52 | 1 | 5 | 1 | 0 | 0 | 4 | 0.08 |
+| 08 Meditation Chamber3 | 133 | 42 | 1 | 6 | 1 | 10 | 2 | 3 | 0.13 |
+| 09 Secret Chamber | 238 | 145 | 2 | 10 | 0 | 5 | 2 | 5 | 0.24 |
+| 10 Inner Sanctum | 210 | 88 | 0 | 0 | 0 | 0 | 0 | 9 | 0.19 |
+| England to Alamut | 61 | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 0.07 |
+
+### The headline: this act is the best-finished one in the game
+
+Every previous act survey opened with what was missing. This one cannot. Act 7 ships **47 secret areas,
+around 190 trap references, 16 locks, 96 containers and 41 doors** -- more hidden content than the Crypt
+and the Caverns had between them *after* 0.16.0 and 0.17.0 added theirs. Sir Roger, the act's companion,
+is already gated **21 ways** across seven nodes on `Templar IS`, `Templar NOT`, `Saladin IS` and
+`Inquisitor IS`, with separate male, female and Inquisitor greetings and separate returns for each. The
+`ManaTomes` reading system is opened 82 times. Both ambushes fire. The act needs a short release, and
+saying so is the survey's main result.
+
+### Two findings I had to withdraw, and why
+
+The first sweep reported "two scripted ambushes of 24 English soldiers each, `Active=0`, activated by
+nothing" and a dead second `Secret Area1`. **Both were wrong, and wrong the same way.**
+`Secret door up top trigger ambush` does `Target Name=Ambush area` where the part is named `ambush area`;
+`05 Exalted Chambers` does `Target Name=ambush generator` where the part is `Ambush generator`; and
+`04 Antechamber of Lore` carries `secret area1` five times and `Secret Area1` twice, so a single
+`Target Name=secret area1` reaches all seven. **Engine name lookup folds case**, which this project has
+known since 0.15.0 and which a case-sensitive sweep invents defects out of. Fourth occurrence. The sweep
+below is case-folded, comma-split, and run against every activation in the game rather than the act.
+
+### Tiers, in the order they should be built
+
+1. **Captain Isabella never arrives at the shrine, and the act already knows two ways she might not.**
+   This is the act's one real defect and it is a cross-act thread three acts long.
+
+   `01 Outside Shrine` is the landing beach -- three spawn points, exits back to the Crossroads and on to
+   `02 Temple Initiate` -- and it carries two inactive parts: `Captain Isabella generator`, spawning
+   `Levels/1 Barcelona/Character Templates/Port Ship Captain`, and `Captain Isabella fled`. **The "fled"
+   part is activated, from two places in act 1**, both by `COtherMapAction` reaching into this very map:
+
+   | act-1 outcome | tree | what it does |
+   |---|---|---|
+   | you corner her over the murder of Captain Morales and she refuses Spanish law -- *"The next time you attempt to cross my path, there will be blood."* | `Captain Isabella.DialogTree`, `220 isabella flees` | activates `Captain Isabella fled` **at the shrine**, activates `Isabella Fled` in the Gate District, opens *Solve the Murder of Captain Morales*, fails *Find a Wind Scroll for Captain Isabella* |
+   | you report her to the Duke and he investigates | `Duke.DialogTree`, `122 wait` | activates `Captain Isabella fled` **at the shrine**, deletes `Ship Captain`, sets `told on isabella` |
+
+   So both *bad* endings of the Isabella thread were wired forward into act 7, and **the good one was never
+   staged**: her generator is `Active=0` and nothing anywhere activates it, so the captain who sails you to
+   England is absent from the beach whether you parted as allies or not. She also has no `New Name=` and no
+   dialogue tree on the generator, so this is a stub rather than a finished scene -- switching her on is
+   restoration, giving her something to say at the shrine is new writing, and the tier should be honest
+   about which half is which. Her own `Captain Isabella.DialogTree` exists and is substantial.
+
+2. **Sir Roger's five combat barks.** `100` through `104 Random Attack Ballon` -- *"For England!"*,
+   *"For The Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* -- are reached by
+   nothing and opened by nothing. He is a companion (`CSetCompanionAction`), so these are the lines he was
+   written to shout while fighting beside the player, and the act already has the exact machinery: three
+   `CShuffledSeriesAction` on `02 Temple Initiate`'s `Templar Generator` parts drive the generic templars'
+   eight bubble nodes the same way. This is the cheapest real restoration in the act.
+
+3. **`EnglishKnightTemplarCan1.DialogTree` -- "My sword is yours."** One node, no replies, **opened by
+   nothing**, case-folded, anywhere in the game. Every other tree in the act has a caller. Given the text
+   and the filename it is the line for an English Templar joining the player, which is what Sir Roger does
+   by a different route; it may be his superseded draft, in which case it should be read and recorded
+   rather than wired.
+
+4. **The three thin maps.** `01 Outside Shrine` (55 parts, 2 live enemies, 13 corpses, no conversation,
+   no trap, no secret), `10 Inner Sanctum` (210 parts, 88 combatants, nine chests, **no trees, no balloons,
+   no traps, no secrets** -- the act's final room says nothing) and `England to Alamut` (61 parts, a
+   corridor). `05 Exalted Chambers` also has ten chests and zero traps or secrets while its neighbours
+   average fifteen secrets apiece. The Crypt's Misc Crypts and act 6's `Crossroads Siege` got narration for
+   the same reason; the Inner Sanctum is the stronger candidate of the two, being where the act ends.
+
+### Read and deliberately left alone
+
+- **`Prevent the Druids from completing the dark rites.Quest.txt`** is a husk: `Item Count=0`, no state
+  IDs, and **zero references anywhere in the game**. Its display name -- *Prevent the Druids from
+  Completing the Dark Rites* -- is carried by `Stop the Druids.Quest.txt`, which has a state (`EZIX7Q9L`),
+  is referenced twice and is completed once. This is a renamed file's abandoned predecessor, not a dropped
+  quest, and it wants no wiring. Same judgement as act 6's `defenders hate player trigger`.
+- **Three `warp` / `Warp` parts** on `01 Outside Shrine` and `05 Exalted Chambers`, `Active=0`, activated by
+  nothing, self-triggering polygons with no entities. Developer teleports, and they stay off.
+
 ## 0.18.1 - Slayer of Innocents, on the hooks the designers built for it
 
 0.18.0's award reads the perk's description -- *killing the helpless* -- and hangs the title on a murdered
