@@ -1,0 +1,14 @@
+CQuestDefinition
+{
+	Name=Find Galileo and DaVinci
+	States=Array
+	{
+		Item Count=1
+		State=CQuestStateDefinition
+		{
+			Text=The blacksmith says Galileo and Leonardo were taken west when the city fell, walking, with a guard who had a list. Nobody in Barcelona knows more than that. Find them.
+			ID=BA1FINDG
+		}
+	}
+	Sub-Quest of=!None
+}

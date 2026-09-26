@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
-**Surveyed 2026-09-25. Tier 1 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+**Surveyed 2026-09-25. Tiers 1 and 2 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
 parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
 | map | parts | live spawners | conversations | balloons | MB |
@@ -302,13 +302,62 @@ dead bodies with a handful of fighters still standing, which is a different and 
 the raw figure suggested. The real combatant count is 889, and the densest map is still
 `Crossroads Siege` at 472 with 18 corpses.
 
+### Tier 2 - the two quests that did not exist (built)
+
+`Find Galileo and DaVinci.Quest.txt` shipped with a **blank `Name=`** and `Item Count=0`: the file was
+created and never written. `Pursue the retreating English forces and recover the True Cross.Quest.txt`
+has a name -- `Pursue the Retreating Druid Forces and Recover the True Cross` -- and no states either.
+Neither was referenced by any map or dialogue tree in the game, so the act announced one objective and
+silently dropped the two that frame it.
+
+Both have a state now, and both are driven from places the act can actually reach:
+
+| quest | begins | ends |
+|---|---|---|
+| Find Galileo and DaVinci | the blacksmith, asked where the two inventors went | `8 Alamut/08 Final Encounter`, at `Galileo Generator` |
+| Pursue the Retreating Druid Forces | arriving at `Crossroads to England map`, which is what the Druids are retreating through | the same map, at `Cross Regret for Player generator` -- the part that hands the player the `TRUE CROSS` |
+
+**The blacksmith is the right man to ask**, and he was already there: his post-siege conversation has
+three recorded voice-overs and opens by asking the player what they are doing indoors while the city
+burns. He now also answers what happened to the two men who used to buy his work:
+
+> Gone, my friend. <He puts the hammer down, which he has not done since you came in.> The Druids came
+> up that street with a list, and they did not stop to sack either workshop -- they went in, they took
+> the two of them, and they went out the west gate with them walking. Men do not carry off a glassmaker
+> and a painter unless somebody has told them what those two can build.
+
+**Both completions land where the game already put the pieces.** `08 Final Encounter` spawns
+`Galileo Generator` and `DaVinci Generator` live and holds the only `TRUE CROSS` in the game. Reaching
+two acts ahead is worth flagging: when act 8 is surveyed these hooks may want moving, but a quest that
+completes somewhere is better than a quest with no states at all.
+
+**One state each, not two.** The first draft gave both quests a second state describing what the player
+learns at the English shrine -- and Gate 0 rejected it, correctly: *"state 'BA2FINDG' is never activated
+-- the quest can be offered but never starts."* Activating a second state means an act-7 hook, and act 7
+is not surveyed. One state matches what the act's own working quest does.
+
+### And the front half of the True Cross thread, which is act 1's
+
+Inquisitor Raphael's tree in **act 1** carries the lines this quest was written for, and neither is
+reached by anything or opened by any map:
+
+- `320 chapter 2 mission`: *"Unknown enemies have attempted to steal the True Cross and other sacred
+  relics. I would like you to accompany me to the Cathedral..."*
+- `350 cross stolen`: *"They have stolen the True Cross from the Cathedral! You must not let them get
+  away! They are retreating to the west. Hurry!"*
+
+Raphael's tree drives dozens of quests and **not one of them is about the Cross**, and the only True
+Cross quest file in the game is act 6's. So the theft, the pursuit and the recovery were written as one
+thread across acts 1, 6 and 8, and only the item at the far end was ever wired. The act-1 half is
+released content and wants its own tier rather than a quiet edit here.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The silence.**~~ **Built** -- see above. The reserve waves `fight2` and `fight4`, whose
    `activate fightN` relays are live and called by nothing, are a separate question and deliberately
    untouched: the Gate District already fields 249 combatants.
-2. **The two quests that do not exist.** States and wiring for `Find Galileo and DaVinci` and the
-   pursuit of the True Cross, which is also the hand-off to act 7.
+2. ~~**The two quests that do not exist.**~~ **Built** -- one state each, begun in act 6 and completed
+   at act 8's final encounter. Raphael's act-1 half of the same thread is still open.
 3. **`Crossroads Siege`.** 490 spawners and not one voice. It needs what the Misc Crypts got in 0.16.0:
    something to say what the place is, and something to do besides kill.
 4. **The child-killer reaction, restored from the peacetime original** -- a port rather than an

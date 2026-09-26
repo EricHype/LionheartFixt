@@ -1,0 +1,14 @@
+CQuestDefinition
+{
+	Name=Pursue the Retreating Druid Forces and Recover the True Cross
+	States=Array
+	{
+		Item Count=1
+		State=CQuestStateDefinition
+		{
+			Text=The Druid force is falling back west through the crossroads, and the True Cross is going with them. Follow it.
+			ID=BA1CROSS
+		}
+	}
+	Sub-Quest of=!None
+}

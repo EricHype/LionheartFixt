@@ -1,0 +1,78 @@
+CDialogTree
+{
+Name=Blacksmith
+Portrait=Dialog/NPC Portraits/BlackSmith
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=You have returned in dark times, my friend. Ahhh...I cannot believe what is happening to our fair Barcelona! Blisters cover my hands, but we cannot surrender! What are you doing in here and not defending the city?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I came in here to get some supplies to keep fighting!
+Go to node ID=10 vendor
+
+Requirement=!None
+Reply Text=Where are Galileo and Leonardo? Their workshops are open to the street.
+Go to node ID=20 the two of them
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I dont know. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return
+Text=What do you need now?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I need more supplies to keep fighting!
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Blacksmith
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Nothing. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 vendor
+Text=My stock is limited, as I have given most of what I had to the city guard...but there are still a few items left. Choose quickly and rejoin the battle!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Blacksmith
+After Closed Action=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 the two of them
+Text=Gone, my friend. <He puts the hammer down, which he has not done since you came in.> The Druids came up that street with a list, and they did not stop to sack either workshop -- they went in, they took the two of them, and they went out the west gate with them walking. Men do not carry off a glassmaker and a painter unless somebody has told them what those two can build. Find them before whoever wrote that list gets what he asked for.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will find them.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/6 Barcelona Attack/Quests/Find Galileo and DaVinci
+State=BA1FINDG
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I came in here to get some supplies to keep fighting!
+Go to node ID=10 vendor
+}
