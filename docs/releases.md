@@ -203,25 +203,73 @@ This is restoration, not rebalancing, and it goes first because it is the compla
 | `Monster Cans/English Enemies/Priestess` | `Priestess` | **nowhere, anywhere in the game** |
 | `Monster Cans/English Enemies/Priestess Tough` | `Priestess Tough` | **nowhere** |
 | `Monster Cans/English Enemies/Priestess Super` | `Priestess Super` | **nowhere** |
-| `Levels/7 English Shrine/Character Templates/Knight Templar` | `Knight Templar 3` | **nowhere** |
 
 Read what that list means. The act is the **English Shrine**; its enemy faction is the **Druids**; the one
 line a rank-and-file enemy speaks is `DruidCan1`'s *"Intruder! You won't stop us from awakening the
 dragon!"* -- and **the `Druid` template is placed nowhere, so every druid in the act is a generic English
 soldier.** Worse, the act's boss, `Druid Master`, has the race **`Priestess Super`** -- she is a
 priestess -- and all three Priestess templates are unfielded, so the order she leads does not appear in
-its own shrine. `Knight Templar` completes it on the allied side, where Sir Roger fights alone.
+its own shrine. (`Levels/7 English Shrine/Character Templates/Knight Templar`, race `Knight Templar 3`, is
+also placed nowhere; it is spent on the allied side in tier 2 rather than here.)
 
 Following the 0.17.0 pattern, these go in by twinning existing Soldier generators so every new enemy
 stands where the game already spawns one, and it is a **swap, not an addition**: the tester prefers variety
 over thinning, and this raises variety without raising the count.
 
-**2. Something to do in eleven rooms of fighting.** The Inner Sanctum first, since the act ends there and
-currently ends in silence. Then the Meditation Chambers, which are named for contemplation and contain
+**2. The Templars' help becomes substantial: a quartermaster and a field surgeon.** Designed with the
+tester 2026-09-26; decisions below are theirs, not defaults.
+
+What the alliance currently amounts to is **three knights and Sir Roger** -- each of the three
+`Templar Generator` parts spawns exactly one `Cathedral knight Guard`. And **act 7 has no merchant on any
+of its eleven maps**, with 2, 8, 1 and 7 potion references on the first four and almost none after, so a
+player who runs dry in the Stone Chamber has eight maps to go and no way to restock. Sir Roger's own
+acceptance line already promises more than the act delivers: *"Superb! Together we shall vanquish the
+heretics. **My men will spread out and clear the area** while we proceed."*
+
+**Two posts**, at the two ends of the act's spine. The graph is `02 -> 03 -> 04`, with `05` looping back to
+both and holding the exit to Alamut, and every side chamber returning to the spine (`06`->02, `07`/`08`->03,
+`09`/`10`->04). A post on `02 Temple Initiate` and a second on `04 Antechamber of Lore` leaves the player
+never more than one map from resupply, including from the Inner Sanctum and the Secret Chamber.
+
+The `02` post goes on ground the map itself proves walkable: the Templars already cluster at
+2669-3137 x 1099-1494, the player arrives at `Start Here` 2531,1013, `Accept Templars Help XP` sits at
+2886,1256, Sir Roger at 2919,1476, and the map's own non-interactive sequence walks templars to 2975,1493,
+3137,1402 and 3091,1494.
+
+**Both staff are the act's own unplaced `Knight Templar` template**, so the bodies are restored rather than
+invented. Both services are copies of shipped mechanisms:
+
+| piece | precedent |
+|---|---|
+| the shop | `CMerchantAI{Display Name, Items}` on its own entity, opened by `CDisplayMerchantWindowAction{Merchant=...}` on a reply. The Herbalist already carries a **`Templar and Inquisition Inventory`** in four tiers (30/25/20/15 items); `Inquisitor Fournier` in Montaillou's church is the "a church sells things" model |
+| the healing | `CGiveHealthToCharacterAction` targets `$instigator` **30 times** in the shipped game -- five in `Inquisitoragent.DialogTree`, three in `dreamdjinn`, nine on `02 Thieves Congregation`. Full heal is the `CSubtract{max HP - current}` form used on Farshad |
+| the fee | `CHasMoneyAction` (170 uses) and `CTakeMoneyAction` (106) |
+| the guards' voice | **`EnglishKnightTemplarCan1.DialogTree`** -- *"My sword is yours."* -- the one tree in the act that nothing opens, given to the knights standing at the post |
+
+**The surgeon heals free for a knight, and charges everyone else.** `Templar IS` or `Saladin IS` pays
+nothing -- they are orders of knights and he treats them as brothers. Everyone else pays, **including a
+sworn Inquisitor**: the Inquisition is Spanish and ecclesiastical, not his brotherhood, and making that
+distinction is more interesting than one blanket faction check. Sir Roger already reads all three orders
+across seven nodes, so the vocabulary exists.
+
+**The quartermaster's stock improves in tiers, and one of them reaches back six acts.** Quinn the
+herbalist's reserve is chosen by three `CIsQuestCompletedAction` checks -- *Wolf Pelts for Quinn*,
+*Wasp Stingers for Quinn*, *Troll Hide for Quinn* -- which is 0.4.0's own work, and **quest completion is
+global state readable from any map with no cross-map flag to mirror.** So the Templars stock the healing
+potions those errands unlocked, gated on the same three checks Quinn uses: run his errands in act 1 and the
+Order is still selling what you unlocked in act 7. A second axis raises the stock once the shrine's inner
+chambers fall, giving three windows in all, exactly as Quinn has three.
+
+**And the whole post is gated on having accepted Sir Roger's help.** Refuse him -- *"I am not interested in
+help from any Englishman"* -- and there is no camp, no shop and no surgeon. That reply currently costs the
+player nothing at all; this is the first time it costs something.
+
+**3. Something else to do in eleven rooms of fighting.** The Inner Sanctum first, since the act ends there
+and currently ends in silence. Then the Meditation Chambers, which are named for contemplation and contain
 golems. The Crypt's four Misc Crypts and act 6's `Crossroads Siege` are the pattern: say what the place is,
 and give one lever per room that is not a sword.
 
-**3. Captain Isabella never arrives at the shrine, and act 1 already wired two ways she might not.**
+**4. Captain Isabella never arrives at the shrine, and act 1 already wired two ways she might not.**
 `01 Outside Shrine` is the landing beach, and it carries `Captain Isabella generator` (`Active=0`, nothing
 activates it) and `Captain Isabella fled`. The **"fled" part is activated**, by `COtherMapAction` reaching
 into this map from two act-1 nodes:
@@ -236,7 +284,7 @@ her generator is off and nothing switches it on, so the captain who sails you to
 you parted as allies or not. Her generator has no `New Name=` and no dialogue tree, so switching her on is
 restoration and giving her something to say at the beach is new writing; the tier should say which is which.
 
-**4. Sir Roger's five combat barks.** `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
+**5. Sir Roger's five combat barks.** `100`-`104 Random Attack Ballon` -- *"For England!"*, *"For The
 Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* -- reached by nothing and opened by
 nothing. He is a companion (`CSetCompanionAction`), so these are his fighting lines, and the act already
 runs three `CShuffledSeriesAction` doing exactly this for the generic templars' eight bubbles.
@@ -250,6 +298,10 @@ runs three `CShuffledSeriesAction` doing exactly this for the generic templars' 
   case-folded, comma-split and run against every activation in the game.
 - `Find All 5 Green Crystals.DialogTree` looked like an orphaned reward. It lives under act 8 and is opened
   twice -- from `09 Secret Chamber` here and `02 Shifting Dunes` in act 8. It works.
+
+`EnglishKnightTemplarCan1.DialogTree` was also listed as a candidate to leave alone, as possibly Sir
+Roger's superseded draft. The tester's call is to spend it on the camp's guards instead, which is the
+better use: it is shipped writing, and the alternative was leaving the act's one unopened tree unopened.
 
 ### Read and deliberately left alone
 
