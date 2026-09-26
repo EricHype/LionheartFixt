@@ -1484,6 +1484,14 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | BA11 | Reach `8 Alamut/08 Final Encounter` and find Galileo | - | **Find Galileo and DaVinci** completes |
 | BA12 | The same, when the `TRUE CROSS` is handed to you | - | **Pursue the Retreating Druid Forces** completes. **These hooks reach two acts ahead of the release and may move when act 8 is surveyed** |
 | BA13 | Ask the blacksmith for supplies as before | - | His vendor path is unchanged, and his three recorded voice-over lines still play |
+| BA14 | **A save that has never entered act 6.** Cross from `Gate District Siege` into `Crossroads Siege` | - | About a second after landing: *"The crossroads is not a crossroads any more..."* **This map had no balloon, no conversation and no dialogue tree at all** |
+| BA15 | Walk to the middle of the field, around 2500,1000 | - | *"Somebody has driven a standard into the stones at the centre of it..."* Once only |
+| BA16 | Reach the road to England at the western end | - | *"The road west, and the ruts in it are fresh..."* |
+| BA17 | BA16 **without** having asked the blacksmith (BA7) | - | The plain line, and no XP. The evidence is what the blacksmith's answer turns the ruts into |
+| BA18 | BA16 **after** BA7, with *Find Galileo and DaVinci* active | - | The longer line -- the cracked lens and the wax tablet -- and **1500 XP, once** |
+| BA19 | Walk back over the western end again | - | No repeat and no second payment |
+| BA20 | Fight anywhere on the map for a minute | - | English soldiers shout: *"Press forward, men!"*, *"Attack! For England!"*, *"For the Queen!"* Six of the thirty-four generators are armed |
+| BA21 | Compare the volume against `Gate District Siege` (BA4) | - | Similar. This map has no defenders, so only the English are heard |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
-**Surveyed 2026-09-25. Tiers 1 and 2 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+**Surveyed 2026-09-25. Tiers 1, 2 and 3 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
 parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
 | map | parts | live spawners | conversations | balloons | MB |
@@ -351,6 +351,43 @@ Cross quest file in the game is act 6's. So the theft, the pursuit and the recov
 thread across acts 1, 6 and 8, and only the item at the far end was ever wired. The act-1 half is
 released content and wants its own tier rather than a quiet edit here.
 
+### Tier 3 - the crossroads says what it is, and the road remembers the column (built)
+
+`Crossroads Siege` is 910 parts and **472 live combatants** -- four times the Crypt's Doomed Plateau,
+the densest map in the project -- with **no conversation, no balloon and no dialogue tree**. It is also
+the purest battlefield in the act: twenty `English BIG PILE Generator` parts, fourteen
+`English Archer Generator`, two priests, a fire golem, two cold war golems and a pair of wolves, strung
+along a corridor from the Gate District arrival at 3253,1631 to the road to England at 892,1561, with
+the crowds heaviest at the western end.
+
+**The field speaks**, on the pattern the Misc Crypts got in 0.16.0 -- three narration lines along the
+corridor, each on ground the map already proves walkable:
+
+| where | from | says |
+|---|---|---|
+| arriving from the city | the `From Gate District` spawn point | *"The crossroads is not a crossroads any more. The English have put an army across it the way you would put a hand across a doorway, and the road west -- the only road west -- runs out from under the middle of them."* |
+| the centre | a polygon on the peacetime `Assasin goto point3` marker | *"Somebody has driven a standard into the stones at the centre of it, and the men around the standard are not watching Barcelona at all. They are facing west, waiting to be told to move."* |
+| the road out | a polygon on the England exit, which the player has to stand on to leave | *"The road west, and the ruts in it are fresh. An army came through here going the other way not long ago, and everything it did not want is still lying where it was dropped."* |
+
+**The army speaks.** `Attackers dialog balloons` exists on both district maps and **not on this one** --
+the map the English army is actually on. It is ported here and driven by timers on six of the
+thirty-four English generators, exactly as tier 1 does it.
+
+**And the road remembers the column.** Tier 2 has the blacksmith say that Galileo and Leonardo were
+marched out the west gate walking, with a guard who had a list. *This is that road.* With
+`Find Galileo and DaVinci` active, the line at the western end becomes the evidence instead:
+
+> The road west, and the ruts in it are fresh. In the churned mud at the verge there is a cracked lens,
+> ground finer than any glazier in Barcelona could manage, and beside it a wax tablet pressed with a hand
+> you have watched draw. Two men went down this road with a guard who had a list, and they left the only
+> message they were able to leave.
+
+It pays 1500 XP, once, for having looked -- on the `CGiveExperiencePointsToAllPlayersAction` canned
+object the Crypt's doomed knights already use. A player without the quest gets the plain line and no
+reward, which is the right way round: the blacksmith is what turns ruts into evidence.
+
+The map goes from 0 balloons and 0 trees to 11 and 2, for 8 KB.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The silence.**~~ **Built** -- see above. The reserve waves `fight2` and `fight4`, whose
@@ -358,8 +395,8 @@ released content and wants its own tier rather than a quiet edit here.
    untouched: the Gate District already fields 249 combatants.
 2. ~~**The two quests that do not exist.**~~ **Built** -- one state each, begun in act 6 and completed
    at act 8's final encounter. Raphael's act-1 half of the same thread is still open.
-3. **`Crossroads Siege`.** 490 spawners and not one voice. It needs what the Misc Crypts got in 0.16.0:
-   something to say what the place is, and something to do besides kill.
+3. ~~**`Crossroads Siege`.**~~ **Built** -- three narration lines, the army's seven barks ported in,
+   and the trail of the column for a player who asked the blacksmith first.
 4. **The child-killer reaction, restored from the peacetime original** -- a port rather than an
    invention, since act 1 has 33 working references to copy from.
 5. **The shy girl with no speaker, and the two death lines**, including the man who tries to give the
