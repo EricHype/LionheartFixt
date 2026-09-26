@@ -1505,6 +1505,8 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 | ES46 | With Grace as a companion, fight for a minute | - | She shouts *"For Ireland."*, *"We cannot fail."*, *"I need healing!"* **Never played in vanilla** |
 | ES47 | Let her drop below about 60% health, then below 25% | - | *"I require aid!"* then *"I will not survive much longer...Help me!"* -- **both are recorded lines that had no trigger** |
 | ES48 | With Sir Roger along, fight for a minute | - | *"For England!"*, *"For The Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* Five authored barks, opened by nothing in vanilla |
+| ES48a | With Grace as a companion, let her take a real fight | - | **She should survive it.** Her act-1 template is HP 36 / AC 90, below every enemy in act 7; act 7 spawns her on a companion race at HP 165 / AC 190 |
+| ES48b | Kill Captain Isabella in the act-1 Port District | - | Unchanged -- still HP 36. The act-7 template is separate so act 1's balance is untouched |
 | ES49 | Take a companion through a map transition and keep fighting | - | Barks still play. They ride on the character's own AI list, not a relay belonging to one map |
 | ES50 | Talk to Grace while she is a companion | - | *"Are you ready to continue our quest?"* -- **and you should now hear it**, because the node was renamed back to match its recording |
 | ES51 | Tell her *"Wait here. I will come back for you."* | - | *"If that is your desire. I will await your return here."* She stops following |

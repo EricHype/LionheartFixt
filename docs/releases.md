@@ -714,6 +714,30 @@ replies at all**, so the two player lines there are the only new writing in this
 **Both companions' trees now have zero orphan nodes**, which is where act 7 finishes: Sir Roger's 17 nodes and
 Captain Isabella's 46 are all reachable.
 
+### What a review pass found after all six tiers were built
+
+Two defects, both **semantic rather than structural** -- which is why six rounds of per-tier auditing missed
+them. Every tier audit asked "does it round-trip, is the node reachable, did any vanilla action get lost".
+Neither question catches an action that is well-formed and means the wrong thing.
+
+**Grace could not have survived a single fight.** Her template `Port Ship Captain` uses the race `Sailor`:
+**HP 36, AC 90.** Act 7's *weakest* rank-and-file enemy is `Soldier1` at HP 75 / AC 230, and the act's other
+companion, Sir Roger, is HP 200 / AC 200. She would have died in seconds, which would have made the whole arc
+-- the barks, the health thresholds, the romance -- unreachable in play. Her act-1 self has to stay at HP 36,
+because the player can kill her in the Port District and that is act 1's balance, so act 7 gets **its own
+template on its own race**: `Levels/7 English Shrine/Character Templates/Grace OMalley` on
+`Races/NPCs/Grace OMalley` -- **HP 165, AC 190, Melee 110, Evasion 55.** Under Sir Roger, over the rank and
+file, and a blade rather than a knight's wall.
+
+**And the release did nothing.** "Wait here. I will come back for you." used `CSetCompanionAction` with an
+empty `Companion=`. **No shipped use of that action has an empty Companion** -- all sixty-two name someone --
+and the engine's dismiss action is `CReleaseCompanionAction{Companion To Release=<name>}`, used forty times.
+That is what the reply does now.
+
+Both are the same lesson as the cameras earlier in the act: **check what a working example of the mechanism
+does before assuming a field means what it reads like.** A sweep of every action class this release writes
+against vanilla's own usage turned up no others -- and no class used here is absent from the shipped game.
+
 ### Two other findings I had to withdraw
 
 - The first sweep reported **two dead 24-soldier ambushes** and a **dead second `Secret Area1`**. All three
