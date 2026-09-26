@@ -619,6 +619,53 @@ Gate 0 caught one invented path on the way: the first draft pointed at
 `Character Templates/**Port District**/Port Ship Captain`, and the template is at
 `Character Templates/Port Ship Captain` -- the path the beach's own inactive generator already used.
 
+### The beat act 1 was missing, added on the tester's call
+
+Her act-1 arc is political and confessional throughout -- the accusation, the real name, the grievance about
+England's navy -- and the only warmth in it is one line: *"You could have turned me in, but you chose to
+listen to me. I will not forget your kindness."* Act 7 then opens with **"My love, know that my blade and my
+heart are yours"**, which is a long way to travel on one remembered kindness. The tester's call was to build
+the beat rather than leave the jump or soften her, and to make it the prerequisite.
+
+**`350 grace relieved` is reached by two replies, not one:** *"You have persuaded me to silence."* and the
+`<Lie>` variant. The truthful one activates `JMBN5402` and completes the quest; the lie activates
+`26K1T1IB`. Its single "continue" reply had **no destination at all**, so it now leads to the beat -- which
+plays for both, because a woman opening up to someone who is deceiving her is better than skipping it -- and
+**the reply that answers her is gated on `JMBN5402`.** A liar hears it and cannot reply in kind.
+
+> <She turns away and busies her hands with a rope that does not need coiling.> Two years I have been
+> Isabella. Two years of being careful in a language that is not mine, and in all that time not one person
+> has asked me why -- they only ever asked me whether. You asked why. <The rope goes down, and when she looks
+> back the captain has gone out of her face and something a good deal less careful has come into it.> I have
+> sunk ships over smaller kindnesses than that.
+
+Answer *"Then I will hope to see the ship and not the sinking"* and she gives you her name and the line that
+sets up the whole of act 7:
+
+> Grace, then. Not Captain, and not Isabella. Grace. <She says the name as though handing you something
+> breakable.> The Armada sails within the month and I sail with it, so this is a poor harbour for hoping in.
+> But **if the sea ever gives me back to you somewhere that is not Barcelona**, I will remember which of us
+> listened first.
+
+Decline, either warmly or coldly, and `380 grace steady` puts the captain back in her face: *"You have my
+thanks, which is not nothing from me, and you have my silence about your having had it."*
+
+`Perks/!Event Title Perks/Graces Regard.Perk` records it -- in the title folder rather than
+`!NPC or Event Given Perks`, because **every perk in that folder carries a mechanical effect** and this one
+carries none. It is a reputation, like `Beggar Friend` and `Servant of the Queen`.
+
+**Act 7 then requires it for the romantic acceptance only**, on both `502 arrive in england grace relived 2`
+and `503 druids`. Her own declaration is left exactly as recorded -- she is voiced, and a woman just
+shipwrecked and found by the one person who ever listened to her is allowed to be forward. What the perk
+gates is whether the *player* can answer in kind. Without it the two remaining routes are the sword without
+the heart, and refusal.
+
+**And the arc was recorded, which is worth stating plainly:** 38 VO files for 43 nodes, and the England branch
+is among them -- `502 grace joined romantic`, `502 grace companion near death`, `hurting`, `left behind`,
+`503 druids`. Voice acting is the most expensive thing in a game of this era, so this was **cut at the wiring
+stage, not abandoned in draft**. Two VO files also have no matching node (`502 grace joined companion`, and
+`502 grace companion asked to return` against the tree's *asks*), which is a late rename; tier 6 handles it.
+
 **Seven orphans remain in her tree**, and they are all companion-state lines: `rejoined companion`,
 `companion left behind`, `near death`, `hurting`, and `600 wild add 1/2/3`. Those are the same shape as Sir
 Roger's own unwired barks, so tier 6 does both in one pass.

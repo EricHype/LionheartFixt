@@ -1324,7 +1324,7 @@ Should Have Voiceover=1
 
 Requirement=!None
 Reply Text=
-Go to node ID=
+Go to node ID=360 grace touched
 Custom Action=CActivateAction
 {
 Target Name=change your mind about isabella pass
@@ -1367,6 +1367,14 @@ Go to node ID=503 druids
 Action work in progress=(add npc)
 
 Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Graces Regard
+}
+}
 Reply Text=My dear, your companionship is most welcome.
 Go to node ID=502 grace joined romantic
 Custom Action=CMultipleActionsAction
@@ -1461,6 +1469,14 @@ Go to node ID=503 druids
 Action work in progress=(add npc)
 
 Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Graces Regard
+}
+}
 Reply Text=My dear, your companionship is most welcome.
 Go to node ID=502 grace joined romantic
 Custom Action=CMultipleActionsAction
@@ -1580,4 +1596,53 @@ Should Have Voiceover=0
 Node ID=3000 admits guilt and leaves
 Text=I will now go to turn myself over to the guards. Tell my crew that I wish them luck.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=360 grace touched
+Text=<She turns away and busies her hands with a rope that does not need coiling.> Two years I have been Isabella. Two years of being careful in a language that is not mine, and in all that time not one person has asked me why -- they only ever asked me whether. You asked why. <The rope goes down, and when she looks back the captain has gone out of her face and something a good deal less careful has come into it.> I have sunk ships over smaller kindnesses than that.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+State=JMBN5402
+}
+}
+Reply Text=Then I will hope to see the ship and not the sinking.
+Go to node ID=370 grace pleased
+Custom Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Graces Regard
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Your reasons were enough. Keep your secret and your ship.
+Go to node ID=380 grace steady
+
+Requirement=!None
+Reply Text=Do not make more of it than it was.
+Go to node ID=380 grace steady
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=370 grace pleased
+Text=<That is a real laugh, and it is the first thing about her that has not been Spanish.> Grace, then. Not Captain, and not Isabella. Grace. <She says the name as though handing you something breakable.> The Armada sails within the month and I sail with it, so this is a poor harbour for hoping in. But if the sea ever gives me back to you somewhere that is not Barcelona, I will remember which of us listened first.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then mind the sea.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=380 grace steady
+Text=<The captain comes back into her face, and she is the better for it.> As you like. You have my thanks, which is not nothing from me, and you have my silence about your having had it. Fair winds to you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Fair winds.
+Go to node ID=
+Is Default Reply=1
 }

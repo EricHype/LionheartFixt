@@ -1,0 +1,26 @@
+CCharacterPerk
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Display Name=Grace's Regard
+	Description=TITLE PERK: Grace O'Malley told you her true name in the Port District, and you gave her more than your silence.
+	Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsGreaterThanOrEqual
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Number of ranks=1
+}

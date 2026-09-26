@@ -1491,7 +1491,12 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 | ES37 | **In act 1**, accuse Captain Isabella, hear her out, and choose *"You have persuaded me to silence."* (not the `<Lie>` variant) | - | The Morales quest completes at state `JMBN5402` and she says *"I will not forget your kindness."* |
 | ES38 | **A save that has never entered act 7.** After ES37, land at `01 Outside Shrine` | - | **Grace is on the beach at 505,639**: *"You have found me! First you spared me in Barcelona and now you have come so far to rescue me."* Her generator shipped inactive, unnamed and with no AI |
 | ES39 | Ask her about the druids | - | *"Once they fought the English with us, but now they have formed an alliance with the Queen."* **The shipped text saying what Sir Roger says in tier 3** |
-| ES40 | Accept her with *"My dear, your companionship is most welcome."* | - | *"Together we cannot fail. My heart and my sword are yours!"* and **she joins as a companion** |
+| ES39a | **In act 1**, after ES37, let her finish -- there is a new beat after *"I will not forget your kindness"* | - | *"Two years of being careful in a language that is not mine, and in all that time not one person has asked me why."* **Her continue reply had no destination at all in vanilla** |
+| ES39b | Answer *"Then I will hope to see the ship and not the sinking."* | - | She gives you her name -- *"Grace, then. Not Captain, and not Isabella."* -- and **Grace's Regard** appears among your titles |
+| ES39c | Decline instead, warmly or coldly | - | *"You have my thanks, which is not nothing from me."* No title |
+| ES39d | Take the `<Lie>` route at *"You have persuaded me to silence."* | - | The beat still plays -- she opens up to someone deceiving her -- but **the reply that answers her is not offered** |
+| ES40 | With **Grace's Regard**, accept her in act 7 with *"My dear, your companionship is most welcome."* | - | *"Together we cannot fail. My heart and my sword are yours!"* and **she joins as a companion** |
+| ES40a | **Without** Grace's Regard, check her act-7 replies | - | The romantic acceptance is **not offered**. She still declares herself -- she is voiced and that line is hers -- but the routes left are the sword without the heart, and refusal |
 | ES41 | Accept with *"Your sword is welcome, but I have no use for your heart."* | - | *"I will honor it, and serve you not for love, but for duty."* She joins anyway |
 | ES42 | Refuse with *"Sorry, I work alone."* | - | *"Do not worry - we will not cross paths again."* No companion |
 | ES43 | Instead reach act 7 having **driven her off or turned her in to the Duke** | - | **She is not on the beach at all.** The shipped `Captain Isabella fled` checker is what act 1 sets in both cases |
