@@ -1514,6 +1514,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | BA40 | On `Temple District Siege`, walk the length of the map using bodies | - | Six of them speak, three Spanish and three English, spread west to east. **Vanilla had 62 bodies and zero talkable ones on this map** |
 | BA41 | The dying Spaniard on the Temple District | - | Also pays 250, once |
 | BA42 | Re-use any body that has already spoken | - | Nothing. Each specifier is once-only, and no second payment |
+| BA43 | **A save that has never entered act 6**, carrying the Clover from the Port District Irish sailor. Talk to Surrey O'Connell | - | A new reply offering the clover. He stops grovelling and tells you to take what you need off the Regent's pile |
+| BA44 | BA43, then open the Regent's chest | - | **No shout, no guards, and Surrey stays friendly.** In vanilla only Sneak 100 avoided the alarm |
+| BA45 | The same without the clover and without Sneak 100 | - | He shouts *"That's the Regent's loot!"*, the `chest guards generator` wakes and he turns on you -- unchanged |
+| BA46 | As a sworn Inquisitor, talk to Surrey | - | *"The Spanish -- no. No, guvna', I never --"* and the same look-away |
+| BA47 | Without either, check the reply list | - | Neither new reply is offered. His PE 8 and Speech 70 routes are untouched |
+| BA48 | As a Templar, then as an Inquisitor, talk to the blacksmith | - | Both get `30 the orders` -- what the two orders lost in the district |
+| BA49 | As a Feralkin or Sylvant, talk to the blacksmith | - | `40 no flinching`. He has no attention left for a tainted face today |
+| BA50 | Holding **Slayer of Innocents** (BA22), talk to the blacksmith | - | `50 the reports`. He sells to you and tells you not to come back after the city is standing |
+| BA51 | As a plain human with no order and no title | - | None of the three appear, and his vanilla replies are unchanged |
+| BA52 | Enter `Church Crypt Interior Siege` and look around | - | Hover lines for the room and for one slab in the wall. **This map had thirteen parts and nothing to do** |
+| BA53 | Walk toward the chest at 560,600 without any Traps skill | - | Poison gas, 25-40, once |
+| BA54 | The same with Traps/Perception enough to spot it (`Skill Adjustment=10`) | - | The trap is revealed and can be disarmed at Lockpick 40 |
+| BA55 | Open the chest behind it | - | Locked at -40. The sacristan's plate |
+| BA56 | Use the dead guard on the stair | - | A line about his sword and which way his feet are pointing |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

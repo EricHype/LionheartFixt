@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
-**Surveyed 2026-09-25. Tiers 1 through 5 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+**Surveyed 2026-09-25. All six tiers built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
 parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
 | map | parts | live spawners | conversations | balloons | MB |
@@ -507,6 +507,54 @@ single node of this tree, its arrival bark, and has zero talkable parts. Six of 
 now, each matched to its side: three Spanish and three English, spread west to east rather than
 clustered, and its dying Spaniard pays the same 250.
 
+### Tier 6 - the act learns to read you, and the crypt stops being an empty room (built)
+
+Across eight maps act 6 read the player **three times**: `PE 8+` and `Speech moreequal 70` on Surrey
+O'Connell, and a `Sneak < 100` check on the chest he is guarding. Nothing else in the act looked at who
+was standing there -- not the blacksmith's eight replies, not one node of the other seven trees. And
+across eight maps there was **not one trap, not one secret and not one locked container** besides that
+same chest.
+
+**Surrey O'Connell** is the act's one negotiation and its best-written character: an Irish supplies
+master pressed into feeding the army that took his country, who opens by grovelling, calls himself
+*"happy I am to serve the English"*, and begs not to be sent to the Spanish Inquisition. Two things he
+says out loud are levers the act never pulled.
+
+| lever | who has it | what he does |
+|---|---|---|
+| the **Clover from the drowned fields of Ireland**, which the Irish sailor in the Port District hands over in 0.9.1 | anyone who took it | the performance stops -- *"Drowned. The whole of it drowned, and I am out here weighin' out bolts for the men that let it."* |
+| **the Holy Office** | a sworn Inquisitor | *"I said it as a manner of speakin', it is a thing a man says!"* -- and the strap is already off the nearest crate |
+
+Either one and he looks the other way. `Surrey looks away` is a checker, and `Open Chest of Surrey` --
+the relay that makes him shout `150 Open Chest`, wake the `chest guards generator` and turn on the player
+-- now guards on `CAndAction[Surrey is alive, NOT Surrey looks away]`. That is **two new routes past the
+act's one guarded prize**, beside the Sneak 100 vanilla shipped, and they cost the player nothing but
+having listened to an Irishman in a bar two acts ago.
+
+**The blacksmith** gets three reads on the conversation that had none:
+
+- `Templar IS` / `Inquisitor IS` -- *"The Temple put twenty at the Gate and the Holy Office put its own at
+  the Temple crossing, and both lines held until the golems came up the street, and then neither of them
+  did. I shod horses for half those men."*
+- `Tainted race - feralkin or sylvant` -- *"This morning I watched a thing made out of ice walk through
+  the front of the Alvarez house with the family still in it. You are a man with a face."*
+- **Slayer of Innocents**, reaching back to tier 4 -- he has heard the reports, weighs the hammer, sets it
+  aside, and sells to you anyway: *"Do not come back after the city is standing."*
+
+**And the Church Crypt** was the emptiest map in the project: thirteen parts -- three wall pieces, a
+lamp, a broken door, one dead city guard, and nothing else at all. It gets the act's **first secret,
+first trap, first hidden lock and first voice**: one slab in the wall newer than the rest, grey mortar
+where everything else is black, put in from this side by somebody who knew the English were on the road;
+behind it the sacristan's plate in a chest at `Lock Pick Adjustment=-40`; and poison gas on the slab at
+`Skill Adjustment=10`, so a thief can see it coming and a Lockpick 40 can take it out. The guard on the
+stair can be looked at, with his sword still in his hand and his feet toward the stair.
+
+Both the trap and the chest are **sliced out of working parts** -- the poison gas trap from
+`2 Retreat of Souls` and the locked chest from `9 Burial Chamber` -- then repositioned and retuned,
+rather than authored from scratch. Gate 0 caught the two things that were authored: `Requirement=` takes
+a can's **basename** as vanilla writes it (`Templar IS`, not a lowercase path), and every `Requirement=`
+needs a blank line in front of it.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The silence.**~~ **Built** -- see above. The reserve waves `fight2` and `fight4`, whose
@@ -522,7 +570,9 @@ clustered, and its dying Spaniard pays the same 250.
 5. ~~**The shy girl with no speaker, and the two death lines.**~~ **Built** -- the witness exists, her
    scream resolves, and it ends in the garrison relay vanilla already wired. Both dying men can be
    heard, the Spaniard hands over his purse, and the Temple District's 62 corpses are no longer mute.
-6. **Reactivity.** Two Speech gates in 28 replies, and no trap, lock or secret anywhere in eight maps.
+6. ~~**Reactivity.**~~ **Built** -- Surrey reads the clover and the Holy Office, the blacksmith reads
+   your order, your face and your reputation, and the Church Crypt gets the act's first secret, trap,
+   lock and voice. **All six tiers of act 6 are built.**
 
 Also from this survey, for a patch rather than this release: **0.14.1** -- `02 Hamlet Burned` carries the
 same three dead defender relays, so Montaillou's burned hamlet is silent for the same reason.

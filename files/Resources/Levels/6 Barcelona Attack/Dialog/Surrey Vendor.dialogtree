@@ -1,0 +1,343 @@
+CDialogTree
+{
+Name=Surrey
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start Male
+Text=Beggin' yer pardon, sir! It must have fallen off the side! I din'na think...who are you?
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 70
+Reply Text=A high ranking officer on inspection! These goods around you are slovenly kept! Why should I not toss you over the side with whatever you lost?!
+Go to node ID=100 Sorry sorry
+Action work in progress=(High Speech skill)
+Icon=Speach Skill Icon
+
+Requirement=PE 8+
+Reply Text=From the look of these crates, I would say you are in charge of army supplies.
+Go to node ID=30 vendor
+Action work in progress=(High Perception)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=The more important question is...who are you?
+Go to node ID=20 Who he is
+
+Requirement=!None
+Reply Text=Your doom. Prepare to die.
+Go to node ID=
+Action work in progress=(Goto combat play 10 fight baloon)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Surrey
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Clover
+}
+}
+Reply Text=<You take out the clover from the drowned fields of Ireland and let him look at it.>
+Go to node ID=200 the clover
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Reply Text=I am of the Holy Office, Surrey. You said the Spanish Inquisition. Say it again.
+Go to node ID=210 the inquisition
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=That doesnt concern you. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Female
+Text=Beggin' yer pardon, miss! It must have fallen off the side! I din'na think...who are you?
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 70
+Reply Text=A high ranking officer on inspection! These goods around you are slovenly kept! Why should I not toss you over the side with whatever you lost?!
+Go to node ID=100 Sorry sorry
+Action work in progress=(High Speech skill)
+Icon=Speach Skill Icon
+
+Requirement=PE 8+
+Reply Text=From the look of these crates, I would say you are in charge of army supplies.
+Go to node ID=30 vendor
+Action work in progress=(High Perception)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=The more important question is...who are you?
+Go to node ID=20 Who he is
+
+Requirement=!None
+Reply Text=Your doom. Prepare to die.
+Go to node ID=
+Action work in progress=(Goto combat play 10 fight baloon)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Surrey
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Clover
+}
+}
+Reply Text=<You take out the clover from the drowned fields of Ireland and let him look at it.>
+Go to node ID=200 the clover
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Reply Text=I am of the Holy Office, Surrey. You said the Spanish Inquisition. Say it again.
+Go to node ID=210 the inquisition
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=That doesnt concern you. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return
+Text=Welcome back. What kin I do fer ya?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Surrey has explained how goods work
+Desired Minimum Count=1
+}
+}
+Reply Text=You control supplies for the army, yes?
+Go to node ID=30 vendor
+Action work in progress=(NOT been explained good system)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Surrey has explained how goods work
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'd like to see your goods.
+Go to node ID=
+Action work in progress=(Show supplies, been explained good system)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Clover
+}
+}
+Reply Text=<You take out the clover from the drowned fields of Ireland and let him look at it.>
+Go to node ID=200 the clover
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Reply Text=I am of the Holy Office, Surrey. You said the Spanish Inquisition. Say it again.
+Go to node ID=210 the inquisition
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Fight baloon
+Text=You'll see what an Irishman kin do!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 Who he is
+Text=Surrey O'Connell, guvna'! Happy I am to serve the English as supplies master in their great triumph! My mission is but to make your life easier, in thanks for the long, hard days of toil I have been lucky enough to endure.  Long live the Queen!
+Should Have Voiceover=0
+
+Requirement=PE 8+
+Reply Text=Your tone sounds sarcastic, Surrey. Ridiculing the Queen warrants a visit to the headsman's axe...
+Go to node ID=100 Sorry sorry
+Action work in progress=(High Perception)
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=That means that you have weapons and things for the army, correct?
+Go to node ID=30 vendor
+
+Requirement=!None
+Reply Text=Your days of toil just got worse. Prepare to die.
+Go to node ID=
+Action work in progress=(Goto combat play 10 fight baloon)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Surrey
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 vendor
+Text=Yes. However, per our arrangement, it's not free. The Supplies Regent made a deal with the army to supply the battle with...I'm sorry, guvna'. I'm just blabbin on 'bout somethin' you know already. Point is, ya got the coin, I have the supplies.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let's see what you have.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Surrey Goods
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Sorry sorry
+Text=Please...dont torture a poor helpless Irish soul...or send me to the Spanish Inquisition with the rest of the prisoners...look, I'll give ya a deal. My Regent would flay me alive if'n he knew this, but I kin fudge the books a bit to give ya some discounts, if you're interested.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Decrease Surry Prices
+}
+Action=CDelayAction
+{
+Next Action=CDisplayMerchantWindowAction
+{
+Merchant=Surrey Goods
+After Closed Action=
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+
+Requirement=!None
+Reply Text="Purchase" goods? I thought you were supplying an army, not charging gold!
+Go to node ID=30 vendor
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Decrease Surry Prices
+}
+
+Requirement=!None
+Reply Text="Discounts"? I will take what I want from your corpse!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Piss off Surrey
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 goodbye
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Decrease Surry Prices
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Random Looking Bubble
+Text=Where is it?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=111 Random Looking Bubble
+Text=Did it roll off the side?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=112 Random Looking Bubble
+Text=I canna' find it!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=113 Random Looking Bubble
+Text=I'll be pushin' daisies fer sure!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=150 Open Chest
+Text=What're ya doin'? That's the Regent's loot! He'll have my head if I lose that! Help! Guards!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 the clover
+Text=<The performance stops. He does not take it, and he does not look away from it either.> Ah. Ah, now. Where did a body like you come by that. <He puts his hands on the crate behind him, and looks west down the road, at nothing.> Drowned. The whole of it drowned, and I am out here weighin' out bolts for the men that let it. Go on then. Take what ye need off the Regent's pile, and Surrey O'Connell never saw a thing, and never heard a lid.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then I will take what I need.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Surrey looks away
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Let me see what is for sale as well.
+Go to node ID=30 vendor
+------------------------------------------------------------
+Node ID=210 the inquisition
+Text=<He goes the colour of the road.> The Spanish -- no. No, guvna', I never -- I said it as a manner of speakin', it is a thing a man says! <He is already unbuckling the strap on the nearest crate.> Ye'll want the Regent's chest, I know ye will, they all want the Regent's chest. It is that one, and the lid is heavier than the lock, and I am a man who sees very little at my age.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then see nothing.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Surrey looks away
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=First, your goods.
+Go to node ID=30 vendor
+}

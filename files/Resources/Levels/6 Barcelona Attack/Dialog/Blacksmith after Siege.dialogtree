@@ -18,6 +18,30 @@ Reply Text=Where are Galileo and Leonardo? Their workshops are open to the stree
 Go to node ID=20 the two of them
 Icon=Quest Icon
 
+Requirement=Templar IS
+Reply Text=I am of the Temple. What has the Order lost in this district?
+Go to node ID=30 the orders
+
+Requirement=Inquisitor IS
+Reply Text=I am of the Holy Office. What has the Inquisition lost in this district?
+Go to node ID=30 the orders
+
+Requirement=Tainted race - feralkin or sylvant
+Reply Text=You have not once looked away from my face. Most do.
+Go to node ID=40 no flinching
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Child Killer
+}
+}
+Reply Text=You have heard what they are saying about me in this district.
+Go to node ID=50 the reports
+
 Requirement=!None
 Reply Text=I dont know. Goodbye.
 Go to node ID=
@@ -75,4 +99,39 @@ Is Default Reply=1
 Requirement=!None
 Reply Text=I came in here to get some supplies to keep fighting!
 Go to node ID=10 vendor
+------------------------------------------------------------
+Node ID=30 the orders
+Text=Men, mostly. <He sets the hammer down flat.> The Temple put twenty at the Gate and the Holy Office put its own at the Temple crossing, and both lines held until the golems came up the street, and then neither of them did. I shod horses for half those men. If your Order is sending more, tell them the street is too narrow for horses now.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will tell them.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I came in here to get some supplies to keep fighting!
+Go to node ID=10 vendor
+------------------------------------------------------------
+Node ID=40 no flinching
+Text=<He looks at you properly for the first time, and keeps looking.> My friend, this morning I watched a thing made out of ice walk through the front of the Alvarez house with the family still in it. You are a man with a face. Come back tomorrow and I will be frightened of you again, if there is a tomorrow and I am in it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Fair enough.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I came in here to get some supplies to keep fighting!
+Go to node ID=10 vendor
+------------------------------------------------------------
+Node ID=50 the reports
+Text=<The hammer does not go down this time.> I have. A man who kills the ones who cannot hold anything heavier than a loaf. <He weighs it, and then he sets it aside anyway.> And this morning I have English in my street, so I will sell to you, and I will keep what I think between me and the anvil. Do not come back after the city is standing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Your stock, then.
+Go to node ID=10 vendor
+Is Default Reply=1
 }
