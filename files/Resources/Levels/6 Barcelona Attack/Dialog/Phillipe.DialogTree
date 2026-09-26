@@ -1,0 +1,59 @@
+CDialogTree
+{
+Name=Phillipe
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=<A boy is wedged in behind a barrel with his knees up, and he does not come out when you crouch.> Are you one of ours? Papa said stay where you are put, so I am put. Everybody who ran past me was running the wrong way. Is he coming?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Phillipe has been asked after
+Desired Minimum Count=1
+}
+}
+Reply Text=Your father is two streets down calling your name. Go to him, and keep to the walls.
+Go to node ID=3 he goes
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Stay where you are and keep quiet. It is not safe up there.
+Go to node ID=2 stay put
+
+Requirement=!None
+Reply Text=Nothing. Keep down.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 stay put
+Text=I am good at staying. <He pulls the cap down over his ears.> I have been good at it all morning.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Good. Goodbye.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 he goes
+Text=Two streets. <He is up and past you before you finish saying it.> Two streets, keep to the walls, I know it, I know the way --
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Go.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=send Phillipe home
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 the reunion
+Text=A red cap goes down the street at a dead run, both arms out, and somewhere past the well a man who has been saying one word all morning stops saying it.
+Should Have Voiceover=0
+}

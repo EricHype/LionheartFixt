@@ -1492,6 +1492,17 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | BA19 | Walk back over the western end again | - | No repeat and no second payment |
 | BA20 | Fight anywhere on the map for a minute | - | English soldiers shout: *"Press forward, men!"*, *"Attack! For England!"*, *"For the Queen!"* Six of the thirty-four generators are armed |
 | BA21 | Compare the volume against `Gate District Siege` (BA4) | - | Similar. This map has no defenders, so only the English are heard |
+| BA22 | **A save that has never entered the Gate District.** In peacetime Barcelona, kill one unarmed citizen | - | **Slayer of Innocents** appears among your titles. Vanilla never granted this perk anywhere |
+| BA23 | BA22, then walk up to any gate guard in the Gate District | - | *"There have been reports of a monstrous killer of helpless children...you loosely fit the description."* Two replies: deny, or admit it and threaten him. **Five authored nodes that had never fired** |
+| BA24 | BA23, then talk to the same guard again | - | The `Childkiller Return` variant, not the intro again |
+| BA25 | Kill a vendor instead | - | **Merchant Slayer**, as in vanilla. The two vendor cans are deliberately not wired to the new title |
+| BA26 | Attack `Barcelona Boy` in the Gate District, or any child anywhere | - | Nothing happens. Children are HP 10000 / AC 1000 in vanilla and stay that way |
+| BA27 | **Without** the title, enter `Gate District Siege` and talk to the man calling for Phillipe | - | He asks you to look for a boy in a red cap. **Vanilla gave every player the accusation instead** |
+| BA28 | **With** the title, do the same | - | *"Leave me alone! Haven't you done enough?!"* -- the shipped line, now on the shipped condition |
+| BA29 | Walk past him without talking | - | The old polygon bark still fires: *"Phillipe! Where are you?!"* |
+| BA30 | Find Phillipe around 2694,1251, behind a barrel, **before** speaking to his father | - | He talks, but the reply that sends him home is not offered |
+| BA31 | Speak to the father first, then find Phillipe | - | The reply is offered; he runs; **1000 XP, once**, and a closing line about the man who stops saying one word |
+| BA32 | Go back to where Phillipe was | - | He is gone, and no second payment |
 | CR1 | Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help | *"Then I am at your orders. Where is she?"* | The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all |
 | CR2 | CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child` | *"I will see what I can do."* | State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here |
 | CR3 | CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti | *"<Say nothing yet, and look at the lamp.>"* | State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available |

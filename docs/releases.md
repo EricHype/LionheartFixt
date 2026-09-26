@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.18.0 - the Barcelona Attack
 
-**Surveyed 2026-09-25. Tiers 1, 2 and 3 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
+**Surveyed 2026-09-25. Tiers 1 through 4 built 2026-09-25, unplayed.** Act 6, `Levels/6 Barcelona Attack`. Eight maps, 2,897 level
 parts, 1,304 live spawner entries -- of which **415 are corpses** and 889 are combatants -- six dialogue trees of its own, and **28 player replies in total**.
 
 | map | parts | live spawners | conversations | balloons | MB |
@@ -388,6 +388,63 @@ reward, which is the right way round: the blacksmith is what turns ruts into evi
 
 The map goes from 0 balloons and 0 trees to 11 and 2, for 8 KB.
 
+### Tier 4 - Slayer of Innocents, and the boy in the red cap (built)
+
+`Perks/!Event Title Perks/Child Killer` ships complete: a display name -- **Slayer of Innocents** -- a
+description (*"TITLE PERK: Killing the helpless is what you like to do."*), and a `Requirements` array
+holding a deliberately false expression (`0 >= 1`), which is how the game marks a perk that only script
+can grant. **`CGiveCharacterPerkAction` for it, anywhere in the game: zero.** It is read **eight times**
+on the peacetime `Gate District`, and those reads drive five fully authored dialogue nodes, each with
+two replies -- deny it, or *"I am the killer. You should back down before I kill you."*:
+
+| tree | nodes |
+|---|---|
+| `Gate Guard Generic1` | `2 Childkiller Intro`, `2 Childkiller Return`, `2 Childkiller Return2` |
+| `Gate Guard Generic2` | `2 Childkiller Intro`, `2 Childkiller Return` |
+
+None of it has ever fired, in any playthrough, because the title is never awarded. Act 6 is where the
+consequence was meant to land: the two checker parts the whole mechanism runs on --
+`Player is a child killer` and `Player gotten child killer dialog`, with the designers' own comments on
+the polarity (*"Active Player NOT child killer. Inactive player IS"*) -- **are sitting on
+`Gate District Siege`**, both active, and act 6 neither reads nor writes either one.
+
+**Children are not made killable, and that is not what the perk says.** `Races/NPCs/Generic Child` is
+HP 10000 / AC 1000, `Barcelona Boy.can` sets `Has Hit Points=0` on top of that, and the Gate District's
+only boy sits on a part named `Child Leaving` with `Active=0` -- the invulnerability is deliberate and
+it stays. The perk's own words are *killing the helpless*, and the helpless who can actually be killed
+are the ordinary citizens at HP 12 / AC 60. So the title is awarded for murdering an unarmed citizen in
+peacetime Barcelona, on the exact idiom `Merchant Slayer` already uses 28 times: a
+`CSetDestroyedScriptActionAction` in the generator's `After Action`, whose destroyed action gives the
+perk to `$Instigator` if they do not already hold it. **34 citizen generators** across the Gate, Temple
+and Port districts; the two `Barcelona Vendor` cans are left out, being merchants who already grant
+`Merchant Slayer`. Like that precedent it fires on the first kill, so a player who lets a spell land in
+a crowd can earn it by accident -- which is the shipped behaviour for merchants and reads correctly
+either way: the guards say there have been *reports*, not that they watched you do it.
+
+**Then act 6 reads it.** All five spawn points on `Gate District Siege` now run the peacetime
+`From Temple District` check -- if the player holds the title, `Player is a child killer` is deactivated
+-- and the man searching the district for his son reads the flag:
+
+- **A child killer** gets `21 Children` exactly as shipped: *"Leave me alone! Haven't you done
+  enough?!"* This was the line every player got, unconditionally, for walking up to a frightened
+  father.
+- **Anyone else** gets `22 Children`, new: *"Phillipe! <He has your arm before he sees who has it, and
+  lets go.> My son. Seven years old, a red cap his mother made him. He was up at the gate with the
+  other boys when the horns went... If you are going anywhere near that gate -- look for a red cap."*
+
+**And there is a red cap to find.** Phillipe is placed at 2694,1251, a vertex of the citizens' own
+`Loop Path around town`, so the ground under him is walkable by the map's own evidence. He is a
+`Barcelona Boy` -- invulnerable, as every child in this game is -- wedged behind a barrel, and the one
+reply that matters is gated on having spoken to his father:
+
+> <A boy is wedged in behind a barrel with his knees up, and he does not come out when you crouch.>
+> Are you one of ours? Papa said stay where you are put, so I am put. Everybody who ran past me was
+> running the wrong way. Is he coming?
+
+Tell him and he goes -- *"Two streets, keep to the walls, I know it, I know the way --"* -- for **1000
+XP, once**, and a closing line the player reads rather than watches, because by then the father has
+walked his own path off the top of the street.
+
 ### Tiers, in the order they should be built
 
 1. ~~**The silence.**~~ **Built** -- see above. The reserve waves `fight2` and `fight4`, whose
@@ -397,8 +454,9 @@ The map goes from 0 balloons and 0 trees to 11 and 2, for 8 KB.
    at act 8's final encounter. Raphael's act-1 half of the same thread is still open.
 3. ~~**`Crossroads Siege`.**~~ **Built** -- three narration lines, the army's seven barks ported in,
    and the trail of the column for a player who asked the blacksmith first.
-4. **The child-killer reaction, restored from the peacetime original** -- a port rather than an
-   invention, since act 1 has 33 working references to copy from.
+4. ~~**The child-killer reaction.**~~ **Built** -- the title is granted for the first time in the
+   game's history, act 6 arms the flag it was already carrying, and the father searching for Phillipe
+   stops accusing strangers. Phillipe himself is now on the map.
 5. **The shy girl with no speaker, and the two death lines**, including the man who tries to give the
    player his purse.
 6. **Reactivity.** Two Speech gates in 28 replies, and no trap, lock or secret anywhere in eight maps.
