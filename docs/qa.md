@@ -1471,12 +1471,24 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-### 0.19.0 - the English Shrine
+### 0.20.0 - Alamut
 
-Act 7. Needs a character who has **never entered act 7** -- all of this is level parts.
+Act 8. Tier 1 only. Needs a character who has **not yet entered `05 Acid Wash`** -- all of it is level
+parts, so a save that has already been on that map will not show any of it.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
+| AL1 | Enter `05 Acid Wash` from `04 Maw of the Assassin` and walk west along the channel | - | `1 the channel` arrives **before** any acid: the cut channel and its fall to the west, the stone eaten smooth like a streambed, and the bowmen on the terraces who have no intention of being in it |
+| AL2 | Keep going until the first wash fires | - | `2 the first sluice` as it launches -- it lets go up-slope to the east, and the channel is ready again about ten seconds later. The wash is unchanged: 20-40 Acid, `Defend Against=1`, so acid resistance still applies |
+| AL3 | Stand clear, wait, then cross the same spot again | - | The wash fires again. `First Trap Trigger` is still `Trigger Only Once=0`, so the hazard cycles exactly as it shipped -- but neither balloon repeats |
+| AL4 | Reach the western gate's trigger | - | `3 the second sluice`. The trigger polygon is vanilla's own, byte for byte |
+| AL5 | Walk up to the switch beside the spiked gates | - | `4 the sluice control`: an iron switch at waist height, rock worn pale by hands, and the gates standing closed across the passage |
+| AL6 | Press it | - | All five of vanilla's own effects -- the `Spike Door near Switch` gates open, the coffin-lid sound plays, both wash triggers deactivate, and **Disarmed trap** prints emphasised -- and then `5 the gates open` as a sixth |
+| AL7 | Walk back over both wash triggers | - | Neither fires. Vanilla's two `CDeactivateAction`s are untouched |
+| AL8 | Press the switch again | - | Nothing happens. The relay is `Trigger Only Once=1`, as it shipped |
+| AL9 | On a fresh character, enter instead from `06 Chamber of Torment` and walk east | - | All four triggers still fire when crossed from that side, but the ordering is only guaranteed on the forward path: approaching from the west, `2 the first sluice` can arrive before `1 the channel`. Worth knowing whether that reads badly |
+| AL10 | Check the combat log after AL1-AL6 | - | All five balloon texts are in the log. Every node carries `Include In Log=1` |
+
 ### 0.19.0 - the English Shrine
 
 Act 7. Needs a character who has **never entered act 7**. `ES21`-`ES28` and `ES37`-`ES58` additionally

@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27, swept for cut content 2026-09-26. Not started.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tier 1 built 2026-09-26, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
@@ -152,7 +152,7 @@ biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together 
 | 02 Shifting Dunes | 5,650 | 186 | 5 | 2 | 0 | 2 | 3 | 3.31 |
 | 03 Sand Dragon | 489 | 13 | 1 | 0 | 0 | 0 | 0 | 0.34 |
 | 04 Maw of the Assasin | 1,378 | 199 | 1 | 0 | 21 | 11 | 16 | 1.49 |
-| 05 Acid Wash | 334 | 40 | **0** | **0** | 7 | 0 | 4 | 0.38 |
+| 05 Acid Wash | 334 | 40 | **0** | **0** | 7 | 7 | 4 | 0.38 |
 | 06 Chamber of Torment | 1,408 | 261 | 1 | 2 | 24 | 9 | 19 | 1.54 |
 | 07 Dark Temple | 946 | 170 | 4 | 12 | 11 | 14 | 7 | 1.14 |
 | 08 Final Encounter | 346 | 143 | 6 | 57 | 0 | 0 | 0 | 0.81 |
@@ -202,6 +202,78 @@ twelve files are the fifth superseded draft this project has found -- the same s
 **This is the third time in two acts that "opened by nothing" meant "superseded", and the second time I
 counted the wrong field before checking what a working example uses.** Any tier built here should start from
 that assumption.
+
+### Tier 1, built 2026-09-26: the Acid Wash says what it is
+
+`05 Acid Wash` shipped with no dialogue tree and no balloon: 334 parts, 40 combatants, and not one word.
+What the silence was hiding is a better piece of design than the act's reputation suggests.
+
+**The map is a sluice.** The floor is cut into a channel with a fall to the west. Step into
+`First Trap Trigger` -- an oval of radius 68 at (2947,872) -- and `First Acid Wash Start` clones `acid 01`
+onto `First Acid Wash Start Point` at (3316,829), up-slope and behind you. The clone is a `CEntityWalking`
+carrying four AIs at once: `CLandscapeAI` cuts the ground away as it travels, `CGoToAI` walks it down the
+channel, and a `CLimitedTimeAI` wrapping a `CRepeatTimerTriggerAI` keeps spawning acid steam around the
+moving front, each spawn doing `CXRPGDamage` of **20 to 40 Acid, `Defend Against=1`**, scattered on a
+`Random Location Delta` of 72.5. Six seconds in, `Clear Ground 01` is cloned behind it to put the floor
+back. The relay then deactivates itself and `Activates First Acid Wash Trigger` re-arms it **ten seconds
+later**, so the hazard cycles for as long as the player is in the channel. A second gate does the same
+thing further west off `Activate Second Acid Wash Poly`.
+
+**And the opposition is ranged-only, by design.** The map fields 15 `Assasin Bow` and 12
+`Assasin Master SPELLCASTER` across three tiers each, and **no melee enemy at all** -- they shoot from
+terraces and never come down into the channel. A hazard that punishes standing still, and enemies who
+make standing still the only way to shoot back. None of which the player was told.
+
+**So the tier is words, and only words -- five balloon nodes in a new `The Acid Wash` tree, and no
+mechanism touched.** `1 the channel` names the place and the bowmen on the approach; `2 the first sluice`
+fires as the wash launches and states the ten seconds; `3 the second sluice` does the same at the western
+gate; `4 the sluice control` says that the switch at the spiked gates is what runs the sluices; and
+`5 the gates open` reports what pressing it did.
+
+Every trigger is placed on geometry vanilla already proves the player reaches, which is the
+`walkable is not reachable` lesson applied rather than re-learned. Two of the four are **concentric with
+`First Trap Trigger` itself** -- radius 300 for the approach and radius 68 matching vanilla exactly for
+the wash -- so the naming balloon necessarily fires before the warning, guaranteed by the radii and not by
+guesswork about the floor. The third clones the polygon of `Activate Second Acid Wash Poly` verbatim,
+`1532, 926, 1815, 981, 1513, 898`. The fourth is centred on the switch, which is interactable and so
+reachable by construction. All four are `Trigger Only Once=1` against vanilla's `0`, so the hazard still
+cycles while the words do not repeat.
+
+#### A claim I made and withdrew, and it is the one worth recording
+
+For about twenty minutes this tier had a much bigger headline: that the disarm switch's relay,
+`End level switch turn traps off`, shipped **five actions of which three were empty stubs** --
+`COpenDoorAction{}`, `CPlaySoundAction{}` and `CPrintCombatTextAction{}` -- so that the switch worked and
+reported nothing. **That was wrong, and it was my own instrument, not the file.** The relay is complete:
+
+```
+COpenDoorAction        Door Name=Spike Door near Switch
+CPlaySoundAction       Sound=Doors/Crypt Vyka Coffin.ogg
+CDeactivateAction      Target Name=First Trap Trigger
+CDeactivateAction      Target Name=Activate Second Acid Wash Poly
+CPrintCombatTextAction Text to print=Disarmed trap, Emphasize=1
+```
+
+The switch opens the gates it names, plays a sound, disarms both washes and prints its own confirmation.
+It reads as three empty braces only because the dump I was reading was skeletonised by a field
+allow-list, and the fields inside those three actions were not on the list. **A filter that hides fields
+makes every action look empty**, which is the same failure as counting the wrong field, one layer up: the
+tool answered a question I had not asked. Checking the raw bytes of the block took one query and settled
+it. So the finding shrank to its true size -- the switch is fine, and what was missing was any reason to
+believe a disarm switch existed to look for, which is what `4 the sluice control` supplies.
+
+#### Two counting corrections for the survey table above
+
+- **`05 Acid Wash` has seven hidden areas, not zero.** Seven `Activity=CAISecretReveal` parts, at
+  (1267-1357, 964-1128), (1554-1693, 1414-1530), (1793-1921, 644-738), (2210-2346, 1422-1483),
+  (2621-2704, 1841-1909), (2650-2769, 1075-1280) and (2981-3124, 586-761). The row is corrected. Three
+  other rows look low against the same measure -- `04 Maw of the Assasin` counts 31 reveals against a
+  recorded 11, `06 Chamber of Torment` 23 against 9, `07 Dark Temple` 22 against 14 -- which is probably
+  reveals-per-area rather than an error, since `01` and `02` agree exactly. Re-count those three when
+  their tiers are built rather than trusting either number now.
+- **Act 8 has no `CTrapAI` anywhere.** Its traps are `CDoorAI` spike gates on the `Trap Spike 1` model,
+  opened by `COpenDoorAction` -- 11 on this map, 131 on `04`, 300 on `07 Dark Temple`. A `CTrapAI` sweep
+  of this act returns zero and means nothing.
 
 ### Leads cleared, so none of these is re-opened
 
