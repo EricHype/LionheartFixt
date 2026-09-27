@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tier 1 built 2026-09-26, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tier 1 built and tier 2 read 2026-09-26.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
@@ -341,9 +341,50 @@ companion arc, which is tier 4.
    nobody could see. **The acid itself is not the problem** -- it is alive and driven by two relays, per the
    cleared leads above -- so this tier is the map's silence only: a hazard that washes over the player with no
    warning, no name, and nothing said about it before or after.
-2. **`OldMan`'s `50 old man escapes` is orphaned.** Four of the fourteen ending relays are escapes, but the
-   node for the Old Man's own line as he goes is reached by nothing. Read against how the escape is actually
-   triggered before assuming a defect.
+2. **`OldMan`'s `50 old man escapes`. Read 2026-09-26: CLOSED, it is a superseded draft and must not be
+   wired.** The tier is kept at its own number rather than renumbered, because tier 1 is already built and
+   referenced by number; only the dragon tier, retired before any building began, was removed outright.
+
+   **The escape is a complete cinematic, and one of the most carefully built sequences in the act.**
+   `Old Man Escaping Start Trigger` runs, in order: clear away Galileo's and DaVinci's attackers and the
+   spawned enemies; begin a non-interactive sequence; **if the Chaos Dragon is still alive, pacify it** --
+   `CRemoveCategoryAction`, `CSetTargetTypeAction` and `CSetCollidableAction`, so it cannot wander into the
+   scene, its empty Fail arm being correct since a dead dragon needs no handling; activate
+   `Old Man Getaway Portal`; activate `Old Man of the Mountain Fleeing`, whose generator spawns him as
+   `Old Man Fleeing` with a `CSkeletonAI` patrol that walks him to `Old Man goto point for escape`; drop the
+   spikes; cut to `Old Man is escaping Camera1`; **play `520 Good Ending Old Man Escapes All`**; end the
+   sequence; then cut to `Old Man is escaping Camera2` and branch on who survived and on good or evil into
+   one of the six `ESCAPE Old Man ...` relays, each of which plays the three spirit endings and hands off
+   through `COtherMapAction` to `Good Ending Old Man escapes NIS continue` on the Nostradamus map. Nothing in
+   that chain is broken, and `520` plays in **all six** escape outcomes, because the trunk speaks it before
+   it branches.
+
+   **So `50 old man escapes` has no slot left, and the reason it has none is the interesting part.** It is a
+   draft of the line `520` now carries -- the same beat in different words, *"I live and thus the struggle
+   will continue"* against *"do not doubt that my master will return"* -- and **both are voice-recorded**,
+   `OldMan VOs/50 old man escapes.ogg` beside `OldMan VOs/520 Good Ending Old Man Escapes All.ogg`. Two
+   recordings of one goodbye is what a rewrite after recording looks like, which this project has seen twice
+   before in Grace O'Malley's renamed nodes and in the twelve superseded ending trees.
+
+   Two details settle which of the two is the draft. First, **the numbering**: `50` sits in the combat block
+   with `45 combat`, `47 combat talk` and `60 old man killed`, while every other closing voice is a `5xx`
+   -- so the escape's closing line was renumbered into the ending family as `520`. Second, and decisively,
+   **`50` opens with the stage direction `<A dark, ethereal voice surrounds you>`, and in the shipped scene
+   the Old Man is not disembodied at all**: he has been spawned as a walking entity and is leaving on
+   camera. An ethereal-voice framing is simply wrong for a shot of the man himself, so the line was rewritten
+   as him speaking in person. **Wiring `50` would play two contradictory goodbyes**, one of them insisting on
+   a bodiless voice while the body walks out of frame.
+
+   One asymmetry that looks like a gap and is not: the **kill** outcomes get two lines, `60 old man killed`
+   as he dies and then `500` or `510` in the dark ethereal voice at the head of the ending, while the
+   **escape** outcome gets only `520`, in person, and no ethereal line at all. That is the writing working
+   rather than failing -- when he is dead something else has to speak for him, and when he is alive he speaks
+   for himself. Nor is the both-die escape relay defective for activating no camera where the other five
+   activate one: the camera those five add is a DaVinci or Galileo speech camera, and in that outcome there is
+   neither of them left to look at.
+
+   **Recorded here so the tier is not re-opened. Act 8's only genuinely orphaned dialogue is now the goblin
+   companion arc.**
 3. **What acts 6 and 7 left here.** Act 6's tier 2 put `Find Galileo and DaVinci` and the True Cross pursuit's
    completions in `08 Final Encounter`, two acts ahead of themselves, and act 7's Grace arc has no act-8
    presence at all though she is a companion who would still be following. Both want checking now that the act
