@@ -1473,8 +1473,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
 ### 0.21.0 - the Doomed Plateau
 
-Act 4. Needs a character who has **not yet entered `7 Doomed Plateau`** -- all of it is level parts. `DP2`-`DP5`
-need Speech 80+ or Divine 80+ or Wielder standing; `DP4` needs Speech 110 or Divine 80.
+Act 4. Needs a character who has **not yet entered `7 Doomed Plateau`** -- all of it is level parts.
+`DP2`-`DP5` need Speech 80+, Divine 80+, or Wielder standing, and `DP4` needs Speech 110 or Divine 80.
+`DP5b`-`DP5f` need **karma below 600**, and `DP5g` a high-karma character. `DP16` is on a different map.
 
 | # | Step | Say | Expect |
 |---|---|---|---|

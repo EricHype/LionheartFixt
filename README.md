@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.20.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.20.0).
+-- currently [0.21.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.21.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -75,6 +75,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.18.1** repair | | Slayer of Innocents moved onto the hooks the designers built for it: every child in the game carries a working damaged hook -- the woodcutter's daughter, Marisol, Tomas, the shepherd's son and the Gate District boy -- which screams, flees, fails the rescue quest and in two cases sets a flag an NPC already reads, and not one of them touched the title the game wrote for exactly this. Children stay unkillable, because that is deliberate |
 | **0.19.0** the English Shrine | Act 7, the shrine and the landing beach | The act the tester calls the worst in the game, where Soldier is 73% of every spawn: its own Druid and Priestess templates, fielded nowhere, are in; the Priestess ladder repaired and the Druid Master given a boss's race instead of a mook's; two Templar posts with a quartermaster whose stock reads Quinn's act-1 errands and a surgeon who treats knights free, on eleven maps that had no merchant at all; helping Guy Fawkes recorded at last, and read by Sir Roger and by Surrey; Grace O'Malley's voice-recorded companion arc, eleven orphan nodes of it, found on the landing beach, with the act-1 beat her romance was missing; eight combat barks that never played; and the Inner Sanctum revealed as a three-switch vault that said nothing |
 | **0.20.0** Alamut | Act 8, the desert, the fortress and the endings | The last act, and the largest: `05 Acid Wash` had 334 parts and not one word over a cycling acid sluice with ranged-only opposition, so it names itself, warns before each wash and reports the disarm; Grumdjum's twelve voice-recorded companion nodes, deferred here by name in 0.2.0, are wired with barks, dismissal and rejoin, and the goblin Khan arrives as a cameo whose recordings shipped muted -- both gated on being the Horde's Champion with their Khan alive, so killing him for Torquemada in act 1 costs you them six acts later; the Knight of Saladin's first-meeting recruit gave no escort AI and his arc had no dismissal at all, and his companion race was the weakest in the game in the final act; and the Old Man and the knight both read the order that came for them, where every gate in the act had been a skill check |
+| **0.21.0** the Doomed Plateau | Act 4, the Crypt's biggest fight | Begins from a review finding that the Crypt's and England's additions did not break up their combat -- 22 of the Crypt's 26 dialogue placements were balloons with no replies, and its one respite is a dead-end room off map 1. So the undead get captains instead: the **Boss Lich**, three races with a sprite and seventeen animations and no template anywhere in the game, fielded at last as the Bonecaller -- immune to cold, poison and disease, weakest to fire, and the only captain that can be reasoned with. Release it and the horde turns on it; or swear to it and it walks at the keep with you while the Templar garrison turns on it and their offer to take you in closes. Beside it the Bonewright, restored from a generic ghoul block to its own abandoned race, which raises the fallen until it falls, and the Revenant Sergeant, who ignores you, then rallies on you, then abandons the battle for you alone |
 
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
@@ -83,7 +84,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.20.0 are published, and every act in the game is now surveyed, built and released.** The last nine -- 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
+**0.1.0 through 0.21.0 are published.** Every act is surveyed, built and released, and 0.21.0 is the first release aimed at how the game *plays* rather than at what was cut from it. The last ten -- 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.20.0 are published, and every act in the game is surveyed, built and released**. **0.21.0 is open**: a review found that the Crypt and England additions did not break up their combat, and the Doomed Plateau's captains are the answer. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.21.0 are published.** Every act is surveyed, built and released, and 0.21.0 is the first release aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -142,8 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.21.0 - the Doomed Plateau
 
-**Opened 2026-09-27 after a review asked whether the Crypt and England additions actually broke up their
-combat. They did not, and the measurement is recorded below. Captains built the same day, unplayed.**
+**Released 2026-09-27. Opened, measured and built the same day after a review asked whether the Crypt and England additions actually broke up their combat -- they did not, and the measurement is recorded below. Unplayed.**
 
 ### Why this release exists
 
