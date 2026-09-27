@@ -1485,6 +1485,7 @@ Act 3, Montaillou. Needs a character who has **not yet entered `01 Hamlet Exteri
 | DV5 | Fail to kill the Daeva in Montaillou and let it break off | - | `3 Undefeated`: *"this exertion has left me ravenous... that lake town has all of my favorite flavors."* In vanilla it left in silence |
 | DV6 | Compare with the Toulouse escape on Titan Village | - | `35 teleport out of toulouse` still plays there. The two lines are a pair and should now read as one chain |
 | DV7 | In act 1, get **Faust lured to the demon** so it frees itself, then reach the Daeva in Montaillou with **no relic** | - | The clone loop stops, the true form comes up, and **the Daeva of Pain arrives and fights it**. HP 900 / AC 200, tagged `Player Friend` |
+| DV7a | Watch exactly where the Daeva of Pain appears | - | At the **Giants Cave mouth, (280,260)**, behind you and facing the fight -- **not** inside the shapeshifter. He spawned on the true form's own point until this was caught |
 | DV8 | Check the true form is killable on that run | - | It should die and stay dead. It is the bound template: same race and 2750 XP, with the 20-25 HP/sec heal removed |
 | DV9 | Instead **break the crosses yourself**, then reach it with **no relic and Speech under 95** | - | The loop still breaks and the bound form comes up, but no ally arrives |
 | DV10 | Break the crosses yourself, then reach it with **no relic and Speech 95+** | - | A new reply: *"Nanghaithya. A demon in a Barcelona cell gave me your name, and it owed me the favour."* It opens `2000 using speech`, which was relic-only |

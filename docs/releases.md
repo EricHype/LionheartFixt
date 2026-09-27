@@ -217,6 +217,18 @@ through the parser clean. `Form Relay` now asks first whether the debt is owed; 
 `Monster Cans/Extraplanar Inquisition Jail` -- whose `User Assigned Name` is, already, **Daeva of Pain**, at
 HP 900 / AC 200 -- tagged `Player Friend` and pointed at `Enemy`.
 
+**Where he arrives, and a placement bug caught by the tester asking.** Because his generator is a clone of
+`true form generator`, he inherited its position: **(375,326), radius 15 -- the shapeshifter's own spawn
+point.** He would have materialised inside the creature he came to fight. He now arrives at **(280,260)**,
+which is `From Giants Cave`, a real player spawn point and therefore proven walkable ground: 116 units from the
+true form, on the side the player approaches from, so he comes in at the cave mouth behind you rather than on
+top of the target, facing turned to look at the fight. The two true-form generators keep (375,326) between
+them, which is correct -- only one ever activates, and the bound one inherits ground vanilla already proved.
+
+For the record, the whole encounter sits in the hamlet's north-west corner: the four disguised forms at
+(564,218), (652,219), (556,290) and (654,291), the true form at (375,326), and the nearest player arrival
+`From Giants Cave` at (280,260). Toulouse's copy is on `Titan Village` at (902,230) and (1000,217).
+
 **The true name is the more interesting half.** All six of the shapeshifter's `Speech moreequal 95` entry
 points sit on relic-only nodes, so a talker without a relic has no route at all. The name supplies what the
 relic supplied: three new replies on `1 Introduction`, `10 Montaillou if fought in Toulouse` and
