@@ -1507,6 +1507,13 @@ parts, so a save that has already been on that map will not show any of it.
 | AL27 | On a **Goblin Chum or Blooded** (rank 1 or 2), Khan alive | - | **Neither goblin appears.** Both are gated on `Goblin Horde Highlevel`, the same can the Khan gates his own top-tier replies on -- the Khan tasks a warrior to his Champion, not to an acquaintance |
 | AL28 | As a Goblin Champion who killed Grumdjum at the Lake | - | The Khan appears; Grumdjum does not. The gate reads `Grumdjum Dead`, the marker his own vanilla generator sets |
 | AL29 | As a Goblin Champion who never met Grumdjum at all | - | He still comes. Champion standing is the whole gate -- the Khan sent him, and his *"once again"* is the Horde's camp, not the lake |
+| AL30 | Meet the Knight of Saladin on `02 Shifting Dunes` and ask *"What is inside Alamut?"* | - | `20 alamut` answers. Five replies pointed at `20 Alamut` with a capital A against a lowercase node |
+| AL31 | Recruit him the **first** time you meet him, via *"Let's carry the battle to Alamut, then"* | - | He **follows you**. In vanilla this path set the companion flag without the escort AI, so he stood where he was |
+| AL32 | Talk to him while he is following | - | `3 Return`, *"Salaam. May the Prophet give us strength"* -- **not** *"Do you need my help again?"*, which is what vanilla opened for an already-recruited companion |
+| AL33 | Tell him *"Hold this ground and wait for me."* | - | He is released and stays. Vanilla had no dismissal for him anywhere in the tree |
+| AL34 | Talk to him again | - | `666 Rejoin`. *"Yes, please rejoin me"* restores the escort AI as well as the flag; *"No, wait here"* now does the right thing, because he is waiting |
+| AL35 | Fight beside him in `04 Maw of the Assasin` or later | - | He survives contact. Repaired to HP 220 / AC 215 from 150/145, with `OneHandedMelee 200` untouched |
+| AL36 | Recruit him on a **return** visit instead, via `3 Return`'s *"Let's go."* | - | Same result as AL31. Both recruit paths now give the escort AI and open `3 Return` afterwards |
 
 ### 0.19.0 - the English Shrine
 

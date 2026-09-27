@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tiers 1-4 done, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tiers 1-5 done, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
@@ -202,6 +202,77 @@ twelve files are the fifth superseded draft this project has found -- the same s
 **This is the third time in two acts that "opened by nothing" meant "superseded", and the second time I
 counted the wrong field before checking what a working example uses.** Any tier built here should start from
 that assumption.
+
+### Tier 5, built 2026-09-27: the Knight of Saladin's companion arc, and no bonus
+
+**The read stands: act 8 has no faction-differentiated reward, and none is invented here.** What the tier
+turned out to contain is a companion arc that half works, plus a defensive pass that stopped halfway -- all
+repair, no new content beyond one player line that dismissal could not exist without.
+
+**Correction first, because it is mine.** The tier-5 read recorded that his tree has **zero orphan nodes**.
+It has one: `20 alamut`. Five replies -- *"What is inside Alamut?"*, on all four greeting variants and on
+`3 Return` -- point at **`20 Alamut`** with a capital A, and the node is lowercase. That is the **second**
+case-mismatched goto found in this act, after Grumdjum's two `70 Accept the Offer`. Case-folding may resolve
+both on its own, since the engine folds case for entity names, so these are normalisations rather than proven
+repairs -- but the orphan claim was wrong either way, and the question *"what is inside Alamut?"* asked of a
+Saladin knight in front of Alamut is too obviously the first thing a player says to leave on a guess.
+
+**The two recruit paths were not equal, and the first-time one was the broken one.**
+
+| | escort AI | companion flag | what talking to him then opens |
+|---|---|---|---|
+| `3 Return` -> *"Let's go."* (a return visit) | **yes** -- swaps `CSkeletonAI` for one built on `CGaurdNearMovingPosAI` | yes | `3 Return` again, which is coherent |
+| `30 go` (the **first** meeting) | **no** | yes, after 0.5s | `666 Rejoin` -- *"Do you need my help again?"* |
+
+So a player who recruited him the first time they met him got a companion who **kept his standing guard AI**
+and, on being spoken to, asked whether he should rejoin -- while already recruited, and following nobody.
+`30 go` now carries the same escort swap `3 Return` does, lifted verbatim from it, and the switcher that fires
+alongside it points at `3 Return` instead of the rejoin prompt.
+
+**And he could not be dismissed at all.** `666 Rejoin`'s second reply, *"No, wait here."*, carried **no action
+whatsoever** -- the same dead-reply shape as tier 3's `WizardCan1` and tier 4's two Fight Icons, fifth instance
+in this act. There was no `CReleaseCompanionAction` anywhere in his tree. `3 Return` gains one reply --
+*"Hold this ground and wait for me."* -- which releases him and fires a new `Fixt Knight dismissed` relay that
+arms `666 Rejoin`, so the rejoin prompt is finally the thing its text says it is. Rejoining restores the escort
+AI too, which the vanilla reply did not: it set the companion flag and left him rooted.
+
+The cycle is now: greeting -> `30 go` -> escorts you; talk -> `3 Return` -> *"Hold this ground"* -> released
+and waiting; talk -> `666 Rejoin` -> *"Yes, please rejoin me"* -> escorts you again, or *"No, wait here"* which
+is correct at last, because now he **is** waiting.
+
+**The defensive pass he never got.** His companion race carried `OneHandedMelee 200` -- a finished, strong
+offence -- against **HP 150 / AC 145**, which is the weakest companion in the game placed in the last act:
+
+| companion | act | HP | AC |
+|---|---|---|---|
+| Knight of Saladin, as shipped | 8 | 150 | **145** |
+| Grace O'Malley (0.19.0) | 7 | 165 | 190 |
+| Grumdjum (tier 4) | 8 | 225 | 200 |
+| **Knight of Saladin, repaired** | 8 | **220** | **215** |
+
+The plain `Knight of Saladin` race is AC 100, so the companion race **was** an upgrade -- the pass started and
+stopped, exactly as the Priestess ladder did in 0.19.0. Melee 200 is kept untouched, the same way the
+Priestess's spell identity was kept: repair the half that is unfinished, not the half that works. He ends
+slightly better armoured than Grumdjum and slightly less tough, which is a knight beside a goblin brute, and
+neither dominates.
+
+**One thing checked and left alone.** `Fake Companion Generator` on `02 Shifting Dunes` spawns a second
+`Knight of Saladin` with an empty `New Name`, no interaction specifier, and a `CSetCompanionAction` in its
+`After Action` -- a nameless, mute companion clone. It is **activated by exactly one thing in the game: a part
+named `warp`**, which is the `Editor/Test Interaction` developer furniture the cleared-leads sweep counted 758
+of. So it is a dev shortcut for testing the companion state, not a shipped path, and wiring it would produce a
+companion nobody can address or talk to. Recorded, not touched.
+
+#### Two build errors worth recording, both caught by Gate 0
+
+The escort block was lifted out of `3 Return` by slicing to its closing braces and stitching a new action onto
+the tail. That **dropped a brace level**, and Gate 0 said so: *"brace imbalance"*. Rebuilt by inserting the
+new action after `Item Count` and bumping the count -- the same rule the array-splice memory already
+records, ignored here because the target looked like a tail rather than an array. Then the rebuilt block ended
+at its closing brace with **no trailing newline**, because `balanced()` stops *at* the brace, and Gate 0 caught
+that too: *"reply not separated by a blank line, in node '666 Rejoin'"*. Both are the same underlying mistake
+as tier 1's `05 Acid Wash` parts running together on one line: **a slice that ends at a delimiter does not
+include the delimiter's line ending.** Gate 0 caught all three; nothing reached a playtest.
 
 ### Tier 4, built 2026-09-27: the goblin companion 0.2.0 deferred to this act
 
@@ -566,7 +637,7 @@ companion arc, which is tier 4.
    `500 Start in Persia`. A decision comes with it that is the tester's, not mine: whether a goblin walks into
    the Assassins' Persia at all, or arrives with the Khan's war party.
 
-5. **What a Knight of Saladin gets in act 8. Read 2026-09-27, and the answer is: a greeting, and that is
+5. **What a Knight of Saladin gets in act 8. BUILT 2026-09-27 as repair, not as a bonus -- see the tier 5 write-up above, which also corrects the zero-orphans claim below. Read 2026-09-27, and the answer is: a greeting, and that is
    genuinely all.** The read corrected two guesses of mine, so both are recorded.
 
    **He is already a working companion, and anyone can recruit him.** `30 go` -- *"Let's carry the battle to
