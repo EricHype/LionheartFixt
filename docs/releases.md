@@ -140,6 +140,87 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.20.0 - Alamut
+
+**Surveyed 2026-09-27. Not started.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
+26 dialogue trees, 202 player replies, 34 of them gated.
+
+| map | parts | combatants | trees | balloons | traps | hidden areas | containers | MB |
+|---|---|---|---|---|---|---|---|---|
+| 01 Desert Sprawl | 4,230 | 122 | 4 | 3 | 0 | 1 | 1 | 2.57 |
+| 02 Shifting Dunes | 5,650 | 186 | 5 | 2 | 0 | 2 | 3 | 3.31 |
+| 03 Sand Dragon | 489 | 13 | 1 | 0 | 0 | 0 | 0 | 0.34 |
+| 04 Maw of the Assasin | 1,378 | 199 | 1 | 0 | 21 | 11 | 16 | 1.49 |
+| 05 Acid Wash | 334 | 40 | **0** | **0** | 7 | 0 | 4 | 0.38 |
+| 06 Chamber of Torment | 1,408 | 261 | 1 | 2 | 24 | 9 | 19 | 1.54 |
+| 07 Dark Temple | 946 | 170 | 4 | 12 | 11 | 14 | 7 | 1.14 |
+| 08 Final Encounter | 346 | 143 | 6 | 57 | 0 | 0 | 0 | 0.81 |
+| END GAME Calle Perdida | 269 | 50 | 9 | 17 | 0 | 0 | 1 | 0.75 |
+| END GAME Nostrodomus Demesne | 147 | 1 | 1 | 0 | 0 | 0 | 0 | 0.11 |
+| END GAME Siege Map | 301 | 33 | 2 | 4 | 0 | 0 | 0 | 0.49 |
+
+### It is the opposite of act 7
+
+Where the English Shrine was 19 enemy families with `Soldier` at 73% of everything, Alamut is **88 families
+across 131 distinct templates, with a top-4 share of 53%** -- second only to the Crypt's 82 families at 43%,
+and the most varied act in the second half of the game. Assassins, guard dogs, desert beasts, zealots,
+assassin masters and spellcasters, and two dragons. It also ships **63 real traps and 46 hidden areas** --
+counted as mechanisms, not regex hits, which is the mistake act 7's first survey made.
+
+### A finding I had to withdraw, and it is the important one
+
+Twelve ending trees are **opened by nothing**, with zero references anywhere in the game -- not from a map, a
+tree, a can, or their own VO folders:
+
+`GoodEndingAllDie`, `GoodEndingAllSurvive`, `GoodEndingDavinciDies`, `GoodEndingGalileoDies`,
+`GoodEndingOldManEscapesAllDie`, `GoodEndingOldManEscapesAllLive`, `GoodEndingOldManEscapesDaVinciDies`,
+`GoodEndingOldManEscapesGalileoDies`, `GoodEnding PLAYER TALK ENDING`, `EvilEndingAllDie`, `EvilEndingAllLive`,
+`Evil Ending PLAYER TALK ENDING`.
+
+For about ten minutes that read as *the game's entire ending matrix is dead*. **It is not.** The matrix is
+alive and lives inside the trees `08 Final Encounter` does open, and those orphan files are its superseded
+predecessor -- an earlier implementation as separate files, replaced by nodes inside the character and spirit
+ending trees. Their node names are the giveaway: the orphaned `GoodEnding PLAYER TALK ENDING` holds
+`15 Galileo Talk Amazed` and `17 DaVinci Talk Evil1`, and **both of those exist and are wired inside
+`Galileo Ending` and `DaVinci Ending`.**
+
+The live machine is **fourteen named relays on `08 Final Encounter`**, one per outcome, and **every one of them
+is fired** -- checked on `Relay Name=`, which is the field relays actually use:
+
+| | DaVinci and Galileo live | DaVinci dies | Galileo dies | both die |
+|---|---|---|---|---|
+| Old Man killed | GOOD / EVIL | GOOD | GOOD | GOOD |
+| Old Man escapes | GOOD / EVIL | GOOD | GOOD | GOOD |
+| talked to death | GOOD / EVIL | -- | -- | -- |
+
+So the ending does vary by who survived, by whether the Old Man escaped or was killed or was talked into his
+own defeat, and by whether the player took the good or the evil road. **Act 8's ending is intact**, and those
+twelve files are the fifth superseded draft this project has found -- the same shape as
+`defenders hate player trigger` and the `Prevent the Druids` quest husk. They want recording, not wiring.
+
+**This is the third time in two acts that "opened by nothing" meant "superseded", and the second time I
+counted the wrong field before checking what a working example uses.** Any tier built here should start from
+that assumption.
+
+### Tiers, in the order they should be built
+
+1. **`05 Acid Wash` has no dialogue tree and no balloon at all** -- 334 parts, 40 combatants, seven traps and
+   four locks, and not one word. The same shape as act 7's Inner Sanctum, which turned out to be a vault
+   nobody could see.
+2. **`OldMan`'s `50 old man escapes` is orphaned.** Four of the fourteen ending relays are escapes, but the
+   node for the Old Man's own line as he goes is reached by nothing. Read against how the escape is actually
+   triggered before assuming a defect.
+3. **The dragons.** `Dragon_Chaos` at 25,000 XP and `Dragon_Sand` at 11,000 are the two highest-value
+   creatures in the game, `03 Sand Dragon` is a whole map for one of them with a 10-node 31-reply tree, and
+   `Chaos Dragon Final Scene` and `Sand Dragon Hasharid` are placed nowhere. Worth reading before scoping.
+4. **What acts 6 and 7 left here.** Act 6's tier 2 put `Find Galileo and DaVinci` and the True Cross pursuit's
+   completions in `08 Final Encounter`, two acts ahead of themselves, and act 7's Grace arc has no act-8
+   presence at all though she is a companion who would still be following. Both want checking now that the act
+   is surveyed.
+5. **Reactivity.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
+   smaller job here than it was in acts 6 and 7.
+
 ## 0.19.0 - the English Shrine
 
 **Released 2026-09-26. Surveyed and built the same day, unplayed.** Act 7,
