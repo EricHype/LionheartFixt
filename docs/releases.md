@@ -176,14 +176,26 @@ something better: **the Plateau is a battle between armies, so give the undead c
 of which can be talked out of it.** That is a better fit, because the Plateau's problem is not a missing
 rest stop, it is 1,055 spawn entries of the same fifty-six templates.
 
-**The map turns out to be a real two-army fight already, and its own machinery does exactly what the idea
-needs.** `CSetTargetTypeAction` appears **118 times** on it. Every horde generator -- `Zombie Skeleton` x16,
-`Festering Undead` x10, `Soul Reaver` x10, `Terror` x5, `Activated Ghoul` x5 and a dozen more, **81
-placements in all** -- sets `Valid Targets=Player,Scripted Custom 2`, while horde spawns carry
-`Category=Enemy,Undead`. The Templar garrison's twenty generators set `Valid Targets=Scripted Custom 1`. So
-retagging a single creature as `Scripted Custom 2` turns the **entire horde** onto it, and pointing it at
-`Enemy` turns it onto them. That is the Fazeem retarget from act 8, at army scale, and it is the map's own
+**The map's retarget machinery does exactly what the idea needs** -- `CSetTargetTypeAction` appears **118
+times** on it. Every horde generator -- `Zombie Skeleton` x16, `Festering Undead` x10, `Soul Reaver` x10,
+`Terror` x5, `Activated Ghoul` x5 and a dozen more, **81 placements in all** -- sets
+`Valid Targets=Player,Scripted Custom 2`, and **every horde can carries `Category=Enemy,Undead`**, checked
+across eleven templates. So retagging a single creature as `Scripted Custom 2` turns the entire horde onto it,
+and pointing it at `Enemy` turns it onto them. That is the Fazeem retarget from act 8, and it is the map's own
 idiom.
+
+**A claim of mine to withdraw, and it matters for the evil route.** The first version of this section called
+the Plateau "a real two-army fight already" and treated the Templar garrison as a faction a defector could
+join. **It is not.** The garrison's twenty generators set `Valid Targets=Player,Player Friend` -- the undead
+Templars **attack the player and the player's companions** -- and their cans carry `Category=Undead` with no
+`Enemy`. `Scripted Custom 1` and `Scripted Custom 2` are carried as categories by exactly **six actors each**,
+all of them `NonInteractiveSequence Actor`s in the Joan of Arc intro; the 81 and 22 target counts are
+generators pointing at tags that nothing outside that cutscene wears. So the Plateau holds **two mutually
+indifferent hostile factions that both attack the player**, plus a scripted skirmish at the door.
+
+What survives that correction is the part the tier depends on: the horde does target `Scripted Custom 2`, and
+the horde does carry `Enemy`, so the turn works exactly as built. What changes is the reading of the garrison
+-- and it makes the *evil* route the better-supported one, since the knights are hostile to you already.
 
 And the fiction was already written. The Templar garrison **does not know it is dead** -- *"Another monster
 seeking to capture the holy relic? You too will be destroyed!"* -- recruits the player on `Templar IS` /
