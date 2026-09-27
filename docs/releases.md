@@ -219,19 +219,48 @@ here to cause destruction in this part of the world...and assist you on your jou
 and he goes off to sow it himself; decline and he takes his brethren east, *"China is very rich and my belly
 is very empty."* No companion machinery is invented for him, because none was written for him.
 
-**Both are gated on the Khan being alive, and that gate is vanilla's own.** `Goblin Khan is Dead` is a
-`Editor/Checker` part on `Inquisition Chambers2` carrying its designer's comment -- *"if this is active, PC
-killed Goblin Khan before speking with Torqemada"* -- activated from `Goblin Warrens` and read by
-`CCheckExistenceAction`, the idiom vanilla uses **1246** times. So kill the goblin Khan for Torquemada in act
-1 and **no goblin comes to Alamut at all**, six acts later. Grumdjum additionally needs to be alive
-(`Grumdjum Dead`, the marker his own Lake generator sets on his death) and to have been paid for the Dryad --
-a new `Player has met Grumdjum` checker on the Lake, set from both reward nodes, the true one and the lie.
+**Both require the player to be a Goblin Champion, and the Khan to be alive.** The tester caught the first
+version of this gate, which was wrong, and the correction is recorded below because the reasoning is the
+useful part.
+
+`Goblin Horde Highlevel` -- `Goblin Rank > 2` on the `Uber Perks/Goblin Rank` attribute -- **is** Goblin
+Champion, the top of the three-tier ladder Fixt built and confirmed in play: Chum 1, Blooded 2, Champion 3.
+The Khan gates his own top-tier replies on that exact can, three of them, and it is read all over the
+Wilderness by Rakeb, the Patrol Leader, the villagers, the vendor, the entrance guard, and by Joan of Arc and
+a Montaillou guard two acts later. Map-side it is wrapped the way `Dream Djinni Map` wraps it:
+`CExpressionAction{Expression=CUseCannedExpressionExpression{Canned Expression=.../Goblin Horde Highlevel},
+Character to get attributes from=$Instigator}`.
+
+That is the right currency because **Grumdjum's own line says so**: *"since my Khan has **tasked** me to aid
+with your quest"*, and he opens with *"Greetings, **goblin friend**"* -- which is precisely how the Khan
+addresses a player with standing, against the *"morsel"* he calls everyone else. The Khan detaching one of his
+warriors to escort you is the largest favour in that chain, so it costs the top of it.
+
+**The first version gated Grumdjum on having paid him for the River Dryad instead, and that was simply the
+wrong thing to read.** The Dryad is Grumdjum's *personal* errand, run at a lake in the Wilderness; it buys
+nothing with the Khan, it can be done without ever entering the Warrens, and a player who does only that has
+no standing for the Khan to task anybody on their behalf. The invented `Player has met Grumdjum` checker is
+removed from the Lake and from the tree's two reward nodes, and `Lake.zax` is byte-identical to its
+pre-tier-4 state again.
+
+The Khan's death still blocks both, and that half was right: `Goblin Khan is Dead` is an `Editor/Checker` on
+`Inquisition Chambers2` carrying its designer's comment -- *"if this is active, PC killed Goblin Khan before
+speking with Torqemada"* -- activated from `Goblin Warrens` and read by `CCheckExistenceAction`, the idiom
+vanilla uses **1246** times. So **be the Horde's Champion and leave their Khan breathing, or no goblin comes
+to Alamut at all.** Grumdjum additionally has to be alive, via `Grumdjum Dead`, the marker his own Lake
+generator sets on his death.
+
+**The lesson, and it is the fifth time this shape has bitten:** the state I reached for was the one I had just
+been reading, not the one the content is about. Grumdjum's tree was open in front of me, so his quest looked
+like the relationship; the relationship the line actually names lives on a different NPC in a different cave,
+in an attribute Fixt itself had built and proved. Before gating restored content, ask what standing the
+*writing* claims, then go and find the shipped measure of it.
 
 **What was built.** Five parts on `01 Desert Sprawl`, the act's front door:
 
 | part | what it does |
 |---|---|
-| `Fixt goblin gate` | an oval on the player's own arrival spawn: Khan alive -> the Khan's cameo, and if the Dryad was paid for and Grumdjum lives -> Grumdjum |
+| `Fixt goblin gate` | an oval on the player's own arrival spawn: Goblin Champion and the Khan alive -> the Khan's cameo, and if Grumdjum also lives -> Grumdjum |
 | `Fixt Grumdjum generator` | an edit of **vanilla's own Lake `CGeneratorAI` for this exact character**, with the Lake-specific `After Action` replaced by a death marker and three AIs added beside its interaction specifier |
 | `Fixt Khan generator` | the same, on `Monster Cans/Mongol Goblin Khan`, opening `500 Start in Persia` |
 | `Fixt Grumdjum is a companion` | swaps his interaction specifier to `300 player speaks to goblin as companion` |

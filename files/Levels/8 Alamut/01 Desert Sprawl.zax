@@ -464,13 +464,29 @@ CLayerSaveData
 					Triggered By Name=
 					Enter Action=CConditionalAction
 					{
-						Try Action=CNotAction
+						Try Action=CAndAction
 						{
-							Action=CCheckExistenceAction
+							Action=Array
 							{
-								Name To Check For=Goblin Khan is Dead
-								Desired Minimum Count=1
+								Item Count=2
+								Action=CExpressionAction
+								{
+									Expression=CUseCannedExpressionExpression
+									{
+										Canned Expression=Dialog/Requirements/Faction/Goblin Horde Highlevel
+									}
+									Character to get attributes from=$Instigator
+								}
+								Action=CNotAction
+								{
+									Action=CCheckExistenceAction
+									{
+										Name To Check For=Goblin Khan is Dead
+										Desired Minimum Count=1
+									}
+								}
 							}
+							Early Exit=0
 						}
 						Succeed Action=CMultipleActionsAction
 						{
@@ -486,26 +502,13 @@ CLayerSaveData
 								}
 								Action=CConditionalAction
 								{
-									Try Action=CAndAction
+									Try Action=CNotAction
 									{
-										Action=Array
+										Action=CCheckExistenceAction
 										{
-											Item Count=2
-											Action=CCheckExistenceAction
-											{
-												Name To Check For=Player has met Grumdjum
-												Desired Minimum Count=1
-											}
-											Action=CNotAction
-											{
-												Action=CCheckExistenceAction
-												{
-													Name To Check For=Grumdjum Dead
-													Desired Minimum Count=1
-												}
-											}
+											Name To Check For=Grumdjum Dead
+											Desired Minimum Count=1
 										}
-										Early Exit=0
 									}
 									Succeed Action=CActivateAction
 									{
