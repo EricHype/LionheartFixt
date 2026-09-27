@@ -69,6 +69,10 @@ Requirement=General Divine Skills moreequal 80
 Reply Text=It is a knot, not a chain. Hold still and I will take it off you.
 Go to node ID=20 stands down
 
+Requirement=Karma LESS 600
+Reply Text=Keep your orders. I will open the keep for you, and you will owe me the spear.
+Go to node ID=21 the bargain
+
 Requirement=!None
 Reply Text=Then you die with it on.
 Go to node ID=
@@ -138,4 +142,44 @@ Should Have Voiceover=0
 Node ID=112 the sergeant fixates
 Text=It drops the hand signals. Whatever held the rank together has finally gone out of it, and it comes for you alone, straight through its own dead.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=21 the bargain
+Text=Owe you. <It tries the word out like a coin it has not been offered in a long time.> Then we are two things with an order each, and yours is newer. Break the door and I will walk in behind you, and what the knights have been dying for ninety years to keep will be handed to me by something still breathing. That is better than the siege. That is very nearly a joke.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then follow me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Fixt Sworn to the Bonecaller XP
+Experience Points To Add=1
+}
+Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+{
+Target Name=$Trigger
+New Category=Player Friend,Undead
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=$Trigger
+Name To Target=
+Valid Targets=Undead
+}
+Action=CActivateAction
+{
+Target Name=Fixt sworn to the Bonecaller
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
 }

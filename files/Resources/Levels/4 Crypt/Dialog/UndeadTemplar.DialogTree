@@ -60,6 +60,17 @@ Text=Are you a Knight? Have you been sent to reinforce us?
 Should Have Voiceover=0
 
 Requirement=Templar IS
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt sworn to the Bonecaller
+Desired Minimum Count=1
+}
+}
+}
 Reply Text=Yes, I am a Knight Templar.
 Go to node ID=40 knight
 Action work in progress=(A Knight Templar)
@@ -69,6 +80,17 @@ Relay Name=Adds Dialog knight beginning
 }
 
 Requirement=Templar NOT
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt sworn to the Bonecaller
+Desired Minimum Count=1
+}
+}
+}
 Reply Text=<Lie> Yes, I am a Knight Templar.
 Go to node ID=40 knight
 Action work in progress=(Not a Knight Templar)
@@ -78,6 +100,17 @@ Relay Name=Adds Dialog knight beginning
 }
 
 Requirement=Templar NOT
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt sworn to the Bonecaller
+Desired Minimum Count=1
+}
+}
+}
 Reply Text=No, but I must help you protect the relic. Let me pass.
 Go to node ID=40 knight
 Action work in progress=(Not a Knight Templar)

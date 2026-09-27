@@ -1484,6 +1484,12 @@ need Speech 80+ or Divine 80+ or Wielder standing; `DP4` needs Speech 110 or Div
 | DP4 | At `10 bound`, use **Speech 110** or **Divine 80** | - | `20 stands down`. It stops, and is retagged into the other army |
 | DP5 | Watch it after it stands down | - | **The horde attacks it and it fights back.** It is retagged `Scripted Custom 2,Undead` and pointed at `Enemy`, which is what all 81 horde generators target and what every horde spawn carries |
 | DP5a | Check the journal XP after standing it down | - | **2000 XP**, from the anchor part `Fixt Talked the Bonecaller Down XP`. If the horde then kills the Lich, that kill XP is theirs, not yours -- 2000 is the whole of the peaceful route's award |
+| DP5b | On a character with **karma under 600**, reach `10 bound` | - | A third reply: *"Keep your orders. I will open the keep for you, and you will owe me the spear."* -> `21 the bargain`. A high-karma character does not see it |
+| DP5c | Take the bargain | - | 2000 XP from `Fixt Sworn to the Bonecaller XP`, and the Lich is retagged `Player Friend,Undead` pointed at `Undead` |
+| DP5d | Walk it toward the keep | - | **The Templar garrison attacks it** -- they target `Player,Player Friend` -- and the horde ignores its own commander. It fights the knights |
+| DP5e | After the bargain, talk to an Undead Templar | - | *"Are you a Knight? Have you been sent to reinforce us?"* has **no good answer left**: all three recruitment replies are gone, including the `<Lie>`. Only *"No, I came to destroy you"* remains |
+| DP5f | On a separate run, release the Lich instead, then talk to a Templar | - | Recruitment still works. `Fixt sworn to the Bonecaller` is only set by the bargain |
+| DP5g | On a **high-karma** character, check the release arm is still offered | - | Yes. The release arm is ungated by karma on purpose -- anyone may free it, only the wicked may recruit it |
 | DP6 | Refuse it, or say you have nothing to say to the dead | - | It fights. HP 385/462/520 by party level, AC 80 -- easy to hit, huge pool, **immune to cold, poison and disease, and weakest to fire** |
 | DP7 | Kill it | - | 1500/2000/2500 XP by tier. This is the first time anything in the game has spawned a `Boss Lich`: three races, a sprite and seventeen animations shipped with no template pointing at them |
 | DP8 | Find the Bonewright, mid-slope west | - | `100 the bonewright` as it plants its standard, and the fallen around you start getting up |

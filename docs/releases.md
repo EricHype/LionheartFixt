@@ -240,12 +240,40 @@ Three captains on `7 Doomed Plateau`, each an edit of the map's own smallest hor
 level for free**, and whose `After Action` already tags spawns into the battle.
 
 - **The Bonecaller** (`Boss Lich`, 1500/2000/2500 XP) -- the only captain that can be reasoned with, because a
-  lich commands and remembers. Three ways into its real conversation, `Wielder IS`, `General Divine Skills
+  lich commands and remembers, **and the only one with two outcomes**: it can be released, or recruited. Three ways into its real conversation, `Wielder IS`, `General Divine Skills
   moreequal 80`, or `Speech moreequal 80`; two ways out of the fight, `Speech moreequal 110` or Divine 80. It
   is bound to a siege whose author is long dead: *"the pointing has outlived the hand. I cannot put the order
   down."* Talk it down and it is retagged `Scripted Custom 2,Undead` and pointed at `Enemy` -- **the horde
   turns on it and it turns on the horde**, using the map's own tags, and *"I have raised every one of them
   twice and I know exactly where the joints are."*
+#### Both sides of the Bonecaller, forked on karma the way the Old Man's is
+
+Once the two-army claim was withdrawn the design got better rather than worse, because the garrison is
+**hostile to the player already** -- its twenty generators target `Player,Player Friend`. So taking the Lich's
+side needs no invented faction, and the tags fall out cleanly. Vanilla forks the Old Man's own talk-down on
+karma at 600 into `250 beyond` and `251 beyond EVIL`; this is the same fork on the same node.
+
+| | retag | it targets | the garrison | the horde | XP anchor |
+|---|---|---|---|---|---|
+| **release** -- Speech 110 or Divine 80, **ungated by karma** | `Scripted Custom 2,Undead` | `Enemy` | ignores it | **turns on it**, it fights back | `Fixt Talked the Bonecaller Down XP`, 2000 |
+| **ally** -- `Karma LESS 600` | `Player Friend,Undead` | **turns on it** (it targets `Player,Player Friend`) | ignores its own commander | it attacks all undead, the knights first | `Fixt Sworn to the Bonecaller XP`, 2000 |
+
+**Anyone can free it; only the wicked can recruit it.** The release arm is deliberately left ungated by karma,
+against vanilla's habit of gating both arms, so mercy stays available to every character and the alliance is
+the distinctly evil act rather than merely the other half of a menu. `21 the bargain` is where it lands:
+*"Then we are two things with an order each, and yours is newer. Break the door and I will walk in behind you,
+and what the knights have been dying for ninety years to keep will be handed to me by something still
+breathing. That is better than the siege. That is very nearly a joke."*
+
+**And swearing to it costs the garrison.** All three of `UndeadTemplar`'s recruitment replies -- the
+`Templar IS` one, the `<Lie>` one, and *"No, but I must help you protect the relic"* -- now carry a
+`Custom Requirement` that fails once `Fixt sworn to the Bonecaller` is set, so *"Are you a Knight? Have you
+been sent to reinforce us?"* has no good answer left and *"Find Jehanne, she can help you"* is closed. The
+Fight Icon reply stays ungated, because the door to violence should never be the one that shuts. Both patterns
+are vanilla's: a reply carrying **both** a named `Requirement` and a `Custom Requirement` occurs eight times in
+the shipped trees, and `CActionExpression` wrapping `CNotAction` around `CCheckExistenceAction` is exactly how
+`torquemada requires Goblin Khan alive.can` is built.
+
 - **The Bonewright** (`Second Guardian`, restored to HP 600 / AC 300 at the top tier) -- **while it stands,
   the fallen keep getting up.** A `CRepeatTimerTriggerAI` on the creature fires a relay every 22 seconds give
   or take 6 that activates a wave generator and deactivates it six seconds later; its
