@@ -1492,6 +1492,20 @@ parts, so a save that has already been on that map will not show any of it.
 | AL12 | Enter `08 Final Encounter` carrying **Find Galileo and DaVinci** from act 6's blacksmith | - | It completes. DaVinci speaks in the opening cinematic, through `DaVinci Ending / 100 Respond ask about Tank`, so the find is dramatised and not only a journal tick |
 | AL13 | Enter it carrying **Pursue the Retreating Druid Forces**, activated at act 6's crossroads | - | It completes when `Cross Regret for Player generator` hands over the `TRUE CROSS` -- the relics the Old Man is using in the ritual are the ones stolen in act 6 |
 | AL14 | Reach act 8 with Grace O'Malley recruited in act 7 | - | She follows and has nothing to say, exactly as Sir Roger does. This is parity with vanilla, not a gap |
+| AL15 | Do Grumdjum's Dryad quest at the Lake and take the reward, leave the goblin Khan **alive**, then enter `01 Desert Sprawl` from England | - | Grumdjum is waiting near where you arrive. `300 companion`: *"since my Khan has tasked me to aid with your quest, let us seek the Old Man in Alamut"* |
+| AL16 | Ask *"Why do you want to help me?"* | - | `300 kill old man` -- the Great Khan's warriors died trying, and he wants the Old Man's brain as his fee |
+| AL17 | Accept from either node | - | He joins as a companion. `300 companion quips 3` plays. Both accept replies now carry `CSetCompanionAction` |
+| AL18 | Fight alongside him for a minute | - | `300 companion quips 1/2/3` shuffle roughly every 13 seconds, in rhyming couplets, anchored over him and not over you |
+| AL19 | Let him drop below half health, then below a fifth | - | `300 grumdjum hurting` then `300 grumdjum hurting 2`. Each fires once |
+| AL20 | Talk to him while he is your companion | - | `300 player speaks to goblin as companion`: *"What can Grumdjum do for you?"* -- not the recruitment node again |
+| AL21 | Dismiss him with *"I work alone. Leave."* | - | `300 companion leaves you`, he stays put, and he calls `300 grumdjum asks to rejoin` as you pass |
+| AL22 | Talk to him again | - | `300 companion joins you` **with two replies** -- it was recorded reply-less, asking a question nobody could answer. Accepting plays `300 grumdjum rejoins` |
+| AL23 | Tell him *"I'd rather kill you where you stand"* | - | He actually fights. This reply had a Fight Icon and no action in vanilla |
+| AL24 | Walk a little further in with the Khan alive | - | Rumjun Khan is there too, as a cameo: `500 Start in Persia`, **and it is voiced** -- all three Persia nodes shipped with the VO flag off and the recordings present |
+| AL25 | Accept the Khan's offer, then decline on another run | - | `501 Excellent` and `502 Too bad`. He is not a companion either way -- he sows his own destruction, or takes his brethren east |
+| AL26 | On a character who **killed the goblin Khan** for Torquemada in act 1, enter act 8 | - | **No goblin at all.** Neither generator activates. The gate reads vanilla's own `Goblin Khan is Dead` checker |
+| AL27 | On a character who never did the Dryad quest, Khan alive | - | The Khan appears; Grumdjum does not. His *"pleased to see you once again"* needs a first time |
+| AL28 | On a character who killed Grumdjum at the Lake | - | He does not appear. The gate reads `Grumdjum Dead`, the marker his own vanilla generator sets |
 
 ### 0.19.0 - the English Shrine
 

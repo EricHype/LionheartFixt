@@ -589,7 +589,7 @@ Should Have Voiceover=1
 
 Requirement=Grumdjun Have Darsh quest to kill Dryad
 Reply Text=Darsh is worth the life of a Dryad. If this must be done, then so be it.
-Go to node ID=70 Accept the Offer
+Go to node ID=70 Accept the offer
 
 Requirement=!None
 Reply Text=Tell me more about this witch.
@@ -622,7 +622,7 @@ Should Have Voiceover=1
 
 Requirement=Grumdjun Have Darsh quest to kill Dryad
 Reply Text=Darsh is worth the life of a Dryad.  If this must be done, then so be it.
-Go to node ID=70 Accept the Offer
+Go to node ID=70 Accept the offer
 
 Requirement=!None
 Custom Requirement=CExpressionNot
@@ -1006,7 +1006,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=6
+Item Count=7
+Action=CActivateAction
+{
+Target Name=Player has met Grumdjum
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 Action=CUseCannedActionAction
 {
 Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
@@ -1142,7 +1149,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=11
+Item Count=12
+Action=CActivateAction
+{
+Target Name=Player has met Grumdjum
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
 Action=CBeginNonInteractiveSequenceAction
 {
 Options=CNonInteractiveSequence
@@ -1418,17 +1432,52 @@ Go to node ID=300 kill old man
 
 Requirement=!None
 Reply Text=Your company is most welcome, Grumdjum.
-Go to node ID=
+Go to node ID=300 companion quips 3
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Grumdjum is a companion
+}
+}
+}
 Is Default Reply=1
 
 Requirement=!None
 Reply Text=I'd rather kill you where you stand.
 Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
 Icon=Fight Icon
 
 Requirement=!None
 Reply Text=I work alone. Leave.
-Go to node ID=300 companion leaves you 
+Go to node ID=300 companion leaves you
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CReleaseCompanionAction
+{
+Companion To Release=Goblin Grumdjum
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Grumdjum is dismissed
+}
+}
+}
 Icon=Exit Icon
 ------------------------------------------------------------
 Node ID=300 kill old man
@@ -1438,16 +1487,51 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=Your company is most welcome, Grumdjum. The Old Man's brain is yours.
 Go to node ID=300 companion quips 3
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Grumdjum is a companion
+}
+}
+}
 Is Default Reply=1
 
 Requirement=!None
 Reply Text=I'd rather kill you where you stand.
 Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
 Icon=Fight Icon
 
 Requirement=!None
 Reply Text=I work alone. Leave.
 Go to node ID=300 companion leaves you
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CReleaseCompanionAction
+{
+Companion To Release=Goblin Grumdjum
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Grumdjum is dismissed
+}
+}
+}
 Icon=Exit Icon
 ------------------------------------------------------------
 Node ID=300 player speaks to goblin as companion
@@ -1463,6 +1547,21 @@ Is Default Reply=1
 Requirement=!None
 Reply Text=I work alone. Leave.
 Go to node ID=300 companion leaves you
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CReleaseCompanionAction
+{
+Companion To Release=Goblin Grumdjum
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Grumdjum is dismissed
+}
+}
+}
 Icon=Exit Icon
 ------------------------------------------------------------
 Node ID=300 grumdjum asks to rejoin
@@ -1496,6 +1595,32 @@ Should Have Voiceover=1
 Node ID=300 companion joins you
 Text=Would you like Grumdjum to join you again?
 Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Take up your sword, goblin. There is an Old Man to put to rest.
+Go to node ID=300 grumdjum rejoins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Grumdjum is a companion
+}
+}
+}
+
+Requirement=!None
+Reply Text=Not yet. Wait here.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=300 companion leaves you
 Text=If that is your wish, here I will remain. Should you need my sword, return and a goblin companion you will regain.

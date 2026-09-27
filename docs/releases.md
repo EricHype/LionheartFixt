@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tiers 1-3 done 2026-09-26, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tiers 1-4 done, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
@@ -202,6 +202,88 @@ twelve files are the fifth superseded draft this project has found -- the same s
 **This is the third time in two acts that "opened by nothing" meant "superseded", and the second time I
 counted the wrong field before checking what a working example uses.** Any tier built here should start from
 that assumption.
+
+### Tier 4, built 2026-09-27: the goblin companion 0.2.0 deferred to this act
+
+**Grumdjum's twelve `300`-series nodes are all reachable now, and all twelve are voice-recorded.** The arc
+was written, recorded, and given no mechanism: `CSetCompanionAction` in his tree counted **zero**, and
+`300 companion` -- the entry the whole cluster hangs off -- was opened by nothing, so `300 kill old man`,
+`300 companion quips 3` and `300 companion leaves you` were goto-reachable only through a door that did not
+exist. 41 of his 42 recordings are now on reachable nodes.
+
+**The tester's call was Grumdjum as the companion and the Khan as a cameo**, and the writing supports it:
+Grumdjum arrives as the Khan's emissary -- *"since my Khan has tasked me to aid with your quest, let us seek
+the Old Man in Alamut, the Eagles Nest"* -- while the Khan's own `500 Start in Persia` is three nodes of a
+man passing through: *"Without a doubt you are surprised to see Rumjun Khan here amidst the sandy dunes. I am
+here to cause destruction in this part of the world...and assist you on your journey of bloodshed."* Accept
+and he goes off to sow it himself; decline and he takes his brethren east, *"China is very rich and my belly
+is very empty."* No companion machinery is invented for him, because none was written for him.
+
+**Both are gated on the Khan being alive, and that gate is vanilla's own.** `Goblin Khan is Dead` is a
+`Editor/Checker` part on `Inquisition Chambers2` carrying its designer's comment -- *"if this is active, PC
+killed Goblin Khan before speking with Torqemada"* -- activated from `Goblin Warrens` and read by
+`CCheckExistenceAction`, the idiom vanilla uses **1246** times. So kill the goblin Khan for Torquemada in act
+1 and **no goblin comes to Alamut at all**, six acts later. Grumdjum additionally needs to be alive
+(`Grumdjum Dead`, the marker his own Lake generator sets on his death) and to have been paid for the Dryad --
+a new `Player has met Grumdjum` checker on the Lake, set from both reward nodes, the true one and the lie.
+
+**What was built.** Five parts on `01 Desert Sprawl`, the act's front door:
+
+| part | what it does |
+|---|---|
+| `Fixt goblin gate` | an oval on the player's own arrival spawn: Khan alive -> the Khan's cameo, and if the Dryad was paid for and Grumdjum lives -> Grumdjum |
+| `Fixt Grumdjum generator` | an edit of **vanilla's own Lake `CGeneratorAI` for this exact character**, with the Lake-specific `After Action` replaced by a death marker and three AIs added beside its interaction specifier |
+| `Fixt Khan generator` | the same, on `Monster Cans/Mongol Goblin Khan`, opening `500 Start in Persia` |
+| `Fixt Grumdjum is a companion` | swaps his interaction specifier to `300 player speaks to goblin as companion` |
+| `Fixt Grumdjum is dismissed` | swaps it to `300 companion joins you`, and has him call `300 grumdjum asks to rejoin` after you |
+
+Both generators sit **within 80 units of `From England to Alamut`**, the spawn the player arrives on, which is
+the strongest reachability evidence available and the `walkable is not reachable` lesson applied rather than
+re-learned. The generator class is `CGeneratorAI` -- the documented-correct class for an interactable NPC, and
+the one vanilla uses for Grumdjum himself -- deliberately **not** the `CSimpleGeneratorForCannedEntitiesAI`
+that 0.19.0's Grace generator uses. If Simple turns out not to spawn interactable NPCs, Grumdjum still works
+and the difference diagnoses Grace; putting both on one unverified assumption would have risked losing both.
+
+**The barks play at last.** `300 companion quips 1/2/3` run on a `CRepeatTimerTriggerAI` wrapping a
+`CShuffledSeriesAction{When Done=Repeat Series}` every 13 seconds give or take 5, and the two injury lines
+sit on `CAIHealthPercentThresholdTrigger` ladders at **50%** -- *"If my blood continues to flow, to the
+stewpot beyond I will go!"* -- and **20%** -- *"My time is nearly past, I need healing fast!"* All are
+anchored `Name of Position=$Trigger`, the companion-bark fix 0.19.0 had to make twice.
+
+**And he can be dismissed and taken back.** Three replies release him (`CReleaseCompanionAction`), after which
+he stands where he was and asks after you; `300 companion joins you` -- recorded, and reply-less, so it asked
+*"Would you like Grumdjum to join you again?"* with no way to answer -- has its two answers now, and
+`300 grumdjum rejoins` confirms: *"At last dark knight, you have come to your senses, now let us beat these
+assassins senseless!"*
+
+#### Four defects fixed on the way through, three of them vanilla's
+
+- **`Go to node ID=300 companion leaves you `** carried a **trailing space** on `300 companion`'s dismissal
+  reply. Normalised.
+- **Two replies pointed at `70 Accept the Offer`** where the node is `70 Accept the offer`. Case-folding may
+  well resolve this on its own -- the engine folds case for entity names -- so this is recorded as a
+  normalisation rather than a repair, and both are now exact.
+- **Two `300`-series replies carried a `Fight Icon` with no action**, offering a fight and closing the
+  conversation instead: the same shape tier 3 finished in `WizardCan1` an hour earlier, third and fourth
+  instance. Both now call `CGoToCombatAction{Enemy Name=$Trigger}`, which is what vanilla's own `50 Goodbye`
+  does two nodes away.
+- **The Khan's three Persia nodes shipped `Should Have Voiceover=0` with all three recordings present.** The
+  flag was set before the lines were recorded and never updated. Unmuted.
+
+#### One recording with nowhere to go, left alone
+
+`OldMan`-style: `GOBLINGRUMDJUM VOs/130 No more poetry not accepted dryad quest alt.ogg` has **no node of that
+name** -- only `130 No more poetry not accepted dryad quest` exists, without the `alt`. An alternate take that
+outlived its node. Nothing to wire it to, so nothing is done; recorded here so it is not mistaken for a gap.
+
+#### A near-miss worth recording, because it cost real work
+
+Reverting a failed build, I deleted `files/Levels/Wilderness Maps/Lake.zax` as though it were a file this tier
+had created. **It was already a tracked Fixt file**, and the rerun regenerated it from vanilla -- silently
+dropping **4,569 bytes** of an earlier release's work on that map. It was caught only because the second run's
+byte counts started from a different number than the first. `git checkout` restored it. **The revert procedure
+for a partial write must distinguish untracked files from modified ones**: `git status --short` marks them
+differently, `??` against ` M`, and only the first are safe to delete.
 
 ### Tier 1, built 2026-09-26: the Acid Wash says what it is
 
@@ -434,7 +516,8 @@ companion arc, which is tier 4.
    The lesson is narrow and worth keeping: **a recorded decision is not an applied one.** The note named the
    node, the fix went to its twin, and nothing caught it for nineteen releases because both nodes are in the
    same file and the file's byte count moved in the expected direction.
-4. **The goblin companions, which 0.2.0 deferred to this act by name.** The 0.2.0 notes put it plainly:
+4. **The goblin companions, which 0.2.0 deferred to this act by name. BUILT 2026-09-27 -- see the tier 4
+   write-up above.** The 0.2.0 notes put it plainly:
    *"Grumdjum's companion arc -- ten nodes covering join, dismissal, rejoin, injury barks and combat quips,
    all in rhyming couplets. His join line is about Alamut, the Khan's `500 Start in Persia` is a matching cut
    goblin companion for the same act, and neither has a companion generator on any map. One cut Act 8 feature,
