@@ -54,6 +54,19 @@ Go to node ID=210 the inquisition
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=The Queen set her hand to a service I did her in Barcelona. Say that again about serving the English -- the part you said with your face.
+Go to node ID=220 the queens man
+Icon=Quest Icon
+
+Requirement=!None
 Reply Text=That doesnt concern you. Goodbye.
 Go to node ID=
 Icon=Exit Icon
@@ -105,6 +118,19 @@ Icon=Quest Icon
 Requirement=Inquisitor IS
 Reply Text=I am of the Holy Office, Surrey. You said the Spanish Inquisition. Say it again.
 Go to node ID=210 the inquisition
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=The Queen set her hand to a service I did her in Barcelona. Say that again about serving the English -- the part you said with your face.
+Go to node ID=220 the queens man
 Icon=Quest Icon
 
 Requirement=!None
@@ -162,6 +188,19 @@ Icon=Quest Icon
 Requirement=Inquisitor IS
 Reply Text=I am of the Holy Office, Surrey. You said the Spanish Inquisition. Say it again.
 Go to node ID=210 the inquisition
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+}
+}
+Reply Text=The Queen set her hand to a service I did her in Barcelona. Say that again about serving the English -- the part you said with your face.
+Go to node ID=220 the queens man
 Icon=Quest Icon
 
 Requirement=!None
@@ -300,7 +339,7 @@ Text=What're ya doin'? That's the Regent's loot! He'll have my head if I lose th
 Should Have Voiceover=0
 ------------------------------------------------------------
 Node ID=200 the clover
-Text=<The performance stops. He does not take it, and he does not look away from it either.> Ah. Ah, now. Where did a body like you come by that. <He puts his hands on the crate behind him, and looks west down the road, at nothing.> Drowned. The whole of it drowned, and I am out here weighin' out bolts for the men that let it. Go on then. Take what ye need off the Regent's pile, and Surrey O'Connell never saw a thing, and never heard a lid.
+Text=<The performance stops. He does not take it, and he does not look away from it either.> Ah. Ah, now. Where did a body like you come by that. Drowned, the whole of it drowned, and here am I out on this road weighin' out bolts for the men that let it. Go on then. Take what ye need off the Regent's pile, and Surrey O'Connell never saw a thing, and never heard a lid.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -321,7 +360,7 @@ Reply Text=Let me see what is for sale as well.
 Go to node ID=30 vendor
 ------------------------------------------------------------
 Node ID=210 the inquisition
-Text=<He goes the colour of the road.> The Spanish -- no. No, guvna', I never -- I said it as a manner of speakin', it is a thing a man says! <He is already unbuckling the strap on the nearest crate.> Ye'll want the Regent's chest, I know ye will, they all want the Regent's chest. It is that one, and the lid is heavier than the lock, and I am a man who sees very little at my age.
+Text=<He goes the colour of the road, and his hands find the strap on the nearest crate without him looking.> The Spanish -- no. No, guvna', I never -- I said it as a manner of speakin', it is a thing a man says! Ye'll want the Regent's chest, I know ye will, they all want the Regent's chest. It is that one, and the lid is heavier than the lock, and I am a man who sees very little at my age.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -340,4 +379,42 @@ Is Default Reply=1
 Requirement=!None
 Reply Text=First, your goods.
 Go to node ID=30 vendor
+------------------------------------------------------------
+Node ID=220 the queens man
+Text=<Everything friendly goes out of him at once, and what is left is a man doing sums.> I said nothing, guvna'. I said I was happy in the work and I am happy in the work. Ye'll want the Regent's chest. Take it, and take it quick, and when they ask me I will say a Spaniard came through here and I could not stop him, because that is a thing they will believe of me. Do not say my name where anybody writes things down.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then we understand each other.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Surrey looks away
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=You have nothing to fear from me, Surrey.
+Go to node ID=221 he does not believe you
+------------------------------------------------------------
+Node ID=221 he does not believe you
+Text=<That gets the first honest thing out of him, and then he turns back to the strap.> No. No, I have not, and I have not from the last four either, and here I still am weighin' out bolts on the wrong road. Take what ye came for. It is not mine and it was never theirs.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Surrey looks away
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Quest Icon
+Is Default Reply=1
 }

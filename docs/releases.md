@@ -768,7 +768,7 @@ and the folder's own `Priest`, `Priest Tough` and `Priest Super`. Eight were fie
 two English ogres in particular are named in the notes and are not in the game. They belong in a 0.17.1
 alongside this act's work, since the same twinning pass handles them.
 
-## 0.18.2 - Surrey O'Connell and the servant of the Queen (scoped, not started)
+## Surrey O'Connell's third route (built, shipping in 0.19.0)
 
 0.18.0 gave Surrey O'Connell two new ways past the Regent's chest: the **Clover from the drowned fields of
 Ireland**, and the **Holy Office**. **Both stay exactly as they shipped.** This adds a third, for a player
@@ -787,7 +787,30 @@ reasons, not three flavours of the same one:
 | **Servant of the Queen** | self-preservation. He has been overheard mocking the Crown by somebody the Crown owes a favour | **coldly.** He complies, and he is worse off for having met you -- the only one of the three where helping the player costs him something |
 
 Mechanically all three end in `Surrey looks away`, so the chest alarm work from 0.18.0 is reused unchanged
-and no map edit beyond the new reply is needed.
+and **there is no map edit at all** -- one gated reply on each of his three entry nodes, and two new nodes.
+
+**It ships in 0.19.0 rather than as a 0.18.2**, because the perk it reads is act 7's work and a patch to
+0.18.x would have had to carry that file forward on its own.
+
+> <Everything friendly goes out of him at once, and what is left is a man doing sums.> I said nothing,
+> guvna'. I said I was happy in the work and I am happy in the work. Ye'll want the Regent's chest. Take it,
+> and take it quick, and when they ask me I will say a Spaniard came through here and I could not stop him,
+> because that is a thing they will believe of me. **Do not say my name where anybody writes things down.**
+
+Tell him he has nothing to fear from you and he gives up the only honest thing he says to anybody: *"No. No,
+I have not, and I have not from the last four either, and here I still am weighin' out bolts on the wrong
+road."*
+
+### And a convention repair across this release
+
+The project's rule is **at most one `<...>` stage direction per dialogue node** -- speech should not read like
+a screenplay. Nine nodes authored in this release broke it, three of them already shipped in 0.18.0
+(`200 the clover`, `210 the inquisition`, `50 the reports`). All nine are cut to the stage direction that does
+the most work, with what the other carried folded into the speech where it was worth keeping.
+
+A sweep of every Fixt-authored node in the mod found **43 more in releases 0.1.0 through 0.17.0**, so the
+drift long predates this release. Those are left alone here -- rewriting authored prose across eight published
+releases is not something to fold into a release cut -- and recorded as a backlog item.
 
 ## 0.18.1 - Slayer of Innocents, on the hooks the designers built for it
 

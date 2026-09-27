@@ -1477,6 +1477,11 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 
 | # | Step | Say | Expect |
 |---|---|---|---|
+| ES54 | Carrying **Servant of the Queen** from act 1, talk to Surrey O'Connell at `Crossroads to England map` | - | A third reply, about the service the Queen set her hand to. He goes cold: *"Do not say my name where anybody writes things down."* |
+| ES55 | Open the Regent's chest after ES54 | - | No shout, no guards. Same outcome as the clover and the Holy Office -- all three set `Surrey looks away` |
+| ES56 | Tell him *"You have nothing to fear from me, Surrey."* | - | *"No. No, I have not, and I have not from the last four either, and here I still am weighin' out bolts on the wrong road."* |
+| ES57 | Carrying the clover **and** the title | - | Both replies offered. They are different reasons, not ranked alternatives; either works |
+| ES58 | Carrying neither, and no Inquisitor rank | - | Only his vanilla replies plus the PE 8 and Speech 70 routes. Unchanged |
 | ES1 | **A save that has never entered act 7.** Fight through `02 Temple Initiate` | - | **Druids among the English soldiers.** Vanilla fielded the `Druid` template nowhere at all, in the act whose enemy faction is the Druids |
 | ES2 | Compare `02 Temple Initiate` with `09 Secret Chamber` and `10 Inner Sanctum` | - | Druids are occasional at the entrance and common in the deep rooms. The placement is deepest-first on purpose |
 | ES3 | Fight through the three Meditation Chambers | - | Druids alongside the golems and priests. These rooms had no soldiers at all in vanilla |
