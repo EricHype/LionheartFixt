@@ -238,26 +238,40 @@ that assumption.
    `500 Start in Persia`. A decision comes with it that is the tester's, not mine: whether a goblin walks into
    the Assassins' Persia at all, or arrives with the Khan's war party.
 
-6. **What a Knight of Saladin gets in act 8, which is currently a greeting and nothing else.** The rank *is*
-   recognised -- `02 Shifting Dunes` has a part called `Knight of Saladin` that picks properly, on
-   `CIfExpressionAction` rather than `CConditionalAction`:
+6. **What a Knight of Saladin gets in act 8. Read 2026-09-27, and the answer is: a greeting, and that is
+   genuinely all.** The read corrected two guesses of mine, so both are recorded.
 
-   ```
-   if Templar IS      -> 01 Conversation Start Knight Templar
-   else if Saladin IS -> male?  01 Conversation Start Male Knight of Saladin
-                         else   01 Conversation Start Female Knight of Saladin
-   else               -> 1 Conversation Start
-   ```
+   **He is already a working companion, and anyone can recruit him.** `30 go` -- *"Let's carry the battle to
+   Alamut, then."* -- fires `CSetCompanionAction` on `$Trigger` plus a `Knight AI switcher` relay, `3 Return`
+   does the AI swap, and `666 Rejoin` is **not an orphan**: `02 Shifting Dunes` opens it, and *"Yes, please
+   rejoin me"* re-recruits. His tree has **zero orphan nodes**. His race is a dedicated
+   `Races/NPCs/Knight of Saladin Companion`, so he was always meant to be one. **So recruiting him cannot be
+   the Saladin bonus** -- a plain human with no order gets exactly the same companion.
 
-   So he greets a brother knight as one -- *"You do much honor to Saladin's name to have journeyed so far"* --
-   and a Templar gets his own line too. **But his tree is 9 nodes and 21 replies with zero gated replies**, so
-   the rank changes the greeting and nothing else: he tells you where Alamut is and wishes you strength,
-   identically either way. Across the whole act `Saladin IS` is read in exactly that one place, while
-   `Inquisitor IS`, `Templar IS` and `Wielder IS` all sit unused on the same map.
+   **And the Ways Crystal is not a faction reward either.** Its four faction conditionals -- `Saladin IS`,
+   `Inquisitor IS`, `Templar IS`, `Wielder IS`, seven of them in all, every Fail arm empty -- call
+   `CAssignFactionToCharacterAction`: they re-stamp the player's own order, which is housekeeping, not a boon.
+   The crystal's actual reward is **flat for everybody**: thieving powers, +5 Cold and Electrical Damage
+   Resistance, and the flags `Green Way Crystal 5` and `Green Way Crystals ALL FOUND` -- so this is the fifth
+   and last of the Green Way Crystals, and the completion of that chain. I had this down as the same
+   same-node-on-both-arms defect 0.7.0 and 0.8.0 fixed. **It is not that defect.**
 
-   **Read before scoping:** he has a `666 Rejoin` node -- *"Do you need my help again?"* -- which is companion
-   language. If he is a cut companion, then recruiting him *is* the Saladin bonus and the tier is restoration
-   rather than invention. That read comes first.
+   So the finding is a plain absence rather than a broken mechanism: **act 8 contains no
+   faction-differentiated reward of any kind.** `Saladin IS` is read in exactly two places on one map -- to
+   choose a greeting, and to re-stamp a faction -- and `Inquisitor IS`, `Templar IS` and `Wielder IS` are read
+   only in that same housekeeping. Every order finishes the game on identical terms.
+
+   **A Saladin bonus here would therefore be new content, not restoration, and the tier should say so.** The
+   project has added content before -- Quinn's errands, the Templar camp -- but this is not a cut feature being
+   put back, and it should not be dressed as one.
+
+   Two restoration-shaped things did turn up beside it, and they are worth having either way:
+
+   - `02 Shifting Dunes` spawns **two `Knight of Saladin` entities and has one talking part**, so the second
+     knight cannot be spoken to at all.
+   - The knight is **HP 150 / AC 145** on his companion race -- below Sir Roger at 200/200 and below Grace at
+     165/190, in a **later** act than either. Whether that is deliberate restraint or the same unfinished
+     defensive pass the Priestess ladder had wants checking against act 8's enemies before anything is changed.
 
 7. **Reactivity.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
    smaller job here than it was in acts 6 and 7.
