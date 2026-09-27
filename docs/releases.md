@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27. Not started.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Surveyed 2026-09-27, swept for cut content 2026-09-26. Not started.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
@@ -203,22 +203,80 @@ twelve files are the fifth superseded draft this project has found -- the same s
 counted the wrong field before checking what a working example uses.** Any tier built here should start from
 that assumption.
 
+### Leads cleared, so none of these is re-opened
+
+Act 8 was swept for cut content on 2026-09-26 -- unplaced templates, orphan nodes, quest husks, and every
+inactive part nothing activates, across all eleven maps. **Seven leads were chased and all seven were
+intact.** Recorded the way 0.2.0 recorded the goblin jailor, the captive child on Scar Ravine and the
+Woodcutter greeting matrix: these are answered, and re-investigating them is waste.
+
+1. **The ending matrix.** Twelve ending trees are opened by nothing, but they are a superseded
+   implementation-as-separate-files, replaced by nodes inside the character and spirit ending trees. The live
+   machine is fourteen named relays on `08 Final Encounter` and **all fourteen fire**. Detailed above.
+2. **The Knight of Saladin.** Already a working companion recruitable by anyone, zero orphan nodes,
+   `666 Rejoin` opened by `02 Shifting Dunes`, on a dedicated `Races/NPCs/Knight of Saladin Companion`.
+   Detailed in tier 5.
+3. **The Ways Crystal's seven faction conditionals.** `CAssignFactionToCharacterAction` housekeeping that
+   re-stamps the player's own order, not a faction reward with empty Fail arms. Its actual reward is flat for
+   everybody and completes the Green Way Crystal chain. Detailed in tier 5.
+4. **The bird men on `01 Desert Sprawl`.** `Bird Beast Leader in Desert.DialogTree` has **zero orphan
+   nodes**, and the whole chain works: Speech 70 opens `20 Rain Secrets`, Barter 50 opens
+   `22 Rain Secrets Concluded`, then `25 Looking for Assassins`. Talking Fazeem into attacking the Assassins
+   sets `Valid Targets=Scripted Custom 1` on both `Fazeem` and `Bird Man Near Fazeem`, and the map's sole
+   assassin generator, `Assassin Generator PILE`, covers all seven assassin types and stamps
+   `New Category=Enemy,Scripted Custom 1` -- so the retarget reaches every assassin on the map. Two things
+   that look like defects and are not: the reply's `Experience Points To Add=1` is not a placeholder, because
+   the anchor part `Talked Fazeem into Fighting Assassins XP` carries `Experience Points=2000`; and the
+   shipped designer TODO `Action work in progress=(Change their target to Assassins, Add return dialog to
+   Fazeem)` is **stale**, since both halves were implemented -- the retarget in that relay, the return
+   dialogue through `Put Return AI NICE on Fazeem` opening `3 Return`.
+5. **Both dragons are placed and fought.** `Dragon_Chaos` at 25,000 XP is on `08 Final Encounter` in all
+   three tiers; `Dragon_Sand` at 11,000 is on `03 Sand Dragon` in all four. The two templates placed
+   nowhere -- `Sand Dragon Hasharid` and `Chaos Dragon Final Scene` -- are **discarded drafts, not lost
+   content**: both carry `Experience Points=0` against the placed `Dragon_Sand` can's 11,000, both drop
+   nothing, and both point at the `Dragon_Sand` race, so the one called *Chaos* Dragon is not even a chaos
+   dragon. Placing either would field a 900-HP dragon worth no experience. Nothing here to restore.
+6. **`05 Acid Wash`'s acid works.** Four parts on the map looked dead -- `acid 01`, `acid 02 Landscaper`,
+   `Clear Ground 01`, `Clear Ground 02 Landscaper`, all `Active=0` and named by no `Target Name=` or
+   `Relay Name=` anywhere. They are **clone sources**, named by `Source Name=`, which is a sixth activation
+   field this project had not counted. Nine further Acid Steam parts on the map are `Active=1` and four live
+   relays drive them: `First Acid Wash Start` and `Second Acid Wash Start`, each firing its own trigger. The
+   known-good confirms the load state too: `04 Clan of the Skull B` has six `Steam Spot` parts and **all six
+   ship `Active=0`**.
+7. **The remaining inactive parts are shipped debug furniture.** Of the 29 act-8 parts still unexplained after
+   `Source Name=` was folded in, every one is an `Editor/Test Interaction` or `Editor/Character Picker` part
+   named `warp` -- a developer teleport carrying `CLabelPrinterAI` -- and there are **758 of them game-wide
+   across every act**, so they are not act-8 content. The three exceptions are equally empty: a
+   `CSpawnPointAI` holding a teleport visual on `08 Final Encounter`, and `prophet provoked` on the
+   Nostradamus map, an `Editor/Checker` with **no activities and no actions at all** -- 558 bytes of designer
+   marker, with nothing in it to restore.
+
+**The method lesson, which is now the fifth instance of the same one.** Three of these seven -- the ending
+matrix, the acid wash, and the bird men -- read as dead only because the sweep counted a field the mechanism
+does not use. Relays are named by `Relay Name=`, parts and cameras by `Target Name=`, **clone sources by
+`Source Name=`**, nodes by `Node ID=` under `Dialog Tree File=`, quests by `Quest=`. And `Active=0` is the
+normal shipped load state for relays, cameras, spawn points and effect clone sources alike, so it is never
+evidence on its own. Check a known-good example of the same part type before calling anything dead.
+
+**So the answer on act 8 is that it has no recoverable cut content beyond the tiers below.** The only
+genuinely orphaned dialogue in the act is `OldMan`'s `50 old man escapes`, which is tier 2, and the goblin
+companion arc, which is tier 4.
+
 ### Tiers, in the order they should be built
 
 1. **`05 Acid Wash` has no dialogue tree and no balloon at all** -- 334 parts, 40 combatants, seven traps and
    four locks, and not one word. The same shape as act 7's Inner Sanctum, which turned out to be a vault
-   nobody could see.
+   nobody could see. **The acid itself is not the problem** -- it is alive and driven by two relays, per the
+   cleared leads above -- so this tier is the map's silence only: a hazard that washes over the player with no
+   warning, no name, and nothing said about it before or after.
 2. **`OldMan`'s `50 old man escapes` is orphaned.** Four of the fourteen ending relays are escapes, but the
    node for the Old Man's own line as he goes is reached by nothing. Read against how the escape is actually
    triggered before assuming a defect.
-3. **The dragons.** `Dragon_Chaos` at 25,000 XP and `Dragon_Sand` at 11,000 are the two highest-value
-   creatures in the game, `03 Sand Dragon` is a whole map for one of them with a 10-node 31-reply tree, and
-   `Chaos Dragon Final Scene` and `Sand Dragon Hasharid` are placed nowhere. Worth reading before scoping.
-4. **What acts 6 and 7 left here.** Act 6's tier 2 put `Find Galileo and DaVinci` and the True Cross pursuit's
+3. **What acts 6 and 7 left here.** Act 6's tier 2 put `Find Galileo and DaVinci` and the True Cross pursuit's
    completions in `08 Final Encounter`, two acts ahead of themselves, and act 7's Grace arc has no act-8
    presence at all though she is a companion who would still be following. Both want checking now that the act
    is surveyed.
-5. **The goblin companions, which 0.2.0 deferred to this act by name.** The 0.2.0 notes put it plainly:
+4. **The goblin companions, which 0.2.0 deferred to this act by name.** The 0.2.0 notes put it plainly:
    *"Grumdjum's companion arc -- ten nodes covering join, dismissal, rejoin, injury barks and combat quips,
    all in rhyming couplets. His join line is about Alamut, the Khan's `500 Start in Persia` is a matching cut
    goblin companion for the same act, and neither has a companion generator on any map. One cut Act 8 feature,
@@ -238,7 +296,7 @@ that assumption.
    `500 Start in Persia`. A decision comes with it that is the tester's, not mine: whether a goblin walks into
    the Assassins' Persia at all, or arrives with the Khan's war party.
 
-6. **What a Knight of Saladin gets in act 8. Read 2026-09-27, and the answer is: a greeting, and that is
+5. **What a Knight of Saladin gets in act 8. Read 2026-09-27, and the answer is: a greeting, and that is
    genuinely all.** The read corrected two guesses of mine, so both are recorded.
 
    **He is already a working companion, and anyone can recruit him.** `30 go` -- *"Let's carry the battle to
@@ -273,7 +331,7 @@ that assumption.
      165/190, in a **later** act than either. Whether that is deliberate restraint or the same unfinished
      defensive pass the Priestess ladder had wants checking against act 8's enemies before anything is changed.
 
-7. **Reactivity.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
+6. **Reactivity.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
    smaller job here than it was in acts 6 and 7.
 
 ## 0.19.0 - the English Shrine
