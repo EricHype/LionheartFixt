@@ -229,6 +229,36 @@ For the record, the whole encounter sits in the hamlet's north-west corner: the 
 (564,218), (652,219), (556,290) and (654,291), the true form at (375,326), and the nearest player arrival
 `From Giants Cave` at (280,260). Toulouse's copy is on `Titan Village` at (902,230) and (1000,217).
 
+**Each route is now a scene rather than a spawn.** The first version had him teleport in silently with no
+dialogue and no companion action, and an inherited `GetCloseThenTriggerAndFight` specifier that had no business
+on an ally. Both routes were rebuilt on the tester's direction.
+
+**Helping route: they trade barbs first.** `Fixt Pain and Nanghaithya trade barbs` runs a proper
+non-interactive sequence on `Demon camera attractor` at (421,345), beside the true form -- begin NIS, camera up,
+three balloons at 1, 4.5 and 9 seconds anchored alternately on `Daeva of Pain` and `True Form`, then end NIS and
+the camera drops and they fight. The barbs turn on names, which is what this whole encounter is about. He opens
+with *"Nanghaithya. Still wearing other people's faces. Ninety years in this valley and you have not once
+learned to be looked at."* She answers by naming him -- *"Aeshma. They kept you in a box under a church and you
+came out of it grateful, running errands for the thing that opened the lid. Ahriman will hear which of us was
+the coward."* -- and he closes it: *"He will hear it from whichever of us is still standing, so tell it
+carefully."* Aeshma is the daeva of wrath, and naming him that way follows the game's own habit: it already
+names Nanghaithya, Aka Manah and Druj.
+
+**Other route: he is sitting on the wall where your spirit warns you.** `Daeva Top scene relay` at (1311,1052)
+is the part that has the spirit companion say something is ahead -- *"There is a very powerful spirit near to
+us. Be wary!"*, or *"Something just ahead would like to separate your head from your body"*, depending which
+spirit you carry. That relay now also seats him at (1377,1058), **only when the lesser debt is owed and the
+larger is not**, with a `GetCloseThenTalk` specifier and no target type at all, so he waits rather than fights.
+Talking gets `1 the warning`: *"Your spirit has already told you there is something ahead. Spirits are good at
+that and no use at all afterwards. I am here to be of use afterwards, and then we are done with each other."*
+
+**And the name is earned in that conversation, not assumed from the flag.** `2 the name` is where he gives it
+up -- *"A daeva cannot lie about its name and cannot stand to hear it said correctly; say it to her face and
+she will have to stop and argue with you instead of eating you"* -- and sets a third checker,
+`Fixt knows Nanghaithyas name`. The three Speech replies on the relic-less nodes now gate on **that**, so
+refusing him at `3 declined` costs the route: *"I paid in the only coin I had and you have left it on the
+wall."*
+
 **The true name is the more interesting half.** All six of the shapeshifter's `Speech moreequal 95` entry
 points sit on relic-only nodes, so a talker without a relic has no route at all. The name supplies what the
 relic supplied: three new replies on `1 Introduction`, `10 Montaillou if fought in Toulouse` and

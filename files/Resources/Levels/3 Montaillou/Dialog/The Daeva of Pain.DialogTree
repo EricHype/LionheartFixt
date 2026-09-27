@@ -1,0 +1,54 @@
+CDialogTree
+{
+Name=The Daeva of Pain
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 pain arrives
+Text=Nanghaithya. Still wearing other people's faces. Ninety years in this valley and you have not once learned to be looked at.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=11 nanghaithya answers
+Text=Aeshma. They kept you in a box under a church and you came out of it grateful, running errands for the thing that opened the lid. Ahriman will hear which of us was the coward.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=12 pain replies
+Text=He will hear it from whichever of us is still standing, so tell it carefully.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 the warning
+Text=<It is sitting on a broken wall with its chin on its fist, entirely at ease.> Your spirit has already told you there is something ahead. Spirits are good at that and no use at all afterwards. I am here to be of use afterwards, and then we are done with each other.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then be of use.
+Go to node ID=2 the name
+
+Requirement=!None
+Reply Text=You owe me nothing. Stay out of my way.
+Go to node ID=3 declined
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 the name
+Text=The thing ahead is called Nanghaithya. Not the name it offers -- the one it was made with. A daeva cannot lie about its name and cannot stand to hear it said correctly; say it to her face and she will have to stop and argue with you instead of eating you. That is the debt discharged. Do not come looking for me again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Nanghaithya. I will remember it.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Fixt knows Nanghaithyas name
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 declined
+Text=As you like. I paid in the only coin I had and you have left it on the wall. That is your affair.
+Should Have Voiceover=0
+}
