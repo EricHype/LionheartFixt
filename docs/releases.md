@@ -218,7 +218,48 @@ that assumption.
    completions in `08 Final Encounter`, two acts ahead of themselves, and act 7's Grace arc has no act-8
    presence at all though she is a companion who would still be following. Both want checking now that the act
    is surveyed.
-5. **Reactivity.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
+5. **The goblin companions, which 0.2.0 deferred to this act by name.** The 0.2.0 notes put it plainly:
+   *"Grumdjum's companion arc -- ten nodes covering join, dismissal, rejoin, injury barks and combat quips,
+   all in rhyming couplets. His join line is about Alamut, the Khan's `500 Start in Persia` is a matching cut
+   goblin companion for the same act, and neither has a companion generator on any map. One cut Act 8 feature,
+   and it should return with Act 8."*
+
+   It is **twelve** `300`-series nodes in `GoblinGrumdjum.dialogtree`, and **every one of them is
+   voice-recorded**: `300 companion` (4 replies), `300 kill old man` (3), `300 player speaks to goblin as
+   companion` (2), `grumdjum asks to rejoin`, `grumdjum rejoins`, `grumdjum hurting`, `grumdjum hurting 2`,
+   `companion quips 1/2/3`, `companion joins you`, `companion leaves you`. **`CSetCompanionAction` in his tree:
+   zero.** Written, recorded, and given no mechanism -- the same shape as Grace O'Malley in 0.19.0, with the
+   same fix available: clone a working companion's generator and switch relays.
+
+   `300 kill old man` is his line about killing the Old Man of the Mountain, so the arc is explicitly act-8
+   content. Two differences from Grace, both of which make this bigger than her tier: **none of the twelve is
+   opened by any map** and only three are reachable by goto, so this needs a spawn point in act 8 as well as
+   the machinery; and there is a **second** goblin companion in the same state, the Khan's
+   `500 Start in Persia`. A decision comes with it that is the tester's, not mine: whether a goblin walks into
+   the Assassins' Persia at all, or arrives with the Khan's war party.
+
+6. **What a Knight of Saladin gets in act 8, which is currently a greeting and nothing else.** The rank *is*
+   recognised -- `02 Shifting Dunes` has a part called `Knight of Saladin` that picks properly, on
+   `CIfExpressionAction` rather than `CConditionalAction`:
+
+   ```
+   if Templar IS      -> 01 Conversation Start Knight Templar
+   else if Saladin IS -> male?  01 Conversation Start Male Knight of Saladin
+                         else   01 Conversation Start Female Knight of Saladin
+   else               -> 1 Conversation Start
+   ```
+
+   So he greets a brother knight as one -- *"You do much honor to Saladin's name to have journeyed so far"* --
+   and a Templar gets his own line too. **But his tree is 9 nodes and 21 replies with zero gated replies**, so
+   the rank changes the greeting and nothing else: he tells you where Alamut is and wishes you strength,
+   identically either way. Across the whole act `Saladin IS` is read in exactly that one place, while
+   `Inquisitor IS`, `Templar IS` and `Wielder IS` all sit unused on the same map.
+
+   **Read before scoping:** he has a `666 Rejoin` node -- *"Do you need my help again?"* -- which is companion
+   language. If he is a cut companion, then recruiting him *is* the Saladin bonus and the tier is restoration
+   rather than invention. That read comes first.
+
+7. **Reactivity.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
    smaller job here than it was in acts 6 and 7.
 
 ## 0.19.0 - the English Shrine
