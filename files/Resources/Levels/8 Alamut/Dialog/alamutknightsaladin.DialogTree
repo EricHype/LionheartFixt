@@ -105,9 +105,64 @@ Action=CReleaseCompanionAction
 {
 Companion To Release=Knight of Saladin
 }
-Action=CTriggerRelayAction
+Action=CMultipleActionsAction
 {
-Relay Name=Fixt Knight dismissed
+Action=Array
+{
+Item Count=2
+Action=CRemoveAIAction
+{
+Target Name=Knight of Saladin
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CDelayAction
+{
+Next Action=CAddAIAction
+{
+Target Name=Knight of Saladin
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Companions=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTalk
+Action=CDisplayDialogTreeAction
+{
+Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
+Node ID=666 Rejoin
+Speaker=$trigger
+Player Being Spoken To=$Instigator
+}
+X Radius=150
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
 }
 }
 }

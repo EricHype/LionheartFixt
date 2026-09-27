@@ -1525,6 +1525,10 @@ parts, so a save that has already been on that map will not show any of it.
 | AL45 | Greet the Knight of Saladin on `02 Shifting Dunes` as a **Templar** | - | A fourth reply about the two orders' arrangement, leading to `22 the tribute` |
 | AL46 | Greet him as a **Knight of Saladin**, male or female | - | A fourth reply, *"They sent knives into Saladin's own tent. Twice."*, leading to `23 the tent` |
 | AL47 | Greet him carrying **no order** | - | His three vanilla replies only. `1 Conversation Start` is unchanged |
+| AL48 | Recruit Grumdjum on `01 Desert Sprawl`, walk him to `04 Maw of the Assasin` or later, then dismiss him there | - | He is released **and** his interaction switches to `300 companion joins you`. Before the review pass the switch sat on a relay that only exists on `01 Desert Sprawl` |
+| AL49 | Talk to him on that far map after dismissing him | - | `300 companion joins you`, answerable, not *"What can Grumdjum do for you?"* |
+| AL50 | Recruit the Knight of Saladin, walk him off `02 Shifting Dunes`, dismiss him there | - | Same: released, and his interaction switches to `666 Rejoin` on whatever map he is standing on |
+| AL51 | Recruit Grace in act 7 and dismiss her on `01 Outside Shrine` | - | Unchanged from 0.19.0. Her switch replies are goto-only from the arrival conversation on that map, so they were never at risk |
 
 ### 0.19.0 - the English Shrine
 

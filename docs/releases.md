@@ -203,6 +203,57 @@ twelve files are the fifth superseded draft this project has found -- the same s
 counted the wrong field before checking what a working example uses.** Any tier built here should start from
 that assumption.
 
+### A review pass over 0.19.0 and 0.20.0, 2026-09-27
+
+Five classes of defect that Gate 0 and the structural audits cannot see, checked across all 78 files the two
+releases touched: a dialogue reply firing a relay that lives on one map while the conversation can happen
+elsewhere; references that do not resolve; companion release names that do not match a generator's `New Name`;
+reply-less nodes opened as trees and reply-bearing nodes opened as balloons; and Fixt-authored nodes with more
+than one stage direction.
+
+**One real finding, and it is the companion machinery in both releases' newest work.**
+
+A `CTriggerRelayAction` names a relay, and a relay is a **part on a map**. Grumdjum's and the knight's specifier
+swaps were fired from nodes a companion *carries with him* -- `300 player speaks to goblin as companion`,
+`300 companion joins you`, and the knight's dismissal on `3 Return` -- while the relays sat on
+`01 Desert Sprawl` and `02 Shifting Dunes`. So the one map the companion is least likely to be standing on when
+you dismiss him is the only map where the swap could fire. Dismissing Grumdjum in the Dark Temple would have
+released him and left his interaction pointing at *"What can Grumdjum do for you?"* for someone who was no
+longer his employer, with the rejoin node unreachable.
+
+**Fixed by putting the swap inline in the reply, which is what vanilla's own `3 Return` does for this exact
+operation** -- `CRemoveAIAction` and `CAddAIAction` on `$Trigger`, in a `Custom Action`, with no relay in it.
+Seven relay triggers inlined: six in Grumdjum's tree, one in the knight's. Inline actions have no home map.
+
+**And the honest qualifier: firing a relay cross-map is routine vanilla practice, so this was never proven
+broken.** `Guard Esteban` does it 22 times, and `Machiavelli`, `Jafar`, `Lord Relican` and two Toulouse trees do
+it too. The engine may well resolve relays globally. The change was made because the dependency was
+unnecessary, not because the pattern is known to fail -- and the three now-unfired `Fixt ...` relay parts are
+**deliberately left in place, inert**: if inlining misbehaves in play, re-pointing the tree back at them is a
+one-line fix, and removing them cost two failed attempts already. They are no-ops, recorded here so a later
+cut-content sweep does not mistake them for something unwired.
+
+**Grace was flagged and is fine; the check was too coarse.** Her two switch relays looked reachable from
+`Port District.zax` in act 1. They are not: the replies that fire them sit on `502 arrive in england grace
+relived 2` and `503 druids`, both **goto-only**, reached only from the arrival conversation on
+`01 Outside Shrine` where both relays live -- and her `CReleaseCompanionAction` is on
+`502 grace companion asked to return`, which that same map opens. The check asked which maps open *any* node of
+a tree; the question was which maps can reach *that reply*. **0.19.0 needs no change.**
+
+**Two of the five classes turn out not to be defect classes at all.** Vanilla routinely opens reply-less nodes
+as trees -- `GoblinVillager / 1 Greeting N Demokin` on ten maps, `Wilderness Traveler Banter`, `ShylockeGoons`
+-- and routinely opens reply-bearing nodes as balloons, including `OldMan / 1 Conversation Start` in act 8's own
+opening cinematic and every `Ogre Canned` line in the Wilderness. So neither shape is evidence of anything, and
+act 7's tier 5 note that called the first one a defect overstated it: the change made there was still right for
+that scene, but the pattern is not broken in general.
+
+**The rest came back clean.** Every `CReleaseCompanionAction` names a companion some generator actually spawns
+(`Grace`, `Knight of Saladin`, `Goblin Grumdjum`). No `Dialog Tree File`, `Perk`, `Canned Expression`, `Race`
+or `Requirement` reference in any touched file fails to resolve. Every specifier swapped in by the new inline
+blocks points at a node that exists. And the six nodes carrying more than one stage direction are **all from
+releases before 0.19.0** -- three in Grumdjum's tree, one in the Khan's, one in Rakeb's, one on the goblin
+guarding the Woodcutter's daughter -- already on the recorded backlog, and none from these two releases.
+
 ### Tier 6, built 2026-09-27: the last act learns who arrived at it
 
 **Counted properly, act 8's reactivity is thinner than the survey's headline suggested.** The survey put it at
