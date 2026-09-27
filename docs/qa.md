@@ -1471,6 +1471,30 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+### 0.21.0 - the Doomed Plateau
+
+Act 4. Needs a character who has **not yet entered `7 Doomed Plateau`** -- all of it is level parts. `DP2`-`DP5`
+need Speech 80+ or Divine 80+ or Wielder standing; `DP4` needs Speech 110 or Divine 80.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DP1 | Enter `7 Doomed Plateau` and find the Bonecaller, north-east of the slope | - | A lich in rotted mail that **does not attack on sight**: `1 the bonecaller`, *"you are the first new thing on this plateau in ninety years"* |
+| DP2 | Talk to it as a **Wielder**, or with **Divine 80+**, or **Speech 80+** | - | A route into `10 bound`. Each order of approach has its own line; all three reach the same node |
+| DP3 | Ask *"What are you?"* first | - | `5 the answer` -- it raises what falls, the knights cut it down, and tomorrow it raises them again |
+| DP4 | At `10 bound`, use **Speech 110** or **Divine 80** | - | `20 stands down`. It stops, and is retagged into the other army |
+| DP5 | Watch it after it stands down | - | **The horde attacks it and it fights back.** It is retagged `Scripted Custom 2,Undead` and pointed at `Enemy`, which is what all 81 horde generators target and what every horde spawn carries |
+| DP6 | Refuse it, or say you have nothing to say to the dead | - | It fights. HP 385/462/520 by party level, AC 80 -- easy to hit, huge pool, **immune to cold, poison and disease, and weakest to fire** |
+| DP7 | Kill it | - | 1500/2000/2500 XP by tier. This is the first time anything in the game has spawned a `Boss Lich`: three races, a sprite and seventeen animations shipped with no template pointing at them |
+| DP8 | Find the Bonewright, mid-slope west | - | `100 the bonewright` as it plants its standard, and the fallen around you start getting up |
+| DP9 | Stand and fight near it for a minute without killing it | - | Waves keep arriving, roughly every 22 seconds. They are `Greater Skeleton` tiers from a generator it switches on |
+| DP10 | Kill the Bonewright | - | `101 the bonewright falls`, and **the waves stop** -- the relay and its generator are both shut off permanently |
+| DP11 | Check the Bonewright's own strength | - | HP 250/400/600, AC 175/215/300. In vanilla it ran on `Ghoul Male Large` at 150/200/275 while its own race sat unused |
+| DP12 | Find the Revenant Sergeant, east of mid-slope | - | `110 the sergeant`. It is fighting the Templar knights and **has not looked at you** |
+| DP13 | Bring it below **66%** | - | `111 the sergeant rallies` -- its section leaves the knights and closes on you |
+| DP14 | Bring it below **33%** | - | `112 the sergeant fixates`. It abandons the battle: `Valid Targets` narrows to `Player` and it comes through its own dead |
+| DP15 | Check the Templar garrison still works | - | `UndeadTemplar` unchanged: it still mistakes you for a monster, still recruits a Templar, still says *"Find Jehanne"* |
+| DP16 | Check `2 Retreat of Souls` | - | Its three `Second Guardian` spawns are now at the restored strength too. They are weight 1, so they stay rare |
+
 ### 0.20.0 - Alamut
 
 Act 8, all six tiers. Needs a character who has **not yet entered act 8** -- most of it is level parts.

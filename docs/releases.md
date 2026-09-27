@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.20.0 are published, and every act in the game is surveyed, built and released**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.20.0 are published, and every act in the game is surveyed, built and released**. **0.21.0 is open**: a review found that the Crypt and England additions did not break up their combat, and the Doomed Plateau's captains are the answer. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,133 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.21.0 - the Doomed Plateau
+
+**Opened 2026-09-27 after a review asked whether the Crypt and England additions actually broke up their
+combat. They did not, and the measurement is recorded below. Captains built the same day, unplayed.**
+
+### Why this release exists
+
+A review of 0.19.0 and 0.20.0 asked the question the project had never measured: is the game more *fun*, and
+did the act-4 and act-7 additions break up the monotony they were meant to break up. Counted by placement
+rather than volume, **no**:
+
+| act | Fixt parts | conversations | merchants/heals | reply-less balloons | spawn variety added |
+|---|---|---|---|---|---|
+| 4, the Crypt | 18 across 11 maps | **1** | **0 / 0** | **22 of 26 placements** | **+0** |
+| 7, England | 14 across 11 maps | 5 | 3 / 3 | 4 | +201 |
+
+And the placement was the problem. `10 Garrison Camp` -- a genuinely new map, 63 parts, a real 31-reply
+conversation -- hangs off `1 Crypt Entrance` and exits only back to it, so it is a dead-end side room reached
+at **cumulative 2% of the act's combat**. Everything after it -- `2 Retreat of Souls` at 782 spawn entries,
+`7 Doomed Plateau` at 1,055, `8 Ante Chamber` at 328, `9 Burial Chamber` at 218 -- got reply-less balloons and
+nothing else. **Effectively 100% of the Crypt's combat happens after its last respite.** England's Templar
+camp sits at maps 02 and 04 of 11, and maps 03 and 05-09 received **zero** Fixt parts between them, 1,010
+spawn entries including `03 Stone Chamber` at 547.
+
+A balloon on a corpse pile is a subtitle on the monotony. It makes the grind legible; it does not shorten,
+vary, or make it optional. **Act 2's `4 Undercroft` -- 130 parts, 3 spawn entries, five conversations, spawn
+points named `Pen Start`, `escaped loud`, `escorted`, `delivered` -- is the one time this project built the
+thing properly, and it was never repeated.**
+
+### The tester's better idea, and what it turned up
+
+The first plan was a mid-act respite room off each act's combat midpoint. The tester replaced it with
+something better: **the Plateau is a battle between armies, so give the undead captains -- unique fights, some
+of which can be talked out of it.** That is a better fit, because the Plateau's problem is not a missing
+rest stop, it is 1,055 spawn entries of the same fifty-six templates.
+
+**The map turns out to be a real two-army fight already, and its own machinery does exactly what the idea
+needs.** `CSetTargetTypeAction` appears **118 times** on it. Every horde generator -- `Zombie Skeleton` x16,
+`Festering Undead` x10, `Soul Reaver` x10, `Terror` x5, `Activated Ghoul` x5 and a dozen more, **81
+placements in all** -- sets `Valid Targets=Player,Scripted Custom 2`, while horde spawns carry
+`Category=Enemy,Undead`. The Templar garrison's twenty generators set `Valid Targets=Scripted Custom 1`. So
+retagging a single creature as `Scripted Custom 2` turns the **entire horde** onto it, and pointing it at
+`Enemy` turns it onto them. That is the Fazeem retarget from act 8, at army scale, and it is the map's own
+idiom.
+
+And the fiction was already written. The Templar garrison **does not know it is dead** -- *"Another monster
+seeking to capture the holy relic? You too will be destroyed!"* -- recruits the player on `Templar IS` /
+`Templar NOT` with a `<Lie>` option, and ends with *"Find Jehanne, she can help you."* Joan of Arc is on the
+map with **53 nodes and 157 replies** gated on all four orders, all five races, sex, and Speech 45 and 80.
+
+### The captain content was already in the files
+
+**`Boss Lich`, three tiers, is the largest piece of finished-but-unfielded creature content this project has
+found.** Three races under `Races/Enemies/Undead/`, a sprite at
+`Cache/Models/Characters/Monsters/Undead/Boss Lich.mdl16`, and **seventeen GR2 files** in
+`Models3D/Enemies/Boss Lich/` -- `Idle`, `Death`, `GetUp`, `Hit`, `Hit_Shield`, `Fidget`, `Punch`,
+`OneHandedSwing_01/02`, `Bow_Attack`, `CrossBow_Attack`, three body models. `Ghoul Male HUGE`, a creature the
+game *does* field, has **one**. And **no character template anywhere in the game points at any of it**, so
+nothing could ever spawn it.
+
+The races are a designed encounter, not a stat bump:
+
+| | HP | AC | melee | Cold | Poison | Disease | Electrical | Piercing | **Fire** |
+|---|---|---|---|---|---|---|---|---|---|
+| Boss Lich | 385 | 80 | 80 | 100 | 100 | 100 | 20 | 20 | **10** |
+| Tough | 462 | 80 | 80 | 100 | 100 | 100 | 85 | 65 | **25** |
+| Super | 520 | 80 | 90 | 100 | 100 | 100 | 95 | 75 | **35** |
+
+An enormous pool that is trivial to hit, immune to cold, poison and disease, hardening against electrical and
+piercing as it tiers -- and fire deliberately left weakest at every tier.
+
+**And `Second Guardian` is the Druid Master defect again.** Its three cans exist and are fielded -- all three
+tiers on `2 Retreat of Souls` at weight 1, plus Bryce Folly and two random maps -- but they run on
+`Races/Enemies/Undead/Ghoul Male Large` at HP 150/200/275, while `Races/Enemies/Undead/Second Guardian` at
+**HP 250/400/600, AC 175/215/300** is used by nothing. The Lance's second guardian shipped at roughly half
+its designed strength on a generic ghoul block. Three `Race=` lines repoint it.
+
+One thing checked and **not** available: the `Summoned *` races are the player's summoning-spell fodder, not
+free for a lich. An earlier read of mine called them unused; that was a bad query, which counted only races
+whose cans get placed on maps.
+
+### What was built
+
+Three captains on `7 Doomed Plateau`, each an edit of the map's own smallest horde generator,
+`Festering Undead Generator` -- whose three `Max Party Mojo` groups give a captain **tier-scaling with party
+level for free**, and whose `After Action` already tags spawns into the battle.
+
+- **The Bonecaller** (`Boss Lich`, 1500/2000/2500 XP) -- the only captain that can be reasoned with, because a
+  lich commands and remembers. Three ways into its real conversation, `Wielder IS`, `General Divine Skills
+  moreequal 80`, or `Speech moreequal 80`; two ways out of the fight, `Speech moreequal 110` or Divine 80. It
+  is bound to a siege whose author is long dead: *"the pointing has outlived the hand. I cannot put the order
+  down."* Talk it down and it is retagged `Scripted Custom 2,Undead` and pointed at `Enemy` -- **the horde
+  turns on it and it turns on the horde**, using the map's own tags, and *"I have raised every one of them
+  twice and I know exactly where the joints are."*
+- **The Bonewright** (`Second Guardian`, restored to HP 600 / AC 300 at the top tier) -- **while it stands,
+  the fallen keep getting up.** A `CRepeatTimerTriggerAI` on the creature fires a relay every 22 seconds give
+  or take 6 that activates a wave generator and deactivates it six seconds later; its
+  `CSetDestroyedScriptActionAction` shuts the relay and the generator off for good. So the endless stream has
+  a source and a lever, which is the single most useful thing that can be said to a player standing in 1,055
+  spawn entries.
+- **The Revenant Sergeant** (`Lance Guardian`, HP 475 / AC 275 at the top) -- three phases. It opens fighting
+  the knights and ignoring you; at **66%** it whistles its section off the knights and onto you; at **33%** it
+  drops the hand signals and `CSetTargetTypeAction` narrows it to `Valid Targets=Player`, so it abandons the
+  battle and comes for you alone, through its own dead.
+
+Every position is an existing generator's coordinates, which is the strongest spawn-and-reach evidence the
+map offers. Neither of the two mute captains gets dialogue it cannot use: they get balloons that make their
+mechanics legible, which is the difference between a subtitle and an explanation.
+
+**Two build errors, both caught by Gate 0.** The clone base carries a `Dynamic Properties` `Comment` repeating
+its own name, so three captains shipped still calling themselves Festering Undead until an assert caught it.
+And the `Item Count` bump after splicing into `After Action` used a first-occurrence replace, which hit the
+**Activity** array instead -- Gate 0 reported *"Array at /Activity says 3 items, holds 2"*. Fixed by bumping
+the count at the matched offset. That is the fourth instance of the array-splice rule this project has
+recorded, and the first where the wrong array was an outer one.
+
+### Still open
+
+- The Bonecaller's turn is the first time this project has made an enemy change sides. It wants a playtest
+  more than anything else here: if the retag does not take, the Lich simply stops fighting, which is a
+  degraded but not broken outcome.
+- No XP is awarded for talking it down. The bird-men precedent uses an anchor part carrying
+  `Experience Points`; that pattern should be applied here rather than inventing an action.
+- The other four acts' midpoints are still bare. `03 Tourniquet of Pain` (act 5, 604 spawns, **0 merchants, 0
+  heals**) and `03 Stone Chamber` (act 7, 547 spawns) are the next two candidates, and both already carry four
+  map transitions, so a room hangs off proven ground.
 
 ## 0.20.0 - Alamut
 

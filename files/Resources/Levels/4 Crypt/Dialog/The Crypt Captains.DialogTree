@@ -1,0 +1,136 @@
+CDialogTree
+{
+Name=The Crypt Captains
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 the bonecaller
+Text=<The thing in the rotted mail does not raise its weapon.> You are not one of theirs and you are not one of mine, so you are the first new thing on this plateau in ninety years. Speak, if you have something that is not a sword.
+Should Have Voiceover=0
+
+Requirement=Wielder IS
+Reply Text=Something rides behind my eyes. It says you are not free either.
+Go to node ID=10 bound
+
+Requirement=General Divine Skills moreequal 80
+Reply Text=I have read the bindings on lesser things than you. Yours is still knotted.
+Go to node ID=10 bound
+
+Requirement=Speech moreequal 80
+Reply Text=Ninety years of the same order. Who gave it, and are they still alive to lift it?
+Go to node ID=10 bound
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=5 the answer
+
+Requirement=!None
+Reply Text=I have nothing to say to the dead.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 the answer
+Text=A bonecaller. The last one, I think, unless others were buried better than I was. I raise what falls and I send it up the hill, and the knights in the keep cut it down, and tomorrow I raise it again. You may call that a siege. I have stopped calling it anything.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then why keep doing it?
+Go to node ID=1 the bonecaller
+
+Requirement=!None
+Reply Text=Because you were told to.
+Go to node ID=10 bound
+
+Requirement=!None
+Reply Text=Enough talk.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 bound
+Text=You see it, then. I did not choose this hill. Something raised me and pointed me at a spear on the far side of those walls, and the pointing has outlived the hand. I cannot put the order down. It is not in me to put it down. That is the whole of my condition.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 110
+Reply Text=Then hear a new order, from the only mouth still here to give one: stop.
+Go to node ID=20 stands down
+
+Requirement=General Divine Skills moreequal 80
+Reply Text=It is a knot, not a chain. Hold still and I will take it off you.
+Go to node ID=20 stands down
+
+Requirement=!None
+Reply Text=Then you die with it on.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 stands down
+Text=Oh. <It looks at its own hands for a while.> Then I am done with the hill, and the hill is not done with me -- they will come for me the moment they notice. Good. Let them come. I have raised every one of them twice and I know exactly where the joints are.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Fight well.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+{
+Target Name=$Trigger
+New Category=Scripted Custom 2,Undead
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=$Trigger
+Name To Target=
+Valid Targets=Enemy
+}
+Action=CActivateAction
+{
+Target Name=Fixt Bonecaller has turned
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 the bonewright
+Text=The Bonewright plants its standard in the shale, and behind you the fallen begin to sit up. It is not raising them from anywhere. It is raising them from here, from what is already on this ground, and it will go on doing it while it stands.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 the bonewright falls
+Text=The standard goes over. Along the whole slope the half-risen stop where they are and settle, and for the first time since you came up here nothing new is getting to its feet.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=110 the sergeant
+Text=This one has kept its rank. It moves its section with its off hand -- two fingers and they wheel -- and it has not once looked at you, because you are not yet the problem.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=111 the sergeant rallies
+Text=It whistles through the hole where its jaw was, and its section stops fighting the knights and closes around it instead. You are the problem now.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=112 the sergeant fixates
+Text=It drops the hand signals. Whatever held the rank together has finally gone out of it, and it comes for you alone, straight through its own dead.
+Should Have Voiceover=0
+}
