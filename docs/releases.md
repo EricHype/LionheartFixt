@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tier 1 built and tier 2 read 2026-09-26.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tiers 1-3 done 2026-09-26, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
@@ -385,10 +385,55 @@ companion arc, which is tier 4.
 
    **Recorded here so the tier is not re-opened. Act 8's only genuinely orphaned dialogue is now the goblin
    companion arc.**
-3. **What acts 6 and 7 left here.** Act 6's tier 2 put `Find Galileo and DaVinci` and the True Cross pursuit's
-   completions in `08 Final Encounter`, two acts ahead of themselves, and act 7's Grace arc has no act-8
-   presence at all though she is a companion who would still be following. Both want checking now that the act
-   is surveyed.
+3. **What acts 6 and 7 left here. Checked 2026-09-26: both hooks are correct and stay, Grace needs nothing,
+   and the check found a half-applied fix of Fixt's own instead.**
+
+   **Act 6's two quest hooks are right where they are.** `08 Final Encounter` carries three quest actions and
+   all three are properly placed: `Find Galileo and DaVinci` completes on `Galileo Generator`, in the
+   generator's own `After Action` -- verified as the generator slot by the field that follows it,
+   `New Facing Angle=`, which is the test 0.18.1 exists to enforce; act 8's own
+   `Prevent the Old Man of the Mountain...` completes on `Start Here`; and the True Cross pursuit completes on
+   `Cross Regret for Player generator`, the `CActionAI` part that hands the item over.
+
+   Two things make the reach-forward correct rather than merely tolerable. **The quest genuinely resolves
+   there**: the Old Man's own line is *"Now witness these holy relics undo the prison of creation and restore
+   the dark master, Ahriman"* -- the stolen relics **are** the ritual's components, so the Cross is recovered
+   at the ritual, and vanilla put the only `TRUE CROSS` in the game on that map. The act-6 half is the
+   activation, `CActivateQuestStateAction` with state `BA1CROSS` on the part `The Druids are falling back
+   west`, so the quest begins at the crossroads and ends in Alamut exactly as its name describes. **The
+   act-6 table above said it ended on the crossroads map; that was wrong and is corrected.**
+
+   **And the bare completions are vanilla practice, not an omission.** A completion fired for a quest the
+   player never started looked like something to guard, until the count settled it: of **475**
+   `CSetQuestSatusToCompletedAction` in the game, **475 are bare** -- not one is guarded by a quest-status
+   check, and the only status class the engine offers is `CIsQuestStatusCompletedAction`, which tests
+   *completed*. There is no in-progress expression to guard with, so nothing to add.
+
+   **Grace O'Malley's absence from act 8 is parity, and giving her lines would be invention.** She appears
+   nowhere in the act -- the fourteen hits a name sweep finds on `06 Chamber of Torment` are the Tribal skill
+   `Animal Grace`. **But neither does Sir Roger**, vanilla's own act-7 companion, who is absent from all
+   eleven maps and every tree. Both act-7 companions walk into Alamut with nothing to say, and her tree has
+   zero orphan nodes left after 0.19.0, so there is no written act-8 beat of hers going unplayed. Writing one
+   would make the Fixt-restored companion more present than the shipped one, which is the same call the
+   Saladin bonus got and for the same reason.
+
+   **What the sweep did find is Fixt's own, and it is fixed here.** Checking whether the endgame's reuse of
+   act-1 content is safe -- `END GAME Calle Perdida` opens three Fixt-edited trees, `CedricAlsen`,
+   `Lord Relican` and `WizardCan1` -- turned up that **every node the endgame opens is untouched by Fixt**, so
+   that reuse is clean. But `WizardCan1` was 97 bytes *smaller* than vanilla, and the reason is a
+   **half-applied fix**. Vanilla ships a dead reply -- *"Save your flattery and begone."* with a `Fight Icon`,
+   an empty `Go to node ID=` and no action, so it promises a fight and closes the conversation -- on **two**
+   nodes, `50 Spirit` and `60 Membership`. The 0.1.4-era notes recorded the decision explicitly: *"`60
+   Membership` carries a 'Save your flattery and begone' reply with a Fight Icon and no action -- the 0.1.4
+   blank-reply shape. Give it the generic wizards' existing hostile relay, or drop it. Recommend dropping
+   it."* **It was dropped from `50 Spirit` instead**, and `60 Membership` -- which is the node Fixt itself
+   wired into the killed-Relican branch, reachable by goto and opened via
+   `01 Conversation Start Wielder Killed Relican` -- still had it. Removed now; the node keeps its four live
+   replies and its `Exit Icon` goodbye.
+
+   The lesson is narrow and worth keeping: **a recorded decision is not an applied one.** The note named the
+   node, the fix went to its twin, and nothing caught it for nineteen releases because both nodes are in the
+   same file and the file's byte count moved in the expected direction.
 4. **The goblin companions, which 0.2.0 deferred to this act by name.** The 0.2.0 notes put it plainly:
    *"Grumdjum's companion arc -- ten nodes covering join, dismissal, rejoin, injury barks and combat quips,
    all in rhyming couplets. His join line is about Alamut, the Khan's `500 Start in Persia` is a matching cut
@@ -1329,7 +1374,7 @@ Both have a state now, and both are driven from places the act can actually reac
 | quest | begins | ends |
 |---|---|---|
 | Find Galileo and DaVinci | the blacksmith, asked where the two inventors went | `8 Alamut/08 Final Encounter`, at `Galileo Generator` |
-| Pursue the Retreating Druid Forces | arriving at `Crossroads to England map`, which is what the Druids are retreating through | the same map, at `Cross Regret for Player generator` -- the part that hands the player the `TRUE CROSS` |
+| Pursue the Retreating Druid Forces | arriving at `Crossroads to England map`, which is what the Druids are retreating through | **`8 Alamut/08 Final Encounter`**, at `Cross Regret for Player generator` -- the part that hands the player the `TRUE CROSS`. This row said "the same map" until act 8's tier 3 checked it; the part is on the final map, not the crossroads, and that is the right place -- see 0.20.0 tier 3 |
 
 **The blacksmith is the right man to ask**, and he was already there: his post-siege conversation has
 three recorded voice-overs and opens by asking the player what they are doing indoors while the city

@@ -1488,6 +1488,10 @@ parts, so a save that has already been on that map will not show any of it.
 | AL8 | Press the switch again | - | Nothing happens. The relay is `Trigger Only Once=1`, as it shipped |
 | AL9 | On a fresh character, enter instead from `06 Chamber of Torment` and walk east | - | All four triggers still fire when crossed from that side, but the ordering is only guaranteed on the forward path: approaching from the west, `2 the first sluice` can arrive before `1 the channel`. Worth knowing whether that reads badly |
 | AL10 | Check the combat log after AL1-AL6 | - | All five balloon texts are in the log. Every node carries `Include In Log=1` |
+| AL11 | As a Wielder who killed Relican, talk to a wizard in La Calle Perdida and reach `60 Membership` | *"Did you have to pass such tests?"* | Four replies, not five. The dead *"Save your flattery and begone"* -- a Fight Icon that started no fight and closed the conversation -- is gone from this node as it already was from `50 Spirit` |
+| AL12 | Enter `08 Final Encounter` carrying **Find Galileo and DaVinci** from act 6's blacksmith | - | It completes. DaVinci speaks in the opening cinematic, through `DaVinci Ending / 100 Respond ask about Tank`, so the find is dramatised and not only a journal tick |
+| AL13 | Enter it carrying **Pursue the Retreating Druid Forces**, activated at act 6's crossroads | - | It completes when `Cross Regret for Player generator` hands over the `TRUE CROSS` -- the relics the Old Man is using in the ritual are the ones stolen in act 6 |
+| AL14 | Reach act 8 with Grace O'Malley recruited in act 7 | - | She follows and has nothing to say, exactly as Sir Roger does. This is parity with vanilla, not a gap |
 
 ### 0.19.0 - the English Shrine
 
