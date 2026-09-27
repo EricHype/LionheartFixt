@@ -1477,6 +1477,14 @@ Act 7. Needs a character who has **never entered act 7** -- all of this is level
 
 | # | Step | Say | Expect |
 |---|---|---|---|
+### 0.19.0 - the English Shrine
+
+Act 7. Needs a character who has **never entered act 7**. `ES21`-`ES28` and `ES37`-`ES58` additionally
+need one who has **not yet finished act 1's Port District**, since the England allegiance, Grace's arc
+and Surrey's third route are all decided there.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
 | ES54 | Carrying **Servant of the Queen** from act 1, talk to Surrey O'Connell at `Crossroads to England map` | - | A third reply, about the service the Queen set her hand to. He goes cold: *"Do not say my name where anybody writes things down."* |
 | ES55 | Open the Regent's chest after ES54 | - | No shout, no guards. Same outcome as the clover and the Holy Office -- all three set `Surrey looks away` |
 | ES56 | Tell him *"You have nothing to fear from me, Surrey."* | - | *"No. No, I have not, and I have not from the last four either, and here I still am weighin' out bolts on the wrong road."* |

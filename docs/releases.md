@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.18.1 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.19.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.19.0 - the English Shrine
 
-**Surveyed 2026-09-26, revised the same day after the tester's verdict. All six tiers built 2026-09-26, unplayed.** Act 7,
+**Released 2026-09-26. Surveyed and built the same day, unplayed.** Act 7,
 `Levels/7 English Shrine`. Eleven maps, 3,481 level parts, 2,035 live combatants, nine dialogue trees,
 91 player replies.
 

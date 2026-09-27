@@ -1,0 +1,59 @@
+[size=150][b]Lionheart Fixt 0.19.0 - the English Shrine[/b][/size]
+
+Act 7 is the section everyone remembers as the slog, and the numbers agree: Soldier alone is 1,496 of the
+act's 2,048 spawn entries, 73% of everything in it, and the act fields 19 enemy families where the Crypt has
+82. Between fights there were two conversations in eleven maps, one quest with one state, and one unique item.
+
+The odd part is that the act's own enemies were sitting in the files unused. The shrine's enemy faction is the
+Druids, the one line a rank-and-file enemy speaks is "Intruder! You won't stop us from awakening the dragon!",
+and the Druid template is fielded nowhere, so every druid in the act is a generic English soldier. Three
+Priestess templates are placed nowhere in the entire game - while the Druid Master, the act's boss, has the
+race Priestess Super. The order she leads did not appear in its own shrine. They are all in now, 195 weighted
+entries across nine maps, deepest-first, with no spawner count changed and no vanilla spawn dropped.
+
+The Priestess line also shipped unfinished: HP 75/84/95 and AC 260/80/150 against the Priest line's tidy
+80/110/150 and 230/250/280, with no damage resistance at any tier. Their spell identity was the finished half
+and a good one, so that is kept and only the defences fixed. And the Druid Master shipped sharing the
+rank-and-file race - HP 95, AC 150, no resistance, against an Assassin Master on her own map at HP 400 - so she
+now has a boss's race of her own.
+
+Act 7 had no merchant on any of its eleven maps, so a player who ran dry in the Stone Chamber had eight maps to
+go and nothing to restock from, while Sir Roger's own acceptance line promised "my men will spread out and
+clear the area". There are two Templar posts now, staffed from the act's own unplaced Knight Templar template:
+a quartermaster, a field surgeon who treats knights free and charges everyone else, and a guard who finally
+speaks the one dialogue tree in the act that nothing opened. The quartermaster's stock reaches back six acts -
+it is gated on the same three quest checks Quinn the herbalist uses for his own reserve, so the errands you ran
+in act 1 are still paying out here. And the whole post is gated on having accepted Sir Roger's help: refuse
+him, and there is no camp at all.
+
+Helping Guy Fawkes in act 1 now means something. That thread lets you renounce the Inquisition and swear to
+the Queen, and it promises the Queen Mother will hear your name - and the allegiance was stored nowhere at all.
+The only later act that touched the quest was act 6, which fails it in a bulk list. It is a title now, and Sir
+Roger reads it: the Queen keeps druids, has kept them since before she had a throne, and his Order came to this
+shrine without her leave.
+
+The largest find was on the landing beach. Captain Isabella's generator sits inactive there, and her dialogue
+tree carries a complete, voice-recorded arrival-in-England arc that nothing could reach - eleven orphaned
+nodes, including a romance, a companion release-and-rejoin cycle, and combat barks. She is Grace O'Malley, the
+Irish pirate, who has been posing as a Spanish captain for two years, so the woman who sails you to England is
+an Irish rebel against it. Whether she is on that beach at all now depends on how act 1 ended: drive her off or
+turn her in and she is gone, keep her secret and she is glad to see you, anything else and she attacks. Two of
+her recorded lines had also been renamed out of reach, because voice lookup is by node id; renamed back, all 38
+of her recordings are reachable and both companions' trees have zero orphan nodes.
+
+Act 1 got the beat her romance was missing, too. Her scenes there are political throughout and the only warmth
+in them was a single line, so "my blade and my heart are yours" was a long way to travel. There is a scene
+after she is spared now, and answering it is what the romance requires.
+
+Eight combat barks that had never played do now, Sir Roger's five and Grace's three. And the Inner Sanctum,
+which has 88 enemies and did not contain one word, turns out to be a three-switch vault whose doors are up to
+800 units from their switches - so pressing one gave no feedback whatsoever. It says what it is now, and each
+stone reports what it opened.
+
+[b]Fixt[/b] is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run [i]Mod Manager.bat[/i]. Most of this is level parts, so it needs a character who has not yet
+entered act 7 - and Grace's arc needs one who has not yet finished act 1's Port District. Unplayed; what you
+find goes into 0.19.1.
+
+https://github.com/EricHype/LionheartFixt/releases/tag/v0.19.0
