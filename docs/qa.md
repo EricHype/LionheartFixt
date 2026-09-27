@@ -1473,8 +1473,9 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
 ### 0.20.0 - Alamut
 
-Act 8. Tier 1 only. Needs a character who has **not yet entered `05 Acid Wash`** -- all of it is level
-parts, so a save that has already been on that map will not show any of it.
+Act 8, all six tiers. Needs a character who has **not yet entered act 8** -- most of it is level parts.
+`AL15`-`AL29` additionally need one who reached **Goblin Champion** in the Wilderness, and `AL26`
+one who killed the goblin Khan for Torquemada in act 1. `AL37`-`AL47` need a character of each order.
 
 | # | Step | Say | Expect |
 |---|---|---|---|

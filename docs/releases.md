@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.19.0 are published**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.20.0 are published, and every act in the game is surveyed, built and released**. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27, swept for cut content 2026-09-26. All six tiers done 2026-09-27, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Released 2026-09-27. Surveyed, swept, built across six tiers and reviewed the same day, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
