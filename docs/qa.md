@@ -1483,6 +1483,7 @@ need Speech 80+ or Divine 80+ or Wielder standing; `DP4` needs Speech 110 or Div
 | DP3 | Ask *"What are you?"* first | - | `5 the answer` -- it raises what falls, the knights cut it down, and tomorrow it raises them again |
 | DP4 | At `10 bound`, use **Speech 110** or **Divine 80** | - | `20 stands down`. It stops, and is retagged into the other army |
 | DP5 | Watch it after it stands down | - | **The horde attacks it and it fights back.** It is retagged `Scripted Custom 2,Undead` and pointed at `Enemy`, which is what all 81 horde generators target and what every horde spawn carries |
+| DP5a | Check the journal XP after standing it down | - | **2000 XP**, from the anchor part `Fixt Talked the Bonecaller Down XP`. If the horde then kills the Lich, that kill XP is theirs, not yours -- 2000 is the whole of the peaceful route's award |
 | DP6 | Refuse it, or say you have nothing to say to the dead | - | It fights. HP 385/462/520 by party level, AC 80 -- easy to hit, huge pool, **immune to cold, poison and disease, and weakest to fire** |
 | DP7 | Kill it | - | 1500/2000/2500 XP by tier. This is the first time anything in the game has spawned a `Boss Lich`: three races, a sprite and seventeen animations shipped with no template pointing at them |
 | DP8 | Find the Bonewright, mid-slope west | - | `100 the bonewright` as it plants its standard, and the fallen around you start getting up |

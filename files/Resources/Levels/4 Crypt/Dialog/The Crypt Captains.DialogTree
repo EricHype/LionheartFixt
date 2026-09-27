@@ -90,7 +90,12 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Fixt Talked the Bonecaller Down XP
+Experience Points To Add=1
+}
 Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
 {
 Target Name=$Trigger

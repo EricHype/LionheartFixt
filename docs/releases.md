@@ -261,8 +261,15 @@ recorded, and the first where the wrong array was an outer one.
 - The Bonecaller's turn is the first time this project has made an enemy change sides. It wants a playtest
   more than anything else here: if the retag does not take, the Lich simply stops fighting, which is a
   degraded but not broken outcome.
-- No XP is awarded for talking it down. The bird-men precedent uses an anchor part carrying
-  `Experience Points`; that pattern should be applied here rather than inventing an action.
+- **XP for talking it down: done 2026-09-27.** In vanilla's own idiom --
+  `CGiveExperiencePointsToAllPlayersAction{Get XP Frome=<anchor>, Experience Points To Add=1}`, where the
+  anchor part carries the real amount in `Dynamic Properties` and the literal stays 1. That shape is used
+  **728 times** in the game, so this also settles the bird-men read: `Experience Points To Add=1` beside a
+  named anchor is not a placeholder. The new anchor `Fixt Talked the Bonecaller Down XP` carries **2000** --
+  the same value vanilla puts on its own talk-solution, `Talked Fazeem into Fighting Assassins XP`, and a
+  figure sitting between the Bonecaller's 1500 kill award and its Super tier's 2500. Note that if the horde
+  finishes the turned Lich, the kill XP goes to the horde and not to the player, so 2000 is the whole of what
+  the peaceful route pays.
 - The other four acts' midpoints are still bare. `03 Tourniquet of Pain` (act 5, 604 spawns, **0 merchants, 0
   heals**) and `03 Stone Chamber` (act 7, 547 spawns) are the next two candidates, and both already carry four
   map transitions, so a room hangs off proven ground.
