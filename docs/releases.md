@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.20.0 - Alamut
 
-**Surveyed 2026-09-27, swept for cut content 2026-09-26. Tiers 1-5 done, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
+**Surveyed 2026-09-27, swept for cut content 2026-09-26. All six tiers done 2026-09-27, unplayed.** Act 8, `Levels/8 Alamut`. The last unsurveyed act, and by a distance the
 biggest: **eleven maps, 15,498 level parts** -- more than acts 6 and 7 together -- 1,218 live combatants,
 26 dialogue trees, 202 player replies, 34 of them gated.
 
@@ -202,6 +202,73 @@ twelve files are the fifth superseded draft this project has found -- the same s
 **This is the third time in two acts that "opened by nothing" meant "superseded", and the second time I
 counted the wrong field before checking what a working example uses.** Any tier built here should start from
 that assumption.
+
+### Tier 6, built 2026-09-27: the last act learns who arrived at it
+
+**Counted properly, act 8's reactivity is thinner than the survey's headline suggested.** The survey put it at
+34 of 202 replies gated and called it the best ratio in the back half of the game. Counting only the fifteen
+trees a map actually opens -- the twelve superseded ending files are not among them -- it is **30 of 176, 17%**,
+and the shape matters more than the ratio: **every single gate is a skill or karma threshold.** Barter 40, 50,
+95; Speech 70, 100, 130, 180; Karma above or below 400 and 600. Not one reply in the act reads a faction, a
+title, a quest, or anything the player chose in the seven acts before it.
+
+Two numbers make the absence concrete. Of the **17 title perks** in the game, exactly **one** -- `Merchant
+Slayer` -- is read anywhere in act 8. And the four order cans *are* read, but only **map-side**, to pick which
+greeting the Knight of Saladin speaks; no reply in any tree reads them at all. **The last act of the game does
+not know who arrived at it.**
+
+#### The Old Man reads who came for him
+
+`40 ruse` is his first confrontation node and it already offers five ways to answer, four of them ungated and
+all saying the same thing in different words. It gets one more per order, each drawn from that order's own
+history with the Assassins, and each going where the rest go -- `45 combat`, where he answers *"You are no
+champion, and you are certainly not King Richard's equal."*
+
+| gate | the line |
+|---|---|
+| `Saladin IS` | *"Twice your knives found Saladin's tent, and twice they found nothing in it. I am what came back."* |
+| `Templar IS` | *"The Temple has sent you coin for sixty years to keep your knives out of our chapter houses. I have come to close the account."* |
+| `Inquisitor IS` | *"I have put men to the fire for a tenth of the heresy you have spoken since I walked in. You will not be burned. You will simply be ended."* |
+| `Wielder IS` | *"Something else lives in me, and it has never once lied to me about what it wants. Can you say as much for the thing that lives in you?"* |
+| `Goblin Horde Highlevel` | *"The Great Khan sent proud warriors after you once and not one of them came home. The Horde calls me Champion now. Count this as their second attempt."* |
+
+The goblin line is not invention: **`300 kill old man`, in Grumdjum's own recorded tree, is where it comes
+from** -- *"Many years ago, the Great Khan sent proud warriors to slay the Old Man of the Mountain. None
+survived that ill-fated encounter."* Tier 4 made a Goblin Champion the only player who can bring a goblin to
+Alamut; this lets that player say why. And the collision with `45 combat`'s *"You are no champion"* is free.
+
+**No mechanical benefit is attached to any of them.** They are recognition, which is what this tier is for, and
+they all end in the same fight. The talk-him-down path stays exactly as demanding as it shipped -- Speech 100,
+then 130, then 180, with karma branching at 600 and a check that the Weird Woman told you about him, which is
+genuinely good reactivity and wanted nothing from us.
+
+#### The Knight of Saladin answers the order he greets
+
+His three greeting variants differ properly -- a Templar is told *"it is an honor to stand with one of the
+Knights Templar"*, a Knight of Saladin is called *Brother* -- and then **all three offer the identical three
+replies**, so the recognition dies in his opening line. Two gated replies and two nodes fix that:
+
+- **`Templar IS`** -> *"Our orders have been paying this man's order to leave us alone. Does that sit in you the
+  way it sits in me?"* -> `22 the tribute`: *"Coin sent to a killer is a promise that he may go on killing, only
+  somewhere else and to someone poorer. Today we send him something other than coin."*
+- **`Saladin IS`**, on both the male and female greeting -> *"They sent knives into Saladin's own tent.
+  Twice."* -> `23 the tent`: *"Both times the guard woke before the blade came down. Saladin forgave a great
+  many things in his life and he never forgave that. You carry his name into the one house he could not reach."*
+
+His tree carries **no recordings at all**, so new nodes cost nothing in voice consistency -- which is why the
+answers are his rather than the player's.
+
+#### What this tier deliberately did not do
+
+The other three live trees with ungated replies were left alone: `AlamutAssassinCan` (7 replies), the five
+spirit and character ending trees (3 each, all inside non-interactive sequences), and the `Desert Merchant`,
+whose four Barter gates are already the right kind of check for a merchant. Adding order lines to an ending
+cutscene would mean writing around a camera; adding them to a merchant would mean a merchant who cares about
+crusading orders. Neither is what the act is short of.
+
+**Act 8's six tiers are done.** The act had the thinnest reactivity in the game and the largest single piece of
+finished-but-unwired content left in it; both are addressed, and nothing in it is unplayed for want of
+building.
 
 ### Tier 5, built 2026-09-27: the Knight of Saladin's companion arc, and no bonus
 
@@ -672,7 +739,7 @@ companion arc, which is tier 4.
      165/190, in a **later** act than either. Whether that is deliberate restraint or the same unfinished
      defensive pass the Priestess ladder had wants checking against act 8's enemies before anything is changed.
 
-6. **Reactivity.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
+6. **Reactivity. BUILT 2026-09-27 -- see the tier 6 write-up above, which corrects this count: it is 30 of 176 across the trees a map actually opens, and every gate is a skill or karma check.** 34 of 202 replies are gated, the best ratio in the back half of the game, so this is a
    smaller job here than it was in acts 6 and 7.
 
 ## 0.19.0 - the English Shrine

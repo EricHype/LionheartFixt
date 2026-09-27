@@ -36,6 +36,10 @@ Go to node ID=20 alamut
 Requirement=!None
 Reply Text=Let's carry the battle to Alamut, then.
 Go to node ID=30 go
+
+Requirement=Templar IS
+Reply Text=Our orders have been paying this man's order to leave us alone. Does that sit in you the way it sits in me?
+Go to node ID=22 the tribute
 ------------------------------------------------------------
 Node ID=01 Conversation Start Male Knight of Saladin
 Text=Salaam. You do much honor to Saladin's name to have journeyed so far to fight the evil within the Alamut fortress, Brother. My sword is yours.
@@ -52,6 +56,10 @@ Go to node ID=20 alamut
 Requirement=!None
 Reply Text=Let's carry the battle to Alamut, then.
 Go to node ID=30 go
+
+Requirement=Saladin IS
+Reply Text=They sent knives into Saladin's own tent. Twice.
+Go to node ID=23 the tent
 ------------------------------------------------------------
 Node ID=01 Conversation Start Female Knight of Saladin
 Text=Salaam. You do much honor to Saladin's name to have journeyed so far to fight the evil within the Alamut fortress, Sister. My sword is yours.
@@ -68,6 +76,10 @@ Go to node ID=20 alamut
 Requirement=!None
 Reply Text=Let's carry the battle to Alamut, then.
 Go to node ID=30 go
+
+Requirement=Saladin IS
+Reply Text=They sent knives into Saladin's own tent. Twice.
+Go to node ID=23 the tent
 ------------------------------------------------------------
 Node ID=3 Return
 Text=Salaam. May the Prophet give us strength.
@@ -1361,4 +1373,30 @@ Requirement=!None
 Reply Text=No, wait here.
 Go to node ID=
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=22 the tribute
+Text=It should sit badly in us both, brother of the Temple. Coin sent to a killer is a promise that he may go on killing, only somewhere else and to someone poorer. Today we send him something other than coin.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is inside Alamut?
+Go to node ID=20 alamut
+
+Requirement=!None
+Reply Text=Then let's carry the battle to him.
+Go to node ID=30 go
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=23 the tent
+Text=Twice, and both times the guard woke before the blade came down. Saladin forgave a great many things in his life and he never forgave that. You carry his name into the one house he could not reach. Finish what his guards began.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is inside Alamut?
+Go to node ID=20 alamut
+
+Requirement=!None
+Reply Text=Then let's carry the battle to him.
+Go to node ID=30 go
+Is Default Reply=1
 }

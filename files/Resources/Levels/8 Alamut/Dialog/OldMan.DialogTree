@@ -1,0 +1,551 @@
+CDialogTree
+{
+Name=Old Man of the Mountain
+Portrait=Dialog/NPC Portraits/ManUnderMountain
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=So, Scion of Lionheart, you believe you have the power to stop me, as your ancestor did so long ago? This time the ritual will not be interrupted.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=20 Old Man
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Old Man
+Text=Now witness these *holy* relics undo the prison of creation and restore the dark master, Ahriman.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=30 impossible
+Action work in progress=(Davinci siege tank interrupts the ritual)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 What Interruption
+Text=Wait...what is that sound?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=30 impossible
+Action work in progress=(Davinci siege tank interrupts the ritual)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 impossible
+Text=DaVinci, is this one of your pathetic contraptions?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 ruse
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 ruse
+Text=A clever ruse, DaVinci, but I wield the terror of the Daevas, the divinity of the Ahuras, and the creation power of the relics. Ahriman will come, and his wicked truth shall be revealed to all.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 100
+}
+Reply Text=Before we battle, hear me. You have been deceived by Ahriman's lies.
+Go to node ID=200 begin non combat solution path
+Action work in progress=(speech >100 and know about Ahriman from Nostradamu and Weird Woman)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+
+Requirement=Karma equalless 400
+Reply Text=You think yourself an instrument of evil? You are *nothing* compared to me.
+Go to node ID=45 combat
+Action work in progress=(Bad Karma)
+
+Requirement=!None
+Reply Text=I have come to stop you, Old Man.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Bold words, but the only truth you'll see this day is death.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=Saladin IS
+Reply Text=Twice your knives found Saladin's tent, and twice they found nothing in it. I am what came back.
+Go to node ID=45 combat
+
+Requirement=Templar IS
+Reply Text=The Temple has sent you coin for sixty years to keep your knives out of our chapter houses. I have come to close the account.
+Go to node ID=45 combat
+
+Requirement=Inquisitor IS
+Reply Text=I have put men to the fire for a tenth of the heresy you have spoken since I walked in. You will not be burned. You will simply be ended.
+Go to node ID=45 combat
+
+Requirement=Wielder IS
+Reply Text=Something else lives in me, and it has never once lied to me about what it wants. Can you say as much for the thing that lives in you?
+Go to node ID=45 combat
+
+Requirement=Goblin Horde Highlevel
+Reply Text=The Great Khan sent proud warriors after you once and not one of them came home. The Horde calls me Champion now. Count this as their second attempt.
+Go to node ID=45 combat
+------------------------------------------------------------
+Node ID=45 combat
+Text=You are no champion, and you are certainly not King Richard's equal. I will slay you and use your spirit to complete the ritual.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Start everyone going to combat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=End Dialog with Old Man in Intro Scene
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=47 combat talk
+Text=Your words hold no weight with me, fool. You think yourself a champion? You are not *fit* to hold the power within you. I will slay you, and take your spirit to complete the ritual.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Start everyone going to combat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=End Dialog with Old Man in Intro Scene
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 old man escapes
+Text=<A dark, ethereal voice surrounds you> You are a formidable opponent. But it appears history repeats itself. I *live* and thus the struggle will continue. You shall face my wrath again, Scion of Lionheart.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=60 old man killed
+Text=No! Ahriman...you must protect me...It must not end here!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=200 begin non combat solution path
+Text=Lies? It took me centuries to learn that there is ultimate truth within death and destruction. This world cannot sustain real truth - all truth inevitably becomes impure, the truth becomes a lie. Thus shall Ahriman be victorious in the end.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 130
+}
+Operator=
+Operand2=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Weird Woman Told about Old Man History
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=I know you were once the greatest of the Ahuras, Asha Vahishta, keeper of the highest truth, and foe of all lies.
+Go to node ID=210 druj
+Action work in progress=(speech >130 and know about Asha Vahista from Weird Woman/Nostradamus)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=If you will not listen, then you give me no choice but to stop you.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=Karma equalless 400
+Reply Text=You think yourself an instrument of evil? You are *nothing* compared to me.
+Go to node ID=45 combat
+Action work in progress=(Bad Karma)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough. Let us end this.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 druj
+Text=So, the witch spoke of the Ahuras? I no longer exist as that sadly misguided creature. You should know that Druj was once a Daeva, the avatar of lies, a temptress of men. How can you trust her words?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 130
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma moreequal 600
+}
+}
+Reply Text=She discovered that Ahriman's promise of power is false, and all lies will wash away with truth. You can still save yourself, Asha.
+Go to node ID=215 lies
+Action work in progress=(speech >130 GOOD)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 130
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma LESS 600
+}
+}
+Reply Text=She discovered that Ahriman's promise of power is true, but misguided. Within this misdirection lies your fall from power. You can still save yourself, Asha.
+Go to node ID=216 Fall Power
+Action work in progress=(speech >130 EVIL)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+
+Requirement=!None
+Reply Text=If you will not listen, then you give me no choice but to stop you.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough. Let us end this.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=215 lies
+Text=Your mind has been poisoned by Druj, Lionheart. At the end of the day, darkness always falls. No man, spirit, or god can ignore the calling of night.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 160
+}
+Reply Text=Deep in your mind, you know that Ahriman will fail. The Seer has foreseen that truth will prevail. Ahriman's promise of power is a lie, an illusion.
+Go to node ID=220 truth
+Action work in progress=(speech >160)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+
+Requirement=!None
+Reply Text=If you will not listen, then you give me no choice but to stop you.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough. Let us end this.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=216 Fall Power
+Text=Your mind has been poisoned by Druj, Lionheart. My power is at its height, and my pact is sealed in blood so tight that none can sway its grim resolve. No man, spirit, or god can tear it asunder.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 160
+}
+Reply Text=Deep in your mind, you know that Ahriman will fail. The Seer has foreseen this. Ahriman's promise of power for you is a lie, an illusion to mercilessly wring the life from your soul.
+Go to node ID=220 truth
+Action work in progress=(speech >160)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+
+Requirement=!None
+Reply Text=If you will not listen, then you give me no choice but to stop you.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough. Let us end this.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 truth
+Text=What? You have spoken with Nostradamus? He...spoke of Ahriman's failure? You...*lie*, scion of Lionheart, this cannot be. Ahriman's power is perfect!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 180
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma moreequal 600
+}
+}
+Reply Text=You still seek to win the struggle, Asha, but you cannot defeat Truth. Ahriman and Ahura Mazda are not gone, they exist in the hearts of all humans and that is where the battle is waged still.
+Go to node ID=240 ahriman gone
+Action work in progress=(speech >180 GOOD)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 180
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Karma/Karma LESS 600
+}
+}
+Reply Text=You still fight for him, Asha, but he has decieved you. The seer has foreseen Ahriman's downfall and your own humiliation and banishment to the depths of hell. Look in that secret place of your soul, Asha, and gaze with open eyes upon your fate. He has abandoned you.
+Go to node ID=241 ahriman going EVIL
+Action work in progress=(speech >180 EVIL)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+
+Requirement=!None
+Reply Text=If you will not listen, then you give me no choice but to stop you.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough. Let us end this.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=240 ahriman gone
+Text=You...you are right. I have sensed it for some time. Both Ahriman and Ahura Mazda have...departed. But to have the struggle decided by...*humans*? Neither their hearts nor their minds are fit to decide the fate of creation. No, *I* will complete the Disjunction and fill the void left by Ahriman.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 180
+}
+Reply Text=Your arrogance has allowed the lies to blind you. Your true master, Ahura Mazda, wanted humankind to choose freely between the truth and lies. In the end, the truth must win.
+Go to node ID=250 become truth
+Action work in progress=(speech >180)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+
+Requirement=!None
+Reply Text=If you will not listen, then you give me no choice but to stop you.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Then let us end this.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=241 ahriman going EVIL
+Text=You...you may be right. I have sensed a deep gnawing, as if I was being slowly digested from the inside out. Both Ahriman and Ahura Mazda have...departed and left me with an empty shell. But to fight alone, and without guidance...No, *I* will complete the Disjunction and fill the void left by Ahriman!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 180
+}
+Reply Text=The void *has* been filled...by me. As the scion of Lionheart, the depth of my evil power will know no bounds. Your true master, Ahura Mazda, knew that this day would come and that I would someday reign as Dark Lord. In the end, the lie will prevail.
+Go to node ID=251 become the LIE
+Action work in progress=(speech >180)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Listen, I don't wish to fight you - let us talk this over.
+Go to node ID=47 combat talk
+Action work in progress=(go to combat if speech skill is ass < 40)
+
+Requirement=!None
+Reply Text=If you will not listen, then you give me no choice but to stop you.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Then let us end this.
+Go to node ID=45 combat
+Action work in progress=(combat)
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=250 become truth
+Text=Your words...they remind me of a time long ago...when I believed...Perhaps, there is a way, but the ritual...I cannot stop it. I will become the darkness, the lie...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=There is another way. Embrace the light, and go beyond to find Truth.
+Go to node ID=250 beyond
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=251 become the LIE
+Text=Your soul does shine so very darkly...and what you say has a dreaded ring of truth. How my hollow soul does echo with its lamentations! But my task of domination, the ritual...if I have been forsaken, then the stress of channeling may be too great...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=There is another way. Come into me, and together, we shall squash the dreaded forces of light and truth. Your soul shall know peace and fulfillment once again.
+Go to node ID=251 beyond EVIL
+Icon=Speach Skill Icon
+------------------------------------------------------------
+Node ID=250 beyond
+Text=Yes, I could seek the light and find truth ... or only a void. But the alternative, to sustain this unending battle for millenia, is unthinkable. I will leave to find truth, or join the brothers in oblivion. Thank you for opening my eyes and restoring my faith.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Player Talk way through to Old Man Defeat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=End Dialog with Old Man in Intro Scene
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=251 beyond EVIL
+Text=Yes...YES! The unfettered power of our union would crush those on Earth and beyond! The forces of truth would tremble at our feet! This unending battle would come to a close, and I could slake the hunger that I have held at bay for millenia! Your council is wise. It will be a priviledge to serve such an unscrupulous being as yourself!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Player Talk way through to Old Man Defeat
+}
+Action=CTriggerRelayAction
+{
+Relay Name=End Dialog with Old Man in Intro Scene
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 inquisition scene
+Text=The Cathars are a grave threat to you and to the Inquisition. I sense that they are gathering to oppose you in France. You need to move against them...What is this? You have a visitor, Torquemada.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=500 Evil Ending All Die or Live
+Text=<A dark, ethereal voice surrounds you> You think you have won? That you have become the darkness, Ahriman's chosen? Though you have slain the Old Man of the Mountain, *I* survive to find another host strong enough to bear my power. The struggle will not end.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=510 Good Ending All Dead
+Text=<A dark, ethereal voice surrounds you> You have won, but at what cost? It pleases me that DaVinci and Galileo have joined me in darkness. Soon you will find that others succeeded and restored my master. One day Ahriman will return!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=510 Good Ending All Survive or Davinci or Galileo die
+Text=<A dark, ethereal voice surrounds you> You think you have won? That evil is vanquished? Ahriman cannot be destroyed. Though you have slain the Old Man of the Mountain, *I* survive to find another host strong enough to bear my power. The struggle will not end.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=520 Good Ending Old Man Escapes All
+Text=Your powers are formidable, but do not doubt that my master will return. This battle ends now, but I look forward to our next challenge...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 Stopped by Idols
+Text=I see that you have finally blundered into my desert fortress, Scion of Lionheart. Good...very good. If you can get past the traps in front of you, you may just be worthy of your fate.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1001 Stopped by Idols continued
+Text=Do not bother trying to disarm these traps. Your bones will have long turned to dust before you unlock *their* secrets. What to do, I wonder? Well, I'm sure you'll come up with...something.
+Should Have Voiceover=1
+}

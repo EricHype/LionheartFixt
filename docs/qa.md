@@ -1514,6 +1514,17 @@ parts, so a save that has already been on that map will not show any of it.
 | AL34 | Talk to him again | - | `666 Rejoin`. *"Yes, please rejoin me"* restores the escort AI as well as the flag; *"No, wait here"* now does the right thing, because he is waiting |
 | AL35 | Fight beside him in `04 Maw of the Assasin` or later | - | He survives contact. Repaired to HP 220 / AC 215 from 150/145, with `OneHandedMelee 200` untouched |
 | AL36 | Recruit him on a **return** visit instead, via `3 Return`'s *"Let's go."* | - | Same result as AL31. Both recruit paths now give the escort AI and open `3 Return` afterwards |
+| AL37 | Reach `40 ruse` in the final confrontation as a **Knight of Saladin** | - | A sixth reply: *"Twice your knives found Saladin's tent, and twice they found nothing in it. I am what came back."* Leads to `45 combat` like the rest |
+| AL38 | The same as a **Templar** | - | *"The Temple has sent you coin for sixty years to keep your knives out of our chapter houses."* |
+| AL39 | The same as an **Inquisitor** | - | *"I have put men to the fire for a tenth of the heresy you have spoken since I walked in."* |
+| AL40 | The same as a **Wielder** | - | *"Something else lives in me, and it has never once lied to me about what it wants."* |
+| AL41 | The same as a **Goblin Champion** | - | *"The Great Khan sent proud warriors after you once and not one of them came home."* This is the Khan's attempt that `300 kill old man` describes |
+| AL42 | Reach `40 ruse` with **no order and no goblin rank** | - | Exactly vanilla's five replies. None of the new ones show |
+| AL43 | Carry two of those at once, e.g. Templar **and** Goblin Champion | - | Both replies offered. They are alternatives, not ranked |
+| AL44 | Check the Speech path is untouched: reach `200 begin non combat solution path` at Speech 100 | - | Still gated on Speech 100, then 130, then 180, with karma branching at 600. Nothing about the talk-down route changed |
+| AL45 | Greet the Knight of Saladin on `02 Shifting Dunes` as a **Templar** | - | A fourth reply about the two orders' arrangement, leading to `22 the tribute` |
+| AL46 | Greet him as a **Knight of Saladin**, male or female | - | A fourth reply, *"They sent knives into Saladin's own tent. Twice."*, leading to `23 the tent` |
+| AL47 | Greet him carrying **no order** | - | His three vanilla replies only. `1 Conversation Start` is unchanged |
 
 ### 0.19.0 - the English Shrine
 
