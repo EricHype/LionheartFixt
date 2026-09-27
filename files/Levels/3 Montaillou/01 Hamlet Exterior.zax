@@ -6834,7 +6834,16 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=6
+							Item Count=7
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/Shapeshifting Daeva
+								Node ID=3 Undefeated
+								Name of Position=$trigger
+								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=1
+							}
 							Action=COtherMapAction
 							{
 								Action=CDeleteAction
@@ -7664,12 +7673,28 @@ CLayerSaveData
 										Name To Check For=back again
 										Desired Minimum Count=1
 									}
-									Then=CDisplayDialogTreeAction
+									Then=CConditionalAction
 									{
-										Dialog Tree File=Levels/3 Montaillou/Dialog/Shapeshifting Daeva Trueform
-										Node ID=4 Amulet
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Try Action=CActionCheckForInventoryItem
+										{
+											Who to give check=$instigator
+											Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+										}
+										Succeed Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/3 Montaillou/Dialog/Shapeshifting Daeva Trueform
+											Node ID=4 Amulet
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Fail Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/3 Montaillou/Dialog/Shapeshifting Daeva Trueform
+											Node ID=4 Ring
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Return failure if the TryAction failes=0
 									}
 									Else=CIfAction
 									{

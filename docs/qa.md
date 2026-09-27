@@ -1471,6 +1471,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+### 0.21.1 - the Daeva
+
+Act 3, Montaillou. Needs a character who has **not yet entered `01 Hamlet Exterior`**. `DV1` needs the
+**Ring of the Prophet** from `15 Witch SecretCave`; `DV2` the **Amulet of the Prophet**.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DV1 | Carrying only the **Ring of the Prophet**, cross the Prophet Polygon in the hamlet | - | `4 Ring`: *"You bear a powerful relic, mortal. Something of the prophet Zarathustra's if I'm not mistaken."* In vanilla this played the Amulet's line instead |
+| DV2 | Carrying only the **Amulet**, same approach | - | `4 Amulet`, unchanged: *"Ah, you have a bauble from that accursed prophet."* |
+| DV3 | Carrying **both** relics | - | The Amulet's line. The fork checks the Amulet first, so it wins the tie |
+| DV4 | Carrying **neither** | - | The scene does not trigger at all, exactly as before -- the outer check is unchanged |
+| DV5 | Fail to kill the Daeva in Montaillou and let it break off | - | `3 Undefeated`: *"this exertion has left me ravenous... that lake town has all of my favorite flavors."* In vanilla it left in silence |
+| DV6 | Compare with the Toulouse escape on Titan Village | - | `35 teleport out of toulouse` still plays there. The two lines are a pair and should now read as one chain |
+
 ### 0.21.0 - the Doomed Plateau
 
 Act 4. Needs a character who has **not yet entered `7 Doomed Plateau`** -- all of it is level parts.

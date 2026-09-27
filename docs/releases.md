@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.21.0 are published.** Every act is surveyed, built and released, and 0.21.0 is the first release aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.21.0 are published; 0.21.1 is built and not yet cut.** Every act is surveyed, built and released, and 0.21.0 is the first release aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,49 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.21.1 - the Daeva
+
+**Two repairs, 2026-09-27, unplayed.** A review of the Pyrenees region asked whether 0.15.0 had done enough
+there. It had not, and the Shapeshifting Daeva was the clearest miss: **both its trees are untouched by Fixt**,
+31 nodes and 69 replies each, with **nine replies gated at Speech 95-110** -- one of only four
+talk-instead-of-fight encounters in the game -- and **27 orphan nodes** between them. It is a recurring nemesis
+that tracks the player across Barcelona, Toulouse and Montaillou and reacts to which relic of Zarathustra they
+carry. Two of those orphans are fixed here.
+
+**`4 Ring` was written and never used.** `Prophet Polygon` on `01 Hamlet Exterior` gates the whole confrontation
+on a `COrAction` of two item checks -- `Amulet of the Prophet` **or** `Ring of the Prophet` -- and then, whichever
+you hold, always opened Trueform's `4 Amulet`: *"Ah, you have a bauble from that accursed prophet."* So the Ring
+had its own written reaction -- *"You bear a powerful relic, mortal. Something of the prophet Zarathustra's if
+I'm not mistaken"* -- and no player ever heard it. The opener is now a `CConditionalAction` on which relic is
+actually in the pack, so the Amulet keeps its line and the Ring gets the one written for it. Both relics are
+real items; the Ring is found in `15 Witch SecretCave`.
+
+**`3 Undefeated` is the Montaillou escape, and nothing fired it.** Titan Village plays the matching Toulouse
+line, `35 teleport out of toulouse` -- *"you will find me in Montaillou, Lionheart, away from these meddlesome
+titans!"* -- from a `daeva deactivator` poly. Montaillou already had a `shapeshifter deactivator` relay doing
+the same mechanical work and never speaking, so the creature left without a word. It now says the line it was
+given: *"this exertion has left me ravenous... that lake town has all of my favorite flavors."* Appended to that
+relay's existing action array, Item Count 6 to 7.
+
+**The build error, third instance in one day.** Lifting the `4 Amulet` opener out of its `Then=` slot produced a
+slice ending at `}` with **no trailing newline**, so the next line ran onto the brace and
+`resource_format` failed inside `CSortList2D`. The same mistake broke act 8's tier 1 and tier 5. All three
+passed a brace-count assert first -- equal `{` and `}` do not prove correct nesting -- and only the round-trip
+parse caught them. Written up in the array-splice memory with the fix: after any slice taken to
+`balanced()`, terminate it.
+
+### What this release does not fix, and it is most of it
+
+The region still has **43 orphan nodes** across twelve Toulouse trees, and -- the larger finding -- **not one
+gated reply in the whole region.** `TitanAndre` carries 229 replies, `ToulouseLethos` 157, `ToulouseRhea` 132,
+`ToulouseIapetus` 85, `ToulouseTereo` 75: roughly **846 replies, zero faction, race, skill or karma checks**, in
+a region whose entire subject is choosing a side in a war between ogres and titans. Act 1 carries 2,000
+state-gates; Toulouse carries none. That is a reactivity tier, and it would be the first one built in a region
+that already has all the words.
+
+The Daeva's remaining 25 orphans are the other half, and one of them is an opportunity rather than a defect --
+see the note on the Daeva of Pain below.
 
 ## 0.21.0 - the Doomed Plateau
 
