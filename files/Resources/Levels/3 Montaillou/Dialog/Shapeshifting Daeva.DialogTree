@@ -1,0 +1,2224 @@
+CDialogTree
+{
+Name=Nanghaithya
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Introduction in toulouse
+Text=Ah, the Scion of Lionheart. The Old Man is very interested in you. And so am I.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is the Old Man?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Reply Text=Why are you interested in me?
+Go to node ID=5 Interested
+
+Requirement=!None
+Reply Text=So you're the monster that's been eating these villagers?
+Go to node ID=2 villagers
+
+Requirement=!None
+Reply Text=Save your lies, demon. 
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Uh, perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Introduction
+Text=Ah, the Scion of Lionheart. The Old Man is very interested in you. And so am I.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt freed the Daeva of Pain alone
+Desired Minimum Count=1
+}
+}
+Reply Text=Nanghaithya. A demon in a Barcelona cell gave me your name, and it owed me the favour.
+Go to node ID=2000 using speech
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is the Old Man?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Reply Text=Why are you interested in me?
+Go to node ID=5 Interested
+
+Requirement=!None
+Reply Text=Save your lies, demon.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Introduction with amulet
+Text=Ah, the Scion of Lionheart. The Old Man thought you would come this way. But what is this? You brought an accursed relic of the Prophet Zarathustra! Very clever, mortal, but that bauble will not spare you from my hunger.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Reply Text=I detect fear in your voice, demon. The item I possess has revealed a weakness. I hold the power to destroy, don't I?
+Go to node ID=2000 using speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+Reply Text=You will find me to be very clever indeed, demon.
+Go to node ID=31 amulet speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is the Old Man?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech lessthan 050
+}
+Reply Text=What bauble?
+Go to node ID=30 what amulet
+
+Requirement=!None
+Reply Text=Save your lies, demon. 
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Uh, perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 villagers
+Text=Well, 'drinking' might be a more appropriate word, I think, but you're essentially correct. I can't say that the titans themselves are very appetizing, but they do an admirable job of harvesting juicy morsels like you. Ah, now then, where was I? Oh yes: supper.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 hungry
+Text=Me? I'm a daeva, mortal. Nanghaithya, one of the seven demons, he with a thousand faces...and a thousand appetites.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/!None
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/!None
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I detect fear in your voice, demon. The item I possess has revealed a weakness. I hold the power to destroy, don't I?
+Go to node ID=2000 using speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You will not survive this battle, fiend.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 damaged taunt
+Text=You are tiresome, mortal. Why struggle? You do not have the power to truly defeat Nanghaithy.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3 Undefeated
+Text=I would enjoy nothing more than staying to play with you longer, but this exertion has left me ravenous. Alas, I've already eaten all the tasty ones in this pitiful village...Ah, but that lake town has all of my favorite flavors! I apologize for calling you tiresome earlier. You are, in fact, an excellent and unusual aperitif. Adieu.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 Ahriman
+Text=He who commands a legion of assassins who would lay down their lives for him without hesitation. He is an entity that I suspect would like nothing more than your head on a platter. And seeing that I owe him a few favors...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 Ring
+Text=You bear a powerful relic, mortal. Something of the prophet Zarathustra's if I'm not mistaken. Well, it is of small importance, you will meet the same fate he did!
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Reply Text=I detect fear in your voice, demon. The item I possess has revealed a weakness. I hold the power to destroy, don't I?
+Go to node ID=2000 using speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=We shall see.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 Amulet
+Text=Ah, you have a bauble from that accursed prophet. No matter, Zarathustra proved to be no match for me and neither shall you! My true form will be the last thing you see, mortal.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Reply Text=I detect fear in your voice, demon. The item I possess has revealed a weakness. I hold the power to destroy, don't I?
+Go to node ID=2000 using speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=We shall see.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Interested
+Text=Hehe, I'm hungry, mortal, and you look to be the makings of a fine meal! 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Montaillou no Toulouse
+Text=Ah, another mortal. And just in time, I was beginning to feel a bit hungry.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=2 food
+
+Requirement=!None
+Reply Text=Soon you won't be feeling anything at all, demon. 
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Hmm, perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Montaillou if fought in Toulouse
+Text=I've been waiting for you mortal. Ahriman is growing impatient and the pitiful shapeshifters of this village have done little to slake my thirst.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt freed the Daeva of Pain alone
+Desired Minimum Count=1
+}
+}
+Reply Text=Nanghaithya. A demon in a Barcelona cell gave me your name, and it owed me the favour.
+Go to node ID=2000 using speech
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Montaillou if fought in Toulouse with amulet
+Text=I've been waiting for you mortal. Ahriman is growing impatient and the pitiful shapeshifters of this village have done little to slake my thirst... I see that you have a bauble from that accursed prophet! It wasn't enough to save that wretch Zarathustra and it certainly won't be enough to save you.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Reply Text=I detect fear in your voice, demon. The item I possess has revealed a weakness. I hold the power to destroy, don't I?
+Go to node ID=2000 using speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=We shall see, demon.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 Montaillou
+Text=My, you are a slow learner, aren't you?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=12 First taunt
+Text=I think you will find me a most aggravating foe... but not for long.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=13 Random taunt 1
+Text=Heh. You amuse me, mortal. But you cannot *harm* me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=13 Random taunt 2
+Text=I could do this all day. But I doubt you can.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=13 Random taunt 3
+Text=My, you are a slow learner, aren't you?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=13 Random taunt 4
+Text=Ah, futility, thy name is Nanghaithya.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 Toulouse met in Barcelona
+Text=Ah, good. Ahriman suspected you'd come this way. He was very upset with me when he heard we'd crossed paths in Barcelona and I'd let you live. Bah, he has no playful spirit.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is Ahriman?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Reply Text=So you're the monster that's been eating these villagers?
+Go to node ID=2 villagers
+
+Requirement=!None
+Reply Text=Save your lies, demon. 
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Uh, perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Toulouse met in Barcelona with amulet
+Text=Ah, good. Ahriman suspected you'd come this way. He was very upset with me when he heard we'd crossed paths in Barcelona and I'd let you live. Bah, he has no playful spirit. You were clever to bring a token of Zarathustra's power, or do you even realize the significance of the bauble you bear?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is Ahriman?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Reply Text=What bauble do you mean?
+Go to node ID=30 what amulet
+
+Requirement=Speech moreequal 95
+Reply Text=I detect fear in your voice, demon. The item I possess has revealed a weakness. I hold the power to destroy, don't I?
+Go to node ID=2000 using speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You will find me to be very clever indeed, demon.
+Go to node ID=31 amulet speech
+
+Requirement=!None
+Reply Text=Save your lies, demon. 
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Uh, perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Montaillou met in Barcelona
+Text=Ah, good. Ahriman suspected you'd come this way. He was very upset with me when he heard we'd crossed paths in Barcelona and I'd let you live. Bah, he has no playful spirit.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 95
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt freed the Daeva of Pain alone
+Desired Minimum Count=1
+}
+}
+Reply Text=Nanghaithya. A demon in a Barcelona cell gave me your name, and it owed me the favour.
+Go to node ID=2000 using speech
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is Ahriman?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Reply Text=Save your lies, demon. 
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Uh, perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Montaillou met in Barcelona with amulet
+Text=Ah, good. Ahriman suspected you'd come this way. He was very upset with me when he heard we'd crossed paths in Barcelona and I'd let you live. Bah, he has no playful spirit. You were clever to bring a token of Zarathustra's power, or do you even realize the significance of the bauble you bear?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is Ahriman?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Reply Text=What bauble to you mean?
+Go to node ID=30 what amulet
+
+Requirement=Speech moreequal 95
+Reply Text=I detect fear in your voice, demon. The item I possess has revealed a weakness. I hold the power to destroy, don't I?
+Go to node ID=2000 using speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You will find me to be very clever indeed, demon.
+Go to node ID=31 amulet speech
+
+Requirement=!None
+Reply Text=Save your lies, demon. 
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Uh, perhaps I took a wrong turn.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 what amulet
+Text=Hehe, this will be too easy. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 amulet speech
+Text=It is no matter, its power has forced me into my true form, but it was not enough to save Zarathustra and it will not be enough to save you! 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 teleport out of toulouse
+Text=Bah, you will find me in Montaillou, Lionheart, away from these meddlesome titans!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=2000 using speech
+Text=Nonsense, mortal. Though you wield a relic of Zarathusthra, you are like a child trying to read a book written in a foreign tongue. Its power is beyond you, as is mine.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 100
+Reply Text=The relic of the Prophet renders you vulnerable and I will destroy you. Dare you take that risk, *mortal*?
+Go to node ID=2000 using speech 2
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 50
+}
+Reply Text=You will find me to be very clever indeed, demon.
+Go to node ID=31 amulet speech
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=3 hungry
+
+Requirement=!None
+Reply Text=Who is Ahriman?
+Go to node ID=4 Ahriman
+
+Requirement=!None
+Reply Text=If my words will not sway you, then I must destroy you.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Let's call this a draw. I'll leave and we can both survive this encounter.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 using speech 2
+Text=Even if the relic makes me mortal, in this form, I am more than a match for your pitiful skills. I will devour you then destroy the last relic that can defeat me.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 110
+Reply Text=Your brethern, Aka Manah, boasted as you do now. But I dispatched that creature with ease. I am the slayer of your kind.
+Go to node ID=2000 using speech 3
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=If my words will not sway you, then I must destroy you.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Let's call this a draw. I'll leave and we can both survive this encounter.
+Go to node ID=
+Custom Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Amulet of the Prophet
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$Instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Misc Items/Ring of the Prophet
+}
+}
+Early Exit=0
+}
+Then=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=True Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=True Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=true form
+}
+Return failure if the If failes=0
+}
+Else=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=First Form goes to combat
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=First Form goes to combat
+}
+Else=CGoToCombatAction
+{
+Enemy Name=shapeshifting daeva
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 using speech 3
+Text=You bested Aka Manah? Can it be true? I...I...cannot risk a mortal death! You are formidable mortal, and you just might possess the power to slay me. But we will wait another day to find out. Until then, I will hide among the mild and meek...but I will live!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=speech victory
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3000 chicken attack
+Text=That was most unkind, manling.
+Should Have Voiceover=0
+}

@@ -180,8 +180,58 @@ a region whose entire subject is choosing a side in a war between ogres and tita
 state-gates; Toulouse carries none. That is a reactivity tier, and it would be the first one built in a region
 that already has all the words.
 
-The Daeva's remaining 25 orphans are the other half, and one of them is an opportunity rather than a defect --
-see the note on the Daeva of Pain below.
+### The Daeva of Pain collects on a debt the game already promised
+
+**Two corrections came out of building this, and the second one changed the design.**
+
+First: the relics do **not** stop the shapeshifter healing. `Ring of the Prophet` and `Amulet of the Prophet`
+both grant `+3` AC, `+4` to a second attribute, and Slashing Damage Resistance -- `+10` on the Ring,
+permanent, and `+100` on the Amulet, temporary. Defensive items with a dialogue trigger attached.
+
+Second, and this is the one that matters: **without a relic the fight cannot be won at all.** Killing
+`form 3` or `form 4` fires `Form Relay`, which re-activates `clone generator 2/3/4` and
+`demon clone 2/3/4` with **no conditional and no item check of any kind**. Meanwhile the
+`true form generator` -- the only version of the creature that fires nothing on death and therefore stays
+dead -- is activated by exactly one thing in the level, `Prophet Polygon`, which is the relic check. So a
+relic-less player fights an unbreakable loop, and `2000 using speech` says so out loud: *"The relic of the
+Prophet renders you vulnerable."* The true form additionally heals **20-25 HP every second** from a
+`CGiveHealthToCharacterAction` inside its `CSkeletonAI`.
+
+**And the Daeva of Pain in Barcelona's Inquisition Pit already promises to pay for this.** Node
+`300 Free Demon yourself`, vanilla's own text: *"Ahhh...the shackles fall away and my power returns! My
+judgment will be swift and merciless, but to you, **I have a debt to repay**..."* The game states the debt
+and never collects it. This does.
+
+Barcelona now records **which** service was done, because the two are not equal work:
+
+| how he was freed | Barcelona hook | what he owes |
+|---|---|---|
+| you lured the wizard to him | `Wielder Pan Take down Demon Crosses` -> `Fixt Faust freed the Daeva of Pain` | breaks the loop, the true form comes up **bound** (no heal), **and he arrives and fights it with you** |
+| you broke the crosses yourself | `Player Take down Demon Crosses` -> `Fixt freed the Daeva of Pain alone` | breaks the loop and the bound true form -- or, if you can use it, **Nanghaithya's true name** instead |
+
+The loop-breaking is a new template rather than a runtime edit: the heal cannot be pulled out of a spawned
+creature without removing its brain, so `Fixt Shapeshifting Daeva bound.can` is the true form with the
+`CGiveHealthToCharacterAction` deleted -- same race, same 2750 XP, same everything else, and it round-trips
+through the parser clean. `Form Relay` now asks first whether the debt is owed; if it is, a relay deactivates
+`Form Relay` so the clones stop coming and puts up the bound form instead. On the Faust route it also spawns
+`Monster Cans/Extraplanar Inquisition Jail` -- whose `User Assigned Name` is, already, **Daeva of Pain**, at
+HP 900 / AC 200 -- tagged `Player Friend` and pointed at `Enemy`.
+
+**The true name is the more interesting half.** All six of the shapeshifter's `Speech moreequal 95` entry
+points sit on relic-only nodes, so a talker without a relic has no route at all. The name supplies what the
+relic supplied: three new replies on `1 Introduction`, `10 Montaillou if fought in Toulouse` and
+`20 Montaillou met in Barcelona`, gated on Speech 95 **and** the lesser-debt checker, opening
+`2000 using speech` -- *"Nanghaithya. A demon in a Barcelona cell gave me your name, and it owed me the
+favour."* So mercy in act 1 becomes a capability in act 3, and which capability depends on the character you
+built.
+
+**One pacing question for the playtest, stated rather than hidden.** The debt check is the first action in
+`Form Relay`, but deactivating a relay part-way through its own array does not appear to abort the rest of it,
+so the final wave of clones probably still spawns alongside the true form. That reads as the shapeshifter
+throwing its last bodies and then dropping the disguise, which may be better than a clean switch -- but it is
+a guess about engine behaviour, not a verified outcome.
+
+The remaining 23 Daeva orphans, and the region's 43, are still open.
 
 ## 0.21.0 - the Doomed Plateau
 
