@@ -1473,8 +1473,11 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
 ### 0.21.1 - the Daeva
 
-Act 3, Montaillou. Needs a character who has **not yet entered `01 Hamlet Exterior`**. `DV1` needs the
-**Ring of the Prophet** from `15 Witch SecretCave`; `DV2` the **Amulet of the Prophet**.
+Act 3, Montaillou, and one act-1 decision that feeds it. Needs a character who has **not yet
+entered `01 Hamlet Exterior`**. `DV1` needs the **Ring of the Prophet** from `15 Witch SecretCave` and `DV2`
+the **Amulet**. `DV7`-`DV13` each need a different outcome at the Barcelona Inquisition Pit -- the wizard lured
+to the demon, the crosses broken yourself, the demon killed, or never met -- so they want four characters, or
+four saves before that choice.
 
 | # | Step | Say | Expect |
 |---|---|---|---|

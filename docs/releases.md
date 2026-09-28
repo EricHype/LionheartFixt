@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.21.0 are published; 0.21.1 is built and not yet cut.** Every act is surveyed, built and released, and 0.21.0 is the first release aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.21.1 are published.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.21.1 - the Daeva
 
-**Two repairs, 2026-09-27, unplayed.** A review of the Pyrenees region asked whether 0.15.0 had done enough
+**Released 2026-09-27. Unplayed.** A review of the Pyrenees region asked whether 0.15.0 had done enough
 there. It had not, and the Shapeshifting Daeva was the clearest miss: **both its trees are untouched by Fixt**,
 31 nodes and 69 replies each, with **nine replies gated at Speech 95-110** -- one of only four
 talk-instead-of-fight encounters in the game -- and **27 orphan nodes** between them. It is a recurring nemesis
