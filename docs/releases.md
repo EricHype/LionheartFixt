@@ -215,6 +215,45 @@ node, exactly as five other region maps do. Their orphans belong to act 1 and ar
 
 **Toulouse is finished.** It was finished in 0.15.0.
 
+### And it contains the best stealth encounter in the game
+
+The question that opened Toulouse was whether it uses Sneak well. It does -- better than act 7 now does,
+and better than anywhere else, because it does not use the `Sneak moreequal N` cans at all. It reads the
+**live sneak toggle**, `Derived Character Attributes/Sneak Enabled`, and those are the **only three checks
+against that attribute in the entire shipped game**, all three inside one polygon on one map.
+
+The setup: Mathuo guards the trail west out of the prison village with Poimaino. Talk Mathuo into sharing
+his flask of quicksilver and the two of them walk off their post to drink it, which is the **non-combat
+route** to the escape -- the alternative is killing both, and Alexander's escape node tests for exactly
+those two outcomes (`Path is clear`, or neither guard alive).
+
+While they drink they hold a six-line conversation, and `Eavesdrop trigger` -- a polygon around the
+drinking spot, armed when the scene starts -- decides whether you get to hear it:
+
+| slot | what it does |
+|---|---|
+| **Enter** | `CIfAction` on `Sneak Enabled > 0`. Sneaking: **nothing happens** and you listen. Not sneaking: `eavesdrop relay` fires |
+| **Repeat** | re-tests `Sneak Enabled < 1` continuously, so dropping out of sneak part-way through still catches you |
+| **Exit** | if you were seen, *"Stupid runt. Now where were we?"* -- and the scene resets so you can try again |
+
+Getting caught is not a fail state either, it is a countdown: *"Wait, I think we have an eavesdropper. By
+Atlas I wish I could squash that bug, but Lethos would have my head"*, then *"if you aren't gone by the
+time I count to three I'll squash you"*, then 1... 2... 3... *"To arms! The fleshling is trying to release
+the prisoners!"* Back out before three and you keep the option.
+
+And it has a second act. Once the prisoners are gone the two guards panic on camera -- *"If the elders
+find out they'll have us chewing gravel for months"* -- and agree a trap: *"I know, I'll hide in the pen
+and make human noises. You go stand guard and see if you can lure that damn fleshling into the pen."*
+`Poimaino kill box` is that trap, a polygon around the pen; step inside and both titans retarget onto the
+player, step out and they go back to `Scripted Custom 2`. The bait plays: `103 Noise 1`, `2` and `3`, which
+are a stone giant doing an impression of a human -- *"Umm... ahem... Why are these titans so mean?"*,
+*"Boo-hoo, it is so hard being a puny human creature."*
+
+**The implication for 0.21.3.** Act 7's three new Sneak checks use skill thresholds, which is right for
+reading wear on a flagstone but is the weaker of the two mechanics for the ambush, where the fiction is a
+character moving quietly enough to hear a man breathe. `Sneak Enabled` is the better instrument and the
+game already proves it works. That is a candidate revision, not a defect.
+
 ## 0.21.3 - the talker and the thief
 
 **Built 2026-09-27, unplayed.** 0.21.2 asked what act 7 gives a character who did not build for
