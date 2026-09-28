@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.24.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.24.0 are published; 0.25.0 is scoped below and not started.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,99 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.25.0 - the combat AI (scoped 2026-09-28, not started)
+
+Every release in the 0.21-0.24 line changed what the game *says*. This one would change how it *plays*,
+which is a different kind of risk and is why it is scoped in full before anything is built.
+
+The question that started it: enemies come in four or five shapes and mostly run up and swing until
+somebody dies. That is measurably true, and the reason is one field.
+
+### What the engine actually gives us
+
+`CNormalAttackAI.Minimum Attack Distance` is the entire archetype system, across all **478** monster cans:
+
+| value | cans | what it is |
+|---|---|---|
+| 100 | **391** | walk up and swing |
+| 350 | 53 | stand off and shoot |
+| `Do not move while attacking` | 22 | rooted caster |
+| 250 | 1 | one oddity |
+
+And `Shoot Completed`, the slot that decides what a creature *does* on each attack, is **empty or skill-less
+in 400 of the 478**. They swing whatever the race handed them, forever.
+
+But that slot is not a behaviour flag -- it takes the same action vocabulary as every dialogue reply and
+relay in the game, and a minority of cans prove it:
+
+| already in use | cans |
+|---|---|
+| randomised attack pick (`CRandomAction`) | 67 |
+| picks from 2-4 skills (`CActionSelectSkill`) | 49 |
+| switches weapon mode mid-fight (`CActionSetWeaponMode`) | 30 |
+| carries a secondary weapon to switch **to** | 17 |
+| summons reinforcements | 13 |
+| applies a debuff (slow, AC down) | 8 |
+| wind-up delay before the hit (`CDelayAction`) | 24 |
+
+`CScanAreaAI` separately exposes the detection cone (plus or minus 20, 45 or 10 degrees) and
+`Go Home Range=300`, the leash.
+
+**What does not exist: `CFleeAI` and `CRetreatAI` are referenced by nothing.** There is no morale, no
+retreat, no breaking. Target selection is not scriptable against the player either -- `CSetTargetAction`
+has 17 uses, all NPC-versus-NPC with literal names. So focus-fire, flanking, kiting and formations are out
+of reach without code, and this plan does not pretend otherwise.
+
+### The finding that orders the tiers
+
+| boss | XP | its attack AI |
+|---|---|---|
+| Dragon_Chaos | 25,000 | **no `CNormalAttackAI` at all** |
+| Old Man of the Mountain | 5,000 | rooted, `Shoot Completed` **empty**, no skills |
+| Nostradamus | 1,500 | **none** |
+| Priestess / Tough / Super | 1,949 | no skills |
+| Boss Lich, Tough, Super (ours, 0.21.0) | 1,500-2,500 | no skills |
+| **Wizard Tremblethorn** | 2,500 | rooted, `CRandomAction` over **four** skills, plus a relay |
+
+**The best-built combat AI in the game is on an optional wizard in the Wilderness, and the final boss's
+attack slot is empty.** Tremblethorn is the template for everything below.
+
+### Tiers, in the order they should be built
+
+1. **Fill the empty slots on the boss tier.** Copy Tremblethorn's shape -- `Shoot Completed=CRandomAction`
+   over a few `CActionSelectSkill` entries -- onto the bosses that have none, in payoff order: the **Old
+   Man of the Mountain** first, then our own **Boss Lich** line, then the **Priestess** line (three tiers,
+   and the Druid Master's own race), then **Andre the Titan 2**, which has two skills and could carry four.
+   Data only, one file per creature, no map edits.
+2. **Telegraphs.** `CDelayAction` appears in 24 attack AIs and `CPlayAnimationAction` in 81, out of 478. A
+   wind-up animation and a delay before a heavy hit is the cheapest thing in this whole document and the
+   one most likely to make a fight readable rather than a blur. Same files as tier 1, so it should be the
+   same editing pass: the boss tier, the WarGolem line, the Greater Titans.
+3. **Phases.** `CAIHealthPercentThresholdTrigger` fires when a creature crosses a health percentage and is
+   used **twice in the entire game** -- both in `Ogre Conjurer Cave`, both only to trigger a relay --
+   while AI swapping is routine at 493 `CRemoveAIAction` and 952 `CAddAIAction`. At a threshold: swap the
+   attack AI, speak a line, call the summon its kind already has. **This tier does not go in until tier 1
+   has been played**, because a boss that changes behaviour at 40% is not something a save can undo.
+4. **Archers that do not stand and plink -- as a trial only.** The easy version is impossible: 53 ranged
+   cans, 17 cans carrying a secondary weapon, and **the overlap is zero**. Bow enemies have nothing to
+   draw. Making this work means *giving* them a melee weapon, a race and inventory change that alters
+   difficulty for every archer in the game. Scope it to **`Assasin Bow` and its Tough and Super** in act 8,
+   play that, and only then decide about `Soldier2 Bow`, `Mongol Goblin Archer`, `Nos Soldier2 Bow` and
+   the rest.
+
+### Retired before building
+
+**"Turn on the summon gates."** The three summoning checkers -- `ghoul summoning enabled` (11 maps),
+`hujark summoning enabled` (11) and `snakebreed summoning enabled` (4) -- are **all `Active=1` already**.
+Summoning fires everywhere it exists and there is nothing to switch on. The lever is real but points the
+other way: those checkers can be switched **off** per encounter, which is a tool for making one fight
+readable, not for adding threat. Recorded so it is not proposed a third time.
+
+### The standing caution
+
+This is the first work in this project aimed at difficulty rather than content, and **none of 0.21.0
+through 0.24.0 has been played**. Tier 1 should be in front of a player before tier 3 is written.
 
 ## 0.24.0 - the register
 
