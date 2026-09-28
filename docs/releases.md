@@ -178,6 +178,30 @@ a field the game writes 756 times out of 756, and the twelve affected triggers a
 ReVa was unavailable this session, so the exact engine semantics are inferred from that distribution
 rather than read out of the binary.
 
+### And the builder now lives in the repo
+
+`lhbuild.py` -- the module every build script in this project imports -- had been living in a session
+scratchpad under `AppData\Local\Temp` ever since it was extracted from the Montserrat prisoner build,
+which is also why its docstring still described that one build rather than the library. A helper that can
+ship twelve broken triggers should not be untracked and one `%TEMP%` sweep from gone.
+
+It is now `tools/lhbuild.py`, with:
+
+- a header that says what it is, and records the two rules that have each cost a release -- an `Array`
+  must declare the count it actually holds, and a generated block must carry **every** field vanilla
+  writes, not only the load-bearing-looking ones;
+- paths off the environment instead of one machine's: `LIONHEART_MODTOOLS` and `LIONHEART_VANILLA`, with
+  the `files/` root derived from the module's own location rather than `Path.home()`;
+- `tools/test_triggers.py` beside it, which parses the field lists out of three real vanilla triggers
+  (`Eavesdrop trigger`, `Mathuo-Iapetus Bubble trigger`, `To Exalted Chambers poly`), asserts the
+  builders match name for name and in order, and then sweeps every `.zax` the mod ships to confirm no
+  touching trigger is missing the re-arm field. It is the check that would have caught 0.21.5 at the
+  moment the bug was written.
+
+The Montserrat constants at the top are kept -- `hover_poly()` still reads `HOVER_TREE` -- but they are
+now labelled as leftovers rather than passing for library API. The scratchpad path keeps a two-line shim
+that executes the repo copy, so older scratch scripts cannot silently import a stale fork.
+
 ## 0.21.4 - Toulouse was already finished
 
 **Audit only, 2026-09-27. No game files changed.** Toulouse has been carried in this log since 0.21.1 as the

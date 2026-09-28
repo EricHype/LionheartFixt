@@ -89,7 +89,8 @@ arcs (they return with Act 8).
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's
-automated gate (`tools/validate.py`) passes; the human gates are recorded per release in
+automated gates (`tools/validate.py`, and `tools/test_triggers.py` for the map builders in
+`tools/lhbuild.py`) pass; the human gates are recorded per release in
 [`docs/qa.md`](docs/qa.md), and most of what shipped after 0.4.0 has been played once by one
 tester, which is how the 0.8.x repairs were found.
 
