@@ -240,9 +240,60 @@ Reply Text=I'm on an urgent mission for the Knights Templar to protect relics.
 Go to node ID=100 relics knights female
 
 Requirement=!None
-Custom Requirement=CUseCannedExpressionExpression
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Character to get attributes from=$Instigator
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt the Order is in the register
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I'm on an urgent mission for the Knights of Saladin to protect sacred relics.
+Go to node ID=100 relics saladin cold
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Character to get attributes from=$Instigator
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt the Order is in the register
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
 }
 Reply Text=I'm on an urgent mission for the Knights of Saladin to protect sacred relics.
 Go to node ID=100 relics saladin
@@ -313,9 +364,60 @@ Reply Text=I'm on an urgent mission for the Knights Templar to protect relics.
 Go to node ID=100 relics knights female
 
 Requirement=!None
-Custom Requirement=CUseCannedExpressionExpression
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Character to get attributes from=$Instigator
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt the Order is in the register
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I'm on an urgent mission for the Knights of Saladin to protect sacred relics.
+Go to node ID=100 relics saladin cold
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CExpressionAction
+{
+Expression=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Saladin IS
+}
+Character to get attributes from=$Instigator
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt the Order is in the register
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
 }
 Reply Text=I'm on an urgent mission for the Knights of Saladin to protect sacred relics.
 Go to node ID=100 relics saladin
@@ -438,4 +540,8 @@ Reply Text=See that your Marshal remembers it too.
 Go to node ID=03 Return Dialogue
 Icon=Exit Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 relics saladin cold
+Text=A Knight of Saladin. <His hand settles on his belt and stays there.> Aye. His grace named your order to us this week, and he does not trouble to name orders he has no use for. You are an ally of the Temple and you may pass - I am not the man who decides otherwise. Do your business in the daylight, and be seen doing it.
+Should Have Voiceover=0
 }

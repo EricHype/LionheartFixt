@@ -9,6 +9,35 @@ Node ID=01 Conversation Start Not Tainted, Not an Inquisitor or Templar
 Text=I am the Bishop of Pamiers. Do you seek an audience?
 Should Have Voiceover=0
 
+Requirement=Saladin IS
+Reply Text=Your grace. I am a sworn knight of the Order of Saladin.
+Go to node ID=01 Conversation Start Saladin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+}
+}
+
 Requirement=!None
 Reply Text=Yes, if you could spare but a few moments.
 Go to node ID=20 Audience
@@ -30,6 +59,35 @@ Go to node ID=01 Conversation Start Templar
 Requirement=Inquisitor IS
 Reply Text=Your grace, I'm an Inquisitor, at your service.
 Go to node ID=01 Conversation Start Inquisitor
+
+Requirement=Saladin IS
+Reply Text=Your grace. I am a sworn knight of the Order of Saladin.
+Go to node ID=01 Conversation Start Saladin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+}
+}
 
 Requirement=Speech moreequal 20
 Reply Text=Your holiness, though my heritage is tainted, my heart is true. 
@@ -66,6 +124,35 @@ Requirement=Inquisitor IS
 Reply Text=Your grace, I'm an Inquisitor, at your service.
 Go to node ID=01 Conversation Start Inquisitor
 
+Requirement=Saladin IS
+Reply Text=Your grace. I am a sworn knight of the Order of Saladin.
+Go to node ID=01 Conversation Start Saladin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+}
+}
+
 Requirement=Speech moreequal 20
 Reply Text=Your holiness, though my heritage is tainted, my heart is true. 
 Go to node ID=20 Audience
@@ -96,6 +183,35 @@ Should Have Voiceover=0
 Requirement=Inquisitor IS
 Reply Text=Your grace, I'm an Inquisitor, at your service.
 Go to node ID=01 Conversation Start Inquisitor
+
+Requirement=Saladin IS
+Reply Text=Your grace. I am a sworn knight of the Order of Saladin.
+Go to node ID=01 Conversation Start Saladin
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the Order is in the register
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+}
+}
 
 Requirement=Templar IS
 Reply Text=Your grace, I'm a Knight Templar, at your service.
@@ -2600,6 +2716,24 @@ Warp Behavior=
 }
 }
 }
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Saladin
+Text=A Knight of Saladin. <He does not look up. The quill keeps moving.> The Temple vouches for your order, so I will not have you stopped at the gate. You will forgive an old man his thoroughness, though: a sworn brother of an order named for a Saracen sultan, arriving in a village I am in the middle of emptying of heretics, in the same week. There. You are written down. Now - what was it you wanted?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Written down as what, your grace?
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=I wanted to ask you some questions.
+Go to node ID=20 Audience
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
 }

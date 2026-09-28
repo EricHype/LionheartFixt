@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.23.0 are published.** Every act is surveyed, built and released, and the 0.21-0.23 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.23.0 are published; 0.24.0 is built and not yet cut.** Every act is surveyed, built and released, and the 0.21-0.23 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,81 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.24.0 - the register
+
+**Built 2026-09-28, unplayed.** 0.23.0 gave the Knights of Saladin a rank that is read, an escort, a
+merchant discount and a fourth route through the bird men. Which raised a fair objection: nothing in this
+game should be only a benefit, and that allegiance had become the purest upside in it.
+
+### The audit, for every order
+
+| allegiance | what it opens | what it actually costs you |
+|---|---|---|
+| Inquisitor | 251 `Inquisitor IS` gates | **+25%** at the Herbalist, **+50%** at the Weird Woman, +10% at the Rogue Inquisitor; the Cathars, the shepherd and the weird woman all withhold |
+| Wielder | 54 | the Montaillou mayor (6 `Wielder NOT`), Beatrice, the Crypt captains |
+| Templar | 119 | **+25% at the Herbalist.** That is the whole list |
+| Goblin Horde | 11 | the Montaillou guard's hand never leaves his hilt -- our own 0.14.0 |
+| **Knights of Saladin** | 42 | **nothing** |
+
+**And a correction to the metric I reached for first.** Counting `X NOT` gates as "costs of being X" is
+wrong: almost all of them are *"I would like to know more about the Knights Templar"* -- replies offered
+to people who are **not** members, which is flavour, not a penalty. On that bad metric Templar and Goblin
+looked more lopsided than Saladin. Read properly, every one of the eleven `Saladin NOT` uses is
+informational and every one of the forty-two `Saladin IS` uses is a welcome, a thanks or extra
+information. Nothing anywhere charged it, refused it or watched it.
+
+### The constraint
+
+Vanilla states the relationship outright, in the Montaillou guard's own mouth: *"A Knight of Saladin? You
+don't have the look of a saracen, but if you serve that order, then you are an ally of the Templars - and
+thus welcome here."* So a blanket "Christian Europe distrusts you" would contradict the game. The seam
+that does not is the **Inquisition**, which distrusts everyone who is not theirs.
+
+The Bishop of Pamiers lets you introduce yourself as a Knight Templar or as an Inquisitor on three of his
+four opening nodes. **There is no third option** -- and he is in Montaillou doing exactly one thing, which
+the guard describes precisely: *"a man with a book, asking questions, and every soul in Montaillou
+answering him one at a time."*
+
+### What it builds
+
+**The Order may finally introduce itself, and the introduction is the cost.**
+
+> *"A Knight of Saladin. <He does not look up. The quill keeps moving.> The Temple vouches for your order,
+> so I will not have you stopped at the gate. You will forgive an old man his thoroughness, though: a
+> sworn brother of an order named for a Saracen sultan, arriving in a village I am in the middle of
+> emptying of heretics, in the same week. There. You are written down. Now - what was it you wanted?"*
+
+The reply sets a checker on the church map and, through `COtherMapAction`, on the hamlet. It is offered on
+all four openings, the untainted one included -- where vanilla offers no order introduction at all, to
+anybody.
+
+**And the gate guard stops being glad to see you.** His Saladin welcome now has two versions, gated on
+that checker by ANDing his existing canned `Saladin IS` expression with an existence test:
+
+> *"A Knight of Saladin. <His hand settles on his belt and stays there.> Aye. His grace named your order
+> to us this week, and he does not trouble to name orders he has no use for. You are an ally of the Temple
+> and you may pass - I am not the man who decides otherwise. Do your business in the daylight, and be seen
+> doing it."*
+
+**The gate does not close**, because the alliance is real and the game says so. What you lose is the
+warmth, and you lose it by your own choice -- nobody makes you tell the Bishop who you are.
+
+### Two vanilla observations, neither of them defects
+
+- `MontailluInquisitor` has five `Go to node ID=` values whose case does not match their node
+  (`10 goodbye`, `20 audience`, `70 tasks`, `667 gem inquisitor`, `15 Confront Goodbye`). The engine folds
+  case on node lookup, so all five resolve. An exact-match orphan check on this tree reports five false
+  positives; the check here folds case, and every build script from now on should.
+- That tree's own text is unbalanced on angle brackets -- eight `<` against nine `>` -- so a whole-file
+  stage-direction check can never pass on it. The check is scoped to the new nodes instead.
+
+### Still owed
+
+The audit found the same hole in two other orders and this release does not fill it. **Templar** has
+exactly one cost in the entire game (the Herbalist's 25%), and **Goblin Horde** has one bark. Both want
+the same treatment, and the Inquisition is the obvious seam for the Templars too -- the two orders are
+rivals for the same relics in the same region.
 
 ## 0.23.0 - what the Crescent is worth
 

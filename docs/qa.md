@@ -1471,6 +1471,23 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.24.0 - the register
+
+Act 3, Montaillou. Needs a **Knight of Saladin** who has not yet spoken to the Bishop of Pamiers in
+`05 Church Interior`, and a save that has never entered `05 Church Interior` or `01 Hamlet Exterior`.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| RG1 | As a Knight of Saladin, meet the Montaillou gate guard **before** visiting the church | - | The vanilla welcome: *"you are an ally of the Templars - and thus welcome here"* |
+| RG2 | Go to the church and talk to the Bishop of Pamiers | - | A new reply: *"Your grace. I am a sworn knight of the Order of Saladin."* |
+| RG3 | Take it | - | He writes you down. The quill does not stop |
+| RG4 | Leave, and give the guard the same Saladin answer again | - | The **cold** version. He still lets you pass; he is no longer pleased about it |
+| RG5 | Repeat RG2 as a sylvant, a feralkin and a demokin | - | The introduction is offered on all four openings, including the untainted one, which offers no order introduction at all in vanilla |
+| RG6 | As a Knight of Saladin, never speak to the Bishop, and use the guard repeatedly | - | The warm welcome every time. The cost is only paid if you introduce yourself |
+| RG7 | As a **Templar** or an **Inquisitor**, do RG2 | - | Their own introductions, unchanged, and no register entry |
+| RG8 | Carrying no order, talk to the Bishop | - | His vanilla openings, unchanged |
+| RG9 | After RG3, check the Bishop's other business still works -- the witch, the mayor, the gem | - | All unchanged. The register is a flag, not a gate |
+
 ## 0.23.0 - what the Crescent is worth
 
 Act 8, the Knights of Saladin. `SR16`-`SR29` need only a knight of any rank; `SR1`-`SR15` need an
