@@ -1494,6 +1494,25 @@ Act 7. Needs a save that has **not yet entered** `05 Exalted Chambers`, `09 Secr
 | BL5 | Talk the Bonecaller down instead, as 0.21.0 allows | - | He stops summoning along with everything else. The stand-down is unaffected |
 | BL6 | The Old Man of the Mountain and the finale | - | **Unchanged in every respect.** No file for that fight was touched |
 
+## 0.25.0 - the thieves of Barcelona backstab
+
+Act 1. Needs a save that has **not yet entered** the Slave Pits or the sewers -- these are can and race
+changes, so they reach only thieves spawned after the install. `BS1` is the row that matters most: it
+checks that presetting an engine-owned attribute did not break the creature.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BS1 | Walk into `Sewers/01 Sewer Main Entrance` and just **look** at a thief before fighting | - | He appears normally, walks at normal speed, is visible and targetable. **If thieves are invisible, creeping, or missing, stop and revert** -- that means `Sneak Enabled` reached the engine's sneak state after all |
+| BS2 | Fight a `Sewer Theif4 Sword` head-on, facing him | - | No backstab line in the log. The facing condition needs at least 90 degrees of difference |
+| BS3 | Engage one thief, let a **second** close on you from behind | - | Combat log: *"... sneaks up on ... and hits for ... (25 percent backstab bonus)"* with the **thief** as the attacker. This is the whole point of the release |
+| BS4 | Same in `02 Thieves Congregation`, where 51 thieves spawn | - | Same, and more often -- crowds make flanking happen by itself |
+| BS5 | Note the bonus percentage in the log across tiers | - | 25 for base, 35 for Tough, 50 for Super |
+| BS6 | Fight a `Sewer Theif3 Bow` or `Theif4 Bow` | - | **Never** a backstab line. Archers were deliberately left out |
+| BS7 | Judge whether the sewers are harder in an interesting way or simply harder | - | **The row that decides whether the release stays.** Remember AC and HP also rose with the repoint |
+| BS8 | Compare a `Thug4 Sword` in the Gate District, or `Thug Boss` in act 8 Alamut | - | Unchanged -- still 95 AC, no backstab. Thugs share nothing with the new thief races |
+| BS9 | Kill a thief and check its XP and drops | - | Unchanged. The repoint touched `Race=` only; XP lives on the can |
+| BS10 | `1 Barcelona/Slave Pits` at low level | - | Survivable. If a level-2 character is being killed by 25 percent backstabs here, drop the base tier to 0.15 before anything else |
+
 ## 0.24.0 - the register
 
 Act 3, Montaillou. Needs a **Knight of Saladin** who has not yet spoken to the Bishop of Pamiers in

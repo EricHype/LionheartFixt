@@ -243,6 +243,19 @@ preset a derived attribute exactly as Wizard Tremblethorn's presets its hit poin
   state the game was never asked to render.
 - Whether an NPC's facing satisfies condition 4 in practice, given enemies turn to face their target.
 
+### Acted on: the thieves of Barcelona now carry it
+
+Built the same day. The tight scope came from a second finding: all 36 thief cans point at the shared
+`Thug*` races, which are also worn by `Thug Boss` in act 8 Alamut, the Slaver Captain, Shylocke's goons
+and the Crossroads Bandit -- so the races in use were the wrong lever. But vanilla ships **18
+`Thief*.race` files that nothing references**, a 1:1 name match with the 18 thief cans, evasive where the
+thug races are sturdy. So 24 melee thief cans were repointed onto 12 of those restored races, and those
+races carry `Sneak Enabled=1`, `Is Backstab Mode Enabled=1` and 0.25/0.35/0.5 extra damage by tier.
+Archers were left out, since the gate needs a melee attack type -- which leaves 6 orphan races still
+unreferenced. Full record in `releases.md`; the playtest rows are `BS1`-`BS10` in `qa.md`, and `BS1` is
+the one that matters, because it checks that presetting an engine-owned attribute did not break the
+creature.
+
 **There is a clean way to verify it.** The combat-log format strings are generic `[Attacker]` and
 `[Defender]` templates, not player-specific:
 

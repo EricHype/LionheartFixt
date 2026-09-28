@@ -251,6 +251,83 @@ a clone source simply fights normally.
 The decision reasoning, including the two positions rejected for the Old Man, is kept in
 [`design-review-combat.md`](design-review-combat.md).
 
+### Tier 1, built: the thieves of Barcelona backstab
+
+The question that opened this was why no thief, in Barcelona or the sewers, has ever attempted a
+backstab -- the perk's whole premise is their job description. The resource files cannot answer it, so it
+went to Ghidra. **The gate is not player-only.** Full trace is in the modding reference under "A race can
+preset ANY derived attribute"; the short form is that the gate at `0x0049a1b0` is four conditions on
+whoever is attacking -- a sneak flag read from the attacker's `Sneak Enabled`, the attacker's
+`Is Backstab Mode Enabled`, a melee attack type, and a facing difference of at least pi/2 -- and every
+read goes through one accessor that indexes the attribute array on the character object in ECX. No party
+check, no `Player1`. The perk is player-only **by data**: no enemy race presets either attribute.
+
+Two data problems had to be solved to act on it.
+
+**Scope, and why the obvious lever was wrong.** All 36 thief cans point at the shared `Thug*` races --
+and those races are also worn by `Thug Boss` in **act 8 Alamut**, the Slaver Captain, Shylocke's goons,
+the Jewel Thug, the Crossroads Bandit and the Wilderness Traveler. Presetting the attributes there would
+have handed backstab to most of the game's human enemies, in four acts, for a change asked about two.
+
+**What made a tight scope possible.** Vanilla ships **18 `Thief*.race` files that nothing references** --
+a 1:1 name match with the 18 thief cans, structurally identical to the thug races (same
+`!Unknown Model`, so the can still supplies the model) and differing only in numbers: consistently higher
+AC and hit points, slightly lower weapon skill. `Thief Pale` differs from `Thug Pale` in exactly one
+line, AC 120 against 90. Someone built a thief race line -- evasive but less trained than a thug, which
+is what a thief should be -- and never repointed the cans. So this repoints them, which restores that
+orphaned line and gives the thieves a race of their own to carry the presets.
+
+| repointed | from | to | AC | HP |
+|---|---|---|---|---|
+| `Theif4 Sword` + `Sewer Theif4 Sword` | `Thug4 Sword` | `Thief4 Sword` | 95 -> 135 | 25 -> 38 |
+| `Theif4 Sword Tough` + Sewer | `Thug4 Sword Tough` | `Thief4 Sword Tough` | 105 -> 149 | 29 -> 54 |
+| `Theif4 Sword Super` + Sewer | `Thug4 Sword Super` | `Thief4 Sword Super` | 125 -> 169 | 34 -> 68 |
+| `Theif Boss` / `Pale` / `3 Mace` lines, all three tiers, both folders | `Thug *` | `Thief *` | +25 to +65 | +0 to +34 |
+
+**24 cans repointed, 12 races given the presets**, each race gaining three:
+
+| | `Sneak Enabled` | `Is Backstab Mode Enabled` | extra damage |
+|---|---|---|---|
+| base | 1 | 1 | 0.25 |
+| Tough | 1 | 1 | 0.35 |
+| Super | 1 | 1 | 0.5 |
+
+The percentage is graded because the player's own perk gives 0.5 per rank and these enemies stand in
+act 1; the Super tier matches rank 1 and the base tier is half of it. Presetting an arbitrary derived
+attribute is ordinary -- vanilla races preset 21 different ones, including `Lance Guardian`'s
+`Melee Damage Percentage Gives Health To Attacker Zero To One` at 0.4/0.45/0.6, which is the same
+`Zero To One` shape as the backstab percentage.
+
+**Bow thieves are deliberately untouched.** The gate requires attack type 1 or 3 and the perk text says
+melee weapons, so a preset on an archer would be inert. That leaves **6 of the 18 orphan races still
+unreferenced** (`Thief3 Bow` and `Thief4 Bow`, three tiers each) -- recorded, not fixed, because
+repointing them would be a pure stat buff with no mechanism behind it.
+
+**Where it lands.** Thief cans appear in only six real maps, all act 1: `1 Barcelona/Slave Pits` (21
+spawns), `Sewers/01 Sewer Main Entrance` (43), `Sewers/02 Thieves Congregation` (51),
+`Sewers/09 Secret Quest` (45), `Sewers/05 Troll Pit` (2) and `Wilderness Maps/Slave Pit Exterior` (7).
+The rest are the `Global/Secret Red File Level` debug map and `Test Maps/`. So "the thieves of Barcelona"
+is exactly the can set -- nothing outside Barcelona and the sewers changes.
+
+**Why `Sneak Enabled` is safe to preset, despite its own description.** The attribute says *"Modified by
+game engine to have a value of 1 when sneeking and 0 when not sneaking"*, which looked fatal. It is not:
+the setter `FUN_004420c0` writes the engine's real sneak-state field at `+0x134` **and separately**
+adjusts the attribute modifier array at `+0xe0` by a delta of plus or minus one -- the same array a perk
+modifier writes. A preset sets the attribute the gate reads and leaves `+0x134` at zero, and movement and
+rendering key on the state field, not the attribute. So the thieves should not creep, vanish, or look
+different. That is the single most important thing for a playtest to confirm.
+
+**What is unverified.** Three of the gate's four callers were not read, so which ones pass attack type 1
+or 3 is inferred from the perk text rather than traced. Whether an NPC's facing ever satisfies the pi/2
+condition in practice is unknown -- enemies turn toward their target, so the bonus may only fire when the
+player is already engaged with someone else and a second thief closes from behind, which is exactly the
+emergent behaviour that was wanted, but it may also mean it fires rarely or never. And if the engine ever
+delivers the stop-sneaking message to one of these NPCs, the preset drops to 0 permanently.
+
+**Two variables moved at once**, which the QA rows separate as far as they can: the repoint raised AC and
+hit points as well as adding backstab. If the sewers play badly, the revert path is one line per can --
+point `Race=` back at the `Thug*` name -- and it can be done without touching the races.
+
 ### Tier 1, not built, and why
 
 The three open decisions below, and the tiers waiting behind them, are written up for a
