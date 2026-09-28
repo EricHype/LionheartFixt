@@ -246,11 +246,48 @@ Note what this does **not** do: it takes nothing away from the Templar player ex
 pretend. Vanilla's Wielder gets past these men for free with one line, because the Church burns their kind
 first. The Temple does not get a line. It gets a bill.
 
+### The Crossroads charges the Horde for the carts
+
+The Horde's benefit was already priced and the bill was not. `Hubglubs Chum Store` sells to sworn goblins
+at **0.75** where `Hubglubs Store` charges everyone else 1, and nothing anywhere charged the other way.
+Of its eleven `Goblin Horde IS` gates, nine are goblin-facing -- the warren vendor, the patrol leader, the
+villagers, the entrance guard -- and the only two that are not are Joan of Arc and the Montaillou guard,
+whose hand on his hilt is this project's own 0.14.0.
+
+That guard also names the reason out loud: *"We have had word of what the Horde did at the Crossroads."*
+The Crossroads is a real map with four merchant entities standing on it, and Alvaro sells supplies there
+at a multiplier of 1, to anybody, with no idea who he is talking to.
+
+He is the right man for the bill, too. Vanilla already has him sort beggars by race -- *"You have some
+nerve begging from me, you tainted lout!"* -- so this is not a new opinion, only an informed one:
+
+> *"Si. I sell to you. I sell to everyone, amigo, that is the business. But last spring your Khan's boys
+> came through this crossroads and took what they liked off three of my carts and left me the axles, and
+> somebody has to pay for the carts. So it is my price, and then it is your price, and they are not the
+> same price. There is another merchant four days south if you do not care for mine."*
+
+**1.5**, matching the steepest surcharge in the game -- what the Weird Woman charges an Inquisitor. Sworn
+to the Horde you now buy at **0.75** from your own and **1.5** from the people whose carts you took.
+
+Both of Alvaro's shop nodes are gated, the high-karma one included, so a Horde player with a hero's
+reputation does not slip past the surcharge through the special stock. That is deliberate: the good-karma
+store exists because *"word of your good deeds has not avoided my ears"*, and the same ears heard about
+the Crossroads.
+
 ### Still owed
 
-**Goblin Horde** still has one bark and nothing else. Its seam is probably the same tavern -- the Horde
-sacked the Crossroads, the guard already says so to a goblin's face, and the villagers would have heard
-about it long before the knights did.
+Nothing, for the first time in this line of work. All five allegiances now cost something:
+
+| allegiance | what it costs |
+|---|---|
+| Inquisitor | +25% Herbalist, +50% Weird Woman, +10% Rogue Inquisitor, and the Cathars, shepherd and weird woman withhold |
+| Wielder | the Montaillou mayor, Beatrice, the Crypt captains |
+| Templar | +25% Herbalist, **and 150 gold to the Cathars or a brawl** |
+| Goblin Horde | the Montaillou guard's hand on his hilt, **and 1.5 at the Crossroads** |
+| Knights of Saladin | **the Bishop's register, and a gate guard who stops being glad to see you** |
+
+What is left is the other direction: the two orders whose ladders nothing reads, `Templar Highlevel` and
+`Inquisitor Highlevel`, still referenced by nothing at all.
 
 ## 0.23.0 - what the Crescent is worth
 

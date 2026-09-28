@@ -1495,6 +1495,12 @@ Act 3, Montaillou. Needs a **Knight of Saladin** who has not yet spoken to the B
 | TB6 | Repeat the whole scene as an **Inquisitor** | - | Unchanged: his own reply, and the disclaimer still closed to him as in vanilla |
 | TB7 | Repeat as a **Wielder** | - | Unchanged -- he still talks his way to `100 Welcome` for free at `70 Challenge Answer` |
 | TB8 | Repeat carrying **no order** | - | The disclaimer is available exactly as in vanilla, and no Templar reply appears |
+| HC1 | Sworn to the **Goblin Horde**, buy from Alvaro at the Crossroads | - | `21 the horde price` and his speech about the three carts, before any shop opens |
+| HC2 | Buy something and compare the price with a non-Horde character | - | Visibly worse: 1.5 against 1 |
+| HC3 | Repeat at **high karma**, where he offers his special supplies | - | Also gated. The special stock does not dodge the surcharge |
+| HC4 | Take *"Keep them"* | - | `10 goodbye`, no shop, no hostility. He is a trader, not a guard |
+| HC5 | Repeat carrying **no Horde allegiance**, at both normal and high karma | - | `Vendor 1 Inventory` and `Good Karma Store for Alvaro` exactly as in vanilla |
+| HC6 | As a Horde member, buy from **Hub'blub** in the warrens | - | Still 0.75. The Horde's own discount is untouched |
 
 ## 0.23.0 - what the Crescent is worth
 

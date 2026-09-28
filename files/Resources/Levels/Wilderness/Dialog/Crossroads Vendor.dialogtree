@@ -1,0 +1,630 @@
+CDialogTree
+{
+Name=Alvaro the Merchant
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Hola señor. Perhaps you would like to buy some supplies before venturing off into the wilderness - si amigo?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=100 name
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Welcome if female
+Text=Hola señora. Perhaps you would like to buy some supplies before venturing off into the wilderness - si amiga?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=100 name
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=10 goodbye
+Text=Well, feel free to come by anytime.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 vendor
+Text=Bueno! I can personally guarantee that you won't be disappointed.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde NOT
+}
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Vendor 1 Inventory
+After Closed Action=
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+}
+Reply Text=
+Go to node ID=21 the horde price
+------------------------------------------------------------
+Node ID=40 after shop
+Text=I hope that you found what you were looking for.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=5 return male
+Text=Welcome back señor! Can I interest you in some of my goods?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=5 return female
+Text=Welcome back señora! Can I interest you in some of my goods?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Beg from Human
+Text=What do you think I am running here, a charity? Be off with you!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 Beg from NONHuman
+Text=You have some nerve begging from me, you tainted lout! Be off with you!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Vendor1 make worse prices for Tainted
+}
+Action=CActivateAction
+{
+Target Name=Money from First Vendor asked for
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Begged from Vendor Return
+Text=What do *you* want now?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 name
+Text=You can call me Alvaro.  I make a simple living supplying those that make a business of exploring the dangerous wilderness beyond Barcelona. If you are wise, you would not travel these roads unprepared, eh?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'd like to see your goods.
+Go to node ID=20 vendor
+
+Requirement=!None
+Reply Text=I'll just be going.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start High Karma
+Text=I had hoped that you would visit me! Word of your good deeds has not avoided my ears. Perhaps you would like to buy some goods before venturing off into the wilderness? I will show you supplies that I reserve for my close friends and allies.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your special supplies.
+Go to node ID=20 vendor high karma
+
+Requirement=!None
+Reply Text=Actually, I would like to see your normal stock.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=100 name
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 vendor high karma
+Text=Bueno! I can personally guarantee that you won't be disappointed.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde NOT
+}
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Good Karma Store for Alvaro
+After Closed Action=
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+}
+Reply Text=
+Go to node ID=21 the horde price
+------------------------------------------------------------
+Node ID=5 return high karma
+Text=Welcome back, hero. I'm honored that you have chosen to do business with me. Can I interest you in some of my stock, or perhaps I could show you my special supplies?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I'd like to see your special supplies.
+Go to node ID=20 vendor high karma
+
+Requirement=!None
+Reply Text=Just show me your regular stock.
+Go to node ID=20 vendor
+
+Requirement=Human IS
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=50 Beg from Human
+Action work in progress=Player is Human
+
+Requirement=Human NOT
+Custom Requirement=CActionExpression
+{
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Money from First Vendor asked for
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=10
+}
+}
+}
+}
+}
+Reply Text=Can you spare some coin for a poor traveller?
+Go to node ID=51 Beg from NONHuman
+Action work in progress=Player NOT Human
+
+Requirement=!None
+Reply Text=Sorry, just passing through.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=21 the horde price
+Text=Si. I sell to you. I sell to everyone, amigo, that is the business. But last spring your Khan's boys came through this crossroads and took what they liked off three of my carts and left me the axles, and somebody has to pay for the carts. So it is my price, and then it is your price, and they are not the same price. There is another merchant four days south if you do not care for mine.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Show me the goods.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Fixt Crossroads Vendor Horde
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Keep them.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+}

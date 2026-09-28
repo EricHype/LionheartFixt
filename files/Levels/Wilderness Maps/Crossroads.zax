@@ -87,6 +87,219 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Crossroads Vendor Horde
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CMerchantAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Display Name=Alvaro the merchant
+					Price Multiplier=1.5
+					Time Between Restock=900
+					Time Of Last Restocking=0
+					Items=Array
+					{
+						Array Count=13
+						Array Item=CMerchantListItem
+						{
+							Quantity=10
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Weapons/ALL WEAPONS Mojo Begin
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/LongBow
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=10
+										Item=Inventory Items/Crossbow
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Generator Combinations/Armor/Armor Mojo Low Standard
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=5
+										Item=Inventory Items/ShieldSmall
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=5
+										Item=Inventory Items/ShieldMedium
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=6
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/Magic Bows and Xbows
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=6
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Arrows and Bolts
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=3
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Arrows and Bolts
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=2
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=10
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Potions
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=4
+							Item=CInventoryItemGeneratorCannedList
+							{
+								Canned Item List=Inventory/Creating Random Magic Items/All Miscellaneous Items
+							}
+							Level=CUseCannedExpressionExpression
+							{
+								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+							}
+						}
+					}
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Store Inventory
+			Position X=1336
+			Position Y=1875
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=
 			Child List=
 			Visible=1
