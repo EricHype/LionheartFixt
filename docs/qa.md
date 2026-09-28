@@ -1471,6 +1471,24 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.23.0 - what the Crescent is worth
+
+Act 8, the Knights of Saladin. `SR1`-`SR4` need an **Exalted** knight: take the Dream Djinni initiation,
+take Jafar's Montaillou or Montserrat errand, and find all five green Way Crystals. `SR5`-`SR8` need a
+knight who is **not** Exalted, and one of each other order as a control. Needs a save that has never
+entered `02 Shifting Dunes`.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SR1 | As an Exalted **male** knight, meet the Knight of Saladin in the dunes | - | *"Salaam - Exalted... Command me, Brother"* -- not the vanilla "You do much honor to Saladin's name" |
+| SR2 | The same as an Exalted **female** knight | - | The same greeting, addressed Sister |
+| SR3 | Ask what the order says about this place | - | `24 the standing order`: the oath every Aswaran takes, and that you are the one who is nearest |
+| SR4 | Reach the Old Man and read the replies at `40 ruse` | - | **Two** Saladin lines: the vanilla-era *"I am what came back"* and the new standing-order one. Both lead to the fight |
+| SR5 | Repeat SR1 as a knight who took the initiation but **not** all five crystals | - | The vanilla Brother/Sister greeting. No Exalted line, no standing order, no second Old Man reply |
+| SR6 | Repeat as a **Templar** | - | The vanilla Knight Templar greeting and the tribute reply, unchanged |
+| SR7 | Repeat carrying **no order** | - | `1 Conversation Start`, unchanged |
+| SR8 | As an Exalted knight, dismiss the companion and pick him up again | - | `666 Rejoin` and `3 Return` behave exactly as before; the rank greeting is a first-meeting only, as vanilla's are |
+
 ## 0.22.0 - the Talker and the Thief
 
 Four sections' worth of checks ship in this one release: `DM1`-`DM8` (the Druid Master reads your order),

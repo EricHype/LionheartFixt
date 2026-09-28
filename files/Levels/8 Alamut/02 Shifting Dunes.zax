@@ -143778,7 +143778,7 @@ CLayerSaveData
 										{
 											If Expression=CUseCannedExpressionExpression
 											{
-												Canned Expression=Dialog/Requirements/Faction/Saladin IS
+												Canned Expression=Dialog/Requirements/Faction/Saladin Highlevel
 											}
 											Character to get attributes from=$Instigator
 											Then=CIfExpressionAction
@@ -143795,24 +143795,58 @@ CLayerSaveData
 												Then=CDisplayDialogTreeAction
 												{
 													Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
-													Node ID=01 Conversation Start Male Knight of Saladin
+													Node ID=01 Conversation Start Male Exalted
 													Speaker=$trigger
 													Player Being Spoken To=$Instigator
 												}
 												Else=CDisplayDialogTreeAction
 												{
 													Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
-													Node ID=01 Conversation Start Female Knight of Saladin
+													Node ID=01 Conversation Start Female Exalted
 													Speaker=$trigger
 													Player Being Spoken To=$Instigator
 												}
 											}
-											Else=CDisplayDialogTreeAction
+											Else=CIfExpressionAction
 											{
-												Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
-												Node ID=1 Conversation Start
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
+												If Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Saladin IS
+												}
+												Character to get attributes from=$Instigator
+												Then=CIfExpressionAction
+												{
+													If Expression=CIsGender
+													{
+														Acceptable Genders=Array
+														{
+															Item Count=1
+															Acceptable Gender=Male
+														}
+													}
+													Character to get attributes from=$Instigator
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
+														Node ID=01 Conversation Start Male Knight of Saladin
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
+														Node ID=01 Conversation Start Female Knight of Saladin
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
+													Node ID=1 Conversation Start
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
 											}
 										}
 									}

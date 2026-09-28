@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.22.0 are published.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.22.0 are published; 0.23.0 is built and not yet cut.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,86 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.23.0 - what the Crescent is worth
+
+**Built 2026-09-27, unplayed.** Act 8 is the Knights of Saladin's own country -- the Old Man of the
+Mountain, the Assassins, the Levant -- and choosing that order buys less there than choosing any other.
+
+**The count.** Act 8's identity gates: `Templar IS` 13, `Inquisitor IS` 12, `Goblin Horde Highlevel` 4,
+**`Saladin IS` 6** -- and three of those six are the companion's greeting selector while two more are the
+Ways Crystal promotion. The Knight of Saladin companion at the dunes is **unconditional**: everyone gets
+him. Membership buys a salutation ("Brother"/"Sister" instead of the generic) and one extra reply, which
+0.20.0 added.
+
+### The ladder nobody reads
+
+Every order has three rungs, each a `.Faction` granting permanent modifiers **and `+1` to its rank
+attribute**, so the rank counts how many promotions you took:
+
+| | Saladin | how you get it |
+|---|---|---|
+| 1 | **Aswaran** | the Dream Djinni trials, which also grant `Dervish of the Crescent` or `Scholar of the Crescent` |
+| 2 | **Blessed** | Jafar, on taking the Montaillou or Montserrat errand |
+| 3 | **Exalted** | all five green Way Crystals -- `+13/+13` melee, `+12` Turn Undead, `+5%` crushing, `+5%` slashing, `+20` carry |
+
+Exalted is the strongest faction perk in the game, and reaching it means the initiation, Jafar's errand
+and the crystal hunt. `Saladin Highlevel` is the canned requirement that tests for it, `Rank > 2`, exactly
+as `Goblin Horde Highlevel` tests `Goblin Rank > 2`.
+
+**`Saladin Highlevel` is referenced by nothing in the shipped game.** Neither is `Templar Favored`,
+`Templar Highlevel`, `Inquisitor Favored` or `Inquisitor Highlevel`. `Saladin Favored` has five uses, all
+Jafar, back in act 1. The only faction ladder anything in this game reads is the Goblin Horde's -- and
+that is **our** work, from 0.1.0.
+
+The asymmetry is sharpest at the Old Man. He answers a Goblin Champion by rank -- *"The Great Khan sent
+proud warriors after you once and not one of them came home. The Horde calls me Champion now."* -- and
+answers the highest-ranking knight of the order whose Sultan he twice tried to murder with the same line
+he gives a week-old initiate.
+
+### What this tier builds
+
+**The companion knows what he is standing next to.** His greeting chain tested Templar, then Saladin, then
+default. A rank test now sits between the first two, gender-split like vanilla's:
+
+> *"Salaam - Exalted. Nine days I have held this sand, and I had begun to think the order had forgotten
+> the fortress. It has not forgotten. It sent the highest of us. Command me, Brother, and I will not ask
+> twice what for."*
+
+And an Exalted can ask him what the order actually says about Alamut, which is the point of the rank:
+
+> *"The order does not speak of Alamut in the chapter houses, so I will speak of it here, in the sand,
+> where there is nobody to be shocked. Every Aswaran is told one thing on the day of the oath and never
+> told it again: if the Old Man moves against the Sultan's house a third time, the highest of us who is
+> nearest rides, and does not wait for permission, and does not come back with prisoners. In eighty years
+> nobody has ever been nearest. You are nearest."*
+
+**The Old Man reads the rank**, in a reply placed beside the one he already has for the Horde's:
+
+> *"Twice you put knives in Saladin's tent. The order wrote a standing order that same year and has spent
+> eighty of them waiting for one of us to be near enough to carry it out. I am the nearest. That is the
+> whole of the parley."*
+
+An Exalted knight sees that **and** the plain `Saladin IS` line, deliberately: one is personal (*"I am
+what came back"*), the other is the order's. They are different arguments, and picking between them is
+the point.
+
+### Recorded, not built
+
+- **There is no `Saladin Midlevel`.** The goblins have one; Saladin has `IS` and `Highlevel` and nothing
+  between, so Blessed cannot be distinguished from Aswaran without authoring a new can. This tier reads
+  two steps, not three.
+- **Exalted has nothing to do with the order.** It is granted by the Way Crystal collection, which just
+  promotes you inside whatever order you belong to; the same block hands Templars Paladin and Inquisitors
+  Hallowed. An order-specific route to the top rung is a separate question from reading it.
+- **`Templar Highlevel`, `Inquisitor Favored` and `Inquisitor Highlevel` are still referenced by nothing.**
+  This tier spends Saladin's because act 8 is Saladin's country; the other two orders have the same hole
+  in their own.
+
+**The `balanced()` trailing-newline trap bit for the fourth time.** Wrapping the vanilla greeting chain in
+a new conditional produced a line reading `}}`, because the slice ends at the closing brace and excludes
+the newline after it. The rule is now written into `tools/lhbuild.py`'s header, where it did not stop me
+reading it and then doing it anyway.
 
 ## 0.22.0 - the Talker and the Thief
 

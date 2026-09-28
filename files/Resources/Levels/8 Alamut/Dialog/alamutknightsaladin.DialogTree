@@ -1454,4 +1454,56 @@ Requirement=!None
 Reply Text=Then let's carry the battle to him.
 Go to node ID=30 go
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Male Exalted
+Text=Salaam - Exalted. Nine days I have held this sand, and I had begun to think the order had forgotten the fortress. It has not forgotten. It sent the highest of us. Command me, Brother, and I will not ask twice what for.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where is the Old Man?
+Go to node ID=10 old man
+
+Requirement=!None
+Reply Text=What is inside Alamut?
+Go to node ID=20 alamut
+
+Requirement=!None
+Reply Text=What does the order say about this place, Brother? Say it plainly.
+Go to node ID=24 the standing order
+
+Requirement=!None
+Reply Text=Let's carry the battle to Alamut, then.
+Go to node ID=30 go
+------------------------------------------------------------
+Node ID=01 Conversation Start Female Exalted
+Text=Salaam - Exalted. Nine days I have held this sand, and I had begun to think the order had forgotten the fortress. It has not forgotten. It sent the highest of us. Command me, Sister, and I will not ask twice what for.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where is the Old Man?
+Go to node ID=10 old man
+
+Requirement=!None
+Reply Text=What is inside Alamut?
+Go to node ID=20 alamut
+
+Requirement=!None
+Reply Text=What does the order say about this place, Brother? Say it plainly.
+Go to node ID=24 the standing order
+
+Requirement=!None
+Reply Text=Let's carry the battle to Alamut, then.
+Go to node ID=30 go
+------------------------------------------------------------
+Node ID=24 the standing order
+Text=Plainly, then. The order does not speak of Alamut in the chapter houses, so I will speak of it here, in the sand, where there is nobody to be shocked. Every Aswaran is told one thing on the day of the oath and never told it again: if the Old Man moves against the Sultan's house a third time, the highest of us who is nearest rides, and does not wait for permission, and does not come back with prisoners. In eighty years nobody has ever been nearest. You are nearest.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then the order has been waiting eighty years for today.
+Go to node ID=30 go
+
+Requirement=!None
+Reply Text=What is inside Alamut?
+Go to node ID=20 alamut
 }
