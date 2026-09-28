@@ -172,6 +172,43 @@ a playthrough rather than on a decision:
 
 ---
 
+## The one question for the decompiler
+
+Everything above was settled from the data files. One thing cannot be, and it gates whether the Sewers'
+thieves can ever behave like thieves.
+
+**The finding.** No enemy in the game has ever attempted a backstab, for three reasons that compound:
+
+- `Is Backstab Mode Enabled` is set non-zero in **exactly one file in the game**, `Perks/Backstab.Perk`.
+  Every other appearance, in all 478 cans and every race, is the zeroed attribute table each character
+  carries.
+- **No race presets a Sneak skill or `Sneak Enabled`** -- none of the 700+ of them. The perk's condition
+  is "while in sneak mode from behind", and enemies never enter sneak mode.
+- **The thieves have no thief skills at all.** Every Thief and Thug race presets exactly one thing:
+  `OneHandedMelee` 9-45 or `Ranged` 9-30. No Sneak, no Steal, no Lockpick. `Thug3 Mace Elite` has
+  `Unarmed 45`, which is as exotic as the roster gets, and the act 8 Assassins sit at
+  `OneHandedMelee 75-105`. "Thief" is a name and a model, not a behaviour.
+
+**What to ask ReVa**, once Ghidra is up with `lionheart-decompile` open:
+
+1. `get-strings` for the two derived-attribute names, then `find-cross-references` on the reads of
+   `Is Backstab Mode Enabled` and `Successful Backstab Attack Extra Damage Percentage Zero To One`.
+2. `get-decompilation` of whatever consumes them, to answer two things: **(a)** does the gate test the
+   *attacker's* sneak state and relative facing, or something else; and **(b)** is it player-only --
+   keyed to the party, to `Player1`, or to a controllable-character check?
+
+**What each answer means.** If the gate is generic, a thief race can preset the two attributes and the
+bonus becomes reachable -- though the sneak-mode half would still need solving, since no enemy sneaks. If
+it is player-only, the idea is dead as a race preset, and the honest substitute is scripting the effect:
+`CActionDoDamage` already appears in 12 cans' attack AI, so an ambush opener that does extra damage is
+data-only and verifiable.
+
+**Bringing ReVa up**, since this cost a while: the MCP server needs the **ReVa Application Plugin**
+enabled in the **project window** (File > Configure > the plug icon), not only the ReVa Plugin in the Code
+Browser. With only the latter the log says *"RevaMcpService not available"* and nothing binds. With both,
+it listens on `http://127.0.0.1:8080/mcp/message`. The Claude Code client only connects at launch, so
+Ghidra must be up **before** the session starts.
+
 ## The standing caution
 
 This is the first work in the project aimed at difficulty rather than content, and **0.21.0 through
