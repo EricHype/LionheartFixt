@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.23.0 are published; 0.24.0 is built and not yet cut.** Every act is surveyed, built and released, and the 0.21-0.23 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.24.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.24.0 - the register
 
-**Built 2026-09-28, unplayed.** 0.23.0 gave the Knights of Saladin a rank that is read, an escort, a
+**Released 2026-09-28. Unplayed.** 0.23.0 gave the Knights of Saladin a rank that is read, an escort, a
 merchant discount and a fourth route through the bird men. Which raised a fair objection: nothing in this
 game should be only a benefit, and that allegiance had become the purest upside in it.
 
