@@ -1473,7 +1473,8 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
 ## 0.23.0 - what the Crescent is worth
 
-Act 8, the Knights of Saladin. `SR1`-`SR4` need an **Exalted** knight: take the Dream Djinni initiation,
+Act 8, the Knights of Saladin. `SR16`-`SR29` need only a knight of any rank; `SR1`-`SR15` need an
+**Exalted** knight: take the Dream Djinni initiation,
 take Jafar's Montaillou or Montserrat errand, and find all five green Way Crystals. `SR5`-`SR8` need a
 knight who is **not** Exalted, and one of each other order as a control. Needs a save that has never
 entered `02 Shifting Dunes`.
