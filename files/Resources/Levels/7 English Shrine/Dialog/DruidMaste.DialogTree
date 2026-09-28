@@ -1,0 +1,258 @@
+CDialogTree
+{
+Name=Druid Master
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start Normal
+Text=Why do you resist the calling of the dragon? Allow us to awaken the great scaled one and you shall know power!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=And what kind of power do you offer?
+Go to node ID=10 temptation
+
+Requirement=!None
+Reply Text=How are you going to raise the dragon?
+Go to node ID=30 ley lines
+
+Requirement=!None
+Reply Text=I have no need of such power. Let us end this.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough of this madness. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start, Sylvant
+Text=Why does one such as you resist the calling of the dragon? You are a sylvant - one of the faerie. The strength of the hills and the elements is in your blood! Allow us to awaken the great scaled one and you shall know power!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=And what kind of power do you offer?
+Go to node ID=10 temptation
+
+Requirement=!None
+Reply Text=How are you going to raise the dragon?
+Go to node ID=30 ley lines
+
+Requirement=!None
+Reply Text=A sylvant I may be, but even the elemental part of me can sense the danger in what you are doing. You must be stopped.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Enough of this madness. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=01 Conversation Start, Feralkin
+Text=Why does one such as you resist the calling of the dragon? You are a feralkin - at one with the forests, the wilds of the Earth! Allow us to awaken the great scaled one and you shall know power!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=And what kind of power do you offer?
+Go to node ID=10 temptation
+
+Requirement=!None
+Reply Text=How are you going to raise the dragon?
+Go to node ID=30 ley lines
+
+Requirement=!None
+Reply Text=A feralkin I may be, but my instincts tell me that what you are doing endangers us all. You must be stopped.
+Go to node ID=20 Combat
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough of this madness. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start, Demokin
+Text=Why does one such as you resist the calling of the dragon? You are a demokin - surely you can feel the energy in this place, aching for release. Allow us to awaken the great scaled one and you shall know power!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=And what kind of power do you offer?
+Go to node ID=10 temptation
+
+Requirement=!None
+Reply Text=How are you going to raise the dragon?
+Go to node ID=30 ley lines
+
+Requirement=!None
+Reply Text=You think because I am a demokin, I can be tempted by offers of power? Let us end this, druid.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough of this madness. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 temptation
+Text=Power beyond belief! The dragon will allow us to crush our enemies utterly! Think - the Inquisition, at last, destroyed, and all those touched by magic allowed to walk freely in the world again. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=And what world would be *left*? What scorched lands would we walk freely upon? No, I think it is time to end this - and you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+
+Requirement=!None
+Reply Text=How are you going to raise the dragon?
+Go to node ID=30 ley lines
+
+Requirement=!None
+Reply Text=Why should I bargain with you? I think I will kill you, follow the assassin and take that relic for myself.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=Inquisitor IS
+Reply Text=You have just offered the destruction of the Holy Office to a sworn officer of it. I will repeat that at your trial, if enough of you survives to have one.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=Wielder IS
+Reply Text=You are offering me the one thing I have ever wanted, and you are offering it with a dragon. I have carried a spirit long enough to know what asks a price that size.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=Templar IS
+Reply Text=My Order crossed a sea to keep a relic out of your hands, and you have just told me why. I am no longer curious about you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=Saladin IS
+Reply Text=You are promising to settle a quarrel I am not in. Saladin's men did not ride this far to watch a dragon arbitrate Europe.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough of this madness. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Combat
+Text=Then your journey ends here, Lionheart. Your corpse will be the first meal for the dragon.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=30 ley lines
+Text=The Ley lines that run through these hills were once alive with magical energy. Centuries ago, when the Disjunction occurred, the dragon stirred and stormed through this tomb. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 ley lines 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 ley lines 2
+Text=Then your ancestor, Richard the Lionhearted, sealed the Disjunction, robbing the ley lines of their power and freezing the dragon in stone to this day. Ironically, Richard is buried in the next chamber. His spirit shall witness the dragon's rebirth and the rebirth of England... but under the rule of the Druids, not the monarchy.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Then Richard won a double victory that day. I am here to make sure the dragon never awakens. 
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+
+Requirement=!None
+Reply Text=So what kind of power does the dragon offer?
+Go to node ID=10 temptation
+
+Requirement=!None
+Reply Text=Why should I bargain with you? I think I will kill you, follow the assassin and take that relic for myself.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Enough of this madness. Prepare to die.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Bubble Dialog Assassins
+Text=The spirit bearer has been difficult to convince. Perhaps a few more...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=101 Bubble Dialog Assassins
+Text=Curse you and your "Man Under the Mountain", Assassin!
+Should Have Voiceover=1
+}

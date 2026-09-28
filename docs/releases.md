@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.21.1 are published.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.21.1 are published; 0.21.2 is built and not yet cut.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,63 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.21.2 - the Druid Master hears you
+
+**Built 2026-09-27, unplayed.** Act 7 reviewed under the lens that found the Daeva, with a very different
+result: **the act is finished.** All thirteen trees it opens carry **zero orphan nodes and zero
+voice-recorded orphans**, nothing in its folders is unplaced -- no unopened tree, no unfielded template --
+so 0.19.0 closed it out properly, where the Pyrenees had 27 recorded orphans nobody had touched.
+
+**And a correction to this project's own headline about act 7.** It has been called the emptiest act in the
+game, and per spawn it is -- 9.6 replies per 100 spawn entries, still the worst. But by proportion of
+reactivity it is the **best in the game, by a factor of two**:
+
+| act | replies | gated | gated % | replies per 100 spawns |
+|---|---|---|---|---|
+| **act 7** | 208 | 42 | **20%** | 9.6 |
+| act 8 | 1,161 | 99 | 9% | 125.6 |
+| act 4 | 518 | 46 | 9% | 18.0 |
+| act 6 | 475 | 27 | 6% | 25.9 |
+| act 3 | 3,629 | 182 | 5% | 328.4 |
+
+So act 7's problem was never that it fails to react. It is that there is so little of it to react with: 208
+replies where act 3 has 3,629. That is a different criticism from the one this project has been making.
+
+**A second correction, and the same mistake as the Knight of Saladin.** An earlier read here recorded that
+the Druid Master has 25 replies and no gates. She is in fact **already race-reactive** -- her map part
+`conversation trigger` chains `Demokin IS`, `Feralkin IS` and `Sylvant IS` to pick between four greetings,
+each with its own temptation and its own refusal: *"A sylvant I may be, but even the elemental part of me can
+sense the danger in what you are doing."* The gating is map-side, so counting `Requirement=` in her tree
+found none. **Third time this session that a selector's reactivity was missed by measuring the tree.**
+
+### What was actually missing
+
+Her temptation is an explicitly political offer, and she made it in identical words to everyone:
+
+> *"Power beyond belief! The dragon will allow us to crush our enemies utterly! Think -- the Inquisition, at
+> last, destroyed, and all those touched by magic allowed to walk freely in the world again."*
+
+Faction tests in her tree: **none.** On her map part: **none.** So she pitched the destruction of the Holy
+Office to a sworn Inquisitor in the same breath she used on a Wielder who wants precisely that, and a
+Templar and a Knight of Saladin heard it unchanged. Four gated refusals now answer the same sentence from
+four positions, joining the three refusals already on the node and leaving its default last:
+
+| gate | the answer |
+|---|---|
+| `Inquisitor IS` | *"You have just offered the destruction of the Holy Office to a sworn officer of it. I will repeat that at your trial, if enough of you survives to have one."* |
+| `Wielder IS` | *"You are offering me the one thing I have ever wanted, and you are offering it with a dragon. I have carried a spirit long enough to know what asks a price that size."* |
+| `Templar IS` | *"My Order crossed a sea to keep a relic out of your hands, and you have just told me why. I am no longer curious about you."* |
+| `Saladin IS` | *"You are promising to settle a quarrel I am not in. Saladin's men did not ride this far to watch a dragon arbitrate Europe."* |
+
+All four fire the vanilla `Fighting the Druids Last Chamber` relay with an empty goto and a Fight Icon, which
+is exactly what her three existing refusals do, so nothing about the encounter's flow changes -- only who is
+speaking. Act 7's gated share rises from 42 of 208 to **46 of 212**.
+
+**The deploy check earned its keep.** The new tree pushed the file count from 325 to 326 and the first install
+ran against a stale manifest, so `data.dat` came out older than the files it was supposed to contain. The
+verifier refused it and named the fix. That is the third time this session that check has caught something a
+Gate 0 pass would have let through.
 
 ## 0.21.1 - the Daeva
 

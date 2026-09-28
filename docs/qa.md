@@ -1471,6 +1471,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+### 0.21.2 - the Druid Master hears you
+
+Act 7, the Inner Sanctum's boss. Needs a character who has **not yet reached the Druid Master**, and one of
+each order to see all four lines. Her race greetings are vanilla and unchanged.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DM1 | Reach the Druid Master as an **Inquisitor** and hear her temptation, then look at the replies | - | A refusal no one else gets: *"You have just offered the destruction of the Holy Office to a sworn officer of it."* |
+| DM2 | The same as a **Wielder** | - | *"You are offering me the one thing I have ever wanted, and you are offering it with a dragon."* |
+| DM3 | The same as a **Templar** | - | *"My Order crossed a sea to keep a relic out of your hands, and you have just told me why."* |
+| DM4 | The same as a **Knight of Saladin** | - | *"You are promising to settle a quarrel I am not in."* |
+| DM5 | The same carrying **no order** | - | Her three vanilla refusals and the question about the ley lines. None of the four new lines appear |
+| DM6 | Pick any of the four | - | The fight starts exactly as it does from her vanilla refusals -- same `Fighting the Druids Last Chamber` relay, same Fight Icon |
+| DM7 | Check her **race** greetings still work: arrive as a Sylvant, a Feralkin, a Demokin and a human | - | Four different openings, unchanged from vanilla. The race layer is hers, not ours |
+| DM8 | Ask *"How are you going to raise the dragon?"* first, then refuse with a faction line | - | `30 ley lines` then `40 ley lines 2` as before, and the faction refusals are still offered afterwards |
+
 ### 0.21.1 - the Daeva
 
 Act 3, Montaillou, and one act-1 decision that feeds it. Needs a character who has **not yet
