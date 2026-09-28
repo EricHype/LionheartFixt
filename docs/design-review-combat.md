@@ -172,7 +172,7 @@ a playthrough rather than on a decision:
 
 ---
 
-## The one question for the decompiler
+## The question for the decompiler, answered 2026-09-28
 
 Everything above was settled from the data files. One thing cannot be, and it gates whether the Sewers'
 thieves can ever behave like thieves.
@@ -202,6 +202,55 @@ bonus becomes reachable -- though the sneak-mode half would still need solving, 
 it is player-only, the idea is dead as a race preset, and the honest substitute is scripting the effect:
 `CActionDoDamage` already appears in 12 cans' attack AI, so an ambush opener that does extra damage is
 data-only and verifiable.
+
+### The answer: the gate is not player-only
+
+Read out of `Lionheart.exe` in Ghidra. The backstab gate lives in `FUN_0049a1b0`, the damage-resolution
+routine, and it is four conditions on **whoever is attacking**:
+
+1. `[this+0x6d] != 0` -- a flag set earlier in the same function from `FUN_00442050()`, which reads the
+   attacker's **`Sneak Enabled`** attribute and returns `0 < round(value)`.
+2. The attacker's **`Is Backstab Mode Enabled`** attribute, resolved once into a global and read at
+   `0x0049a36f`, with magnitude at least 0.01.
+3. `param_1 == 1 || param_1 == 3` -- the attack type. One caller passes 0 and so can never backstab,
+   which fits the perk text saying melee only.
+4. A facing comparison: the absolute difference between the two angles must be **at least pi/2**
+   (`1.5707964` at `0x0049a3ac`), otherwise line 118 clears the flag again.
+
+**The decisive part is how the attributes are read.** Both go through `FUN_00441ea0`, which is a thiscall:
+
+```
+MOV EDX, dword ptr [EDI + 0x138]     ; the character's derived-attribute array
+MOV ESI, dword ptr [EDX + EBP*0x4]   ; indexed by the attribute handle
+```
+
+It indexes the attribute array hanging off **the character object in ECX**. There is no party check, no
+`Player1`, no controllable-character test -- not in the accessor, not in the sneak helper, and not in the
+damage-pipeline caller at `0x0048cce0`, which is a generic hit-resolution sequence.
+
+**So the perk is player-only by data, not by code.** Nothing in the engine refuses an NPC the bonus. The
+reason no thief has ever backstabbed is entirely that no enemy race presets either attribute and nothing
+puts an NPC into sneak mode -- both of which are `.Race` fields this project can write, since a race can
+preset a derived attribute exactly as Wizard Tremblethorn's presets its hit points.
+
+**What is still unverified, and should be before anything ships:**
+
+- Only one of the four callers of `FUN_0049a1b0` was read. Attack types 1 and 3 come from the other
+  three; the one opened passes 0.
+- `Sneak Enabled` held permanently at 1 on an NPC has unknown side effects. The sneak system feeds enemy
+  detection -- there is a `Target/Sneak Adjustment` property described as *"the number of skill points
+  that will be added to the players sneak skill during the check"* -- and an always-sneaking NPC is a
+  state the game was never asked to render.
+- Whether an NPC's facing satisfies condition 4 in practice, given enemies turn to face their target.
+
+**There is a clean way to verify it.** The combat-log format strings are generic `[Attacker]` and
+`[Defender]` templates, not player-specific:
+
+> *"%s[Attacker] sneaks up on %s[Defender] and hits for %s[Damage] ... (%s[BackstabBonus] percent
+> backstab bonus)"*
+
+and the save file logs every hit. So a thief race with both attributes preset can be tested by reading
+the combat log for that line with an enemy as the attacker. That is a real experiment, not a guess.
 
 **Bringing ReVa up**, since this cost a while: the MCP server needs the **ReVa Application Plugin**
 enabled in the **project window** (File > Configure > the plug icon), not only the ReVa Plugin in the Code
