@@ -1,0 +1,493 @@
+CDialogTree
+{
+Name=Ali Akbah
+Portrait=Dialog/NPC Portraits/Ali Akbah Desert Merchant
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Marhaba salaam alekom <Hello>. I see you have journeyed far, traveler...from the west, no doubt. How can a humble merchant such as myself serve you? I have good prices...and for you, no haggling! One price is a low price!  
+Should Have Voiceover=0
+
+Requirement=Saladin IS
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt the merchant knows the order
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Salaam alekom. I ride for the Sultan's house, and the road you trade on is the one his knights keep open.
+Go to node ID=40 the order
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAdjustMerchantPriceMultiplierAction
+{
+Merchant=Inventory for Desert Merchant
+Price Multiplier Adjustment=-0.5
+}
+Action=CActivateAction
+{
+Target Name=Fixt the merchant knows the order
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Barter moreequal 40
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Merchant Player selected Haggle Option
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=No haggling? You would steal food from the mouths of my children in such a way? How can I afford to pay for my family under such conditions?
+Go to node ID=20 Haggling Step 1
+Action work in progress=(Middle Barter about 40)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAdjustMerchantPriceMultiplierAction
+{
+Merchant=Inventory for Desert Merchant
+Price Multiplier Adjustment=-0.1
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Get Lower Price Stage 1 from Merchant
+Experience Points To Add=1
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=How can business be good out in the middle of the desert?
+Go to node ID=10 Good Business
+
+Requirement=!None
+Reply Text=Let's see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return
+Text=You return to my humble shop. How can I serve you? 
+Should Have Voiceover=0
+
+Requirement=Saladin IS
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt the merchant knows the order
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Salaam alekom. I ride for the Sultan's house, and the road you trade on is the one his knights keep open.
+Go to node ID=40 the order
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAdjustMerchantPriceMultiplierAction
+{
+Merchant=Inventory for Desert Merchant
+Price Multiplier Adjustment=-0.5
+}
+Action=CActivateAction
+{
+Target Name=Fixt the merchant knows the order
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Barter moreequal 40
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Merchant Player selected Haggle Option
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=You said that you don't haggle? How can I afford to support my family under such conditions?
+Go to node ID=20 Haggling Step 1
+Action work in progress=(Middle Speech about 40, Did not pick haggle option before)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAdjustMerchantPriceMultiplierAction
+{
+Merchant=Inventory for Desert Merchant
+Price Multiplier Adjustment=-0.1
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Get Lower Price Stage 1 from Merchant
+Experience Points To Add=1
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=How can business be good out in the middle of the desert?
+Go to node ID=10 Good Business
+
+Requirement=!None
+Reply Text=Let's see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Good Business
+Text=Ahhh, but this is a trade route of the Assassins, my friend. They are a bit gruff, but they pay well. As long as you stay away from the rain-worshipping bird men to the North, the Man under the Mountain provides... for those who deliver him tribute.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You pay tribute to such evil beings? How can you live with yourself?
+Go to node ID=15 Live with Self
+
+Requirement=!None
+Reply Text=I am surprised that they let you live. I am after them for murder...and much worse.
+Go to node ID=15 Live with Self
+
+Requirement=!None
+Reply Text=Rain-worshipping bird men?
+Go to node ID=30 Bird men
+Custom Action=CActivateAction
+{
+Target Name=Merchant told player about Bird Men
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Let's see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Live with Self
+Text=Everyday I thank Allah for providing for my needs and the needs of my family...I have two sons and a daughter that are being provided for by this shop...and those that frequent it. I do what I must to survive. Now, how can I help you?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 40
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Merchant Player selected Haggle Option
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=No said before you had no haggling? How can I afford to pay for my family under such conditions?
+Go to node ID=20 Haggling Step 1
+Action work in progress=(Middle Barter about 40, Did not pick haggle option before)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAdjustMerchantPriceMultiplierAction
+{
+Merchant=Inventory for Desert Merchant
+Price Multiplier Adjustment=-0.1
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Get Lower Price Stage 1 from Merchant
+Experience Points To Add=1
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Let's see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Haggling Step 1
+Text=May my eyes fall out and my ears go deaf before I would rob food from the mouths of children! For you and your family I will give a 10 percent discount so that they will not starve!
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 95
+Reply Text=I applaud your intentions, my friend, but I cannot get by with such an amount. My poor and starving family will wither away to nothing if I cannot bring back much more than what I have. Please, for the sake of my children...
+Go to node ID=25 Haggling Step 2
+Action work in progress=(Higher Barter about 95)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=Merchant Player selected Haggle Option
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CAdjustMerchantPriceMultiplierAction
+{
+Merchant=Inventory for Desert Merchant
+Price Multiplier Adjustment=-0.1
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Get Lower Price Stage 2 from Merchant
+Experience Points To Add=1
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=May you live a thousand lifetimes, my friend. Let's see what you have for sale.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+Action=CActivateAction
+{
+Target Name=Merchant Player selected Haggle Option
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Maybe later. I'm leaving. 
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Merchant Player selected Haggle Option
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 Haggling Step 2
+Text=May my life be forfeit and I be dragged through the streets by a mule before I would turn away such poor, starving waifs! You must accept my offer of a 15 percent discount or I would not be able to live with myself!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=May I live a thousand lifetimes and not see such horrible acts commited on such an honorable man as yourself! Now...let's see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+
+Requirement=!None
+Reply Text=My family thanks you a thousand times, but I need to go. Perhaps I will take you up on your offer later. 
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Bird men
+Text=They do not refer to *themselves* as bird men of course, but others cannot help it. They speak as idiots, but they are as intelligent as you or I. You just need to know their...ways of rain worship. However, they eat most that try to learn their customs. I would stay away from them, especially their ruler Fazim.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am amazed that the Assassins let either of you live.
+Go to node ID=15 Live with Self
+
+Requirement=!None
+Reply Text=Let's see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Goodbye ballon after merchant
+Text=May your travels bring you closer to Allah!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=40 the order
+Text=Ah. Ah, forgive me - I took you for one more westerner with a sword. The Assassins pay me well and they pay me because they must pass, but it is your order that keeps the road open south of here, and a man who trades on a road owes something to whoever sweeps it. My prices are my prices. For you they are not.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let's see what you have for sale.
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Desert Merchant
+After Closed Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Dialog Ballon after see stuff for sale
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+
+Requirement=!None
+Reply Text=How can business be good out in the middle of the desert?
+Go to node ID=10 Good Business
+
+Requirement=!None
+Reply Text=Keep your discount and your road. I am leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

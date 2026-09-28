@@ -244,6 +244,44 @@ summoned-monster loop and a grid of ending relays keyed to who is still alive an
 is -- and an extra body in it risks the ending rather than improving it. It is also the better reading of
 the oath he quotes.
 
+### The desert merchant
+
+The last shop before the fortress sits in `01 Desert Sprawl` and he is, by a distance, **the most
+expensive merchant in the game**: `Price Multiplier=2`, where the next worst is 1.7 and the median across
+every shop is 1. Defensible -- he is the only trader for a hundred miles on an Assassin road -- but he had
+nothing to say to a Knight of Saladin, and he did not stock the potions this project unlocked seven acts
+earlier.
+
+**He now knows the order.** A `Saladin IS` reply on both his openings, guarded by a checker so it lands
+once:
+
+> *"Ah. Ah, forgive me - I took you for one more westerner with a sword. The Assassins pay me well and
+> they pay me because they must pass, but it is your order that keeps the road open south of here, and a
+> man who trades on a road owes something to whoever sweeps it. My prices are my prices. For you they are
+> not."*
+
+That is a `CAdjustMerchantPriceMultiplierAction` of **-0.5**, taking him from 2.0 to 1.5, and it stacks
+with his haggling the way the two haggle steps stack with each other:
+
+| | base | after haggling twice |
+|---|---|---|
+| anyone | 2.0 | 1.8 |
+| Knight of Saladin | **1.5** | **1.3** |
+
+**And he stocks Quinn's tiers.** `Great Healing`, `Superior Healing` and `Supreme Healing` -- the three
+potion tiers 0.4.0 unlocked through the herbalist's errands -- existed only in Barcelona, which by act 8
+is seven acts behind the player. They are on his shelf now at 3, 2 and 1, stocked through
+`CInventoryItemGeneratorAdditionalMagic` exactly as the herbalist stocks them, since they are
+`InventoryAddition`s applied to a base potion rather than items in their own right.
+
+**A correction that changed the build.** The first pass read his haggling nodes -- a promised 10 percent
+at `20 Haggling Step 1`, 15 at `25 Haggling Step 2` -- saw that there is exactly one `CMerchantAI` on the
+map, and concluded the discount was dialogue only. It is not. Each haggle reply carries
+`CAdjustMerchantPriceMultiplierAction{Price Multiplier Adjustment=-0.1}`, guarded by a
+`Merchant Player selected Haggle Option` checker and paying XP through two anchors. It is a complete
+little system and it works. Three cloned shops at 1.8/1.7/1.4 had already been built on the wrong premise
+and were removed; **the mechanism was in the game the whole time, one field below the text I read.**
+
 ### Recorded, not built
 
 - **Backtracking does not retro-fit him.** The checker is read by each map's arrival, so a map you

@@ -1495,6 +1495,12 @@ entered `02 Shifting Dunes`.
 | SR13 | Do **not** take the ride reply, then walk in | - | No escort on any of the five maps. The act is unchanged |
 | SR14 | Take the ride reply, then walk *backwards* to a map you already crossed | - | No escort there until you leave and re-enter -- the checker is read on arrival. Recorded, not a defect |
 | SR15 | Reach the Maw as a Templar or with no order | - | No escort, no ride reply, no Exalted greeting |
+| SR16 | As **any** Knight of Saladin (rank does not matter), talk to the desert merchant in `01 Desert Sprawl` | - | A new first reply about riding for the Sultan's house, then `40 the order` |
+| SR17 | Buy something, then compare with a non-Saladin character | - | Visibly cheaper: his multiplier drops 2.0 to 1.5 |
+| SR18 | Talk to him again, take the Saladin reply's node a second time | - | The reply is gone -- the discount lands once, not once per conversation |
+| SR19 | As a Knight of Saladin with Barter 40 and then 95, haggle after taking the discount | - | Both haggle steps still work and stack on top: 1.5, then 1.4, then 1.3 |
+| SR20 | Open his shop as anyone at all | - | `Great Healing` x3, `Superior Healing` x2 and `Supreme Healing` x1 on the shelf -- Quinn's tiers, available in act 8 for the first time |
+| SR21 | Buy and drink a Supreme Healing bought from him | - | Heals as the herbalist's does. It is the same addition on the same base potion |
 
 ## 0.22.0 - the Talker and the Thief
 
