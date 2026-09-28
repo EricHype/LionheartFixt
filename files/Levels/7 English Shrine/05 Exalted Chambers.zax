@@ -85,6 +85,404 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=500
+			}
+			Name=Fixt Spoiled the Druid Ambush XP
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=1836
+			Position Y=700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt the ambush is spoiled
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=6
+							Action=CEndNonInteractiveSequenceAction
+							{
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Druid conversation camera
+							}
+							Action=CSendAIDoneMessage
+							{
+								Target=druid master
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/7 English Shrine/Dialog/DruidMaste
+								Node ID=22 the wall
+								Name of Position=Druid Master
+								Position Offset=0.000000,-80.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CGiveExperiencePointsToAllPlayersAction
+							{
+								Get XP Frome=Fixt Spoiled the Druid Ambush XP
+								Experience Points To Add=1
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CGoToCombatAction
+										{
+											Enemy Name=Druid Master
+										}
+										Action=CActivateAction
+										{
+											Target Name=summoned golem generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+									}
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1806
+			Position Y=700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt spotted the druid ambush
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1976
+			Position Y=700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=Fixt the wall on the left
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Triggered By Players=1
+					Triggered By Enemies=0
+					Enter Action=CConditionalAction
+					{
+						Try Action=CExpressionAction
+						{
+							Expression=CUseCannedExpressionExpression
+							{
+								Canned Expression=Dialog/Requirements/Skills/Sneak/Sneak moreequal 20
+							}
+							Character to get attributes from=$Instigator
+						}
+						Succeed Action=CActivateAction
+						{
+							Target Name=Fixt spotted the druid ambush
+							Play Activate Sound=0
+							Delay Between Activations=0
+							Warp Behavior=
+						}
+						Fail Action=
+						Return failure if the TryAction failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1156, 843, 1281, 734, 1346, 771, 1220, 880, 1156, 843
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Experience Points=3000
+			}
+			Name=Fixt Talked the Druid Master Down XP
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=1
+					Display Position=0.000000,0.000000
+				}
+				Activity=CShowExperiencePoints
+				{
+					Marked For Deletion=0
+					Publisher=
+					Audit Entire Level=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Experience
+			Position X=1900
+			Position Y=700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt the Druid Master stands down
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=8
+							Action=CEndNonInteractiveSequenceAction
+							{
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Druid conversation camera
+							}
+							Action=CSendAIDoneMessage
+							{
+								Target=druid master
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/7 English Shrine/Dialog/DruidMaste
+								Node ID=51 the fires out
+								Name of Position=Druid Master
+								Position Offset=0.000000,-80.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CGiveExperiencePointsToAllPlayersAction
+							{
+								Get XP Frome=Fixt Talked the Druid Master Down XP
+								Experience Points To Add=1
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Druid Master
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Druid Master
+								Categories To Remove=Enemy
+							}
+							Action=CActivateAction
+							{
+								Target Name=Fixt the Druid Master stood down
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1870
+			Position Y=700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt the Druid Master stood down
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1940
+			Position Y=700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=

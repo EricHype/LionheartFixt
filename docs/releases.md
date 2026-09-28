@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.21.1 are published; 0.21.2 is built and not yet cut.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.21.1 are published; 0.21.2 and 0.21.3 are built and not yet cut.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,95 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.21.3 - the talker and the thief
+
+**Built 2026-09-27, unplayed.** 0.21.2 asked what act 7 gives a character who did not build for
+combat. The answer was nothing, and the reason was not the one expected.
+
+**Act 7 is not combat-gated anywhere.** The critical path is 01 Outside Shrine, 02 Temple Initiate,
+03 Stone Chamber, 04 Antechamber of Lore, 05 Exalted Chambers, then the Alamut crossing -- and every
+transition poly on it is **open at map load**. The only four shut ones are optional side rooms
+(Meditation 2 and 3, the Secret Chamber, the Inner Sanctum) and each is opened by walking up to a
+door and using it, not by clearing a room. `Stop the Druids` is completed by the crossing poly
+itself, and **nothing in the game records or checks whether the Druid Master died** -- no checker,
+no quest state, no reference to her outside `05 Exalted Chambers` and her own tree. A character who
+never swings a weapon can already walk past the boss to Alamut and be told they stopped the druids.
+
+What was missing was not a route. It was any reason to have built a talker or a thief:
+
+| skill | checks inside the shrine (maps 02-10) | checks in the whole act |
+|---|---|---|
+| Speech | **0** | 1, on Captain Isabella, on the approach map |
+| Barter | **0** | 4, same NPC |
+| Lockpick / Sneak / anything else | **0** | **0** |
+
+### The Druid Master can be talked off the ley lines
+
+She was the only act boss in the game with no alternative to the fight: all 29 of her replies, the
+four 0.21.2 added included, fired the same relay. The argument is built out of her own lore node --
+*"your ancestor, Richard the Lionhearted, sealed the Disjunction... Ironically, Richard is buried in
+the next chamber"* -- so the route opens only after asking how the ritual works, and only at
+**Speech 130**, the tier act 8 uses for the Old Man:
+
+> *"You have it backwards. Richard did not seal the Disjunction from a distance - he closed it with
+> his own blood, in this hill, and whatever is under the floor learned that blood by heart. You mean
+> to open the lines nine paces from his grave with the only living Lionheart in England standing in
+> the room."*
+
+She does not fold on one line. `50 the bloodline` puts it back: *"Finish it. If you are wrong I lose
+a night of work. If you are right I lose the hill and everyone standing on it."* Press it home and
+she calls the fires out, for **3,000 XP** against the 2,500 her corpse is worth.
+
+**The teardown is the whole trick.** The conversation runs inside a `CBeginNonInteractiveSequence`
+opened by her trigger poly, and the **only** thing in the level that ends it is the fight relay --
+so a reply that simply declines to fight would leave the player standing with the controls disabled
+and the camera locked on her. The stand-down relay therefore reproduces the fight relay's first
+three actions exactly (end the sequence, drop `Druid conversation camera`, `CSendAIDoneMessage` to
+release her from the scripted task) before doing anything of its own. After that it is small: her
+line, the award, `CRemoveCategoryAction` taking `Enemy` off her, a cleared target type, and a
+checker. Nothing else is needed, because the ambush and the summoned golems are armed **only** by
+the fight relay, and the last chamber's sole other live spawns are the Assassin Master and the
+Galileo prisoner. Stand her down and the room stays quiet.
+
+### Sneak does something, for the first time since the Sewers
+
+Four `Sneak moreequal` requirement cans ship with the game. Exactly **one** is referenced, twice,
+both in act 1 (`Waterfall Passage`, `SecretQuestGuard`); **10, 20 and 25 are referenced by nothing
+in the entire game**. All three are spent here.
+
+**25 and 10, on the temple secret door.** Behind it is a strongbox and a passage running straight
+through to the Exalted Chambers. Vanilla opens both -- and this is the part worth recording -- from
+the `From Last Level` **spawn point**, which only fires when you come *back* into 02 from 05. So the
+shortcut exists purely as a return convenience and cannot be found going forward at all. A Sneak 25
+character opening that door now reads the floor and gets both, which skips 03 Stone Chamber and 04
+Antechamber of Lore: **1,030 spawn entries**. Sneak 10 gets the draught and nothing else. The check
+hangs on the door's own `After Opened` slot, where 54 vanilla doors already read `$Instigator` as
+the player, and the success path fires vanilla's own relay rather than a reimplementation of it.
+
+**20, on the ambush.** The fight relay opens `Secret Door Ambush` and switches on the soldier
+generator behind it in the same breath as the fight. A touch poly using **the boss conversation's own
+polygon** -- so the geometry is provably walked over -- now sets a checker at Sneak 20, and each of
+her four opening nodes gains a reply that spends it: *"there are men behind that wall to your left,
+close enough that I can hear one of them breathing, and somebody has cut a summoning ring into the
+floor between us."* It fires a variant of the fight relay that leaves the ambush in the wall. Her
+summoned golems still come, and she answers: *"Stay where you are, all of you. Nobody springs a trap
+that has already been counted."* 500 XP.
+
+Act 7 finishes at **219 replies and 47 named gates**.
+
+### Two claims withdrawn on the way
+
+- The 02-to-05 shortcut was described here as a secret with one key to find. It is not findable at
+  all in vanilla; it is a return convenience. The Sneak check is its **first** forward key, not a
+  second one.
+- The Sylvant opening node looked like it was missing its `Is Default Reply=1`. It carries the
+  marker on its third reply rather than its last. Both replies fire the same relay, so nothing is
+  wrong with it, and it was left exactly as vanilla wrote it.
+
+Gate 0 earned its keep: the three canned Sneak references were first written as
+`Dialog/Requirements/Sneak moreequal 25`, and the real path is
+`Dialog/Requirements/Skills/Sneak/...`. The reference check caught all three before deploy.
 
 ## 0.21.2 - the Druid Master hears you
 

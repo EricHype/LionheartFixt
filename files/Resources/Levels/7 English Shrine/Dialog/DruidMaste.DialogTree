@@ -27,6 +27,23 @@ Relay Name=Fighting the Druids Last Chamber
 Icon=Fight Icon
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt spotted the druid ambush
+Desired Minimum Count=1
+}
+}
+Reply Text=Before you say anything else - there are men behind that wall to your left, close enough that I can hear one of them breathing, and somebody has cut a summoning ring into the floor between us. You had this room ready before I walked into it.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt the ambush is spoiled
+}
+Icon=Fight Icon
+
+Requirement=!None
 Reply Text=Enough of this madness. Prepare to die.
 Go to node ID=
 Custom Action=CTriggerRelayAction
@@ -59,6 +76,23 @@ Icon=Fight Icon
 Is Default Reply=1
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt spotted the druid ambush
+Desired Minimum Count=1
+}
+}
+Reply Text=Before you say anything else - there are men behind that wall to your left, close enough that I can hear one of them breathing, and somebody has cut a summoning ring into the floor between us. You had this room ready before I walked into it.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt the ambush is spoiled
+}
+Icon=Fight Icon
+
+Requirement=!None
 Reply Text=Enough of this madness. Prepare to die.
 Go to node ID=
 Custom Action=CTriggerRelayAction
@@ -85,6 +119,23 @@ Go to node ID=20 Combat
 Custom Action=CTriggerRelayAction
 {
 Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt spotted the druid ambush
+Desired Minimum Count=1
+}
+}
+Reply Text=Before you say anything else - there are men behind that wall to your left, close enough that I can hear one of them breathing, and somebody has cut a summoning ring into the floor between us. You had this room ready before I walked into it.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt the ambush is spoiled
 }
 Icon=Fight Icon
 
@@ -116,6 +167,23 @@ Go to node ID=
 Custom Action=CTriggerRelayAction
 {
 Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt spotted the druid ambush
+Desired Minimum Count=1
+}
+}
+Reply Text=Before you say anything else - there are men behind that wall to your left, close enough that I can hear one of them breathing, and somebody has cut a summoning ring into the floor between us. You had this room ready before I walked into it.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt the ambush is spoiled
 }
 Icon=Fight Icon
 
@@ -238,6 +306,11 @@ Relay Name=Fighting the Druids Last Chamber
 }
 Icon=Fight Icon
 
+Requirement=Speech moreequal 130
+Reply Text=You have it backwards. Richard did not seal the Disjunction from a distance - he closed it with his own blood, in this hill, and whatever is under the floor learned that blood by heart. You mean to open the lines nine paces from his grave with the only living Lionheart in England standing in the room.
+Go to node ID=50 the bloodline
+Icon=Speach Skill Icon
+
 Requirement=!None
 Reply Text=Enough of this madness. Prepare to die.
 Go to node ID=
@@ -255,4 +328,35 @@ Should Have Voiceover=1
 Node ID=101 Bubble Dialog Assassins
 Text=Curse you and your "Man Under the Mountain", Assassin!
 Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=50 the bloodline
+Text=The stone has been quiet for eight hundred years and you would have me believe it spent them waiting for one of your family to walk in out of the rain. Finish it. If you are wrong I lose a night of work. If you are right I lose the hill and everyone standing on it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=A dragon does not tell the difference between the blood that bound it and the blood that woke it. It takes whichever is nearest, and tonight those are the same hand. Put the fires out and I will walk out of here without touching one of you.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt the Druid Master stands down
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Then keep cutting your circle. I will stop it the short way.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fighting the Druids Last Chamber
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 the fires out
+Text=Put them out. All of them, and stand away from the circle where I can watch you do it. Eight hundred years of patience and the flaw in it was the hill we chose to do it under. Go, Scion. Out through the front, and do not come back to England.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=22 the wall
+Text=Stay where you are, all of you. Nobody springs a trap that has already been counted. Then it is the two of us and whatever I can call up out of the floor, Scion. That will do.
+Should Have Voiceover=0
 }

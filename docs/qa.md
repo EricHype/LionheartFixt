@@ -1471,6 +1471,33 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+### 0.21.3 - the talker and the thief
+
+Act 7. `DS1`-`DS8` need a character with **Speech 130 or better** who has not yet reached the Druid
+Master; `SN1`-`SN9` need one with **Sneak 25**, one with **Sneak 10-19**, and one with **Sneak 20+**.
+All of it needs a save that has **never entered** the act-7 maps -- new map parts do not appear on a
+save that has already visited a level.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DS1 | Reach the Druid Master at Speech 130 and take *"And what kind of power do you offer?"* first | - | No Speech reply on the temptation node. The route is on the lore branch only |
+| DS2 | Ask *"How are you going to raise the dragon?"*, then sit through `30 ley lines` and `40 ley lines 2` | - | A Speech-icon reply about Richard's blood and the grave nine paces away |
+| DS3 | Take it | - | `50 the bloodline`: *"If you are wrong I lose a night of work. If you are right I lose the hill"* |
+| DS4 | Press it home | - | She calls the fires out, `51 the fires out` plays as a balloon, **3,000 XP**, and **no fight starts** |
+| DS5 | After DS4, walk the chamber | - | Controls work, the camera has let go, the ambush door stays shut, no golems, and she does not attack |
+| DS6 | Walk out to the Alamut crossing without touching her | - | `Stop the Druids` completes and the 4,000 XP fires exactly as it does after killing her |
+| DS7 | Repeat at Speech 129 or below | - | The Speech reply is absent; the three vanilla replies and the four faction refusals are unchanged |
+| DS8 | On `50 the bloodline`, take the other reply instead | - | The normal fight, ambush and all |
+| SN1 | At Sneak 25, enter 02 Temple Initiate and open the secret door at the south-west wall | - | A balloon about two lines of wear in the flagstones, **250 XP**, the room revealed, the strongbox usable |
+| SN2 | After SN1, walk to the far end of that room | - | A passage that relocates straight to 05 Exalted Chambers, skipping 03 and 04 |
+| SN3 | At Sneak 10-19, open the same door | - | Only the draught balloon. No strongbox, no passage |
+| SN4 | At Sneak 9 or below, open the same door | - | Nothing at all, exactly as vanilla |
+| SN5 | Reach 05 the long way at Sneak 20+, then walk into the boss conversation | - | A fifth reply on her opening node naming the men behind the wall |
+| SN6 | Take it | - | The fight starts and her golems appear, but **the ambush door stays shut and no soldiers come out of it**. 500 XP |
+| SN7 | Repeat SN5 as a sylvant, a feralkin and a demokin | - | The same reply on each of the three race openings, each node's own refusals still reading correctly |
+| SN8 | Reach 05 at Sneak 19 or below | - | No fifth reply. The vanilla fight, ambush included |
+| SN9 | Come back into 02 from 05 the vanilla way, having never passed a Sneak check | - | The secret opens on arrival as it always did, and no Fixt balloon plays |
+
 ### 0.21.2 - the Druid Master hears you
 
 Act 7, the Inner Sanctum's boss. Needs a character who has **not yet reached the Druid Master**, and one of
