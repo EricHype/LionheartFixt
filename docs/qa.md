@@ -1471,6 +1471,13 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.22.0 - the Talker and the Thief
+
+Four sections' worth of checks ship in this one release: `DM1`-`DM8` (the Druid Master reads your order),
+`DS1`-`DS8` (she can be talked down), `SN1`-`SN9` (Sneak), and `AF1`-`AF6` (triggers that must fire on a
+second visit). The act-7 rows all need a save that has **never entered** the act-7 maps -- new map parts
+do not appear on a save that has already visited a level.
+
 ### 0.21.5 - the field the builder forgot
 
 Repeat-visit triggers. Each of these is a polygon you are meant to enter, leave, and enter again after
@@ -1485,7 +1492,7 @@ something changed elsewhere; before this release they lacked the field that re-a
 | AF5 | In `9 Burial Chamber`, secure the relic, then re-enter Jehanne's polygon | - | She reacts to the relic being secured |
 | AF6 | Every one-shot trigger from earlier releases -- the gate parley at the Grove, the Montaillou gate strip, the four Misc Crypt hovers, the two cave hovers, the two Crossroads Siege hovers, the Plains rogue strip | - | Unchanged. They still fire exactly once |
 
-### 0.21.3 - the talker and the thief
+### 0.21.3 - act 7's Speech route and the three Sneak cans
 
 Act 7. `DS1`-`DS8` need a character with **Speech 130 or better** who has not yet reached the Druid
 Master; `SN1`-`SN9` need one with **Sneak 25**, one with **Sneak 10-19**, and one with **Sneak 20+**.

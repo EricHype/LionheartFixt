@@ -1,0 +1,86 @@
+# Lionheart Fixt 0.22.0 - the Talker and the Thief
+
+0.21.1 asked whether any of this work made the game *play* better. This release is that question pointed at
+act 7, and the answer took a turn: the English Shrine gives a character who did not build for combat nothing
+at all, and not for the reason you would guess.
+
+## The act was never gated on killing anything
+
+Every transition polygon on the critical path -- 01 Outside Shrine, 02 Temple Initiate, 03 Stone Chamber, 04
+Antechamber of Lore, 05 Exalted Chambers, then the crossing to Alamut -- is **open at map load**. The only
+four shut ones are optional side rooms, and each opens by walking up to a door and using it. `Stop the Druids`
+completes on the Alamut crossing poly. And nothing in the entire game records or checks whether the Druid
+Master died.
+
+So a character who never swings a weapon can already walk past the boss, reach Alamut, and be told they
+stopped the druids. The route was there the whole time. What was missing was any reason to have built a talker
+or a thief: inside the shrine, across 208 replies, there is not one Speech, Barter, Lockpick or Sneak check.
+
+## The Druid Master can be talked off the ley lines
+
+She was the only act boss in the game with no alternative to the fight. All twenty-nine of her replies fired
+the same relay.
+
+The argument is the one she hands you herself, on the branch where you ask how the ritual works: *"your
+ancestor, Richard the Lionhearted, sealed the Disjunction... Ironically, Richard is buried in the next
+chamber."* At Speech 130 you can say so:
+
+> *"You have it backwards. Richard did not seal the Disjunction from a distance - he closed it with his own
+> blood, in this hill, and whatever is under the floor learned that blood by heart. You mean to open the lines
+> nine paces from his grave with the only living Lionheart in England standing in the room."*
+
+She does not fold on one line. *"Finish it. If you are wrong I lose a night of work. If you are right I lose
+the hill and everyone standing on it."* Press it home and she calls the fires out, for 3,000 XP against the
+2,500 her corpse is worth, and the chamber stays quiet - the ambush and the summoned golems are armed only by
+the fight.
+
+She also, finally, hears **who** is refusing her. Her offer to see "the Inquisition, at last, destroyed" had
+been pitched in identical words to a sworn officer of the Holy Office, to a Wielder who wants precisely that,
+and to a Templar and a Knight of Saladin. Four gated refusals now answer it from four positions.
+
+## Sneak does something, for the first time since the Sewers
+
+The game ships four `Sneak moreequal` requirement cans. Exactly **one** is referenced, twice, both in act 1.
+The other three are used by nothing at all. They are spent here:
+
+- **Sneak 25** on the temple's secret door. The room behind it holds a strongbox and a passage running
+  straight through to the Exalted Chambers - which vanilla only ever opens when you come *back* from 05, so
+  the shortcut existed purely as a return convenience and could never be found going forward. Finding it now
+  skips 03 Stone Chamber and 04 Antechamber of Lore: 1,030 spawn entries.
+- **Sneak 10** gets the draught under the door and nothing else.
+- **Sneak 20** spots the ambush in the last chamber's wall before the Druid Master springs it, and a reply on
+  each of her four openings says so: *"there are men behind that wall to your left, close enough that I can
+  hear one of them breathing."* Call it and the soldiers stay in the wall. Her golems still come, and she
+  answers: *"Stay where you are, all of you. Nobody springs a trap that has already been counted."*
+
+That last check reads the **live sneak toggle** as well as the skill, because Toulouse does. Titan Village
+holds the only three checks in the shipped game against `Sneak Enabled`, and they drive the best stealth
+encounter in it: eavesdrop on two titan guards drinking quicksilver and they walk off the trail for you;
+stand there not sneaking and one of them counts to three.
+
+## A repair of our own making
+
+Making that check retryable exposed a defect in this project's own map builder, not in the game. It omitted
+`Auto-Flip Switch` -- the field that lets a trigger re-arm after the player walks out of it, which vanilla
+writes on **756 touching triggers out of 756**. Twelve Fixt triggers had shipped without it, all of them the
+case the field exists for: ten charm sweeps in the Wilderness that are supposed to fire on a **second** visit,
+after you have broken the ogre charm somewhere else, plus two in the Crypt.
+
+All twenty-three Fixt triggers now carry vanilla's full field set, the builder is fixed at the source, and a
+test asserts it against field lists parsed out of real vanilla triggers rather than a list typed from memory.
+
+## And a retraction
+
+0.21.1's notes called Toulouse the largest reactivity gap left in the game -- "roughly 846 replies with not
+one gated on anything." That was wrong. Toulouse carries **121 gated replies** testing race, faction, Speech
+in both directions, Barter, Intelligence, Perception and Outwit, and **thirty-one of them are this project's
+own 0.15.0 work**. The measurement counted one of the two fields a gate can live in, missed the shipped game,
+missed our own release, and then recommended building it again. The claim is withdrawn.
+
+**Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run `Mod Manager.bat`. The act-7 content needs a character who has **not yet entered the
+English Shrine** -- new map parts do not appear on a save that has already visited a level. Unplayed; what you
+find goes into 0.22.1.
+
+https://github.com/EricHype/LionheartFixt/releases/tag/v0.22.0

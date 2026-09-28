@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.21.1 are published; 0.21.2, 0.21.3 and 0.21.5 are built and not yet cut; 0.21.4 is an audit that changed no game files.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.22.0 are published.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -140,9 +140,34 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.21.5 - the field the builder forgot, in twenty-three places
+## 0.22.0 - the Talker and the Thief
 
-**Built 2026-09-27, unplayed.** Revising act 7's ambush check to Toulouse's mechanic meant making a
+**Released 2026-09-27. Unplayed.** One release for a week's work that all came out of a single question:
+what does act 7 offer a character who did not build for combat? It is recorded in four sections below --
+[0.21.2](#0212---the-druid-master-hears-you-shipped-in-0220) the faction refusals,
+[0.21.3](#0213---act-7s-speech-route-and-the-three-sneak-cans-shipped-in-0220) the Speech route and the
+Sneak cans, [0.21.4](#0214---toulouse-was-already-finished) the Toulouse audit, and
+[0.21.5](#0215---the-field-the-builder-forgot-in-twenty-three-places-shipped-in-0220) the trigger repair.
+In short:
+
+| | |
+|---|---|
+| **The Druid Master can be talked down** | Speech 130, on her lore branch only, for 3,000 XP against the 2,500 her corpse is worth. She was the only act boss in the game with no alternative to the fight |
+| **She reads who is refusing her** | Four gated refusals, one each for Inquisitor, Wielder, Templar and Knight of Saladin. She had been offering to destroy the Holy Office in identical words to a sworn officer of it |
+| **Sneak works, for the first time since the Sewers** | The game's three unreferenced `Sneak moreequal` cans now open the temple's secret passage -- skipping 03 Stone Chamber and 04 Antechamber of Lore, 1,030 spawn entries -- and spot the ambush behind the last chamber's wall |
+| **A repair of our own making** | Twelve Fixt triggers shipped without `Auto-Flip Switch`, the field that lets a trigger re-arm. Ten are the charm sweeps that are meant to fire on a **second** visit, after the ogre charm is broken |
+| **And a retraction** | Toulouse was carried here since 0.21.1 as the largest reactivity gap in the game. It has 121 gates, 31 of them ours. The claim was a measurement error and is withdrawn in place |
+
+**The finding under all of it.** Act 7 is not combat-gated anywhere: every transition poly on the
+critical path is open at map load, the four shut ones are optional side rooms opened by walking up to a
+door, `Stop the Druids` completes on the Alamut crossing poly, and nothing in the game records or checks
+whether the Druid Master died. A pacifist could already walk past the boss to Alamut and be told they
+stopped the druids. What was missing was never a route -- it was any reason to have built a talker or a
+thief, in an act that had **zero** Speech, Barter, Lockpick or Sneak checks anywhere inside the shrine.
+
+## 0.21.5 - the field the builder forgot, in twenty-three places (shipped in 0.22.0)
+
+**Released 2026-09-27 in 0.22.0. Unplayed.** Revising act 7's ambush check to Toulouse's mechanic meant making a
 trigger polygon repeatable, and that turned up a defect in this project's own builder rather than in the
 game.
 
@@ -202,7 +227,7 @@ The Montserrat constants at the top are kept -- `hover_poly()` still reads `HOVE
 now labelled as leftovers rather than passing for library API. The scratchpad path keeps a two-line shim
 that executes the repo copy, so older scratch scripts cannot silently import a stale fork.
 
-## 0.21.4 - Toulouse was already finished
+## 0.21.4 - Toulouse was already finished (shipped in 0.22.0)
 
 **Audit only, 2026-09-27. No game files changed.** Toulouse has been carried in this log since 0.21.1 as the
 largest reactivity gap left in the game -- "roughly 846 replies with not one gated on anything." It was
@@ -316,9 +341,9 @@ reading wear on a flagstone but is the weaker of the two mechanics for the ambus
 character moving quietly enough to hear a man breathe. `Sneak Enabled` is the better instrument and the
 game already proves it works. That is a candidate revision, not a defect.
 
-## 0.21.3 - the talker and the thief
+## 0.21.3 - act 7's Speech route and the three Sneak cans (shipped in 0.22.0)
 
-**Built 2026-09-27, unplayed.** 0.21.2 asked what act 7 gives a character who did not build for
+**Released 2026-09-27 in 0.22.0. Unplayed.** 0.21.2 asked what act 7 gives a character who did not build for
 combat. The answer was nothing, and the reason was not the one expected.
 
 **Act 7 is not combat-gated anywhere.** The critical path is 01 Outside Shrine, 02 Temple Initiate,
@@ -419,9 +444,9 @@ Gate 0 earned its keep: the three canned Sneak references were first written as
 `Dialog/Requirements/Sneak moreequal 25`, and the real path is
 `Dialog/Requirements/Skills/Sneak/...`. The reference check caught all three before deploy.
 
-## 0.21.2 - the Druid Master hears you
+## 0.21.2 - the Druid Master hears you (shipped in 0.22.0)
 
-**Built 2026-09-27, unplayed.** Act 7 reviewed under the lens that found the Daeva, with a very different
+**Released 2026-09-27 in 0.22.0. Unplayed.** Act 7 reviewed under the lens that found the Daeva, with a very different
 result: **the act is finished.** All thirteen trees it opens carry **zero orphan nodes and zero
 voice-recorded orphans**, nothing in its folders is unplaced -- no unopened tree, no unfielded template --
 so 0.19.0 closed it out properly, where the Pyrenees had 27 recorded orphans nobody had touched.
