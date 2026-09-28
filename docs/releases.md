@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.21.1 are published; 0.21.2 and 0.21.3 are built and not yet cut.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.21.1 are published; 0.21.2 and 0.21.3 are built and not yet cut; 0.21.4 is an audit that changed no game files.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,81 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.21.4 - Toulouse was already finished
+
+**Audit only, 2026-09-27. No game files changed.** Toulouse has been carried in this log since 0.21.1 as the
+largest reactivity gap left in the game -- "roughly 846 replies with not one gated on anything." It was
+opened for work and the claim did not survive ten minutes of measurement.
+
+### What is actually there
+
+| | vanilla | with Fixt |
+|---|---|---|
+| replies across the twelve Toulouse trees | 424 | 552 |
+| `Custom Requirement=` blocks | 90 | **121** |
+
+Inside those blocks: `Demokin IS`, `Sylvant IS`, `Feralkin IS`, `Feralkin NOT`, `Human IS`, `Human NOT`,
+`Tainted race - feralkin or sylvant`, `Wielder IS`, `Inquisitor IS`, `Templar IS`, Speech at 25/40/45/50/55/95
+**and** `Speech lessthan` at 040/050/055/095/100, Barter at 35/40/50 and `Barter less than 50`, `IN 4+`, `IN 5-`,
+`IN 6+`, `IN 7+`, `PE 7+`, `Outwit 7 greater or equal`, `Outwit 8 greater or equal`. `ToulouseLethos` alone
+carries 61 of them on 157 replies.
+
+**Thirty-one of those 121 are 0.15.0's own work.** So the measurement did not just miss the shipped game --
+it missed a ten-tier Fixt release in the same region, and then recommended building it again.
+
+### Why the number came out zero
+
+Every one of them is a `Custom Requirement=`, and the census counted `Requirement=`. That is the **fourth**
+time this session the same mistake has produced a confident wrong answer about reactivity:
+
+| claim | where the gating actually was |
+|---|---|
+| "the Knight of Saladin's tree has zero orphan nodes" | `20 alamut` was there, differing only by case |
+| "the Druid Master has 25 replies and no gates" | her race chain is map-side, in `conversation trigger` |
+| "act 7 is the emptiest act in the game" | true per spawn, false per reply -- it is the most gated |
+| "Toulouse: 846 replies, not one gated" | 121 `Custom Requirement=` blocks, 31 of them ours |
+
+### The corrected census
+
+Replies gated by **either** field, per region, playable content only:
+
+| region | replies | named | custom | gated |
+|---|---|---|---|---|
+| 2 Montserrat | 331 | 28 | 27 | 17% |
+| 5 Nostradamus | 485 | 39 | 43 | 17% |
+| 6 Barcelona Attack | 475 | 27 | 54 | 17% |
+| 8 Alamut | 1,161 | 99 | 100 | 17% |
+| 4 Crypt | 518 | 46 | 57 | 20% |
+| **3 Montaillou (Toulouse included)** | **3,629** | **182** | **779** | **26%** |
+| Wilderness | 1,867 | 252 | 323 | 31% |
+| Sewers | 372 | 76 | 50 | 34% |
+| 1 Barcelona | 6,814 | 1,156 | 1,254 | 35% |
+| 7 English Shrine | 219 | 47 | 38 | **39%** |
+
+Toulouse is in the second-most-gated region in the game. The four thinnest are Montserrat, Nostradamus, the
+Barcelona Attack and Alamut, all within a point of each other -- and that ranking is a starting point for a
+real audit, **not** a finding. Two attempts at ranking regions by identity-awareness inside this same session
+both came out wrong, in opposite directions, because the grep behind them kept sampling one of the two fields
+a gate can live in. No region goes on the backlog again on the strength of a count alone.
+
+### What Toulouse actually has left
+
+Every node in the twelve trees was walked from every map that fires one, following replies:
+
+- **38 nodes** are never reached.
+- **32 of those are duplicates** -- the same bark text sitting in two sibling trees, where the map happens to
+  name the other copy. `50 Ogre 1` and `50 Ogre 2` exist in both `ToulouseGeneral` and `ToulouseOgres`; the
+  player hears them either way.
+- **Six are genuinely unused**, in full: two of those duplicate ogre hovers, `100 Mercury goodbye`
+  (*"Hmmm, perhaps you are right. Goodbye, fleshling."*), and `103 Noise 1`, `2` and `3`, each of which reads
+  **"Crap."**
+
+That is the whole of it. `cortes` and `Cervantes`, logged here as cut Toulouse companion arcs, are Barcelona
+companions -- their trees live under `1 Barcelona`, and Titan Village only carries their leaves-the-party
+node, exactly as five other region maps do. Their orphans belong to act 1 and are counted there.
+
+**Toulouse is finished.** It was finished in 0.15.0.
 
 ## 0.21.3 - the talker and the thief
 
@@ -325,6 +400,17 @@ gated reply in the whole region.** `TitanAndre` carries 229 replies, `ToulouseLe
 a region whose entire subject is choosing a side in a war between ogres and titans. Act 1 carries 2,000
 state-gates; Toulouse carries none. That is a reactivity tier, and it would be the first one built in a region
 that already has all the words.
+
+> **This paragraph is wrong, and it is left standing because the claim shipped in 0.21.1's release notes
+> and forum post.** It was produced by counting the `Requirement=` field and nothing else. The twelve
+> Toulouse trees carry **121 `Custom Requirement=` blocks**, and inside them are race checks (Demokin,
+> Sylvant, Feralkin, Tainted, Human and their negations), faction checks (Wielder, Inquisitor, Templar),
+> Speech from 25 to 95 tested in **both** directions, Barter 35 to 50, Intelligence 4/5/6/7, Perception 7
+> and Outwit 7/8. Ninety of those are vanilla's own; **0.15.0 added the other thirty-one**, which means the
+> measurement did not merely miss the shipped game, it missed this project's own Toulouse release. Act 3
+> as a whole sits at **26% of replies gated** -- above Alamut, the Crypt, Nostradamus, Montserrat and the
+> Barcelona Attack, all of which are near 17%. Toulouse was never the reactivity gap. See
+> [0.21.4](#0214---toulouse-was-already-finished) for the audit that retired the claim.
 
 ### The Daeva of Pain collects on a debt the game already promised
 
