@@ -1501,6 +1501,14 @@ entered `02 Shifting Dunes`.
 | SR19 | As a Knight of Saladin with Barter 40 and then 95, haggle after taking the discount | - | Both haggle steps still work and stack on top: 1.5, then 1.4, then 1.3 |
 | SR20 | Open his shop as anyone at all | - | `Great Healing` x3, `Superior Healing` x2 and `Supreme Healing` x1 on the shelf -- Quinn's tiers, available in act 8 for the first time |
 | SR21 | Buy and drink a Supreme Healing bought from him | - | Heals as the herbalist's does. It is the same addition on the same base potion |
+| SR22 | As a Knight of Saladin, walk up to Fazeem in `01 Desert Sprawl` **without** having spoken to the merchant | - | A first reply about the men in black who use this road. The Speech 70 route is still absent until the merchant mentions them |
+| SR23 | Take it, then answer his challenge truthfully | - | `31 the bargain`, and the bird men turn on the Assassins -- the same outcome the con produces |
+| SR24 | Check your gold before and after | - | **No payment.** The con's gold is on the Barter branches only; the honest route pays nothing |
+| SR25 | Check XP | - | The same `Talked Fazeem into Fighting Assassins XP` award the con gives |
+| SR26 | Afterwards, walk into the Assassins on that map | - | Fazeem and the bird men near him fight them, as they do after the con |
+| SR27 | As a Knight of Saladin with Speech 70 who **has** heard the merchant | - | Both routes offered. The Saladin reply sits above the Speech one and does not replace it |
+| SR28 | Take the new route's "I think I will kill you instead" or its exit reply | - | `Make All Bird Men Attack`, exactly as every other exit in that tree |
+| SR29 | Approach Fazeem carrying no order | - | The vanilla encounter, unchanged |
 
 ## 0.22.0 - the Talker and the Thief
 

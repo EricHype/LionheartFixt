@@ -282,6 +282,47 @@ map, and concluded the discount was dialogue only. It is not. Each haggle reply 
 little system and it works. Three cloned shops at 1.8/1.7/1.4 had already been built on the wrong premise
 and were removed; **the mechanism was in the game the whole time, one field below the text I read.**
 
+### The bird men, and the enemy they already shared
+
+Fazeem's encounter in `01 Desert Sprawl` is one of the better things in act 8, and it is a confidence
+trick. To get through it you must first hear about the bird men **from the desert merchant**, then pass
+**Speech 70** to claim you know secrets about rain, then **Barter** to be paid for them (either side of
+50 -- both branches work, they just change the excuse), and finally **IN 6+** to invent the detail that
+does the real work: that the blood of an Assassin makes rain. They believe it, and
+`Talked Fazeem into attacking Assassins` retargets Fazeem and the bird men near him onto
+`Scripted Custom 1`, which is the Assassins.
+
+**There is no other way out.** `10 Money` buys you off for 30 gold and sends you away, and every other
+reply in the tree -- including *"I think I'll be going now"* -- fires `Make All Bird Men Attack`.
+
+Faction tests in that tree: **none**. Which is odd, because the con's entire payoff is pointing these
+creatures at the Assassins, and there is a faction in this game whose reason for being in this desert is
+that the Old Man twice sent knives into Saladin's tent.
+
+So a Knight of Saladin now has a fourth route to the same relay, and it is not a bonus line on the
+existing one -- it is the encounter done without the trick:
+
+> *"I am not here about rain. I am here about the men in black who use this road - the ones who sent
+> knives into the Sultan's tent. Do they take from you as well?"*
+>
+> *"Knife. Men. Wear. Black. Take. Our. Eggs. Take. Our. Water. Take. Our. Young. For. Sport. You. Hunt.
+> Them? True? Lie. And. We. Eat. You. Now."*
+>
+> *"True. My order crossed a sea and a desert to end them and will not leave until it is done. Kill them
+> wherever you find them. The bodies are yours."*
+>
+> *"Black. Knives. Bleed. Same. As. Men. Bleed. We. Watch. Road. We. Take. Them. All. Go. Kill. Your.
+> Share. Leave. Ours."*
+
+It fires the same three actions the con fires, the XP anchor included, and it is asserted equal to them
+rather than reimplemented.
+
+**What it costs, so the faction is a trade and not a discount.** The con *pays*: `21 Rain Secrets
+continued` hands over gold on both Barter branches, because you are selling something. The honest route
+earns nothing but the alliance. The trickster gets the money; the knight skips four gates -- the
+merchant's tip, Speech 70, Barter and IN 6+ -- and gets certainty. A knight who also has the Speech can
+still run the con instead; the reply sits above it, it does not replace it.
+
 ### Recorded, not built
 
 - **Backtracking does not retro-fit him.** The checker is read by each map's arrival, so a map you

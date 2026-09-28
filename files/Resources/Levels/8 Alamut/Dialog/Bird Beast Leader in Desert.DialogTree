@@ -1,0 +1,344 @@
+CDialogTree
+{
+Name=Fazim
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Interrupt. Bad. Spill. Blood. Good. 
+Should Have Voiceover=0
+
+Requirement=Saladin IS
+Reply Text=I am not here about rain. I am here about the men in black who use this road - the ones who sent knives into the Sultan's tent. Do they take from you as well?
+Go to node ID=30 the same enemy
+Icon=Quest Icon
+
+Requirement=Speech moreequal 70
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Merchant told player about Bird Men
+Desired Minimum Count=1
+}
+}
+Reply Text=I have a better idea. I know some secrets about Rain that will bring water to this scorched place.
+Go to node ID=20 Rain Secrets
+Action work in progress=(High Speech about 70, heard about them from Merchant)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I didn't mean to bother you. How can I make amends?
+Go to node ID=10 Money
+
+Requirement=!None
+Reply Text=Good idea. Let's see what color *your* blood is!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I think I'll be going now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return
+Text=Back? Have. Assassin. Blood. For. Us?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, but I will direct them here if I see them. Goodbye.
+Go to node ID=
+------------------------------------------------------------
+Node ID=5 Go
+Text=Go. No. Come. Back.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Put Return AI MEAN on Fazeem
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=7 Die
+Text=You. Die.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Money
+Text=Give. 30. Gold. Then. Leave.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=30
+}
+}
+Reply Text=Alright. Here you are.
+Go to node ID=5 Go
+Action work in progress=(Have 30 gold)
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=30
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=30
+}
+}
+}
+Reply Text=I wish I had 30 gold. I don't have it.
+Go to node ID=
+Action work in progress=(Don't have the money)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=30
+}
+}
+Reply Text=I wish I had 30 gold. I don't have it. <LIE>
+Go to node ID=
+Action work in progress=(Have 30 gold)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+
+Requirement=!None
+Reply Text=I'll take *your* gold...and your life!
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I think I'll be going now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Rain Secrets
+Text=Know. Rain. Secrets? Tell.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=These secrets are not for the faint of heart or short of vision. They require tireless efforts to bring about Rain...and they are not cheap.
+Go to node ID=21 Rain Secrets continued
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I think I will kill you instead.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=21 Rain Secrets continued
+Text=You. Lie! Gold? For. Rain? Why?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 50
+Reply Text=These secrets are from the far east, and magically exact a toll on my body each time that I tell them. I age a year with each utterance. Is not a year of my life worth 2000 gold pieces?
+Go to node ID=22 Rain Secrets Concluded
+Action work in progress=(Barter>=50)
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=2000
+}
+Icon=Barter Skill Icon
+
+Requirement=Barter less than 50
+Reply Text=These secrets are precious. My master demands that those who wish to know them prove themselves worthy by donation no fewer than 500 pieces of gold to charity.
+Go to node ID=22 Rain Secrets Concluded
+Action work in progress=(Barter <50)
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+
+Requirement=!None
+Reply Text=I think I will kill you instead.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=22 Rain Secrets Concluded
+Text=Deal. Here. Gold. How. Make. Rain?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN 6+
+}
+Reply Text=If you mix the blood of an Assassin with the swirling sand under a new moon and spread the mixture on a large rock facing the heavens, the magical taint will call the water gods from the sky. The more blood you have, the more water you get. I have seen it happen myself! It is truly a miracle!
+Go to node ID=25 Looking for Assassins
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=I have no idea. How about we go back to the whole blood spilling thing?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving. 
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 Looking for Assassins
+Text=Not. Tried. That. Will. Kill. All. Assassins. We. See. And. Drain. Blood.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Change their target to Assassins, Add return dialog to Fazeem)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Put Return AI NICE on Fazeem
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Talked Fazeem into Fighting Assassins XP
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Talked Fazeem into attacking Assassins
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 the same enemy
+Text=Knife. Men. Wear. Black. Take. Our. Eggs. Take. Our. Water. Take. Our. Young. For. Sport. You. Hunt. Them? True? Lie. And. We. Eat. You. Now.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=True. My order crossed a sea and a desert to end them and will not leave until it is done. Kill them wherever you find them. The bodies are yours.
+Go to node ID=31 the bargain
+
+Requirement=!None
+Reply Text=I think I will kill you instead.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Make All Bird Men Attack
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 the bargain
+Text=Black. Knives. Bleed. Same. As. Men. Bleed. We. Watch. Road. We. Take. Them. All. Go. Kill. Your. Share. Leave. Ours.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Put Return AI NICE on Fazeem
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Talked Fazeem into Fighting Assassins XP
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Talked Fazeem into attacking Assassins
+}
+}
+}
+Is Default Reply=1
+}
