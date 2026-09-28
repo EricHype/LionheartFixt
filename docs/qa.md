@@ -1488,6 +1488,13 @@ entered `02 Shifting Dunes`.
 | SR6 | Repeat as a **Templar** | - | The vanilla Knight Templar greeting and the tribute reply, unchanged |
 | SR7 | Repeat carrying **no order** | - | `1 Conversation Start`, unchanged |
 | SR8 | As an Exalted knight, dismiss the companion and pick him up again | - | `666 Rejoin` and `3 Return` behave exactly as before; the rank greeting is a first-meeting only, as vanilla's are |
+| SR9 | As an Exalted knight, take `24 the standing order` and then *"Then come the whole way in"* | - | `25 the order rides`, and he agrees to come as far as the Old Man's door |
+| SR10 | Walk on into 03 Sand Dragon, then 04 Maw of the Assasin | - | A Knight of Saladin is standing at each arrival and fights with you. He is talkable and gives `3 Return` |
+| SR11 | Continue through 05 Acid Wash, 06 Chamber of Torment and 07 Dark Temple | - | The same on each. He is the 220 HP / 215 AC companion race, not a citizen |
+| SR12 | Enter 08 Final Encounter | - | **He does not follow.** The finale plays exactly as vanilla, with no extra body in the scripted scene |
+| SR13 | Do **not** take the ride reply, then walk in | - | No escort on any of the five maps. The act is unchanged |
+| SR14 | Take the ride reply, then walk *backwards* to a map you already crossed | - | No escort there until you leave and re-enter -- the checker is read on arrival. Recorded, not a defect |
+| SR15 | Reach the Maw as a Templar or with no order | - | No escort, no ride reply, no Exalted greeting |
 
 ## 0.22.0 - the Talker and the Thief
 

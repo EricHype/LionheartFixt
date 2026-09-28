@@ -1504,6 +1504,85 @@ Reply Text=Then the order has been waiting eighty years for today.
 Go to node ID=30 go
 
 Requirement=!None
+Reply Text=Then come the whole way in. Not to the door - in, to the chamber where he sits.
+Go to node ID=25 the order rides
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the order rides
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=8 Alamut/03 Sand Dragon
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the order rides
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=8 Alamut/04 Maw of the Assasin
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the order rides
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=8 Alamut/05 Acid Wash
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the order rides
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=8 Alamut/06 Chamber of Torment
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Fixt the order rides
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=8 Alamut/07 Dark Temple
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
 Reply Text=What is inside Alamut?
 Go to node ID=20 alamut
+------------------------------------------------------------
+Node ID=25 the order rides
+Text=In. Yes. I had been told to hold the sand and I have held it for nine days, and I had begun to be afraid that holding the sand was the whole of my part in it. Lead, then. Through the Maw, through the wash, through whatever he keeps in the dark below it - and at the door of his chamber I stop, because the order does not come back with prisoners and somebody has to be outside it to be sure that nobody does.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let's carry the battle to him.
+Go to node ID=30 go
+
+Requirement=!None
+Reply Text=Where is the Old Man?
+Go to node ID=10 old man
 }

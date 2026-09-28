@@ -203,8 +203,51 @@ An Exalted knight sees that **and** the plain `Saladin IS` line, deliberately: o
 what came back"*), the other is the order's. They are different arguments, and picking between them is
 the point.
 
+### The order rides
+
+A greeting is not a reward, and the reason the rank could not easily be more than a greeting turned out
+to be worth finding: **the Knight of Saladin exists on exactly one map.** `02 Shifting Dunes` names him
+eleven times. The seven maps past it name him **zero**. He says *"my sword is yours"*, walks you to the
+door of the fortress, and stops there for the rest of the game.
+
+So an Exalted can now tell him to come in:
+
+> *"Then come the whole way in. Not to the door - in, to the chamber where he sits."*
+>
+> *"In. Yes. I had been told to hold the sand and I have held it for nine days, and I had begun to be
+> afraid that holding the sand was the whole of my part in it. Lead, then. Through the Maw, through the
+> wash, through whatever he keeps in the dark below it - and at the door of his chamber I stop, because
+> the order does not come back with prisoners and somebody has to be outside it to be sure that nobody
+> does."*
+
+That reply arms a checker on five maps through `COtherMapAction`, and each map's arrival spawn point
+raises an escort generator **cloned from the dunes knight himself** -- same character template, same race
+(the 220 HP / 215 AC companion race 0.20.0 raised from 150/145), same `Companion` category, with the
+greeting chain replaced by `3 Return` because the introductions happened in the sand.
+
+| leg | raised from | the map he now fights on |
+|---|---|---|
+| 03 Sand Dragon | `From Shifting Dunes` | 4 spawn entries |
+| 04 Maw of the Assasin | `From Sand Dragon` | **177** |
+| 05 Acid Wash | `From Maw of the Assassin` | 27 |
+| 06 Chamber of Torment | `From Acid Wash` | **210** |
+| 07 Dark Temple | `From Chamber of Torment` | **152** |
+
+Every hook was checked against the transition that actually lands there rather than against the spawn
+point's name: `02` sends you to `From Shifting Dunes`, `03` to `From Sand Dragon`, and so on. A hook on
+the wrong arrival point fails silently, which is the standard way this kind of work dies.
+
+**He does not follow into `08 Final Encounter`, and that is deliberate twice over.** `07` sends you to
+that map's `Start Here`, which is the one arrival left unhooked. The map is the most tightly scripted in
+the game -- two caged prisoners with their own scripted attackers, a spike matrix, a siege tank, a
+summoned-monster loop and a grid of ending relays keyed to who is still alive and what the player's karma
+is -- and an extra body in it risks the ending rather than improving it. It is also the better reading of
+the oath he quotes.
+
 ### Recorded, not built
 
+- **Backtracking does not retro-fit him.** The checker is read by each map's arrival, so a map you
+  walked through *before* telling the order to ride has no escort on it until you leave and come back.
 - **There is no `Saladin Midlevel`.** The goblins have one; Saladin has `IS` and `Highlevel` and nothing
   between, so Blessed cannot be distinguished from Aswaran without authoring a new can. This tier reads
   two steps, not three.
