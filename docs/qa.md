@@ -1487,6 +1487,14 @@ Act 3, Montaillou. Needs a **Knight of Saladin** who has not yet spoken to the B
 | RG7 | As a **Templar** or an **Inquisitor**, do RG2 | - | Their own introductions, unchanged, and no register entry |
 | RG8 | Carrying no order, talk to the Bishop | - | His vanilla openings, unchanged |
 | RG9 | After RG3, check the Bishop's other business still works -- the witch, the mayor, the gem | - | All unchanged. The register is a flag, not a gate |
+| TB1 | As a **Knight Templar** with 150+ gold, eat in the Montaillou tavern and let the Cathar toughs start on you | - | The line *"I'm not a priest, nor are they my friends"* is **absent** |
+| TB2 | Take the reply that is there instead | - | *"No. I am a knight of the Temple, and I have eaten at the mayor's table this week."* then `61 the knights` |
+| TB3 | Pay the hundred and fifty | - | `100 Welcome`, no fight, and **150 gold gone** |
+| TB4 | Repeat carrying **less than 150 gold** | - | The paying reply is absent. Only the two answers that start the brawl remain |
+| TB5 | Take either of those instead | - | `40 Super Insult` and the brawl, as every other wrong answer in that tree does |
+| TB6 | Repeat the whole scene as an **Inquisitor** | - | Unchanged: his own reply, and the disclaimer still closed to him as in vanilla |
+| TB7 | Repeat as a **Wielder** | - | Unchanged -- he still talks his way to `100 Welcome` for free at `70 Challenge Answer` |
+| TB8 | Repeat carrying **no order** | - | The disclaimer is available exactly as in vanilla, and no Templar reply appears |
 
 ## 0.23.0 - what the Crescent is worth
 

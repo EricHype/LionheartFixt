@@ -47,8 +47,16 @@ Relay Name=node 20 better inquisition penalty
 }
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar NOT
+}
 Reply Text=I'm not a priest, nor are they my friends.
 Go to node ID=60 Choosing Sides
+
+Requirement=Templar IS
+Reply Text=No. I am a knight of the Temple, and I have eaten at the mayor's table this week.
+Go to node ID=61 the knights
 
 Requirement=!None
 Reply Text=Oh, so you and the cow were intimate?
@@ -82,8 +90,16 @@ Relay Name=node 20 better inquisition penalty
 }
 
 Requirement=Inquisitor NOT
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar NOT
+}
 Reply Text=I'm not a priest, nor are they my friends.
 Go to node ID=60 Choosing Sides
+
+Requirement=Templar IS
+Reply Text=No. I am a knight of the Temple, and I have eaten at the mayor's table this week.
+Go to node ID=61 the knights
 ------------------------------------------------------------
 Node ID=30 Insult
 Text=Well, we're glad you enjoyed eating an animal stolen from us by the Inquisitor's tithes. Isn't it enough that priests like you watch our every move and force us to hide our worship - must you also openly insult our beliefs?
@@ -103,8 +119,16 @@ Relay Name=node 20 better inquisition penalty
 }
 
 Requirement=Inquisitor NOT
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar NOT
+}
 Reply Text=I'm not a priest, nor are they my friends.
 Go to node ID=60 Choosing Sides
+
+Requirement=Templar IS
+Reply Text=No. I am a knight of the Temple, and I have eaten at the mayor's table this week.
+Go to node ID=61 the knights
 
 Requirement=!None
 Reply Text=Yes, I must. Please tell me what exactly they are so I may better insult them.
@@ -627,4 +651,36 @@ Should Have Voiceover=0
 Node ID=121 more grumbles
 Text=Bah! "Wine in moderation" he says! Church in moderation, I say!
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=61 the knights
+Text=Not a priest. Worse. You are one of the knights who sleeps in Pierre's house and eats what is in it and calls it his right by the code. Your lot went through my brother's winter stores in three days and left him a blessing for them. So. What is a winter worth, brother?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=150
+}
+}
+Reply Text=A winter is worth a hundred and fifty. Take it, and we are square.
+Go to node ID=100 Welcome
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=150
+}
+
+Requirement=!None
+Reply Text=The code is the code. Your brother fed men who keep the road he walks on open.
+Go to node ID=40 Super Insult
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nothing. Stand out of my way.
+Go to node ID=40 Super Insult
+Icon=Fight Icon
+Is Default Reply=1
 }

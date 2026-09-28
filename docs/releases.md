@@ -208,12 +208,49 @@ warmth, and you lose it by your own choice -- nobody makes you tell the Bishop w
 - That tree's own text is unbalanced on angle brackets -- eight `<` against nine `>` -- so a whole-file
   stage-direction check can never pass on it. The check is scoped to the new nodes instead.
 
+### The Templars pay for their board
+
+The Temple had exactly one cost in the entire shipped game -- the Barcelona herbalist's 25 percent --
+against 119 places the allegiance opens something. Its seam was already written, in two places that never
+meet.
+
+The Cathar toughs in the Montaillou tavern pick their fight over precisely one grievance:
+
+> *"Oh, so it isn't enough you and your priest friends eat our food and tax our farms? That you come here
+> and eat *meat* in our own tavern?"*
+
+And three rooms away, in the mayor's house, the gate guards' own idle banter is the knights doing exactly
+that: *"What kind of host are you, Pierre? I am **starving**!"*, *"Why don't you roast one of those
+delicious chickens you have outside?"*, *"Bring more food! And more ale!"*, and the justification --
+*"You must provide food and shelter to any knight who asks for aid."*
+
+A Knight Templar walking into that tavern **is the man they are complaining about**, and the tree never
+noticed. It tests `Inquisitor IS` three times and `Wielder IS` once and Templar not at all, so a Templar
+could use the line everyone else uses -- *"I'm not a priest, nor are they my friends"* -- which is true,
+and beside the point.
+
+Now the disclaimer is closed to the Temple (`Templar NOT` on all three of its appearances), and an honest
+reply takes its place:
+
+> *"No. I am a knight of the Temple, and I have eaten at the mayor's table this week."*
+>
+> *"Not a priest. Worse. You are one of the knights who sleeps in Pierre's house and eats what is in it
+> and calls it his right by the code. Your lot went through my brother's winter stores in three days and
+> left him a blessing for them. So. What is a winter worth, brother?"*
+
+Paying is the only way out of that tavern that is not a brawl, and it costs **150 gold** in an act where
+that is real money. The reply is gated on actually having it (`CHasMoneyAction`, the idiom Felgnash and
+the Shylocke goons use), and the other two answers go where every other wrong answer in that tree goes.
+
+Note what this does **not** do: it takes nothing away from the Templar player except the ability to
+pretend. Vanilla's Wielder gets past these men for free with one line, because the Church burns their kind
+first. The Temple does not get a line. It gets a bill.
+
 ### Still owed
 
-The audit found the same hole in two other orders and this release does not fill it. **Templar** has
-exactly one cost in the entire game (the Herbalist's 25%), and **Goblin Horde** has one bark. Both want
-the same treatment, and the Inquisition is the obvious seam for the Templars too -- the two orders are
-rivals for the same relics in the same region.
+**Goblin Horde** still has one bark and nothing else. Its seam is probably the same tavern -- the Horde
+sacked the Crossroads, the guard already says so to a goblin's face, and the villagers would have heard
+about it long before the knights did.
 
 ## 0.23.0 - what the Crescent is worth
 
