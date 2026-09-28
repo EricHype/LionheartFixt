@@ -140,7 +140,7 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.25.0 - the combat AI (scoped 2026-09-28, not started)
+## 0.25.0 - the combat AI (scoped 2026-09-28; tier 1 partly built)
 
 Every release in the 0.21-0.24 line changed what the game *says*. This one would change how it *plays*,
 which is a different kind of risk and is why it is scoped in full before anything is built.
@@ -196,6 +196,59 @@ of reach without code, and this plan does not pretend otherwise.
 
 **The best-built combat AI in the game is on an optional wizard in the Wilderness, and the final boss's
 attack slot is empty.** Tremblethorn is the template for everything below.
+
+### Tier 1, built: the Priestesses cast
+
+Tier 1 was scoped as "fill the empty slots on the boss tier", naming four targets. Measuring them first
+turned three of the four into something other than what the plan assumed, and found a fourth thing that
+is not a buff at all but a plain defect.
+
+**`Priest` and `Priestess` are the same creature with one field missing.** A line-by-line diff of
+`Priest.can` against `Priestess.can` differs in exactly one place: the Priest's `Shoot Completed` opens
+with `ENEMY Magical Shield` and then picks at random from Fire Orb, Spike and Lightning Bolt, and the
+Priestess's `Shoot Completed` is **empty**. Same role, same `Minimum Attack Distance=100`, same
+everything else. She walks up and hits you with a stick.
+
+And her race already knows the spells:
+
+| can | its race presets | it cast | it casts now |
+|---|---|---|---|
+| Priestess | Spike 75 | nothing | Spike |
+| Priestess Tough | Fire Orb 85, Spike 90 | nothing | either, at random |
+| Priestess Super | Fire Orb 95, Lightning Bolt 95, Spike 95, Static Charge 95 | nothing | any of the four, at random |
+
+Each selects **exactly** what its own race presets and nothing else, so no creature is handed a spell it
+was not already built to know. The Priests' shield opener is deliberately not copied: no Priestess race
+presets `ENEMY Magical Shield`, and granting one would be inventing rather than connecting.
+
+They are not obscure. The line stands in act 7: **fourteen** Priestesses in the Inner Sanctum, **twelve**
+in the Secret Chamber, **eleven** plus **six Supers** in the Exalted Chambers, which is the Druid Master's
+own room. Act 7 is the act 0.22.0 just worked on, and every one of those casters was swinging.
+
+### Tier 1, not built, and why
+
+**The Old Man of the Mountain has 40 hit points.** His race is `Old Man Fleeing`, HP 40, one skill
+(OneHandedMelee 50), and there is no second Old Man asset anywhere in the game -- one can, one race. So
+his empty `Shoot Completed` is not the reason the finale is what it is; the fight is carried entirely by
+`08 Final Encounter`'s script -- the spike matrix, the teleport traps, the summoned-monster loop, the
+Chaos Dragon. Filling his attack slot would not repair an oversight, it would **redesign the ending**, and
+the plan's own promise for tier 1 was "data only, no redesign". Left alone pending a decision.
+
+**Our own Boss Lich is melee-only, and that is not a regression.** 0.21.0 cloned it from
+`Magical Greater Skeleton`, whose race is `Lance Guardian` -- also melee-only, also selecting no skills,
+despite the word "Magical" in its name. So nothing was lost in the cloning. Making the Bonecaller cast
+means **authoring new skill presets onto a Fixt race**, which is a design change rather than a connection,
+and it is the one creature in the list whose difficulty this project owns outright. Pending a decision.
+
+**Andre the Titan 2 needed nothing.** His race presets OneHandedMelee 50 and Lightning Bolt 50, and his
+attack AI already selects both. He was on the list because a skill count of 2 looked low; it is complete.
+
+### A tooling note
+
+The spliced `.can` blocks failed Gate 0 with *"not in canonical engine formatting"* until they were
+round-tripped through `resource_format` before writing -- which is exactly what `write_map()` does for
+maps, and what a hand-splice into a `.can` does not do for free. Worth remembering the next time this
+project edits a can rather than a map.
 
 ### Tiers, in the order they should be built
 

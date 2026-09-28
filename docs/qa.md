@@ -1471,6 +1471,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.25.0 - the Priestesses cast
+
+Act 7. Needs a save that has **not yet entered** `05 Exalted Chambers`, `09 Secret Chamber` or
+`10 Inner Sanctum`. The Priests are the control: they behaved this way already.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PC1 | Fight a **Priestess** in act 7 | - | She casts **Spike** at you instead of only closing to melee |
+| PC2 | Fight a **Priestess Tough** | - | Fire Orb or Spike, varying between casts |
+| PC3 | Fight a **Priestess Super** in `05 Exalted Chambers` | - | Fire Orb, Lightning Bolt, Spike or Static Charge, varying |
+| PC4 | Watch a Priestess of any tier over several attacks | - | She does **not** cast `ENEMY Magical Shield` -- that is the Priests' opener, and no Priestess race knows it |
+| PC5 | Fight a **Priest**, **Priest Tough** or **Priest Super** | - | Unchanged: shield first, then Fire Orb / Spike / Lightning Bolt |
+| PC6 | Judge the Exalted Chambers approach as a whole | - | Meaningfully harder: eleven Priestesses and six Supers in that room now cast. **This is the row that decides whether the tier stays** |
+| PC7 | The Inner Sanctum (14 of them) and the Secret Chamber (12) | - | The same change, and the same question |
+
 ## 0.24.0 - the register
 
 Act 3, Montaillou. Needs a **Knight of Saladin** who has not yet spoken to the Bishop of Pamiers in
