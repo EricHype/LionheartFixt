@@ -227,6 +227,9 @@ own room. Act 7 is the act 0.22.0 just worked on, and every one of those casters
 
 ### Tier 1, not built, and why
 
+The three open decisions below, and the tiers waiting behind them, are written up for a
+post-playtest verdict in [`design-review-combat.md`](design-review-combat.md).
+
 **The Old Man of the Mountain has 40 hit points.** His race is `Old Man Fleeing`, HP 40, one skill
 (OneHandedMelee 50), and there is no second Old Man asset anywhere in the game -- one can, one race. So
 his empty `Shoot Completed` is not the reason the finale is what it is; the fight is carried entirely by

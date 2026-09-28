@@ -215,6 +215,12 @@ The editors cover placement, entity scripts and dialogue *editing*, but not auth
 
 ## Open questions
 
+Combat-AI decisions awaiting a playtest are in
+[`design-review-combat.md`](design-review-combat.md): whether the Priestesses keep the spells their
+races already preset, whether the Old Man of the Mountain gets a fight at all, and whether a Fixt
+creature should be given skills it was never authored with.
+
+
 1. **What is `Max Party Mojo`?** It gates generator groups and looks like party-strength
    scaling. Phase 3 cannot be done responsibly without knowing.
 2. **Andre or Marcus?** The cut Titan quest disagrees with itself.
