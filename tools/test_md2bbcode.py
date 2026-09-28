@@ -20,7 +20,7 @@ from md2bbcode import convert  # noqa: E402
 
 DIST = pathlib.Path(__file__).resolve().parent.parent / "dist"
 STRICT_FROM = (0, 22, 0)      # the convention md2bbcode implements begins here
-LEGACY_FLOOR = 15             # how many posts reproduce today, older drifting ones included
+LEGACY_FLOOR = 16             # how many posts reproduce today, older drifting ones included
 NAME = re.compile(r"^forum-post-(\d+(?:\.\d+)*)\.md$")
 
 

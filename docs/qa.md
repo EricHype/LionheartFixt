@@ -1471,6 +1471,17 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.25.1 - the startup crash
+
+Any save, or none. `SU1` is the whole release.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SU1 | Launch the game | - | It reaches the main menu. No "DataCrash Explanation - Fatal Not Found Error" dialog naming `Skills/Fighting/Melee` |
+| SU2 | Load any save and check the character screen | - | Normal. Nothing about this touched the player |
+| SU3 | Meet Grace O'Malley on the act 7 landing beach and let her fight | - | She survives it -- 190 AC, 165 HP, OneHandedMelee 110, Evasion 55, which is what 0.19.0's review intended |
+| SU4 | Run `python tools/validate.py` | - | Passes. Reintroducing `Skills/Fighting/Melee` must make it exit 1 |
+
 ## 0.25.0 What They Were Built To Do - the Priestesses cast
 
 Act 7. Needs a save that has **not yet entered** `05 Exalted Chambers`, `09 Secret Chamber` or

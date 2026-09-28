@@ -238,6 +238,12 @@ REFERENCE_KINDS = [
     (re.compile(r"Dialog Tree File=([^\r\n]*)"), (".DialogTree",)),
     (re.compile(r"Entity=([^\r\n]*)"), (".can",)),
     (re.compile(r"Quest=([^\r\n]*)"), (".Quest.txt", ".Quest")),
+    # A .Race naming a skill that does not exist is FATAL AT STARTUP, before the main menu. Grace
+    # O'Malley's shipped in v0.19.0 saying Skills/Fighting/Melee -- the real skill is OneHandedMelee --
+    # and survived seven releases because .race files were not scanned here at all.
+    (re.compile(r"(?:^|\n)\t*Skill(?: to select)?=([^\r\n]*)"), (".Skill",)),
+    (re.compile(r"Derived Character Attribute=([^\r\n]*)"), (".DerivedCharacterAttribute",)),
+    (re.compile(r"(?:^|\n)\t*Race=([^\r\n]*)"), (".Race", ".race")),
 ]
 
 
@@ -258,7 +264,7 @@ def check_references(fails):
             mine.add(("Resources/" + rel).lower())
             mine.add(rel.lower())
     for f in sorted(F.rglob("*")):
-        if not f.is_file() or f.suffix.lower() not in (".dialogtree", ".zax", ".can"):
+        if not f.is_file() or f.suffix.lower() not in (".dialogtree", ".zax", ".can", ".race"):
             continue
         text = f.read_bytes().decode("latin-1")
         seen = set()

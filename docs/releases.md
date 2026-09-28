@@ -140,6 +140,55 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.25.1 - the startup crash
+
+**v0.19.0 through v0.25.0 could not reach the main menu.** Seven published releases. The game reported it
+precisely and fatally:
+
+> The item we are looking for is `Skills/Fighting/Melee` [...] It was referenced by
+> `Resources/Races/NPCs/Grace OMalley.Race:Skill Preset:Skill`
+
+There is no `Skills/Fighting/Melee` in the game and there never was. The real skill is
+`Skills/Fighting/OneHandedMelee`, which the crash dialog even lists as item 9 of the skills it did find.
+Grace's race was authored in `aa3ecaa` (2026-09-26, shipped in 0.19.0) during a review that found she
+could not have survived the fight she is dropped into, and the melee preset that fixed that named a skill
+that does not exist.
+
+The engine resolves race skill presets **at load**, before the menu, so this was not a latent defect that
+needed the right save to hit. It was every launch.
+
+### Why seven releases went out with it
+
+`tools/validate.py` has resolved resource references since early on -- it is what caught the wrong
+requirement paths in 0.22.0 -- but it had two gaps that lined up exactly:
+
+| gap | effect |
+|---|---|
+| `check_references` scanned only `.dialogtree`, `.zax` and `.can` | `.race` files were **never** examined |
+| `REFERENCE_KINDS` had no entry for `Skill=`, `Race=` or `Derived Character Attribute=` | even a scanned file would not have had these checked |
+
+Either gap alone would have caught it. Both together meant the single most load-bearing reference kind in
+a race file -- the one the engine kills the process over -- was the one nothing looked at.
+
+That it went unnoticed for seven releases is a direct consequence of the standing trade recorded in
+`docs/design.md`: finish development, then playtest. Nothing here had been launched since 0.19.0, and a
+crash before the main menu is invisible to every automated gate that reads files rather than running
+them.
+
+### The fix, and closing the gap
+
+One byte-level change to Grace's race, `Melee` to `OneHandedMelee`, keeping the preset value of 110.
+
+Then the gap: `.race` is added to the scanned suffixes and three reference kinds are added --
+`Skill=` / `Skill to select=` (`.Skill`), `Derived Character Attribute=`
+(`.DerivedCharacterAttribute`), and `Race=` (`.Race` / `.race`, since the archive is inconsistent about
+the case). Reintroducing the bug and re-running the gate was confirmed to fail with exit 1 and the
+message *"Grace OMalley.Race: reference does not resolve to any file: 'Skills/Fighting/Melee'"*.
+
+A sweep of all 279 Fixt resource files across **376** references of these kinds found **exactly one**
+unresolved, which is the one above. Notably that includes the 36 derived-attribute references added by
+0.25.0's twelve thief races the day before -- they resolve, but nothing had proved it until now.
+
 ## 0.25.0 - What They Were Built To Do (the combat AI, tier 1)
 
 Every release in the 0.21-0.24 line changed what the game *says*. This one would change how it *plays*,
