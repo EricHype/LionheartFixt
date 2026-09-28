@@ -1471,6 +1471,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+### 0.21.5 - the field the builder forgot
+
+Repeat-visit triggers. Each of these is a polygon you are meant to enter, leave, and enter again after
+something changed elsewhere; before this release they lacked the field that re-arms them.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| AF1 | In `Mountain Pass`, walk through a charm sweep polygon **before** breaking the ogre charm | - | Nothing happens |
+| AF2 | Break the charm, then walk back into that same polygon | - | `the charm lifts` fires. This is the case the missing field put at risk |
+| AF3 | Repeat AF1/AF2 in `Ogre Cave` and `Ogre Sprawl` | - | Same behaviour on all ten sweeps |
+| AF4 | In `4 Undercroft`, cross `guard room poly`, leave the room, cross it again | - | It responds on the later crossing as well as the first |
+| AF5 | In `9 Burial Chamber`, secure the relic, then re-enter Jehanne's polygon | - | She reacts to the relic being secured |
+| AF6 | Every one-shot trigger from earlier releases -- the gate parley at the Grove, the Montaillou gate strip, the four Misc Crypt hovers, the two cave hovers, the two Crossroads Siege hovers, the Plains rogue strip | - | Unchanged. They still fire exactly once |
+
 ### 0.21.3 - the talker and the thief
 
 Act 7. `DS1`-`DS8` need a character with **Speech 130 or better** who has not yet reached the Druid

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.21.1 are published; 0.21.2 and 0.21.3 are built and not yet cut; 0.21.4 is an audit that changed no game files.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.21.1 are published; 0.21.2, 0.21.3 and 0.21.5 are built and not yet cut; 0.21.4 is an audit that changed no game files.** Every act is surveyed, built and released, and the 0.21 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,44 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.21.5 - the field the builder forgot, in twenty-three places
+
+**Built 2026-09-27, unplayed.** Revising act 7's ambush check to Toulouse's mechanic meant making a
+trigger polygon repeatable, and that turned up a defect in this project's own builder rather than in the
+game.
+
+`lhbuild.touch_poly()` writes a `CTouchingPolygonTriggerAI` and omitted six of the nineteen fields vanilla
+gives one. Five are inert defaults. The sixth is **`Auto-Flip Switch`**, which governs whether a trigger
+re-arms after the player walks out of it.
+
+**Vanilla writes the field on 756 touching triggers out of 756, and sets it to 1 on 286 of the 294 that
+are repeatable.** Not one omits it. Fixt had twenty-three triggers built with the short helper, and
+**twelve of them were repeatable** -- meaning twelve polygons that are supposed to fire again on a later
+visit were shipped without the field that lets them.
+
+The twelve are exactly the case the field exists for. `charm sweep 1` in `Mountain Pass` fires
+`the charm lifts` **only if** `ogre charm broken` already exists, so the intended order of events is: walk
+in and nothing happens, go and break the charm, walk back in and it lifts. That second visit is the one
+the missing switch puts at risk. Ten of the twelve are charm sweeps across Mountain Pass, Ogre Cave and
+Ogre Sprawl; the other two are `guard room poly` in `4 Undercroft` and `Jehanne sees the relic secured` in
+`9 Burial Chamber`.
+
+All twenty-three now carry vanilla's full field set in vanilla's order -- the eleven one-shots included,
+so that the helper's output and the shipped files agree from here on. Fifteen maps, +209 bytes each.
+
+**The helper is fixed at the source**, and the fix is checked against the game rather than against a list
+typed from memory: a test parses the field names out of `Eavesdrop trigger` (polygon),
+`Mathuo-Iapetus Bubble trigger` (oval) and `To Exalted Chambers poly` (interaction specifier) and asserts
+the helper's output matches, name for name and in order. A `touch_oval()` was added alongside, since the
+oval form is what watches for a named NPC rather than the player. A post-fix sweep confirms **0 of 538**
+touching triggers across the mod's maps are missing the field.
+
+**What this does not claim.** Eight vanilla repeatable triggers ship with `Auto-Flip Switch=0`, so the
+value is not simply "always 1" -- zero is a real mode, not a mistake. What is not defensible is *omitting*
+a field the game writes 756 times out of 756, and the twelve affected triggers all want the re-arm.
+ReVa was unavailable this session, so the exact engine semantics are inferred from that distribution
+rather than read out of the binary.
 
 ## 0.21.4 - Toulouse was already finished
 
