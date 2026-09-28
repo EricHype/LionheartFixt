@@ -93,8 +93,8 @@ arcs (they return with Act 8).
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's
-automated gates (`tools/validate.py`, and `tools/test_triggers.py` for the map builders in
-`tools/lhbuild.py`) pass; the human gates are recorded per release in
+automated gates (`tools/validate.py`, `tools/test_triggers.py` for the map builders in
+`tools/lhbuild.py`, and `tools/test_md2bbcode.py` for the forum-post converter) pass; the human gates are recorded per release in
 [`docs/qa.md`](docs/qa.md), and most of what shipped after 0.4.0 has been played once by one
 tester, which is how the 0.8.x repairs were found.
 
@@ -122,6 +122,7 @@ Mountain, because Act 4 does.
 | [`docs/qa.md`](docs/qa.md) | every case a release has to pass, and which have |
 | [`docs/playtest-guide/`](docs/playtest-guide/) | the same cases as a route to walk, built by `build.py` |
 | [`dist/`](dist/) | release notes and forum posts per version; `README.txt` is what a player reads after unzipping |
+| [`tools/`](tools/) | this repo's own scripts: `validate.py` is the gate every release passes, `lhbuild.py` emits map and dialogue-tree blocks, `md2bbcode.py` converts a forum post, and each has a test beside it |
 | [`LICENSE`](LICENSE) / [`NOTICE`](NOTICE) | MIT, and what the MIT grant does and does not cover |
 
 **The tooling lives separately**, in

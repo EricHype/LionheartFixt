@@ -349,6 +349,30 @@ and it is the one creature in the list whose difficulty this project owns outrig
 **Andre the Titan 2 needed nothing.** His race presets OneHandedMelee 50 and Lightning Bolt 50, and his
 attack AI already selects both. He was on the list because a skill count of 2 looked low; it is complete.
 
+### A second tooling note: the forum-post converter moved into the repo
+
+The bbcode half of every forum post had been retyped by hand for twenty-one releases, so this release's
+was generated instead -- and the rules had to be recovered by diffing the shipped pairs, which turned out
+to disagree with each other:
+
+| drift | where |
+|---|---|
+| `## X` as `[size=125][b]X[/b][/size]` rather than plain `[b]X[/b]` | 0.4.1 through 0.10.0 |
+| `*emphasis*` converted to `[i]...[/i]` | up to 0.21.1; left as asterisks from 0.22.0 |
+| backticks **deleted** rather than italicised | 0.16.0, 0.18.0, 0.20.0 |
+| an inverted `[i]`/`[/i]` pair mid-sentence | 0.21.1, where a `*"..."*` quote straddled a line break |
+
+That last one is the reason `md2bbcode.py` substitutes bold and code spans over the **whole document**
+before doing anything per line: a per-line substitution closes the span on the wrong side of the words
+when a quote wraps, which is exactly the defect sitting in 0.21.1's shipped post.
+
+So there is no single house rule to implement. `tools/md2bbcode.py` implements the convention that has
+held since **0.22.0**, the only self-consistent stretch, and it was proved by regenerating 0.24.0's
+bbcode and diffing it against the shipped file before being used on 0.25.0.
+`tools/test_md2bbcode.py` holds that as a hard requirement for 0.22.0 and later -- 4 of 4 -- and pins a
+floor of 15 for how many posts reproduce overall, so a change that quietly alters behaviour on the older
+ones is still caught. The older posts are deliberately not reproducible and must not be regenerated.
+
 ### A tooling note
 
 The spliced `.can` blocks failed Gate 0 with *"not in canonical engine formatting"* until they were
