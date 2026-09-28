@@ -1471,7 +1471,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## 0.25.0 - the Priestesses cast
+## 0.25.0 What They Were Built To Do - the Priestesses cast
 
 Act 7. Needs a save that has **not yet entered** `05 Exalted Chambers`, `09 Secret Chamber` or
 `10 Inner Sanctum`. The Priests are the control: they behaved this way already.
@@ -1494,7 +1494,7 @@ Act 7. Needs a save that has **not yet entered** `05 Exalted Chambers`, `09 Secr
 | BL5 | Talk the Bonecaller down instead, as 0.21.0 allows | - | He stops summoning along with everything else. The stand-down is unaffected |
 | BL6 | The Old Man of the Mountain and the finale | - | **Unchanged in every respect.** No file for that fight was touched |
 
-## 0.25.0 - the thieves of Barcelona backstab
+## 0.25.0 What They Were Built To Do - the thieves of Barcelona backstab
 
 Act 1. Needs a save that has **not yet entered** the Slave Pits or the sewers -- these are can and race
 changes, so they reach only thieves spawned after the install. `BS1` is the row that matters most: it

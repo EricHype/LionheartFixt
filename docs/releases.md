@@ -140,7 +140,7 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.25.0 - the combat AI (scoped 2026-09-28; tier 1 partly built)
+## 0.25.0 - What They Were Built To Do (the combat AI, tier 1)
 
 Every release in the 0.21-0.24 line changed what the game *says*. This one would change how it *plays*,
 which is a different kind of risk and is why it is scoped in full before anything is built.
