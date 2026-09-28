@@ -278,19 +278,50 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Trigger Only Once=1
+					Trigger Only Once=0
 					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
 					Triggered By Players=1
+					Triggered By Player Friends=0
 					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
 					Enter Action=CConditionalAction
 					{
-						Try Action=CExpressionAction
+						Try Action=CAndAction
 						{
-							Expression=CUseCannedExpressionExpression
+							Action=Array
 							{
-								Canned Expression=Dialog/Requirements/Skills/Sneak/Sneak moreequal 20
+								Item Count=2
+								Action=CExpressionAction
+								{
+									Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Sneak Enabled
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Action=CExpressionAction
+								{
+									Expression=CUseCannedExpressionExpression
+									{
+										Canned Expression=Dialog/Requirements/Skills/Sneak/Sneak moreequal 20
+									}
+									Character to get attributes from=$Instigator
+								}
 							}
-							Character to get attributes from=$Instigator
+							Early Exit=0
 						}
 						Succeed Action=CActivateAction
 						{

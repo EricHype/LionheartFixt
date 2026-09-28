@@ -1492,10 +1492,11 @@ save that has already visited a level.
 | SN2 | After SN1, walk to the far end of that room | - | A passage that relocates straight to 05 Exalted Chambers, skipping 03 and 04 |
 | SN3 | At Sneak 10-19, open the same door | - | Only the draught balloon. No strongbox, no passage |
 | SN4 | At Sneak 9 or below, open the same door | - | Nothing at all, exactly as vanilla |
-| SN5 | Reach 05 the long way at Sneak 20+, then walk into the boss conversation | - | A fifth reply on her opening node naming the men behind the wall |
+| SN5 | Reach 05 at Sneak 20+ **with sneak mode switched on** and cross the floor in front of her | - | A fifth reply on her opening node naming the men behind the wall |
+| SN5a | Cross that same floor at Sneak 20+ **not** sneaking, then step back out, switch sneak on and cross again | - | No reply the first time; the reply is there the second time. The check retries |
 | SN6 | Take it | - | The fight starts and her golems appear, but **the ambush door stays shut and no soldiers come out of it**. 500 XP |
 | SN7 | Repeat SN5 as a sylvant, a feralkin and a demokin | - | The same reply on each of the three race openings, each node's own refusals still reading correctly |
-| SN8 | Reach 05 at Sneak 19 or below | - | No fifth reply. The vanilla fight, ambush included |
+| SN8 | Reach 05 at Sneak 19 or below, sneaking | - | No fifth reply. The vanilla fight, ambush included -- the toggle alone is not enough |
 | SN9 | Come back into 02 from 05 the vanilla way, having never passed a Sneak check | - | The secret opens on arrival as it always did, and no Fixt balloon plays |
 
 ### 0.21.2 - the Druid Master hears you

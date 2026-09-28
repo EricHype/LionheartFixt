@@ -321,12 +321,26 @@ the player, and the success path fires vanilla's own relay rather than a reimple
 
 **20, on the ambush.** The fight relay opens `Secret Door Ambush` and switches on the soldier
 generator behind it in the same breath as the fight. A touch poly using **the boss conversation's own
-polygon** -- so the geometry is provably walked over -- now sets a checker at Sneak 20, and each of
+polygon** -- so the geometry is provably walked over -- now sets a checker, and each of
 her four opening nodes gains a reply that spends it: *"there are men behind that wall to your left,
 close enough that I can hear one of them breathing, and somebody has cut a summoning ring into the
 floor between us."* It fires a variant of the fight relay that leaves the ambush in the wall. Her
 summoned golems still come, and she answers: *"Stay where you are, all of you. Nobody springs a trap
 that has already been counted."* 500 XP.
+
+**Revised after the Toulouse audit.** That check first shipped as `Sneak moreequal 20` alone, which fired
+on anyone who walked past with the right number on their sheet. Titan Village holds the only three checks
+in the game against the **live** sneak toggle, `Derived Character Attributes/Sneak Enabled`, and uses them
+for precisely this kind of moment, so the ambush check now wants **both**: the threshold, which keeps it a
+build reward, and the toggle, which makes it something the player does. The poly also became repeatable
+(`Trigger Only Once=0`), so a character who crosses it walking can step back, sneak, and cross again --
+Toulouse resets its eavesdrop scene for the same reason.
+
+That change surfaced a gap in this project's own tooling. `lhbuild.touch_poly()` writes a short
+`CTouchingPolygonTriggerAI` and omits **`Auto-Flip Switch`**, the field that lets a trigger re-arm after
+the player leaves; vanilla's `Eavesdrop trigger` sets it to 1. Every previous use of the helper wanted a
+one-shot, so it never mattered, and a `Trigger Only Once=0` poly written with it would not have retried
+reliably. The trigger's field set and order are now asserted equal, name for name, to Titan Village's.
 
 Act 7 finishes at **219 replies and 47 named gates**.
 
