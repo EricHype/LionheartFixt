@@ -777,7 +777,364 @@ CCannedObject
 						Play Sequence=
 						Play Reload Sequence=
 					}
-					Shoot Completed=
+					Shoot Completed=CRandomAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CActionSetWeaponMode
+									{
+										Weapon Mode To Set=Primary Weapon
+										Character To Set=$Trigger
+									}
+									Action=CActionSelectSkill
+									{
+										Character to select skill=$Trigger
+										Skill to select=Skills/Fighting/OneHandedMelee
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CActionSetWeaponMode
+									{
+										Weapon Mode To Set=Primary Weapon
+										Character To Set=$Trigger
+									}
+									Action=CActionSelectSkill
+									{
+										Character to select skill=$Trigger
+										Skill to select=Skills/Fighting/OneHandedMelee
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CActionSetWeaponMode
+									{
+										Weapon Mode To Set=Primary Weapon
+										Character To Set=$Trigger
+									}
+									Action=CActionSelectSkill
+									{
+										Character to select skill=$Trigger
+										Skill to select=Skills/Fighting/OneHandedMelee
+									}
+								}
+							}
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=ghoul summoning enabled
+									Desired Minimum Count=1
+								}
+								Then=CSeriesAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CPlayAnimationAction
+												{
+													Animation=spellcast
+													Random From Sequencial Set=0
+													Target Name=$Trigger
+													When Done=Stop on last frame
+													End Sequence Name=Idle
+													Delay Between Targets=0
+													Play In Reverse=0
+													AI To Interrupt=CSkeletonAI
+												}
+												Action=CDelayAction
+												{
+													Next Action=CCloneAction
+													{
+														New Location=$Instigator
+														Copy Height=0
+														Random Location Delta=80
+														Warp Behavior=
+														Source Name=ghoul clone generator
+														New Name=used ghoul clone generator
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Delay=1.5
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+													Location Entity=
+													Make effect a child of the location entity=0
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used ghoul clone generator
+													}
+													Delay=2
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CPlayAnimationAction
+												{
+													Animation=spellcast
+													Random From Sequencial Set=0
+													Target Name=$Trigger
+													When Done=Stop on last frame
+													End Sequence Name=Idle
+													Delay Between Targets=0
+													Play In Reverse=0
+													AI To Interrupt=CSkeletonAI
+												}
+												Action=CDelayAction
+												{
+													Next Action=CCloneAction
+													{
+														New Location=$Instigator
+														Copy Height=0
+														Random Location Delta=80
+														Warp Behavior=
+														Source Name=ghoul clone generator
+														New Name=used ghoul clone generator
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Delay=1.5
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+													Location Entity=
+													Make effect a child of the location entity=0
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used ghoul clone generator
+													}
+													Delay=2
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CPlayAnimationAction
+												{
+													Animation=spellcast
+													Random From Sequencial Set=0
+													Target Name=$Trigger
+													When Done=Stop on last frame
+													End Sequence Name=Idle
+													Delay Between Targets=0
+													Play In Reverse=0
+													AI To Interrupt=CSkeletonAI
+												}
+												Action=CDelayAction
+												{
+													Next Action=CCloneAction
+													{
+														New Location=$Instigator
+														Copy Height=0
+														Random Location Delta=80
+														Warp Behavior=
+														Source Name=ghoul clone generator
+														New Name=used ghoul clone generator
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Delay=1.5
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+													Location Entity=
+													Make effect a child of the location entity=0
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used ghoul clone generator
+													}
+													Delay=2
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CPlayAnimationAction
+												{
+													Animation=spellcast
+													Random From Sequencial Set=0
+													Target Name=$Trigger
+													When Done=Stop on last frame
+													End Sequence Name=Idle
+													Delay Between Targets=0
+													Play In Reverse=0
+													AI To Interrupt=CSkeletonAI
+												}
+												Action=CDelayAction
+												{
+													Next Action=CCloneAction
+													{
+														New Location=$Instigator
+														Copy Height=0
+														Random Location Delta=80
+														Warp Behavior=
+														Source Name=ghoul clone generator
+														New Name=used ghoul clone generator
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Delay=1.5
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+													Location Entity=
+													Make effect a child of the location entity=0
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used ghoul clone generator
+													}
+													Delay=2
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CPlayAnimationAction
+												{
+													Animation=spellcast
+													Random From Sequencial Set=0
+													Target Name=$Trigger
+													When Done=Stop on last frame
+													End Sequence Name=Idle
+													Delay Between Targets=0
+													Play In Reverse=0
+													AI To Interrupt=CSkeletonAI
+												}
+												Action=CDelayAction
+												{
+													Next Action=CCloneAction
+													{
+														New Location=$Instigator
+														Copy Height=0
+														Random Location Delta=80
+														Warp Behavior=
+														Source Name=ghoul clone generator
+														New Name=used ghoul clone generator
+														Set Facing Angle=0
+														New Facing Angle=0
+													}
+													Delay=1.5
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+													Location Entity=
+													Make effect a child of the location entity=0
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=used ghoul clone generator
+													}
+													Delay=2
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+									When Done=Do Nothing
+									Require Success To Advance=1
+									Next Action Index=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+						}
+					}
 					Turn Behavior=CPointWeaponAtTargetEntityBehavior
 					{
 					}

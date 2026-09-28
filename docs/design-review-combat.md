@@ -1,8 +1,26 @@
 # Design review — the combat AI, and three decisions that need a playtest
 
-**Written 2026-09-28. Nothing here is urgent and nothing here should be decided from the armchair.**
-0.25.0 tier 1 is built and deployed; the rest of the tier list is scoped and stopped. This document
-exists so the decisions survive the gap between now and a playthrough.
+**Written 2026-09-28. All three decisions were taken the same day; the reasoning below is kept as the
+record of how.** What changed as a result is summarised immediately under this line and marked through
+the document.
+
+## Decisions taken, 2026-09-28
+
+1. **The Priestesses keep casting** -- but they now *cycle* rather than re-roll. `CRandomAction` picked
+   fresh every attack and could hand out the same spell four times running, which reads as no variety at
+   all. `CShuffledSeriesAction{When Done=Repeat Series}` deals the whole hand before reshuffling, so a
+   Priestess Super visibly works through Fire Orb, Lightning Bolt, Spike and Static Charge. Built.
+2. **The Old Man of the Mountain is left exactly as he is** -- because he turns into the dragon.
+   `Chaos Dragon Generator` carries `Dragon_Chaos` at 25,000 XP, and its after-action fires
+   `Player KILL Old Man in Combat` and arms `Dragon Health Checker`, so killing the dragon *is* killing
+   the Old Man as far as the ending matrix is concerned. His 40 hit points are not an oversight, they are
+   a stage direction. **No files changed.**
+3. **The Bonecaller raises the dead**, using the game's own undead-summoner idiom -- `Ghoul Male Large`
+   Tough and Super clone from a map part called `ghoul clone generator` behind a `ghoul summoning enabled`
+   checker, and the Doomed Plateau already carries **both**, so this needed no map edit. One attack in
+   four is a summon; the three tiers raise four, five and six ghouls. Built.
+
+The tiers waiting behind these are unchanged and still wait on a playthrough.
 
 Context: `releases.md` holds the 0.25.0 scope and what tier 1 actually built. This is the part that
 is *not* settled.
@@ -36,10 +54,10 @@ be taken on the assumption that they are coming.
 
 ---
 
-## Decision 1 — do the Priestesses keep casting?
+## Decision 1 — do the Priestesses keep casting? **(yes, and they cycle)**
 
-**Built, deployed, unplayed.** This is the one that needs a verdict first, because it is already in the
-game and everything else waits behind it.
+**Answered: yes, and they cycle.** Built, deployed, unplayed. It needed a verdict first because it was
+already in the game and everything else waited behind it.
 
 `Priest` and `Priestess` are the same creature with one field missing. A line-by-line diff of the two cans
 differs in exactly one place: the Priest's `Shoot Completed` opens with a shield and then picks at random
@@ -52,8 +70,8 @@ more:
 | can | race presets | now casts |
 |---|---|---|
 | Priestess | Spike 75 | Spike |
-| Priestess Tough | Fire Orb 85, Spike 90 | either, at random |
-| Priestess Super | Fire Orb 95, Lightning Bolt 95, Spike 95, Static Charge 95 | any of the four |
+| Priestess Tough | Fire Orb 85, Spike 90 | both, alternating |
+| Priestess Super | Fire Orb 95, Lightning Bolt 95, Spike 95, Static Charge 95 | all four, cycled |
 
 **Why it might be too much.** The line is dense exactly where act 7 is thin: **fourteen** Priestesses in
 the Inner Sanctum, **twelve** in the Secret Chamber, **eleven plus six Supers** in the Exalted Chambers --
@@ -77,9 +95,9 @@ and the Priests standing beside her have done it correctly since 2003.
 
 ---
 
-## Decision 2 — does the Old Man of the Mountain get a fight?
+## Decision 2 — does the Old Man of the Mountain get a fight? **(no: he is the dragon)**
 
-**Not built. Needs a decision before anyone touches it.**
+**Answered: no. He is the dragon, and nothing was changed.**
 
 The final antagonist of the game has **40 hit points**. His race is `Old Man Fleeing`, one skill
 (OneHandedMelee 50), his `Shoot Completed` is empty, and there is no second Old Man asset anywhere in the
@@ -102,14 +120,16 @@ positions:
   assumptions about how long the fight runs, and the summon loop is timed. **High risk, and the one
   irreversible thing in this whole document** — a broken ending is not something a save recovers from.
 
-**What would decide it:** playing the finale once, at all. Nobody on this project has seen it since the
-Alamut work went in.
+**What decided it:** `Chaos Dragon Generator` spawns `Dragon_Chaos` at 25,000 XP and its after-action
+fires `Player KILL Old Man in Combat` and arms `Dragon Health Checker` -- so killing the dragon is
+killing the Old Man as far as the ending matrix is concerned. The first of the three positions above is
+the right one, and his 40 hit points are a stage direction rather than an oversight.
 
 ---
 
-## Decision 3 — does the Bonecaller cast?
+## Decision 3 — does the Bonecaller cast? **(yes: he summons)**
 
-**Not built. Ours to decide, which makes it different.**
+**Answered: yes, he summons.** Ours to decide, which is why it needed asking.
 
 0.21.0 created the Boss Lich line for the Doomed Plateau — 1,500 / 2,000 / 2,500 XP, HP 385 to 520, and
 melee-only. That is **not** a regression from the clone: its source, `Magical Greater Skeleton`, sits on
@@ -128,15 +148,18 @@ casters exist in the game to copy from.
 only a few weeks old and unplayed. Every other combat change in this document can point at something the
 original authors did and did not finish. This one cannot.
 
-**What would decide it:** whether the Plateau fight, as it stands, is already enough. If the captains and
-the two-army fight carry the room, the Bonecaller does not need spells.
+**What was built:** not spells -- the game's own undead-summoner idiom. `Ghoul Male Large` Tough and
+Super clone from a map part called `ghoul clone generator` behind a `ghoul summoning enabled` checker,
+and the Doomed Plateau already carries **both**, so no map edit was needed. One attack in four is a
+summon, and the three tiers raise four, five and six ghouls. The guard means a Bonecaller placed on a map
+without the clone source simply fights normally.
 
 ---
 
 ## What is waiting behind these
 
-The remaining 0.25.0 tiers are scoped in `releases.md` and should not start until decision 1 has a
-verdict:
+The remaining 0.25.0 tiers are scoped in `releases.md`. Decision 1 is answered, but these still wait on
+a playthrough rather than on a decision:
 
 - **Telegraphs.** `CDelayAction` appears in 24 attack AIs out of 478. A wind-up before a heavy hit is the
   cheapest legibility win available and pairs with whatever decision 1 produces.

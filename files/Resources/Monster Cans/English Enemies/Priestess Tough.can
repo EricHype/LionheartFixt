@@ -583,7 +583,7 @@ CCannedObject
 						Play Sequence=
 						Play Reload Sequence=
 					}
-					Shoot Completed=CRandomAction
+					Shoot Completed=CShuffledSeriesAction
 					{
 						Action=Array
 						{
@@ -599,6 +599,9 @@ CCannedObject
 								Skill to select=Skills/Magic Thought/Offensive/Spike
 							}
 						}
+						When Done=Repeat Series
+						Require Success To Advance=1
+						Next Action Index=0
 					}
 					Turn Behavior=CPointWeaponAtTargetEntityBehavior
 					{

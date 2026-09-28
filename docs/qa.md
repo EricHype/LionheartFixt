@@ -1485,6 +1485,14 @@ Act 7. Needs a save that has **not yet entered** `05 Exalted Chambers`, `09 Secr
 | PC5 | Fight a **Priest**, **Priest Tough** or **Priest Super** | - | Unchanged: shield first, then Fire Orb / Spike / Lightning Bolt |
 | PC6 | Judge the Exalted Chambers approach as a whole | - | Meaningfully harder: eleven Priestesses and six Supers in that room now cast. **This is the row that decides whether the tier stays** |
 | PC7 | The Inner Sanctum (14 of them) and the Secret Chamber (12) | - | The same change, and the same question |
+| PC8 | Watch one **Priestess Super** over four or more casts | - | She works through all four spells before repeating any. She should not cast the same one twice running |
+| PC9 | Watch a **Priestess Tough** | - | Fire Orb and Spike alternate rather than randomly repeating |
+| BL1 | Fight the **Bonecaller** on the Doomed Plateau | - | Roughly one attack in four is a summon: a spellcast animation, then ghouls rising beside him with a summoning effect |
+| BL2 | Count what the base Bonecaller raises across a whole fight | - | Four ghouls, then no more. Tough raises five, Super six |
+| BL3 | Check what comes up | - | Ghoul Male and Ghoul Female and their Tough/Super variants -- the Plateau's existing `ghoul clone generator`, not a new creature |
+| BL4 | Kill the Bonecaller mid-summon | - | No orphaned clone generator is left behind and nothing keeps spawning |
+| BL5 | Talk the Bonecaller down instead, as 0.21.0 allows | - | He stops summoning along with everything else. The stand-down is unaffected |
+| BL6 | The Old Man of the Mountain and the finale | - | **Unchanged in every respect.** No file for that fight was touched |
 
 ## 0.24.0 - the register
 

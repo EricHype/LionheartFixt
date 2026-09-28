@@ -225,6 +225,32 @@ They are not obscure. The line stands in act 7: **fourteen** Priestesses in the 
 in the Secret Chamber, **eleven** plus **six Supers** in the Exalted Chambers, which is the Druid Master's
 own room. Act 7 is the act 0.22.0 just worked on, and every one of those casters was swinging.
 
+### The three decisions, answered 2026-09-28
+
+**1. The Priestesses keep casting, and now cycle rather than re-roll.** `CRandomAction` picks fresh on
+every attack, which can hand out the same spell four times running and read as no variety at all.
+`CShuffledSeriesAction{When Done=Repeat Series}` -- 67 files in the shipped game use it -- deals the whole
+hand before reshuffling, so a Priestess Super visibly works through Fire Orb, Lightning Bolt, Spike and
+Static Charge. The base Priestess knows one spell and is untouched; there is nothing to cycle.
+
+**2. The Old Man of the Mountain is left exactly as he is, because he turns into the dragon.**
+`Chaos Dragon Generator` spawns `Dragon_Chaos` at 25,000 XP, and its after-action fires
+`Player KILL Old Man in Combat` and arms `Dragon Health Checker` -- so killing the dragon **is** killing
+the Old Man as far as the ending matrix is concerned. His 40 hit points are not an oversight, they are a
+stage direction, and the riskiest item in the review is retired without a file being touched.
+`Dragon_Chaos` itself has no AI components at all: the dragon is driven entirely by that map's script.
+
+**3. The Bonecaller raises the dead**, and not with spells. `Ghoul Male Large` Tough and Super summon by
+cloning from a map part called `ghoul clone generator`, guarded by a `ghoul summoning enabled` checker,
+with a spellcast animation, a 1.5 second delay, a summoning effect and a cleanup delete. The Doomed
+Plateau -- where our Boss Lich stands -- already carries **both** the clone source and the checker, so
+this needed **no map edit**. The idiom is copied field for field: one attack in four is a summon, and the
+three tiers raise four, five and six ghouls. The checker guard means a Bonecaller placed on a map without
+a clone source simply fights normally.
+
+The decision reasoning, including the two positions rejected for the Old Man, is kept in
+[`design-review-combat.md`](design-review-combat.md).
+
 ### Tier 1, not built, and why
 
 The three open decisions below, and the tiers waiting behind them, are written up for a
