@@ -280,7 +280,11 @@ def show_save(a):
     return 0
 
 
-COMBAT = re.compile(r"hits? for|kills .* with|misses|Damage\)", re.I)
+# The log writes "<A> hit <B> for N (N Type Damage)", "<A> missed <B>", "<A> kills <B> with N" and
+# "<A> evaded a blow!", and wraps long lines, so a hit's damage type can land on a continuation line.
+# An earlier pattern here used `hits? for`, which matches "hit for" but NOT "hit <name> for" -- so it
+# silently hid every enemy attack and made a fight look one-sided. Keep the name gap in the pattern.
+COMBAT = re.compile(r"\b(?:hit|missed|kills|killed|evaded)\b|Damage\)", re.I)
 
 
 def do_events(a):
