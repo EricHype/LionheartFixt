@@ -122,8 +122,17 @@ the same `Zero To One` shape as the backstab percentage.
 inert. Six of the eighteen orphan races therefore stay unreferenced, recorded rather than repointed,
 because moving them would be a pure stat buff with no mechanism behind it.
 
-It reaches six maps, all act 1: the Slave Pits (21 spawns), Slave Pit Exterior (7), and sewer levels 01
-(43), 02 (51), 05 (2) and 09 (45). Thugs keep their 95 AC and no backstab.
+It reaches **seven** real maps. Six are act 1: the Slave Pits (21 spawns), Slave Pit Exterior (7), and
+sewer levels 01 (43), 02 (51), 05 (2) and 09 (45).
+
+**Corrected after publication:** the seventh is the **RED FILE preorder bonus level**, which this note
+originally dismissed as a debug map. It is not -- it has its own installed-pack check, its own boss line
+and artefacts, and an entrance scripted from the Gate District. It fields **90** spawns carrying the new
+thief races (Theif Pale x33, Theif4 Sword x23, Theif3 Mace x12, plus Tough variants), which is more
+backstabbing thieves than any two sewer levels together, and a further 100 bow thieves that are
+deliberately untouched. It is the best place in the game to test this feature.
+
+Thugs keep their 95 AC and no backstab.
 
 The combat log will say so when it fires -- the templates are generic `[Attacker]` and `[Defender]`, so
 *"... sneaks up on ... and hits for ... (25 percent backstab bonus)"* can name a thief.

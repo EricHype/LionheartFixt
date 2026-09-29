@@ -490,11 +490,30 @@ melee weapons, so a preset on an archer would be inert. That leaves **6 of the 1
 unreferenced** (`Thief3 Bow` and `Thief4 Bow`, three tiers each) -- recorded, not fixed, because
 repointing them would be a pure stat buff with no mechanism behind it.
 
-**Where it lands.** Thief cans appear in only six real maps, all act 1: `1 Barcelona/Slave Pits` (21
-spawns), `Sewers/01 Sewer Main Entrance` (43), `Sewers/02 Thieves Congregation` (51),
-`Sewers/09 Secret Quest` (45), `Sewers/05 Troll Pit` (2) and `Wilderness Maps/Slave Pit Exterior` (7).
-The rest are the `Global/Secret Red File Level` debug map and `Test Maps/`. So "the thieves of Barcelona"
-is exactly the can set -- nothing outside Barcelona and the sewers changes.
+**Where it lands. CORRECTED 2026-09-28**, the same day, after a tester fought thieves in the preorder
+bonus level and asked whether they backstab. The first pass said "only six real maps, all act 1" and
+dismissed `Global/Secret Red File Level` as a debug map. **That was wrong.** It is the RED FILE preorder
+bonus content -- it has its own `RED FILE Presell Pack Installed.can`, its own boss line
+(`Thug Boss RED FILE` and its Tough and Super), its own three artefacts, and an entrance scripted from
+the Gate District -- and it is the **densest** thief map in the game:
+
+| map | spawns carrying the new races |
+|---|---|
+| `Global/Secret Red File Level` (preorder bonus) | **90** -- Theif Pale x33, Theif4 Sword x23, Theif3 Mace x12, Theif3 Mace Tough x11, Theif4 Sword Tough x11 |
+| `Sewers/02 Thieves Congregation` | 51 total thief spawns |
+| `Sewers/01 Sewer Main Entrance` | 43 |
+| `Sewers/09 Secret Quest` | 45 |
+| `1 Barcelona/Slave Pits` | 21 |
+| `Wilderness Maps/Slave Pit Exterior` | 7 |
+| `Sewers/05 Troll Pit` | 2 |
+
+That map also fields 100 bow thieves, which are deliberately untouched. So the release reaches **seven**
+real maps, and the bonus level carries more backstabbing thieves than any two sewer levels together --
+which makes it the best place in the game to test the feature, not a map to exclude.
+
+The error came from filtering the map census on "does this look like shipped content" by name, where
+`Global/` and `Test Maps/` were swept together. `Test Maps/` genuinely is developer scratch; `Global/`
+is not.
 
 **Why `Sneak Enabled` is safe to preset, despite its own description.** The attribute says *"Modified by
 game engine to have a value of 1 when sneeking and 0 when not sneaking"*, which looked fatal. It is not:

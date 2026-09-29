@@ -1531,6 +1531,7 @@ checks that presetting an engine-owned attribute did not break the creature.
 | BS2 | Fight a `Sewer Theif4 Sword` head-on, facing him | - | No backstab line in the log. The facing condition needs at least 90 degrees of difference |
 | BS3 | Engage one thief, let a **second** close on you from behind, then **save** | - | `python tools/savecheck.py events latest --backstab` prints a line with the **thief** as attacker: *"... sneaks up on ... and hits for ... (25 percent backstab bonus)"*. This is the whole point of the release. The log is a rolling 300 events, so save soon after the fight |
 | BS4 | Same in `02 Thieves Congregation`, where 51 thieves spawn | - | Same, and more often -- crowds make flanking happen by itself |
+| BS4a | **The RED FILE preorder bonus level**, entered from the Gate District, on a save that has never been in it | - | The densest test in the game: **90** spawns carry the new races (Pale x33, 4 Sword x23, 3 Mace x12, plus Tough). Crowds this size are where the behind-attack geometry should happen on its own. Its 100 bow thieves must **never** produce a backstab line |
 | BS5 | Note the bonus percentage in the log across tiers | - | 25 for base, 35 for Tough, 50 for Super |
 | BS6 | Fight a `Sewer Theif3 Bow` or `Theif4 Bow` | - | **Never** a backstab line. Archers were deliberately left out |
 | BS7 | Judge whether the sewers are harder in an interesting way or simply harder | - | **The row that decides whether the release stays.** Remember AC and HP also rose with the repoint |
