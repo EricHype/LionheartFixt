@@ -140,6 +140,55 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.25.3 - Fernand can be taken back
+
+Reported from play: *"fernand cannot rejoin the party if we release companion."*
+
+Recruiting Fernand Desoto fires the `fernand joins you` relay in `Port District.zax`, which swaps his
+`CSkeletonAI` for a follow AI and **replaces his `CAIInteractionSpecifier`** with one that opens his
+tree at node `100 companion banter`. That node is, in full:
+
+    Node ID=100 companion banter
+    Text=Where you go, I follow.
+    Should Have Voiceover=0
+
+**No replies.** And nothing anywhere restores his original specifier.
+
+A reply-less conversation node is not itself a defect -- a sweep found **49** of them opened as
+conversations, and most are vanilla's own ambient one-liners (`Bar Patrons`, `ToulouseOgres`,
+`ShylockeGoons`'s shop loop). The engine shows the line and closes. So node 100 on its own was working
+as the game intends.
+
+The defect is narrower and worse: that node is his **only** interaction for the rest of the game, and it
+offers no path anywhere. Once he is released there is no route back to `1 return after saving juan`,
+where the recruit reply lives, because his specifier no longer points there and nothing restores it. He
+was lost for the rest of the run.
+
+Node 100 now carries the route back: dismiss, rejoin, and a default goodbye. Two new nodes carry his
+answers. Adding replies is the fix precisely because that node is the only place the game will ever put
+the player in front of him again.
+
+**Both replies are deliberately ungated.** A marker set on dismissal would be tidier, and is the idiom
+this project uses elsewhere (`Grace has been left behind`), but it only works when the release goes
+through dialogue -- and this was reported by a player who had *already* released him. A marker-gated
+rejoin would have left exactly the people who hit the bug unable to use the fix. Releasing someone who
+is not following, and recruiting someone who already is, are both no-ops, so the cost is one slightly
+odd line and the benefit is that he is recoverable from any state.
+
+The recruit gate at node `40 companion` -- Speech 20 or Barter 20 -- is **not** re-applied on rejoin. He
+was persuaded once and says himself the debt is unpaid; charging it twice would strand a character who
+spent those points earlier.
+
+No map edit: the specifier already points at node 100, which is now a node worth arriving at.
+
+### A note on the same shape elsewhere
+
+This is the third companion in three releases whose dismissal or rejoin was incomplete -- Grumdjum's and
+the Alamut knight's rejoins were the self-referencing trees of 0.25.2, and Grace's dismissal balloon was
+one of the eleven. The pattern is consistent: the joining half gets built and tested, and the leaving
+half is written but never walked. Every remaining companion should be checked the same way before the
+next feature release.
+
 ## 0.25.2 - the trees that named themselves
 
 A second fatal, found by the playtest that 0.25.1 made possible:

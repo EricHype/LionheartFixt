@@ -1,0 +1,62 @@
+# Lionheart Fixt 0.25.3 - Fernand can be taken back
+
+Reported from play: *"fernand cannot rejoin the party if we release companion."*
+
+He could not. Once dismissed, Fernand Desoto was gone for the rest of the run.
+
+## What was happening
+
+Recruiting him fires the `fernand joins you` relay in `Port District.zax`, which swaps his `CSkeletonAI`
+for a follow AI and **replaces his `CAIInteractionSpecifier`** with one that opens his tree at a single
+node:
+
+    Node ID=100 companion banter
+    Text=Where you go, I follow.
+    Should Have Voiceover=0
+
+No replies. And nothing anywhere restores the specifier he had before.
+
+A reply-less conversation node is **not** a defect on its own -- a sweep found 49 of them opened as
+conversations across the game, most of them vanilla's own ambient one-liners: `Bar Patrons`,
+`ToulouseOgres`, `ShylockeGoons`'s shop loop. The engine shows the line and closes. Node 100 was
+behaving exactly as the game intends.
+
+The defect is narrower and worse. That node is his **only** interaction for the rest of the game, and it
+offers no path anywhere. The recruit reply -- *"I would like you to accompany me for a time"* -- lives
+back on `1 return after saving juan`, and his specifier no longer points there. Release him and there is
+no way to ask again.
+
+## The fix
+
+Node 100 now carries the route back: **dismiss**, **rejoin**, and a default goodbye. Two new nodes hold
+his answers.
+
+Both replies are deliberately **ungated**. A marker set on dismissal would be tidier, and is the idiom
+this project uses elsewhere (`Grace has been left behind`) -- but it only works when the release goes
+through dialogue, and this was reported by a player who had *already* released him. A marker-gated
+rejoin would have left exactly the people who hit the bug unable to use the fix. Releasing someone who
+is not following, and recruiting someone who already is, are both no-ops, so the cost is one slightly
+odd line and the benefit is that he is recoverable from any state.
+
+The recruit gate at node `40 companion` -- Speech 20 or Barter 20 -- is **not** re-applied. He was
+persuaded once and says himself that the debt is unpaid; charging it twice would strand a character who
+spent those points earlier.
+
+**No map edit.** His specifier already points at node 100; that node is now worth arriving at.
+
+## The pattern this makes three of
+
+This is the third companion in three releases whose *leaving* half was incomplete. Grumdjum's rejoin and
+the Alamut knight's rejoin were two of the eleven self-referencing trees in 0.25.2, and Grace's
+dismissal balloon was another. The joining half gets built and walked; the leaving half gets written and
+never tested.
+
+Every remaining companion is on the list to be checked the same way before the next feature release.
+
+**Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run `Mod Manager.bat`. This one is a dialogue repair and applies to any character,
+including a save where Fernand is already following or already dismissed. If you have any earlier
+release installed, replace it.
+
+https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.3

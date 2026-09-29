@@ -1471,6 +1471,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.25.3 - Fernand can be taken back
+
+Port District, after saving Juan. Needs a character who can recruit him (Speech 20 or Barter 20 at the
+ask) or a save where he is already following.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| FD1 | Recruit Fernand, then talk to him | - | *"Where you go, I follow."* now offers replies instead of closing. That node is his only interaction once he has joined |
+| FD2 | Choose *"Wait here, Fernand. I will come back for you."* | - | He stops following and stays put, and answers that the Armada can spare him a while longer |
+| FD3 | Talk to him again and choose *"Walk with me again, Fernand."* | - | **He rejoins.** This is the bug: before, there was no route back at all |
+| FD4 | Release him by any means other than that reply, then talk to him | - | The rejoin reply is still there. It is deliberately ungated so he is recoverable from any state |
+| FD5 | Rejoin without meeting Speech 20 or Barter 20 | - | Allowed. The recruit check is not re-applied -- he has already been persuaded once |
+| FD6 | Take him through a map transition after rejoining | - | He follows normally, as on the first recruitment |
+
 ## 0.25.2 - the trees that named themselves
 
 Four conversations that crashed the game outright. Each row is "talk to them and the game survives".

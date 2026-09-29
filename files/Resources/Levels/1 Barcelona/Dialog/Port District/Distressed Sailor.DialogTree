@@ -774,6 +774,47 @@ Is Default Reply=1
 Node ID=100 companion banter
 Text=Where you go, I follow.
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Wait here, Fernand. I will come back for you.
+Go to node ID=101 fernand waits
+Custom Action=CReleaseCompanionAction
+{
+Companion To Release=Distressed Sailor
+}
+
+Requirement=!None
+Reply Text=Walk with me again, Fernand. The road is not done with us.
+Go to node ID=102 fernand rejoins
+Custom Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=Distressed Sailor
+}
+
+Requirement=!None
+Reply Text=Nothing. Carry on.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=101 fernand waits
+Text=Then I will hold this spot until you return. The Armada can spare me a while longer - and I would rather answer to my captain than to my brother.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=102 fernand rejoins
+Text=Aye. Where you go, I follow - the debt is not yet paid.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=110 dead
 Text=<Grief stricken>  No!  My brother is dead! How can this be? How can I ever face my father again?
