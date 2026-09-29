@@ -1529,7 +1529,7 @@ checks that presetting an engine-owned attribute did not break the creature.
 |---|---|---|---|
 | BS1 | Walk into `Sewers/01 Sewer Main Entrance` and just **look** at a thief before fighting | - | He appears normally, walks at normal speed, is visible and targetable. **If thieves are invisible, creeping, or missing, stop and revert** -- that means `Sneak Enabled` reached the engine's sneak state after all |
 | BS2 | Fight a `Sewer Theif4 Sword` head-on, facing him | - | No backstab line in the log. The facing condition needs at least 90 degrees of difference |
-| BS3 | Engage one thief, let a **second** close on you from behind | - | Combat log: *"... sneaks up on ... and hits for ... (25 percent backstab bonus)"* with the **thief** as the attacker. This is the whole point of the release |
+| BS3 | Engage one thief, let a **second** close on you from behind, then **save** | - | `python tools/savecheck.py events latest --backstab` prints a line with the **thief** as attacker: *"... sneaks up on ... and hits for ... (25 percent backstab bonus)"*. This is the whole point of the release. The log is a rolling 300 events, so save soon after the fight |
 | BS4 | Same in `02 Thieves Congregation`, where 51 thieves spawn | - | Same, and more often -- crowds make flanking happen by itself |
 | BS5 | Note the bonus percentage in the log across tiers | - | 25 for base, 35 for Tough, 50 for Super |
 | BS6 | Fight a `Sewer Theif3 Bow` or `Theif4 Bow` | - | **Never** a backstab line. Archers were deliberately left out |
@@ -1537,6 +1537,13 @@ checks that presetting an engine-owned attribute did not break the creature.
 | BS8 | Compare a `Thug4 Sword` in the Gate District, or `Thug Boss` in act 8 Alamut | - | Unchanged -- still 95 AC, no backstab. Thugs share nothing with the new thief races |
 | BS9 | Kill a thief and check its XP and drops | - | Unchanged. The repoint touched `Race=` only; XP lives on the can |
 | BS10 | `1 Barcelona/Slave Pits` at low level | - | Survivable. If a level-2 character is being killed by 25 percent backstabs here, drop the base tier to 0.15 before anything else |
+
+**Note on BS1.** The enemies do **not** visibly sneak, and that is by design rather than a failure. The
+engine's sneak setter writes two separate things -- the real sneak-state field at `+0x134`, which drives
+movement and rendering, and the attribute the backstab gate reads. The race preset sets only the second,
+so a backstabbing thief walks, looks and fights exactly as before. The **only** observable difference is
+the damage number and the log line.
+
 
 ## 0.24.0 - the register
 

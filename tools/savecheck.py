@@ -280,6 +280,41 @@ def show_save(a):
     return 0
 
 
+COMBAT = re.compile(r"hits? for|kills .* with|misses|Damage\)", re.I)
+
+
+def do_events(a):
+    """The in-game message log, which the save carries as `Event Description=` lines.
+
+    It is a rolling buffer of the last **300** events, so save soon after the thing you want to see.
+    NPC-as-attacker lines are recorded exactly like the player's -- `Vodyanoi hit Antonio Gula for 4
+    (4 Piercing Damage)` -- which is what makes an enemy backstab provable. The backstab templates in
+    the executable read `<attacker> sneaks up on <defender> and hits for ... (N percent backstab
+    bonus)`, so `--backstab` looks for that wording.
+    """
+    p = resolve_save(a.which)
+    ss, _ = load(p)
+    ev = []
+    for t in ss:
+        ev += re.findall(r"Event Description=([^\r\n]*)", t)
+    shown = ev
+    if a.backstab:
+        shown = [e for e in ev if re.search(r"sneaks up on|backstab", e, re.I)]
+    elif a.combat:
+        shown = [e for e in ev if COMBAT.search(e)]
+    if a.grep:
+        rx = re.compile(a.grep, re.I)
+        shown = [e for e in shown if rx.search(e)]
+    print("%s -- %d events in the log (capped at 300), %d shown" % (p.name, len(ev), len(shown)))
+    if a.backstab and not shown:
+        print("\nno backstab line. That means the bonus did not fire, not that it is broken --")
+        print("the attacker must be behind the defender by at least 90 degrees, and enemies turn to")
+        print("face their target, so it needs a second thief closing while you fight the first.")
+    for e in shown[-a.limit:]:
+        print("   " + e[:150])
+    return 0
+
+
 def do_dump(a):
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -361,6 +396,14 @@ def main(argv=None):
     s = sub.add_parser("save", help="a save: map, live player state, streams, layers")
     s.add_argument("which", nargs="?", default="latest")
     s.set_defaults(fn=show_save)
+
+    e = sub.add_parser("events", help="the in-game message log the save carries (last 300)")
+    e.add_argument("which", nargs="?", default="latest")
+    e.add_argument("--combat", action="store_true", help="only hits, kills and misses")
+    e.add_argument("--backstab", action="store_true", help="only backstab lines")
+    e.add_argument("--grep", help="further filter by pattern")
+    e.add_argument("--limit", type=int, default=40)
+    e.set_defaults(fn=do_events)
 
     d = sub.add_parser("dump", help="write the decompressed text out for grepping")
     d.add_argument("which", nargs="?", default="latest")
