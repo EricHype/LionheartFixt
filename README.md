@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.25.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.1).
+-- currently [0.25.2](https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.2).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -83,6 +83,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 
 | **0.25.0** What They Were Built To Do | Act 7, act 4's Plateau, Barcelona and the sewers | The first release aimed at how enemies fight, and every piece of it is a creature using an ability it already had. `Minimum Attack Distance` is the entire archetype system -- 391 of 478 cans walk up and swing -- and the slot deciding what a creature *does* on each attack is empty in 400 of them. The Priestess turns out to be the Priest with one field missing, a one-place diff between the two cans, while her race presets up to four offensive spells at 95 she had never cast; all three tiers now cycle exactly what their own race knows, and twenty-nine of them stand in the three rooms of the Druid Master's approach. The Bonecaller raises the dead by the idiom two shipped ghouls already use, on a map that carried both parts. And the thieves backstab: the gate was traced in the executable and is four conditions on the attacker with no player test in it, so the perk was player-only by data, not by code -- and vanilla's eighteen unreferenced thief races, a name-for-name match with the eighteen thief cans, gave the twelve melee ones somewhere to carry it without touching the thugs who share their races in four acts |
 | **0.25.1** | - | Repair only, and urgent: **0.19.0 through 0.25.0 could not reach the main menu.** Grace O'Malley's race preset a skill named `Skills/Fighting/Melee`, which has never existed -- the real one is `OneHandedMelee` -- and race skill presets resolve at load, so it was fatal on every launch. The gate had two gaps that lined up exactly: race files were not scanned, and there was no reference kind for `Skill=` even if they had been. Both closed; a sweep of 376 references found exactly the one defect |
+| **0.25.2** | - | Repair only, and fatal: a dialogue tree may not name its own file, and eleven sites across four characters did -- the loader recurses and the game dies, so Captain Isabella, Grace, Brambles, Grumdjum and the Alamut knight could not be spoken to at all. Vanilla never does it; all four of its in-tree references name a different file. Each offending action moves verbatim into a `CCannedObject` fired by `CUseCannedActionAction`, the indirection the engine's own error message asks for and which the shipped game uses 107 times, with nothing around it changed and no map edited. Gate 0 now rejects a tree that names itself |
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
 cut), the Mountain Pass's sealed door (no map behind it), and the Act 8 goblin companion
@@ -90,7 +91,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.25.1 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
+**0.1.0 through 0.25.2 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's

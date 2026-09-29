@@ -138,12 +138,9 @@ Triggered By Companions=0
 Triggered By Name=
 Interaction Description=
 Interaction Type=Interaction Specifiers/GetCloseThenTalk
-Action=CDisplayDialogTreeAction
+Action=CUseCannedActionAction
 {
-Dialog Tree File=Levels/8 Alamut/Dialog/alamutknightsaladin
-Node ID=666 Rejoin
-Speaker=$trigger
-Player Being Spoken To=$Instigator
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Alamut knight rejoin
 }
 X Radius=150
 Attacker Range Modifier=0

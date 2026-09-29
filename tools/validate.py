@@ -500,7 +500,33 @@ for q in F.rglob("*.Quest.txt"):
             fails.append(q.name + ": state " + repr(s)
                          + " is never activated -- the quest can be offered but never starts")
 
+def check_self_reference(fails):
+    """A DialogTree naming its own file is FATAL the moment the tree loads -- the engine reports
+    "Got stuck in an infinite loop while trying to load ...", so the NPC cannot be spoken to at all.
+
+    Vanilla never does it: all four of its in-tree `Dialog Tree File=` references name a DIFFERENT
+    tree (cortes -> Shylocke, SewerEntranceBeggar -> Find Enrique, SewerEntranceThief -> Find
+    Juanita, Rakeb -> Woodcutter). Referencing another tree is fine; referencing your own is not.
+
+    The fix the engine asks for is indirection: move the action into a `CCannedObject` and fire it
+    with `CUseCannedActionAction{Canned Object=...}`, as 0.25.2 did for eleven sites.
+    """
+    seen = set()
+    for f in sorted(F.rglob("*.[Dd]ialog[Tt]ree")):
+        if not f.is_file() or str(f).lower() in seen:
+            continue
+        seen.add(str(f).lower())
+        rel = str(f.relative_to(F / "Resources")).replace("\\", "/")
+        own = re.sub(r"\.dialogtree$", "", rel, flags=re.I)
+        text = f.read_bytes().decode("latin-1")
+        for m in re.finditer(r"Dialog Tree File=([^\r\n]*)", text):
+            if m.group(1).strip().lower() == own.lower():
+                fails.append(f.name + ": names its own file, which hangs the loader -- route it "
+                                       "through a CCannedObject and CUseCannedActionAction")
+
+
 check_references(fails)
+check_self_reference(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))

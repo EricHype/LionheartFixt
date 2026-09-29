@@ -140,6 +140,64 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.25.2 - the trees that named themselves
+
+A second fatal, found by the playtest that 0.25.1 made possible:
+
+> Got stuck in an infinite loop while trying to load
+> `"Levels/1 Barcelona/Dialog/Port District/Captain Isabella"`. This is usually caused by that file
+> refering to itself. The actions in this file need to be re-scripted to go through a canned object or
+> relay or some other indirect method.
+
+A `.DialogTree` may not name its own file. When it does, the loader recurses and the game dies -- so the
+NPC cannot be spoken to at all.
+
+**Vanilla never does it.** Its four in-tree `Dialog Tree File=` references all name a *different* tree:
+cortes to Shylocke, SewerEntranceBeggar to Find Enrique, SewerEntranceThief to Find Juanita, and Rakeb
+to Woodcutter. Pointing at another tree is ordinary; pointing at your own is the defect. All **eleven**
+offenders were this project's, across four characters:
+
+| tree | sites | what it was doing | shipped in |
+|---|---|---|---|
+| `GoblinGrumdjum` | 6 | rewiring his interaction specifier so the next approach opens at the companion nodes | 0.20.0 |
+| `Brambles` | 3 | three random thank-you balloons | 0.12.0 |
+| `Captain Isabella` | 1 | Grace's "wait here" balloon on being left behind | 0.19.0 |
+| `alamutknightsaladin` | 1 | the knight's rejoin node | 0.20.0 |
+
+### The fix is the one the engine asks for
+
+Each offending `CDisplayDialogTreeAction` or `CDisplayDialogBalloonAction` block is moved **verbatim**
+into a `CCannedObject` and replaced in place by `CUseCannedActionAction{Canned Object=...}`. Nothing
+around it changes -- the `CAddAIAction`, the interaction specifier, the delays and relays all stay as
+they were -- so behaviour is preserved and only the indirection is added. Eleven sites collapse to seven
+canned objects, since Grumdjum's six sites reuse two nodes.
+
+Every piece has precedent in the shipped game. `Common Objects and Scripts/Detect Spellcast.can` is a
+`CCannedObject` holding a `CAddAIAction` that names a dialogue tree, which is exactly the shape being
+built; `CUseCannedActionAction{Canned Object=...}` is how the game fires such an object, **107** times;
+and `$Trigger` and `$Instigator` survive that indirection there, which is what the Grumdjum and Alamut
+blocks depend on. The canned object naming the tree is legal because it is a different file -- the cycle
+is broken by the hop, which is precisely what the error message asks for.
+
+No map edits, and no dialogue nodes moved.
+
+### Gate 0 again
+
+`check_self_reference` is added: for every `.DialogTree` and `.dialogtree` in the mod, any
+`Dialog Tree File=` naming its own path fails the gate. Proved by reintroducing the Captain Isabella
+reference, which exits 1 with the file named, and passing again once restored.
+
+That is the second startup-class defect in two releases that the gate could not see. Both were reference
+integrity, and both are now checked: 0.25.1 added race skill and attribute references, this adds tree
+self-reference.
+
+### Why four characters went out broken
+
+The same reason as 0.25.1. Three of the four shipped in 0.19.0 and 0.20.0, and **the game could not
+reach the main menu from 0.19.0 onward** -- so none of this content had ever been loaded by anyone. The
+crash that made the mod unplayable also hid every defect behind it. This is what the backlog of unplayed
+releases actually costs, and it is why `tools/savecheck.py` was written the same day.
+
 ## Tooling - reading a playtest instead of remembering it
 
 The startup crash made the cost of the finish-then-playtest trade concrete, so this is the first step at

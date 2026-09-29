@@ -1589,14 +1589,9 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayDialogBalloonAction
+Action=CUseCannedActionAction
 {
-Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Captain Isabella
-Node ID=502 grace companion left behind
-Name of Position=$Trigger
-Position Offset=0.000000,-60.000000
-After Action=
-Include In Log=1
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Grace left behind balloon
 }
 }
 }

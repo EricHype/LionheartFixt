@@ -1471,6 +1471,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.25.2 - the trees that named themselves
+
+Four conversations that crashed the game outright. Each row is "talk to them and the game survives".
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SR1 | Port District: board the ship and talk to **Captain Isabella** | anything | The conversation opens. No "infinite loop while trying to load" dialog |
+| SR2 | Take **Grace** as a companion, then dismiss her with *"Wait here. I will come back for you."* | - | She stays put and a balloon appears over her. That balloon is the line that crashed |
+| SR3 | La Calle Perdida: complete a favour for **Brambles** | - | One of three thank-you balloons appears, varying between runs |
+| SR4 | Wilderness: take **Grumdjum** as a companion | - | Conversation survives, and walking up to him again opens the companion nodes, not the first-meeting ones |
+| SR5 | Dismiss Grumdjum, then approach him again and rejoin | - | Both transitions survive; his interaction rewires each time |
+| SR6 | Alamut: dismiss the **Knight of Saladin** companion and rejoin him | - | The rejoin node opens |
+| SR7 | Run `python tools/validate.py` | - | Passes. Reintroducing any self-reference must exit 1 |
+
 ## 0.25.1 - the startup crash
 
 Any save, or none. `SU1` is the whole release.
