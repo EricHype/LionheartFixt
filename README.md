@@ -123,7 +123,7 @@ Mountain, because Act 4 does.
 | [`docs/qa.md`](docs/qa.md) | every case a release has to pass, and which have |
 | [`docs/playtest-guide/`](docs/playtest-guide/) | the same cases as a route to walk, built by `build.py` |
 | [`dist/`](dist/) | release notes and forum posts per version; `README.txt` is what a player reads after unzipping |
-| [`tools/`](tools/) | this repo's own scripts: `validate.py` is the gate every release passes, `lhbuild.py` emits map and dialogue-tree blocks, `md2bbcode.py` converts a forum post, and each has a test beside it |
+| [`tools/`](tools/) | this repo's own scripts: `validate.py` is the gate every release passes, `lhbuild.py` emits map and dialogue-tree blocks, `md2bbcode.py` converts a forum post, `savecheck.py` reads a save so a playtest can be checked rather than remembered, and each has a test beside it |
 | [`LICENSE`](LICENSE) / [`NOTICE`](NOTICE) | MIT, and what the MIT grant does and does not cover |
 
 **The tooling lives separately**, in

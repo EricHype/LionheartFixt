@@ -140,6 +140,51 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## Tooling - reading a playtest instead of remembering it
+
+The startup crash made the cost of the finish-then-playtest trade concrete, so this is the first step at
+shortening the loop: `tools/savecheck.py`, which reads the state the game already writes to disk.
+
+**Saves are not opaque.** The modding notes long described a save's swapped layers as raw binary. They
+are zlib. So is the character file. Decompressed, both are the same `TypeName { Key=Value }` grammar as
+every resource file -- one quicksave holds a 778 KB `CLayerSaveData` and a 2.8 MB `CLayerHolder`, and a
+late-game save holds **63 streams**, one per level visited.
+
+Four things had to be got right, each of which was got wrong first:
+
+| trap | what happens if you miss it |
+|---|---|
+| only some streams sit behind `#### BEGIN TEMPORARY FILE ####` | scanning for the marker finds the levels you have **left** and misses the live one, which is the only stream holding the player |
+| a stale copy of the player survives in swapped-out layers | you read the player as they were several maps ago |
+| `Karma` appears **twice** in the player's window | the `Temporary Modifiers` copy read -46 where the real karma was 25 |
+| `Character Level` read from the whole stream | you get the first NPC serialised -- Signor Leo, level 4 |
+
+The player is anchored on `Uber Perks`, which no NPC carries, with candidates scored so the live
+`CLayerHolder` wins over stale copies. Two anchors that look better and are not: the nearest
+`User Assigned Name=` above the ranks can be 17 KB away and belong to a Goblin Archer, and
+`Name=Player1` occurs up to five times per stream as a script target.
+
+**What it can answer.** Name, level, experience, karma, the five faction ranks, selected perks, and the
+35 `Game Scripting Variables` -- which include all seven this project added. That is most of what the
+`docs/qa.md` rows actually ask.
+
+**What it cannot, and says so.** The permanent-modifier array stores only values **changed from
+default**, so a character who has joined no order has no `Uber Perks` line and therefore no anchor --
+**38 of the 60 saves on this machine are in that state.** There the tool reports that all five ranks are
+0, which is the true answer, rather than guessing at the rest. Separately,
+`Characters/Last Character.RPG` is written at character creation, not on every save: in testing its
+mtime trailed the quicksave by sixteen minutes and it read level 1 where the save read level 2. It is
+the starting state, and the tool labels it as such.
+
+The workflow it exists for is `snapshot` then `diff`: park a copy of a save, play the scene, and ask
+what moved. Against two real saves that prints `rank/Goblin Rank 0/absent -> 1`,
+`perk/Eloquence -> yes`, `Experience Points 250 -> 1350`.
+
+`tools/test_savecheck.py` runs the reader over every save on the machine -- 60 of them -- asserting that
+each stream inflates to the brace grammar, that the stream count is never below the marker count, that
+karma never comes from the temporary array, and that the level comes from the player's own window. It
+skips cleanly where the game is not installed. It is what caught the Goblin Archer anchor.
+
 ## 0.25.1 - the startup crash
 
 **v0.19.0 through v0.25.0 could not reach the main menu.** Seven published releases. The game reported it
