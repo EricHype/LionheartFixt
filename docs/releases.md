@@ -191,6 +191,41 @@ That is the second startup-class defect in two releases that the gate could not 
 integrity, and both are now checked: 0.25.1 added race skill and attribute references, this adds tree
 self-reference.
 
+### The sweep afterwards: nothing more, and two gate gaps
+
+Self-reference was the reported defect, so the rest of the dialogue were swept for the same class.
+**Nothing new was found**, and the negative results are worth recording because each was a plausible
+place for another fatal:
+
+| swept | result |
+|---|---|
+| exact `Node ID=` references from trees and canned objects | **clean** -- including the seven canned objects added an hour earlier |
+| `Dialog Tree File=` naming a tree that does not exist | none |
+| `Requirement=` not preceded by its structural blank line | none |
+| reference **loops of any length**, over all 367 vanilla and Fixt trees | none; only five trees reference another tree at all |
+| whitespace inside a node id | 38, and **all 38 are vanilla's own**, shipped working since 2003 -- zero new |
+| `Go to node ID=` differing from its node only by case | 135, and a non-issue: the engine folds case on node lookup, which is why the dangling-target check has always folded it too |
+
+The last two rows are the reason the sweep compared against the shipped copy of every file rather than
+reporting raw counts. On the raw count this looked like 181 defects; measured against vanilla it is
+none. That is the same trap a case-sensitive sweep fell into once before, when it invented four
+Toulouse defects.
+
+**Two gate gaps did turn up, and both are closed.**
+
+`check_map_node_refs` -- which resolves an exact `Node ID=` against the target tree and is described in
+its own message as catching a CRASH -- ran on `.zax` **only**. A tree or a canned object carrying the
+same reference was unchecked, which is precisely the shape that had just shipped broken. It now runs on
+`.dialogtree` and `.can` as well.
+
+`check_self_reference` only looked for a tree naming itself, but the engine detects a *loop*: `A -> B
+-> A` hangs identically. It is now a cycle search of any length over the combined vanilla-and-Fixt
+graph, since a Fixt tree can point into a shipped tree that points back.
+
+Both were proved by construction rather than assumed: typing a node id wrong inside a canned object
+fails the gate naming the file and the node, and wiring Grumdjum to Rakeb and Rakeb back to Grumdjum
+fails it with `goblingrumdjum -> rakeb -> goblingrumdjum`.
+
 ### Why four characters went out broken
 
 The same reason as 0.25.1. Three of the four shipped in 0.19.0 and 0.20.0, and **the game could not

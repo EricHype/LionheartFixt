@@ -421,8 +421,13 @@ for p in files:
         fails.append(p.name + ": not latin-1 clean")
     if p.suffix.lower() == ".dialogtree":
         check_dialogtree(p, raw)
+        # an exact node reference is just as fatal written in a tree as written in a map, and until
+        # 0.25.2 this ran on .zax alone -- which is the shape that shipped broken
+        check_map_node_refs(p, raw)
     else:
         check_resource(p, raw)
+        if p.suffix.lower() == ".can":
+            check_map_node_refs(p, raw)      # canned objects carry them too, as 0.25.2's seven do
         if p.suffix.lower() == ".zax":
             check_map_node_refs(p, raw)
             check_models(p, raw)
@@ -510,19 +515,59 @@ def check_self_reference(fails):
 
     The fix the engine asks for is indirection: move the action into a `CCannedObject` and fire it
     with `CUseCannedActionAction{Canned Object=...}`, as 0.25.2 did for eleven sites.
+
+    The engine detects a loop, not merely a self-reference, so `A -> B -> A` would hang the same way.
+    The graph is therefore built over vanilla's trees as well as the mod's, since a Fixt tree can point
+    into a shipped one that points back. As of 0.25.2 there are no cycles of any length among the 367
+    trees, and only five trees reference another tree at all.
     """
-    seen = set()
+    seen, text_of = set(), {}
+    for n in zf.namelist():
+        if n.lower().endswith(".dialogtree"):
+            text_of[n[len("Resources/"):-len(".DialogTree")].lower()] = zf.read(n).decode("latin-1")
+    names = {}
     for f in sorted(F.rglob("*.[Dd]ialog[Tt]ree")):
         if not f.is_file() or str(f).lower() in seen:
             continue
         seen.add(str(f).lower())
         rel = str(f.relative_to(F / "Resources")).replace("\\", "/")
-        own = re.sub(r"\.dialogtree$", "", rel, flags=re.I)
-        text = f.read_bytes().decode("latin-1")
-        for m in re.finditer(r"Dialog Tree File=([^\r\n]*)", text):
-            if m.group(1).strip().lower() == own.lower():
-                fails.append(f.name + ": names its own file, which hangs the loader -- route it "
+        key = re.sub(r"\.dialogtree$", "", rel, flags=re.I).lower()
+        text_of[key] = f.read_bytes().decode("latin-1")     # the mod wins the load order
+        names[key] = f.name
+
+    edges = {}
+    for key, text in text_of.items():
+        edges[key] = {m.group(1).strip().lower()
+                      for m in re.finditer(r"Dialog Tree File=([^\r\n]*)", text)}
+
+    state, reported = {}, set()
+
+    def walk(n, stack):
+        state[n] = 1
+        for m in edges.get(n, ()):
+            if m not in edges:
+                continue
+            if state.get(m) == 1:
+                cyc = stack[stack.index(m):] + [m]
+                sig = tuple(sorted(set(cyc)))
+                if sig in reported:
+                    continue
+                reported.add(sig)
+                who = names.get(cyc[0], cyc[0].split("/")[-1])
+                if len(set(cyc)) == 1:
+                    fails.append(who + ": names its own file, which hangs the loader -- route it "
                                        "through a CCannedObject and CUseCannedActionAction")
+                else:
+                    fails.append(who + ": dialogue trees form a reference loop, which hangs the "
+                                       "loader -- " + " -> ".join(x.split("/")[-1] for x in cyc))
+            elif state.get(m, 0) == 0:
+                walk(m, stack + [m])
+        state[n] = 2
+
+    sys.setrecursionlimit(10000)
+    for k in list(edges):
+        if state.get(k, 0) == 0:
+            walk(k, [k])
 
 
 check_references(fails)
