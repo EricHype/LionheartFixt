@@ -140,6 +140,51 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## The companion audit, 2026-09-29
+
+After Fernand, every companion was checked for the same two failures: a rejoin that cannot be reached
+after dismissal, and a dismiss/rejoin pair that does not know which state it is in.
+
+Ten trees carry `CSetCompanionAction`. Five of them are **pure vanilla, untouched by this project** --
+Joan of Arc, Sir Roger, Diego, Inquisitor Darsh and the Trapped Conquistador -- and all five join with
+no release at all. That is vanilla's design for story companions who leave by script, not a defect to
+repair here.
+
+Of the five this project built or extended:
+
+| companion | verdict |
+|---|---|
+| **Fernand Desoto** | fixed in 0.25.3 and gated in 0.25.4 |
+| **Grace O'Malley** | **correct, and better than Fernand was.** `01 Outside Shrine.zax` holds a part named `Switch Interaction Specifier when Grace becomes a companion` whose `CConditionalAction` tests the `Grace has been left behind` marker: if she is waiting, simply talking to her fires `CSetCompanionAction`, clears the marker and plays a balloon. The no-op "Stay close to me." reply sits on the other branch, where she is already following and it correctly does nothing |
+| **the Goblin Girl** | **correct.** Same design -- a `Goblin Girl is a companion` marker, read map-side by `Goblin Warrens.zax` |
+| **Grumdjum** | **not a defect.** Nodes `300 companion` and `300 kill old man` each offer a join and a release together, but those are his *recruitment* nodes: the release reply is "I work alone. Leave.", a refusal, and the `CReleaseCompanionAction` on it is defensive -- a no-op when he is not following |
+| **the Knight of Saladin** | **the one real finding.** See below |
+
+### The Knight of Saladin, node `3 Return`
+
+His return conversation offers both **"Hold this ground and wait for me."** (release) and **"Let's go."**
+(join), neither gated -- and `02 Shifting Dunes.zax` points his specifier at `3 Return` in **two**
+places: the initial map wiring, and the `Knight AI switcher` relay fired when he joins. So that node is
+reached both before he is recruited and while he is following, and one of the two replies is always
+wrong.
+
+It is milder than Fernand's was. His rejoin is not lost: dismissing him swaps his specifier to
+`666 Rejoin` via the canned object 0.25.2 added, and "Yes, please rejoin me." lives there. So this is
+the cosmetic half of the complaint -- being offered the option you have already taken -- not a
+companion who cannot come back.
+
+**Not fixed yet.** The repair is the same scripting-variable pattern 0.25.4 used, and it touches act 8
+content nobody has reached. Worth doing, but as a considered change rather than a fifth same-day patch.
+
+### What the audit method was worth
+
+Two of the four candidates the crude sweep flagged were not defects at all, and one companion that
+looked broken turned out to be the best-designed of them. A count of "ungated companion replies" said
+six trees were at fault; reading what each node actually is said one. The signal that mattered was not
+whether a reply was gated but **whether the node it lives on can be reached in more than one state** --
+Grace and the Goblin Girl gate by map-side condition, Grumdjum gates by position, and only the Knight of
+Saladin gates by nothing.
+
 ## 0.25.4 - Fernand's two replies know which one applies
 
 Reported within minutes of 0.25.3: *"i still get the release companion dialog when i talk to him but
