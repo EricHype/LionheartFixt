@@ -1471,6 +1471,17 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.25.4 - Fernand's replies are gated
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| FG1 | With Fernand **following**, talk to him | - | Only *"Wait here, Fernand"* is offered. **No** rejoin line |
+| FG2 | Dismiss him, then talk again | - | Only *"Walk with me again"* is offered. **No** dismiss line. This is the reported bug |
+| FG3 | Rejoin, then talk again | - | Back to only the dismiss line. The pair alternates cleanly |
+| FG4 | Dismiss him, walk to another district, talk to him there | - | Still only the rejoin line. The state is on the player, not the Port District map |
+| FG5 | On a save dismissed **before** 0.25.4 | - | The dismiss line shows once; choosing it is harmless and switches him to the rejoin line thereafter |
+| FG6 | `python tools/savecheck.py grep "Fernand Is Waiting" --save latest` | - | Reads 1 while he waits, absent or 0 once he rejoins |
+
 ## 0.25.3 - Fernand can be taken back
 
 Port District, after saving Juan. Needs a character who can recruit him (Speech 20 or Barter 20 at the

@@ -776,20 +776,105 @@ Text=Where you go, I follow.
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
 Reply Text=Wait here, Fernand. I will come back for you.
 Go to node ID=101 fernand waits
-Custom Action=CReleaseCompanionAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CReleaseCompanionAction
 {
 Companion To Release=Distressed Sailor
 }
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=fernand waiting
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
 
 Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
 Reply Text=Walk with me again, Fernand. The road is not done with us.
 Go to node ID=102 fernand rejoins
-Custom Action=CSetCompanionAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
 {
 Player=$Instigator
 Companion=Distressed Sailor
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=fernand rejoined
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
 }
 
 Requirement=!None

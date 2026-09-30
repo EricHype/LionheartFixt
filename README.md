@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.25.3](https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.3).
+-- currently [0.25.4](https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.4).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -85,6 +85,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.25.1** | - | Repair only, and urgent: **0.19.0 through 0.25.0 could not reach the main menu.** Grace O'Malley's race preset a skill named `Skills/Fighting/Melee`, which has never existed -- the real one is `OneHandedMelee` -- and race skill presets resolve at load, so it was fatal on every launch. The gate had two gaps that lined up exactly: race files were not scanned, and there was no reference kind for `Skill=` even if they had been. Both closed; a sweep of 376 references found exactly the one defect |
 | **0.25.2** | - | Repair only, and fatal: a dialogue tree may not name its own file, and eleven sites across four characters did -- the loader recurses and the game dies, so Captain Isabella, Grace, Brambles, Grumdjum and the Alamut knight could not be spoken to at all. Vanilla never does it; all four of its in-tree references name a different file. Each offending action moves verbatim into a `CCannedObject` fired by `CUseCannedActionAction`, the indirection the engine's own error message asks for and which the shipped game uses 107 times, with nothing around it changed and no map edited. Gate 0 now rejects a tree that names itself |
 | **0.25.3** | Port District | Repair only, from play: Fernand Desoto could be dismissed but never taken back. Recruiting him swaps his interaction specifier for one that opens a single node with no replies, and nothing restores the old one -- so once released there was no route back to the recruit reply and he was gone for the run. That node now carries dismiss, rejoin and goodbye. Both are ungated on purpose, so he is recoverable however he was released, and the Speech or Barter check he already passed is not charged twice. No map edit |
+| **0.25.4** | Port District | 0.25.3's two replies were ungated, so a dismissed Fernand still offered to be dismissed. A map marker cannot hold that state -- he travels, and a marker is map-local -- so it lives on the player as a new scripting variable and each reply is gated on the state the other leaves. A save dismissed before the fix sees the stale line once, and is correct thereafter |
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
 cut), the Mountain Pass's sealed door (no map behind it), and the Act 8 goblin companion
@@ -92,7 +93,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.25.3 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
+**0.1.0 through 0.25.4 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's
