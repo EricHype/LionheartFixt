@@ -691,12 +691,29 @@ modifier writes. A preset sets the attribute the gate reads and leaves `+0x134` 
 rendering key on the state field, not the attribute. So the thieves should not creep, vanish, or look
 different. That is the single most important thing for a playtest to confirm.
 
-**What is unverified.** Three of the gate's four callers were not read, so which ones pass attack type 1
-or 3 is inferred from the perk text rather than traced. Whether an NPC's facing ever satisfies the pi/2
-condition in practice is unknown -- enemies turn toward their target, so the bonus may only fire when the
-player is already engaged with someone else and a second thief closes from behind, which is exactly the
-emergent behaviour that was wanted, but it may also mean it fires rarely or never. And if the engine ever
-delivers the stop-sneaking message to one of these NPCs, the preset drops to 0 permanently.
+**CONFIRMED IN PLAY, 2026-09-29.** The open question was whether an NPC's facing ever satisfies the
+pi/2 condition, given that enemies turn to face their target -- and whether the feature was therefore
+inert. It is not. From a save taken in the preorder bonus level while surrounded:
+
+    `Thief Swordsman sneaks up on Antonio Gula and hits for 8 (9 Slashing Damage) (25 percent backstab bonus)`
+
+The thief is the attacker, the bonus is the base tier's 25 percent, and the whole chain works: race
+preset, `Sneak Enabled` and `Is Backstab Mode Enabled`, the facing gate, the damage, the log line. In
+that fight **7 melee thief attacks landed and 1 was a backstab** -- about one in seven while surrounded
+by three, which is the facing condition behaving exactly as intended rather than firing constantly or
+never.
+
+That also answers empirically what the decompilation left ambiguous: the gate compares an angle supplied
+by the damage pipeline against the **defender's** facing, and an attacker behind the defender qualifies.
+
+It took a while to see because the message log **wraps** long lines, and the backstab template is much
+longer than an ordinary hit -- on screen it reads as two rows with the recognisable
+"(25 percent backstab bonus)" on the second, among ordinary hits. The first two saves checked had no
+backstab in them at all, which was a true negative and not a filter error.
+
+**Still unverified.** Three of the gate's four callers were not read, so which ones pass attack type 1
+or 3 is inferred from the perk text rather than traced. And if the engine ever delivers the
+stop-sneaking message to one of these NPCs, the preset drops to 0 permanently.
 
 **Two variables moved at once**, which the QA rows separate as far as they can: the repoint raised AC and
 hit points as well as adding backstab. If the sewers play badly, the revert path is one line per can --

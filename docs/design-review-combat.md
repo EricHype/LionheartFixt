@@ -241,7 +241,7 @@ preset a derived attribute exactly as Wizard Tremblethorn's presets its hit poin
   detection -- there is a `Target/Sneak Adjustment` property described as *"the number of skill points
   that will be added to the players sneak skill during the check"* -- and an always-sneaking NPC is a
   state the game was never asked to render.
-- Whether an NPC's facing satisfies condition 4 in practice, given enemies turn to face their target.
+- ~~Whether an NPC's facing satisfies condition 4 in practice~~ -- **answered in play 2026-09-29: yes.** A Thief Swordsman backstabbed for the base tier's 25 percent while the player was surrounded by three, at a rate of 1 in 7 landed melee thief attacks. The gate compares the supplied angle against the *defender's* facing, and an attacker behind the defender qualifies.
 
 ### Acted on: the thieves of Barcelona now carry it
 
