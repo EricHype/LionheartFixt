@@ -1471,6 +1471,19 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.25.7 - Fernand's conversation opens
+
+**Needs a character who has not yet recruited Fernand** -- this is an entity change and the old
+interaction is snapshotted into any save that already triggered it.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| FC1 | Recruit Fernand, then walk up to him | - | A **conversation** opens, not a floating line over his head. This is the whole release |
+| FC2 | In it, choose *"Wait here, Fernand"* | - | He stops following, and `savecheck grep "Fernand Is Waiting"` reads 1 |
+| FC3 | Talk again | - | Only *"Walk with me again"* -- the gating from 0.25.4 finally has a conversation to run in |
+| FC4 | Release him through the game's **party UI** instead, then talk | - | The dismiss line shows once; choosing it is a no-op that sets the variable, and the rejoin appears after |
+| FC5 | On a save that already recruited him before 0.25.7 | - | Still the old balloon. Expected, and the reason this row exists |
+
 ## 0.25.5 - the Knight of Saladin's replies are gated
 
 Act 8, `02 Shifting Dunes`. `KS1` is the state that never worked.

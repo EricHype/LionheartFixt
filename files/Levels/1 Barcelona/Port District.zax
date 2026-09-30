@@ -69108,14 +69108,12 @@ CLayerSaveData
 										Triggered By Name=
 										Interaction Description=
 										Interaction Type=Interaction Specifiers/GetCloseThenTalk
-										Action=CDisplayDialogBalloonAction
+										Action=CDisplayDialogTreeAction
 										{
 											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/Distressed Sailor
 											Node ID=100 companion banter
-											Name of Position=Distressed Sailor
-											Position Offset=0.000000,-80.000000
-											After Action=
-											Include In Log=1
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
 										}
 										X Radius=80
 										Attacker Range Modifier=0
