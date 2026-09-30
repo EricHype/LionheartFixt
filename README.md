@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.25.5](https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.5).
+-- currently [0.25.6](https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.6).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -87,6 +87,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.25.3** | Port District | Repair only, from play: Fernand Desoto could be dismissed but never taken back. Recruiting him swaps his interaction specifier for one that opens a single node with no replies, and nothing restores the old one -- so once released there was no route back to the recruit reply and he was gone for the run. That node now carries dismiss, rejoin and goodbye. Both are ungated on purpose, so he is recoverable however he was released, and the Speech or Barter check he already passed is not charged twice. No map edit |
 | **0.25.4** | Port District | 0.25.3's two replies were ungated, so a dismissed Fernand still offered to be dismissed. A map marker cannot hold that state -- he travels, and a marker is map-local -- so it lives on the player as a new scripting variable and each reply is gated on the state the other leaves. A save dismissed before the fix sees the stale line once, and is correct thereafter |
 | **0.25.5** | Alamut | The one finding of a companion audit that cleared Grace, the Goblin Girl and Grumdjum. The Knight of Saladin's return node offered both dismiss and recruit ungated, and the map points his specifier there from two places, so it is reached before recruitment and while following. It tracks `Saladin Knight Follows` rather than Fernand's is-waiting flag, which could not tell never-recruited from following |
+| **0.25.6** | - | **No game file changes.** A marker for the build the first playtest of the 0.25.x line validated: the enemy backstab confirmed firing at roughly one in seven landed melee thief attacks, and the Fernand and Knight of Saladin repairs in place. Installing it over 0.25.5 gains nothing |
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
 cut), the Mountain Pass's sealed door (no map behind it), and the Act 8 goblin companion
@@ -94,7 +95,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.25.5 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
+**0.1.0 through 0.25.6 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's

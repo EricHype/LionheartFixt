@@ -140,6 +140,27 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.25.6 - the marker for the verified build
+
+**No game file changes.** `git diff v0.25.5..v0.25.6 -- files/` is empty, and the zip differs from
+0.25.5's only in the version string. Installing it over 0.25.5 gains nothing.
+
+It exists so the build the first playtest validated has a number to point at. What that playtest
+established, on 2026-09-29:
+
+- **The enemy backstab of 0.25.0 fires.** `Thief Swordsman sneaks up on Antonio Gula and hits for 8
+  (9 Slashing Damage) (25 percent backstab bonus)`, at roughly **one in seven** landed melee thief
+  attacks while surrounded. The gate compares the supplied angle against the **defender's** facing, and
+  an attacker behind the defender qualifies -- which the decompilation alone could not settle.
+- **The thieves render and move normally**, confirming the reasoning that a race preset writes the
+  attribute the gate reads and leaves the engine's own sneak-state field at `+0x134` untouched.
+- The 0.25.1 startup crash, the 0.25.2 self-referencing trees, and the 0.25.3-0.25.5 companion repairs
+  are all in this build.
+
+Cutting a no-change release is not something to make a habit of. It is justified here because five
+patches landed in a day and the one that matters to a player -- "which of these is the build that was
+actually played?" -- had no answer otherwise.
+
 ## 0.25.5 - the Knight of Saladin knows whether he is with you
 
 The one finding of the companion audit, fixed. His node `3 Return` offered both "Hold this ground and
