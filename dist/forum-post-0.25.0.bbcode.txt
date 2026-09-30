@@ -170,9 +170,17 @@ Three things in particular need a playthrough rather than a gate:
   and the reason a preset is expected to hold is that the setter writes the engine's real sneak-state
   field separately from the attribute, and only the attribute is preset. If thieves turn up invisible or
   creeping, that reasoning was wrong and the repoint should be reverted.
-- [b]Whether an enemy's facing ever satisfies the pi/2 condition.[/b] Enemies turn toward their target, so
-  the bonus may only fire when you are already engaged and a second thief closes from behind -- which is
-  the intended emergent behaviour, but it may equally mean it fires rarely.
+- ~~[b]Whether an enemy's facing ever satisfies the pi/2 condition.[/b]~~ [b]CONFIRMED IN PLAY,
+  29 September.[/b] It does. From a save taken in the preorder bonus level while surrounded by three:
+
+  > Thief Swordsman sneaks up on Antonio Gula and hits for 8 (9 Slashing Damage) (25 percent backstab
+  > bonus)
+
+  The thief is the attacker and the bonus is the base tier's 25 percent, so the whole chain works.
+  [b]7 melee thief attacks landed in that fight and 1 was a backstab[/b] -- about one in seven, which is the
+  facing condition behaving as intended rather than firing constantly or never. It is easy to miss on
+  screen: the message log wraps, and the backstab template is long enough that the recognisable bonus
+  text lands on a second row.
 
 The repoint also raised thief AC and hit points alongside adding backstab, so two variables moved at
 once. The revert path is one [i]Race=[/i] line per can.
