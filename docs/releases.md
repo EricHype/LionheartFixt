@@ -140,6 +140,40 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.25.5 - the Knight of Saladin knows whether he is with you
+
+The one finding of the companion audit, fixed. His node `3 Return` offered both "Hold this ground and
+wait for me." and "Let's go." ungated, and `02 Shifting Dunes.zax` points his specifier there **twice**
+-- from the initial map wiring and from the `Knight AI switcher` relay fired on joining -- so the node
+is reached before recruitment and while following, and one reply was always wrong.
+
+**Fernand's variable would not have worked here.** His node is only reached after joining, so "is
+waiting" splits it cleanly in two. The knight's is reached in *three* states -- never recruited,
+following, waiting -- and "is waiting" cannot tell the first from the second, since both read 0. Gating
+his join on it would have made him unrecruitable. So the variable tracks the other thing:
+**`Saladin Knight Follows`**, 1 while he is with you.
+
+| site | gate | does |
+|---|---|---|
+| `3 Return` "Let's go." | **not** 1 | join, then +1 |
+| `3 Return` "Hold this ground and wait for me." | **is** 1 | release, then -1 |
+| `30 go`, the first recruitment | none | join, then +1 |
+| `666 Rejoin` "Yes, please rejoin me." | none | join, then +1 |
+
+The two gated replies can each only fire from the side that makes them legal, which confines the
+variable to 0 and 1 without needing set-rather-than-accumulate semantics. `Allow Accumulation=0` does
+exist in vanilla, 37 times, but what it means is not established and this did not need to find out.
+
+The other two sites are ungated deliberately. **`30 go` has exactly one reply**, the default, so a gate
+that hid it would leave the node with nothing to click -- and it is unreachable while following anyway,
+since `3 Return` offers no path to it and the specifier moves to `3 Return` the moment he joins.
+`666 Rejoin` is only ever reached at 0, because the release is the only thing that points the specifier
+there.
+
+Existing actions were **wrapped**, not edited: each `Custom Action=X` became
+`CMultipleActionsAction{Action=Array{Item Count=2, Action=X, Action=<bump>}}`. That avoids renumbering
+an `Item Count` inside a live array, a splice this project has got wrong before.
+
 ## The companion audit, 2026-09-29
 
 After Fernand, every companion was checked for the same two failures: a rejoin that cannot be reached

@@ -94,9 +94,26 @@ Reply Text=What is inside Alamut?
 Go to node ID=20 alamut
 
 Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Saladin Knight Follows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
 Reply Text=Hold this ground and wait for me.
 Go to node ID=
 Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
 {
 Action=Array
 {
@@ -163,12 +180,56 @@ Forget Trigger=0
 }
 }
 }
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=saladin knight waits
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Saladin Knight Follows
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
 Icon=Exit Icon
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Saladin Knight Follows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
 Reply Text=Let's go.
 Go to node ID=
 Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
 {
 Action=Array
 {
@@ -570,6 +631,30 @@ Companion=$Trigger
 }
 }
 }
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=saladin knight follows
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Saladin Knight Follows
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
 Icon=Exit Icon
 ------------------------------------------------------------
 Node ID=10 old man
@@ -603,418 +688,8 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
-Action=CTriggerRelayAction
-{
-Relay Name=Knight AI switcher
-}
-Action=CRemoveAIAction
-{
-Target Name=$Trigger
-AI=CSkeletonAI
-Delay Between Removes=0
-}
-Action=CAddAIAction
-{
-Target Name=$Trigger
-AI=CSkeletonAI
-{
-Marked For Deletion=0
-Publisher=
-Patrol AI=CGaurdNearMovingPosAI
-{
-Marked For Deletion=0
-Publisher=
-Average Seconds To Move=0
-Patrol Area AI=CPatrolAreaAI
-{
-Marked For Deletion=0
-Publisher=
-Radius=80
-TimeOfLastChangeDirectionDueToCollide=0
-Moving=CEntityBehaviorMoveToPos
-{
-Old Stationary Flag=0
-Angle To Turn To=0
-Facing Backwards=0
-Idle Behavior=CEntityBehaviorIdle
-{
-Num Seconds=1
-Seconds Have Transitioned=0
-Override Fidget Options=
-Current Fidget Data=
-Time Until Next Fidget=0
-Fidgeting=0
-}
-Play Ratio=1
-Smooth Turning=0
-Do Path Finding=1
-Finished=1
-Failed Last Path=0
-Idle Begin Called=0
-Move To Rate=0
-CurTargetNormalX=0
-CurTargetNormalY=0
-Path Finding Params=CWayPointPath
-{
-Start Point=0,0
-End Point=0,0
-Length=0
-Max Dist To Travel=0
-Num Failed Paths=0
-Max Failed Paths=0
-Pos To Move Index=0
-Dist So Far=0
-Path=
-}
-Pos Moving From=0.000000,0.000000
-Final Dest=0.000000,0.000000
-Dest Radius=0
-Cur Dest Move To=0.000000,0.000000
-Last Neg Dist=0
-NumTimesLostGound=0
-Sequence=
-Planed Path For=
-}
-Retry New Point=0
-}
-Idle Behavior=CEntityBehaviorIdle
-{
-Num Seconds=1
-Seconds Have Transitioned=0
-Override Fidget Options=
-Current Fidget Data=
-Time Until Next Fidget=0
-Fidgeting=0
-}
-}
-Patrol Start Action=
-Patrol End Action=
-Respond to calls for reinforcements=0
-Target shooter if hit=1
-Never Unacquire=0
-Time Since Acquiring Shooter=999
-Sneak Adjustment=0
-Target Type=CEntityBehaviorStateSetClosestTarget
-{
-Max Distance=550
-Vision Cone=360
-Name To Target=
-Must Be Collideable=1
-Must Have HPs=1
-Valid Targets=Enemy
-}
-Has Seen Target=0
-Max dist from home=1200
-Pursue AI=CChasePursueAI
-{
-Marked For Deletion=0
-Publisher=
-AFloat=CEntityBehaviorMoveToPos
-{
-Old Stationary Flag=0
-Angle To Turn To=0
-Facing Backwards=0
-Idle Behavior=CEntityBehaviorIdle
-{
-Num Seconds=1
-Seconds Have Transitioned=0
-Override Fidget Options=
-Current Fidget Data=
-Time Until Next Fidget=0
-Fidgeting=0
-}
-Play Ratio=1
-Smooth Turning=0
-Do Path Finding=1
-Finished=1
-Failed Last Path=0
-Idle Begin Called=0
-Move To Rate=0
-CurTargetNormalX=0
-CurTargetNormalY=0
-Path Finding Params=CWayPointPath
-{
-Start Point=0,0
-End Point=0,0
-Length=0
-Max Dist To Travel=0
-Num Failed Paths=0
-Max Failed Paths=0
-Pos To Move Index=0
-Dist So Far=0
-Path=
-}
-Pos Moving From=0.000000,0.000000
-Final Dest=0.000000,0.000000
-Dest Radius=0
-Cur Dest Move To=0.000000,0.000000
-Last Neg Dist=0
-NumTimesLostGound=0
-Sequence=
-Planed Path For=
-}
-Play Ratio=0
-Next Try To Move=0
-Max Radius From Final Pos To Get Within=0
-Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
-}
-Pursue Start Action=
-Pursue End Action=
-Force Pursue Shooter=2
-Max distance from home=1000
-Investigate End Action=
-Investigate Start Action=
-Investigate AI=CChaseInvestigateAI
-{
-Marked For Deletion=0
-Publisher=
-AFloat=CEntityBehaviorMoveToPos
-{
-Old Stationary Flag=0
-Angle To Turn To=0
-Facing Backwards=0
-Idle Behavior=CEntityBehaviorIdle
-{
-Num Seconds=1
-Seconds Have Transitioned=0
-Override Fidget Options=
-Current Fidget Data=
-Time Until Next Fidget=0
-Fidgeting=0
-}
-Play Ratio=1
-Smooth Turning=0
-Do Path Finding=1
-Finished=1
-Failed Last Path=0
-Idle Begin Called=0
-Move To Rate=0
-CurTargetNormalX=0
-CurTargetNormalY=0
-Path Finding Params=CWayPointPath
-{
-Start Point=0,0
-End Point=0,0
-Length=0
-Max Dist To Travel=0
-Num Failed Paths=0
-Max Failed Paths=0
-Pos To Move Index=0
-Dist So Far=0
-Path=
-}
-Pos Moving From=0.000000,0.000000
-Final Dest=0.000000,0.000000
-Dest Radius=0
-Cur Dest Move To=0.000000,0.000000
-Last Neg Dist=0
-NumTimesLostGound=0
-Sequence=
-Planed Path For=
-}
-Turn Behavior=CEntityBehaviorTurnToAngle
-{
-Old Stationary Flag=0
-Angle To Turn To=0
-Facing Backwards=0
-}
-Play Ratio=0
-Next Try To Move=0
-Time To Investigate=5
-Count To Investigate=0
-Radius to Investigate Point=0
-Run To Investigate=1
-State=Chasing
-Investigate AI=CScanInvestigateAI
-{
-Marked For Deletion=0
-Publisher=
-AI=CScanAreaAI
-{
-Marked For Deletion=0
-Publisher=
-Play Ratio=0
-Next Try To Move=0
-State=Scanning
-Go Home Range=300
-Move To Behavior=CEntityBehaviorMoveToPos
-{
-Old Stationary Flag=0
-Angle To Turn To=0
-Facing Backwards=0
-Idle Behavior=CEntityBehaviorIdle
-{
-Num Seconds=1
-Seconds Have Transitioned=0
-Override Fidget Options=
-Current Fidget Data=
-Time Until Next Fidget=0
-Fidgeting=0
-}
-Play Ratio=1
-Smooth Turning=0
-Do Path Finding=1
-Finished=1
-Failed Last Path=0
-Idle Begin Called=0
-Move To Rate=0
-CurTargetNormalX=0
-CurTargetNormalY=0
-Path Finding Params=CWayPointPath
-{
-Start Point=0,0
-End Point=0,0
-Length=0
-Max Dist To Travel=0
-Num Failed Paths=0
-Max Failed Paths=0
-Pos To Move Index=0
-Dist So Far=0
-Path=
-}
-Pos Moving From=0.000000,0.000000
-Final Dest=0.000000,0.000000
-Dest Radius=0
-Cur Dest Move To=0.000000,0.000000
-Last Neg Dist=0
-NumTimesLostGound=0
-Sequence=
-Planed Path For=
-}
-Starting Angle=-45
-Ending Angle=45
-Turning Speed=10
-Time Between Turning=0
-Start Out Waiting=0
-Start Counterclockwise=0
-Turning Flag=0
-Turn Sequence Name=Idle
-End Turn Action=
-Execute Each Turn=0
-Reset Each Begin=1
-Current Time To Wait=0
-Current Start Angle=0
-Current End Angle=0
-Waiting=1
-Starting Facing Angle=-999
-Complete Turn Time=0
-Current Turn Time=0
-Idle Behavior=CEntityBehaviorIdle
-{
-Num Seconds=1
-Seconds Have Transitioned=0
-Override Fidget Options=
-Current Fidget Data=
-Time Until Next Fidget=0
-Fidgeting=0
-}
-}
-}
-}
-Max Dist=70
-Attack AI=CNormalAttackAI
-{
-Marked For Deletion=0
-Publisher=
-Use Primary Shoot Behavior=1
-Shoot Behavior=CShootEntityBehavior
-{
-Play Sequence=
-Play Reload Sequence=
-}
-Shoot Completed=
-Turn Behavior=CPointWeaponAtTargetEntityBehavior
-{
-}
-MoveBehavior=CEntityBehaviorMoveToPos
-{
-Old Stationary Flag=0
-Angle To Turn To=0
-Facing Backwards=0
-Idle Behavior=CEntityBehaviorIdle
-{
-Num Seconds=1
-Seconds Have Transitioned=0
-Override Fidget Options=
-Current Fidget Data=
-Time Until Next Fidget=0
-Fidgeting=0
-}
-Play Ratio=1
-Smooth Turning=0
-Do Path Finding=1
-Finished=1
-Failed Last Path=0
-Idle Begin Called=0
-Move To Rate=0
-CurTargetNormalX=0
-CurTargetNormalY=0
-Path Finding Params=CWayPointPath
-{
-Start Point=0,0
-End Point=0,0
-Length=0
-Max Dist To Travel=0
-Num Failed Paths=0
-Max Failed Paths=0
-Pos To Move Index=0
-Dist So Far=0
-Path=
-}
-Pos Moving From=0.000000,0.000000
-Final Dest=0.000000,0.000000
-Dest Radius=0
-Cur Dest Move To=0.000000,0.000000
-Last Neg Dist=0
-NumTimesLostGound=0
-Sequence=
-Planed Path For=
-}
-Minimum Attack Distance=100
-Move Buffer Zone=50
-Waiting For Threshold=0
-Moving State=1
-Firing Complete=1
-Firing In Progress=0
-Waiting To Shoot=0
-Time To Next State Change=0
-Time To Next MoveRevision=0
-Began Shooting From=0.000000,0.000000
-}
-Attack Start Action=
-Attack End Action=
-Check Range When Firing=0
-Ignore line of sight if in range=0
-Retreat when=0
-Retreat Start Action=
-Has Started Retreat=0
-State=Any
-Allowed To Roam Anywhere=0
-Transition=Array
-{
-Array Count=0
-}
-}
-Delay Between Adds=0
-}
-Action=CSetCompanionAction
-{
-Player=$Instigator
-Companion=$Trigger
-}
-}
-}
-Is Default Reply=1
-------------------------------------------------------------
-Node ID=666 Rejoin
-Text=Do you need my help again?
-Should Have Voiceover=0
-
-Requirement=!None
-Reply Text=Yes, please rejoin me.
-Go to node ID=
-Custom Action=CMultipleActionsAction
+Item Count=2
+Action=CMultipleActionsAction
 {
 Action=Array
 {
@@ -1417,6 +1092,474 @@ Action=CSetCompanionAction
 {
 Player=$Instigator
 Companion=$Trigger
+}
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=saladin knight follows
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Saladin Knight Follows
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=666 Rejoin
+Text=Do you need my help again?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, please rejoin me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Knight AI switcher
+}
+Action=CRemoveAIAction
+{
+Target Name=$Trigger
+AI=CSkeletonAI
+Delay Between Removes=0
+}
+Action=CAddAIAction
+{
+Target Name=$Trigger
+AI=CSkeletonAI
+{
+Marked For Deletion=0
+Publisher=
+Patrol AI=CGaurdNearMovingPosAI
+{
+Marked For Deletion=0
+Publisher=
+Average Seconds To Move=0
+Patrol Area AI=CPatrolAreaAI
+{
+Marked For Deletion=0
+Publisher=
+Radius=80
+TimeOfLastChangeDirectionDueToCollide=0
+Moving=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Retry New Point=0
+}
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+}
+Patrol Start Action=
+Patrol End Action=
+Respond to calls for reinforcements=0
+Target shooter if hit=1
+Never Unacquire=0
+Time Since Acquiring Shooter=999
+Sneak Adjustment=0
+Target Type=CEntityBehaviorStateSetClosestTarget
+{
+Max Distance=550
+Vision Cone=360
+Name To Target=
+Must Be Collideable=1
+Must Have HPs=1
+Valid Targets=Enemy
+}
+Has Seen Target=0
+Max dist from home=1200
+Pursue AI=CChasePursueAI
+{
+Marked For Deletion=0
+Publisher=
+AFloat=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Play Ratio=0
+Next Try To Move=0
+Max Radius From Final Pos To Get Within=0
+Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+}
+Pursue Start Action=
+Pursue End Action=
+Force Pursue Shooter=2
+Max distance from home=1000
+Investigate End Action=
+Investigate Start Action=
+Investigate AI=CChaseInvestigateAI
+{
+Marked For Deletion=0
+Publisher=
+AFloat=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Turn Behavior=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Play Ratio=0
+Next Try To Move=0
+Time To Investigate=5
+Count To Investigate=0
+Radius to Investigate Point=0
+Run To Investigate=1
+State=Chasing
+Investigate AI=CScanInvestigateAI
+{
+Marked For Deletion=0
+Publisher=
+AI=CScanAreaAI
+{
+Marked For Deletion=0
+Publisher=
+Play Ratio=0
+Next Try To Move=0
+State=Scanning
+Go Home Range=300
+Move To Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Starting Angle=-45
+Ending Angle=45
+Turning Speed=10
+Time Between Turning=0
+Start Out Waiting=0
+Start Counterclockwise=0
+Turning Flag=0
+Turn Sequence Name=Idle
+End Turn Action=
+Execute Each Turn=0
+Reset Each Begin=1
+Current Time To Wait=0
+Current Start Angle=0
+Current End Angle=0
+Waiting=1
+Starting Facing Angle=-999
+Complete Turn Time=0
+Current Turn Time=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+}
+}
+}
+Max Dist=70
+Attack AI=CNormalAttackAI
+{
+Marked For Deletion=0
+Publisher=
+Use Primary Shoot Behavior=1
+Shoot Behavior=CShootEntityBehavior
+{
+Play Sequence=
+Play Reload Sequence=
+}
+Shoot Completed=
+Turn Behavior=CPointWeaponAtTargetEntityBehavior
+{
+}
+MoveBehavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Minimum Attack Distance=100
+Move Buffer Zone=50
+Waiting For Threshold=0
+Moving State=1
+Firing Complete=1
+Firing In Progress=0
+Waiting To Shoot=0
+Time To Next State Change=0
+Time To Next MoveRevision=0
+Began Shooting From=0.000000,0.000000
+}
+Attack Start Action=
+Attack End Action=
+Check Range When Firing=0
+Ignore line of sight if in range=0
+Retreat when=0
+Retreat Start Action=
+Has Started Retreat=0
+State=Any
+Allowed To Roam Anywhere=0
+Transition=Array
+{
+Array Count=0
+}
+}
+Delay Between Adds=0
+}
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=$Trigger
+}
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=saladin knight follows
+Modification is permanent=1
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Saladin Knight Follows
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
 }
 }
 }

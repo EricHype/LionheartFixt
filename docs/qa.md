@@ -1471,6 +1471,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.25.5 - the Knight of Saladin's replies are gated
+
+Act 8, `02 Shifting Dunes`. `KS1` is the state that never worked.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| KS1 | Meet him, do **not** recruit, then talk again | - | Only *"Let's go."* is offered. **No** "Hold this ground" -- he is not with you to dismiss |
+| KS2 | Recruit him, then talk | - | Only *"Hold this ground and wait for me."*. **No** "Let's go." |
+| KS3 | Dismiss him, then talk | - | *"Do you need my help again?"* with "Yes, please rejoin me." -- the `666 Rejoin` node |
+| KS4 | Rejoin, then talk | - | Back to only the dismiss line |
+| KS5 | Recruit him the first time through `30 go` | - | Works as before; that node still has its default reply |
+| KS6 | Cycle dismiss and rejoin three times, then talk | - | Still exactly one of the two replies, never both and never neither. The variable must not drift |
+| KS7 | `python tools/savecheck.py grep "Saladin Knight Follows" --save latest` | - | 1 while he follows, 0 or absent otherwise |
+
 ## 0.25.4 - Fernand's replies are gated
 
 | # | Step | Say | Expect |
