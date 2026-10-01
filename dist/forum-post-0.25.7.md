@@ -16,8 +16,8 @@ The `fernand joins you` relay in `Port District.zax` adds an interaction specifi
     Node ID=100 companion banter
 
 A **balloon**. It floats "Where you go, I follow." over his head and closes. A balloon has no reply
-list, so the dismiss and rejoin replies added to node 100 were never displayed at all. The release being
-clicked was the game's own party UI, which fires the engine message and touches no script.
+list, so the dismiss and rejoin replies added to node 100 were never displayed at all. Whatever the player
+clicked, it was not a reply of ours.
 
 ## What went wrong in the diagnosis
 
@@ -53,12 +53,21 @@ visit. The reporting save carries the old balloon in both its Port District laye
 travels with him -- confirmed by reading the save. So this repair reaches a character who has not yet
 triggered `fernand joins you`, not one already partway through.
 
-## The party UI is still not hooked
+## A correction: there is no party UI
 
-Releasing him through the game's own companion UI fires the engine message without touching
-`Fernand Is Waiting`, and there is no way to observe that from data. The pair self-heals in one step: the
-dismiss line shows, choosing it releases a companion who is not following -- a no-op -- and sets the
-variable, after which the rejoin appears and the two stay correct.
+An earlier draft of these notes said the player had clicked "the game's own party UI". **There is no
+party UI**, and that was asserted without checking. The game has a stat-bar control --
+`"Companion Follow / Stop Following"`, handled by
+`CXrpgStatBar::Server_HandleCompanionFollowStateChangeMessageFromClient` -- which toggles **following**,
+not membership. It releases nobody, and the attribute it writes, `Companion Follow Enabled`, is one
+global flag for the whole party, so it cannot say whether Fernand specifically is a companion.
+
+It does not print *"A companion has left your party"* either. That string is not in the executable; it is
+a `Text to print=` in map scripts, and the one in `Port District.zax` belongs to the Lost Knight leaving
+after he is saved.
+
+None of that changes this repair, which rests on a verified fact: node `100 companion banter` was opened
+by a `CDisplayDialogBalloonAction`, and a balloon has no reply list.
 
 **Fixt** is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
 

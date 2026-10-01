@@ -1481,7 +1481,7 @@ interaction is snapshotted into any save that already triggered it.
 | FC1 | Recruit Fernand, then walk up to him | - | A **conversation** opens, not a floating line over his head. This is the whole release |
 | FC2 | In it, choose *"Wait here, Fernand"* | - | He stops following, and `savecheck grep "Fernand Is Waiting"` reads 1 |
 | FC3 | Talk again | - | Only *"Walk with me again"* -- the gating from 0.25.4 finally has a conversation to run in |
-| FC4 | Release him through the game's **party UI** instead, then talk | - | The dismiss line shows once; choosing it is a no-op that sets the variable, and the rejoin appears after |
+| FC4 | Use the stat bar's **Companion Follow / Stop Following** toggle instead, then talk | - | That stops him following without releasing him, and does not touch the variable. The dismiss line shows; choosing it sets the variable and the rejoin appears after |
 | FC5 | On a save that already recruited him before 0.25.7 | - | Still the old balloon. Expected, and the reason this row exists |
 
 ## 0.25.5 - the Knight of Saladin's replies are gated

@@ -193,13 +193,35 @@ first visit. The reporting save carries the old balloon in both its Port Distric
 layer that travels with him, confirmed by reading it. So this repair reaches a character who has not yet
 triggered `fernand joins you` -- not one already partway through.
 
-### The party UI is still not hooked
+### The stat-bar follow toggle is not hooked, and cannot be
 
-Releasing him through the game's own companion UI fires the engine message without touching
-`Fernand Is Waiting`, and there is no way to observe that from data. The pair then self-heals in one
-step: the dismiss reply shows, choosing it releases a companion who is not following -- a no-op -- and
-sets the variable, after which the rejoin appears and the two stay correct. Worth knowing rather than
-worth more machinery.
+Stopping a companion following from the stat bar does not touch `Fernand Is Waiting`, and the attribute
+it does write, `Companion Follow Enabled`, is a single global flag for the whole party rather than a
+per-companion one. So it cannot be read as "is Fernand my companion". If it is used, the pair self-heals
+in one step: the dismiss reply shows, choosing it releases a companion who is not following -- a no-op --
+and sets the variable, after which the rejoin appears and the two stay correct.
+
+## What the stat-bar control actually is
+
+0.25.7's notes said the player had clicked "the game's own party UI". **There is no party UI**, and that
+was asserted without checking. What the game has is a stat-bar control -- the executable carries
+`"Companion Follow / Stop Following"`, `"Stop Companion Follow"` and `"Start Companion Follow"`, handled
+by `CXrpgStatBar::Server_HandleCompanionFollowStateChangeMessageFromClient`.
+
+It toggles **following**, not membership. It does not release anybody, and it writes the engine's own
+`Companion Follow Enabled` attribute, whose description is *"Modified by game engine to have a value of
+1 when companions are following and 0 when not"* -- note the plural. It is a single global toggle for
+the whole party, so it cannot answer "is Fernand specifically my companion" and is no substitute for
+`Fernand Is Waiting`.
+
+Nor does it print *"A companion has left your party"*. That string is not in the executable at all; it
+is a `Text to print=` in map scripts, and the one in `Port District.zax` belongs to the **Lost Knight**
+leaving after he is saved, nothing to do with Fernand. The reporting quicksave's event log does not
+contain the line either, so whatever produced it is further back than the 300 events the log keeps.
+
+None of this changes the 0.25.7 repair, which rests on a verified fact: node `100 companion banter` was
+opened by a `CDisplayDialogBalloonAction`, and a balloon has no reply list. What it does change is the
+account of what the player was clicking, which should not have been stated as known.
 
 ## 0.25.6 - the marker for the verified build
 
