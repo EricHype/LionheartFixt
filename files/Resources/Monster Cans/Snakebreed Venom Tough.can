@@ -795,14 +795,120 @@ CCannedObject
 								Character to select skill=$Trigger
 								Skill to select=Skills/Fighting/OneHandedMelee
 							}
-							Action=CDisplayDialogBalloonAction
+							Action=CRandomAction
 							{
-								Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
-								Node ID=11 soft thing
-								Name of Position=$trigger
-								Position Offset=0.000000,-70.000000
-								After Action=
-								Include In Log=0
+								Action=Array
+								{
+									Item Count=12
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=10 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=11 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=12 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=13 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=14 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=15 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=16 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=17 venom
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=18 venom
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=19 venom
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=20 venom
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=21 venom
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+								}
 							}
 						}
 					}

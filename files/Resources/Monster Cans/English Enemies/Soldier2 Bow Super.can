@@ -359,14 +359,129 @@ CCannedObject
 								Character to select skill=$Trigger
 								Skill to select=Skills/Fighting/OneHandedMelee
 							}
-							Action=CDisplayDialogBalloonAction
+							Action=CRandomAction
 							{
-								Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-								Node ID=12 crown
-								Name of Position=$trigger
-								Position Offset=0.000000,-70.000000
-								After Action=
-								Include In Log=0
+								Action=Array
+								{
+									Item Count=13
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=10 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=11 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=12 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=13 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=14 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=15 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=16 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=17 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=18 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=19 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=20 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=21 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=22 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+								}
 							}
 						}
 					}

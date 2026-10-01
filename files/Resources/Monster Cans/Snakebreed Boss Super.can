@@ -795,14 +795,111 @@ CCannedObject
 								Character to select skill=$Trigger
 								Skill to select=Skills/Fighting/OneHandedMelee
 							}
-							Action=CDisplayDialogBalloonAction
+							Action=CRandomAction
 							{
-								Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
-								Node ID=10 rears
-								Name of Position=$trigger
-								Position Offset=0.000000,-70.000000
-								After Action=
-								Include In Log=0
+								Action=Array
+								{
+									Item Count=11
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=10 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=11 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=12 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=13 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=14 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=15 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=16 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=26 boss
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=27 boss
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=28 boss
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Snakebreed Barks
+										Node ID=29 boss
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+								}
 							}
 						}
 					}

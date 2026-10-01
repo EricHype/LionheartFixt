@@ -1471,20 +1471,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## Hover-text barks, one voice per family
+## Hover-text barks, a voice per family and a sub-bank per type
 
-67 cans across three families, 12 distinct lines, hung on the attack slot so a creature barks roughly
-**one attack in four**. Can edits, so each needs a save that has not entered the relevant area.
+67 cans, 71 lines. Each creature draws from its family's shared lines plus its own type's sub-bank, so
+a thief archer and a thief boss say different things and neither says a soldier's line. Roughly one
+attack in four. Can edits, so each needs a save that has not entered the area.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| BK1 | Fight thieves in the sewers or the bonus level | - | Floating text **over the thief's head**, not in the combat log: *"Your purse or your teeth. Pick one."*, *"You picked the wrong alley, amigo."* and two others |
-| BK2 | Fight several thieves at once | - | Different lines from different thieves. Each can carries one of the four, spread across the family |
-| BK3 | Act 7, fight English soldiers | - | A completely different register: *"Hold the line!"*, *"On me! Form up!"*, *"For the Crown, and for England!"* |
-| BK4 | Fight Snakebreed | - | Half-wordless and sibilant: *"Ssssoft thing. Warm thing."* and the stage directions *&lt;It rears back, hissing&gt;* |
-| BK5 | Watch the **frequency** over a long fight | - | Roughly one bark in four attacks. **If it reads as chatter, that is the row that fails** -- the fix is changing one Item Count |
-| BK6 | Check the combat log | - | The barks are **not** in it. `Include In Log=0`, because the log is where narration lives and speech there reads as the narrator |
-| BK7 | Fight `Snakebreed Venom`, and the probe B archer | - | No bark. Both have an attack slot already in use and were deliberately skipped |
+| BK1 | Fight thieves | - | Floating text **over the thief's head**, not in the combat log |
+| BK2 | Fight a thief **boss** and a thief **archer** in the same run | - | Different registers. The boss gives orders -- *"Hold him! He is worth more breathing!"*; the archer talks range -- *"Keep your distance from him!"* |
+| BK3 | Fight the same thief for a long stretch | - | **It varies.** One creature should not repeat one line. This is the fault the first build had |
+| BK4 | Act 7, English soldiers: a Super and a Bow | - | Officer *"Not one step back, do you hear me!"* against archer *"Nock and draw!"* -- and no thief line from either |
+| BK5 | Fight Snakebreed, including a Venom and a Boss | - | Sibilant throughout; Venom talks poison -- *"Feel it ssspreading?"*; stage directions like *&lt;It rears to its full height&gt;* |
+| BK6 | Watch the frequency over a long fight | - | About one bark in four attacks. **If it reads as chatter this is the row that fails** -- the fix is one Item Count |
+| BK7 | Check the combat log | - | Barks are **not** in it. `Include In Log=0` |
+| BK8 | Fight `Snakebreed Summoner`, and both PROBE archers | - | No bark. All three have an attack slot already in use and were deliberately skipped |
 
 ## PROBES - not a release, revert before cutting one
 

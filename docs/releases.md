@@ -142,45 +142,62 @@ before concluding a resource does not exist.
 
 ## Hover-text barks, built 2026-10-01 (unreleased)
 
-Item 3 of the reactive plan, scoped the way it was asked for: **a different voice per family**.
+Item 3 of the reactive plan. **67 cans, 71 lines, three families, and a sub-bank per creature type.**
 
-| family | cans | voice |
-|---|---|---|
-| thieves | 35 | Barcelona street, mercenary -- *"Your purse or your teeth. Pick one."* |
-| English soldiers | 24 | disciplined, orders -- *"Hold the line!"*, *"For the Crown, and for England!"* |
-| Snakebreed | 9 | sibilant, half-wordless -- *"Ssssoft thing. Warm thing."*, `<It rears back, hissing>` |
+| family | shared | sub-banks | cans |
+|---|---|---|---|
+| thieves | 8 | boss 5, archer 5, melee 5 | 34 (boss 6, archer 10, melee 18) |
+| English soldiers | 8 | officer 5, archer 5, melee 5 | 24 (officer 8, archer 4, melee 12) |
+| Snakebreed | 7 | venom 5, summoner 4, boss 4, drone 5 | 9 (venom 3, boss 3, drone 3) |
 
-**The mechanism is shipped, not invented.** 21 monster cans already float a dialogue node over a
-creature's head with `CDisplayDialogBalloonAction`. The three `Sewer Guarddog` cans showing `Guarddog`
-node `10 Growls` are also the precedent for a wordless creature and for a stage direction as the whole
-line, which is what the Snakebreed use.
+So a thief archer draws from 13 lines -- the eight every thief shares plus five only archers say -- and
+a thief boss draws from a different 13. A soldier officer shouts *"Not one step back, do you hear
+me!"*; a soldier archer says *"Nock and draw!"*; neither says the other's line, and no thief says
+either.
 
-**Frequency, and why not the obvious hook.** `Damaged Script Action` is empty on 474 of 478 cans and
-looks like the natural home -- but it fires on every hit, which would be unreadable. The barks instead
-use the 1-in-4 shape that 0.26.0's Assassin Master telegraph already ships: `CRandomAction` over three
-ordinary skill selects and one balloon. No no-op shape was invented, which matters because vanilla
-contains **zero** empty `CMultipleActionsAction`.
+### Two faults in the first attempt, both reported and both real
 
-`Include In Log=0` on every balloon. The log is where the shipped game puts narration -- 222 uses of
-`CPrintCombatTextAction` saying things like *"You discover a treasure buried in the ground"* -- so
-creature speech there would read as the narrator.
+The bank was **four lines per family**, and each can was assigned exactly **one** of them -- so an
+individual thief repeated the same line forever. Four lines across a family is not four lines from a
+thief.
 
-**Four cans deliberately skipped**: the three `Snakebreed Venom`, whose attack slot already carries a
-`CAddTemporaryAIAction`, and probe B's archer, whose slot carries the move-relative test. Probe A's
-archer was skipped too, and for a sharper reason -- the bark would have gone *inside* the
-`CStrafeAttackAI` block the probe installs, so a load failure could no longer be attributed to the
-class rather than the field. A probe is worth nothing if it tests two things.
+Then "every creature draws from the whole bank" was itself the wrong goal. Family separation was
+already guaranteed by giving each family its own tree, so the real gap was *within* a family. The fix
+is the sub-bank: shared lines carry the family's voice, the sub-bank carries the role's.
 
-### A mistake worth recording
+### Shape
 
-The first build read every can from the **vanilla archive** instead of from Fixt's copy, and silently
-discarded the backstab repoints, the Sniper repoints and both probes on the 36 thief cans it touched.
-Caught by checking four known markers immediately after the run, and restored from git.
+    Shoot Completed = CRandomAction          <- 1 attack in 4 barks
+    {
+      select skill, select skill, select skill,
+      CRandomAction { balloon x13 }          <- drawn fresh from shared + this type's sub-bank
+    }
 
+Nested `CRandomAction` is the composite shape the Boss Lich already ships. `Include In Log=0`
+throughout: the log is where the game puts narration, so speech there reads as the narrator.
+
+**Skipped, deliberately:** probe A's archer, whose attack AI *is* an experiment and must stay a single
+variable; probe B's archer, whose slot holds the move-relative test; and the three
+`Snakebreed Summoner` cans, whose slot already carries a `CAddTemporaryAIAction`. The summoner
+sub-bank is written into the tree but currently unused -- it will be wanted if those three are ever
+given barks, and an unused node costs nothing.
+
+### Two mistakes worth recording
+
+**Reading vanilla instead of Fixt.** The first build read every can from the vanilla archive and
+silently discarded the backstab repoints, the Sniper repoints and both probes across 36 thief cans.
 `tools/lhbuild.py` has had the right helper the whole time -- `read()` takes Fixt's file if one exists
-and falls back to vanilla -- and the script simply did not use it. This is the second time this class
-of error has appeared: the first deleted a tracked `Rakeb.dialogtree` during a negative test. **Any
-script that edits a shipped file must read through `read()`, never `zf.read()`.**
+and falls back to vanilla -- and the script simply did not use it. Caught by checking four known
+markers straight after the run, restored from git. **Any script that edits a shipped file must read
+through `read()`, never `zf.read()`.**
+
+**A rebuild is not a reset.** The second and third attempts produced 0 barked cans for two whole
+families, because `git checkout <old> -- <path>` restores tracked files but does **not** delete files
+added since -- so the previous attempt's cans survived with their slots already full, and every one
+was skipped as "already in use". The fix is to enumerate what the old commit tracked and delete
+everything else under the path first. Gate 0 caught the related half of this honestly: it failed on
+`exact node ref '12 wrong alley' into Fixt Thief Barks (no such node)` once the trees were regenerated
+with new node ids, which is precisely the check added after 0.25.2.
 
 ## 0.26.0 - What They Were Built To Do, part two
 
