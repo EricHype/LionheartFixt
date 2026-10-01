@@ -578,12 +578,14 @@ def check_no_probes(fails):
     `files/**`. A display name beginning `PROBE ` marks one, so this fails the gate while any is
     present and the release simply cannot be cut over them.
     """
-    for f in sorted(F.rglob("*.can")):
-        if not f.is_file():
+    for f in sorted(F.rglob("*")):
+        if not f.is_file() or f.suffix.lower() not in (".can", ".dialogtree", ".zax"):
             continue
-        for m in re.finditer(r"Display Name=(PROBE [^\r\n]*)", f.read_bytes().decode("latin-1")):
-            fails.append(f.name + ": carries the deploy-only probe " + repr(m.group(1))
-                         + " -- delete the file and reinstall before cutting a release")
+        text = f.read_bytes().decode("latin-1")
+        for pat in (r"Display Name=(PROBE [^\r\n]*)", r"Text to print=(PROBE [^\r\n]*)"):
+            for m in re.finditer(pat, text):
+                fails.append(f.name + ": carries the deploy-only probe " + repr(m.group(1))
+                             + " -- revert it and reinstall before cutting a release")
 
 
 check_references(fails)
