@@ -156,60 +156,142 @@ without the clone source simply fights normally.
 
 ---
 
-## Where combat AI goes next, planned 2026-09-30
+## The combat AI build plan, 2026-09-30
 
-The backstab working changes what is worth planning, because it proved a route rather than a feature:
-**a race preset can reach engine mechanics that were player-only by data rather than by code.** The
-question that produced it -- *is this gate keyed to the player, or does it just happen that only the
-player has the attribute?* -- generalises, and asking it of the rest of the damage pipeline turns up
-the next tier without inventing anything.
+Five items, measured and ordered. Each says what it touches, what precedent it copies, how it reverts,
+and what would make it wrong. The ordering constraint matters more than any single item: **do not put
+more in front of a playthrough than it can attribute.** The only reason the backstab can be called
+working is that it was the single combat change in play when the tester fought those thieves.
 
-### 1. Sniper, the direct answer to "archers are boring"
+The route all of this rests on was proved by that result -- **a race preset can reach engine mechanics
+that were player-only by data rather than by code** -- and the question that found it generalises: *is
+this gate keyed to the player, or does it just happen that only the player has the attribute?*
 
-There are exactly three perks in the game that set an `Is X Mode Enabled` attribute: **Backstab**,
-**Slayer** and **Sniper**. Backstab is now proven on enemies. The other two are read in
-`FUN_0049b030`, the critical-hit resolver, through **the same generic accessor on the same attacker
-object** -- no player test, and its two callers sit adjacent to two of the backstab gate's in the same
-damage pipeline.
+---
 
-`Is Sniper Mode Enabled` forces a critical result on a ranged attack. **77 monster cans** have a race
-presetting `Ranged` and no melee at all -- the Vodyanoi line, `Assasin Bow`, the thief archers. That is
-the largest untouched archetype in the game and the one the original scoping already singled out as the
-dullest.
+### 1. Sniper on the thief archers -- the trial
 
-It is also the strongest thing on this list, so it wants scoping hard: Super tiers only to begin with,
-one family at a time, the way the thieves were done. Forced criticals on 77 cans at once would not be a
-difficulty change, it would be a different game.
+**What.** `Is Sniper Mode Enabled` forces a critical result on a ranged attack. It is read in
+`FUN_0049b030`, the critical-hit resolver, through the **same generic accessor on the same attacker
+object** as the backstab gate, with no player test, and its two callers sit adjacent to two of the
+backstab gate's in the same damage pipeline. Only three perks in the game set an `Is X Mode Enabled`
+attribute -- Backstab, Slayer, Sniper -- and one of the three is now proven on enemies.
 
-### 2. Slayer is small, and what it exposes is a defect
+**Why the thief archers.** 77 cans across 30 families have a race presetting `Ranged` and no melee, and
+most are the wrong vehicle for a trial: `Soldier2 Bow` and `Soldier4 Bow` are on 34 real maps each,
+`Vodyanoi` on 32. The thief bows are on five, all of them act 1 or the bonus level, which is content the
+tester is in right now and where 100 bow thieves stand in one room.
 
-Only **7** cans have a race presetting `Unarmed` and no weapon skill, so Slayer has almost nowhere to
-go. But reading which 7 is the interesting part: they are `Hired Goon Sword`, `Hired Goon Plate` and
-`Thug3 Mace Elite`, all three tiers -- enemies **carrying weapons** whose race knows only
-`Fighting/Unarmed 10`. `Hired Goon Sword` even drops a sword on death.
+Better still, the scoping problem solves itself the way it did for the backstab. The bow thief cans
+point at the shared `Thug3/4 Bow` races, which thugs also wear -- but **the six `Thief*Bow` races left
+unreferenced by 0.25.0 are still sitting there**, name-matched and evasive:
 
-That is the Priestess defect inverted: there the race knew spells the can never used, here the can
-carries a weapon the race has no skill for. Worth measuring across all 478 cans as a repair pass before
-it is treated as a Slayer opportunity.
+| orphan race | AC | Ranged |
+|---|---|---|
+| `Thief3 Bow` / Tough / Super | 120 / 135 / 155 | 10 / 18 / 29 |
+| `Thief4 Bow` / Tough / Super | 130 / 144 / 163 | 9 / 19 / 30 |
 
-### 3-5. The tiers already scoped, unchanged
+**Build.** Repoint the bow thief cans onto those six races and preset `Is Sniper Mode Enabled=1`.
+Finishes the job 0.25.0 deliberately left half-done and uses the identical pattern.
 
-Telegraphs via `CDelayAction` (24 of 478 attack AIs already use one) remain the cheapest legibility win.
-Giving archers a secondary weapon to switch to -- 53 ranged cans, 17 cans carrying a secondary,
-**overlap zero** -- is still the structural fix for ranged enemies, and pairs naturally with Sniper.
-Phases via `CAIHealthPercentThresholdTrigger` remain last and riskiest: used twice in the entire game,
-both in one map, both only to fire a relay.
+**Scope it to Super first.** Forced criticals are the strongest thing on this list. Two cans before
+twelve.
 
-### The ordering, and why
+**Risk.** Unknown how often a critical lands in practice, and `Ranged 9` on a base-tier thief may mean
+they rarely hit at all, critical or not. Also unverified whether the resolver's ranged branch
+(`local_2a`) is set for a bow or for something narrower.
 
-Sniper first, scoped to one archer family, because it is the proven route applied to the biggest dull
-archetype and it can be reverted by deleting two preset lines. The weapon-skill mismatch sweep second,
-because it is a repair rather than a buff and repairs have been where this project's best findings
-come from. Telegraphs third. Phases last, or never.
+**Revert.** Delete one preset line per race, or point `Race=` back at `Thug*`.
 
-**What not to do:** add more at once than a playthrough can attribute. The 0.25.x line shipped seven
-releases in two days and the only reason the backstab could be called working is that it was the single
-combat change in front of the player at the time.
+**QA.** The combat log names criticals, so `savecheck events --combat` answers it the way it answered
+the backstab.
+
+---
+
+### 2. The weapon-skill mismatch sweep -- a repair, not a buff
+
+**What.** Enemies carrying a weapon their race has no skill for. Measured by matching weapon words in
+can names against the race's preset skills: **5 cans, 4 of them real**.
+
+| can | race presets | carries |
+|---|---|---|
+| `Hired Goon Sword`, Tough, Super | `Unarmed 10` only | a sword, and **drops one on death** |
+| `Thug3 Mace Elite` | `Unarmed` only | a mace |
+| `Simon Bow Fire Test` | `Celestial Smite` | a bow -- test map, ignore |
+
+This is the Priestess defect inverted: there the race knew spells the can never used, here the can
+carries a weapon the race cannot use.
+
+**Also fold in zero-valued presets.** `Vodyanoi` and `Vodyanoi Green` base tiers preset `Ranged 0`,
+which is a skill in name only, and they are on 32 and 16 maps. Whether that is deliberate (a creature
+meant to be feeble at range) or the same oversight needs reading before touching.
+
+**Method limit, stated up front.** The sweep matched weapon *names*, not inventory contents. A can
+carrying a sword without "Sword" in its name is invisible to it. Widening it to read the actual
+inventory block is the first task of this item, not an afterthought -- the count may well grow.
+
+**Risk.** Low, and it is a repair: giving `Hired Goon Sword` a melee skill makes him fight the way his
+own equipment says he should.
+
+---
+
+### 3. Telegraphs
+
+**What.** A wind-up before a heavy blow, so a hit can be seen coming. `CDelayAction` already appears
+inside the attack AI of **26 of 478** cans -- `Swordsman Dual`, `Swordsman ShieldHelmet`,
+`DjinnArenaMonster4` and others -- so the shape is shipped and can be copied rather than designed.
+
+**Build.** Pick one heavy-hitting family, wrap its `Shoot Completed` in the shipped delay shape, and
+play it. Bosses and Supers only; a telegraph on a trash mob is noise.
+
+**Risk.** Lowest of the five, and the only one that makes the game *easier* in exchange for making it
+legible. That is the point, but it means the balance question cuts the other way.
+
+**Revert.** Restore the can's `Shoot Completed`.
+
+---
+
+### 4. A secondary weapon for archers
+
+**What.** 30 cans switch weapon mode with `CActionSetWeaponMode`; 75 cans have a race that knows
+`Ranged`. The **overlap is zero**. Every weapon-mode switcher is a melee creature -- `Swordsman Dual`,
+the WarGolems. No archer in the game has anything to do when you close the distance.
+
+**Build.** Give one archer family a melee secondary and the switch, copying `Swordsman Dual`'s shape.
+This is the structural fix for ranged enemies and it pairs naturally with item 1: Sniper rewards them
+for shooting, the secondary stops them being free kills once you are on top of them.
+
+**Risk.** Higher than it looks. It needs the race to have a melee skill as well, so it is item 2's
+machinery applied deliberately rather than as a repair, and it changes the basic shape of every fight
+with archers in it.
+
+---
+
+### 5. Phases -- last, or never
+
+**What.** A boss that changes behaviour at a health threshold. `CAIHealthPercentThresholdTrigger` is
+used **twice in the entire game, both in `Ogre Conjurer Cave.zax`**, and both only to fire a relay --
+while AI swapping is routine at **482 removes and 921 adds** across all maps. So the parts exist and
+the pattern does not.
+
+**Why last.** A boss that changes at 40% is not something a save can undo, and this project has just
+spent seven releases learning what unplayed changes cost. It also has the least precedent of anything
+here: two uses, one map, neither doing what we would want.
+
+---
+
+### The order, and the stopping rule
+
+1. **Sniper on `Thief*Bow Super` only** -- proven route, two cans, immediately testable where the
+   tester already is.
+2. **The mismatch sweep**, widened to read inventory first. A repair, and repairs have produced this
+   project's best findings.
+3. **Telegraphs** on one boss family.
+4. **Archer secondaries**, only after 1 and 3 have been played.
+5. **Phases**, only if the first four have been played and the appetite is still there.
+
+**Ship one at a time and play it.** Each of the first four is revertible in a few lines; none of that
+helps if three land together and the tester can only report that the game got harder.
 
 ## What is waiting behind these
 
