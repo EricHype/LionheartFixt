@@ -156,6 +156,55 @@ without the clone source simply fights normally.
 
 ---
 
+## Correction: attack behaviour lives in three places, not one
+
+Recorded 2026-09-30 after a wrong claim, because the wrong claim is the useful part.
+
+Asked whether enemy families could be made to feel more different, this review's first answer was that
+they are mechanically identical -- same two skills, nothing in the attack slot, so a thief and a snake
+and an English soldier are the same creature in different art. It named the Snakebreed as an example of
+a family whose name promises venom the data never delivers.
+
+**That was wrong, and the project owner said so.** The Snakebreed do poison on attack.
+
+The error was looking only at `Shoot Completed`. Attack behaviour lives in **three** places and only one
+of them had been checked:
+
+| where | what it is |
+|---|---|
+| `Shoot Completed` | the attack AI -- what the creature *decides* to do. Empty in 400 of 478 |
+| an **equipped weapon** | `Inventory Items/...`, whose `Hit Or Miss` names the skill and whose damages name the types. `Snakebreed Venom` spits `Piercing + Poison` |
+| a **natural weapon** on the can | `CPlugInBehaviorDamage` directly on the creature, no inventory needed. `Snakebreed Boss Super` bites `Slashing 3-14` **plus** `CXRPGDamageOverTime` Poison, with canned expressions for damage and duration |
+
+**333 of 478 cans carry a natural weapon**, and the families are differentiated by it far more than the
+attack slot suggested:
+
+| family | natural weapons | damage-over-time | what its bite actually deals |
+|---|---|---|---|
+| Undead | 69 of 92 | **41** | Slashing, **Disease x36**, Fire, Cold, Acid |
+| Animals | 37 of 50 | 15 | Slashing, **Poison x9**, Disease |
+| Sewers | 30 of 42 | 15 | Slashing, **Disease x15** |
+| English Enemies | 28 of 50 | 0 | Slashing, **Cold / Electrical / Fire x6 each** |
+| Cursed Elves | 15 of 23 | 0 | Slashing + **Fire x15** |
+| Toulouse | 17 of 20 | 0 | **Crushing x17**, Electrical |
+| **Thugs (the thieves)** | 35 of 49 | **0** | **Slashing x19, Crushing x16 -- and nothing else** |
+
+So the Undead rot you, the animals poison you, the cursed elves burn you, the Toulouse ogres crush you.
+That identity was there all along.
+
+**What survives of the original finding, now properly scoped.** The thieves are the one family blank on
+**all three** axes: no attack behaviour, no damage resistances whatsoever, and a natural weapon that
+deals plain Slashing or Crushing with no element and no damage over time. Every other family has a
+signature. They have none -- which is why the backstab landed on them so well, and where any further
+work on making families feel distinct should start.
+
+**The method lesson, which is the third time this one has cost something.** `Hired Goon Sword` was
+called defective for carrying a sword with no sword skill, until reading its equipment showed it equips
+nothing and merely drops one. The Snakebreed were called toothless until reading their natural weapon
+showed the venom. Both times the measurement looked in one place and the answer lived in another. Before
+reporting that a creature "does nothing", check the attack slot, the equipped weapon **and**
+`CPlugInBehaviorDamage`.
+
 ## The combat AI build plan, 2026-09-30
 
 Five items, measured and ordered. Each says what it touches, what precedent it copies, how it reverts,
