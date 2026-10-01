@@ -156,6 +156,150 @@ without the clone source simply fights normally.
 
 ---
 
+## The reactive plan, 2026-10-01
+
+Seven items. None of them depends on `CStrafeAttackAI` or on either probe, because every primitive
+below is in heavy shipped use -- so this plan survives whatever the probes report.
+
+Ordered so the cheapest proven thing comes first and the one that changes encounter design comes last.
+
+---
+
+### 1. The alarm -- a sentry that pulls the room
+
+**Already shipped, in four cans.** `Goblin Bludjund`, `Goblin Hrubjub`,
+`Mongol Crossroads Patrol Leader` and `Mongol Gate District` each carry:
+
+    Damaged Script Action=CTriggerRelayAction { Relay Name=goblins attack }
+
+Hit the goblin, the goblins attack. That is the mechanic, working, in the game, on four creatures out
+of 478.
+
+The generalisation uses `CGoToCombatAction`, which has **403 uses** and routinely takes a *group* name
+rather than one creature -- `Enemy Name=Inquisition` -- combined with the confirmed-in-play behaviour
+that `Entity Name=` broadcasts to every entity sharing a name.
+
+**Build.** One room, one family. A thief lookout whose `Damaged Script Action` puts the room into
+combat. Compare against today, where four thieves aggro one at a time as you cross their individual
+radii, which is what every fight in the game is.
+
+**Risk.** It makes fights bigger, not harder per enemy. Scope to one room before anything else.
+
+---
+
+### 2. Grunts as hover text, not as sound
+
+Clarified by the project owner: the ask is **hover text over the creature**, not audio.
+
+Worth separating the two, because the audio half is done and the visible half is not.
+`Damaged Effect Action` is **populated on 472 of 478 cans**, nearly all of them a `CRandomAction` over
+two or three `CPlaySoundAction` pain clips, and 470 cans use `CPlaySoundAction` somewhere. Enemies
+already grunt audibly when hit. Nothing to build there, and a release spent re-adding those would be
+wasted.
+
+The visible version is the same mechanism as item 3 -- a `CDisplayDialogBalloonAction` floating a node
+over the creature's head -- and the shipped game has the exact precedent for a **wordless** creature
+doing it: three `Sewer Guarddog` cans fire node `10 Growls` from the `Guarddog` tree. A growl in hover
+text, from an animal with no speech.
+
+So this is not a separate item. It is item 3 applied to creatures that do not talk: snakes hiss,
+animals growl, undead rasp, all as hover text on the same hook.
+
+---
+
+### 3. Combat barks -- hover text over the creature
+
+**The mechanism is proven on monster cans** and it is hover text, which is what was asked for: 21 cans
+fire a `CDisplayDialogBalloonAction`, floating a dialogue node over the creature's head. 18 sewer
+thieves show `thievescanned` node `1 Conversation Start`; three guard dogs show `Guarddog` node
+`10 Growls`.
+
+So a bark is: a node in a tree, a balloon action pointing at it, hung on a hook.
+
+**The hooks, with coverage:**
+
+| hook | populated | empty | fires when |
+|---|---|---|---|
+| `Damaged Script Action` | **4** | **474** | the creature is hurt |
+| `Shoot Completed` | 67 | 385 | the creature finishes an attack |
+| a map relay | - | - | the creature first sees you |
+
+`Damaged Script Action` being empty on 474 cans is the opportunity: it is the natural home for "you'll
+pay for that", and nothing is using it.
+
+**Scope by family, and give the wordless ones hover text too.** Thieves taunt, English soldiers give
+orders, Snakebreed hiss, animals growl, undead rasp -- the guard dog's `10 Growls` proves a creature
+with no speech can still show something. One tree per family, three or four lines, picked with
+`CRandomAction` so they do not repeat.
+
+**The trap to avoid.** `CPrintCombatTextAction` is the *other* text mechanism, and the shipped game
+uses it 222 times for **narration** -- "You discover a treasure buried in the ground", "The mechanism
+is beyond you". Putting creature speech there makes it read as the narrator, not the enemy. Balloons
+are the right call and they are what the sewer thieves already use.
+
+---
+
+### 4. Reacting to the player casting
+
+`CHandleMessageAI` listens by name and the game already has **114 listeners for `Spellcast`** -- that
+is how `Detect Spellcast.can` lets the Inquisition hunt casters. The message is sent 13 times.
+
+**Build.** A family that changes behaviour when you cast: close the distance, bark, or raise the alarm
+from item 1. For an Inquisition-adjacent enemy this is characterisation rather than invention.
+
+---
+
+### 5. Staggering
+
+`CAssignTemporaryTaskAction` (196 uses) and `CAddTemporaryAIAction` (117) hand a creature an AI for a
+while and then give it back. Everything the shipped game does with them is staging:
+`CPlaySequenceOnceAI` 78, `CGoToAI` 50, `CSkeletonAI` 34, `CScanAreaAI` 18, `CWaitAI` 13, `CIdleAI` 2.
+
+Assigning `CWaitAI` to an **enemy** for a second is a stagger. 313 proven uses, never once pointed at
+combat.
+
+**Build.** A heavy enemy that reels briefly on taking a critical, hung off `Damaged Script Action`.
+Pairs with item 3 -- the stagger is the window the bark lands in.
+
+---
+
+### 6. Target categories
+
+`CSetTargetTypeAction` has **813 uses** and its `Valid Targets` field takes `Player` (96),
+`Player,Player Friend` (606), `Enemy` (68), `Summoned Creature` (58) and two `Scripted Custom`
+factions (113 and 44).
+
+**Build.** An assassin that ignores your companions and comes only for you is `Valid Targets=Player`.
+Two enemy types that fight each other is a `Scripted Custom` faction. Both are one field.
+
+**What is still not possible.** Choosing *which* valid target: `CEntityBehaviorStateSetClosestTarget`
+appears **1510** times, so the rule is the closest one. Focus-fire on a chosen party member stays out
+of reach, and the 17 uses of `CSetTargetAction` are all NPC against NPC with literal names.
+
+---
+
+### 7. The move-relative work, if the probe says yes
+
+Held until probe B reports. If `Angle to move` is relative to the instigator and the move navigates
+rather than slides, flanking becomes buildable and item 6 matters more, since **positioning decides
+aggro**.
+
+---
+
+### The order
+
+3 first, then 1, then 5: hover-text barks, the alarm, the stagger. All three hang off the same hook
+that is empty on 474 cans, all three are proven idiom, and together they are what turns "it runs up and
+swings" into "it reacts". Barks lead because they are the cheapest and the most visible, and because
+they make the other two legible -- the alarm reads as an alarm when someone shouts, and the stagger
+reads as a stagger when something reels and says so.
+
+Then 4 and 6. Then 7 if probe B allows.
+
+And the rule that keeps being right: **one at a time, played between each.** Item 2 is the reminder --
+half of that ask turned out to be shipped already, and only measurement separated the half that was
+from the half that was not.
+
 ## The reactive layer: what else is available, measured 2026-10-01
 
 Everything above is about what a creature *does on its own*. There is a second layer the review had not
