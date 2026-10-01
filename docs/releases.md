@@ -140,7 +140,7 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## Fernand, fourth attempt -- done the way Cervantes does it (unreleased)
+## 0.27.0 - What the Thieves Say
 
 Reported again after 0.25.7: he still cannot rejoin. The save says why -- **`Fernand Is Waiting` is
 absent**, so 0.25.4's variable was never written once, and the gate that hides the dismiss line also
@@ -192,7 +192,7 @@ The working reference implementation for the exact problem being solved was sitt
 path for three releases. **A sweep for "how does this game do X" has to include vanilla, not just what
 this project has already touched.**
 
-## Hover-text barks, built 2026-10-01 (unreleased)
+### The barks, one voice per family and a sub-bank per type
 
 Item 3 of the reactive plan. **67 cans, 71 lines, three families, and a sub-bank per creature type.**
 

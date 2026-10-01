@@ -583,23 +583,151 @@ CCannedObject
 						Play Sequence=
 						Play Reload Sequence=
 					}
-					Shoot Completed=CAssignMoveRelativeAction
+					Shoot Completed=CRandomAction
 					{
-						Target=$Trigger
-						Move Relative AI=CAIMoveRelative
+						Action=Array
 						{
-							Marked For Deletion=0
-							Publisher=
-							Angle to move=90
-							Distance to move=120
-							Additional distance to move=CConstant
+							Item Count=4
+							Action=CActionSelectSkill
 							{
-								Constant Value=0
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
 							}
-							Speed=400
-							Time Left To Move=0
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CRandomAction
+							{
+								Action=Array
+								{
+									Item Count=13
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=10 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=11 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=12 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=13 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=14 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=15 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=16 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=17 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=23 archer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=24 archer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=25 archer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=26 archer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+										Node ID=27 archer
+										Name of Position=$trigger
+										Position Offset=0.000000,-70.000000
+										After Action=
+										Include In Log=0
+									}
+								}
+							}
 						}
-						Push Away From Instigator=0
 					}
 					Turn Behavior=CPointWeaponAtTargetEntityBehavior
 					{
@@ -1300,7 +1428,7 @@ CCannedObject
 					{
 						Item Count=0
 					}
-					Display Name=PROBE B Step
+					Display Name=unnamed
 					Description=undefined
 					Inventory Window Images=Array
 					{

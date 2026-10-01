@@ -1471,7 +1471,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## Fernand, fourth attempt
+## 0.27.0 - Fernand, fourth attempt
 
 Needs a save that has **not recruited him** -- the specifier is entity state and is snapshotted.
 
@@ -1485,7 +1485,7 @@ Needs a save that has **not recruited him** -- the specifier is entity state and
 | FN6 | Cycle dismiss and rejoin three times | - | Still exactly one of the two, never both and never neither |
 | FN7 | Stop him following by any other means, then talk | - | Whatever his specifier last pointed at. If it still says *"Where you go, I follow."*, use its dismiss reply once to resynchronise |
 
-## Hover-text barks, a voice per family and a sub-bank per type
+## 0.27.0 - hover-text barks, a voice per family and a sub-bank per type
 
 67 cans, 71 lines. Each creature draws from its family's shared lines plus its own type's sub-bank, so
 a thief archer and a thief boss say different things and neither says a soldier's line. Roughly one
@@ -1502,7 +1502,7 @@ attack in four. Can edits, so each needs a save that has not entered the area.
 | BK7 | Check the combat log | - | Barks are **not** in it. `Include In Log=0` |
 | BK8 | Fight `Snakebreed Summoner`, and both PROBE archers | - | No bark. All three have an attack slot already in use and were deliberately skipped |
 
-## PROBES - not a release, revert before cutting one
+## PROBES - NOT in any release; removed from 0.27.0 before it was cut
 
 Two experiments deployed 2026-09-30, both on bow thieves in the RED FILE bonus level: 31 `Theif3 Bow`
 and 22 `Theif4 Bow`, neither touched by the backstab or Sniper work, which were Super-tier only.
