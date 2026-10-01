@@ -156,6 +156,80 @@ without the clone source simply fights normally.
 
 ---
 
+## Why every enemy feels the same: there is only one combat AI
+
+Measured 2026-09-30, after the project owner put it plainly -- damage types are not the problem,
+**"they all run up and just hit you until they die"** is.
+
+That is literally true, and the counts say so. Every creature in the game runs the identical AI stack:
+
+| AI | cans | maps |
+|---|---|---|
+| `CScanAreaAI` | **716** | 110 |
+| `CChasePursueAI` | **713** | 106 |
+| `CChaseInvestigateAI` | **713** | 106 |
+| `CScanInvestigateAI` | **713** | 106 |
+| `CNormalAttackAI` | **701** | 101 |
+| `CPatrolAreaAI` | 366 | 45 |
+
+Out of roughly 716 creature definitions. There is one combat behaviour in Lionheart and everything
+uses it; the only variation the shipped data has is `Minimum Attack Distance` and whatever sits in
+`Shoot Completed`. No amount of work on damage types changes that, which is why the earlier answer
+about family identity missed the question being asked.
+
+### The engine ships alternatives that nothing uses
+
+| AI class | uses in all shipped data |
+|---|---|
+| **`CStrafeAttackAI`** | **0** |
+| **`CChargeAttackAI`** | **0** |
+| **`CStandGroundAttackAI`** | **0** |
+| **`CStandStillAttackAI`** | **0** |
+| `CPursueAI`, `CApproachTargetAI` | 0 |
+| `CInvestigateAI`, `CInvestigateAreaAI`, `CTenaciousInvestigateAI` | 0 |
+| `CStandGuardPatrolAI`, `CShootOverAI`, `CWalkingUpperBodyAI` | 0 |
+
+**These are not dead strings.** Both `CStrafeAttackAI` and `CChargeAttackAI` have a class registration
+of exactly the shape every working AI has -- allocate a 0x70-byte instance, build a type descriptor,
+register it in the factory by name:
+
+```
+if ((DAT_0072e5a8 == 0) && (iVar1 = FUN_005fdc00(0x70), iVar1 != 0)) {
+  uVar2 = FUN_00449dd0(0x10, 1, FUN_00628c10, FUN_00628c10, FUN_004665d0);
+  FUN_00415b60(&DAT_0072e5a8, s_CChargeAttackAI_006f4adc, 0x3f800000, uVar2, ...);
+}
+```
+
+That is materially stronger evidence than the F6 editor had. There the menu strings survived and **no
+code anywhere consumed the keypress**; here the class is registered in the factory with a real instance
+size, so the resource loader will accept `Activity=CStrafeAttackAI` instead of rejecting it.
+
+**What this does not prove** is that the behaviour code is complete. Registration means it loads, not
+that it strafes. The honest next step is not more decompilation -- it is the probe this project already
+knows to reach for: swap one creature's `CNormalAttackAI` for `CStrafeAttackAI`, play it once, and look.
+If it circles, four new archetypes become available at the cost of a field. If it loads and stands
+still, it is a stub and the question is closed in ten minutes rather than a week.
+
+### Falling back is genuinely not available
+
+`CFleeAI` and `CRetreatAI` have been named in this review before as "referenced by nothing". That
+understates it: **no string matching `CFlee*`, `CRetreat*`, `CCower*`, `CPanic*` or `CMorale*` exists in
+the executable at all.** There is no retreat class to reference. Enemies cannot be made to fall back,
+and nothing in the data will change that.
+
+### What is available for the rest of the list
+
+| asked for | available? |
+|---|---|
+| better movement | **yes, probably** -- strafe and charge are registered, unused, untested |
+| falling back | **no** -- no such class exists in the binary |
+| flanking | **no** -- requires target selection, which is not scriptable |
+| calling for reinforcements | **yes, proven** -- the clone-and-checker idiom, already used by the Bonecaller and two shipped ghouls |
+| hurling insults | **yes** -- `CPrintCombatTextAction`, used 222 times in maps but in only **3 of 478 cans**, all three the same Mana Reaver line |
+| grunts and noises | **yes** -- `CAmbientSoundAI`, used in 8 cans and 13 maps |
+
+So of the six, three are open, one is probable and worth a ten-minute probe, and two are impossible.
+
 ## Correction: attack behaviour lives in three places, not one
 
 Recorded 2026-09-30 after a wrong claim, because the wrong claim is the useful part.
