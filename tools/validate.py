@@ -570,8 +570,25 @@ def check_self_reference(fails):
             walk(k, [k])
 
 
+def check_no_probes(fails):
+    """Deploy-only experiments must never reach a release.
+
+    The combat-AI probes are installed by hand on top of a release, live only in the working tree, and
+    are untracked -- which means a `dist` build would happily package them, because the manifest globs
+    `files/**`. A display name beginning `PROBE ` marks one, so this fails the gate while any is
+    present and the release simply cannot be cut over them.
+    """
+    for f in sorted(F.rglob("*.can")):
+        if not f.is_file():
+            continue
+        for m in re.finditer(r"Display Name=(PROBE [^\r\n]*)", f.read_bytes().decode("latin-1")):
+            fails.append(f.name + ": carries the deploy-only probe " + repr(m.group(1))
+                         + " -- delete the file and reinstall before cutting a release")
+
+
 check_references(fails)
 check_self_reference(fails)
+check_no_probes(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))

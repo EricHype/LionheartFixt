@@ -1502,7 +1502,20 @@ attack in four. Can edits, so each needs a save that has not entered the area.
 | BK7 | Check the combat log | - | Barks are **not** in it. `Include In Log=0` |
 | BK8 | Fight `Snakebreed Summoner`, and both PROBE archers | - | No bark. All three have an attack slot already in use and were deliberately skipped |
 
-## PROBES - NOT in any release; removed from 0.27.0 before it was cut
+## PROBES - deploy-only, on top of 0.27.0. NOT in any release
+
+Re-applied by hand after 0.27.0 shipped. They live as **uncommitted modifications** to two tracked
+cans, so the release version is one command away:
+
+    git checkout -- "files/Resources/Monster Cans/Thugs/Theif3 Bow.can"                     "files/Resources/Monster Cans/Thugs/Theif4 Bow.can"
+
+then reinstall. **Gate 0 fails while they are installed** -- `check_no_probes` rejects any can whose
+display name begins `PROBE `, so a release cannot be cut over them by accident. That failure is
+expected and is the guard working.
+
+Both wear their names in-game and in the combat log: **PROBE A Strafe** and **PROBE B Step**. Neither
+carries a bark -- probe A because the bark would sit *inside* the `CStrafeAttackAI` block it installs,
+so a load failure could no longer be blamed on the class rather than the field
 
 Two experiments deployed 2026-09-30, both on bow thieves in the RED FILE bonus level: 31 `Theif3 Bow`
 and 22 `Theif4 Bow`, neither touched by the backstab or Sniper work, which were Super-tier only.
