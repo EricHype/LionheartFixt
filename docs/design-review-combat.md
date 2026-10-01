@@ -156,6 +156,61 @@ without the clone source simply fights normally.
 
 ---
 
+## Where combat AI goes next, planned 2026-09-30
+
+The backstab working changes what is worth planning, because it proved a route rather than a feature:
+**a race preset can reach engine mechanics that were player-only by data rather than by code.** The
+question that produced it -- *is this gate keyed to the player, or does it just happen that only the
+player has the attribute?* -- generalises, and asking it of the rest of the damage pipeline turns up
+the next tier without inventing anything.
+
+### 1. Sniper, the direct answer to "archers are boring"
+
+There are exactly three perks in the game that set an `Is X Mode Enabled` attribute: **Backstab**,
+**Slayer** and **Sniper**. Backstab is now proven on enemies. The other two are read in
+`FUN_0049b030`, the critical-hit resolver, through **the same generic accessor on the same attacker
+object** -- no player test, and its two callers sit adjacent to two of the backstab gate's in the same
+damage pipeline.
+
+`Is Sniper Mode Enabled` forces a critical result on a ranged attack. **77 monster cans** have a race
+presetting `Ranged` and no melee at all -- the Vodyanoi line, `Assasin Bow`, the thief archers. That is
+the largest untouched archetype in the game and the one the original scoping already singled out as the
+dullest.
+
+It is also the strongest thing on this list, so it wants scoping hard: Super tiers only to begin with,
+one family at a time, the way the thieves were done. Forced criticals on 77 cans at once would not be a
+difficulty change, it would be a different game.
+
+### 2. Slayer is small, and what it exposes is a defect
+
+Only **7** cans have a race presetting `Unarmed` and no weapon skill, so Slayer has almost nowhere to
+go. But reading which 7 is the interesting part: they are `Hired Goon Sword`, `Hired Goon Plate` and
+`Thug3 Mace Elite`, all three tiers -- enemies **carrying weapons** whose race knows only
+`Fighting/Unarmed 10`. `Hired Goon Sword` even drops a sword on death.
+
+That is the Priestess defect inverted: there the race knew spells the can never used, here the can
+carries a weapon the race has no skill for. Worth measuring across all 478 cans as a repair pass before
+it is treated as a Slayer opportunity.
+
+### 3-5. The tiers already scoped, unchanged
+
+Telegraphs via `CDelayAction` (24 of 478 attack AIs already use one) remain the cheapest legibility win.
+Giving archers a secondary weapon to switch to -- 53 ranged cans, 17 cans carrying a secondary,
+**overlap zero** -- is still the structural fix for ranged enemies, and pairs naturally with Sniper.
+Phases via `CAIHealthPercentThresholdTrigger` remain last and riskiest: used twice in the entire game,
+both in one map, both only to fire a relay.
+
+### The ordering, and why
+
+Sniper first, scoped to one archer family, because it is the proven route applied to the biggest dull
+archetype and it can be reverted by deleting two preset lines. The weapon-skill mismatch sweep second,
+because it is a repair rather than a buff and repairs have been where this project's best findings
+come from. Telegraphs third. Phases last, or never.
+
+**What not to do:** add more at once than a playthrough can attribute. The 0.25.x line shipped seven
+releases in two days and the only reason the backstab could be called working is that it was the single
+combat change in front of the player at the time.
+
 ## What is waiting behind these
 
 The remaining 0.25.0 tiers are scoped in `releases.md`. Decision 1 is answered, but these still wait on
