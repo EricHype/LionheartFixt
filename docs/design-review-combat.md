@@ -156,6 +156,65 @@ without the clone source simply fights normally.
 
 ---
 
+## Correction: flanking is not impossible, and the primitive is shipped
+
+This review has twice listed flanking as out of reach, on the grounds that "target selection is not
+scriptable against the player". The project owner pointed out the hole: the backstab gate proves the
+engine computes where the attacker is relative to the defender, so why can nothing be told to move
+there?
+
+**The objection is right, and the claim conflated two different things.** Target *selection* -- choosing
+whom to attack -- is indeed not scriptable. Moving *relative to a target* is a separate capability, and
+the engine has it, and the shipped game uses it.
+
+```
+CAssignMoveRelativeAction
+{
+Target=$Trigger
+Move Relative AI=CAIMoveRelative
+{
+Angle to move=0
+Distance to move=50
+Additional distance to move=CConstant { Constant Value=0 }
+Speed=800
+Time Left To Move=0
+}
+Push Away From Instigator=1
+}
+```
+
+That is `Sand Dragon Hasharid.can`, verbatim. `CAssignMoveRelativeAction` appears **10 times in shipped
+content** -- the Sand Dragon, `Chaos Dragon Final Scene.can` and `DDan.zax` -- so it is working, tested
+code, not a registered-but-unused class like `CStrafeAttackAI`.
+
+It takes an **angle**, a **distance** and a **speed**, and a flag for whether the displacement is
+measured away from the instigator. The dragons use it as a knockback: you hit them, they shove you.
+
+### What is still unknown, and what would settle it
+
+Two things stand between this and an enemy that circles behind you, and neither needs more
+decompilation:
+
+1. **Is `Angle to move` relative to the instigator, to the mover, or absolute?** If it is relative to
+   the instigator -- the player, in a combat use -- then an angle near 180 with a modest distance is
+   literally "step round behind him".
+2. **Does it pathfind, or slide?** `Speed=800` with a `Time Left To Move` counter reads like a timed
+   displacement rather than a navigated move. A knockback does not need to respect walls; a flank does.
+
+Both are answered by one probe: put it on a creature with `Push Away From Instigator=0` and a few
+angles, and watch what happens.
+
+### What this changes
+
+The earlier line -- "focus-fire, flanking, kiting and formations are out of reach without touching the
+executable" -- is withdrawn. Focus-fire and formations still need target selection and remain out of
+reach. **Flanking and kiting are movement**, the engine has a shipped movement primitive that takes an
+angle relative to a target, and the only open questions are about its semantics.
+
+Set against the other finding above -- that every creature in the game runs the same `CNormalAttackAI`
+and four alternative attack AIs ship unused -- this is now the most promising thread in the whole combat
+review, and the cheapest to settle.
+
 ## Why every enemy feels the same: there is only one combat AI
 
 Measured 2026-09-30, after the project owner put it plainly -- damage types are not the problem,
