@@ -1471,6 +1471,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Fernand, fourth attempt
+
+Needs a save that has **not recruited him** -- the specifier is entity state and is snapshotted.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| FN1 | Recruit Fernand, talk to him | - | *"Where you go, I follow."* with two replies. Only **dismiss**, no rejoin offered |
+| FN2 | Choose *"Wait here, Fernand"* | - | He stops following |
+| FN3 | Talk to him again | - | A **different node**: *"Shall we continue, or is my place here for now?"* -- only **rejoin** offered |
+| FN4 | Choose *"Walk with me again"* | - | **He rejoins.** This is the bug, reported four times |
+| FN5 | Talk again | - | Back to node 100 and the dismiss line. The pair alternates by position, not by a flag |
+| FN6 | Cycle dismiss and rejoin three times | - | Still exactly one of the two, never both and never neither |
+| FN7 | Stop him following by any other means, then talk | - | Whatever his specifier last pointed at. If it still says *"Where you go, I follow."*, use its dismiss reply once to resynchronise |
+
 ## Hover-text barks, a voice per family and a sub-bank per type
 
 67 cans, 71 lines. Each creature draws from its family's shared lines plus its own type's sub-bank, so

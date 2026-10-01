@@ -776,23 +776,8 @@ Text=Where you go, I follow.
 Should Have Voiceover=0
 
 Requirement=!None
-Custom Requirement=CExpressionNot
-{
-Operand1=CIsEqualTo
-{
-Operand1=CVariableDerivedCharacterAttribute
-{
-Character Attribute=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
-}
-Operator=
-Operand2=CConstant
-{
-Constant Value=1
-}
-}
-}
 Reply Text=Wait here, Fernand. I will come back for you.
-Go to node ID=101 fernand waits
+Go to node ID=
 Custom Action=CMultipleActionsAction
 {
 Action=Array
@@ -802,77 +787,9 @@ Action=CReleaseCompanionAction
 {
 Companion To Release=Distressed Sailor
 }
-Action=CAddCharacterModifierToCharacterAction
+Action=CUseCannedActionAction
 {
-Modifier Description=fernand waiting
-Modification is permanent=1
-Character to modify=$Instigator
-Modifiers=Array
-{
-Item Count=1
-Modifier=CCharacterModifierDerivedAttribute
-{
-Modification Amount=CConstant
-{
-Constant Value=1
-}
-Modification amount is a percent=0
-Allow Accumulation=1
-Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
-}
-}
-OPTIONAL Duration=
-Expression Context=$Instigator
-}
-}
-}
-
-Requirement=!None
-Custom Requirement=CIsEqualTo
-{
-Operand1=CVariableDerivedCharacterAttribute
-{
-Character Attribute=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
-}
-Operator=
-Operand2=CConstant
-{
-Constant Value=1
-}
-}
-Reply Text=Walk with me again, Fernand. The road is not done with us.
-Go to node ID=102 fernand rejoins
-Custom Action=CMultipleActionsAction
-{
-Action=Array
-{
-Item Count=2
-Action=CSetCompanionAction
-{
-Player=$Instigator
-Companion=Distressed Sailor
-}
-Action=CAddCharacterModifierToCharacterAction
-{
-Modifier Description=fernand rejoined
-Modification is permanent=1
-Character to modify=$Instigator
-Modifiers=Array
-{
-Item Count=1
-Modifier=CCharacterModifierDerivedAttribute
-{
-Modification Amount=CConstant
-{
-Constant Value=-1
-}
-Modification amount is a percent=0
-Allow Accumulation=1
-Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fernand Is Waiting
-}
-}
-OPTIONAL Duration=
-Expression Context=$Instigator
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Fernand now waiting
 }
 }
 }
@@ -883,22 +800,34 @@ Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
-Node ID=101 fernand waits
-Text=Then I will hold this spot until you return. The Armada can spare me a while longer - and I would rather answer to my captain than to my brother.
+Node ID=103 fernand waiting
+Text=Shall we continue, or is my place here for now?
 Should Have Voiceover=0
 
 Requirement=!None
-Reply Text=
+Reply Text=Walk with me again, Fernand.
 Go to node ID=
-Is Default Reply=1
-------------------------------------------------------------
-Node ID=102 fernand rejoins
-Text=Aye. Where you go, I follow - the debt is not yet paid.
-Should Have Voiceover=0
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Player=$Instigator
+Companion=Distressed Sailor
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Fernand now following
+}
+}
+}
 
 Requirement=!None
-Reply Text=
+Reply Text=Hold this spot a while longer.
 Go to node ID=
+Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=110 dead

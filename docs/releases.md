@@ -140,6 +140,58 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## Fernand, fourth attempt -- done the way Cervantes does it (unreleased)
+
+Reported again after 0.25.7: he still cannot rejoin. The save says why -- **`Fernand Is Waiting` is
+absent**, so 0.25.4's variable was never written once, and the gate that hides the dismiss line also
+hides the rejoin line whenever the variable is 0, which is every state except "dismissed through that
+exact reply".
+
+### Three attempts, one wrong assumption
+
+All three tried to make **one node** serve both states.
+
+| release | what it did | why it failed |
+|---|---|---|
+| 0.25.3 | gave node 100 a dismiss and a rejoin, ungated | a dismissed Fernand still offered to be dismissed |
+| 0.25.4 | gated the pair on a new scripting variable | the variable never got written |
+| 0.25.7 | found node 100 was a *balloon* with no reply list and made it a conversation | correct and necessary, but the gating above still broke it |
+
+### Cervantes has worked the whole time, and does none of it
+
+The project owner asked how Cervantes manages it. He has a node called
+`3 Return after release as a companion`, **both replies ungated**, and `Temple District.zax` and
+`Inquisition Pit3.zax` each carry an interaction specifier pointing straight at it with
+`Speaker=$trigger` and `Player Being Spoken To=$Instigator`.
+
+**The state is encoded by which node the specifier opens, not by a flag.** Grumdjum and the Knight of
+Saladin both use the same shape; `666 Rejoin` is the knight's version. Fernand had a node for
+*following* and none for *released*, which is the whole defect, and three releases of gating were an
+attempt to simulate the missing node.
+
+### What Fernand has now
+
+| state | specifier opens | replies |
+|---|---|---|
+| following | `100 companion banter` | *Wait here* -> release, then point the specifier at 103 |
+| released | `103 fernand waiting` | *Walk with me again* -> set companion, then point it back at 100 |
+
+Each swap runs from a `CCannedObject` fired by `CUseCannedActionAction`, because a tree may not name
+its own file -- the 0.25.2 rule -- and the swap itself is copied field for field from the
+`fernand joins you` relay already working in `Port District.zax`.
+
+`Fernand Is Waiting` is deleted. Nothing now depends on `$Instigator` resolving in that conversation,
+on a new attribute being writable against an existing character, or on *how* the player dismissed him.
+If he is not following, his specifier opens the node that offers to take him back.
+
+### What the audit missed
+
+The companion audit of 2026-09-29 cleared Grace, the Goblin Girl and Grumdjum and found one defect. It
+never looked at Cervantes, because it scanned **only Fixt's files** -- and Cervantes is pure vanilla.
+The working reference implementation for the exact problem being solved was sitting outside the search
+path for three releases. **A sweep for "how does this game do X" has to include vanilla, not just what
+this project has already touched.**
+
 ## Hover-text barks, built 2026-10-01 (unreleased)
 
 Item 3 of the reactive plan. **67 cans, 71 lines, three families, and a sub-bank per creature type.**
