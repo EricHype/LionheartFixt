@@ -1471,6 +1471,25 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## PROBES - not a release, revert before cutting one
+
+Two experiments deployed 2026-09-30, both on bow thieves in the RED FILE bonus level: 31 `Theif3 Bow`
+and 22 `Theif4 Bow`, neither touched by the backstab or Sniper work, which were Super-tier only.
+
+**If the game refuses to load the bonus level or the sewers, that is probe A answering**, not a
+regression. Say so and both come straight out.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PA1 | Enter the bonus level | - | It loads. A DataCrash naming a field means `CStrafeAttackAI` is real but takes different fields -- **record the field name**, it is the whole answer |
+| PA2 | Fight a **`Theif3 Bow`** (the plain one, not Tough or Super) | - | Watch its feet. Does it **circle** you, or close and shoot like every other archer? |
+| PA3 | If it circles, which way, and does it keep facing you | - | Direction and facing decide whether four unused attack AIs are usable |
+| PA4 | If it behaves exactly as before | - | `CStrafeAttackAI` is a registered stub. Question closed, and worth knowing |
+| PB1 | Fight a **`Theif4 Bow`** | - | After each shot it should **displace about 120 units**. Does it move at all? |
+| PB2 | Move around it and watch which way it steps | - | **Circles you as you move** = angle is relative to the instigator, flanking is buildable. **Always the same compass direction** = absolute, flanking is not |
+| PB3 | Fight one near a wall or a corner | - | Does it **slide through** the wall? If so it is timed displacement, not navigation -- good for knockback, useless for flanking |
+| PB4 | Note whether it still shoots normally between steps | - | A displacement that interrupts shooting is a different cost than one that does not |
+
 ## 0.26.0 - the combat plan, parts 1, 3 and 5
 
 Three independent changes. **Judge each separately** -- that is what these rows are for.
