@@ -156,6 +156,95 @@ without the clone source simply fights normally.
 
 ---
 
+## The reactive layer: what else is available, measured 2026-10-01
+
+Everything above is about what a creature *does on its own*. There is a second layer the review had not
+looked at at all -- what a creature does **in response to something** -- and it is large, shipped and
+barely touched by this project.
+
+| primitive | uses in shipped data | what it is |
+|---|---|---|
+| `CEntityBehaviorStateSetClosestTarget` | **1510** | how targets are chosen: the **closest** valid one |
+| `CAddAIAction` / `CRemoveAIAction` | 952 / 493 | swap a creature's AI at runtime |
+| `CSetTargetTypeAction` | **813** | set what a creature is willing to target |
+| `CHandleMessageAI` | **554** | react to a named message |
+| `CGoToCombatAction` | **403** | put a creature into combat **by name** |
+| `CAssignTemporaryTaskAction` | 196 | give a creature a temporary AI, then return it |
+| `CAddTemporaryAIAction` | 117 | the same, additively |
+| `CSendMessageAction` | 37 | send an arbitrary named message to a target |
+
+### 1. Calling for help is proven, 403 times over
+
+`CGoToCombatAction` takes an **`Enemy Name`**, and the shipped game routinely passes a *group* name
+rather than one creature -- `Enemy Name=Inquisition`. Combined with the confirmed-in-play behaviour that
+`Entity Name=` broadcasts to **every** entity sharing that name, a single sentry can put a whole room
+into combat.
+
+That is the "calling for reinforcements" the project owner asked for, available now, with no new
+mechanism. A thief lookout who pulls the room is a different encounter from four thieves who aggro one
+at a time as you walk into their individual radii -- which is what every fight in the game currently
+is.
+
+### 2. Enemies can react to what the player does
+
+`CHandleMessageAI` listens for a named message. What the shipped game already listens for:
+
+| message | listeners |
+|---|---|
+| `GoToCombat` and its casings | **426** |
+| **`Spellcast`** | **114** |
+| `After Death Spell` | 5 |
+| `Released companion` | 3 |
+| **`CDamagedMessage`** | **2** |
+
+`Spellcast` is the interesting one: 114 places already react to the player casting, which is how
+`Detect Spellcast.can` lets the Inquisition hunt casters. Generalising it gives enemies that **change
+behaviour when you cast** -- close the distance, interrupt, call for help. Nothing new is needed.
+
+`CDamagedMessage` has **two** listeners in the entire game. A creature that reacts to being hurt --
+rather than to crossing a health threshold, which is what 0.26.0's Bonecaller does -- is wide open.
+
+### 3. Targeting is controllable by category, and selection is by proximity
+
+The earlier claim that "target selection is not scriptable" is too broad, like the flanking one was.
+`CSetTargetTypeAction` has 813 uses and its `Valid Targets` field takes real values:
+
+| value | uses |
+|---|---|
+| `Player,Player Friend` | 606 |
+| `Player` | 96 |
+| `Enemy` | 68 |
+| `Summoned Creature` | 58 |
+| `Scripted Custom 1` / `Scripted Custom 2` | 113 / 44 |
+
+So **which categories a creature will attack is fully controllable** -- including making one ignore
+companions and come only for the player, or turning a creature against other enemies. `Scripted Custom
+1` and `2` are arbitrary factions the data can define.
+
+What is *not* controllable is which specific entity it picks from among valid targets:
+`CEntityBehaviorStateSetClosestTarget` appears **1510** times, so the rule is "the closest one".
+Focus-fire on a chosen party member stays out of reach. But note what that implies -- **positioning
+decides aggro**, which is a second reason the move-relative probe matters.
+
+`CSetTargetAction`, which names an attacker and a victim outright, has 17 uses and **every one is
+NPC against NPC with literal names**. That part of the original claim holds.
+
+### 4. Temporary AI is a staple, and nothing uses it on enemies interestingly
+
+`CAssignTemporaryTaskAction` (196) and `CAddTemporaryAIAction` (117) give a creature an AI for a while
+and then give it back. What the shipped game assigns: `CPlaySequenceOnceAI` 78, `CGoToAI` 50,
+`CSkeletonAI` 34, `CScanAreaAI` 18, `CWaitAI` 13, `CIdleAI` 2. All staging -- cutscenes, walking NPCs
+to marks.
+
+Assigning `CWaitAI` or `CIdleAI` to an **enemy** for a second is a stagger. Assigning `CGoToAI` is a
+reposition. The primitive is proven 313 times over; it has simply never been pointed at combat.
+
+### Where this ranks against the probes
+
+If `CStrafeAttackAI` turns out to be a stub, this layer is where the interesting work is, and none of
+it depends on an unused class: every primitive above is in heavy shipped use. The alarm in particular
+needs no probe at all -- it is the same action the game fires 403 times, pointed at a shared name.
+
 ## Correction: flanking is not impossible, and the primitive is shipped
 
 This review has twice listed flanking as out of reach, on the grounds that "target selection is not
