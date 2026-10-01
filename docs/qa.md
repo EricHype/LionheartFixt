@@ -1471,6 +1471,43 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.26.0 - the combat plan, parts 1, 3 and 5
+
+Three independent changes. **Judge each separately** -- that is what these rows are for.
+
+### Item 1, Sniper on the thief archers
+
+Needs a save that has not entered the sewers or the bonus level. Super tier only.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SN1 | Fight a **Super** bow thief, save, run `savecheck events latest --combat` | - | Critical hits from the archer, far more often than from a base or Tough bow thief |
+| SN2 | Fight base and Tough bow thieves | - | Unchanged. Only the Super pair carries it |
+| SN3 | Fight a `Thug3 Bow` or `Thug4 Bow` anywhere | - | Unchanged. Thugs do not share the new races |
+| SN4 | Judge whether the bonus level is now unfair at range | - | **The row that decides whether this stays.** 100 bow thieves stand there |
+
+### Item 3, the Assassin Masters telegraph
+
+Slave Pits, act 1.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TG1 | Fight an `Assasin Master` | - | Roughly one attack in four spawns a visible effect on him, pauses about a second, then lands an extra hit |
+| TG2 | Watch for the pause | - | **The point of the item.** If the warning does not read as a warning, it failed even if the damage lands |
+| TG3 | Compare Super against base | - | Same shape, bigger extra hit: 12-22 against 6-12 |
+| TG4 | Judge whether it makes the fight more readable or just longer | - | The row that decides whether this stays |
+
+### Item 5, the Bonecaller's wounded wave
+
+Act 4, the Doomed Plateau. Needs a save that has not entered it.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PH1 | Fight a Bonecaller down past **40%** health | - | It raises a burst of ghouls once, with the summoning effect. 3, 4 or 5 by tier |
+| PH2 | Keep fighting below 40% | - | The burst does **not** repeat. It is a threshold crossing, not a state |
+| PH3 | Kill one from above 40% in a single burst of damage | - | Crossing below still fires it, or it dies first. Either is acceptable; note which |
+| PH4 | Judge whether the Plateau is still winnable | - | The row that decides whether this stays. The only item that adds enemies mid-fight |
+
 ## 0.25.7 - Fernand's conversation opens
 
 **Needs a character who has not yet recruited Fernand** -- this is an entity change and the old

@@ -21,7 +21,7 @@ CCannedObject
 		Is Marked For Deletion=0
 		Activity=Array
 		{
-			Item Count=6
+			Item Count=7
 			Activity=CSkeletonAI
 			{
 				Marked For Deletion=0
@@ -2048,6 +2048,29 @@ CCannedObject
 				Sounds=Array
 				{
 					Item Count=0
+				}
+			}
+			Activity=CAIHealthPercentThresholdTrigger
+			{
+				Marked For Deletion=0
+				Publisher=
+				Previous Health Percent=0
+				Previous Health Percent Is Valid=0
+				Health Percent Triggers=Array
+				{
+					Item Count=1
+					Health Percent Trigger=CHealthPercentThresholdTrigger
+					{
+						When To Trigger=When Health Percent Crosses Below
+						Health Percent=CConstant
+						{
+							Constant Value=40
+						}
+						Action=CUseCannedActionAction
+						{
+							Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Boss Lich Tough wounded wave
+						}
+					}
 				}
 			}
 		}

@@ -1,0 +1,104 @@
+[size=150][b]Lionheart Fixt 0.26.0 - What They Were Built To Do, part two[/b][/size]
+
+The five-item combat plan, built. [b]Four shipped, one did not survive contact with the data[/b], and the
+sweep that was meant to be a repair pass turned out to have nothing to repair.
+
+Each part is separately revertible and has its own QA rows, because the plan's own stopping rule --
+ship one at a time and play it -- is being set aside, and attribution has to come from somewhere.
+
+[b]1. Sniper on the thief archers[/b]
+
+[i]Is Sniper Mode Enabled[/i] forces a critical on a ranged attack. It is read in [i]FUN_0049b030[/i], the
+critical-hit resolver, through the [b]same generic accessor on the same attacker object[/b] as the
+backstab gate -- no player test, and its callers sit adjacent to the backstab gate's in the same damage
+pipeline. Backstab is the proven sibling, confirmed in play on 29 September.
+
+Scoped exactly as planned: [b]Super tier only[/b], two races and four cans. [i]Thief3 Bow Super[/i] and
+[i]Thief4 Bow Super[/i] -- two of the six races left unreferenced by 0.25.0 -- now carry the attribute, and
+the four Super bow-thief cans point at them. Thugs are untouched, as before.
+
+[b]2. The weapon-skill mismatch sweep: nothing to repair[/b]
+
+The plan said to widen the name-based sweep to read equipment first, and warned the count might grow.
+It shrank to zero, and the name-based findings turned out to be [b]false positives[/b]:
+
+| can | name-based verdict | what it actually equips |
+|---|---|---|
+| [i]Hired Goon Sword[/i] and tiers | "carries a sword, race knows only Unarmed" | [i]Inventory Items/!None[/i] -- [b]nothing[/b]. The sword is a death *drop*, so [i]Unarmed 10[/i] is correct |
+| [i]Thug3 Mace Elite[/i] | same | same |
+| [i]Vodyanoi[/i], [i]Vodyanoi Green[/i] | not flagged by name | [i]Spit Voydyanoi[/i], a real ranged weapon, with [i]Ranged 0[/i] |
+
+Weapons declare their skill through [i]Hit Or Miss=Damage Types/Damage Hit Or Miss/<skill>[/i] -- 88 items
+do, split Ranged 47, OneHandedMelee 18, TwoHandedMelee 9, AlwaysHit 14. Reading that instead of the can
+name is what cleared the goons.
+
+The Vodyanoi were [b]read and deliberately left alone[/b]. [i]Ranged 0[/i] looks like a defect until the tiers
+line up: 0, then 5, then 10. It is a ramp that starts at zero, and only 11 of 623 skill presets in the
+whole game are zero-valued -- rare, but not unique. A creature whose weakest tier is hopeless with its
+own attack is a coherent design, and it stands on 32 and 16 maps.
+
+So this item ships no file change. That is the right outcome for a repair pass that finds nothing, and
+the measurement is worth more than the four cans it would otherwise have "fixed".
+
+[b]3. A telegraphed heavy strike for the Assassin Masters[/b]
+
+All three [i]Assasin Master[/i] cans had an [b]empty [i]Shoot Completed[/i][/b] -- the Priestess situation again --
+and [i]Assasin Master Super[/i] is the heaviest thing in act 1 at 650 hit points, standing in the Slave Pits.
+
+One attack in four now spawns a visible warning, waits a second, then lands an extra 6-12, 9-16 or
+12-22 slashing by tier. The shape is [i]Swordsman Dual Super[/i]'s -- something visible, [i]CDelayAction[/i],
+then the payload -- with the [i]Vilify[/i] effect on its shipped path and [i]CActionDoDamage[/i] copied from
+[i]Andre the Titan 2[/i]. No animation was invented: a [i]CPlayAnimationAction[/i] was considered and dropped
+because it needs an animation the assassin model is known to have, and that was not verified.
+
+[b]What a telegraph can honestly be.[/b] [i]Shoot Completed[/i] fires when a shot *finishes*, so a delay there
+cannot slow the blow that is already landing. What it can do is occasionally wind up and land an extra
+one. That is a telegraphed special attack, not a slowed normal swing.
+
+[b]4. Archer secondaries: NOT BUILT, and the measurement says why[/b]
+
+The plan was a melee secondary for [i]Assasin Bow[/i] and its tiers, with a switch when the player closes.
+Two measured facts kill it:
+
+- [b]No distance-check action exists.[/b] Sweeping every [i].can[/i] and [i].zax[/i] for a class matching distance,
+  range, near, close or proximity returns [i]CFreeRangePoly[/i] (geometry), guard AIs and door checks.
+  Nothing an attack AI can ask "is the player on top of me". Any switch would therefore be random, and
+  a random switch means archers that stop shooting at range -- strictly worse than today.
+- [b]There is no blade to give them.[/b] The melee assassins -- [i]Assasin[/i], [i]Assasin Super[/i],
+  [i]Assasin Master Super[/i] -- equip [b]nothing at all[/b]. There is no assassin melee weapon item in the
+  game to hand the archers as a secondary.
+
+A partial exists and was not taken: give the three [i]Assassin Bow[/i] races an [i]Unarmed[/i] preset so they are
+not swinging with a skill they lack when cornered. One line per race -- but whether a bow-equipped
+character melees at all is unverified, and shipping an unverified guess inside a release that already
+carries three behaviour changes is how attribution gets lost. Offered, not shipped.
+
+[b]5. The Bonecaller raises a wave when wounded[/b]
+
+[i]CAIHealthPercentThresholdTrigger[/i] is used [b]twice in the entire game[/b], both in
+[i]Ogre Conjurer Cave.zax[/i], both [i]When Health Percent Crosses Below[/i] firing a relay. The shape is copied
+exactly and only the action differs: it fires [i]CUseCannedActionAction[/i] on a new canned object rather
+than a relay, which is the 0.25.2 indirection and means [b]no map edit[/b].
+
+Crossing below 40% raises 3, 4 or 5 ghouls by tier, using the same clone-and-checker beat as the 0.25.0
+per-attack summon and guarded by [i]ghoul summoning enabled[/i], so a Bonecaller standing anywhere without a
+clone source simply does not. It is a moment, not a behaviour swap: swapping its whole attack AI
+mid-fight would need [i]CRemoveAIAction[/i]/[i]CAddAIAction[/i] inside a can, far more than the item ranked last
+justifies.
+
+[b]The honest caution[/b]
+
+Three behaviour changes and a crit-forcing attribute land together, against a plan that said not to do
+that. The QA rows are split per item so a playthrough can still attribute, and each part reverts on its
+own -- two preset lines for item 1, three [i]Shoot Completed[/i] blocks for item 3, one Activity entry and
+three canned objects for item 5.
+
+If the next playthrough can only report that combat got harder, that is the cost being paid.
+
+[b]Fixt[/b] is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run [i]Mod Manager.bat[/i]. Items 1 and 5 reach creatures [b]spawned after the install[/b], so
+they want a save that has not entered the sewers, the bonus level or the Doomed Plateau. Item 3 is in
+the Slave Pits.
+
+https://github.com/EricHype/LionheartFixt/releases/tag/v0.26.0

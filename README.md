@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.25.7](https://github.com/EricHype/LionheartFixt/releases/tag/v0.25.7).
+-- currently [0.26.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.26.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -89,6 +89,7 @@ why -- in [`docs/releases.md`](docs/releases.md).
 | **0.25.5** | Alamut | The one finding of a companion audit that cleared Grace, the Goblin Girl and Grumdjum. The Knight of Saladin's return node offered both dismiss and recruit ungated, and the map points his specifier there from two places, so it is reached before recruitment and while following. It tracks `Saladin Knight Follows` rather than Fernand's is-waiting flag, which could not tell never-recruited from following |
 | **0.25.6** | - | **No game file changes.** A marker for the build the first playtest of the 0.25.x line validated: the enemy backstab confirmed firing at roughly one in seven landed melee thief attacks, and the Fernand and Knight of Saladin repairs in place. Installing it over 0.25.5 gains nothing |
 | **0.25.7** | Port District | The repair 0.25.3 and 0.25.4 should have been. Fernand's post-join interaction opened his node as a floating **balloon**, which has no reply list -- so the dismiss and rejoin replies those releases added were never displayed and the variable was never written. The specifier now opens a conversation, as every other companion's does. An entity change, so it reaches a character who has not yet recruited him |
+| **0.26.0** What They Were Built To Do, part two | Sewers and the bonus level, the Slave Pits, the Doomed Plateau | The five-item combat plan built: four shipped, one blocked. Sniper mode -- the proven sibling of the backstab gate, read through the same accessor with no player test -- goes on the Super bow thieves via two more of 0.25.0's orphan races. The Assassin Masters, whose attack slot was empty like the Priestesses', now spawn a visible warning and pause before one blow in four. The Bonecaller raises a wave on crossing 40 percent, using the health-threshold trigger vanilla uses twice in the whole game, fired through a canned object so no map changes. The weapon-skill repair sweep found **nothing** once it read equipment instead of can names: the goons it flagged equip nothing and merely drop a sword, and the Vodyanoi's `Ranged 0` is a deliberate 0/5/10 tier ramp. Archer secondaries are blocked outright -- no distance-check action exists anywhere in the game, and the melee assassins carry no weapon to copy |
 Three things were **read and deliberately left alone**, and the reasoning is in the release
 notes: Torquemada's *purify the shadow dryad* quest (she cannot be killed; unfinished, not
 cut), the Mountain Pass's sealed door (no map behind it), and the Act 8 goblin companion
@@ -96,7 +97,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.25.7 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
+**0.1.0 through 0.26.0 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's
