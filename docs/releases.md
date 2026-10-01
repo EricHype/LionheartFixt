@@ -140,6 +140,48 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## Hover-text barks, built 2026-10-01 (unreleased)
+
+Item 3 of the reactive plan, scoped the way it was asked for: **a different voice per family**.
+
+| family | cans | voice |
+|---|---|---|
+| thieves | 35 | Barcelona street, mercenary -- *"Your purse or your teeth. Pick one."* |
+| English soldiers | 24 | disciplined, orders -- *"Hold the line!"*, *"For the Crown, and for England!"* |
+| Snakebreed | 9 | sibilant, half-wordless -- *"Ssssoft thing. Warm thing."*, `<It rears back, hissing>` |
+
+**The mechanism is shipped, not invented.** 21 monster cans already float a dialogue node over a
+creature's head with `CDisplayDialogBalloonAction`. The three `Sewer Guarddog` cans showing `Guarddog`
+node `10 Growls` are also the precedent for a wordless creature and for a stage direction as the whole
+line, which is what the Snakebreed use.
+
+**Frequency, and why not the obvious hook.** `Damaged Script Action` is empty on 474 of 478 cans and
+looks like the natural home -- but it fires on every hit, which would be unreadable. The barks instead
+use the 1-in-4 shape that 0.26.0's Assassin Master telegraph already ships: `CRandomAction` over three
+ordinary skill selects and one balloon. No no-op shape was invented, which matters because vanilla
+contains **zero** empty `CMultipleActionsAction`.
+
+`Include In Log=0` on every balloon. The log is where the shipped game puts narration -- 222 uses of
+`CPrintCombatTextAction` saying things like *"You discover a treasure buried in the ground"* -- so
+creature speech there would read as the narrator.
+
+**Four cans deliberately skipped**: the three `Snakebreed Venom`, whose attack slot already carries a
+`CAddTemporaryAIAction`, and probe B's archer, whose slot carries the move-relative test. Probe A's
+archer was skipped too, and for a sharper reason -- the bark would have gone *inside* the
+`CStrafeAttackAI` block the probe installs, so a load failure could no longer be attributed to the
+class rather than the field. A probe is worth nothing if it tests two things.
+
+### A mistake worth recording
+
+The first build read every can from the **vanilla archive** instead of from Fixt's copy, and silently
+discarded the backstab repoints, the Sniper repoints and both probes on the 36 thief cans it touched.
+Caught by checking four known markers immediately after the run, and restored from git.
+
+`tools/lhbuild.py` has had the right helper the whole time -- `read()` takes Fixt's file if one exists
+and falls back to vanilla -- and the script simply did not use it. This is the second time this class
+of error has appeared: the first deleted a tracked `Rakeb.dialogtree` during a negative test. **Any
+script that edits a shipped file must read through `read()`, never `zf.read()`.**
+
 ## 0.26.0 - What They Were Built To Do, part two
 
 The five-item combat plan, built. **Four shipped, one did not survive contact with the data**, and the

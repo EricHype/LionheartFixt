@@ -775,7 +775,37 @@ CCannedObject
 						Play Sequence=
 						Play Reload Sequence=
 					}
-					Shoot Completed=
+					Shoot Completed=CRandomAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
+								Node ID=11 worth more
+								Name of Position=$trigger
+								Position Offset=0.000000,-70.000000
+								After Action=
+								Include In Log=0
+							}
+						}
+					}
 					Turn Behavior=CPointWeaponAtTargetEntityBehavior
 					{
 					}

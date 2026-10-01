@@ -1471,6 +1471,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Hover-text barks, one voice per family
+
+67 cans across three families, 12 distinct lines, hung on the attack slot so a creature barks roughly
+**one attack in four**. Can edits, so each needs a save that has not entered the relevant area.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BK1 | Fight thieves in the sewers or the bonus level | - | Floating text **over the thief's head**, not in the combat log: *"Your purse or your teeth. Pick one."*, *"You picked the wrong alley, amigo."* and two others |
+| BK2 | Fight several thieves at once | - | Different lines from different thieves. Each can carries one of the four, spread across the family |
+| BK3 | Act 7, fight English soldiers | - | A completely different register: *"Hold the line!"*, *"On me! Form up!"*, *"For the Crown, and for England!"* |
+| BK4 | Fight Snakebreed | - | Half-wordless and sibilant: *"Ssssoft thing. Warm thing."* and the stage directions *&lt;It rears back, hissing&gt;* |
+| BK5 | Watch the **frequency** over a long fight | - | Roughly one bark in four attacks. **If it reads as chatter, that is the row that fails** -- the fix is changing one Item Count |
+| BK6 | Check the combat log | - | The barks are **not** in it. `Include In Log=0`, because the log is where narration lives and speech there reads as the narrator |
+| BK7 | Fight `Snakebreed Venom`, and the probe B archer | - | No bark. Both have an attack slot already in use and were deliberately skipped |
+
 ## PROBES - not a release, revert before cutting one
 
 Two experiments deployed 2026-09-30, both on bow thieves in the RED FILE bonus level: 31 `Theif3 Bow`
