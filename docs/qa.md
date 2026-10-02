@@ -1472,7 +1472,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## 0.28.0 - Fernand Desoto can be taken back (the sixth attempt)
+## 0.28.1 - Fernand Desoto can be taken back (attempts six and seven)
 
 See the section below for the five that failed. The cause was never in his dialogue tree: while an NPC
 is a companion the engine lays `Player Data/Companion AI Interaction Specifier.can` over the top --
@@ -1482,6 +1482,15 @@ His standing specifier is seen only once he is released, so it must open the *re
 
 Needs a character who has **not yet recruited him** -- the specifier is entity state, snapshotted on
 first visit. `FN8` is the exception and is the interesting case for an existing save.
+
+**0.28.0 fixed only half of this and 0.28.1 fixes the rest.** The engine's overlay is a *swap that
+remembers*: `FUN_005e7870` looks for an existing `CAIInteractionSpecifier`, parks it in the
+`CCompanionManagerAI` as `Original AIInteractionSpecifier`, and replaces it -- and only appends if the
+entity has none. Fernand's join node triggered the relay that removes his specifier and re-adds it
+0.1s later, while `CSetCompanionAction` also fired at 0.1s. The companion call won that race, found an
+empty slot, appended the overlay and parked nothing, so release had nothing to put back and the generic
+menu stayed on him permanently. The companion call now waits 0.5s. Cervantes never had a race to lose:
+his specifier is standing map data, present before anyone recruits him.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
@@ -1495,6 +1504,8 @@ first visit. `FN8` is the exception and is the interesting case for an existing 
 | FN8 | On a save that already **released** him under 0.25.3-0.27.0 | - | *"I have been holding this spot, as you asked."* and the same rejoin reply. His baked-in specifier points at node 100, which now offers the way back too |
 | FN9 | A save that recruited him **before 0.25.7** | - | Still broken: that save has a *balloon* specifier baked in, so he floats a line and opens nothing. Needs a fresh recruit, and cannot be repaired from our side |
 | FN10 | `python tools/savecheck.py grep "Fernand Is Waiting" --save latest` | - | Absent. 0.25.4's scripting variable is deleted and nothing depends on it |
+| FN11 | **Save immediately after recruiting him, before releasing.** `python tools/savecheck.py grep "Original AIInteractionSpecifier" --save latest` | - | **The decisive check, and it needs no release at all.** It must be present, and the specifier parked inside it must open `103 fernand waiting`. That is the engine's own restore slot -- Cervantes' holds `3 Return after release as a companion` |
+| FN12 | In the same save, count his active specifiers | - | **Exactly one**, the generic `Generic Companion Dialog` at `X Radius=30`. Two means the join race is back: the engine appended the overlay instead of swapping his out, nothing was parked, and release will have nothing to restore |
 
 ## 0.28.0 - the troll chief drops the hide when killed
 

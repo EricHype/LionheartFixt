@@ -181,7 +181,7 @@ wraps a `CAIInteractionSpecifier` marked **`Use=Shared Global Instance`**, openi
 companion's *own* interaction specifier for as long as it is following. So:
 
 - talking to a follower opens **the generic menu**, never the NPC's tree;
-- release drops the overlay and exposes whatever specifier the NPC had underneath;
+- release restores the NPC's own specifier;
 - therefore an NPC's own specifier is **only ever seen while it is not following**.
 
 Which means the state a companion is in is encoded by **which node its standing specifier
@@ -191,16 +191,81 @@ opens**, and that node must always be the *released*-state one. Cervantes has wo
 replies ungated, no flag anywhere. Grumdjum is the same shape; `666 Rejoin` is the Knight
 of Saladin's.
 
-Fernand Desoto's standing specifier pointed at his *following*-state node, so a released
-companion was greeted with another dismissal and no way back. Five attempts
-(0.25.3, 0.25.4, 0.25.7, 0.27.0, and one unreleased) each rewrote the contents of a reply
-nobody could reach: an ungated pair, a scripting variable, a balloon converted to a
-conversation, and a pair of canned specifier swaps. A `CPrintCombatTextAction` placed first
-in the reply's action array settled it by **not appearing in the save's event log at all**.
+### The overlay is a swap that remembers, and that is load-bearing
 
-The method rule: when a dialogue reply appears not to work, prove the array *runs* before
-redesigning what is in it, and check whether the engine is overlaying the specifier that
-opens it.
+This is the part that cost a seventh attempt, because "lays it over the top" is the
+behaviour and not the mechanism. `FUN_005e7870` does not append. It walks the entity's AI
+array for an existing `CAIInteractionSpecifier`; if it finds one it **parks it** on the
+`CCompanionManagerAI` and replaces it in place:
+
+```
+uVar4 = FUN_005b95e0(uVar6);     // the specifier already there
+*(iStack_18 + 0x10) = uVar4;     // parked, to put back on release
+...
+FUN_005b9600(uVar7, piVar3);     // replaced at that index
+```
+
+and **only if the entity has none does it append**:
+
+```
+if ((*(iStack_4 + 0x40) == 0) || (uVar7 == 0xffffffff)) FUN_005b98f0(piVar3);
+```
+
+The save format names the slot, so this needs no inference. A companion's manager holds:
+
+```
+Original AIInteractionSpecifier=CAIInteractionSpecifier
+{
+  Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Cervantes
+  Node ID=3 Return after release as a companion
+}
+```
+
+Two consequences:
+
+1. **An NPC must already carry its specifier when `CSetCompanionAction` runs.** If it does
+   not, the engine appends the overlay, parks nothing, and release has nothing to restore —
+   so the generic menu stays on that NPC permanently, first in the array, winning every
+   interaction. There is no later repair: nothing records what should have been there.
+2. **The parked specifier is the one the player meets after release**, so it must open the
+   released-state node. Cervantes' parked copy opens `3 Return after release as a companion`.
+
+Cervantes satisfies (1) for free: his specifier is standing map data, present before anyone
+recruits him. An NPC whose specifier is installed by a *script* can lose that race.
+
+### How this played out on Fernand Desoto, across seven attempts
+
+His standing specifier pointed at his *following*-state node, so a released companion was
+greeted with another dismissal and no way back. Five attempts — 0.25.3, 0.25.4, 0.25.7,
+0.27.0 and one unreleased — each rewrote the contents of a reply nobody could reach: an
+ungated pair, a scripting variable, a balloon converted to a conversation, and a pair of
+canned specifier swaps. A `CPrintCombatTextAction` placed first in the reply's action array
+settled it by **not appearing in the save's event log at all**.
+
+0.28.0 repointed the standing specifier at the released-state node, which was necessary and
+not sufficient. His join node triggered a relay that removes his specifier and re-adds it
+after `Delay=0.1`, while `CSetCompanionAction` also fired at `Delay=0.1` — the same tick.
+The companion call won that race, found an empty slot, appended the overlay and parked
+nothing, which is case (1) above. The save showed it plainly: **two** active specifiers, the
+generic first at `X Radius=30` and his own second at `80`, with no `Original
+AIInteractionSpecifier` anywhere and the manager already cleaned up. Three
+*"companion has left"* events against one *"joined"*.
+
+0.28.1 makes the companion call wait `0.5s`. The save then matches Cervantes exactly: one
+active specifier, his own parked and opening `103 fernand waiting`.
+
+### Method rules this produced
+
+- When a dialogue reply appears not to work, prove the array *runs* before redesigning what
+  is in it. One dependency-free action placed first answers it in a single playtest.
+- A fix verified by behaviour is not verified. Both Fernand bugs were diagnosable from the
+  save's own serialised entity state, and the second was invisible to a play report that said
+  only "acts the same".
+- Two actions on the same delay are not ordered. If one must observe the other's effect,
+  separate them explicitly rather than relying on the scheduler.
+- Check the known-good case in the same terms before trusting a model: Cervantes' save said
+  `Original AIInteractionSpecifier` out loud, and reading his *data* rather than his dialogue
+  would have shortened this by several releases.
 
 **Non-combatants who belong in a dungeon.** Prisoners, survivors, dying English soldiers,
 a trapped merchant, ghosts. Each is a character template plus a DialogTree plus a

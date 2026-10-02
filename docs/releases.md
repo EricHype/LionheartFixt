@@ -140,6 +140,99 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.28.1 - what the overlay actually does
+
+0.28.0 said Fernand Desoto could be taken back. He could not, and the report came back the same day:
+*"check the quick save, still the same with ferdnand."*
+
+The save said the 0.28.0 half had landed -- his own specifier did open `103 fernand waiting` -- and
+that he was carrying **two** interaction specifiers:
+
+```
+Activity=CAIInteractionSpecifier   Generic Companion Dialog     X Radius=30   Was Triggered=1
+Activity=CAIInteractionSpecifier   Distressed Sailor  node=103   X Radius=80
+```
+
+The generic one is first, so it wins, and it was still there after three releases -- one
+*"companion has joined your party"* in the log against three *"has left"*.
+
+### The overlay is a swap that remembers
+
+"The engine lays its own specifier over the top" is the behaviour, not the mechanism, and the
+difference is where the second bug lived. `FUN_005e7870` does not append. It walks the entity's AI
+array for an existing `CAIInteractionSpecifier`, **parks it**, and replaces it in place:
+
+```
+uVar4 = FUN_005b95e0(uVar6);     // the specifier already there
+*(iStack_18 + 0x10) = uVar4;     // parked, to put back on release
+...
+FUN_005b9600(uVar7, piVar3);     // replaced at that index
+```
+
+and only if the entity has none does it append:
+
+```
+if ((*(iStack_4 + 0x40) == 0) || (uVar7 == 0xffffffff)) FUN_005b98f0(piVar3);
+```
+
+No inference was needed in the end, because the save format names the slot out loud. Cervantes, while
+following:
+
+```
+Original AIInteractionSpecifier=CAIInteractionSpecifier
+{
+  Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Cervantes
+  Node ID=3 Return after release as a companion
+}
+```
+
+One active specifier, his own parked, and the parked copy opens the **released**-state node. Reading
+his *data* rather than his dialogue would have shortened this whole saga by several releases.
+
+### The race, in our own join node
+
+```
+Action=CTriggerRelayAction { Relay Name=fernand joins you }          // removes his specifier NOW,
+                                                                    // re-adds it after Delay=0.1
+Action=CDelayAction { Next Action=CSetCompanionAction ... Delay=0.1 }
+```
+
+Both land on the same tick, and two actions on the same delay are not ordered. The companion call won,
+found an empty slot, appended the overlay and parked nothing -- so release had nothing to restore and
+the generic menu stuck to him permanently. Fixed by making the companion call wait `0.5s`, five times
+the relay's delay.
+
+**Cervantes never had a race to lose.** His specifier is standing map data, present before anyone
+recruits him, so the engine always finds it, always parks it, and always puts it back. That, and not
+the node naming, is the deeper reason he has worked since 2003.
+
+The save taken after the fix matches him field for field: one active specifier at `X Radius=30`, and
+`Original AIInteractionSpecifier` holding `103 fernand waiting`.
+
+### A cheaper test, and the method rules
+
+Two new QA cases verify this from the save **immediately after recruiting, with no release needed**:
+
+| # | check |
+|---|---|
+| FN11 | `Original AIInteractionSpecifier` present, and opening `103 fernand waiting` |
+| FN12 | exactly **one** active specifier -- two means the race is back |
+
+Seven attempts on one bug produced four rules worth keeping:
+
+- prove the code path *runs* before redesigning what is in it;
+- then verify the **state** it produced against a known-good example -- a fix confirmed on behaviour
+  alone is not confirmed, and "acts the same" cannot distinguish two causes with one symptom;
+- two actions on the same delay are not ordered; if one must observe the other's effect, separate them;
+- read the working example's data, not its dialogue.
+
+### Known limit
+
+A character who recruited him under 0.25.3-0.28.0 has the overlay appended with nothing parked, and
+entity state is snapshotted, so that save cannot be repaired -- nothing recorded what should have been
+there. It needs a character who has not yet recruited him. A save from before 0.25.7 has a *balloon*
+baked in and is likewise beyond reach.
+
 ## 0.28.0 - The Hide and the Way Back
 
 Two repairs a playthrough found. Both were invisible to every static check for the same reason: the
