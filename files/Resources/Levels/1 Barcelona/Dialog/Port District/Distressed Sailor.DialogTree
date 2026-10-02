@@ -772,30 +772,20 @@ Forget Trigger=0
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=100 companion banter
-Text=Where you go, I follow.
+Text=I have been holding this spot, as you asked.
 Should Have Voiceover=0
 
 Requirement=!None
-Reply Text=Wait here, Fernand. I will come back for you.
+Reply Text=Walk with me again, Fernand.
 Go to node ID=
-Custom Action=CMultipleActionsAction
+Custom Action=CSetCompanionAction
 {
-Action=Array
-{
-Item Count=2
-Action=CReleaseCompanionAction
-{
-Companion To Release=Distressed Sailor
-}
-Action=CUseCannedActionAction
-{
-Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Fernand now waiting
-}
-}
+Player=$Instigator
+Companion=Distressed Sailor
 }
 
 Requirement=!None
-Reply Text=Nothing. Carry on.
+Reply Text=Hold it a while longer.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
@@ -807,21 +797,10 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Walk with me again, Fernand.
 Go to node ID=
-Custom Action=CMultipleActionsAction
-{
-Action=Array
-{
-Item Count=2
-Action=CSetCompanionAction
+Custom Action=CSetCompanionAction
 {
 Player=$Instigator
 Companion=Distressed Sailor
-}
-Action=CUseCannedActionAction
-{
-Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Fernand now following
-}
-}
 }
 
 Requirement=!None

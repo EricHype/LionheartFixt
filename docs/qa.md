@@ -15,7 +15,7 @@ that no longer exists here, so renumbering a case cannot silently orphan the gui
 
 ## Gate 0 - automated, before anyone plays
 
-A0.1-A0.12 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
+A0.1-A0.12 and A0.14 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
 [`tools/reachability.py`](../tools/reachability.py), which needs the vanilla archive to
 tell our orphans from the shipped game's. Both must be re-run after *any* change to
 `files/`:
@@ -50,6 +50,7 @@ is parsed, so a new *text* type cannot slip through by being unlisted.
 | A0.11 | After build: all payload files byte-identical in `data.dat` **and** the loose `data\` mirror | identical in both |
 | A0.12 | `data.dat` passes `testzip()` and every entry is `compress_type == 0` | store-only |
 | A0.13 | Every node this mod adds is reachable -- `python tools/reachability.py` | zero unreachable. Nodes already orphaned in the shipped tree are tolerated; a Fixt tree is usually a shipped tree with nodes spliced in, and should not inherit the blame for what it copied |
+| A0.14 | No can-level quest-item drop is overridden by the generator that spawns it | zero overridden drops. `CSetDestroyedScriptActionAction` in a generator's `After Action` **replaces** the can's `Destroyed Script Action`, so a drop written only on the can is dead code -- this is how the Lava Troll Hide was unobtainable from 0.10.0 |
 
 **A0.11 is the one that has bitten this project before.** The loose `data\` tree shadows
 `data.dat`; a correct archive with a stale mirror is a mod that silently does nothing.
@@ -1471,19 +1472,63 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## 0.27.0 - Fernand, fourth attempt
+## 0.28.0 - Fernand Desoto can be taken back (the sixth attempt)
 
-Needs a save that has **not recruited him** -- the specifier is entity state and is snapshotted.
+See the section below for the five that failed. The cause was never in his dialogue tree: while an NPC
+is a companion the engine lays `Player Data/Companion AI Interaction Specifier.can` over the top --
+`Use=Shared Global Instance`, opening `Levels/Generic Companion Dialog` node `01 Conversation Start` --
+so talking to a follower opens the **generic companion menu** and his own conversation is unreachable.
+His standing specifier is seen only once he is released, so it must open the *released*-state node.
+
+Needs a character who has **not yet recruited him** -- the specifier is entity state, snapshotted on
+first visit. `FN8` is the exception and is the interesting case for an existing save.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| FN1 | Recruit Fernand, talk to him | - | *"Where you go, I follow."* with two replies. Only **dismiss**, no rejoin offered |
-| FN2 | Choose *"Wait here, Fernand"* | - | He stops following |
-| FN3 | Talk to him again | - | A **different node**: *"Shall we continue, or is my place here for now?"* -- only **rejoin** offered |
-| FN4 | Choose *"Walk with me again"* | - | **He rejoins.** This is the bug, reported four times |
-| FN5 | Talk again | - | Back to node 100 and the dismiss line. The pair alternates by position, not by a flag |
-| FN6 | Cycle dismiss and rejoin three times | - | Still exactly one of the two, never both and never neither |
-| FN7 | Stop him following by any other means, then talk | - | Whatever his specifier last pointed at. If it still says *"Where you go, I follow."*, use its dismiss reply once to resynchronise |
+| FN1 | Recruit Fernand, then talk to him | - | The **generic companion menu**: *"What would you like your companion to do?"* with *Release Companion*. That is the engine's, not his, and is expected |
+| FN2 | Choose *Release Companion* | - | He stops following |
+| FN3 | Talk to him again | - | **His own conversation opens**: *"Shall we continue, or is my place here for now?"* with *Walk with me again, Fernand.* This reply is the whole release |
+| FN4 | Choose *"Walk with me again, Fernand."* | - | **He rejoins and follows.** This is the bug, reported five times |
+| FN5 | Talk to him while he follows again | - | The generic menu once more. His node is hidden while he follows -- correct, not a regression |
+| FN6 | Cycle release and rejoin three times | - | Works every time. No flag, nothing to desynchronise |
+| FN7 | Choose *"Hold this spot a while longer."* | - | The conversation closes and he stays put. Talking again re-offers the rejoin |
+| FN8 | On a save that already **released** him under 0.25.3-0.27.0 | - | *"I have been holding this spot, as you asked."* and the same rejoin reply. His baked-in specifier points at node 100, which now offers the way back too |
+| FN9 | A save that recruited him **before 0.25.7** | - | Still broken: that save has a *balloon* specifier baked in, so he floats a line and opens nothing. Needs a fresh recruit, and cannot be repaired from our side |
+| FN10 | `python tools/savecheck.py grep "Fernand Is Waiting" --save latest` | - | Absent. 0.25.4's scripting variable is deleted and nothing depends on it |
+
+## 0.28.0 - the troll chief drops the hide when killed
+
+Reported from play: *"I'm killing the lava troll boss and all trolls, but I'm not getting a hide."*
+Correct report. 0.10.0 put the drop on the three `Lava Troll Boss` cans, but the chief is spawned
+through a generator whose `After Action` runs `CSetDestroyedScriptActionAction` -- which *changes* the
+spawned entity's destroyed action, overwriting the can's slot the moment he appears. The can's drop was
+dead code from the day it shipped, so the kill route could never yield a hide while the **peace** route
+handed one over in two different nodes.
+
+Both chief generators now carry `CActionGiveStandardInventoryItem`, the same action the Titan bosses use
+for their stonehearts and the same one the peaceful trolls already use. It goes **straight into the
+killer's pack with a notification**, so nothing can land in the lava.
+
+A map change, so it needs a character who has **not yet entered 05 Troll Pit** -- the entity list is
+snapshotted on first visit.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TH1 | Fresh Troll Pit. Kill the troll chief (the big one, any difficulty) | - | *Lava Troll Hide* arrives **in inventory** with an on-screen notification. Not on the floor |
+| TH2 | Check the quest log | - | `Troll Hide for Quinn` can now be completed. Killing him still completes `Destroy the Lava Troll Menace` as before |
+| TH3 | Listen as he dies | - | The sewer ambience still switches from monsters to quiet. The vanilla bookkeeping is untouched -- the give was appended, not substituted |
+| TH4 | Kill the ordinary trolls, tough and super included | - | **No** hide from any of them. Only the chief carries one, deliberately |
+| TH5 | Take the hide to Quinn | - | He takes it, removes it from the pack, and goes to `850 troll hide turned in` |
+| TH6 | Peace route instead: ask the chief for a hide (`133 the hide`, or `30 troll trade`) | - | He hands one over as before. Unchanged by this fix |
+| TH7 | Peace route, then desecrate the field and kill the angry chief | - | A hide, exactly one. His generator got the same give, so both chiefs behave alike |
+| TH8 | Already hold a hide, then kill the chief | - | A second one. Harmless, and the same as vanilla's behaviour for a Titan heart |
+
+## 0.27.0 - Fernand, the fourth attempt (FAILED - superseded by 0.28.0)
+
+Nothing to test. This attempt gave him a dedicated released-state node reached by specifier swaps
+fired from canned objects, and the swap never ran -- like the three before it, it edited a reply the
+player could not reach. The cause and the working fix are in the 0.28.0 section above, which carries
+the test cases; the swap objects are deleted.
 
 ## 0.27.0 - hover-text barks, a voice per family and a sub-bank per type
 

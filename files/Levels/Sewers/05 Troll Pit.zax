@@ -1920,7 +1920,22 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CActionGiveStandardInventoryItem
+								{
+									Who to give to=$instigator
+									Delete Trigger=0
+									Notify Player=1
+									Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+									Additions to add=Array
+									{
+										Item Count=0
+									}
+								}
+								Target Name=$Instigator
+							}
 							Action=CRemoveCategoryAction
 							{
 								Target Name=$Instigator
@@ -19305,7 +19320,18 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=3
+										Item Count=4
+										Action=CActionGiveStandardInventoryItem
+										{
+											Who to give to=$instigator
+											Delete Trigger=0
+											Notify Player=1
+											Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
+											Additions to add=Array
+											{
+												Item Count=0
+											}
+										}
 										Action=CTriggerRelayAction
 										{
 											Relay Name=Trolls dead quest

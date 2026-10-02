@@ -165,10 +165,42 @@ vehicles that fit, in order of cost:
 `Companion Joined.can`, `Start`/`Stop Companion Follow`, a `Companion Follow Enabled`
 attribute, and Captain Isabella already has companion voice lines. But
 `Generic Companion Dialog` is a single node — *"What would you like your companion to
-do?"* — referenced once. There is no banter at all. `CDisplayDialogBalloonAction` (1974
+do?"* — and there is no banter at all. `CDisplayDialogBalloonAction` (1974
 uses across the game) delivers floating speech, so proximity triggers can fire companion
 lines on entering a room, finding a body, or meeting a boss. This adds voice and reaction
 without a single new NPC.
+
+### A companion's own dialogue is unreachable while it is following
+
+This cost five releases, so it is written down plainly.
+
+`Generic Companion Dialog` looks like a dead end — one node, one reference. That single
+reference is the whole mechanism. `Player Data/Companion AI Interaction Specifier.can`
+wraps a `CAIInteractionSpecifier` marked **`Use=Shared Global Instance`**, opening node
+`01 Conversation Start` of that tree with `Speaker=$trigger`. The engine lays it over a
+companion's *own* interaction specifier for as long as it is following. So:
+
+- talking to a follower opens **the generic menu**, never the NPC's tree;
+- release drops the overlay and exposes whatever specifier the NPC had underneath;
+- therefore an NPC's own specifier is **only ever seen while it is not following**.
+
+Which means the state a companion is in is encoded by **which node its standing specifier
+opens**, and that node must always be the *released*-state one. Cervantes has worked since
+2003 on exactly this: seven maps carry a standing specifier at
+`1500 cervantes leaves party dialogue` / `3 Return after release as a companion`, both
+replies ungated, no flag anywhere. Grumdjum is the same shape; `666 Rejoin` is the Knight
+of Saladin's.
+
+Fernand Desoto's standing specifier pointed at his *following*-state node, so a released
+companion was greeted with another dismissal and no way back. Five attempts
+(0.25.3, 0.25.4, 0.25.7, 0.27.0, and one unreleased) each rewrote the contents of a reply
+nobody could reach: an ungated pair, a scripting variable, a balloon converted to a
+conversation, and a pair of canned specifier swaps. A `CPrintCombatTextAction` placed first
+in the reply's action array settled it by **not appearing in the save's event log at all**.
+
+The method rule: when a dialogue reply appears not to work, prove the array *runs* before
+redesigning what is in it, and check whether the engine is overlaying the specifier that
+opens it.
 
 **Non-combatants who belong in a dungeon.** Prisoners, survivors, dying English soldiers,
 a trapped merchant, ghosts. Each is a character template plus a DialogTree plus a

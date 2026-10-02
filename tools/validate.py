@@ -588,9 +588,99 @@ def check_no_probes(fails):
                              + " -- revert it and reinstall before cutting a release")
 
 
+def _balanced(t, s):
+    """End offset of the brace block that starts at or after `s`."""
+    d, j = 0, t.index("{", s)
+    while True:
+        if t[j] == "{":
+            d += 1
+        elif t[j] == "}":
+            d -= 1
+            if d == 0:
+                return j + 1
+        j += 1
+
+
+def check_overridden_drops(fails):
+    """A quest-item drop on a creature can is dead code if every spawner overrides the slot.
+
+    This shipped in 0.10.0 and went unnoticed until someone played it: the Lava Troll Hide was put on
+    all three `Lava Troll Boss` cans in `Destroyed Script Action`, copied field for field from Iapetus
+    and Lethos, and it could never fire. The chief is spawned through a `CGeneratorAI` whose
+    `After Action` runs `CSetDestroyedScriptActionAction` -- described in the exe as *"Changes the
+    'Destroyed Action' of any entity on the map"* -- so the generator's `New Destroyed Action` replaces
+    the can's the instant the creature appears.
+
+    Nothing else here would catch it. The can parsed, round-tripped byte-exact, named a real item,
+    referenced a real field used 3960 times, and matched a working vanilla boss line for line. Only the
+    interaction between the can and the map that spawns it is wrong.
+
+    So: for every quest item a Fixt can drops from its own destroyed slot, find the generators that
+    spawn that can and fail if one of them overrides the slot without re-offering the same item. The
+    fix is to put the item in the generator's own `New Destroyed Action`, which is what vanilla does for
+    the four Titan bosses.
+    """
+    mine = F / "Resources" / "Monster Cans"
+    if not mine.exists():
+        return
+    drops = {}
+    for p in sorted(mine.rglob("*.can")):
+        text = p.read_bytes().decode("latin-1")
+        m = re.search(r"Destroyed Script Action=C[A-Za-z]", text)
+        if not m:
+            continue
+        blk = text[m.start():_balanced(text, m.start())]
+        items = set(re.findall(r"Item=(Inventory/Specific Item Cans/Quest Items/[^\r\n]+)", blk))
+        if items:
+            rel = str(p.relative_to(F / "Resources")).replace("\\", "/")[:-len(".can")]
+            drops[rel] = {i.strip() for i in items}
+    if not drops:
+        return
+
+    # the map that counts is Fixt's if it exists, else the shipped one
+    maps = {}
+    for n in zf.namelist():
+        if n.lower().endswith(".zax"):
+            maps[n] = None
+    for p in F.rglob("*.zax"):
+        maps[str(p.relative_to(F)).replace("\\", "/")] = p
+
+    for rel, items in sorted(drops.items()):
+        spawners, overridden = 0, []
+        for n, p in sorted(maps.items()):
+            text = (p.read_bytes() if p is not None else zf.read(n)).decode("latin-1")
+            if "Entity=" + rel not in text:
+                continue
+            i = 0
+            while True:
+                j = text.find("Level Part=CEntityBase", i)
+                if j < 0:
+                    break
+                e = _balanced(text, j)
+                i = e
+                part = text[j:e]
+                if "Entity=" + rel not in part or "CGeneratorAI" not in part:
+                    continue
+                spawners += 1
+                if "CSetDestroyedScriptActionAction" not in part:
+                    continue
+                k = part.index("CSetDestroyedScriptActionAction")
+                nda = part[k:_balanced(part, k)]
+                if not any(it in nda for it in items):
+                    who = (re.findall(r"Name=([^\r\n]*)", part) or ["?"])[0].strip()
+                    overridden.append(n.split("/")[-1] + " / " + repr(who))
+        if spawners and overridden:
+            fails.append(rel.split("/")[-1] + ".can: its quest-item drop "
+                         + repr(sorted(items)[0].split("/")[-1])
+                         + " is overridden by the generator that spawns it, so it can never fire -- "
+                         + "put the item in that generator's New Destroyed Action (as vanilla does for "
+                         + "the Titan bosses): " + "; ".join(sorted(set(overridden))))
+
+
 check_references(fails)
 check_self_reference(fails)
 check_no_probes(fails)
+check_overridden_drops(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))

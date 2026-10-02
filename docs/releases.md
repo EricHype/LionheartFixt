@@ -140,6 +140,119 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.28.0 - The Hide and the Way Back
+
+Two repairs a playthrough found. Both were invisible to every static check for the same reason: the
+data was correct, and something else overrode it at runtime.
+
+### Fernand Desoto, and the five attempts that could never have worked
+
+The project owner reported it a fifth time: *"ferdnand acts the same, see the quick save."*
+
+Rather than redesign the reply a sixth time, a diagnostic went in first -- a `CPrintCombatTextAction`
+placed **first** in the reply's action array, which lands in the combat log where `savecheck events`
+can read it. It did not appear. Not once in 234 events. The reply was never running.
+
+The same save said why, in its own message log:
+
+```
+Companion: <What would you like your companion to do?>
+Antonio Gula: Release Companion
+```
+
+That is not Fernand's dialogue. `Player Data/Companion AI Interaction Specifier.can` wraps a
+`CAIInteractionSpecifier` marked **`Use=Shared Global Instance`**, opening `Levels/Generic Companion
+Dialog` node `01 Conversation Start` with `Speaker=$trigger`. The engine lays it over a companion's own
+interaction specifier for as long as it follows. So:
+
+- talking to a follower opens **the generic menu**, never the NPC's tree;
+- release drops the overlay and exposes whatever specifier the NPC had underneath;
+- an NPC's own specifier is therefore **only ever seen while it is not following**.
+
+Fernand's standing specifier pointed at `100 companion banter` -- the *following*-state node, whose
+only offer was *"Wait here"*. A released companion was greeted with another dismissal and no way back.
+
+| attempt | what it did | why it failed |
+|---|---|---|
+| 0.25.3 | gave node 100 a dismiss and a rejoin, ungated | a dismissed Fernand still offered to be dismissed |
+| 0.25.4 | gated the pair on a new scripting variable | the variable was never written -- the save proved it absent |
+| 0.25.7 | found node 100 was a *balloon* with no reply list and made it a conversation | necessary, and still not enough |
+| 0.27.0 | a dedicated released-state node, with specifier swaps fired from canned objects | the swap never ran |
+| (unreleased) | the diagnostic probe | **did not fire** -- which was the finding |
+
+All five edited the contents of a reply the player could not reach.
+
+### Cervantes was showing the answer, and it is the opposite of what was built
+
+`0.27.0`'s notes quoted him correctly and drew the wrong conclusion from it. His standing map
+specifiers -- seven of them -- point at `3 Return after release as a companion` and
+`1500 cervantes leaves party dialogue`. Those are **released**-state nodes. The standing wiring is for
+when he is *not* with you, because that is the only time anything sees it.
+
+So the fix is one reference. The `fernand joins you` relay installs his standing specifier on
+`103 fernand waiting` instead of `100 companion banter`. The canned specifier swaps are deleted: the
+engine already swaps, earlier and more reliably than a reply action can.
+
+Node 100 now offers the same way back, because it is in exactly the same position -- unreachable while
+he follows -- so it should behave the same. That silently repairs saves already stuck pointing at it.
+A save that recruited him before 0.25.7 still has a *balloon* baked in and needs a fresh recruit;
+nothing can be done for those from our side.
+
+### The Lava Troll Hide has been unobtainable by killing since 0.10.0
+
+Also reported from play: *"I'm killing the lava troll boss and all trolls, but I'm not getting a
+hide."* Accurate, and no amount of killing would have worked.
+
+0.10.0 put `Destroyed Script Action=CGenerateInventoryItemAction` on all three `Lava Troll Boss` cans,
+copied field for field from Iapetus and Lethos. That is correct, and it has been installed ever since.
+But the chief is not spawned raw from the can -- `05 Troll Pit.zax` spawns him through a `CGeneratorAI`
+whose `After Action` runs `CSetDestroyedScriptActionAction`, described in the executable as:
+
+> "**Changes** the 'Destroyed Action' of any entity on the map to make the entity perform the specified
+> action when the entitiy is destroyed or dies"
+
+It replaces. The generator overwrote the can's slot the instant the chief spawned, leaving only the
+vanilla bookkeeping -- the `Trolls dead quest` relay and the ambient SFX swap. The hide was dead code
+from the day it shipped.
+
+Vanilla settles the replacement reading rather than an additive one: the four Titan bosses carry the
+**same** quest item in both their can's `Destroyed Script Action` and their generator's
+`New Destroyed Action`, which would hand out two stonehearts apiece if the slots stacked.
+
+The galling part is that the **peace** route already handed a hide over, in two separate nodes, using
+exactly the right action. Only the kill route never got it.
+
+Both generators that produce a `Troll Chief` now use `CActionGiveStandardInventoryItem` -- the Titans'
+own idiom, 374 uses across the game -- which puts the item **straight in the killer's pack with a
+notification**. That also removes a hazard nobody had noticed: the can's `Generate Within Radius=128`
+scatters a quest item on the floor, and that floor is a lava pit.
+
+| generator | change |
+|---|---|
+| `Lava Troll Generator` (the ordinary chief; boss, tough or super by difficulty) | appended to its destroyed-action array, 3 items to 4. Relay and SFX swap untouched |
+| `Troll answer chief` (the angry chief, after the field is desecrated) | `CSetDestroyedScriptActionAction` appended to its After Action, 2 items to 3. His hostility reset intact |
+
+One wrong turn is worth recording, because it was the same mistake a second time: the first version of
+this fix wrote `New Destroyed Action` as a direct field of `CGeneratorAI`. It is not one -- it belongs
+to `CSetDestroyedScriptActionAction` -- so that version would have been silently ignored exactly as the
+can was. The parent chain is now asserted on both.
+
+### Gate 0 gains A0.14
+
+For every quest item a Fixt can drops from its own destroyed slot, find the generators that spawn that
+can and fail if one overrides the slot without re-offering the item. Negative test: with the map
+reverted it names all three cans, the map and the generator; silent once fixed.
+
+Nothing else in Gate 0 could have caught this. The can parsed, round-tripped byte-exact, named a real
+item, used a field with 3960 occurrences, and matched a working vanilla boss line for line. Only the
+interaction between the can and the map that spawns it was wrong.
+
+### The method rule both halves share
+
+Prove the code path **executes** before redesigning what is in it. Five releases and one dead quest
+item were spent on edits that were individually sound and could never run. One probe, placed first,
+answers it in a single playtest -- reach for it on the second failure, not the fifth.
+
 ## 0.27.0 - What the Thieves Say
 
 Reported again after 0.25.7: he still cannot rejoin. The save says why -- **`Fernand Is Waiting` is
