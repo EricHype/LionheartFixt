@@ -1,0 +1,66 @@
+[size=150][b]Lionheart Fixt 0.28.2 - a companion built out of sentry parts[/b][/size]
+
+Fernand Desoto stops freezing in place after a kill.
+
+Reported from play, once 0.28.1 finally made him keepable: *"Ferdnand's AI often has him freezing in
+place after he defeats an enemy. He only seems to react when another enemy attacks him."*
+
+[b]He is the only companion built this way[/b]
+
+Every other companion inherits its skeleton AI from a creature can. Fernand's is [b]hand-assembled in a
+map relay[/b], and vanilla gave that relay target-acquisition values no other companion has.
+
+| field | Fernand | Cervantes | across the shipped archive |
+|---|---|---|---|
+| [b]Vision Cone[/b] | [b]90[/b] | 360 | [i]360[/i] in [b]1317[/b] uses, [i]90[/i] in 145 |
+| [b]Max Distance[/b] | [b]300[/b] | 550 | [i]550[/i] in [b]1019[/b] uses, the dominant value |
+| Retreat when | 40 | 0 | -- |
+| Max dist from home | 500 | 1200 | -- |
+| Patrol AI | [i]CGaurdNearMovingPosAI[/i] | [i]CScanAreaAI[/i] | -- |
+
+[i]Vision Cone=90[/i] is the whole symptom. When his target dies the skeleton re-runs acquisition through
+[i]CEntityBehaviorStateSetClosestTarget[/i], which only considers entities inside that 90-degree arc of his
+facing — so an enemy beside or behind him does not exist, and he stands there.
+
+[i]Target shooter if hit=1[/i] bypasses acquisition altogether. That is why [b]being hit woke him[/b], and why
+the fault read as apathy when it was blindness.
+
+[i]Max Distance=300[/i] compounds it: he could not see a target at a range where every other creature in the
+game can.
+
+[b]What that cone is actually for.[/b] Its 145 uses concentrate in the siege maps — Temple District Siege
+63, Gate District Siege 35, Crossroads Siege 9 — guards set to watch one direction. Exactly [b]one[/b]
+creature can in the whole game uses it. It is a sentry value, and a companion was built out of sentry
+parts.
+
+Nobody could have met this in vanilla, where he was unrecruitable until Fixt restored him in 0.6.0. It
+took 0.28.1 making him keepable before anyone could watch him fight long enough to notice.
+
+Now [i]360[/i] / [i]550[/i], matching Cervantes and the game's dominant values.
+
+[b]Two fields deliberately left alone[/b]
+
+[b][i]Valid Targets=Enemy[/i][/b] — changing it would do nothing. [i]FUN_005e7e50[/i] derives a companion's target
+categories from the player's on join and stores the previous ones as [i]Original Skeleton Targeting
+Flags[/i]. It saves *flags* only, which is also why the cone and the range survive the join and were ours
+to set. Cervantes' own template leaves [i]Valid Targets[/i] empty, which would read as "targets nothing" if
+the template value decided anything.
+
+[b][i]Retreat when=40[/i][/b] — a real difference from Cervantes, who never flees, and kept on purpose. Fernand
+still breaks off when badly hurt. The QA case records that as deliberate so it does not get filed as
+the same defect later.
+
+[b]Needs a fresh recruit[/b]
+
+The relay writes his AI at join time, so a companion you are already travelling with keeps the old
+eyes. Recruit him again on a character who has not yet taken him, and the north-island Vodyanoi fight
+is the natural place to watch it: after a kill he should turn to the next enemy on his own, including
+one behind him.
+
+Nothing else in 0.28.x is affected.
+
+[b]Fixt[/b] is a cumulative restoration-and-repair mod for Lionheart, after Fallout Fixt.
+
+Download, unzip, run [i]Mod Manager.bat[/i].
+
+https://github.com/EricHype/LionheartFixt/releases/tag/v0.28.2

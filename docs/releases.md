@@ -140,6 +140,56 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.28.2 - a companion built out of sentry parts
+
+Reported from play, once he could finally be kept: *"Ferdnand's AI often has him freezing in place
+after he defeats an enemy. He only seems to react when another enemy attacks him."*
+
+He is the **only companion in the game whose skeleton AI is hand-assembled in a map relay** rather
+than inherited from a creature can, and vanilla gave that relay target-acquisition values no other
+companion has.
+
+| field | Fernand | Cervantes | across the shipped archive |
+|---|---|---|---|
+| **Vision Cone** | **90** | 360 | `360` in **1317** uses, `90` in 145 |
+| **Max Distance** | **300** | 550 | `550` in **1019** uses, the dominant value |
+| Retreat when | 40 | 0 | -- |
+| Max dist from home | 500 | 1200 | -- |
+| Patrol AI | `CGaurdNearMovingPosAI` | `CScanAreaAI` | -- |
+
+`Vision Cone=90` is the entire symptom. When his target dies the skeleton re-runs acquisition through
+`CEntityBehaviorStateSetClosestTarget`, which only considers entities inside that 90-degree arc of his
+facing -- so an enemy beside or behind him does not exist and he stands still. `Target shooter if
+hit=1` bypasses acquisition altogether, which is why *being hit* woke him, and why the fault read as
+apathy rather than blindness. `Max Distance=300` compounds it: he could not see a target at a range
+where every other creature in the game can.
+
+**What that cone is actually for.** Its 145 uses concentrate in the siege maps -- Temple District Siege
+63, Gate District Siege 35, Crossroads Siege 9 -- guards set to watch one direction. Exactly **one**
+creature can in the whole game uses it. It is a sentry value, and a companion was built out of sentry
+parts.
+
+Nobody could have met this in vanilla: Fernand was unrecruitable until Fixt restored him in 0.6.0, so
+the AI had never run. It took 0.28.1 making him keepable before anyone could watch him fight for long
+enough to notice.
+
+Set to `360` / `550`, matching Cervantes and the game's dominant values.
+
+### Two fields deliberately not touched
+
+**`Valid Targets=Enemy`** -- changing it would do nothing. `FUN_005e7e50` derives a companion's target
+categories from the player's on join and stores the previous ones as `Original Skeleton Targeting
+Flags`. It saves *flags* only, which is also why the cone and the range survive the join and were ours
+to set. Cervantes' own template leaves `Valid Targets` empty, which would read as "targets nothing" if
+the template value decided anything.
+
+**`Retreat when=40`** -- raised as a balance question rather than repaired, and kept at the project
+owner's choice. He breaks off at 40 percent health where Cervantes never flees. `FA4` records that as
+deliberate, so the next reader does not file it as the same defect and flatten it.
+
+Needs a **fresh recruit**: the relay writes his AI at join time, so an existing companion keeps the old
+eyes.
+
 ## 0.28.1 - what the overlay actually does
 
 0.28.0 said Fernand Desoto could be taken back. He could not, and the report came back the same day:

@@ -1472,7 +1472,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## UNRELEASED - Fernand's combat AI stops freezing
+## 0.28.2 - Fernand's combat AI stops freezing
 
 Reported from play: he freezes after a kill and only reacts when attacked. He is the only companion
 whose skeleton AI is hand-built in a map relay, and vanilla gave it `Vision Cone=90` and
