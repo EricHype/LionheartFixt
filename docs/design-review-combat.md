@@ -823,6 +823,51 @@ Browser. With only the latter the log says *"RevaMcpService not available"* and 
 it listens on `http://127.0.0.1:8080/mcp/message`. The Claude Code client only connects at launch, so
 Ghidra must be up **before** the session starts.
 
+## Fernand's companion AI was built out of sentry parts, 2026-10-05
+
+Reported from play: he freezes after defeating an enemy, and only reacts when something attacks him.
+
+He is the **only companion in the game whose skeleton AI is hand-assembled in a map relay** rather
+than inherited from a creature can, and vanilla gave that relay target-acquisition values no other
+companion has.
+
+| field | Fernand | Cervantes | across the shipped archive |
+|---|---|---|---|
+| **Vision Cone** | **90** | 360 | `360` in **1317** uses, `90` in 145 |
+| **Max Distance** | **300** | 550 | `550` in **1019** uses, the dominant value |
+| Retreat when | 40 | 0 | -- |
+| Max dist from home | 500 | 1200 | -- |
+| Patrol AI | `CGaurdNearMovingPosAI` | `CScanAreaAI` | -- |
+
+`Vision Cone=90` is the entire symptom. When his target dies the skeleton re-runs acquisition through
+`CEntityBehaviorStateSetClosestTarget`, which only considers entities inside that 90-degree arc of his
+facing -- so anything beside or behind him is invisible and he stands still. `Target shooter if hit=1`
+bypasses acquisition altogether, which is why *being hit* wakes him. That asymmetry is precisely
+"only reacts when another enemy attacks him". `Max Distance=300` compounds it: he cannot see a target
+at a range where every other creature in the game can.
+
+**What the 90-degree cone is actually for.** Its 145 uses concentrate in the siege maps -- Temple
+District Siege 63, Gate District Siege 35, Crossroads Siege 9 -- guards set to watch one direction.
+Exactly **one** creature can in the game uses it (`Resurrect player.can`). It is a sentry value, and
+a companion was built out of sentry parts.
+
+A vanilla defect, with an obvious reason nobody caught it: Fernand was unrecruitable in vanilla until
+Fixt restored him in 0.6.0, so this AI had never run.
+
+Set to `360` / `550`, matching Cervantes and the game's dominant values.
+
+### Two fields deliberately not touched
+
+**`Valid Targets=Enemy`** -- changing it would do nothing. `FUN_005e7e50` derives a companion's target
+categories from the player's on join and stores the previous ones as `Original Skeleton Targeting
+Flags`. It saves *flags* only, which is also why the cone and the range survive the join and were ours
+to set. Cervantes' own template leaves `Valid Targets` empty, which would read as "targets nothing" if
+the template value decided anything.
+
+**`Retreat when=40`** -- a real difference, and it means Fernand breaks off at 40 percent health where
+Cervantes (`0`) never flees. Raised as a balance question rather than repaired, and the project owner
+chose to **keep the self-preservation**. It is a deliberate difference now, not an oversight.
+
 ## The standing caution
 
 This is the first work in the project aimed at difficulty rather than content, and **0.21.0 through

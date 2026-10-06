@@ -1472,6 +1472,26 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## UNRELEASED - Fernand's combat AI stops freezing
+
+Reported from play: he freezes after a kill and only reacts when attacked. He is the only companion
+whose skeleton AI is hand-built in a map relay, and vanilla gave it `Vision Cone=90` and
+`Max Distance=300` -- sentry values, where every other companion and 1317 uses across the game have
+`360`, and 1019 have `550`. After a kill, re-acquisition only saw a 90-degree arc of his facing;
+`Target shooter if hit=1` bypasses acquisition, which is why being hit woke him. Now `360` / `550`.
+
+The relay writes his AI at join time, so this needs a **fresh recruit** -- an existing companion keeps
+the old eyes.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| FA1 | Recruit Fernand, take him into the Vodyanoi fight at the north island | - | After killing one, he **moves to the next enemy on his own**, including one behind or beside him. Before this he stood still until something hit him |
+| FA2 | Stand him where an enemy is roughly 400-500 units off and out of his facing | - | He acquires it. The old 300 range and 90-degree cone could see neither |
+| FA3 | Let an enemy attack him while he is idle | - | He fights back, as he always did -- `Target shooter if hit=1` was never the broken part |
+| FA4 | Take his health below 40 percent | - | **He breaks off and retreats.** Deliberate: `Retreat when=40` is kept, unlike Cervantes who never flees. Not a bug |
+| FA5 | Walk far enough away mid-fight | - | He disengages and returns to following. `Max dist from home=500` is unchanged |
+| FA6 | Compare against Cervantes in the same fight | - | Broadly similar engagement now. He still retreats where Cervantes does not, by choice |
+
 ## 0.28.1 - Fernand Desoto can be taken back (attempts six and seven)
 
 See the section below for the five that failed. The cause was never in his dialogue tree: while an NPC
@@ -1482,6 +1502,8 @@ His standing specifier is seen only once he is released, so it must open the *re
 
 Needs a character who has **not yet recruited him** -- the specifier is entity state, snapshotted on
 first visit. `FN8` is the exception and is the interesting case for an existing save.
+
+**Signed off 10/01/26: the release and rejoin cycle was exercised by hand and works.** FN11 and FN12 were verified from the save first.
 
 **0.28.0 fixed only half of this and 0.28.1 fixes the rest.** The engine's overlay is a *swap that
 remembers*: `FUN_005e7870` looks for an existing `CAIInteractionSpecifier`, parks it in the
@@ -1494,18 +1516,18 @@ his specifier is standing map data, present before anyone recruits him.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| FN1 | Recruit Fernand, then talk to him | - | The **generic companion menu**: *"What would you like your companion to do?"* with *Release Companion*. That is the engine's, not his, and is expected |
-| FN2 | Choose *Release Companion* | - | He stops following |
-| FN3 | Talk to him again | - | **His own conversation opens**: *"Shall we continue, or is my place here for now?"* with *Walk with me again, Fernand.* This reply is the whole release |
-| FN4 | Choose *"Walk with me again, Fernand."* | - | **He rejoins and follows.** This is the bug, reported five times |
-| FN5 | Talk to him while he follows again | - | The generic menu once more. His node is hidden while he follows -- correct, not a regression |
+| FN1 | Recruit Fernand, then talk to him | - | The **generic companion menu**: *"What would you like your companion to do?"* with *Release Companion*. That is the engine's, not his, and is expected. **PASSED** 10/01/26, release and rejoin exercised by hand |
+| FN2 | Choose *Release Companion* | - | He stops following. **PASSED** 10/01/26, release and rejoin exercised by hand |
+| FN3 | Talk to him again | - | **His own conversation opens**: *"Shall we continue, or is my place here for now?"* with *Walk with me again, Fernand.* This reply is the whole release. **PASSED** 10/01/26, release and rejoin exercised by hand |
+| FN4 | Choose *"Walk with me again, Fernand."* | - | **He rejoins and follows.** This is the bug, reported five times across seven attempts. **PASSED** 10/01/26, release and rejoin exercised by hand |
+| FN5 | Talk to him while he follows again | - | The generic menu once more. His node is hidden while he follows -- correct, not a regression. **PASSED** 10/01/26, release and rejoin exercised by hand |
 | FN6 | Cycle release and rejoin three times | - | Works every time. No flag, nothing to desynchronise |
 | FN7 | Choose *"Hold this spot a while longer."* | - | The conversation closes and he stays put. Talking again re-offers the rejoin |
-| FN8 | On a save that already **released** him under 0.25.3-0.27.0 | - | *"I have been holding this spot, as you asked."* and the same rejoin reply. His baked-in specifier points at node 100, which now offers the way back too |
+| FN8 | On a save that recruited him under 0.25.3-0.28.0 | - | **Not achievable, and the expectation here was wrong.** 0.28.0 assumed giving node 100 the rejoin would repair such a save; 0.28.1's own finding rules it out. That character lost the join race, so the generic overlay was appended with nothing parked and still sits first in the AI array -- he opens the generic menu and no node of ours is reachable. Node 100 keeps the rejoin anyway, which costs nothing. Needs a fresh recruit |
 | FN9 | A save that recruited him **before 0.25.7** | - | Still broken: that save has a *balloon* specifier baked in, so he floats a line and opens nothing. Needs a fresh recruit, and cannot be repaired from our side |
-| FN10 | `python tools/savecheck.py grep "Fernand Is Waiting" --save latest` | - | Absent. 0.25.4's scripting variable is deleted and nothing depends on it |
-| FN11 | **Save immediately after recruiting him, before releasing.** `python tools/savecheck.py grep "Original AIInteractionSpecifier" --save latest` | - | **The decisive check, and it needs no release at all.** It must be present, and the specifier parked inside it must open `103 fernand waiting`. That is the engine's own restore slot -- Cervantes' holds `3 Return after release as a companion` |
-| FN12 | In the same save, count his active specifiers | - | **Exactly one**, the generic `Generic Companion Dialog` at `X Radius=30`. Two means the join race is back: the engine appended the overlay instead of swapping his out, nothing was parked, and release will have nothing to restore |
+| FN10 | `python tools/savecheck.py grep "Fernand Is Waiting" --save latest` | - | Absent. 0.25.4's scripting variable is deleted and nothing depends on it. **PASSED** -- absent in every save checked |
+| FN11 | **Save immediately after recruiting him, before releasing.** `python tools/savecheck.py grep "Original AIInteractionSpecifier" --save latest` | - | **The decisive check, and it needs no release at all.** It must be present, and the specifier parked inside it must open `103 fernand waiting`. That is the engine's own restore slot -- Cervantes' holds `3 Return after release as a companion`. **PASSED** 10/01/26 -- parked and opening `103 fernand waiting` |
+| FN12 | In the same save, count his active specifiers | - | **Exactly one**, the generic `Generic Companion Dialog` at `X Radius=30`. Two means the join race is back: the engine appended the overlay instead of swapping his out, nothing was parked, and release will have nothing to restore. **PASSED** 10/01/26 -- exactly one, the generic at `X Radius=30` |
 
 ## 0.28.0 - the troll chief drops the hide when killed
 
