@@ -1473,6 +1473,92 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.30.1 - what the combat log calls people
+
+Reported from play: **Fernand Desoto is logged as "Sailor" when he takes damage.**
+
+The log line is `<Attacker> hit <Defender> for ...`, and the defender's name comes from the
+creature's **race**, not its can. All 753 cans in the game say `Display Name=unnamed` and **not one
+sets a real name**; 58 races do, which is why a wolf reads *Black Wolf* rather than *Wolf Black
+Super*. `Races/NPCs/Sailor` has an **empty** Display Name, so the engine falls back to the race's own
+name and a companion who fights beside you for most of the game is called "Sailor".
+
+That race is shared by five cans -- `DrunkSailorsin Bar`, `Mute Sailor`, `ShipSailorsonShipCanned`
+and two more -- so it was **cloned, not edited**: naming it in place would have renamed every sailor
+in Barcelona to Fernand Desoto. The clone carries all three stat presets unchanged.
+
+Sweeping the rest of the class found the goblin officers reading **"Goblin Grumjun"** -- Grumdjum's
+race name copy-pasted onto all four hat and khan races -- which is reachable in six maps and is now
+Fixt's problem in particular, since 0.30.0 gave those officers barks and the post alarm and
+`Mongol Goblin Hat Tough` is the Mine Foreman.
+
+| who | was logged as | now |
+|---|---|---|
+| Fernand Desoto | *Sailor* | **Fernand Desoto** |
+| goblin officers, incl. the Mine Foreman | *Goblin Grumjun* | **Mongol Goblin Officer** |
+| the Warrens' Goblin King | *Goblin Grumjun* | **Goblin Khan** |
+| Fixt's Rumjun Khan in `01 Desert Sprawl` | *Goblin Grumjun* | **Rumjun Khan** (own race) |
+| Grumdjum, the companion | *Goblin Grumjun* | **Goblin Grumdjum** |
+
+Race and can edits, so they reach creatures spawned after install. **If a name is still wrong, try a
+save that has not entered that map before reporting it** -- whether the engine resolves the display
+name at log time or baked it into the entity snapshot is exactly what `DN1` settles.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DN1 | Recruit Fernand, take a hit for him or let an enemy hit him, and read the log | - | **"Fernand Desoto"**, not "Sailor". If it still says Sailor on a save that already had him, repeat on a fresh character -- that answers whether display names are snapshot or resolved live, and the answer is worth recording either way |
+| DN2 | Hover the cursor over Fernand before you ever talk to him on the dock | - | He will read **Fernand Desoto** rather than Sailor, which is a small spoiler and deliberate: it is the same thing vanilla does with Cervantes and Inquisitor Diego, both of whom carry their names on their races from the moment they are placed |
+| DN3 | Every other sailor: the drunks in the Port District tavern, the mute sailor, the crew on the ship, Cortez Cave | - | **Still unnamed sailors.** `Races/NPCs/Sailor` was not touched; Fernand got a clone. If any of them says "Fernand Desoto", that is the bug this avoided |
+| DN4 | Check Fernand's stats are unchanged -- HP, AC, how hard he hits | - | Identical. The clone carries `Races/NPCs/Sailor`'s three presets verbatim; only the name differs |
+| DN5 | Fight a goblin in a hat anywhere -- `Bounty Hunter Camp`, `Waterfall Passage`, `Random Ethereal Ring`, `Random Forest Map 1`, `Ravine Cave East` | - | **"Mongol Goblin Officer"**, not "Goblin Grumjun" |
+| DN6 | Attack the **Mine Foreman** at Ravine Cave West instead of parleying | - | He logs as **Mongol Goblin Officer**. His dialogue still calls him Nurg; the log cannot show that without giving him a race of his own, which is noted as a refinement rather than done |
+| DN7 | The Warrens' Khan, and Fixt's Rumjun Khan in `01 Desert Sprawl` | - | **"Goblin Khan"** and **"Rumjun Khan"** respectively. Rumjun got his own race cloned from `Goblin Hat Super`, carrying 0.30.0's boss damage profile unchanged, so he should still take -10 from fire and shrug off poison |
+| DN8 | Grumdjum as a companion, taking damage | - | **"Goblin Grumdjum"**, with the d. Vanilla's race spelled it *Grumjun* while all twelve of his map entity names and his whole dialogue tree spell it Grumdjum |
+| DN9 | Any ordinary goblin, and any goblin shaman | - | Unchanged -- *Mongol Goblin* and *Goblin Shaman*. Only the hat and khan races were touched |
+
+### The rest of the class, fixed in the same pass
+
+Three more wrong names, and fixing them forced three others into view because the races are shared.
+
+| who | was logged as | now |
+|---|---|---|
+| Leonardo da Vinci | **River Dryad** | Leonardo DaVinci |
+| Galileo (Barcelona, and the final encounter) | *River Dryad*, then *Leo* | Galileo, by two cloned races |
+| the endgame Leonardo in `08 Final Encounter` | *Leo* | Leonardo DaVinci |
+| Sir Roger Templeton | **Knight Templar 5** | Sir Roger Templeton |
+| Guard Esteban | *Knight Templar 5* | Guard Esteban |
+| Sir Jorge | *Knight Templar 3* | Sir Jorge |
+| every dead, burned, siege and bar-patron Templar | *Knight Templar 1* through *5* | Knight Templar |
+| `English in Caverns of Nostrodomus/Priest` | **Jerk** | Priest |
+
+Two things worth stating plainly rather than claiming more than is true.
+
+**Nothing in the game ever read "Jerk".** No can points at that race. The earlier note that it was
+placed in four maps was wrong -- those cans use `English Enemies/Priest`, whose Display Name is empty
+and so falls back to "Priest" correctly. It is fixed because the string is one edit away, not because
+anyone was seeing it.
+
+**Guard Esteban nearly got a serious regression.** Vanilla already ships
+`Races/NPCs/Knights Templar/Guard Esteban.Race`, used by nothing, which looks like exactly the right
+place to point him. It presets **AC 1000 and HP 10000** -- the deliberate invulnerability pattern. Had
+he been repointed at it he would have become unkillable, silently breaking 0.1.1's counter-contract,
+0.1.4's `Esteban Death Consequences` and the 0.10.3 repair that exists *because* the Templar
+initiation died with him. That file is instead overridden with `Knight Templar 5`'s own stats and his
+name: the label changes and nothing else does.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DN10 | Fight or watch **Leonardo da Vinci** take damage -- the Gate District, the workshop, the secret chamber, `01 Hamlet Exterior`, `04 Inn Interior` | - | **"Leonardo DaVinci"**, not "River Dryad" |
+| DN11 | **Galileo** in the Temple District, and again in `08 Final Encounter` | - | **"Galileo"** both times. He shared Leonardo's race in Barcelona and the endgame pair race at the end, so he was reading *River Dryad* and then *Leo* |
+| DN12 | The endgame **Leonardo** in `08 Final Encounter` | - | **"Leonardo DaVinci"**, not "Leo" |
+| DN13 | **Sir Roger Templeton** as a companion, taking a hit | - | **"Sir Roger Templeton"**, not "Knight Templar 5" |
+| DN14 | **Guard Esteban** at the Crossroads: hit him once, then let him live | - | Logs as **"Guard Esteban"**. Critically, **he must still be killable** -- if he shrugs off everything, this is the row that caught it, and the fix is to re-check his race presets are 200/200 and not 1000/10000 |
+| DN15 | Kill Esteban deliberately, then take the Templar initiation to Javier | - | Exactly as before this patch: `Esteban Death Consequences` fires and Javier's alternative line is reachable. His stats did not change, only his name |
+| DN16 | **Sir Jorge** in the Port District | - | **"Sir Jorge"**, not "Knight Templar 3" |
+| DN17 | Any anonymous Templar -- the dead ones in `02 Hamlet Burned`, the siege Templars, the two bar patrons, the cathedral guard | - | **"Knight Templar"**, with no tier number. Five races stopped leaking it |
+| DN18 | Check Sir Roger, Esteban and Sir Jorge all still fight as they did | - | Each got a clone of the tier race they were using, presets carried verbatim; only the name differs |
+
+
 ## 0.30.0 - the goblins: a voice, a damage profile, an officer who calls for help
 
 Goblins are the **largest enemy population in the game** -- 780 of spawn capacity across 30 maps,

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.30.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.30.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,92 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.30.1 - what the combat log calls people
+
+Repair only, from a player report: **Fernand Desoto is logged as "Sailor" when he takes damage.**
+
+### The log names a creature by its race, not by itself
+
+The line is `<Attacker> hit <Defender> for ...`, and the defender's name comes from the **race**. All
+**753 cans** in the game say `Display Name=unnamed` and **not one sets a real name**; **58 races** do,
+which is why a wolf reads *Black Wolf* rather than *Wolf Black Super*. When a race leaves the field
+empty the engine falls back to the race's own name -- so `Races/NPCs/Sailor` produced "Sailor", and a
+companion who fights beside you for most of the game was labelled by his costume.
+
+`CSetCharacterDisplayNameAction` exists in the exe and is used **zero** times in all of vanilla, so
+there was no runtime route to take; the fix is the mechanism 58 vanilla races already use.
+
+### Twelve characters were wrong, and the sweep is what found eleven of them
+
+| who | was logged as | now |
+|---|---|---|
+| Fernand Desoto | **Sailor** | Fernand Desoto |
+| every goblin officer, including the Mine Foreman | **Goblin Grumjun** | Mongol Goblin Officer |
+| the Warrens' Goblin King | *Goblin Grumjun* | Goblin Khan |
+| Fixt's Rumjun Khan in `01 Desert Sprawl` | *Goblin Grumjun* | Rumjun Khan |
+| Grumdjum, the companion | *Goblin Grumjun* | Goblin Grumdjum, with the d |
+| Leonardo da Vinci | **River Dryad** | Leonardo DaVinci |
+| Galileo, in Barcelona and in `08 Final Encounter` | *River Dryad*, then *Leo* | Galileo |
+| the endgame Leonardo | *Leo* | Leonardo DaVinci |
+| Sir Roger Templeton | **Knight Templar 5** | Sir Roger Templeton |
+| Guard Esteban | *Knight Templar 5* | Guard Esteban |
+| Sir Jorge | *Knight Templar 3* | Sir Jorge |
+| every dead, burned, siege and bar-patron Templar | *Knight Templar 1* through *5* | Knight Templar |
+| an unused English priest race | **Jerk** | Priest |
+
+"Goblin Grumjun" is a copy-paste of Grumdjum's own race name onto all four hat and khan races. It is
+reachable in six maps and it became Fixt's problem in particular one release ago: 0.30.0 gave those
+officers barks and the post alarm, and `Mongol Goblin Hat Tough` is the Mine Foreman at Ravine Cave
+West.
+
+### Shared races are cloned, never renamed in place
+
+This is the whole discipline of the patch. `Races/NPCs/Sailor` is used by **five** cans -- the tavern
+drunks, the mute sailor, the ship's crew and two more -- so naming it after Fernand would have renamed
+every sailor in Barcelona. It was cloned, and the clone carries its three stat presets verbatim.
+
+The same applied to Galileo, who shared Leonardo's race in Barcelona and the endgame pair race at the
+end; to Sir Roger, Esteban and Sir Jorge, who shared tier races with dead, burned and siege Templars
+and two bar patrons; and to the Rumjun Khan, who shared `Goblin Hat Super` with a can placed nowhere
+in the game. Where a race serves exactly one character it was edited in place instead -- the four
+goblin hat and khan races, which Fixt already owned from 0.30.0's damage profile.
+
+**No stats changed anywhere.** Every clone asserts its source's full preset list comes through
+unchanged before it is written.
+
+### The regression this nearly shipped
+
+Vanilla already contains `Races/NPCs/Knights Templar/Guard Esteban.Race`, used by nothing. It looks
+like exactly the right place to point him, and it is a trap: it presets **AC 1000 and HP 10000**, the
+same deliberate invulnerability the game gives children.
+
+Pointing Esteban at it would have made him unkillable and silently broken three earlier pieces of
+work -- 0.1.1's counter-contract on him, 0.1.4's `Esteban Death Consequences`, and the 0.10.3 repair
+that exists *because* the Templar initiation died with him. That file is instead overridden with
+`Knight Templar 5`'s own stats and his name, so the label changes and nothing else does. `DN14` and
+`DN15` exist to confirm he is still killable and his death still has consequences.
+
+### Two claims corrected rather than left standing
+
+**Nothing in the game ever read "Jerk".** No can points at that race. The first pass of this sweep
+recorded it as placed in four maps, which was wrong -- those cans use `English Enemies/Priest`, whose
+empty Display Name correctly falls back to "Priest". It is fixed because the string is one edit away,
+not because anyone was seeing it.
+
+**`Mongol Goblin Hat Super` is placed nowhere in the game.** It was one of the sixteen cans given
+barks in 0.30.0, so that can's 34 attack lines reach nothing; 15 of the 16 are live. Its race still
+mattered, because `Mongol Goblin Khan` was borrowing it, which is how Fixt's own Rumjun Khan ended up
+called "Goblin Grumjun".
+
+### What needs playing
+
+`DN1`-`DN18` in [`qa.md`](qa.md). Race and can edits, so they reach creatures spawned after install;
+a name still wrong on an old save is worth retrying on a fresh character before reporting, and `DN1`
+is written to settle whether display names are resolved at log time or baked into the save's entity
+snapshot.
+
+`DN14` is the row that matters most: **Guard Esteban must still be killable.**
 
 ## 0.30.0 - The Scourge of the Land
 

@@ -1,0 +1,87 @@
+# Lionheart Fixt 0.30.1
+
+Repair only, from a player report: **Fernand Desoto was logged as "Sailor" when he took damage.**
+
+## The log names a creature by its race, not by itself
+
+The line is `<Attacker> hit <Defender> for ...`, and the defender's name comes from the creature's
+**race**. All **753 cans** in the game say `Display Name=unnamed` and **not one sets a real name**;
+**58 races** do, which is why a wolf reads *Black Wolf* rather than *Wolf Black Super*. When a race
+leaves the field empty, the engine falls back to the race's own name -- so `Races/NPCs/Sailor`
+produced "Sailor", and a companion who fights beside you for most of the game was labelled by his
+costume.
+
+Sweeping the rest of the class found eleven more wrong names.
+
+| who | was logged as | now |
+|---|---|---|
+| Fernand Desoto | **Sailor** | Fernand Desoto |
+| every goblin officer, including the Mine Foreman | **Goblin Grumjun** | Mongol Goblin Officer |
+| the Warrens' Goblin King | *Goblin Grumjun* | Goblin Khan |
+| the Rumjun Khan in the desert | *Goblin Grumjun* | Rumjun Khan |
+| Grumdjum, your companion | *Goblin Grumjun* | Goblin Grumdjum, with the d |
+| Leonardo da Vinci | **River Dryad** | Leonardo DaVinci |
+| Galileo, in Barcelona and at the end | *River Dryad*, then *Leo* | Galileo |
+| the Leonardo of the final encounter | *Leo* | Leonardo DaVinci |
+| Sir Roger Templeton | **Knight Templar 5** | Sir Roger Templeton |
+| Guard Esteban | *Knight Templar 5* | Guard Esteban |
+| Sir Jorge | *Knight Templar 3* | Sir Jorge |
+| every dead, burned, siege and bar-patron Templar | *Knight Templar 1* through *5* | Knight Templar |
+| an unused English priest race | **Jerk** | Priest |
+
+"Goblin Grumjun" is a copy-paste of Grumdjum's own race name onto all four goblin hat and khan races.
+It is reachable in six maps, and it became our problem specifically one release ago: 0.30.0 gave those
+officers barks and the post alarm, and the Mine Foreman at Ravine Cave West is one of them.
+
+## Shared races are cloned, never renamed in place
+
+This is the whole discipline of the patch. `Races/NPCs/Sailor` is used by **five** cans -- the tavern
+drunks, the mute sailor, the ship's crew and two more -- so naming it after Fernand would have renamed
+every sailor in Barcelona to Fernand Desoto. It was cloned, and the clone carries its stat presets
+verbatim.
+
+The same went for Galileo, who shared Leonardo's race in Barcelona and the endgame pair's race at the
+end; for Sir Roger, Esteban and Sir Jorge, who shared tier races with dead, burned and siege Templars
+and two bar patrons; and for the Rumjun Khan. Where a race serves exactly one character it was edited
+in place instead.
+
+**No stats changed anywhere.** Every clone checks its source's full preset list comes through
+unchanged before it is written.
+
+## The regression this nearly shipped
+
+Vanilla already contains a race named for Guard Esteban, used by nothing at all. It looks like exactly
+the right place to point him, and it is a trap: it presets **AC 1000 and HP 10000**, the same
+deliberate invulnerability the game gives children.
+
+Pointing him at it would have made Esteban unkillable and silently broken three earlier pieces of
+work -- 0.1.1's counter-contract on him, 0.1.4's death consequences, and the 0.10.3 repair that exists
+*because* the Templar initiation died with him. He instead keeps his tier's stats and gains only his
+name.
+
+## Two claims corrected rather than left standing
+
+**Nothing in the game ever read "Jerk".** No can points at that race. An earlier note recorded it as
+placed in four maps, which was wrong -- those cans use a different priest race whose empty name
+correctly falls back to "Priest". It is fixed because the string is one edit away, not because anyone
+was seeing it.
+
+**One can given barks in 0.30.0 is placed nowhere in the game.** `Mongol Goblin Hat Super` has no
+placement, so its 34 attack lines reach nothing; 15 of the 16 barked cans are live. Its race still
+mattered, because the Rumjun Khan was borrowing it, which is how he ended up called "Goblin Grumjun".
+
+## Installing
+
+Unzip and double-click **`Mod Manager.bat`**, then click the button that names the mod.
+
+These are race and can edits, so they reach creatures spawned after you install. If a name still looks
+wrong on a save that already had that character, try a fresh one before reporting it -- whether the
+engine resolves display names at log time or baked them into the save's entity snapshot is itself an
+open question this patch is written to answer.
+
+## If you play it
+
+The row that matters most is **Guard Esteban must still be killable.** Hit him at the Crossroads, and
+if you want to be thorough, kill him and confirm the Templar initiation still routes around his death
+through Javier. His stats did not change -- only his name -- but that is exactly the kind of claim
+worth one test.
