@@ -3309,6 +3309,192 @@ Cut 4 first if it sprawls; cut 3 second. The barks stand alone and are the whole
 **Needs saves that have not entered the area** — these are can edits, so they reach only creatures
 spawned after install.
 
+## Butu Khan's heir — the Ravine Cave changes hands
+
+Measured 2026-10-07. Replaces an earlier draft of this section that put a lone commander in the cave
+and got its geography wrong; what that draft had right was the statline and the act, and nothing else.
+
+### The piece nobody placed, and the Khan who owns it
+
+`Mongol Goblin Hat Super` is **placed nowhere in the game**, and its race is the most interesting
+statline in the family — **250 HP, AC 225, the toughest goblin there is, tougher than the Khan
+himself.** The hat line steps 60 → 80 → **250** where every other goblin ladder steps about 1.25× a
+rung, so it was never a third tier: it is a boss statline filed under hats, and vanilla used it that
+way, lending it to `Mongol Goblin Khan` for its numbers. 0.30.1 gave that can a race of its own, which
+leaves this one free.
+
+And vanilla names a second Khan, exactly once, in a flavour line on an item:
+
+> *"Collected by **Butu Khan**, this book of poetry contains many free verses of Goblin Poetry."*
+
+The `Butu Khan Poetry Book` sits in the **Goblin Warrens** — in Plumjum Khan's own cave — and
+`WengChoi.DialogTree` buys it as a rare book, with the give, check and remove machinery already
+written. So a second goblin dynasty exists in the fiction, its Khan's book is a curio on the rug of
+the goblin who outlasted him, and the player can sell it to a human shopkeeper for coin without ever
+being told whose it was.
+
+That is the rival: **Butu Khan's heir**, and he wants the book back.
+
+Working name **Hrargrub**, of Butu's line. The horde's names cluster on *-jum*, *-jub*, *-grub*
+(Plumjum, Grumdjum, Wumjup, Drubjub, Lumgrub, Hrubjub, Bludjund, Hub'blub), so the heir should sit
+inside that sound without being one of theirs. **Naming is a call to confirm, not a decision.**
+
+### The shape of the cave, corrected
+
+An earlier draft assumed East sat behind the mine. It does not:
+
+| | |
+|---|---|
+| `Ravine Cave West` | entered from Scar Ravine, spawn `From Scar Ravine` (2774, 1613). Holds the **only magnetized silver in the game** at (1983, 455), behind 0.30.0's mine foreman at (2387.5, 977.25) |
+| `Ravine Cave East` | **its own entrance** off Scar Ravine at (2834, 519), spawn `Start Here` (1364, 1721). 93 goblin capacity, four hat posts, a Hidden Treasure, and no commander |
+| the link between them | **only** the `Crystal Node Ravine Cave Teleport` pair, (2160, 603) ↔ (2108, 650) |
+
+So **the Sacred Scimitar never requires entering East at all.** East is a wholly optional side cave
+with nothing in it anyone is sent for — which is why it can be re-tenanted without taking anything
+away, and why it needs a pointer before anyone will walk back in.
+
+### The window, which nearly went unnoticed
+
+A spawn point in `3 Montaillou/02 Hamlet Burned` named **`From Crypt or Nostro Portal`** carries
+**130 `CExpireMapAction`s**. It closes Barcelona, the Sewers, **every Wilderness map**, Montserrat,
+Montaillou, the Crypt and Nostradamus, and the engine's own strings are blunt about what that means:
+*"Attempting to load expired map."* It fires on returning to the burned hamlet from the Crypt or the
+Nostradamus portal.
+
+| | |
+|---|---|
+| Wilderness open | acts 1 through 4 |
+| point of no return | returning to the burned hamlet from the Crypt or Nostradamus |
+| party mojo across that window | about 16 (Montserrat) to 26 (Nostradamus) |
+
+So an act 2 gate leaves a comfortable window, and 250 HP / AC 225 suits all of it: act 2's own ceiling
+is a `Snakebreed Boss Super` at 160 HP / AC **250** — he hits harder and is easier to hit — and act 3
+already fields `Cathar Warden Bearform Super` at exactly 250 / 225 as ordinary opposition.
+
+**This constrains every piece of Wilderness content Fixt will ever add**, not just this one.
+
+### Tier 1 — the cave changes hands
+
+Act 1 is untouched: the Khan's goblins, 0.30.0's four `Goblin Cave Post` hat posts, the three arguers,
+the officer alarm. Clear it or don't.
+
+After Montserrat, entering East flips it. Every piece is shipped idiom:
+
+| piece | how | precedent |
+|---|---|---|
+| the rival force waits | generators ship `Active=0` | **848 inactive generators** in the game |
+| the flip | entry trigger → `CIfAction` on the Montserrat gate → `CDeactivateAction` the Khan's posts, `CDeleteAction Target Name=…` for survivors, `CActivateAction` the rival's | the swap idiom is at **101 sites**, e.g. `Calle Perdida`'s *"RESET MAP for Invulnerable Cedric"*, which deactivates and deletes `Pedro Generator` and `Generic Wielder Generator` |
+| a different tribe, visibly | `Hue Remapper=Player Data/Hue Remappers/07 Red`, one field per generator | **17 palettes ship and 16 are unused** — only `01 Dark Blue` is used, six times, in `06 Chamber of Torment` |
+| the heir looks like a Khan | `Characters/Monsters/Mongol Goblin King` | used by the Warrens Khan and the Rumjun Khan, nothing else |
+| his statline | `Goblin Hat Super`, 250 / 225 | freed by 0.30.1 |
+
+**The gate**: `Brother Montgomerie` in Montserrat activates all four act 2 quests, so
+`CWasQuestEverActivatedAction` over that set proves the player reached Montserrat. Every player meets
+him, which a faction quest would not give.
+
+**Scale: about 30, not 93.** The point is that the player sees the cave *changed hands*, not that they
+grind a bigger cave. Keep the four post positions so the shape is familiar and only the tenants differ,
+and put the heir at **(2319, 748)** — the furthest post from the entrance, about 1360 units in, so he
+is the last thing in the cave rather than the first.
+
+**The snapshot caveat is load-bearing here and must be said out loud, not buried.** New entities only
+exist for a save that had not entered the map when the mod was installed. The players most likely to
+come back are exactly the ones who were there in act 1, so anyone installing mid-playthrough after
+visiting East gets nothing.
+
+### Tier 2 — he reads what you did about the Khan
+
+He is pacified at spawn on the Troll Chief and Mine Foreman pattern — targeting cleared, `Enemy`
+dropped, a `GetCloseThenTalk` specifier — so he challenges first and the 250 HP fight is chosen.
+
+| what you did | what he reads | source |
+|---|---|---|
+| killed the Khan | the chair is empty and you emptied it; he deals from gratitude and strength | `Slay the Goblin Khan` completed |
+| his **Champion** | you wear his mark. Take it off, or wear it where I cannot see it. Refuse and he fights | `Goblin Horde Highlevel` (rank 3) |
+| his chum or blooded | he offers better than a title; the Khan gives everyone titles | `Goblin Horde IS` (rank 1–2) |
+| nothing either way | the pitch, and the six winters of plans | `Goblin Horde NOT` (rank 0) |
+| cleared goblins for the dryad | *"You have killed more of his than I have. That is a qualification."* | `Rid the Dryad's Forest of the Goblins` |
+
+`Goblin Rank` is a derived character attribute read through `CVariableDerivedCharacterAttribute`, which
+is how Fixt's four `Goblin Horde *` cans already work, so the ladder needs no new mechanism.
+
+His grievance is vanilla's, twice over. The restored bark `500 Attacking B` is the horde's whole
+self-image — *"we are **Mongol-trained** goblins, the scourge of the land!"* — and the Khan's restored
+campaign has him saying *"I have drawn plans to invade Nueva Barcelona. My goblins prepare for war"*
+and then asking **the player** to kill Guard Esteban and the gate guards so the horde can flood in.
+
+> *"He has drawn plans. He has drawn plans for six winters. Have you seen them? They are very good
+> plans."*
+
+### Tier 3 — the quests
+
+Three, in the order they should be built. All three use things that already exist.
+
+**1. Butu Khan's poetry book.** The strongest, because it is entirely restoration: an item with an
+owner nobody knew it had. He wants his Khan's book out of Plumjum's cave. The player may already have
+**sold it to Weng Choi as a rare book** — `WengChoi.DialogTree` has the give, check and remove
+machinery — in which case they buy it back or admit what they did. Nothing new is authored but the
+asking.
+
+**2. The Khan's head.** Feeds vanilla's own `Slay the Goblin Khan` rather than inventing a quest, and
+makes the heir the first character in the game who wants Plumjum dead for a goblin's reasons rather
+than Barcelona's.
+
+**3. The silver, contested.** There is one source of magnetized silver in the game and Eduardo needs
+it for the Sacred Scimitar. The heir wants it too — magnetized silver, in a cave his line used to
+hold. A genuine either/or between a Saladin initiation and a goblin alliance, built on one item that
+already exists and `Blacksmith - scimitar seeker has silver.can`, which only ever checks for one.
+
+A rival-faction **rank ladder is explicitly out of scope.** `Goblin Rank` is one attribute, and a
+second ladder doubles every gate in the Wilderness for one scene.
+
+### Tier 4 — the late game remembers
+
+Fixt already built the consequence machinery, in `01 Desert Sprawl`, and it is one condition short.
+`Fixt goblin gate` is an entry trigger that reads:
+
+```
+IF  Goblin Horde Highlevel            (rank 3, the Khan's Champion)
+AND NOT exists "Goblin Khan is Dead"
+THEN  activate Fixt Khan generator               -> the Rumjun Khan appears in Persia
+      IF NOT exists "Grumdjum Dead"
+        activate Fixt Grumdjum generator         -> and Grumdjum joins as a companion
+```
+
+So the act 8 Khan and the companion he brings already depend on having been his Champion and on his
+being alive. **Siding with Butu's heir should break it even when both of those hold** — a mid-game
+choice in an optional cave costing a late-game companion is exactly the kind of reach Fixt should be
+making.
+
+One condition added: `AND NOT exists "Sided with Butu's heir"`.
+
+**Where that marker lives matters.** `CCheckExistenceAction` reads active entities, and the existing
+markers sit in `Inquisition Chambers2` (`Goblin Khan is Dead`) and `Lake` (`Grumdjum Dead`) — **both
+maps the expiry door closes before act 8.** Whether an expired map's entities still answer a name
+lookup is unknown and untested, so the new marker goes in **`01 Desert Sprawl` itself**, which nothing
+expires, flipped from Ravine Cave East by `COtherMapAction` while the Wilderness is still open.
+
+That also raises a question about Fixt's existing act 8 gate, which is testable in one run: kill the
+Khan in act 1 and see whether he still turns up in Persia. If he does, those two markers are being
+read out of expired maps and the gate has never worked.
+
+### The pointer
+
+Without one he is in a cave nobody enters. The Khan is the natural source — he would want the heir
+dead — with Rakeb or the `GoblinCrier` as fallbacks if Plumjum is dead, and nothing if the player has
+killed all three, which is a fair price for having killed all three.
+
+### Open questions
+
+1. **His name.** `Hrargrub` is a placeholder.
+2. **Should siding with him cost Horde standing?** It should, but `Advance Goblin Rank` only advances
+   and nothing reduces it. The first build may have to carry the break in dialogue alone, and say so.
+3. **Does the recolour read in a dark cave?** `07 Red` is the proposal; it may want testing against
+   `11 Black` or `08 Purple`.
+4. **What if the player kills the heir?** Simplest is that the Khan never learns. A line from Plumjum
+   acknowledging a dead rival would be the better finish, in the shape of `375 the khan has eaten well`.
+
+
 ## Suggested order
 
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no

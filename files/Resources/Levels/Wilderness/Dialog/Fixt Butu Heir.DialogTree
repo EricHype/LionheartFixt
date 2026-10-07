@@ -1,0 +1,237 @@
+CDialogTree
+{
+Name=Hrargrub
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 the heir challenges you
+Text=Far enough. <The bows around him are not the Khan's bows -- too red, too many, and not one of them pointed at the floor.> I am Hrargrub. My Khan was Butu. You have heard of Plumjum. Nobody has heard of Butu. That is the whole of my complaint and you are standing in the middle of it.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+}
+}
+Reply Text=Plumjum Khan is dead. I killed him.
+Go to node ID=20 you emptied the chair
+Icon=Quest Icon
+
+Requirement=Goblin Horde Highlevel
+Reply Text=I am the Khan's Champion.
+Go to node ID=30 take off his mark
+Icon=Quest Icon
+
+Requirement=Goblin Horde IS
+Reply Text=The Khan gave me a rank.
+Go to node ID=40 he gives everyone ranks
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Rid the Dryad's Forest of the Goblins
+}
+}
+Reply Text=I have been killing his goblins for weeks.
+Go to node ID=50 a qualification
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Who was Butu?
+Go to node ID=60 who was butu
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Then your people can decide.
+Go to node ID=70 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Another time, then.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 you emptied the chair
+Text=<Something goes out of him, and what comes back is worse: a goblin with nothing left to be angry about.> You emptied the chair. I am standing in it. I had six winters of reasons and you did it in an afternoon, which I will think about later and not in front of you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you want?
+Go to node ID=90 the book
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nothing. I am leaving.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 take off his mark
+Text=His Champion. <He does not reach for anything, which is the most frightening thing he does.> Then you are the thing he sends. Take the mark off and we will talk about his cave. Leave it on and I will take it off the usual way.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will take it off.
+Go to node ID=40 he gives everyone ranks
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=No.
+Go to node ID=70 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I will go.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 he gives everyone ranks
+Text=A rank. He gives ranks the way he gives speeches, and both cost him nothing. Butu gave his goblins poems. You may think that is worse. It was at least his own.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you want from me?
+Go to node ID=90 the book
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Enough talk.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 a qualification
+Text=You have killed more of his than I have. <He says it the way a human would say a man has good references.> That is a qualification. I am not fond of you. I am extremely interested in you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you want?
+Go to node ID=90 the book
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Not today.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 who was butu
+Text=Nobody. That is the answer and that is the grievance. He was Khan before Plumjum was anything, and he wrote poems, and Plumjum has the book of them on the floor of his cave with the rest of his shiny. He has drawn plans for six winters. Have you seen the plans? They are very good plans.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you want from me?
+Go to node ID=90 the book
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have heard enough.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 the book
+Text=My Khan's poems. Plumjum keeps the book in the Warrens with his gold, and he does not know what it is, and the humans in the city buy such things by weight. Bring it to me and this cave is yours to walk through.
+Should Have Voiceover=0
+
+Requirement=Has Butu Khan Poetry Book
+Reply Text=I have it here.
+Go to node ID=100 the book returned
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Butu Khan Poetry Book returned
+Experience Points To Add=1
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Butu alliance
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will find it.
+Go to node ID=95 agreed
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Find it yourself.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=95 agreed
+Text=Then go and find it, and come back by the way you came in. My people have been told about you. They have not been told anything kind, but they have been told.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 the book returned
+Text=<He takes it in both hands, and does not open it.> Butu's. Then this cave is Butu's again, and you walk through it. Tell the fat one in the Warrens who holds his east rock now, if you are still speaking to him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 combat
+Text=Good. <He steps back into the line without hurrying.> Butu's goblins have never needed a plan.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CGoToCombatAction
+{
+Enemy Name=Butu Warriors
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 go then
+Text=Walk out. The red ones will watch you to the door, and if you come back in through it with a blade out, they will not.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

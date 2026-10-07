@@ -1,0 +1,12 @@
+CCannedObject
+{
+	Object=CActionExpression
+	{
+		Action=CActionCheckForInventoryItem
+		{
+			Who to give check=$instigator
+			Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+		}
+	}
+	Use=Shared Global Instance
+}

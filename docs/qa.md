@@ -1473,6 +1473,96 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## UNRELEASED - Butu Khan's heir takes the Ravine Cave
+
+`Mongol Goblin Hat Super` was **placed nowhere in the game**, and its race is the toughest goblin
+statline there is -- **250 HP, AC 225, harder than the Khan himself**. The hat line steps 60 -> 80 ->
+250 where every other goblin ladder steps about 1.25x, so it was never a third tier: it is a boss
+statline filed under hats, which vanilla lent to `Mongol Goblin Khan` for its numbers until 0.30.1
+gave that can a race of its own.
+
+And vanilla names a second Khan, exactly once, in a flavour line on an item:
+
+> *"Collected by **Butu Khan**, this book of poetry contains many free verses of Goblin Poetry."*
+
+The `Butu Khan Poetry Book` sits in the **Goblin Warrens**, in Plumjum Khan's own cave, and
+`WengChoi.DialogTree` buys it as a rare book without anyone saying whose it was. So a second goblin
+dynasty exists in the fiction, and its Khan's book is a curio on the floor of the goblin who outlasted
+him.
+
+**After Montserrat, Ravine Cave East belongs to Butu's heir.** Act 1 is untouched.
+
+| | |
+|---|---|
+| gate | `CWasQuestEverActivatedAction` OR'd over the three Montserrat quests `Brother Montgomerie` hands out -- `Calle Perdida.zax` already uses that class on one of them as a progression gate |
+| the flip | entry trigger at the `Start Here` spawn (1364, 1721), once: deactivate `Khan Goblins` and `Goblin Cave Post`, delete them and the three arguers, activate 8 Butu posts and Hrargrub |
+| precedent | the deactivate-and-delete swap is at **101 sites**, e.g. `Calle Perdida`'s *"RESET MAP for Invulnerable Cedric"* |
+| the tribe | **24 of capacity** plus the heir, recoloured `07 Red` -- of the engine's 17 hue palettes, **16 are used nowhere** in vanilla |
+| the heir | `Characters/Monsters/Mongol Goblin King`, which belongs only to the Warrens Khan and the Rumjun Khan. He already looks like a Khan, which is the argument he is making |
+| where he stands | the furthest post from the entrance, **(2319, 748)**, about 1360 units in |
+
+**The snapshot rule cuts the wrong way here and must be said out loud.** New map entities only exist
+for a save that had **not** entered `Ravine Cave East` when the mod was installed. The players most
+likely to walk back in are exactly the ones who were there in act 1, so anyone installing
+mid-playthrough after visiting East gets none of this.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU1 | **Act 1**, fresh `Ravine Cave East` entered from `Scar Ravine`. Fight through it | - | **Exactly as 0.30.0 and 0.30.1 left it** -- the Khan's goblins, four `Goblin Cave Post` hat posts, the officer alarm, the three-goblin argument. No red goblins, no Hrargrub |
+| BU2 | Reach Montserrat and talk to **Brother Montgomerie**, then return to `Ravine Cave East` | - | The cave is **Butu's**. Red goblins at the four post positions, and nothing of the Khan's left alive or spawning |
+| BU3 | Count what is there | - | About **24 of capacity** plus the heir, so a shorter fight than act 1's 93 -- the point is that it changed hands, not that it got bigger |
+| BU4 | Look at them | - | **Visibly a different tribe.** `07 Red`. If they read as ordinary goblins in the cave's lighting, say so -- `11 Black` and `08 Purple` are the alternatives |
+| BU5 | Walk to the far end, **(2319, 748)** | - | **Hrargrub**, on the Goblin King model, and he **talks instead of attacking**. 250 HP / AC 225 if it goes wrong |
+| BU6 | Read what he calls himself in the log if you fight him | - | **Hrargrub**, from his own race. His tribe log as *Butu Officer*, *Butu Archer*, *Butu Goblin* |
+| BU7 | Re-enter the cave again after the takeover | - | Still Butu's. `Trigger Only Once=1` on both the trigger and the relay |
+
+### What he says depends on what you did about the Khan
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU8 | Arrive having **killed Plumjum Khan** | *"Plumjum Khan is dead. I killed him."* | `20 you emptied the chair` -- *"You emptied the chair. I am standing in it. I had six winters of reasons and you did it in an afternoon"* |
+| BU9 | Arrive as the Khan's **Champion** (`Goblin Rank` 3) | *"I am the Khan's Champion."* | `30 take off his mark`. He offers the choice; **refusing fights him**, and so does choosing the fight reply |
+| BU10 | Arrive at **rank 1 or 2** | *"The Khan gave me a rank."* | `40 he gives everyone ranks` -- *"He gives ranks the way he gives speeches, and both cost him nothing. Butu gave his goblins poems."* |
+| BU11 | Arrive having completed **`Rid the Dryad's Forest of the Goblins`** | *"I have been killing his goblins for weeks."* | `50 a qualification` -- *"I am not fond of you. I am extremely interested in you."* |
+| BU12 | Arrive with **no goblin history at all** | *"Who was Butu?"* | `60 who was butu`, and the line the whole scene is built on: *"He has drawn plans for six winters. Have you seen the plans? They are very good plans."* |
+| BU13 | All five routes | - | Each leads to `90 the book`. Five entry reads, two of them quest tests in `Custom Requirement=` and two from Fixt's `Goblin Horde *` cans |
+
+### The book
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU14 | At `90 the book`, **without** the poetry book | *"I will find it."* | `95 agreed`. He does not stand the cave down yet |
+| BU15 | Get the `Butu Khan Poetry Book` from the **Goblin Warrens** and bring it back | *"I have it here."* | `100 the book returned` -- *"He takes it in both hands, and does not open it."* The book leaves your inventory, XP, and the cave stands down |
+| BU16 | **If you already sold it to Weng Choi**, buy it back and return it | - | Works the same. The requirement is a plain inventory check on that one item -- `Weng Choi Have a rare book.can` could not be reused because it ORs nine books with a Weng Choi quest state |
+| BU17 | After the handover, walk the cave | - | The red goblins **do not attack**. `Butu alliance` clears targeting and drops `Enemy` on `Butu Warriors` |
+| BU18 | **No journal entry appears for the book.** Confirm that is all that is missing | - | Deliberate: a tracked quest needs a `.Quest.txt` with a unique state ID and is tier 3. The exchange is tracked by the item, and these notes should not imply otherwise |
+
+### The late game remembers
+
+`01 Desert Sprawl`'s `Fixt goblin gate` already decided whether Plumjum Khan meets you in Persia and
+whether **Grumdjum joins you as a companion**, on two conditions: you are his Champion, and he is
+alive. It now has a third.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU19 | Be the Khan's **Champion**, leave him **alive**, **do not** side with Hrargrub, then reach `01 Desert Sprawl` | - | Unchanged from 0.30.0: the **Rumjun Khan appears** and **Grumdjum joins as a companion** |
+| BU20 | Same run, but **hand Hrargrub the book** first | - | **Neither appears.** A mid-game choice in an optional cave costs a late-game companion. This is the row the whole feature exists for |
+| BU21 | Check the marker is doing it and not something else | - | `Sided with Butu's heir` lives in `01 Desert Sprawl` itself, `Active=0`, flipped from Ravine Cave East by `COtherMapAction`. It is **not** in the Wilderness, because the expiry door closes those maps before act 8 |
+| BU22 | **Open question, and it predates this build.** Kill Plumjum Khan in act 1, then reach `01 Desert Sprawl` as his Champion | - | He should **not** appear. But `Goblin Khan is Dead` lives in `Inquisition Chambers2` and `Grumdjum Dead` lives in `Lake`, and **both maps are expired** by `3 Montaillou/02 Hamlet Burned`'s `From Crypt or Nostro Portal` spawn point before act 8. If the Khan turns up in Persia anyway, those markers are being read out of expired maps and Fixt's act 8 gate has never worked |
+
+### The door nobody had noticed
+
+Worth recording outside this feature, because it constrains everything Fixt adds to the Wilderness.
+A spawn point in `3 Montaillou/02 Hamlet Burned` named **`From Crypt or Nostro Portal`** carries
+**130 `CExpireMapAction`s** and closes Barcelona, the Sewers, **every Wilderness map**, Montserrat,
+Montaillou, the Crypt and Nostradamus. The engine is blunt about what that means:
+*"Attempting to load expired map."* It fires on returning to the burned hamlet from the Crypt or the
+Nostradamus portal.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU23 | Reach the Crypt or Nostradamus, return to the burned hamlet, then try to travel to any Wilderness map | - | **You cannot.** Confirm where the world map stops offering them. Everything in acts 1-4 is one-way after this point, and all 780 goblins live behind it |
+
 ## 0.30.1 - what the combat log calls people
 
 Reported from play: **Fernand Desoto is logged as "Sailor" when he takes damage.**
@@ -1628,9 +1718,11 @@ so a post holding two archers and a Hat cannot name the Hat alone without being 
 *post* is named and the *officer* is the trigger. `Ravine Cave East` only: its four archer posts at
 (1269, 851), (1914, 647), (2319, 748) and (2342, 1719) are now `Goblin Cave Post`.
 
-The Hat appears **only in the top Max Party Mojo tier, at weight 1 against the archer's 2**, so an
-officer exists only for a party strong enough to be there, and the alarm scales itself: no officer,
-no alarm. **Worst case measured: 12 creatures, once per level.**
+The Hat appears **only in the generator's top `Max Party Mojo` group, at weight 1 against the
+archer's 2**, so about one spawn slot in three is an officer. The bound there is 50, but the engine
+picks the group whose bound the party falls *under* and the next one down is 10 -- so that group is
+entered at a party mojo of about **11**, not 50. It makes officers uncommon; it does **not** gate the
+alarm behind a strong party. **Worst case measured: 12 creatures, once per level.**
 
 | # | Step | Say | Expect |
 |---|---|---|---|
@@ -1660,12 +1752,17 @@ Staged on vanilla's own `goblin attack banter` relay from `Crossroads`: `CSeries
 `Next Action Index=0`, which advances **one item per trigger**. So the trigger is a goblin dying, and
 the argument escalates as the fight goes worse -- the coward speaks over the first body, the boaster
 over the second, the charge over the third. `Ravine Cave East` only, the three standing together at
-**(2174, 1197)**, which is the next group met after fighting in from the mine passage. Capacity there
+**(2174, 1197)**, about 965 units in from the map's `Start Here` spawn at (1364, 1721) -- far enough
+to have fought on the way. Note the cave's real shape, which an earlier draft of this section got
+wrong: **`Ravine Cave East` is not behind the mine.** It has its own entrance off `Scar Ravine` at
+(2834, 519), the two halves connect only by the `Crystal Node Ravine Cave Teleport` pair, and the
+magnetized silver is in **West only** -- so the Sacred Scimitar never requires entering East at all.
+Capacity there
 goes 90 to 93.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| GB30 | Fresh `Ravine Cave East`, fight inward from the Ravine Cave West passage until **one** goblin is dead | - | Over **Drubjub**: *"They have butchered our brothers with alarming ease. Perhaps discretion would be the more prudent course of action?"* |
+| GB30 | Fresh `Ravine Cave East`, entered from `Scar Ravine` (not from the mine -- there is no passage between the halves). Fight inward until **one** goblin is dead | - | Over **Drubjub**: *"They have butchered our brothers with alarming ease. Perhaps discretion would be the more prudent course of action?"* |
 | GB31 | Kill a **second** goblin | - | Over **Wumjup**, a different goblin: *"Nonsense, we are Mongol-trained goblins, the scourge of the land!"* |
 | GB32 | Kill a **third** | - | Over **Lumgrub**, a third goblin: *"Yes, Wumjup is right! Muster up your courage and attack! AIIIIiiiiIIII!"* **This is the payoff -- Lumgrub names Wumjup, and Wumjup is the one who actually said it** |
 | GB33 | Keep killing goblins after that | - | **Nothing more.** `When Done=Do Nothing`, so the series stops on the third line and does not loop |
