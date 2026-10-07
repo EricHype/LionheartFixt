@@ -168,6 +168,34 @@ Reply Text=Sorry, Great Khan, I seem to have taken a wrong turn. I'll be on my w
 Go to node ID=11 Earn Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=3
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+}
+}
+Early Exit=1
+}
+}
+Reply Text=Someone is sitting in your east cave, and he is not one of yours.
+Go to node ID=380 the east rock is taken
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=3 Return Dialogue
 Text=Again, this morsel intrudes into my cave. What is so important that you would dare to interrupt the Khan?
@@ -1321,6 +1349,34 @@ Reply Text=Sorry. I did not mean to bother the Great Khan. Goodbye.
 Go to node ID=200 Goodbye 3
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=3
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+}
+}
+Early Exit=1
+}
+}
+Reply Text=Someone is sitting in your east cave, and he is not one of yours.
+Go to node ID=380 the east rock is taken
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=400 Where are you going?
 Text=I did not say you could leave! Have at thee!
@@ -1433,6 +1489,36 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=It will be done, Great Khan.
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=380 the east rock is taken
+Text=A nobody. <The amusement is gone, and what is under it is not better.> Butu's line were nobodies when I was young and they are nobodies with a cave. He has my east rock and my shiny and he tells my goblins that I draw maps. Go and make him a nobody again, morsel, and do not come back to tell me his name.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It will be done, Great Khan.
+Go to node ID=
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=He says you have been drawing those maps for six winters.
+Go to node ID=381 do not repeat that
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I will think about it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=381 do not repeat that
+Text=<He does not move at all, which from him is the loudest thing available.> You will not repeat that. You will go east, and you will not repeat that either.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=As you say, Great Khan.
 Go to node ID=
 Icon=Quest Icon
 Is Default Reply=1

@@ -1550,6 +1550,49 @@ alive. It now has a third.
 | BU21 | Check the marker is doing it and not something else | - | `Sided with Butu's heir` lives in `01 Desert Sprawl` itself, `Active=0`, flipped from Ravine Cave East by `COtherMapAction`. It is **not** in the Wilderness, because the expiry door closes those maps before act 8 |
 | BU22 | **Open question, and it predates this build.** Kill Plumjum Khan in act 1, then reach `01 Desert Sprawl` as his Champion | - | He should **not** appear. But `Goblin Khan is Dead` lives in `Inquisition Chambers2` and `Grumdjum Dead` lives in `Lake`, and **both maps are expired** by `3 Montaillou/02 Hamlet Burned`'s `From Crypt or Nostro Portal` spawn point before act 8. If the Khan turns up in Persia anyway, those markers are being read out of expired maps and Fixt's act 8 gate has never worked |
 
+### The Khan tells you, because otherwise nobody would
+
+Hrargrub sits in a cave the game never sends anyone to: the Sacred Scimitar needs the silver in
+**West**, East has its own entrance off `Scar Ravine`, and the halves connect only by a crystal-node
+teleport. Plumjum Khan is the right source -- he is the one who loses by it -- and the node hangs off
+`1 Conversation Start` and `05 Return Friends of Khan`, the same two entries 0.30.0's
+`375 the khan has eaten well` uses, gated on the same three Montserrat quests that flip the cave.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU24 | Talk to the Khan in the Goblin Warrens **before** reaching Montserrat | - | **No mention of the east cave.** The reply is gated on the same quests as the takeover, so he never refers to something that has not happened |
+| BU25 | Reach Montserrat, then talk to the Khan again | *"Someone is sitting in your east cave, and he is not one of yours."* | `380 the east rock is taken` -- *"Butu's line were nobodies when I was young and they are nobodies with a cave. He has my east rock and my shiny and he tells my goblins that I draw maps."* **He never says Hrargrub's name**, and tells you not to bring it back |
+| BU26 | Take the Speech reply | *"He says you have been drawing those maps for six winters."* | `381 do not repeat that` -- *"He does not move at all, which from him is the loudest thing available."* No punishment, which is the joke |
+| BU27 | Both of the Khan's entry nodes | - | The reply appears from a first conversation and from `05 Return Friends of Khan` alike |
+| BU28 | Kill the Khan, then look for the pointer | - | Gone with him, as it should be. A player who killed Plumjum and never went east simply never hears about Hrargrub -- fair, and worth confirming it fails quietly rather than leaving an orphan reply |
+
+**Pre-existing, found while adding this and not caused by it:** vanilla's own `GoblinKhan.DialogTree`
+points at a node `130 the job` that **does not exist** in the tree. One dangling reply, vanilla's,
+unrelated to the Khan's war campaign or to this build. Recorded for `reachability.py` rather than
+patched blind.
+
+### What expiry actually does, settled from the saves
+
+The question was whether an expired map's entities can still answer `CCheckExistenceAction`, because
+Fixt's act 8 gate reads two markers out of maps the door closes. Measured rather than guessed:
+
+* **`Has Expired` is a per-layer flag in the save**, not a deletion -- the layer mapping and its
+  `Current Temp File` stay in `CSwappedLayerFilenameMappingTable`. The engine simply refuses to touch
+  it: *"Attempting to load expired map... (--Loren)"*, *"Attempting to save to expired map... This
+  shouldn't happen"*.
+* **Across all 65 saves in this install, exactly one map has ever been expired:**
+  `Wilderness Maps/Slave Pit Exterior INTRO MOVIE.zax`, retired at the start of every game. The
+  130-map block has never fired in any of them.
+* The furthest-progressed save, `mountaillouinn.sav` at 78 layers, is **in Montaillou with the door
+  still shut** -- and no save has ever visited `02 Hamlet Burned`, which is where it lives.
+* `CCheckExistenceAction` **is** a global lookup, not map-local: vanilla does it across maps **124
+  times**, for instance `Church Interior` checking `Torquemada irritated`, which is defined in
+  `Inquisition Chambers2`.
+
+So the idiom is sound and the door is narrower in practice than it looked -- but whether a *flagged*
+layer still answers a lookup is still untested, which is why the new marker lives in
+`01 Desert Sprawl` and `BU22` exists.
+
 ### The door nobody had noticed
 
 Worth recording outside this feature, because it constrains everything Fixt adds to the Wilderness.
