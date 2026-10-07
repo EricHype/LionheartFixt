@@ -1473,6 +1473,103 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## UNRELEASED - the goblins: a voice, a damage profile, an officer who calls for help
+
+Goblins are the **largest enemy population in the game** -- 780 of spawn capacity across 30 maps,
+more than the thieves, soldiers, snakebreed and trolls together -- and until now the only major
+family with **no barks and no damage resistances at all**. Every goblin change Fixt had made was
+about *not* fighting them.
+
+**105 distinct lines**, 92 authored and 13 of vanilla's own. The banks are deliberately much larger
+than any shipped family, because the player hears goblins more than every other family combined:
+
+| bank | lines | made of |
+|---|---|---|
+| rabble | **40** | 18 shared + 16 its own + **6 restored from `GoblinVillager`** |
+| shamans | **37** | 18 shared + 16 its own + 3 reused from the `Goblin Shaman` tree |
+| archers / officers | **34** | 18 shared + 16 its own |
+| hurt (all tiers) | **14** | 10 its own + **4 restored** |
+
+For comparison the shipped families run 11-14, where a repeat turns up after about five barks. At
+34-40 it takes about eight. `GoblinVillager.DialogTree` had 11 nodes fired by nothing in the whole
+game; the restored lines are referenced at their own vanilla node IDs rather than copied, so vanilla's
+dead nodes start firing.
+
+Can and race edits throughout, so **every row needs a save that has not entered the area**.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GB1 | Fight any `Mongol Goblin` on a fresh map | - | Floating text **over the goblin's head**, not in the combat log. About one attack in four |
+| GB2 | Fight them for a long stretch -- several minutes | - | **It should take a long time to hear a repeat.** 40 lines for the rabble. This is the row the first build would have failed |
+| GB3 | Listen for the register | - | They talk about **eating you**, which is vanilla's own goblin voice: *"The pot is already hot, morsel."*, *"Your bones go in the broth. The rest of you goes in the bowl."*, *"Me eat brain! Then me am smart!"* |
+| GB4 | Fight a goblin **archer** and a plain goblin in the same run | - | Different registers. The archer talks distance -- *"No closer, meat. I like you at this distance."*, *"I do not have to be brave at this range."* |
+| GB5 | Fight a `Mongol Goblin Hat` / `Hat Tough` / `Hat Super` | - | Orders, not hunger -- *"Form! Form, you stupid things!"*, *"It is one of them and twelve of you. Explain that to me."*, *"I will tell the Khan who fought. I will also tell him who did not."* |
+| GB6 | **Hurt** a goblin without killing it, repeatedly | - | A second register entirely, rarer (about one hit in six): *"They are too mighty!"*, *"We must flee and make haste!"*, *"Run! AIIIIiiiiIIII!"*, *"Where is the one with the hat? Where is he!"* **Three of those are vanilla lines `Bounty Hunter Camp` was the only map ever to fire** |
+| GB7 | Fight a `Mongol Goblin Shaman` and watch it **attack** | - | It barks too, which the first build could not manage. Its `Shoot Completed` is a spell *picker*, so the bank went in as a fourth item: *"Flesh is a borrowed thing, and I am calling it back!"*, *"Rakeb taught me this one."* |
+| GB8 | Watch the shaman's **spells** across a long fight | - | **Still Spike and Static Charge, still roughly 1:2.** The picker kept all three of its selections and gained the bark as a fourth. If a shaman stops casting, this is the row that failed |
+| GB9 | Talk to the **Khan**, **Rakeb**, **Grumdjum**, the Warrens' **Goblin Girl** and **Goblin Guard**, and the **Crossroads Patrol Leader** | - | All six exactly as before. **Named and talkable goblins were deliberately given no barks** -- a named character must not speak the rabble's lines |
+| GB10 | Check the combat log during all of the above | - | Barks are **not** in it. `Include In Log=0` |
+
+### The damage profile -- the actual answer to "why does every goblin fight feel the same"
+
+Every other family has one. Animals resist slashing and crushing 38 and take extra cold; English
+Enemies are armoured and fold to crushing at **-44**; wererats are immune to fire; undead shrug off
+electricity. Across 417 races and nine damage types the goblins' 19 races were **blank in all nine
+columns**. They now read as one family with one weakness:
+
+| tier | Slash | Pierce | Crush | Fire | Cold | Elec | Poison | Disease |
+|---|---|---|---|---|---|---|---|---|
+| rabble and archers | -10 | - | -20 | **-25** | 20 | 15 | 100 | 100 |
+| shamans | -10 | - | -20 | **-25** | 20 | **50** | 100 | 100 |
+| hat officers | **20** | **20** | 0 | **-25** | 20 | 15 | 100 | 100 |
+| Khan, Hat Super, Grumjun, Rakeb | 25 | 25 | 10 | **-10** | 25 | 25 / 50 | 100 | 100 |
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GB11 | Burn a goblin. Any fire source, any tier | - | **Noticeably more damage.** Fire is the family signature. Nothing else in the game is reliably fire-vulnerable -- wererats are immune and the English resist it 73 |
+| GB12 | Poison or disease a goblin | - | **Nothing.** Both 100, vanilla's own immune value. They eat carrion and brains. The log should say *"resists all of your damage"* |
+| GB13 | Hit the **rabble** with a blunt weapon, then a blade | - | Crushing -20 against slashing -10: the club should beat the sword. Small bodies, no armour |
+| GB14 | Now hit a **hat officer** with the same two weapons | - | **It inverts.** Slashing and piercing +20, crushing 0. The officer wears real kit and needs a different answer than the rabble around him |
+| GB15 | Hit a **shaman** with Static Charge or Lightning Bolt | - | Electrical 50, about half. They throw lightning themselves, so lightning is the wrong tool. Burn them |
+| GB16 | Check the log on a resisted hit | - | `hit ... for <UnresistedDamage> ... (Resisted <n>) INFLICTED <Damage>`. The save logs every hit with its damage type, so one save file settles GB11-GB15 exactly |
+| GB17 | **Grumdjum as a companion**, with a fire-casting player | - | He is `Goblin Grumjun`, so fire-vulnerable too -- but at the boss tier's **-10**, not -25. If he still burns down noticeably faster than other companions, say so: the taper exists for this and can go further |
+| GB18 | A goblin in the **Djinn dream arena** (`Dream Djinni Map`) | - | Same profile. `DjinnArenaMonster1` shares the `Goblin Archer` races and is a goblin archer by model -- correct spillover, not a leak |
+
+### The officer calls for help
+
+Fixt's own troll idiom, inverted. A generator's `New Name` applies to **every** creature it spawns,
+so a post holding two archers and a Hat cannot name the Hat alone without being cloned -- so the
+*post* is named and the *officer* is the trigger. `Ravine Cave East` only: its four archer posts at
+(1269, 851), (1914, 647), (2319, 748) and (2342, 1719) are now `Goblin Cave Post`.
+
+The Hat appears **only in the top Max Party Mojo tier, at weight 1 against the archer's 2**, so an
+officer exists only for a party strong enough to be there, and the alarm scales itself: no officer,
+no alarm. **Worst case measured: 12 creatures, once per level.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GB19 | A **high-level** party, fresh `Ravine Cave East`. Find a goblin wearing a hat and hit it once | - | The archer posts converge. `COnlyOnceAction`, so it happens once. **Count them and report the number** -- the design budget is 12 and the troll pack alarm had to be rescoped after exactly this measurement |
+| GB20 | Hit the same officer again, or a second officer | - | **No second alarm.** `Trigger Only Once` |
+| GB21 | Hit the rabble and the archers, never the officer | - | **No alarm at all.** Only the hat raises it. If striking an ordinary goblin brings the cave, report it |
+| GB22 | A **low-level** party in the same cave | - | Likely no alarm, because likely no officer -- the Hat is top-tier only. Worth confirming the cave still plays as it always did |
+| GB23 | The **Mine Foreman** in Ravine Cave West: attack him instead of parleying | - | He is `Mongol Goblin Hat Tough`, so he carries the alarm -- but `Goblin Cave Post` does not exist in that map and the alarm is guarded on the name existing, so it must be a **no-op**. `Mine Guards` should wake exactly as they did via the dialogue's fight reply, and nothing else |
+| GB24 | Fight hats in `Random Ethereal Ring` (12 of them), `Waterfall Passage`, `Bounty Hunter Camp`, `Random Forest Map 1` | - | **No alarm** -- those maps have no `Goblin Cave Post`. Only Ravine Cave East was wired this pass |
+
+### They answer each other
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GB25 | **Open question.** Attack one goblin at the edge of a group on a fresh map | - | Do the others come? `Respond to calls for reinforcements` is now `1` on all 16 hostile goblin cans; it was `0` on 21 of 23, leaving goblins alone with the Animals and Thugs while the Undead run it on **88 of 92**. Its description: *"will make this character aquire a target when a friend asks for help"* |
+| GB26 | The control for GB25 | - | `CCallForReinforcementsAction` -- the explicit "ask for help" action -- is registered in the exe and used **zero** times in all of vanilla. So either being attacked calls implicitly (and the undead have swarmed all along), or the field is inert everywhere and this changes nothing. **Static analysis cannot separate those two; GB25 can.** Harmless either way, and the answer is worth having |
+| GB27 | If GB25 swarms: fight in `Lake` (153 capacity) | - | It must stay a *local* response, not a map alarm. It is per-creature by design -- a creature acquiring a target, not a broadcast -- but if a whole map arrives, report it and it comes straight out |
+
+### One repair carried along
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GB28 | Fight a bow thief, a bow soldier and a Snakebreed Venom | - | They should shoot as they always did. **21 archer cans shipped since 0.27.0 with a bark filler selecting `Skills/Fighting/OneHandedMelee` -- a skill not present on their race at all.** Vanilla uses that action in that slot to choose the next attack (`Priest Super` casts its shield, then picks Fire Orb or Spike), so it was never inert. Each is now repointed at its own race's primary. `Soldier4 Bow Super` has Ranged 97 and was told to select melee three attacks in four |
+| GB29 | Specifically: did bow units get *better*? | - | If archers were visibly fumbling before and are not now, that is GB28 landing, and it means the defect was live rather than silently ignored. Worth knowing either way |
+
 ## UNRELEASED - Ravine Cave: the silver mine can be talked past
 
 The Sacred Scimitar is a **Knights of Saladin initiation** step, and its first task had exactly one

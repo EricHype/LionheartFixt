@@ -3168,6 +3168,147 @@ without it, it just goes unremarked.
    negotiating with goblins for ore is a characterful tension. No mechanism exists for it in the
    cave, but `Saladin Rank` gates exist elsewhere.
 
+## The goblins — 780 of them, and not one has ever said a word in a fight
+
+Measured 2026-10-07 from the 23 goblin monster cans, the 19 `Mongol Goblins` races, the 17 goblin
+dialogue trees, and `Lionheart.exe`'s class registrations.
+
+Goblins are the largest enemy population in the game — **780 of spawn capacity across 30 maps**, more
+than the thieves, soldiers, snakebreed and trolls put together — and they are the only major family
+Fixt has given no voice. Every goblin change to date has been about *not* fighting them: the
+Crossroads scouts stood down (`92ed796`), the Warrens' Khan/Rakeb/Girl/Guard made talkable (0.1.2),
+Grumdjum restored as a companion, and the mine foreman at Ravine Cave West (`cf1df05`).
+
+| | |
+|---|---|
+| goblin spawn capacity | **780**, across 30 maps — Lake 153, Ravine Cave East 90, Mongol Camp 89, Woodcutter Forest 70, Plains 69, Slave Pit Exterior 61, Barcelona Coast 52 |
+| goblin monster cans | 23 |
+| of those overridden by Fixt | **0** |
+| of those that bark | **0** |
+| with the attack slot still free | **18 of 23** |
+| goblin cans with a cursor tooltip | 0 (vanilla ships none for any goblin) |
+
+### Part 1 — the barks are already written. Vanilla just never fired them.
+
+This is not a writing job, it is a restoration job. `GoblinVillager.DialogTree` holds 55 nodes, and
+**11 of them are fired by nothing in the entire game** — not by any `.zax`, `.can` or tree, vanilla
+or Fixt:
+
+| node | line |
+|---|---|
+| `500 Attacking A` | *"They have butchered our brothers with alarming ease. Perhaps discretion would be the more prudent course of action?"* |
+| `500 Attacking B` | *"Nonsense, we are Mongol-trained goblins, the scourge of the land!"* |
+| `500 Attacking C` | *"Yes, Wumjup is right! Muster up your courage and attack! AIIIIiiiiIIII!"* |
+| `500 Fleeing C` | *"Run! AIIIIiiiiIIII!"* |
+| `100 dinner` | *"You will make a fine meal for a ravenous goblin!"* |
+| `100 take our meal` | *"You dare to slay our meal before its time? Now you will join the prisoner in the cooking pot!"* |
+| `100 take brain` | *"Me eat brain! Then me am smart!"* |
+| `100 Combat Fight` | *"Well, sadly for you, I do feel like a fight. Now be sporting and prepare your weapon!"* |
+| `500 goblin confrontation 2` | *"Goblins come and feast well 'till you are gorged and belly-swelled!"* |
+| `100 shaman` | *"In the northern part of our twisted forest, in his dark hut, you will find the shaman."* — a directions line, not a bark; leave it |
+| `500 wilderness banter 3` | a **verbatim duplicate** of `banter 4`. See the defect note below |
+
+`500 Attacking A/B/C` is the find. It is not three interchangeable barks — it is a **three-part
+argument between goblins who are losing**: one proposes retreat, a second calls him a coward, a third
+sides with the second and charges. Written, voiced in the shipped register, and played by nothing.
+It wants `Shoot Completed=CSeriesAction` so the three land in order, not `CRandomAction`. The series
+form has 6 vanilla uses in exactly this slot, so the idiom is shipped.
+
+The register is already set, and it is not generic monster snarling — goblins talk about **eating
+you**, in a strangely courtly way:
+
+> *"Me smell brains!"* · *"Are you dark meat...or white flesh? Mmm, you smell delicious!"* ·
+> *"Oh, how I thirst for the marrow of their bones!"* · *"I can restrain myself no longer. I must
+> taste your brain!"* · *"Beware morsel. Your scent makes my mouth water and my belly rumble..."*
+
+**Structure: exactly 0.27.0's.** A shared family bank plus a sub-bank per type, `CRandomAction` in
+`Shoot Completed` with no-op `CActionSelectSkill` fillers setting the rate to about one attack in
+four, `Include In Log=0`, balloon at `Position Offset=0,-80` over `$trigger`. `Shoot Completed` fires
+on melee as well as ranged — vanilla uses it on 35 melee cans, and Fixt's own three families already
+hang barks there on 48 melee cans across shipped releases.
+
+Five sub-banks, following the can roster:
+
+| sub-bank | cans | slot | register |
+|---|---|---|---|
+| rank and file | `Mongol Goblin`, `Tough`, `Super`, `Gate District`, `Bludjund`, `Hrubjub`, `Grum` | `Shoot Completed` free | hunger — the eating lines |
+| archers | `Goblin Archer`, `Tough`, `Super`, `Archer Village` | `Shoot Completed` free | range and the kill at distance |
+| hat officers | `Hat`, `Hat Tough`, `Hat Super`, `Mongol Goblin Khan` | `Shoot Completed` free | orders, as the thief boss does in `BK2` |
+| shamans | `Shaman`, `Tough`, `Super` | **`Shoot Completed` is taken** — casting uses it | see below |
+| named | `Rakeb`, `Mongol Goblin Grum`/Grumdjum, the Khan | — | **skip.** They have whole trees; a named character must not speak the rabble's lines |
+
+The shamans are the one real decision. All four caster cans already use `Shoot Completed` for their
+spell, which is exactly the condition under which 0.27.0 **deliberately skipped** the Snakebreed
+Summoner and both probe archers (`BK8`). Two options: skip them for consistency, or hang their bark
+in `Damaged Script Action`, which is free on all four and fires when they are *hurt* rather than when
+they attack — a different and arguably better moment for a caster. Recommend the second, flagged as
+a slot no bark family has used yet, so that if it misfires the cause is unambiguous.
+
+**One vanilla defect to repair while here.** `500 wilderness banter 3` and `500 wilderness banter 4`
+are byte-identical: *"I do hope the Khan allows us to attack this day. I am \*famished\*."* Fixt's
+Crossroads work already fires `banter 4` three times and `banter` four times, so the duplicate is now
+load-bearing in our own content. Repair by writing a new line into the `Fixt Goblin Barks` tree and
+pointing one of the two references at it, rather than editing vanilla's text in place.
+
+### Part 2 — the AI, and the honest finding that goblins are not broken
+
+I expected to find goblin combat behaviour neglected relative to other families. It is not. Measured
+across all 23 cans, every goblin carries the same values every other family carries:
+
+| field | goblins | the rest of the game |
+|---|---|---|
+| `Vision Cone` | 360 on all 23 | 360 effectively everywhere |
+| `Max Distance` | 550 on all 23 | 550 effectively everywhere |
+| `Minimum Attack Distance` | 100 melee, 350 archers | **identical** — and all 46 casters in the game use 100, goblin shamans included |
+| `Retreat when` | 0 on all 23 | 0 on 469 of 470 cans |
+| `Respond to calls for reinforcements` | 0 on 21 of 23 | 0 on 318, 1 on 152 |
+
+So there is no goblin-specific defect to fix, and anything done here is a **design addition**, not a
+repair. That changes how much risk is worth taking. The levers, ranked:
+
+| lever | evidence | verdict |
+|---|---|---|
+| officer alarm: a struck drone wakes the named officer | Fixt's own 0.29.0 troll idiom — `Damaged Script Action` → `COnlyOnceAction` → `CIfAction` → `CGoToCombatAction` | **build it.** Shipped pattern, and goblins have a real officer tier the trolls had to borrow |
+| hat officers get `Minimum Attack Distance=Do not move while attacking` | a legal value of an existing field with **347 vanilla uses** | plausible — but an officer who never advances is exploitable at range. Behind the alarm, not before it |
+| shamans hold at 350 instead of closing to 100 | **all 46 casters in the game use 100** | **no.** It would make goblin shamans unique in the game; that is a balance change wearing a fix's clothes |
+| `Retreat when` on the weak tiers (`Weak Goblin` 12 HP, `Bludjund` 13, `Hrubjub` 14) | **one precedent in the entire game: `Deer`, at 50.** Nothing hostile in Lionheart has ever fled | probe first. Vanilla wrote `500 Fleeing A/B/C` and then gave no goblin a threshold, which is suggestive but not proof |
+| `CGuardPosAI` for mine and camp posts | 6 vanilla uses, all in three maps | real but barely exercised; worth a look for the Ravine Cave posts specifically |
+| `CChargeAttackAI`, `CStandGroundAttackAI`, `CStandStillAttackAI`, `CStrafeAttackAI`, `CAttackAI`, `CSetAttackAIAction` | registered in the exe, **0 uses in all vanilla data** | not here. `PA1`–`PA4` already exist to settle whether `CStrafeAttackAI` is real, and are unanswered; do not stake a 780-creature family on an unproven class |
+
+`CStandGroundAttackAI` is the interesting one for later: in the exe's string table it sits beside
+`CNormalAttackAI`, shares its entire field vocabulary, and adds exactly one key —
+`Do not move while attacking`. That reads as a real subclass rather than a stub. But the same field
+value is already reachable on `CNormalAttackAI`, so the class buys nothing a settable field does not,
+and the field is the cheaper experiment.
+
+### The thing most likely to go wrong
+
+**Leashing.** The 0.29.0 troll pack alarm, as first built, would have woken 80–94 trolls on a 4000
+leash; it had to be rescoped to drone-to-chief after the fact. Goblins are an order of magnitude
+worse: Lake alone has 153 of spawn capacity, Ravine Cave East 90, Mongol Camp 89. An alarm keyed on a
+shared name broadcasts — that is settled, and it is why the wererat cure needed no per-entity renaming
+— so a goblin alarm keyed on anything broad wakes a whole map at once.
+
+The alarm must therefore be **per-officer and per-map**, named at the generator, never on the can.
+That also means the alarm cannot ship as a can edit at all: cans are global. Barks can be can edits;
+the alarm has to be map work, and should start in one map with a small, countable population —
+`Crossroads` (16) or `Scar Ravine` (3) — before anything touches Lake.
+
+### Suggested cut
+
+1. `Fixt Goblin Barks` as a can edit across the 18 free cans, five sub-banks, the 8 usable restored
+   lines plus new ones to fill each bank to 0.27.0's density. The `500 Attacking A/B/C` series its
+   own item. Pure restoration-plus-authoring, no map changes, no balance change.
+2. The duplicate-banter repair, in the same pass.
+3. The officer alarm, in `Crossroads` only, counted before and after.
+4. A `Retreat when` probe on one weak-tier can in one map, as a deploy-only probe in the `PA`/`PB`
+   mould — never a release — to find out whether a fleeing hostile paths sanely or runs forever.
+
+Cut 4 first if it sprawls; cut 3 second. The barks stand alone and are the whole point.
+
+**Needs saves that have not entered the area** — these are can edits, so they reach only creatures
+spawned after install.
+
 ## Suggested order
 
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no

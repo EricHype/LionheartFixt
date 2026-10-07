@@ -5,7 +5,7 @@ CCannedObject
 		Dynamic Properties=2
 		{
 			Comment=
-			Experience Points=358
+			Experience Points=94
 		}
 		Name=
 		Child List=
@@ -26,92 +26,170 @@ CCannedObject
 			{
 				Marked For Deletion=0
 				Publisher=
-				Patrol AI=CScanAreaAI
+				Patrol AI=CSeriesAI
 				{
 					Marked For Deletion=0
 					Publisher=
-					Play Ratio=0
-					Next Try To Move=0
-					State=Scanning
-					Go Home Range=300
-					Move To Behavior=CEntityBehaviorMoveToPos
+					AIs=Array
 					{
-						Old Stationary Flag=0
-						Angle To Turn To=0
-						Facing Backwards=0
-						Idle Behavior=CEntityBehaviorIdle
+						Item Count=2
+						AI=CScanAreaAI
 						{
-							Num Seconds=1
-							Seconds Have Transitioned=0
-							Override Fidget Options=
-							Current Fidget Data=
-							Time Until Next Fidget=0
-							Fidgeting=0
+							Marked For Deletion=0
+							Publisher=
+							Play Ratio=0
+							Next Try To Move=0
+							State=Scanning
+							Go Home Range=300
+							Move To Behavior=CEntityBehaviorMoveToPos
+							{
+								Old Stationary Flag=0
+								Angle To Turn To=0
+								Facing Backwards=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+								Play Ratio=1
+								Smooth Turning=0
+								Do Path Finding=1
+								Finished=1
+								Failed Last Path=0
+								Idle Begin Called=0
+								Move To Rate=0
+								CurTargetNormalX=0
+								CurTargetNormalY=0
+								Path Finding Params=CWayPointPath
+								{
+									Start Point=0,0
+									End Point=0,0
+									Length=0
+									Max Dist To Travel=0
+									Num Failed Paths=0
+									Max Failed Paths=0
+									Pos To Move Index=0
+									Dist So Far=0
+									Path=
+								}
+								Pos Moving From=0.000000,0.000000
+								Final Dest=0.000000,0.000000
+								Dest Radius=0
+								Cur Dest Move To=0.000000,0.000000
+								Last Neg Dist=0
+								NumTimesLostGound=0
+								Sequence=
+								Planed Path For=
+							}
+							Starting Angle=-45
+							Ending Angle=45
+							Turning Speed=10
+							Time Between Turning=0
+							Start Out Waiting=0
+							Start Counterclockwise=0
+							Turning Flag=0
+							Turn Sequence Name=Idle
+							End Turn Action=CSendAIDoneMessage
+							{
+								Target=$Trigger
+							}
+							Execute Each Turn=0
+							Reset Each Begin=1
+							Current Time To Wait=0
+							Current Start Angle=0
+							Current End Angle=0
+							Waiting=1
+							Starting Facing Angle=-999
+							Complete Turn Time=0
+							Current Turn Time=0
+							Idle Behavior=CEntityBehaviorIdle
+							{
+								Num Seconds=1
+								Seconds Have Transitioned=0
+								Override Fidget Options=
+								Current Fidget Data=
+								Time Until Next Fidget=0
+								Fidgeting=0
+							}
 						}
-						Play Ratio=1
-						Smooth Turning=0
-						Do Path Finding=1
-						Finished=1
-						Failed Last Path=0
-						Idle Begin Called=0
-						Move To Rate=0
-						CurTargetNormalX=0
-						CurTargetNormalY=0
-						Path Finding Params=CWayPointPath
+						AI=CLimitedTimeAI
 						{
-							Start Point=0,0
-							End Point=0,0
-							Length=0
-							Max Dist To Travel=0
-							Num Failed Paths=0
-							Max Failed Paths=0
-							Pos To Move Index=0
-							Dist So Far=0
-							Path=
+							Marked For Deletion=0
+							Publisher=
+							What To Do=CPatrolAreaAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Radius=150
+								TimeOfLastChangeDirectionDueToCollide=0
+								Moving=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=0.4
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Retry New Point=0
+							}
+							Max Time=4
+							Time Left=0
+							Done Action=CSendAIDoneMessage
+							{
+								Target=$Trigger
+							}
 						}
-						Pos Moving From=0.000000,0.000000
-						Final Dest=0.000000,0.000000
-						Dest Radius=0
-						Cur Dest Move To=0.000000,0.000000
-						Last Neg Dist=0
-						NumTimesLostGound=0
-						Sequence=
-						Planed Path For=
 					}
-					Starting Angle=-45
-					Ending Angle=45
-					Turning Speed=10
-					Time Between Turning=0
-					Start Out Waiting=0
-					Start Counterclockwise=0
-					Turning Flag=0
-					Turn Sequence Name=Idle
-					End Turn Action=
-					Execute Each Turn=0
-					Reset Each Begin=1
-					Current Time To Wait=0
-					Current Start Angle=0
-					Current End Angle=0
-					Waiting=1
-					Starting Facing Angle=-999
-					Complete Turn Time=0
-					Current Turn Time=0
-					Idle Behavior=CEntityBehaviorIdle
-					{
-						Num Seconds=1
-						Seconds Have Transitioned=0
-						Override Fidget Options=
-						Current Fidget Data=
-						Time Until Next Fidget=0
-						Fidgeting=0
-					}
+					Current AI=0
+					When Done=Repeat Series
+					Restart Series Next Begin=0
 				}
 				Patrol Start Action=
 				Patrol End Action=
-				Respond to calls for reinforcements=0
+				Respond to calls for reinforcements=1
 				Target shooter if hit=1
 				Never Unacquire=0
-				Sneak Adjustment=-50
+				Sneak Adjustment=15
 				Target Type=CEntityBehaviorStateSetClosestTarget
 				{
 					Max Distance=550
@@ -328,7 +406,7 @@ CCannedObject
 						}
 					}
 				}
-				Max Dist=550
+				Max Dist=70
 				Attack AI=CNormalAttackAI
 				{
 					Marked For Deletion=0
@@ -347,137 +425,326 @@ CCannedObject
 							Action=CActionSelectSkill
 							{
 								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/Ranged
+								Skill to select=Skills/Fighting/OneHandedMelee
 							}
 							Action=CActionSelectSkill
 							{
 								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/Ranged
+								Skill to select=Skills/Fighting/OneHandedMelee
 							}
 							Action=CActionSelectSkill
 							{
 								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/Ranged
+								Skill to select=Skills/Fighting/OneHandedMelee
 							}
 							Action=CRandomAction
 							{
 								Action=Array
 								{
-									Item Count=13
+									Item Count=34
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=10 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=11 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=12 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=13 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=14 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=15 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=16 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
 										Node ID=17 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=23 archer
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=18 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=24 archer
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=19 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=25 archer
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=20 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=26 archer
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=21 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
 									Action=CDisplayDialogBalloonAction
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=27 archer
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=22 shared
 										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=23 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=24 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=25 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=26 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=27 shared
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=70 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=71 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=72 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=73 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=74 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=75 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=76 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=77 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=78 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=79 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=80 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=81 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=82 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=83 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=84 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+										Node ID=85 officer
+										Name of Position=$trigger
+										Position Offset=0.000000,-60.000000
 										After Action=
 										Include In Log=0
 									}
@@ -532,7 +799,7 @@ CCannedObject
 						Sequence=
 						Planed Path For=
 					}
-					Minimum Attack Distance=350
+					Minimum Attack Distance=100
 					Move Buffer Zone=50
 					Waiting For Threshold=0
 					Moving State=1
@@ -546,7 +813,7 @@ CCannedObject
 				Attack Start Action=
 				Attack End Action=
 				Check Range When Firing=0
-				Ignore line of sight if in range=0
+				Ignore line of sight if in range=1
 				Retreat when=0
 				Retreat Start Action=
 				Has Started Retreat=0
@@ -554,7 +821,7 @@ CCannedObject
 				Allowed To Roam Anywhere=0
 				Transition=Array
 				{
-					Array Count=2
+					Array Count=1
 					Array Item=CSkeletonTransition
 					{
 						Trigger=Once Per New Target
@@ -567,42 +834,20 @@ CCannedObject
 								Item Count=3
 								Action=CPlaySoundAction
 								{
-									Sound=Enemies/English Enemies/Soldier war cry1.ogg
+									Sound=Enemies/Mongol Goblins/Goblin war cry1.ogg
 									Position=$Trigger
 								}
 								Action=CPlaySoundAction
 								{
-									Sound=Enemies/English Enemies/Soldier war cry2.ogg
+									Sound=Enemies/Mongol Goblins/Goblin war cry2.ogg
 									Position=$Trigger
 								}
 								Action=CPlaySoundAction
 								{
-									Sound=Enemies/English Enemies/Soldier war cry3.ogg
+									Sound=Enemies/Mongol Goblins/Goblin war cry3.ogg
 									Position=$Trigger
 								}
 							}
-						}
-						IsDone=0
-					}
-					Array Item=CSkeletonTransition
-					{
-						Trigger=First Time
-						From State=Any
-						To State=Attack
-						Action=CAddTemporaryAIAction
-						{
-							AI To Add=CAIShowWhenOccluded
-							{
-								Marked For Deletion=0
-								Publisher=
-							}
-							Name of LayerPart To Add AI To=$Trigger
-							Duration=CConstant
-							{
-								Constant Value=10
-							}
-							Expression Context=$Instigator
-							Done Action=
 						}
 						IsDone=0
 					}
@@ -613,11 +858,11 @@ CCannedObject
 				Marked For Deletion=0
 				Publisher=
 				Weapon Mode=Primary Weapon
-				User Assigned Name=English Bowman
+				User Assigned Name=Goblin Striker
 				Gender=Male
 				Head=0
 				Hue Remapper=Player Data/Hue Remappers/!None
-				Race=Races/Enemies/English Enemies/Soldier2 Bow Tough
+				Race=Races/Enemies/Mongol Goblins/Goblin Hat Tough
 				Mana Used=0
 				NumSecondsToRebroadcastFollow=0
 				Experience Points=0
@@ -728,7 +973,6 @@ CCannedObject
 					Derived Character Attributes/Game Scripting Variables/Relican Dead=0
 					Derived Character Attributes/Game Scripting Variables/River Dryad Dead=0
 					Derived Character Attributes/Game Scripting Variables/Spell Immunity=0
-					Derived Character Attributes/Game Scripting Variables/Spirit Strength Given=0
 					Derived Character Attributes/Game Scripting Variables/Weird Woman Told about Old Man History=0
 					Derived Character Attributes/Game Scripting Variables/Woodcutter Dead=0
 					Derived Character Attributes/Goblin Kill Counter=0
@@ -858,7 +1102,6 @@ CCannedObject
 					Derived Character Attributes/Game Scripting Variables/Relican Dead=0
 					Derived Character Attributes/Game Scripting Variables/River Dryad Dead=0
 					Derived Character Attributes/Game Scripting Variables/Spell Immunity=0
-					Derived Character Attributes/Game Scripting Variables/Spirit Strength Given=0
 					Derived Character Attributes/Game Scripting Variables/Weird Woman Told about Old Man History=0
 					Derived Character Attributes/Game Scripting Variables/Woodcutter Dead=0
 					Derived Character Attributes/Goblin Kill Counter=0
@@ -1184,88 +1427,95 @@ CCannedObject
 			{
 				Marked For Deletion=0
 				Publisher=
-				Default Inventory Item=CInventoryItem
-				{
-					PlugIn Behaviors=Array
-					{
-						Item Count=3
-						PlugIn Behavior=CPlugInBehaviorAttack
-						{
-							Max Attack Range=500
-							Is Location Based=0
-							Can Use Slayer Mode=0
-							Can Use Sniper Mode=0
-							Action On Hit=
-							Action On Miss=
-						}
-						PlugIn Behavior=CPlugInBehaviorPlaySequence
-						{
-							Granny Animations=Array
-							{
-								Item Count=0
-							}
-							Sequence Name=AttackBow
-							Random Sequence Selection=1
-						}
-						PlugIn Behavior=CXRPGPlugInBehaviorLauncher
-						{
-							After Launch Action=
-							Num To Launch=1
-							Dispersion Angle=180
-							Aim At Parents Target=1
-							Launch Offset=0.000000,0.000000
-							Parents Bone Launch Location=Bip01 R Hand
-							Direction From Bone X=0
-							Direction From Bone Y=0
-							Direction From Bone Z=0
-							Requires Line Of Sight=1
-							Primary Launchable Slot=Character Slot Types/!None
-							Secondary Launchable Types=Array
-							{
-								Item Count=1
-								Secondary Launchable Type=Inventory Items/Enemy Items/Arrow Soldier2 Bow Tough
-							}
-							Damages=Array
-							{
-								Item Count=0
-							}
-						}
-					}
-					Value=CConstant
-					{
-						Constant Value=0
-					}
-					Is Magic=0
-					Encumbrance=2
-					On the ground=!Unknown Model
-					Requirements=Array
-					{
-						Item Count=0
-					}
-					Display Name=unnamed
-					Description=undefined
-					Inventory Window Images=Array
-					{
-						Basic=!Unknown Model
-						Better=!Unknown Model
-						Special=!Unknown Model
-					}
-					Whole Item Display Name=
-					Whole Item Description=
-					Number Of Additions Added=0
-					Slot Used In=Character Slot Types/!None
-					Sub Slot Used In=0
-					Number Hands Needed=None
-					Unique Select ID=0
-					IsCurrentlyUsedByPlayer=0
-					Catagory for display Grouping=Inventory/Grouping Catagories/!none
-					Inventory Addition Group=Inventory/!Unknown
-					Item Grade=Basic
-					Origonal Item=Inventory Items/Amulet
-				}
+				Default Inventory Item=
 				Inventory Items=Array
 				{
-					Item Count=0
+					Item Count=1
+					Inventory Item=CInventoryItem
+					{
+						PlugIn Behaviors=Array
+						{
+							Item Count=4
+							PlugIn Behavior=CPlugInBehaviorAttack
+							{
+								Max Attack Range=35
+								Is Location Based=0
+								Can Use Slayer Mode=0
+								Can Use Sniper Mode=0
+								Action On Hit=
+								Action On Miss=
+							}
+							PlugIn Behavior=CInventoryItemPlugInBehaviorWeaponMelee
+							{
+							}
+							PlugIn Behavior=CPlugInBehaviorPlaySequence
+							{
+								Granny Animations=Array
+								{
+									Item Count=0
+								}
+								Sequence Name=Attack
+								Random Sequence Selection=1
+							}
+							PlugIn Behavior=CPlugInBehaviorDamage
+							{
+								Hit Or Miss=Damage Types/Damage Hit Or Miss/OneHandedMelee
+								Cache Hit Or Miss Result=1
+								Hit Margin=0
+								Damages=Array
+								{
+									Item Count=1
+									Damage=CXRPGDamage
+									{
+										Damage Type=Damage Types/Slashing
+										Damage Amount=CRandom
+										{
+											Operator=
+											Minimum=CConstant
+											{
+												Constant Value=5
+											}
+											Maximum=CConstant
+											{
+												Constant Value=11
+											}
+										}
+									}
+								}
+							}
+						}
+						Value=CConstant
+						{
+							Constant Value=0
+						}
+						Is Magic=0
+						Encumbrance=2
+						On the ground=!Unknown Model
+						Requirements=Array
+						{
+							Item Count=0
+						}
+						Display Name=unnamed
+						Description=undefined
+						Inventory Window Images=Array
+						{
+							Basic=!Unknown Model
+							Better=!Unknown Model
+							Special=!Unknown Model
+						}
+						Whole Item Display Name=
+						Whole Item Description=
+						Number Of Additions Added=0
+						Slot Used In=Character Slot Types/!None
+						Sub Slot Used In=0
+						Number Hands Needed=None
+						Unique Select ID=0
+						IsCurrentlyUsedByPlayer=0
+						Catagory for display Grouping=Inventory/Grouping Catagories/!none
+						Inventory Addition Group=Inventory/!Unknown
+						Item Grade=Basic
+						Origonal Item=Inventory Items/Amulet
+					}
 				}
 				Accumulate Forwards Offsets=0
 				Next Unique Select ID=4200
@@ -1278,12 +1528,12 @@ CCannedObject
 				Publisher=
 			}
 		}
-		Category=Enemy
+		Category=Enemy,Goblin
 		Team Number=Nutral
 		Used In=QuestMode
 		Current Target=
 		Publisher=
-		Model=Characters/Monsters/English Enemies/Soldier 2Bow
+		Model=Characters/Monsters/Mongol Goblin Hat
 		Position X=143
 		Position Y=232.998
 		Rendering Height=0
@@ -1301,46 +1551,244 @@ CCannedObject
 			{
 				Action=Array
 				{
-					Item Count=2
+					Item Count=3
 					Action=CGiveExperiencePointsToAllPlayersAction
 					{
 						Get XP Frome=$Trigger
-						Experience Points To Add=1
+						Experience Points To Add=359
 					}
 					Action=CUseCannedActionAction
 					{
-						Canned Object=Inventory/Enemy Drop Items Cans/English 2Soldier Bow Drop Action
+						Canned Object=Inventory/Enemy Drop Items Cans/Goblin Sword n Gold Drop Action
+					}
+					Action=CUseCannedActionAction
+					{
+						Dynamic Properties=1
+						{
+							Comment=generates health spirit
+						}
+						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/FERAL HEALTH 1 in 2 Drop Action
 					}
 				}
 			}
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=
-		Damaged Effect Action=CRandomAction
+		Damaged Script Action=CMultipleActionsAction
 		{
 			Action=Array
 			{
-				Item Count=4
-				Action=CPlaySoundAction
+				Item Count=2
+				Action=CRandomAction
 				{
-					Sound=Enemies/English Enemies/Soldier Pain1.ogg
-					Position=$Trigger
+					Action=Array
+					{
+						Item Count=6
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CRandomAction
+						{
+							Action=Array
+							{
+								Item Count=14
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/GoblinVillager
+									Node ID=500 Attacking A
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/GoblinVillager
+									Node ID=500 Fleeing A
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/GoblinVillager
+									Node ID=500 Fleeing B
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/GoblinVillager
+									Node ID=500 Fleeing C
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=110 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=111 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=112 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=113 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=114 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=115 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=116 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=117 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=118 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/Fixt Goblin Barks
+									Node ID=119 hurt
+									Name of Position=$trigger
+									Position Offset=0.000000,-60.000000
+									After Action=
+									Include In Log=0
+								}
+							}
+						}
+					}
 				}
-				Action=CPlaySoundAction
+				Action=COnlyOnceAction
 				{
-					Sound=Enemies/English Enemies/Soldier Pain2.ogg
-					Position=$Trigger
+					Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Goblin Cave Post
+							Desired Minimum Count=1
+						}
+						Then=CGoToCombatAction
+						{
+							Enemy Name=Goblin Cave Post
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 				}
-				Action=CPlaySoundAction
+			}
+		}
+		Damaged Effect Action=CMultipleActionsAction
+		{
+			Action=Array
+			{
+				Item Count=1
+				Action=CRandomAction
 				{
-					Sound=Enemies/English Enemies/Soldier Pain3.ogg
-					Position=$Trigger
-				}
-				Action=CPlaySoundAction
-				{
-					Sound=Enemies/English Enemies/Soldier Pain4.ogg
-					Position=$Trigger
+					Action=Array
+					{
+						Item Count=3
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/Mongol Goblins/Goblin pain.ogg
+							Position=$Trigger
+						}
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/Mongol Goblins/Goblin pain2.ogg
+							Position=$Trigger
+						}
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/Mongol Goblins/Goblin pain3.ogg
+							Position=$Trigger
+						}
+					}
 				}
 			}
 		}
