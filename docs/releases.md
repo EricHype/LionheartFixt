@@ -339,8 +339,13 @@ spawns, so a post holding two archers and a Hat cannot name the Hat alone withou
 so the *post* is named and the *officer* is the trigger. `Ravine Cave East`'s four archer posts become
 `Goblin Cave Post`, and a struck Hat raises them once.
 
-It scales itself, which was discovered rather than designed: the Hat appears **only in the top
-`Max Party Mojo` tier, at weight 1 against the archer's 2**. No officer for a weak party, so no alarm.
+The Hat appears **only in the generator's top `Max Party Mojo` group, at weight 1 against the
+archer's 2**, so about one spawn slot in three is an officer. An earlier draft of these notes went
+further and said the alarm therefore scales itself -- no officer for a weak party, no alarm. That is
+wrong, and worth correcting rather than leaving: the bound at those posts is 50, but the engine picks
+the group whose bound the party falls *under*, and the next one down is 10. The top group is entered
+at a party mojo of about **11**, which act 1 parties reach. It makes officers uncommon; it does not
+gate them behind strength.
 Worst case measured at **12 creatures, once per level** -- against the troll pack alarm that would have
 woken 80-94 before it was rescoped. Guarded on the name existing rather than trusting
 `CGoToCombatAction` to tolerate a missing target, because `Mongol Goblin Hat Tough` is also the Mine
