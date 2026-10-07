@@ -677,10 +677,79 @@ def check_overridden_drops(fails):
                          + "the Titan bosses): " + "; ".join(sorted(set(overridden))))
 
 
+def check_class_names(fails):
+    """Every `=CSomething` we write must be a class the engine registers.
+
+    A player hit a hard CTD entering the Inquisition Chambers -- *"Tried to use an unknown class
+    ClsQuestStatusCompletedAction"* -- because `GrandInquisitor.DialogTree` named
+    `CIsQuestStatusCompletedAction`, which does not exist. The real class is
+    `CIsQuestCompletedAction`, the field set was already right, and only the name was wrong. It
+    shipped in 0.13.0 and survived 27 tagged releases.
+
+    Nothing else here would have caught it: the tree parsed, round-tripped byte-exact, had balanced
+    braces, no dangling targets and correct blank lines. So class names get their own authority --
+    the C-prefixed strings in the exe, which is how the engine registers them, plus every class
+    vanilla's own data uses.
+
+    Quest state IDs (`State=CHF3M8QW`) look like class names to a regex, so they are excluded twice
+    over: by key, and by requiring a lowercase letter, which every real CamelCase class has and no
+    state ID does.
+    """
+    exe = Path(Z).parent / "Lionheart.exe"
+    if not exe.exists():
+        print("note: %s not found, so class names are unchecked (A0.15)" % exe.name)
+        return
+    known = set(m.group(0).decode("latin-1")
+                for m in re.finditer(rb"C[A-Z][A-Za-z0-9_]{1,60}", exe.read_bytes()))
+
+    # Scanning vanilla's own data for class names costs a pass over the whole archive, so it is
+    # deferred: the exe's registered names clear everything in practice, and the archive is
+    # consulted only to clear a candidate the exe did not list -- which should be nothing.
+    cache = {}
+
+    def vanilla_knows(cls):
+        if not cache:
+            cache["names"] = set()
+            for n in zf.namelist():
+                if n.endswith((".can", ".zax", ".DialogTree", ".InventoryItem", ".Race",
+                               ".Perk", ".Trait")):
+                    for mm in re.finditer(r"=[ \t]*(C[A-Z][A-Za-z0-9_]*)\r?\n",
+                                          zf.read(n).decode("latin-1")):
+                        cache["names"].add(mm.group(1))
+        return cls in cache["names"]
+
+    # The hot path is a plain scan with no key capture: a leading `[^\r\n=]*` backtracks over every
+    # line in every .zax and cost more than the rest of Gate 0 put together. The field name is only
+    # needed to report a failure, so it is recovered from the line then -- which is almost never.
+    CLASS = re.compile(r"=[ \t]*(C[A-Z][A-Za-z0-9_]*)\r?\n")
+    for f in sorted(F.rglob("*")):
+        if not f.is_file() or f.suffix.lower() not in (
+                ".can", ".zax", ".dialogtree", ".inventoryitem", ".race", ".perk", ".trait"):
+            continue
+        text = f.read_bytes().decode("latin-1")
+        seen = set()
+        for m in CLASS.finditer(text):
+            cls = m.group(1)
+            if cls in known or cls in seen:
+                continue
+            if not any(c.islower() for c in cls):
+                continue              # all-caps is an id; real classes are CamelCase
+            key = text[text.rfind("\n", 0, m.start()) + 1:m.start()].strip()
+            if key.lower().endswith("state"):
+                continue              # `State=CHF3M8QW` is a quest state id, not a type
+            if vanilla_knows(cls):
+                continue
+            seen.add(cls)
+            fails.append(f.name + ": CRASH -- names a class the engine does not register: "
+                         + repr(cls) + " (on " + repr(key) + "). The game dies on load with "
+                         '"Invalid class type", naming this file')
+
+
 check_references(fails)
 check_self_reference(fails)
 check_no_probes(fails)
 check_overridden_drops(fails)
+check_class_names(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))

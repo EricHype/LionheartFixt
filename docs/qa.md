@@ -15,7 +15,7 @@ that no longer exists here, so renumbering a case cannot silently orphan the gui
 
 ## Gate 0 - automated, before anyone plays
 
-A0.1-A0.12 and A0.14 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
+A0.1-A0.12, A0.14 and A0.15 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
 [`tools/reachability.py`](../tools/reachability.py), which needs the vanilla archive to
 tell our orphans from the shipped game's. Both must be re-run after *any* change to
 `files/`:
@@ -51,6 +51,7 @@ is parsed, so a new *text* type cannot slip through by being unlisted.
 | A0.12 | `data.dat` passes `testzip()` and every entry is `compress_type == 0` | store-only |
 | A0.13 | Every node this mod adds is reachable -- `python tools/reachability.py` | zero unreachable. Nodes already orphaned in the shipped tree are tolerated; a Fixt tree is usually a shipped tree with nodes spliced in, and should not inherit the blame for what it copied |
 | A0.14 | No can-level quest-item drop is overridden by the generator that spawns it | zero overridden drops. `CSetDestroyedScriptActionAction` in a generator's `After Action` **replaces** the can's `Destroyed Script Action`, so a drop written only on the can is dead code -- this is how the Lava Troll Hide was unobtainable from 0.10.0 |
+| A0.15 | Every `=CSomething` names a class the engine registers | zero unknown classes. Checked against the C-prefixed strings in `Lionheart.exe` plus every class vanilla's data uses. An invented class is a hard CTD -- *"Invalid class type"* -- and `CIsQuestStatusCompletedAction` in the Grand Inquisitor's tree shipped in **0.13.0 and survived 27 tagged releases** before a player walked into it |
 
 **A0.11 is the one that has bitten this project before.** The loose `data\` tree shadows
 `data.dat`; a correct archive with a stale mirror is a mod that silently does nothing.
@@ -1472,7 +1473,37 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## UNRELEASED - the lava trolls: barks, the stomp, regeneration, a pack alarm
+## 0.29.0 - the Inquisition Chambers CTD
+
+Reported by a player: a crash to desktop on entering the Inquisition Chambers.
+
+> Invalid class type -- Tried to use an unknown class "ClsQuestStatusCompletedAction" for a "Action"
+> (CAction). Last file opened = "Resources/Levels/1 Barcelona/Dialog/Temple
+> District/GrandInquisitor.DialogTree:Node:Reply:Custom Requirement:Operand2:Operand1"
+
+The report is accurate and the name in it is only disguised by the crash dialog's font -- a capital I
+rendering as a lowercase l. The file named `CIsQuestStatusCompletedAction`, which does not exist. The
+real class is `CIsQuestCompletedAction`; the three sites already carried its exact field set, a lone
+`Quest=`, so only the name was wrong. Most likely a blend of it with `CSetQuestSatusToCompletedAction`,
+whose "Satus" typo is vanilla's own -- and `CIsQuestStateCompleatedAction` is also real, also
+misspelled, and takes different fields.
+
+**Shipped in 0.13.0 and present in 27 tagged releases, through 0.28.2.** It survived because the three
+sites are the Grand Inquisitor's *return* nodes gated on a Wilderness quest, so a player has to get
+that far and then come back.
+
+A dialogue tree change, so it needs no fresh save.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| IQ1 | With `Bring the Rogue Inquisitors to Justice` **completed**, enter the Inquisition Chambers | - | **No crash.** This is the whole fix |
+| IQ2 | Talk to the Grand Inquisitor on a normal return (`3 Return Dialogue`) | - | He greets you and the conversation opens |
+| IQ3 | Ask *"Does the Inquisition have any tasks for me?"* on the irritated return (`2 Irritated Return Dialogue`) | - | The reply appears and resolves. It is gated on that quest being complete, which is the gate that was crashing |
+| IQ4 | The same on the favored return (`5 Favored Return`) | - | Likewise |
+| IQ5 | Enter the Chambers **without** that quest complete | - | No crash either. The requirement now evaluates instead of failing to load |
+| IQ6 | `python tools/validate.py` | - | Passes. A0.15 fails on any class the engine does not register, which is what should have caught this in 0.13.0 |
+
+## 0.29.0 - the lava trolls: barks, the stomp, regeneration, a pack alarm
 
 All four are can / race / item level, so one fresh Troll Pit covers them together with `TH1`-`TH8`.
 **Needs a character who has not entered 05 Troll Pit.**

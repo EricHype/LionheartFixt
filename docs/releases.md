@@ -140,6 +140,93 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.29.0 - What the Trolls Say
+
+Numbered a minor rather than 0.28.3 deliberately: the release carries a new bark family,
+regeneration and a restored effect alongside the repair, and a patch number would misdescribe it.
+The crash leads anyway, because it has been shipping since 0.13.0.
+
+### A player found a crash we had shipped 27 times
+
+> Invalid class type -- Tried to use an unknown class "ClsQuestStatusCompletedAction" for a "Action"
+> (CAction). Last file opened = "Resources/Levels/1 Barcelona/Dialog/Temple
+> District/GrandInquisitor.DialogTree:Node:Reply:Custom Requirement:Operand2:Operand1"
+
+The report was accurate and the class name in it is only disguised by the crash dialog's font, where a
+capital I renders as a lowercase l. The file named `CIsQuestStatusCompletedAction`. No such class
+exists.
+
+`CIsQuestCompletedAction` is real and takes exactly one field, `Quest=`, which is exactly what all
+three sites already carried -- so **only the name was wrong**. It reads like a blend with
+`CSetQuestSatusToCompletedAction`, whose "Satus" typo is vanilla's own, and the neighbourhood is
+genuinely treacherous: `CIsQuestStateCompleatedAction` is also real, also misspelled, and takes
+different fields.
+
+Introduced in **0.13.0** and present in **27 tagged releases**, through 0.28.2. It survived because the
+three sites are the Grand Inquisitor's *return* nodes gated on a Wilderness quest -- `2 Irritated
+Return Dialogue`, `3 Return Dialogue` and `5 Favored Return`. A player has to get that far and then
+come back, and the unplayed backlog is exactly where that kind of path hides.
+
+### Gate 0 gains A0.15, and why nothing else caught it
+
+Every `=CSomething` must name a class the engine registers. The authorities are the C-prefixed strings
+in `Lionheart.exe`, which is how the engine registers them, plus every class vanilla's own data uses.
+
+The tree parsed, round-tripped byte-exact, had balanced braces, no dangling targets, correct blank
+lines before every `Requirement=`, and the right field set for the class it *meant*. Every existing
+gate passed. Class names had simply never been checked. The whole repository was swept and this was
+the only genuine offender.
+
+Two details the check had to get right. Quest state IDs are written `State=CHF3M8QW`, which a naive
+regex reads as a class, so they are excluded twice -- by key, and by requiring a lowercase letter,
+which every real CamelCase class has and no state ID does. And the first version cost 9.3 seconds,
+more than the rest of Gate 0 combined, because a leading `[^\r\n=]*` backtracked over every line of
+every `.zax`; the field name is now recovered only when reporting a failure, which is almost never.
+
+### The lava trolls
+
+Left out of 0.27.0's barks, and they had more waiting than any other family.
+
+**A voice they already had.** `Shoot Completed` was empty on all six cans, and `Warning Troll.DialogTree`
+already gives them two registers. Drones are broken, terse and sometimes wordless; the chief is
+fluent, measured and forever counting. 20 lines, 8 shared plus 6 per role, so each troll draws from 14
+and no drone speaks in the chief's register. The no-op padding selects `Skills/Fighting/Ranged`, taken
+from `Lavatroll Boss.Race` rather than guessed -- naming a skill that does not exist is what made
+0.19.0 through 0.25.0 unlaunchable.
+
+**The Troll Stomp was never cut.** `Troll Stomp.mdl16` is referenced by nothing, which looks like a cut
+mechanic and is not one. Every troll's projectile already ends in `CAIAreaOvalManager` radius 120,
+firing twice, doing Fire 6-16. They have been stomping since 2003 with no visual; the model just had
+no caller. Added through `CSpawnEffectAction` on both the hit and graze branch. The proof is that the
+troll damage in save logs (5-12) matches the drone projectile's area range of 5-12 exactly -- those
+log lines always were the pulses.
+
+**Regeneration, and the constant that decides it.** `Troll Hide for Quinn` calls the troll *"a creature
+that closes its own wounds"* and it closed nothing. The units are the whole problem:
+**HP per second = HealingRate x 0.1**, from the virtual entity update at `0x0043f7d0` --
+`fmul [0x6b9e30]`, float32 `cdcccc3d`, then `fmul dt`. Read with `capstone` and a PE section mapper,
+because ReVa would not connect. Without that constant the same value looked like a choice between an
+inert attribute and an unkillable boss; with it, drones at 0.6 HP/sec and the chief at 1.0 cost the
+player about fourteen points of win rate against the player's own 0.37. Their counter already shipped
+in 2003: `Cold Damage Resistance=-15` on every troll race.
+
+**A drone that calls for help, after a correction.** The first build broadcast
+`CGoToCombatAction { Enemy Name=Lava Troll }` on damage -- the group call this map already uses. Then
+the consequence got measured: 80 to 94 trolls in the pit, on a `Max dist from home` of 4000. Ninety
+trolls converging on the first blow landed. Rescoped so a wounded **drone** fetches `Troll Chief` and
+nothing else, guarded by `COnlyOnceAction` and a `Troll Peace Keeper` check.
+
+`CCallForReinforcementsAction` was the obvious route and is a dead end: registered in the exe, used
+**zero** times in the shipped game, while 698 creatures carry
+`Respond to calls for reinforcements=1`. Half the bestiary is listening to a radio nobody transmits on.
+
+### The habit that paid off twice here
+
+Both halves came from measuring a consequence before shipping it. The alarm was built, measured, and
+cut back by an order of magnitude. The regeneration was built, pulled when its units could not be
+pinned, and restored once the constant was read. Neither correction needed a playtest to find, and
+neither would have survived one kindly.
+
 ## 0.28.2 - a companion built out of sentry parts
 
 Reported from play, once he could finally be kept: *"Ferdnand's AI often has him freezing in place
