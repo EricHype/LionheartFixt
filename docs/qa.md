@@ -1473,7 +1473,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## UNRELEASED - the goblins: a voice, a damage profile, an officer who calls for help
+## 0.30.0 - the goblins: a voice, a damage profile, an officer who calls for help
 
 Goblins are the **largest enemy population in the game** -- 780 of spawn capacity across 30 maps,
 more than the thieves, soldiers, snakebreed and trolls together -- and until now the only major
@@ -1604,7 +1604,7 @@ goes 90 to 93.
 | GB28 | Fight a bow thief, a bow soldier and a Snakebreed Venom | - | They should shoot as they always did. **21 archer cans shipped since 0.27.0 with a bark filler selecting `Skills/Fighting/OneHandedMelee` -- a skill not present on their race at all.** Vanilla uses that action in that slot to choose the next attack (`Priest Super` casts its shield, then picks Fire Orb or Spike), so it was never inert. Each is now repointed at its own race's primary. `Soldier4 Bow Super` has Ranged 97 and was told to select melee three attacks in four |
 | GB29 | Specifically: did bow units get *better*? | - | If archers were visibly fumbling before and are not now, that is GB28 landing, and it means the defect was live rather than silently ignored. Worth knowing either way |
 
-## UNRELEASED - Ravine Cave: the silver mine can be talked past
+## 0.30.0 - Ravine Cave: the silver mine can be talked past
 
 The Sacred Scimitar is a **Knights of Saladin initiation** step, and its first task had exactly one
 solution: kill the cave. There is one source of magnetized silver in the entire game -- a bone pile in
@@ -1639,7 +1639,7 @@ which `MF2` depends on.
 | MF14 | Count the archers at the mouth on a weak and then a strong party | - | It scales -- the post spawns 1 Archer at `Max Party Mojo=3`, up to 2-3 Archer Supers at 25. The threat is meant to read as serious |
 | MF15 | Parley successfully, leave the cave, come back | - | The posts should still be stood down. `Mine passage granted` is `Trigger Only Once=1`, so if they are hostile again on re-entry, report it -- that is the entity-snapshot question |
 
-## UNRELEASED - Scar Ravine: the hostage gets an evil outcome, and her father finds out
+## 0.30.0 - Scar Ravine: the hostage gets an evil outcome, and her father finds out
 
 Four tiers. The hostage scene north of the Crossroads had five ways to save Gloria, **no way to
 decline** (both refusals fired `CGoToCombatAction`), and no evil outcome at all -- while her father

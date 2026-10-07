@@ -1,0 +1,171 @@
+[size=150][b]Lionheart Fixt 0.30.0 - The Scourge of the Land[/b][/size]
+
+Named from the line that turned out to be the centre of it: *"Nonsense, we are Mongol-trained goblins,
+the scourge of the land!"* Written for a goblin in 2003, and fired by nothing until now.
+
+The goblins are the largest enemy population in the game. [b]780 of spawn capacity across 30 maps[/b],
+more than the thieves, soldiers, Snakebreed and trolls put together, and until this release the only
+major family with [b]no barks and no damage resistances at all[/b]. Everything Fixt had done with goblins
+was about *not* fighting them. This is the other half.
+
+[b]GoblinVillager.DialogTree was a bark bank nobody wired[/b]
+
+This was not a writing job. The tree has 55 nodes and [b]11 of them are fired by nothing in the entire
+game[/b] -- no map, no can, no tree, vanilla or Fixt -- with ten more reachable in exactly one map each.
+
+The restored lines are referenced at their own vanilla node IDs rather than copied, so vanilla's dead
+nodes start firing and no text is duplicated.
+
+Dead until now: [i]100 dinner[/i], [i]100 take our meal[/i], [i]100 take brain[/i], [i]500 goblin confrontation 2[/i],
+[i]500 Fleeing C[/i], [i]100 Combat Fight[/i], and the three [i]500 Attacking[/i] nodes. Nearly dead: [i]500 Fleeing A[/i]
+and [i]B[/i], which only [i]Bounty Hunter Camp[/i] ever fired, and which now play whenever any goblin is hurt.
+
+[b]The argument written for three goblins and never cast[/b]
+
+[i]500 Attacking A/B/C[/i] are not three interchangeable barks. They are one exchange:
+
+[i]*"They have butchered our brothers with alarming ease. Perhaps discretion would be the more prudent[/i]
+[i]course of action?"*[/i]
+>
+[i]*"Nonsense, we are Mongol-trained goblins, the scourge of the land!"*[/i]
+>
+[i]*"Yes, Wumjup is right! Muster up your courage and attack! AIIIIiiiiIIII!"*[/i]
+
+A coward, a boaster, and a third who sides with the boaster [b]by name[/b] -- so B had to be Wumjup,
+which is also why the rabble's barks keep mentioning a Wumjup nobody ever met. [i]Drubjub[/i] and [i]Lumgrub[/i]
+are vanilla's names too: they are the two goblins talking to each other in [i]GoblinGuards[/i] and
+[i]GoblinLt[/i], trees whose entire content is a pair of goblins gossiping about Grumdjum's poetry and about
+who has to go and kill the water witch. None of the three was an entity name anywhere in the game.
+
+A can only knows itself, so this could never be a can edit. Vanilla's own [i]goblin attack banter[/i] relay
+in [i]Crossroads[/i] turned out to be the pattern, and a better one than a timed burst: [i]CSeriesAction[/i] with
+[i]Next Action Index=0[/i] advances [b]one item per trigger[/b], the index persisting between firings, which is
+how vanilla gets six banter lines out of one relay.
+
+So the trigger is a goblin dying, and the argument escalates as the fight goes worse -- the coward
+speaks over the first body, the boaster over the second, the charge over the third. That is the shape
+the text was written in, and it was only visible by reading how vanilla staged its own banter instead
+of inventing a mechanism.
+
+[b]105 lines, in banks sized for how often they are heard[/b]
+
+The same shape as 0.27.0's thieves -- a shared family bank plus a sub-bank per type, about one attack
+in four, over the creature's own head, not in the combat log -- but much bigger, because the player
+hears goblins more than every other family combined:
+
+| bank | lines | |
+|---|---|---|
+| rabble | [b]40[/b] | 18 shared + 16 its own + 6 restored |
+| shamans | [b]37[/b] | 18 shared + 16 its own + 3 reused from the [i]Goblin Shaman[/i] tree |
+| archers, officers | [b]34[/b] | 18 shared + 16 its own |
+| hurt, all tiers | [b]14[/b] | 10 its own + 4 restored |
+
+The shipped families run 11-14, where a repeat turns up after about five barks; at 34-40 it takes about
+eight.
+
+There is a second register 0.27.0 did not have: [i]Damaged Script Action[/i], goblins noticing they are
+losing, about one hit in six, which is where the restored fleeing lines live.
+
+Shamans bark on attack as well, which looked impossible at first because their [i]Shoot Completed[/i] is
+occupied. It is not an attack reaction -- it is a spell *picker* -- so the bark bank went in as a
+fourth item and the spell distribution stayed proportional.
+
+Seven cans deliberately carry nothing. The Khan, Rakeb and Grumdjum have whole trees of their own, and
+the Crossroads Patrol Leader, Goblin Girl and Goblin Guard are ones Fixt made talkable. A named
+character must not speak the rabble's lines.
+
+[b]The damage profile every other family already had[/b]
+
+This is the real answer to why every goblin fight felt the same. Animals resist slashing and crushing
+38 and take extra from cold; English Enemies are armoured and fold to crushing at [b]-44[/b]; wererats are
+immune to fire; undead shrug off electricity. Across 417 races and nine damage types, the goblins' 19
+races were [b]blank in all nine columns[/b].
+
+| tier | Slash | Pierce | Crush | Fire | Cold | Elec | Poison | Disease |
+|---|---|---|---|---|---|---|---|---|
+| rabble, archers | -10 | - | -20 | [b]-25[/b] | 20 | 15 | 100 | 100 |
+| shamans | -10 | - | -20 | [b]-25[/b] | 20 | [b]50[/b] | 100 | 100 |
+| hat officers | [b]20[/b] | [b]20[/b] | 0 | [b]-25[/b] | 20 | 15 | 100 | 100 |
+| Khan, Hat Super, Grumjun, Rakeb | 25 | 25 | 10 | [b]-10[/b] | 25 | 25 / 50 | 100 | 100 |
+
+[b]Burn them, do not poison them, and the officer needs a different weapon than the rabble around him.[/b]
+
+Fire is the family signature at every tier, and nothing else in the game is reliably fire-vulnerable.
+Poison and Disease sit at 100 -- carrion and brain eaters -- which is vanilla's own immune value and
+also the ceiling: above it the engine *heals* the target, which is what Wererat Boss's disease 125 has
+always been doing. The officer tier inverts to armoured, so blades beat him where clubs beat the
+rabble, and lightning is wasted on a shaman who throws it himself.
+
+Fire tapers to -10 at the boss tier for two reasons, one honest and one practical: 200+ HP goblins are
+thicker-hided, and [i]Goblin Grumjun[/i] is Grumdjum's race -- he is a restored companion, and a companion
+who dies to his own player's fire is a bug report, not a feature.
+
+[b]The officer calls for help[/b]
+
+Fixt's own troll idiom from 0.29.0, inverted, and the map forced it: a generator's [i]New Name[/i] applies
+to [b]every[/b] creature it spawns, so a post holding two archers and a Hat cannot name the Hat alone
+without being cloned. So the *post* is named and the *officer* is the trigger. [i]Ravine Cave East[/i]'s
+four archer posts become [i]Goblin Cave Post[/i], and a struck Hat raises them once.
+
+It scales itself, which was discovered rather than designed: the Hat appears [b]only in the top party
+tier, at weight 1 against the archer's 2[/b]. No officer for a weak party, so no alarm. Worst case
+measured at [b]12 creatures, once per level[/b] -- against the troll pack alarm that would have woken
+80-94 before it was rescoped.
+
+[i]Respond to calls for reinforcements[/i] is now on for all 16 hostile goblin cans; it was off on 21 of 23,
+leaving goblins alone with the Animals and the Thugs while the Undead run it on 88 of 92.
+
+[b]Two Wilderness scenes that had exactly one solution[/b]
+
+[b]The hostage north of the Crossroads.[/b] A goblin holds a woodcutter's daughter and vanilla offers only
+ways to save her. She can be handed to the Khan now -- two routes, one gated on Horde standing and one
+that earns it, the second tagged [i]<Lie>[/i] on vanilla's own convention. Both grant the *Child Killer*
+title and -50 Karma. Her father gets a failure state he can actually reach, and he can tell the
+difference: the lie is a lie to *him*, and the Khan has a line waiting when you next stand in front of
+him.
+
+[b]The silver mine.[/b] The Sacred Scimitar is a Knights of Saladin initiation step, and its first task
+had one solution: kill the cave. One source of magnetized silver exists in the whole game, no merchant
+sells it, [i]Ravine Cave West[/i] had zero dialogue trees, and Eduardo closes every alternative in his own
+voice. A foreman now holds the mouth of the cave with the archer post around him, bows up and not
+firing, and there are four ways past him -- Horde standing, Barter 40, Speech 40, Schmooze 7 -- plus an
+ungated demand that is refused with a warning rather than a fight, so the routes are discoverable. The
+three deeper posts stay hostile until a parley succeeds, so a player who attacks gets the cave exactly
+as vanilla built it. Negotiation moves the guards, never the ore.
+
+[b]One repair, found by checking our own work before reusing it[/b]
+
+[b][i]CActionSelectSkill[/i] is not a no-op.[/b] The bark banks pad their random pick with it so that only one
+attack in four speaks, and that padding is inert *only when it selects the skill the creature would
+have used anyway*. Vanilla uses the same action in the same slot as the real mechanism for choosing the
+next attack: [i]Priest Super[/i] casts its shield, then randomly picks Fire Orb or Spike.
+
+0.27.0 and the Snakebreed pass gave [i]Skills/Fighting/OneHandedMelee[/i] to [b]21 archer cans whose races do
+not preset that skill at all[/b]. [i]Soldier4 Bow Super[/i] has Ranged 97, no melee rating, and three of its
+four attack slots told it to select melee. The trolls were already correct, having been given [i]Ranged[/i]
+because trolls throw. All 21 now resolve the filler from their own race's primary skill by lookup
+rather than from an authored constant.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+Goblin cans and races are global edits, so they reach creatures spawned after you install and not
+anything already standing in a level you have loaded. [i]Ravine Cave East[/i], [i]Ravine Cave West[/i] and
+[i]Scar Ravine[/i] are map changes, which a save that has already entered those levels will not pick up at
+all. A fresh character, or one that has not been to the Wilderness, sees all of it.
+
+[b]If you play it[/b]
+
+Three things are worth reporting above everything else.
+
+[b]Do the three balloons in the goblin argument appear over three *different* goblins?[/b] If they stack
+over one, the exchange has failed.
+
+[b]How many goblins answer when you strike an officer in Ravine Cave East?[/b] The budget is 12, and the
+troll alarm in 0.29.0 had to be rescoped after exactly this measurement.
+
+[b]Does anything actually come when you attack a lone goblin at the edge of a group?[/b] The explicit
+"call for help" action is registered in the engine and used zero times in all of vanilla, so either
+being attacked calls implicitly -- and the undead have been swarming all along -- or the field does
+nothing anywhere. Static analysis cannot tell those apart. One fight can.

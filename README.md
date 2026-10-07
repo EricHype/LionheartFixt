@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.29.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.29.0).
+-- currently [0.30.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.30.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -101,8 +101,9 @@ cut), the Mountain Pass's sealed door (no map behind it), and the Act 8 goblin c
 arcs (they return with Act 8).
 
 ## Status
+| **0.30.0** The Scourge of the Land | the Wilderness: Scar Ravine, Ravine Cave, the Crossroads, every goblin in the game | **The goblins get a voice, a weakness, and two scenes that no longer have one solution.** They are the largest enemy population in the game -- 780 of spawn capacity across 30 maps -- and were the only major family with **no barks and no damage resistances at all**. 105 lines in two registers, and 13 of them are vanilla's: `GoblinVillager.DialogTree` is a goblin bark bank nobody wired, 11 of its 55 nodes fired by nothing in the entire game. One of them is an argument written for **three** goblins and never cast -- a coward, a boaster, and a third who sides with the boaster by name -- now staged across three goblin deaths over three named goblins, `Drubjub`, `Wumjup` and `Lumgrub`, whose names are vanilla's own too. The damage profile every other family already had: **burn them, do not poison them**, and the officer in the hat inverts, so blades beat him where clubs beat the rabble. Strike that officer and his post answers, once. The hostage north of the Crossroads can be handed to the Khan now, and her father finds out; the silver mine in Ravine Cave can be talked past four ways instead of only cleared. Plus one repair: **21 archer cans have been selecting a melee skill their race does not have since 0.27.0** -- `CActionSelectSkill` is not a no-op, vanilla uses it to pick the next attack |
 
-**0.1.0 through 0.29.0 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last fifteen -- 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
+**0.1.0 through 0.30.0 are published.** Every act is surveyed, built and released, and the 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was cut from it -- 0.25.0 being the first to change how enemies fight. The last twenty -- 0.30.0 The Scourge of the Land, 0.29.0 What the Trolls Say, 0.28.0 The Hide and the Way Back, 0.27.0 What the Thieves Say, 0.26.0 What They Were Built To Do part two, 0.25.0 What They Were Built To Do, 0.24.0 The Register, 0.23.0 What the Crescent Is Worth, 0.22.0 the Talker and the Thief, 0.21.1 the Daeva, 0.21.0 the Doomed Plateau, 0.20.0 Alamut, 0.19.0 the English Shrine, 0.18.0 the Barcelona Attack (with its 0.18.1 repair), 0.17.0 the Caverns of Nostradamus,
 0.16.0 the Crypt, 0.15.0 Toulouse, 0.14.0 Montaillou, 0.13.0 The Road North and 0.12.0 La Calle
 Perdida -- are built and entirely unplayed, as are 0.11.0's Sahar, ring and rout. What the playthrough finds is repaired on `main` and cut as
 patch releases. Every release's

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.24.0 are published; 0.25.0 is scoped below and not started.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.30.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,177 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.30.0 - The Scourge of the Land
+
+Named from the line that turned out to be the centre of it: *"Nonsense, we are Mongol-trained
+goblins, the scourge of the land!"* -- written for a goblin in 2003, fired by nothing until now.
+
+The goblins are the largest enemy population in the game. 780 of spawn capacity across 30 maps, more
+than the thieves, soldiers, Snakebreed and trolls put together, and until this release the only major
+family with **no barks and no damage resistances at all**. Everything Fixt had done with goblins was
+about *not* fighting them -- the Crossroads scouts stood down, the Warrens' Khan and Rakeb made
+talkable, Grumdjum restored as a companion, the mine foreman given a tongue. This is the other half.
+
+### GoblinVillager.DialogTree was a bark bank nobody wired
+
+Not a writing job. 55 nodes, and **11 of them are fired by nothing in the entire game** -- no `.zax`,
+no `.can`, no tree, vanilla or Fixt -- with ten more reachable in exactly one map each.
+
+The restored lines are referenced at their own vanilla node IDs rather than copied, so vanilla's dead
+nodes start firing and no text is duplicated. The IDs are lifted byte-exact, because the Goblin
+Warrens crash in the 0.1.x line was a node ID differing by one trailing space.
+
+What was dead: `100 dinner`, `100 take our meal`, `100 take brain`, `500 goblin confrontation 2`,
+`500 Fleeing C`, `100 Combat Fight`, `500 wilderness banter 3` (a verbatim duplicate of `banter 4`),
+and the three `500 Attacking` nodes. What was nearly dead: `500 Fleeing A` and `B`, which only
+`Bounty Hunter Camp` ever fired, and which now play whenever any goblin is hurt.
+
+### The argument written for three goblins and never cast
+
+`500 Attacking A/B/C` are not three interchangeable barks. They are one exchange:
+
+> *"They have butchered our brothers with alarming ease. Perhaps discretion would be the more
+> prudent course of action?"*
+> *"Nonsense, we are Mongol-trained goblins, the scourge of the land!"*
+> *"Yes, Wumjup is right! Muster up your courage and attack! AIIIIiiiiIIII!"*
+
+A coward, a boaster, and a third who sides with the boaster **by name** -- so B had to be Wumjup,
+which is also why the rabble's barks keep mentioning a Wumjup nobody ever met. `Drubjub` and
+`Lumgrub` are vanilla's names too: they are the two goblins talking to each other in `GoblinGuards`
+and `GoblinLt`, trees whose entire content is a pair of goblins gossiping about Grumdjum's poetry and
+about who has to go and kill the water witch. None of the three was an entity name anywhere in the
+game.
+
+A can only knows itself, so this could never be a can edit. Vanilla's own `goblin attack banter`
+relay in `Crossroads` is the pattern, and it is better than the timed burst the plan had assumed:
+`CSeriesAction` with `Next Action Index=0` advances **one item per trigger**, the index persisting
+between firings -- which is how vanilla gets six banter lines out of one relay. So the trigger is a
+goblin dying, and the argument escalates as the fight goes worse: the coward speaks over the first
+body, the boaster over the second, the charge over the third. That is the shape the text was written
+in, and it was only visible by reading how vanilla staged its own banter instead of inventing a
+mechanism.
+
+`Require Success To Advance=0` rather than `1`, so a speaker already dead skips his line instead of
+jamming the series on it forever. The death trigger is guarded on the relay entity's own existence
+rather than on any goblin's, so which of them died first cannot matter, and it is an explicit no-op in
+the other fifteen maps that spawn those cans.
+
+### 105 lines, in banks sized for how often they are heard
+
+0.27.0's shape exactly -- a shared family bank plus a sub-bank per type, about one attack in four,
+`Include In Log=0`, over the creature's own head -- but much bigger, because the player hears goblins
+more than every other family combined:
+
+| bank | lines | |
+|---|---|---|
+| rabble | **40** | 18 shared + 16 its own + 6 restored |
+| shamans | **37** | 18 shared + 16 its own + 3 reused from the `Goblin Shaman` tree |
+| archers, officers | **34** | 18 shared + 16 its own |
+| hurt, all tiers | **14** | 10 its own + 4 restored |
+
+The shipped families run 11-14, where a repeat turns up after about five barks; at 34-40 it takes
+about eight. A second register was added that 0.27.0 did not have: `Damaged Script Action`, goblins
+noticing they are losing, about one hit in six, which is where the restored fleeing lines live.
+
+Shamans bark on attack too, which looked impossible at first because their `Shoot Completed` is
+occupied. It is not an attack reaction -- it is a spell *picker*, `CRandomAction` over Spike, Static
+Charge, Static Charge -- so the bark bank went in as a fourth item and the spell distribution stayed
+proportional.
+
+Seven cans deliberately carry nothing: the Khan, Rakeb and Grumdjum have whole trees of their own, and
+the Crossroads Patrol Leader, Goblin Girl and Goblin Guard are ones Fixt made talkable. A named
+character must not speak the rabble's lines.
+
+### The damage profile every other family already had
+
+This is the real answer to why every goblin fight felt the same. Animals resist slashing and crushing
+38 and take extra from cold; English Enemies are armoured and fold to crushing at **-44**; wererats
+are immune to fire; undead shrug off electricity. Across 417 races and nine damage types, the goblins'
+19 races were **blank in all nine columns**.
+
+| tier | Slash | Pierce | Crush | Fire | Cold | Elec | Poison | Disease |
+|---|---|---|---|---|---|---|---|---|
+| rabble, archers | -10 | - | -20 | **-25** | 20 | 15 | 100 | 100 |
+| shamans | -10 | - | -20 | **-25** | 20 | **50** | 100 | 100 |
+| hat officers | **20** | **20** | 0 | **-25** | 20 | 15 | 100 | 100 |
+| Khan, Hat Super, Grumjun, Rakeb | 25 | 25 | 10 | **-10** | 25 | 25 / 50 | 100 | 100 |
+
+**Burn them, do not poison them, and the officer needs a different weapon than the rabble around
+him.** Fire is the family signature at every tier, and nothing else in the game is reliably
+fire-vulnerable. Poison and Disease are 100 -- carrion and brain eaters -- which is vanilla's own
+immune value and also the ceiling: above it the engine *heals* the target, which is what Wererat
+Boss's disease 125 has always been doing. The officer tier inverts to armoured, so blades beat him
+where clubs beat the rabble, and lightning is wasted on a shaman who throws it himself.
+
+Fire tapers to -10 at the boss tier for two reasons, one honest and one practical: 200+ HP goblins are
+thicker-hided, and `Goblin Grumjun` is Grumdjum's race -- he is a restored companion, and a companion
+who dies to his own player's fire is a bug report, not a feature.
+
+### The officer calls for help, and the map forced the design
+
+Fixt's own 0.29.0 troll idiom, inverted. A generator's `New Name` applies to **every** creature it
+spawns, so a post holding two archers and a Hat cannot name the Hat alone without being cloned --
+so the *post* is named and the *officer* is the trigger. `Ravine Cave East`'s four archer posts become
+`Goblin Cave Post`, and a struck Hat raises them once.
+
+It scales itself, which was discovered rather than designed: the Hat appears **only in the top
+`Max Party Mojo` tier, at weight 1 against the archer's 2**. No officer for a weak party, so no alarm.
+Worst case measured at **12 creatures, once per level** -- against the troll pack alarm that would have
+woken 80-94 before it was rescoped. Guarded on the name existing rather than trusting
+`CGoToCombatAction` to tolerate a missing target, because `Mongol Goblin Hat Tough` is also the Mine
+Foreman next door.
+
+`Respond to calls for reinforcements` is now `1` on all 16 hostile goblin cans; it was `0` on 21 of
+23, leaving goblins alone with the Animals and the Thugs while the Undead run it on 88 of 92. One
+caveat recorded rather than smoothed over: `CCallForReinforcementsAction` is registered in the exe and
+used **zero** times in all of vanilla, so either being attacked calls implicitly and the undead have
+swarmed all along, or the field is inert everywhere. Static analysis cannot separate those two; a
+playtest can, and it is harmless under both.
+
+### Two Wilderness scenes that had exactly one solution
+
+**The hostage north of the Crossroads.** A goblin holds a woodcutter's daughter and vanilla offers only
+ways to save her. She can be handed to the Khan now -- two routes, one gated on Horde standing and one
+that earns it, the second tagged `<Lie>` on vanilla's own convention. Both grant the `Child Killer`
+title and -50 Karma. Her father is given a failure state he can actually reach, and he can tell the
+difference: the lie is a lie to *him*, and the Khan has a line waiting when you next stand in front of
+him. The goblin is disposed of with node 70's verbatim 1752-byte disposal, because leaving him standing
+after the handover is exactly the kind of thing that ships.
+
+**The silver mine.** The Sacred Scimitar is a Knights of Saladin initiation step and its first task had
+one solution: kill the cave. One source of magnetized silver exists in the whole game, no merchant
+sells it, `Ravine Cave West` had zero dialogue trees, and Eduardo closes every alternative in his own
+voice. A foreman now holds the mouth with the archer post around him, bows up and not firing, and
+there are four ways past him -- Horde standing, Barter 40, Speech 40, Schmooze 7 -- plus an ungated
+demand refused with a warning rather than a fight, so the routes are discoverable. The three deeper
+posts stay hostile until a parley succeeds, so a player who attacks gets the cave exactly as vanilla
+built it. Negotiation moves the guards, never the ore.
+
+### One repair, found by checking my own work before reusing it
+
+**`CActionSelectSkill` is not a no-op.** The bark banks pad their `CRandomAction` with it so that only
+one attack in four speaks, and that padding is inert *only when it selects the skill the creature
+would have used anyway*. Vanilla uses the same action in the same slot as the real mechanism for
+choosing the next attack: `Priest Super` casts its shield, then randomly picks Fire Orb or Spike.
+
+0.27.0 and the Snakebreed pass gave `Skills/Fighting/OneHandedMelee` to **21 archer cans whose races
+do not preset that skill at all**. `Soldier4 Bow Super` has Ranged 97, no melee rating, and three of
+its four attack slots told it to select melee. The trolls were already correct, having been given
+`Ranged` because trolls throw. All 21 now resolve the filler from their own race's primary skill by
+lookup rather than from an authored constant.
+
+### What needs playing
+
+`GB1`-`GB38`, `MF1`-`MF15` and `GL1`-`GL18` in [`qa.md`](qa.md). Can and race edits throughout, so
+every goblin row needs a save that has **not** entered the area; `Ravine Cave East`, `Ravine Cave West`
+and `Scar Ravine` are map changes and need the same.
+
+Three rows carry the weight. **`GB34`**: the three balloons must appear over three *different*
+goblins -- if they stack over one, `Name of Position` is not resolving by name and the exchange has
+failed. **`GB19`**: count the goblins that answer the officer and report the number, because the
+budget is 12 and the troll alarm had to be rescoped after exactly this measurement. **`GB25`**: does
+anything actually answer a call for help, which settles a question static analysis cannot.
 
 ## 0.29.0 - What the Trolls Say
 
