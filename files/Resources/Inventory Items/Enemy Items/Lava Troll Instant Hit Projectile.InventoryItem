@@ -1,0 +1,256 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorProjectileInstantHit
+		{
+			Hit Action=CIfExpressionAction
+			{
+				If Expression=CIsGreaterThan
+				{
+					Operand1=CExpressionHitMargin
+					{
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=0
+					}
+				}
+				Character to get attributes from=$Trigger
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=2
+						Action=CSpawnEffectAction
+						{
+							Explosion Model=Special Effects/Troll Stomp
+							Location Entity=$Instigator
+							Make effect a child of the location entity=0
+							X Offset=0
+							Y Offset=0
+							Height Offset=0
+							Play Default Sound=1
+							Action to execute After Effect=
+						}
+						Action=CAddAIAction
+						{
+							Target Name=$Instigator
+							AI=CAIAreaOvalManager
+							{
+								Marked For Deletion=0
+								Publisher=
+								Radius=CConstant
+								{
+									Constant Value=120
+								}
+								Aspect Ratio=0.712766
+								Re Trigger Delay=CConstant
+								{
+									Constant Value=0
+								}
+								Max Times To Trigger=CConstant
+								{
+									Constant Value=2
+								}
+								Re-Check who is in oval each re-trigger=0
+								Every Trigger Action=
+								First Trigger Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Trigger
+										Category to check for=Player,Player Friend
+									}
+									Then=CActionDoDamage
+									{
+										Character Doing Damage=$Instigator
+										Character To Damage=$Trigger
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Fire
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=5
+													}
+													Maximum=CConstant
+													{
+														Constant Value=12
+													}
+												}
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Re-Trigger Action=
+								After Last Trigger Action=
+								Only Trigger if has HP=1
+								Trigger if Player=0
+								Trigger if Enemy=0
+								Trigger Anything=1
+								Max Entities to affect=
+								Seconds Since Last Triggered=0
+								Number Of Times Triggered=0
+								Has Triggered At Least Once=0
+								Has Begin Been Called Before=0
+								Affected Layer Parts=Array
+								{
+									Item Count=0
+								}
+							}
+							Delay Between Adds=0
+						}
+					}
+				}
+				Else=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=2
+						Action=CSpawnEffectAction
+						{
+							Explosion Model=Special Effects/Troll Stomp
+							Location Entity=$Instigator
+							Make effect a child of the location entity=0
+							X Offset=0
+							Y Offset=0
+							Height Offset=0
+							Play Default Sound=1
+							Action to execute After Effect=
+						}
+						Action=CAddAIAction
+						{
+							Target Name=$Instigator
+							AI=CAIAreaOvalManager
+							{
+								Marked For Deletion=0
+								Publisher=
+								Radius=CConstant
+								{
+									Constant Value=120
+								}
+								Aspect Ratio=0.712766
+								Re Trigger Delay=CConstant
+								{
+									Constant Value=0
+								}
+								Max Times To Trigger=CConstant
+								{
+									Constant Value=2
+								}
+								Re-Check who is in oval each re-trigger=0
+								Every Trigger Action=
+								First Trigger Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Trigger
+										Category to check for=Player,Player Friend
+									}
+									Then=CActionDoDamage
+									{
+										Character Doing Damage=$Instigator
+										Character To Damage=$Trigger
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
+											{
+												Damage Type=Damage Types/Fire
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=2
+													}
+													Maximum=CConstant
+													{
+														Constant Value=8
+													}
+												}
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Re-Trigger Action=
+								After Last Trigger Action=
+								Only Trigger if has HP=1
+								Trigger if Player=0
+								Trigger if Enemy=0
+								Trigger Anything=1
+								Max Entities to affect=
+								Seconds Since Last Triggered=0
+								Number Of Times Triggered=0
+								Has Triggered At Least Once=0
+								Has Begin Been Called Before=0
+								Affected Layer Parts=Array
+								{
+									Item Count=0
+								}
+							}
+							Delay Between Adds=0
+						}
+					}
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorDamage
+		{
+			Hit Or Miss=Damage Types/Damage Hit Or Miss/Ranged
+			Cache Hit Or Miss Result=1
+			Hit Margin=-129.327
+			Damages=Array
+			{
+				Item Count=0
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=0
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=unnamed
+	Description=undefined
+	Inventory Window Images=Array
+	{
+		Basic=!Unknown Model
+		Better=!Unknown Model
+		Special=!Unknown Model
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/!None
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/!none
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory Items/Enemy Items/Lava Troll Instant Hit Projectile
+}

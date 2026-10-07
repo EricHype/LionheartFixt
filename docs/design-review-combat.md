@@ -868,6 +868,92 @@ the template value decided anything.
 Cervantes (`0`) never flees. Raised as a balance question rather than repaired, and the project owner
 chose to **keep the self-preservation**. It is a deliberate difference now, not an oversight.
 
+## The lava trolls, 2026-10-06
+
+Four changes, built before the Troll Pit was played so one fresh save covers them all along with the
+hide drop. Their combat identity already existed and needed nothing: every troll race carries **Fire,
+Disease and Poison resistance 100**, 50 percent against Slashing, Acid and Piercing, and
+**`Cold Damage Resistance=-15`**. Cold is their counter and it ships in vanilla.
+
+### Hover-text barks, the fourth family
+
+`Shoot Completed` was empty on all six cans, so the slot the other three families use was free, and
+the voice needed no inventing -- the trolls already speak in two registers in
+`Warning Troll.DialogTree`. Drones are broken and terse and sometimes wordless; the chief is fluent,
+measured and forever counting. 20 lines: 8 shared, 6 drone, 6 chief, so each troll draws from 14 and
+no drone speaks in the chief's register. The no-op padding selects `Skills/Fighting/Ranged`, taken
+from `Lavatroll Boss.Race` rather than guessed, because naming a skill that does not exist is what
+made 0.19.0 through 0.25.0 unlaunchable.
+
+### The stomp was never cut -- only invisible
+
+`Cache/Models/Special Effects/Troll Stomp.mdl16` is referenced by nothing in the shipped game, but the
+mechanic behind it was always running. Every troll's projectile ends in
+
+    Then=CAddAIAction { Target Name=$Instigator
+            AI=CAIAreaOvalManager { Radius=120  Max Times To Trigger=2
+                    Then=CActionDoDamage { ... Damage Types/Fire 6-16 } } }
+
+-- an area pulse of radius 120, firing twice, burning everything in it. The trolls have been stomping
+all along with no visual. Added via `CSpawnEffectAction` (1326 shipped uses) on both the hit and the
+graze branch, anchored on `$Instigator` so the effect and the damage share an origin.
+
+That the logged troll damage (5-12, measured from saves) matches the drone projectile's AoE range of
+5-12 exactly is the confirmation: the numbers in the combat log *are* the stomp pulses.
+
+### Regeneration, and the constant that decides it
+
+`Troll Hide for Quinn` calls the troll *"a creature that closes its own wounds"* and it did not.
+`HealingRate` was the obvious fix and very nearly a disaster, because the units are not what they
+look like. **`HP per second = HealingRate x 0.1`** -- the consumer is the virtual entity update at
+`0x0043f7d0`:
+
+    0x0043fa45  fld  dword ptr [esp + 0x14]     ; the HealingRate value
+    0x0043fa49  fmul dword ptr [0x6b9e30]       ; x 0.1   <-- float32 cdcccc3d
+    0x0043fa54  fmul dword ptr [esp + 0xfc]     ; x dt
+    0x0043fa5e  call dword ptr [edx + 0x1a8]    ; apply
+
+Read with `capstone` and a PE section mapper, because ReVa would not connect. Without that constant
+the choice looked like one between an inert attribute and an unkillable boss; with it, the numbers
+are ordinary. Trolls ship at 6 (drones, 0.6 HP/sec) and 10 (chief, 1.0 HP/sec) against the player's
+0.37 at this point in the game -- below Quinn's 1.5, and the strongest *fightable* regeneration in
+the game.
+
+### A pack alarm, rescoped after measuring it
+
+The first build gave every troll `CGoToCombatAction { Enemy Name=Lava Troll }` on being damaged -- the
+group broadcast this map already uses. Then the consequence got measured:
+
+    live troll generator capacity in 05 Troll Pit : 80-94
+    Max dist from home on every troll can          : 4000
+
+Ninety trolls, effectively unleashed, converging on the first blow landed. Rescoped so a damaged
+**drone** calls `Troll Chief` and nothing else -- one ally, the biggest one, which also reads like the
+chief already written. The chief gets no alarm, because calling the drones is the same ninety. Guarded
+by `COnlyOnceAction` and a `Troll Peace Keeper` check so it fires once per troll and never at peace.
+
+`CCallForReinforcementsAction` was the obvious-looking route and is a dead end: registered in the exe,
+used **zero** times in the shipped game, while 698 creatures carry
+`Respond to calls for reinforcements=1`. Half the bestiary is listening to a radio nobody transmits
+on. That field was left alone rather than bet on.
+
+### The fight, simulated
+
+50 rounds, 20000 trials, every input except the regen tick measured from saves and the combat log:
+player HP 100, AC 44, Fire Resistance 10, damage per hit vs a troll `[9,11,11,12,15,30]`, troll damage
+5-12, chief HP 83 / AC 170.
+
+| chief HealingRate | HP/sec | win at 86 / 72 / 60 % hit |
+|---|---|---|
+| 0 (vanilla) | 0.00 | 70.4 / 48.2 / 29.6 |
+| **10 (shipped)** | **1.00** | **56.5 / 34.3 / 18.9** |
+| 20 | 2.00 | 42.4 / 23.1 / 11.8 |
+| 30 | 3.00 | 27.8 / 14.0 / 6.4 |
+
+So 10 costs about fourteen points of win rate at a good hit rate. The model is pessimistic on purpose:
+no healing potions, no companion, and the measured player damage was **piercing**, which troll races
+resist at 50 percent. Bringing cold instead hits the `-15` and swings it the other way.
+
 ## The standing caution
 
 This is the first work in the project aimed at difficulty rather than content, and **0.21.0 through

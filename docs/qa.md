@@ -1472,6 +1472,26 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## UNRELEASED - the lava trolls: barks, the stomp, regeneration, a pack alarm
+
+All four are can / race / item level, so one fresh Troll Pit covers them together with `TH1`-`TH8`.
+**Needs a character who has not entered 05 Troll Pit.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| LT1 | Fight the drones | - | Hover text over their heads, roughly one attack in four, broken and terse -- *"You no belong!"*, *"Hot now, yes?"* -- and sometimes a wordless line like *"<It grunts, and keeps coming.>"* |
+| LT2 | Fight the chief | - | A different register, measured and counting: *"I will count you with the others."*, *"Hold him. He is one and we are many."* **No drone should ever speak a chief line, or the reverse** |
+| LT3 | Watch the ground when a troll connects | - | The **Troll Stomp** effect plays. The radius-120 area pulse was always there; this is the first time it is visible |
+| LT4 | Take a hit from the chief and count the damage lines | - | Fire damage, one or two pulses of 6-16. That is the stomp, not a separate attack |
+| LT5 | Wound a troll, then break off and watch it | - | It **closes its own wounds** -- 0.6 HP/sec for a drone, 1.0 for the chief, against your own ~0.37. Visible over several seconds, not instant |
+| LT6 | Fight the chief to the end with a **piercing** weapon | - | Hard. Troll races resist piercing at 50 percent, and the simulation puts this near a coin flip |
+| LT7 | Fight him again with **cold** | - | Markedly easier: `Cold Damage Resistance=-15` is their one weakness and it already shipped in vanilla |
+| LT8 | Hit a lone drone away from the others | - | **The chief comes.** One ally, not the pit. Fires once per drone |
+| LT9 | Hit a second drone | - | The chief does not come twice. `COnlyOnceAction` is per troll, and he only has to arrive once |
+| LT10 | Make peace with the trolls first, then strike one | - | **No alarm at all.** The call sits behind a `Troll Peace Keeper` check, so an accidental swing does not turn the pit hostile |
+| LT11 | Count the trolls that engage after an alarm | - | A handful, never the whole level. The pit holds 80-94 trolls with a 4000 leash -- a group-wide call was built, measured, and deliberately cut back |
+| LT12 | Kill the chief | - | The *Lava Troll Hide* still arrives in your pack (`TH1`). None of this touched the drop |
+
 ## 0.28.2 - Fernand's combat AI stops freezing
 
 Reported from play: he freezes after a kill and only reacts when attacked. He is the only companion

@@ -5,7 +5,7 @@ CCannedObject
 		Dynamic Properties=2
 		{
 			Comment=
-			Experience Points=219
+			Experience Points=127
 		}
 		Name=
 		Child List=
@@ -441,7 +441,7 @@ CCannedObject
 									Action=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/Sewers/Dialog/Fixt Troll Barks
-										Node ID=30 chief
+										Node ID=20 drone
 										Name of Position=$trigger
 										Position Offset=0.000000,-70.000000
 										After Action=
@@ -450,7 +450,7 @@ CCannedObject
 									Action=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/Sewers/Dialog/Fixt Troll Barks
-										Node ID=31 chief
+										Node ID=21 drone
 										Name of Position=$trigger
 										Position Offset=0.000000,-70.000000
 										After Action=
@@ -459,7 +459,7 @@ CCannedObject
 									Action=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/Sewers/Dialog/Fixt Troll Barks
-										Node ID=32 chief
+										Node ID=22 drone
 										Name of Position=$trigger
 										Position Offset=0.000000,-70.000000
 										After Action=
@@ -468,7 +468,7 @@ CCannedObject
 									Action=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/Sewers/Dialog/Fixt Troll Barks
-										Node ID=33 chief
+										Node ID=23 drone
 										Name of Position=$trigger
 										Position Offset=0.000000,-70.000000
 										After Action=
@@ -477,7 +477,7 @@ CCannedObject
 									Action=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/Sewers/Dialog/Fixt Troll Barks
-										Node ID=34 chief
+										Node ID=24 drone
 										Name of Position=$trigger
 										Position Offset=0.000000,-70.000000
 										After Action=
@@ -486,7 +486,7 @@ CCannedObject
 									Action=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/Sewers/Dialog/Fixt Troll Barks
-										Node ID=35 chief
+										Node ID=25 drone
 										Name of Position=$trigger
 										Position Offset=0.000000,-70.000000
 										After Action=
@@ -605,11 +605,11 @@ CCannedObject
 				Marked For Deletion=0
 				Publisher=
 				Weapon Mode=Primary Weapon
-				User Assigned Name=Huge Lava Troll
+				User Assigned Name=Lava Troll
 				Gender=Male
 				Head=0
 				Hue Remapper=Player Data/Hue Remappers/!None
-				Race=Races/Enemies/Sewers/Lavatroll Boss
+				Race=Races/Enemies/Sewers/Lavatroll Tough
 				Mana Available=0
 				NumSecondsToRebroadcastFollow=0
 				Experience Points=0
@@ -1219,7 +1219,7 @@ CCannedObject
 							Secondary Launchable Types=Array
 							{
 								Item Count=1
-								Secondary Launchable Type=Inventory Items/Enemy Items/Lava Troll Boss Instant Hit Projectile
+								Secondary Launchable Type=Inventory Items/Enemy Items/Lava Troll Tough Instant Hit Projectile
 							}
 							Damages=Array
 							{
@@ -1368,45 +1368,14 @@ CCannedObject
 		Used In=QuestMode
 		Current Target=
 		Publisher=
-		Model=Characters/Monsters/Lava Troll boss
+		Model=Characters/Monsters/Lava Troll
 		Position X=143
-		Position Y=233.998
+		Position Y=232.998
 		Rendering Height=0
 		Rendering Height Float=0
 		Cur Sequence=Idle
 		Cur Damage=0
-		Destroyed Script Action=CGenerateInventoryItemAction
-		{
-			Number of items to generate=1
-			Level of item to generate=
-			Location=$Trigger
-			Location Offset=0,0
-			Generate Within Radius=128
-			Aspect Ratio=0.712766
-			Item List=CInventoryItemGeneratorMixedList
-			{
-				Items=Array
-				{
-					Array Count=1
-					Array Item=CInventoryItemGeneratorMixedListItem
-					{
-						Weighting=10
-						Item=CInventoryItemGeneratorBasic
-						{
-							Items=Array
-							{
-								Array Count=1
-								Array Item=CInventoryItemGeneratorBasicItem
-								{
-									Weighting=10
-									Item=Inventory/Specific Item Cans/Quest Items/Lava Troll Hide
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		Destroyed Script Action=
 		Destroyed Effect Action=CIfAction
 		{
 			If=CWasDamagedByPlayerAction
@@ -1427,32 +1396,61 @@ CCannedObject
 					{
 						Dynamic Properties=1
 						{
-							Comment=generates 3Medium spirit
+							Comment=generates 2small spirit
 						}
-						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/3Medium Spirit Charge Drop Action
+						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/2Small Spirit Charge Drop Action
 					}
 				}
 			}
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=
-		Damaged Effect Action=CRandomAction
+		Damaged Script Action=COnlyOnceAction
+		{
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Troll Peace Keeper
+					Desired Minimum Count=1
+				}
+				Then=
+				Else=CGoToCombatAction
+				{
+					Enemy Name=Troll Chief
+				}
+				Return failure if the If failes=0
+			}
+		}
+		Damaged Effect Action=CMultipleActionsAction
 		{
 			Action=Array
 			{
-				Item Count=2
-				Action=CPlaySoundAction
+				Item Count=1
+				Action=CRandomAction
 				{
-					Sound=Enemies/LavaTroll Boss_pain.ogg
-					Position=$Trigger
-					Multiplayer=Heard by all players
-				}
-				Action=CPlaySoundAction
-				{
-					Sound=Enemies/LavaTroll Boss_pain_v1.ogg
-					Position=$Trigger
-					Multiplayer=Heard by all players
+					Action=Array
+					{
+						Item Count=3
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/LavaTroll Pain1.ogg
+							Position=$Trigger
+							Multiplayer=Heard by all players
+						}
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/LavaTroll Pain2.ogg
+							Position=$Trigger
+							Multiplayer=Heard by all players
+						}
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/LavaTroll Pain3.ogg
+							Position=$Trigger
+							Multiplayer=Heard by all players
+						}
+					}
 				}
 			}
 		}
@@ -1489,7 +1487,7 @@ CCannedObject
 		Acceleration X=0
 		Acceleration Y=0
 		Home Pos X=143
-		Home Pos Y=233.998
+		Home Pos Y=232.998
 		LastDischargePosX=0
 		LastDischargePosY=0
 		LastDischargeSequenceName=
