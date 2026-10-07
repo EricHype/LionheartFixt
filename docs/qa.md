@@ -1473,6 +1473,41 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## UNRELEASED - Ravine Cave: the silver mine can be talked past
+
+The Sacred Scimitar is a **Knights of Saladin initiation** step, and its first task had exactly one
+solution: kill the cave. There is one source of magnetized silver in the entire game -- a bone pile in
+`Ravine Cave West` -- no merchant sells it, `Ravine Cave West` had **zero dialogue trees**, and
+Eduardo closes every alternative in his own voice (mercenary, suppliers, the city guard).
+
+Now a foreman holds the mouth of the cave with the archer post around him, bows up and not firing, and
+there are four ways past him. **The three deeper posts stay hostile until a parley succeeds**, so a
+player who attacks gets the cave exactly as vanilla built it.
+
+A map change, so it needs a character who has **never entered `Ravine Cave West`**. A Sacred Scimitar
+run arrives there naturally, and is also the character most likely to have **no goblin standing**,
+which `MF2` depends on.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| MF1 | Enter `Ravine Cave West` from Scar Ravine and walk in about 800 units | - | A `Mongol Goblin Hat Tough` -- **Nurg** -- challenges you instead of attacking, with archers around him. *"Far enough… every bow in the dark comes up at once, and none of them wavers."* **They do not shoot** |
+| MF2 | With **no goblin standing**, choose *"I have come for the silver. Stand aside."* | - | `60 refused`. He warns you and nothing attacks -- *"Come for it with coin, or a mark, or a better tongue than that."* You can walk off and come back, so the routes are discoverable without a fight |
+| MF3 | With `Goblin Horde IS`, choose *"I wear the Khan's mark."* | - | `20 the khans man`. The bows go down before he speaks -- *"Then it was never ours to keep."* |
+| MF4 | With Barter 40+, choose *"I am the buyer you have been waiting on."* | - | `30 the price`. This is the one the fiction asks for -- Eduardo says they are driving the price up, so they are sellers with no buyer. *"Four months we sit on rock nobody comes for"* |
+| MF5 | With Speech 40+, take the reasoned route | - | `40 reasoned past` -- *"The Khan hears about dead humans in his mine. He does not hear about rock."* |
+| MF6 | With Schmooze 7+, take the charm route | - | `50 charmed` -- *"You talk like a goblin."* |
+| MF7 | After any of MF3-MF6, walk deeper toward the silver | - | **The three deeper goblin posts do not attack either.** `Mine passage granted` clears targeting and drops `Enemy` on all four posts. This is the whole point: the parley opens the road |
+| MF8 | Reach the bone pile at roughly (1983, 455) and loot it | - | *Magnetized Silver*, **exactly one**. Negotiation moved the guards, never the ore -- the pile is where vanilla put it |
+| MF9 | Take it to Eduardo | - | He forges the Sacred Scimitar as normal. Nothing in his chain was touched |
+| MF10 | On a fresh character, choose *"Then your people can decide."* | - | Nurg **and** the whole archer post turn on you at once. `CGoToCombatAction` on `$Trigger` and on `Mine Guards` |
+| MF11 | On a fresh character, attack Nurg without talking | - | He fights, and so does his post. The deeper posts are hostile as they always were -- the combat route is unchanged |
+| MF12 | Choose *"Another time, then."* | - | He lets you leave -- *"Walk out the way you walked in, and we stay bored."* No state change; you can return and parley |
+| MF13 | The wasps, on every route | - | **Still hostile, and still 57 of them.** A parley gets you past the goblins; it does not clear the nest, and a pure talker may still have to survive the walk to the pile |
+| MF13a | **Open question.** Toggle Sneak on and walk in without talking to anyone | - | Does anything notice? `Sneak` is a real skill with a HUD toggle and tiers at 10/20/25/35, the wasps carry `Sneak Adjustment=0` and every goblin `+15` -- but what that field *means* is unresolved. Its extremes are Wererat Minions at **-300** and Assassins at **-85**, against Skeletons and Zombies at **+25 to +50**, which reads like the creature's own stealth rather than its alertness. Static analysis cannot settle it; one walk with Sneak up will. **Report what happens** |
+| MF13b | If MF13a gets you to the pile untouched, try it again with Sneak **off** | - | The control. If sneaking made no difference, the field is about the creature's own stealth and the cave has no stealth route -- which is worth knowing before anyone designs one |
+| MF14 | Count the archers at the mouth on a weak and then a strong party | - | It scales -- the post spawns 1 Archer at `Max Party Mojo=3`, up to 2-3 Archer Supers at 25. The threat is meant to read as serious |
+| MF15 | Parley successfully, leave the cave, come back | - | The posts should still be stood down. `Mine passage granted` is `Trigger Only Once=1`, so if they are hostile again on re-entry, report it -- that is the entity-snapshot question |
+
 ## UNRELEASED - Scar Ravine: the hostage gets an evil outcome, and her father finds out
 
 Four tiers. The hostage scene north of the Crossroads had five ways to save Gloria, **no way to

@@ -3036,6 +3036,138 @@ he is in character being wrong.
    against the same reasoning as the murder route: closing the Wielders is acceptable *because* the
    Dark Wielders remain, and that must still hold.
 
+## Ravine Cave — the silver mine has exactly one solution
+
+Measured 2026-10-07, from `Ravine Cave West.zax`, `Ravine Cave East.zax`, `Blacksmith.DialogTree`
+and `GoblinEntranceGuard.DialogTree`.
+
+The Sacred Scimitar is a **Knights of Saladin initiation** step, available early from Amir. Eduardo
+the blacksmith needs magnetized silver, and goblins have seized the mine to drive its price up. The
+order of chivalry's first task can be solved exactly one way: kill everything in the cave.
+
+### There is no second route, and the blacksmith closes each door himself
+
+| | |
+|---|---|
+| sources of Magnetized Silver in the entire game | **one** -- a bone pile in `Ravine Cave West` |
+| merchants selling it | none |
+| dialogue trees in `Ravine Cave West` | **zero** |
+| replies in the caves' only tree, `Goblin Hut Ritual Sayings` | **zero** -- ambient chanting |
+| goblins anywhere who mention the mine or the silver | **zero**, across all 327 trees |
+
+His own lines shut the alternatives:
+
+* pay him more -- *"So NOW you imply I am nothing more than a mercenary, to be swayed by gold? Make
+  the scimitar, Eduardo, and do not insult me again."*
+* send someone else -- *"If only I could... my suppliers could do nothing! Apparently there is a small
+  matter, of, eh, some goblins infesting the cave where the ore is mined."*
+* fetch the guard -- *"They will do nothing to aid the merchants, they are too busy with the English
+  and the war."*
+
+His tree is not short of skill routes -- 12 Speech icons, 5 Barter, 13 Attribute -- but every one is
+about his price and his father's sword. None of them is about the silver.
+
+### The geography is better than it looks
+
+`Ravine Cave West` holds the silver at **(1983, 455)**, and a goblin archer post sits at
+**(1983, 626)** -- 171 units away, directly on top of it -- with three more goblin generators at
+(2197, 857), (2222, 1027) and (2387, 977) forming a picket back toward the entrance. The 57 wasps are
+the cave's ambient hazard; the **goblins are specifically holding the ore**, exactly as Eduardo
+describes. `Ravine Cave East` is their stronghold of 59 and connects through to West.
+
+So there is a guard post to negotiate with, and it is already standing in the right place.
+
+### What is missing, and what is already there
+
+Four blockers, all structural rather than conceptual:
+
+| blocker | detail |
+|---|---|
+| nobody is named | every generator in both caves has an empty `New Name=`, so there is nothing to target, gate on, or attach a specifier to |
+| no specifier is on a creature | all 12 in East sit on scenery -- props, stalagmites, a crystal node, a hidden treasure |
+| no tree to extend | `Goblin Hut Ritual Sayings`, `Goblin Shaman`, `GoblinLt` and `GoblinGuards` all have zero replies |
+| nobody knows the mine exists | neither the Khan nor Rakeb has a line about it, so Horde standing currently cannot be spent here |
+
+And three hooks that make it cheap:
+
+**A foreman already wears the costume.** `Mongol Goblin Hat` / `Hat Tough` / `Hat Super` read as
+officers, exist across six maps, and have **no dialogue anywhere in the game**. `Ravine Cave East`
+spawns `Hat Tough` four times.
+
+**Fixt already built this mechanism, in the Troll Pit.** The `Lava Troll Generator` names its spawn
+`Troll Chief`, then in `After Action`:
+
+```
+CIfAction
+  If=CCheckExistenceAction { Name To Check For=Troll Peace Keeper }
+  Then=  CSetTargetTypeAction    Valid Targets=            (stop targeting)
+         CRemoveCategoryAction   Categories To Remove=Enemy
+         CRemoveAIAction         (drop the combat specifier)
+         CAddAIAction            GetCloseThenTalk -> Warning Troll, node 95 the chief
+  Else=  (hostile as normal)
+```
+
+Name a leader; make him conditionally talkable instead of hostile. Shipped, and exercised in play.
+
+**And the dialogue shape is `GoblinEntranceGuard`**, a goblin gatekeeper with five gated routes
+already written: `Goblin Horde IS`, `Schmooze 7+`, and Speech at 25, 40 and 55 -- with a failed bluff
+punished at `115 dont believe`: *"What a pitiful lie. Goblins, kill this intruder!"* Faction, an
+attribute check, three Speech tiers, and teeth. That is the pattern this scene wants, and it is
+vanilla's.
+
+### The plan
+
+**Tier 1 — name the post and give it a foreman.** Set `New Name` on the silver-adjacent generator at
+(1983, 626) and apply the Troll Pit template so he is talkable rather than hostile while a marker
+holds. Nothing else in the cave changes. This is the whole structural cost; everything after it is
+writing.
+
+**Tier 2 — the negotiation, on the `GoblinEntranceGuard` shape.** Their motive is already in Eduardo's
+mouth: they are *"trying to artificially drive up the price"*, which makes them sellers without a
+buyer, not hoarders. So Barter should work at least as well as Speech:
+
+| route | reads as |
+|---|---|
+| `Goblin Horde IS` | the Khan's man asks, and asking is enough |
+| Barter | buy the ore they are holding for exactly this purpose |
+| Speech | talk past the post |
+| Charisma / Schmooze | bluff -- and a failed bluff turns the post hostile, as `115 dont believe` does |
+
+**Negotiation should remove the guard, not hand over the item.** The post steps aside and the player
+loots the pile themselves. That avoids a duplicate `Magnetized Silver` -- the pile stays where it is,
+and `Blacksmith - scimitar seeker has silver.can` only ever checks for one. It is also the more
+diegetic outcome: they stop guarding it rather than producing it from a pocket.
+
+**The wasps stay.** They are vermin with nothing to negotiate; a talking route should get the player
+past the *goblins*, not clear the nest. The cave remains a cave.
+
+**And whether a stealth route exists is unresolved.** `Sneak` is a real skill -- a HUD toggle,
+`Sneak Enabled` and `Sneak Speed Factor` attributes, requirement cans at 10/20/25/35 -- and the cave
+carries `Sneak Adjustment=0` on the wasps and `+15` on every goblin. But what that field means is not
+settled: its extremes are Wererat Minions at **-300** and Assassins at **-85** against Skeletons and
+Zombies at **+25 to +50**, which reads like the creature's own stealth rather than its alertness, and
+the detection maths reads the field through the generic table so it has no traceable string
+reference. `MF13a` and `MF13b` in qa.md settle it with one walk, and nothing should be designed around
+sneaking until they do.
+
+**Tier 3 — let the Horde know it owns a mine.** For `Goblin Horde IS` to mean anything here, someone
+in Khara'Khorum has to acknowledge the ore. One line from the Khan or Rakeb, in the shape of
+`375 the khan has eaten well`. Cut this first if the tier sprawls: the `Goblin Horde IS` route works
+without it, it just goes unremarked.
+
+### Open questions
+
+1. **Which cave does the player meet him in?** The post at (1983, 626) is in West, on the silver, and
+   West is the direct route from Scar Ravine. But East is the stronghold and connects through. A
+   foreman in West is the simpler build and the one the blacksmith's line describes.
+2. **What do the other three posts do** once the foreman has been paid? Leaving them hostile makes the
+   negotiation worthless; pacifying all four is a bigger change than one generator.
+3. **Does a bluff that fails cost the route permanently?** `GoblinEntranceGuard` simply attacks. The
+   same here is consistent and cheap, and it means Charisma is a gamble rather than a free pass.
+4. **Should Saladin standing matter?** It is a Saladin initiation step, and an order of chivalry
+   negotiating with goblins for ore is a characterful tension. No mechanism exists for it in the
+   cave, but `Saladin Rank` gates exist elsewhere.
+
 ## Suggested order
 
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no
