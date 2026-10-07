@@ -1555,6 +1555,40 @@ no alarm. **Worst case measured: 12 creatures, once per level.**
 | GB23 | The **Mine Foreman** in Ravine Cave West: attack him instead of parleying | - | He is `Mongol Goblin Hat Tough`, so he carries the alarm -- but `Goblin Cave Post` does not exist in that map and the alarm is guarded on the name existing, so it must be a **no-op**. `Mine Guards` should wake exactly as they did via the dialogue's fight reply, and nothing else |
 | GB24 | Fight hats in `Random Ethereal Ring` (12 of them), `Waterfall Passage`, `Bounty Hunter Camp`, `Random Forest Map 1` | - | **No alarm** -- those maps have no `Goblin Cave Post`. Only Ravine Cave East was wired this pass |
 
+### The argument vanilla wrote and never staged
+
+Three consecutive `GoblinVillager` nodes, fired by nothing in the whole game, that are not three
+interchangeable barks but one exchange between three goblins who are losing:
+
+> **Drubjub** -- *"They have butchered our brothers with alarming ease. Perhaps discretion would be
+> the more prudent course of action?"*
+> **Wumjup** -- *"Nonsense, we are Mongol-trained goblins, the scourge of the land!"*
+> **Lumgrub** -- *"Yes, Wumjup is right! Muster up your courage and attack! AIIIIiiiiIIII!"*
+
+Line C names its own middle speaker, so **B had to be Wumjup** -- which is also why the rabble's
+barks keep mentioning a Wumjup nobody ever met. `Drubjub` and `Lumgrub` are vanilla's too: they are
+the goblins talking to each other in `GoblinGuards` and `GoblinLt`. None of the three was an entity
+name anywhere in the game.
+
+Staged on vanilla's own `goblin attack banter` relay from `Crossroads`: `CSeriesAction` with
+`Next Action Index=0`, which advances **one item per trigger**. So the trigger is a goblin dying, and
+the argument escalates as the fight goes worse -- the coward speaks over the first body, the boaster
+over the second, the charge over the third. `Ravine Cave East` only, the three standing together at
+**(2174, 1197)**, which is the next group met after fighting in from the mine passage. Capacity there
+goes 90 to 93.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GB30 | Fresh `Ravine Cave East`, fight inward from the Ravine Cave West passage until **one** goblin is dead | - | Over **Drubjub**: *"They have butchered our brothers with alarming ease. Perhaps discretion would be the more prudent course of action?"* |
+| GB31 | Kill a **second** goblin | - | Over **Wumjup**, a different goblin: *"Nonsense, we are Mongol-trained goblins, the scourge of the land!"* |
+| GB32 | Kill a **third** | - | Over **Lumgrub**, a third goblin: *"Yes, Wumjup is right! Muster up your courage and attack! AIIIIiiiiIIII!"* **This is the payoff -- Lumgrub names Wumjup, and Wumjup is the one who actually said it** |
+| GB33 | Keep killing goblins after that | - | **Nothing more.** `When Done=Do Nothing`, so the series stops on the third line and does not loop |
+| GB34 | Check that the three balloons appeared over **three different goblins** | - | The whole point. If all three stack over one goblin, `Name of Position` is not resolving by name and the build has failed |
+| GB35 | Find the three of them before killing anything -- mid-cave, around (2174, 1197) | - | A plain goblin, a `Mongol Goblin Tough` and another plain goblin standing together. They fight normally; nothing about them is pacified |
+| GB36 | Kill **Wumjup first**, then three other goblins | - | The exchange still runs and simply skips his line. `Require Success To Advance=0`, so a dead speaker does not stall the series -- the alternative was it jamming forever on line B |
+| GB37 | Fight `Mongol Goblin` / `Tough` / `Super` in any **other** map -- `Lake`, `Plains`, `Woodcutter Forest` | - | **No exchange, and no errors.** The death trigger is guarded on the relay entity existing, and `goblins losing heart` exists in one map of the sixteen that spawn those cans |
+| GB38 | Watch for the hide-style failure: does killing a goblin do anything it did not before? | - | Their `Destroyed Script Action` was empty in vanilla and no `Ravine Cave East` generator sets one, so nothing was overridden -- checked, because `CSetDestroyedScriptActionAction` on a generator is what made the Lava Troll Hide dead code from 0.10.0 |
+
 ### They answer each other
 
 | # | Step | Say | Expect |

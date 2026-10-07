@@ -1594,7 +1594,20 @@ CCannedObject
 		Rendering Height Float=0
 		Cur Sequence=Snapshot
 		Cur Damage=0
-		Destroyed Script Action=
+		Destroyed Script Action=CIfAction
+		{
+			If=CCheckExistenceAction
+			{
+				Name To Check For=goblins losing heart
+				Desired Minimum Count=1
+			}
+			Then=CTriggerRelayAction
+			{
+				Relay Name=goblins losing heart
+			}
+			Else=
+			Return failure if the If failes=0
+		}
 		Destroyed Effect Action=CIfAction
 		{
 			If=CWasDamagedByPlayerAction
