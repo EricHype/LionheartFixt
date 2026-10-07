@@ -1,0 +1,1386 @@
+CDialogTree
+{
+Name=Felipe the Woodcutter
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Hello there friend, welcome to my home, though I wish you had found me in better spirits. Normally I enjoy visitors, but today I am afraid I will not be a very good host.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+}
+Reply Text=I'm sorry, but I need your eyes and liver. I hope you are at peace with your maker.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Quest Icon
+
+Requirement=woodcutter req Darkwood Qst assigned
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 Felipe
+
+Requirement=!None
+Reply Text=What's wrong?
+Go to node ID=5 Woodcutters problems
+
+Requirement=!None
+Reply Text=That's no problem, I need to be going.
+Go to node ID=44 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Return Dialogue angry
+Text=What do you want? What do you think I have to say to *you*?
+Should Have Voiceover=0
+
+Requirement=Woodcutter requires son to be found
+Reply Text=I have found your daughter.
+Go to node ID=131 anything else
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+}
+Reply Text=I'm sorry, but I need your eyes and liver. I hope you are at peace with your maker.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Quest Icon
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+Reply Text=I have cleared the cave below your house of creatures.
+Go to node ID=110 Player Return C
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Action=CDeactivateAction
+{
+Target Name=Darkwood cave cleared of undead
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I didn't mean to offend you, who are you?
+Go to node ID=11 Felipe
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIfAction
+{
+If=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Then=CFailAction
+{
+Action=
+}
+Else=CSucceedAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+}
+}
+}
+Reply Text=What's wrong?
+Go to node ID=5 Woodcutters problems
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+
+Requirement=!None
+Reply Text=Nothing. I'll be going now.
+Go to node ID=41 rude
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue happy
+Text=Hello again, friend. What news do you bring me?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+}
+Reply Text=I'm sorry, but I need your eyes and liver. I hope you are at peace with your maker.
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Quest Icon
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+Reply Text=I have cleared the cave below your house of creatures.
+Go to node ID=110 Player Return C
+Custom Action=CDeactivateAction
+{
+Target Name=Darkwood cave cleared of undead
+}
+Icon=Quest Icon
+
+Requirement=Woodcutter requires son to be found
+Reply Text=I have found your daughter.
+Go to node ID=131 anything else
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Please remind me, who are you?
+Go to node ID=11 Felipe
+
+Requirement=Woodcutter requires find son quest NOT assigned
+Reply Text=How are things with you?
+Go to node ID=5 Woodcutters problems
+
+Requirement=!None
+Reply Text=No news, I'll be going now.
+Go to node ID=44 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=6 saved daughter
+Text=My daughter said that someone who matches your description freed her from the goblins! Here, take this as a sign of my appreciation.  If there is anything else that I can do, anything at all, please let me know.  I am so happy to have her back.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=4MH7UVMD
+}
+}
+Reply Text=Actually, I need your eyes and liver. I hope you are at peace with your maker.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=daughter saved, Angry Return
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+}
+}
+Reply Text=Who are you?
+Go to node ID=11 Felipe
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=daughter saved, Angry Return
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+}
+Reply Text=Please remind me, who are you?
+Go to node ID=11 Felipe
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=daughter saved, Angry Return
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=daughter saved, Angry Return
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+Reply Text=I have cleared the cave below your house of creatures.
+Go to node ID=110 Player Return C
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CDeactivateAction
+{
+Target Name=Darkwood cave cleared of undead
+}
+Action=CDeactivateAction
+{
+Target Name=daughter saved, Angry Return
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll just be going now.
+Go to node ID=44 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=daughter saved, Angry Return
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Woodcutters problems
+Text=I've had a string of bad luck lately with the worst of it being my daughter Gloria's disappearance. I miss her so. Tell me, can you help me find her?
+Should Have Voiceover=0
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Perhaps, but what happened to her?
+Go to node ID=30 Pepe's plight
+
+Requirement=!None
+Reply Text=Why do you live here?
+Go to node ID=20 Darkwood
+
+Requirement=!None
+Reply Text=I need to be going.
+Go to node ID=44 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Felipe
+Text=I am called Felipe. My daughter, God bless her wherever she may be, is called Gloria.
+Should Have Voiceover=0
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What do you do here in this place?
+Go to node ID=20 Darkwood
+
+Requirement=!None
+Reply Text=What happened to your daughter?
+Go to node ID=30 Pepe's plight
+
+Requirement=!None
+Reply Text=Well it was nice to meet you. I'll be going now.
+Go to node ID=45 come back.
+------------------------------------------------------------
+Node ID=11 Felipe
+Text=I am Felipe, a Woodcutter.
+Should Have Voiceover=0
+
+Requirement=Woodcutter requires find son quest NOT assigned
+Reply Text=Why were you so sad the last time I saw you?
+Go to node ID=5 Woodcutters problems
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Custom Action=CDeactivateAction
+{
+Target Name=Angry Return
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+Reply Text=I have cleared the cave below your house of creatures.
+Go to node ID=110 Player Return C
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeleteAction
+{
+Target Name=return a-4
+}
+Action=CDeactivateAction
+{
+Target Name=Darkwood cave cleared of undead
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Woodcutter requires son to be found
+Reply Text=I have found your daughter.
+Go to node ID=130 Player Return D
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll be going now.
+Go to node ID=44 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Darkwood
+Text=Well, the cavern below my home is rich in Darkwood - a rare kind of wood that grows only in certain types of caves.  I placed my home here to take advantage of that, cornered the market as it were.  It's lonely living so deep in the forest, but selling Darkwood has made me a wealthy man.  Listen, if you help me find my daughter, I'll make it worth your while.  Will you help?
+Should Have Voiceover=0
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Excellent! You do have Darkwood! Can I have some?
+Go to node ID=70 caves infested
+Action work in progress=(show this one if PC has been assigned Darkwood sidequest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Perhaps, but what happened to her?
+Go to node ID=30 Pepe's plight
+
+Requirement=!None
+Reply Text=Sorry, no.  I need to be going now.
+Go to node ID=40 get away
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Pepe's plight
+Text=She simply vanished. A few nights ago we went to sleep as usual, but when I awoke her bed was empty and she has never returned. I am so afraid that the spirits may have taken her. I can sense that she is alive, but I just have not been able to find her. Will you help me?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter attacked
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Sure, I'll see what I can do.
+Go to node ID=50 good luck
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter attacked
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter taken
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I found her, Felipe. I am the reason she did not come home.
+Go to node ID=31 she never came home
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter attacked
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter taken
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I searched the forest and found nothing. I am sorry. <Lie>
+Go to node ID=31 she never came home
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Tell me again about your problems.
+Go to node ID=5 Woodcutters problems
+
+Requirement=!None
+Reply Text=Sorry no. I'm too busy for that.
+Go to node ID=40 get away
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 she never came home
+Text=<He does not raise his voice, and that is somehow worse.>  Then there is nothing here for you. The cave stays shut. Whatever you came for, go and want it somewhere else -- and do not use her name to me again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 get away
+Text=I figured as much. With the way things have been going, I knew I should not have hoped a stranger could help. Still, please come back if you change your mind.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=41 rude
+Text=How rude! Perhaps you will return when you have learned some better manners.  Now get out of my sight!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Angry Return
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 please return
+Text=That is too bad. I was hoping you could help - you did such a great job clearing my cave of those damned spirits. Please, come back if you change your mind.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=44 Goodbye
+Text=Goodbye then, and safe travels.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=45 come back.
+Text=Good day then, please come back if you find the heart to help me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=46 have time
+Text=Good day then, please come back when you do have some time. If you help me, you will not be disappointed.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 good luck
+Text=Thank you my friend. Good luck! Please, hurry back if you find her.  I miss her so!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
+State=D3FBT1T3
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 it is true
+Text=I have an ample store of Darkwood in my caves below. But there is a problem.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What kind of problem?
+Go to node ID=70 caves infested
+
+Requirement=!None
+Reply Text=I don't care about your problem, I just want the Darkwood.
+Go to node ID=41 rude
+------------------------------------------------------------
+Node ID=70 caves infested
+Text=Well the problem is my cave below has been overrun by spirits. I've had to seal it off and my list of prayers every night has grown so long - let's just say I hardly have time to sleep. Needless to say, I do not dare go down there! But if you could exorcise these spirits I could get you the darkwood you need.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sure, I'll do that. Let me in.
+Go to node ID=80 great
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Can't you just give me some Darkwood?
+Go to node ID=83 no way
+
+Requirement=!None
+Reply Text=What if I just kill you and take it?
+Go to node ID=85 no fight
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=80 great
+Text=You are a brave one, indeed. Good luck, if I don't hear from you soon I hope you'll understand if I lock the door again!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=End Dialogue and open door to cave
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=woodcutter opens cellar
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=FIBR96AF
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=77LPJPUT
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+State=SD5TXT69
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+State=77LPJPUT
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=81 instructions
+Text=Good luck. And if they should...how do I put this? If they should happen to do any of the...things...they're kind is liable to do...disembowel you, for instance, or impale you, or maybe tear out your eyes...be sure to say a prayer with your last breath or - heaven forbid - you will rise as one of them at the next full moon! 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=83 no way
+Text=I am sorry, but all of the darkwood is in the cavern.  However, I will happily retrieve it for you, if you can clear the caves of those awful spirits.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=All right then, let me in.
+Go to node ID=80 great
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Maybe later, I'm not ready for that now.
+Go to node ID=46 have time
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=85 no fight
+Text=Even if you did, all of the darkwood is in the cavern below.  If you kill me, you will never have the Darkwood you seek.  Besides, why would you kill me when I'll happily give it to you - if you clear out those lost souls?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=All right then, let me in.
+Go to node ID=80 great
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Maybe later, I'm not ready for that now.
+Go to node ID=46 have time
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=90 Player return A-1
+Text=You again. I hope you have reconsidered. If you need darkwood, you must listen to my problem.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What problem?
+Go to node ID=70 caves infested
+Action work in progress=(show this entire node only if PC was previously dismissed after hearing unfriendly dismissal & no report of darkwood (node 41)
+
+Requirement=!None
+Reply Text=Sorry, I need to be going now.
+Go to node ID=40 get away
+------------------------------------------------------------
+Node ID=93 Player return A-3
+Text=Hello again. Tell me, by any chance would you be willing to help me? I have some big problems.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 Felipe
+Action work in progress=(show this entire node only if PC was previously dismissed after hearing node 44
+
+Requirement=!None
+Reply Text=What's wrong?
+Go to node ID=5 Woodcutters problems
+
+Requirement=!None
+Reply Text=Sorry, no.  I need to be going now.
+Go to node ID=40 get away
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.  Is this true?
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+------------------------------------------------------------
+Node ID=95 Player return A-4
+Text=Excellent, you have returned! Please will you now help me find my daughter?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perhaps, but what happened to her?
+Go to node ID=30 Pepe's plight
+Action work in progress=Show this node only if PC was dismissed after hearing friendly dismissal & no report of darkwood (node 45)
+
+Requirement=!None
+Reply Text=Sorry, no.  I need to be going now.
+Go to node ID=40 get away
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.  Is this true?
+Go to node ID=60 it is true
+Action work in progress=Show this reply only if PC has been assigned Darkwood sidequest
+------------------------------------------------------------
+Node ID=97 Player return A-5
+Text=You've returned - but where is my daughter? Please, continue your search.  I know you can find her.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll see what I can do.
+Go to node ID=
+Action work in progress=End Dialogue.**note** show this entire node only if PC dismissed after hearing (node 50) but not found son yet.**
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I've been told that you can give me Darkwood.  Is this true?
+Go to node ID=60 it is true
+Action work in progress=Show this reply only if PC was assigned Darkwood sidequest
+------------------------------------------------------------
+Node ID=100 Player Return B
+Text=Welcome back, my friend. So, are you ready to clear out my cave then?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes I am, please let me in.
+Go to node ID=80 great
+Action work in progress=End Dialogue.**note** show this entire node only if PC returns after hearing friendly dismissal with knowledge that Woodcutter has Darkwood (node 46)
+
+Requirement=!None
+Reply Text=Maybe later, I'm not ready for that now.
+Go to node ID=46 have time
+------------------------------------------------------------
+Node ID=110 Player Return C
+Text=Excellent news! Wait here, I shall retrieve some darkwood for you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=Darkwood cave cleared of undead
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=1
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=after found darkwood
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=115 Player Return C-1
+Text=Here is the Darkwood you need.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActivateAction
+{
+Target Name=Player has recived darkwood through dialog
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Darkwood
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=B9UY0NDP
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Create a Rod of the Inquisitor
+State=57R5CH4Z
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+State=B9UY0NDP
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod of Spirits
+State=MNQ2IJ7N
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=cleared cave
+Experience Points To Add=1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Player Return C-2
+Text=You have returned! Thanks again for clearing out my caves. Now tell me, will you help me find my daughter?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perhaps, but remind me, what happened to her?
+Go to node ID=30 Pepe's plight
+Action work in progress= Show this node to player if he has not rescued son AND has previously heard Node 115
+
+Requirement=!None
+Reply Text=Sorry, no.  I need to be going now.
+Go to node ID=40 get away
+
+Requirement=!None
+Reply Text=Sure, I'll see what I can do.
+Go to node ID=50 good luck
+------------------------------------------------------------
+Node ID=130 Player Return D
+Text=You were the one! Oh thank you, she returned to me just this morning. Here, please take this as a sign of my appreciation.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=131 anything else
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=found daughter
+Experience Points To Add=1
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 Player Return E
+Text=Hello there! You have made my life so much better. My cave is free of the walking dead and my daughter is returned to me. Here, take this as a token of my appreciation.  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Show this Node only if Player has rescued Son AND cleared cave. Also, give player a goodie of some kind.
+------------------------------------------------------------
+Node ID=150 Player Return F
+Text=Hello again my friend. It's always good to see you. Good luck in all of your adventures.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Show this node only if Player has has heard Node 140
+------------------------------------------------------------
+Node ID=160 Player Return G
+Text=Hello again my friend. I can tell you have destroyed some of the spirits below, but I can still hear their unearthly moans. Can you imagine trying to sleep at night with those noises below your floorboards? Please, finish the job and you shall have your darkwood!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Show this node only if Player has taken on Darkwood sidequest, but has not killed all undead in caves.
+------------------------------------------------------------
+Node ID=131 anything else
+Text=You were the one! Oh thank you, she returned to me just this morning. Here, take this as a sign of my appreciation. Now tell me, is there anything else I can do for you?
+Should Have Voiceover=0
+
+Requirement=woodcutter req Darkwood Qst assigned
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Darkwood cave cleared of undead
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have heard that you can give me Darkwood.
+Go to node ID=60 it is true
+Action work in progress=(show this one if PC has been assigned darkwood quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Maybe later, but I need to be going now.
+Go to node ID=44 Goodbye
+Custom Action=CDeactivateAction
+{
+Target Name=return a-1
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=200 dead woodcutter
+Text=<Do you want to remove the eyes and liver of the woodcutter?>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=3EUUJA40
+}
+Action=CActivateAction
+{
+Target Name=Already got eyes and liver
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CRemoveAIAction
+{
+Target Name=Woodcutter
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAddAIAction
+{
+Target Name=Woodcutter
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenFightWhenDead
+Action=
+X Radius=80
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No
+Go to node ID=
+}

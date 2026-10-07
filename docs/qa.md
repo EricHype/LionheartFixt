@@ -1473,6 +1473,40 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## UNRELEASED - Scar Ravine: the hostage gets an evil outcome, and her father finds out
+
+Four tiers. The hostage scene north of the Crossroads had five ways to save Gloria, **no way to
+decline** (both refusals fired `CGoToCombatAction`), and no evil outcome at all -- while her father
+never learned anything, because the `daughter attacked` marker was set and read only to *withdraw* one
+reply.
+
+**Needs a character who has never entered `Woodcutter Forest`**, because `daughter taken` is a new
+entity on that map and entity lists are snapshotted on first visit. A Sacred Scimitar run reaches Scar
+Ravine first -- the magnetized silver is in `Ravine Cave West`, through Scar Ravine -- so that is the
+natural test character, and it is also the character most likely to have **no goblin standing**, which
+`GL7` depends on.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GL1 | Talk to the goblin, choose *"I was never here, and neither were you."* | - | **He lets you go.** No combat, no state change. The scene is still running and you can come back and save her |
+| GL2 | Talk again and choose *"It's no concern of mine what you do with her"* | - | He still attacks, exactly as vanilla. That route was deliberately left alone -- the fix adds a way out, it does not remove one |
+| GL3 | With Speech 55, choose *"Let me take this child to the Goblin Khan…"* | - | The reply is tagged **`<Lie>`**, and it resolves as it always did: he backs down, she escapes, the quest completes as a rescue. The label is the fix -- the words and the outcome finally agree |
+| GL4 | Regression: ST 8+, Barter 55, and killing him | - | All three still free her. `71 backs down`, `72 the trade`, and the fight are untouched |
+| GL5 | **With goblin standing**, choose *"I carry the Khan's favour…"* (Quest icon) | - | `73 the handover`. Grimek steps back, disowns her, and names himself. You take her |
+| GL6 | After GL5, watch both of them | - | **She walks off and vanishes; Grimek also leaves and is gone.** He is disposed of exactly as the rescue routes do it -- if he is still standing there, that is the bug this tier fixed |
+| GL7 | **With no goblin standing at all**, choose *"The Khan would want to know who fed him this well…"* | - | `74 a way in`. He sponsors you, and you become a **Goblin Chum** -- first standing, earned by the act. `savecheck save` should show `Goblin Rank=1` |
+| GL8 | After either delivery, check your character | - | **Slayer of Innocents** title gained, and **-50 karma**. `savecheck save` shows the karma; the title shows in the perk list |
+| GL9 | After delivery, go to the woodcutter's house | - | She is **not** there. Her home generator is deleted, as on the attacked path |
+| GL10 | Deliver her **without** having taken the quest, then meet Felipe | - | He asks for help as normal, and the accept reply is **absent**. Nothing records a failure, because there was no quest to fail -- `CSetQuestSatusToFailedIfActiveAction` |
+| GL11 | Take his quest first, then deliver her, then return | - | The quest is **failed** |
+| GL12 | Talk to Felipe after delivering or striking her, choose *"I am the reason she did not come home."* | - | `31 she never came home`. He does not shout and does not attack. **He shuts the cave** |
+| GL13 | The same, choosing *"I searched the forest and found nothing."* | - | Tagged `<Lie>`, and it lands on the same node. He is not fooled; the cave still closes |
+| GL14 | After GL12, try to get the Darkwood | - | You cannot. The cellar never opens -- `COpenDoorAction` lives in a task only he performs. The **Wielders'** first task is closed, and that is intended: the **Dark Wielders** remain open through Relican, reachable via Brambles or on sight |
+| GL15 | Strike Gloria instead of delivering her, then talk to Felipe | - | The same `31` response. From his side the outcomes are identical -- she never came home either way |
+| GL16 | Reach the Goblin Khan after delivering, on a **first** meeting | - | A Quest-icon reply about the child. `375 the khan has eaten well` -- Grimek's runner beat you there by three days with his own name in front |
+| GL17 | Reach him again later as a goblin friend | - | The same reply is offered from `05 Return Friends of Khan` |
+| GL18 | Deliver, then check `python tools/savecheck.py save latest` | - | Karma down 50, `Goblin Rank` set, and the title in the perk list. This is also the cheapest check that `$Instigator` resolved to the player in the reply action |
+
 ## 0.29.0 - the Inquisition Chambers CTD
 
 Reported by a player: a crash to desktop on entering the Inquisition Chambers.

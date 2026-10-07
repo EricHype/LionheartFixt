@@ -141,6 +141,41 @@ def nonzero(d):
     return {k: v for k, v in d.items() if v not in ("0", "0.000000", "", None)}
 
 
+def scripting_vars(texts):
+    """Every set scripting variable in the save, and which stream carried it.
+
+    Reading only the player block's permanent-modifier array under-reports, silently. A variable is
+    written by `CAddCharacterModifierToCharacterAction`, and that action's `Modification is
+    permanent` flag decides where the value lands -- **22 of the game's 30 scripting variables are
+    written with `permanent=0`**, which does not reach the `Uber Perks` array at all.
+
+    Proved rather than assumed: in `goblintest2dryaddead.sav` the combat log shows
+    *"Antonio Gula kills River Dryad"*, `River Dryad Dead` is written with `permanent=0`, the value
+    is `1` in stream 17, and the player block reported "none". So the earlier reader called a set
+    variable unset for the whole `permanent=0` majority, which includes `Woodcutter Dead`,
+    `Relican Dead`, `Herbalist Dead` and `Met the Goblin Girl`.
+
+    Returns {name: (value, [stream indexes])}, keeping the highest value seen -- the character file
+    and the stream templates both carry a `=0` default for every variable, so a plain dict update
+    would let a default overwrite a real value depending on scan order.
+    """
+    out = {}
+    for i, t in enumerate(texts, 1):
+        for name, val in re.findall(
+                r"Derived Character Attributes/Game Scripting Variables/([^=\r\n]+)=(-?[0-9.]+)", t):
+            name = name.strip()
+            try:
+                f = float(val)
+            except ValueError:
+                continue
+            prev = out.get(name)
+            if prev is None or f > prev[0]:
+                out[name] = (f, [i])
+            elif f == prev[0] and f != 0.0:
+                prev[1].append(i)
+    return {k: (("%g" % v[0]), v[1]) for k, v in out.items() if v[0] != 0.0}
+
+
 def player_block(texts):
     """The player's live state in a save.
 
@@ -265,10 +300,21 @@ def show_save(a):
                                               or "none (all five default to 0)"))
         kv = field(perm, "Derived Character Attributes/Karma")
         print("  %-22s %s" % ("Karma", kv if kv is not None else "0 (default)"))
-        sv = nonzero(attrs(perm, "Game Scripting Variables/"))
-        print("  scripting vars set    %s" % (", ".join("%s=%s" % x for x in sorted(sv.items()))
+        permv = nonzero(attrs(perm, "Game Scripting Variables/"))
+        print("  vars (permanent)      %s" % (", ".join("%s=%s" % x for x in sorted(permv.items()))
                                               or "none"))
-        print("  (this array stores only values CHANGED from default; absent means zero)")
+        print("  (that array stores only values CHANGED from default; absent means zero)")
+
+    # Scanned across every stream, because `permanent=0` writes land outside the player block --
+    # see scripting_vars(). Printed whether or not the Uber Perks anchor was found, since this
+    # does not depend on it.
+    allv = scripting_vars(ss)
+    print("  scripting vars set    %s"
+          % (", ".join("%s=%s" % (k, v[0]) for k, v in sorted(allv.items())) or "none"))
+    if allv:
+        print("  (streams: %s)"
+              % "; ".join("%s in %s" % (k, ",".join(str(i) for i in v[1]))
+                          for k, v in sorted(allv.items())))
 
     print("\nstreams (%d)" % len(ss))
     for t in ss:

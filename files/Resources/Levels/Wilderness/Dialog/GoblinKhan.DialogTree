@@ -13,6 +13,19 @@ Text=Rarely does such a tasty morsel so willingly present itself for the table. 
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter taken
+Desired Minimum Count=1
+}
+}
+Reply Text=Great Khan, a child was brought to your table from the ravine. That was my doing.
+Go to node ID=375 the khan has eaten well
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CIsGreaterThan
 {
 Operand1=CVariableDerivedCharacterAttribute
@@ -1138,6 +1151,19 @@ Text=So, the goblin friend returns. What do you want?
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter taken
+Desired Minimum Count=1
+}
+}
+Reply Text=Great Khan, a child was brought to your table from the ravine. That was my doing.
+Go to node ID=375 the khan has eaten well
+Icon=Quest Icon
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CIsEqualTo
@@ -1390,6 +1416,16 @@ Should Have Voiceover=0
 Node ID=205 last guy dead
 Text=*You* will feed my hunger now, interloper!
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=375 the khan has eaten well
+Text=Grimek's runner came three days before you did, and said the same thing with his own name in front of it. <He is enormously, horribly amused.> You will both be fed for it, and neither of you will be thanked. Bring me the next one yourself, morsel, and leave Grimek out of the telling.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=As you say, Great Khan.
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=370 the khan hears esteban is dead
 Text=<He stops. The cave stops with him.> Dead already. Before I asked for him. <The laugh starts low and goes on far too long.> Morsel, I keep generals who need three days and a map to do less than that. Find my gate guards next, and do not wait on my asking for those either.

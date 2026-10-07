@@ -2881,6 +2881,161 @@ And a warning for whoever restores the Goblin Girl: her dialogue holds two of va
 `no way out` nodes, `220 Liver` and `225 Liver pie`. They want fixing as part of placing
 her, not afterwards.
 
+## Scar Ravine — the hostage, and the father who never finds out
+
+Measured 2026-10-06, from `Scar Ravine.zax`, `Woodcutter Forest.zax`,
+`Goblin guarding Woodcutter daughter.DialogTree`, `Woodcutter.DialogTree`, `Woodcutterson.DialogTree`
+and `CedricAlsen.DialogTree`.
+
+North of the Crossroads a goblin holds the woodcutter's daughter, Gloria, and is fattening her for a
+feast — *"Quiet child, and finish eating. You've only eaten five meals today."* It is one of act 1's
+strongest scenes and it resolves exactly one way.
+
+### What is actually wired
+
+**Five ways to save her**, three of them already Fixt's:
+
+| route | node | origin |
+|---|---|---|
+| kill him | `25` / `30` | vanilla |
+| Speech 55 — *"a gift from you"* | `70 scared` | vanilla |
+| Goblin Horde favour | `70 scared` | Fixt |
+| ST 8+ — pick the child up and look down | `71 backs down` | Fixt |
+| Barter 55 — salt pork, twice his weight | `72 the trade` | Fixt |
+
+Fixt also connected vanilla's `40 goblin offers trade`, which shipped unreachable.
+
+**No way to decline.** Both refusals — *"It's no concern of mine what you do with her"* and
+*"Sorry child, I can't help you"* — route to `50 Goblin says wise`, which fires
+`CGoToCombatAction`. Walking away is not an exit; it is a worse opening to the same fight.
+
+**One non-saving outcome: hit her.** `Girl Generator` installs a `CSetDamagedScriptActionAction` that
+fires `daughter attacked` → fails the quest (only if already accepted), grants Fixt's `Child Killer`
+title, and sends **only the goblin** to combat. She cannot be killed: children are AC 1000 / HP 10000
+by deliberate design.
+
+**She never escorts anyone.** `Girl leaves safely` is six actions — strip her specifier, balloon
+`30 Thank you`, `CGoToAI` to a marker, deactivate, `COtherMapAction`, activate `daughter saved`. She
+walks off and despawns; the payoff is state on another map. **A delivery needs no follow AI, no
+companion slot and no escort.** It is the same six actions with a different marker.
+
+### Three defects, in order of how badly they read
+
+**1. Felipe never finds out.** `daughter saved` and `daughter attacked` are inert parts
+(`Active=0`) on `Woodcutter Forest.zax`, flipped cross-map from Scar Ravine, and read by
+`CCheckExistenceAction` — the same idiom as `Troll Peace Keeper`. Both are read exactly once:
+`daughter saved` stops her spawning at home, and `daughter attacked` **withdraws one reply**. So a
+player who struck his child gets node `30 Pepe's plight` — *"She simply vanished…"* — and then no way
+to answer. A grieving father, a request, and a conversation with nothing in it. He has no line, never
+accuses, and never goes hostile; his only combat is self-defence when you announce you have come for
+his eyes and liver.
+
+**2. No neutral exit.** Refusing forces a fight. Even for a character with no interest in the scene
+that is bad design, and it is vanilla's, not ours.
+
+**3. No evil outcome at all.** Five ways to save her, zero ways to choose otherwise. The writers built
+the dark counterpart for the *father* — Rakeb's contract on his eyes and liver — and nothing for the
+daughter. Worse, vanilla's own Speech line has the player say *"Let me take this child to the Goblin
+Khan, I will tell him it is a gift from you"* and then resolves it as a rescue. The words are there
+and the follow-through is not.
+
+### Why this scene matters more than its size suggests
+
+`Scar Ravine` connects straight to `Crossroads`; the goblin village sits behind Woodcutter Forest and
+the Lake. And the **Sacred Scimitar** — a Knights of Saladin initiation step available early — sends
+the player to `Ravine Cave West` for magnetized silver, reachable only through Scar Ravine. So for a
+Saladin playthrough this hostage is very likely **the first goblin the player ever meets**, and they
+arrive already briefed that goblins are the obstacle.
+
+That settles the gating question: delivery must not require Horde standing, because the player most
+likely to find it has none.
+
+### The plan
+
+**Tier 1 — Felipe learns.** Pure repair, no new mechanism, fixes a silent failure that exists today
+regardless of anything else. Read `daughter attacked` and give him something to say: grief, and a
+refusal that costs the player the Darkwood route by his choice rather than by a missing reply. Keep
+vanilla's instinct — *withdrawal, not violence*. He is a non-combatant whose cave gates an Inquisition
+errand; making him attackable risks locking a different questline behind an unavoidable fight, and a
+man who turns you off his land is a sharper punishment than one who dies in four swings.
+
+**Tier 2 — a real way to walk away.** An ungated reply that leaves the scene without combat, failing
+the quest. Costs almost nothing and removes a forced fight.
+
+**Tier 3 — delivery, and the lie the icons already distinguish.**
+
+Both Khan replies in `20 feast` currently resolve identically, to `70 scared` and a rescue. But they
+are *already* marked as different intentions, and the distinction is the design:
+
+| requirement | icon | the reply | should resolve as |
+|---|---|---|---|
+| `Speech moreequal 55` | **Speach Skill Icon** | *"Let me take this child to the Goblin Khan, I will tell him it is a gift from you."* | **a lie** — she escapes, exactly as today |
+| `Goblin Horde IS` | **Quest Icon** | *"I carry the Khan's favour, and I am taking this child to him. Argue, and he will hear about that instead."* | **genuine delivery**, with a payoff at the Khan |
+| `Goblin Horde NOT` | **Quest Icon** | *(new)* — you have no standing and ask the goblin for a way in | **genuine delivery**, and it **earns** the standing |
+
+The Speech route is a talker freeing a child by invoking a warlord he may never have met; the Quest
+route is a character advancing a faction's interests. A Speech-skill icon and a Quest icon already say
+exactly that, which is why no new reply is needed for the lie — only an honest label.
+
+Mark it vanilla's own way: **`<Lie>` at the end of the reply text**, which is how the shipped game does
+it in 80 places (`"By ship. <Lie>"`, `"No need to get aggressive, friend. I only want to help. <Lie>"`).
+Node `20 feast` currently has **zero** stage directions, so this stays inside the project's
+one-per-node rule, and the new `Goblin Horde NOT` reply must therefore carry none.
+
+That alone fixes a mismatch shipped in vanilla: the player says they are handing a child to the Khan
+and the quest records a rescue. Labelled as a lie, the words and the outcome finally agree.
+
+The two Quest-icon routes then do what they say. The first-contact branch fires `Advance Goblin Rank`,
+which at rank 0 assigns `Factions/Goblin Chum` and its title — first standing earned by the act, which
+matters because a Sacred Scimitar player reaching Scar Ravine has none. The goblin is the natural
+sponsor: he does not want to fight, he wants to keep his meal and buy credit, and he already promises
+*"I will tell him it is a gift from you."* Let him survive and claim his half.
+
+Mechanically delivery is `Girl leaves safely` with the destination and the marker changed: a third
+inert part, `daughter taken`, on `Woodcutter Forest.zax`, set by `COtherMapAction`. Her `30 Thank you`
+balloon plays **unchanged** — she thanks you on the way to Khara'Khorum, and the game never shows her
+learning otherwise. That restraint is the point; any line where she suspects undercuts it.
+
+From Felipe's side, taken and attacked can share the Tier 1 response. She never came home either way.
+
+**Tier 4 — the Khan pays off the Quest route.** This is the part that is genuinely new writing, and the
+Quest icon is a promise the game must keep. `GoblinKhan.DialogTree` carries nothing about gifts,
+slaves, children or tribute, so it needs a node gated on the `daughter taken` marker: the Khan
+acknowledges the gift, and either credits the player or — if the goblin survived to speak first —
+splits the credit with him, which is the promise *"I will tell him it is a gift from you"* coming due
+from the other side. Rank already advanced at Scar Ravine, so this beat is recognition rather than
+reward, and it is the only place the player learns what their delivery was worth.
+
+### What not to do
+
+**Do not drop Darkwood on the woodcutter's corpse.** Cedric's voiced `71 woodcutter accident` says
+*"He may even have been carrying some on him"* and that is simply wrong — his death gives
+`Woodsman Eyes`, `Woodsman Liver` and Karma −50, and the cellar never opens, because `COpenDoorAction`
+lives inside a task only he performs. But the dead end is **by design and it holds**: the Darkwood is
+step 1 of the *Wielder* chain only. The Dark Wielder chain references Darkwood and the woodcutter zero
+times, Relican's tree is entirely ungated — it has a reply for *"It's pure chance that we've met"* —
+and Brambles points at him independently. Killing the woodcutter closes the lawful order and leaves the
+renegade one open, which is the right consequence. Dropping the Darkwood would let a murderer finish
+the lawful initiation and flatten it. Cedric is a gatekeeper speculating about a man he never met, and
+he is in character being wrong.
+
+### Open questions, to settle before building
+
+1. **How much does the Khan say?** Tier 4 settles *that* he speaks; the open question is length.
+   One node acknowledging the gift is the floor. Whether the goblin's survival changes it — him
+   claiming credit first, the player correcting him — is a second beat worth having and the first
+   thing to cut if it sprawls.
+2. **Entity-snapshot risk.** The three markers are parts on `Woodcutter Forest.zax`, a map the player
+   may not have visited when Scar Ravine resolves. `COtherMapAction` is vanilla's own mechanism here
+   and `daughter saved` demonstrably works, so the pattern is sound; a `daughter taken` part added by
+   Fixt still needs a save that has never entered Woodcutter Forest.
+3. **Which title, if any,** for delivery. `Child Killer` is wrong — she is alive. Possibly none, and
+   let the Horde rank be the whole reward.
+4. **Does the Tier 1 refusal strand anything?** Felipe gates `Clear the Woodcutter's cave of undead`
+   and through it `Obtain Darkwood from the wilderness`. Turning the player away must be checked
+   against the same reasoning as the murder route: closing the Wielders is acceptable *because* the
+   Dark Wielders remain, and that must still hold.
+
 ## Suggested order
 
 1. **Link repair, Barcelona and Montaillou first** — 68 of 84, ships standalone, needs no
