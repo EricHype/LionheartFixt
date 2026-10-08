@@ -1473,6 +1473,100 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Act 6 - the siege had no mana in it
+
+Reported by a player: *"mag builds suffer from lack of mana during war with England and later on in
+the game. Possibly add more mana in cavern of Nostradamus and crypt?"*
+
+**The report is right about the war and wrong about the other two**, and measuring it says why. Mana
+reaches the player two ways -- `Spirit N Generator` founts placed in a map, and spirit energy dropped
+on death -- and every act in the game is generous in one of them:
+
+| | founts | placed mana | tomes | drop rate |
+|---|---|---|---|---|
+| act 4 Crypt | 171 | 9,733 | - | **94%** |
+| act 5 Nostradamus | 122 | 6,895 | - | **97%** |
+| act 7 English Shrine | 46 | 3,419 | **4,909** | 19% |
+| act 8 Alamut | 183 | 14,207 | - | 73% |
+| **act 6 war with England** | **64** | **4,156** | - | **10%** |
+
+The Crypt and Nostradamus are the two **highest** drop-rate acts in the game. Their thin fount
+placement is a deliberate trade -- the mana comes from kills instead -- so adding founts there would
+re-solve a solved problem. Act 7 looked like the worst in the game on placement alone until the
+**Mana Tomes** were counted: ten of them, only in the shrine, a mechanic that exists nowhere else.
+Each is `Trigger Only Once=0` over a `CSeriesAction` of declining grants (125-150, then 75-100, 50-75,
+25-50, 20-30) whose sixth item is a balloon with **no mana** (`Node ID=03 Empty`), and `When Done=
+Repeat Last Action` repeats *that* -- so a tome is a canteen, not a font, worth 170-905 each and
+**4,909 for the act**. That more than doubles act 7 and settles it.
+
+**Act 6 is the only act at the bottom of both axes at once**, and within it the starvation is almost
+entirely two maps:
+
+| act 6 map | spawns | founts before | mana before | per spawn |
+|---|---|---|---|---|
+| **Crossroads Siege** | 427 | 14 | 897 | **2.10** |
+| **Crossroads to England map** | 79 | 1 | 95 | **1.20** |
+| Gate District Siege | 149 | 19 | 1,077 | 7.23 |
+| Temple District Siege | 154 | 30 | 2,087 | 13.55 |
+
+Crossroads Siege carries **40% of the act's enemies on 14 founts.** Gate District and Temple District
+are already healthy and were **not touched**; `7.23` -- Gate District's own ratio, an in-act reference
+rather than an invented target -- is what the two Crossroads maps were brought to:
+
+| | founts | mana | per spawn |
+|---|---|---|---|
+| Crossroads Siege | 14 -> **43** | 897 -> **3,061** | 2.10 -> **7.17** |
+| Crossroads to England map | 1 -> **8** | 95 -> **551** | 1.20 -> **6.97** |
+
+**Why founts and not drops.** The other axis is where the real oversight looks to be. Of the 50
+`Monster Cans/English Enemies` cans, the split is exact:
+
+| | spirit drop |
+|---|---|
+| 19 **WarGolem** cans | `5Huge Spirit Charge Drop Action` -- **174**, the largest charge in the game |
+| 6 **Priest / Priestess** cans | `4Large Spirit Charge Drop Action` -- 95 |
+| **24 Soldier** cans (+ `Priest Near Death`) | **none at all** |
+
+So the English were not designed dry -- their golems drop the biggest charge in the game and their
+priests the second biggest. The **soldiers specifically were skipped**, and the soldiers are the bulk
+of the siege, which is the whole of act 6's 10% drop rate. Vanilla even ships the mechanism to fix it:
+`Chance 1 in 2 Small2 Spirit Charge Drop Action.can` and `Chance 1 in 3 XtraSmall1 Spirit Drop
+Action.can`.
+
+It was **rejected on scope**, not on merit: of the 52 monster cans act 6 spawns, **not one is exclusive
+to act 6.** Every English can is shared with act 3 Montaillou and act 7, so a drop-table edit cannot
+be confined to the siege -- it would land in an act deliberately left alone and in the act the tomes
+already fix. Map founts are the only lever that is act-6-only. **If a wider pass is ever wanted, the
+24 soldier cans are the better repair** and this is the note that says why.
+
+Each new fount is templated from the **verbatim vanilla fount block**, so it carries every field
+vanilla writes, and each is placed **inside an enemy generator's own oval** -- walkable by
+construction, because the engine spawns enemies across that area. Vanilla itself puts founts as close
+as 6 units to a spawn point in these maps; the new ones run 0-134, well inside that. The edit is
+provably additive: every original byte of both maps is unchanged.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MN1 | **Crossroads Siege**, as a mage, on a save that has **never entered act 6** | Fight the siege normally and do not go out of your way to hunt pickups | You run dry **noticeably less** than before. This is the row the whole change exists for, and it is a feel question -- report whether it still runs out, not whether you saw the orbs |
+| MN2 | The same map, same character | Count roughly how often a spirit orb is within reach of a fight | Mana now appears **where the fighting is**, because every new fount sits inside an enemy spawn area. If orbs feel like they are in empty ground instead, say so |
+| MN3 | **Crossroads to England map** | Walk it end to end | Eight founts rather than one. This map had the worst ratio in the act at 1.2 mana per spawn |
+| MN4 | **Gate District Siege** | Play it | **Unchanged.** 19 founts, 1,077 mana. If this map feels different, something leaked and the change is wrong |
+| MN5 | **Temple District Siege** | Play it | **Unchanged.** 30 founts, 2,087 mana. Same test as MN4 |
+| MN6 | Any new orb | Walk over it | It is picked up and credits mana like any other. The blocks are copies of vanilla's own fount, so a difference here means the template is wrong |
+| MN7 | Watch for an orb inside a wall or on unreachable ground | - | None. Placement is inside generator ovals only, but *walkable is not reachable* -- if one is stranded behind geometry, report the map and roughly where |
+| MN8 | Two orbs stacked on the same spot | - | None. All 36 positions are distinct and checked against the existing founts |
+| MN9 | A **melee** character through Crossroads Siege | - | No worse than before. Nothing was removed and no enemy changed; the only risk is orbs cluttering a fight visually |
+| MN10 | **Act 3 Montaillou** and **act 7 English Shrine** | Play any English fight | **Unchanged.** No can was edited, so no drop behaviour anywhere in the game moved |
+| MN11 | **Act 7**, find a Mana Tome and use it repeatedly | - | Declining grants, then an *"empty"* balloon forever. This is vanilla behaviour, measured but **not modified** -- confirm it matches the description above |
+| MN12 | A save that **had already entered** Crossroads Siege before installing | - | The new founts are **absent**, by engine design: a map's entity list is baked into the save on first visit. This is expected, not a bug, and is why MN1 specifies a fresh save |
+
+**What was deliberately not done.** Act 3 Montaillou measures 7.6 mana per kill at an 11% drop rate,
+worse on drops than the act that was reported -- but that figure counts generator groups only and
+excludes individually placed named enemies, so the number is not trusted and nobody has reported it.
+It is left alone. Act 6's **health** pickups are also worth a look some day: all four siege maps carry
+**zero** `Health N Generate Action` founts, which is its own anomaly and outside what was asked for
+here.
+
 ## 0.31.0 / 0.31.1 - Butu Khan's heir takes the Ravine Cave
 
 `Mongol Goblin Hat Super` was **placed nowhere in the game**, and its race is the toughest goblin
@@ -1923,6 +2017,10 @@ goes 90 to 93.
 | GB36 | Kill **Wumjup first**, then three other goblins | - | The exchange still runs and simply skips his line. `Require Success To Advance=0`, so a dead speaker does not stall the series -- the alternative was it jamming forever on line B |
 | GB37 | Fight `Mongol Goblin` / `Tough` / `Super` in any **other** map -- `Lake`, `Plains`, `Woodcutter Forest` | - | **No exchange, and no errors.** The death trigger is guarded on the relay entity existing, and `goblins losing heart` exists in one map of the sixteen that spawn those cans |
 | GB38 | Watch for the hide-style failure: does killing a goblin do anything it did not before? | - | Their `Destroyed Script Action` was empty in vanilla and no `Ravine Cave East` generator sets one, so nothing was overridden -- checked, because `CSetDestroyedScriptActionAction` on a generator is what made the Lava Troll Hide dead code from 0.10.0 |
+| GB39 | **The row this repair exists for.** Find a goblin fighting **alone** -- `Mongol Goblin` spawns alone in 48 of its 64 groups, so this is the common case rather than a hunt. Hurt it and read the bank out | - | **Nothing refers to a companion**, a line, or anyone standing behind it. The reported line was `<He looks for the goblin who was beside him a moment ago.>`; it is now `<He looks around for help, and takes his time about believing there is none.>` |
+| GB40 | A **lone officer** -- `Mongol Goblin Hat`, which is alone in **12 of its 13** groups | - | No *"Hold the line!"* and no *"the line tightens"*. He now points and keeps pointing until something moves, which is the joke when nothing does. These were the most frequently wrong of the seven |
+| GB41 | A goblin fighting **in a group**, any type | - | The reworded lines must still read correctly *with* company -- that is the half a deletion would have got for free and a rewrite has to earn. If any of the seven now sounds wrong in a crowd, say which |
+| GB42 | Count the barks across a long fight | - | **Still 92 nodes**, 105 distinct lines with the vanilla ones. Nothing was removed: four banks would have been thinned by deleting the seven, and bank size is the whole defence against repetition |
 
 ### They answer each other
 

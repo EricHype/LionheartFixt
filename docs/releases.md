@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.31.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.32.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,182 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.32.0 - The Siege Ran Dry
+
+A player report, relayed: *"during my old playthroughs I noticed that mag builds suffer from lack of
+mana during war with England and later on in the game. Possibly add more mana in cavern of
+Nostradamus and crypt? Idk about that -- don't remember if it is a issue in these two spots."*
+
+The hedge in that last sentence turned out to be the right instinct. **The report is correct about
+the war and wrong about the other two**, and the measurement is what says so.
+
+### Three sources, and two of them were missed on the first pass
+
+Mana reaches the player two ways -- `Spirit N Generator` founts placed in a map, and spirit energy
+dropped on death -- and the first survey only counted drops, which made act 3 Montaillou look like
+the worst act in the game. Counting placed founts changed the answer. Then counting a third source
+changed it again:
+
+| | founts | placed | tomes | **total** | drop rate |
+|---|---|---|---|---|---|
+| act 1 Barcelona | 182 | 10,070 | - | 10,070 | - |
+| act 2-3 Wilderness | 440 | 25,374 | - | 25,374 | - |
+| act 3 Montaillou | 129 | 7,171 | - | 7,171 | 11% |
+| act 4 Crypt | 171 | 9,733 | - | 9,733 | **94%** |
+| act 5 Nostradamus | 122 | 6,895 | - | 6,895 | **97%** |
+| **act 6 war with England** | **64** | **4,156** | - | **4,156** | **10%** |
+| act 7 English Shrine | 46 | 3,419 | **4,909** | 8,328 | 19% |
+| act 8 Alamut | 183 | 14,207 | - | 14,207 | 73% |
+
+**The Crypt and Nostradamus are the two highest drop-rate acts in the game.** Their thin fount
+placement is a deliberate trade, not a gap -- the mana comes from kills instead -- so adding founts
+there would have re-solved a solved problem. The player's own hedge was right and the suggestion
+was not taken.
+
+**And act 7 is a mechanic that exists nowhere else in the game.** On placed mana alone it measured
+worst of all at 3,419, which is what it looked like for two passes. Then the `Mana Tome` entities
+turned up: **ten of them, only in the shrine's seven maps.** Each is a `CAIInteractionSpecifier` with
+`Trigger Only Once=0` over a `CSeriesAction` of declining grants -- 125-150, then 75-100, 50-75,
+25-50, 20-30 -- whose last item is a balloon carrying **no mana at all** (`Node ID=03 Empty`), and
+`When Done=Repeat Last Action` repeats *that* forever. So a tome is a canteen rather than a font,
+worth 170-905 each depending on how many steps it has, and **4,909 across the act**. That more than
+doubles act 7 and settles it. Nine ship `Active=1`; the tenth is switched on by `secret area1
+trigger` in its own map, so none of it is dead content.
+
+Which leaves **act 6 alone at the bottom of both axes.** Every other act that is fount-poor is
+kill-rich and every act that is kill-poor is fount-rich. Act 6 is neither.
+
+### Why act 6 is a 10% act
+
+The drop half has an exact and rather telling shape. Of the 50 `Monster Cans/English Enemies` cans:
+
+| | spirit drop |
+|---|---|
+| 19 **WarGolem** cans | `5Huge Spirit Charge Drop Action` -- **174, the largest charge in the game** |
+| 6 **Priest / Priestess** cans | `4Large Spirit Charge Drop Action` -- 95 |
+| **24 Soldier** cans (and `Priest Near Death`) | **none at all** |
+
+The English were not designed dry. Their golems drop the biggest charge in the game and their priests
+the second biggest; **the soldiers specifically were skipped**, and the soldiers are the bulk of every
+English fight. That reads as an oversight rather than a decision, and vanilla even ships the mechanism
+to repair it -- `Chance 1 in 2 Small2 Spirit Charge Drop Action.can` and `Chance 1 in 3 XtraSmall1
+Spirit Drop Action.can`, so chance-gated tiered drops are the engine's own idiom.
+
+**It was still rejected, on scope rather than merit.** Of the 52 monster cans act 6 spawns, **not one
+is exclusive to act 6** -- every English can is shared with act 3 Montaillou and act 7. A drop-table
+edit cannot be confined to the siege: it would land in an act deliberately left alone and in the act
+the tomes already fix. Map founts are the only lever that is act-6-only. If a wider pass is ever
+wanted, the 24 soldier cans are the better repair, and `MN1`-`MN12` in [`qa.md`](qa.md) carry the note
+that says why.
+
+### The starvation is two maps, not the act
+
+| act 6 map | spawns | founts | mana | per spawn |
+|---|---|---|---|---|
+| **Crossroads Siege** | 427 | 14 -> **43** | 897 -> **3,061** | 2.10 -> **7.17** |
+| **Crossroads to England map** | 79 | 1 -> **8** | 95 -> **551** | 1.20 -> **6.97** |
+| Gate District Siege | 149 | 19 | 1,077 | 7.23 -- *untouched* |
+| Temple District Siege | 154 | 30 | 2,087 | 13.55 -- *untouched* |
+
+**Crossroads Siege was carrying 40% of the act's enemies on fourteen founts.** Gate District and
+Temple District were already healthy, so they were left exactly as they were, and **Gate District's
+own 7.23 is the target** -- an in-act reference rather than a number invented for the occasion. Act 6
+placed mana goes 4,156 to 6,776.
+
+Two decisions about how the founts were built, both of which exist to avoid a mistake this project
+has made before:
+
+* Each new fount is templated from the **verbatim vanilla fount block**, so it carries every field
+  vanilla writes -- including the `Dynamic Properties` comment that sits *above* `Name=` and that the
+  library's `entity()` builder cannot emit. A generated block that carries only the load-bearing
+  fields has shipped a defect here before.
+* Each is placed **inside an enemy generator's own oval**, which is walkable by construction because
+  the engine spawns enemies across that area. That replaces guessing at coordinates, which fails
+  silently. Vanilla itself puts founts as close as **6 units** to a spawn point in these maps; the new
+  ones run 0-134, well inside its own range.
+
+The edit is **provably additive**: every original byte of both maps is unchanged, with 29 and 7 blocks
+inserted into the `Tree List`, which declares no `Item Count` and so needed none bumped. All 36 sit
+inside an oval, every model and comment matches its level, and all 36 positions are distinct and
+checked against the founts already there.
+
+### What was deliberately left alone
+
+**Act 3 Montaillou** measures 7.6 mana per kill at an 11% drop rate -- worse on drops than the act
+that was actually reported. It is left alone, because that figure counts generator groups only and
+excludes individually placed named enemies, so the number is not trusted, and nobody has reported it.
+
+**Act 6 health pickups.** All four siege maps carry **zero** `Health N Generate Action` founts, which
+is its own anomaly. It is outside what was asked for and is recorded rather than fixed.
+
+### And seven barks that assumed a friend
+
+Reported from play, while this release was being built:
+
+> *"one of the goblin barks is `<he looks for the goblin who was beside him a moment ago>` this keeps
+> happening for solitary goblins"*
+
+It does, and the class is wider than the line that was noticed. Searching the bark tree for anything
+presupposing a second goblin present -- or recently present -- found **seven** of the 92:
+
+| node | bank | the line |
+|---|---|---|
+| 32 | rabble | `<He shoves the goblin beside him forward.>` |
+| 39 | rabble | `<He checks that someone is behind him before he steps forward.>` |
+| 73 | officer | `<He strikes the goblin nearest him and points.>` |
+| 79 | officer | `<He does not raise his voice, and the line tightens anyway.>` |
+| 82 | officer | *"Hold the line! Hold it, or we all go in a pot!"* |
+| 111 | hurt | `<He looks for the goblin who was beside him a moment ago.>` |
+| 113 | hurt | *"Not me. Take the other one, take the other one!"* |
+
+**Solitary spawns are the norm, not the exception** -- which is why this reads as a mistake in the
+barks rather than bad luck in the spawning. Counting `Quantity to generate max` across every group
+that spawns a bark-carrying can:
+
+| can | groups | spawn alone |
+|---|---|---|
+| `Mongol Goblin` | 64 | **48** |
+| `Mongol Goblin Archer` | 65 | **51** |
+| `Mongol Goblin Tough` | 55 | 16 |
+| `Mongol Archer Village` | 32 | 22 |
+| **`Mongol Goblin Hat`** (officer) | 13 | **12** |
+| `Goblin Bludjund`, `Goblin Hrubjub` | 1 each | always |
+
+So the officer's *"Hold the line!"* was the **most** frequently wrong of the seven: that can is alone
+in twelve of its thirteen groups, and a lone goblin has no line to hold.
+
+**All seven are reworded, not removed.** Deleting them would have thinned four banks for a problem
+that is one of phrasing, and the bank size is what keeps 105 distinct lines from repeating. Each
+replacement is true alone and still true in a crowd -- the reported one becomes `<He looks around for
+help, and takes his time about believing there is none.>`, which is the same beat without the body
+that was never there, and the officer gets `<He points, and keeps pointing until something moves.>`,
+which is funnier when nothing does.
+
+The bark count stays at 92, every file stays ASCII, and no node gained a second stage direction.
+
+**One thing nearly shipped wrong here.** The first attempt read the tree with `read_text`, which on
+Windows applies universal newlines and silently rewrote the whole file from CRLF to LF. Gate 0 caught
+it as *mixed line endings* -- the check exists because a re-indent defect shipped a map crash in
+0.9.1 -- and the rewrite was redone on bytes, asserting the CRLF count is unchanged at 375 and that
+no bare LF survived.
+
+### What needs playing
+
+`MN1`-`MN12` in [`qa.md`](qa.md). **`MN1` is the row the release exists for** and it is a feel
+question: play Crossroads Siege as a mage on a save that has never entered act 6, and report whether
+you still run dry rather than whether you saw the orbs.
+
+**`MN4` and `MN5` are the leak detectors** -- Gate District and Temple District must feel exactly as
+they did. If either is different, something went where it should not have.
+
+And **`MN12` is the engine, not a bug**: a map's entity list is baked into a save on first visit, so
+the new founts are absent on any save that has already been into Crossroads Siege. The same caveat
+0.31.0 carried for the Ravine Cave.
+
+For the barks, `GB39`-`GB42`. The one that matters is the simplest: **find a goblin fighting alone,
+hurt it, and read what it says.** Nothing should refer to a companion, a line, or anyone standing
+behind it.
 
 ## 0.31.1 - what betraying a Khan is worth
 

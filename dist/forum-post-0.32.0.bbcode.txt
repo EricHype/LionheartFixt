@@ -1,0 +1,118 @@
+[size=150][b]Lionheart Fixt 0.32.0 - The Siege Ran Dry[/b][/size]
+
+This one came from a player report, and the player's own hedge turned out to be the most useful part
+of it:
+
+[i]*"During my old playthroughs I noticed that mag builds suffer from lack of mana during war with[/i]
+[i]England and later on in the game. Possibly add more mana in cavern of Nostradamus and crypt? Idk[/i]
+[i]about that - don't remember if it is a issue in these two spots."*[/i]
+
+Right about the war. Wrong about the other two, and the hedge was the correct instinct.
+
+[b]The Crypt and Nostradamus did not need it[/b]
+
+They are the two [b]highest[/b] drop-rate acts in the game -- [b]94%[/b] and [b]97%[/b] of enemy groups there
+drop spirit energy. Their mana comes from kills instead of from orbs lying on the floor, so the
+sparse placement is a trade rather than a gap. Adding founts there would have re-solved a solved
+problem, so nothing was added.
+
+[b]And the English Shrine has something no other act has[/b]
+
+On placed mana alone, act 7 measured the [b]worst in the game[/b] at 3,419. It stayed that way for two
+passes of this investigation. Then the [b]Mana Tomes[/b] turned up: [b]ten of them, only in the shrine,
+and nothing like them anywhere else in the game.[/b]
+
+Read a tome and it gives 125-150 mana. Read it again: 75-100. Then 50-75, then 25-50, then 20-30,
+and from then on it just tells you it is empty, forever. A canteen rather than a font -- worth
+170-905 each depending on the tome, and [b]4,909 across the act.[/b]
+
+That more than doubles act 7 and takes it off the table.
+
+[b]Which leaves the war with England alone at the bottom[/b]
+
+Every other act in the game is generous in one of the two ways mana arrives. If the floor is bare,
+the enemies drop it. If the enemies are stingy, the floor is covered.
+
+Act 6 is neither, and the reason is worth seeing:
+
+| the English | what they drop |
+|---|---|
+| their [b]19 WarGolems[/b] | the [b]largest spirit charge in the game[/b] |
+| their [b]6 priests[/b] | the second largest |
+| their [b]24 soldiers[/b] | [b]nothing at all[/b] |
+
+The English were not designed dry. The [b]soldiers[/b] were skipped -- and the soldiers are nearly
+everything you fight in the siege.
+
+That would be the better repair, and it is not the one in this release. Every English soldier is
+also used in act 3 Montaillou and in the English Shrine, so there is no way to change what they
+drop without changing two acts that did not need it. It is written down in the QA notes as the
+thing to do if a wider pass is ever wanted.
+
+[b]What actually changed[/b]
+
+The starvation turned out to be [b]two maps[/b], not the whole act:
+
+| | mana per enemy |
+|---|---|
+| [b]Crossroads Siege[/b] | [b]2.10[/b] -> [b]7.17[/b] |
+| [b]Crossroads to England[/b] | [b]1.20[/b] -> [b]6.97[/b] |
+| Gate District Siege | 7.23 - *unchanged* |
+| Temple District Siege | 13.55 - *unchanged* |
+
+Crossroads Siege was carrying [b]40% of the act's enemies on fourteen pickups.[/b] It now has
+forty-three. Crossroads to England had [b]one[/b], for seventy-nine enemies; it now has eight.
+
+Gate District and Temple District were already fine, so they were not touched at all, and the target
+was not invented -- it is [b]Gate District's own ratio[/b], taken from inside the same act.
+
+Every new pickup sits [b]inside an enemy spawn area[/b], so the mana is where the fighting is rather
+than scattered in empty ground, and so it is standing on ground the game already walks enemies
+across. Vanilla does the same thing, sometimes within six feet of a spawn point.
+
+[b]And seven goblins who were talking to a friend who was not there[/b]
+
+Reported while this was being built:
+
+[i]*"one of the goblin barks is [i]<he looks for the goblin who was beside him a moment ago>[/i] this keeps[/i]
+[i]happening for solitary goblins"*[/i]
+
+It does, and there were six more like it. Searching the bark bank for anything that assumed a second
+goblin -- shoving the one beside him, checking who is behind him, holding a line -- turned up
+[b]seven[/b] lines out of ninety-two.
+
+The reason it kept happening is that [b]goblins mostly fight alone.[/b] The common goblin spawns by
+itself in 48 of its 64 placements, the archer in 51 of 65 -- and the officer in his hat, the one
+shouting *"Hold the line!"*, is alone in [b]twelve of his thirteen[/b]. He has no line. He never did.
+
+All seven are [b]reworded, not cut.[/b] Removing them would have shrunk four banks to fix what was only
+ever a phrasing problem, and the size of those banks is the only reason you are not hearing the same
+goblin twice a minute. So the reported line is now *"He looks around for help, and takes his time
+about believing there is none"* -- the same beat, minus the corpse that was never there -- and the
+officer now points, and keeps pointing until something moves.
+
+Still ninety-two barks. Nothing lost.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+[b]This one needs a save that has not been into the Crossroads yet.[/b] The game writes a map's
+contents into your save the first time you walk in, so new pickups cannot appear in a Crossroads you
+have already fought through. Everything else Fixt has ever shipped still applies as normal.
+
+[b]If you play it[/b]
+
+[b]One row matters more than the rest, and it is a feel question, not a counting one.[/b] Take a mage
+into Crossroads Siege on a save that has never been into act 6, fight it the way you normally would,
+and do not go hunting for pickups. Then say whether you still ran dry.
+
+Please answer that rather than whether the orbs were visible -- the orbs are easy to confirm and
+tell us nothing about whether the problem is actually fixed.
+
+Two smaller ones: [b]Gate District and Temple District should feel exactly as they always have.[/b] If
+either of them is different, something went somewhere it should not have, and I would want to know.
+
+And for the goblins: [b]hurt one that is fighting alone and read what it says.[/b] Nothing should
+mention a companion. If a reworded line now sounds wrong in a *crowd* instead, that is the half a
+rewrite has to earn and a deletion would have got for free -- so say which one.
