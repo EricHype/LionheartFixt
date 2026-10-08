@@ -1,0 +1,780 @@
+CSkillDescription
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=4
+		PlugIn Behavior=CPlugInBehaviorSpell
+		{
+			ManaUse=CMultiply
+			{
+				Operand1=CVariableDerivedCharacterAttribute
+				{
+					Character Attribute=Derived Character Attributes/Perk and Trait Support/Divine Spell Cast Multiplier
+				}
+				Operator=
+				Operand2=CConstant
+				{
+					Constant Value=10
+				}
+			}
+			Duration=CConstant
+			{
+				Constant Value=2
+			}
+			Automatically disable recasting of spell for duration=1
+			Maximum Range=
+		}
+		PlugIn Behavior=CPlugInBehaviorPlaySequence
+		{
+			Granny Animations=Array
+			{
+				Item Count=0
+			}
+			Sequence Name=SpellCast
+			Random Sequence Selection=0
+			Sequence Index=-1
+		}
+		PlugIn Behavior=CPlugInBehaviorAttack
+		{
+			Max Attack Range=800
+			Is Location Based=1
+			Can Use Slayer Mode=0
+			Can Use Sniper Mode=0
+			Action On Hit=
+			Action On Miss=
+		}
+		PlugIn Behavior=CPlugInBehaviorLaunchAction
+		{
+			Launch Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CAddAIAction
+					{
+						Target Name=$caster
+						AI=CAIAreaOvalManager
+						{
+							Marked For Deletion=0
+							Publisher=
+							Radius=CSkillsNamedExpressionExpression
+							{
+								Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+								Expression Name=radius
+							}
+							Aspect Ratio=0.712766
+							Re Trigger Delay=CConstant
+							{
+								Constant Value=0
+							}
+							Max Times To Trigger=CConstant
+							{
+								Constant Value=2
+							}
+							Re-Check who is in oval each re-trigger=0
+							Every Trigger Action=
+							First Trigger Action=CIfAction
+							{
+								If=CCheckCategoryAction
+								{
+									Target Name=$Trigger
+									Category to check for=Enemy
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CAddTemporaryAIAction
+										{
+											AI To Add=CGenericParticleSystemAI
+											{
+												Marked For Deletion=0
+												Publisher=
+												Outer Cone Angle=CConeAngleEnvelope
+												{
+													Start Value=25
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=25
+													Using Start=1
+													Direction=-1
+												}
+												Inner Cone Angle=CConeAngleEnvelope
+												{
+													Start Value=24
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=24
+													Using Start=1
+													Direction=-1
+												}
+												Face Angle=CFacingAngleEnvelope
+												{
+													Start Value=108.5
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=108.5
+													Using Start=1
+													Direction=-1
+												}
+												Cone Trajectory=CTrajectoryEnvelope
+												{
+													Start Value=90
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=90
+													Using Start=1
+													Direction=-1
+												}
+												Burst Frequency=5
+												Burst Frequency Variance=0
+												Num Bursts To Stop After=Don't Stop
+												Start Point Type=CDiskParticleStartPositionType
+												{
+													Radius=CConstant
+													{
+														Constant Value=16
+													}
+													Expression Context=$caster
+													Outside Radius=CLengthEnvelope
+													{
+														Start Value=5
+														End Value=0
+														Speed=0
+														Ending Behavior=Stop at end
+														Current Value=5
+														Using Start=1
+														Direction=-1
+													}
+													YX Ratio=0.9
+													Use Cone Angle For Start Pos=1
+												}
+												Orient To Parent's Rotation=1
+												X Offset=0
+												Y Offset=0
+												Height=0
+												Speed=CSpeedEnvelope
+												{
+													Start Value=90
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=150
+													Using Start=1
+													Direction=-1
+												}
+												Speed Variance=15
+												Age=CTimeEnvelope
+												{
+													Start Value=0.9
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=0.9
+													Using Start=1
+													Direction=-1
+												}
+												Age Variance=0.1
+												Max Travel Distance=999999
+												Min Travel Distance=0
+												Use Particle As Shot=0
+												Make Child of Generator=1
+												Limit Duration To First Collision=0
+												Particles=Array
+												{
+													Item Count=2
+													Particles=CParticleInfo
+													{
+														Model=Particles/Divine Tracer
+														AI=CSwirlParticleAI
+														{
+															Marked For Deletion=0
+															Publisher=
+															X Center Pos=0
+															Y Center Pos=0
+															Z Center Pos=0
+															Animated=0
+															Obey Sequence FPS=0
+															Y To X Ratio=0
+															Angular Velocity=6.28319
+															Angular Velocity Variance=0.523599
+															Rotate Velocity=1
+															Current Angular Velocity=0
+														}
+														Animated=1
+														Obey Sequence FPS=0
+														Tries To Collide=0
+														Collidable=0
+														Num Particles=1
+														Num Particles Variance=0
+													}
+													Particles=CParticleInfo
+													{
+														Model=Particles/Divine Tracer Smll
+														AI=CSwirlParticleAI
+														{
+															Marked For Deletion=0
+															Publisher=
+															X Center Pos=0
+															Y Center Pos=0
+															Z Center Pos=0
+															Animated=0
+															Obey Sequence FPS=0
+															Y To X Ratio=0
+															Angular Velocity=6.28319
+															Angular Velocity Variance=0.523599
+															Rotate Velocity=1
+															Current Angular Velocity=0
+														}
+														Animated=1
+														Obey Sequence FPS=0
+														Tries To Collide=0
+														Collidable=0
+														Num Particles=3
+														Num Particles Variance=0
+													}
+												}
+												NumBursts=0.497222
+												CurFrequency=5
+												Enabled=1
+												Choose Sound Based On Burst=0
+												Sounds=Array
+												{
+													Item Count=0
+												}
+											}
+											Name of LayerPart To Add AI To=$Trigger
+											Duration=CConstant
+											{
+												Constant Value=2
+											}
+											Expression Context=$caster
+											Done Action=
+										}
+										Action=CSpawnEffectAction
+										{
+											Explosion Model=Spell Effects/Hits and Effects/Heal/Heal
+											Location Entity=$Trigger
+											Make effect a child of the location entity=1
+											X Offset=0
+											Y Offset=0
+											Height Offset=0
+											Play Default Sound=1
+											Action to execute After Effect=
+										}
+										Action=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CExpressionHealthPercent
+												{
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=100
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CIfExpressionAction
+											{
+												If Expression=CHasTrait
+												{
+													Traits To Check For=Array
+													{
+														Item Count=1
+														Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+													}
+												}
+												Character to get attributes from=$Trigger
+												Then=CGiveHealthToCharacterAction
+												{
+													Character to give health to=$Trigger
+													Amount of health to give=CRandom
+													{
+														Operator=
+														Minimum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+															Expression Name=VampiricFuryMinHeal
+														}
+														Maximum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+															Expression Name=VampiricFuryMaxHeal
+														}
+													}
+													Expression Context=$Instigator
+												}
+												Else=CGiveHealthToCharacterAction
+												{
+													Character to give health to=$Trigger
+													Amount of health to give=CRandom
+													{
+														Operator=
+														Minimum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+															Expression Name=MinHeal
+														}
+														Maximum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+															Expression Name=MaxHeal
+														}
+													}
+													Expression Context=$Instigator
+												}
+											}
+											Else=
+										}
+									}
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Re-Trigger Action=
+							After Last Trigger Action=
+							Only Trigger if has HP=1
+							Trigger if Player=0
+							Trigger if Enemy=0
+							Trigger Anything=1
+							Max Entities to affect=
+							Seconds Since Last Triggered=0
+							Number Of Times Triggered=0
+							Has Triggered At Least Once=0
+							Has Begin Been Called Before=0
+							Affected Layer Parts=Array
+							{
+								Item Count=0
+							}
+						}
+						Delay Between Adds=0
+					}
+					Action=CCreateCustomEntityAction
+					{
+						New Location=$caster
+						Copy Height=0
+						Random Location Delta=0
+						Warp Behavior=
+						Entity=CEntityBase
+						{
+							Name=
+							Child List=
+							Visible=1
+							Collideable=1
+							Half Height=0
+							Full Height=1
+							Tries To Collide=0
+							Has Hit Points=0
+							Stationary=1
+							Active=1
+							Is Temporarily Excluded=0
+							Is Marked For Deletion=0
+							Activity=Array
+							{
+								Item Count=2
+								Activity=CGenericParticleSystemAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Outer Cone Angle=CConeAngleEnvelope
+									{
+										Start Value=25
+										End Value=0
+										Speed=0
+										Ending Behavior=Stop at end
+										Current Value=25
+										Using Start=1
+										Direction=-1
+									}
+									Inner Cone Angle=CConeAngleEnvelope
+									{
+										Start Value=24
+										End Value=0
+										Speed=0
+										Ending Behavior=Stop at end
+										Current Value=24
+										Using Start=1
+										Direction=-1
+									}
+									Face Angle=CFacingAngleEnvelope
+									{
+										Start Value=166
+										End Value=0
+										Speed=0
+										Ending Behavior=Stop at end
+										Current Value=108.5
+										Using Start=1
+										Direction=-1
+									}
+									Cone Trajectory=CTrajectoryEnvelope
+									{
+										Start Value=90
+										End Value=0
+										Speed=0
+										Ending Behavior=Stop at end
+										Current Value=90
+										Using Start=1
+										Direction=-1
+									}
+									Burst Frequency=25
+									Burst Frequency Variance=0
+									Num Bursts To Stop After=25
+									Start Point Type=CCylinderParticleStartPositionType
+									{
+										Radius=CExpressionEnvelopeLinear
+										{
+											Start Value=CConstant
+											{
+												Constant Value=0
+											}
+											End Value=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+												Expression Name=radius
+											}
+											Change Rate Value=CConstant
+											{
+												Constant Value=450
+											}
+											Ending Behavior=Stop at end
+											Current Value=16
+											Direction=1
+											Last Evaluation Simulation Time=-1
+										}
+										Expression Context=$caster
+										Outside Radius=CLengthEnvelope
+										{
+											Start Value=0.5
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=5
+											Using Start=1
+											Direction=-1
+										}
+										YX Ratio=0.95
+										Use Cone Angle For Start Pos=0
+										Height of Cylinder=CLengthEnvelope
+										{
+											Start Value=0
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=0
+											Using Start=1
+											Direction=1
+										}
+									}
+									Orient To Parent's Rotation=1
+									X Offset=0
+									Y Offset=0
+									Height=0
+									Speed=CSpeedEnvelope
+									{
+										Start Value=0
+										End Value=0
+										Speed=0
+										Ending Behavior=Stop at end
+										Current Value=150
+										Using Start=1
+										Direction=-1
+									}
+									Speed Variance=0
+									Age=CTimeEnvelope
+									{
+										Start Value=0.9
+										End Value=0
+										Speed=0
+										Ending Behavior=Stop at end
+										Current Value=0.9
+										Using Start=1
+										Direction=-1
+									}
+									Age Variance=0.1
+									Max Travel Distance=0
+									Min Travel Distance=0
+									Use Particle As Shot=0
+									Make Child of Generator=0
+									Limit Duration To First Collision=0
+									Particles=Array
+									{
+										Item Count=1
+										Particles=CParticleInfo
+										{
+											Model=Particles/Divine Tracer
+											AI=CFloatParticleAI
+											{
+												Marked For Deletion=0
+												Publisher=
+												X Center Pos=0
+												Y Center Pos=0
+												Z Center Pos=0
+												Animated=0
+												Obey Sequence FPS=0
+												Y To X Ratio=0
+											}
+											Animated=1
+											Obey Sequence FPS=0
+											Tries To Collide=0
+											Collidable=0
+											Num Particles=10
+											Num Particles Variance=0
+										}
+									}
+									NumBursts=0.497222
+									CurFrequency=5
+									Enabled=1
+									Choose Sound Based On Burst=0
+									Sounds=Array
+									{
+										Item Count=0
+									}
+								}
+								Activity=CActionAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Action=CDelayAction
+									{
+										Next Action=CDeleteAction
+										{
+											Target Name=$trigger
+										}
+										Delay=1.2
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Executed Action=0
+								}
+							}
+							Category=
+							Team Number=Nutral
+							Used In=QuestMode
+							Current Target=
+							Publisher=
+							Model=Spell Effects/Hits and Effects/Divine Radial Cast Effect
+							Position X=0
+							Position Y=0
+							Rendering Height=0
+							Rendering Height Float=0
+							Cur Sequence=Idle
+						}
+					}
+				}
+			}
+		}
+	}
+	Display Name=Healing
+	Description=%?[NoVampiricFury]The caster and all allies within a radius of %i[ShowRadius] feet are healed for %i[MinHeal]-%i[MaxHeal] Hit Points.%?[NoVampiricFury]%?[HasVampiricFury]The caster is healed for %i[VampiricFuryMinHeal]-%i[VampiricFuryMaxHeal] Hit Points (adjusted for the Vampiric Fury racial trait). Allies without this trait and within a radius of %i[ShowRadius] feet of the caster are healed for %i[MinHeal]-%i[MaxHeal] Hit Points.%?[HasVampiricFury]
+	Character Creation Screen Description=
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=9
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=radius
+				Expression=CConstant
+				{
+					Constant Value=200
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowRadius
+				Expression=CDivide
+				{
+					Operand1=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+						Expression Name=radius
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=10
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=MinHeal
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=3
+					}
+					Output Step=CConstant
+					{
+						Constant Value=17
+					}
+					Input Value=CVariableSkill
+					{
+						Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+					}
+					Input Base=CConstant
+					{
+						Constant Value=1
+					}
+					Input Step=CConstant
+					{
+						Constant Value=299
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=20
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=MaxHeal
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=6
+					}
+					Output Step=CConstant
+					{
+						Constant Value=24
+					}
+					Input Value=CVariableSkill
+					{
+						Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+					}
+					Input Base=CConstant
+					{
+						Constant Value=1
+					}
+					Input Step=CConstant
+					{
+						Constant Value=299
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=30
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=VampiricFuryDeduction
+				Expression=CConstant
+				{
+					Constant Value=0.5
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=VampiricFuryMinHeal
+				Expression=CMultiply
+				{
+					Operand1=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+						Expression Name=MinHeal
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+						Expression Name=VampiricFuryDeduction
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=VampiricFuryMaxHeal
+				Expression=CMultiply
+				{
+					Operand1=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+						Expression Name=MaxHeal
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Divine/Defensive/ENEMY Healing
+						Expression Name=VampiricFuryDeduction
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=HasVampiricFury
+				Expression=CHasTrait
+				{
+					Traits To Check For=Array
+					{
+						Item Count=1
+						Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=NoVampiricFury
+				Expression=CExpressionNot
+				{
+					Operand1=CHasTrait
+					{
+						Traits To Check For=Array
+						{
+							Item Count=1
+							Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+						}
+					}
+				}
+			}
+		}
+	}
+	Parent Skill=Skills/Fake Wand Spells/Cure Major Wounds
+	Value Type=Parents value minus differential
+	Value Differential=0
+	Can be selected as Tag Skill=0
+	Image=!None
+	Amount To Increase Value By With Each Upgrade=1
+	Minimum Value=-300
+	Maximum Value=300
+	Sort Priority=0
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
+	Initial Minimum & Maximum=0.000000,0.000000
+	Display and Cast Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsEqualTo
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Cast Requirements=Array
+	{
+		Item Count=0
+	}
+}

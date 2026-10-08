@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.32.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.33.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,162 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.33.0 - The Priest Heals
+
+Asked in play: *"are there any enemy healers? I've never seen that."*
+
+There are none, and the answer is exhaustive rather than a spot check. Across all **478** vanilla
+monster cans, the complete set of skills any enemy ever selects is ten entries:
+
+| skill | cans | | skill | cans |
+|---|---|---|---|---|
+| `Fighting/OneHandedMelee` | 104 | | `…/Ice Javelin` | 13 |
+| `Magic Thought/Offensive/Lightning Bolt` | 42 | | `…/Ice Missile` | 11 |
+| `…/Spike` | 37 | | **`Defensive/ENEMY Magical Shield`** | **3** |
+| `…/Fire Orb` | 28 | | **`Defensive/Magical Shield`** | **3** |
+| `…/Static Charge` | 26 | | `Magic Divine/Offensive/Celestial Smite` | 2 |
+
+Eight are damage. Two are a defensive buff. Nothing heals, nothing cures.
+
+An earlier pass of this survey reported all 478 cans referencing healing. That was wrong and worth
+recording as a method failure: the pattern matched enemy **drop tables** carrying `Potion Mass
+Healing`. Dropping a healing potion is not casting one, and a query that returns *everything* is a
+bug in the query rather than a finding.
+
+### Two things blocked it, and neither is an engine limit
+
+`Magic Divine/Defensive/Healing` refuses enemies twice over:
+
+1. A single `CCheckCategoryAction` on `Target Name=$Trigger` checking **`Player,Player Friend`**. The
+   skill's area oval actually carries `Trigger Anything=1` -- it catches *everyone* with hit points in
+   radius -- so that one category test is the only thing deciding who benefits.
+2. Its magnitude reads `CVariableSkill` on the **caster's own** Healing value, with *Output 0 if input
+   is below input base=1*. An enemy has no Healing skill, so even fully ungated it would heal **zero**.
+
+The second only surfaced on reading the magnitude expressions, after the first looked like the whole
+answer. It is the more important of the two, because removing the gate alone would have shipped a
+healer that visibly cast and healed nothing.
+
+### Vanilla already ships the recipe
+
+`ENEMY Magical Shield` is the only enemy-variant spell in the game, and diffing it against the player's
+`Magical Shield` gives the transformation exactly -- five changes, 140 differing lines:
+
+| | |
+|---|---|
+| drop the bookkeeping | the `CAddCharacterModifierToCharacterAction` setting `Player has cast a spell` goes, `Item Count` 4 to 1 |
+| flip the oval | `Trigger if Player=1 / Enemy=0` becomes `Player=0 / Enemy=1` |
+| drop the category gate | the `CIfAction` wrapping `CCheckCategoryAction` on `Player` is removed outright |
+| make it unlistable | `Parent Skill` reparented to `Fake Wand Spells/Cure Major Wounds`, `Image=!None`, `Initial Minimum & Maximum` zeroed |
+| make it uncastable | an **always-false** `Display and Cast Requirement`: `CIsEqualTo` of `0` and `1` |
+
+That last one answered a question I would otherwise have had to guess at. The Priest casts
+`ENEMY Magical Shield` *despite* it carrying an impossible cast requirement, which proves enemy
+selection through `CActionSelectSkill` bypasses display and cast requirements entirely.
+
+`Skills/Magic Divine/Defensive/ENEMY Healing` follows the recipe, keeping the heal's own oval design --
+`Trigger Anything=1` with the inner category test flipped from `Player,Player Friend` to **`Enemy`** --
+rather than flipping the trigger flags, because that is how this particular skill was built.
+
+**One deliberate departure.** `ENEMY Magical Shield` left all its magnitude expressions pointing at
+the *player* skill's name, so on a Priest they read 0 and the race's `=150` preset does nothing but
+make the skill selectable. Rather than copy that inconsistency, all **13** self-references here are
+repointed to `ENEMY Healing`, so the preset is what the heal actually scales from: `MinHeal` base 3
+step 17 and `MaxHeal` base 6 step 24 over an input range of 1 to 300 give about **11-18 HP** at a
+preset of 150, and the oval's `Max Times To Trigger=2` allows it twice.
+
+### The carrier was already the mechanism this project was hunting
+
+The last survey of enemy behaviour concluded that 99 of 104 cans select exactly one skill, that no
+`CFleeAction`, `CRetreatAction` or `CCallForReinforcementsAction` exists anywhere in the game, and
+that the only real lever left was giving an enemy a second thing to do. The Priest already had it:
+
+```
+Shoot Completed=CSeriesAction
+  [1] CActionSelectSkill  -> ENEMY Magical Shield     (once)
+  [2] CRandomAction       -> Fire Orb / Spike / Lightning Bolt
+  When Done=Repeat Last Action
+```
+
+It shields itself once, then repeats the random picker forever. The heal is a **fourth entry in that
+bank**, so roughly one cast in four, and nothing else about the can changes.
+
+Only the **base `Priest`** carries it. `Priest Tough` and `Priest Super` are left alone on purpose
+until `EH1` is played -- one tier to prove the mechanism before five more get it.
+
+### Will it reach anyone
+
+The radius is a flat `CConstant` of **200**. The Priest never shares a generator *group* with other
+cans -- all 24 of its groups are Priests only -- so this is a question of proximity rather than
+composition. Of those 24 generators, **17 sit within 200 of a soldier or golem generator**, median
+**135**:
+
+| | distance to nearest soldier generator |
+|---|---|
+| Crossroads to England | 40 |
+| Gate District Siege | 57, 121 |
+| Temple District Siege | 84, 100, 112, 192 |
+| 02 Hamlet Burned | 119, 121, 140 |
+| Crossroads Siege | **308, 311** -- out of reach, heals only itself |
+
+### The one unverified assumption
+
+This is the **93rd** `.Skill` file in a game that shipped **92**, and every character can carries a
+`Skill Values` map enumerating all 92 at zero. That map declares **no `Item Count`** -- it is a keyed
+map, like `Tree List=CSortList2D` -- so a missing key should default to 0, which is exactly what every
+can already holds for every skill it does not use. The race preset supplies the value by path at
+spawn, which is how `ENEMY Magical Shield` reaches 150 on a Priest whose can lists it at 0.
+
+That is sound reasoning and not a verified fact, which is why **`EH5` is written to be run first**:
+start a new game, fight something ordinary, confirm nothing is strange. If it is, this comes back out.
+
+### Enemies cannot use items, and what that rules out
+
+Asked alongside the above: what about enemies drinking a healing potion or a buff potion? They
+cannot, and the reason is structural rather than an oversight.
+
+**No item-use action class exists in the game data at all.** `CUseItemAction`,
+`CUseInventoryItemAction`, `CConsumeItemAction`, `CDrinkPotionAction`, `CEquipItemAction`,
+`CApplyInventoryAdditionAction` -- **zero files**, every one of them. There is no action an AI could
+run to consume something.
+
+**An item's effect is a plug-in behaviour bound to the item, not an action anything can call.** A
+healing wand is `CPlugInBehaviorWand` wrapping a `CPlugInBehaviorLaunchAction` whose launch action is
+`CGiveHealthToCharacterAction` with `Character to give health to=$trigger`, metered by a `Charges`
+expression. It fires when the item is used from the player's inventory. Nothing in an AI can reach it.
+
+**And enemies carry no usable items.** Of the 478 monster cans, **none** references a potion, scroll
+or wand. The 35 that touch `CGenerateInventoryItemAction` are generating **drops** on death, which is
+the opposite direction -- items leaving the enemy, not being used by it.
+
+The `Fake Wand Spells` skills look like a way in and are not: `Cure Major Wounds` is an 862-byte
+**stub** with no oval, no heal amount and no effect body at all. It is a skill-shaped handle the wand's
+InventoryAddition points at, which is also why `ENEMY Magical Shield` borrows it as a convenient
+unlistable parent.
+
+**But the primitive underneath is reachable, and it matters as a contingency.**
+`CGiveHealthToCharacterAction` is an ordinary action taking a target. Fired from a can it resolves
+`$Trigger` to the caster, so it can make an enemy **heal itself** -- no new skill file, no 93rd-skill
+question, and available to any melee enemy rather than only a caster. It cannot reach a wounded ally,
+which is why the area-healing route in this release went through a skill and its oval instead.
+
+If `EH5` fails and the 93rd skill turns out not to be viable, that is the fallback: a self-healing
+enemy, built from an action the game already ships, with none of the structural risk.
+
+### What needs playing
+
+`EH1`-`EH12` in [`qa.md`](qa.md). **`EH5` before anything else** for the reason above. Then **`EH1`**,
+the row the release exists for: wound a soldier next to a Priest and watch its health go back up.
+
+**`EH3` is the safety row** -- your own Healing must still heal only you and your friends. The vanilla
+skill was not touched and is still gated, and that was verified in the shipped bytes, but it is worth
+one look.
+
+And **`EH7`** is the question this all came from: fight the same Priest-and-soldiers encounter twice,
+once ignoring the Priest and once killing it first. If killing it first is clearly better, that is
+target priority -- the first thing in this game that makes *the player's* behaviour change rather
+than the enemy's.
 
 ## 0.32.0 - The Siege Ran Dry
 

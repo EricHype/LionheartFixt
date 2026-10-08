@@ -1473,6 +1473,86 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The first enemy healer in the game
+
+Asked in play: *"are there any enemy healers? I've never seen that."* There are none, and the
+measurement is exhaustive rather than a spot check. Across all **478** vanilla monster cans, the
+complete set of skills any enemy ever selects is ten entries:
+
+| skill | cans | | skill | cans |
+|---|---|---|---|---|
+| `Fighting/OneHandedMelee` | 104 | | `…/Ice Javelin` | 13 |
+| `Magic Thought/Offensive/Lightning Bolt` | 42 | | `…/Ice Missile` | 11 |
+| `…/Spike` | 37 | | **`Defensive/ENEMY Magical Shield`** | **3** |
+| `…/Fire Orb` | 28 | | **`Defensive/Magical Shield`** | **3** |
+| `…/Static Charge` | 26 | | `Magic Divine/Offensive/Celestial Smite` | 2 |
+
+Eight are damage. Two are a defensive buff. Nothing heals, nothing cures, nothing summons a medic.
+(An earlier pass of this survey reported all 478 cans referencing healing; that was an over-broad
+match on enemy **drop tables** carrying `Potion Mass Healing`. Dropping a healing potion is not
+casting one.)
+
+### Why there were none, and it is one line
+
+`Magic Divine/Defensive/Healing` is blocked from enemies two separate ways:
+
+1. A single `CCheckCategoryAction` on `Target Name=$Trigger` checking **`Player,Player Friend`**. The
+   skill's area oval actually carries `Trigger Anything=1`, so it catches *everyone* in radius -- that
+   category test is the only thing deciding who gets healed.
+2. Its magnitude reads `CVariableSkill` on the **caster's own** Healing value, with *output 0 if input
+   is below input base*. An enemy has no Healing skill, so even ungated it would heal **zero**.
+
+### Vanilla already ships the recipe
+
+Diffing `Magic Thought/Defensive/Magical Shield` against `ENEMY Magical Shield` -- the only
+enemy-variant spell in the game -- gives the exact transformation in five parts: drop the *Player has
+cast a spell* bookkeeping modifier, flip the oval's `Trigger if Player` / `Trigger if Enemy` flags,
+drop a `CIfAction` gating on category `Player`, reparent to an unlistable parent with `Image=!None`
+and a zeroed initial range, and add an **always-false** `Display and Cast Requirement` (`0 == 1`) so
+the player can never see or cast it. The English Priest then carries it by a **race preset of 150**,
+while its can lists the skill at `0` like every other can in the game.
+
+`Skills/Magic Divine/Defensive/ENEMY Healing` follows that recipe, with **one deliberate departure**:
+`ENEMY Magical Shield` left its magnitude expressions pointing at the *player* skill's name, so on a
+Priest those read 0 and the preset's only real job is making the skill selectable. All **13**
+self-references here are repointed to `ENEMY Healing` instead, so the 150 preset is what the heal
+actually scales from -- about **11-18 HP** per trigger, and the oval's `Max Times To Trigger=2`.
+
+### What carries it
+
+The Priest's `Shoot Completed` was already the mechanism this project has been looking for, and it is
+vanilla: shield itself **once**, then a `CRandomAction` over three offensive spells which
+`When Done=Repeat Last Action` repeats forever. The heal is a **fourth entry in that random bank**, so
+roughly one cast in four is a heal.
+
+Only the **base `Priest`** is changed. `Priest Tough` and `Priest Super` are deliberately left alone
+until `EH1` says this works.
+
+**The heal radius is a flat 200.** Of the 24 Priest generators in the game, **17 sit within 200 of a
+soldier or golem generator** (median 135) -- Crossroads to England at 40, Gate District Siege at 57,
+Temple District at 84, Hamlet Burned at 119. In the other 7 the Priest can only reach itself.
+
+**The one unverified assumption.** This is the **93rd** `.Skill` file in a game that shipped 92, and
+every character can carries a `Skill Values` map enumerating all 92. That map declares **no
+`Item Count`** -- it is a keyed map, like `Tree List=CSortList2D` -- so a missing key should simply
+default to 0, which is what every can already holds for every skill it does not use. That reasoning is
+why `EH5` exists and why it is the row to run first if anything behaves oddly.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| EH5 | **Run this before the rest.** Start a new game and play any ordinary fight -- thugs in the Port District will do | - | **Everything normal.** Adding a 93rd skill to a 92-skill game is the one structural risk here. If enemies behave strangely, spells misfire, or the game will not load, this is the cause and the whole feature comes back out |
+| EH1 | **The row the feature exists for.** `Gate District Siege` or `Temple District Siege`, a fight with a **Priest and soldiers together**. Wound a soldier, do not kill it, and watch the Priest | - | The soldier's health **goes back up**. This is the first time anything in Lionheart has healed an enemy, and it is the one thing that cannot be proved statically |
+| EH2 | Fight a Priest **alone** and wound it | - | It heals **itself** -- the Priest is `Category=Enemy` like everything else, so it is inside its own oval |
+| EH3 | **The safety row.** Cast your own **Healing** on yourself with enemies nearby | - | It heals **you and your friends only**, exactly as before. The vanilla `Healing.Skill` was not touched and is still gated to `Player,Player Friend`. If your heal is now topping up enemies, stop and report immediately |
+| EH4 | Open your skill tree and look under Magic Divine / Defensive | - | **No `ENEMY Healing` anywhere**, not castable, not listed, no icon. It is reparented under Fake Wand Spells with `Image=!None` and an always-false display requirement |
+| EH6 | Watch a Priest over a long fight and count | - | Roughly **one cast in four** is a heal; the other three are Fire Orb, Spike or Lightning Bolt. If healing feels relentless, the bank weighting is the dial -- say so rather than guessing a number |
+| EH7 | **Does it change how you fight?** Take the same Priest-and-soldiers fight twice: once ignoring the Priest, once killing it first | - | Killing the Priest first should be **noticeably better**. That is target priority, and it is the entire point -- the first thing in this game that makes *your* behaviour change rather than the enemy's |
+| EH8 | Judge the magnitude: about **11-18 HP** per trigger, up to twice per cast | - | Enough to matter, not enough to make a soldier unkillable. If it out-paces your damage, the race preset of 150 is the dial |
+| EH9 | `Crossroads Siege` -- where the nearest soldier generator is **308** away, beyond the radius | - | The Priest heals **only itself**. Expected, not a bug: 7 of the 24 Priest placements are out of reach of anyone else |
+| EH10 | Act 3 `02 Hamlet Burned` and the act 7 shrine chambers, which also place Priests | - | Same behaviour. The can is shared, so this is not act-6-only -- unlike the mana change in the same release |
+| EH11 | Kill a Priest and check the drops | - | **Unchanged.** `English Priest Drop Action` was not touched; it carries no spirit energy, which is a separate note in the act 6 section |
+| EH12 | Fight `Priest Tough` and `Priest Super` | - | **No healing.** Only the base Priest carries it, on purpose, so one tier proves the mechanism before five more get it |
+
 ## Act 6 - the siege had no mana in it
 
 Reported by a player: *"mag builds suffer from lack of mana during war with England and later on in
