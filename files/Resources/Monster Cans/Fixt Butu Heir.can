@@ -1540,7 +1540,35 @@ CCannedObject
 		Rendering Height Float=0
 		Cur Sequence=Idle
 		Cur Damage=0
-		Destroyed Script Action=
+		Destroyed Script Action=CIfAction
+		{
+			If=CWasQuestEverActivatedAction
+			{
+				Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+			}
+			Then=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=3
+					Action=CActivateQuestStateAction
+					{
+						Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+						State=BTU2W6RJ
+					}
+					Action=CSetQuestSatusToCompletedAction
+					{
+						Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+					}
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
+					}
+				}
+			}
+			Else=
+			Return failure if the If failes=0
+		}
 		Destroyed Effect Action=CIfAction
 		{
 			If=CWasDamagedByPlayerAction

@@ -1,0 +1,19 @@
+CQuestDefinition
+{
+	Name=Butu Khan's Poems
+	States=Array
+	{
+		Item Count=2
+		State=CQuestStateDefinition
+		{
+			Text=Hrargrub holds the east half of the Ravine Cave, and says he is the heir of Butu Khan -- a goblin Khan nobody in Barcelona has heard of. His Khan's book of poems is somewhere in Plumjum Khan's warren, where it is being kept as shiny. Find it and bring it to him.
+			ID=BTU4K7ZQ
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You put Butu Khan's poems back in the hands of his line. Hrargrub's goblins let you walk the east cave, and Plumjum Khan will not be told who holds his east rock.
+			ID=BTU8M3XV
+		}
+	}
+	Sub-Quest of=!None
+}

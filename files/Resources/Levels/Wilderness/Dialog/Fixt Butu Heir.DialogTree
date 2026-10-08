@@ -150,7 +150,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=6
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -160,6 +160,20 @@ Action=CGiveExperiencePointsToAllPlayersAction
 {
 Get XP Frome=Butu Khan Poetry Book returned
 Experience Points To Add=1
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+State=BTU4K7ZQ
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+State=BTU8M3XV
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
 }
 Action=CTriggerRelayAction
 {
@@ -172,6 +186,11 @@ Icon=Quest Icon
 Requirement=!None
 Reply Text=I will find it.
 Go to node ID=95 agreed
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+State=BTU4K7ZQ
+}
 Icon=Quest Icon
 
 Requirement=!None

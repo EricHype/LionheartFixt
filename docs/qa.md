@@ -1473,7 +1473,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## UNRELEASED - Butu Khan's heir takes the Ravine Cave
+## 0.31.0 - Butu Khan's heir takes the Ravine Cave
 
 `Mongol Goblin Hat Super` was **placed nowhere in the game**, and its race is the toughest goblin
 statline there is -- **250 HP, AC 225, harder than the Khan himself**. The hat line steps 60 -> 80 ->
@@ -1535,7 +1535,29 @@ mid-playthrough after visiting East gets none of this.
 | BU15 | Get the `Butu Khan Poetry Book` from the **Goblin Warrens** and bring it back | *"I have it here."* | `100 the book returned` -- *"He takes it in both hands, and does not open it."* The book leaves your inventory, XP, and the cave stands down |
 | BU16 | **If you already sold it to Weng Choi**, buy it back and return it | - | Works the same. The requirement is a plain inventory check on that one item -- `Weng Choi Have a rare book.can` could not be reused because it ORs nine books with a Weng Choi quest state |
 | BU17 | After the handover, walk the cave | - | The red goblins **do not attack**. `Butu alliance` clears targeting and drops `Enemy` on `Butu Warriors` |
-| BU18 | **No journal entry appears for the book.** Confirm that is all that is missing | - | Deliberate: a tracked quest needs a `.Quest.txt` with a unique state ID and is tier 3. The exchange is tracked by the item, and these notes should not imply otherwise |
+| BU18 | Open the journal after `95 agreed` | - | **`Butu Khan's Poems`** is listed. An earlier draft of this section said there would be no journal entry and that a tracked quest was out of scope -- wrong on both counts, since Fixt has authored fourteen `.Quest.txt` definitions already |
+
+### Two quests, and they fork
+
+The feature was a boss fight with one untracked errand until this was added. Both ends now pay, and
+they are mutually exclusive.
+
+| quest | states | |
+|---|---|---|
+| **`Butu Khan's Poems`** | `BTU4K7ZQ` -> `BTU8M3XV` | the heir's errand. Return the poems and the cave stands down |
+| **`The Goblin of Butu's Line`** | `BTU5P9HK` -> `BTU2W6RJ` | Plumjum's contract. Kill the heir and **Goblin Rank advances** |
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU29 | Accept the heir's errand, then check the journal | *"I will find it."* | **`Butu Khan's Poems`** at its first state -- *"His Khan's book of poems is somewhere in Plumjum Khan's warren, where it is being kept as shiny."* |
+| BU30 | Return the book | *"I have it here."* | The quest **completes** -- *"You put Butu Khan's poems back in the hands of his line."* The book leaves your inventory, and the red goblins stand down |
+| BU31 | Arrive already **holding** the book, having never taken the errand | *"I have it here."* | It still appears in the journal **and then completes**, rather than completing something that was never listed. Both states fire in order on that path deliberately |
+| BU32 | Take the Khan's contract | *"It will be done, Great Khan."* | **`The Goblin of Butu's Line`** opens -- *"The Khan wants him dead and does not want to hear his name."* |
+| BU33 | Kill Hrargrub **with the contract taken** | - | The quest completes, and **`Goblin Rank` advances** -- invoked through `Advance Goblin Rank` with `CUseCannedActionAction`, the way the Khan's own tree already invokes it. Check the perk and faction actually changed |
+| BU34 | Kill Hrargrub **without** ever taking the contract | - | **No quest completes and no rank is given.** The death hook is guarded on `CWasQuestEverActivatedAction`, so killing him on your own account pays nothing |
+| BU35 | After killing him on the contract, go back to the Khan | *"The east rock is yours again. I will not say the name."* | `382 you did not say it` -- *"Then there was never anybody there, and I never sent anybody east, and you have gone up in the world for doing nothing at all. That is how it works, morsel."* |
+| BU36 | Try to do **both** | - | You cannot. Returning the poems stands the cave down and shuts the act 8 gate; killing him closes the other. Confirm neither route leaves the other's quest stuck open in the journal |
+| BU37 | Check the heir's death hook was not overridden | - | His `Destroyed Script Action` is the one slot that was free on his can, and **no generator sets `CSetDestroyedScriptActionAction` over it** -- the trap that made the Lava Troll Hide dead code from 0.10.0. Gate 0's A0.14 guards it, but a kill confirms it |
 
 ### The late game remembers
 

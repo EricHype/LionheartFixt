@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.30.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.31.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,159 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.31.0 - Butu's Heir
+
+The one goblin vanilla never placed, put to work -- and a mid-game choice in an optional cave that
+costs a late-game companion.
+
+### Two things vanilla left on the table
+
+`Mongol Goblin Hat Super` is **placed nowhere in the game**, and its race is the most interesting
+statline in the family:
+
+| race | HP | AC |
+|---|---|---|
+| Goblin Hat | 60 | 125 |
+| Goblin Hat Tough | 80 | 150 |
+| **Goblin Hat Super** | **250** | **225** |
+| Goblin Khan | 210 | 175 |
+
+**The toughest goblin in the game, harder than the Khan himself.** The hat line steps 60 to 80 to 250
+where every other goblin ladder steps about a quarter per rung, so it was never a third tier: it is a
+boss statline filed under hats, and vanilla used it as one, lending it to `Mongol Goblin Khan` for its
+numbers. 0.30.1 gave that can a race of its own, which freed it.
+
+And vanilla names a second Khan, **exactly once in the whole game**, in a flavour line on an item:
+
+> *"Collected by Butu Khan, this book of poetry contains many free verses of Goblin Poetry."*
+
+The `Butu Khan Poetry Book` sits in the **Goblin Warrens** -- in Plumjum Khan's own cave -- and
+`WengChoi.DialogTree` will buy it off the player as a rare book, give, check and remove machinery
+already written, without anyone ever saying whose it was. A second goblin dynasty exists in the
+fiction, its Khan's book is a curio on the floor of the goblin who outlasted him, and the player can
+sell his heritage to a human shopkeeper by weight.
+
+### The cave changes hands
+
+Act 1 is untouched: the Khan's goblins, 0.30.0's four posts, the officer alarm, the three-goblin
+argument. After Montserrat, entering `Ravine Cave East` flips it once -- deactivate `Khan Goblins`
+and `Goblin Cave Post`, delete them and the arguers, activate eight Butu posts and the heir.
+
+Every piece is shipped idiom. **848 generators already ship `Active=0`**, and the
+deactivate-and-delete swap is at **101 sites**, among them `Calle Perdida`'s *"RESET MAP for
+Invulnerable Cedric"*, which deactivates and deletes `Pedro Generator` and `Generic Wielder
+Generator` -- vanilla resetting a map's population, which is exactly this. The gate is
+`CWasQuestEverActivatedAction` OR'd over the three Montserrat quests `Brother Montgomerie` hands out;
+`Calle Perdida.zax` already uses that class on one of them as a progression gate.
+
+**24 of capacity plus the heir**, against act 1's 93. The point is that it changed hands, not that it
+got bigger. The tribe is recoloured `07 Red`, and of the engine's **seventeen hue palettes sixteen are
+used nowhere in vanilla** -- only `01 Dark Blue` appears, six times, in `06 Chamber of Torment`. The
+heir wears `Characters/Monsters/Mongol Goblin King`, which in the whole game belongs only to the
+Warrens Khan and the Rumjun Khan. **He already looks like a Khan, which is the argument he is
+making.**
+
+Calibration, measured rather than assumed: act 1's hardest enemy is a `Lava Troll Boss Super` at 111
+HP; act 2's is a `Snakebreed Boss Super` at 160 HP and AC **250**, so the heir hits harder and is
+easier to hit; and act 3 already fields `Cathar Warden Bearform Super` at exactly 250 / 225 as
+ordinary opposition.
+
+### He reads what you did about the Khan
+
+Five ways in, every one from a can or quest that already existed:
+
+| what you did | what he reads |
+|---|---|
+| killed Plumjum | *"You emptied the chair. I am standing in it. I had six winters of reasons and you did it in an afternoon"* |
+| his **Champion** | *"Take the mark off and we will talk about his cave. Leave it on and I will take it off the usual way."* |
+| his chum or blooded | *"He gives ranks the way he gives speeches, and both cost him nothing. Butu gave his goblins poems."* |
+| cleared the dryad's forest | *"You have killed more of his than I have. I am not fond of you. I am extremely interested in you."* |
+| nothing at all | *"He has drawn plans for six winters. Have you seen the plans? They are very good plans."* |
+
+He is pacified at spawn on the Troll Chief and Mine Foreman pattern, so he challenges first and the
+250 HP fight is chosen.
+
+### Two quests, and they fork
+
+| quest | |
+|---|---|
+| **`Butu Khan's Poems`** | his errand. The book is in Plumjum's warren, and `WengChoi` may already have bought it off you; return it and the cave stands down |
+| **`The Goblin of Butu's Line`** | Plumjum's contract. Kill the heir and **`Goblin Rank` advances**, invoked through `Advance Goblin Rank` with `CUseCannedActionAction`, the way the Khan's own tree already invokes it |
+
+They are mutually exclusive, and both ends pay -- which they did not in the first build of this
+release. It was a boss fight with one untracked errand, and an earlier draft of the plan called
+authoring a `.Quest.txt` risky new territory. **Fixt has authored fourteen of them**, including
+`Speak for the Trolls` and `Kill Guard Esteban for the Goblin Patrol`, so there was never a reason the
+heir's errand should not be tracked. State IDs follow Fixt's own `TRD4K8ZM` convention.
+
+The book check is a one-line requirement can of its own, because
+`Weng Choi Have a rare book.can` ORs nine different books with a Weng Choi quest state and cannot be
+reused. The heir's death hook sits in `Destroyed Script Action`, the one slot still free on his can,
+guarded on the contract having been taken so that killing him on your own account pays nothing.
+
+### The late game remembers
+
+`01 Desert Sprawl`'s `Fixt goblin gate` already decided whether Plumjum Khan meets the player in
+Persia and whether **Grumdjum joins as a companion**, on two conditions: you are his Champion, and he
+is alive. It now has a third. **Hand the heir the book and neither of them turns up.**
+
+The marker lives in `01 Desert Sprawl` itself rather than the Wilderness, for a reason worth recording
+outside this release.
+
+### The door, and what expiry actually does
+
+A spawn point in `3 Montaillou/02 Hamlet Burned` named **`From Crypt or Nostro Portal`** carries
+**130 `CExpireMapAction`s**, closing Barcelona, the Sewers, every Wilderness map, Montserrat,
+Montaillou, the Crypt and Nostradamus. The engine is blunt: *"Attempting to load expired map...
+(--Loren)"*. It fires on returning to the burned hamlet from the Crypt or the Nostradamus portal.
+
+What expiry does was then settled from the save files rather than guessed:
+
+* **`Has Expired` is a per-layer flag, not a deletion.** The mapping and its `Current Temp File` stay
+  in `CSwappedLayerFilenameMappingTable`; the engine simply refuses to touch it.
+* **Across all 65 saves in the development install, exactly one map has ever been expired** --
+  `Slave Pit Exterior INTRO MOVIE`, retired at the start of every game. The 130-map block has never
+  fired in any of them, and the furthest-progressed save is in Montaillou with the door still shut.
+* `CCheckExistenceAction` **is** a global lookup rather than map-local: vanilla does it across maps
+  **124 times**, for instance `Church Interior` checking `Torquemada irritated`, which lives in
+  `Inquisition Chambers2`.
+
+So the idiom is sound and the door is narrower in practice than it first looked -- a one-time reclaim
+on one specific transition. But whether a *flagged* layer still answers a name lookup is untested, and
+Fixt's own act 8 gate reads two markers out of maps that door closes, so `BU22` exists to find out
+whether that gate has ever worked.
+
+### The pointer, because otherwise nobody would go
+
+The heir sat in a cave the game never sends anyone to: the Sacred Scimitar needs the silver in
+**West**, East has its own entrance off `Scar Ravine`, and the halves connect only by a crystal-node
+teleport. Plumjum points the player east himself, from both of his entry nodes, gated on the same
+quests that flip the cave -- and **never says the heir's name**.
+
+> *"Butu's line were nobodies when I was young and they are nobodies with a cave. He has my east rock
+> and my shiny and he tells my goblins that I draw maps."*
+
+### Corrections carried in this release
+
+**0.30.0 claimed the officer alarm scales itself.** It does not. `Max Party Mojo` is a threshold and
+the engine picks the group the party falls *under*, so Ravine Cave East's top group opens at a party
+mojo of about **11**, not 50 -- which act 1 parties reach. The tiering makes officers uncommon; it
+does not gate them behind strength. The twelve-creature worst case stands.
+
+**0.30.1's QA described the cave wrongly.** `Ravine Cave East` is not behind the mine, and `GB30` told
+a tester to fight in from a passage that does not exist.
+
+**Found and not fixed:** vanilla's own `GoblinKhan.DialogTree` points at a node `130 the job` that is
+not in the tree. One dangling reply, vanilla's, left for `reachability.py`.
+
+### What needs playing
+
+`BU1`-`BU28` in [`qa.md`](qa.md). **`BU2` needs a save that had not entered `Ravine Cave East` when
+the mod was installed** -- the snapshot rule cuts the wrong way here, because the players most likely
+to walk back in are the ones who were there in act 1. **`BU20` is the row the release exists for**:
+side with the heir and the act 8 Khan and his companion stay away. And **`BU22`** settles whether the
+older act 8 markers were ever readable at all.
 
 ## 0.30.1 - what the combat log calls people
 

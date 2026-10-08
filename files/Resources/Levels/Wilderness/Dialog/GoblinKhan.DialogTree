@@ -196,6 +196,18 @@ Early Exit=1
 Reply Text=Someone is sitting in your east cave, and he is not one of yours.
 Go to node ID=380 the east rock is taken
 Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+}
+}
+Reply Text=The east rock is yours again. I will not say the name.
+Go to node ID=382 you did not say it
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=3 Return Dialogue
 Text=Again, this morsel intrudes into my cave. What is so important that you would dare to interrupt the Khan?
@@ -1377,6 +1389,18 @@ Early Exit=1
 Reply Text=Someone is sitting in your east cave, and he is not one of yours.
 Go to node ID=380 the east rock is taken
 Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+}
+}
+Reply Text=The east rock is yours again. I will not say the name.
+Go to node ID=382 you did not say it
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=400 Where are you going?
 Text=I did not say you could leave! Have at thee!
@@ -1500,6 +1524,11 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=It will be done, Great Khan.
 Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+State=BTU5P9HK
+}
 Icon=Quest Icon
 
 Requirement=!None
@@ -1515,6 +1544,16 @@ Is Default Reply=1
 ------------------------------------------------------------
 Node ID=381 do not repeat that
 Text=<He does not move at all, which from him is the loudest thing available.> You will not repeat that. You will go east, and you will not repeat that either.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=As you say, Great Khan.
+Go to node ID=
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=382 you did not say it
+Text=You did not say it. <He eats something, slowly, and does not offer you any.> Good. Then there was never anybody there, and I never sent anybody east, and you have gone up in the world for doing nothing at all. That is how it works, morsel. Learn it.
 Should Have Voiceover=0
 
 Requirement=!None

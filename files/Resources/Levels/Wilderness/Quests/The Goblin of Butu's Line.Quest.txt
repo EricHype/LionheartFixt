@@ -1,0 +1,19 @@
+CQuestDefinition
+{
+	Name=The Goblin of Butu's Line
+	States=Array
+	{
+		Item Count=2
+		State=CQuestStateDefinition
+		{
+			Text=Plumjum Khan has lost the east half of the Ravine Cave to a goblin of Butu's line, who is telling the horde that the Khan only draws maps. The Khan wants him dead and does not want to hear his name.
+			ID=BTU5P9HK
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Hrargrub is dead and Butu's line is finished a second time. The Khan did not ask what he was called.
+			ID=BTU2W6RJ
+		}
+	}
+	Sub-Quest of=!None
+}

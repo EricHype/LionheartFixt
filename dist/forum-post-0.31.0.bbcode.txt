@@ -1,0 +1,130 @@
+[size=150][b]Lionheart Fixt 0.31.0 - Butu's Heir[/b][/size]
+
+The one goblin vanilla never placed, put to work — and a choice in an optional cave in act 2 that
+costs you a companion in act 8.
+
+[b]Two things vanilla left on the table[/b]
+
+[i]Mongol Goblin Hat Super[/i] is [b]placed nowhere in the game[/b], and its race is the most interesting
+statline in the family:
+
+| race | HP | AC |
+|---|---|---|
+| Goblin Hat | 60 | 125 |
+| Goblin Hat Tough | 80 | 150 |
+| [b]Goblin Hat Super[/b] | [b]250[/b] | [b]225[/b] |
+| Goblin Khan | 210 | 175 |
+
+[b]The toughest goblin in the game, harder than the Khan himself.[/b] The hat line steps 60 to 80 to 250
+where every other goblin ladder steps about a quarter per rung, so it was never a third tier: it is a
+boss statline filed under hats, and vanilla used it as one, lending it to the Khan's own can for its
+numbers. 0.30.1 gave that can a race of its own, which freed it.
+
+And vanilla names a second Khan, [b]exactly once in the whole game[/b], in a flavour line on an item:
+
+[i]*"Collected by Butu Khan, this book of poetry contains many free verses of Goblin Poetry."*[/i]
+
+That book sits in the [b]Goblin Warrens[/b] — in Plumjum Khan's own cave — and Weng Choi will buy it off
+you as a rare book without anyone ever saying whose it was. A second goblin dynasty exists in the
+fiction, its Khan's poems are a trinket on the floor of the goblin who outlasted him, and you can sell
+his heritage to a human shopkeeper by weight.
+
+[b]The Ravine Cave changes hands[/b]
+
+Act 1 is untouched: the Khan's goblins, the four posts, the officer alarm, the three-goblin argument
+from 0.30.0. [b]After Montserrat, the east half belongs to Butu's heir.[/b]
+
+A tribe recoloured red — one of the [b]sixteen hue palettes the engine ships and vanilla never
+touches[/b] — holding the same four posts, led by a goblin wearing the Goblin King model that in the
+whole game belongs only to the two Khans. [b]He already looks like a Khan, which is the argument he is
+making.[/b]
+
+About 24 of them plus the heir, against act 1's 93. The point is that it changed hands, not that it
+got bigger.
+
+For calibration: act 1's hardest enemy is a troll boss at 111 HP; act 2's is a Snakebreed boss at 160
+HP and AC [b]250[/b], so the heir hits harder and is easier to hit; and act 3 already fields a creature
+with his exact statline as ordinary opposition.
+
+[b]He reads what you did about the Khan[/b]
+
+Five ways in, every one from something the game already had:
+
+| what you did | what he says |
+|---|---|
+| killed Plumjum | *"You emptied the chair. I am standing in it. I had six winters of reasons and you did it in an afternoon"* |
+| his [b]Champion[/b] | *"Take the mark off and we will talk about his cave. Leave it on and I will take it off the usual way."* |
+| his chum or blooded | *"He gives ranks the way he gives speeches, and both cost him nothing. Butu gave his goblins poems."* |
+| cleared the dryad's forest | *"You have killed more of his than I have. I am not fond of you. I am extremely interested in you."* |
+| nothing at all | *"He has drawn plans for six winters. Have you seen the plans? They are very good plans."* |
+
+He talks before he fights.
+
+[b]Two quests, and they fork[/b]
+
+| | |
+|---|---|
+| [b]Butu Khan's Poems[/b] | his errand. The book is in Plumjum's warren, and you may already have sold it to Weng Choi. Return it and the cave stands down |
+| [b]The Goblin of Butu's Line[/b] | Plumjum's contract. Kill the heir and your [b]goblin rank advances[/b] |
+
+They are mutually exclusive. Kill him without ever taking the contract and you get nothing for it,
+which is the right answer.
+
+[b]The late game remembers[/b]
+
+Whether Plumjum Khan meets you in Persia — and whether [b]Grumdjum joins you as a companion[/b] — already
+depended on being the Khan's Champion and on his being alive. It now has a third condition.
+
+[b]Hand Butu's heir the poems and neither of them turns up.[/b]
+
+An optional cave in act 2, costing a companion in act 8.
+
+[b]The Khan points you east himself[/b]
+
+The heir sat somewhere the game never sends anyone: the Sacred Scimitar needs the silver in the *west*
+half, the east half has its own entrance off Scar Ravine, and the two only connect by a crystal node.
+So Plumjum tells you, and never says the heir's name.
+
+[i]*"Butu's line were nobodies when I was young and they are nobodies with a cave. He has my east rock[/i]
+[i]and my shiny and he tells my goblins that I draw maps. Go and make him a nobody again, morsel, and[/i]
+[i]do not come back to tell me his name."*[/i]
+
+There is a reply that repeats the heir's line about the maps back to his face. Nothing bad happens,
+which is the joke.
+
+[b]Corrections carried in this release[/b]
+
+[b]0.30.0 claimed the troll-style officer alarm "scales itself" — no officer for a weak party, no
+alarm.[/b] It does not. Party-strength thresholds are upper bounds and the engine picks the group you
+fall *under*, so the group carrying the officer opens much earlier than the number suggests. The
+tiering makes officers uncommon; it does not gate them behind strength. The worst-case figure of
+twelve creatures stands.
+
+[b]0.30.1's test notes described the Ravine Cave wrongly[/b] and told a tester to fight in through a
+passage between the two halves that does not exist.
+
+[b]Found and not fixed:[/b] vanilla's own Goblin Khan dialogue points at a node that is not in the tree.
+One dangling reply, vanilla's, recorded rather than patched blind.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+[b]This one genuinely needs a save that has not been in the Ravine Cave's east half.[/b] New map
+entities only exist for a save that had not entered the map when you installed, and the whole conceit
+here is walking back in to find it changed — so the players most likely to want it are exactly the
+ones it will not reach. A character who has not been to that cave gets all of it.
+
+[b]If you play it[/b]
+
+Three things are worth reporting above everything else.
+
+[b]Does the cave actually change hands[/b], and do the red goblins read as a different tribe in that
+lighting?
+
+[b]Side with the heir, then reach Persia in act 8[/b] — the Khan and Grumdjum should both be absent. That
+is the row this release exists for.
+
+[b]And one older question it would settle:[/b] kill Plumjum Khan back in act 1, then reach Persia as his
+Champion. He should not appear. If he does anyway, a gate that has been shipping for a while has never
+worked, and knowing that is worth more than this whole release.
