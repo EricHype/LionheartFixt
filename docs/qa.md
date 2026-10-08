@@ -1473,6 +1473,43 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The Enchanter's Bargain, and the Dark Wielders' missing bind step
+
+The Trapped Ether Plane is reached through a well in La Calle Perdida -- `Well 5 door`,
+`Trigger Only Once=0`, `Is Locked=0`, no key and no requirement, so it is freely re-enterable.
+**Everything in this section is in a questline that has never been played**, so treat the whole
+Dark Wielder path as new ground rather than as a regression surface.
+
+The non-lethal resolution of the Enchanter is **ungated** -- `Requirement=!None` at every step of
+`03 Conversation Start at Island` -> `50 Escape` -> `55 Escape 2` -> `57 Escape 3` -> `59 Winner`.
+At `50 Escape` two replies read almost identically; the one mentioning that he *lost his mind*
+routes to `53 Whoops` and a fight. That is vanilla behaviour, not a new trap, but it is the easiest
+way to fail these rows by accident.
+
+**`EB7` and `EB12` are the rows that prove the release.** EB7 is the Relican fallback, the only
+thing standing between the DaVinci swap and an unfinishable questline. EB12 is the bind itself.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| EB1 | **The well.** La Calle Perdida, find and enter the well | - | You reach the Trapped Ether Plane. Re-enter it a second time to confirm the door is not once-only |
+| EB2 | **Kill him.** Fight the Enchanter to death as in vanilla | - | He drops `Kublai Khans Sword` and gold, exactly as before. **Nothing in this release may change this route** |
+| EB3 | **Talk him to death.** The `63/65 Self Destruct` route | - | Unchanged from vanilla; he destroys himself and the crystal powers |
+| EB4 | **Spare him.** Take `50 Escape` -> `55` -> `57` -> `59 Winner` without insulting him | - | He spares you, then **`61 Fixt Bound Token`** fires and you receive the **Amulet of the Trapped Spirit** |
+| EB5 | After EB4, leave the plane by powering the crystal from the spirits | - | You get out **with the Enchanter still alive**. This is the shipped route; confirm 0.39.0 did not break it |
+| EB6 | After EB4, re-enter the plane and talk to him | - | He is non-hostile and opens at `05 Return Dialogue 1` |
+| EB7 | **The fallback, and the row that matters most.** On Relican's path, take the Sceptre shell from DaVinci's secret chamber, then **kill the Enchanter** (or never enter the plane), then talk to Relican | - | A reply offers *"I have the Sceptre, but it is a dead thing"* -> **`47 Fixt Relican Binds Shell`**. He binds it, you receive `Rod Bone WITH Spirit`, the quest completes and you continue to `40 dark wielder task 2`. **If this reply does not appear, the Dark Wielder initiation is unfinishable and the release must be pulled** |
+| EB8 | **The shell is now the drop.** Open DaVinci's secret chamber | - | You get the **empty** Sceptre of Bone -- *"Fashioned darkwood that is but an empty shell without a spirit to power it"* -- not the finished one |
+| EB9 | Check the quest journal after EB8 | - | `Create a Rod Of Bone` reads the new middle state about the sceptre being lifeless, not still "recover the Sceptre" |
+| EB10 | **The pact.** On Relican's path, with the Enchanter spared, talk to him | - | A `Quest Icon` reply offers the hidden city of wielders -> `70 Fixt Pact 1` -> `71 Fixt Pact 2`. You receive the **Ring of the Trapped Spirit** |
+| EB11 | Try EB10 **without** having joined Relican | - | The pact reply is **absent**. It is gated on the Dark Wielder initiation having been activated |
+| EB12 | **The bind.** After the pact, carrying the shell, talk to him again | - | A reply offers the empty sceptre -> **`75 Fixt Sceptre`**. The shell is removed, `Rod Bone WITH Spirit` arrives, and the journal advances to "deliver the Sceptre to Lord Relican" |
+| EB13 | Try EB12 **without** the shell in inventory | - | The reply is absent. It is gated on holding the shell *and* being at the bind step |
+| EB14 | **The exploit, which must be gone.** Equip `Rod Bone WITH Spirit`, note Thought and Tribal, then **drop it and pick it up** five times | - | Skills do **not** climb. As shipped this granted +2 to eight disciplines per pickup, without limit. If they still climb, the fix did not take |
+| EB15 | Equip and unequip the spirited Sceptre | - | The +2 to each Thought and Tribal discipline appears **only while equipped**, and is fully removed on unequip |
+| EB16 | **The set bonus.** Wear the Amulet alone, then the Ring alone, then both, noting Mana Capacity each time | - | +20, +10, and **+40** -- the pair is worth 10 more than the sum. Spell Resistance +5 comes from the amulet only |
+| EB17 | **The bluff route completes the pair.** Resolve him by the `40 Barter` -> `43` -> `45 Barter 3` bluff instead of `59 Winner`, then take the pact | - | You receive **both** items, not just the ring. `Trigger Only Once=1` must yield **exactly one** amulet -- if two arrive, the guard failed |
+| EB18 | **The title.** Finish the dark path and answer **Yes** to Relican's Summoning Ring | - | You gain **`Ruler of Calle Perdida`** / "Dark Lord of Calle Perdida". Karma still drops 800 and the three good quests still fail, exactly as before -- the only change is that the ending now names you |
+
 ## The magic loot pipeline was never connected
 
 From the unused-content survey, and it took tracing a chain to the end rather than one link.

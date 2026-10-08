@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=Recover the Lost Sceptre of Bone
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=As part of your initiation into the Dark Wielders, you must recover a lost item of dark power. Relican has ordered you to recover the fabled Sceptre of Bone, and he believes that a powerful figure within Barcelona is protecting it, possibly Leonardo DaVinci himself.
+			ID=UFG3W5T9
+		}
+		State=CQuestStateDefinition
+		{
+			Text=The Sceptre of Bone is in your hands, but it is lifeless -- fashioned darkwood and nothing more, an empty shell without a spirit to power it. A spirit must be bound into it before Relican will have any use for it.
+			ID=K7MQ3XRB
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You must return to La Calle Perdida and deliver the Sceptre of Bone to Lord Relican.
+			ID=HZTN20XD
+		}
+	}
+	Sub-Quest of=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Dark Wielders
+}

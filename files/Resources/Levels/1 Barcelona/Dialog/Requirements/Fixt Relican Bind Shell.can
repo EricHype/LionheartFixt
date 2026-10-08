@@ -1,0 +1,24 @@
+CCannedObject
+{
+	Object=CAND
+	{
+		Operand1=CActionExpression
+		{
+			Action=CActionCheckForInventoryItem
+			{
+				Who to give check=$instigator
+				Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+			}
+		}
+		Operator=
+		Operand2=CActionExpression
+		{
+			Action=CIsQuestStateTheCurrentStateAction
+			{
+				Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+				State=K7MQ3XRB
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

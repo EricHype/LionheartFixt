@@ -1,0 +1,26 @@
+CCannedObject
+{
+	Object=CAND
+	{
+		Operand1=CActionExpression
+		{
+			Action=CWasQuestEverActivatedAction
+			{
+				Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Dark Wielders
+			}
+		}
+		Operator=
+		Operand2=CExpressionNot
+		{
+			Operand1=CActionExpression
+			{
+				Action=CActionCheckForInventoryItem
+				{
+					Who to give check=$instigator
+					Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Trapped Spirit Ring
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

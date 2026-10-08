@@ -1,0 +1,93 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_jewelry.ogg
+				Position=$Trigger
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Trapped Spirit
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=3
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=20
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Mana Capacity Magic Enhancer
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=5
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/(SR) Spell Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Number of Trapped Spirit Items
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_jewelry.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=75
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Amulet_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Amulet of the Trapped Spirit
+	Description=A spirit bound into silver by the mad enchanter of the ether plane. It feeds the wearer's own reserves and turns aside hostile magic. Confers 20 to Mana Capacity and 5 to Spell Resistance.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Quest Items/Trapped Spirit Amulet
+		Better=Items/Inventory Images/Quest Items/Trapped Spirit Amulet
+		Special=Items/Inventory Images/Quest Items/Trapped Spirit Amulet
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Neck
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Quest Items
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Trapped Spirit Amulet
+}

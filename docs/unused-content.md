@@ -655,3 +655,35 @@ to content.
 - To ask whether a mechanism exists, **open a case that works**. Searching for a plausible
   class name finds nothing when the mechanism is shaped differently than expected.
 - Trace a chain to something that **runs**, not to the next file that mentions it.
+
+## Done in 0.39.0 - the Enchanter's Bargain
+
+**The two Trapped Spirit items** shipped as shells: correct slot, art and grouping, but
+`Is Magic=0`, value 0, only pickup/putdown behaviours, the placeholder description "The abilities
+of this amulet are a mystery", and referenced by nothing. They are now the reward for the Trapped
+Ether Plane's non-lethal resolution -- the one route of the three that vanilla paid nothing for,
+while both lethal routes drop `Kublai Khans Sword`. Amulet for sparing the Enchanter, Ring as well
+for allying him to Relican, and a counting set bonus on `Number of Trapped Spirit Items`.
+
+**`Wielder DARK Quest Rod Bone NO Spirit`** was referenced by nothing at all, against 3 files for
+the spirited version -- while the Wielder path's equivalent shell is referenced by 3 and has a whole
+quest (`Bind Spirit to Rod`, Galileo and the Observatory) for filling it. The Dark Wielder
+initiation had the same two items and no middle step. DaVinci's chamber now yields the shell and the
+spirit is bound at the ether plane, with Relican binding it himself as a fallback so the initiation
+can never dead-end.
+
+**`Ruler of Calle Perdida`** -- "Dark Lord of Calle Perdida" -- was granted by nothing, though its
+text describes the Summoning Ring's Yes branch word for word and its sibling
+`Exposer of Calle Perdida` is granted by `InquisitorRaphael.DialogTree`. Now granted on that branch.
+
+**Still open on this path:** `Convince DaVinci to Join the Dark Wielders` is a quest file referenced
+by nothing but the registry map -- an unreachable fifth Dark Wielder task. And
+`Rod Spirits WITH Spirit`, the *Wielder* rod, advertises "2 skill points in the Divine and Thought
+spell disciplines, as well as 25 to Mana Capacity" and implements none of it: zero
+`CCharacterModifierSkill`, its only derived modifier being attack-animation speed.
+
+**A method note worth keeping.** The Mad Enchanter was findable as Relican-adjacent only by reading
+`Race=` and `Model=` rather than names or dialogue: `Trapped Wizard.can` and `Relican.can` are the
+only two cans in the game using `Races/NPCs/Relican` and
+`Characters/NPC/Barcelona/Wielders/Relican`. Searching the writing for a connection between them
+finds nothing, because the connection was only ever made in the art and the statistics.

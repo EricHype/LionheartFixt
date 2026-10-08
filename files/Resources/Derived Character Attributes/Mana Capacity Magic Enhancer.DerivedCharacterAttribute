@@ -1,0 +1,52 @@
+CDerivedCharacterAttribute
+{
+	Dynamic Properties=1
+	{
+		Comment=Variable added to Mana Capacity to increase with magic items, etc, to increase mana capacity.  Initial value is zero, and is added to in whole number increments.  Magic Items should add or subtract to this variable directly.
+	}
+	Expression=CAdd
+	{
+		Operand1=CConstant
+		{
+			Constant Value=0
+		}
+		Operator=
+		Operand2=CIfExpression
+		{
+			Condition=CIsEqualTo
+			{
+				Operand1=CVariableDerivedCharacterAttribute
+				{
+					Character Attribute=Derived Character Attributes/Number of Trapped Spirit Items
+				}
+				Operator=
+				Operand2=CConstant
+				{
+					Constant Value=2
+				}
+			}
+			OperatorPart1=
+			Value if True =CConstant
+			{
+				Constant Value=10
+			}
+			OperatorPart2=
+			Value if False=CConstant
+			{
+				Constant Value=0
+			}
+		}
+	}
+	Short Name=Mana Capacity Magic Enhancer
+	Long Name=Mana Capacity Magic Enhancer
+	Description=
+	Minimum Value=No Minimum
+	Maximum Value=No Maximum
+	Allow Modification By Fractional Amounts=1
+	Display In Attributes Window=0
+	Position=0,0
+	Display In Character Creation Summary=0
+	Character Creation Summary Sort Order=0
+	Display Some Other Place=0
+	Include in character Import and Export=1
+}

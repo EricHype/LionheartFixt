@@ -94,6 +94,43 @@ Experience Points To Add=1
 }
 Icon=Quest Icon
 
+Requirement=Fixt Relican Bind Shell
+Reply Text=I have the Sceptre, but it is a dead thing - fashioned darkwood with no spirit set in it at all.
+Go to node ID=47 Fixt Relican Binds Shell
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone WITH Spirit
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Find Scepter of Bone Relican XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -832,4 +869,14 @@ Should Have Voiceover=0
 Node ID=500 After Attack Relican
 Text=I trust you have come to your senses? Let us continue with our plans.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=47 Fixt Relican Binds Shell
+Text=Empty? Then it is fortunate you brought it to a necromancer and not to a priest. Hold it out, and do not flinch. Wraith - attend me. There. Crudely done, and the thing inside it will hate you for the remainder of your life, but it will serve. Keep it. I find I have no appetite to carry the thing myself.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 dark wielder task 2
+Is Default Reply=1
+
 }

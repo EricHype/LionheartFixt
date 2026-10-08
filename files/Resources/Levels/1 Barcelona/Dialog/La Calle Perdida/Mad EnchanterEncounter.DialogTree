@@ -66,6 +66,16 @@ Node ID=05 Return Dialogue 1
 Text=I am still watching you. If what you have said proves untrue, I will see you join the spirits in this place.
 Should Have Voiceover=0
 
+Requirement=Fixt Enchanter Pact Available
+Reply Text=My word was true, and I can do better than words. There is a hidden city of wielders above this place, and a necromancer who means to take it. Their dead could be yours.
+Go to node ID=70 Fixt Pact 1
+Icon=Quest Icon
+
+Requirement=Fixt Enchanter Sceptre Bindable
+Reply Text=I carry a sceptre of darkwood with nothing inside it. Fill it.
+Go to node ID=75 Fixt Sceptre
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=I did not lie to you - you will see that my words are true. Goodbye.
 Go to node ID=
@@ -285,7 +295,7 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=Very well. I shall see if I can open the portal by talking to the spirits.
-Go to node ID=
+Go to node ID=61 Fixt Bound Token
 Action work in progress=(Enchanter Pacify, Won't Attack Unless Attacked First)
 Custom Action=CTriggerRelayAction
 {
@@ -401,4 +411,76 @@ Custom Action=CTriggerRelayAction
 Relay Name=Talk Enchanter to Death
 }
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=61 Fixt Bound Token
+Text=Wait. My servants will not spare you as I have, and I would not have my only theory die in the dark with you. Take this - I bound it myself, in the years when my hands were still steady. The thing within is content to be worn. It has waited a long while for that.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You have my thanks, enchanter.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt give Trapped Spirit Amulet
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=70 Fixt Pact 1
+Text=A city of wielders. Beneath Barcelona, and I never felt it through the walls of this place. Name this necromancer of yours, southerner - and do not lie to me twice.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=He is called Relican. He was their student once. He intends to be their master.
+Go to node ID=71 Fixt Pact 2
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have said too much already. Forget that I spoke.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=71 Fixt Pact 2
+Text=Relican. I knew that name when it was still spoken with contempt - a boy with a gift for grave dirt and no patience for the work. So the boy has teeth now. Then carry him my service, and when he holds his city he will unmake this prison and let me walk out of it. Until that day, wear this as the seal of our bargain.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=He will have your service, and I will carry your seal.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Enchanter Pact
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt give Trapped Spirit Amulet
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=75 Fixt Sceptre
+Text=Darkwood, shaped and hollowed, and not one spirit set in it. Amontep's work or a poor copy of it - either way, to leave such a thing empty is an insult to the craft. Give it here. There. It will answer to you, and to Relican, and to no one else living.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It is heavier than it was.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt Bind Sceptre of Bone
+}
+Icon=Exit Icon
+Is Default Reply=1
+
 }

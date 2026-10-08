@@ -1,0 +1,76 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CIfAction
+					{
+						If=CIsQuestStateTheCurrentStateAction
+						{
+							Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+							State=UFG3W5T9
+						}
+						Then=CActivateQuestStateAction
+						{
+							Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+							State=K7MQ3XRB
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Action=CPlaySoundAction
+					{
+						Sound=Pickups/pick_up_club.ogg
+						Position=$Trigger
+					}
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_club.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=0
+	Encumbrance=2
+	On the ground=Items/PickUps/Misc Items/Wand_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Sceptre of Bone
+	Description=Fashioned darkwood that is but an empty shell without a spirit to power it.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Quest Items/Rod of Bone
+		Better=Items/Inventory Images/Quest Items/Rod of Bone
+		Special=Items/Inventory Images/Quest Items/Rod of Bone
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/!None
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Quest Items
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}

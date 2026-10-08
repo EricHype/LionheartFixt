@@ -1,0 +1,444 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=9
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CIfAction
+					{
+						If=CIsQuestStateTheCurrentStateAction
+						{
+							Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+							State=UFG3W5T9
+						}
+						Then=CActivateQuestStateAction
+						{
+							Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+							State=HZTN20XD
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Action=CPlaySoundAction
+					{
+						Sound=Pickups/pick_up_wand.ogg
+						Position=$Trigger
+					}
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=-250
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Karma
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride
+		{
+			Override Models=Array
+			{
+				Character Slot Types/!None=Models3D/!None/!None
+				Character Slot Types/Arm=Models3D/!None/!None
+				Character Slot Types/Arrow=Models3D/!None/!None
+				Character Slot Types/Body=Models3D/!None/!None
+				Character Slot Types/Bolt=Models3D/!None/!None
+				Character Slot Types/Finger=Models3D/!None/!None
+				Character Slot Types/Foot=Models3D/!None/!None
+				Character Slot Types/Hand=Models3D/!None/!None
+				Character Slot Types/Head=Models3D/!None/!None
+				Character Slot Types/HotKey=Models3D/!None/!None
+				Character Slot Types/Neck=Models3D/!None/!None
+				Character Slot Types/Shield=Models3D/!None/!None
+				Character Slot Types/Waist=Models3D/!None/!None
+				Character Slot Types/Weapon=Models3D/!None/!None
+			}
+			Override Names=Array
+			{
+				Character Slot Types/!None=
+				Character Slot Types/Arm=
+				Character Slot Types/Arrow=
+				Character Slot Types/Body=
+				Character Slot Types/Bolt=
+				Character Slot Types/Finger=
+				Character Slot Types/Foot=
+				Character Slot Types/Hand=
+				Character Slot Types/Head=
+				Character Slot Types/HotKey=
+				Character Slot Types/Neck=
+				Character Slot Types/Shield=
+				Character Slot Types/Waist=
+				Character Slot Types/Weapon=Wand
+			}
+			Override Active=0
+		}
+		PlugIn Behavior=CPlugInBehaviorDamage
+		{
+			Hit Or Miss=Damage Types/Damage Hit Or Miss/OneHandedMelee
+			Cache Hit Or Miss Result=1
+			Hit Margin=0
+			Damages=Array
+			{
+				Item Count=1
+				Damage=CXRPGDamage
+				{
+					Damage Type=Damage Types/Crushing
+					Damage Amount=CAdd
+					{
+						Operand1=CRandom
+						{
+							Operator=
+							Minimum=CConstant
+							{
+								Constant Value=2
+							}
+							Maximum=CConstant
+							{
+								Constant Value=8
+							}
+						}
+						Operator=
+						Operand2=CAdd
+						{
+							Operand1=CIfExpression
+							{
+								Condition=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Fighting/OneHandedMelee
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=50
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=0
+								}
+								OperatorPart2=
+								Value if False=CIfExpression
+								{
+									Condition=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Fighting/OneHandedMelee
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=100
+										}
+									}
+									OperatorPart1=
+									Value if True =CConstant
+									{
+										Constant Value=1
+									}
+									OperatorPart2=
+									Value if False=CIfExpression
+									{
+										Condition=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Fighting/OneHandedMelee
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=150
+											}
+										}
+										OperatorPart1=
+										Value if True =CConstant
+										{
+											Constant Value=2
+										}
+										OperatorPart2=
+										Value if False=CIfExpression
+										{
+											Condition=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Fighting/OneHandedMelee
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=200
+												}
+											}
+											OperatorPart1=
+											Value if True =CConstant
+											{
+												Constant Value=3
+											}
+											OperatorPart2=
+											Value if False=CIfExpression
+											{
+												Condition=CIsLessThan
+												{
+													Operand1=CVariableSkill
+													{
+														Skill=Skills/Fighting/OneHandedMelee
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=250
+													}
+												}
+												OperatorPart1=
+												Value if True =CConstant
+												{
+													Constant Value=4
+												}
+												OperatorPart2=
+												Value if False=CIfExpression
+												{
+													Condition=CIsLessThan
+													{
+														Operand1=CVariableSkill
+														{
+															Skill=Skills/Fighting/OneHandedMelee
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=300
+														}
+													}
+													OperatorPart1=
+													Value if True =CConstant
+													{
+														Constant Value=5
+													}
+													OperatorPart2=
+													Value if False=CConstant
+													{
+														Constant Value=6
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Operator=
+							Operand2=CIfExpression
+							{
+								Condition=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/One-Handed Weapon Specialization
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=3
+								}
+								OperatorPart2=
+								Value if False=CConstant
+								{
+									Constant Value=0
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorAttack
+		{
+			Max Attack Range=55
+			Is Location Based=0
+			Can Use Slayer Mode=0
+			Can Use Sniper Mode=0
+			Action On Hit=
+			Action On Miss=
+		}
+		PlugIn Behavior=CPlugInBehaviorPlaySequence
+		{
+			Granny Animations=Array
+			{
+				Item Count=0
+			}
+			Sequence Name=AttackOneHanded
+			Random Sequence Selection=1
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Very Fast
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=0.2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Speed/Attack Animation Speed Multiplier
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Bound Spirit
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=8
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Thought/Defensive
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Thought/Electrical
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Thought/Fire
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Thought/Ice
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Tribal/Defensive
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Tribal/Domination
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Tribal/Summoning
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=2
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Magic Tribal/Wounding
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_club.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wand_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Sceptre of Bone
+	Description=Enchanted darkwood that contains a bound spirit. Carrying the sceptre confers 2 skill points in the Thought and Tribal spell disciplines. Equipping the sceptre may cause others to react negatively towards you. When used as a magical club, it is a One-Handed weapon that does %s[damage].
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Quest Items/Rod of Bone
+		Better=Items/Inventory Images/Quest Items/Rod of Bone
+		Special=Items/Inventory Images/Quest Items/Rod of Bone
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Weapon
+	Sub Slot Used In=0
+	Number Hands Needed=One
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Quest Items
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone WITH Spirit
+}

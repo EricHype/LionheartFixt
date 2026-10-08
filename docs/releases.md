@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.38.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.39.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,189 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.39.0 - the Enchanter's Bargain
+
+The Trapped Ether Plane is a complete, shipped side-area behind a well in La Calle Perdida that most
+players never open. It holds a mad necromancer who has spent an age hoarding the spirits of
+everyone who ever fell in, and in vanilla there are exactly two things you can do about him: kill
+him in a fight, or talk him into destroying himself. Both drop `Kublai Khans Sword` and gold.
+
+There is a third, and it pays nothing at all.
+
+### The route vanilla built and never rewarded
+
+`50 Escape` -> `55 Escape 2` -> `57 Escape 3` -> `59 Winner` is a complete non-lethal resolution.
+You argue that the spirits he has been hoarding have absorbed enough power to charge the crystal he
+built before he lost his mind:
+
+> *"Then at least allow me to prove my theory - should I fail, you will kill me anyway, so what do
+> you have to lose? Spare my life, and I may be able to help us all escape."*
+
+> **`59 Winner`:** *"Very well. I shall grant you your life to test your theory - but my undead
+> servants are another matter. Now leave - and know that I will be watching you."*
+
+That fires `Pacify Enchanter in Dialog`, which strips his hostility and re-adds him as a talkable
+NPC at `05 Return Dialogue 1`. So the shipped game already supports him **alive, pacified and
+re-talkable**, and `Well 5 door` is `Trigger Only Once=0` / `Is Locked=0`, so the plane can be
+re-entered freely afterwards. Nothing had to be built to make him survive.
+
+**And every step of that route is ungated** -- `Requirement=!None` the whole way. It is not a
+Speech wall; it is a conversation you can have at any skill level, as long as you do not tell him
+to his face that he lost his mind, which routes to `53 Whoops` and a fight.
+
+### He is Relican
+
+This is the part that makes the whole release feel found rather than invented. Exactly **two cans
+in the game** use `Races/NPCs/Relican` and `Characters/NPC/Barcelona/Wielders/Relican`:
+
+| can | race | model |
+|---|---|---|
+| `Relican.can` | `Races/NPCs/Relican` | `.../Wielders/Relican` |
+| `Trapped Wizard.can` | `Races/NPCs/Relican` | `.../Wielders/Relican` |
+
+Nothing else. Same race, same model, same spell list -- Spike and Lightning Bolt. The Mad Enchanter
+was built out of Lord Relican, and his character template even lives in
+`Character Templates/La Calle Perdida/`. Two necromancers sharing one asset, and the link exists in
+the art and the statistics and nowhere in the writing.
+
+The writing does reach for it once. At `43 Barter 2` the player offers *"Does the prospect of
+gathering more spirits interest you?"*, tagged `<Bluff>`, and he provisionally accepts -- *"So, you
+barter with your life, do you?... I shall let you live"* -- and then `05 Return Dialogue 1` is him
+watching to see whether you meant it. **There is no mechanism to deliver on it or to betray it.**
+It is a lie told to survive, with nothing behind it.
+
+### What this adds
+
+| how you resolve him | the Sceptre | what you get |
+|---|---|---|
+| **kill him** | Relican binds it | `Kublai Khans Sword` + gold -- vanilla, untouched |
+| **spare him** | he binds it | **Amulet of the Trapped Spirit** |
+| **ally him to Relican** | he binds it willingly | **+ the Ring**, and the pair's set bonus |
+
+Three new nodes carry the pact, gated on a requirement can that tests whether the Dark Wielder
+initiation was ever activated:
+
+> **`71 Fixt Pact 2`:** *"Relican. I knew that name when it was still spoken with contempt - a boy
+> with a gift for grave dirt and no patience for the work. So the boy has teeth now. Then carry him
+> my service, and when he holds his city he will unmake this prison and let me walk out of it.
+> Until that day, wear this as the seal of our bargain."*
+
+He stays in the plane, deliberately. Moving him into La Calle Perdida would need a new NPC placement
+colliding with the `Player sided with Relican` state, and it would break his own fiction -- being
+trapped is the whole of his problem. The bargain is that Relican frees him *later*; he arms you
+*now*.
+
+### The two items
+
+The anchor is not `Wielders Charm find Calle` (+5 Mana Capacity), which is a quest key that happens
+to sit in the Neck slot. It is the object in the same fiction: `Rod Spirits WITH Spirit`, an item
+powered by a bound spirit, advertises +25 Mana Capacity and +2 to two whole disciplines, and
+`Ring of Richard Lionheart` gives +30.
+
+| | Amulet of the Trapped Spirit | Ring of the Trapped Spirit |
+|---|---|---|
+| slot | Neck | Finger |
+| | **+20 Mana Capacity** | **+10 Mana Capacity** |
+| | **+5 Spell Resistance** | **+1 to all four Thought and all four Tribal disciplines** |
+| both worn | **+10 Mana Capacity more** | |
+
+Mana is granted through `Mana Capacity Magic Enhancer`, not by editing `Mana Capacity` -- the
+engine already provides that hook and its own comment says so: *"Variable added to Mana Capacity to
+increase with magic items... Magic Items should add or subtract to this variable directly."* So the
+items follow `Ring of Richard Lionheart` exactly and `Mana Capacity` itself is never touched.
+
+The set bonus uses the engine's **only** mechanism for this. There is no `CHasItemEquipped` in the
+game; it counts. Each piece increments `Number of Trapped Spirit Items` with
+`Allow Accumulation=1`, and the Enhancer reads the total -- the idiom behind the Voodoo
+amulet/belt pair and `Skill Points Per Level`.
+
+### The Dark Wielders' missing step
+
+The Wielder initiation makes you earn the spirit in your rod. `Create a Rod of Spirits` gets the
+Darkwood, Cedric shapes it into `Rod Spirits NO Spirit`, and `Bind Spirit to Rod` sends you to
+Galileo and then the Observatory, where `Solar System relay` swaps the shell for the finished wand.
+
+The Dark Wielder initiation has the same two items and no middle step:
+
+| path | shell | spirited | bind quest |
+|---|---|---|---|
+| Wielders | `Rod Spirits NO Spirit` -- **3** files | `WITH Spirit` -- **4** | **`Bind Spirit to Rod`** |
+| Dark Wielders | `Rod Bone NO Spirit` -- **nothing** | `WITH Spirit` -- **3** | **none** |
+
+Both shells carry the same authored description: *"Fashioned darkwood that is but an empty shell
+without a spirit to power it."* `Create a Rod Of Bone` only ever says recover the Sceptre from
+DaVinci and hand it to Relican, and it arrives already spirited. The shell was written, described,
+and never placed.
+
+So DaVinci's chamber now yields the shell, the quest gains a third state describing it, and the
+spirit is bound at the ether plane with the Observatory's exact shape -- `CIfAction` on (quest state
+AND holding the shell) -> remove shell, give spirited, advance the state.
+
+### The fallback, which the reorder made mandatory
+
+Relican's turn-in **hard-checks** for the spirited sceptre with
+`CActionCheckForInventoryItem`. Kill the Enchanter -- the most likely outcome -- or never find the
+well at all, and a player would hold an unfillable shell with the initiation stuck forever.
+
+So Relican binds it himself if asked, wraith in attendance, which is well within an Arch
+Necromancer's power and keeps his characterisation from `45 Rod Bone Returned`, where he hands the
+sceptre back because he does not care to carry it:
+
+> **`47 Fixt Relican Binds Shell`:** *"Empty? Then it is fortunate you brought it to a necromancer
+> and not to a priest. Hold it out, and do not flinch. Wraith - attend me. There. Crudely done, and
+> the thing inside it will hate you for the remainder of your life, but it will serve."*
+
+The Enchanter route stays the better one -- it also pays the ring and the set bonus -- but it is no
+longer load-bearing.
+
+### The title nothing granted
+
+`Ruler of Calle Perdida` -> **"Dark Lord of Calle Perdida"** reads: *"TITLE PERK: You have mastered
+the Dark Arts under the tutelage of Relican and delivered La Calle Perdida to the cruel whims of
+your mentor."*
+
+That describes the Summoning Ring's Yes branch word for word, and **nothing in the archive granted
+it** -- while its sibling `Exposer of Calle Perdida`, for the Inquisition betrayal, is granted by
+`InquisitorRaphael.DialogTree`. The evil ending was otherwise fully wired: Karma **-800**, XP from
+`Give Calle Perdida to Relican`, `Player sided with Relican` activated, Cedric notified, three good
+quests force-failed. Only the name for it was missing. The grant is copied from Raphael's, guard
+included.
+
+### An unbounded exploit in the retail game
+
+Found while making the bind safe, and worth stating plainly. As shipped,
+`Rod Bone WITH Spirit` grants its +2 to eight disciplines from
+**`CPlugInBehaviorPickUpAction`** with `Modification is permanent=1` and
+`Allow Accumulation=1`.
+
+Drop the sceptre. Pick it up. Another +2. **Without limit.**
+
+The modifiers move to `CPlugInBehaviorModifyCharacterWhenSelected` with `permanent=0`, which is
+what **57 of the game's 60** worn-stat items use. That closes the exploit and, incidentally, makes
+the bind idempotent -- the bonuses no longer depend on whether a give-action fires pickup
+behaviours.
+
+### One judgement call
+
+The bluff route also pacifies him, so a dark-path player who lied their way out would have taken
+the ring and never the amulet, leaving the set bonus permanently unreachable for a legitimate
+playstyle. The pact node therefore fires the amulet relay as well; `Trigger Only Once=1` guarantees
+exactly one amulet by either route.
+
+### A defect recorded and left alone
+
+`Rod Spirits WITH Spirit` -- the **Wielder** rod, on the good path -- advertises *"2 skill points in
+the Divine and Thought spell disciplines, as well as 25 to Mana Capacity"* and implements **none of
+it**: zero `CCharacterModifierSkill`, and its only derived modifier is attack-animation speed. That
+is a separate vanilla defect and is not bundled into this release.
+
+### What needs playing
+
+`EB1`-`EB18` in [`qa.md`](qa.md). **`EB7`** and **`EB12`** are the two that prove the release:
+EB7 is the Relican fallback, which is the only thing standing between the DaVinci swap and an
+unfinishable questline, and EB12 is the bind at the ether plane. This touches a questline that has
+**never been played at all**, so the whole Dark Wielder path is effectively new ground.
 
 ## 0.38.1 - the gating 0.38.0 should have had
 
