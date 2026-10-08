@@ -348,6 +348,27 @@ measuring itself; factions coming back 13-for-13 is evidence the grant detection
 
 ## Done so far
 
+### 0.37.0 - Monster Summoning levels 4 and 5
+
+The six cans were wired into the spell's tier ladder. **The tier table is not in the skill** --
+`Monster Summoning.Skill` references no cans at all; it fires a `Spellcast` relay and selection
+happens in `Spell Projectiles/Monster Summoning Instant Hit Projectile.InventoryItem`. That file
+branches on `single` versus `multi` and **the two sides are shaped differently**: single is a tier
+ladder on skill value, multi has no skill gating at all and draws from two flat pools.
+
+The single ladder now runs `< 50`, `< 100`, `< 150`, `< 200`, else -- keeping vanilla's own 50-point
+spacing, where tier 3 previously covered skill 100 to the cap. The multi high pool grew from 3 to 9.
+Tier 4 and 5 blocks are **clones of the tier-3 block with the can names swapped**, so each keeps its
+`CAddAIAction` mana upkeep byte-for-byte; both verified at 3 mana.
+
+Two instructive failures on the way: assuming the two branches were identical ladders, and getting
+the conditional's fields wrong -- `CIfExpressionAction` takes **`If Expression`**, plus
+`Character to get attributes from`, and has **no** `Return failure` tail, unlike `CConditionalAction`.
+
+`SM1`-`SM14` in [`qa.md`](qa.md). **`SM10` is worth knowing in advance**: all six races carry
+`Display Name=Black Wolf` in vanilla, so a summoned Rock Titan will probably be *called* a Black Wolf
+until that is fixed deliberately.
+
 ### 0.36.0 - the Templar set
 
 **`Helm of the Templars` was unfinished, which is very likely why nobody placed it.** A
@@ -430,9 +451,7 @@ Tested by `TS1`-`TS10` in [`qa.md`](qa.md).
 
 In rough order of how little invention each needs:
 
-1. **The two summon tiers.** Six finished cans with dedicated races and working art, gated behind a
-   missing reference in the skill's tier table. Nothing to design. The only real question is what the
-   level-4 and level-5 thresholds should be.
+1. ~~**The two summon tiers.**~~ **Done in 0.37.0** -- see below.
 2. **`DaVinci Tank Gear`** -- names its own quest-giver, who is a live NPC with dialogue.
 3. **`Goblin Slayer`.** `Goblin Kill Counter` is already live and already written by six files;
    this is a threshold read away. Moved up from last place after the counter claim was corrected.

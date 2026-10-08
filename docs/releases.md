@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.36.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.37.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,92 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.37.0 - A Rock Titan of Your Own
+
+The top pick off [`unused-content.md`](unused-content.md), taken one release after the list was
+written.
+
+**`Summoned Cans/Monster Summoning Level 4 01/02/03` and `Level 5 01/02/03` are referenced by nothing
+at all** in the shipped game. Six cans, each with its own dedicated `.Race` and a working model:
+
+| tier | creature | HP |
+|---|---|---|
+| Level 4 01 | `Characters/Monsters/Snake Women` | 90 |
+| Level 4 02 | `Characters/Monsters/Ogre variant` | 120 |
+| Level 4 03 | `Characters/Monsters/Wererat boss` | 90 |
+| Level 5 01 | **`Characters/Monsters/Rock Titan Blue`** | **170** |
+| Level 5 02 | `Characters/Monsters/Desert Beast` | 120 |
+| Level 5 03 | `Characters/Monsters/Sand Spirit` | 120 |
+
+So a Tribal mage's summon ceiling was a **Wolf 03**, forever, no matter how far the skill went. This
+is content that was finished and then disconnected -- not cut, not unfinished, just unwired.
+
+### The tier table is not in the skill
+
+`Monster Summoning.Skill` references **no cans at all**. It fires a `Spellcast` relay, and selection
+happens in `Spell Projectiles/Monster Summoning Instant Hit Projectile.InventoryItem`, which branches
+on `CSkillsNamedExpressionExpression(Monster Summoning, "single")`.
+
+**The two sides of that branch are shaped completely differently**, which is the thing worth
+recording:
+
+| branch | shape |
+|---|---|
+| **single** | a tier ladder on skill value -- `CIsLessThan 50`, `CIsLessThan 100`, else |
+| **multi** | **no skill gating at all** -- two sequential draws, a low/mid pool of 5 and a high pool of 3 |
+
+Tier 3 previously covered skill **100 all the way to the cap** -- two thirds of the range on a single
+tier, which is itself the clue that the ladder was meant to continue.
+
+### What changed
+
+**The single ladder now continues**, on vanilla's own 50-point spacing:
+
+| skill | summons |
+|---|---|
+| < 50 | Guard Dog 01, Wolf 01 |
+| < 100 | Guard Dog 02, Vodyanoi 02, Wolf 02 |
+| **< 150** | Guard Dog 03, Vodyanoi 03, Wolf 03 -- *contents unchanged, now bounded above* |
+| **< 200** | Snake Women, Ogre variant, Wererat Boss |
+| **200+** | **Rock Titan Blue**, Desert Beast, Sand Spirit |
+
+**The multi high pool grew from 3 to 9**, taking all six new cans. No new threshold there: multi is
+already gated behind high skill by the spell's own `multi` expression, and turning that side into a
+ladder would be a far larger change for no gameplay gain.
+
+**Tier 4 and tier 5 are clones of the tier-3 block with the can names swapped.** Every tier carries a
+`CAddAIAction` that drains mana for upkeep -- the thing that makes a summon cost something -- and
+cloning preserves it byte-for-byte rather than rebuilding it by hand. Both new tiers verified at
+**3 mana**, the same as every existing tier. A high-tier summon that cost nothing to maintain would
+have been the obvious way to get this wrong.
+
+### Three attempts, two instructive failures
+
+**The first assumed the two branches were identical ladders.** They are not, and the assertion that
+caught it was a content check -- the second "ladder" turned out to be a 1,304-byte block with no
+tier-3 cans in it at all.
+
+**The second got the conditional's fields wrong.** In this game `CIfExpressionAction` takes
+**`If Expression`** (not `Expression`), plus `Character to get attributes from`, and carries **no**
+`Return failure` tail -- unlike `CConditionalAction`, which does. Reading the first
+`CIfExpressionAction` in the file was misleading, because that one is the single/multi branch and uses
+a `CSkillsNamedExpressionExpression` condition rather than a skill comparison.
+
+Both failures are the same shape as the ones recorded in `unused-content.md`: assuming a structure
+rather than reading a working instance of it.
+
+### What needs playing
+
+`SM1`-`SM14` in [`qa.md`](qa.md). **`SM1`** is the row this exists for -- summon at skill 200+ and see
+a Rock Titan. **`SM5`** is the one that matters structurally: watch mana drain while a tier-5 summon
+is alive, because if a high summon is free to maintain then the cloned upkeep did not come across.
+**`SM3`** confirms tier 3's contents did not move.
+
+And **`SM10` is worth knowing in advance**: all six races carry `Display Name=Black Wolf` in vanilla,
+copied from the wolf summon and never renamed, so a summoned Rock Titan is currently *called* a Black
+Wolf. That is pre-existing rather than new, and is left for a deliberate fix rather than folded in
+here.
 
 ## 0.36.0 - The Templar Set
 

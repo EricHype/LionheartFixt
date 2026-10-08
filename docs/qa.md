@@ -1473,6 +1473,75 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Monster Summoning: the top two tiers were unreachable
+
+From the unused-content survey: **`Summoned Cans/Monster Summoning Level 4 01/02/03` and
+`Level 5 01/02/03` are referenced by nothing at all.** Six cans, each with its own dedicated `.Race`
+and a working model, finished and disconnected -- the top two tiers of the Tribal summoning line.
+
+One tell that they were abandoned mid-polish: **all six races are named `Black Wolf`**, copied from
+the wolf summon and never renamed. The same signature as the Templar helm keeping its shield art.
+
+### Where the tier table actually lives
+
+Not in the skill. `Monster Summoning.Skill` references **no cans at all** -- it fires a `Spellcast`
+relay, and selection happens in
+`Spell Projectiles/Monster Summoning Instant Hit Projectile.InventoryItem`. That file branches on
+`CSkillsNamedExpressionExpression(Monster Summoning, "single")`, and **the two sides are shaped
+completely differently**:
+
+| branch | shape |
+|---|---|
+| **single** | a tier ladder on skill value -- `CIsLessThan 50`, `CIsLessThan 100`, else |
+| **multi** | **no skill gating at all** -- two sequential draws, a low/mid pool of 5 and a high pool of 3 |
+
+Tier 3 previously covered skill **100 all the way to the cap**, two thirds of the range on one tier,
+which is itself a sign the ladder was meant to continue.
+
+### What changed
+
+**The single ladder now continues**, keeping vanilla's own 50-point spacing:
+
+| skill | summons |
+|---|---|
+| < 50 | Guard Dog 01, Wolf 01 |
+| < 100 | Guard Dog 02, Vodyanoi 02, Wolf 02 |
+| **< 150** | Guard Dog 03, Vodyanoi 03, Wolf 03 -- *contents unchanged, now bounded* |
+| **< 200** | **Snake Women** (90 HP), **Ogre variant** (120), **Wererat Boss** (90) |
+| **200+** | **Rock Titan Blue** (170 HP), **Desert Beast** (120), **Sand Spirit** (120) |
+
+**The multi pool grew from 3 to 9**, adding all six new cans to the high draw. No new threshold there:
+multi is already gated behind high skill by the spell's own `multi` expression, and restructuring that
+side into a ladder would be a much larger change for no gameplay gain.
+
+**The tier-4 and tier-5 blocks are clones of the tier-3 block with the can names swapped.** Every tier
+carries a `CAddAIAction` that drains mana for upkeep -- the thing that makes a summon cost something --
+and cloning preserves it byte-for-byte rather than rebuilding it by hand. Both new tiers verified at
+**3 mana** upkeep, the same as every existing tier.
+
+**Three attempts, two instructive failures.** The first assumed the single and multi branches were
+identical ladders; they are not. The second got the conditional's fields wrong -- in this game
+`CIfExpressionAction` takes **`If Expression`** (not `Expression`), plus
+`Character to get attributes from`, and carries **no** `Return failure` tail, unlike
+`CConditionalAction`.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SM1 | **The row this exists for.** A Tribal caster with **Monster Summoning at 200+**. Cast it | - | A **Rock Titan**, a Desert Beast or a Sand Spirit. No summon above tier 3 has ever appeared in this game |
+| SM2 | The same caster at **150-199** | - | Snake Women, an Ogre variant or a Wererat Boss -- tier 4 |
+| SM3 | At **100-149** | - | Guard Dog 03 / Vodyanoi 03 / Wolf 03, exactly as before. **This tier's contents did not change**, it is only bounded above now. If it changed, the splice hit the wrong block |
+| SM4 | At **under 50**, and then **50-99** | - | The two lowest tiers, unchanged. These were not touched at all |
+| SM5 | **The upkeep row.** Watch your mana while a tier-4 or tier-5 summon is alive | - | It drains, at the same rate as a low-tier summon -- **3 mana** per tick. If a high summon is free to maintain, the cloned `CAddAIAction` did not come across and that is a real bug |
+| SM6 | Let a tier-5 summon expire or die | - | It vanishes cleanly like any other summon, and the drain stops. The clone carried the whole lifecycle, not just the creation |
+| SM7 | **The multi row.** Cast with multi-summon available (high skill) | - | Two creatures, and the second draw can now roll any of **9** options including the new six. Previously it drew from 3 |
+| SM8 | Cast single, then multi, then single again | - | No interference. The two branches are separate structures in the same file and the edit touched each independently |
+| SM9 | Judge whether a **Rock Titan** is too strong as a summon | - | It is 170 HP against the previous ceiling of a Wolf 03. This is the one number worth arguing about -- the cans are vanilla's own, but nobody has ever fought alongside one. If it trivialises fights, say so |
+| SM10 | Check the summon's name in the combat log and on hover | - | It will probably read **"Black Wolf"** -- all six races carry that display name in vanilla, copied from the wolf summon and never renamed. **Expected, not a new bug**, but worth confirming so it can be fixed deliberately rather than found by surprise |
+| SM11 | Try to maintain two summoning spells at once | - | Still refused. `CDisableRecastingOfSpellForSpellsDuration` was untouched, and the skill description says you may not |
+| SM12 | Cast `Raise Undead` and `Spiritual Knight` | - | **Unchanged.** They use their own projectiles -- `Raise Undead Instant Hit Projectile` draws `Zombie 01`, `Spiritual Knight` draws the five `Knight Templar` cans. Only Monster Summoning's projectile was edited |
+| SM13 | A **non-Tribal** character | - | Nothing changes. The edit is inside one spell's projectile |
+| SM14 | Watch for a summon appearing with no model or dropping through the floor | - | None. All six cans resolve to real `Cache/Models/*.mdl16` files and `Rock Titan Blue` also has a `Models3D/.../Rock Titan Blue.MODEL.GR2`, so no art is missing. But these have never been spawned, so this is the row that proves it |
+
 ## The Templar set - two items, one of them broken
 
 Asked in play: *"what are the other unused items? I didn't know the mine deed existed."* The full
