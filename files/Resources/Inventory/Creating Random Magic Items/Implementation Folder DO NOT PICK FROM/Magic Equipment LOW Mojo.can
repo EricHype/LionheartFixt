@@ -1,0 +1,27 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorMixedList
+	{
+		Items=Array
+		{
+			Array Count=2
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=10
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Generator Combinations/Misc Items/Amulet selection MAGIC LOW Mojo
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=10
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Generator Combinations/Misc Items/Ring selection MAGIC LOW Mojo
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

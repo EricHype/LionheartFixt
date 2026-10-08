@@ -139,6 +139,14 @@ entering the misc branch once at weighting 2 -- so magic equipment is **9%** of 
 scrolls and wands, rather than the **36%** that six separate branches would have produced. All 40
 enchantments across the six pools were verified implemented first. `WD1`-`WD16` in [`qa.md`](qa.md).
 
+**And gated by mojo in 0.38.1**, which 0.38.0 shipped without. `All Magic Equipment` is a
+`CInventoryItemGeneratorMojoList` on `CAverageMojo` at thresholds **7 / 16 / 999** -- vanilla's own,
+copied from `All Armor` -- with each tiered pool keeping every entry and zeroing the too-good
+rarities, the way `Armor LOW Mojo` does. Below mojo 7 only amulet and ring enchantments appear and
+nothing above Uncommon; Very Rare and Unique start at mojo 16, around the Crypt. Belt, Bracer, Cloak
+and Helmet have no Common or Uncommon enchantment at all, so they are absent from the lowest band by
+necessity rather than choice.
+
 ---
 
 ## Wands as a system

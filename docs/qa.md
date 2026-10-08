@@ -1520,6 +1520,32 @@ against the ~9% scrolls and wands each get. The composition is now:
 
 All **40** enchantments across the six pools were checked before wiring and every one is implemented.
 
+### Mojo gating, added in 0.38.1
+
+0.38.0 connected the pools with **no progression gating**, so a `5 Unique` ring could drop in act 1
+where median party mojo is 3-10. The pools weight rarity only softly -- mean weight falls Common 22.5,
+Uncommon 17.1, Rare 13.7, Very Rare 12.1, Unique 8.6 -- but `Ring Metal Fist` and `Helmet Sylvant` are
+both `5 Unique` at weight **20**.
+
+`All Magic Equipment` is now a **`CInventoryItemGeneratorMojoList`** with
+`Mojo Expression=CAverageMojo`, at thresholds **7 / 16 / 999** -- the same thresholds vanilla's
+`All Armor` uses, not invented ones. And each tiered pool follows the `Armor LOW Mojo` idiom: it keeps
+**every entry its parent had** and sets `Weighting=0` on the too-good rarities, so a diff shows weights
+moving rather than entries disappearing.
+
+| average party mojo | pools | live enchantments | rarities |
+|---|---|---|---|
+| **<= 7** | 2 -- Amulet, Ring | **9** | Common, Uncommon |
+| **<= 16** | 6 -- all | **22** | + Rare |
+| **> 16** | 6 -- all | **40** | + Very Rare, Unique |
+
+**Belt, Bracer, Cloak and Helmet have no Common or Uncommon enchantment at all** -- every one is Rare
+or above -- so at the LOW band all four would have been pools with every weight zeroed. Viability was
+checked before building and they are left out of that band rather than shipped empty. That is a
+property of vanilla's rarity assignments, not a design choice.
+
+For scale, from the mana survey: act 1 median mojo is 3-10, the Crypt 18, Nostradamus 26, Alamut 40.
+
 ### What was deliberately left out
 
 **`Fire and Ice` and `Mage`**, the other two wands in `Wands/Special/`, are **description-only
@@ -1540,7 +1566,12 @@ connecting something unreachable. `Bolt` and `Arrow` are ammunition in the same 
 | WD5 | Try a wand you find | - | It casts, and spends a charge. The `CPlugInBehaviorWand` machinery was always complete; only the placement was missing |
 | WD6 | **The balance row.** Judge whether loot now feels too generous | - | Magic equipment is **9%** of one branch of one generator. If the game now rains magic items, that share is the dial. This is the row I would most expect to need adjusting |
 | WD7 | Check whether magic equipment appears in **shops** as well as drops | - | Whatever vanilla does. Merchant inventories were not touched, so if shops draw from the same generator they will stock it too -- worth knowing either way |
-| WD8 | Judge the **power** of the new enchantments at the act you find them | - | They are vanilla's own, with vanilla's own rarity tiers, and no mojo gating was added. A Very Rare ring in act 1 would be a real concern -- `Small Trinkets` and the mojo-tiered armour lists suggest the game gates elsewhere, and this branch does not |
+| WD8 | Judge the **power** of the new enchantments at the act you find them | - | **Gated as of 0.38.1** -- see the three bands below. 0.38.0 shipped this branch with no progression gating at all, which was the one real defect in it |
+| WD8a | **Act 1, low mojo.** Play the Gate District, Port District and sewers and watch magic equipment | - | **Amulets and rings only**, and nothing rarer than Uncommon -- 9 live enchantments. No magic belts, bracers, cloaks or helmets at all, because none of those has a Common or Uncommon enchantment to offer |
+| WD8b | **Mid game, mojo 7-16.** Montserrat, Montaillou | - | All six slots now, up to **Rare** -- 22 live enchantments. Still nothing Very Rare or Unique |
+| WD8c | **The Crypt onward, mojo above 16** | - | The full **40**, including Very Rare and Unique. A `Ring Metal Fist` or `Helmet Sylvant` is fair here and was not in act 1 |
+| WD8d | **The row that proves the gate is real.** Find any magic equipment in act 1 and check its rarity in the item description | - | Never above Uncommon. If a Very Rare or Unique turns up early, the mojo list is not being consulted and the gating has failed |
+| WD8e | Compare against **vanilla armour** drops at the same points | - | They should feel consistent -- the thresholds are literally vanilla's own 7 / 16 / 999 from `All Armor`, so magic equipment and armour now step up together |
 | WD9 | Look for an item that appears **unenchanted but named** as if magic | - | None. All 40 enchantments were verified implemented before wiring, unlike the two wand shells |
 | WD10 | Fight in act 1 and 2 and watch drops | - | Changed only as much as those acts draw from `1 MASTER ALL Items in the game`. Most early maps use their own tables, so the shift should be smaller there |
 | WD11 | **Potions and scrolls** | - | **Unchanged.** Both branches were already connected and their weightings were not touched |

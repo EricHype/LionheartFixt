@@ -1,0 +1,54 @@
+[size=150][b]Lionheart Fixt 0.38.1 - magic loot now respects where you are[/b][/size]
+
+0.38.0 made magic equipment drop for the first time. It also shipped it [b]completely ungated[/b] — a
+legendary ring could have turned up in the Gate District in the first hour.
+
+That was in 0.38.0's own test notes as an open worry rather than something I'd fixed. This fixes it.
+
+[b]Why it needed fixing[/b]
+
+The original game's enchantment lists do make rare things rarer — but only gently. A [i]Unique[/i] ring and
+a [i]Common[/i] ring sit at the [b]same weight[/b] in a couple of cases. Nothing stopped the best items in
+their slot appearing immediately.
+
+[b]How it works now[/b]
+
+Magic equipment steps up at [b]exactly the same points armour already did[/b] — I read the thresholds off
+the game's own armour generator rather than picking numbers.
+
+| where you are | what magic equipment you can find |
+|---|---|
+| [b]early — Barcelona, the sewers[/b] | [b]amulets and rings only[/b], nothing above Uncommon |
+| [b]mid — Montserrat, Montaillou[/b] | all six slots, up to Rare |
+| [b]the Crypt onward[/b] | everything, including Very Rare and Unique |
+
+Nine of the forty enchantments are available early. Twenty-two by mid-game. All forty from the Crypt.
+
+I also used the game's own technique for this: its low-tier armour list doesn't *remove* plate mail,
+it keeps it listed at zero chance. These do the same, so the tiers stay comparable to what they came
+from.
+
+[b]Why no magic belts or helmets early[/b]
+
+You'll find magic amulets and rings in act 1, but no belts, bracers, cloaks or helmets — and that
+isn't me being stingy.
+
+[b]Every single enchantment for those four slots is Rare or better in the original game.[/b] There is no
+such thing as a plain Uncommon belt enchantment. So those slots simply have nothing to offer at low
+level, and they start appearing once Rare items do.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+Works on [b]any save[/b]. If you installed 0.38.0, this replaces it and you want it.
+
+[b]If you play it[/b]
+
+[b]The check that matters:[/b] find any magic equipment in act 1 and look at its rarity. It must never
+read above [b]Uncommon[/b]. If something Very Rare or Unique turns up early, the gate isn't working and I
+need to know.
+
+[b]And the judgement call:[/b] do magic items and armour now feel like they improve together as you go?
+They share thresholds exactly, so they should — but that's the sort of thing you only notice by
+playing it.

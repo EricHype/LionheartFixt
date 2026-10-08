@@ -1,0 +1,63 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorAdditionalMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Amulet
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=7
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Amulets/Ancestral Worship
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=15
+				Addition=Inventory/Inventory Additions/Miscellaneous/Amulets/Cold Resistance
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Amulets/Fire Resistance
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Amulets/Night
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Amulets/Poison Resistance
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=25
+				Addition=Inventory/Inventory Additions/Miscellaneous/Amulets/Protection
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Amulets/Undead Turning
+				Level=4
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

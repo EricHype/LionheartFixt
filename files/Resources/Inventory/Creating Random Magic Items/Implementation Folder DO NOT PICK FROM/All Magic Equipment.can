@@ -1,56 +1,35 @@
 CCannedObject
 {
-	Object=CInventoryItemGeneratorMixedList
+	Object=CInventoryItemGeneratorMojoList
 	{
+		Mojo Expression=CAverageMojo
+		{
+		}
 		Items=Array
 		{
-			Array Count=6
-			Array Item=CInventoryItemGeneratorMixedListItem
+			Array Count=3
+			Array Item=CInventoryItemGeneratorMojoListItem
 			{
-				Weighting=10
+				Max Mojo=7
 				Item=CInventoryItemGeneratorCannedList
 				{
-					Canned Item List=Inventory/Generator Combinations/Misc Items/Amulet selection MAGIC
+					Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/Magic Equipment LOW Mojo
 				}
 			}
-			Array Item=CInventoryItemGeneratorMixedListItem
+			Array Item=CInventoryItemGeneratorMojoListItem
 			{
-				Weighting=10
+				Max Mojo=16
 				Item=CInventoryItemGeneratorCannedList
 				{
-					Canned Item List=Inventory/Generator Combinations/Misc Items/Belt selection MAGIC
+					Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/Magic Equipment MEDIUM Mojo
 				}
 			}
-			Array Item=CInventoryItemGeneratorMixedListItem
+			Array Item=CInventoryItemGeneratorMojoListItem
 			{
-				Weighting=10
+				Max Mojo=999
 				Item=CInventoryItemGeneratorCannedList
 				{
-					Canned Item List=Inventory/Generator Combinations/Misc Items/Bracer selection MAGIC
-				}
-			}
-			Array Item=CInventoryItemGeneratorMixedListItem
-			{
-				Weighting=10
-				Item=CInventoryItemGeneratorCannedList
-				{
-					Canned Item List=Inventory/Generator Combinations/Misc Items/Cloak selection MAGIC
-				}
-			}
-			Array Item=CInventoryItemGeneratorMixedListItem
-			{
-				Weighting=10
-				Item=CInventoryItemGeneratorCannedList
-				{
-					Canned Item List=Inventory/Generator Combinations/Misc Items/Helmet selection MAGIC
-				}
-			}
-			Array Item=CInventoryItemGeneratorMixedListItem
-			{
-				Weighting=10
-				Item=CInventoryItemGeneratorCannedList
-				{
-					Canned Item List=Inventory/Generator Combinations/Misc Items/Ring selection MAGIC
+					Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/Magic Equipment HIGH Mojo
 				}
 			}
 		}

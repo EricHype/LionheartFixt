@@ -1,0 +1,51 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorAdditionalMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Helmet
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=5
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Helmets/Brilliant Speech
+				Level=2
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Helmets/Eagle
+				Level=2
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Helmets/Falcon
+				Level=2
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Helmets/Focused Logic
+				Level=2
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Helmets/Sylvant
+				Level=2
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

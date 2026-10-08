@@ -1,0 +1,57 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorAdditionalMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Belt
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=6
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Belts/Feral Power
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Belts/Monk
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Belts/Thief
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Belts/Titan Endurance
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Belts/Titan Strength
+				Level=4
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Belts/Voodoo
+				Level=4
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

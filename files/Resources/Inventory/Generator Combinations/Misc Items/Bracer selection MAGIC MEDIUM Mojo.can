@@ -1,0 +1,39 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorAdditionalMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Bracers
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=3
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=25
+				Addition=Inventory/Inventory Additions/Miscellaneous/Bracers/Archery
+				Level=2
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Bracers/Blessed Archery
+				Level=2
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Gauntlets/Defense
+				Level=2
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

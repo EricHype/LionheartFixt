@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.38.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.38.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,76 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.38.1 - the gating 0.38.0 should have had
+
+0.38.0 connected the magic equipment pools and shipped them **ungated**. Its own QA row said so --
+`WD8` recorded that no mojo gating had been added and that a Very Rare ring in act 1 would be a real
+concern. It would have been, and this closes it.
+
+### Why gating was needed
+
+The pools weight rarity, but only softly. Mean weight across the six:
+
+| rarity | n | mean weight |
+|---|---|---|
+| 1 Common | 2 | 22.5 |
+| 2 Uncommon | 7 | 17.1 |
+| 3 Rare | 13 | 13.7 |
+| 4 Very Rare | 7 | 12.1 |
+| 5 Unique | 11 | **8.6** |
+
+Monotonic, so the designers did intend rarer things to be rarer -- but `Ring Metal Fist` and
+`Helmet Sylvant` are both `5 Unique` at weight **20**, the same weight as a Common ring of Protection.
+At median act 1 mojo of 3-10, either could have dropped in the Gate District.
+
+### How it is gated
+
+`All Magic Equipment` is now a **`CInventoryItemGeneratorMojoList`** with
+`Mojo Expression=CAverageMojo` and three `CInventoryItemGeneratorMojoListItem` bands at
+**`Max Mojo` 7 / 16 / 999**.
+
+Those are **vanilla's own thresholds**, read off `All Armor` rather than chosen -- verified identical
+in the shipped bytes. So magic equipment now steps up at exactly the points armour already did.
+
+And each tiered pool follows the **`Armor LOW Mojo` idiom**: vanilla does not omit the heavy armours
+from the low band, it lists all six and sets `Weighting=0` on Hauberk, Plate and Full Plate. These do
+the same -- every tiered pool keeps **every entry its parent had**, with the too-good rarities zeroed,
+so a later diff shows weights moving rather than entries disappearing. That is asserted in the build.
+
+| average party mojo | pools | live enchantments | rarities available |
+|---|---|---|---|
+| **<= 7** | 2 -- Amulet, Ring | **9** of 40 | Common, Uncommon |
+| **<= 16** | 6 -- all | **22** of 40 | + Rare |
+| **> 16** | 6 -- all | **40** | + Very Rare, Unique |
+
+For scale, from the act 6 mana survey: act 1 median mojo is **3-10**, the Crypt **18**, Nostradamus
+**26**, Alamut **40**. So a player sees magic amulets and rings early, the other four slots from
+Montserrat onward, and nothing Unique until the Crypt.
+
+### One thing the data decided rather than me
+
+**Belt, Bracer, Cloak and Helmet have no Common or Uncommon enchantment at all** -- every one of their
+18 enchantments is Rare or above. At the LOW band all four would therefore have been pools with every
+weight zeroed, which is not a pool so much as a hole.
+
+Viability was checked for all six pools at all three bands **before** building, and those four are
+left out of the lowest band rather than shipped empty. That is a property of vanilla's rarity
+assignments, not a design choice, and it is why the LOW band has two pools instead of six.
+
+### What was built
+
+11 new cans, all **generated from the rarity data** rather than hand-authored: two LOW-band pools
+(Amulet, Ring), six MEDIUM-band pools, and three band cans. `All Magic Equipment` was rewritten as the
+mojo list. The misc branch is untouched -- still 4-wide with plain equipment at weighting 17, verified
+in the shipped bytes.
+
+### What needs playing
+
+`WD8a`-`WD8e` in [`qa.md`](qa.md), which replace the old open `WD8`. **`WD8d`** is the one that proves
+the gate: find any magic equipment in act 1 and check its rarity -- it must never read above Uncommon.
+**`WD8e`** asks whether magic equipment and armour now feel like they step up together, which they
+should, since they share thresholds exactly.
 
 ## 0.38.0 - Magic Items Now Drop
 

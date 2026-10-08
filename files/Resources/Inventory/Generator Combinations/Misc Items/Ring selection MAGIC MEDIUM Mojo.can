@@ -1,0 +1,111 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorAdditionalMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Ring
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=15
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Arrow Dampening
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=25
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Brawler
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Cold Resistance
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Crushing Deflection
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Divine Attunement
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Fiery Death
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Fire Resistance
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Magical Devotion
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Metal Fist
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/One Handed Combat
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Poison Resistance
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Protection
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Snake
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Two Handed Combat
+				Level=3
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Addition=Inventory/Inventory Additions/Miscellaneous/Rings/Undead Summoning
+				Level=3
+			}
+		}
+	}
+	Use=Shared Global Instance
+}
