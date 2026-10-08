@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.33.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.34.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,138 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.34.0 - One Draught Each
+
+Asked in play, right after the enemy healer went in: *"can we give enemies a skill they can only use
+once to mimic an item?"*
+
+Yes -- and vanilla has been shipping one the whole time.
+
+### Enemies cannot use items, and never could
+
+Worth stating plainly first, because it is the reason a mimic is needed at all. **No item-use action
+class exists in the game data.** `CUseItemAction`, `CUseInventoryItemAction`, `CConsumeItemAction`,
+`CDrinkPotionAction`, `CEquipItemAction`, `CApplyInventoryAdditionAction` -- zero files, every one.
+
+An item's effect is **welded to the item**: a healing wand is `CPlugInBehaviorWand` wrapping a
+`CPlugInBehaviorLaunchAction` whose payload is `CGiveHealthToCharacterAction`, metered by a `Charges`
+expression and fired from the player's inventory screen. Nothing an AI does can reach it. And enemies
+carry no consumables -- **no monster can references a potion, scroll or wand**; the 35 that touch
+`CGenerateInventoryItemAction` are generating *drops*, which is the opposite direction.
+
+The `Fake Wand Spells` skills look like a way in and are not: `Cure Major Wounds` is an **862-byte
+stub** with no oval, no heal amount and no effect body, which is also why `ENEMY Magical Shield`
+borrows it as a convenient unlistable parent.
+
+### The one-shot was already there
+
+The Priest's shield is an item mimic and nobody had named it as one:
+
+```
+Shoot Completed=CSeriesAction
+  [1] CActionSelectSkill -> ENEMY Magical Shield     fires exactly ONCE
+  [2] CRandomAction      -> Fire Orb / Spike / Lightning Bolt
+  When Done=Repeat Last Action
+  Next Action Index=0
+```
+
+`CSeriesAction` advances **one item per execution**, and `When Done=Repeat Last Action` then loops the
+final item forever. So **anything in a non-final slot fires once**. The same mechanism walks a Mana
+Tome down its six declining grants before repeating an *empty* message.
+
+Two things had to be settled before building on it.
+
+**Health gating works.** There is no health-test *action* anywhere -- `CCheckHealthAction`,
+`CIsHurtAction`, `CVariableHealth` and `CCheckHitPointsAction` are all zero files. But
+**`CExpressionHealthPercent`** exists with **33 uses**, including the `Die Hard`, `Adrenaline Rush`,
+`Grace Under Fire` and `Displacement` perks and the Jafar duel, always in one shape: a
+`CExpressionAction` wrapping `CIsLessThanOrEqual{CExpressionHealthPercent, CConstant}`. Separately,
+`(HP) Hit Points` is the **maximum** and `CExpressionHitPointsRemaining` the **current** -- vanilla
+subtracts one from the other to heal to full in the Gate District, which is how the two were told
+apart.
+
+**And the series index is per instance, not per can.** `Next Action Index`, `Executed Action`,
+`Number Of Times Triggered` and `Has Triggered At Least Once` are all written into the template as
+zeroed mutable counters. If the index were shared, only the very first Priest in the game would ever
+shield.
+
+### What the veterans carry
+
+The twelve **veteran** English soldier cans -- `Soldier3` and `Soldier4` in all their variants -- now
+carry one healing draught each, in a `Damaged Script Action` that was **empty on all twelve**, a free
+hook that fires when the soldier is hurt.
+
+| can | max HP | drinks at | restores |
+|---|---|---|---|
+| `Soldier3` | 100 | 40 | 35 |
+| `Soldier3 Tough` | 123 | 49 | 43 |
+| `Soldier3 Super` | 148 | 59 | 52 |
+| `Soldier4` / `Soldier4 Mace` | 147 | 59 | 51 |
+| `Soldier4 Tough` / `Mace Tough` | 173 | 69 | 61 |
+| `Soldier4 Super` / `Mace Super` | 206 | 82 | 72 |
+| `Soldier4 Bow` | 115 | 46 | 40 |
+| `Soldier4 Bow Tough` | 137 | 55 | 48 |
+| `Soldier4 Bow Super` | 168 | 67 | 59 |
+
+It fires at or below **40%** health and restores **35% of that soldier's own maximum**, which
+self-scales across the ladder rather than needing a number per can, with a `Divine Strength` effect so
+the player can see it happen. **Burst damage beats it entirely** -- a soldier killed from full health
+never drops below the threshold while alive and never drinks.
+
+`Soldier1` and `Soldier2` carry nothing, and are byte-identical to what they were. That is also the
+in-fiction reason: a conscript does not have a draught.
+
+### A structure that was rejected
+
+The obvious build puts the health test *inside* the series, as a `CIfAction` with
+`Return failure if the If failes=1` so a failed test does not advance it. **That value has zero uses
+in vanilla** -- all **2,526** are `=0` -- so it was avoided rather than trusted.
+
+Instead the test sits *outside* the series. The series only executes when the soldier is already low,
+so its first execution is the drink and every execution afterwards lands on an inert `CSucceedAction`.
+Identical semantics, and every field value used is one vanilla exercises.
+
+### And the other two Priest tiers
+
+0.33.0 gave `ENEMY Healing` to the base `Priest` alone so that one can could prove the mechanism
+first. `Priest Tough` and `Priest Super` now carry it too, preset on **vanilla's own ladder for these
+exact cans**: `ENEMY Magical Shield` is 150 / 200 / 250 across the three, so the heal matches it --
+about **11-18**, **14-22** and **17-26 HP** per trigger.
+
+Three priests are deliberately excluded. `Priest Near Death` selects no skill at all and is a scripted
+one-off. The **Nostradamus Priest trio** is a separate act 5 family that casts the plain
+`Magical Shield` and rotates six selections rather than four, so it needs its own pass. And the
+**Priestess** line never had a shield.
+
+### A mistake, and why Gate 0 did not catch it
+
+The first build of the draughts sourced each can from the **vanilla archive** rather than through
+`lhbuild.read()`, which prefers `files/`. All twelve were already Fixt overrides carrying **13 bark
+references** and an attack bank from the bark release, and all of it was destroyed on twelve files at
+once.
+
+**Gate 0 passed.** It checks structure, canonical formatting, `Item Count` agreement and line endings
+-- none of which notices that content from an earlier release is simply gone. The only reason it was
+caught is that regenerating `mod.json`'s file list reported *"added: 0"* where twelve additions were
+expected.
+
+The files were restored from `HEAD` and the build now asserts that the bark count is unchanged and
+that the only textual difference is the hurt slot itself. `PO7` is the row that proves it in play
+rather than in a diff.
+
+### What needs playing
+
+`PO1`-`PO12` and `EH12`-`EH15` in [`qa.md`](qa.md), and **the backlog now matters more than usual**:
+`EH5` and `EH1` from 0.33.0 are still unplayed, so this release stacks three priest tiers and twelve
+soldier cans on top of an unverified foundation. That is a deliberate trade, but if `EH5` fails then
+rather more comes back out than before.
+
+**`PO2` is the structural row**: keep fighting a soldier after it drinks. If it drinks twice, the
+series index is not per-instance and this whole mechanism needs rethinking. **`PO4`** confirms burst
+damage beats the draught. **`PO7`** is the bark regression. And **`PO10`** is the one nobody can
+predict -- a Priest healing soldiers who *also* drink their own draught. That stacking is intended,
+but it has never been seen.
 
 ## 0.33.0 - The Priest Heals
 

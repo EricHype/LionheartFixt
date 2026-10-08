@@ -1473,6 +1473,84 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Potion mimics - the veterans carry one draught each
+
+Asked in play: *"can we give enemies a skill they can only use once to mimic an item?"* Yes, and
+vanilla already ships one -- the Priest's shield. Two things had to be settled before building on it.
+
+**Can a one-shot be gated on health?** Yes. There is no health-test *action* in the game --
+`CCheckHealthAction`, `CIsHurtAction`, `CVariableHealth`, `CCheckHitPointsAction` are all **zero
+files** -- but **`CExpressionHealthPercent`** exists and is used **33 times**, including by the
+`Die Hard`, `Adrenaline Rush`, `Grace Under Fire` and `Displacement` perks and by the Jafar duel,
+always in one shape: a `CExpressionAction` wrapping
+`CIsLessThanOrEqual{CExpressionHealthPercent, CConstant}`. Separately, `(HP) Hit Points` gives the
+**maximum** and `CExpressionHitPointsRemaining` the **current** -- vanilla subtracts one from the
+other to heal to full in the Gate District, which is how the two were told apart.
+
+**Does one-shot mean once per spawn?** Yes. `CSeriesAction` advances one item per execution and
+`When Done=Repeat Last Action` then loops the final item -- that is how the Priest shields itself once
+and attacks forever, and how a Mana Tome walks down six declining grants. The index is per
+**instance**, not per can: `Next Action Index`, `Executed Action`, `Number Of Times Triggered` and
+`Has Triggered At Least Once` are all written into the template as zeroed mutable counters, and if the
+index were shared then only the very first Priest in the game would ever shield.
+
+### How it is wired, and one structure that was rejected
+
+The obvious build puts the health test *inside* the series as a `CIfAction` with
+`Return failure if the If failes=1`, so a failed test does not advance it. **That value has zero uses
+in vanilla** -- all **2,526** are `=0` -- so it was avoided rather than trusted.
+
+Instead the test sits *outside* the series. The series only ever executes when the soldier is already
+low, so its first execution is the drink and every execution afterwards lands on an inert
+`CSucceedAction`. Identical semantics, and every field value used is one vanilla exercises.
+
+It goes in **`Damaged Script Action`**, which was empty on all twelve cans -- a free hook that fires
+when the soldier is hurt. The draught restores **35% of the soldier's own maximum**, which self-scales
+across the family rather than needing a number per can, and fires at or below **40%** health. A
+`Divine Strength` effect plays so the player can see it happen.
+
+| can | max HP | drinks at | restores |
+|---|---|---|---|
+| `Soldier3` | 100 | 40 | 35 |
+| `Soldier3 Tough` | 123 | 49 | 43 |
+| `Soldier3 Super` | 148 | 59 | 52 |
+| `Soldier4` / `Soldier4 Mace` | 147 | 59 | 51 |
+| `Soldier4 Tough` / `Mace Tough` | 173 | 69 | 61 |
+| `Soldier4 Super` / `Mace Super` | 206 | 82 | 72 |
+| `Soldier4 Bow` | 115 | 46 | 40 |
+| `Soldier4 Bow Tough` | 137 | 55 | 48 |
+| `Soldier4 Bow Super` | 168 | 67 | 59 |
+
+**`Soldier1` and `Soldier2` are deliberately excluded** -- twelve cans, byte-identical to what they
+were. Only the veteran tiers carry a draught, which is also the in-fiction reason: a conscript does
+not have one.
+
+These cans are **shared with act 3 Montaillou and act 7**, so unlike 0.32.0's mana this is not
+act-6-only. That is intended here.
+
+**A mistake worth recording.** The first build of this sourced each can from the **vanilla** archive
+rather than through `lhbuild.read()`, which prefers `files/`. All twelve were already Fixt overrides
+carrying 13 bark references and an attack bank from the bark release, and all of it was destroyed --
+**and Gate 0 passed**, because the result was still structurally valid. It was caught only because
+regenerating `mod.json`'s file list reported *"added: 0"* when twelve additions were expected. The
+files were restored from `HEAD` and the build now asserts that the bark count is unchanged and that
+the only textual difference is the hurt slot itself.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PO1 | **The row this exists for.** Fight a `Soldier4 Super` (act 6 sieges, act 3 Montaillou, act 7). Take it below **40%** health without killing it | - | It **heals once**, about **72 HP**, with a visible `Divine Strength` flash. Then never again, however long the fight runs |
+| PO2 | Keep fighting the same soldier after it has drunk | - | **No second draught.** One per soldier, per spawn. If it drinks repeatedly, `CSeriesAction`'s index is not per-instance and this whole mechanism needs rethinking -- report it immediately |
+| PO3 | Hit a soldier **once** for light damage, well above 40% | - | **Nothing.** It does not waste the draught on a scratch. This is the half that the health gate buys, and the reason the potion is not simply in series position |
+| PO4 | Kill a fresh `Soldier4 Super` in one burst from full health | - | **No heal at all.** It never got below 40% while alive, so the draught is never drunk -- burst damage beats it, which is the intended counterplay |
+| PO5 | Fight a **`Soldier1`** or **`Soldier2`** of any variant | - | **No draught.** Only the Soldier3 and Soldier4 tiers carry one |
+| PO6 | Fight each of the twelve: `Soldier3` ×3, `Soldier4` ×3, `Soldier4 Bow` ×3, `Soldier4 Mace` ×3 | - | All drink, scaled to their own maximum -- 35 at the bottom of the ladder, 72 at the top |
+| PO7 | **The regression row.** Listen to the veterans in a long fight | - | Their **barks still work**. The first build of this destroyed the bark bank on all twelve cans; they were restored, but this is the row that proves it in play rather than in a diff |
+| PO8 | Watch a soldier's attacks after it drinks | - | **Unchanged.** The draught is in `Damaged Script Action`; the attack bank in `Shoot Completed` was not touched, and `Skill to select` counts are identical to before |
+| PO9 | Judge whether it changes the fight | - | A veteran should feel like it has **one more round in it** than before, not like a different enemy. If a `Soldier4 Super` now feels spongy, the dial is the 35% fraction or the 40% threshold -- say which direction |
+| PO10 | Fight a **mixed group**: a Priest plus veteran soldiers | - | The Priest heals them *and* they drink their own draught. That stacking is intended but has never been seen -- if it makes a group unkillable, this is the row that will say so |
+| PO11 | Check the drops after killing one | - | **Unchanged.** No drop table was touched; the veterans still drop no spirit energy, which is a separate note in the act 6 section |
+| PO12 | Look for the effect being visible | - | A `Divine Strength` flash at the soldier, with sound. If the heal happens invisibly the mechanic is unreadable and the effect needs changing -- it matters that the player can tell a potion was drunk |
+
 ## The first enemy healer in the game
 
 Asked in play: *"are there any enemy healers? I've never seen that."* There are none, and the
@@ -1525,8 +1603,21 @@ vanilla: shield itself **once**, then a `CRandomAction` over three offensive spe
 `When Done=Repeat Last Action` repeats forever. The heal is a **fourth entry in that random bank**, so
 roughly one cast in four is a heal.
 
-Only the **base `Priest`** is changed. `Priest Tough` and `Priest Super` are deliberately left alone
-until `EH1` says this works.
+**All three English Priest tiers carry it**, on vanilla's own ladder for these cans: `ENEMY Magical
+Shield` is preset 150 / 200 / 250 across `Priest` / `Tough` / `Super`, so the heal matches it exactly.
+With `MinHeal` base 3 step 17 and `MaxHeal` base 6 step 24 over an input range of 1 to 300, that is
+about **11-18**, **14-22** and **17-26 HP** per trigger.
+
+The base tier shipped alone in 0.33.0 so one can could prove the mechanism first; the other two were
+added at the request of the person playing it, **before `EH5` or `EH1` had been played**. That is a
+deliberate trade and it widens the untested surface from one can to three -- if `EH5` fails, three
+cans and a skill come back out rather than one.
+
+Three priests are deliberately **not** included. `Priest Near Death` selects no skill at all and is a
+scripted one-off rather than a tier. The **Nostradamus Priest trio** is a separate can family in act 5
+that casts the plain `Magical Shield` rather than the ENEMY variant and rotates six selections instead
+of four, so it needs its own pass. And the **Priestess** line is a different line -- it was given four
+offensive spells earlier and never had a shield.
 
 **The heal radius is a flat 200.** Of the 24 Priest generators in the game, **17 sit within 200 of a
 soldier or golem generator** (median 135) -- Crossroads to England at 40, Gate District Siege at 57,
@@ -1551,7 +1642,10 @@ why `EH5` exists and why it is the row to run first if anything behaves oddly.
 | EH9 | `Crossroads Siege` -- where the nearest soldier generator is **308** away, beyond the radius | - | The Priest heals **only itself**. Expected, not a bug: 7 of the 24 Priest placements are out of reach of anyone else |
 | EH10 | Act 3 `02 Hamlet Burned` and the act 7 shrine chambers, which also place Priests | - | Same behaviour. The can is shared, so this is not act-6-only -- unlike the mana change in the same release |
 | EH11 | Kill a Priest and check the drops | - | **Unchanged.** `English Priest Drop Action` was not touched; it carries no spirit energy, which is a separate note in the act 6 section |
-| EH12 | Fight `Priest Tough` and `Priest Super` | - | **No healing.** Only the base Priest carries it, on purpose, so one tier proves the mechanism before five more get it |
+| EH12 | Fight **`Priest Tough`**, then **`Priest Super`** | - | Both heal, and **harder**: presets 200 and 250 against the base tier's 150, so roughly **14-22** and **17-26 HP** per trigger. If a Super Priest out-heals your damage outright, that is the row to report and the preset is the dial |
+| EH13 | Compare the three tiers side by side if you can | - | The heal should scale with the tier the same way their shield already does -- the presets are copied from `ENEMY Magical Shield`'s own 150/200/250 ladder on these exact cans, not chosen freshly |
+| EH14 | Fight **`Priest Near Death`** | - | **No healing.** It selects no skill at all in vanilla and is a scripted one-off, so it was left alone |
+| EH15 | Fight the **Nostradamus Priests** in act 5 (`English in Caverns of Nostrodomus`) | - | **No healing.** A separate can family that casts the plain `Magical Shield` and rotates six selections rather than four; it needs its own pass rather than the same edit |
 
 ## Act 6 - the siege had no mana in it
 

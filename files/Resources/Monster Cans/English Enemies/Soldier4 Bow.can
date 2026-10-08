@@ -1316,7 +1316,74 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=
+		Damaged Script Action=CIfAction
+		{
+			If=CExpressionAction
+			{
+				Expression=CIsLessThanOrEqual
+				{
+					Operand1=CExpressionHealthPercent
+					{
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=40
+					}
+				}
+				Character to get attributes from=$Trigger
+			}
+			Then=CSeriesAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CGiveHealthToCharacterAction
+							{
+								Character to give health to=$Trigger
+								Amount of health to give=CMultiply
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/(HP) Hit Points
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0.35
+									}
+								}
+								Expression Context=$Trigger
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Target Affected/Divine Strength
+								Location Entity=$Trigger
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=35
+								Play Default Sound=1
+							}
+						}
+					}
+					Action=CSucceedAction
+					{
+						Action=
+					}
+				}
+				When Done=Repeat Last Action
+				Require Success To Advance=1
+				Next Action Index=0
+			}
+			Else=
+			Return failure if the If failes=0
+		}
 		Damaged Effect Action=CRandomAction
 		{
 			Action=Array

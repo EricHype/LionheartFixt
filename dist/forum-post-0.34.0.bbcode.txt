@@ -1,0 +1,104 @@
+[size=150][b]Lionheart Fixt 0.34.0 - One Draught Each[/b][/size]
+
+A question from play, right after the enemy healer went in: *"can we give enemies a skill they can
+only use once, to mimic an item?"*
+
+Yes. And it turns out the game has been doing exactly that the whole time.
+
+[b]First, why a mimic is needed at all[/b]
+
+Enemies in Lionheart cannot use items. Not "don't" — [b]cannot[/b]. There is no "use an item" action
+anywhere in the game, for anyone. An item's effect is welded to the item itself and fires from your
+inventory screen; nothing an enemy does can reach it. They don't even carry potions. The only items
+an enemy has are the ones that fall on the floor when it dies.
+
+So a potion-drinking soldier has to be built out of something else.
+
+[b]The trick was already in the game[/b]
+
+The English Priest shields himself at the start of a fight, once, and then never again. That is a
+one-shot ability, and it is a potion in everything but name — he may as well be drinking a buff
+draught before the first swing.
+
+The mechanism behind it works like a list that advances one step each time it runs, and sticks on the
+last step forever. So [b]anything that isn't the last step happens exactly once per enemy.[/b] It's the
+same machinery that makes the Mana Tomes in the English Shrine give less each time you read them
+before going dry.
+
+Two things had to be checked before building on it.
+
+[b]Can it wait until the enemy is actually hurt?[/b] Yes — the game can read a character's health as a
+percentage, and already does it in four of your own perks, including Die Hard and Adrenaline Rush.
+
+[b]Is "once" once per enemy, or once ever?[/b] Per enemy. The counters that track it are stored on each
+individual creature, not on the type. If it were otherwise, only the very first Priest in the game
+would ever shield himself.
+
+[b]So the veterans carry a draught[/b]
+
+The twelve [b]veteran[/b] English soldier types now each carry one healing draught:
+
+| | drinks at | restores |
+|---|---|---|
+| the weakest veteran | 40 HP | 35 |
+| a tough one | ~55-69 HP | 48-61 |
+| the toughest | 82 HP | 72 |
+
+Each drinks [b]once[/b], when it drops to [b]40% health or below[/b], and heals a bit over a third of its
+total. There is a flash of light so you can see it happen.
+
+[b]It can be denied.[/b] A soldier killed quickly from full health never gets low enough to drink, and
+never does. Burst damage beats it outright — that's the counterplay, and it's deliberate.
+
+[b]And the raw conscripts carry nothing.[/b] The [i]Soldier1[/i] and [i]Soldier2[/i] ranks are untouched, which is
+also the sensible answer in fiction: a new recruit doesn't get a healing draught.
+
+[b]Also: the other two Priests now heal[/b]
+
+0.33.0 gave the healing spell to the ordinary Priest alone, so one of them could prove it worked
+before the rest got it. The tougher two now have it as well, scaled the way their shield already
+scales — about 11-18, 14-22 and 17-26 hit points across the three ranks.
+
+Still nothing for [i]Priest Near Death[/i], who casts nothing at all in the original game, or the Priests
+down in the Caverns of Nostradamus, who are built differently enough to need their own pass.
+
+[b]Something I got wrong[/b]
+
+Worth telling you, because it nearly shipped.
+
+The first version of the draughts was built from the [b]original[/b] game files instead of Fixt's own. All
+twelve of those soldiers already had Fixt work on them — their combat barks, from an earlier release —
+and I wiped it out on all twelve at once.
+
+[b]Every automated check passed.[/b] They look for broken structure, bad formatting, wrong counts, wrong
+line endings. None of them can tell that something from a previous release has silently gone missing.
+It was caught by an unrelated accident: a file count came out twelve short of what I expected.
+
+All twelve were restored and rebuilt properly, and the build now refuses to run unless the bark work
+is still there afterwards. But [i]PO7[/i] below exists because a diff proving it isn't the same as hearing
+it in a fight.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+Works on [b]any save[/b] — this release changes characters and a spell, not maps.
+
+[b]If you play it[/b]
+
+[b]The backlog matters more than usual this time.[/b] 0.33.0's two most important checks were never run,
+and this release stacks three Priests and twelve soldiers on top of them. If the foundation turns out
+to be wrong, rather more comes out than before. So: [b]start a new game, fight something ordinary, and
+confirm nothing is strange[/b] before anything else.
+
+Then the structural one: [b]keep hitting a veteran soldier after it drinks.[/b] It must not drink twice.
+If it does, the whole mechanism is wrong and I need to know.
+
+Then kill one fast from full health — it should never drink at all.
+
+[b]And listen to them.[/b] The soldiers' barks are the thing I broke and restored. If they've gone quiet,
+that's the reason.
+
+Last, the one nobody can predict: find a Priest fighting alongside veteran soldiers, so the Priest is
+healing them *while* they drink their own draughts. That stacking is intended, but it has never been
+seen by anyone. If it makes a group feel unkillable, say so and I'll pull one of the two numbers down.

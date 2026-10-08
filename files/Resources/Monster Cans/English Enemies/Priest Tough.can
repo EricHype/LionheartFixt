@@ -5,7 +5,7 @@ CCannedObject
 		Dynamic Properties=2
 		{
 			Comment=
-			Experience Points=427
+			Experience Points=746
 		}
 		Name=
 		Child List=
@@ -21,7 +21,7 @@ CCannedObject
 		Is Marked For Deletion=0
 		Activity=Array
 		{
-			Item Count=5
+			Item Count=4
 			Activity=CSkeletonAI
 			{
 				Marked For Deletion=0
@@ -764,7 +764,7 @@ CCannedObject
 						}
 					}
 				}
-				Max Dist=70
+				Max Dist=350
 				Attack AI=CNormalAttackAI
 				{
 					Marked For Deletion=0
@@ -775,151 +775,47 @@ CCannedObject
 						Play Sequence=
 						Play Reload Sequence=
 					}
-					Shoot Completed=CRandomAction
+					Shoot Completed=CSeriesAction
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=2
 							Action=CActionSelectSkill
 							{
 								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/OneHandedMelee
-							}
-							Action=CActionSelectSkill
-							{
-								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/OneHandedMelee
-							}
-							Action=CActionSelectSkill
-							{
-								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/OneHandedMelee
+								Skill to select=Skills/Magic Thought/Defensive/ENEMY Magical Shield
 							}
 							Action=CRandomAction
 							{
 								Action=Array
 								{
-									Item Count=13
-									Action=CDisplayDialogBalloonAction
+									Item Count=4
+									Action=CActionSelectSkill
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=10 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
+										Character to select skill=$Trigger
+										Skill to select=Skills/Magic Thought/Offensive/Fire Orb
 									}
-									Action=CDisplayDialogBalloonAction
+									Action=CActionSelectSkill
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=11 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
+										Character to select skill=$Trigger
+										Skill to select=Skills/Magic Thought/Offensive/Spike
 									}
-									Action=CDisplayDialogBalloonAction
+									Action=CActionSelectSkill
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=12 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
+										Character to select skill=$Trigger
+										Skill to select=Skills/Magic Thought/Offensive/Lightning Bolt
 									}
-									Action=CDisplayDialogBalloonAction
+									Action=CActionSelectSkill
 									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=13 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=14 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=15 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=16 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=17 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=18 officer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=19 officer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=20 officer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=21 officer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
-										Node ID=22 officer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
+										Character to select skill=$Trigger
+										Skill to select=Skills/Magic Divine/Defensive/ENEMY Healing
 									}
 								}
 							}
 						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
 					}
 					Turn Behavior=CPointWeaponAtTargetEntityBehavior
 					{
@@ -993,30 +889,23 @@ CCannedObject
 					Array Count=1
 					Array Item=CSkeletonTransition
 					{
-						Trigger=Once Per New Target
+						Trigger=First Time
 						From State=Any
 						To State=Attack
-						Action=CRandomAction
+						Action=CAddTemporaryAIAction
 						{
-							Action=Array
+							AI To Add=CAIShowWhenOccluded
 							{
-								Item Count=3
-								Action=CPlaySoundAction
-								{
-									Sound=Enemies/English Enemies/Soldier war cry1.ogg
-									Position=$Trigger
-								}
-								Action=CPlaySoundAction
-								{
-									Sound=Enemies/English Enemies/Soldier war cry2.ogg
-									Position=$Trigger
-								}
-								Action=CPlaySoundAction
-								{
-									Sound=Enemies/English Enemies/Soldier war cry3.ogg
-									Position=$Trigger
-								}
+								Marked For Deletion=0
+								Publisher=
 							}
+							Name of LayerPart To Add AI To=$Trigger
+							Duration=CConstant
+							{
+								Constant Value=10
+							}
+							Expression Context=$Instigator
+							Done Action=
 						}
 						IsDone=0
 					}
@@ -1026,18 +915,18 @@ CCannedObject
 			{
 				Marked For Deletion=0
 				Publisher=
-				Weapon Mode=Primary Weapon
-				User Assigned Name=Royal Guardsman
+				Weapon Mode=Secondary Weapon
+				User Assigned Name=Druid
 				Gender=Male
 				Head=0
 				Hue Remapper=Player Data/Hue Remappers/!None
-				Race=Races/Enemies/English Enemies/Soldier4 Super
+				Race=Races/Enemies/English Enemies/Priest Tough
 				Mana Used=0
 				NumSecondsToRebroadcastFollow=0
 				Experience Points=0
 				Character Level=1
 				Skill Points=0
-				Selected Skill=Skills/!None
+				Selected Skill=Skills/Magic Thought/Offensive/Fire Orb
 				Selected Weapon Index=0
 				CharacterAttribute Values=Array
 				{
@@ -1349,6 +1238,7 @@ CCannedObject
 					Skills/Magic Divine/Defensive/Greater Resistance=0,-9999,9999
 					Skills/Magic Divine/Defensive/Greater Sight=0,-9999,9999
 					Skills/Magic Divine/Defensive/Healing=0,-9999,9999
+					Skills/Magic Divine/Defensive/ENEMY Healing=0,-9999,9999
 					Skills/Magic Divine/Defensive/Holy Fire=0,-9999,9999
 					Skills/Magic Divine/Defensive/Mana Shield=0,-9999,9999
 					Skills/Magic Divine/Defensive/Physical Aura=0,-9999,9999
@@ -1444,6 +1334,7 @@ CCannedObject
 					Skills/Magic Divine/Defensive/Greater Resistance=0
 					Skills/Magic Divine/Defensive/Greater Sight=0
 					Skills/Magic Divine/Defensive/Healing=0
+					Skills/Magic Divine/Defensive/ENEMY Healing=0
 					Skills/Magic Divine/Defensive/Holy Fire=0
 					Skills/Magic Divine/Defensive/Mana Shield=0
 					Skills/Magic Divine/Defensive/Physical Aura=0
@@ -1584,105 +1475,6 @@ CCannedObject
 				Inventory item to use as key=Inventory Items/!None
 				Is Bussy Talking=0
 			}
-			Activity=CAIInventory
-			{
-				Marked For Deletion=0
-				Publisher=
-				Default Inventory Item=
-				Inventory Items=Array
-				{
-					Item Count=1
-					Inventory Item=CInventoryItem
-					{
-						PlugIn Behaviors=Array
-						{
-							Item Count=4
-							PlugIn Behavior=CPlugInBehaviorAttack
-							{
-								Max Attack Range=35
-								Is Location Based=0
-								Can Use Slayer Mode=0
-								Can Use Sniper Mode=0
-								Action On Hit=
-								Action On Miss=
-							}
-							PlugIn Behavior=CInventoryItemPlugInBehaviorWeaponMelee
-							{
-							}
-							PlugIn Behavior=CPlugInBehaviorPlaySequence
-							{
-								Granny Animations=Array
-								{
-									Item Count=0
-								}
-								Sequence Name=Attack
-								Random Sequence Selection=1
-							}
-							PlugIn Behavior=CPlugInBehaviorDamage
-							{
-								Hit Or Miss=Damage Types/Damage Hit Or Miss/OneHandedMelee
-								Cache Hit Or Miss Result=1
-								Hit Margin=0
-								Damages=Array
-								{
-									Item Count=1
-									Damage=CXRPGDamage
-									{
-										Damage Type=Damage Types/Slashing
-										Damage Amount=CRandom
-										{
-											Operator=
-											Minimum=CConstant
-											{
-												Constant Value=3
-											}
-											Maximum=CConstant
-											{
-												Constant Value=16
-											}
-										}
-									}
-								}
-							}
-						}
-						Value=CConstant
-						{
-							Constant Value=0
-						}
-						Is Magic=0
-						Encumbrance=2
-						On the ground=!Unknown Model
-						Requirements=Array
-						{
-							Item Count=0
-						}
-						Display Name=unnamed
-						Description=undefined
-						Inventory Window Images=Array
-						{
-							Basic=!Unknown Model
-							Better=!Unknown Model
-							Special=!Unknown Model
-						}
-						Whole Item Display Name=
-						Whole Item Description=
-						Number Of Additions Added=0
-						Slot Used In=Character Slot Types/!None
-						Sub Slot Used In=0
-						Number Hands Needed=None
-						Unique Select ID=0
-						IsCurrentlyUsedByPlayer=0
-						Catagory for display Grouping=Inventory/Grouping Catagories/!none
-						Inventory Addition Group=Inventory/!Unknown
-						Item Grade=Basic
-						Origonal Item=Inventory Items/Amulet
-					}
-				}
-				Accumulate Forwards Offsets=0
-				Next Unique Select ID=4200
-				Was Encumbered Last Update=0
-				Money=0
-			}
 			Activity=CAISetOpacityBasedOnVisibility
 			{
 				Marked For Deletion=0
@@ -1694,7 +1486,7 @@ CCannedObject
 		Used In=QuestMode
 		Current Target=
 		Publisher=
-		Model=Characters/Monsters/English Enemies/Soldier 4
+		Model=Characters/Monsters/English Enemies/Priest
 		Position X=143
 		Position Y=232.998
 		Rendering Height=0
@@ -1712,7 +1504,7 @@ CCannedObject
 			{
 				Action=Array
 				{
-					Item Count=2
+					Item Count=3
 					Action=CGiveExperiencePointsToAllPlayersAction
 					{
 						Get XP Frome=$Trigger
@@ -1720,104 +1512,50 @@ CCannedObject
 					}
 					Action=CUseCannedActionAction
 					{
-						Canned Object=Inventory/Enemy Drop Items Cans/English Soldier wSword Drop Action
+						Canned Object=Inventory/Enemy Drop Items Cans/English Priest Drop Action
 					}
-				}
-			}
-			Else=
-			Return failure if the If failes=0
-		}
-		Damaged Script Action=CIfAction
-		{
-			If=CExpressionAction
-			{
-				Expression=CIsLessThanOrEqual
-				{
-					Operand1=CExpressionHealthPercent
+					Action=CUseCannedActionAction
 					{
-					}
-					Operator=
-					Operand2=CConstant
-					{
-						Constant Value=40
-					}
-				}
-				Character to get attributes from=$Trigger
-			}
-			Then=CSeriesAction
-			{
-				Action=Array
-				{
-					Item Count=2
-					Action=CMultipleActionsAction
-					{
-						Action=Array
+						Dynamic Properties=1
 						{
-							Item Count=2
-							Action=CGiveHealthToCharacterAction
-							{
-								Character to give health to=$Trigger
-								Amount of health to give=CMultiply
-								{
-									Operand1=CVariableDerivedCharacterAttribute
-									{
-										Character Attribute=Derived Character Attributes/(HP) Hit Points
-									}
-									Operator=
-									Operand2=CConstant
-									{
-										Constant Value=0.35
-									}
-								}
-								Expression Context=$Trigger
-							}
-							Action=CSpawnEffectAction
-							{
-								Explosion Model=Spell Effects/Hits and Effects/Target Affected/Divine Strength
-								Location Entity=$Trigger
-								Make effect a child of the location entity=0
-								X Offset=0
-								Y Offset=0
-								Height Offset=35
-								Play Default Sound=1
-							}
+							Comment=generates 4Large spirit
 						}
-					}
-					Action=CSucceedAction
-					{
-						Action=
+						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/4Large Spirit Charge Drop Action
 					}
 				}
-				When Done=Repeat Last Action
-				Require Success To Advance=1
-				Next Action Index=0
 			}
 			Else=
 			Return failure if the If failes=0
 		}
+		Damaged Script Action=
 		Damaged Effect Action=CRandomAction
 		{
 			Action=Array
 			{
-				Item Count=4
+				Item Count=5
 				Action=CPlaySoundAction
 				{
-					Sound=Enemies/English Enemies/Soldier Pain1.ogg
+					Sound=Enemies/English Enemies/Priest Pain1.ogg
 					Position=$Trigger
 				}
 				Action=CPlaySoundAction
 				{
-					Sound=Enemies/English Enemies/Soldier Pain2.ogg
+					Sound=Enemies/English Enemies/Priest Pain2.ogg
 					Position=$Trigger
 				}
 				Action=CPlaySoundAction
 				{
-					Sound=Enemies/English Enemies/Soldier Pain3.ogg
+					Sound=Enemies/English Enemies/Priest Pain3.ogg
 					Position=$Trigger
 				}
 				Action=CPlaySoundAction
 				{
-					Sound=Enemies/English Enemies/Soldier Pain4.ogg
+					Sound=Enemies/English Enemies/Priest Pain4.ogg
+					Position=$Trigger
+				}
+				Action=CPlaySoundAction
+				{
+					Sound=Enemies/English Enemies/Priest Pain5.ogg
 					Position=$Trigger
 				}
 			}
