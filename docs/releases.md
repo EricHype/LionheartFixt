@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.37.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.38.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,105 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.38.0 - Magic Items Now Drop
+
+This one began as "add three wand enchantments to a pool", which would have been three correct edits
+achieving nothing at all.
+
+### Magic equipment did not drop in this game
+
+`1 MASTER ALL Items in the game` is the random item generator that real maps draw from --
+`04 Maw of the Assasin`, `06 Chamber of Torment`, `07 Dark Temple`, `Cortez Cave`. Walking down from
+it, the miscellaneous branch yielded exactly two things:
+
+| weighting | |
+|---|---|
+| **17** | eight **plain, unenchanted** base items -- Amulet, Belt, Boots, Bracers, Gauntlet, Helmet, Necklace, Ring |
+| **2** | `All Scrolls` -> `Scroll selection MAGIC` |
+
+And nothing else. The `*selection MAGIC` cans -- the things that pair a base item **with an
+enchantment** -- were reachable for potions and scrolls only. Seven were referenced by **nothing at
+all**: `Amulet`, `Belt`, `Bracer`, `Cloak`, `Helmet`, `Ring` and `Bolt`. `Wand selection MAGIC` was
+one dead link from the same fate -- drawn only by `All Wands`, which nothing drew from.
+
+So the enchantment half of the loot system was built and never connected. A player found plain rings
+and plain helmets, and the 40 enchantments written for those slots were unreachable.
+
+**This also corrects a claim made two releases ago.** `unused-content.md` said 62 of the 65 orphaned
+magic recipes were *"redundant duplicates whose enchantments reach the player anyway through
+`Generator Combinations`."* That check confirmed a selection can **listed** an enchantment and never
+asked whether the selection can was itself reachable. Most were not. The document now records the
+chain and the error.
+
+### What was connected, and the one decision that mattered
+
+| | |
+|---|---|
+| `All Wands` -> `All Misc Items except Potions` | weighting **2**, copying the `All Scrolls` entry's shape exactly |
+| **`Wand of Swarm`** into `Wand selection MAGIC` | weighting **5**, matching `Rigor Mortis`, the one other `5 Unique` in that pool |
+| new **`All Magic Equipment.can`** | the six orphaned pools at weighting **10 each** -- the same equal weighting the eight plain base items already use |
+| `All Magic Equipment` -> `All Misc Items except Potions` | weighting **2**, matching scrolls and wands |
+
+**One intermediate can, not six branches.** Adding the six pools directly at weighting 2 each would
+have made magic equipment **12 of 33** -- about 36% of misc drops, against the ~9% that scrolls and
+wands each get. Routing them through a single can keeps the shift proportionate:
+
+| branch | share |
+|---|---|
+| plain equipment | **74%** |
+| scrolls | 9% |
+| wands | 9% |
+| **magic equipment** | **9%** |
+
+All **40** enchantments across the six pools were checked before wiring, and **every one is
+implemented** -- real behaviours and modifiers, no shells.
+
+### Two wands deliberately left out
+
+`Wands/Special/` holds three enchantments no pool listed, and they are **not equivalent**:
+
+| | |
+|---|---|
+| **`Swarm`** -- 5 Unique, 7500 | **complete.** `CPlugInBehaviorWand` plus a modifier touching `Magic Tribal/Offensive/Insect Plague` and `Piercing Damage Resistance`. Summons insects; grants ranged-damage resistance while charges remain. **Wired in** |
+| `Fire and Ice` -- 5 Unique, **value 0** | **shell.** 1,036 bytes, **no behaviours, no modifiers.** Promises Fireball and Ice Storm cast together plus 15% fire and cold resistance. None of it exists |
+| `Mage` -- 5 Unique, 10000 | **shell.** 1,161 bytes, **no behaviours, no modifiers.** Promises +4 skill points in every base magic skill across all three categories, plus five Lightning Bolts and five Fears. None of it exists |
+
+Wiring a shell would ship a unique wand that does nothing, which is worse than leaving it
+unobtainable. `Fire and Ice` carrying **value 0** beside 1,036 bytes of nothing is the giveaway: these
+were written as design intent and never built. Restoring them means implementing them from their
+descriptions, and `Wand of Mage` as written -- +4 to every magic skill, where the best single
+enchantment in the game gives +8 to one -- would be the strongest item in Lionheart by a distance.
+That is a design decision, not a restoration.
+
+Same trap as the Templar helm in 0.36.0, and worse: the helm at least had the correct slot.
+
+### Also left alone, on purpose
+
+`Boot`, `Gauntlet` and `Necklace selection MAGIC` are each already reachable from **one specific
+map**, so they are narrowly available rather than absent. Changing a rate that functions is a
+different decision from connecting something unreachable. `Bolt` and `Arrow` are ammunition in the
+same position. All five are recorded in [`unused-content.md`](unused-content.md) -- one entry each if
+that inconsistency is worth closing.
+
+### The method failure worth keeping
+
+This is the seventh recorded in `unused-content.md`, and the pattern is familiar: **the check stopped
+one link short.** Confirming that `Generator Combinations` reached an enchantment said nothing about
+whether anything reached `Generator Combinations`.
+
+It was caught only because wiring three wands into `Wand selection MAGIC` meant tracing what drew from
+that pool first -- and the answer was `All Wands`, which had no referrers at all. The rule now in the
+document: **trace a chain to something that runs** -- a map, a drop table, a merchant -- not to the
+next file that mentions it.
+
+### What needs playing
+
+`WD1`-`WD16` in [`qa.md`](qa.md). **`WD1`** is the find: play act 4 or act 8 and look for magic rings,
+amulets, belts, bracers, cloaks and helmets, none of which have ever dropped. **`WD6`** is the balance
+row and the one most likely to need adjusting -- magic equipment is 9% of one branch, and that share
+is the dial. **`WD8`** asks the harder question: no mojo gating was added, so a Very Rare ring could
+appear early. **`WD13`** confirms the two shells never drop.
 
 ## 0.37.0 - A Rock Titan of Your Own
 

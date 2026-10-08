@@ -1,0 +1,86 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorMixedList
+	{
+		Items=Array
+		{
+			Array Count=4
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=17
+				Item=CInventoryItemGeneratorBasic
+				{
+					Items=Array
+					{
+						Array Count=8
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Amulet
+						}
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Belt
+						}
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Boots
+						}
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Bracers
+						}
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Gauntlet
+						}
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Helmet
+						}
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Necklace
+						}
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Ring
+						}
+					}
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=2
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=2
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Wands
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=2
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Magic Equipment
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

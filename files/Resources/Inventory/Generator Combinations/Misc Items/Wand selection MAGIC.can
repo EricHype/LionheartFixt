@@ -1,0 +1,117 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorAdditionalMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Wand
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=16
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Cure Major Wounds
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=35
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Cure Small Wounds
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=15
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Fire Circle
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Fireball Major
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Fireball Minor
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Lightning Major
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Lightning Minor
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=30
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Open Locks
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Ring
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Rigor Mortis
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=30
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Secret Reveal
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Slow
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Spikes Major
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Spikes Minor
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Swarm
+				Level=0
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

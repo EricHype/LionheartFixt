@@ -1473,6 +1473,83 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The magic loot pipeline was never connected
+
+From the unused-content survey, and it took tracing a chain to the end rather than one link.
+
+`1 MASTER ALL Items in the game` is drawn by real maps -- `04 Maw of the Assasin`,
+`06 Chamber of Torment`, `07 Dark Temple`, `Cortez Cave`. Walking down from it, the miscellaneous
+branch yielded:
+
+| | |
+|---|---|
+| weighting 17 | eight **plain, unenchanted** base items -- Amulet, Belt, Boots, Bracers, Gauntlet, Helmet, Necklace, Ring |
+| weighting 2 | `All Scrolls` -> `Scroll selection MAGIC` |
+
+And nothing else. The `*selection MAGIC` cans -- the things that pair a base item **with an
+enchantment** -- were reachable for potions and scrolls only. Seven were referenced by **nothing at
+all**: `Amulet`, `Belt`, `Bracer`, `Cloak`, `Helmet`, `Ring` and `Bolt`. `Wand selection MAGIC` was one
+dead link from the same fate, reachable only through `All Wands`, which nothing drew from.
+
+So **magic equipment did not drop in this game.** Only its plain versions did. The enchantment half of
+the system was built and never wired in.
+
+> This section replaces an earlier claim in the survey that 62 of 65 orphaned magic recipes were
+> "redundant duplicates whose enchantments reach the player anyway." That check confirmed a selection
+> can *listed* an enchantment and never asked whether the selection can was itself reachable.
+
+### What was connected
+
+| | |
+|---|---|
+| `All Wands` -> `All Misc Items except Potions` | weighting **2**, copying the `All Scrolls` entry's exact shape |
+| **`Wand of Swarm`** into `Wand selection MAGIC` | weighting **5**, matching `Rigor Mortis` -- the one other `5 Unique` already in that pool |
+| new `All Magic Equipment.can` | the six orphaned pools at weighting **10 each**, the same equal weighting the eight plain base items use |
+| `All Magic Equipment` -> `All Misc Items except Potions` | weighting **2**, matching scrolls and wands |
+
+**One intermediate can rather than six branches**, which is the decision worth recording. Six separate
+branches at weighting 2 each would have made magic equipment **12 of 33** -- about 36% of misc drops,
+against the ~9% scrolls and wands each get. The composition is now:
+
+| branch | share |
+|---|---|
+| plain equipment | **74%** |
+| scrolls | 9% |
+| wands | 9% |
+| **magic equipment** | **9%** |
+
+All **40** enchantments across the six pools were checked before wiring and every one is implemented.
+
+### What was deliberately left out
+
+**`Fire and Ice` and `Mage`**, the other two wands in `Wands/Special/`, are **description-only
+shells** -- 1,036 and 1,161 bytes with **no behaviours and no modifiers at all**. Their text promises
+Fireball-and-Ice-Storm-together and +4 skill points in every magic skill; none of it exists. Wiring
+them would ship unique wands that do nothing. `Fire and Ice` also carries **value 0**.
+
+**`Boot`, `Gauntlet` and `Necklace selection MAGIC`** are each already reachable from one specific map
+-- narrowly available rather than absent -- so changing their rate is a different decision from
+connecting something unreachable. `Bolt` and `Arrow` are ammunition in the same position.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WD1 | **The row this exists for.** Play act 4 or act 8 -- the Crypt, Alamut's Maw of the Assasin, Chamber of Torment, Dark Temple -- and look at what drops | - | **Magic rings, amulets, belts, bracers, cloaks and helmets.** 40 enchantments that have never appeared on those slots in this game. Previously only the plain versions dropped |
+| WD2 | Compare against a vanilla install in the same maps | - | Plain equipment still dominates -- it keeps its weighting of 17 against the magic branch's 2. If plain gear has become scarce, the weighting is wrong |
+| WD3 | **Wands.** Watch for any wand at all dropping | - | Wands now appear. In vanilla only `Wand Lightning Major` was placed anywhere, and the random pool was disconnected, so this is 16 enchantments appearing for the first time |
+| WD4 | Specifically: a **Wand of Swarm** | - | `5 Unique`, summons insects via `Insect Plague`, and confers ranged-damage resistance while it still has charges. Weighting 5 of 255 in the wand pool, so rare -- do not expect it quickly |
+| WD5 | Try a wand you find | - | It casts, and spends a charge. The `CPlugInBehaviorWand` machinery was always complete; only the placement was missing |
+| WD6 | **The balance row.** Judge whether loot now feels too generous | - | Magic equipment is **9%** of one branch of one generator. If the game now rains magic items, that share is the dial. This is the row I would most expect to need adjusting |
+| WD7 | Check whether magic equipment appears in **shops** as well as drops | - | Whatever vanilla does. Merchant inventories were not touched, so if shops draw from the same generator they will stock it too -- worth knowing either way |
+| WD8 | Judge the **power** of the new enchantments at the act you find them | - | They are vanilla's own, with vanilla's own rarity tiers, and no mojo gating was added. A Very Rare ring in act 1 would be a real concern -- `Small Trinkets` and the mojo-tiered armour lists suggest the game gates elsewhere, and this branch does not |
+| WD9 | Look for an item that appears **unenchanted but named** as if magic | - | None. All 40 enchantments were verified implemented before wiring, unlike the two wand shells |
+| WD10 | Fight in act 1 and 2 and watch drops | - | Changed only as much as those acts draw from `1 MASTER ALL Items in the game`. Most early maps use their own tables, so the shift should be smaller there |
+| WD11 | **Potions and scrolls** | - | **Unchanged.** Both branches were already connected and their weightings were not touched |
+| WD12 | The eight **plain** base items | - | All still present and still at weighting 17. Verified in the shipped bytes, but this is the row that proves it in play |
+| WD13 | Look for a **Wand of Mage** or a **Wand of Fire and Ice** | - | **Neither should ever drop.** They are shells with no implementation and were deliberately excluded. If one appears, something wired them by accident |
+| WD14 | Boots, gauntlets and necklaces | - | Their magic versions still only come from the one map each that references them. Unchanged by design -- if that inconsistency is annoying, it is one entry each to fix |
+| WD15 | Sell a new magic item to a merchant | - | It prices by its enchantment's own value. Nothing here set a price; all values are vanilla's |
+| WD16 | **The regression row.** Confirm armour and weapon drops are untouched | - | `All Armor and Shields` and `All Weapons` are separate branches of the master and were not edited |
+
 ## Monster Summoning: the top two tiers were unreachable
 
 From the unused-content survey: **`Summoned Cans/Monster Summoning Level 4 01/02/03` and

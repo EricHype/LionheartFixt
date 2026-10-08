@@ -17,7 +17,7 @@ wrong are more reusable than the results.
 
 - [Summary](#summary)
 - [Quest items](#quest-items-hand-authored-uniques)
-- [Magic items](#magic-items-mostly-a-false-alarm)
+- [Magic items](#magic-items-a-disconnected-pipeline)
 - [Wands as a system](#wands-as-a-system)
 - [Enemies](#enemies-48-cans-spawned-nowhere)
 - [The summon tiers](#the-summon-tiers-the-best-single-find)
@@ -36,7 +36,7 @@ wrong are more reusable than the results.
 | category | defined | referenced by nothing | genuinely lost content |
 |---|---|---|---|
 | Quest items (`.InventoryItem`) | 14 unique | 14 | **8** (Fixt has used 6) |
-| Magic item recipes (`Misc Items/*.can`) | 91 | 65 | **3** -- the rest are redundant duplicates |
+| Magic item recipes (`Misc Items/*.can`) | 91 | 65 | **see below** -- the enchantment pools were never wired to the master generator |
 | Monster cans | 478 | **48** | 48, all with working art |
 | Skills (`.Skill`) | 92 | - | **0** -- nothing was cut |
 | Summon tiers | 5 | 2 | **2** -- levels 4 and 5, six cans |
@@ -83,36 +83,100 @@ so they were cut as *scenes* rather than as individual objects.
 
 ---
 
-## Magic items: mostly a false alarm
+## Magic items: a disconnected pipeline
 
-`Specific Item Cans/Misc Items/` holds 91 `CCannedObject` **recipes**, each combining a base item with
+`Specific Item Cans/Misc Items/` holds 91 `CCannedObject` **recipes**, each pairing a base item with
 an enchantment -- `Inventory Items/Helmet` plus `Inventory Additions/Miscellaneous/Helmets/Eagle`, for
 example. **65 are referenced by nothing.**
 
-They are mostly **not** lost content. The route drop tables actually use is
-`Inventory/Generator Combinations/`, which reaches **98 distinct enchantments** directly:
+> **This section previously said 62 of those 65 were "redundant duplicates whose enchantments reach
+> the player anyway through `Generator Combinations`."** That was wrong, and the error is worth
+> keeping: the check confirmed that a `*selection MAGIC` can *listed* the enchantment, and never asked
+> whether that selection can was itself reachable. Most of them are not.
 
-| | count | meaning |
+### What the master generator actually yields
+
+`1 MASTER ALL Items in the game` is drawn by real maps -- `04 Maw of the Assasin`,
+`06 Chamber of Torment`, `07 Dark Temple`, `Cortez Cave`. Walking down from it:
+
+```
+1 MASTER ALL Items in the game
+ |- All Armor and Shields
+ |- All Weapons
+ `- All Miscellaneous Items
+     |- All Potions                     -> Potion selection MAGIC      (reachable)
+     `- All Misc Items except Potions
+         |- weighting 17: eight PLAIN base items --
+         |                Amulet, Belt, Boots, Bracers, Gauntlet, Helmet, Necklace, Ring
+         |- weighting  2: All Scrolls   -> Scroll selection MAGIC      (reachable)
+         `- weighting  2: All Wands     -> Wand selection MAGIC        (added in 0.38.0)
+```
+
+So the misc branch yields **plain, unenchanted equipment**, magic potions and magic scrolls. The
+`*selection MAGIC` pools -- which are the things that pair a base item *with* an enchantment -- are
+reachable for potions and scrolls only.
+
+### Which equipment pools are connected
+
+| pool | reachable from | state |
 |---|---|---|
-| enchantment reachable via `Generator Combinations` | **62** | redundant duplicate recipes; the item can still occur in play |
-| enchantment reachable nowhere | **3** | genuinely unreachable |
+| `Potion selection MAGIC` | the master, plus 3+ maps directly | fine |
+| `Scroll selection MAGIC` | the master, via `All Scrolls` | fine |
+| **`Wand selection MAGIC`** | `All Wands`, which **nothing drew from** | **connected in 0.38.0** |
+| `Boot`, `Gauntlet` | one map each (`2 Retreat of Souls Entry`) | reachable, barely |
+| `Necklace` | one map (`2 Retreat of Souls`) | reachable, barely |
+| `Arrow` | one map (`01 Sewer Main Entrance`) | reachable, barely |
+| **`Amulet`, `Belt`, `Bracer`, `Cloak`, `Helmet`, `Ring`** | `All Magic Equipment` | **connected in 0.38.0** |
+| `Bolt` | nothing at all | still disconnected -- ammunition, see the note below |
 
-### The three that are genuinely lost
+**Seven pools are referenced by nothing whatsoever.** So magic rings, amulets, belts, bracers, cloaks
+and helmets do not drop from the master generator at all -- their plain versions do, and the
+enchantment half of the system was built and never wired in. That is the largest single finding in
+this document and the one that would most change how the game plays.
 
-| recipe | enchantment |
-|---|---|
-| `Misc Items/Wand Fire Ice` | `Miscellaneous/Wands/Fire and Ice` |
-| `Misc Items/Wand Mage` | `Miscellaneous/Wands/Mage` |
-| `Misc Items/Wand Swarm` | `Miscellaneous/Wands/Swarm` |
-
-Three wand enchantments that exist, work, and no generator includes. Adding each to a
-`Generator Combinations` selection is a one-line change; the open question is which loot tier.
-
-One oddity worth keeping: **`Shakerspeare's Ring`** sits in the generic magic-items folder under a
-unique name, and Shakespeare is already in the game -- Shylocke holds his muse as collateral. Its
-enchantment is reachable, so it is not lost content, but the *name* is a hook nothing uses.
+**Fixed in 0.38.0** through a new `All Magic Equipment` intermediate can holding all six pools,
+entering the misc branch once at weighting 2 -- so magic equipment is **9%** of that branch, matching
+scrolls and wands, rather than the **36%** that six separate branches would have produced. All 40
+enchantments across the six pools were verified implemented first. `WD1`-`WD16` in [`qa.md`](qa.md).
 
 ---
+
+## Wands as a system
+
+Of 17 wand recipes only **`Wand Lightning Major`** was placed anywhere in vanilla, and the pool they
+should have come from was disconnected -- so wands were effectively absent from the world.
+
+The machinery is complete: `CPlugInBehaviorWand` with charge counters, a
+`Wands/*.InventoryAddition` per wand, and a `Fake Wand Spells/*` skill stub per effect. Those stubs
+are **862-byte shells** with no oval, no magnitude and no effect body; they are skill-shaped handles
+that the InventoryAddition points at. (`ENEMY Magical Shield` borrows one as an unlistable parent,
+which is the only other thing in the game that touches them.)
+
+### The three in `Wands/Special/`, and why only one was restorable
+
+The three enchantments no pool listed sit in a `Special/` subfolder. **They are not equivalent**:
+
+| wand | rarity | value | implementation |
+|---|---|---|---|
+| **`Swarm`** | 5 Unique | 7500 | **complete** -- `CPlugInBehaviorWand` + `CPlugInBehaviorModifyCharacterWhenSelected`, modifying `Magic Tribal/Offensive/Insect Plague` and `Piercing Damage Resistance`. Summons insects; confers ranged-damage resistance while charges remain |
+| `Fire and Ice` | 5 Unique | **0** | **shell.** 1,036 bytes, **no behaviours, no modifiers.** Its text promises Fireball *and* Ice Storm cast together plus 15% fire and cold resistance. None of it exists |
+| `Mage` | 5 Unique | 10000 | **shell.** 1,161 bytes, **no behaviours, no modifiers.** Its text promises +4 skill points in every base magic skill across all three categories, five Lightning Bolts and five Fears at skill 20. None of it exists |
+
+`Swarm` was wired into the pool in **0.38.0** at weighting 5, matching `Rigor Mortis` -- the one other
+`5 Unique` already there, at value 6500 against Swarm's 7500.
+
+**The two shells were deliberately left out.** Putting a description-only item into the loot pool would
+ship a unique wand that does nothing, which is worse than leaving it unobtainable. `Fire and Ice`
+carrying **value 0** alongside 1,036 bytes of nothing is the giveaway: these were written as design
+intent and never built.
+
+Restoring them means **implementing them from their descriptions**, which is authoring rather than
+wiring, and it needs a judgement first: `Wand of Mage` as described -- +4 to every magic skill, in a
+game where the best single enchantment gives +8 to one skill -- would be the strongest item in
+Lionheart by a wide margin. That is a design decision, not a restoration.
+
+This is the same trap as the Templar helm, and worse. The helm at least had the correct *slot*; these
+have nothing but text.
 
 ## Wands as a system
 
@@ -452,23 +516,29 @@ Tested by `TS1`-`TS10` in [`qa.md`](qa.md).
 In rough order of how little invention each needs:
 
 1. ~~**The two summon tiers.**~~ **Done in 0.37.0** -- see below.
-2. **`DaVinci Tank Gear`** -- names its own quest-giver, who is a live NPC with dialogue.
-3. **`Goblin Slayer`.** `Goblin Kill Counter` is already live and already written by six files;
+2. ~~**The six disconnected equipment pools.**~~ **Done in 0.38.0** -- connected through a new
+   `All Magic Equipment` intermediate can at weighting 2, so magic equipment is 9% of the misc branch
+   rather than the 36% six separate branches would have given. **`Boot`, `Gauntlet` and
+   `Necklace selection MAGIC` are still only reachable from one map each**, and `Bolt` and `Arrow` are
+   in the same position -- one entry each if that inconsistency is worth closing.
+3. **`DaVinci Tank Gear`** -- names its own quest-giver, who is a live NPC with dialogue.
+4. **`Goblin Slayer`.** `Goblin Kill Counter` is already live and already written by six files;
    this is a threshold read away. Moved up from last place after the counter claim was corrected.
-4. **The three `FACTION * Killer` perks.** A shipped pattern with one working quarter as the
+5. **The three `FACTION * Killer` perks.** A shipped pattern with one working quarter as the
    reference. Needs a decision about where detection lives -- per-member death slot rather than a map
    trigger -- but invents nothing.
-5. **The three lost wand enchantments** -- `Fire and Ice`, `Mage`, `Swarm`; one line each into a
-   `Generator Combinations` selection.
-6. **`Hangover Cure Potion`** -- the smallest possible scene.
-7. **The two Trapped Spirit items** -- the spirits already exist as NPCs with dialogue, so the scene
+6. **The two wand shells** -- `Fire and Ice` and `Mage` have descriptions and **no
+   implementation at all**, so these need building from their text, not wiring. `Swarm`, the only one
+   of the three that was real, went in with 0.38.0.
+7. **`Hangover Cure Potion`** -- the smallest possible scene.
+8. **The two Trapped Spirit items** -- the spirits already exist as NPCs with dialogue, so the scene
    is half-built.
-8. **The two Titan items** -- Toulouse is live content Fixt has worked in before.
-9. **The 17 Nostradamus English** -- a whole garrison with art, but placing them is level design
+9. **The two Titan items** -- Toulouse is live content Fixt has worked in before.
+10. **The 17 Nostradamus English** -- a whole garrison with art, but placing them is level design
    rather than restoration, and act 5 is already populated.
-10. **`Inquisitor Feralkin Journal`** -- needs a reader.
-11. **`Wielder DARK Quest Rod Bone NO Spirit`** -- its missing half has to be designed.
-12. **`Ruler of Calle Perdida`** -- a missing questline branch, so it needs writing, not wiring.
+11. **`Inquisitor Feralkin Journal`** -- needs a reader.
+12. **`Wielder DARK Quest Rod Bone NO Spirit`** -- its missing half has to be designed.
+13. **`Ruler of Calle Perdida`** -- a missing questline branch, so it needs writing, not wiring.
 
 ---
 
@@ -526,6 +596,19 @@ The test that works is the **impossible requirement**: `CIsGreaterThanOrEqual` o
 1 marks a perk as unselectable, and only those need a grant. Two routes, and a perk is reachable by
 either.
 
+### 6. Checking one link and calling the chain connected
+
+The magic-items section originally reported that 62 of 65 orphaned recipes were redundant because
+`Generator Combinations` reached their enchantments. It does -- but **nothing reached
+`Generator Combinations`**. The check stopped one link short.
+
+It was caught only because wiring three wands into `Wand selection MAGIC` would have been three
+correct edits to a pool nothing draws from, and tracing the chain before building showed
+`All Wands` had no referrers at all.
+
+**The rule: trace a reference chain to something that actually runs** -- a map, a drop table, a
+merchant -- not to the next file that mentions it.
+
 ### 6. Querying for a shape instead of examining a case
 
 The worst of the six, because the evidence was already in hand. Asked whether a two-item set bonus was
@@ -563,3 +646,4 @@ to content.
   skills have two; items have three.
 - To ask whether a mechanism exists, **open a case that works**. Searching for a plausible
   class name finds nothing when the mechanism is shaped differently than expected.
+- Trace a chain to something that **runs**, not to the next file that mentions it.
