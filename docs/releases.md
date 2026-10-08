@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.35.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.36.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,147 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.36.0 - The Templar Set
+
+Asked in play: *"what are the other unused items? I didn't know the mine deed existed. We should be
+able to find usages for all of them eventually."*
+
+So the first thing this release contains is not content at all -- it is
+**[`docs/unused-content.md`](unused-content.md)**, a survey of everything the shipped game defines and
+then references from nothing, so the question does not have to be re-answered. The second thing is the
+first pair of items taken off that list.
+
+### The survey, in brief
+
+| category | defined | referenced by nothing | genuinely lost |
+|---|---|---|---|
+| quest items | 14 unique | 14 | **8** (Fixt had already used 6) |
+| magic-item recipes | 91 | 65 | **3** -- the other 62 are redundant duplicates |
+| monster cans | 478 | **48** | 48, **all with working art** |
+| skills | 92 | - | **0** -- nothing was cut |
+| summon tiers | 5 | 2 | **2** -- levels 4 and 5, six finished cans |
+| perks | 98 | 5 | **5** title perks nothing awards |
+| factions | 13 | 0 | **0** |
+
+The headline finds: **`Monster Summoning` levels 4 and 5 are unreachable** -- six cans with dedicated
+races and working models, including a level-5 summon that puts a **Rock Titan** on the field -- and
+**three of the four `FACTION * Killer` perks are unconnected** while the fourth works and sits beside
+them as a reference implementation.
+
+The document also records **the six ways the survey was wrong before it was right**, because those are
+more reusable than the results. The worst reported *93 monster cans with dangling races* as a live
+vanilla defect; race files ship as **427 `.Race` and 76 `.race`** and the check was case-sensitive on
+the extension. The true figure is zero.
+
+### The helm was not unplaced, it was unfinished
+
+`Helm of the Templars` -- *"This battle-weary helm shines with the power of the Templars."* -- is a
+`Character Slot Types/Head` item that carried **shield art in every other field**:
+
+| field | vanilla | repaired from `Inventory Items/Helmet.InventoryItem` |
+|---|---|---|
+| `On the ground` | `Special Items/LionShield_PU` | `Items/PickUps/Misc Items/Helmet_PU` |
+| `Basic` / `Better` / `Special` | `Armor/Shield Large Better` | `Items/Inventory Images/Armor/Helmet1` |
+| `Catagory for display Grouping` | `Grouping Catagories/Shield Large` | `Inventory/Grouping Catagories/Armor` |
+
+Someone cloned the shield, changed the name, description and slot, and stopped. That is very likely
+why it was never placed anywhere, and it is the same signature as the six unreachable summon races all
+still being named `Black Wolf`.
+
+`Spirit Templar Shield` needed no art repair at all.
+
+### And then both turned out to be hollow
+
+This only surfaced because the question was asked directly: *what are the stats on the gear?*
+
+**Neither piece had any mechanical effect.** Their only behaviours were
+`CPlugInBehaviorPickUpAction` and `CPlugInBehaviorPutDownAction` -- the *sounds* they make when
+handled. No armour class, no resistances, no `Wearing a Helmet` flag, no model override, and
+`Inventory Addition Group=!None` so neither could ever be enchanted. An item that *"shines with the
+power of the Templars"* was **strictly worse than a plain helmet off any thug**.
+
+The first attempt at stats was also wrong, and for an instructive reason: it copied the vanilla item
+of matching **encumbrance** -- `Helmet` +3 and `ShieldMedium` +4 -- which prices a unique at mid-tier.
+A player reaching act 3 already carries `ShieldLarge` at +7 and can stack a Rare AC addition worth +4
+to +6, so the set was outclassed by gear from acts 1 and 2. **Encumbrance is the wrong yardstick.** The
+right one is the ceiling for the two slots the set occupies:
+
+| | the set | the best alternative for that slot |
+|---|---|---|
+| **Helm**, enc 2 | AC **+6**, **`(LK) Luck` +1** | `Helmet` AC +3 is the best base, and `Helmets/Protection` adds **+0** AC -- nothing in the game beats +3 in the head slot |
+| **Shield**, enc 5 | AC **+8**, Piercing **+15**, Slashing **+12**, Crushing **+12**, `OneHandedMelee` **+5**, speed -0.03 | `ShieldLarge` AC +7, P15 S10 C10 -- at encumbrance **10** and speed **-0.08** |
+| **both worn** | **+4 AC** | the best AC *enchantments* in the game are +4 to +6, rarity 3 Rare |
+
+**Pair total: +18 AC** against the roughly +10 those slots otherwise allow. Base AC is
+`2*(Agility+10) + 10 + Evasion`, about 42 at Agility 6, and a body-armour upgrade from Hard Leather to
+Hauberk Mail is +10 -- so this is a strong reward for committing two slots, not a rewrite of the
+character. The set's identity is **weight**: it protects like a great shield and carries like a medium
+one.
+
+`OneHandedMelee +5` sits below the +8 that enchantments give, which is right for armour rather than a
+weapon, and it is on the shield because a Templar fights sword-and-shield.
+
+### The set bonus, and the mechanism that nearly got missed
+
+Asked whether a two-piece bonus was possible, the first answer given was **no** -- having searched for
+`CHasItemEquipped`, `CCheckEquipped`, `CHasInventoryItem`, `CIsWearing`, "Set Bonus" and "Matched
+Set", none of which appear anywhere in the game.
+
+That was wrong, and the correction came from being told so. **The engine does not check equipment; it
+counts it.** The **Voodoo** belt and necklace are the shipped reference: each increments
+`Number of Voodoo Items` through `CCharacterModifierDerivedAttribute` with `Allow Accumulation=1`, and
+the bonus lives in a *computed* derived attribute that reads the total. `Skill Points Per Level` is
+literally `10 + Intelligence + (Number of Voodoo Items == 2 ? 1 : 0)`.
+
+No query shaped like a *check* could ever have found a *counter*. Both Voodoo items had appeared in
+this release's own orphan list an hour earlier; opening either would have shown it.
+
+The Templar bonus copies that pattern exactly -- a new `Number of Templar Items` counter cloned from
+the Voodoo one, and a conditional term added to `(AC) Armor Class`. Structural parity was verified
+against `Skill Points Per Level`: one `CIfExpression`, one `CIsEqualTo`, threshold 2.
+
+**That discovery also moved `Goblin Slayer` from last place on the backlog to third**, because the
+same realisation turned up `Goblin Kill Counter` -- a derived attribute that is already live and
+already written by six shipped files. The perk needs a threshold read, not a mechanism built.
+
+### Where they are
+
+Both pieces are carried by **`Dead Knight Templar 5`**, inlined as full `CInventoryItem` blocks inside
+the corpse's `CAIInventory` -- which is how the amulet those corpses already carry is stored, since the
+array holds definitions rather than paths. Of the five dead-Templar templates that is the only one
+used just **twice**, both in act 3's `02 Hamlet Burned` where Templars died; the others serve 9 to 15
+corpses each and would have scattered a unique set far too widely.
+
+Editing the template rather than the map means **no new map entity**, so this reaches any save that
+has not yet entered that map.
+
+**Gate 0 caught two faults in the first splice.** The inventory array closes at **4 tabs** while each
+item closes at **5**, so a reverse search for a 4-tab brace matched *inside* the 5-tab one and spliced
+the new items into the previous item -- the array then declared 3 and held 1. Fixed with `balanced()`
+plus the start of that brace's own line, and a round-trip through `resource_format` so the formatting
+is canonical by construction.
+
+### Two risks worth naming
+
+**The set bonus edits `(AC) Armor Class`**, a core attribute every character and creature uses. The
+conditional returns 0 for anyone without both pieces, and the original Agility and Evasion terms were
+verified intact in the shipped bytes -- but `TS12` and `TS13` exist to prove it in play.
+
+**And `+1 Luck` has no unconditional precedent.** Of the 18 `InventoryItem`s using
+`CCharacterModifierAttribute`, every one is *conditional* -- `Crossbow` grants +1 Perception only with
+the `Sharpshooter` perk. This is the only flat attribute bonus on any item in the game, and Luck is
+not cheap: `Fortune`, `CriticalChance` and the Cold, Fire and Electrical resistances all read it. The
+field shape is copied from the Crossbow; the unconditional part is new. `TS16` asks whether it feels
+disproportionate.
+
+### What needs playing
+
+`TS1`-`TS17` in [`qa.md`](qa.md). **`TS1`** is the find itself. **`TS7`**-**`TS7d`** are the numbers,
+including whether removing a piece correctly removes the set bonus. **`TS12`** and **`TS13`** are the
+blast-radius rows for the AC edit. **`TS14`** is the calibration question -- compare the set against a
+`ShieldLarge` and the best helmet you can find, and if it still feels outclassed the numbers are the
+dial.
 
 ## 0.35.0 - Caltrops
 

@@ -1,0 +1,82 @@
+CDerivedCharacterAttribute
+{
+	Expression=CAdd
+	{
+		Operand1=CAdd
+		{
+			Operand1=CMultiply
+			{
+				Operand1=CConstant
+				{
+					Constant Value=2
+				}
+				Operator=
+				Operand2=CAdd
+				{
+					Operand1=CVariableCharacterAttribute
+					{
+						Character Attribute=Character Attributes/(AG) Agility
+						Enforce Value Range Limits=1
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=10
+					}
+				}
+			}
+			Operator=
+			Operand2=CAdd
+			{
+				Operand1=CConstant
+				{
+					Constant Value=10
+				}
+				Operator=
+				Operand2=CSkillsNamedExpressionExpression
+				{
+					Skill=Skills/Fighting/Evasion
+					Expression Name=ACBonus
+				}
+			}
+		}
+		Operator=
+		Operand2=CIfExpression
+		{
+			Condition=CIsEqualTo
+			{
+				Operand1=CVariableDerivedCharacterAttribute
+				{
+					Character Attribute=Derived Character Attributes/Number of Templar Items
+				}
+				Operator=
+				Operand2=CConstant
+				{
+					Constant Value=2
+				}
+			}
+			OperatorPart1=
+			Value if True =CConstant
+			{
+				Constant Value=4
+			}
+			OperatorPart2=
+			Value if False=CConstant
+			{
+				Constant Value=0
+			}
+		}
+	}
+	Short Name=AC
+	Long Name=Armor Class
+	Description=How difficult it is to 'hit' the player. The higher, the better.
+	Minimum Value=No Minimum
+	Maximum Value=No Maximum
+	Allow Modification By Fractional Amounts=0
+	Display In Attributes Window=1
+	Position=148,60
+	Display In Character Creation Summary=1
+	Character Creation Summary Sort Order=2
+	Display Some Other Place=0
+	Include in character Import and Export=1
+}

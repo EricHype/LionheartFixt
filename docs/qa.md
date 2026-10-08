@@ -1473,6 +1473,124 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The Templar set - two items, one of them broken
+
+Asked in play: *"what are the other unused items? I didn't know the mine deed existed."* The full
+survey is in [`unused-content.md`](unused-content.md); this is the first item pair taken off it.
+
+**`Helm of the Templars` was unfinished, not merely unplaced** -- which is very likely why nobody ever
+placed it. It is a `Character Slot Types/Head` item that carried **shield art in every other field**:
+
+| field | vanilla | repaired from `Inventory Items/Helmet.InventoryItem` |
+|---|---|---|
+| `On the ground` | `Special Items/LionShield_PU` | `Items/PickUps/Misc Items/Helmet_PU` |
+| `Basic` / `Better` / `Special` | `Armor/Shield Large Better` | `Items/Inventory Images/Armor/Helmet1` |
+| `Catagory for display Grouping` | `Grouping Catagories/Shield Large` | `Inventory/Grouping Catagories/Armor` |
+
+Someone cloned the shield, changed the name, description and slot, and stopped. `Encumbrance=2` and `Value=100` are untouched.
+
+**And then they were given stats, because they had none.** As shipped, both pieces' only behaviours
+were `CPlugInBehaviorPickUpAction` and `CPlugInBehaviorPutDownAction` -- the *sounds* they make when
+handled. No armour class, no resistances, no `Wearing a Helmet` flag, no model override, and
+`Inventory Addition Group=!None` so they could never be enchanted. An item described as *"shines with
+the power of the Templars"* was **strictly worse than a plain helmet off any thug**.
+
+Every number is taken from the vanilla item of the same weight rather than invented:
+
+**The first pass of these numbers was wrong and was retuned.** It copied `Helmet` (+3) and
+`ShieldMedium` (+4) because they match the pieces' encumbrance -- but encumbrance is the wrong
+yardstick for a unique. A player reaching act 3 already carries `ShieldLarge` at +7 and can stack a
+Rare AC addition worth +4 to +6, so the set was outclassed by gear found in acts 1 and 2. The
+yardstick that matters is the **ceiling for the two slots the set occupies**:
+
+| | the set | the best alternative for that slot |
+|---|---|---|
+| Helm, enc 2 | AC **+6** | `Helmet` AC **+3** -- the best base, and `Helmets/Protection` adds **+0** AC, so nothing in the game beats +3 in the head slot |
+| Shield, enc 5 | AC **+8**, Piercing **+15**, Slashing **+12**, Crushing **+12**, speed **-0.03** | `ShieldLarge` AC **+7**, P15 S10 C10 -- but at encumbrance **10** and speed **-0.08** |
+| both worn | **+4** AC more | the best AC *enchantments* in the game are +4 to +6, rarity 3 Rare |
+
+**Pair total: +18 AC** against the roughly **+10** those two slots otherwise allow. For scale, base AC
+is `2*(Agility+10) + 10 + Evasion` -- about 42 at Agility 6 -- and upgrading body armour from Hard
+Leather to Hauberk Mail is +10. So the set is a strong reward for committing two slots to it, without
+rewriting the character.
+
+The distinguishing feature is **weight**: it protects like a great shield and carries like a medium
+one, which is what a blessed Templar kit should feel like. Encumbrance and value stay at vanilla's 2
+and 5, and 100.
+
+**Two more bonuses were added on request**, and neither could be a *set* bonus. The +4 AC works
+because `(AC) Armor Class` is a **computed** derived attribute, so a conditional term in its
+expression re-evaluates when the counter changes. `Skills/Fighting/OneHandedMelee` is a Skill and
+`Character Attributes/(LK) Luck` is plain storage with no `Expression=`, so neither has an expression
+to host a condition. Both sit on the pieces unconditionally:
+
+| | | calibration |
+|---|---|---|
+| Shield | `OneHandedMelee` **+5** | unique weapons give +10 to +20 (`Kublai Khans Sword` +10, `TRUE CROSS` +10, `Axe Unholy Smite` +20 Evasion) and enchantments +8 to +15 (`Falcon` +8, `Evader` +15). +5 sits below the enchantment floor, which is right for armour rather than a weapon. A Templar fights sword-and-shield, so it belongs on the shield |
+| Helm | `(LK) Luck` **+1** | the blessing |
+
+**The Luck point has no unconditional precedent, and that is worth knowing.** Of the 18
+`InventoryItem`s that use `CCharacterModifierAttribute`, the shape is always *conditional* --
+`Crossbow` grants +1 Perception only with the `Sharpshooter` perk. So this is the only flat attribute
+bonus on any item in the game, and Luck is not a cheap stat: `Fortune`, `CriticalChance` and the Cold,
+Fire and Electrical resistances all read it. The field shape is copied from the Crossbow exactly; it
+is the *unconditional* part that is new, and that is a balance judgement rather than a technical one.
+
+**The set bonus follows the Voodoo set exactly**, which is the engine's only shipped precedent. There
+is no equipment *check* in this game -- `CHasItemEquipped` and every similar class return zero files.
+Instead each piece increments a derived attribute with `Allow Accumulation=1`, and a **computed**
+attribute reads the total. `Skill Points Per Level` is literally
+`10 + Intelligence + (Number of Voodoo Items == 2 ? 1 : 0)`; the Templar bonus is the same shape added
+to `(AC) Armor Class`, with a new `Number of Templar Items` counter cloned from the Voodoo one.
+
+**Two risks worth naming.** The set bonus edits `(AC) Armor Class`, a core attribute every character
+and creature uses -- `TS12` and `TS13` exist to prove the conditional is inert for everyone without
+both pieces. And this adds a **130th** derived character attribute to a game that ships 129, the same
+residual risk as the 93rd `.Skill` file in 0.33.0: every can carries a keyed attribute map with no
+`Item Count`, so a missing key should default to 0.
+
+**`Spirit Templar Shield` needed nothing.** `Hand` slot, `LionShield_PU`, `Shield Large` icon and
+grouping, `Encumbrance=5`. It is coherent in vanilla and only ever lacked a placement.
+
+**Both are carried by `Dead Knight Templar 5`**, inlined as full `CInventoryItem` blocks inside the
+corpse's `CAIInventory` -- which is how the Amulet those corpses already carry is stored, since the
+array holds definitions rather than paths. Of the five dead-Templar templates that is the only one
+used just **twice**, both in act 3's `02 Hamlet Burned`, where Templars died; the other four serve 9
+to 15 corpses each and would have scattered a unique set far too widely.
+
+Editing the template rather than the map means **no new map entity**, so this reaches any save that
+has not yet entered that map.
+
+**Gate 0 caught two faults in the first splice**, both worth recording. The inventory array closes at
+**4 tabs** while each item closes at **5**, so a reverse search for a 4-tab brace matched *inside* the
+5-tab one and spliced the new items into the previous item -- the array then declared 3 items and held
+1. The fix is `balanced()` plus the start of that brace's own line, and a round-trip through
+`resource_format` so formatting is canonical by construction. This is the array-splice trap that has
+cost a release before.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TS1 | **The row this exists for.** Act 3, `02 Hamlet Burned`, on a save that has **not** been in that map. Find the dead Knight Templars and search them | - | **Two** of them carry a **Helm of the Templars** and a **Spirit Templar Shield** alongside the amulet they always had. Neither item has ever appeared in this game |
+| TS2 | **The repair row.** Look at the Helm in your inventory | - | It looks like a **helmet** -- helmet icon, and a helmet on the ground when dropped. In vanilla it would have shown a large shield. If it still looks like a shield, the art repair did not take |
+| TS3 | Check where the Helm sorts in the inventory list | - | With **armour**, not with shields. Its grouping moved from `Shield Large` to `Armor` |
+| TS4 | **Equip the Helm** | - | It goes on your **head**. The slot was always correct in vanilla; this confirms the art change did not disturb it |
+| TS5 | Equip the Shield | - | Off hand, as any shield. It needed no repair at all |
+| TS6 | Drop both on the ground and look at them | - | A helmet and a shield, two different models. Both previously used the same `LionShield_PU` |
+| TS7 | **Equip the Helm and watch AC.** Note your Armor Class, put it on, note it again | - | **+6** -- double the best plain helmet, and nothing enchanted beats it because `Helmets/Protection` grants +0 AC. As shipped the Helm gave **nothing at all** |
+| TS7b | Equip the Shield and watch AC and resistances | - | **AC +8**, **Piercing +15, Slashing +12, Crushing +12**, attack speed **-0.03**. That beats `ShieldLarge` (+7, P15 S10 C10) on AC at **half its encumbrance** and with a lighter speed penalty -- the set's identity is protection at medium weight |
+| TS7c | **The set bonus.** Wear **one** piece and note AC. Then wear **both** | - | Wearing both grants **+4 AC on top**, equal to a Rare AC enchantment. One piece alone gives no set bonus. Total for the pair: 6 + 8 + 4 = **+18 AC** |
+| TS7d | Take one piece back off | - | The set bonus **goes away** and AC drops by 4 more than the piece itself. If it sticks, the counter is not decrementing and that is a real bug |
+| TS8 | Search the **other** dead Templars in that map and in Montserrat | - | **Only the amulet.** Templars 1 to 4 are untouched, so the set stays rare |
+| TS15 | **Equip the Shield and check your one-handed skill** | - | **+5 OneHandedMelee**. Below the +8 that enchantments give, so it should feel like a competent shield rather than a weapon upgrade |
+| TS16 | **Equip the Helm and check Luck** | - | **+1 Luck**. Watch what moves with it -- `Fortune`, `CriticalChance` and the Cold, Fire and Electrical resistances all read Luck, so a single point touches several numbers. **No other item in the game grants a flat attribute**, so if this feels disproportionate, say so: it is the one number here with no vanilla precedent to anchor it |
+| TS17 | Take the Helm off and confirm Luck returns | - | Back to its old value, and the derived numbers that read Luck follow it down. An attribute bonus that sticks after unequipping is a real bug |
+| TS14 | **The calibration row.** Compare the set against a `ShieldLarge` plus the best helmet you can find | - | The set should be **clearly better**, or it is not worth two slots and a unique find. If it still feels outclassed, the numbers are the dial and this is the row that says so |
+| TS9 | A save that **had already entered** `02 Hamlet Burned` before installing | - | The items are **absent**, by engine design -- the corpses were spawned on first entry. Expected, not a bug, and the reason TS1 specifies a fresh approach to that map |
+| TS11 | **The latent-bug row.** Confirm the Helm registers as a helmet | - | It now sets `Wearing a Helmet`, which **three shipped files read**, including `Resurrect player.can`. As shipped it did not, so a Templar helm was not a helmet as far as the game was concerned |
+| TS12 | **The blast-radius row.** Make a character with **neither** piece and check AC against a vanilla install | - | **Identical.** The set bonus lives in `(AC) Armor Class`, a core attribute every character uses, so the conditional must return 0 for everyone else. If base AC moved at all, back this out |
+| TS13 | Check an **enemy's** behaviour in combat after the AC change | - | Unchanged. Enemies cannot equip items so the counter stays 0, but `(AC) Armor Class` is in every creature's attribute map and this is the row that proves the edit is inert for them |
+| TS10 | Judge whether the placement reads | - | A battle-weary helm on a fallen Templar in a burned hamlet. If it feels like loot scattered at random rather than something left on a body, say so -- the alternative was a scripted scene rather than a corpse |
+
 ## Enemy-laid traps - caltrops from assassins and thieves
 
 Asked in play: *"do any enemies lay traps? Is that possible?"* No, and yes.

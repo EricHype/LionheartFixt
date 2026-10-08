@@ -1,0 +1,102 @@
+[size=150][b]Lionheart Fixt 0.36.0 - The Templar Set[/b][/size]
+
+This started with a question: *"what are the other unused items? I didn't know the mine deed existed.
+We should be able to find usages for all of them eventually."*
+
+So the first thing in this release isn't content. It's a [b]written survey[/b] of everything the shipped
+game defines and then never uses, so nobody has to work it out again — and the second thing is the
+first pair of items taken off that list.
+
+[b]What's actually unused in Lionheart[/b]
+
+| | |
+|---|---|
+| [b]8 quest items[/b] | hand-written, with descriptions, placed nowhere |
+| [b]48 enemies[/b] | nothing in the game spawns them — and [b]all of them have working art[/b] |
+| [b]2 whole summon tiers[/b] | [i]Monster Summoning[/i] levels 4 and 5, six finished creatures |
+| [b]5 title perks[/b] | nothing in the game awards them |
+| [b]3 wand enchantments[/b] | the only magic items genuinely lost |
+| [b]0 skills[/b] | nothing was cut — the spell system is complete |
+
+The two that stand out: [b]a level-5 summon that puts a Rock Titan on the field[/b], finished and
+unreachable — and [b]three of four "Enemy of the…" title perks are unconnected[/b] while the fourth works
+perfectly, sitting right beside them.
+
+It's all in [i]docs/unused-content.md[/i], including the parts I got wrong on the way. One early pass
+claimed 93 creatures had broken stat references and that it was a bug in the original game. It wasn't
+— it was a bug in *my check*, which was case-sensitive about a file extension. The real number is
+zero. That's in there too.
+
+[b]The helm was never finished[/b]
+
+[i]Helm of the Templars[/i] — *"This battle-weary helm shines with the power of the Templars."*
+
+It's a [b]helmet[/b] that was wearing a shield's clothes. Its ground model was a shield. All three of its
+inventory icons were a shield. It sorted with shields in your bag. Someone cloned the shield item,
+changed the name and the slot, and stopped — which is almost certainly why it was never placed
+anywhere in the game.
+
+Repaired using the game's own ordinary helmet as the reference, so it now looks like, sorts like, and
+behaves like a helmet.
+
+[b]Then it turned out both pieces did nothing at all[/b]
+
+I only found this because I was asked what the stats were.
+
+[b]Neither item had any effect whatsoever.[/b] The only thing either of them did was make a noise when
+you picked it up. No armour. No resistances. Nothing. An item described as shining with the power of
+the Templars was [b]worse than a plain helmet off a dead thug[/b].
+
+My first attempt at fixing that was also too timid — I matched them to ordinary gear of the same
+weight, and was rightly told they'd be outclassed by things you find in act 1. Second attempt, priced
+against the [b]best[/b] gear those slots can hold:
+
+| | |
+|---|---|
+| [b]Helm of the Templars[/b] | [b]+6 armour[/b], [b]+1 Luck[/b] |
+| [b]Spirit Templar Shield[/b] | [b]+8 armour[/b], strong piercing, slashing and crushing protection, [b]+5 one-handed skill[/b] |
+| [b]wearing both[/b] | [b]+4 more armour[/b] |
+
+[b]+18 armour for the pair[/b], where those two slots would normally cap out around +10. The shield beats
+the largest shield in the game while weighing [b]half[/b] as much — that's the set's character: it
+protects like a tower shield and carries like a buckler.
+
+[b]There is a real set bonus, and I nearly missed it[/b]
+
+Asked whether the two pieces could reward you for wearing them together, I said the game had no way to
+do it. I was wrong, and I was told so.
+
+[b]The Voodoo belt and necklace already do exactly this.[/b] Wear one, nothing; wear both, you get an
+extra skill point every level. The game doesn't check what you're wearing — it *counts* it, and reads
+the total. I'd been searching for the wrong kind of thing entirely.
+
+The Templar bonus is built the same way, from the same pattern. And finding it had a bonus
+consequence: it turned up a [b]goblin kill counter[/b] that's already live in the game, which means the
+unawarded [i]Goblin Slayer[/i] title is far easier to restore than I'd thought.
+
+[b]Where to find them[/b]
+
+On a [b]dead Knight Templar in the burned hamlet[/b], act 3. There are two such corpses and no others,
+which keeps the set rare.
+
+This works on [b]any save that hasn't been into that map yet[/b] — it changes a character, not the map
+itself.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+[b]If you play it[/b]
+
+[b]The main thing:[/b] find them, wear both, and tell me whether +18 armour and a set bonus feels right
+for act 3, or whether it's too much. I priced it against the best gear in those slots, but that's a
+judgement and you're the one playing it.
+
+[b]One number has no precedent and I'd like a second opinion on it:[/b] the [b]+1 Luck[/b] on the helm. No
+other item in this game grants a flat attribute point — and Luck quietly feeds your critical chance,
+your fortune, and three of your resistances. One point moves several things at once. If it feels
+disproportionate, say so and I'll pull it.
+
+[b]Two safety checks, please.[/b] Make a character wearing neither piece and confirm your armour class is
+exactly what it always was — the set bonus had to be wired into a core stat every character shares.
+And take the helm [b]off[/b] and confirm your Luck goes back down.

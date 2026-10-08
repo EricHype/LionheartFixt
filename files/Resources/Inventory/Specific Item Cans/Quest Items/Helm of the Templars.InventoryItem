@@ -1,0 +1,103 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=4
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=6
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Wearing a Helmet
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Number of Templar Items
+				}
+				Modifier=CCharacterModifierAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Character attribute to modify=Character Attributes/(LK) Luck
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_metal_armor.ogg
+				Position=$Trigger
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down__metal_armor.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=100
+	}
+	Is Magic=0
+	Encumbrance=2
+	On the ground=Items/PickUps/Misc Items/Helmet_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Helm of the Templars
+	Description=This battle-weary helm shines with the power of the Templars.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Armor/Helmet1
+		Better=Items/Inventory Images/Armor/Helmet1
+		Special=Items/Inventory Images/Armor/Helmet1
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Head
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Armor
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Helm of the Templars
+}
