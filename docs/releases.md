@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.34.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.35.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,113 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.35.0 - Caltrops
+
+Asked in play: *"do any enemies lay traps? Is that possible?"*
+
+No, and yes.
+
+### What a trap is in this game
+
+Traps are **static map features**: a `CRenderablePolygon` placed in **44 maps**, carrying two
+activities. A `CTouchingPolygonTriggerAI` with `Triggered By Players=1` and every other flag at 0, and
+a `CAISecretReveal` that hides the trap until Find Traps beats `Skill Adjustment=15`, then fires
+`Found Trap` and attaches a `GetCloseThen Disarm Trap` specifier so it can be disarmed.
+
+The damage is **mojo-scaled** through nested `CConditionalAction`s -- 25-35 at mojo >= 16, 15-25 at
+>= 10, else 10-20 -- which is the same progression-aware pattern the rest of the game uses.
+
+Nothing places one at runtime. No enemy lays a trap.
+
+### But 32 cans already carried the machinery
+
+This was the surprise, and it is what made the rest straightforward. The **18 WarGolems** and **14
+Undead** -- `Disedira`, `Festering Undead Walk`, `Second Guardian` -- each carry a
+`CTouchingOvalTriggerAI` as an activity **on themselves**: `X Radius=125`, `Triggered By Players=1`,
+spawning a Fire Circle when the player enters and doing 1-2 damage every 2 seconds while they stand
+in it.
+
+So an enemy-attached proximity hazard is shipped, working behaviour. It simply walks around with the
+golem instead of being left on the floor.
+
+An earlier pass of this survey reported **all 478** cans carrying trap machinery. That was a false
+positive -- `Trap` matches `Wolf Trapper Perk Checker`, which every can's attribute map lists. It is
+the third pattern of that shape this session, after the healing one in 0.33.0, and the lesson is the
+same: a query that returns everything is a bug in the query.
+
+### And the missing primitive existed
+
+`CCreateEntityFromCanAction` takes **`New Location=$Trigger`** -- it creates an entity exactly where
+the creator stands. Vanilla uses it **73 times**, including to drop a quest mana pickup at a trigger's
+feet. That is the whole of "lay a trap at my position".
+
+Everything needed was therefore already shipping:
+
+| piece | vanilla precedent |
+|---|---|
+| spawn at my own feet | `CCreateEntityFromCanAction{New Location=$Trigger}`, 73 uses |
+| the trigger | `CTouchingOvalTriggerAI`, on 32 enemy cans |
+| the damage | `CActionDoDamage` + `CXRPGDamage`, mojo-scaled, as in every map trap |
+| once per enemy | the `CSeriesAction` one-shot, as the Priest's shield and 0.34.0's draughts |
+| cleanup | `CDeleteAction`, how vanilla's spawned pickups remove themselves |
+
+### The two questions, answered before building
+
+**Can it hurt other enemies, or the player's companions?** **No.** The map trap and the golem aura
+share one pattern: `Triggered By Players=1` with `Anything`, `Player Friends`, `Enemies`,
+`Projectiles` and `Companions` all **0**. Since only the player can trigger it,
+`Character To Damage=$instigator` can only ever resolve to the player. Copied field for field and
+confirmed in the deployed bytes as `(0, 1, 0, 0, 0)`. `CT3` and `CT4` test it in play anyway, because
+a trap that killed Fernand would be a serious fault.
+
+**Does it outlive its layer, and does it clean up?** Yes to both. A spawned entity is independent of
+its creator, and vanilla's spawnable pickup can uses `CDeleteAction` to remove itself after use. The
+patch is `Trigger Only Once=1` and then deletes itself -- with the delete placed **last**, because an
+action after a `CDeleteAction` silently never runs.
+
+### What was built
+
+`Resources/Common Objects and Scripts/Fixt Caltrops Entity.can`, cloned from vanilla's spawnable
+spirit-pickup can so it carries every field the engine writes, with the template's 32KB mana
+specifier replaced by the trigger. `X Radius=55`, `Damage Types/Piercing`, on vanilla's own three
+mojo tiers at about half a map trap's numbers -- these are improvised, and a fight can hold several:
+
+| player mojo | caltrops | a map trap |
+|---|---|---|
+| >= 16 | 12-18 | 25-35 |
+| >= 10 | 8-12 | 15-25 |
+| below | 5-9 | 10-20 |
+
+**48 cans lay one, each exactly once**, from a `Damaged Script Action` that was empty on every one of
+them: **12 assassins** (`Assasin`, `Assasin Bow`, `Assasin Zealot`, `Assasin Master`, three tiers
+each) and **36 thieves** (the `Thugs/Theif` and `Sewers/Sewer Theif` ladders in full).
+
+It is laid on **first being hurt** rather than on engage. That is better flavour -- a thief scattering
+caltrops to cover itself -- and it keeps the unknowns down, since unlike 0.34.0's draughts no health
+gate is involved.
+
+**The patch is visible, and deliberately carries no `CAISecretReveal`.** A dedicated map trap you must
+find with Find Traps is fair because it was laid in advance; one dropped mid-fight that you cannot see
+would only be a damage tax. Visible is what makes **position** matter -- 0.33.0's healer made target
+priority matter, and this makes ground matter. `CT11` and `CT12` record that the hide-and-disarm
+machinery exists and was passed over, in case that reads as the wrong call.
+
+### A balance concern, raised once
+
+Forty-eight layers means a crowded sewer room could produce five or six patches at once. Each is
+one-shot, small and self-deleting, so it should self-limit. **`CT9`** is the row that will say
+otherwise, and the dials are the radius and the damage rather than the number of layers.
+
+### What needs playing
+
+`CT1`-`CT14` in [`qa.md`](qa.md). **`CT1`** is the row this exists for -- wound a thief and watch the
+ground. **`CT2`** is the structural one: wound it repeatedly and confirm it only ever lays one, the
+same one-shot assumption `PO2` watches. **`CT4`** is the safety row, and **`CT13`** the bark
+regression on the 36 thief cans.
+
+And the standing debt is now substantial: **`EH5` and `EH1` from 0.33.0 have still never been played**,
+and three releases of enemy behaviour now rest on them.
 
 ## 0.34.0 - One Draught Each
 

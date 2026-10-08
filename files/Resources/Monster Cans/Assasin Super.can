@@ -5,7 +5,7 @@ CCannedObject
 		Dynamic Properties=2
 		{
 			Comment=
-			Experience Points=52
+			Experience Points=775
 		}
 		Name=
 		Child List=
@@ -21,533 +21,97 @@ CCannedObject
 		Is Marked For Deletion=0
 		Activity=Array
 		{
-			Item Count=6
+			Item Count=5
 			Activity=CSkeletonAI
 			{
 				Marked For Deletion=0
 				Publisher=
-				Patrol AI=CSeriesAI
+				Patrol AI=CScanAreaAI
 				{
 					Marked For Deletion=0
 					Publisher=
-					AIs=Array
+					Play Ratio=0
+					Next Try To Move=0
+					State=Scanning
+					Go Home Range=300
+					Move To Behavior=CEntityBehaviorMoveToPos
 					{
-						Item Count=6
-						AI=CScanAreaAI
+						Old Stationary Flag=0
+						Angle To Turn To=0
+						Facing Backwards=0
+						Idle Behavior=CEntityBehaviorIdle
 						{
-							Marked For Deletion=0
-							Publisher=
-							Play Ratio=0
-							Next Try To Move=0
-							State=Scanning
-							Go Home Range=300
-							Move To Behavior=CEntityBehaviorMoveToPos
-							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
-								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
-								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
-							}
-							Starting Angle=-20
-							Ending Angle=20
-							Turning Speed=3
-							Time Between Turning=0
-							Start Out Waiting=0
-							Start Counterclockwise=0
-							Turning Flag=0
-							Turn Sequence Name=Idle
-							End Turn Action=CSendAIDoneMessage
-							{
-								Target=$Trigger
-							}
-							Execute Each Turn=0
-							Reset Each Begin=1
-							Current Time To Wait=0
-							Current Start Angle=0
-							Current End Angle=0
-							Waiting=1
-							Starting Facing Angle=-999
-							Complete Turn Time=0
-							Current Turn Time=0
-							Idle Behavior=CEntityBehaviorIdle
-							{
-								Num Seconds=1
-								Seconds Have Transitioned=0
-								Override Fidget Options=
-								Current Fidget Data=
-								Time Until Next Fidget=0
-								Fidgeting=0
-							}
+							Num Seconds=1
+							Seconds Have Transitioned=0
+							Override Fidget Options=
+							Current Fidget Data=
+							Time Until Next Fidget=0
+							Fidgeting=0
 						}
-						AI=CLimitedTimeAI
+						Play Ratio=1
+						Smooth Turning=0
+						Do Path Finding=1
+						Finished=1
+						Failed Last Path=0
+						Idle Begin Called=0
+						Move To Rate=0
+						CurTargetNormalX=0
+						CurTargetNormalY=0
+						Path Finding Params=CWayPointPath
 						{
-							Marked For Deletion=0
-							Publisher=
-							What To Do=CPatrolAreaAI
-							{
-								Marked For Deletion=0
-								Publisher=
-								Radius=110
-								TimeOfLastChangeDirectionDueToCollide=0
-								Moving=CEntityBehaviorMoveToPos
-								{
-									Old Stationary Flag=0
-									Angle To Turn To=0
-									Facing Backwards=0
-									Idle Behavior=CEntityBehaviorIdle
-									{
-										Num Seconds=1
-										Seconds Have Transitioned=0
-										Override Fidget Options=
-										Current Fidget Data=
-										Time Until Next Fidget=0
-										Fidgeting=0
-									}
-									Play Ratio=1
-									Smooth Turning=0
-									Do Path Finding=1
-									Finished=1
-									Failed Last Path=0
-									Idle Begin Called=0
-									Move To Rate=0
-									CurTargetNormalX=0
-									CurTargetNormalY=0
-									Path Finding Params=CWayPointPath
-									{
-										Start Point=0,0
-										End Point=0,0
-										Length=0
-										Max Dist To Travel=0
-										Num Failed Paths=0
-										Max Failed Paths=0
-										Pos To Move Index=0
-										Dist So Far=0
-										Path=
-									}
-									Pos Moving From=0.000000,0.000000
-									Final Dest=0.000000,0.000000
-									Dest Radius=0
-									Cur Dest Move To=0.000000,0.000000
-									Last Neg Dist=0
-									NumTimesLostGound=0
-									Sequence=
-									Planed Path For=
-								}
-								Retry New Point=0
-							}
-							Max Time=3
-							Time Left=0
-							Done Action=CRandomAction
-							{
-								Action=Array
-								{
-									Item Count=2
-									Action=CSendAIDoneMessage
-									{
-										Target=$Trigger
-									}
-									Action=CMultipleActionsAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-										}
-									}
-								}
-							}
+							Start Point=0,0
+							End Point=0,0
+							Length=0
+							Max Dist To Travel=0
+							Num Failed Paths=0
+							Max Failed Paths=0
+							Pos To Move Index=0
+							Dist So Far=0
+							Path=
 						}
-						AI=CScanAreaAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							Play Ratio=0
-							Next Try To Move=0
-							State=Scanning
-							Go Home Range=300
-							Move To Behavior=CEntityBehaviorMoveToPos
-							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
-								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
-								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
-							}
-							Starting Angle=-20
-							Ending Angle=20
-							Turning Speed=3
-							Time Between Turning=0
-							Start Out Waiting=0
-							Start Counterclockwise=0
-							Turning Flag=0
-							Turn Sequence Name=Idle
-							End Turn Action=CSendAIDoneMessage
-							{
-								Target=$Trigger
-							}
-							Execute Each Turn=0
-							Reset Each Begin=1
-							Current Time To Wait=0
-							Current Start Angle=0
-							Current End Angle=0
-							Waiting=1
-							Starting Facing Angle=-999
-							Complete Turn Time=0
-							Current Turn Time=0
-							Idle Behavior=CEntityBehaviorIdle
-							{
-								Num Seconds=1
-								Seconds Have Transitioned=0
-								Override Fidget Options=
-								Current Fidget Data=
-								Time Until Next Fidget=0
-								Fidgeting=0
-							}
-						}
-						AI=CLimitedTimeAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							What To Do=CPatrolAreaAI
-							{
-								Marked For Deletion=0
-								Publisher=
-								Radius=110
-								TimeOfLastChangeDirectionDueToCollide=0
-								Moving=CEntityBehaviorMoveToPos
-								{
-									Old Stationary Flag=0
-									Angle To Turn To=0
-									Facing Backwards=0
-									Idle Behavior=CEntityBehaviorIdle
-									{
-										Num Seconds=1
-										Seconds Have Transitioned=0
-										Override Fidget Options=
-										Current Fidget Data=
-										Time Until Next Fidget=0
-										Fidgeting=0
-									}
-									Play Ratio=1
-									Smooth Turning=0
-									Do Path Finding=1
-									Finished=1
-									Failed Last Path=0
-									Idle Begin Called=0
-									Move To Rate=0
-									CurTargetNormalX=0
-									CurTargetNormalY=0
-									Path Finding Params=CWayPointPath
-									{
-										Start Point=0,0
-										End Point=0,0
-										Length=0
-										Max Dist To Travel=0
-										Num Failed Paths=0
-										Max Failed Paths=0
-										Pos To Move Index=0
-										Dist So Far=0
-										Path=
-									}
-									Pos Moving From=0.000000,0.000000
-									Final Dest=0.000000,0.000000
-									Dest Radius=0
-									Cur Dest Move To=0.000000,0.000000
-									Last Neg Dist=0
-									NumTimesLostGound=0
-									Sequence=
-									Planed Path For=
-								}
-								Retry New Point=0
-							}
-							Max Time=4
-							Time Left=0
-							Done Action=CRandomAction
-							{
-								Action=Array
-								{
-									Item Count=2
-									Action=CSendAIDoneMessage
-									{
-										Target=$Trigger
-									}
-									Action=CMultipleActionsAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-										}
-									}
-								}
-							}
-						}
-						AI=CScanAreaAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							Play Ratio=0
-							Next Try To Move=0
-							State=Scanning
-							Go Home Range=300
-							Move To Behavior=CEntityBehaviorMoveToPos
-							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
-								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
-								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
-							}
-							Starting Angle=-15
-							Ending Angle=15
-							Turning Speed=2
-							Time Between Turning=0
-							Start Out Waiting=0
-							Start Counterclockwise=0
-							Turning Flag=0
-							Turn Sequence Name=Idle
-							End Turn Action=CSendAIDoneMessage
-							{
-								Target=$Trigger
-							}
-							Execute Each Turn=0
-							Reset Each Begin=1
-							Current Time To Wait=0
-							Current Start Angle=0
-							Current End Angle=0
-							Waiting=1
-							Starting Facing Angle=-999
-							Complete Turn Time=0
-							Current Turn Time=0
-							Idle Behavior=CEntityBehaviorIdle
-							{
-								Num Seconds=1
-								Seconds Have Transitioned=0
-								Override Fidget Options=
-								Current Fidget Data=
-								Time Until Next Fidget=0
-								Fidgeting=0
-							}
-						}
-						AI=CLimitedTimeAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							What To Do=CPatrolAreaAI
-							{
-								Marked For Deletion=0
-								Publisher=
-								Radius=110
-								TimeOfLastChangeDirectionDueToCollide=0
-								Moving=CEntityBehaviorMoveToPos
-								{
-									Old Stationary Flag=0
-									Angle To Turn To=0
-									Facing Backwards=0
-									Idle Behavior=CEntityBehaviorIdle
-									{
-										Num Seconds=1
-										Seconds Have Transitioned=0
-										Override Fidget Options=
-										Current Fidget Data=
-										Time Until Next Fidget=0
-										Fidgeting=0
-									}
-									Play Ratio=1
-									Smooth Turning=0
-									Do Path Finding=1
-									Finished=1
-									Failed Last Path=0
-									Idle Begin Called=0
-									Move To Rate=0
-									CurTargetNormalX=0
-									CurTargetNormalY=0
-									Path Finding Params=CWayPointPath
-									{
-										Start Point=0,0
-										End Point=0,0
-										Length=0
-										Max Dist To Travel=0
-										Num Failed Paths=0
-										Max Failed Paths=0
-										Pos To Move Index=0
-										Dist So Far=0
-										Path=
-									}
-									Pos Moving From=0.000000,0.000000
-									Final Dest=0.000000,0.000000
-									Dest Radius=0
-									Cur Dest Move To=0.000000,0.000000
-									Last Neg Dist=0
-									NumTimesLostGound=0
-									Sequence=
-									Planed Path For=
-								}
-								Retry New Point=0
-							}
-							Max Time=2
-							Time Left=0
-							Done Action=CRandomAction
-							{
-								Action=Array
-								{
-									Item Count=2
-									Action=CSendAIDoneMessage
-									{
-										Target=$Trigger
-									}
-									Action=CMultipleActionsAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-										}
-									}
-								}
-							}
-						}
+						Pos Moving From=0.000000,0.000000
+						Final Dest=0.000000,0.000000
+						Dest Radius=0
+						Cur Dest Move To=0.000000,0.000000
+						Last Neg Dist=0
+						NumTimesLostGound=0
+						Sequence=
+						Planed Path For=
 					}
-					Current AI=0
-					When Done=Repeat Series
-					Restart Series Next Begin=0
+					Starting Angle=-45
+					Ending Angle=45
+					Turning Speed=10
+					Time Between Turning=0
+					Start Out Waiting=0
+					Start Counterclockwise=0
+					Turning Flag=0
+					Turn Sequence Name=Idle
+					End Turn Action=
+					Execute Each Turn=0
+					Reset Each Begin=1
+					Current Time To Wait=0
+					Current Start Angle=0
+					Current End Angle=0
+					Waiting=1
+					Starting Facing Angle=-999
+					Complete Turn Time=0
+					Current Turn Time=0
+					Idle Behavior=CEntityBehaviorIdle
+					{
+						Num Seconds=1
+						Seconds Have Transitioned=0
+						Override Fidget Options=
+						Current Fidget Data=
+						Time Until Next Fidget=0
+						Fidgeting=0
+					}
 				}
 				Patrol Start Action=
 				Patrol End Action=
 				Respond to calls for reinforcements=0
 				Target shooter if hit=1
 				Never Unacquire=0
-				Sneak Adjustment=0
+				Sneak Adjustment=-75
 				Target Type=CEntityBehaviorStateSetClosestTarget
 				{
 					Max Distance=550
@@ -555,7 +119,7 @@ CCannedObject
 					Name To Target=
 					Must Be Collideable=1
 					Must Have HPs=1
-					Valid Targets=Scripted Custom 2
+					Valid Targets=Player,Player Friend
 				}
 				Has Seen Target=0
 				Max dist from home=1200
@@ -764,7 +328,7 @@ CCannedObject
 						}
 					}
 				}
-				Max Dist=400
+				Max Dist=70
 				Attack AI=CNormalAttackAI
 				{
 					Marked For Deletion=0
@@ -775,152 +339,7 @@ CCannedObject
 						Play Sequence=
 						Play Reload Sequence=
 					}
-					Shoot Completed=CRandomAction
-					{
-						Action=Array
-						{
-							Item Count=4
-							Action=CActionSelectSkill
-							{
-								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/Ranged
-							}
-							Action=CActionSelectSkill
-							{
-								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/Ranged
-							}
-							Action=CActionSelectSkill
-							{
-								Character to select skill=$Trigger
-								Skill to select=Skills/Fighting/Ranged
-							}
-							Action=CRandomAction
-							{
-								Action=Array
-								{
-									Item Count=13
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=10 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=11 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=12 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=13 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=14 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=15 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=16 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=17 shared
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=23 archer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=24 archer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=25 archer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=26 archer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-									Action=CDisplayDialogBalloonAction
-									{
-										Dialog Tree File=Levels/Sewers/Dialog/Fixt Thief Barks
-										Node ID=27 archer
-										Name of Position=$trigger
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=0
-									}
-								}
-							}
-						}
-					}
+					Shoot Completed=
 					Turn Behavior=CPointWeaponAtTargetEntityBehavior
 					{
 					}
@@ -968,7 +387,7 @@ CCannedObject
 						Sequence=
 						Planed Path For=
 					}
-					Minimum Attack Distance=350
+					Minimum Attack Distance=100
 					Move Buffer Zone=50
 					Waiting For Threshold=0
 					Moving State=1
@@ -982,7 +401,7 @@ CCannedObject
 				Attack Start Action=
 				Attack End Action=
 				Check Range When Firing=0
-				Ignore line of sight if in range=0
+				Ignore line of sight if in range=1
 				Retreat when=0
 				Retreat Start Action=
 				Has Started Retreat=0
@@ -990,29 +409,7 @@ CCannedObject
 				Allowed To Roam Anywhere=0
 				Transition=Array
 				{
-					Array Count=1
-					Array Item=CSkeletonTransition
-					{
-						Trigger=First Time
-						From State=Any
-						To State=Attack
-						Action=CAddTemporaryAIAction
-						{
-							AI To Add=CAIShowWhenOccluded
-							{
-								Marked For Deletion=0
-								Publisher=
-							}
-							Name of LayerPart To Add AI To=$Trigger
-							Duration=CConstant
-							{
-								Constant Value=10
-							}
-							Expression Context=$Instigator
-							Done Action=
-						}
-						IsDone=0
-					}
+					Array Count=0
 				}
 			}
 			Activity=CAICharacterProfile
@@ -1020,17 +417,17 @@ CCannedObject
 				Marked For Deletion=0
 				Publisher=
 				Weapon Mode=Primary Weapon
-				User Assigned Name=Thief Archer
+				User Assigned Name=Assassin
 				Gender=Male
 				Head=0
 				Hue Remapper=Player Data/Hue Remappers/!None
-				Race=Races/Enemies/Thugs/Thief3 Bow Super
+				Race=Races/Enemies/Assassin Super
 				Mana Used=0
 				NumSecondsToRebroadcastFollow=0
 				Experience Points=0
 				Character Level=1
 				Skill Points=0
-				Selected Skill=Skills/Fighting/Ranged
+				Selected Skill=Skills/!None
 				Selected Weapon Index=0
 				CharacterAttribute Values=Array
 				{
@@ -1123,6 +520,7 @@ CCannedObject
 					Derived Character Attributes/Game Scripting Variables/Herbalist Dead=0
 					Derived Character Attributes/Game Scripting Variables/Player first pickup of HEALTH ball=0
 					Derived Character Attributes/Game Scripting Variables/Player first pickup of Spirit Mana=0
+					Derived Character Attributes/Game Scripting Variables/Player has cast a spell=0
 					Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry=0
 					Derived Character Attributes/Game Scripting Variables/Relican Dead=0
 					Derived Character Attributes/Game Scripting Variables/River Dryad Dead=0
@@ -1244,6 +642,7 @@ CCannedObject
 					Derived Character Attributes/Game Scripting Variables/Herbalist Dead=0
 					Derived Character Attributes/Game Scripting Variables/Player first pickup of HEALTH ball=0
 					Derived Character Attributes/Game Scripting Variables/Player first pickup of Spirit Mana=0
+					Derived Character Attributes/Game Scripting Variables/Player has cast a spell=0
 					Derived Character Attributes/Game Scripting Variables/Player has heard Grumjun poetry=0
 					Derived Character Attributes/Game Scripting Variables/Relican Dead=0
 					Derived Character Attributes/Game Scripting Variables/River Dryad Dead=0
@@ -1358,6 +757,7 @@ CCannedObject
 					Skills/Magic Thought/Fire=0,-9999,9999
 					Skills/Magic Thought/Ice=0,-9999,9999
 					Skills/Magic Thought/Offensive/Electrical Burst=0,-9999,9999
+					Skills/Magic Thought/Offensive/ENEMY Flame Thrower=0,-9999,9999
 					Skills/Magic Thought/Offensive/Fire Circle=0,-9999,9999
 					Skills/Magic Thought/Offensive/Fire Orb=0,-9999,9999
 					Skills/Magic Thought/Offensive/Fireball=0,-9999,9999
@@ -1453,6 +853,7 @@ CCannedObject
 					Skills/Magic Thought/Fire=0
 					Skills/Magic Thought/Ice=0
 					Skills/Magic Thought/Offensive/Electrical Burst=0
+					Skills/Magic Thought/Offensive/ENEMY Flame Thrower=0
 					Skills/Magic Thought/Offensive/Fire Circle=0
 					Skills/Magic Thought/Offensive/Fire Orb=0
 					Skills/Magic Thought/Offensive/Fireball=0
@@ -1522,6 +923,7 @@ CCannedObject
 				}
 				Number of perks earned=0
 				CharacterLevelWasAtWhenLastPerkGiven=0
+				Can Be Knocked Around=1
 				Critical Hit=Array
 				{
 					Item Count=0
@@ -1553,16 +955,8 @@ CCannedObject
 				Triggered By Projectiles=0
 				Triggered By Name=
 				Interaction Description=
-				Interaction Type=Interaction Specifiers/GetCloseThenTalk
-				Action=CDisplayDialogBalloonAction
-				{
-					Dialog Tree File=Levels/Sewers/Dialog/thievescanned
-					Node ID=1 Conversation Start
-					Name of Position=$trigger
-					Position Offset=0.000000,-70.000000
-					After Action=
-					Include In Log=1
-				}
+				Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+				Action=
 				X Radius=50
 				Attacker Range Modifier=0
 				YX Ratio=0.712766
@@ -1578,81 +972,95 @@ CCannedObject
 			{
 				Marked For Deletion=0
 				Publisher=
-				Default Inventory Item=CInventoryItem
-				{
-					PlugIn Behaviors=Array
-					{
-						Item Count=3
-						PlugIn Behavior=CPlugInBehaviorAttack
-						{
-							Max Attack Range=500
-							Is Location Based=0
-							Can Use Slayer Mode=0
-							Can Use Sniper Mode=0
-							Action On Hit=
-							Action On Miss=
-						}
-						PlugIn Behavior=CPlugInBehaviorPlaySequence
-						{
-							Granny Animations=Array
-							{
-								Item Count=0
-							}
-							Sequence Name=AttackBow
-							Random Sequence Selection=0
-						}
-						PlugIn Behavior=CXRPGPlugInBehaviorLauncher
-						{
-							After Launch Action=
-							Num To Launch=1
-							Dispersion Angle=180
-							Aim At Parents Target=1
-							Launch Offset=0.000000,0.000000
-							Parents Bone Launch Location=Bip01 R Hand
-							Needs Line Of Sight=0
-							Primary Launchable Slot=Character Slot Types/!None
-							Secondary Launchable Types=Array
-							{
-								Item Count=1
-								Secondary Launchable Type=Inventory Items/Enemy Items/Arrow Thug3 Bow Super
-							}
-						}
-					}
-					Value=CConstant
-					{
-						Constant Value=0
-					}
-					Is Magic=0
-					Encumbrance=2
-					On the ground=!Unknown Model
-					Requirements=Array
-					{
-						Item Count=0
-					}
-					Display Name=unnamed
-					Description=undefined
-					Inventory Window Images=Array
-					{
-						Basic=!Unknown Model
-						Better=!Unknown Model
-						Special=!Unknown Model
-					}
-					Whole Item Display Name=
-					Whole Item Description=
-					Number Of Additions Added=0
-					Slot Used In=Character Slot Types/!None
-					Sub Slot Used In=0
-					Number Hands Needed=None
-					Unique Select ID=0
-					IsCurrentlyUsedByPlayer=0
-					Catagory for display Grouping=Inventory/Grouping Catagories/!none
-					Inventory Addition Group=Inventory/!Unknown
-					Item Grade=Basic
-					Origonal Item=Inventory Items/Amulet
-				}
+				Default Inventory Item=
 				Inventory Items=Array
 				{
-					Item Count=0
+					Item Count=1
+					Inventory Item=CInventoryItem
+					{
+						PlugIn Behaviors=Array
+						{
+							Item Count=4
+							PlugIn Behavior=CPlugInBehaviorAttack
+							{
+								Max Attack Range=35
+								Is Location Based=0
+								Can Use Slayer Mode=0
+								Can Use Sniper Mode=0
+								Action On Hit=
+								Action On Miss=
+							}
+							PlugIn Behavior=CInventoryItemPlugInBehaviorWeaponMelee
+							{
+							}
+							PlugIn Behavior=CPlugInBehaviorPlaySequence
+							{
+								Granny Animations=Array
+								{
+									Item Count=0
+								}
+								Sequence Name=Attack
+								Random Sequence Selection=1
+							}
+							PlugIn Behavior=CPlugInBehaviorDamage
+							{
+								Hit Or Miss=Damage Types/Damage Hit Or Miss/OneHandedMelee
+								Cache Hit Or Miss Result=1
+								Hit Margin=0
+								Damages=Array
+								{
+									Item Count=1
+									Damage=CXRPGDamage
+									{
+										Damage Type=Damage Types/Slashing
+										Damage Amount=CRandom
+										{
+											Operator=
+											Minimum=CConstant
+											{
+												Constant Value=8
+											}
+											Maximum=CConstant
+											{
+												Constant Value=28
+											}
+										}
+									}
+								}
+							}
+						}
+						Value=CConstant
+						{
+							Constant Value=0
+						}
+						Is Magic=0
+						Encumbrance=2
+						On the ground=!Unknown Model
+						Requirements=Array
+						{
+							Item Count=0
+						}
+						Display Name=unnamed
+						Description=undefined
+						Inventory Window Images=Array
+						{
+							Basic=!Unknown Model
+							Better=!Unknown Model
+							Special=!Unknown Model
+						}
+						Whole Item Display Name=
+						Whole Item Description=
+						Number Of Additions Added=0
+						Slot Used In=Character Slot Types/!None
+						Sub Slot Used In=0
+						Number Hands Needed=None
+						Unique Select ID=0
+						IsCurrentlyUsedByPlayer=0
+						Catagory for display Grouping=Inventory/Grouping Catagories/!none
+						Inventory Addition Group=Inventory/!Unknown
+						Item Grade=Basic
+						Origonal Item=Inventory Items/Amulet
+					}
 				}
 				Accumulate Forwards Offsets=0
 				Next Unique Select ID=4200
@@ -1664,40 +1072,13 @@ CCannedObject
 				Marked For Deletion=0
 				Publisher=
 			}
-			Activity=CHandleMessageAI
-			{
-				Marked For Deletion=0
-				Publisher=
-				Message To Handle=GoToCombat
-				Action=COnlyOnceAction
-				{
-					Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=2
-							Action=CActivateAction
-							{
-								Target Name=Thief enemy trigger
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=CTriggerRelayAction
-							{
-								Relay Name=Thief enemy trigger
-							}
-						}
-					}
-				}
-			}
 		}
-		Category=Scripted Custom 1
+		Category=Enemy
 		Team Number=Nutral
 		Used In=QuestMode
 		Current Target=
 		Publisher=
-		Model=Characters/Monsters/Thugs/Thug03Bow
+		Model=Characters/Monsters/Assasin
 		Position X=143
 		Position Y=232.998
 		Rendering Height=0
@@ -1715,15 +1096,23 @@ CCannedObject
 			{
 				Action=Array
 				{
-					Item Count=2
+					Item Count=3
 					Action=CGiveExperiencePointsToAllPlayersAction
 					{
 						Get XP Frome=$Trigger
-						Experience Points To Add=300
+						Experience Points To Add=1003
 					}
 					Action=CUseCannedActionAction
 					{
-						Canned Object=Inventory/Enemy Drop Items Cans/Thug3 Archer Drop Action
+						Canned Object=Inventory/Enemy Drop Items Cans/Gold/Chance 1 in 2 SmallMedium Gold Pile Drop Action
+					}
+					Action=CUseCannedActionAction
+					{
+						Dynamic Properties=1
+						{
+							Comment=generates 3Medium spirit
+						}
+						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/3Medium Spirit Charge Drop Action
 					}
 				}
 			}
@@ -1753,30 +1142,32 @@ CCannedObject
 			Require Success To Advance=1
 			Next Action Index=0
 		}
-		Damaged Effect Action=CRandomAction
+		Damaged Effect Action=CMultipleActionsAction
 		{
 			Action=Array
 			{
-				Item Count=4
-				Action=CPlaySoundAction
+				Item Count=1
+				Action=CRandomAction
 				{
-					Sound=Enemies/Thugs/Thug pain1.ogg
-					Position=$Trigger
-				}
-				Action=CPlaySoundAction
-				{
-					Sound=Enemies/Thugs/Thug pain2.ogg
-					Position=$Trigger
-				}
-				Action=CPlaySoundAction
-				{
-					Sound=Enemies/Thugs/Thug pain3.ogg
-					Position=$Trigger
-				}
-				Action=CPlaySoundAction
-				{
-					Sound=Enemies/Thugs/Thug pain4.ogg
-					Position=$Trigger
+					Action=Array
+					{
+						Item Count=3
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/Assasins/Assassin Pain1.wav
+							Position=$Trigger
+						}
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/Assasins/Assassin Pain2.wav
+							Position=$Trigger
+						}
+						Action=CPlaySoundAction
+						{
+							Sound=Enemies/Assasins/Assassin Pain3.wav
+							Position=$Trigger
+						}
+					}
 				}
 			}
 		}

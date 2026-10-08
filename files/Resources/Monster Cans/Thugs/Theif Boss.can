@@ -1451,7 +1451,29 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=
+		Damaged Script Action=CSeriesAction
+		{
+			Action=Array
+			{
+				Item Count=2
+				Action=CCreateEntityFromCanAction
+				{
+					New Location=$Trigger
+					Copy Height=0
+					Random Location Delta=0
+					Warp Behavior=
+					Canned Entity to Create=Common Objects and Scripts/Fixt Caltrops Entity
+					New Name=Fixt Caltrops
+				}
+				Action=CSucceedAction
+				{
+					Action=
+				}
+			}
+			When Done=Repeat Last Action
+			Require Success To Advance=1
+			Next Action Index=0
+		}
 		Damaged Effect Action=CRandomAction
 		{
 			Action=Array

@@ -1473,6 +1473,96 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Enemy-laid traps - caltrops from assassins and thieves
+
+Asked in play: *"do any enemies lay traps? Is that possible?"* No, and yes.
+
+**Traps in the shipped game are static map features** -- a `CRenderablePolygon` in **44 maps**, with a
+`CTouchingPolygonTriggerAI` (`Triggered By Players=1`, everything else 0) plus a `CAISecretReveal`
+that hides it behind Find Traps at `Skill Adjustment=15` and attaches a `GetCloseThen Disarm Trap`
+specifier. Damage is **mojo-scaled**: 25-35 at mojo >= 16, 15-25 at >= 10, else 10-20. Nothing places
+one at runtime.
+
+**But 32 monster cans already carry trap machinery**, which was the surprise. The 18 **WarGolems** and
+14 **Undead** (`Disedira`, `Festering Undead Walk`, `Second Guardian`) each have a
+`CTouchingOvalTriggerAI` as an activity **on themselves** -- `X Radius=125`, `Triggered By Players=1`,
+spawning a Fire Circle on entry and doing 1-2 damage every 2 seconds while the player stands in it. A
+proximity hazard tied to an enemy is shipped, working behaviour; it just walks around with the golem
+instead of being left behind.
+
+(The first survey here reported all 478 cans carrying trap machinery. False positive: `Trap` matches
+`Wolf Trapper Perk Checker`, which every can's attribute map lists. Third over-broad pattern of this
+kind -- see also the healing one in the 0.33.0 section.)
+
+### Everything needed was already shipping
+
+| piece | where vanilla already uses it |
+|---|---|
+| spawn an entity at my own feet | `CCreateEntityFromCanAction{New Location=$Trigger}`, **73 uses** |
+| the trap's trigger | `CTouchingOvalTriggerAI`, already on 32 enemy cans |
+| the damage | `CActionDoDamage` + `CXRPGDamage`, mojo-scaled, as in every map trap |
+| fire once per enemy | the `CSeriesAction` one-shot, as the Priest's shield and 0.34.0's draughts |
+| clean up afterwards | `CDeleteAction`, how vanilla's spawned pickups remove themselves |
+
+### The two questions that had to be answered first
+
+**Can it hurt other enemies, or the player's companions?** **No.** The map trap and the golem aura use
+an identical pattern -- `Triggered By Players=1` with `Anything`, `Player Friends`, `Enemies`,
+`Projectiles` and `Companions` all **0** -- so `Character To Damage=$instigator` can only ever resolve
+to the player. Copied field for field, and confirmed in the deployed bytes as `(0, 1, 0, 0, 0)`.
+
+**Does it survive its creator, and does it clean up?** Spawned entities are independent of their
+creator, and vanilla's spawnable pickup can uses `CDeleteAction` to remove itself after use. This one
+is `Trigger Only Once=1` and then deletes itself -- with the delete placed **last**, because an action
+after a `CDeleteAction` never runs.
+
+### What was built
+
+`Resources/Common Objects and Scripts/Fixt Caltrops Entity.can` -- cloned from vanilla's spawnable
+spirit-pickup can so it carries every field the engine writes, with the template's 32KB mana
+specifier replaced by the trigger above. **Radius 55**, `Piercing` damage on vanilla's own three mojo
+tiers but at about half a map trap's numbers, because these are improvised and a fight can hold
+several:
+
+| player mojo | caltrops | a map trap, for comparison |
+|---|---|---|
+| >= 16 | 12-18 | 25-35 |
+| >= 10 | 8-12 | 15-25 |
+| below | 5-9 | 10-20 |
+
+**48 cans lay one**, each exactly once, from their previously empty `Damaged Script Action`: **12
+assassins** (`Assasin`, `Bow`, `Zealot`, `Master`, each in three tiers) and **36 thieves** (the
+`Thugs/Theif` and `Sewers/Sewer Theif` ladders). Laid on **first being hurt** rather than on engage,
+which is better flavour -- a thief scattering caltrops to cover itself -- and keeps the unknowns down,
+since no health gate is involved.
+
+**The patch is visible** and deliberately does *not* use `CAISecretReveal`. A dedicated map trap you
+must find with Find Traps is fair because it was laid in advance; one dropped mid-fight that you
+cannot see would only be a damage tax. Visible is what makes **position** matter, which is the whole
+point: the healer made target priority matter, this makes ground matter.
+
+**A balance concern, raised once.** Forty-eight layers means a crowded sewer fight could produce five
+or six patches. Each is one-shot, small and self-deleting, so it should self-limit -- but `CT9` is the
+row that will say otherwise, and the dials are the radius and the damage rather than the number of
+layers.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| CT1 | **The row this exists for.** Fight a thief or assassin, wound it once, then watch the ground | - | A **visible patch appears at its feet**. Walk into it: you take Piercing damage and the patch disappears. Nothing in Lionheart has ever had an enemy place a hazard before |
+| CT2 | Wound the same enemy repeatedly | - | **One patch only.** If it scatters caltrops every time it is hit, the `CSeriesAction` one-shot is not holding and this needs rethinking -- the same failure `PO2` watches for |
+| CT3 | **The safety row.** Lure *other enemies* across a patch | - | **They are unharmed.** Only `Triggered By Players` is set. If an enemy triggers it, the trigger flags are wrong |
+| CT4 | Take a **companion** across a patch | - | **Unharmed.** Companions and player friends are both 0. This matters more than CT3 -- a trap that kills Fernand would be a serious fault |
+| CT5 | Walk around a patch rather than through it | - | **Nothing happens.** It is avoidable, and that is the design -- if patches land where you cannot avoid them, say where |
+| CT6 | Kill the layer, then walk into its patch | - | The patch **still works**. It is an independent entity, not tied to its creator's life |
+| CT7 | Leave a patch untriggered and fight on for a while | - | It stays until walked on. It only removes itself after firing, so an unused patch persists for the fight |
+| CT8 | Leave the map with patches still on the ground, then come back | - | Whatever the engine does with the save snapshot. Not a designed behaviour, just worth knowing -- report what you see rather than judging it |
+| CT9 | **The balance row.** A crowded fight: the Thieves Congregation, or a sewer room with five thieves | - | Five patches at most, one each. Judge whether the floor becomes unmanageable. The dials are radius 55 and the damage, not the number of layers |
+| CT10 | Compare the damage against a real map trap in the Crypt or Alamut | - | The caltrops should hurt **noticeably less** -- about half -- and scale with your mojo the same way |
+| CT11 | Try **Find Traps** near a patch | - | **Nothing to find.** These are visible by design and carry no `CAISecretReveal`. If that reads as a missed opportunity rather than a kindness, say so -- the machinery exists and could be added |
+| CT12 | Try to **disarm** a patch | - | **Not offered.** Same reason. The map traps' disarm specifier was deliberately not copied |
+| CT13 | **The regression row.** Listen to the thieves while fighting them | - | Barks intact on all 36 thief cans. The assassins never had any, which is why 12 of the 48 are silent and that is not a fault |
+| CT14 | Watch an assassin's attacks after it lays a patch | - | **Unchanged.** The hurt slot was empty on all 48 and nothing else in any can was touched |
+
 ## Potion mimics - the veterans carry one draught each
 
 Asked in play: *"can we give enemies a skill they can only use once to mimic an item?"* Yes, and
