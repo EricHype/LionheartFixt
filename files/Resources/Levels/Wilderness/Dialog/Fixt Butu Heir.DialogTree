@@ -150,7 +150,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=6
+Item Count=8
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -175,6 +175,21 @@ Action=CSetQuestSatusToCompletedAction
 {
 Quest=Levels/Wilderness/Quests/Butu Khan's Poems
 }
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Silver Mine Deed
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Join Butus Line
+}
 Action=CTriggerRelayAction
 {
 Relay Name=Butu alliance
@@ -182,6 +197,23 @@ Relay Name=Butu alliance
 }
 }
 Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+Reply Text=I gave them to a collector in the city. He keeps rare books, and he will read it.
+Go to node ID=101 the collector
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I sold them.
+Go to node ID=102 the price of poems
+Icon=Barter Skill Icon
 
 Requirement=!None
 Reply Text=I will find it.
@@ -252,5 +284,120 @@ Requirement=!None
 Reply Text=
 Go to node ID=
 Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=101 the collector
+Text=A collector. <He turns the word over as if checking it for teeth.> A human who keeps words he cannot eat, and paid you for the keeping. Then Butu is read in a city that never heard of him, which is further than Plumjum has ever carried anything. Walk where you like, smooth thing. That is the better answer and I did not expect it from you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+State=BTU4K7ZQ
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+State=BTU8M3XV
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Silver Mine Deed
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Join Butus Line
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Butu alliance
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=102 the price of poems
+Text=Sold. <He puts his hand out, flat, and waits.> Then give me what they went for and we will both know what my Khan was worth to you. Two hundred and fifty. I did not pick the number. A human did, and you took it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take it.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+State=BTU4K7ZQ
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+State=BTU8M3XV
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Silver Mine Deed
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Join Butus Line
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Butu alliance
+}
+}
+}
+Icon=Barter Skill Icon
 Is Default Reply=1
 }

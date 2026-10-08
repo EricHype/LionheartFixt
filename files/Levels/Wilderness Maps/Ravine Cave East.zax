@@ -15025,7 +15025,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=5
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=Butu Warriors
@@ -15047,6 +15047,50 @@ CLayerSaveData
 									Warp Behavior=
 								}
 								Other Map Name=8 Alamut/01 Desert Sprawl
+							}
+							Action=COtherMapAction
+							{
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Make Goblins Hostile Relay
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Make Goblins Hostile Relay
+										}
+									}
+								}
+								Other Map Name=Wilderness Maps/Goblin Warrens
+							}
+							Action=COtherMapAction
+							{
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Make Goblins Hostile Relay
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Make Goblins Hostile Relay
+										}
+									}
+								}
+								Other Map Name=Wilderness Maps/Mongol Camp
 							}
 						}
 					}

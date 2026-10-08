@@ -1473,7 +1473,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
-## 0.31.0 - Butu Khan's heir takes the Ravine Cave
+## 0.31.0 / 0.31.1 - Butu Khan's heir takes the Ravine Cave
 
 `Mongol Goblin Hat Super` was **placed nowhere in the game**, and its race is the toughest goblin
 statline there is -- **250 HP, AC 225, harder than the Khan himself**. The hat line steps 60 -> 80 ->
@@ -1533,7 +1533,7 @@ mid-playthrough after visiting East gets none of this.
 |---|---|---|---|
 | BU14 | At `90 the book`, **without** the poetry book | *"I will find it."* | `95 agreed`. He does not stand the cave down yet |
 | BU15 | Get the `Butu Khan Poetry Book` from the **Goblin Warrens** and bring it back | *"I have it here."* | `100 the book returned` -- *"He takes it in both hands, and does not open it."* The book leaves your inventory, XP, and the cave stands down |
-| BU16 | **If you already sold it to Weng Choi**, buy it back and return it | - | Works the same. The requirement is a plain inventory check on that one item -- `Weng Choi Have a rare book.can` could not be reused because it ORs nine books with a Weng Choi quest state |
+| BU16 | **If the book is already gone**, tell him so | - | **You cannot buy it back** -- an earlier draft of this row said you could, and that was wrong. The turn-in removes the item, Weng Choi's two merchant inventories hold **no books at all**, and the Goblin Warrens copy is the only one placed in the game. So the errand would have been unwinnable; `BU38`-`BU40` are the two routes that close it |
 | BU17 | After the handover, walk the cave | - | The red goblins **do not attack**. `Butu alliance` clears targeting and drops `Enemy` on `Butu Warriors` |
 | BU18 | Open the journal after `95 agreed` | - | **`Butu Khan's Poems`** is listed. An earlier draft of this section said there would be no journal entry and that a tracked quest was out of scope -- wrong on both counts, since Fixt has authored fourteen `.Quest.txt` definitions already |
 
@@ -1558,6 +1558,27 @@ they are mutually exclusive.
 | BU35 | After killing him on the contract, go back to the Khan | *"The east rock is yours again. I will not say the name."* | `382 you did not say it` -- *"Then there was never anybody there, and I never sent anybody east, and you have gone up in the world for doing nothing at all. That is how it works, morsel."* |
 | BU36 | Try to do **both** | - | You cannot. Returning the poems stands the cave down and shuts the act 8 gate; killing him closes the other. Confirm neither route leaves the other's quest stuck open in the journal |
 | BU37 | Check the heir's death hook was not overridden | - | His `Destroyed Script Action` is the one slot that was free on his can, and **no generator sets `CSetDestroyedScriptActionAction` over it** -- the trap that made the Lava Troll Hide dead code from 0.10.0. Gate 0's A0.14 guards it, but a kill confirms it |
+
+### Where the poems went, and why a collector is not a buyer
+
+The errand could become unwinnable, and the ordering made that likely rather than unlikely: Weng
+Choi's rare-books job is an act 1 Gate District errand, and Hrargrub does not exist until after
+Montserrat. Measured rather than assumed -- the turn-in runs `CActionRemoveInventoryItem` and pays
+250, Weng Choi's merchant inventories hold **6 and 18 items and no books**, and the Warrens copy is
+the only placement in the game.
+
+Vanilla already draws the distinction the scene needed. The quest is called **`Complete Weng Choi's
+Book Collection`** and its own text calls him *"an avid collector of unique tomes"* -- so giving a
+dead Khan's poems to a collector is not the same act as selling them by weight, and the heir cares
+which.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU38 | Turn the book in to **Weng Choi** in act 1, then meet Hrargrub and tell him | *"I gave them to a collector in the city. He keeps rare books, and he will read it."* | `101 the collector` -- *"A human who keeps words he cannot eat... Then Butu is read in a city that never heard of him, which is further than Plumjum has ever carried anything."* The cave stands down and the errand **completes**. Gated on that quest, so the reply only exists if it is true |
+| BU39 | On a character who never dealt with Weng Choi, look for that reply | - | **Not offered.** The player cannot claim the collector without having used him |
+| BU40 | Tell him you sold them | *"I sold them."* | `102 the price of poems` -- he puts his hand out and **takes 250**, the exact figure vanilla pays for it, with `CTakeMoneyAction`. *"I did not pick the number. A human did, and you took it."* The errand still completes; the insult is the price, not a refusal |
+| BU41 | Do BU40 with **less than 250 gold** | - | He deals anyway. The take is wrapped in `CHasMoneyAction`, so a poor player is not softlocked out of the alliance -- confirm no money goes negative |
+| BU42 | Across all three routes -- returned, collector, sold | - | **Three ways to close `Butu Khan's Poems` and no dead end.** Returning the book is still the best of them: it is the only one where he holds it |
 
 ### The late game remembers
 
@@ -1614,6 +1635,72 @@ Fixt's act 8 gate reads two markers out of maps the door closes. Measured rather
 So the idiom is sound and the door is narrower in practice than it looked -- but whether a *flagged*
 layer still answers a lookup is still untested, which is why the new marker lives in
 `01 Desert Sprawl` and `BU22` exists.
+
+### Siding with the heir: what it costs and what it pays
+
+0.31.0 shipped with no consequence in the horde at all -- you could be Plumjum's Champion and his
+betrayer at once and he never found out.
+
+**The Khan's two settlements turn on you.** `Make Goblins Hostile Relay` already existed in
+**fourteen** goblin maps and is fired over a hundred times in vanilla, including from
+`GoblinEntranceGuard`, `GoblinVillager` and `Rakeb`. The `Butu alliance` relay now throws it in the
+**Goblin Warrens** and the **Mongol Camp** by `COtherMapAction`, and deliberately leaves the outlying
+villages alone, because the horde is large and news travels slowly.
+
+**The standing swaps rather than being stripped.** The goblin bonus was never a title: Fixt's own
+goblin factions, modelled on vanilla's `Saladin Aswaran`, apply real modifiers through
+`CPlugInBehaviorModifyCharacterWhenSelected` with `Modification is permanent=1`. An earlier build of
+this release subtracted them with sixteen negative modifiers in a `Revoke Goblin Standing.can`; that
+can is **gone**, because `Advance Goblin Rank` branches on `rank == 0 / 1 / 2` against factions that
+set rank to an absolute 1 / 2 / 3, which only works if selecting a faction **replaces** the previous
+one's contribution. The engine takes it back by itself.
+
+**And the defection is tiered**, because Hrargrub gains more by taking the Khan's Champion than by
+taking a chum -- an untiered version made betrayal a free upgrade for a rank-1 player:
+
+| rank given up | you lose | `Join Butus Line.can` assigns | you gain |
+|---|---|---|---|
+| none | nothing | **Goblin Traitor - Foe** | OneHandedMelee +10 |
+| Chum (1) | Sneak +10, Poison +10, Carry +10 | **Goblin Traitor - Bad Blood** | OneHandedMelee +20, Crushing +15 |
+| Blooded (2) | Sneak +18, Poison +20, Carry +10, Barter +8, Disease +10 | **Goblin Traitor - Bad Blood** | OneHandedMelee +20, Crushing +15 |
+| Champion (3) | Sneak +30, Poison +35, Carry +30, Barter +14, Disease +10 | **Goblin Traitor - Fallen Champion** | OneHandedMelee +35, Crushing +30, Slashing +20, Carry +20 |
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU43 | **The row this release most needs.** As a Goblin **Champion**, write down Sneak, Barter, carry weight and poison/disease resistance. Side with Hrargrub. Read them again | - | Sneak, Barter, poison and disease should have **dropped by the Champion faction's amounts**, and melee/crushing/slashing/carry risen by the Fallen Champion's. **If the old numbers are still there on top of the new ones**, factions accumulate rather than replace, the inference this build rests on is wrong, and the revoke can has to come back. Report the actual numbers, not a yes or no |
+| BU44 | Same as a **Chum** (rank 1) | - | **Goblin Traitor - Bad Blood**: melee +20, crushing +15. The poison resistance and carry weight go away entirely, so it is a different build rather than a better one |
+| BU45 | Same as **Blooded** (rank 2) | - | Also Bad Blood. Ranks 1 and 2 share a tier on purpose |
+| BU46 | Same having **never joined the horde** | - | **Goblin Traitor - Foe**: melee +10 and nothing else. He is taking a nobody and pays accordingly |
+| BU47 | Check the perk list after any of them | - | A **Goblin Traitor** title perk, and the old goblin title **still there** -- nothing in the engine can remove a perk, and the titles carry no modifiers of their own. *"The Horde has a word for it and the word is not Champion."* |
+| BU48 | Go to the **Goblin Warrens** afterwards | - | **They attack**, Khan included, so there is no conversation with him. Confirm the game does not try to open one |
+| BU49 | And the **Mongol Camp** | - | Also hostile |
+| BU50 | And an **outlying** village -- any `Goblin House Interior`, the vendor hut, `ShamanInterior` | - | **Still neutral**, by design. If that reads as an oversight rather than as distance, say so: each one has its own `Make Goblins Hostile Relay` and adding them is one line each |
+| BU51 | Try a `Goblin Horde IS` gate elsewhere afterwards -- the Scar Ravine goblin, the Crossroads patrol | - | The rank is 0 now, so those routes are closed. **This is the leak worth watching**: the Mine Foreman is the one that matters, and the deed is why it is survivable |
+
+### The deed, and three things to do with it
+
+`Inventory/Specific Item Cans/Quest Items/Silver Mine Deed` is one of **twelve unique item cans the
+shipped game references from nothing**: *"Legal document proscribing ownership of the Silver Mine."*
+
+Two earlier ideas for it were **mistimed and dropped**: solving Eduardo's silver quest and opening the
+mine are both act 1 problems, and the deed does not exist until after Montserrat, so for most players
+they would be answers to a question already settled. Shylocke is not time-locked -- he is reachable
+from act 1 until the expiry door, he holds Shakespeare's muse as collateral and sues Cortes over a
+contract clause, and a mine deed is his actual trade.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BU52 | Side with the heir by any of the three book routes, then check inventory | - | **Silver Mine Deed.** Handed over in the reply rather than the relay, because `$Instigator` only reliably resolves to the player in a reply's Custom Action |
+| BU53 | Take it to **Shylocke** in the Temple District, from `5 Questions` | *"I hold the deed to a silver mine…"* | `700 the deed` -- *"You are selling me a hole in the ground full of creatures, and the law of Spain agrees the hole is yours to sell. Twelve hundred, and I will never visit it."* |
+| BU54 | Accept at the opening price | *"Done."* | **1200 gold**, the deed leaves your inventory |
+| BU55 | With **Barter 40**, haggle | *"It pays whether you go or not. Eighteen hundred."* | **1800** |
+| BU56 | With **Barter 70** | *"…you know what the smiths pay for what comes out of it."* | **2500**, which is vanilla's own ceiling for a dialogue payout |
+| BU57 | Sell it, then try to sell it again | - | **Not offered.** The deed is removed on all three price routes, so there is no selling it twice |
+| BU58 | Keep it instead and take it to the **Mine Foreman** at Ravine Cave West | *"The mine is mine. I have the paper that says so, and a goblin gave it to me."* | `90 the paper` -- *"He takes it, holds it the wrong way up, and hands it back with enormous care… Nurg saw nothing."* The mine opens by title instead of favour |
+| BU59 | Confirm the symmetry that makes the deed the right gift | - | Betraying Plumjum **closes** the `Goblin Horde IS` route past the foreman; the deed **reopens** it. A player who sides with the heir must not be locked out of the Sacred Scimitar as a side effect |
+| BU60 | Check the foreman's other routes on a character who never met the heir | - | Horde mark, Barter 40, Speech 40, Schmooze 7, the ungated demand, the fight, the exit. **Nine nodes now, was eight** |
+| BU61 | Loot the silver after using the deed | - | Exactly one *Magnetized Silver*. The deed moves the guards, not the ore |
+| BU62 | Sell the deed to Shylocke **and** then try the foreman | - | One or the other, not both. That is the intended choice, so confirm the foreman reply is simply absent rather than failing oddly |
 
 ### The door nobody had noticed
 

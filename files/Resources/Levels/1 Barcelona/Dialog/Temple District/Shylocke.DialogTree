@@ -1,0 +1,3441 @@
+CDialogTree
+{
+Name=Shylocke
+Portrait=Dialog/NPC Portraits/Shylocke
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start Shylocke like you
+Text=I'm pleased that you accepted my invitation. Your decision in the tavern to take my side benefited me greatly, so if you like, I can repay you. As I am in the money lending trade, I could offer you a loan with a substantially reduced interest rate.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=shylocke gave muse key
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come here to claim the muse you took from Shakespeare.
+Go to node ID=300 muse
+Icon=Quest Icon
+
+Requirement=Shakespeare convince shylock extend debt
+Reply Text=I've come here to speak with you about Shakespeare's debts.
+Go to node ID=100 Shakespeare
+Action work in progress=(if spoke with Shakespeare)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Normal Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tainted Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I'd like to borrow some money.
+Go to node ID=50 special loan
+Custom Action=CActivateAction
+{
+Target Name=special favor used up
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=What happened between you and Cortes?
+Go to node ID=40 cortes
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Shylocke Dislikes You
+Text=What do you want? I think I made it quite clear in the tavern that you are unwelcome in my presence.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=shylocke gave muse key
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come here to claim the muse you took from Shakespeare.
+Go to node ID=300 muse
+Icon=Quest Icon
+
+Requirement=Shakespeare convince shylock extend debt
+Reply Text=I've come here to speak with you about Shakespeare's debts.
+Go to node ID=100 Shakespeare
+Action work in progress=(if spoke with Shakespeare)
+Icon=Quest Icon
+
+Requirement=Speech moreequal 40
+Reply Text=Good sir, I came here to reconcile. I wronged you when I sided with Cortes.
+Go to node ID=20 talk
+Action work in progress=(speech =40)
+Custom Action=CDeactivateAction
+{
+Target Name=Shylocke Hate Relay
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What happened between you and Cortes?
+Go to node ID=40 cortes
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 shylocke asks
+Text=Well, why don't we ask this eavesdropper. You there, perhaps you could settle our quarrel?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cortes shylocke argument
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 shylocke starts the quarrel
+Text=You are a glutton for rejection, Cortes. The answer is *no*.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cortes shylocke argument
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Have you mustered an opinion regarding our quarrel, or will you simply stand there, neutral and timid?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What are you arguing about again?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cortes argument more info node
+}
+
+Requirement=!None
+Reply Text=I have heard enough to side with Cortes.
+Go to node ID=155 shylocke disappointed
+
+Requirement=!None
+Reply Text=I have heard enough to side with you, Shylocke.
+Go to node ID= 
+
+Requirement=!None
+Reply Text=I do not wish to interfere. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke ends dialogue with taunt
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Shylocke favors you
+Text=You have returned. You are looking for a loan or perhaps...gainful employment?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=shylocke gave muse key
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come here to claim the muse you took from Shakespeare.
+Go to node ID=300 muse
+Icon=Quest Icon
+
+Requirement=Shakespeare convince shylock extend debt
+Reply Text=I've come here to speak with you about Shakespeare's debts.
+Go to node ID=100 Shakespeare
+Action work in progress=(if spoke with Shakespeare)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=93J6H0DU
+}
+}
+Reply Text=It was I who convinced Shakespeare to pay his debt.
+Go to node ID=700 complete collect from shakespeare quest
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=low interest loan granted
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=575
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=(low interest payback - 575)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=575
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=semi low interest loan granted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=semi low interest payback 600
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=600
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=semi low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=650
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Normal Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=Normal interest payback 650
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=650
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=750
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tainted Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=High interest payback 750
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=750
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Tainted Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=special favor used up
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come to take you up on the offer for a special loan.
+Go to node ID=50 special loan
+Action work in progress=(if helped shylocke against cortes)
+Custom Action=CActivateAction
+{
+Target Name=special favor used up
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=repaid a loan
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I'd like to borrow money again.
+Go to node ID=37 cheap interest
+
+Requirement=Human NOT
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=repaid a loan
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I'd like to borrow some money.
+Go to node ID=31 borrow tainted
+Action work in progress=(tainted race)
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=repaid a loan
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Yes, I'd like to borrow some money.
+Go to node ID=30 borrow
+Action work in progress=(normal human)
+
+Requirement=!None
+Reply Text=What happened between you and Cortes?
+Go to node ID=40 cortes
+
+Requirement=Shylocke Dont Already Have Collect from Shakespeare Quest
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=9JIO9Z3X
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Shake Down Shakespeare
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+Early Exit=0
+}
+}
+}
+}
+}
+Reply Text=What kind of employment?
+Go to node ID=90 job
+
+Requirement=!None
+Reply Text=I came to ask questions.
+Go to node ID=20 talk
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=3 Return Dialogue Shylocke Hates You
+Text=What do you want? I think I made it quite clear in the tavern that you are unwelcome in my presence.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 50
+Reply Text=Good sir, I came here to reconcile. I should not have sided with Cortes.
+Go to node ID=20 talk
+Action work in progress=(speech =50)
+Custom Action=CDeactivateAction
+{
+Target Name=Shylocke Hate Relay
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=93J6H0DU
+}
+}
+Reply Text=It was I who convinced Shakespeare to pay his debt.
+Go to node ID=700 complete collect from shakespeare quest
+Icon=Quest Icon
+
+Requirement=Shakespeare convince shylock extend debt
+Reply Text=I've come here to speak with you about Shakespeare's debts.
+Go to node ID=100 Shakespeare
+Action work in progress=(if spoke with Shakespeare)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=shylocke gave muse key
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come here to claim the muse you took from Shakespeare.
+Go to node ID=300 muse
+Icon=Quest Icon
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I'd like to borrow some money.
+Go to node ID=30 borrow
+Action work in progress=(normal human)
+
+Requirement=Shylocke Gives Higher Rate to Tainted
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I'd like to borrow some money.
+Go to node ID=31 borrow tainted
+Action work in progress=(tainted race)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=low interest loan granted
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=575
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=(low interest payback - 575)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=575
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=semi low interest loan granted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=semi low interest payback 600
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=600
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=semi low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=650
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Normal Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=Normal interest payback 650
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=650
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=750
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tainted Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=High interest payback 750
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=750
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Tainted Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=What happened between you and Cortes?
+Go to node ID=40 cortes
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=5 Questions
+Text=What now then?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=shylocke gave muse key
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come here to claim the muse you took from Shakespeare.
+Go to node ID=300 muse
+Icon=Quest Icon
+
+Requirement=Shakespeare convince shylock extend debt
+Reply Text=I've come here to speak with you about Shakespeare's debts.
+Go to node ID=100 Shakespeare
+Action work in progress=(if spoke with Shakespeare)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=special favor used up
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come to take you up on the offer for a special loan.
+Go to node ID=50 special loan
+Action work in progress=(if helped shylocke against cortes)
+
+Requirement=!None
+Reply Text=I came here to talk.
+Go to node ID=20 talk
+
+Requirement=Human NOT
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=repaid a loan
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I'd like to borrow some money.
+Go to node ID=31 borrow tainted
+Action work in progress=(tainted race)
+
+Requirement=Human IS
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=repaid a loan
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I'd like to borrow some money.
+Go to node ID=30 borrow
+Action work in progress=(normal human)
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=low interest loan granted
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=575
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=(low interest payback - 575)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=575
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=semi low interest loan granted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=
+Action work in progress=semi low interest payback 600
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=600
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=semi low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=650
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Normal Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=
+Action work in progress=Normal interest payback 650
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=650
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=750
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tainted Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=
+Action work in progress=High interest payback 750
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=750
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Tainted Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=What happened between you and Cortes?
+Go to node ID=40 cortes
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=9JIO9Z3X
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Shake Down Shakespeare
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+Early Exit=0
+}
+}
+}
+}
+}
+Reply Text=Do you have any work I can do - for pay?
+Go to node ID=90 job
+Custom Action=CDeactivateAction
+{
+Target Name=Shylocke Hate Relay
+}
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=Has Silver Mine Deed
+Reply Text=I hold the deed to a silver mine. The only one of its kind, and I am told you deal in paper.
+Go to node ID=700 the deed
+Icon=Barter Skill Icon
+------------------------------------------------------------
+Node ID=7 return with shakepeares money
+Text=Well done! You have a great career ahead of you in the loan business. Here is your share of the gold, plus a bonus.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=
+Action work in progress=(if complete shake down shakespeare and bring money, give xp and gold)
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Good day.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=21 Shylocke Balloon 1
+Text=So Cortes, you want to throw *more* of my gold into the ocean? 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=41 Shylocke Balloon 2
+Text=Do you take me for a fool?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=61 Shylocke Balloon 3
+Text=More likely you would drain me of my wealth and leave me destitute. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=81 Shylocke Balloon 4
+Text=You are a bumbling buffoon.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=101 Shylocke Balloon 5
+Text=Not only will I not pay you, I am tempted to seize your remaining assets to pay for my losses!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 talk
+Text=Fine. What would you like to talk about?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=93J6H0DU
+}
+}
+Reply Text=It was I who convinced Shakespeare to pay his debt.
+Go to node ID=700 complete collect from shakespeare quest
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=shylocke gave muse key
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I've come here to claim the muse you took from Shakespeare.
+Go to node ID=300 muse
+Icon=Quest Icon
+
+Requirement=Shakespeare convince shylock extend debt
+Reply Text=I've come here to speak with you about Shakespeare's debts.
+Go to node ID=100 Shakespeare
+Action work in progress=(if spoke with Shakespeare)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=repaid a loan
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What are the terms for your money loans?
+Go to node ID=35 interest
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=repaid a loan
+Desired Minimum Count=1
+}
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I'd like to borrow some money.
+Go to node ID=30 borrow
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=low interest loan granted
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=575
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=(low interest payback - 575)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=575
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=semi low interest loan granted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=semi low interest payback 600
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=600
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=semi low interest loan granted
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=650
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Normal Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=Normal interest payback 650
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=650
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=750
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Tainted Borrowed Money Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to repay my loan.
+Go to node ID=1100 return with loaned money
+Action work in progress=High interest payback 750
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CForEachPlayerAction
+{
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=750
+}
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Other Map Name=Empty Scratch map
+}
+Action=CDeactivateAction
+{
+Target Name=Tainted Borrowed Money Relay
+}
+Action=CDeactivateAction
+{
+Target Name=a loan granted
+}
+Action=CActivateAction
+{
+Target Name=repaid a loan
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=What happened between you and Cortes?
+Go to node ID=40 cortes
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 borrow
+Text=Good, how much are you interested in borrowing? I should inform you that I expect repayment with interest.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 25
+Reply Text=I could repay you quickly if you could give me a reduced interest rate.
+Go to node ID=37 cheap interest
+Action work in progress=(have barter skill)  
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'd like to borrow 500 gold.
+Go to node ID=60 borrow money
+Action work in progress=(pass loan value)
+Custom Action=CActivateAction
+{
+Target Name=Normal Borrowed Money Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=How much interest?
+Go to node ID=35 interest
+
+Requirement=!None
+Reply Text=On second thought, I don't want to borrow any money,
+Go to node ID=20 talk
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+------------------------------------------------------------
+Node ID=31 borrow tainted
+Text=Yes, well, in my experience, people of your *heritage* typically have difficulty paying back loans on time. Therefore, I'll have to charge you a higher rate of interest, say fifty percent. Now then, how much would you like to borrow?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Despite your bigotry, I'd like to borrow 500 gold.
+Go to node ID=61 borrow money tainted
+Action work in progress=(pass loan value)
+Custom Action=CActivateAction
+{
+Target Name=Tainted Borrowed Money Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=On second thought, I don't want to borrow any money.
+Go to node ID=20 talk
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=35 interest
+Text=I normally charge thirty percent interest. Now what will it be?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 25
+Reply Text=I could repay you quickly if you could give me a reduced interest rate.
+Go to node ID=37 cheap interest
+Action work in progress=(have barter skill)  
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'd like to borrow 500 gold.
+Go to node ID=60 borrow money
+Action work in progress=(pass loan value)
+Custom Action=CActivateAction
+{
+Target Name=Normal Borrowed Money Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=On second thought, I don't want to borrow any money.
+Go to node ID=20 talk
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=37 cheap interest
+Text=I normally charge thirty percent interest. But for you, I'll make it twenty. Now what will it be?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'd like to borrow 500 gold.
+Go to node ID=60 borrow money
+Action work in progress=(pass loan value)
+Custom Action=CActivateAction
+{
+Target Name=semi low interest loan granted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=On second thought, I don't want to borrow any money,
+Go to node ID=20 talk
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=40 cortes
+Text=That cretin? I funded his expedition to the Americas. I gave him nearly a quarter of my fortune, and what does he return with? Three fewer ships and one less arm. A complete disaster!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=41 cortes 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 cortes 2
+Text=Then he has the temerity to ask for an extension on his loan. He refused to repay part of my investment, which was a clause in our contract, so I seized his remaining ship.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=a loan granted
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Sounds like you are a fair business man.
+Go to node ID=45 flatter
+Custom Action=CDeactivateAction
+{
+Target Name=Shylocke Hate Relay
+}
+
+Requirement=!None
+Reply Text=I think you treated him unfairly.
+Go to node ID=10 Goodbye
+
+Requirement=!None
+Reply Text=You would charge your own mother interest wouldn't you?
+Go to node ID=70 insult
+
+Requirement=!None
+Reply Text=I would like to ask you other questions
+Go to node ID=5 Questions
+Custom Action=CDeactivateAction
+{
+Target Name=Shylocke Hate Relay
+}
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 flatter
+Text=Well now, you seem to be a man with a sharp head on your shoulders. Since I am feeling generous today, would you be interested in taking a half interest loan, say fifteen percent?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'd like to borrow 500 gold.
+Go to node ID=60 borrow money
+Action work in progress=(pass loan value, half interest)
+Custom Action=CActivateAction
+{
+Target Name=low interest loan granted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=On second thought, I don't want to borrow any money,
+Go to node ID=20 talk
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 special loan
+Text=Ah yes, I do owe you a favor. How much would you like to borrow? And for you, I will charge half the normal thirty percent interest!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Used up borrow money
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'd like to borrow 500 gold.
+Go to node ID=60 borrow money
+Action work in progress=(pass loan value, half interest)
+Custom Action=CActivateAction
+{
+Target Name=low interest loan granted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Custom Action=CDeactivateAction
+{
+Target Name=special favor used up
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 more info
+Text=A year ago, this wretch borrowed ten thousand gold from me to fund an expedition to the New World. He promised gold, slaves, and other riches, and he returned with only one of the three ships he set out with, one arm, but not *one* ounce of gold.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cortes argument more info node
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 more info 2
+Text=Now he asks for more money for another expedition. I should be able to seize his last remaining ship to recover my losses.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cortes argument more info node
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 borrow money
+Text=Very well, let me just retrieve your gold. There you are. Pay me back in full when you are ready.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+Action=CActivateAction
+{
+Target Name=a loan granted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CPlaySoundAction
+{
+Sound=Gold Drop.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Player owes debt to Shylocke
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Plains
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 insult
+Text=I am a fair businessman, and I am far too busy to sit here and take abuse from you. Goodbye.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=90 job
+Text=I need you to collect a sum from a deadbeat bard that owes me a purse of gold. Collect my money any way you can and I'll reward you well. He goes by the name of William and you should be able to find him drinking wine at his home north of the tavern.
+Should Have Voiceover=0
+
+Requirement=Shylocke Dont Already Have Collect from Shakespeare Quest
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=9JIO9Z3X
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Shake Down Shakespeare
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+Early Exit=0
+}
+}
+}
+}
+}
+Reply Text=Very well, I'll do it.
+Go to node ID=95 take job
+Action work in progress=(shake down shakespeare quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=9JIO9Z3X
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'm not interested, I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=95 take job
+Text=Good. Feel free to use physical encouragement, he has a weak stomach for violence. Return when you have my money.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Shakespeare
+Text=That fool bard? He is perhaps the poorest and unluckiest man in Barcelona. No doubt the man has some writing talent, but he lacks the common sense to ever be successful. He owes me quite a bit of money.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 50
+Reply Text=I think you would profit greatly from his brilliant play. You should let him continue.
+Go to node ID=110 outwit shylocke
+Action work in progress=(speech 50)
+Icon=Speach Skill Icon
+
+Requirement=Speech lessthan 050
+Reply Text=You should allow him to continue his work.
+Go to node ID=111 fail outwit shylocke
+Action work in progress=(speech 30)
+
+Requirement=!None
+Reply Text=Actually, I think he's a moron too, he'll never amount to much.
+Go to node ID=105 moron
+
+Requirement=!None
+Reply Text=Leave the bard alone, or you'll regret it.
+Go to node ID=400 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=105 moron
+Text=I am glad that you see things my way. Feel free to tell that simpleton that if he does not pay very soon my brutish friends will be knocking on his door.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 50
+Reply Text=Still, I think you would profit greatly from his brilliant play. You should let him continue.
+Go to node ID=110 outwit shylocke
+Icon=Speach Skill Icon
+
+Requirement=Shylocke Dont Already Have Collect from Shakespeare Quest
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=9JIO9Z3X
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Shake Down Shakespeare
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+Early Exit=0
+}
+}
+}
+}
+}
+Reply Text=I could convince him to pay you, if you'd like.
+Go to node ID=95 take job
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=9JIO9Z3X
+}
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=M71QQWA2
+}
+Then=CSetQuestSatusToFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I think I'll be moving along.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=110 outwit shylocke
+Text=Brilliant? Make me a fortune eh? Perhaps I am being too hard on the boy. Tell him I will give him a week's extension before I collect his debt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you, sir. I know he will be happy at your kindness.
+Go to node ID=
+Action work in progress=(saved shakespeare)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=111 fail outwit shylocke
+Text=That isn't a very convincing argument, I'm afraid. Come back when you have a more compelling speech, or better yet, when you have my money!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 muse
+Text=So, that buffoon of a bard convinced you to help him and now you come asking for his *collateral* back? Are you sure you want to meddle in this affair?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, hand over the muse to me.
+Go to node ID=310 find muse
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Actually, I'd rather not be bothered.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=310 find muse
+Text=I will not part with the muse for free. But if you wish to accept Shakespeare's debt, you may pay a small sum for a chance to guess which treasure chest I've hidden her in. <Shylocke holds his hand out, indicating 500 gold>
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 35
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=300
+}
+}
+Reply Text=Five hundred is exorbitant. I would be willing to pay three hundred.
+Go to node ID=315 barter charge
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=300
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=500
+}
+}
+Reply Text=Fine, I'll pay your price.
+Go to node ID=330 pay the price
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=500
+}
+
+Requirement=!None
+Reply Text=What if I buried my sword into your stomach instead?
+Go to node ID=400 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I do not have that much gold to spare.
+Go to node ID=10 Goodbye
+
+Requirement=!None
+Reply Text=Actually, I'd rather not be bothered.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=312 charge
+Text=I think one hundred gold would be a fair price, as that would start to cover the interest I'm owed.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 20
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=50
+}
+}
+Reply Text=One hundred is exorbitant. I would be willing to pay fifty.
+Go to node ID=315 barter charge
+Action work in progress=(barter>=50) 
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=50
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+Reply Text=Fine, I'll pay your price.
+Go to node ID=330 pay the price
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+
+Requirement=!None
+Reply Text=What if I buried my sword into your stomach instead?
+Go to node ID=400 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Actually, I'd rather not be bothered.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=330 pay the price
+Text=Very well, you may use this key to choose between three of the chests. Gold, Silver, or Lead. Shakepeares's muse is locked within one and the others are trapped, so choose wisely.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Keys/Shylocke Key
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=shylocke gave muse key
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Muse key given not used yet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=315 barter charge
+Text=You want to negotiate with *me*? I'm impressed. Very well, we have a deal. Here is a key which will unlock *one* of the chests, so choose wisely.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Keys/Shylocke Key
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateAction
+{
+Target Name=shylocke gave muse key
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=Muse key given not used yet
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 threat
+Text=Is that a threat? You are very brash and foolish. My guards would club you to a pulp should you become violent.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 10
+Reply Text=I did not come here to instigate a fight, good sir.
+Go to node ID=5 Questions
+
+Requirement=Speech moreequal 10
+Reply Text=On second thought, I don't want to fight.
+Go to node ID=5 Questions
+
+Requirement=!None
+Reply Text=After I kill your guards, you'll be next.
+Go to node ID=405 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'll just be leaving then.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=405 combat
+Text=Is that so? Guards! Protect me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Goons defend Shylocke
+}
+------------------------------------------------------------
+Node ID=500 shylocke gets gold
+Text=Here you are, 500 gold. Since I feel like I can trust you, pay me back when you can with the interest we agreed upon.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=61 borrow money tainted
+Text=You won't find another moneylender in town willing to loan money to your kind, I assure you. Here is your gold. In time, I expect to be paid in full with the interest.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
+}
+Action=CActivateAction
+{
+Target Name=a loan granted
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CPlaySoundAction
+{
+Sound=Gold Drop.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Player owes debt to Shylocke
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Plains
+}
+Action=CActivateAction
+{
+Target Name=Used up borrow money
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=140 no resolution
+Text=Very well, if we cannot agree to settle this dispute, then I shall take this matter to the magistrates and we will let the courts decide this case. Good day.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=151 no resolution 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSendAIDoneMessage
+{
+Target=Shylocke
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Shylocke and Cortes AI Remover
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=155 shylocke disappointed
+Text=I will not forget this slight, stranger. And Cortes, I never want to see your pathetic face as long as I live.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSendAIDoneMessage
+{
+Target=Shylocke
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Cortes AI Remover
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Shylocke Hate Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Shylocke Shop
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 shylocke pleased
+Text=There is a spark of intelligence within you, stranger. You show wisdom in your decision, and I would return the favor. When you have time later, find my shop in the Temple District and I will see what I can do for you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSendAIDoneMessage
+{
+Target=Shylocke
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=shylocke unlock door
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Temple District
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 gold chest 1
+Text=<An inscription on the golden chest reads: Who chooseth me shall gain what many desire.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 silver chest 1
+Text=<An inscription on the silver chest reads: Who chooseth me shall get as much as is deserved.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 lead chest 1
+Text=An inscription on the golden chest reads: who chooseth me must give and risk all.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 wood chest 1
+Text=Who chooseth me shall be able to revenge a wrong.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=700 complete collect from shakespeare quest
+Text=Splendid work! The look on William's face was worth all the grief alone and now I have my money returned to me. And now, for your reward.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=700 complete quest part 2
+------------------------------------------------------------
+Node ID=700 complete quest part 2
+Text=Not only will I share part of Shakespeare's loan with you, I will impart a book I have written on the subject of bartering. No doubt it will give you an advantage with the simple merchants of this city.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=300
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=collect shakespeare debt xp
+Experience Points To Add=1
+}
+}
+}
+------------------------------------------------------------
+Node ID=800 shylocke door note
+Text=<You see a note attached to the door: I have departed to the tavern for some urgent business. *Please* come back later. Signed, Shylocke, the moneylender.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 extra balloon dialogues 1
+Text=The answer is *no*, Cortes.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 extra balloon dialogues 2
+Text=Are you still begging for *more* gold?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 extra balloon dialogues 3
+Text=A pity that you beg better than you fight.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 taunt for leaving
+Text=I didn't expect an intelligent answer from that stranger anyway. Now Cortes, back to business.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1100 return with loaned money
+Text=Thank you kindly for the business.  If there is anything else I can do for you, please let me know.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Yes, I would like to ask you other questions
+Go to node ID=5 Questions
+
+Requirement=!None
+Reply Text=I'll just be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=300 shakespeare debt scene 2
+Text=Oh William, stop being so *dramatic*!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 nothing to say
+Text=<He has nothing to say to you.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=700 the deed
+Text=<He reads it twice, and the second time more slowly.> A mine. In the hills north of the crossroads, where I am told the only thing mining anything is a goblin. You are selling me a hole in the ground full of creatures, and the law of Spain agrees the hole is yours to sell. Twelve hundred, and I will never visit it.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 70
+Reply Text=It is the only mine of its kind in Spain and you know what the smiths pay for what comes out of it. Twenty-five hundred.
+Go to node ID=701 the deed sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Silver Mine Deed
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=2500
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=Barter moreequal 40
+Reply Text=You will never visit it because you do not need to. It pays whether you go or not. Eighteen hundred.
+Go to node ID=701 the deed sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Silver Mine Deed
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1800
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Done.
+Go to node ID=701 the deed sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Silver Mine Deed
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=1200
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will keep it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=701 the deed sold
+Text=Then it is mine, and the goblins in it are mine, and I shall do what I have always done with property I cannot visit. <He files it somewhere you do not see.> Nothing whatsoever, at a profit.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

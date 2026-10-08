@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.31.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.31.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,111 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.31.1 - what betraying a Khan is worth
+
+0.31.0 shipped three faults, all found by being asked the right questions rather than by any gate.
+
+### The horde never reacted
+
+You could be Plumjum's Champion and his betrayer at once, and he never learned. The `Butu alliance`
+relay stood down *Butu's* goblins and set the act 8 marker; the Warrens, the Mongol Camp, the Khan,
+Rakeb and every `Goblin Horde IS` route were untouched.
+
+`Make Goblins Hostile Relay` already existed in **fourteen** goblin maps, fired over a hundred times
+in vanilla including from `GoblinEntranceGuard`, `GoblinVillager` and `Rakeb`. The alliance now throws
+it in **the Goblin Warrens and the Mongol Camp** by `COtherMapAction`, and deliberately leaves the
+outlying villages: the horde is large and news travels slowly.
+
+### The errand could dead-end
+
+`Butu Khan's Poems` could become unwinnable, and the ordering made it likely rather than unlikely --
+Weng Choi's rare-books job is an act 1 Gate District errand and the heir does not exist until after
+Montserrat. Measured rather than assumed: the turn-in runs `CActionRemoveInventoryItem`, Weng Choi's
+two merchant inventories hold **6 and 18 items and no books**, and the Goblin Warrens copy is the only
+placement in the game. An earlier QA row claimed the player could buy it back. They cannot.
+
+Vanilla already drew the distinction the scene needed. The quest is called **`Complete Weng Choi's
+Book Collection`** and its own text calls him *"an avid collector of unique tomes"*, so giving a dead
+Khan's poems to a collector is not the same act as selling them by weight, and the heir cares which:
+
+| | |
+|---|---|
+| you kept the book | he takes it in both hands and does not open it. Still the best of the three |
+| you gave it to the collector | *"A human who keeps words he cannot eat… Then Butu is read in a city that never heard of him, which is further than Plumjum has ever carried anything."* Gated on that quest, so it can only be said if true |
+| you sold it | he puts his hand out and **takes the 250 vanilla paid you**. *"I did not pick the number. A human did, and you took it."* |
+
+Three ways to close it, no dead end, and the insult in the third is the price rather than a refusal.
+
+### And the reward was nothing
+
+Siding with the heir paid XP and a cave whose Hidden Treasure is **a single Potion**, against losing
+`Goblin Rank`, the Warrens, the Mongol Camp and Grumdjum as a late-game companion. It was strictly
+worse than killing him, which is backwards.
+
+**The standing now swaps rather than vanishing.** The goblin bonus was never a title: Fixt's own
+goblin factions, modelled on vanilla's `Saladin Aswaran`, apply real modifiers through
+`CPlugInBehaviorModifyCharacterWhenSelected` with `Modification is permanent=1` -- a Champion carries
+Sneak +30 and poison resistance +35 off the Khan's goodwill.
+
+And it is tiered, because an untiered version made betrayal a free upgrade for a rank-1 player, and
+because Hrargrub gains more by taking the Khan's Champion than by taking a chum:
+
+| rank given up | assigned | grants |
+|---|---|---|
+| none | **Goblin Traitor - Foe** | OneHandedMelee +10 |
+| Chum or Blooded | **Goblin Traitor - Bad Blood** | OneHandedMelee +20, Crushing +15 |
+| Champion | **Goblin Traitor - Fallen Champion** | OneHandedMelee +35, Crushing +30, Slashing +20, Carry +20 |
+
+The horde pays in sneaking and poison because it is Mongol-trained; Butu's line were never trained by
+anyone and only ever had what they killed, so they pay in melee and in not going down. The middle
+tier is deliberately **not** a strict improvement -- a Chum gives up poison resistance and carry
+weight entirely for melee and armour, which is a different build rather than a better one.
+
+**A whole mechanism was deleted on the way.** An earlier version of this patch stripped the goblin
+bonus with sixteen negative modifiers in a `Revoke Goblin Standing.can`, built because the engine has
+**no remove-perk and no remove-faction class**. It is gone: `Advance Goblin Rank` branches on
+`rank == 0 / 1 / 2` against factions that set rank to an absolute 1 / 2 / 3, and a Blooded player
+would read rank 3 if those stacked, so the Champion branch could never fire. Selecting a faction must
+replace the previous one's contribution, and the engine takes the bonus back by itself.
+
+That inference is the one thing in this release that static analysis cannot finish. `BU43` settles it
+in one look at a character sheet, and is written to ask for the numbers rather than a yes or no.
+
+### A use for the deed, and two that were wrong
+
+`Inventory/Specific Item Cans/Quest Items/Silver Mine Deed` is one of **twelve unique item cans the
+shipped game references from nothing**: *"Legal document proscribing ownership of the Silver Mine."*
+
+Two uses were proposed and dropped as **mistimed**: having Eduardo accept it in place of the silver,
+and opening the mine with it. Both are act 1 problems, and the deed does not exist until after
+Montserrat, so for most players they would answer a question already settled. The mine route is kept
+anyway, since it costs nothing and helps a player who delayed -- and it matters more than it looks,
+because betraying Plumjum closes the `Goblin Horde IS` route past the foreman and the deed is what
+reopens it. A player who sides with the heir is not locked out of the Sacred Scimitar.
+
+Shylocke is not time-locked. He is reachable from act 1 until the expiry door, he holds Shakespeare's
+muse as collateral and sues Cortes over a clause in their contract, and a mine deed is his actual
+trade. He also opens low, because he is Shylocke:
+
+| | |
+|---|---|
+| no check | **1200** -- *"Twelve hundred, and I will never visit it."* |
+| Barter 40 | **1800** -- *"It pays whether you go or not."* |
+| Barter 70 | **2500** -- vanilla's own ceiling for a dialogue payout |
+
+> *"Then it is mine, and the goblins in it are mine, and I shall do what I have always done with
+> property I cannot visit. Nothing whatsoever, at a profit."*
+
+### What needs playing
+
+`BU1`-`BU62` in [`qa.md`](qa.md). **`BU43` first**: as a Goblin Champion, write the sheet down, side
+with the heir, read it again, and report the numbers. It decides whether the faction swap works the
+way this release assumes.
+
+After that, `BU20` (side with him and the act 8 Khan and Grumdjum stay away), `BU49`-`BU50` (the
+Warrens and Mongol Camp hostile, the outlying villages not), and `BU59` (the deed reopening the mine
+route the betrayal closed).
 
 ## 0.31.0 - Butu's Heir
 

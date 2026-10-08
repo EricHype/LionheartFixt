@@ -29,6 +29,11 @@ Reply Text=You are the only one down here worth talking to, and I would rather d
 Go to node ID=50 charmed
 Icon=Attribute Icon
 
+Requirement=Has Silver Mine Deed
+Reply Text=The mine is mine. I have the paper that says so, and a goblin gave it to me.
+Go to node ID=90 the paper
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=I have come for the silver. Stand aside.
 Go to node ID=60 refused
@@ -144,5 +149,19 @@ Requirement=!None
 Reply Text=
 Go to node ID=
 Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 the paper
+Text=Paper. <He takes it, holds it the wrong way up, and hands it back with enormous care.> A goblin gave you this. Then a goblin can take the shiny out of my rock and I will not be the one who argued with him about it. Go on. Nurg saw nothing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Mine passage granted
+}
+Icon=Quest Icon
 Is Default Reply=1
 }
