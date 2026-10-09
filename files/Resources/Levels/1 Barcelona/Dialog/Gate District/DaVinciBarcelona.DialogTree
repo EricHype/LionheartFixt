@@ -29,6 +29,11 @@ Node ID=1 Conversation Start
 Text=Welcome to Barcelona, jewel of the world, la città grande, the greatest metropolis of Europe. My apologies for not introducing myself earlier, but with the slavers and the assassins threatening you, there was no time for introductions.
 Should Have Voiceover=1
 
+Requirement=Fixt DaVinci Task Open
+Reply Text=I come carrying another man's words. Lord Relican sent me, and he wants to speak to you through me.
+Go to node ID=800 Fixt Relican Offer
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=
 Go to node ID=1 Conversation Start Inventory Addition
@@ -53,6 +58,11 @@ Is Default Reply=1
 Node ID=3 Return Dialogue
 Text=Always a pleasure to see you my friend. What can I do for you?
 Should Have Voiceover=1
+
+Requirement=Fixt DaVinci Task Open
+Reply Text=I come carrying another man's words. Lord Relican sent me, and he wants to speak to you through me.
+Go to node ID=800 Fixt Relican Offer
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -1748,6 +1758,11 @@ Node ID=3 Return Dialogue Workshop
 Text=Always a pleasure to see you my friend. What can I do for you?
 Should Have Voiceover=1
 
+Requirement=Fixt DaVinci Task Open
+Reply Text=I come carrying another man's words. Lord Relican sent me, and he wants to speak to you through me.
+Go to node ID=800 Fixt Relican Offer
+Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -2728,6 +2743,11 @@ Node ID=1 Conversation Start Continued
 Text=Now then, my friends call me Signor Leo, and you my friend, undoubtedly have questions, yes?
 Should Have Voiceover=1
 
+Requirement=Fixt DaVinci Task Open
+Reply Text=I come carrying another man's words. Lord Relican sent me, and he wants to speak to you through me.
+Go to node ID=800 Fixt Relican Offer
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=Tell me about Barcelona.
 Go to node ID=20 Barcelona
@@ -2768,6 +2788,11 @@ Is Default Reply=1
 Node ID=1 Conversation Start Inventory Addition
 Text=Sadly, I could not recover all of your possessions, though I did save these few items. <You have been given a few items. You can see these objects by clicking on your flashing Inventory icon>
 Should Have Voiceover=1
+
+Requirement=Fixt DaVinci Task Open
+Reply Text=I come carrying another man's words. Lord Relican sent me, and he wants to speak to you through me.
+Go to node ID=800 Fixt Relican Offer
+Icon=Quest Icon
 
 Requirement=!None
 Reply Text=
@@ -2990,4 +3015,67 @@ Should Have Voiceover=0
 Node ID=2000 ask about cortes in gate district non vo
 Text=Perhaps we should discuss this matter in my workshop. If you like, I will meet you at my workshop in the Port District later.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=800 Fixt Relican Offer
+Text=Relican. I know the name, and I know what he has made of himself since. So he sends a voice instead of coming himself, and the voice is yours. I am not surprised, only sorry. Say what he gave you to say, and say it plainly - I have never had patience for a man who talks around a thing.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 50
+Reply Text=Your order knows those pockets exist. You told me so yourself. One of your own has been alone in one since before you were born, with the dead for company, and not one Wielder has ever gone down that well. Relican would have gone.
+Go to node ID=801 Fixt DaVinci Joins
+Icon=Speach Skill Icon
+
+Requirement=Fixt DaVinci Arcane Mastery
+Reply Text=I did not come to argue. Look at what I have already learned down that road, and then tell me your order could have taught me faster.
+Go to node ID=801 Fixt DaVinci Joins
+Icon=Quest Icon
+
+Requirement=Fixt DaVinci Enchanter Pact
+Reply Text=I have been down the well. I found your larger pocket, and the man your order left inside it. He wears my bargain now - ask him whose name he curses, and whose he does not.
+Go to node ID=801 Fixt DaVinci Joins
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Relican is offering you power. Take it, and stop hiding from the world in a workshop.
+Go to node ID=802 Fixt DaVinci Refuses
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nothing. Forget that I raised it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=801 Fixt DaVinci Joins
+Text=You have the right of it, and I have no answer to it that would not shame me. We knew. We have always known, and we did nothing, because going down would have cost us something. Very well. Tell Relican that Leonardo will not stand against him. But understand me clearly: I grant him that because your argument is sound, not because I have found any love for your master. He should not mistake the one for the other.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will tell him exactly that.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+State=RB4NW8TJ
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=802 Fixt DaVinci Refuses
+Text=No. And I will not pretend to be shocked either - you are hardly the first to find that road, and you will not be the last. I only ask that you look down it honestly before you walk further. Relican does not want an apprentice. He wants an instrument, and an instrument is set aside once the work is finished. You will go where you choose, as every man must, and I would not take that from you even if I could. But when you reach the bottom of it, remember that someone said so, and that the way back was never closed to you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have heard you.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+State=ZH6PC3YF
+}
+Icon=Exit Icon
+Is Default Reply=1
+
 }

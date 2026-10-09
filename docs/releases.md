@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.39.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.40.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,137 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.40.0 - the tinker
+
+`Convince DaVinci to Join the Dark Wielders` is a quest name that kept surfacing in these surveys
+as though it were a lead. It was not. This release implements it, and the first thing to say is
+that **nothing was restored, because nothing had been built**.
+
+### What actually shipped under that name
+
+| evidence | finding |
+|---|---|
+| quest definition | **`Item Count=0`**, `Sub-Quest of=!None`, no children, referenced only by the registry map |
+| his dialogue | **112 nodes, zero** mentions of Relican, Dark Wielders, necromancy or the Dark Arts |
+| his voiceover | **127** recordings, **none** dark -- his one orphan is `1001 goodbye montaillou` |
+| dark-path VO game-wide | **50** files, every one Relican's, Cedric's, or Relican's combat grunts |
+| Relican's dialogue | 27 nodes, never mentions DaVinci at all |
+
+Its wired sibling `Convince Quinn the Herbalist to Join the Dark Wielders` has 3 states with
+journal text, a parent, a reply attached at **7** places in Quinn's tree, and a `700`/`710`/`720`
+branch with three gated persuasion routes. That is what a built one looks like.
+
+**A method correction came out of this**, and it is recorded in
+[`unused-content.md`](unused-content.md): **33 of the game's 151 quest definitions have
+`Item Count=0`**, and several of those are content that is unquestionably in the shipped game,
+tracked under a *different* quest -- `Find the Hair of a Saint` is state `7PL8VY1D` of
+`Create a Rod of the Inquisitor`; `Discover the location of La Calle Perdida` and
+`Find and rescue Galileo` are both playable. They are a vestigial design-era quest list. An empty
+quest file is not evidence of a cut, and reporting one beside genuinely cut content -- as these
+documents did until now -- is a false equivalence.
+
+### Why it is persuasion-only, which is not a design preference
+
+**`Races/NPCs/Wielders/Leonardo DaVinci` is AC 1000 / HP 10000** -- the same deliberate-immortality
+pattern the game uses for its children. He is unkillable on purpose, because he survives to the
+endgame: `08 Final Encounter.zax` carries **232** DaVinci references, and its endings are a matrix.
+
+| axis | values |
+|---|---|
+| how the Old Man ends | escape / killed / talked to death |
+| DaVinci | **alive / dead** |
+| Galileo | alive / dead |
+| player | good / evil |
+
+Part names enumerate the combinations -- `ESCAPE Old Man DaVinci DIE Galileo Live`,
+`KILL Old Man DaVinci Live Galileo DIE`, and so on. **His life is already an ending variable**,
+resolved in act 8 by a scripted attacker.
+
+So Quinn's *"Convince him to join us or destroy him"* shape **cannot** be given to DaVinci: the
+"or destroy him" half is exactly what the developers engineered away. Adding one would mean
+stripping that protection and then teaching the Final Encounter about a death seven acts earlier.
+That was considered and rejected on the merits, not merely on cost.
+
+What it leaves is the interesting part: **the only Dark Wielder task in the game with no violent
+solution.**
+
+### The argument
+
+The lever is DaVinci's own shipped line at `900 davinci explains secret area`:
+
+> *"This place is ether, the space between. Wielders who know how to access this plane can learn to
+> shape their own domains here - though mine is modest, there are larger ethereal pockets..."*
+
+One of those larger pockets is the Mad Enchanter's prison from 0.39.0. So the ideological route
+turns his own words back on him:
+
+> *"Your order knows those pockets exist. You told me so yourself. One of your own has been alone
+> in one since before you were born, with the dead for company, and not one Wielder has ever gone
+> down that well. Relican would have gone."*
+
+### Three routes in, none required
+
+| route | gate |
+|---|---|
+| ideological, as above | `Speech moreequal 50` -- vanilla's own can |
+| demonstrated arcane mastery | a `COR` of vanilla's `General Thought Skills moreequal 80` and `General Tribal Skills moreequal 80`, composed exactly as Quinn's four-way intimidation gate is |
+| **the Enchanter** | holding the **Ring of the Trapped Spirit** -- the 0.39.0 pact is its own record, so no new state flag was needed |
+
+Plus an ungated reply that genuinely attempts and fails, and a back-out that leaves the quest open
+to retry.
+
+### Both outcomes close
+
+Relican offers the task on his hub `5 Return Dialogue`, **outside** the task 1-2-3 chain, so the
+Quinn sequence and `40 dark wielder task 3` are untouched and a player who ignores DaVinci loses
+nothing. His framing carries the no-kill constraint as a choice of his own:
+
+> **`90 Fixt DaVinci task`:** *"Leonardo. The tinker. He is a Wielder, whatever he pretends, and he
+> is the only one of them whose mind I have ever had cause to respect. I will not have him killed -
+> a corpse invents nothing."*
+
+**Refusing withdraws nothing.** He declines and argues the player off the path, which is in
+character for the man whose own quest is `DaVinci Tells You to Join A Faction`:
+
+> **`802 Fixt DaVinci Refuses`:** *"Relican does not want an apprentice. He wants an instrument,
+> and an instrument is set aside once the work is finished. You will go where you choose, as every
+> man must... But when you reach the bottom of it, remember that someone said so, and that the way
+> back was never closed to you."*
+
+That was a deliberate instruction rather than an invention, and the build asserts it: no
+`CDeactivateAction` and no item removal anywhere in that node. His `Build DaVinci's Repeating
+Crossbow` quest and his Wielder referral both still work afterwards.
+
+Relican turns the refusal into information rather than a dead end -- *"He refused to your face and
+you returned to mine, and that tells me where you stand far better than his agreement would have"*
+-- and **both** report-backs call `CSetQuestSatusToCompletedAction`, so no journal entry dangles
+either way. Joining pays **650 XP** against Quinn's 550, from a new source entity added to
+`Calle Perdida.zax`; refusing pays none.
+
+### What was built
+
+9 files: the quest (0 -> 3 states, reparented), 5 requirement cans, DaVinci's tree (112 -> 115
+nodes, with the reply on all **5** of his entry nodes), Relican's tree (27 -> 30), and the XP source
+in `Calle Perdida.zax` -- purely additive, asserted by stripping it and matching the original
+byte-for-byte.
+
+### The honest caveat
+
+**106 of DaVinci's 112 nodes are `Should Have Voiceover=1`.** These three are silent, and on a
+character this heavily voiced that is noticeable in a way the Mad Enchanter's new nodes were not --
+his neighboured existing unvoiced nodes. There is no fix; the lines do not exist as audio.
+
+One near-miss worth recording: vanilla ships exactly **one** non-ASCII character in DaVinci's tree,
+the a-grave in *"la citta grande"*. The ASCII assertion fired on it and very nearly "corrected"
+shipped Italian. The check now scopes to authored text and asserts that character survives.
+
+### What needs playing
+
+`LD1`-`LD16` in [`qa.md`](qa.md). **`LD4`** is the row that matters: refuse him, then confirm his
+crossbow quest and Wielder referral still work, because a refusal that quietly broke his other
+content would be the worst outcome here. **`LD9`** checks the Enchanter route, which is the only
+place two releases interlock.
 
 ## 0.39.0 - the Enchanter's Bargain
 

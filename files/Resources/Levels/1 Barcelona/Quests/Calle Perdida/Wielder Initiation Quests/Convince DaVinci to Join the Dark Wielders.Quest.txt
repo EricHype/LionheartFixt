@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=Convince DaVinci to Join the Dark Wielders
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=Lord Relican has sent you to Leonardo DaVinci in the Gate District. DaVinci is a Wielder himself, and Relican wants him turned rather than killed. Convince him to join the Dark Wielders.
+			ID=QD7XV2MK
+		}
+		State=CQuestStateDefinition
+		{
+			Text=DaVinci has agreed not to stand against Relican. Return to La Calle Perdida and tell Lord Relican that Leonardo will not oppose him.
+			ID=RB4NW8TJ
+		}
+		State=CQuestStateDefinition
+		{
+			Text=DaVinci refused, and asked you to turn back from this path. Return to La Calle Perdida and tell Lord Relican that Leonardo will not be moved.
+			ID=ZH6PC3YF
+		}
+	}
+	Sub-Quest of=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Initiation Quest for the Dark Wielders
+}

@@ -27,6 +27,48 @@ Node ID=5 Return Dialogue
 Text=Greetings, dark brother. What do you seek?
 Should Have Voiceover=0
 
+Requirement=Relican Player has gotten started getting quests
+Reply Text=You spoke of wizards who refuse you. What of Leonardo, in the Gate District?
+Go to node ID=90 Fixt DaVinci task
+Icon=Quest Icon
+
+Requirement=Fixt DaVinci Joined
+Reply Text=Leonardo will not stand against you. He gave me his word on it.
+Go to node ID=91 Fixt DaVinci joined
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Convince DaVinci to Dark Side XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Fixt DaVinci Refused
+Reply Text=Leonardo refused you. He will not be moved, and he asked me to turn back.
+Go to node ID=92 Fixt DaVinci refused
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+}
+}
+}
+Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -877,6 +919,54 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=
 Go to node ID=40 dark wielder task 2
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=90 Fixt DaVinci task
+Text=Leonardo. The tinker. He is a Wielder, whatever he pretends, and he is the only one of them whose mind I have ever had cause to respect. I will not have him killed - a corpse invents nothing. Go to him, and turn him. If he will not be turned, let him refuse to your face and come back to me; I will know what that is worth.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will go to him.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+State=QD7XV2MK
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Leave the tinker to his toys. What else?
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=91 Fixt DaVinci joined
+Text=His word. From Leonardo that is worth more than most men's oaths, which is precisely why I wanted it rather than his body. He will not love us for it. He does not need to. A Wielder who will not raise his hand is worth three who would, and they will feel the absence of him long before they understand it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=92 Fixt DaVinci refused
+Text=He asked you to turn back. Of course he did. That is the whole of their order in one breath - they will counsel a man and never once act. No matter. He refused to your face and you returned to mine, and that tells me where you stand far better than his agreement would have. Let him keep his workshop. He will not keep it long.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
 Is Default Reply=1
 
 }

@@ -676,8 +676,9 @@ can never dead-end.
 text describes the Summoning Ring's Yes branch word for word and its sibling
 `Exposer of Calle Perdida` is granted by `InquisitorRaphael.DialogTree`. Now granted on that branch.
 
-**Still open on this path:** `Convince DaVinci to Join the Dark Wielders` is a quest file referenced
-by nothing but the registry map -- an unreachable fifth Dark Wielder task. And
+**Still open on this path:** `Convince DaVinci to Join the Dark Wielders` -- but see the
+section below; calling it "an unreachable fifth Dark Wielder task", as this document first
+did, overstates it badly. And
 `Rod Spirits WITH Spirit`, the *Wielder* rod, advertises "2 skill points in the Divine and Thought
 spell disciplines, as well as 25 to Mana Capacity" and implements none of it: zero
 `CCharacterModifierSkill`, its only derived modifier being attack-animation speed.
@@ -687,3 +688,107 @@ spell disciplines, as well as 25 to Mana Capacity" and implements none of it: ze
 only two cans in the game using `Races/NPCs/Relican` and
 `Characters/NPC/Barcelona/Wielders/Relican`. Searching the writing for a connection between them
 finds nothing, because the connection was only ever made in the art and the statistics.
+
+
+## Two method corrections, and what they cost
+
+### An empty quest file is not evidence of a cut
+
+**33 of the game's 151 quest definitions have `Item Count=0`** -- 22% of them. Three are
+**containers** whose children carry the journal text (`Initiation Quest for the Inquisition` has 6
+children, `Initiation Quest of the Knights Templar` has 7). The other 30 have no states *and* no
+children.
+
+But several of those 30 are content that is unquestionably **in the shipped game**:
+
+| empty, orphaned quest file | yet in the game as |
+|---|---|
+| `Find the Hair of a Saint` | state `7PL8VY1D` of `Create a Rod of the Inquisitor` |
+| `Discover the location of La Calle Perdida` | playable; tracked elsewhere |
+| `Find and rescue Galileo` | playable; Galileo is rescued in the Inquisition chambers |
+| `Find the Yellow Node within the Sewers` | named in `Lord Relican.DialogTree` |
+
+So these 33 files are a **vestigial design-era quest list**, not an inventory of cut features. The
+journal text for the live ones lives under *other* quest definitions.
+
+**The cost of getting this wrong:** reference-counting flags an empty stub identically to genuinely
+cut content such as `Wielder DARK Quest Rod Bone NO Spirit`, and the two are nothing alike. The
+sceptre shell had a complete item definition, an authored description, art and a slot -- everything
+but a placement. `Convince DaVinci to Join the Dark Wielders` has a filename. Do not report them in
+the same breath, which this document did until 0.39.0.
+
+### Orphaned voiceover is the strongest signal there is
+
+VO lives in a `<TreeName> VOs/` folder beside each `.DialogTree`, one `.ogg` per node, named for the
+node ID. So a recording whose node no longer exists is a line that was **written, cast and
+performed**, and then unhooked.
+
+**Method confidence, measured before trusting it:** across **1,330** recordings in **50** paired VO
+folders, **1,314 (98.8%)** match a node by name. An orphan therefore means something.
+
+**Result: 16 orphaned recordings across 11 trees.** The largest cluster is a coherent betrayal
+storyline with no dialogue nodes at all:
+
+| tree | orphaned recording | size |
+|---|---|---|
+| `TitanAndre` | `1001 Lucious Exposed` | **293 KB** |
+| `TitanAndre` | `1002 Hearts in Hand but Lucious betrayed` | **306 KB** |
+| `TitanAndre` | `1003 Return after the quest is complete but Lucious betrayed` | 55 KB |
+| `BrotherMichel` | `400 Lucious thrown out of town` | **149 KB** |
+| `BrotherMichel` | `400 Lucious thrown out of town 2` | 25 KB |
+
+Five lines, roughly **830 KB of finished voice acting**, two named Montaillou characters, one plot.
+Two of them are near 300 KB, so these are speeches rather than barks. Lucious exists as a character
+besides: `Rock Titan Lucious.can`, three race files including two Toulouse variants, and his own
+named combat set (`Lucious Titan_attk/death/hurt`).
+
+This is the inverse of the DaVinci case. There nothing was ever made; here the performance exists
+and the nodes were deleted, which makes it the **highest-confidence restorable content found so
+far** -- the writing and the acting are already in the archive.
+
+The other orphans, one or two per tree: `Captain Isabella` (2, Grace as a companion), `Shylocke` (2),
+`Blacksmith`, `DaVinciBarcelona`, `Cervantes` (`500 convince don quixote 2`), `GrandInquisitor`
+(`120 combat`), `SirAuric` (`400 attack auric alt`), `Juanita Suarez` (`200 my fee`), `GoblinKhan`
+(`400 Where are you going`).
+
+## Convince DaVinci to Join the Dark Wielders -- the verdict
+
+Asked repeatedly whether this is restorable. It is not *restorable*, because nothing was built:
+
+| evidence | finding |
+|---|---|
+| quest definition | `Item Count=0`, `Sub-Quest of=!None`, no children, registry-only reference |
+| his dialogue | **112 nodes, zero** mentions of Relican, Dark Wielders, necromancy or the Dark Arts |
+| his voiceover | 127 recordings, **none** dark; his single orphan is `1001 goodbye montaillou` |
+| dark-path VO game-wide | **50 files**, every one Relican's, Cedric's, or Relican's combat grunts |
+| Relican's dialogue | 27 nodes, never mentions DaVinci at all |
+
+Compare its wired sibling `Convince Quinn the Herbalist to Join the Dark Wielders`: 3 states with
+journal text, parented to the Dark Wielder initiation, a reply attached at **7** places in Quinn's
+tree, and a `700`/`710`/`720` branch with three gated persuasion routes.
+
+**And there are two reasons the design outgrew it.** DaVinci is already a Wielder with his own ether
+pocket -- *"Wielders who know how to access this plane can learn to shape their own domains here -
+though mine is modest, there are larger ethereal pockets"* -- and he is the **referral to the good
+Wielders**: *"If you seek the Wielders, go to Quinn and mention that I sent you."*
+
+More decisively, **`Races/NPCs/Wielders/Leonardo DaVinci` is AC 1000 / HP 10000**, the same
+deliberate-immortality pattern as the game's children. He is unkillable on purpose, because
+`08 Final Encounter.zax` carries **232** DaVinci references and its endings are a matrix over
+{Old Man escapes / killed / talked to death} x {DaVinci alive or dead} x {Galileo alive or dead} x
+{player good or evil}. His life is already an ending variable, resolved in act 8 by a scripted
+attacker.
+
+So Quinn's quest shape -- *"Convince him to join us or destroy him"* -- **cannot** be given to
+DaVinci. The "or destroy him" half is precisely what the developers engineered away. Any
+implementation has to be persuasion-only, which is also what makes it mechanically distinct: the
+only Dark Wielder task that cannot be solved with a sword.
+
+**Implemented in 0.40.0** as persuasion-only, with three parallel routes (`Speech moreequal 50`, a
+`COR` of vanilla's `General Thought/Tribal Skills moreequal 80`, or holding the Ring of the Trapped
+Spirit from 0.39.0's pact), an ungated attempt that fails, and a back-out that leaves it retryable.
+Refusing withdraws nothing -- he argues the player off the path instead -- and both outcomes call
+`CSetQuestSatusToCompletedAction` so no journal entry dangles. Offered on Relican's hub rather than
+inside the task 1-2-3 chain, so it is genuinely optional. `LD1`-`LD16` in [`qa.md`](qa.md).
+
+Still untouched on this path, and deliberately: no kill option, and nothing reaching act 8.

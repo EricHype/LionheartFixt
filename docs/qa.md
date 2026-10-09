@@ -1473,6 +1473,45 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Convince DaVinci to Join the Dark Wielders
+
+Implemented rather than restored -- the quest shipped as a stub with **no states**, and DaVinci's
+112 dialogue nodes and 127 recordings contain **nothing** about the dark path. So there is no
+vanilla behaviour to regress against here; every row below is new ground.
+
+**Persuasion-only, by necessity.** `Races/NPCs/Wielders/Leonardo DaVinci` is **AC 1000 / HP 10000**
+-- the deliberate-immortality pattern used for the game's children -- because `08 Final
+Encounter.zax` holds 232 DaVinci references and its endings are a matrix over {Old Man escapes /
+killed / talked to death} x {DaVinci alive or dead} x {Galileo alive or dead} x {player good or
+evil}. **Do not test for a kill option; there is none, and adding one was rejected on the merits.**
+
+**The task is optional and offered on Relican's hub**, outside the task 1-2-3 chain. A player who
+never speaks to DaVinci should notice no difference at all -- `LD15` checks exactly that.
+
+**`LD4` is the row that matters most**, and `LD9` is the only place 0.40.0 and 0.39.0 interlock.
+
+**Expect silence.** 106 of DaVinci's 112 nodes are voiced; the three new ones are not. That is a
+known, unfixable gap, not a bug to report.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| LD1 | **The offer.** On Relican's path, talk to Lord Relican at his hub | - | A `Quest Icon` reply asks about Leonardo in the Gate District -> `90 Fixt DaVinci task`. He says he will not have him killed, *"a corpse invents nothing"*. The journal gains `Convince DaVinci to Join the Dark Wielders` |
+| LD2 | Decline the task (*"Leave the tinker to his toys"*) | - | Conversation ends, no quest activated, and the reply is still offered next time |
+| LD3 | **The approach.** With the task active, talk to DaVinci | - | A `Quest Icon` reply about carrying another man's words -> `800 Fixt Relican Offer`. It must appear from **all five** of his entry nodes: first meeting, the two other first-meeting variants, `3 Return Dialogue`, and `3 Return Dialogue Workshop` |
+| LD4 | **The row that matters. Refuse him** -- take the ungated *"Relican is offering you power"* reply -> `802` -- then check everything he still does: his shop talk, the Wielder referral to Quinn, and `Build DaVinci's Repeating Crossbow` if you have it | - | **Nothing is withdrawn.** He argues you off the path and takes nothing away. If his crossbow quest breaks or the Quinn referral vanishes, the refusal has teeth it was explicitly not meant to have |
+| LD5 | After LD4, talk to him again | - | He does **not** re-offer the conversion; the quest has moved to the refused state. He is cold but functional |
+| LD6 | **The ideological route.** At Speech 50 or above, take the reply about the man left in the ether pocket | - | He concedes -> `801 Fixt DaVinci Joins`, journal advances to "return to Relican" |
+| LD7 | Try LD6 **below** Speech 50 | - | That reply is absent. Only the ungated attempt and the back-out remain |
+| LD8 | **The arcane route.** With General Thought **or** General Tribal at 80+, take the mastery reply | - | Present and it works. Check **both** disciplines independently -- the gate is a `COR` of vanilla's two 80-threshold cans, so either alone must suffice |
+| LD9 | **Where 0.39.0 interlocks.** Carrying the **Ring of the Trapped Spirit** from the Enchanter's pact, talk to DaVinci | - | A third route appears -- *"I have been down the well... He wears my bargain now"* -- and succeeds. Without the ring it must be absent |
+| LD10 | Take the back-out reply (*"Nothing. Forget that I raised it"*) | - | Conversation ends and the quest stays open: the approach reply is offered again next time. **This must be retryable** |
+| LD11 | **Report success.** After LD6/LD8/LD9, return to Relican | - | A reply reports Leonardo will not stand against him -> `91 Fixt DaVinci joined`. Quest **completes** and you gain **650 XP** |
+| LD12 | **Report the refusal.** After LD4, return to Relican | - | A reply reports Leonardo refused -> `92 Fixt DaVinci refused`. Quest **completes** -- it must not sit open or show as failed -- and pays **no** XP |
+| LD13 | Check the journal after both LD11 and LD12 | - | No dangling entry in either case. Both paths close the quest |
+| LD14 | **No interference.** Run the Quinn task and `40 dark wielder task 3` with the DaVinci quest active, and again after completing it | - | Unchanged. The DaVinci task sits on the hub, not in the numbered chain |
+| LD15 | **The ignore case.** Play the whole Dark Wielder initiation and never speak to DaVinci about Relican | - | Identical to 0.39.0. The task is optional and nothing waits on it |
+| LD16 | Judge the **writing**, which no check can verify | - | Does Relican's refusal to have him killed read as his own judgement rather than an engine limit? Does DaVinci's warning land as concern rather than a lecture? This is the only row that can fail on craft |
+
 ## The Enchanter's Bargain, and the Dark Wielders' missing bind step
 
 The Trapped Ether Plane is reached through a well in La Calle Perdida -- `Well 5 door`,
