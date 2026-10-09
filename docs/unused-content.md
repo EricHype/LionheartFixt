@@ -1138,3 +1138,49 @@ Calle Perdida are fine. **Cross-level never occurs**, and `validate.py` does not
 would evaluate as nothing and silently hide its reply with no error anywhere. For any chain spanning
 acts, put the cans in the global root. Every Fixt dialogue tree has since been audited -- zero
 cross-level or unresolved references.
+
+
+## Done in 0.45.0 - the horse, and what the "unused enemies" number actually means
+
+### The horse
+
+`Monster Cans/Animals/Horse.can` -- a complete 54 KB can with a 36 KB model, a cached render and
+its own 27 KB death sound -- was placed in **zero** maps. Its animation set is **Idle, Walk, Death**
+and nothing else (the Deer has four, the War Golem ten including two attacks), so it was built as an
+**ambient animal**, and it was the only one of them never used:
+
+| Wolf Gray | Deer | Chicken 01 / 02 | Horse |
+|---|---|---|---|
+| 16 maps | 5 maps | 3 maps each | **0** |
+
+Its `Race=Wolf Gray` was first read as evidence of being unfinished. **Wrong** -- the other ambient
+animals borrow stat blocks the same way. Now Alvaro's cart horse at the Crossroads, with
+`CSetDamagedScriptActionAction` -> a relay -> `CGoToCombatAction{Enemy Name=Alvaro}`, copied from
+Alvaro's own generator. `HR1`-`HR12` in [`qa.md`](qa.md).
+
+### The "48 enemy cans spawned nowhere" entry was misleading and is replaced
+
+Recounted against every reference form, not just map `Entity=`: **56** of 611 monster cans are
+referenced by nothing. But sorted properly, almost none of it is lost content:
+
+| kind | roughly | what it actually is |
+|---|---|---|
+| **tier variants** of live families | ~30 | `Super` / `Tough` cans whose base spawns normally. The generators' mojo bands never reach them -- a **balance** observation, not cut content |
+| **duplicates** of live cans | ~15 | `Mongol Goblin Grum` and `Goblin Grumdjum` share race **and** model; same for `Mongol Goblin Rakeb` / `Rakeb`. `Sewers/Sewer Theif Boss` ×3 duplicates `Thugs/Theif Boss` ×3, which is spawned |
+| **test / broken** | 2 | `Simon Spell Cast Test`; and `Horse`, now placed |
+| **genuinely distinct, with art** | **4** | see below |
+
+The four that are real:
+
+| can | model | note |
+|---|---|---|
+| **`Horror`** | `Characters/Monsters/Horror` | **its own model, used by nothing else** -- the only unused enemy in the game with a dedicated mesh. The best remaining enemy lead by far |
+| `Caster` | `Rock Titan` | race `Rock Titan Caster` -- a spellcasting titan, where Toulouse's titans are live |
+| `Nos Ogre2 English` ×2 | `Ogre strong` | act-5 variants; belongs with the 17-Nostradamus-English item |
+| `Assasin EarlyLevels` | `Assasin` | a low-level tier of a live family |
+
+**Two wrong guesses are recorded because they were both wrong in the same direction** -- assuming an
+unreferenced can means lost content. "Mongol" turned out to mean the Wilderness horde, not an act-6
+siege variant of the goblin leaders; and the `Sewer Theif*` block is **not** wholly superseded --
+`Sewer Theif Pale`, `3 Bow` and `4 Sword` are all spawned in Sewers maps, and only `Boss`,
+`3 Mace` and `4 Bow` are not. Check both the family *and* the folder before calling a can cut.

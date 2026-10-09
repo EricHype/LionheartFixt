@@ -1,0 +1,71 @@
+[size=150][b]Lionheart Fixt 0.45.0 - Alvaro's horse[/b][/size]
+
+There is a horse in this game. It has a model, it has a cached render, it has an idle animation, a
+walking animation, a death animation, and somebody sat down and recorded the sound it makes when it
+dies.
+
+It appears in [b]no maps at all[/b]. Not one. It has been sitting in the files since 2003, finished, and
+nobody ever put it anywhere.
+
+[b]What it was for[/b]
+
+The animation list tells you. Idle, Walk, Death — and nothing else. No attack, no flinch, no run.
+
+Compare the war golems, which have ten animations including two separate attacks. The horse was never
+meant to fight anything. It was meant to stand somewhere and be looked at, like the deer and the
+chickens in Montaillou.
+
+Except those got placed:
+
+| | appears in |
+|---|---|
+| grey wolves | 16 maps |
+| deer | 5 maps |
+| chickens | 3 maps each |
+| [b]the horse[/b] | [b]none[/b] |
+
+[b]Where it is now[/b]
+
+The Crossroads, next to [b]Alvaro[/b], the merchant who stands out there selling to anyone passing
+between Barcelona and the wilderness. It's his. It pulls his cart.
+
+And if you take a swing at it, he is not philosophical about it:
+
+[i]*"Away from her! She has pulled my cart these nine years and you raise a hand to her?"*[/i]
+
+Then he comes for you, and you've lost your merchant.
+
+That part isn't invented either — the map already had everything needed to make him hostile, because
+the game already handles you robbing him. I just gave it a second reason to fire, with a line that
+fits the actual offence. [b]Robbing him still gets the original reaction[/b], where he runs off to the
+guard captain shouting "Thief!"
+
+[b]Two things I left alone on purpose[/b]
+
+[b]There's no cart.[/b] The cart art exists, but [b]no map in the entire game places one[/b], which means
+the path to it has never been tested by anybody. I'm not putting an untested model into a map to
+decorate a joke — if it silently failed to load you'd get an invisible nothing and no error. The cart
+is in what he says instead.
+
+[b]The horse may fight back badly.[/b] It has no attack animation, so if you hit it and it tries to
+retaliate, it'll probably look stiff. I could have stripped its combat behaviour out, but nothing in
+the original game does that to a creature, and I'd rather ship it behaving like itself than invent a
+pattern the engine has never been asked to do.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+Works on [b]any save[/b] — but a save that has already visited the Crossroads won't have the horse,
+because the game remembers what was in a place the first time you went there.
+
+[b]If you play it[/b]
+
+[b]The check that matters:[/b] go to the Crossroads and look. Is there a horse standing near Alvaro, on
+the ground, not hovering and not sunk into the dirt? Everything else is decoration if that's wrong,
+and placing things in maps is the part of this mod I trust least.
+
+[b]The fun one:[/b] hit it once and see what he does.
+
+[b]And listen for it:[/b] if you kill the horse, you should hear a sound no player of this game has ever
+heard.

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.44.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.45.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,95 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.45.0 - Alvaro's horse
+
+There is a finished horse in this game that nobody ever put in it.
+
+### The animation set is the whole story
+
+`Monster Cans/Animals/Horse.can` is a complete **54 KB** can. The art is all there:
+
+| | |
+|---|---|
+| mesh | `Horse.MODEL.GR2`, 36 KB |
+| animations | **Idle, Walk, Death** -- and nothing else |
+| cached render | `Characters/Monsters/Animals/Horse.mdl16`, 8 KB |
+| sound | `Sounds/Enemies/Animals/horse_death.1.ogg`, 27 KB |
+
+Compare the Deer -- Death, Fidget, Idle, Walk -- and the War Golem's ten, which include Attack01,
+Attack02, GetHit01, Run and Spellcast. **The horse has no attack and no get-hit animation**, because
+it was never meant to fight. Somebody nonetheless recorded a death sound for it.
+
+So it is an **ambient animal**, like the deer and the chickens, and it is the only one of them that
+was never placed:
+
+| animal | spawned in |
+|---|---|
+| Wolf Gray | 16 maps |
+| Deer | 5 maps |
+| Chicken 01 / 02 | 3 maps each |
+| **Horse** | **0** |
+
+Its `Race=Races/Enemies/Animals/Wolf Gray` was first read here as evidence it was unfinished. That
+was wrong, and the correction matters: **the other ambient animals borrow stat blocks the same way.**
+It is scenery given just enough of a character sheet to exist, which `Has Hit Points=0`,
+`Team Number=Nutral` and `Stationary=1` all confirm.
+
+### Why the Crossroads
+
+The merchant there is **Alvaro**, and the map already contains a relay called `Alvaro hates you`
+which walks him to the guard captain, has him shout `100 thief`, and fires
+`CGoToCombatAction{Enemy Name=Alvaro}`. The aggro machinery existed, named and complete; what was
+missing was a reason to fire it from anything but theft.
+
+A merchant at a crossroads with a cart needs something to pull it.
+
+### The aggro is Alvaro's own machinery
+
+His generator already ends with exactly the shape this needed:
+
+```
+After Action=CMultipleActionsAction
+    CSetDestroyedScriptActionAction { ... grants Merchant Slayer ... }
+    CSetDamagedScriptActionAction   { New Damaged Action=CTriggerRelayAction
+                                      { Relay Name=Merchant1 requests help }
+                                      Target Name=$Instigator }
+```
+
+So the horse's generator carries the same thing, pointing at a new relay:
+
+> **`110 Fixt the horse`:** *"Away from her! She has pulled my cart these nine years and you raise a
+> hand to her?"*
+
+...followed by `CGoToCombatAction{Enemy Name=Alvaro}`.
+
+**A new relay rather than the shipped one**, because `Alvaro hates you` makes him cry *"Thief!
+THIEF!"* and run for the captain. That is right for being robbed and wrong for having his horse
+struck. Both now exist independently and the shipped one is untouched.
+
+### The position
+
+1356,1848, chosen inside a quad bounded by **two working spawn points in this same map** -- Alvaro's
+own generator at 1396,1820 and Fixt's `Crossroads Vendor Horde` at 1336,1875. Ground where entities
+demonstrably appear, rather than ground that merely looks walkable on the geometry, which is a
+distinction this project has got wrong before.
+
+### Two things deliberately not done
+
+**No cart model.** The art exists only as `Cache/.../Cart A.mdl16` and **no map in the game places a
+cart anywhere**, so that `Model=` path is unverified -- precisely the guess that fails silently with
+no error. The cart is in his line instead of in the geometry.
+
+**No AI stripping.** A horse with no attack animation fighting back will look stiff, but
+`Remove Default AIs=1` with nothing added has **zero** vanilla precedent, so the can keeps the
+behaviour it defines for itself rather than having a new pattern invented for it.
+
+### What needs playing
+
+`HR1`-`HR12` in [`qa.md`](qa.md). **`HR1`** is the one that matters: the horse must actually be
+standing there, on the ground, beside the merchant. **`HR4`** is the consequence, and **`HR9`** is
+the honest look at the missing attack animation.
 
 ## 0.44.0 - the morning after
 

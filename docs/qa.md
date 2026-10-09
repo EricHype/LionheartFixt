@@ -1473,6 +1473,37 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Alvaro's horse at the Crossroads
+
+The game shipped a complete horse -- 54 KB can, 36 KB model, cached render, its own death sound --
+with an animation set of **Idle, Walk, Death and nothing else**, and placed it in **zero** maps. It
+is now the Crossroads merchant's cart horse.
+
+**`HR1` is the row that matters.** Everything else is consequence; first the horse has to actually
+be standing there, on the ground, rendered. It is placed at 1356,1848 inside a quad bounded by two
+working spawn points in the same map, but a position being proven for one entity is not proof for
+another -- this project has made that mistake before.
+
+**`HR9` is the honest one:** the horse has no attack or get-hit animation, because it was never
+built to fight. Its can's AI was left intact rather than stripped (zero vanilla precedent for
+that), so it may try to retaliate and look stiff doing it. That is a known cost, not a bug to
+report -- unless it looks bad enough to be worth stripping after all.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HR1 | **The row that matters.** Travel to the Crossroads in the Wilderness and look near Alvaro the merchant | - | A **horse** is standing there, rendered, on the ground, close to him. If it is absent, floating, or sunk into the terrain, the placement is wrong and nothing else in this section can be tested |
+| HR2 | Walk around it | - | It is solid and does not drift. Its can is `Stationary=1`, so it should hold its spot rather than wander |
+| HR3 | Watch it for a while | - | It idles. It has an Idle and a Walk animation and nothing else, so expect stillness, not grazing or tail-flicking -- there is no Fidget |
+| HR4 | **The consequence.** Attack the horse once | - | Alvaro shouts *"Away from her! She has pulled my cart these nine years and you raise a hand to her?"* in a balloon over his head, **and then turns hostile and attacks you** |
+| HR5 | After HR4, try to trade with him | - | You cannot. He is hostile. This is a real cost for a petty act, which is the point |
+| HR6 | Reload and instead **rob** Alvaro (pickpocket/steal), without touching the horse | - | The **shipped** reaction still happens: he cries *"Thief! THIEF!"*, walks to the guard captain, and goes hostile. The new relay must not have replaced or broken that one |
+| HR7 | Reload and attack **Alvaro** directly, leaving the horse alone | - | His own vanilla damaged script still fires `Merchant1 requests help`. Unchanged |
+| HR8 | Reload and kill the horse outright | - | It dies, plays its death animation, and you should **hear the horse death sound** -- a 27 KB recording that has never played in this game |
+| HR9 | **The honest look.** During HR4, watch the horse itself rather than Alvaro | - | It has no attack and no get-hit animation. If it tries to fight back it will look stiff or freeze mid-pose. Judge whether that is acceptable or whether its AI should be stripped in a follow-up |
+| HR10 | Leave the Crossroads and return | - | The horse is still there, and if you had already angered Alvaro he is still hostile. The relay is `Trigger Only Once=1`, so the shout must not repeat endlessly |
+| HR11 | **The ignore case.** Play the Crossroads normally without touching the horse at all | - | Everything is exactly as it was before this release. Alvaro trades, the bandits behave, nothing else changed |
+| HR12 | Judge the **fiction**, which no check can settle | - | Does a cart horse with no cart read as odd? No map in the game places a cart model, so the cart exists only in his line. If the absence is glaring, that is worth knowing -- the alternative is placing an unverified model |
+
 ## The hangover cure, across two acts and three people
 
 The drunkard who teaches **Drunken Boxing** had a live, map-opened return node with **no replies on
