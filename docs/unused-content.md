@@ -932,13 +932,99 @@ matching their audio achieved nothing and merely disguised three known vanilla o
 gate. With the nodes wired, the renames landed: **0.88 MB** of recorded dialogue across six lines
 now plays that never did.
 
-**Still silent, and recorded as such rather than guessed:** `900 Lucius thrown out of town` and
-`900 Lucius extorted and thrown out of town` are Andre's own post-betrayal greetings, and they need
-the same treatment inside `01 Hamlet Exterior`'s much larger node-selection chain in
-`Lucius Wrasslin` and `Talked past Lucius`; the extorted variant also needs the `Lucius extorted`
-marker read alongside the new one. `80 Do You Have The Item I Need?` on the Blacksmith stays
-unreachable for the same reason -- nothing links to it, so renaming its recording would be
-cosmetic. Both are wiring jobs, not renames.
+**Andre's own two post-betrayal greetings were wired next**, in 0.42.0 -- see below. The
+Blacksmith's `80 Do You Have The Item I Need?` was investigated next and should **stay** dead -- see
+below.
 
 Also noted while here: `Titan Andre requires PC to have sphere from other titan.can` is an **empty
 canned requirement** (`Object=` with no value), one of the 27 already on this list.
+
+
+## Wired in 0.42.0 - Andre's own reaction to being sold
+
+The last two orphans on this branch, both voiced and both with **0** incoming links in vanilla:
+
+> **`900 Lucius thrown out of town`** (96 KB) -- *"You are a very, very bad man and you lead a trite
+> and meaningless existence. Now leave me alone."*
+
+> **`900 Lucius extorted and thrown out of town`** (84 KB) -- *"I paid you your blood money and
+> still you betray me! I have had all I can stand from you, runt!"* -- and its reply carries
+> **`CGoToCombatAction`**, so he attacks.
+
+Unlike the six lines renamed in 0.41.0, **these two recordings were already correctly named**. They
+were silent purely because nothing could reach the nodes. That is worth separating: filename drift
+and unreachability are two different faults, and only the second one applies here.
+
+Two flags decide between them and both now exist: `Lucius thrown out`, declared in 0.41.0, and
+`Lucius extorted`, which is vanilla's own, set by five replies in `TitanAndre` that also hand over
+gold.
+
+**The ordering.** The shipped cascade in both `Lucius Wrasslin` and `Talked past Lucius` is kept
+byte-for-byte and demoted inside two new tests:
+
+| test | result |
+|---|---|
+| betrayed **and** extorted | `900 Lucius extorted and thrown out of town` -- he fights |
+| betrayed **and** titan hunt unfinished | `900 Lucius thrown out of town` -- the brush-off |
+| *the shipped cascade, unchanged* | quest complete + betrayed -> `1003`; else Mneme -> `03`; else `02` |
+
+Taking his hush money and selling him anyway is the worst thing available on this branch, so it
+outranks everything. The `NOT quest completed` on the second test is what keeps 0.41.0's `1003`
+reachable -- a betrayer who finished the hunt still gets the terse post-quest dismissal rather than
+the generic one.
+
+`reachability.py`'s tolerated vanilla-orphan count fell **187 -> 185**, exactly the two nodes
+connected.
+
+**Running total for this one branch: 1.05 MB** of recorded dialogue across eight lines that the
+shipped game could never play -- six silenced by filename drift, two by unreachable nodes.
+
+
+## The Blacksmith's node 80 is a superseded draft -- do not wire it
+
+`80 Do You Have The Item I Need?` in `Blacksmith.DialogTree` has 0 incoming links, no map opens it,
+and an 81 KB recording sitting beside it under the name `80 Do You Have The Item I Need` (no
+question mark). On the surface that is the same shape as the Lucius orphans. It is not.
+
+**What it is.** The smith's answer when a commission is ready: *"Yes, I have finished it - que
+aproveche! Is there anything else you wish to see while you are here?"* -- followed by a 13-reply
+hub.
+
+**Why it must stay dead.** That role is filled by **`07 what more`**, which is live, voiced,
+reachable from both hand-over nodes, and **better content**:
+
+| | `80` (orphan) | `07 what more` (live) |
+|---|---|---|
+| replies | 13 | **15** |
+| reachable | no | yes, from `63 here is your shield` and `64 here is your scimitar` |
+| recording | present but misnamed | present and correctly named |
+| Red Ore hand-in reply | **absent** | *"Here is some Red Ore. Can you use it to complete Davinci's design"* |
+| tainted-race variant reply | absent | present |
+
+Nine of node 80's thirteen replies are identical to `07`'s. The four that differ are the ones `07`
+has and `80` lacks -- including **a live quest hand-in** for the Red Ore that Cortes' arm needs.
+Wiring node 80 would duplicate a working hub *and* hand the player a worse menu that silently drops
+a quest step.
+
+**And the premise was designed out.** Node 80's title is the player asking *"Do you have the item I
+need?"*, which no reply anywhere asks -- because in the shipped flow the smith does not wait to be
+asked. The map opens `63`/`64` directly when the commission is ready and he hands the item over
+unprompted, closing with *"Is there anything else Eduardo can do for you?"* -> `07 what more`. The
+question node 80 answers stopped existing.
+
+## The three kinds of orphaned node
+
+Three releases of chasing these has produced a taxonomy worth keeping, because the right action
+differs completely:
+
+| kind | evidence | action |
+|---|---|---|
+| **filename drift** | node reachable, recording present under a near-miss name | rename the node (0.41.0, 6 lines) |
+| **unreachable branch** | node unreachable, flag or link missing, no live replacement | wire it (0.41.0 and 0.42.0, 5 nodes) |
+| **superseded draft** | a *live* node fills the same role with equal or better content | **leave it dead** |
+
+Two superseded drafts have now been found and correctly left alone: `Help Andre the Titan with his
+tasks` (replaced by `Recover Lucius' Mneme`) and the Blacksmith's node 80 (replaced by
+`07 what more`). In both cases the giveaway was the same -- finding the live node that does the job,
+and checking whether it is *better*. Reference-counting alone cannot tell these three apart, and the
+first instinct in every case was wrong.

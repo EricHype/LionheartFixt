@@ -25454,13 +25454,14 @@ CLayerSaveData
 															Action=Array
 															{
 																Item Count=2
-																Action=CIsQuestCompletedAction
-																{
-																	Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
-																}
 																Action=CCheckExistenceAction
 																{
 																	Name To Check For=Lucius thrown out
+																	Desired Minimum Count=1
+																}
+																Action=CCheckExistenceAction
+																{
+																	Name To Check For=Lucius extorted
 																	Desired Minimum Count=1
 																}
 															}
@@ -25469,29 +25470,88 @@ CLayerSaveData
 														Then=CDisplayDialogTreeAction
 														{
 															Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-															Node ID=1003 Return after the quest is complete but Lucious betrayed
+															Node ID=900 Lucius extorted and thrown out of town
 															Speaker=$trigger
 															Player Being Spoken To=$Instigator
 														}
 														Else=CIfAction
 														{
-															If=CWasQuestEverActivatedAction
+															If=CAndAction
 															{
-																Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CCheckExistenceAction
+																	{
+																		Name To Check For=Lucius thrown out
+																		Desired Minimum Count=1
+																	}
+																	Action=CNotAction
+																	{
+																		Action=CIsQuestCompletedAction
+																		{
+																			Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+																		}
+																	}
+																}
+																Early Exit=0
 															}
 															Then=CDisplayDialogTreeAction
 															{
 																Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-																Node ID=03 Return accepted Lethos quest
+																Node ID=900 Lucius thrown out of town
 																Speaker=$trigger
 																Player Being Spoken To=$Instigator
 															}
-															Else=CDisplayDialogTreeAction
+															Else=CIfAction
 															{
-																Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-																Node ID=02 Return Dialogue
-																Speaker=$trigger
-																Player Being Spoken To=$Instigator
+																If=CAndAction
+																{
+																	Action=Array
+																	{
+																		Item Count=2
+																		Action=CIsQuestCompletedAction
+																		{
+																			Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+																		}
+																		Action=CCheckExistenceAction
+																		{
+																			Name To Check For=Lucius thrown out
+																			Desired Minimum Count=1
+																		}
+																	}
+																	Early Exit=0
+																}
+																Then=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
+																	Node ID=1003 Return after the quest is complete but Lucious betrayed
+																	Speaker=$trigger
+																	Player Being Spoken To=$Instigator
+																}
+																Else=CIfAction
+																{
+																	If=CWasQuestEverActivatedAction
+																	{
+																		Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+																	}
+																	Then=CDisplayDialogTreeAction
+																	{
+																		Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
+																		Node ID=03 Return accepted Lethos quest
+																		Speaker=$trigger
+																		Player Being Spoken To=$Instigator
+																	}
+																	Else=CDisplayDialogTreeAction
+																	{
+																		Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
+																		Node ID=02 Return Dialogue
+																		Speaker=$trigger
+																		Player Being Spoken To=$Instigator
+																	}
+																	Return failure if the If failes=0
+																}
+																Return failure if the If failes=0
 															}
 															Return failure if the If failes=0
 														}
@@ -27918,13 +27978,14 @@ CLayerSaveData
 														Action=Array
 														{
 															Item Count=2
-															Action=CIsQuestCompletedAction
-															{
-																Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
-															}
 															Action=CCheckExistenceAction
 															{
 																Name To Check For=Lucius thrown out
+																Desired Minimum Count=1
+															}
+															Action=CCheckExistenceAction
+															{
+																Name To Check For=Lucius extorted
 																Desired Minimum Count=1
 															}
 														}
@@ -27933,29 +27994,88 @@ CLayerSaveData
 													Then=CDisplayDialogTreeAction
 													{
 														Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-														Node ID=1003 Return after the quest is complete but Lucious betrayed
+														Node ID=900 Lucius extorted and thrown out of town
 														Speaker=$trigger
 														Player Being Spoken To=$Instigator
 													}
 													Else=CIfAction
 													{
-														If=CWasQuestEverActivatedAction
+														If=CAndAction
 														{
-															Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+															Action=Array
+															{
+																Item Count=2
+																Action=CCheckExistenceAction
+																{
+																	Name To Check For=Lucius thrown out
+																	Desired Minimum Count=1
+																}
+																Action=CNotAction
+																{
+																	Action=CIsQuestCompletedAction
+																	{
+																		Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+																	}
+																}
+															}
+															Early Exit=0
 														}
 														Then=CDisplayDialogTreeAction
 														{
 															Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-															Node ID=03 Return accepted Lethos quest
+															Node ID=900 Lucius thrown out of town
 															Speaker=$trigger
 															Player Being Spoken To=$Instigator
 														}
-														Else=CDisplayDialogTreeAction
+														Else=CIfAction
 														{
-															Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-															Node ID=02 Return Dialogue
-															Speaker=$trigger
-															Player Being Spoken To=$Instigator
+															If=CAndAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CIsQuestCompletedAction
+																	{
+																		Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+																	}
+																	Action=CCheckExistenceAction
+																	{
+																		Name To Check For=Lucius thrown out
+																		Desired Minimum Count=1
+																	}
+																}
+																Early Exit=0
+															}
+															Then=CDisplayDialogTreeAction
+															{
+																Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
+																Node ID=1003 Return after the quest is complete but Lucious betrayed
+																Speaker=$trigger
+																Player Being Spoken To=$Instigator
+															}
+															Else=CIfAction
+															{
+																If=CWasQuestEverActivatedAction
+																{
+																	Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
+																}
+																Then=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
+																	Node ID=03 Return accepted Lethos quest
+																	Speaker=$trigger
+																	Player Being Spoken To=$Instigator
+																}
+																Else=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
+																	Node ID=02 Return Dialogue
+																	Speaker=$trigger
+																	Player Being Spoken To=$Instigator
+																}
+																Return failure if the If failes=0
+															}
+															Return failure if the If failes=0
 														}
 														Return failure if the If failes=0
 													}

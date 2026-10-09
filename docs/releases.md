@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.41.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.42.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,103 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.42.0 - what Andre had to say about it
+
+0.41.0 made it possible to betray Lucius. It did not let him answer.
+
+Two of his lines were still unreachable, both written and both voiced:
+
+> **`900 Lucius thrown out of town`** (96 KB) -- *"You are a very, very bad man and you lead a trite
+> and meaningless existence. Now leave me alone."*
+
+> **`900 Lucius extorted and thrown out of town`** (84 KB) -- *"I paid you your blood money and
+> still you betray me! I have had all I can stand from you, runt!"*
+
+The second one's reply carries **`CGoToCombatAction`**. Take his hush money, sell him to the mayor
+anyway, and the titan blocking the road comes for you. That fight was authored and has never once
+happened.
+
+### A fault worth separating from the last release
+
+0.41.0's six lines were silent because of **filename drift** -- the recording and the node disagreed
+about how to spell this character's name. These two are different: **their filenames were always
+correct.** They were silent because nothing in the game could reach the nodes.
+
+Same symptom, different defect, different fix. Renaming would have done nothing here; only wiring
+helps. The reverse was true in 0.41.0, where three nodes were briefly renamed, immediately reverted,
+and only renamed for good once wiring made them reachable.
+
+### The ordering, and the trap in it
+
+Both `Lucius Wrasslin` and `Talked past Lucius` carry the same cascade. It is preserved
+**byte-for-byte** and demoted inside two new tests:
+
+| test | result |
+|---|---|
+| betrayed **and** extorted | `900 Lucius extorted and thrown out of town` -- he fights |
+| betrayed **and** titan hunt unfinished | `900 Lucius thrown out of town` -- the brush-off |
+| *shipped cascade, untouched* | quest done + betrayed -> `1003`; else Mneme -> `03`; else `02` |
+
+Taking his money and then selling him is the worst thing available on this branch, so it outranks
+everything.
+
+**The `NOT quest completed` guard is the part that mattered.** Without it, betrayal alone would have
+caught every return and `1003` -- the post-quest dismissal wired in 0.41.0 -- would have become
+unreachable again. The previous release's work would have been quietly undone by this one.
+
+Two markers decide it, and this is the first release in which both exist: `Lucius thrown out`,
+declared in 0.41.0, and `Lucius extorted`, which is vanilla's own and is set by five replies in
+`TitanAndre` that also hand over gold.
+
+`reachability.py`'s tolerated vanilla-orphan count fell **187 -> 185**, exactly the two nodes
+connected.
+
+**Running total for this one branch: 1.05 MB** across eight lines the shipped game could never
+play -- six silenced by a misspelled filename, two by a missing link.
+
+### A verdict rather than a change: the Blacksmith stays dead
+
+`80 Do You Have The Item I Need?` in `Blacksmith.DialogTree` looks identical in shape to the Lucius
+orphans: 0 incoming links, no map opens it, an 81 KB recording beside it under a near-miss name. It
+is **not** the same thing, and wiring it would make the game worse.
+
+Its role is filled by **`07 what more`**, which is live, voiced, reachable from both hand-over nodes,
+and better content:
+
+| | `80` (orphan) | `07 what more` (live) |
+|---|---|---|
+| replies | 13 | **15** |
+| Red Ore quest hand-in | **absent** | present |
+| tainted-race variant | absent | present |
+
+Nine of node 80's thirteen replies are identical to `07`'s; the four that differ are ones `07` has
+and `80` lacks, **including a live quest hand-in** for the Red Ore that Cortes' arm needs. And node
+80's premise was designed out: its title is the player asking *"Do you have the item I need?"*, a
+question no reply anywhere asks, because the shipped smith does not wait to be asked -- the map
+opens `63`/`64` the moment a commission is ready and he hands it over unprompted.
+
+### The taxonomy this stretch produced
+
+Three releases of chasing orphaned nodes, and the right action differs completely by kind:
+
+| kind | evidence | action |
+|---|---|---|
+| **filename drift** | node reachable, recording under a near-miss name | rename the node |
+| **unreachable branch** | node unreachable, flag or link missing, no live replacement | wire it |
+| **superseded draft** | a live node does the same job as well or better | **leave it dead** |
+
+Two superseded drafts have now been found and left alone -- `Help Andre the Titan with his tasks`
+(replaced by `Recover Lucius' Mneme`) and this Blacksmith node. In both cases the first instinct was
+wrong, and in both the giveaway was the same: find the live node that does the job, then check
+whether it is *better*. Reference-counting alone cannot tell the three kinds apart.
+
+### What needs playing
+
+`AG1`-`AG12` in [`qa.md`](qa.md). **`AG4`** is the one to walk: take his gold, betray him, come
+back, and he should attack. **`AG8`** is the regression guard -- betray him, finish the titan hunt,
+and he must still use `1003` rather than the generic brush-off, because that is exactly what the
+ordering guard protects.
 
 ## 0.41.0 - the betrayal nobody could trigger
 

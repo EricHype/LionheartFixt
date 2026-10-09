@@ -1473,6 +1473,37 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Andre's own reaction to being sold
+
+0.41.0 made the betrayal possible. These rows cover Andre answering it -- his two post-betrayal
+greetings, both voiced, both with **0** incoming links in vanilla.
+
+**Unlike 0.41.0, nothing here is a rename.** These two recordings were always correctly named; they
+were silent because nothing could reach the nodes. If a line is subtitled and silent in these rows,
+that is a *different* bug from the one 0.41.0 fixed and worth saying so in the report.
+
+**`AG4` is the row to walk** -- it ends in a fight that has never happened in this game.
+**`AG8` is the regression guard**: betrayal alone must not shadow 0.41.0's `1003`. If AG8 fails,
+0.42.0 has undone 0.41.0.
+
+Two markers drive it: `Lucius thrown out` (declared in 0.41.0, set by the mayor) and
+`Lucius extorted` (vanilla's own, set by the five replies that take his gold).
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AG1 | **Baseline, no betrayal.** Meet Andre on the Montaillou road, keep his secret, come and go several times | - | Normal dialogue throughout -- `02 Return Dialogue`, or `03 Return accepted Lethos quest` once the Mneme quest is active. **Neither `900` line appears** |
+| AG2 | **Betray him, no money taken.** Never accept his gold; tell the mayor; return to Andre | - | *"You are a very, very bad man and you lead a trite and meaningless existence. Now leave me alone."* **And you should hear it** -- 96 KB that never played |
+| AG3 | After AG2, approach him repeatedly | - | Same brush-off each time. He does not attack and does not revert to normal dialogue |
+| AG4 | **The row to walk. Take his money, then betray him.** Accept gold at `830 Extortion`, then tell the mayor, then return to Andre | - | *"I paid you your blood money and still you betray me! I have had all I can stand from you, runt!"* -- audible (84 KB) -- **and then he attacks you.** That `CGoToCombatAction` has never fired in this game |
+| AG5 | Survive or flee AG4, then re-approach | - | He stays hostile. He must not fall back into dialogue mid-fight |
+| AG6 | **Both map paths.** Repeat AG2 and AG4 having reached him by the *other* route -- fighting past him versus talking past him | - | Identical behaviour. The two selectors (`Lucius Wrasslin`, `Talked past Lucius`) were edited identically and must agree |
+| AG7 | **Order check.** Take his gold **and** betray him, with the titan hunt **unfinished** | - | The extorted line wins, not the generic brush-off. Extortion-then-betrayal outranks everything |
+| AG8 | **The regression guard.** Betray him (no gold taken), **complete `Kill the Titans of Toulouse`**, then return | - | He uses **`1003`** -- *"I think our dealings are at an end, fleshling"* -- **not** the generic `900` brush-off. If the brush-off appears instead, 0.42.0 has shadowed 0.41.0's wiring and must be pulled |
+| AG9 | As AG8 but **with** gold taken | - | The extorted line and the fight still win. Combat outranks the post-quest dismissal |
+| AG10 | **The shipped cascade survived.** Without betraying him, verify `02 Return Dialogue`, `03 Return accepted Lethos quest`, `1100 Surrender`, `120 Andre Defeated` and `3000 Unlocked the door` all still work as before | - | Unchanged. The whole shipped chain was demoted inside the new tests and must be byte-identical in behaviour |
+| AG11 | **Hand over the hearts** after betraying him, where he is not hostile (AG2 path) | - | `1002 Hearts in Hand but Lucius betrayed` still fires, as 0.41.0 intended. The two releases must compose |
+| AG12 | **The Blacksmith, which must NOT have changed.** In the Gate District, commission a Lion Shield or Sacred Scimitar, collect it, and take *"Yes, I need the shield and something else"* | - | You reach `07 what more` with its full menu **including the Red Ore hand-in**. Node `80 Do You Have The Item I Need?` is a superseded draft and was deliberately left unreachable -- if it appears, something was wired that should not have been |
+
 ## The Lucius betrayal, and six silent recordings
 
 Andre the rock titan on the Montaillou road is really **Lucius**. He hides in the village
