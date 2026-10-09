@@ -69,7 +69,67 @@ Node ID=02 Return Dialogue
 Text=Hello down there! Back again?
 Should Have Voiceover=1
 
-Requirement=!None
+Requirement=Fixt Lucius Betrayed
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+}
+}
+Reply Text=I have four stone hearts.
+Go to node ID=1002 Hearts in Hand but Lucious betrayed
+Icon=Quest Icon
+
+Requirement=Fixt Lucius Not Betrayed
 Custom Requirement=CAND
 {
 Operand1=CAND
@@ -592,7 +652,56 @@ Node ID=02 corpse
 Text=Is it true? That is awful news! My people have the memory of a formless Daeva who drains the blood of its victims. If what you saw is indeed true, you should exercise extreme caution in the woods around town and I must redouble my vigilance in guarding Michel.
 Should Have Voiceover=1
 
-Requirement=!None
+Requirement=Fixt Lucius Betrayed
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+}
+}
+Reply Text=I have four stone hearts.
+Go to node ID=1002 Hearts in Hand but Lucious betrayed
+Icon=Quest Icon
+
+Requirement=Fixt Lucius Not Betrayed
 Custom Requirement=CAND
 {
 Operand1=CAND
@@ -909,7 +1018,67 @@ Node ID=03 Return accepted Lethos quest
 Text=Greetings again, small one. I hope you bear good news. 
 Should Have Voiceover=1
 
-Requirement=!None
+Requirement=Fixt Lucius Betrayed
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+}
+}
+}
+}
+}
+Reply Text=I have your four stone hearts.
+Go to node ID=1002 Hearts in Hand but Lucious betrayed
+Icon=Quest Icon
+
+Requirement=Fixt Lucius Not Betrayed
 Custom Requirement=CAND
 {
 Operand1=CAND
@@ -4481,7 +4650,7 @@ Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
 }
 }
 Reply Text=What? You knew these titans?
-Go to node ID=1001 Lucius Exposed
+Go to node ID=1001 Lucious Exposed
 Custom Action=CMultipleActionsAction
 {
 Action=Array
@@ -4544,7 +4713,7 @@ Quest=Levels/3 Montaillou/Quests/Destroy the shapeshifting Daeva
 }
 }
 Reply Text=I know they were your tribesmen, Lucius.
-Go to node ID=1001 Lucius Exposed
+Go to node ID=1001 Lucious Exposed
 Custom Action=CMultipleActionsAction
 {
 Action=Array
@@ -4587,11 +4756,11 @@ Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Thestonehearto
 }
 Is Default Reply=1
 ------------------------------------------------------------
-Node ID=1001 Lucius Exposed
+Node ID=1001 Lucious Exposed
 Text=Yes, small one, I knew the bodies that surrounded these hearts, and they knew me. These cold hearts belonged to the other elders of my tribe, the ones who forced me to run for my life. But, all's well that ends well, I suppose.  Thank you, and please accept this reward as well as my sincerest gratitude. 
 Should Have Voiceover=1
 ------------------------------------------------------------
-Node ID=1002 Hearts in Hand but Lucius betrayed
+Node ID=1002 Hearts in Hand but Lucious betrayed
 Text=Ah, I see it is true, you have slain them. Ah, Rhea, I am sorry I had to do this to you, but it was you or me.  And as for you, runt, I've heard that you exposed me to the mayor despite the agreement we reached. I'll thank you for taking care of the problem for me, but you'll get not one more ounce of gold from me. Good day.
 Should Have Voiceover=1
 
@@ -4642,7 +4811,7 @@ Enemy Name=$Trigger
 }
 Icon=Fight Icon
 ------------------------------------------------------------
-Node ID=1003 Return after the quest is complete but Lucius betrayed
+Node ID=1003 Return after the quest is complete but Lucious betrayed
 Text=I think our dealings are at an end, fleshling.
 Should Have Voiceover=1
 ------------------------------------------------------------

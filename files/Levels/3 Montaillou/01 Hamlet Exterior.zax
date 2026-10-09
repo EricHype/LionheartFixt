@@ -21794,6 +21794,36 @@ CLayerSaveData
 		}
 		Level Part=CEntityBase
 		{
+			Name=Lucius thrown out
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1916
+			Position Y=3629
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=warp to Montaillou
 			Child List=
 			Visible=0
@@ -25419,14 +25449,27 @@ CLayerSaveData
 													Item Count=1
 													Action=CIfAction
 													{
-														If=CIsQuestCompletedAction
+														If=CAndAction
 														{
-															Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+															Action=Array
+															{
+																Item Count=2
+																Action=CIsQuestCompletedAction
+																{
+																	Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+																}
+																Action=CCheckExistenceAction
+																{
+																	Name To Check For=Lucius thrown out
+																	Desired Minimum Count=1
+																}
+															}
+															Early Exit=0
 														}
 														Then=CDisplayDialogTreeAction
 														{
 															Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-															Node ID=1003 Return after the quest is complete but Lucius betrayed
+															Node ID=1003 Return after the quest is complete but Lucious betrayed
 															Speaker=$trigger
 															Player Being Spoken To=$Instigator
 														}
@@ -27870,14 +27913,27 @@ CLayerSaveData
 												Item Count=1
 												Action=CIfAction
 												{
-													If=CIsQuestCompletedAction
+													If=CAndAction
 													{
-														Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+														Action=Array
+														{
+															Item Count=2
+															Action=CIsQuestCompletedAction
+															{
+																Quest=Levels/3 Montaillou/Quests/Kill the Titans of Toulouse
+															}
+															Action=CCheckExistenceAction
+															{
+																Name To Check For=Lucius thrown out
+																Desired Minimum Count=1
+															}
+														}
+														Early Exit=0
 													}
 													Then=CDisplayDialogTreeAction
 													{
 														Dialog Tree File=Levels/3 Montaillou/Dialog/TitanAndre
-														Node ID=1003 Return after the quest is complete but Lucius betrayed
+														Node ID=1003 Return after the quest is complete but Lucious betrayed
 														Speaker=$trigger
 														Player Being Spoken To=$Instigator
 													}

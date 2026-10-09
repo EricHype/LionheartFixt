@@ -1473,6 +1473,42 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The Lucius betrayal, and six silent recordings
+
+Andre the rock titan on the Montaillou road is really **Lucius**. He hides in the village
+pretending to protect it, and asks the player to kill the elders of his own tribe in Toulouse. The
+player can keep his secret or tell the mayor.
+
+**Telling the mayor did nothing in vanilla.** `951 Furious Mayor` activates a marker named
+`Lucius thrown out`, and no entity of that name was declared in any map, so the flag could never be
+set. Everything below hangs off declaring it.
+
+**`LU5` proves the release. `LU9` is the regression that matters most** -- in vanilla *every*
+post-quest return used the "our dealings are at an end" line, so a loyal player got a cold shoulder
+they never earned. If LU9 fails, the gate is worse than before.
+
+**Voiceover is the other half.** Audio resolves purely as `<Tree> VOs/<Node ID>.ogg` with no
+indirection, so these lines were silent because filenames and node IDs disagreed by a letter. Rows
+that say *you should hear him* are testing exactly that -- if the line is subtitled but mute, the
+rename did not take.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| LU1 | **The secret.** Meet Andre on the Montaillou road, get through to `805 Sticky Situation` and hear his story | - | Unchanged from vanilla. He asks you to keep his secret and kill the Toulouse titans |
+| LU2 | **Keep the secret.** Take `820 PC Saves the day`, never speak to the mayor | - | Unchanged |
+| LU3 | **Take his money.** `830 Extortion` | - | You get gold and the `Lucius extorted` marker sets, as in vanilla |
+| LU4 | **Betray him.** Go to the mayor, take *"I've spoken with Lucius. He has been lying"* through to `951 Furious Mayor` and the reply that gets you hired | - | The mayor is furious. **This now sets a flag that persists** -- in vanilla it activated nothing |
+| LU5 | **The row that proves it.** After LU4, kill the four Toulouse titans, return to Andre and hand over the four stone hearts | - | He uses **`1002 Hearts in Hand but Lucius betrayed`**: *"I've heard that you exposed me to the mayor despite the agreement we reached... you'll get not one more ounce of gold from me."* **And you should hear him say it** -- 306 KB of recording that never played |
+| LU6 | Do LU5 **without** betraying him | - | He uses `1000 Hearts in Hand` and pays you, exactly as vanilla did. The two replies are mutually exclusive -- **never both** |
+| LU7 | **Brother Michel.** After LU4, find him in the house interior and talk to him | - | He meets you with *"Lucius, despite his flaws, was a harmless, lonely soul. Your meddling has cast him out of the only home he is likely ever to have."* Audible (149 KB). Talk again: *"Leave. Now."* (25 KB) |
+| LU8 | Talk to Brother Michel **without** betraying Lucius | - | Normal dialogue. And if Andre is dead, his shipped `05`/`07` Andre-Slain greetings must still work -- that chain was demoted to the `Else` and must be intact |
+| LU9 | **The regression that matters.** Keep the secret, complete `Kill the Titans of Toulouse`, then return to Andre | - | He must **not** say *"I think our dealings are at an end, fleshling."* In vanilla he always did. A loyal player gets normal return dialogue |
+| LU10 | Do LU9 **after** betraying him | - | Now he **does** use `1003` -- and you should hear it (55 KB) |
+| LU11 | **`1001 Lucious Exposed`.** Reach the node where he explains whose hearts you brought | - | Audible -- 293 KB that never played. *"These cold hearts belonged to the other elders of my tribe, the ones who forced me to run for my life."* |
+| LU12 | **Shylocke**, Temple District. Reach his *favors you* return greeting | - | Audible -- 91 KB. Unrelated to Lucius; same filename-drift cause |
+| LU13 | **No duplicate journal.** Check the quest log through all of the above | - | Only `Retrieve the Crystal Mneme from Lucius` appears. `Help Andre the Titan with his tasks` is a superseded duplicate and must **stay** dormant |
+| LU14 | **The extortion combination.** Take his gold (LU3) **and then** betray him (LU4), then return with hearts | - | `1002` fires. Note that Andre's own angrier `900 Lucius extorted and thrown out of town` greeting is **still not wired** -- that is known and deliberate, not a failure of this row |
+
 ## Convince DaVinci to Join the Dark Wielders
 
 Implemented rather than restored -- the quest shipped as a stub with **no states**, and DaVinci's

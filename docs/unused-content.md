@@ -742,9 +742,9 @@ Two of them are near 300 KB, so these are speeches rather than barks. Lucious ex
 besides: `Rock Titan Lucious.can`, three race files including two Toulouse variants, and his own
 named combat set (`Lucious Titan_attk/death/hurt`).
 
-This is the inverse of the DaVinci case. There nothing was ever made; here the performance exists
-and the nodes were deleted, which makes it the **highest-confidence restorable content found so
-far** -- the writing and the acting are already in the archive.
+**That reading was wrong, and the section below corrects it.** The nodes were never deleted; they
+exist and most of them are reachable. The recordings are silent because their *filenames* kept an
+older spelling of the character's name. See "The Lucius thread" below.
 
 The other orphans, one or two per tree: `Captain Isabella` (2, Grace as a companion), `Shylocke` (2),
 `Blacksmith`, `DaVinciBarcelona`, `Cervantes` (`500 convince don quixote 2`), `GrandInquisitor`
@@ -792,3 +792,153 @@ Refusing withdraws nothing -- he argues the player off the path instead -- and b
 inside the task 1-2-3 chain, so it is genuinely optional. `LD1`-`LD16` in [`qa.md`](qa.md).
 
 Still untouched on this path, and deliberately: no kill option, and nothing reaching act 8.
+
+
+## The Lucius thread, and a bug class worth more than the thread
+
+### Andre is Lucius, and his storyline ships complete
+
+The first claim made about this -- five recorded lines with their nodes deleted -- was wrong in
+every part. `Andre the Titan.can` has `Race=Races/Enemies/Toulouse/Rock Titan Lucious`. The
+"Lucious" race files are **his own**. Lucius is Andre's real name, and his storyline is shipped,
+wired and playable.
+
+What it is: Andre is a rock titan hiding in Montaillou, passing himself off as the town's
+protector. He asks the player to keep his secret and to kill the titans of Toulouse -- who are his
+own tribe's elders, the ones who exiled him. They are all in the game under Greek titan names:
+**Rhea, Lethos, Iapetus, Menoetius, Klao, Mathuo, Tereo, Baktron, Poimaino, ephebos**.
+
+> **`820 PC Saves the day`:** *"you must slay all of the titans in Toulouse. You must do it
+> quickly, and without mercy."*
+
+> **`1000 Hearts in Hand`:** *"Ah, I see it is true, you have slain them. Ah, Rhea, I am sorry I
+> had to do this to you, but it was you or me."*
+
+> **`1001 Lucius Exposed`:** *"These cold hearts belonged to the other elders of my tribe, the ones
+> who forced me to run for my life."*
+
+The player can keep his secret for gold or expose him to the mayor, which changes his closing
+lines. There are nodes for tricking him, convincing him, letting him flee, killing him, and him
+being run out of town -- 151 mentions of Lucius in his tree alone.
+
+### His name is spelled six ways
+
+| where | spelling |
+|---|---|
+| character template, portrait | **Andre** |
+| his race files, his monster can | Rock Titan **Lucious** |
+| dialogue node IDs | **Lucius** |
+| voice recordings | **Lucious** |
+| quest journal `Name=` | Help **Marcus** the Titan |
+
+### The bug class: a filename apart from its node is silent forever
+
+There is **no VO-file field anywhere in any DialogTree** -- zero `Voiceover File`, `VO File` or
+`Voice File` across all 131. Voiceover resolves purely as `<TreeName> VOs/<Node ID>.ogg`. So a
+filename that disagrees with its node ID by one character is a line that can never play.
+
+Measured against the **current** files rather than vanilla -- which matters, see the method note
+below -- the 16 exact-match misses split four ways:
+
+| | count | note |
+|---|---|---|
+| **silent, reachable node, recording misnamed** | **3** | fixed in 0.41.0 |
+| silent, but the node is **unreachable in vanilla** anyway | 4 | renaming achieves nothing; needs wiring |
+| flagged `Should Have Voiceover=0` | 2 | a rename alone would not play them; possibly silenced on purpose |
+| spare alternate takes (`alt`, `2`) | 4 | the node has its own recording too; working as intended |
+| no node resembles it at all | 1 | `GrandInquisitor / 120 combat`, 172 KB, unexplained |
+
+Plus 2 that an **earlier Fixt release had already fixed** (`Captain Isabella`, where vanilla's
+node names were `asks to return` and `rejoined companion`).
+
+**The 4 unreachable ones are the interesting remainder**, because the audio is finished and waiting:
+`1002 Hearts in Hand but Lucius betrayed` is the betrayal variant of Andre's ending;
+`400 Lucius thrown out of town` and its `2` sibling are Brother Michel's reaction to it; and
+`80 Do You Have The Item I Need?` is a Blacksmith line. Nothing links to any of them. Restoring
+those is a wiring job, not a rename, and it needs a decision about where each should branch from.
+
+### Two method corrections
+
+**Run the VO diff against `files/`, not vanilla.** The first pass used `zf.read()` and so reported
+two Captain Isabella lines as broken when an earlier Fixt release had already repaired them. This
+is the mirror image of the rule that edits must be sourced through `lhbuild.read()`: sourcing an *edit* from vanilla
+destroys work, and sourcing an *audit* from vanilla invents work.
+
+**Renaming a node that was already orphaned in vanilla creates a false reachability failure.**
+`reachability.py` tolerates 190 nodes that vanilla itself never links, matched **by name**. Renaming
+one makes it look like a brand-new orphan. That is what flagged 4 of the 7 renames first attempted
+here, and it is a useful signal rather than a nuisance: it distinguishes "silent line the player
+could hear" from "silent line on a node the player can never reach."
+
+### The quest that cannot start is a superseded duplicate -- leave it alone
+
+`Help Andre the Titan with his tasks.Quest.txt` has two states, **`7LOVAAS1`** and **`3MGFA36C`**,
+and nothing activates either, so it can never begin. Its journal name reads *"Help Marcus the
+Titan"*, naming a character who is not in the game.
+
+**It should stay dead.** Its two states describe *"Find Marcus' cousin and take sphere from him"*
+and *"Return Sphere to Marcus"* -- and that material is covered by a **live** quest,
+`Recover Lucius' Mneme.Quest.txt` (journal name *"Retrieve the Crystal Mneme from Lucius"*), which
+has **6** states, **5** of them activated by real maps, cans and dialogue trees. Andre is "Memnos,
+the Eater of Memories"; the Mneme quest is the finished version of the same idea, written after the
+character stopped being called Marcus.
+
+Wiring the old one would put a duplicate entry in the journal beside the live quest. The name fix
+was built and then reverted for the same reason: on a quest that never activates it changes nothing
+a player can see, and bringing the file into `files/` turns `validate.py` permanently red on the two
+dead states.
+
+One genuine loose end inside the live quest: state **`QYINZUKM`** (*"You have decided to allow
+Lucius to live..."*) is activated by nothing, though its siblings `496ZH7F7` and `Q8U40TYQ` cover
+the stay-out-of-it outcome, so the branch is not lost.
+
+
+## Wired in 0.41.0 - the betrayal nobody could trigger
+
+The root defect: `951 Furious Mayor` fires
+`COtherMapAction{CActivateAction{Target Name=Lucius thrown out}}` into `01 Hamlet Exterior`, and
+**no entity of that name was declared in any map in the game**. The flag could never be set, so
+every consequence hanging off it was dead. The developers knew -- that reply carries the note
+**`Action work in progress=kick luscious out, seal of this branch`** (an eighth spelling of the
+name, after Andre, Lucious, Lucius, Marcus and `Lucious dead`).
+
+Its sibling marker `Lucius extorted` **is** declared in that map and **is** read by `TitanAndre`,
+which gave an exact template for both the entity and the check. The pattern is well attested: 40
+vanilla markers are read positively by `CCheckExistenceAction`, declared `Active=0` with
+`Model=Editor/Checker` and switched on by `CActivateAction` -- among them `Beggars dead`,
+`Blacksmith offered payment`, `Darsh is Dead` and `Has Cervantes Been Jailed`. (The opposite
+convention also exists: 30 markers start present and are **deactivated** to record an event, which
+is how `Relican started giving quests already to player` works. Read which direction a marker uses
+before writing a check for it.)
+
+**What was connected:**
+
+| | before | after |
+|---|---|---|
+| `Lucius thrown out` marker | declared nowhere | declared in `01 Hamlet Exterior`, `Active=0` |
+| `1002 Hearts in Hand but Lucius betrayed` | 0 incoming links | 3, one beside each loyal hearts reply |
+| `400 Lucius thrown out of town` (+ ` 2`) | 0 incoming, no replies | opened as a greeting pair, copying this tree's own `Lucious dead` -> `05`/`07` `CSeriesAction` shape |
+| `1003 Return after ... betrayed` | opened for **every** post-quest return | now requires betrayal as well as quest completion |
+
+That last row was a live defect in its own right: a player who kept Lucius's secret was given the
+cold shoulder they never earned.
+
+`reachability.py`'s tolerated vanilla-orphan count fell from **190 to 187**, which is exactly the
+three nodes connected -- a cheap, precise confirmation that the wiring took.
+
+**And then the renames became worth making.** Three recordings were renamed to match these nodes
+earlier in the session and immediately reverted, correctly: while the nodes were unreachable,
+matching their audio achieved nothing and merely disguised three known vanilla orphans from the
+gate. With the nodes wired, the renames landed: **0.88 MB** of recorded dialogue across six lines
+now plays that never did.
+
+**Still silent, and recorded as such rather than guessed:** `900 Lucius thrown out of town` and
+`900 Lucius extorted and thrown out of town` are Andre's own post-betrayal greetings, and they need
+the same treatment inside `01 Hamlet Exterior`'s much larger node-selection chain in
+`Lucius Wrasslin` and `Talked past Lucius`; the extorted variant also needs the `Lucius extorted`
+marker read alongside the new one. `80 Do You Have The Item I Need?` on the Blacksmith stays
+unreachable for the same reason -- nothing links to it, so renaming its recording would be
+cosmetic. Both are wiring jobs, not renames.
+
+Also noted while here: `Titan Andre requires PC to have sphere from other titan.can` is an **empty
+canned requirement** (`Object=` with no value), one of the 27 already on this list.

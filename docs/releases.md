@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.40.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.41.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,132 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.41.0 - the betrayal nobody could trigger
+
+Andre the rock titan, who guards the road into Montaillou, is really called **Lucius**. He fled his
+own tribe, he is hiding in the village pretending to protect it, and he will ask the player to
+murder the elders who exiled him -- Rhea, Lethos, Iapetus, Menoetius and the rest, all of them in
+the game in Toulouse under Greek titan names.
+
+The player can keep his secret, or walk up the hill and tell the mayor.
+
+Telling the mayor has been impossible to act on since 2003.
+
+### The root defect
+
+`951 Furious Mayor` fires this:
+
+```
+Custom Action=COtherMapAction
+{
+    Action=CActivateAction { Target Name=Lucius thrown out }
+    Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+```
+
+**No entity named `Lucius thrown out` is declared in any map in the game.** The activate had no
+target, the flag could never be set, and every consequence hanging off it was dead content.
+
+The developers knew. That same reply still carries the note:
+
+> `Action work in progress=kick luscious out, seal of this branch`
+
+Which is also, for the record, the **eighth** spelling of this character's name in the shipped
+files, after Andre, Lucious, Lucius, Marcus, and the marker `Lucious dead`.
+
+### What the dead branch contained
+
+| node | state in vanilla |
+|---|---|
+| `1002 Hearts in Hand but Lucius betrayed` | **0** incoming links |
+| `400 Lucius thrown out of town` (Brother Michel) | **0** incoming, and no replies |
+| `400 Lucius thrown out of town 2` | **0** incoming, and no replies |
+| `900 Lucius thrown out of town` (Andre) | **0** incoming |
+| `900 Lucius extorted and thrown out of town` | **0** incoming |
+
+All written. Most of them voiced. Brother Michel's two have no replies because they are *terminal
+greetings* -- exactly the shape of this tree's own `05 Conversation Start if Andre Slain` /
+`07 Andre Dead greeting 2` pair, which the map selects with a `CIfAction` on the marker
+`Lucious dead`.
+
+### How the marker works, verified before writing one
+
+`Lucius extorted` -- the sibling flag for taking his hush money -- **is** declared in
+`01 Hamlet Exterior` and **is** read by `TitanAndre`, which gave an exact template for both halves.
+
+The pattern is well attested: **40** vanilla markers are read positively by
+`CCheckExistenceAction`, declared `Active=0` with `Model=Editor/Checker` and switched on by
+`CActivateAction` -- `Beggars dead`, `Blacksmith offered payment`, `Darsh is Dead`,
+`Has Cervantes Been Jailed` among them.
+
+The opposite convention also exists and matters: **30** markers start *present* and are
+**deactivated** to record an event, which is how `Relican started giving quests already to player`
+works. Read which direction a marker uses before writing a check for it.
+
+### What this connects
+
+| | before | after |
+|---|---|---|
+| the marker | declared nowhere | declared, `Active=0`, `Editor/Checker` |
+| Andre's hearts reward | `1000` only | branches to `1002` when betrayed, 3 replies each |
+| Brother Michel | nothing | greets a betrayer with the `400` pair |
+| `1003 Return after ... betrayed` | fired for **every** post-quest return | requires betrayal too |
+
+That last row was its own live defect: a player who kept Lucius's secret was given the cold
+shoulder they never earned.
+
+`reachability.py`'s tolerated vanilla-orphan count fell from **190 to 187** -- exactly the three
+nodes connected. A cheap, precise confirmation that the wiring took.
+
+### And then the audio
+
+Voiceover resolves purely as `<TreeName> VOs/<Node ID>.ogg`. There is **no VO-file field anywhere
+in any DialogTree** -- zero `Voiceover File`, `VO File` or `Voice File` across all 131 of them. So a
+recording whose filename differs from its node ID by one character is silent forever.
+
+Six were. The node IDs now match their recordings:
+
+| | |
+|---|---|
+| `1002 Hearts in Hand but Lucious betrayed` | 306 KB |
+| `1001 Lucious Exposed` | 293 KB |
+| `400 Lucious thrown out of town` | 149 KB |
+| `3 Return Dialogue Shylock favors you` | 91 KB |
+| `1003 Return after the quest is complete but Lucious betrayed` | 55 KB |
+| `400 Lucious thrown out of town 2` | 25 KB |
+
+**0.88 MB of finished voice acting that never played.** The node IDs moved rather than the audio,
+so the package still redistributes none of the original recordings -- shipping renamed copies would
+have added 1.1 MB of the publisher's files to a 1.5 MB release.
+
+Three of those six were renamed earlier in development of this release and immediately **reverted**,
+which was correct: while their nodes were unreachable, matching the audio achieved nothing and
+merely disguised three known vanilla orphans from the gate. They landed only once the wiring made
+the nodes reachable. That is the whole reason the wiring came first.
+
+### What was deliberately not done
+
+**`900 Lucius thrown out of town` and `900 Lucius extorted and thrown out of town`** are Andre's own
+post-betrayal greetings. They need the same treatment inside `01 Hamlet Exterior`'s far larger
+node-selection chain in `Lucius Wrasslin` and `Talked past Lucius`, and the extorted variant needs
+the `Lucius extorted` marker read alongside the new one. `80 Do You Have The Item I Need?` on the
+Blacksmith stays silent for the same reason -- nothing links to it, so renaming its recording would
+be cosmetic.
+
+**`Help Andre the Titan with his tasks`** has two states that nothing activates, and a journal name
+reading *"Help Marcus the Titan"*. It is a **superseded duplicate**: its two states describe
+*"Find Marcus' cousin and take sphere from him"* and *"Return Sphere to Marcus"*, and that material
+is covered by the live `Recover Lucius' Mneme` (journal: *"Retrieve the Crystal Mneme from
+Lucius"*), 6 states with 5 of them activated by real maps, cans and dialogue. Wiring the old one
+would duplicate the journal entry. The name fix was built and then reverted for the same reason.
+
+### What needs playing
+
+`LU1`-`LU14` in [`qa.md`](qa.md). **`LU5`** is the row that proves the release: expose Lucius to the
+mayor, return to Andre with four stone hearts, and he must use the *betrayed* reward line.
+**`LU9`** is the regression that matters most in the other direction -- keep his secret, finish the
+quest, and he must **not** give you the cold shoulder, which vanilla always did.
 
 ## 0.40.0 - the tinker
 

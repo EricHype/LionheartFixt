@@ -1,0 +1,15 @@
+CCannedObject
+{
+	Object=CActionExpression
+	{
+		Action=CNotAction
+		{
+			Action=CCheckExistenceAction
+			{
+				Name To Check For=Lucius thrown out
+				Desired Minimum Count=1
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

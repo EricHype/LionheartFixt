@@ -684,7 +684,7 @@ CLayerSaveData
 									{
 										If=CCheckExistenceAction
 										{
-											Name To Check For=Lucious dead
+											Name To Check For=Lucius thrown out
 											Desired Minimum Count=1
 										}
 										Then=CSeriesAction
@@ -692,91 +692,122 @@ CLayerSaveData
 											Action=Array
 											{
 												Item Count=2
-												Action=CMultipleActionsAction
+												Action=CDisplayDialogTreeAction
 												{
-													Action=Array
-													{
-														Item Count=2
-														Action=CDisplayDialogTreeAction
-														{
-															Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
-															Node ID=05 Conversation Start if Andre Slain
-															Speaker=$trigger
-															Player Being Spoken To=$Instigator
-														}
-														Action=COtherMapAction
-														{
-															Action=CActivateAction
-															{
-																Target Name=Esclarmonde Activator
-																Play Activate Sound=0
-																Delay Between Activations=0
-																Warp Behavior=
-															}
-															Other Map Name=3 Montaillou/01 Hamlet Exterior
-														}
-													}
+													Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+													Node ID=400 Lucious thrown out of town
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
 												}
 												Action=CDisplayDialogTreeAction
 												{
 													Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
-													Node ID=03 Return Dialogue
+													Node ID=400 Lucious thrown out of town 2
 													Speaker=$trigger
 													Player Being Spoken To=$Instigator
 												}
 											}
 											When Done=Repeat Last Action
-											Require Success To Advance=1
-											Next Action Index=0
 										}
-										Else=CSeriesAction
+										Else=CIfAction
 										{
-											Action=Array
+											If=CCheckExistenceAction
 											{
-												Item Count=2
-												Action=CMultipleActionsAction
+												Name To Check For=Lucious dead
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
 												{
-													Action=Array
+													Item Count=2
+													Action=CMultipleActionsAction
 													{
-														Item Count=2
-														Action=CDisplayDialogTreeAction
+														Action=Array
 														{
-															Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
-															Node ID=01 Conversation Start
-															Speaker=$trigger
-															Player Being Spoken To=$Instigator
-														}
-														Action=CMultipleActionsAction
-														{
-															Action=Array
+															Item Count=2
+															Action=CDisplayDialogTreeAction
 															{
-																Item Count=1
-																Action=COtherMapAction
+																Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+																Node ID=05 Conversation Start if Andre Slain
+																Speaker=$trigger
+																Player Being Spoken To=$Instigator
+															}
+															Action=COtherMapAction
+															{
+																Action=CActivateAction
 																{
-																	Action=CActivateAction
+																	Target Name=Esclarmonde Activator
+																	Play Activate Sound=0
+																	Delay Between Activations=0
+																	Warp Behavior=
+																}
+																Other Map Name=3 Montaillou/01 Hamlet Exterior
+															}
+														}
+													}
+													Action=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+														Node ID=03 Return Dialogue
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CDisplayDialogTreeAction
+															{
+																Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+																Node ID=01 Conversation Start
+																Speaker=$trigger
+																Player Being Spoken To=$Instigator
+															}
+															Action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=1
+																	Action=COtherMapAction
 																	{
-																		Target Name=Esclarmonde Activator
-																		Play Activate Sound=0
-																		Delay Between Activations=0
-																		Warp Behavior=
+																		Action=CActivateAction
+																		{
+																			Target Name=Esclarmonde Activator
+																			Play Activate Sound=0
+																			Delay Between Activations=0
+																			Warp Behavior=
+																		}
+																		Other Map Name=3 Montaillou/01 Hamlet Exterior
 																	}
-																	Other Map Name=3 Montaillou/01 Hamlet Exterior
 																}
 															}
 														}
 													}
+													Action=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
+														Node ID=03 Return Dialogue
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
 												}
-												Action=CDisplayDialogTreeAction
-												{
-													Dialog Tree File=Levels/3 Montaillou/Dialog/BrotherMichel
-													Node ID=03 Return Dialogue
-													Speaker=$trigger
-													Player Being Spoken To=$Instigator
-												}
+												When Done=Repeat Last Action
+												Require Success To Advance=0
+												Next Action Index=0
 											}
-											When Done=Repeat Last Action
-											Require Success To Advance=0
-											Next Action Index=0
+											Return failure if the If failes=0
 										}
 										Return failure if the If failes=0
 									}
