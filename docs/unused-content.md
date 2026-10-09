@@ -542,38 +542,77 @@ draft** (leave it dead). Two superseded drafts have already been caught this way
 | 0.41.0 | the Lucius betrayal marker, `1002`, Brother Michel's `400` pair, and six renamed recordings |
 | 0.42.0 | Andre's two `900` greetings |
 
-### Open, in rough order of how little invention each needs
+### Open, re-verified after 0.46.0
 
-1. **`DaVinci Tank Gear`** -- **in progress, 0.43.0.** The least invention of anything left: the
-   host conversation exists (`900 davinci in secret chamber 5` / `6`), the location exists with the
-   machines modelled in it (`DaVinci Objects/Catapult`, `DaVinci Objects/Death Machine`), the item
-   exists with art, and the *other half* of the same machine is a live 4-state quest
-   (`Obtain the Spirit Gem for DaVinci`). DaVinci already says on screen that the engine needs a
-   special spirit; nobody ever asks about its gears.
-2. **`Goblin Slayer`.** `Goblin Kill Counter` is live and written by six files, so this is a
-   threshold read away. **Note the trap:** `Bounty Hunter Camp.zax` appears to reference the perk
-   but the match is an XP-giver entity named `Goblin Slayer Xp Giver` -- a substring collision, not
-   a grant. The perk is still awarded by nothing.
-3. **The three `FACTION * Killer` perks.** A shipped pattern with one working quarter as the
-   reference. Needs a decision about where detection lives -- per-member death slot rather than a
-   map trigger -- but invents nothing.
-4. **`Bolt selection MAGIC`** -- referenced by **nothing at all**. `Boot`, `Gauntlet`, `Necklace`
-   and `Arrow selection MAGIC` are reachable from one map each. The cheapest loose ends in the
-   magic pipeline, left over from 0.38.0.
-5. **The two wand shells** -- `Fire and Ice` and `Mage` appear only in `QA Magic Items.zax`, a test
-   map. They have descriptions and **no implementation**, so these are built from their text rather
-   than wired.
-6. **`Hangover Cure Potion`** -- the smallest possible scene.
-7. **`GrandInquisitor / 120 combat`** -- 172 KB of recording that matches **no node at all**, the
-   only true VO orphan left after 0.41.0. Unexplained, and worth understanding before anything is
-   built for it.
-8. **`100 Respond ask about Tank`** in `DaVinci Ending.DialogTree` -- *"Time will tell if it does us
-   any good..."*, 0 incoming links, in act 8. Related to item 1 but on the far side of the game, and
-   the act-8 `Siege Tank` part is `Active=0` and activated from elsewhere, so this is its own job.
-9. **The two Titan items** -- classify first; see the note above the open-items table.
-10. **The 17 Nostradamus English** -- a whole garrison with art, but placing them is level design
-   rather than restoration, and act 5 is already populated.
-11. **`Inquisitor Feralkin Journal`** -- needs a reader.
+Re-counted against the **current Fixt build** (earlier releases' work counting as present), not
+against vanilla. Two entries this list used to carry turned out to be shipped and two were wrong.
+
+**Genuinely unreferenced, and the mechanism is already there:**
+
+| | refs | what makes it cheap |
+|---|---|---|
+| **`Goblin Slayer`** | **0** | `Goblin Kill Counter.DerivedCharacterAttribute` is live and **7 maps write to it**. The perk exists with `Display Name=Goblin Slayer` and **no actions at all** -- a title granted by nothing. This is a threshold read away. **The trap:** `Bounty Hunter Camp.zax` looks like it references the perk, but the match is an entity named `Goblin Slayer Xp Giver` -- a substring collision, not a grant |
+| **The three `FACTION * Killer` perks** | **0** each | Their display names are already written and good: *"Enemy of the Inquisition"*, *"Enemy of the Knights Templar"*, *"Enemy of the Wielders"*. A shipped pattern with a working quarter as reference. Needs a decision about where detection lives -- a per-member death slot rather than a map trigger -- but invents nothing |
+| `Inquisitor Feralkin Journal` | **0** | needs a reader; the item is the easy half |
+| `Bolt selection MAGIC` | **0** | the last loose end in the magic pipeline. `Boot`, `Gauntlet`, `Necklace` and `Arrow selection MAGIC` each resolve from exactly **one** map, so only `Bolt` is truly adrift |
+
+**Reachable only from a test map:**
+
+| | refs | |
+|---|---|---|
+| wands `Fire and Ice` and `Mage` | 2 each | their own `.can` plus `QA Magic Items.zax`. They have descriptions and no implementation, so these are built from their text rather than wired |
+
+**Open and real, but awkward:**
+
+| | |
+|---|---|
+| `100 Respond ask about Tank` in `8 Alamut/Dialog/DaVinci Ending.DialogTree` | the node is present with **0 incoming links**. Act 8, and the act-8 `Siege Tank` part is `Active=0` and activated from elsewhere, so it is its own job rather than a tail of 0.43.0 |
+| `GrandInquisitor / 120 combat.ogg` | 172 KB, and **statically undecidable** -- see below |
+
+### The Grand Inquisitor's orphan recording cannot be placed from the files
+
+Measured properly: the tree has **51 nodes and 48 recordings**. Exactly **one** recording has no
+node (`120 combat`) and **four** nodes have no recording:
+
+| nodes with no recording |
+|---|
+| `1100 Player attacks` |
+| `1100 Spellcast detect` |
+| `1200 do not bother me` |
+| `413 rogue inquisitors` |
+
+So this is **filename drift** in shape -- a renumbered node -- but there are **two** plausible combat
+destinations for one combat recording, and attaching it to the wrong one silences the right node
+forever while playing the wrong line. It cannot be resolved without listening to the file. Recorded
+as blocked on that, not as buildable.
+
+### Two corrections to this list
+
+**The Titan items are superseded drafts -- do not restore them.** Their only references are to their
+**inventory icon art** (`Items/Inventory Images/Quest Items/...`), not to the items, which is the
+art-path/item-path collision this document warns about further down. Their own descriptions give them
+away against the live items that reuse their icons:
+
+| | description | superseded by |
+|---|---|---|
+| `Titan Crystal` | *"Large and unwieldly. Smells bad."* -- a dev joke | **`Lucius' Mneme`**, which uses the Titan Crystal icon |
+| `Titan Sphere` | *"Spirit gem"* -- a bare label, not prose | **the four named stonehearts** (Lethos, Iapetus, Menoetius, Rhea), which use the Titan Sphere icon and have real prose: *"cold, heavy, and inert"* |
+
+Same shape as the Horror: a generic draft replaced by named versions, with the art carried over.
+
+**"The 17 Nostradamus English" was wrong -- it is 2.** There are **14** `Nos *` monster cans and
+**12 of them spawn**. The only two that do not are `Nos Ogre2 English` and `Nos Ogre2 English Tough`,
+and those are the same `Ogre strong`-model tier drafts already identified above -- not a lost
+garrison. Nothing here needs level design after all.
+
+### Shipped since the previous version of this list
+
+| | |
+|---|---|
+| 0.43.0 | `DaVinci Tank Gear`, via the Magic Machine's three prices |
+| 0.44.0 | `Hangover Cure Potion`, across two acts and three people |
+| 0.45.0 | the horse |
+| 0.46.0 | the creatures sent after Machiavelli, and the level gate on his quest |
 
 ### Settled: do not pick these up
 
