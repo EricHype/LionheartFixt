@@ -1473,6 +1473,41 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The turret ring, and a promise that outlives its quest
+
+`DaVinci Tank Gear` was the last hand-authored quest item nothing referenced. Half its quest already
+ships: the hidden chamber, the machines modelled and examinable in it, and DaVinci saying the engine
+needs a spirit -- which feeds the **live** `Obtain the Spirit Gem for DaVinci`. These rows cover the
+gear half.
+
+**The gear comes from the talking steam engine in the workshop**, not the blacksmith. An early draft
+of this release used Eduardo and was discarded for making the quest a conversation; if any row below
+sends you to the blacksmith, something shipped that should not have.
+
+**`MC9` and `MC12` are the rows that prove the design.** The promise deliberately outlives the
+quest: the gear is handed over and the quest completes in the chamber, but the debt can only be
+settled afterwards in the workshop where the engine can hear it. There is **no betrayal option** --
+it is broken by never going back.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MC1 | **The setup.** Reach DaVinci's hidden chamber and talk to him | - | Unchanged from vanilla, plus a new reply asking whether the gears are finished -> `901`. He sends you to his engine, **not** to a blacksmith |
+| MC2 | Examine the machines in the chamber | - | `1 Catapult`, `1 Sweeper`, `1 Siege Tank` all still work and still say the machines are incomplete. Untouched vanilla |
+| MC3 | Check the quest log after MC1 | - | `Create Mechanical Gears for DaVinci's Siege Tank` appears and names the steam engine. In vanilla this quest had **no states at all** and could never appear |
+| MC4 | **The machine.** In the workshop, pull the lever and raise the turret gear | - | `700` -- it sizes the job up at forty-one teeth and asks what you are bringing. Three replies plus a walk-away |
+| MC5 | **Route 1, pay.** Carry any potion and offer it | - | The gear is cut, **and the potion is gone from your inventory**. If you keep the potion, the cost is not being charged |
+| MC6 | **Route 2, haggle.** At Barter 35+, out-argue it | - | `704` -- it concedes, resentfully, and cuts the gear for nothing. Below Barter 35 this reply is absent |
+| MC7 | **Route 3, promise.** Offer to tell DaVinci who built it | - | `702` -- it names its terms: say it to him, **in that room**, out loud. The gear is free |
+| MC8 | All three routes | - | Each ends at `705`, you receive one Rotary Gear, and the journal advances. **Never more than one gear** |
+| MC9 | **The row that proves the design.** Take route 3, hand the gear to DaVinci in the chamber, then leave and come back to the workshop | - | The quest is **complete** and paid, but the engine is **still owed**. A new reply to DaVinci in the workshop offers to say it. The debt survived the quest ending |
+| MC10 | After MC9, take that reply | - | `903` -- DaVinci stops, is embarrassed rather than angry, and says he has been too proud to walk ten feet for thirty years. He credits the crossbow gears too |
+| MC11 | After MC10, go back to the machine | - | It no longer raises the subject. The debt is settled and it returns to its normal hissing |
+| MC12 | **The other row that proves it. Never go back.** Take route 3, finish the quest, and simply never credit the engine. Talk to it a few times | - | `706` every time -- *"One sentence, where I can hear it. Until then I have nothing to say to you that is not this."* There is **no reply anywhere that betrays the promise on purpose**; it breaks by neglect |
+| MC13 | Take routes 1 or 2 instead, then talk to DaVinci in the workshop | - | **No** crediting reply appears, and the machine never reproaches you. The obligation only exists if you made it |
+| MC14 | **The crossbow must be untouched.** Run the vanilla crossbow-gear trade at `650 collect gears` | - | Still works exactly as before, still gives `DaVinci Crossbow Gears` for a potion |
+| MC15 | **The spirit half must be untouched.** Ask him why the engine needs a spirit, and run `Obtain the Spirit Gem for DaVinci` | - | Unchanged. The two halves of the machine are independent and neither blocks the other |
+| MC16 | Judge the **writing**, which no check can settle | - | Does the engine read as aggrieved rather than merely rude? Does DaVinci's embarrassment land? And is the promise worth keeping when nothing mechanical rewards it? That last one is the whole point of the release |
+
 ## Andre's own reaction to being sold
 
 0.41.0 made the betrayal possible. These rows cover Andre answering it -- his two post-betrayal

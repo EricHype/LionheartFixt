@@ -1,0 +1,27 @@
+CCannedObject
+{
+	Object=CAND
+	{
+		Operand1=CActionExpression
+		{
+			Action=CCheckExistenceAction
+			{
+				Name To Check For=Fixt Machine Promised Credit
+				Desired Minimum Count=1
+			}
+		}
+		Operator=
+		Operand2=CExpressionNot
+		{
+			Operand1=CActionExpression
+			{
+				Action=CCheckExistenceAction
+				{
+					Name To Check For=Fixt Machine Credited
+					Desired Minimum Count=1
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

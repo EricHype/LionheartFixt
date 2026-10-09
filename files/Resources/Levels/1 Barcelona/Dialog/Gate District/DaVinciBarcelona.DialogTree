@@ -1758,6 +1758,11 @@ Node ID=3 Return Dialogue Workshop
 Text=Always a pleasure to see you my friend. What can I do for you?
 Should Have Voiceover=1
 
+Requirement=Fixt Machine Credit Owed
+Reply Text=Before anything else, and loudly enough for the room: the turret ring is your engine's work, not mine and not yours. It asked me to say so where it could hear it.
+Go to node ID=903 Fixt credit given
+Icon=Quest Icon
+
 Requirement=Fixt DaVinci Task Open
 Reply Text=I come carrying another man's words. Lord Relican sent me, and he wants to speak to you through me.
 Go to node ID=800 Fixt Relican Offer
@@ -2378,6 +2383,16 @@ Node ID=900 davinci in secret chamber 5
 Text=The Knights Templar asked me to design several inventions to help defend Barcelona. I keep them hidden here so that I can tinker with them without interruption. The large siege engine near you is the most promising design so far, but I will need a *special* spirit to power its machinery.
 Should Have Voiceover=1
 
+Requirement=Fixt Tank Gear Not Started
+Reply Text=A spirit will turn the gears. Are the gears themselves finished?
+Go to node ID=901 Fixt the rotary gear
+Icon=Quest Icon
+
+Requirement=Fixt Tank Gear Carried
+Reply Text=Your rotary gear. Your engine cut it.
+Go to node ID=902 Fixt the gear fitted
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=Why do you need a spirit for the siege engine?
 Go to node ID=900 siege engine explanation
@@ -2478,6 +2493,16 @@ Is Default Reply=1
 Node ID=900 davinci in secret chamber 6
 Text=Anything else?
 Should Have Voiceover=1
+
+Requirement=Fixt Tank Gear Not Started
+Reply Text=A spirit will turn the gears. Are the gears themselves finished?
+Go to node ID=901 Fixt the rotary gear
+Icon=Quest Icon
+
+Requirement=Fixt Tank Gear Carried
+Reply Text=Your rotary gear. Your engine cut it.
+Go to node ID=902 Fixt the gear fitted
+Icon=Quest Icon
 
 Requirement=!None
 Reply Text=Why do you need a spirit for the siege engine?
@@ -3074,6 +3099,79 @@ Custom Action=CActivateQuestStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
 State=ZH6PC3YF
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=901 Fixt the rotary gear
+Text=Ah. You have an eye for the unglamorous part, which is more than most. No - they are not. The turret ring wants a tooth profile I can draw perfectly and cut badly, and a ring cut badly will seize under load and tear the housing off the carriage. Forty-one teeth, and no hand in Barcelona steady enough. <He hesitates> ...Which leaves my engine, in the workshop. The loud one. It can cut it, it knows it can cut it, and it will make you aware of both facts at length. Take it something it wants.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will go and negotiate with your engine.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
+State=T3MK9WQZ
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=902 Fixt the gear fitted
+Text=Let me see it. ... Si, that is the profile, and the root has been eased, which I did not draw and should have. Hold the lamp. There. It will turn now, when there is something in it willing to turn it. One half of a war machine, my friend, and the other half is a soul I have not yet found a decent excuse for taking. Thank you. Genuinely.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then find your excuse. I will be nearby.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Tank Gear
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Fixt Tank Gear XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=903 Fixt credit given
+Text=<He stops what he is doing, and somewhere behind you the hissing goes very quiet.> ...It said that to you. Out loud. To a stranger. Forgive me, I am laughing at myself and not at you - it is right, of course. It has been right for thirty years and I have been too proud and too busy to walk ten feet and say so. Very well: it is the engine's ring, the crossbow gears were the engine's too, and I shall oil it myself tonight and tell it as much, which it will be insufferable about for a month. Thank you for carrying that. It cannot have been comfortable.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It will be insufferable. It has earned a month.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=Fixt Machine Credited
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
 }
 Icon=Exit Icon
 Is Default Reply=1

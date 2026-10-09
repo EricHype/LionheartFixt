@@ -1,0 +1,14 @@
+CCannedObject
+{
+	Object=CExpressionNot
+	{
+		Operand1=CActionExpression
+		{
+			Action=CWasQuestEverActivatedAction
+			{
+				Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

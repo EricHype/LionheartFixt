@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.42.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.43.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,119 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.43.0 - the turret ring
+
+`DaVinci Tank Gear` -- display name **Rotary Gear** -- was the last hand-authored quest item in the
+game that nothing at all referenced. Its quest, `Create Mechanical Gears for DaVinci's Siege Tank`,
+was a **0-state stub**.
+
+**Cortes' arm did not supplant it.** DaVinci has three machine projects in the files and they are
+separate:
+
+| project | item | state |
+|---|---|---|
+| repeating crossbow | `DaVinci Crossbow Gears` | live -- 5-state quest, used by 3 files |
+| Cortes' prosthetic arm | `Cortez Arm Gears` + `Cortez Arm Rod` | live -- Blacksmith-wired, Red Ore sub-quest |
+| **siege tank** | `DaVinci Tank Gear` | **used by nothing** |
+
+### Half of this quest already ships
+
+The hidden chamber is reached through a part named `transport to secret`, and it is furnished: his
+war machines are modelled in it as `DaVinci Objects/Catapult` and `DaVinci Objects/Death Machine`,
+and all three are examinable through `Leonardo DaVinci Invention` -- `1 Catapult`, `1 Sweeper`,
+`1 Siege Tank` -- every one of which says the machine is **incomplete**.
+
+He meets the player there and says, on screen:
+
+> **`900 davinci in secret chamber 5`:** *"The large siege engine near you is the most promising
+> design so far, but I will need a **special** spirit to power its machinery."*
+
+That feeds `Obtain the Spirit Gem for DaVinci`, a **live 4-state quest**. So the machine needs two
+things, a spirit and gears. **The spirit half works. Nobody ever asked about the gears.**
+
+### The gear comes from the thing that makes gears
+
+The first draft of this release sent the player to Eduardo the blacksmith. That was wrong, and it
+made the whole quest "go and talk to a man". Eduardo forges metal *parts* -- the Cortes arm
+pieces -- but gears in this game come from DaVinci's talking steam engine, which already sells them:
+
+> **`650 collect gears`:** *"So, he's too afraid to deal with me so he sends his apprentice? Very
+> well, I'll make the gears, if you can provide me with a magical potion - any potion will do - so
+> that I can create enchanted steam."*
+
+That is how `DaVinci Crossbow Gears` is obtained today. The machine is the established gear-maker,
+it is transactional, and it has a grievance written out in full:
+
+> **`655 machine talks`:** *"He **never** gives credit where credit is due. **I** am the brains
+> behind this operation. I've helped him build all of his inventions, but what thanks do I receive?
+> Just more work, and the occasional lubing, though that is nice."*
+
+### Three prices
+
+Cortes' arm lets the player buy, steal or kill for Red Ore, gated on Barter, Speech and Sneak. This
+one:
+
+| route | cost | gate |
+|---|---|---|
+| pay | a potion, **consumed** | the shipped `DaVinci Have a Potion for machine` |
+| haggle | nothing but skill | vanilla's own `Barter moreequal 35` |
+| **promise** | nothing -- but you owe it | ungated |
+
+### The promise, and where it is settled
+
+Only the third route creates anything, and this is the part that was rebuilt twice.
+
+The second draft let the player keep or break the promise with two replies **at the hand-over**, in
+the secret chamber. That fails twice over: the machine is not in that room, so it had to learn the
+truth through a handwave about DaVinci talking when drunk; and a promise that can only be broken by
+choosing a reply marked "break it" is a menu, not a promise.
+
+So the machine now asks for something specific:
+
+> **`702 Fixt the bargain`:** *"Do not say it again to me, say it to him, **in this room**, out
+> loud, where I can hear it and he cannot pretend he misheard. Thirty years of his drawings and my
+> teeth and his name on all of it. Then the gear is yours, and it is free. I am not going anywhere,
+> apprentice. I will be right here, waiting to hear it."*
+
+And the obligation **outlives the quest**:
+
+| where | what happens |
+|---|---|
+| the machine | three prices; the promise sets `Fixt Machine Promised Credit` |
+| the chamber | hand the gear over -- the quest **completes** and pays 500 XP |
+| **the workshop** | `3 Return Dialogue Workshop`, with the engine in earshot -- the only place it can be settled |
+| the machine | `706` reproaches the player for as long as the debt stands |
+
+There is **no betrayal option**. The promise is broken by never going back, which is how promises
+actually fail, and the machine simply keeps raising it:
+
+> **`706 Fixt the debt unpaid`:** *"I cut it. You carried it up the stairs and he put his hands on
+> it and I have not heard one word since. He is in this room most evenings, apprentice. I am not
+> asking you to write it on the cathedral. One sentence, where I can hear it. Until then I have
+> nothing to say to you that is not this."*
+
+Paying it is the only route to DaVinci's reaction, which is embarrassment rather than anger:
+
+> **`903 Fixt credit given`:** *"...It said that to you. Out loud. To a stranger. Forgive me, I am
+> laughing at myself and not at you - it is right, of course. It has been right for thirty years and
+> I have been too proud and too busy to walk ten feet and say so."*
+
+### What was built
+
+Two markers in the workshop (`Active=0`, `Model=Editor/Checker`), one gate reading
+*promised AND NOT credited*, the quest populated from 0 to 2 states, 5 new nodes on the machine and
+3 on DaVinci, and an XP source in the chamber. 30 chain checks.
+
+Nothing shipped was disturbed: the crossbow transaction, the live spirit-gem half, DaVinci's three
+legitimate mentions of Eduardo and the single non-ASCII character in his tree are all asserted
+intact.
+
+### What needs playing
+
+`MC1`-`MC16` in [`qa.md`](qa.md). **`MC9`** is the row that proves the design -- hand the gear over,
+walk away, and confirm the engine is still owed. **`MC12`** is the one that proves there is no
+betrayal button: never go back, and the debt simply stands.
 
 ## 0.42.0 - what Andre had to say about it
 

@@ -1,0 +1,19 @@
+CQuestDefinition
+{
+	Name=Create Mechanical Gears for DaVinci's Siege Tank
+	States=Array
+	{
+		Item Count=2
+		State=CQuestStateDefinition
+		{
+			Text=DaVinci cannot cut the turret gear for his siege engine at his own bench. His talking steam engine in the workshop can - if it is paid, out-argued, or offered something it wants more than payment.
+			ID=T3MK9WQZ
+		}
+		State=CQuestStateDefinition
+		{
+			Text=The machine has cut the rotary gear. Carry it to DaVinci's hidden chamber so he can fit it to the siege engine.
+			ID=V8BRC4JN
+		}
+	}
+	Sub-Quest of=!None
+}

@@ -1,0 +1,435 @@
+CDialogTree
+{
+Name=Steam Machine
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=400 steam engine
+Text=<The loud machine before you has several large moving gears and other mechanical parts. At the machine's base, you see two colored buttons and an unusual lever.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Push the yellow button.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=machine quake
+}
+
+Requirement=!None
+Reply Text=Push the blue button.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=machine quake
+}
+
+Requirement=!None
+Reply Text=Pull the lever.
+Go to node ID=600 pull lever
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Steam Machine Hello.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Push none of the buttons.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=500 nothing happens
+Text=<You push the button but nothing happens.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 steam engine
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 machine shakes
+Text=<You push the button and the machine begins to vibrate, then it begins to shake more vigorously.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 pull lever
+Text=<You pull the lever and the machine starts to hiss violently>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=600 pull lever 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=650 collect gears
+Text=So, he's too afraid to deal with me so he sends his apprentice? Very well, I'll make the gears, if you can provide me with a magical potion - any potion will do - so that I can create enchanted steam.   It's the last thing I need to make the gears the old man wants.
+Should Have Voiceover=0
+
+Requirement=DaVinci Have a Potion for machine
+Reply Text=Will this potion work?
+Go to node ID=665 have a potion
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll find a potion.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+State=FEBSWED0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I'll just leave now.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=655 machine talks
+Text=The old man didn't tell you about me? <The machine hisses loudly> He *never* gives credit where credit is due. *I* am the brains behind this operation. I've helped him build all of his inventions, but what thanks do I receive? Just more work, and the occasional lubing, though that is nice.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+State=Y6DXD26W
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=gave a potion
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=DaVinci asked me to collect gears from you.
+Go to node ID=650 collect gears
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have to go now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=665 have a potion
+Text=<You put the potion in the machine's open slot. The potion dissolves instantly, creating a huge amount of steam. Within seconds, gears appear from the machine.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/DaVinci Crossbow Gears
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+State=0YJUKR3H
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Give Potion to Steam Machine
+Experience Points To Add=1
+}
+Action=CActivateAction
+{
+Target Name=gave a potion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 machine chuckles
+Text=<Heh. Heh. Heh.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 earthquake
+Text=Because you pressed my button, silly. It's there to teach monkeys like you not to touch delicate things like me in an inventor's shop. I trust the lesson wasn't lost on you?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 hates organ
+Text=Oh no! Please, someone, shut that muse up!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 hates organ 2
+Text=Muse, your music sounds like a banshee!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 hates organ 3
+Text=Curse it all! Why did DaVinci build me with a sense of hearing? Why must *I* be tormented by that awful music?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 hates organ 4
+Text=Oh no! Please, someone, shut that muse up!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 hates muse 5
+Text=Hissss! Hissssss!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 organ hates muse 6
+Text=I've heard better music from a door.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 organ hates muse 7
+Text=Ah, the sweet melody of incompetence.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 organ hates muse 8
+Text=Who keeps strangling a cat? Oh, it's just that blasted muse again.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=600 pull lever 2
+Text=Oh, *now* what? I presume the old man put you up to this?
+Should Have Voiceover=0
+
+Requirement=Fixt Tank Gear Asked
+Reply Text=The old man wants a turret gear for the large machine. Forty-one teeth, and not one of them allowed to be wrong.
+Go to node ID=700 Fixt the turret gear
+Icon=Quest Icon
+
+Requirement=Fixt Machine Credit Owed
+Reply Text=About the turret ring.
+Go to node ID=706 Fixt the debt unpaid
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+State=FEBSWED0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory Items/Potion
+}
+}
+}
+Reply Text=Will this potion work?
+Go to node ID=665 have a potion
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+State=Y6DXD26W
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=gave a potion
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=DaVinci asked me to collect gears from you.
+Go to node ID=650 collect gears
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=machine shook room
+Desired Minimum Count=1
+}
+}
+Reply Text=Why did you shake the room so hard?
+Go to node ID=600 earthquake
+
+Requirement=!None
+Reply Text=How is it that you can talk?
+Go to node ID=655 machine talks
+
+Requirement=!None
+Reply Text=I have to go now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 hisses warning
+Text=<The machine hisses angriliy. You get the sense that the machine did not appreciate you touching that button.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 steam engine
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Steam Machine Angry.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=700 Fixt the turret gear
+Text=Forty-one. <The machine's hissing drops to something almost thoughtful> He has finally drawn the turret ring, then. That is not a gear, apprentice, that is the whole argument - one tooth out of true and the housing tears itself off the carriage the first time it fires. I can cut it. I am the only thing in this city that can cut it. But the big one costs more than a flask of steam does, so let us discuss what you are bringing me.
+Should Have Voiceover=0
+
+Requirement=DaVinci Have a Potion for machine
+Reply Text=A potion, the same as last time. Take it and cut the gear.
+Go to node ID=705 Fixt the gear is cut
+Custom Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Icon=Quest Icon
+
+Requirement=Barter moreequal 35
+Reply Text=You will cut it for nothing, because you have spent ten minutes telling me you are the only thing in Barcelona that can, and a thing that rare does not haggle.
+Go to node ID=704 Fixt out-argued
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have nothing to pay you with. But I will tell him - to his face - that the machine built it.
+Go to node ID=702 Fixt the bargain
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will come back when I have something worth your steam.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=702 Fixt the bargain
+Text=<The hissing stops altogether. It is worse than the noise.> Say that again. ... No. Do not say it again to me, say it to him, in this room, out loud, where I can hear it and he cannot pretend he misheard. Thirty years of his drawings and my teeth and his name on all of it. Then the gear is yours, and it is free. I am not going anywhere, apprentice. I will be right here, waiting to hear it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will say it here, where you can hear me.
+Go to node ID=705 Fixt the gear is cut
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=Fixt Machine Promised Credit
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=704 Fixt out-argued
+Text=<A long, flat hiss.> ... That is the first interesting thing anyone has said in this workshop in a decade, and I resent it enormously. Fine. Stand clear of the slot.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=(stand clear)
+Go to node ID=705 Fixt the gear is cut
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=705 Fixt the gear is cut
+Text=<Steam floods the floor of the workshop. Something inside the machine turns over for a long time, slowly, with a sound like a millstone being asked a difficult question. Then a single heavy ring of toothed brass rolls out of the slot and falls over at your feet.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=(take the rotary gear)
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/DaVinci Tank Gear
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
+State=V8BRC4JN
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=706 Fixt the debt unpaid
+Text=I cut it. You carried it up the stairs and he put his hands on it and I have not heard one word since. <The hissing is perfectly level.> He is in this room most evenings, apprentice. I am not asking you to write it on the cathedral. One sentence, where I can hear it. Until then I have nothing to say to you that is not this.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You will hear it.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+}

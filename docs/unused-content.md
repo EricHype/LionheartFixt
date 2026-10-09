@@ -65,21 +65,26 @@ written flavour text, which is the tell that someone built it for something.
 | `Helm of the Templars` | 0.36.0 -- **was unfinished**, see [Done so far](#done-so-far) |
 | `Spirit Templar Shield` | 0.36.0 |
 
-### Still open - eight items
+### Still open - four items
 
-| item | the game's own description | the hook it suggests |
+Three came off this list in 0.39.0: both Trapped Spirit items and
+`Wielder DARK Quest Rod Bone NO Spirit`.
+
+| item | the game's own description | state |
 |---|---|---|
-| `DaVinci Tank Gear` | *"Odd chunk of metal needed by DaVinci to create one of his elaborate devices."* | **names its own quest-giver**, who is a live NPC with dialogue in the Gate District |
+| ~~`DaVinci Tank Gear`~~ | *"Odd chunk of metal needed by DaVinci to create one of his elaborate devices."* | **Done in 0.43.0** -- the gear comes from DaVinci's talking steam engine at three prices, one of which is a promise that outlives the quest |
 | `Hangover Cure Potion` | *"Clears the mind and body after the consumption of excess alcohol."* | the smallest possible scene -- a tavern favour |
-| `Trapped Spirit Amulet` | *"The abilities of this amulet are a mystery."* | pairs with the ring; La Calle Perdida's trapped spirits exist as NPCs with their own trees |
-| `Trapped Spirit Ring` | *"The abilities of this ring are a mystery."* | the other half of that pair |
-| `Titan Crystal` | *"Large and unwieldly. Smells bad."* | Toulouse; the titans are a whole act of live content Fixt has already worked in |
-| `Titan Sphere` | *"Spirit gem"* | pairs with the crystal |
+| `Titan Crystal` | *"Large and unwieldly. Smells bad."* | unused, but its **icon art is reused** by the live `LuciusMneme` |
+| `Titan Sphere` | *"Spirit gem"* | unused, but its **icon art is reused** by all four live stone hearts |
 | `Inquisitor Feralkin Journal` | *"details the life and trials of a Feralkin at the hands of the Inquisition"* | a readable book; needs a reader more than a quest |
-| `Wielder DARK Quest Rod Bone NO Spirit` | *"darkwood that is but an empty shell without a spirit to power it"* | **names its own missing half**; the most invention required |
 
-**Four of the eight are explicitly paired** -- the two Trapped Spirit items and the two Titan items --
-so they were cut as *scenes* rather than as individual objects.
+**The two Titan items need classifying before building.** Their art survived into live items, and
+the concepts they name are both covered by live content -- `LuciusMneme` for the crystal and
+`Spirit Transfer Gem DaVinci` for the "spirit gem". That is the signature of a **superseded draft**,
+the third category below, so check for a live replacement before writing anything.
+
+Also at zero references: `Gem` and `Expensive Gem`. Those are generic loot rather than
+hand-authored uniques, so they belong to a different question than this table.
 
 ---
 
@@ -521,32 +526,62 @@ Tested by `TS1`-`TS10` in [`qa.md`](qa.md).
 
 ## What to pick up next
 
-In rough order of how little invention each needs:
+Rewritten after 0.39.0-0.42.0; the previous version still listed items that have since shipped.
 
-1. ~~**The two summon tiers.**~~ **Done in 0.37.0** -- see below.
-2. ~~**The six disconnected equipment pools.**~~ **Done in 0.38.0** -- connected through a new
-   `All Magic Equipment` intermediate can at weighting 2, so magic equipment is 9% of the misc branch
-   rather than the 36% six separate branches would have given. **`Boot`, `Gauntlet` and
-   `Necklace selection MAGIC` are still only reachable from one map each**, and `Bolt` and `Arrow` are
-   in the same position -- one entry each if that inconsistency is worth closing.
-3. **`DaVinci Tank Gear`** -- names its own quest-giver, who is a live NPC with dialogue.
-4. **`Goblin Slayer`.** `Goblin Kill Counter` is already live and already written by six files;
-   this is a threshold read away. Moved up from last place after the counter claim was corrected.
-5. **The three `FACTION * Killer` perks.** A shipped pattern with one working quarter as the
-   reference. Needs a decision about where detection lives -- per-member death slot rather than a map
-   trigger -- but invents nothing.
-6. **The two wand shells** -- `Fire and Ice` and `Mage` have descriptions and **no
-   implementation at all**, so these need building from their text, not wiring. `Swarm`, the only one
-   of the three that was real, went in with 0.38.0.
-7. **`Hangover Cure Potion`** -- the smallest possible scene.
-8. **The two Trapped Spirit items** -- the spirits already exist as NPCs with dialogue, so the scene
-   is half-built.
-9. **The two Titan items** -- Toulouse is live content Fixt has worked in before.
+**Before picking anything up, classify it.** Three releases of chasing orphans produced the
+taxonomy at the end of this document, and the first instinct was wrong every time. An orphan is
+either **filename drift** (rename it), an **unreachable branch** (wire it), or a **superseded
+draft** (leave it dead). Two superseded drafts have already been caught this way.
+
+### Shipped since this list was last written
+
+| | |
+|---|---|
+| 0.39.0 | both Trapped Spirit items, the Sceptre of Bone's missing bind step, `Ruler of Calle Perdida` |
+| 0.40.0 | `Convince DaVinci to Join the Dark Wielders`, implemented from a 0-state stub |
+| 0.41.0 | the Lucius betrayal marker, `1002`, Brother Michel's `400` pair, and six renamed recordings |
+| 0.42.0 | Andre's two `900` greetings |
+
+### Open, in rough order of how little invention each needs
+
+1. **`DaVinci Tank Gear`** -- **in progress, 0.43.0.** The least invention of anything left: the
+   host conversation exists (`900 davinci in secret chamber 5` / `6`), the location exists with the
+   machines modelled in it (`DaVinci Objects/Catapult`, `DaVinci Objects/Death Machine`), the item
+   exists with art, and the *other half* of the same machine is a live 4-state quest
+   (`Obtain the Spirit Gem for DaVinci`). DaVinci already says on screen that the engine needs a
+   special spirit; nobody ever asks about its gears.
+2. **`Goblin Slayer`.** `Goblin Kill Counter` is live and written by six files, so this is a
+   threshold read away. **Note the trap:** `Bounty Hunter Camp.zax` appears to reference the perk
+   but the match is an XP-giver entity named `Goblin Slayer Xp Giver` -- a substring collision, not
+   a grant. The perk is still awarded by nothing.
+3. **The three `FACTION * Killer` perks.** A shipped pattern with one working quarter as the
+   reference. Needs a decision about where detection lives -- per-member death slot rather than a
+   map trigger -- but invents nothing.
+4. **`Bolt selection MAGIC`** -- referenced by **nothing at all**. `Boot`, `Gauntlet`, `Necklace`
+   and `Arrow selection MAGIC` are reachable from one map each. The cheapest loose ends in the
+   magic pipeline, left over from 0.38.0.
+5. **The two wand shells** -- `Fire and Ice` and `Mage` appear only in `QA Magic Items.zax`, a test
+   map. They have descriptions and **no implementation**, so these are built from their text rather
+   than wired.
+6. **`Hangover Cure Potion`** -- the smallest possible scene.
+7. **`GrandInquisitor / 120 combat`** -- 172 KB of recording that matches **no node at all**, the
+   only true VO orphan left after 0.41.0. Unexplained, and worth understanding before anything is
+   built for it.
+8. **`100 Respond ask about Tank`** in `DaVinci Ending.DialogTree` -- *"Time will tell if it does us
+   any good..."*, 0 incoming links, in act 8. Related to item 1 but on the far side of the game, and
+   the act-8 `Siege Tank` part is `Active=0` and activated from elsewhere, so this is its own job.
+9. **The two Titan items** -- classify first; see the note above the open-items table.
 10. **The 17 Nostradamus English** -- a whole garrison with art, but placing them is level design
    rather than restoration, and act 5 is already populated.
 11. **`Inquisitor Feralkin Journal`** -- needs a reader.
-12. **`Wielder DARK Quest Rod Bone NO Spirit`** -- its missing half has to be designed.
-13. **`Ruler of Calle Perdida`** -- a missing questline branch, so it needs writing, not wiring.
+
+### Settled: do not pick these up
+
+| | why |
+|---|---|
+| `Help Andre the Titan with his tasks` | superseded by the live `Recover Lucius' Mneme` (6 states, 5 activated) |
+| Blacksmith `80 Do You Have The Item I Need?` | superseded by the live `07 what more`, which has 15 replies against its 13 including a quest hand-in |
+| `Juanita Suarez / 200 my fee`, `GoblinKhan / 400 Where are you going` | recordings exist but the nodes are `Should Have Voiceover=0`; possibly silenced deliberately |
 
 ---
 
@@ -1028,3 +1063,36 @@ tasks` (replaced by `Recover Lucius' Mneme`) and the Blacksmith's node 80 (repla
 `07 what more`). In both cases the giveaway was the same -- finding the live node that does the job,
 and checking whether it is *better*. Reference-counting alone cannot tell these three apart, and the
 first instinct in every case was wrong.
+
+
+## Done in 0.43.0 - the turret ring
+
+`DaVinci Tank Gear` was the last hand-authored quest item referenced by nothing. **Cortes' arm did
+not supplant it** -- the crossbow (`DaVinci Crossbow Gears`, live), the arm (`Cortez Arm Gears` +
+`Cortez Arm Rod`, live) and the tank are three separate projects, and the tank was the only
+unfinished one.
+
+**Half the quest already shipped**, which is why this was the cheapest lead left: the hidden chamber
+exists and is furnished, the war machines are modelled in it (`DaVinci Objects/Catapult`,
+`DaVinci Objects/Death Machine`) and examinable through `1 Catapult` / `1 Sweeper` /
+`1 Siege Tank` -- all three saying the machine is **incomplete** -- and DaVinci states on screen
+that the engine needs a spirit, feeding the **live 4-state** `Obtain the Spirit Gem for DaVinci`.
+Only the gear half was missing.
+
+**Two drafts were discarded, and the reasons are the useful part.** The first sent the player to
+Eduardo the blacksmith, which made the whole quest "go and talk to a man" -- and was wrong on the
+content too, since gears in this game come from the talking steam engine, which already sells
+`DaVinci Crossbow Gears` for a potion at `650 collect gears`. The second put the machine at the
+centre but let the player keep or break its promise with two replies **at the hand-over**, in the
+secret chamber: the machine is not in that room, and a promise breakable only by pressing a button
+marked "break it" is a menu rather than a promise.
+
+What shipped: three prices (a potion, consumed; `Barter moreequal 35`; or the promise), all
+converging on one gear. The promise **outlives the quest** -- the gear is handed over and the quest
+completes in the chamber, but the debt can only be settled afterwards at
+`3 Return Dialogue Workshop`, with the engine in earshot, exactly where it demands. It is broken by
+never going back; there is no betrayal option at all.
+
+**Still open on this thread:** `100 Respond ask about Tank` in `DaVinci Ending.DialogTree`
+(*"Time will tell if it does us any good..."*, 0 incoming links, act 8), and the act-8 `Siege Tank`
+part is `Active=0` and activated from elsewhere. That is its own job on the far side of the game.
