@@ -1,0 +1,45 @@
+CCharacterPerk
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Clear Head
+			Modification is permanent=1
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CGiveFreeSkillUpgradeAction
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=3
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Find Traps Secret Doors
+				}
+			}
+		}
+	}
+	Display Name=Clear Head
+	Description=The drunken bar patron, briefly and painfully sober, has explained what the morning after is actually for: the room stops moving, and you finally see everything you walked straight past the night before. Your Find Traps and Secret Doors skill has increased by 3.
+	Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsGreaterThan
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Number of ranks=1
+}

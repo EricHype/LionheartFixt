@@ -65,7 +65,7 @@ written flavour text, which is the tell that someone built it for something.
 | `Helm of the Templars` | 0.36.0 -- **was unfinished**, see [Done so far](#done-so-far) |
 | `Spirit Templar Shield` | 0.36.0 |
 
-### Still open - four items
+### Still open - three items
 
 Three came off this list in 0.39.0: both Trapped Spirit items and
 `Wielder DARK Quest Rod Bone NO Spirit`.
@@ -73,7 +73,7 @@ Three came off this list in 0.39.0: both Trapped Spirit items and
 | item | the game's own description | state |
 |---|---|---|
 | ~~`DaVinci Tank Gear`~~ | *"Odd chunk of metal needed by DaVinci to create one of his elaborate devices."* | **Done in 0.43.0** -- the gear comes from DaVinci's talking steam engine at three prices, one of which is a promise that outlives the quest |
-| `Hangover Cure Potion` | *"Clears the mind and body after the consumption of excess alcohol."* | the smallest possible scene -- a tavern favour |
+| ~~`Hangover Cure Potion`~~ | *"Clears the mind and body after the consumption of excess alcohol."* | **Done in 0.44.0** -- the drunkard who teaches Drunken Boxing asks for it after Montserrat; Quinn brews it from nightshade root given by Na Roqua in Montaillou |
 | `Titan Crystal` | *"Large and unwieldly. Smells bad."* | unused, but its **icon art is reused** by the live `LuciusMneme` |
 | `Titan Sphere` | *"Spirit gem"* | unused, but its **icon art is reused** by all four live stone hearts |
 | `Inquisitor Feralkin Journal` | *"details the life and trials of a Feralkin at the hands of the Inquisition"* | a readable book; needs a reader more than a quest |
@@ -1096,3 +1096,45 @@ never going back; there is no betrayal option at all.
 **Still open on this thread:** `100 Respond ask about Tank` in `DaVinci Ending.DialogTree`
 (*"Time will tell if it does us any good..."*, 0 incoming links, act 8), and the act-8 `Siege Tank`
 part is `Active=0` and activated from elsewhere. That is its own job on the far side of the game.
+
+
+## Done in 0.44.0 - the morning after
+
+The `Hangover Cure Potion` was a shell item referenced by nothing, and three live things could not
+reach each other:
+
+| what shipped | state |
+|---|---|
+| `1500 return after give gold` (the Drunken Boxing drunkard) | live, map-opened, **zero replies** |
+| Quinn's `30 Special Order` | live: *"I can brew a concoction to cure many afflictions of the mind and body... come to me"* -- unacceptable by anything |
+| `Gather Nightshade Root for Quinn` | a **0-state stub** |
+
+Joined into: he asks after Montserrat -> Quinn needs nightshade, which *"does not grow south of the
+mountains"* -> **Na Roqua in Montaillou** gives it free with a warning about the dose -> Quinn brews
+it -> he drinks it and teaches **`Clear Head`** (+3 Find Traps and Secret Doors). The third entry in
+Fixt's own Quinn ingredient series, after `Troll Hide` and `Wasp Stingers`, and the only one with a
+scene at both ends.
+
+**Montaillou rather than Montserrat** because Montserrat's grove has no containers and no
+herbalist -- its druids are act 7 content -- so the root would have needed placing by coordinate in
+an 1,087-part map. **No new art:** the root reuses `RareHerb_PU`, which `Darkwood` already uses.
+**The perk is authored, not restored** -- all nine NPC-given perks are already granted -- and mirrors
+`Drunken Boxing.Perk` including its impossible level-up guard.
+
+### A method rule this release produced: requirement cans do not resolve across levels
+
+Measured rather than assumed, because the first build put Barcelona gates in reach of an act-3 tree:
+
+| a bare `Requirement=` name resolves from | vanilla cases |
+|---|---|
+| the global `Resources/Dialog/Requirements` | **335** |
+| the dialogue tree's own folder | 220 |
+| a different district in the **same level** | **26** -- e.g. `Magic Machine` reading a Port District can |
+| a different **level** | **0** |
+| unresolved | 0 |
+
+Cross-district is shipped practice, so 0.40.0's `Fixt DaVinci *` cans in Gate District read from La
+Calle Perdida are fine. **Cross-level never occurs**, and `validate.py` does not check it: the gate
+would evaluate as nothing and silently hide its reply with no error anywhere. For any chain spanning
+acts, put the cans in the global root. Every Fixt dialogue tree has since been audited -- zero
+cross-level or unresolved references.

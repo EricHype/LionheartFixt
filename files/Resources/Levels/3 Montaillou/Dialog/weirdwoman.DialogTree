@@ -9,6 +9,11 @@ Node ID=01 Conversation Start
 Text=Well then spiritbearer, what are you seeking here?
 Should Have Voiceover=1
 
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -259,6 +264,11 @@ Is Default Reply=1
 Node ID=03 Return Dialogue if Heard 50
 Text=You seek my aid again? I shall do what I can.
 Should Have Voiceover=1
+
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -549,6 +559,11 @@ Is Default Reply=1
 Node ID=05 Return Dialogue if Not Heard 50
 Text=Spiritbearer. Why do you linger here and struggle against fate, knowing that all of this will pass?
 Should Have Voiceover=1
+
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -1657,6 +1672,11 @@ Node ID=100 Return
 Text=The spiritbearer returns. How can Na Roqua help your journey?
 Should Have Voiceover=1
 
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -1813,6 +1833,11 @@ Is Default Reply=1
 Node ID=100 Other Questions
 Text=Your journey will be riddled with questions. Some may be answered. Speak then.
 Should Have Voiceover=1
+
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -1971,6 +1996,11 @@ Is Default Reply=1
 Node ID=100 Favorable Return
 Text=Welcome spiritbearer and Cathar friend. What do you seek?
 Should Have Voiceover=1
+
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -2530,4 +2560,26 @@ Should Have Voiceover=0
 Node ID=101 through the fire
 Text=Step through the fire, you will find what you need.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1720 Fixt the nightshade root
+Text=Cannot, or may not? <She is already reaching behind her.> They are different words and the licence only forbids one of them. I have it. I always have it - it grows where the ground is sour and this whole valley has been sour since the Inquisition came. Take it. No, spiritbearer, no coin; a thing like this is given or it is nothing. But understand what you are carrying: in a thimble it quiets a man, and in a spoon it quiets him permanently. Whoever brews it had better know which he is making.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=He knows. Thank you, Na Roqua.
+Go to node ID=
+Custom Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Nightshade Root
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
 }

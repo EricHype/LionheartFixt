@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.43.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.44.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,106 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.44.0 - the morning after
+
+There is a man in the Port District tavern who, if you spare him a single gold for an ale out of
+nothing but kindness, teaches you a fighting style he learned while drunk. That is shipped content
+and it is lovely.
+
+Speak to him again and he says *"Good to see you again, friend. Grab an ale and enjoy yourself"* --
+and that node, which the map opens, has **no replies on it at all**. It is a dead end.
+
+### Three open hands that could not reach each other
+
+| what shipped | state |
+|---|---|
+| `1500 return after give gold` | live, map-opened, **zero replies** |
+| Quinn's `30 Special Order` | live, and an open invitation nobody could accept |
+| `Gather Nightshade Root for Quinn` | a **0-state stub** |
+| `Hangover Cure Potion` | a shell item referenced by nothing |
+
+Quinn's line is the one that gives the whole thing away:
+
+> **`30 Special Order`:** *"Indeed, I can brew a concoction to cure many afflictions of the mind and
+> body, given the right recipe and the proper ingredients. If you run across any such ailments, come
+> to me, and we will see what can be done."*
+
+Nothing in the shipped game can bring him an ailment. And the pattern is Fixt's own: `Troll Hide for
+Quinn` and `Wasp Stingers for Quinn` are 1-state ingredient fetches from earlier releases. This is
+the third in that series, and the only one with a scene at both ends.
+
+### The chain
+
+| beat | where |
+|---|---|
+| he asks | the tavern, on his own live return node, **only once Montserrat is behind you** |
+| Quinn can brew it | but nightshade *"does not grow south of the mountains"* |
+| Na Roqua has it | Montaillou -- free, with a warning about the dose |
+| Quinn brews it | the `Hangover Cure Potion`, finally referenced by something |
+| he drinks it | and teaches a second perk |
+
+> **`1700 Fixt the morning after`:** *"Friend, I have been drinking since the news came down from
+> the abbey, and I have reached the part where the drinking stops helping. My head is a cathedral
+> bell and somebody is still ringing it."*
+
+> **`1720 Fixt the nightshade root`** (Na Roqua): *"They are different words and the licence only
+> forbids one of them. I have it. I always have it - it grows where the ground is sour and this
+> whole valley has been sour since the Inquisition came. Take it. No, spiritbearer, no coin; a thing
+> like this is given or it is nothing. But understand what you are carrying: in a thimble it quiets
+> a man, and in a spoon it quiets him permanently."*
+
+### Why Montaillou and not Montserrat
+
+The herb had to come from one or the other. Montserrat's grove has **no containers and no
+herbalist** -- its druids turn out to be act 7 content, not act 2 -- so the root would have had to
+be placed by coordinate in an **1,087-part** map, which is how positioning bugs happen.
+
+Montaillou has Na Roqua, whose 53-node tree is live and map-opened, and who is exactly the sort of
+person to have nightshade when a licensed Barcelona apothecary cannot get any. No placement, no new
+geometry, and the better fiction: two herbalists, one respectable and one not.
+
+**And no new art.** `Darkwood` -- the game's other plant-material quest item -- already uses
+`Items/PickUps/Special Items/RareHerb_PU`, so the root reuses that model and Darkwood's inventory
+icon.
+
+### The second perk
+
+All nine of the game's NPC-given perks are already granted by something, so there was none to
+restore and **`Clear Head` is authored**. It mirrors `Drunken Boxing.Perk` exactly -- the same NPC's
+other perk -- including the impossible `CIsGreaterThan(0, 1)` requirement that keeps it off the
+level-up list.
+
+**+3 to Find Traps and Secret Doors**, because the joke and the benefit are the same thing:
+
+> **`1701 Fixt the cure delivered`:** *"I showed you how to fight when the room is moving. That is
+> the easy half. The hard half is the morning, when it stops, and you see every single thing you
+> walked past the night before and did not notice."*
+
+### A gate defect that would have failed silently
+
+The gates started in `1 Barcelona/Dialog/Gate District/Requirements/`, and this chain reaches into
+**act 3**. So how vanilla actually resolves a bare `Requirement=` name was measured rather than
+assumed:
+
+| resolved from | vanilla cases |
+|---|---|
+| the global `Resources/Dialog/Requirements` | **335** |
+| the tree's own folder | 220 |
+| a different district, **same level** | **26** -- including `Magic Machine` reaching into Port District |
+| a different **level** | **0** |
+| unresolved | 0 |
+
+Cross-district is proven shipped practice, which clears 0.40.0's cans. **Cross-level never happens**,
+and `validate.py` does not check it -- a Barcelona can referenced from Montaillou would simply have
+evaluated as nothing, hiding the reply with no error. All five gates moved to the global root, and
+every Fixt dialogue tree was then audited: **zero** cross-level or unresolved references.
+
+### What needs playing
+
+`NR1`-`NR16` in [`qa.md`](qa.md). **`NR3`** is the row that proves the gate fix -- the witch's reply
+must appear in act 3 from a gate file that lives in Barcelona's global folder. **`NR12`** is the
+timing gate: he must not ask before Montserrat.
 
 ## 0.43.0 - the turret ring
 

@@ -1,0 +1,25 @@
+CCannedObject
+{
+	Object=CAND
+	{
+		Operand1=CActionExpression
+		{
+			Action=CWasQuestEverActivatedAction
+			{
+				Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+			}
+		}
+		Operator=
+		Operand2=CExpressionNot
+		{
+			Operand1=CActionExpression
+			{
+				Action=CWasQuestEverActivatedAction
+				{
+					Quest=Levels/1 Barcelona/Quests/Gate District/Gather Nightshade Root for Quinn
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

@@ -9,6 +9,16 @@ Node ID=1 Conversation Start
 Text=Welcome, senor, to Quinn's Apothecary, providing tonics and potions to all Nueva Barcelona for twenty years - and God willing, twenty more. Please, tell me what ails you, and we will see what I have that may help.
 Should Have Voiceover=0
 
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
+
 Requirement=Herbalist Player has Convince Herbalist Turn Dark
 Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
 Go to node ID=700 relican
@@ -1571,6 +1581,16 @@ Is Default Reply=1
 Node ID=1 Conversation Start Normal Female Not Inquisitor
 Text=Welcome, senorita, to Quinn's Apothecary, providing tonics and potions to all Nueva Barcelona for twenty years - and God willing, twenty more. Please, tell me what ails you, and we will see what I have that may help.
 Should Have Voiceover=0
+
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
 
 Requirement=Herbalist Player has Convince Herbalist Turn Dark
 Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
@@ -3153,6 +3173,16 @@ Node ID=2 Conversation Start Inquisitor or Templar 2
 Text=But please, tell me what ails you, and I will see what I have in my limited stock of humble tonics and ointments - all made with roots, herbs, and other natural ingredients - that may help you.
 Should Have Voiceover=0
 
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CActionExpression
 {
@@ -4727,6 +4757,16 @@ Is Default Reply=1
 Node ID=03 Return Dialogue
 Text=Welcome back, traveler. How can Quinn be of service?
 Should Have Voiceover=0
+
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -6521,6 +6561,16 @@ Is Default Reply=1
 Node ID=03 Return Dialogue Inquisitor and Templar
 Text=Eh...welcome back. Was there something you forgot concerning my natural ingredients the last time you were here?
 Should Have Voiceover=0
+
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -8342,6 +8392,16 @@ Node ID=03 Return Dialogue Wielder Friend
 Text=Welcome back, friend of the Wielders. How can Quinn be of service?
 Should Have Voiceover=0
 
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
+
 Requirement=Wielder IS
 Reply Text=Do you have any special concoctions that you save for your fellow Wielders?
 Go to node ID=
@@ -10113,6 +10173,16 @@ Is Default Reply=1
 Node ID=05 Other Questions
 Text=What would you like to know about?
 Should Have Voiceover=0
+
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
 
 Requirement=Herbalist Player has Convince Herbalist Turn Dark
 Reply Text=Relican and I ask you to embrace the Dark Powers of Necromancy.
@@ -14896,4 +14966,59 @@ Reply Text=I will.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=1710 Fixt the nightshade
+Text=Both at once, senor, and in that order - I know the affliction. It is an easy brew and an impossible one, because the thing that makes it work is nightshade root, and nightshade does not grow south of the mountains. I have not had any in four years. <He lowers his voice> If you are travelling to Montaillou - and I hear everyone is, these days - there is a woman there the villagers go to when they will not come to a licensed man. She will have it. Do not tell her I sent you; she and I disagree about the licence.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am going to Montaillou. I will find her.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Gather Nightshade Root for Quinn
+State=P9TWK2XB
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=1711 Fixt the cure brewed
+Text=Then I will not ask. <He is already grinding it.> Root, water, a little of the bark I keep for toothache, and time - which I shall shorten by not telling you what else goes in. There. Tell your friend to drink it slowly, which he will not, and to eat something afterwards, which he also will not. And tell him from me that the cure works exactly once before the body learns to expect it. After that he is on his own with the bell.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will tell him both things he will ignore.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Nightshade Root
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Hangover Cure Potion
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Gather Nightshade Root for Quinn
+State=B6CRM8YF
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
 }

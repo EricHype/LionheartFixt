@@ -1473,6 +1473,40 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The hangover cure, across two acts and three people
+
+The drunkard who teaches **Drunken Boxing** had a live, map-opened return node with **no replies on
+it at all**. Quinn's `30 Special Order` has always offered to brew for "any affliction of the mind
+and body" with nothing in the game able to bring him one. `Gather Nightshade Root for Quinn` was a
+**0-state stub**. This chain joins them.
+
+**`NR3` is the row that proves the gate fix.** The gates began in Barcelona's Gate District folder
+and the witch is in **act 3** -- and cross-level requirement resolution **never happens in vanilla**
+(0 cases against 335 global and 26 cross-district). A Barcelona can read from Montaillou would
+evaluate as nothing and silently hide the reply, with no error from any gate. All five moved to the
+global root. If NR3 fails, that fix did not take.
+
+**`NR12` is the timing gate** -- he must not ask before Montserrat.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| NR1 | **Baseline.** In the Port District tavern before Montserrat, spare the drunkard a gold and learn Drunken Boxing | - | Unchanged vanilla. He teaches the style; your Unarmed goes up 3 |
+| NR2 | Speak to him again, still before Montserrat | - | *"Good to see you again, friend. Grab an ale and enjoy yourself"* and **nothing else**. In vanilla this node had no replies at all and before Montserrat it still must not |
+| NR3 | **The row that proves the gate fix.** Get the quest to the nightshade step, travel to **Montaillou**, and talk to the weird woman | - | A `Quest Icon` reply about nightshade root appears. **This is a gate file living in Barcelona's global requirements folder being read by an act-3 dialogue tree** -- if the reply is missing, the gate is resolving as nothing |
+| NR4 | **The ask.** After Montserrat, return to the drunkard | - | He admits he has been drinking since the news from the abbey and asks you to see Quinn. The journal gains `Gather Nightshade Root for Quinn`, which in vanilla had no states and could never appear |
+| NR5 | Decline him (*"Drink less."*) | - | Conversation ends, no quest, and the ask is still offered next time |
+| NR6 | **Quinn.** Take the ask to Quinn in the Gate District | - | He knows the affliction, explains nightshade does not grow south of the mountains, and points you at a woman in Montaillou -- asking you not to say he sent you. Try this from several of his greetings; the reply is on **7** of his hubs |
+| NR7 | Check the journal after NR6 | - | It names Montaillou and the unlicensed woman, not a vague "find an ingredient" |
+| NR8 | **The root.** Take the witch's reply | - | She gives it **free** -- *"a thing like this is given or it is nothing"* -- with the warning that a thimble quiets a man and a spoon quiets him permanently. You receive **Nightshade Root** |
+| NR9 | Check the root in your inventory | - | It has proper art and a real description. It reuses the rare-herb model `Darkwood` uses, so it must not appear as a missing-art placeholder |
+| NR10 | **The brew.** Carry the root back to Quinn | - | He takes it without asking where it came from, grinds it, and gives you the **Hangover Cure Potion** -- an item referenced by nothing in the shipped game. The root is **consumed** |
+| NR11 | **The delivery.** Take the potion to the drunkard | - | He drinks it in one go, goes quiet, and teaches **Clear Head**: +3 Find Traps and Secret Doors. The potion is consumed and the quest completes |
+| NR12 | **The timing gate.** On a fresh character, try to reach any of the above **before** Montserrat | - | The drunkard's ask is absent, Quinn's reply is absent, the witch's reply is absent. Nothing in the chain is reachable early |
+| NR13 | **No double perk.** After NR11, check your perk list, then talk to him again | - | **One** `Clear Head`, and he does not re-offer. The grant is guarded by a `CHasPerkExpression` |
+| NR14 | **Nothing shipped disturbed.** Run Quinn's own `Troll Hide` and `Wasp Stingers` fetches and his shop tiers; run the witch's Nostradamus, caverns and Cathar branches | - | All unchanged. Three heavily-used trees were edited and none of their existing content may shift |
+| NR15 | Check the drunkard still works for a character who **never** gave him gold | - | He stays in his gibberish state. The whole chain hangs off the kindness in NR1 |
+| NR16 | Judge the **writing**, which no check can settle | - | Does the drunkard read as pitiable rather than comic? Is Na Roqua's warning about the dose unsettling? And is `Clear Head` a joke that lands, or one that explains itself too much? |
+
 ## The turret ring, and a promise that outlives its quest
 
 `DaVinci Tank Gear` was the last hand-authored quest item nothing referenced. Half its quest already

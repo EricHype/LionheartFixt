@@ -1,0 +1,24 @@
+CCannedObject
+{
+	Object=CAND
+	{
+		Operand1=CActionExpression
+		{
+			Action=CActionCheckForInventoryItem
+			{
+				Who to give check=$instigator
+				Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Nightshade Root
+			}
+		}
+		Operator=
+		Operand2=CActionExpression
+		{
+			Action=CIsQuestStateTheCurrentStateAction
+			{
+				Quest=Levels/1 Barcelona/Quests/Gate District/Gather Nightshade Root for Quinn
+				State=P9TWK2XB
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

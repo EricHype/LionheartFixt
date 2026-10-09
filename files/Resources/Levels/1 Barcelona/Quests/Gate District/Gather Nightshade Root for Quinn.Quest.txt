@@ -1,0 +1,24 @@
+CQuestDefinition
+{
+	Name=Gather Nightshade Root for Quinn
+	States=Array
+	{
+		Item Count=3
+		State=CQuestStateDefinition
+		{
+			Text=The drunkard in the Port District tavern is in a bad way and wants something for his head. Quinn the herbalist in the Gate District brews cures for afflictions of the mind and body - ask him.
+			ID=H4VQ7NZD
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Quinn can brew the cure but needs nightshade root, which does not grow in Spain. He suggests the weird woman of Montaillou, who keeps things no licensed apothecary is allowed to.
+			ID=P9TWK2XB
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Quinn has brewed the hangover cure. Take it back to the drunkard in the Port District tavern.
+			ID=B6CRM8YF
+		}
+	}
+	Sub-Quest of=!None
+}
