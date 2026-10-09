@@ -1473,6 +1473,40 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The creatures sent after Machiavelli, and the level gate
+
+An act-1 escort quest that works end to end, whose four attackers spawned from a can pointing at a
+**player** race -- no armour class, no hit points, no weapon skill, and labelled *"Demokin"* on
+screen. They are now a tiered Snakebreed group, and the quest is gated at **character level 5**
+because the man you protect is **AC 40 / HP 35** and the fight was available immediately.
+
+**`MA2` and `MA3` prove the release together.** They are the two halves of the gate, and the gate
+uses `CVariableCharacterLevel`, which has **60 shipped uses in perk requirements and zero in a
+dialogue requirement can**. If it fails to resolve, the symptom is `MA2` passing for the wrong
+reason -- the offer absent at *every* level -- so `MA3` is what distinguishes a working gate from a
+broken one. Do not report `MA2` without `MA3`.
+
+**`MA9` is the judgement row.** Level 5 was chosen against act-1's enemy band, not measured in play.
+If Machiavelli still dies at level 5 with a competent player, the threshold is wrong and should go
+up; if he never comes close, it can come down.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MA1 | Temple District, Machiavelli's door. Talk to him on a **new game**, below level 5 | Pick any of mercenary / soldier / general, reach his task offer | He describes his dangerous opponents as shipped. The conversation works exactly as before |
+| MA2 | **Half one of the gate.** Same conversation, still **under level 5** | Read every reply on the task offer | *"I'm interested. You can count on me for support."* is **absent**, and a new reply *"I could not protect you as I am. Not yet."* is present. Choosing it gives his refusal line about buying company in the grave. **Not a pass on its own -- see MA3** |
+| MA3 | **Half two, and the one that matters.** Reach **level 5**, return and talk to him again | Use his return greeting, then ask about work | *"I'm interested..."* is now **present** with its quest icon, and the *"I could not protect you"* reply is **gone**. If the offer is still missing at level 5, the level check is not resolving and the release must be pulled |
+| MA4 | After `MA3`, accept the task | - | The quest `Task for Machiavelli` activates in your log exactly as it always did |
+| MA5 | **The lockout check.** Before reaching 5, exhaust his conversation -- refuse, leave, come back, refuse again | - | He never runs out of replies, the goodbye option is always there, and returning later still leads back to the offer. The quest must never become permanently unavailable |
+| MA6 | **The composition.** Accept at level 5+, then leave the house to trigger the ambush | Look at the four attackers | Four snake-women, not four identical ones: **one visibly larger** leader near the door, two of the same smaller build, and one that **attacks from range** rather than closing |
+| MA7 | During the ambush, read the name under any attacker | - | It is **no longer "Demokin"**. That label was the player race leaking through |
+| MA8 | Fight them | - | They take a real number of hits rather than dropping instantly, and they land real blows. Before this release they had no armour class or hit points at all |
+| MA9 | **The judgement row.** Play the ambush properly at level 5 and try to keep Machiavelli alive | - | He survives if you play well. He has **AC 40 / HP 35**, so he is meant to be genuinely at risk -- but if he dies even when you fight well, level 5 is too low and the gate needs raising |
+| MA10 | Watch the ranged one specifically | - | It spits at range for piercing and poison damage. Judge whether it can reach Machiavelli past you from the far corner -- that is the one new threat vector this release adds |
+| MA11 | Listen during the fight | - | All four speak, the leader included -- hissing barks over their heads. Before this release the leader was the only mute one |
+| MA12 | Save Machiavelli, then talk to him | - | His thank-you plays, he asks you to let him go, and the Barcelona reward is paid as shipped |
+| MA13 | **The Montaillou payoff.** Much later, meet him again in Montaillou | - | `300 machiavelli helps you in montaillou` still fires. Nothing in this release touches that chain, and it must not have broken |
+| MA14 | **The control.** Deliberately let him die, or refuse the task entirely and continue the game | - | The failure and refusal paths behave exactly as they always have. Only the enemies and the gate changed |
+
 ## Alvaro's horse at the Crossroads
 
 The game shipped a complete horse -- 54 KB can, 36 KB model, cached render, its own death sound --

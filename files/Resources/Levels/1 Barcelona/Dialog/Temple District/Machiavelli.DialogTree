@@ -259,7 +259,9 @@ Text=These plans have earned me dangerous opponents that seek to end my ambition
 Should Have Voiceover=0
 
 Requirement=!None
-Custom Requirement=CExpressionNot
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
 {
 Operand1=CActionExpression
 {
@@ -267,6 +269,12 @@ Action=CWasQuestEverActivatedAction
 {
 Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
 }
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Character Level moreequal 5
 }
 }
 Reply Text=I'm interested. You can count on me for support.
@@ -277,6 +285,28 @@ Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
 State=ARQVI29J
 }
 Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Character Level 4 or less
+}
+}
+Reply Text=I could not protect you as I am. Not yet.
+Go to node ID=76 Fixt not ready
 
 Requirement=!None
 Custom Requirement=CExpressionNot
@@ -720,6 +750,15 @@ Requirement=!None
 Reply Text=I must go. Goodbye.
 Go to node ID=15 Goodbye
 Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=76 Fixt not ready
+Text=Then we are both honest today, which is rarer than courage. A guardian who falls in the first moment buys me nothing but company in the grave. Harden yourself a while longer and return to me -- my enemies have been patient this long, and so, it seems, must I be.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=100 accept task

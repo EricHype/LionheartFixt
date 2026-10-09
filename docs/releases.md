@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.45.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.46.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,104 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.46.0 - the creatures sent after Machiavelli
+
+An act-1 escort quest that works, start to finish, with enemies that were never given stats.
+
+### The quest is live and complete
+
+`1 Barcelona/House of Ilk map.zax` holds the whole thing, and all of it is active:
+
+| part | state |
+|---|---|
+| `Machiavelli generator` | `Active=1`, spawns his character template |
+| `Protect Mach` / `Mach Reward` / `saved machiavelli` | `Active=1` |
+| `Trigger Assassins Relay` | `Active=0`, armed by the quest -- correct |
+| `Machiavelli Door` in `Temple District.zax` | `Active=1`, dialogue hooked up |
+
+Machiavelli hires you as a guardian (*"These plans have earned me dangerous opponents that seek to
+end my ambitions and my life"*), the ambush fires as you leave, and saving him pays out in Barcelona
+and again in Montaillou at `300 machiavelli helps you in montaillou`.
+
+### The four attackers had no stats at all
+
+Every one of the four generators spawned the same can, and its `Race=Races/Demokin` is a plain
+**`CRace`** -- character-creation attribute ranges, `Can be selected by player=1`, and **no
+`DerivedCharacterAttribute` array and no `Skill` array**. There is nothing there to inherit.
+
+Only **3 of 478** monster cans point at a player race, and this is the only one of the three that is
+spawned. The player can see it, too: `Races/Demokin` has `Display Name=Demokin`, so the creatures
+attacking Machiavelli were **labelled "Demokin"** on screen.
+
+**The control that makes it airtight:** `Assasin.can`, which has a correct race, *also* carries
+`(HP) Hit Points=0`, `(AC) Armor Class=0` and `OneHandedMelee=0` in the can itself. Can values are
+placeholders filled from `Race=` at spawn, so a race with no presets yields nothing. Same class of
+defect as the four self-referential wererat templates.
+
+### Vanilla's own words decided what they are
+
+The can is called `Assassin Machiavelli`, which is not Machiavelli-the-assassin but *the assassins
+sent after him*. Going by that name would have been wrong anyway, because the dialogue says it twice:
+
+> **`210 Assassins`:** *"Those were **creatures** sent by the infidel assassins from the East"*
+> **`200 Saved Machiavelli Return Greeting`:** *"you must tell me about those **creatures**"*
+
+Creatures *sent by* the assassins. And the can's `Model=Characters/Monsters/Snake Women` is the model
+the **12 live `Snakebreed*` cans** use. So: Snakebreed, not assassins. Had the name won, these would
+have been given AC 280 / HP 150 / melee 75 instead of the Snakebreed's far gentler band.
+
+### The ambush now
+
+| | creature | |
+|---|---|---|
+| nearest the door (551,517) | **Snakebreed Boss** | AC 175 / HP 100, the tough model, and the boss bark bank |
+| (632,501) and (265,491) | **Snakebreed** x2 | AC 150 / HP 60 |
+| farthest back (447,317) | **Snakebreed Venom** | AC 160 / HP 50, ranged piercing + poison |
+
+Placed by distance from the player's entry at (600,676). This is **not** an escalation: act-1
+Barcelona's enemies run to a median of **AC 125 / HP 43**, and `Terror before Crypt Tough`
+(AC 150 / HP 50) and `Super` (AC 170 / HP 70) each spawn six times in act 1 already.
+
+Machiavelli's own can keeps its name and becomes the leader -- race and model repointed to the Boss
+tier, matching the family's own model/race pairing -- and the other three generators point at
+shipped `Snakebreed` cans, so **no new creature was authored**. The leader also gained the bark block
+Fixt already ships on `Snakebreed Boss`, because it was the one creature in the group that could not
+speak.
+
+### And the quest is gated now, which is the actual fix
+
+The fight was available the moment you first walked in, and **the man you are protecting is
+AC 40 / HP 35** -- not AC 1000 / HP 10000 like the children or DaVinci. He is a glass NPC in a
+four-way ambush, which is why taking this early has always meant watching him die. Giving the
+attackers real stats without gating it would have made that worse.
+
+Accepting now requires **character level 5**, and refusing has a voice instead of a missing option:
+
+> **`76 Fixt not ready`:** *"Then we are both honest today, which is rarer than courage. A guardian
+> who falls in the first moment buys me nothing but company in the grave. Harden yourself a while
+> longer and return to me -- my enemies have been patient this long, and so, it seems, must I be."*
+
+All three return greetings (`5 Return Dialogue Warrior`, `7 ... General`, `9 ... Soldier`) lead back
+to `70 Task`, so **the gate delays the quest and never removes it**. The shipped ungated goodbye
+reply stays the default, so his hub can never be empty.
+
+### Two risks checked rather than assumed
+
+**The level check.** `CVariableCharacterLevel` has 60 shipped uses in perk requirements and **zero**
+in a dialogue requirement can. But the gate that failed in 0.44.0 was a *short-name* `Requirement=`
+lookup; this is a full path in the **global** requirements root, in a can cloned structurally from
+vanilla's own `Skills/Speech/Speech moreequal 35`. Safe on both axes that failed before.
+
+**The barks crossing levels.** The Snakebreed cans point at `Levels/Wilderness/Dialog/...` and now
+spawn in Barcelona. Vanilla has **933** cross-level dialogue references across 34 level pairs,
+including `1 Barcelona -> Wilderness` **37** times. Full paths cross; only short-name lookups do not.
+
+### What needs playing
+
+`MA1`-`MA14` in [`qa.md`](qa.md). **`MA2` is the row that proves the release** -- at level 4 the
+offer must be absent and the refusal line present; **`MA3`** is its mirror at level 5. **`MA9`** is
+the one that decides whether the gate was set high enough: Machiavelli has to actually survive.
 
 ## 0.45.0 - Alvaro's horse
 

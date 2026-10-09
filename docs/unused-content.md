@@ -1168,19 +1168,134 @@ referenced by nothing. But sorted properly, almost none of it is lost content:
 | **tier variants** of live families | ~30 | `Super` / `Tough` cans whose base spawns normally. The generators' mojo bands never reach them -- a **balance** observation, not cut content |
 | **duplicates** of live cans | ~15 | `Mongol Goblin Grum` and `Goblin Grumdjum` share race **and** model; same for `Mongol Goblin Rakeb` / `Rakeb`. `Sewers/Sewer Theif Boss` ×3 duplicates `Thugs/Theif Boss` ×3, which is spawned |
 | **test / broken** | 2 | `Simon Spell Cast Test`; and `Horse`, now placed |
-| **genuinely distinct, with art** | **4** | see below |
+| **draft cans with no unique art** | **4** | see below -- I called these "genuinely distinct" and that was **wrong** |
 
-The four that are real:
+### Correction: the four "genuinely distinct" cans are drafts, and none has its own art
 
-| can | model | note |
+0.45.0 claimed **`Horror`** was "the only unused enemy in the game with a dedicated mesh" and "the
+best remaining enemy lead by far." **Both halves are false.** I matched a *folder name*
+(`Models3D/Enemies/Horror/`) and reported it as a dedicated asset -- the exact inverse of this
+file's own **find cut content by asset, not by name** rule. Hashing the meshes settles it:
+
+| mesh | sha256 (12) | also at |
 |---|---|---|
-| **`Horror`** | `Characters/Monsters/Horror` | **its own model, used by nothing else** -- the only unused enemy in the game with a dedicated mesh. The best remaining enemy lead by far |
-| `Caster` | `Rock Titan` | race `Rock Titan Caster` -- a spellcasting titan, where Toulouse's titans are live |
-| `Nos Ogre2 English` ×2 | `Ogre strong` | act-5 variants; belongs with the 17-Nostradamus-English item |
-| `Assasin EarlyLevels` | `Assasin` | a low-level tier of a live family |
+| `Enemies/Horror/Terror.MODEL.gr2` | `0a42036b5b1b` | `Terrors/Models/Terror/`, `English Priestess/`, `Mimic/` -- **4 byte-identical copies** |
 
-**Two wrong guesses are recorded because they were both wrong in the same direction** -- assuming an
-unreferenced can means lost content. "Mongol" turned out to mean the Wilderness horde, not an act-6
-siege variant of the goblin leaders; and the `Sewer Theif*` block is **not** wholly superseded --
-`Sewer Theif Pale`, `3 Bow` and `4 Sword` are all spawned in Sewers maps, and only `Boss`,
-`3 Mace` and `4 Bow` are not. Check both the family *and* the folder before calling a can cut.
+**`Horror` is an early draft of the shipped `Terror`**, and the Terror is one of the most-used
+enemies in the game: 21 live cans spawning **823** times across 200 maps. Horror spawns 0 times. The
+proof is layered:
+
+| | Horror (unused) | Terror (live) |
+|---|---|---|
+| mesh | byte-identical to the Terror's | same file |
+| animations | byte-identical to `Terrors/Shared Animations/original/` | **points at that same `original/` folder** |
+| `Race=` | `Races/Demokin` -- a **player** `CRace`, no presets | `Races/Enemies/Undead/Terror` |
+| death sound in `.mdl16` | `Enemies/Orc Death.ogg` -- an **orc** sound on an undead | `Terror Death` + `Death2` + `activate` |
+| model cache | 8,630 bytes / 79 strings | 37,991 bytes / 540 strings |
+| behaviour | none | `CPatrolAreaAI`, `Can Be Knocked Around`, Medium Disease damage/duration |
+| can size | 42,978 bytes | 57,518 bytes |
+
+The live Terror's own cache still loads `Shared Animations/original/` -- so `Enemies/Horror/` is not a
+leftover beside the real art, it **is** the pre-reorganisation copy of art that is still in service.
+This is kind three of [the orphan taxonomy](qa.md): a **superseded draft**, and the action for those
+is to **leave it dead**. There is nothing here to restore.
+
+Two signals were tested and **discarded** rather than relied on, because both looked damning and
+neither is:
+
+- **`Sound=...wav` paths that do not exist.** Horror has three. So do **147 of 1,698** cans, live
+  ones among them (`Terror Super`, `Goblin King`, `Old Man of the Mountain`). A vanilla wart, not a
+  dating artifact.
+- **`Display Name=unnamed`.** Horror has it. So do **421 of 478** monster cans. Not a signal at all.
+
+The other three fall the same way -- all four share art with live families:
+
+| can | model | shared with | verdict |
+|---|---|---|---|
+| `Horror` | `Monsters/Horror` | the live Terror's mesh, 4 copies | draft of Terror |
+| `Caster` | `Rock Titan` | **15** cans incl. `Andre the Titan` | tier draft; the titans are live |
+| `Nos Ogre2 English` ×2 | `Ogre strong` | 6 cans, all live ogres | tier draft |
+| `Assasin EarlyLevels` | `Assasin` | 6 cans, all live assassins | tier draft |
+
+**So the honest count of genuinely distinct unused enemies with their own art is 0, not 4.** Every
+unreferenced monster can in this game is a tier variant, a duplicate, a draft, or a test.
+
+### What the Horror hunt actually turned up: a live act-1 quest shipped broken
+
+The one signal that survived was rare: **`Race=` pointing at a *player* race**. Only **3** of 478
+monster cans do it -- and the third is spawned.
+
+| can | refs | |
+|---|---|---|
+| `Horror` | 0 | draft |
+| `Assasin EarlyLevels` | 0 | draft |
+| **`Assassin Machiavelli`** | **1** | **live, in `1 Barcelona/House of Ilk map.zax`** |
+
+**The name misled me twice and the map settled it.** `Assassin Machiavelli` is not Machiavelli-the-
+assassin; it is *the assassins sent after Machiavelli*. `House of Ilk map.zax` holds a complete
+**act-1 escort quest** -- `Machiavelli generator`, `Protect Mach`, `Mach Reward`, `saved machiavelli`,
+`Swap Mach Dialogue`, `gavekarma`, four `Machiavelli Exit` parts -- and all of it is **live**:
+
+| part | state |
+|---|---|
+| `Machiavelli generator` | `Active=1`, spawns `Character Templates/Temple District/Machiavelli` |
+| `Protect Mach` / `Mach Reward` / `saved machiavelli` | `Active=1` |
+| `Trigger Assassins Relay` | `Active=0`, armed by the quest -- correct |
+| `Machiavelli Door` in `Temple District.zax` | `Active=1`, dialogue hooked up |
+
+Machiavelli hires you as a guardian (node `75 Task 2`: *"These plans have earned me dangerous
+opponents that seek to end my ambitions and my life"*), the ambush fires as you leave
+(node `150 Machiavelli Attacked when you leave his building`), and saving him pays out in Barcelona
+and again in Montaillou (node `300 machiavelli helps you in montaillou`). It ties into the Slaver
+Cells opening and the Master of Assassins.
+
+**The four attackers arrive with no stats at all.** All four generators spawn the one can, whose
+`Race=Races/Demokin` is a plain **`CRace`**: character-creation attribute ranges, no
+`DerivedCharacterAttribute` array, no `Skill` array, so there is nothing to inherit. The player can
+even see it -- `Races/Demokin` has `Display Name=Demokin`, so the creatures attacking Machiavelli are
+**labelled "Demokin"** in-game.
+
+**The control that makes this airtight:** `Assasin.can`, which has a correct race, *also* carries
+`(HP) Hit Points=0`, `(AC) Armor Class=0` and `OneHandedMelee=0` in the can itself. Can values are
+placeholders filled from `Race=` at spawn, so a race with no presets yields nothing. Same class as
+the four self-referential wererat/thief templates; same symptom -- dies in a couple of hits for no
+visible reason.
+
+#### Which family -- settled by vanilla's own words, not by the name
+
+The can's `Model=Characters/Monsters/Snake Women` is the same model the **12 live `Snakebreed*`
+cans** use, so the asset says snake-women. The authored dialogue says the same thing twice, which is
+what makes it certain rather than inferred:
+
+> **`210 Assassins`:** *"Those were **creatures** sent by the infidel assassins from the East"*
+> **`200 Saved Machiavelli Return Greeting`:** *"you must tell me about those **creatures**"*
+
+Creatures *sent by* the assassins -- not assassins. So the Snakebreed family is correct and the
+assassin races are not. Had I gone by the can's name I would have given them AC 280 / HP 150 /
+melee 75 instead of the Snakebreed's gentler band, and made a wrong guess permanent.
+
+| | `Races/Demokin` (shipped) | `Snakebreed` | `Snakebreed Boss` | `Snakebreed Venom` |
+|---|---|---|---|---|
+| (AC) Armor Class | **nothing** | 150 | 175 | 160 |
+| (HP) Hit Points | **nothing** | 60 | 100 | 50 |
+| skill | **nothing** | melee 30 | melee 35 | **ranged 25** |
+
+**Fixed in 0.46.0** as 1 Boss leader + 2 base + 1 ranged Venom, placed by distance from the entry at
+(600,676): the Boss nearest at (551,517), the venom-spitter farthest at (447,317). Machiavelli's own
+can keeps its name and becomes the leader (race and model repointed to the Boss tier, matching the
+family's own model/race pairing); the other three generators point at shipped `Snakebreed` and
+`Snakebreed Venom` cans, so **no new can was authored**. Five changed lines in total: two in the can,
+three `Entity=` values in the map.
+
+Two traps checked and cleared rather than assumed:
+
+- **Mojo budget.** The groups cap `Max Party Mojo=3`, and a costlier can would silently fail to
+  spawn. **No race in the game sets a Mojo preset**, so the cap binds nothing here.
+- **The name `Assassin`.** All four generators set `New Name=Assassin`, and names broadcast in this
+  engine. Nothing in the map targets that name, so `New Name=` was left untouched.
+
+#### One genuinely empty stub, left alone
+
+`Mach Sets Ambush Relay` (`Active=0`, named by nothing) has **`Action=` empty**. It suggests the
+ambush was once meant to be armed by Machiavelli himself rather than on exit, but there is no payload
+to restore -- writing one would be authoring new content, not restoring it. Recorded, not touched.
