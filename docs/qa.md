@@ -1497,6 +1497,8 @@ sequence, so no distribution moved; these two rows confirm that in play.
 
 **`BV7` is the judgement row.** The two hooks are separate numbers and can move independently.
 
+**`BV8`-`BV10` are 0.52.1.** All 12 cans carrying both hooks anchored both balloons at the same offset, so they superimposed; the wounded hook moved from -60 to -100. **`BV10` is the row that catches a wrong inference** -- the axis direction came from shipped data, not the decompiler.
+
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | BV1 | **The pull-trigger row.** Any fight with goblins, thieves, English soldiers, trolls or Snakebreed | Fight for a minute or two | **Barks still appear.** Floating text over a creature's head. Fewer than before, but present -- if none appear at all in several fights, the splice is broken, not the number |
@@ -1506,6 +1508,9 @@ sequence, so no distribution moved; these two rows confirm that in play.
 | BV5 | **Mongol Goblin Shaman**, any variant | Fight one and watch which spells it casts | It still casts **both Spike and Static Charge**, with Static Charge roughly twice as common. Its pads encode that mix; if it has started casting almost nothing but Spike, the pad cycling was wrong |
 | BV6 | Any **archer** can -- Mongol Goblin Archer, Soldier2 Bow, Sewer Theif3 Bow | Fight one at range | It still shoots. `CActionSelectSkill` in the padding is what selects the ranged attack, so an archer that has stopped using its bow would mean the padding was damaged |
 | BV7 | **The judgement row.** After a few hours | - | Is the swing rate right now? If crowds are still loud, the attack hook comes down again. If crowds are good but the game overall feels too quiet, the wounded hook is the one to *raise* -- it is still at its original 1/6 and is the hook carrying the reactive lines |
+| BV8 | **0.52.1.** Fight a goblin one-on-one -- `Mongol Goblin`, an Archer or a Shaman | Trade blows until you see both a swing bark and a wounded bark close together | **Both are readable.** The wounded line sits clearly higher above the goblin's head than the attack line. Before 0.52.1 they drew at the identical point and overlapped |
+| BV9 | **0.52.1, the judgement row.** Same fight | - | Is stacked-but-readable good enough? Both barks still *fire* -- 0.52.1 separated them, it did not make one yield. If two lines at once still reads as too much, the next step is a per-creature suppression flag, which is blocked on an engine question about whether a delayed action survives its owner's death |
+| BV10 | **0.52.1, the one that would mean I got it backwards.** Any goblin that gets wounded | - | The wounded balloon is **above** the goblin, not inside or below it. The offset axis was inferred from shipped values (goblins -60, taller families -70) rather than read out of the engine. If it renders low or inside the model, the sign is wrong and it is a one-character fix |
 
 ## Magic ammunition that could never drop
 

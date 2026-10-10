@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.52.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.52.0).
+-- currently [0.52.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.52.1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -68,7 +68,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.52.0 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.52.1 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

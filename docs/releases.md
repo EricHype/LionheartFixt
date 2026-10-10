@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.52.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.52.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,72 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.52.1 - the two barks that landed in the same place
+
+**Reported from play, immediately after 0.52.0:** *"barks are better, sometimes an attack one and a
+damaged one will play over each other."*
+
+0.52.0 did not cause this. It made it easier to see, by thinning the chatter that was hiding it.
+
+### The cause
+
+A bark is anchored over the creature with `Name of Position=$trigger` and a `Position Offset`. The
+offset was never varied per hook:
+
+| | | |
+|---|---|---|
+| `Shoot Completed` | 20 cans | `0.000000,-60.000000` |
+| `Shoot Completed` | 76 cans | `0.000000,-70.000000` |
+| `Damaged Script Action` | **12 cans** | `0.000000,-60.000000` |
+
+**All 12 cans that carry both hooks used the identical `-60` for both.** So a creature that completed
+a swing and was wounded within a balloon's lifetime drew two balloons at exactly the same point above
+its head, and they superimposed.
+
+The 12 are the whole goblin set -- `Mongol Goblin` and its Tough/Super tiers, the three Archer tiers,
+the three Shaman tiers, `Mongol Archer Village`, and the two `Fixt Butu` cans. The other 84 bark cans
+carry only the swing hook, so they cannot collide with themselves.
+
+### The fix
+
+The wounded hook moves to **`0.000000,-100.000000`**, leaving roughly 40px of clearance. That is not
+an invented coordinate: vanilla ships `-100` **31** times and `-110` 21 times, across 166 distinct
+offsets in all, so there is established room above a creature's head.
+
+This helps under **both** readings of the report -- the two balloons superimposing from one creature,
+and two balloons from two different creatures standing close, because the two hooks now differ in
+height regardless of whose head they are over.
+
+168 balloons across 12 cans. **The diff contains nothing but the two offset values.** Rates (1/8,
+1/7, 1/6), banks, trees, pads and skill distributions are all untouched, confirmed by re-running
+0.52.0's audit unchanged.
+
+### How the axis direction was settled, and how it was not
+
+**Not in the decompiler.** `CDisplayDialogBalloonAction` is at `0x00707d54` with the description
+*"Displayes a node from a dialog tree in a balloon over the had of a character"* at `0x00707e20`, and
+`Client_DisplayBalloon` at `0x00707e78` -- but its single xref lands in a field-registration stub at
+`0x00525110`, not the renderer. That dig produced nothing usable and is recorded here so it is not
+repeated.
+
+**What settles it is the shipped data.** Goblins anchor at `-60`; humans, trolls and Snakebreed all
+anchor at `-70`. That is height compensation, and it only works in one direction: **if negative Y
+meant downward, the shorter creature would need the larger magnitude, not the smaller.** Combined
+with 8,923 uses of `0,0` and every other common value falling between `-35` and `-110`, more-negative
+is higher.
+
+This is inference from shipped values rather than a read of the engine. If the wounded balloon appears
+*inside* the goblin rather than above it, that inference is backwards and the fix is a one-character
+change.
+
+### What this does not do
+
+**Both barks still fire.** They are now legible and stacked instead of superimposed, but it is still
+two lines at once. Making one yield to the other requires a short-lived per-creature flag that the
+other hook can test -- which is the same unresolved problem that blocked 0.52.0's shared cooldown:
+vanilla's 13 death-hook delays all use `Delay=0` or `0.1`, and none delays anything past a creature's
+death. See [`qa.md`](qa.md) `BV9` for the judgement row on whether stacked-but-readable is enough.
 
 ## 0.52.0 - half as much shouting in a crowd
 
