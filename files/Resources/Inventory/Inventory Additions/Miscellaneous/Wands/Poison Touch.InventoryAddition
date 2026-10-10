@@ -1,0 +1,142 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorStrikeAction
+		{
+			Strike Action=CIfExpressionAction
+			{
+				If Expression=CIsGreaterThan
+				{
+					Operand1=CExpressionHitMargin
+					{
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=0
+					}
+				}
+				Character to get attributes from=$Instigator
+				Then=CActionDoDamage
+				{
+					Character Doing Damage=$instigator
+					Character To Damage=$trigger
+					Defend Against=0
+					No Friendly Fire Check=0
+					Damages=Array
+					{
+						Item Count=1
+						Damage=CXRPGDamageOverTime
+						{
+							Damage Type=Damage Types/Poison
+							Damage Amount=CInventoryAdditionsNamedExpressionExpression
+							{
+								InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
+								Expression Name=damagebonus
+								Value=0
+							}
+							Duration=CInventoryAdditionsNamedExpressionExpression
+							{
+								InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
+								Expression Name=duration
+								Value=0
+							}
+						}
+					}
+				}
+				Else=
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorWand
+		{
+			Spell=Skills/Fake Wand Spells/Poison Touch
+			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			{
+				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
+				Expression Name=numberofcharges
+				Value=0
+			}
+			Charges Remaining Is Valid=0
+			Charges Remaining=0
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2000
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wands/WandSlow
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Poisonous Touch
+	Description=All physical attacks done by the wielder of this wand do %i[damagebonus] points of poison damage for the next %i[duration] seconds.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/WandSlow
+	Minimum Value=2000
+	Minimum Addition Ammount=0
+	Inbetween Value=2000
+	Inbetween Addition Ammount=0
+	Maximum Value=2000
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=3
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=damagebonus
+				Expression=CRandom
+				{
+					Operator=
+					Minimum=CConstant
+					{
+						Constant Value=1
+					}
+					Maximum=CConstant
+					{
+						Constant Value=4
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=numberofcharges
+				Expression=CRandom
+				{
+					Operator=
+					Minimum=CConstant
+					{
+						Constant Value=10
+					}
+					Maximum=CConstant
+					{
+						Constant Value=20
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=duration
+				Expression=CConstant
+				{
+					Constant Value=120
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Wand Additions
+	Addition Rarity=Inventory Item Rarity/3 Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

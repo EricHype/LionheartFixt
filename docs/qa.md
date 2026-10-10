@@ -1473,6 +1473,31 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## What the wand actually does
+
+Reported from play: a generated wand reading `(Could not evaluate expression)` and a raw
+`$i[damagebonus]` token. Two vanilla defects fixed -- the only such mis-sigilled token in all 286
+vanilla additions, and two descriptions that named the **target** where the mechanic affects the
+**wielder** (`$Instigator`). **No mechanics changed**; these wands always behaved correctly.
+
+**`WT4` is the row that matters most**, and it is a *restraint* check: the two Cure wands also say
+"target", and theirs is **correct** -- they heal `$trigger`. They were deliberately not reworded, and
+they are what proved the convention. If their text has changed, the reword was applied too broadly.
+
+**`WT5` is still broken on purpose.** The `(Could not evaluate expression)` half of the report is
+defect 3 and is parked -- nine wand additions print a skill *adjustment* where they mean a skill
+*level*. Expect to still see it.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| WT1 | Any `Poisonous Touch` wand -- buy, loot or generate one | Read its description | It reads **"do N points of poison damage"** with a real number, not a raw token. Note vanilla's own wording gives **"1 points"** on a roll of 1; that is left as-is |
+| WT2 | Any `Revelation` wand | Read its description | It says **"The wielder of this wand receives 60 skill points..."** -- not "the target" |
+| WT3 | Any `Poisonous Touch` wand | Read its description | It says **"All physical attacks done by the wielder of this wand..."** -- not "the target" |
+| WT4 | **The restraint row.** A `Cure Small Wounds` or `Cure Major Wounds` wand | Read its description | It **still says "the target of this wand is healed"**. That is correct for these two -- they heal `$trigger`, not the wielder. If it now says "wielder", the reword hit files it should not have |
+| WT5 | **Known, still broken.** Any Lightning, Fireball, Spikes, Slow, Poison Ring or Fire Circle wand on the ground or in a shop | Read its description | It may still read **`at skill level (Could not evaluate expression)`**, or a negative number if your skill in that spell is above the wand's level. **This is defect 3 and was deliberately not fixed in 0.52.2.** Do not report it as new |
+| WT6 | Fire a `Revelation` wand, then check your own character | Look at Find Traps/Secret Doors | **Your** skill went up by 60 for 30 seconds. This confirms the reworded text is the accurate one -- the mechanic was always the wielder |
+| WT7 | Hit something in melee while a `Poisonous Touch` wand is selected | - | **Your** strikes apply poison damage over time to what you hit. Again the wielder, as the new text says |
+
 ## Half as much shouting in a crowd
 
 Reported from play: the barks are good, and when surrounded by enemies there are far too many. A bark
@@ -1591,13 +1616,13 @@ play.
 | FI2 | **The row that matters.** Select `Fire and Ice` | Look at what you can cast with it | **Both Fireball and Ice Storm are available.** If only one appears, the two-wand-behaviour approach failed -- report it, because nothing in vanilla does this |
 | FI3 | Cast from it repeatedly | - | It has between **5 and 10** charges, and both spells draw on them. When they run out it stops casting |
 | FI4 | With it selected, check your resistances | - | Fire and cold resistance are each **15% higher**. Deselect it and they drop back |
-| FI5 | **The guard.** Take it to a character with a *high* Fireball or Ice Storm skill | Select it and check that skill | The skill is **not reduced**. Swarm's own top-up goes negative for a skilled caster; these were built with a guard so the bonus can never become a penalty. A drop here means the guard is not working |
+| FI5 | **The deviation, not a guard -- see the correction in `releases.md`.** Take it to a character with a *high* Fireball or Ice Storm skill | Select it and check that skill, then cast | The skill is **not reduced**, and that is now known to be a *departure* from vanilla rather than a fix. Nine vanilla wand additions deliberately **pin** the effective skill to the wand's level (`N - skill` under `ModifyCharacterWhenSelected`); these two top up only. So a strong caster gets more from these wands than from any other wand in the game. **Report whether that feels right**: the choice is to adopt the vanilla normaliser, or keep the buff and reword the descriptions, which currently say *at Skill level 10* |
 | FI6 | Obtain **`The Mage`** | Look at it | It is called *The Mage*, shows the lightning wand icon, and its description reads **4** skill points and **10%** resistances, both interpolated |
 | FI7 | **The judgement row.** Select `The Mage` on a caster and compare the character sheet before and after | - | **+4 to all twelve base magic skills** -- Thought's Defensive/Electrical/Fire/Ice, Tribal's Defensive/Domination/Summoning/Wounding, Divine's Defensive/Divine Favor/Fortitude/Smite. Then judge: is +48 across the board too strong for one wand? The comparison point is the Sceptre of Bone at +16 |
 | FI8 | Cast from `The Mage` | - | **Lightning Bolt five times and Fear five times**, each at a useful strength. Both should feel like skill 20 even on a character with no lightning or fear training |
 | FI9 | With `The Mage` selected, check resistances | - | Fire, cold **and** electrical are each 10% higher |
 | FI10 | Deselect both wands | - | Every bonus goes away cleanly. These are `Modification is permanent=0`, so nothing should stick -- a bonus that persists after deselecting is a real bug and worth reporting at once |
-| FI11 | **The regression.** Obtain `Swarm` | Select it and cast | Swarm works exactly as it did in 0.38.0 -- insect plague, ranged-damage resistance while charges remain. It was deliberately **not** modified, despite the top-up bug found in it |
+| FI11 | **The regression.** Obtain `Swarm` | Select it and cast | Swarm works exactly as it did in 0.38.0 -- insect plague, ranged-damage resistance while charges remain. It was deliberately **not** modified -- originally because of a "top-up bug" that, as corrected on 2026-10-09, **was never a bug**: its `30 - skill` pins the effective skill to 30 by design. Leaving it alone was right for the wrong reason |
 | FI12 | **The control.** Collect ordinary wands from the magic pool | - | The other 16 wands still appear and still work. Adding two entries must not have disturbed the pool -- `Array Count` went 16 to 18 |
 
 ## The English army's one-time self-buffs

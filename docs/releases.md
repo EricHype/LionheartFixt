@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.52.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.52.2 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,95 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.52.2 - what the wand actually does
+
+**Reported from play.** A generated wand -- *"wand of lightning bolts and revelations, poisonous
+touch"* -- whose description read, in part:
+
+```
+... as if using the thought spell lightning bolt at skill level (Could not evaluate expression)
+... all physical attacks done by the target of this wand do $i[damagebonus] points of poison damage
+```
+
+Three separate things were wrong, **all of them vanilla's, in files Fixt had never touched.** Two are
+fixed here. The third is recorded and parked.
+
+### Defect 1: the only `$i[` in the game
+
+`Poison Touch` writes one substitution token with a dollar sign where the one beside it uses a
+percent sign, which is exactly why the duration resolved to 120 and the damage printed as raw markup.
+A sweep of **all 286 vanilla `InventoryAddition` files** finds this is the **only** such token in any
+of them.
+
+The fix is one character. That was *asserted*, not assumed: the result is byte-compared against the
+vanilla file and the build requires **exactly one differing position** (offset 1838), with length and
+CRLF count unchanged.
+
+### Defect 2: the wand was describing the wrong person
+
+The description said the **target** receives the trapfinding bonus. It does not:
+
+```
+Secret Reveal:  Launch Action=CAddCharacterModifierToCharacterAction
+                    Character to modify=$Instigator        <- the WIELDER
+```
+
+**Every character modifier in all 18 wand additions targets `$Instigator`.** Not one targets anyone
+else. And the convention is pinned from inside the data rather than guessed: `Poison Touch` itself
+writes `Character Doing Damage=$instigator` beside `Character To Damage=$trigger`, so `$Instigator`
+is the wielder and `$trigger` is the target.
+
+| addition | text said | actually affects | verdict |
+|---|---|---|---|
+| `Secret Reveal` | "the target of this wand" | `$Instigator` -- the wielder | **reworded** |
+| `Poison Touch` | "done by the target of this wand" | the wielder's strikes poison `$trigger` | **reworded** |
+| `Cure Small Wounds` | "the target of this wand" | heals **`$trigger`** | **correct, untouched** |
+| `Cure Major Wounds` | "the target of this wand" | heals **`$trigger`** | **correct, untouched** |
+
+Nine wands in the same folder -- Fire Circle, both Fireballs, both Lightnings, Poison Ring, Slow,
+both Spikes -- already say *"the wielder of this wand"* for the identical mechanic. The two reworded
+descriptions now match them. **The two Cure wands are what proved the rule**, so leaving them is not
+caution, it is the finding.
+
+**This is why the wand read as nonsense.** It actually does three coherent things: casts Lightning
+Bolt at an enemy, gives *you* +60 Find Traps for 30 seconds when fired, and makes *your* melee
+strikes poison whatever you hit. An adventurer's tool, described as if you point it at someone to
+make them better at finding traps.
+
+**No mechanics changed in this release.** Both wands always behaved correctly.
+
+### Defect 3, recorded and NOT fixed: the skill level is printed as an adjustment
+
+Nine wand additions put a `skilllevel` token in their description, where `skilllevel` is `N - skill`
+read off the wielder via `CVariableSkill`. Two consequences:
+
+- With no character context to read, it renders **`(Could not evaluate expression)`** -- the first
+  half of the report.
+- Even when it evaluates it prints the **adjustment, not the level**. At skill 0 that equals `N` and
+  reads correctly, which is why it shipped. At skill 20 a level-5 wand would read *"at skill level
+  -15"*.
+
+The honest fix is to print each wand's level as a constant and let the normaliser keep doing the
+arithmetic -- nine vanilla description strings, no mechanical change. Held as a separate decision.
+
+### And a correction to 0.49.0
+
+Chasing this surfaced that **0.49.0's "latent bug in Swarm" was never a bug.** `30 - skill` sits in
+`CPlugInBehaviorModifyCharacterWhenSelected` with `Allow Accumulation=0`, so it pins the effective
+skill to exactly 30 -- a normaliser, and the shipped idiom in **nine** additions with constants 5,
+10, 15, 20 and 25. 0.49.0's guarded version is therefore a **deviation, not a repair**, and
+`Fire and Ice` and `The Mage` cast at the wielder's own skill where every other wand pins it. The
+0.49.0 section is corrected in place rather than deleted, and `FI5` now asks whether to adopt the
+normaliser or keep the buff and reword the text.
+
+### One thing left alone on purpose
+
+Every addition declares `Additions Cannot Be Combined With`, and **all 18 wand additions leave it
+empty** -- across all 286 additions only **22** populate it. So the machinery to stop incoherent
+pairings exists and was never applied to wands. That is a design choice rather than a defect, and
+constraining it would trade variety for coherence, which runs against this project's usual
+preference. Recorded, not acted on.
 
 ## 0.52.1 - the two barks that landed in the same place
 
@@ -504,23 +593,51 @@ anything unprecedented. The second wrong claim was that these had "nothing but t
 buildable all along from Swarm's shape, and what was actually missing was the **design decision**
 about the magnitude.
 
-### A latent bug in Swarm, found while copying it
+### CORRECTED 2026-10-09: what this release called a bug in Swarm is not one
 
-Swarm raises the player's skill with a bare subtraction:
+**This section originally claimed Swarm had a latent bug, and that claim was wrong.** It is left
+here corrected rather than deleted, because the mistake changed what was built.
+
+Swarm sets the skill with a bare subtraction:
 
 ```
 skilllevel = CCacheFirstResult( 30 - CVariableSkill(Insect Plague) )
 ```
 
-For a caster already above 30 that is **negative** -- the wand quietly *reduces* their skill. Both
-new wands guard it:
+0.49.0 read that as a bonus that goes negative and penalises a skilled caster. **It is a
+normaliser.** The modifier sits in `CPlugInBehaviorModifyCharacterWhenSelected` with
+`Allow Accumulation=0` and `Modification is permanent=0`, so while the wand is selected the player's
+skill becomes `skill + (30 - skill)` = **exactly 30**. Casting at a fixed level regardless of the
+wielder is the entire point of these wands, and their descriptions say so in words: *"as if using the
+Thought spell ... at skill level N"*.
+
+It is not an isolated shape either. **Nine vanilla wand additions use it** -- Fire Circle, Fireball
+Major and Minor, Lightning Major and Minor, Poison Ring, Slow, Spikes Minor and Swarm -- with
+constants 5, 10, 15, 20 and 25. A one-off would be suspicious; the shipped idiom is not.
+
+**The consequence for this release.** Both new wands were built with a guard:
 
 ```
 CIfExpression( skill < N ? (N - skill) : 0 )   wrapped in CCacheFirstResult
 ```
 
-**Swarm itself is untouched.** Changing a shipped 0.38.0 item is a separate decision from building
-two new ones, and it is recorded rather than quietly altered.
+That is **not** a repaired normaliser, it is a different mechanic: it tops the skill *up* to N and
+never pulls it down. So `Fire and Ice` and `The Mage` cast at the **wielder's own skill** when that
+is already above the wand's level, where every other wand in the game would pin it. That is a
+straight buff and it makes these two wands inconsistent with the other nine, and their own
+description text (*"at Skill level 10"*) understates what a strong caster gets.
+
+**Nothing has been changed in response yet.** Whether to adopt the vanilla normaliser, or keep the
+guard as a deliberate improvement and reword the descriptions, is a live decision -- see `FI5`.
+
+**Swarm itself remains untouched**, which was the right call for the wrong reason.
+
+### How the mistake was found
+
+A player reported a generated wand reading *"at skill level (Could not evaluate expression)"* and
+*"$i[damagebonus] points of poison damage"*. Both are vanilla defects in files Fixt has never
+touched, and chasing them surfaced the normaliser idiom -- which only reads as a bug if you look at
+the expression without looking at the plug-in behaviour that hosts it.
 
 ### What needs playing
 
