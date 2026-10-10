@@ -178,18 +178,79 @@ The three enchantments no pool listed sit in a `Special/` subfolder. **They are 
 `Swarm` was wired into the pool in **0.38.0** at weighting 5, matching `Rigor Mortis` -- the one other
 `5 Unique` already there, at value 6500 against Swarm's 7500.
 
-**The two shells were deliberately left out.** Putting a description-only item into the loot pool would
-ship a unique wand that does nothing, which is worse than leaving it unobtainable. `Fire and Ice`
-carrying **value 0** alongside 1,036 bytes of nothing is the giveaway: these were written as design
-intent and never built.
+### Built in 0.49.0 -- and two claims here were wrong
 
-Restoring them means **implementing them from their descriptions**, which is authoring rather than
-wiring, and it needs a judgement first: `Wand of Mage` as described -- +4 to every magic skill, in a
-game where the best single enchantment gives +8 to one skill -- would be the strongest item in
-Lionheart by a wide margin. That is a design decision, not a restoration.
+This section used to say the two shells were **deliberately left out** because restoring them "needs
+a judgement first: `Wand of Mage` as described -- +4 to every magic skill, in a game where the best
+single enchantment gives +8 to one skill -- would be the strongest item in Lionheart by a wide
+margin." **Both halves of that are wrong.**
 
-This is the same trap as the Templar helm, and worse. The helm at least had the correct *slot*; these
-have nothing but text.
+**The +8 ceiling does not exist.** Measured across every `.InventoryAddition` and `.InventoryItem`:
+
+| | bonus | to |
+|---|---|---|
+| `Spikes Major` | **+25** | `Magic Tribal/Offensive/Spike` |
+| `Undead Summoning` | +20 | `Raise Undead` |
+| `Wyrm`, `Book of Death` | +15 | `Flame Thrower`, `Magic Tribal/Summoning` |
+
+And for the **like-for-like** comparison -- a *base* (governing) magic skill rather than a single
+spell -- the closest analogue is an item this project already repaired:
+
+| | gives | total |
+|---|---|---|
+| `Book of Death` | +15 to one base skill | +15 |
+| **Sceptre of Bone** (fixed in 0.39.0) | **+2 to eight** base skills | **+16** |
+| **`The Mage` as described** | **+4 to twelve** base skills | **+48** |
+
+So `The Mage` is roughly **three times the Sceptre of Bone**, which is a defensible place for a
+`5 Unique` worth 10,000 -- the most expensive wand in the game -- and nothing like "the strongest item
+by a wide margin against a +8 ceiling." Shipped as described, at +4.
+
+**And "nothing but text" was wrong too.** Both were buildable from `Swarm`'s shape; what was actually
+missing was the **design decision** about `The Mage`'s magnitude, not a mechanism. There are **12**
+base magic skills -- four per category -- which is the number that makes the +4 meaningful:
+
+| category | base skills |
+|---|---|
+| Magic Thought | Defensive, Electrical, Fire, Ice |
+| Magic Tribal | Defensive, Domination, Summoning, Wounding |
+| Magic Divine | Defensive, Divine Favor, Fortitude, Smite |
+
+### What they are now
+
+| | implementation |
+|---|---|
+| **`Fire and Ice`** | **two** `CPlugInBehaviorWand` entries -- Fireball *and* Ice Storm, 5-10 shared charges -- plus +15% fire and cold resistance. Value was **0**; now 8,500, the midpoint of its own already-written 5,000 / 8,500 / 12,000 band |
+| **`The Mage`** | Lightning Bolt x5 and Fear x5 as two wand behaviours, **+4 to all twelve base magic skills**, and +10% fire, cold and electrical resistance. Value stays 10,000 |
+
+Both are in `Wand selection MAGIC` at **weighting 5**, matching Swarm; the pool is now
+`Array Count=18`.
+
+**A two-spell wand has no vanilla precedent** -- all 16 implemented wands cast exactly one spell, and
+no single spell in the game deals both fire and cold, so "at the same time in the same place" could
+not come from an existing skill. The plugin array demonstrably holds multiple plugins (Swarm carries
+two of different types), so two wand behaviours is the only route that delivers the text without
+authoring a 93rd `.Skill` -- which is the structural risk `EH5` exists for. `FI2` is the row that
+checks both spells actually surface.
+
+### A latent bug in Swarm, found while copying it
+
+Swarm tops the player's skill up with a bare subtraction:
+
+```
+skilllevel = CCacheFirstResult( 30 - CVariableSkill(Insect Plague) )
+```
+
+For a player whose Insect Plague is already above 30 that is **negative**, so the wand quietly
+*reduces* a real caster's skill. Both new wands guard it instead -- lift the player to the stated
+level only if they are below it, otherwise zero:
+
+```
+CIfExpression( skill < N ? (N - skill) : 0 )   wrapped in CCacheFirstResult
+```
+
+**Swarm itself is left alone for now**, since changing a shipped 0.38.0 item is a separate decision
+from building two new ones. Recorded here so it is not lost.
 
 ## Wands as a system
 
@@ -560,7 +621,7 @@ against vanilla. Two entries this list used to carry turned out to be shipped an
 
 | | refs | |
 |---|---|---|
-| wands `Fire and Ice` and `Mage` | 2 each | their own `.can` plus `QA Magic Items.zax`. They have descriptions and no implementation, so these are built from their text rather than wired |
+| ~~wands `Fire and Ice` and `Mage`~~ | -- | **built in 0.49.0** from `Swarm`'s shape, and pooled at weighting 5 |
 
 **Open and real, but awkward:**
 

@@ -1,0 +1,397 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorWand
+		{
+			Spell=Skills/Magic Thought/Offensive/Lightning Bolt
+			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			{
+				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+				Expression Name=boltcharges
+				Value=0
+			}
+			Charges Remaining Is Valid=0
+			Charges Remaining=0
+		}
+		PlugIn Behavior=CPlugInBehaviorWand
+		{
+			Spell=Skills/Magic Tribal/Offensive/Fear
+			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			{
+				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+				Expression Name=fearcharges
+				Value=0
+			}
+			Charges Remaining Is Valid=0
+			Charges Remaining=0
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=17
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Defensive
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Electrical
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Fire
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Ice
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Tribal/Defensive
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Tribal/Domination
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Tribal/Summoning
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Tribal/Wounding
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Divine/Defensive
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Divine/Divine Favor
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Divine/Fortitude
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=skillbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Divine/Smite
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=bolttopup
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Offensive/Lightning Bolt
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=feartopup
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Tribal/Offensive/Fear
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=resistancebonus
+						Value=0
+					}
+					Modification amount is a percent=1
+					Allow Accumulation=0
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Fire Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=resistancebonus
+						Value=0
+					}
+					Modification amount is a percent=1
+					Allow Accumulation=0
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Cold Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
+						Expression Name=resistancebonus
+						Value=0
+					}
+					Modification amount is a percent=1
+					Allow Accumulation=0
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Electrical Damage Resistance
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=10000
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wands/WandLightning
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=The Mage
+	Description=This will give %i[skillbonus] skill points in all base magic skills that the player possesses in all 3 spell categories.  In addition, the item gives the player the ability to cast Lightning Bolt 5 times (at skill level 20), Fear 5 times (at skill level 20) and confers %i[resistancebonus]% Fire, Cold and Electrical Resistances.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/WandLightning
+	Minimum Value=10000
+	Minimum Addition Ammount=0
+	Inbetween Value=10000
+	Inbetween Addition Ammount=0
+	Maximum Value=10000
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=6
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=boltcharges
+				Expression=CConstant
+				{
+					Constant Value=5
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=fearcharges
+				Expression=CConstant
+				{
+					Constant Value=5
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=skillbonus
+				Expression=CConstant
+				{
+					Constant Value=4
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=bolttopup
+				Expression=CCacheFirstResult
+				{
+					Operand1=CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Thought/Offensive/Lightning Bolt
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=20
+							}
+						}
+						OperatorPart1=
+						Value if True =CSubtract
+						{
+							Operand1=CConstant
+							{
+								Constant Value=20
+							}
+							Operator=
+							Operand2=CVariableSkill
+							{
+								Skill=Skills/Magic Thought/Offensive/Lightning Bolt
+							}
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=0
+						}
+					}
+					Has Been Evaluated=0
+					Cached Value=0
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=feartopup
+				Expression=CCacheFirstResult
+				{
+					Operand1=CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Fear
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=20
+							}
+						}
+						OperatorPart1=
+						Value if True =CSubtract
+						{
+							Operand1=CConstant
+							{
+								Constant Value=20
+							}
+							Operator=
+							Operand2=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Fear
+							}
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=0
+						}
+					}
+					Has Been Evaluated=0
+					Cached Value=0
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=resistancebonus
+				Expression=CConstant
+				{
+					Constant Value=10
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/!None
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

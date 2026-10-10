@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.48.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.49.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,105 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.49.0 - the two wands that were only a description
+
+`Wands/Special/` holds three `5 Unique` enchantments. **Only one of them was ever finished.**
+
+| | bytes | behaviours | value | state |
+|---|---|---|---|---|
+| `Swarm` | 3,337 | 2 | 7,500 | **complete** -- wired into the pool in 0.38.0 |
+| `Fire and Ice` | 1,036 | **0** | **0** | name, icon, rarity, and a paragraph of text |
+| `Mage` | 1,161 | **0** | 10,000 | the same |
+
+A name, an icon, a rarity and a description of exactly what the thing should do, sitting above
+`PlugIn Behaviors=Array { Item Count=0 }`. `Fire and Ice` carrying **value 0** is the giveaway.
+
+### Built from Swarm's own shape
+
+Swarm is the reference and it is an elegant one: a `CPlugInBehaviorWand` for the castable, a
+`CPlugInBehaviorModifyCharacterWhenSelected` for the passives, and a `CNamedExpressionsArray` whose
+values are **interpolated into the description** (`%i[resistancebonus]`), so the text and the
+implementation cannot drift apart. Both new wands follow it.
+
+**`Fire and Ice`** -- *"cast Fireball at Skill level 10 and Ice Storm at Skill level 10 at the same
+time in the same place. It also confers 15% Fire and Cold Resistance."*
+
+| | |
+|---|---|
+| behaviours | **two** `CPlugInBehaviorWand` -- Fireball *and* Ice Storm -- on 5-10 shared charges |
+| passives | +15% Fire Damage Resistance, +15% Cold Damage Resistance |
+| value | was **0**, now **8,500** -- the midpoint of its own already-written 5,000 / 8,500 / 12,000 band |
+
+**A two-spell wand has no vanilla precedent.** All 16 implemented wands cast exactly one spell, and
+**no single spell in the game deals both fire and cold**, so "at the same time in the same place"
+could not come from an existing skill. The plugin array demonstrably holds multiple plugins -- Swarm
+carries two of different types -- so two wand behaviours is the only route to the item's own text
+short of authoring a 93rd `.Skill`, which is the structural risk `EH5` exists for. **`FI2` is the row
+that checks both spells actually surface.**
+
+**`The Mage`** -- *"4 skill points in all base magic skills that the player possesses in all 3 spell
+categories... Lightning Bolt 5 times (at skill level 20), Fear 5 times (at skill level 20) and 10%
+Fire, Cold and Electrical Resistances."*
+
+| | |
+|---|---|
+| behaviours | Lightning Bolt x5, Fear x5 |
+| skills | **+4 to all twelve base magic skills** |
+| passives | +10% Fire, Cold and Electrical Resistance |
+| value | 10,000, unchanged -- the most expensive wand in the game |
+
+There are **12** base magic skills, four per category: Thought's Defensive / Electrical / Fire / Ice,
+Tribal's Defensive / Domination / Summoning / Wounding, Divine's Defensive / Divine Favor / Fortitude
+/ Smite. That is the number that makes +4 add up to +48.
+
+Both sit in `Wand selection MAGIC` at **weighting 5**, matching Swarm. The pool is now
+`Array Count=18`.
+
+### Two claims in this project's own survey were wrong
+
+This section used to justify leaving the shells out: *"`Wand of Mage` as described -- +4 to every
+magic skill, in a game where the best single enchantment gives +8 to one skill -- would be the
+strongest item in Lionheart by a wide margin."*
+
+**There is no +8 ceiling.** `Spikes Major` gives **+25** to a spell skill, `Undead Summoning` +20,
+`Wyrm` and `Book of Death` +15. And the honest **like-for-like** -- a *base* governing skill rather
+than a single spell -- is an item this project already repaired:
+
+| | gives | total |
+|---|---|---|
+| `Book of Death` | +15 to one base skill | +15 |
+| **Sceptre of Bone** (fixed in 0.39.0) | **+2 to eight** base skills | **+16** |
+| **`The Mage`** | **+4 to twelve** base skills | **+48** |
+
+So about **three times a quest artifact**, on the most expensive wand in the game, rather than
+anything unprecedented. The second wrong claim was that these had "nothing but text": they were
+buildable all along from Swarm's shape, and what was actually missing was the **design decision**
+about the magnitude.
+
+### A latent bug in Swarm, found while copying it
+
+Swarm raises the player's skill with a bare subtraction:
+
+```
+skilllevel = CCacheFirstResult( 30 - CVariableSkill(Insect Plague) )
+```
+
+For a caster already above 30 that is **negative** -- the wand quietly *reduces* their skill. Both
+new wands guard it:
+
+```
+CIfExpression( skill < N ? (N - skill) : 0 )   wrapped in CCacheFirstResult
+```
+
+**Swarm itself is untouched.** Changing a shipped 0.38.0 item is a separate decision from building
+two new ones, and it is recorded rather than quietly altered.
+
+### What needs playing
+
+`FI1`-`FI12` in [`qa.md`](qa.md). **`FI2` proves the harder half** -- `Fire and Ice` must offer
+*both* spells, which nothing in vanilla does. **`FI7`** is the one that decides whether `The Mage`
+at +4 x 12 is right or needs scaling back, and **`FI11`** is the regression that Swarm still works.
 
 ## 0.48.0 - the English army fights back
 

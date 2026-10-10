@@ -1,0 +1,233 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorWand
+		{
+			Spell=Skills/Magic Thought/Offensive/Fireball
+			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			{
+				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
+				Expression Name=numberofcharges
+				Value=0
+			}
+			Charges Remaining Is Valid=0
+			Charges Remaining=0
+		}
+		PlugIn Behavior=CPlugInBehaviorWand
+		{
+			Spell=Skills/Magic Thought/Offensive/Ice Storm
+			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			{
+				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
+				Expression Name=numberofcharges
+				Value=0
+			}
+			Charges Remaining Is Valid=0
+			Charges Remaining=0
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=4
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
+						Expression Name=fireballtopup
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Offensive/Fireball
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
+						Expression Name=icestormtopup
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Offensive/Ice Storm
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
+						Expression Name=resistancebonus
+						Value=0
+					}
+					Modification amount is a percent=1
+					Allow Accumulation=0
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Fire Damage Resistance
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
+						Expression Name=resistancebonus
+						Value=0
+					}
+					Modification amount is a percent=1
+					Allow Accumulation=0
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Cold Damage Resistance
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=8500
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wands/RodFireCircle
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Fire and Ice
+	Description=This wand has the ability to cast Fireball at Skill level 10 and Ice Storm at Skill level 10 at the same time in the same place.  It also confers %i[resistancebonus]% Fire and Cold Resistance.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/WandFireCircle
+	Minimum Value=5000
+	Minimum Addition Ammount=0
+	Inbetween Value=8500
+	Inbetween Addition Ammount=0
+	Maximum Value=12000
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=4
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=numberofcharges
+				Expression=CRandom
+				{
+					Operator=
+					Minimum=CConstant
+					{
+						Constant Value=5
+					}
+					Maximum=CConstant
+					{
+						Constant Value=10
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=fireballtopup
+				Expression=CCacheFirstResult
+				{
+					Operand1=CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Thought/Offensive/Fireball
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=10
+							}
+						}
+						OperatorPart1=
+						Value if True =CSubtract
+						{
+							Operand1=CConstant
+							{
+								Constant Value=10
+							}
+							Operator=
+							Operand2=CVariableSkill
+							{
+								Skill=Skills/Magic Thought/Offensive/Fireball
+							}
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=0
+						}
+					}
+					Has Been Evaluated=0
+					Cached Value=0
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=icestormtopup
+				Expression=CCacheFirstResult
+				{
+					Operand1=CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Thought/Offensive/Ice Storm
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=10
+							}
+						}
+						OperatorPart1=
+						Value if True =CSubtract
+						{
+							Operand1=CConstant
+							{
+								Constant Value=10
+							}
+							Operator=
+							Operand2=CVariableSkill
+							{
+								Skill=Skills/Magic Thought/Offensive/Ice Storm
+							}
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=0
+						}
+					}
+					Has Been Evaluated=0
+					Cached Value=0
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=resistancebonus
+				Expression=CConstant
+				{
+					Constant Value=15
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/!None
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

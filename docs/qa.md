@@ -1473,6 +1473,40 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The two wands that were only a description
+
+`Fire and Ice` and `The Mage` shipped as a name, an icon, a `5 Unique` rarity and a paragraph of
+text above an empty behaviour array. Both are now built from `Swarm`'s shape and pooled at weighting
+5 beside it.
+
+**Getting hold of them is the hard part of testing this.** They are `5 Unique` at weighting 5 in a
+pool of 18, so they are rare by design. The **Playtest Kit** is the sane way to test these -- toggle
+it on with `playtest_kit.py on`, and **remember to turn it off again**.
+
+**`FI2` proves the harder half.** No wand in vanilla casts two spells, so `Fire and Ice` offering
+both Fireball *and* Ice Storm is the one genuinely unprecedented thing here. If only one spell
+appears, the two-behaviour approach does not work and that wand needs rebuilding around a single
+spell.
+
+**`FI7` is a judgement row, not a pass/fail.** `The Mage` at +4 across twelve base skills is +48
+total, against the Sceptre of Bone's +16. That was chosen deliberately and has never been felt in
+play.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| FI1 | Obtain **`Fire and Ice`** (kit, or a magic wand drop) | Look at it in the inventory | It is called *Fire and Ice*, is magical, shows the fire-circle wand icon, and its description reads **15%** fire and cold resistance -- the number is interpolated from the implementation, so if it shows a placeholder or a zero the expression is not resolving |
+| FI2 | **The row that matters.** Select `Fire and Ice` | Look at what you can cast with it | **Both Fireball and Ice Storm are available.** If only one appears, the two-wand-behaviour approach failed -- report it, because nothing in vanilla does this |
+| FI3 | Cast from it repeatedly | - | It has between **5 and 10** charges, and both spells draw on them. When they run out it stops casting |
+| FI4 | With it selected, check your resistances | - | Fire and cold resistance are each **15% higher**. Deselect it and they drop back |
+| FI5 | **The guard.** Take it to a character with a *high* Fireball or Ice Storm skill | Select it and check that skill | The skill is **not reduced**. Swarm's own top-up goes negative for a skilled caster; these were built with a guard so the bonus can never become a penalty. A drop here means the guard is not working |
+| FI6 | Obtain **`The Mage`** | Look at it | It is called *The Mage*, shows the lightning wand icon, and its description reads **4** skill points and **10%** resistances, both interpolated |
+| FI7 | **The judgement row.** Select `The Mage` on a caster and compare the character sheet before and after | - | **+4 to all twelve base magic skills** -- Thought's Defensive/Electrical/Fire/Ice, Tribal's Defensive/Domination/Summoning/Wounding, Divine's Defensive/Divine Favor/Fortitude/Smite. Then judge: is +48 across the board too strong for one wand? The comparison point is the Sceptre of Bone at +16 |
+| FI8 | Cast from `The Mage` | - | **Lightning Bolt five times and Fear five times**, each at a useful strength. Both should feel like skill 20 even on a character with no lightning or fear training |
+| FI9 | With `The Mage` selected, check resistances | - | Fire, cold **and** electrical are each 10% higher |
+| FI10 | Deselect both wands | - | Every bonus goes away cleanly. These are `Modification is permanent=0`, so nothing should stick -- a bonus that persists after deselecting is a real bug and worth reporting at once |
+| FI11 | **The regression.** Obtain `Swarm` | Select it and cast | Swarm works exactly as it did in 0.38.0 -- insect plague, ranged-damage resistance while charges remain. It was deliberately **not** modified, despite the top-up bug found in it |
+| FI12 | **The control.** Collect ordinary wands from the magic pool | - | The other 16 wands still appear and still work. Adding two entries must not have disturbed the pool -- `Array Count` went 16 to 18 |
+
 ## The English army's one-time self-buffs
 
 Seven buffs across **36** cans, one per archetype, all hanging off `Damaged Script Action` so each
