@@ -615,7 +615,7 @@ against vanilla. Two entries this list used to carry turned out to be shipped an
 | **`Goblin Slayer`** | **0** | `Goblin Kill Counter.DerivedCharacterAttribute` is live and **7 maps write to it**. The perk exists with `Display Name=Goblin Slayer` and **no actions at all** -- a title granted by nothing. This is a threshold read away. **The trap:** `Bounty Hunter Camp.zax` looks like it references the perk, but the match is an entity named `Goblin Slayer Xp Giver` -- a substring collision, not a grant |
 | **The three `FACTION * Killer` perks** | **0** each | Their display names are already written and good: *"Enemy of the Inquisition"*, *"Enemy of the Knights Templar"*, *"Enemy of the Wielders"*. A shipped pattern with a working quarter as reference. Needs a decision about where detection lives -- a per-member death slot rather than a map trigger -- but invents nothing |
 | ~~`Inquisitor Feralkin Journal`~~ | -- | **done in 0.50.0** -- added to Weng Choi's rotation as its 11th book, to his rare-book check as its 10th, and noticed by an inquisitor |
-| `Bolt selection MAGIC` | **0** | the last loose end in the magic pipeline. `Boot`, `Gauntlet`, `Necklace` and `Arrow selection MAGIC` each resolve from exactly **one** map, so only `Bolt` is truly adrift |
+| ~~`Bolt selection MAGIC`~~ | -- | **done in 0.51.0.** And the diagnosis was too narrow: `All Arrows and Bolts.can`, which **38 maps** use for ammunition loot, yielded only *mundane* ammunition, so `Arrow selection MAGIC` at one map was barely better off. Both are now in that aggregate at weighting 6 and 4 |
 
 **Reachable only from a test map:**
 

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.50.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.51.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,72 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.51.0 - magic ammunition that could never drop
+
+Two loot pools, `Arrow selection MAGIC` and `Bolt selection MAGIC`, are **exact twins**:
+
+| | both pools |
+|---|---|
+| base item | `Inventory Items/Arrow` / `Inventory Items/Bolt` at weighting 10 |
+| enchantments | Acid **5**, Cold **5**, Extra Chance to Hit **20**, Extra Damage **20**, Fire **5**, Poison **5** |
+| `Chance Has Additional Magic` | **1** -- anything drawn from them is *always* enchanted |
+
+| pool | referenced by |
+|---|---|
+| `Arrow selection MAGIC` | `01 Sewer Main Entrance.zax`, and nothing else |
+| **`Bolt selection MAGIC`** | **nothing at all** |
+
+So enchanted bolts could never drop anywhere in the game, and enchanted arrows only in a single
+sewer entrance.
+
+### The aggregate was the real find
+
+This was logged as "the last loose end in the magic pipeline" -- one unreferenced file. **The
+diagnosis was too narrow.** The file those pools should feed is `All Arrows and Bolts.can`, and
+**38 maps draw on it** for ammunition loot. It contained only this:
+
+| | weighting |
+|---|---|
+| `Inventory Items/Arrow` -- plain | 60 |
+| `Inventory Items/Bolt` -- plain | 40 |
+
+Mundane ammunition, and nothing else, with the two complete magic pools sitting beside it connected
+to nothing. **Repairing only `Bolt` would have left both of them effectively dead**, which is why
+the asymmetry was worth fixing rather than matching.
+
+### What it is now
+
+| `All Arrows and Bolts.can` | weighting |
+|---|---|
+| plain Arrow | 60 |
+| plain Bolt | 40 |
+| **`Arrow selection MAGIC`** | **6** |
+| **`Bolt selection MAGIC`** | **4** |
+
+About **9%** of ammunition drops are enchanted. Because the pools are always-magic, that weighting
+is the *only* thing setting the rate -- a single number to turn if it reads too generous or too mean.
+The Sewers generator that offered only magic arrows now offers either, so the twins are symmetrical
+there too (`Array Count` 1 -> 2).
+
+**This is the broadest-reach change in the 0.45-0.51 run.** Everything else touched one encounter,
+one item or one conversation; this touches a file that 38 maps draw on, so what it alters is the loot
+economy rather than a scene. `AM5` is the control row for exactly that: ordinary chests must still
+give ordinary arrows most of the time.
+
+### Method
+
+Both inserts went into the middle of existing arrays, which is the splice this project has got wrong
+before. Both were done by **cloning a verified shipped entry and repointing one field** -- the
+`CInventoryItemGeneratorCannedList` block was lifted from `Magic Equipment HIGH Mojo.can` -- and both
+files were asserted to round-trip byte-identical through `resource_format` afterwards. See
+[`clone a sibling to splice an array`](unused-content.md).
+
+### What needs playing
+
+`AM1`-`AM8` in [`qa.md`](qa.md). **`AM2` proves the release** -- an enchanted bolt has to actually
+appear. **`AM5` is the control** on the loot economy, and **`AM8`** is the judgement row on whether
+9% feels right.
 
 ## 0.50.0 - the book nobody could find
 

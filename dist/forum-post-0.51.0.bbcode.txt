@@ -1,0 +1,72 @@
+[size=150][b]Lionheart Fixt 0.51.0 - magic ammunition that could never drop[/b][/size]
+
+This game has six enchantments for arrows and bolts: acid, cold, fire, poison, extra damage, and a
+better chance to hit. They're fully implemented. They work.
+
+[b]Enchanted bolts have never dropped anywhere in Lionheart.[/b] Enchanted arrows drop in exactly one
+place: a single sewer entrance.
+
+[b]Two identical pools, both orphaned[/b]
+
+There's a loot pool for magic arrows and another for magic bolts, and they're twins — the same base
+ammunition drawn against the same six enchantments at the same odds. The arrow pool is used by one
+map. The bolt pool is used by nothing whatsoever.
+
+[b]But the real problem was somewhere else[/b]
+
+I'd written this down as "the last loose end" — one unreferenced file, a quick fix.
+
+[b]That was too narrow.[/b] The file those two pools are supposed to feed is the one that handles
+ammunition loot for [b]thirty-eight maps[/b]. And it contained only this:
+
+| | how often |
+|---|---|
+| a plain arrow | 60 |
+| a plain bolt | 40 |
+
+Ordinary ammunition and nothing else, with two complete magic pools sitting right beside it, wired to
+nothing at all. Fixing just the bolt pool would have left *both* of them effectively dead — the arrow
+pool at one map in two hundred is barely better than zero.
+
+[b]What it is now[/b]
+
+| | how often |
+|---|---|
+| a plain arrow | 60 |
+| a plain bolt | 40 |
+| [b]an enchanted arrow[/b] | [b]6[/b] |
+| [b]an enchanted bolt[/b] | [b]4[/b] |
+
+So about [b]one ammunition drop in eleven[/b] is now enchanted. The pools always add an enchantment
+rather than sometimes doing so, which means that weighting is the *only* thing setting the rate — if
+it turns out too generous or too stingy, it's one number to change.
+
+The sewer generator that used to give only magic arrows now gives either, so the twins match there
+too.
+
+[b]Fair warning: this one reaches further than the rest[/b]
+
+Everything else in the recent run of releases touched one encounter, one item, or one conversation.
+[b]This touches a file that thirty-eight maps draw on.[/b] What it changes is the loot economy, not a
+scene.
+
+So the question I care about isn't "do magic bolts appear" — it's [b]"do ordinary arrows still turn up
+as often as they used to"[/b]. If most of your ammunition is suddenly enchanted, the number's wrong and
+I want to know.
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+Works on [b]any save[/b].
+
+[b]If you play it[/b]
+
+[b]The check that proves it:[/b] collect ammunition for a while and see an enchanted bolt. That's a
+thing this game has never produced.
+
+[b]The check that matters more:[/b] keep an eye on whether plain arrows and bolts are still the normal
+case. Roughly ten in eleven should be ordinary.
+
+[b]And the judgement call:[/b] after a few hours, does one in eleven feel right? Too many and elemental
+ammunition stops being interesting; too few and these six enchantments stay as good as missing.

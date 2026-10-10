@@ -1473,6 +1473,33 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Magic ammunition that could never drop
+
+`Arrow selection MAGIC` and `Bolt selection MAGIC` are exact twins -- same base item, same six
+enchantments at identical weightings. Arrow's was referenced by one map; **Bolt's by nothing**. And
+`All Arrows and Bolts.can`, which **38 maps** use for ammunition loot, produced only *mundane*
+ammunition. Both pools are now in that aggregate at weighting **6** and **4** against the mundane
+**60** and **40** -- roughly **9%** of ammunition drops enchanted.
+
+**`AM5` is the control row and it matters more than usual.** This is the broadest-reach change in the
+0.45-0.51 run: everything else touched one encounter, one item or one conversation, and this touches a
+file that 38 maps draw on. What it alters is the **loot economy**, so the important question is not
+"does magic ammunition appear" but "does ordinary ammunition still appear as often as it did".
+
+**`AM8` is a judgement row.** 9% was chosen on paper. Because the pools are `Chance Has Additional
+Magic=1`, that weighting is the only thing setting the rate, so it is a single number to turn.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AM1 | Anywhere with chests or ammunition drops | Collect ammunition over a normal play session | Arrows and bolts drop as they always did. Most are plain |
+| AM2 | **The row that proves it.** Keep collecting ammunition | Watch for an enchanted one | **An enchanted bolt appears** -- Acid, Cold, Extra Chance to Hit, Extra Damage, Fire or Poison. Before this release enchanted bolts could not drop anywhere in the game |
+| AM3 | Same, for arrows | - | Enchanted **arrows** appear too, outside the Sewers. They were previously reachable from one map in two hundred |
+| AM4 | Equip an enchanted bolt in a crossbow and shoot something | - | The enchantment does what it says -- extra damage, a better chance to hit, or elemental damage of the right type. These additions are vanilla's own and were always implemented; only the route to them was missing |
+| AM5 | **The control, and the one that matters most.** Play normally and pay attention to ammunition | - | **Ordinary arrows and bolts are still the common case** -- roughly ten of eleven. If most ammunition is suddenly magical, the weighting is wrong and should come down. This file is used by 38 maps, so a mistake here is felt everywhere |
+| AM6 | The Sewers, `01 Sewer Main Entrance` | Trigger the generator that used to give magic arrows | It now gives **either** magic arrows or magic bolts. It is the one place that always gave enchanted ammunition and should still do so |
+| AM7 | Check nothing else in loot shifted | Open ordinary chests across a couple of areas | Weapons, armour, potions and scrolls are unchanged. Only the ammunition aggregate was touched |
+| AM8 | **The judgement row.** After a few hours of play | - | Does roughly one ammunition drop in eleven being enchanted feel right? Too generous makes elemental ammunition unremarkable; too mean leaves these six enchantments as rare as they effectively were. The fix either way is one weighting |
+
 ## The book nobody could find
 
 `Inquisitor Feralkin Journal` was the only one of the twelve books in `Quest Items/Books/` obtainable

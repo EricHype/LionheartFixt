@@ -1,0 +1,59 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorMixedList
+	{
+		Items=Array
+		{
+			Array Count=4
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=60
+				Item=CInventoryItemGeneratorBasic
+				{
+					Items=Array
+					{
+						Array Count=1
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Arrow
+						}
+					}
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=40
+				Item=CInventoryItemGeneratorBasic
+				{
+					Items=Array
+					{
+						Array Count=1
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Bolt
+						}
+					}
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=6
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Generator Combinations/Misc Items/Arrow selection MAGIC
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=4
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Generator Combinations/Misc Items/Bolt selection MAGIC
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}
