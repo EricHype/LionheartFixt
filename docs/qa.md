@@ -1473,6 +1473,42 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The English army's one-time self-buffs
+
+Seven buffs across **36** cans, one per archetype, all hanging off `Damaged Script Action` so each
+fires when the creature is hit. Every one is **timed** (15-20s) rather than permanent, and fires
+**once per creature** through the same `CSeriesAction` mimic as 0.34.0's draughts.
+
+**`BF2` proves the release** -- a buff has to visibly happen. **`BF14` is the regression**: the 12
+cans that already carry the healing draught must still heal and must **not** have gained a buff.
+
+**What is no longer in question.** `PO2` used to be the row that decided whether this whole mechanism
+worked, because the one-shot depends on `CSeriesAction`'s index being per-instance. That is now
+settled by decompilation -- the index is a field at offset `0x14` inside the object -- and by
+vanilla shipping the identical idiom in monster cans, where `Snakebreed Summoner` and four others run
+one-shot summon sequences that would fire only for the first creature ever spawned if the index were
+shared. **So a repeat-firing buff here is a build error on my side, not a wrong assumption about the
+engine**, and worth reporting as such.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| BF1 | Act 6 or 7, find ordinary English infantry (`Soldier1`) | Hit one once, then watch it | A visual effect plays over it, and it becomes **more durable** than its unhit companions for about 20 seconds |
+| BF2 | **The row that proves it.** Any of the seven archetypes | Hit it and watch for the effect over its head | **Something visibly happens.** If no effect ever plays on any archetype, the hook is not firing and nothing else in this section is testable |
+| BF3 | `Soldier1` again | Keep hitting the same one well past 20 seconds | The buff **does not re-apply**. One per creature, ever |
+| BF4 | Swordsmen / axemen (`Soldier2`, `Soldier2 Axe`) | Wound one to **below half health** | Only *then* does it buff -- it should hit noticeably harder and faster afterwards, not from the first blow |
+| BF5 | Same, but kill one quickly from full health | - | It **never** buffs. The trigger is a health threshold, so a fast kill should skip it entirely |
+| BF6 | English archers (`Soldier2 Bow`) | Hit one once, then back off and let it shoot | It fires **faster** and should hit more often. This is the one buff whose effect is easiest to misread -- watch the rate, not the damage |
+| BF7 | English priests or priestesses | Hit one once, then let it cast | It casts **faster**. Compare against an unhit one beside it if you can |
+| BF8 | War golems -- fire, cold or electricity | Wound one below 40% | It buffs, and the effect differs by element: venting, riming, arcing |
+| BF9 | **The element check.** Bring the matching damage type to a golem -- fire against a fire golem | Wound it below 40%, then keep using that element | It gets **harder to hurt with its own element specifically**, not with everything. If all three golems feel identical, the per-element resistance is not landing |
+| BF10 | Fight a mixed English group | - | Buffs fire **independently per creature**. One soldier bracing must not brace the others, and must not consume their one-shot |
+| BF11 | **The timing.** Trigger a buff, then disengage and wait ~30 seconds | Re-engage | The buff has **expired**. These are windows, not permanent upgrades. If it never wears off, the duration is not being applied |
+| BF12 | Any buffed creature | Let it buff, then check it is not healing | These 36 cans buff and do **not** heal. Healing belongs to the 12 veteran cans only |
+| BF13 | The two excluded cans | Find `Priest Near Death` and a deactivated war golem | Neither buffs. Both were deliberately left out |
+| BF14 | **The regression.** Find a veteran soldier from 0.34.0 (`Soldier3` / `Soldier4` lines) | Wound it to 40% health | **It still drinks and heals, exactly as in 0.34.0, and gains no buff.** Those 12 cans were meant to be untouched by this release |
+| BF15 | **The control.** Fight any non-English enemy -- goblins, undead, thugs | - | Nothing changed anywhere outside the English army |
+| BF16 | Judge the **feel**, which no check settles | Fight several English groups | Does the army read as reacting to you, or as arbitrarily getting stronger? The two trigger styles were chosen so stiffening-on-contact and escalating-near-death feel different. If they are indistinguishable in play, the triggers want rethinking rather than the numbers |
+
 ## The five titles nothing awarded
 
 Five finished title perks that the shipped game grants to nobody, now granted -- and answered. The
@@ -2157,7 +2193,7 @@ layers.
 | # | Step | Say | Expect |
 |---|---|---|---|
 | CT1 | **The row this exists for.** Fight a thief or assassin, wound it once, then watch the ground | - | A **visible patch appears at its feet**. Walk into it: you take Piercing damage and the patch disappears. Nothing in Lionheart has ever had an enemy place a hazard before |
-| CT2 | Wound the same enemy repeatedly | - | **One patch only.** If it scatters caltrops every time it is hit, the `CSeriesAction` one-shot is not holding and this needs rethinking -- the same failure `PO2` watches for |
+| CT2 | Wound the same enemy repeatedly | - | **One patch only.** If it scatters caltrops every time it is hit, the `CSeriesAction` one-shot is not holding -- the same failure `PO2` watches for, now backed by decompilation showing the index is per-instance, so a failure here would be a build error rather than a wrong assumption |
 | CT3 | **The safety row.** Lure *other enemies* across a patch | - | **They are unharmed.** Only `Triggered By Players` is set. If an enemy triggers it, the trigger flags are wrong |
 | CT4 | Take a **companion** across a patch | - | **Unharmed.** Companions and player friends are both 0. This matters more than CT3 -- a trap that kills Fernand would be a serious fault |
 | CT5 | Walk around a patch rather than through it | - | **Nothing happens.** It is avoidable, and that is the design -- if patches land where you cannot avoid them, say where |
@@ -2237,7 +2273,7 @@ the only textual difference is the hurt slot itself.
 | # | Step | Say | Expect |
 |---|---|---|---|
 | PO1 | **The row this exists for.** Fight a `Soldier4 Super` (act 6 sieges, act 3 Montaillou, act 7). Take it below **40%** health without killing it | - | It **heals once**, about **72 HP**, with a visible `Divine Strength` flash. Then never again, however long the fight runs |
-| PO2 | Keep fighting the same soldier after it has drunk | - | **No second draught.** One per soldier, per spawn. If it drinks repeatedly, `CSeriesAction`'s index is not per-instance and this whole mechanism needs rethinking -- report it immediately |
+| PO2 | Keep fighting the same soldier after it has drunk | - | **No second draught.** One per soldier, per spawn. **No longer a structural unknown:** decompilation puts `Next Action Index` at offset `0x14` *inside* the `CSeriesAction` object, and vanilla ships the same one-shot idiom in monster cans -- `Snakebreed Summoner` and four others run a one-shot summon sequence that would only ever fire for the first creature spawned if the index were shared. This is now an ordinary confirmation row |
 | PO3 | Hit a soldier **once** for light damage, well above 40% | - | **Nothing.** It does not waste the draught on a scratch. This is the half that the health gate buys, and the reason the potion is not simply in series position |
 | PO4 | Kill a fresh `Soldier4 Super` in one burst from full health | - | **No heal at all.** It never got below 40% while alive, so the draught is never drunk -- burst damage beats it, which is the intended counterplay |
 | PO5 | Fight a **`Soldier1`** or **`Soldier2`** of any variant | - | **No draught.** Only the Soldier3 and Soldier4 tiers carry one |

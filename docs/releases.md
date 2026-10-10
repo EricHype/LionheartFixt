@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.47.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.48.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,78 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.48.0 - the English army fights back
+
+0.33.0 gave the English priests a one-shot shield and 0.34.0 gave twelve veteran soldiers a one-shot
+healing draught. **The mechanism behind both is fully reusable, and only the payload differs.**
+
+### The one-shot is a mimic, not a feature
+
+```
+CSeriesAction
+    [0]  <the thing, once>
+    [1]  CSucceedAction        <- a no-op
+    When Done=Repeat Last Action
+    Require Success To Advance=1
+```
+
+Index 0 runs, succeeds, and the index advances to the no-op, which `Repeat Last Action` then parks on
+permanently. So the payload fires exactly once per creature. The draught just happens to put
+`CGiveHealthToCharacterAction` in slot 0. Swap it for a timed
+`CAddCharacterModifierToCharacterAction` and you have any buff you like.
+
+### What the rest of the army got
+
+All seven hang off `Damaged Script Action`, which was **empty on all 36 cans**, so each fires when the
+creature is hit.
+
+| archetype | cans | trigger | buff | tell |
+|---|---|---|---|---|
+| **Soldier1** -- closes ranks | 3 | first wound | +12 slashing / crushing / piercing resistance, 20s | Exorcise |
+| **Soldier2 + Axe** -- fights with both hands | 6 | <=50% health | **+2 Strength**, +0.20 attack speed, 15s | Amplify Damage |
+| **Soldier2 Bow** -- steadies the draw | 3 | first wound | **+2 Perception**, +0.20 ranged speed, 20s | Celestial Smite |
+| **Priest / Priestess** -- prays faster | 6 | first wound | +0.25 **cast** speed, 20s | Vilify |
+| **WarGolem Fire** -- vents its furnace | 6 | <=40% health | +20 fire resistance, +0.15 attack speed | Acid Splash |
+| **WarGolem Cold** -- rimes over | 6 | <=40% health | +20 cold resistance, +0.15 attack speed | Cold Storage |
+| **WarGolem Electricity** -- arcs over its plating | 6 | <=40% health | +20 electrical resistance, +0.15 attack speed | Celestial Smite |
+
+**Two trigger styles, deliberately.** The draught already fires on a health threshold, so the rank
+and file, the archers and the priests instead react to **being engaged at all** -- they stiffen when
+you reach them. The heavies and the golems react to **nearly dying**. Early-fight stiffening and
+late-fight escalation should feel different.
+
+**Every buff is timed, not permanent** (`Modification is permanent=0`, 15-20 seconds), so each is a
+window to wait out rather than a step change to absorb. 75 vanilla modifiers use durations this way.
+
+**Magnitudes come from vanilla, not from taste.** The speed multipliers are base ~1.0 and a shipped
+enemy weapon slows the player by **0.03 per hit** down to a 0.5 floor, so +0.15 to +0.25 is a real but
+bounded step. Resistances are base 0 with races presetting around 15, so +12 to +20 roughly doubles a
+typical defence. `Gain Strength.Perk` is worth **+1**, so +2 is notable without being silly.
+
+**Each archetype gets exactly one buff.** The 12 cans that already carry the healing draught get
+nothing new, and the arithmetic was checked: 3+6+3+6+6+6+6 = 36, against a family of exactly 36
+eligible cans.
+
+### And the mechanism stopped being an assumption
+
+Three releases now rest on `CSeriesAction`'s index being **per-instance** rather than shared across a
+can. `PO2` was written as the row that decides it and was never played. **It is now settled by
+decompilation and by vanilla's own data** -- see
+[the write-up in `unused-content.md`](unused-content.md). The short version:
+
+| | |
+|---|---|
+| `Debug/Next Action Index` is a field at offset **`0x14` inside the object** | so the counter is object state, not a global |
+| `Damaged Script Action` is a pointer at offset **`0x90` on the entity** | so each entity points at its own tree |
+| the engine offers **`Local Copy`** against **`Shared Global Instance`** | sharing is an opt-in, so copying is the norm |
+| **755** `Next Action Index` fields across **155** maps | every placed entity serialises its own copy |
+| vanilla ships this idiom **350 times, including in monster cans** | `Snakebreed Summoner` and four others run one-shot summon sequences that would fire only for the first creature ever spawned if the index were shared |
+
+### What needs playing
+
+`BF1`-`BF16` in [`qa.md`](qa.md). **`BF2` is the row that proves the release** and **`BF14` is the
+regression** -- the 12 cans that already heal must still heal and must not have gained a buff.
 
 ## 0.47.0 - the five titles nothing awarded
 

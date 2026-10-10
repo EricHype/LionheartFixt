@@ -1338,3 +1338,57 @@ Two traps checked and cleared rather than assumed:
 `Mach Sets Ambush Relay` (`Active=0`, named by nothing) has **`Action=` empty**. It suggests the
 ambush was once meant to be armed by Machiavelli himself rather than on exit, but there is no payload
 to restore -- writing one would be authoring new content, not restoring it. Recorded, not touched.
+
+
+## Settled by decompilation: `CSeriesAction`'s index is per-instance
+
+Three releases of one-shot enemy behaviour -- 0.33.0's priest shield, 0.34.0's twelve veteran
+draughts, and 0.48.0's thirty-six self-buffs -- all rest on one assumption: that a `CSeriesAction`
+used as a one-shot advances its counter **per spawned creature** rather than once for the whole can.
+`PO2` was written as the row that decides it, and it was never played. **It is now settled without
+playing it**, and the answer is per-instance.
+
+### What the binary says
+
+| finding | where |
+|---|---|
+| `CSeriesAction` registers with parent `CMultipleActionsAction` and instance size **0x20** | `0x0056fb30` |
+| **`Debug/Next Action Index` is a field at offset `0x14` *inside the object*** -- the counter is object state, not a global | field table at `0x0056fbe0` |
+| `Require Success To Advance` at `0x18`, `When Done` at `0x1c` (default `Repeat Series`) | same |
+| `Damaged Script Action` is a **pointer field at offset `0x90` on the entity** (with `Destroyed Script Action` at `0x88`, `Destroyed Effect Action` at `0x84`) -- so each entity points at its own action tree | `FUN_00535b00` |
+| The engine offers exactly **two** options for a canned object: `Shared Global Instance` (1) and **`Local Copy` (2)** | enum table at `0x007051d4` |
+
+That last one matters twice. Sharing is an **opt-in**, which is only worth offering if copying is the
+norm -- and it is a standing caution for this project's own work: every Fixt requirement can is
+written `Use=Shared Global Instance`, which is right for a stateless predicate and **would be wrong
+for anything carrying state.** Never put a `CSeriesAction` inside a shared canned object.
+
+### What the shipped data says, which is what actually closes it
+
+- **755** `Next Action Index` fields across **155** vanilla maps: every *placed* entity serialises
+  its own copy of its action tree.
+- Vanilla ships the exact one-shot idiom -- `When Done=Repeat Last Action` with
+  `Require Success To Advance=1` -- **350 times**, and **in monster cans**, not just maps:
+  `Snakebreed Summoner`, `Greater Titan Summoner`, `Rhea`, `Ghoul Male Large` and
+  `Swordsman ShieldHelmet` each run a one-shot `CCloneAction` summon sequence out of
+  `Shoot Completed`.
+
+**That is the clincher.** If the index were shared per can, only the *first* Snakebreed Summoner ever
+spawned would summon anything -- and they arrive in waves. Vanilla's own design depends on
+per-instance series state, in a monster can, which is exactly where this project's one-shots live.
+
+### A route that does not work, and one correction
+
+**The save file cannot answer this.** `Autosave.sav` is 3.2 MB and contains **zero** plain-text
+entity fields -- no `CEntityBase`, no `Damaged Script Action`, no `Next Action Index`. Only the
+current level's top-level stats are plain text; every entity tree lives in the binary `TempFile`
+blobs, so there is nothing to grep.
+
+**And a correction made mid-investigation:** `DjinnArenaMonster4` looked at first like vanilla
+shipping a one-time *self*-buff, which would have been perfect precedent. It is not --
+its `CAddCharacterModifierToCharacterAction` targets **`$Instigator`**, so it slows the *player*, and
+the `CDisplayAffectingPlayerIconAction` beside it puts a HUD icon on the player. So vanilla has no
+one-time self-buff on a creature; 0.48.0's are new in that respect, even though the mechanism around
+them is vanilla's. It also means `CDisplayAffectingPlayerIconAction` is the wrong tell for an enemy
+buffing itself -- that is a player-HUD action -- and `CSpawnEffectAction` is right.
+

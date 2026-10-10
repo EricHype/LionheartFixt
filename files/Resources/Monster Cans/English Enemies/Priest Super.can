@@ -1527,7 +1527,74 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=
+		Damaged Script Action=CIfAction
+		{
+			If=CWasDamagedByPlayerAction
+			{
+				Entity To Check For Damage=$Trigger
+			}
+			Then=CSeriesAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=prays faster
+								Modification is permanent=0
+								Character to modify=$Trigger
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=0.25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Speed/Attack Magic Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=CConstant
+								{
+									Constant Value=20
+								}
+								Expression Context=$Trigger
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Target Affected/Vilify
+								Location Entity=$Trigger
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=35
+								Play Default Sound=1
+							}
+						}
+					}
+					Action=CSucceedAction
+					{
+						Action=
+					}
+				}
+				When Done=Repeat Last Action
+				Require Success To Advance=1
+				Next Action Index=0
+			}
+			Else=CFailAction
+			{
+				Action=
+			}
+			Return failure if the If failes=0
+		}
 		Damaged Effect Action=CRandomAction
 		{
 			Action=Array
