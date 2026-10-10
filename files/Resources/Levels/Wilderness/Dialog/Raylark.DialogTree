@@ -1,0 +1,1446 @@
+CDialogTree
+{
+Name=Raylark
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=I wonder if maybe my good luck streak will continue. By chance, you wouldn't happen to be Cristobal Suarez?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, I'm not.
+Go to node ID=10 fortunate
+
+Requirement=!None
+Reply Text=I've never heard of him.
+Go to node ID=10 fortunate
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Yes, I am Cristobal Suarez. <Lie>
+Go to node ID=20 unfortunate
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Do speak quickly. I wouldn't want to miss a potential goblin bounty.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Goblin Slayer
+}
+Reply Text=The vale is quieter than it was.
+Go to node ID=3 Fixt the quiet vale
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+State=R0TTCYDY
+}
+}
+Reply Text=I have sent many goblins to their death.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Slayer Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=450
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Raylark Have Killed Rakeb
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=OLHZ8W1U
+}
+}
+Reply Text=The Goblin Shaman Rakeb is dead.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rakeb Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=550
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=Stay clear of the goblins please. They're all mine.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 fortunate
+Text=Fortunate for you, unfortunate for me. I have a large bounty out for that one. No matter, I'll hunt that one after I collect all of the goblin bounties.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 unfortunate
+Text=Well that is unfortunate...for you. The city guard have posted a three thousand gold bounty on you, dead or alive. Just so you know, I usually choose the former to avoid complications with delivery. Never fear, I'll use the clean satin bag to carry your head with!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(combat)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=Raylark Attacks
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=Raylark Attacks
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 bounties
+Text=I have a special contract with the Inquisition. They pay me on a per scalp basis and I rid them of the goblin infestation in this God-forsaken forest. I have a perfect strategy to deal with the loathsome beasts. That and my *secret weapon*, of course.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is your strategy?
+Go to node ID=60 strategy
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=What is your secret weapon?
+Go to node ID=50 Goblinripper
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Raylark
+Text=The name is Raylark, Captain of the Savage Heart Company. You can call me Raylark, however. Try to stay clear if you don't mind, I have many more goblin bounties to collect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=What is the Savage Heart Company?
+Go to node ID=45 Company
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Company
+Text=The Savage Heart is a mercenary company composed entirely of feralkin warriors. We are hired when conflicts can only be solved by blood.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who hired you?
+Go to node ID=30 bounties
+
+Requirement=Feralkin IS
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+}
+}
+Reply Text=I'm a feralkin. Could I join your Company?
+Go to node ID=47 Join
+Action work in progress=(if str)
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=47 Join
+Text=The Company is full, but you may run with our pack. If you like, you can enter the village and slay goblins and I will share the bounty with you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll kill the goblins for you.
+Go to node ID=49 kill goblins
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+State=B6FGBMLT
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=4ED7T401
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=On second thought, I don't want to work with you.
+Go to node ID=5 goodbye
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=49 kill goblins
+Text=Very well then, I have two bounties for you. If you kill a dozen goblins, I'll share the bounty with you. And if you can slay the Goblin Shaman Rakeb, I will give you an even larger share of the bounty - the Inquisition is especially eager to be rid of that twisted shaman. Hunt well.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed goblins for raylark
+Desired Minimum Count=1
+}
+}
+Reply Text=I have already sent many goblins to their death.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Slayer Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=450
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Rakeb is Dead Checker
+Desired Minimum Count=1
+}
+}
+Reply Text=The Goblin Shaman Rakeb is already dead.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rakeb Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=550
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will go and slay the goblins.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Goblinripper
+Text=Well, if I told you, it wouldn't be secr--Oh, what's the harm, eh? I happened upon a very old hammer that fells even the hardiest goblin. It has a history, that's for sure, because the goblins fear it by sight. They call it Goblinripper, among other things, but I like to call it my early retirement. A few hundred more goblin scalps and I'll be able to buy a nice villa and settle down in the country.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Would you be willing to sell Goblinripper?
+Go to node ID=100 ridiculous
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Could you forge me a hammer like Goblinripper?
+Go to node ID=115 cant forge
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Perfect, I'll just relieve you of that weapon then.
+Go to node ID=200 take sword
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=How many goblins have you killed so far?
+Go to node ID=70 goblin body count
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 strategy
+Text=This vale provides a perfect chokepoint from the goblin village. They can only send small groups of goblins at me at any given time. With my secret weapon and my well-trained colleagues, we have few problems slaughtering them as they emerge from the eastern corridor.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=What is your secret weapon?
+Go to node ID=50 Goblinripper
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=How many goblins have you killed so far?
+Go to node ID=70 goblin body count
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 goblin body count
+Text=Oh dear, dozens, possibly hundreds. My associate Fenclaw tried to keep count, but he is not very bright and can only count to a hundred and three. Suffice to say, at this rate, even with the goblin's prolific and disgusting reproductive practices, the goblin tribe should be wiped out by tomorrow morn.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 ridiculous
+Text=Sell this ever flowing fountain of gold? You would have to offer me a ridiculous sum of gold to compensate for the income I will make off the goblins. Make me an offer if you are inclined, but it had best be absurdly more than it looks like you can afford.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 15
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'm prepared to make an obscenely generous offer.
+Go to node ID=120 vendor
+Icon=Barter Skill Icon
+
+Requirement=Speech moreequal 15
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Could you forge me a hammer like Goblinripper?
+Go to node ID=115 cant forge
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I'm ready to make a fair offer on the weapon.
+Go to node ID=110 no thanks
+
+Requirement=!None
+Reply Text=How many goblins have you killed so far?
+Go to node ID=70 goblin body count
+
+Requirement=!None
+Reply Text=I'll just take the weapon and pay you nothing.
+Go to node ID=200 take sword
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 no thanks
+Text=Fair offer? I'm not interested in fair. This is a powerful weapon my friend, and I estimate that it's worth a small fortune. If you want it, be prepared to pay dearly.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 15
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'm prepared to make an obscenely generous offer.
+Go to node ID=120 vendor
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=115 cant forge
+Text=Me? Forge you a weapon? I wasn't aware that I looked like your personal lackey, a blacksmith-in-waiting to craft any weapon that tickles your fancy. Sorry, but I have better things to do. Even if I did possess skills, this hammer is unique and I don't think its like will be created again.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Player has already been sold The Everlasting
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I'm prepared to make an obsecenly generous offer.
+Go to node ID=120 vendor
+
+Requirement=!None
+Reply Text=I'm going to take the hammer and pay you nothing.
+Go to node ID=200 take sword
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 vendor
+Text=<Growls> Fine, if you wish. We can do business, but you should expect to pay a king's ransom for the Everlasting.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(bring up vendor window with Goblinripper)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Store
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Special Store
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Bounty Hunter Sword Everlasting
+}
+Then=
+Else=CActivateAction
+{
+Target Name=Player has already been sold The Everlasting
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Return failure if the If failes=0
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 take sword
+Text=I suppose I should have warned you. Not only does Goblinripper have special properties against goblins, but it also possesses the ability to inflict extraordinary damage against blithering idiots.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Raylark Attacks
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Raylark Attacks
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 taunts
+Text=Stand still so I can collect your head!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=310 taunts
+Text=Do not resist! I need to sever your head cleanly!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 tepid response
+Text=You may speak briefly Fenclaw, but return to your duty soon.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 hostile
+Text=This cub will not last long in the wild. Return to your watch, Fenclaw.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 feralkin responds positively
+Text=This stranger has a feralkin heart, Fenclaw, and is worthy to enter our camp.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 feralkin responds positively tainted
+Text=This stranger has tainted blood, Fenclaw, and may enter our camp...for now.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3 Return Dialogue Good
+Text=The cub returns. What is it now?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Goblin Slayer
+}
+Reply Text=The vale is quieter than it was.
+Go to node ID=3 Fixt the quiet vale
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+State=R0TTCYDY
+}
+}
+Reply Text=I have sent many goblins to their death.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Slayer Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=450
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+State=B6FGBMLT
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed goblins for raylark
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I have sent many goblins to their death.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Slayer Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=450
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=OLHZ8W1U
+}
+}
+Reply Text=The Goblin Shaman Rakeb is dead.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rakeb Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=550
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=4ED7T401
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Rakeb is Dead Checker
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=The Goblin Shaman Rakeb is dead.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rakeb Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=550
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed goblins for raylark
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=My hunt for the goblins continues.
+Go to node ID=5 good goodbye
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=4ED7T401
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Rakeb is Dead Checker
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Rakeb still lives, but not for long.
+Go to node ID=5 good goodbye
+
+Requirement=!None
+Reply Text=Nothing. I should be going.
+Go to node ID=5 good goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 good goodbye
+Text=May all your trails never grow cold.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=3 congrats
+Text=You have made the Savage Heart proud. As we discussed, here is your share of the bounty. Is there more to discuss?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+State=R0TTCYDY
+}
+}
+Reply Text=I have sent many goblins to their death.
+Go to node ID=3 congrats again
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Slayer Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=450
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Rakeb is Dead Checker
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=The Goblin Shaman Rakeb is dead.
+Go to node ID=3 congrats again
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rakeb Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=550
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed goblins for raylark
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+}
+}
+}
+Reply Text=My hunt for the goblins continues.
+Go to node ID=5 good goodbye
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=4ED7T401
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Rakeb is Dead Checker
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Rakeb still lives, but not for long.
+Go to node ID=5 good goodbye
+
+Requirement=!None
+Reply Text=No. I should be going.
+Go to node ID=5 good goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 congrats again
+Text=Oh, well done cub! You are a most seasoned hunter - perhaps one day we will hunt together for...more challenging game. As we discussed, here is your share of the bounty. Is there more to discuss?
+Should Have Voiceover=0
+
+Requirement=Raylark Have Killed Rakeb
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=OLHZ8W1U
+}
+}
+Reply Text=The Goblin Shaman Rakeb is dead.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rakeb Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=550
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+State=R0TTCYDY
+}
+}
+Reply Text=I have sent many goblins to their death.
+Go to node ID=3 congrats
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Goblin Slayer Xp Giver
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=450
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=killed goblins for raylark
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=My hunt for the goblins continues.
+Go to node ID=5 good goodbye
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Slay the Goblin Shaman Rakeb
+State=4ED7T401
+}
+}
+Reply Text=Rakeb still lives, but not for long.
+Go to node ID=5 good goodbye
+
+Requirement=!None
+Reply Text=No. I should be going.
+Go to node ID=5 good goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Growls
+Text=<Growls>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Go Away
+Text=Go away.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 goblin
+Text=A pity you're not a goblin...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 ignores
+Text=<He ignores you.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Conversation Start Female
+Text=I wonder if maybe my good luck streak will continue. By chance, you wouldn't happen to be Juana Suarez?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, I'm not.
+Go to node ID=10 fortunate
+
+Requirement=!None
+Reply Text=I've never heard of her.
+Go to node ID=10 fortunate
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Yes, I am Juana Suarez. <Lie>
+Go to node ID=20 unfortunate
+------------------------------------------------------------
+Node ID=3 Fixt the quiet vale
+Text=Quieter, and poorer for me. <Growls.> You have thinned them past anything the contract asked for, cub. The Savage Heart notices that sort of work -- and so do I, since every goblin you take is a bounty I never collect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+}

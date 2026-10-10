@@ -10,6 +10,14 @@ Text=Welcome to La Calle Perdida, the lost street. Can I help you with something
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of the Wielders
+}
+Reply Text=Your ranks are thinner than they were. I thinned them.
+Go to node ID=01 Fixt the enemy of the wielders
+
+Requirement=!None
 Reply Text=What can you tell me about La Calle Perdida?
 Go to node ID=20 shelter
 
@@ -25,6 +33,14 @@ Icon=Exit Icon
 Node ID=01 Conversation Start Wielder
 Text=Welcome, fellow Wielder. Word of your presence within our ranks has spread quickly, and much has been said about the strength of the spirit that resides within you. How may I help you?
 Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of the Wielders
+}
+Reply Text=Your ranks are thinner than they were. I thinned them.
+Go to node ID=01 Fixt the enemy of the wielders
 
 Requirement=!None
 Reply Text=What do you know of my spirit?
@@ -149,4 +165,13 @@ Requirement=!None
 Reply Text=Nothing today. Goodbye.
 Go to node ID=
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=01 Fixt the enemy of the wielders
+Text=We felt each one go out, like candles down a long hall. And still you walk in here and expect the passage to open. <The cold in the room arrives, and stays.> It will open. We have not finished counting, and the lost street keeps a long memory.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
 }

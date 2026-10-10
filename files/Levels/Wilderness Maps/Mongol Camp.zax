@@ -13797,57 +13797,86 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=5
-										Action=CIfAction
+										Item Count=2
+										Action=CMultipleActionsAction
 										{
-											If=CIsQuestStateTheCurrentStateAction
+											Action=Array
 											{
-												Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
-												State=TTX37U4V
-											}
-											Then=CActivateQuestStateAction
-											{
-												Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
-												State=SZLH5UEU
-											}
-											Else=
-											Return failure if the If failes=0
-										}
-										Action=CIfAction
-										{
-											If=CIsQuestStateTheCurrentStateAction
-											{
-												Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
-												State=NXHFHONZ
-											}
-											Then=CSetQuestSatusToFailedAction
-											{
-												Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
-											}
-											Else=COtherMapAction
-											{
-												Action=CActivateAction
+												Item Count=5
+												Action=CIfAction
 												{
-													Target Name=Darsh is Dead
-													Play Activate Sound=0
-													Delay Between Activations=0
-													Warp Behavior=
+													If=CIsQuestStateTheCurrentStateAction
+													{
+														Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+														State=TTX37U4V
+													}
+													Then=CActivateQuestStateAction
+													{
+														Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Find and resecue Inquisitor Darsh
+														State=SZLH5UEU
+													}
+													Else=
+													Return failure if the If failes=0
 												}
-												Other Map Name=1 Barcelona/Inquisition Foyer1
+												Action=CIfAction
+												{
+													If=CIsQuestStateTheCurrentStateAction
+													{
+														Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+														State=NXHFHONZ
+													}
+													Then=CSetQuestSatusToFailedAction
+													{
+														Quest=Levels/Wilderness/Quests/Rescue Inquisitor Darsh
+													}
+													Else=COtherMapAction
+													{
+														Action=CActivateAction
+														{
+															Target Name=Darsh is Dead
+															Play Activate Sound=0
+															Delay Between Activations=0
+															Warp Behavior=
+														}
+														Other Map Name=1 Barcelona/Inquisition Foyer1
+													}
+													Return failure if the If failes=0
+												}
+												Action=CDeactivateAction
+												{
+													Target Name=check for darsh
+												}
+												Action=CDeactivateAction
+												{
+													Target Name=is darsh near exit
+												}
+												Action=CDeactivateAction
+												{
+													Target Name=is darsh a companion
+												}
 											}
-											Return failure if the If failes=0
 										}
-										Action=CDeactivateAction
+										Action=CConditionalAction
 										{
-											Target Name=check for darsh
-										}
-										Action=CDeactivateAction
-										{
-											Target Name=is darsh near exit
-										}
-										Action=CDeactivateAction
-										{
-											Target Name=is darsh a companion
+											Try Action=CExpressionAction
+											{
+												Expression=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+													}
+												}
+												Character to get attributes from=$Instigator
+											}
+											Succeed Action=
+											Fail Action=CGiveCharacterPerkAction
+											{
+												Character to give perk to=$Instigator
+												Perk to give=Perks/!Event Title Perks/FACTION Inquisitor Killer
+											}
+											Return failure if the TryAction failes=0
 										}
 									}
 								}
@@ -21451,23 +21480,52 @@ CLayerSaveData
 											}
 											Character to get attributes from=$Instigator
 										}
-										Then=CIfAction
+										Then=CMultipleActionsAction
 										{
-											If=CIsQuestStateTheCurrentStateAction
+											Action=Array
 											{
-												Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-												State=B6FGBMLT
+												Item Count=2
+												Action=CIfAction
+												{
+													If=CIsQuestStateTheCurrentStateAction
+													{
+														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+														State=B6FGBMLT
+													}
+													Then=CActivateQuestStateAction
+													{
+														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+														State=R0TTCYDY
+													}
+													Else=CFailAction
+													{
+														Action=
+													}
+													Return failure if the If failes=0
+												}
+												Action=CConditionalAction
+												{
+													Try Action=CExpressionAction
+													{
+														Expression=CHasPerkExpression
+														{
+															Perks To Check For=Array
+															{
+																Item Count=1
+																Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+															}
+														}
+														Character to get attributes from=$Instigator
+													}
+													Succeed Action=
+													Fail Action=CGiveCharacterPerkAction
+													{
+														Character to give perk to=$Instigator
+														Perk to give=Perks/!Event Title Perks/Goblin Slayer
+													}
+													Return failure if the TryAction failes=0
+												}
 											}
-											Then=CActivateQuestStateAction
-											{
-												Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-												State=R0TTCYDY
-											}
-											Else=CFailAction
-											{
-												Action=
-											}
-											Return failure if the If failes=0
 										}
 										Else=CFailAction
 										{
@@ -23337,23 +23395,52 @@ CLayerSaveData
 													}
 													Character to get attributes from=$Instigator
 												}
-												Then=CIfAction
+												Then=CMultipleActionsAction
 												{
-													If=CIsQuestStateTheCurrentStateAction
+													Action=Array
 													{
-														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-														State=B6FGBMLT
+														Item Count=2
+														Action=CIfAction
+														{
+															If=CIsQuestStateTheCurrentStateAction
+															{
+																Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+																State=B6FGBMLT
+															}
+															Then=CActivateQuestStateAction
+															{
+																Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+																State=R0TTCYDY
+															}
+															Else=CFailAction
+															{
+																Action=
+															}
+															Return failure if the If failes=0
+														}
+														Action=CConditionalAction
+														{
+															Try Action=CExpressionAction
+															{
+																Expression=CHasPerkExpression
+																{
+																	Perks To Check For=Array
+																	{
+																		Item Count=1
+																		Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+																	}
+																}
+																Character to get attributes from=$Instigator
+															}
+															Succeed Action=
+															Fail Action=CGiveCharacterPerkAction
+															{
+																Character to give perk to=$Instigator
+																Perk to give=Perks/!Event Title Perks/Goblin Slayer
+															}
+															Return failure if the TryAction failes=0
+														}
 													}
-													Then=CActivateQuestStateAction
-													{
-														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-														State=R0TTCYDY
-													}
-													Else=CFailAction
-													{
-														Action=
-													}
-													Return failure if the If failes=0
 												}
 												Else=CFailAction
 												{
@@ -23905,23 +23992,52 @@ CLayerSaveData
 											}
 											Character to get attributes from=$Instigator
 										}
-										Then=CIfAction
+										Then=CMultipleActionsAction
 										{
-											If=CIsQuestStateTheCurrentStateAction
+											Action=Array
 											{
-												Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-												State=B6FGBMLT
+												Item Count=2
+												Action=CIfAction
+												{
+													If=CIsQuestStateTheCurrentStateAction
+													{
+														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+														State=B6FGBMLT
+													}
+													Then=CActivateQuestStateAction
+													{
+														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+														State=R0TTCYDY
+													}
+													Else=CFailAction
+													{
+														Action=
+													}
+													Return failure if the If failes=0
+												}
+												Action=CConditionalAction
+												{
+													Try Action=CExpressionAction
+													{
+														Expression=CHasPerkExpression
+														{
+															Perks To Check For=Array
+															{
+																Item Count=1
+																Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+															}
+														}
+														Character to get attributes from=$Instigator
+													}
+													Succeed Action=
+													Fail Action=CGiveCharacterPerkAction
+													{
+														Character to give perk to=$Instigator
+														Perk to give=Perks/!Event Title Perks/Goblin Slayer
+													}
+													Return failure if the TryAction failes=0
+												}
 											}
-											Then=CActivateQuestStateAction
-											{
-												Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-												State=R0TTCYDY
-											}
-											Else=CFailAction
-											{
-												Action=
-											}
-											Return failure if the If failes=0
 										}
 										Else=CFailAction
 										{

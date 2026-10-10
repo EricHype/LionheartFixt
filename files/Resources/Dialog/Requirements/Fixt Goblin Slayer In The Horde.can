@@ -1,0 +1,28 @@
+CCannedObject
+{
+	Object=CAND
+	{
+		Operand1=CHasPerkExpression
+		{
+			Perks To Check For=Array
+			{
+				Item Count=1
+				Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+			}
+		}
+		Operator=
+		Operand2=CIsGreaterThan
+		{
+			Operand1=CVariableDerivedCharacterAttribute
+			{
+				Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=0
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

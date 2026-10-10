@@ -1,0 +1,1231 @@
+CDialogTree
+{
+Name=Knight Templar
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Well met, citizen. How may I help you this day?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of the Templars
+}
+Reply Text=I have killed men of your Order.
+Go to node ID=1 Fixt the enemy of the templars
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 KT
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=30 dedication
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Introduction Inquisitor
+Text=Well met, Inquisitor. Is there something I can help you with?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 KT
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=30 dedication
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=11 Goodbye Inquisitor
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Introduction Male Templar
+Text=Well met, brother. I'm honored we have crossed paths - we have heard much of your deeds in the name of the Knights Templar.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of the Templars
+}
+Reply Text=I have killed men of your Order.
+Go to node ID=1 Fixt the enemy of the templars
+
+Requirement=!None
+Reply Text=I thank you for your kind words, brother. How do you fare?
+Go to node ID=100 Polite Response
+
+Requirement=!None
+Reply Text=And you are bound to hear more of my deeds in the days to come.
+Go to node ID=110 Not Polite Response Male
+
+Requirement=!None
+Reply Text=Can you share your experiences in the Knights Templar with me?
+Go to node ID=120 Experiences
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I must be off. Goodbye.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I must be off. Goodbye.
+Go to node ID=05 Farewell Male
+Action work in progress=(Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=I must be off. Goodbye.
+Go to node ID=05 Farewell Male
+Action work in progress=(Tainted but heard speech)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Introduction Female Templar
+Text=Well met, sister. I'm honored we have crossed paths - we have heard much of your deeds in the name of the Knights Templar.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of the Templars
+}
+Reply Text=I have killed men of your Order.
+Go to node ID=1 Fixt the enemy of the templars
+
+Requirement=!None
+Reply Text=I thank you for your kind words, brother. How do you fare?
+Go to node ID=100 Polite Response
+
+Requirement=!None
+Reply Text=And you are bound to hear more of my deeds in the days to come.
+Go to node ID=111 Not Polite Response Female
+
+Requirement=!None
+Reply Text=Can you share your experiences in the Knights Templar with me?
+Go to node ID=120 Experiences
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I must be off. Goodbye.
+Go to node ID=06 Farewell Female
+Action work in progress=(Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I must be off. Goodbye.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=I must be off. Goodbye.
+Go to node ID=07 Farewell Female3
+Action work in progress=(Tainted but heard speech)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Farewell Male
+Text=Fare thee well, brother. May God watch over you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=06 Farewell Female
+Text=Before you go, sister, there is something I feel compelled to say - before, when I heard a woman was joining the Knights Templar, I...did not welcome the idea.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=07 Farewell Female 2
+Action work in progress=(set female speech)
+Custom Action=CActivateAction
+{
+Target Name=Got tainted or female speech
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=07 Farewell Female 2
+Text=But after having met you, I see that I was wrong to feel such, and I would be pleased to stand beside you in battle. Fare thee well, sister. May God watch over you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=In the future, keep your condescension and your apologies to yourself. Now get out of my sight.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Your apology is accepted. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=May God watch over you. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=08 Farewell Tainted
+Text=Before you go, there is something I feel compelled to say - before, when I heard one...tainted by magic was joining the Knights Templar, I...did not welcome the idea.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=09 Farewell Tainted 2
+Action work in progress=(Set Tainted Speech)
+Custom Action=CActivateAction
+{
+Target Name=Got tainted or female speech
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=09 Farewell Tainted 2
+Text=But after having met you, I see that I was wrong to feel such, and I would be pleased to stand beside you in battle. Fare thee well - and may God watch over you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Keep your condescension and your apologies to yourself. Now get out of my sight.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Your apology is accepted. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=May God watch over you. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Good day, citizen. May God watch over you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Introduction
+Text=Good day, citizen. May God watch over you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=11 Goodbye Inquisitor
+Text=Good day, Inquisitor.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 KT
+Text=I am one of the Knights Templar, a brother who has taken up the cross and has pledged himself to God and the protection of all Europe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What are you doing here?
+Go to node ID=30 dedication
+
+Requirement=Inquisitor NOT
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(PC is not an Inquisitor)
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=I must be off. Goodbye.
+Go to node ID=11 Goodbye Inquisitor
+Action work in progress=(PC is an Inquisitor)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 dedication
+Text=Today I am overseeing the preparations for war here in the Port District. Soon the Spanish Armada sails for England, and I shall be one of those who shall be the first to step on England's shores and deliver its people from their heretic queen.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you again?
+Go to node ID=20 KT
+
+Requirement=Inquisitor NOT
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(PC is not an Inquisitor)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Inquisitor IS
+Reply Text=I see. Goodbye.
+Go to node ID=11 Goodbye Inquisitor
+Action work in progress=(PC is an Inquisitor)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Polite Response
+Text=Tolerably well. It is an insufferably hot day, but God will grant us a wind toward evening, I hope. I imagine the Port District must be a welcome change from exploring the sewers as part of your initiation, no?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very true. Can you share your experiences in the Knights Templar with me?
+Go to node ID=120 Experiences
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Indeed. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Indeed. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Male and Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Indeed. Goodbye, brother.
+Go to node ID=06 Farewell Female
+Action work in progress=(PC is Female and Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Indeed. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Female and Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=Indeed. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and heard speech)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=Indeed. Goodbye, brother.
+Go to node ID=07 Farewell Female3
+Action work in progress=(PC is Female and heard speech)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 Not Polite Response Male
+Text=Perhaps so. The tale of your epic quest through the sewers as part of your initiation will no doubt be but a small chapter in the epic tale of your life, no? I caution you to keep pride far from your actions, brother. You no longer speak for yourself, but for us all.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Perhaps you'd stay out of my way in the future - or the next chapter in my epic will be beating you like a dog in the streets of Barcelona. Now get out of my sight.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I will heed your words. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I will heed your words. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Male and Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=I will heed your words. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and Heard speech)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=111 Not Polite Response Female
+Text=Perhaps so, sister. Perhaps it would also interest you to learn that there were many among the Knights Templar who looked unfavorably upon the idea of you joining our order. I caution you to keep pride far from your actions, lest their accusations prove true.
+Should Have Voiceover=0
+
+Requirement=Male IS
+Reply Text=Perhaps you'd stay out of my way in the future - or the next chapter in my epic will be beating you like a dog in the streets of Barcelona. Now get out of my sight.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I will heed your words. Goodbye, brother.
+Go to node ID=06 Farewell Female
+Action work in progress=(PC is Female and Not Tainted, No Female Speech)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I will heed your words. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Female and Tainted, No Tainted Speech)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=I will heed your words. Goodbye, brother.
+Go to node ID=07 Farewell Female3
+Action work in progress=(PC is Female and heard Speech)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 Experiences
+Text=It would be my pleasure. My experiences in the Order have all been positive ones, and spiritually uplifting. I have served with the Knights for many years, and I am proud of what the Knights have accomplished - and I ever mindful of what we have yet to accomplish.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=121 Experiences 2
+------------------------------------------------------------
+Node ID=121 Experiences 2
+Text=Surely you have felt it - the good it does to one's soul, to one's inner strength, to take the cross and give one's life completely to God and the protection of all Europe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Do you ever find difficulty in reconciling serving God and taking up the sword? Is it good to shed blood in God's name?
+Go to node ID=122 Shed Blood
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and Not Tainted)
+Icon=Exit Icon
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Male and Tainted)
+Icon=Exit Icon
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=06 Farewell Female
+Action work in progress=(PC is Female and Not Tainted)
+Icon=Exit Icon
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Female and Tainted)
+Icon=Exit Icon
+
+Requirement=Male IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and heard speech)
+Icon=Exit Icon
+
+Requirement=Female IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=07 Farewell Female3
+Action work in progress=(PC is Female and heard speech)
+Icon=Exit Icon
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Male and Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=06 Farewell Female
+Action work in progress=(PC is Female and Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Female and Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and heard speedh)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=07 Farewell Female3
+Action work in progress=(PC is Female and heard speech)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=122 Shed Blood
+Text=I have seen the terrors and evils wrought by the Disjunction, and I am convinced that we serve God when we battle these evils. It is as if the Disjunction brought the evils within men and gave them form, so that we might fight these evils, not only in our hearts, but with blessed steel as well.
+Should Have Voiceover=0
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and Not Tainted)
+Icon=Exit Icon
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Male and Tainted)
+Icon=Exit Icon
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=06 Farewell Female
+Action work in progress=(PC is Female and Not Tainted)
+Icon=Exit Icon
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Female and Tainted)
+Icon=Exit Icon
+
+Requirement=Male IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and heard speech)
+Icon=Exit Icon
+
+Requirement=Female IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=Agreed. Goodbye, brother.
+Go to node ID=07 Farewell Female3
+Action work in progress=(PC is Female and heard speech)
+Icon=Exit Icon
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Male and Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=06 Farewell Female
+Action work in progress=(PC is Female and Not Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Races/Human NOT
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=08 Farewell Tainted
+Action work in progress=(PC is Female and Tainted)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Male IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=05 Farewell Male
+Action work in progress=(PC is Male and heard speedh)
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=Female IS
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Got tainted or female speech
+Desired Minimum Count=1
+}
+}
+Reply Text=We each do good in our own way. Goodbye, brother.
+Go to node ID=07 Farewell Female3
+Action work in progress=(PC is Female and heard speech)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 pious knight
+Text=My apologies friend, but I am in prayer. Speak with Inquisitor Fournier or Brother Cristobal.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 pious blow off
+Text=<This Knight Templar seems lost in prayer and does not acknowledge you.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 pious blow off 2
+Text=You are welcome to worship, stranger.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 pious blow off 3
+Text=<The Knight mouths a silent prayer and ignores you.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=07 Farewell Female3
+Text=Fare thee well, sister. May God watch over you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Fixt the enemy of the templars
+Text=Then I will not call you brother again, and that costs me more than I expected it to. We bury ours with their swords on their chests and their names read aloud. <He does not look away.> Yours were read. Go, before I learn which of my vows is the louder one.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+}

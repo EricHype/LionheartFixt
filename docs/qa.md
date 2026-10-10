@@ -1473,6 +1473,42 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The five titles nothing awarded
+
+Five finished title perks that the shipped game grants to nobody, now granted -- and answered. The
+grants are idempotent, so re-killing cannot double-award.
+
+**`PK13` is the regression that matters most in this release.** Several member cans are spawned by
+generators that set their own destroyed script, which **replaces** the can's death slot rather than
+adding to it -- the bug that left the Lava Troll Hide dead from 0.10.0 to 0.30.1. Those actions were
+**wrapped**, not overwritten. If a wrap went wrong, the symptom is not a missing perk: it is a
+**quest that silently stops failing** when it should. `PK13` is the cheapest way to see that.
+
+**`PK1` and `PK5` prove the two halves** -- the counter-driven title and the death-hook titles.
+
+**`PK16` is a judgement row.** The rogue inquisitors were deliberately excluded, on the grounds that
+a rogue has left the order and the Grand Inquisitor's own tree has a `413 rogue inquisitors` node
+about hunting them. If that reads wrong in play, it is a one-line change.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| PK1 | **Proves half one.** Kill goblins in the Goblin Warrens or the Mongol Camp until the Raylark bounty or the Savage Heart quest ticks over (twelve) | Check the character sheet | The title **Goblin Slayer** is now listed. It should arrive at the same moment the bounty or quest advances, because it hangs off that same branch |
+| PK2 | After `PK1`, talk to any goblin villager | - | A new reply is offered: *"You know what I am. Say it."* Taking it gets the *"you are weather"* speech, and notably **the villager does not offer to eat you**, which every one of its other 17 greetings does |
+| PK3 | After `PK1`, return to **Raylark** | - | A new reply about the vale being quieter. He approves, and complains that every goblin you take is a bounty he never collects |
+| PK4 | **The contradiction.** Hold `Goblin Slayer` **and** goblin rank (be in the horde), then speak to the **Goblin Khan** | - | A reply appears admitting you wear his mark and have killed his people. His answer should be approval, not condemnation. **With no goblin rank this reply must not appear at all** |
+| PK5 | **Proves half two.** Kill any ordinary Inquisition member -- a generic inquisitor in the Temple District will do | Check the sheet | **Enemy of the Inquisition** is listed |
+| PK6 | After `PK5`, talk to any other inquisitor | - | From *"Greetings, child"*, a new reply leads to the ledger-and-arithmetic line |
+| PK7 | Kill a Knight Templar (the Port District has them) | Check the sheet | **Enemy of the Knights Templar** is listed |
+| PK8 | After `PK7`, talk to a Templar -- **and if you are a Templar yourself, use that path** | - | The reaction is reachable from the ordinary greeting *and* from *"Well met, brother"* / *"Well met, sister"*. The *"I will not call you brother again"* line should land hardest there |
+| PK9 | Kill a Wielder in La Calle Perdida | Check the sheet | **Enemy of the Wielders** is listed |
+| PK10 | After `PK9`, talk to a Wielder wizard there -- **especially if you are a Wielder**, so you get *"Welcome, fellow Wielder"* | - | The candles-down-a-long-hall reply is offered, and the room turning cold is in the line |
+| PK11 | Kill a Knight of Saladin, or **Jafar** | Check the sheet | The Saladin title is listed. **This one was dead in vanilla too** -- its shipped grant sits on an inactive part that nothing activates |
+| PK12 | After `PK11`, talk to a Knight of Saladin, ideally one who greets you with *"Word of your deeds have come before you, brother"* | - | The *"do not call me brother where the others can hear you"* reply is offered |
+| PK13 | **The regression. Do this one first if you only do one.** Kill **Inquisitor Fournier** in Montaillou's church while at least one of his three quests is active | Check the quest log | **All three quests still fail** -- `Find the Witch for the Inquisitor`, `Talk with The Mayor for the Inquisitor`, `Purify the Shadow Dryad` -- **and** you gain Enemy of the Inquisition. If the quests no longer fail, a wrap replaced an action instead of adding to it |
+| PK14 | Kill a **second** member of a faction you have already angered | - | Nothing happens twice: no duplicate title, no error, no message. The grant checks for the perk before giving it |
+| PK15 | **The control.** Play Barcelona normally, killing none of these factions | - | No faction title appears, none of the new replies is offered, and every one of these NPCs behaves exactly as before |
+| PK16 | **The judgement row.** Kill a **rogue** inquisitor (the Inquisition Chambers and Plains have them) | Check the sheet | Enemy of the Inquisition should **not** be granted. A rogue has left the order. Decide whether that reads correctly -- the Grand Inquisitor hunts them himself |
+
 ## The creatures sent after Machiavelli, and the level gate
 
 An act-1 escort quest that works end to end, whose four attackers spawned from a can pointing at a

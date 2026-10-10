@@ -70395,9 +70395,38 @@ CLayerSaveData
 							}
 							Action=CSetDestroyedScriptActionAction
 							{
-								New Destroyed Action=CDeactivateAction
+								New Destroyed Action=CMultipleActionsAction
 								{
-									Target Name=Exorcist Speak Latin trigger
+									Action=Array
+									{
+										Item Count=2
+										Action=CDeactivateAction
+										{
+											Target Name=Exorcist Speak Latin trigger
+										}
+										Action=CConditionalAction
+										{
+											Try Action=CExpressionAction
+											{
+												Expression=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+													}
+												}
+												Character to get attributes from=$Instigator
+											}
+											Succeed Action=
+											Fail Action=CGiveCharacterPerkAction
+											{
+												Character to give perk to=$Instigator
+												Perk to give=Perks/!Event Title Perks/FACTION Inquisitor Killer
+											}
+											Return failure if the TryAction failes=0
+										}
+									}
 								}
 								Target Name=$Instigator
 							}

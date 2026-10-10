@@ -8007,151 +8007,180 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=4
-										Action=CRemoveAIAction
+										Item Count=2
+										Action=CMultipleActionsAction
 										{
-											Target Name=Chest with Inquisitor's Chalice
-											AI=CAIInteractionSpecifier
-											Delay Between Removes=0
-										}
-										Action=CAddAIAction
-										{
-											Target Name=Chest with Inquisitor's Chalice
-											AI=CAIInteractionSpecifier
+											Action=Array
 											{
-												Marked For Deletion=0
-												Publisher=
-												Trigger Only Once=0
-												Was Triggered=0
-												Auto-Flip Switch=1
-												Trigge Must Have HP=0
-												Triggered By Anything=0
-												Triggered By Players=1
-												Triggered By Player Friends=0
-												Triggered By Enemies=0
-												Triggered By Projectiles=0
-												Triggered By Companions=0
-												Triggered By Name=
-												Interaction Description=
-												Interaction Type=Interaction Specifiers/GetCloseThenTrigger
-												Action=CMultipleActionsAction
+												Item Count=4
+												Action=CRemoveAIAction
 												{
-													Action=Array
+													Target Name=Chest with Inquisitor's Chalice
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=Chest with Inquisitor's Chalice
+													AI=CAIInteractionSpecifier
 													{
-														Item Count=2
-														Action=CPlayAnimationAction
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+														Action=CMultipleActionsAction
 														{
-															Animation=Opening
-															Random From Sequencial Set=0
-															Target Name=$Trigger
-															When Done=Stop on last frame
-															End Sequence Name=Idle
-															Delay Between Targets=0
-															Play In Reverse=0
-															AI To Interrupt=CSkeletonAI
-														}
-														Action=CDelayAction
-														{
-															Next Action=CGenerateInventoryItemAction
+															Action=Array
 															{
-																Number of items to generate=1
-																Level of item to generate=
-																Location=$Trigger
-																Location Offset=5,34
-																Generate Within Radius=23
-																Aspect Ratio=0.712766
-																Item List=CInventoryItemGeneratorMixedList
+																Item Count=2
+																Action=CPlayAnimationAction
 																{
-																	Items=Array
+																	Animation=Opening
+																	Random From Sequencial Set=0
+																	Target Name=$Trigger
+																	When Done=Stop on last frame
+																	End Sequence Name=Idle
+																	Delay Between Targets=0
+																	Play In Reverse=0
+																	AI To Interrupt=CSkeletonAI
+																}
+																Action=CDelayAction
+																{
+																	Next Action=CGenerateInventoryItemAction
 																	{
-																		Array Count=1
-																		Array Item=CInventoryItemGeneratorMixedListItem
+																		Number of items to generate=1
+																		Level of item to generate=
+																		Location=$Trigger
+																		Location Offset=5,34
+																		Generate Within Radius=23
+																		Aspect Ratio=0.712766
+																		Item List=CInventoryItemGeneratorMixedList
 																		{
-																			Weighting=1
-																			Item=CInventoryItemGeneratorBasic
+																			Items=Array
 																			{
-																				Items=Array
+																				Array Count=1
+																				Array Item=CInventoryItemGeneratorMixedListItem
 																				{
-																					Array Count=1
-																					Array Item=CInventoryItemGeneratorBasicItem
+																					Weighting=1
+																					Item=CInventoryItemGeneratorBasic
 																					{
-																						Weighting=10
-																						Item=Inventory/Specific Item Cans/Quest Items/Inquisistor's Chalice
+																						Items=Array
+																						{
+																							Array Count=1
+																							Array Item=CInventoryItemGeneratorBasicItem
+																							{
+																								Weighting=10
+																								Item=Inventory/Specific Item Cans/Quest Items/Inquisistor's Chalice
+																							}
+																						}
 																					}
 																				}
 																			}
 																		}
 																	}
+																	Delay=0.5
+																	Plus or Minus=0
+																	Forget Trigger=0
 																}
 															}
-															Delay=0.5
-															Plus or Minus=0
-															Forget Trigger=0
 														}
+														X Radius=30
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=1
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
 													}
+													Delay Between Adds=0
 												}
-												X Radius=30
-												Attacker Range Modifier=0
-												YX Ratio=0.712766
-												Highlight Self Time=0
-												Highlight Until Clicked=0
-												Is Locked=1
-												Allow Interact If Has Target=1
-												Lock Pick Adjustment=0
-												Inventory item to use as key=Inventory Items/!None
-												Is Bussy Talking=0
-											}
-											Delay Between Adds=0
-										}
-										Action=CRemoveAIAction
-										{
-											Target Name=South Door
-											AI=CAIInteractionSpecifier
-											Delay Between Removes=0
-										}
-										Action=CDelayAction
-										{
-											Next Action=CAddAIAction
-											{
-												Target Name=South Door
-												AI=CAIInteractionSpecifier
+												Action=CRemoveAIAction
 												{
-													Marked For Deletion=0
-													Publisher=
-													Trigger Only Once=0
-													Was Triggered=0
-													Auto-Flip Switch=1
-													Trigge Must Have HP=0
-													Triggered By Anything=0
-													Triggered By Players=1
-													Triggered By Player Friends=0
-													Triggered By Enemies=0
-													Triggered By Projectiles=0
-													Triggered By Companions=0
-													Triggered By Name=
-													Interaction Description=
-													Interaction Type=Interaction Specifiers/GetCloseThen OpenDoor
-													Action=CToggleDoorAction
-													{
-														Door Name=$Trigger
-														Delay Between Doors=0
-													}
-													X Radius=80
-													Attacker Range Modifier=0
-													YX Ratio=0.712766
-													Highlight Self Time=0
-													Highlight Until Clicked=0
-													Is Locked=1
-													Allow Interact If Has Target=1
-													Lock Pick Adjustment=100
-													Inventory item to use as key=Inventory Items/!None
-													Is Bussy Talking=0
+													Target Name=South Door
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
 												}
-												Delay Between Adds=0
+												Action=CDelayAction
+												{
+													Next Action=CAddAIAction
+													{
+														Target Name=South Door
+														AI=CAIInteractionSpecifier
+														{
+															Marked For Deletion=0
+															Publisher=
+															Trigger Only Once=0
+															Was Triggered=0
+															Auto-Flip Switch=1
+															Trigge Must Have HP=0
+															Triggered By Anything=0
+															Triggered By Players=1
+															Triggered By Player Friends=0
+															Triggered By Enemies=0
+															Triggered By Projectiles=0
+															Triggered By Companions=0
+															Triggered By Name=
+															Interaction Description=
+															Interaction Type=Interaction Specifiers/GetCloseThen OpenDoor
+															Action=CToggleDoorAction
+															{
+																Door Name=$Trigger
+																Delay Between Doors=0
+															}
+															X Radius=80
+															Attacker Range Modifier=0
+															YX Ratio=0.712766
+															Highlight Self Time=0
+															Highlight Until Clicked=0
+															Is Locked=1
+															Allow Interact If Has Target=1
+															Lock Pick Adjustment=100
+															Inventory item to use as key=Inventory Items/!None
+															Is Bussy Talking=0
+														}
+														Delay Between Adds=0
+													}
+													Delay=0.1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
 											}
-											Delay=0.1
-											Plus or Minus=0
-											Forget Trigger=0
+										}
+										Action=CConditionalAction
+										{
+											Try Action=CExpressionAction
+											{
+												Expression=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+													}
+												}
+												Character to get attributes from=$Instigator
+											}
+											Succeed Action=
+											Fail Action=CGiveCharacterPerkAction
+											{
+												Character to give perk to=$Instigator
+												Perk to give=Perks/!Event Title Perks/FACTION Inquisitor Killer
+											}
+											Return failure if the TryAction failes=0
 										}
 									}
 								}
@@ -39536,9 +39565,38 @@ CLayerSaveData
 							Item Count=2
 							Action=CSetDestroyedScriptActionAction
 							{
-								New Destroyed Action=CTriggerRelayAction
+								New Destroyed Action=CMultipleActionsAction
 								{
-									Relay Name=Give Player keys to cells
+									Action=Array
+									{
+										Item Count=2
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Give Player keys to cells
+										}
+										Action=CConditionalAction
+										{
+											Try Action=CExpressionAction
+											{
+												Expression=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+													}
+												}
+												Character to get attributes from=$Instigator
+											}
+											Succeed Action=
+											Fail Action=CGiveCharacterPerkAction
+											{
+												Character to give perk to=$Instigator
+												Perk to give=Perks/!Event Title Perks/FACTION Inquisitor Killer
+											}
+											Return failure if the TryAction failes=0
+										}
+									}
 								}
 								Target Name=Jailor Inquisitor
 							}

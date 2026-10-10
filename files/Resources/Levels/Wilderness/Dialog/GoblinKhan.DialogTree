@@ -214,6 +214,14 @@ Text=Again, this morsel intrudes into my cave. What is so important that you wou
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Goblin Slayer In The Horde
+}
+Reply Text=I wear your mark, and I have killed your people. Both are true.
+Go to node ID=06 Fixt both are true
+
+Requirement=!None
 Custom Requirement=CIsGreaterThan
 {
 Operand1=CVariableDerivedCharacterAttribute
@@ -391,6 +399,14 @@ Is Default Reply=1
 Node ID=06 The Champion Returns
 Text=<The spears at the cave mouth stay up until he waves them down, and he takes his time about waving.> Not 'morsel'. Not today. The Everlasting hangs on my wall because you put it there, and a Khan who forgets such a thing is a Khan who eats alone. Speak, champion, and speak as long as you like.
 Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Goblin Slayer In The Horde
+}
+Reply Text=I wear your mark, and I have killed your people. Both are true.
+Go to node ID=06 Fixt both are true
 
 Requirement=!None
 Reply Text=I have business, Great Khan.
@@ -1191,6 +1207,14 @@ Text=So, the goblin friend returns. What do you want?
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Goblin Slayer In The Horde
+}
+Reply Text=I wear your mark, and I have killed your people. Both are true.
+Go to node ID=06 Fixt both are true
+
+Requirement=!None
 Custom Requirement=CActionExpression
 {
 Action=CCheckExistenceAction
@@ -1560,5 +1584,14 @@ Requirement=!None
 Reply Text=As you say, Great Khan.
 Go to node ID=
 Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=06 Fixt both are true
+Text=Both are true, and it troubles you far more than it troubles me. I did not raise you up to be gentle, morsel -- I raised you to be useful. The ones you killed were weak, and the horde is lighter for the loss of them. Do not come looking for shame here. Look for it where they bury their dead.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
 Is Default Reply=1
 }

@@ -1,0 +1,122 @@
+[size=150][b]Lionheart Fixt 0.47.0 - the five titles nothing awarded[/b][/size]
+
+This game has thirteen [b]titles[/b] — perks you can't choose at level-up, only earn. Things like
+*Necromancer*, *Servant of the Queen*, *Goblin Champion*. They're written, they have descriptions,
+and the game hands them out when you do something that deserves one.
+
+[b]Five of them it never hands out at all.[/b]
+
+| | |
+|---|---|
+| [b]Goblin Slayer[/b] | *"...slain a great number of goblins."* |
+| [b]Enemy of the Inquisition[/b] | *"You have slain an agent of the Inquisition."* |
+| [b]Enemy of the Knights Templar[/b] | *"You have slain a Knight Templar."* |
+| [b]Enemy of the Wielders[/b] | *"You have slain one of the Wielders of Barcelona."* |
+| the Knights of Saladin equivalent | same shape |
+
+You can do all of those things. You can kill inquisitors, Templars, Wielders and Knights of Saladin,
+and you can kill a very great number of goblins. Nothing was ever watching.
+
+[b]Goblin Slayer didn't need anything built[/b]
+
+The game already counts your goblin kills, and already notices when you hit twelve — that's how the
+Raylark bounty pays out and how the Savage Heart quest advances. [b]Ten[/b] places across six files do
+that arithmetic.
+
+So the title is now awarded right there, in the same breath. No new counter, no new threshold, no
+number I picked myself.
+
+[b]The faction titles watch the victims, not the places[/b]
+
+Those four factions have [b]707[/b] places where a member can appear. Rather than touch all of them, the
+hook goes on each *kind* of member — so one change covers everywhere that kind shows up. [b]33 kinds,
+568 appearances.[/b]
+
+That part had a trap in it that this project has been bitten by before: some of these members are
+spawned by machinery that *overwrites* whatever their death was supposed to do. Overwriting it back
+would have broken things quietly. So the original action is [b]kept and the new one added beside it[/b],
+which is why killing [b]Inquisitor Fournier[/b] still fails his three quests *and* now marks you.
+
+I then wrote a separate audit that walked all 568 appearances to check none of them was silently
+dead. [b]It found two the first pass had missed[/b], because that pass only checked the first appearance
+of each member in each map.
+
+[b]The Saladin one was broken too, and I'd said otherwise[/b]
+
+My own notes called the Saladin title "the working one" and treated it as the example to copy from.
+[b]It doesn't work.[/b] Its grant sits on a switch that is turned off, is one of thirty-four switches in
+that map sharing the same name, and nothing anywhere turns it on.
+
+So all four were dead, not three. It's now wired like its siblings — including through [b]Jafar[/b], who
+turns out to be the faction's leader.
+
+[b]Who counts as a member[/b]
+
+Decided by looking at what things actually are, not what they're called. Corpse props, crypt undead,
+an extraplanar jailer and the inquisitor from the slaver scene are all excluded.
+
+So are the [b]rogue[/b] inquisitors — a rogue has *left* the order, and the Grand Inquisitor has his own
+dialogue about hunting them down. Killing one shouldn't make you the Inquisition's enemy. That's a
+judgement call and I'd like to know if it reads wrong.
+
+[b]And now people notice[/b]
+
+Every one of the five gets answered. Each reaction sits on that faction's *ordinary member*
+conversation, so it reaches all of them — and three of the four hang off a greeting that calls you a
+friend, which is the whole point.
+
+The Inquisition, from *"Greetings, child. How might I help you this day?"*:
+
+[i]*"I know it, child. Your name is written in a ledger in the Temple District, beside a number, and[/i]
+[i]the number is not small. ⟨He does not reach for a weapon.⟩ We are a patient order. We are also a[/i]
+[i]very good one at arithmetic."*[/i]
+
+The Templars — including on *"Well met, brother"*:
+
+[i]*"Then I will not call you brother again, and that costs me more than I expected it to. We bury[/i]
+[i]ours with their swords on their chests and their names read aloud. ⟨He does not look away.⟩ Yours[/i]
+[i]were read. Go, before I learn which of my vows is the louder one."*[/i]
+
+The Wielders — including on *"Welcome, fellow Wielder"*:
+
+[i]*"We felt each one go out, like candles down a long hall. And still you walk in here and expect the[/i]
+[i]passage to open. ⟨The cold in the room arrives, and stays.⟩ It will open. We have not finished[/i]
+[i]counting, and the lost street keeps a long memory."*[/i]
+
+The Knights of Saladin — including on *"Word of your deeds have come before you, brother"*:
+
+[i]*"Salaam — and may God forgive what I say next to a guest. My brothers rode from Persia to guard a[/i]
+[i]relic, not to be buried in a foreign street. I will not strike you while the truce holds. But do[/i]
+[i]not come to our fire, do not take our bread, and do not call me brother where the others can hear[/i]
+[i]you."*[/i]
+
+And the goblins answer [b]Goblin Slayer[/b] three ways. The villagers first — and every *other* thing a
+goblin villager says to you is about eating you:
+
+[i]*"You are the one from the vale. ⟨It does not offer to eat you.⟩ We have stopped counting. The young[/i]
+[i]ones are told you are weather — a thing that happens to goblins, and cannot be fought."*[/i]
+
+Then [b]Raylark[/b], who paid for it and is annoyed about the bounties he's no longer collecting. And
+[b]the Khan[/b], but only if you're in the horde *and* have been slaughtering it:
+
+[i]*"Both are true, and it troubles you far more than it troubles me. I did not raise you up to be[/i]
+[i]gentle, morsel — I raised you to be useful."*[/i]
+
+[b]Installing[/b]
+
+Unzip and double-click [b][i]Mod Manager.bat[/i][/b], then click the button that names the mod.
+
+Works on [b]any save[/b], with the usual catch: a member who has already been spawned in a place you've
+already visited won't carry the new hook. Somewhere you haven't been yet will.
+
+[b]If you play it[/b]
+
+[b]Do this one even if you do nothing else:[/b] kill Inquisitor Fournier in Montaillou's church while
+one of his quests is active, and check that [b]his quests still fail[/b]. If they stopped failing, I
+broke something while adding to it — and that's the kind of break you'd never notice otherwise.
+
+[b]The two halves:[/b] kill twelve goblins and check your sheet for *Goblin Slayer*; kill one inquisitor
+and check it for *Enemy of the Inquisition*.
+
+[b]The best one to actually see:[/b] anger the Templars or the Wielders *while being one of them*, then
+go and talk to one.

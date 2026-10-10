@@ -10,6 +10,14 @@ Text=Salaam. The Knights of Saladin welcome you. To what do I owe the honor?
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of Saladin
+}
+Reply Text=I have spilled the blood of your brothers.
+Go to node ID=1 Fixt the enemy of saladin
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -78,6 +86,14 @@ Text=Word of your deeds have come before you, brother. Welcome into the Order of
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of Saladin
+}
+Reply Text=I have spilled the blood of your brothers.
+Go to node ID=1 Fixt the enemy of saladin
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -136,6 +152,14 @@ Text=Word of your deeds have come before you, sister. Welcome into the Order of 
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of Saladin
+}
+Reply Text=I have spilled the blood of your brothers.
+Go to node ID=1 Fixt the enemy of saladin
+
+Requirement=!None
 Custom Requirement=CAND
 {
 Operand1=CActionExpression
@@ -179,6 +203,14 @@ Icon=Fight Icon
 Node ID=3 Return Dialogue
 Text=You have my attention.
 Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of Saladin
+}
+Reply Text=I have spilled the blood of your brothers.
+Go to node ID=1 Fixt the enemy of saladin
 
 Requirement=!None
 Custom Requirement=CAND
@@ -499,5 +531,14 @@ Requirement=!None
 Reply Text=My thanks, Farshad.
 Go to node ID=
 Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Fixt the enemy of saladin
+Text=Salaam -- and may God forgive what I say next to a guest. My brothers rode from Persia to guard a relic, not to be buried in a foreign street. I will not strike you while the truce holds. But do not come to our fire, do not take our bread, and do not call me brother where the others can hear you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
 Is Default Reply=1
 }

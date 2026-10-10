@@ -1,0 +1,537 @@
+CDialogTree
+{
+Name=Inquisitor
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Greetings, child. How might I help you this day?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Fixt Is Enemy of the Inquisition
+}
+Reply Text=You know what I have done to your order.
+Go to node ID=1 Fixt the enemy of the inquisition
+
+Requirement=Inquisitor is and human
+Reply Text=Greetings, brother. Any news this day from the Grand Inquisitor?
+Go to node ID=70 Inquisitor, Not Tainted
+Action work in progress=(PC is an Inquisitor, Not Tainted)
+
+Requirement=Inquisitor Is and Not Human
+Reply Text=Greetings, brother. Any news this day from the Grand Inquisitor?
+Go to node ID=71 Inquisitor, Tainted
+Action work in progress=(PC is an Inquisitor, Not Tainted)
+
+Requirement=Human IS
+Reply Text=Are you an Inquisitor?
+Go to node ID=20 Inquisitor, Not Tainted
+Action work in progress=(Not an Inquisitor, Not Tainted)
+
+Requirement=Inquisitor Not and Sylvant
+Reply Text=Are you an Inquisitor?
+Go to node ID=21 Inquisitor, Tainted, Sylvant
+Action work in progress=(Not an Inquisitor, Tainted, Sylvant)
+
+Requirement=Inquisitor Not Inquisitor and Feralkin
+Reply Text=Are you an Inquisitor?
+Go to node ID=22 Inquisitor, Tainted, Feralkin
+Action work in progress=(Not an Inquisitor, Tainted, Feralkin)
+
+Requirement=Demokin IS
+Reply Text=Are you an Inquisitor?
+Go to node ID=23 Inquisitor, Tainted, Demokin
+Action work in progress=( Not an Inquisitor, Tainted, Demokin)
+
+Requirement=Human IS
+Reply Text=I wanted to ask you some questions about the city.
+Go to node ID=30 Questions, Not Tainted
+Action work in progress=(Not Tainted)
+
+Requirement=Sylvant IS
+Reply Text=I wanted to ask you some questions about the city.
+Go to node ID=31 Questions, Tainted, Sylvant
+Action work in progress=(Tainted, Sylvant)
+
+Requirement=Feralkin IS
+Reply Text=I wanted to ask you some questions about the city.
+Go to node ID=32 Questions, Tainted, Feralkin
+Action work in progress=(Tainted, Feralkin)
+
+Requirement=Demokin IS
+Reply Text=I wanted to ask you some questions about the city.
+Go to node ID=33 Questions, Tainted, Demokin
+Action work in progress=(Tainted, Demokin)
+
+Requirement=Human IS
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=1
+Trait To Check For=Traits/Racial/Demokin/Bloody Talons
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=1
+Trait To Check For=Traits/Racial/Demokin/Forked Tongue
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=1
+Trait To Check For=Traits/Racial/Demokin/Scaly Hide
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=1
+Trait To Check For=Traits/Racial/Demokin/Shroud of Darkness
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CHasTrait
+{
+Traits To Check For=Array
+{
+Item Count=1
+Trait To Check For=Traits/Racial/Demokin/Acid Blood
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/DemokinTesting
+}
+}
+}
+}
+}
+}
+}
+}
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye, Not Tainted
+Action work in progress=(Not Tainted)
+Icon=Exit Icon
+
+Requirement=Human NOT
+Reply Text=Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Action work in progress=(Tainted)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=10 Goodbye, Not Tainted
+Text=Vaya con dios, <Go with God> my child.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=11 Goodbye, Tainted
+Text=Go with God, child, and go with this warning - your skin marks you as touched by magic. If you use the black arts within these walls, we shall see each other again.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 Inquisitor, Not Tainted
+Text=Yes, I am a servant of the Inquisition. I serve and protect the people from the forces of evil.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=40 Forces of Evil, Not Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=That is all I wished to know. Goodbye.
+Go to node ID=10 Goodbye, Not Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=21 Inquisitor, Tainted, Sylvant
+Text=Yes, I am indeed a servant of the Inquisition...and I see that magic runs through your veins and has marked your flesh. What could one such as you want from me? A cleansing, perhaps? Forgiveness? There is time to repent, child. You need not give yourself over to the forces of evil.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=41 Forces of Evil, Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=22 Inquisitor, Tainted, Feralkin
+Text=Yes, I am indeed a servant of the Inquisition...and I see the magic of the wilds runs through your veins, beast. What could one such as you want from me? A cleansing, perhaps? Forgiveness? There is time to repent, child. You need not give yourself over to the forces of evil.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=41 Forces of Evil, Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=23 Inquisitor, Tainted, Demokin
+Text=Yes, I am indeed a servant of the Inquisition...and I see the blood of devils runs through your veins. What could one such as you want from me? A cleansing, perhaps? Forgiveness? There is time to repent, child. You need not give yourself over to the forces of evil.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=41 Forces of Evil, Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Questions, Not Tainted
+Text=But of course, child. What did you wish to know?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No magic is permitted with Barcelona, correct?
+Go to node ID=40 Forces of Evil, Not Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye, Not Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=31 Questions, Tainted, Sylvant
+Text=Ah, but first I have questions for you...I see the magic runs through your veins and has marked your flesh. What could one such as you want from me? A cleansing, perhaps? Forgiveness? There is time to repent, child. You need not give yourself over to the forces of evil.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=41 Forces of Evil, Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=32 Questions, Tainted, Feralkin
+Text=Ah, but first I have questions for you...I see the magic of the wilds runs through your veins, beast. What could one such as you want from me? A cleansing, perhaps? Forgiveness? There is time to repent, child. You need not give yourself over to the forces of evil.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=41 Forces of Evil, Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=33 Questions, Tainted, Demokin
+Text=Ah, but first I have questions for you...and I see the blood of devils runs through your veins. What could one such as you want from me? A cleansing, perhaps? Forgiveness? There is time to repent, child. You need not give yourself over to the forces of evil.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=41 Forces of Evil, Tainted
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=40 Forces of Evil, Not Tainted
+Text=Yes, magic is the source of many evils in the world. It wraps its serpent coils around men's hearts and causes their spirits to turn from the Lord. If unchecked, magic can corrupt entire nations, such as England. It is the duty of the Inquisition to seek out such evil - and cleanse it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Can you tell me more about England?
+Go to node ID=60 England
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=10 Goodbye, Not Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=41 Forces of Evil, Tainted
+Text=Yes, magic is the source of many evils in the world. It wraps its serpent coils around men's hearts and causes their spirits to turn from the Lord. If unchecked, magic can corrupt entire nations, such as England. It is the duty of the Inquisition to seek out such evil - and cleanse it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=42 Forces of Evil, Tainted 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 Forces of Evil, Tainted 2
+Text=I'm sure you yourself have felt the pain that magic brings and are forced to struggle against its pull every day. The Inquisition can aid you in your struggles, if you wish.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are you the law in Barcelona?
+Go to node ID=50 Law
+
+Requirement=!None
+Reply Text=Nevermind, I must go. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 Law
+Text=No, my child, there is only God's law. It is the Barcelona guard that protects the city. We merely watch over them, help direct their efforts, and give them counsel in times of need. We must be watchful against the forces of evil in these dangerous times, especially with the coming war with England.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Can you tell me more about England?
+Go to node ID=60 England
+
+Requirement=Human NOT
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=40 Forces of Evil, Not Tainted
+Action work in progress=(Tainted)
+
+Requirement=Human IS
+Reply Text=Forces of evil? Do you mean magic?
+Go to node ID=41 Forces of Evil, Tainted
+Action work in progress=(Not Tainted)
+
+Requirement=Human IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye, Not Tainted
+Action work in progress=(PC is not an Inquisitor, Not Tainted)
+Icon=Exit Icon
+
+Requirement=Human NOT
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
+Reply Text=I see. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Action work in progress=(PC is not an Inquisitor, Tainted)
+Icon=Exit Icon
+
+Requirement=Inquisitor IS
+Reply Text=That is good to hear. Goodbye, brother.
+Go to node ID=
+Action work in progress=(PC is an Inquisitor)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=60 England
+Text=England is a nation poisoned by magic. Their queen has openly admitted to trafficking in the black arts, even shelters it within her kingdom! But the foul druids of the land are among the worst of the abominations - they are known to sacrifice *men* before battle. The Inquisition shall execute these heathens and restore God's justice to the beleaguered people of England.
+Should Have Voiceover=0
+
+Requirement=Inquisitor IS
+Reply Text=That is good to hear. Goodbye, brother.
+Go to node ID=
+Action work in progress=(PC is an Inquisitor)
+Icon=Exit Icon
+
+Requirement=Inquisitor IS
+Reply Text=I see. Goodbye, brother.
+Go to node ID=
+Action work in progress=(PC is an Inquisitor, Not Tainted)
+Icon=Exit Icon
+
+Requirement=Human IS
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye, Not Tainted
+Action work in progress=(PC is not an Inquisitor, Not Tainted)
+Icon=Exit Icon
+
+Requirement=Human NOT
+Reply Text=I see. Goodbye.
+Go to node ID=11 Goodbye, Tainted
+Action work in progress=(PC is not an Inquisitor, Tainted)
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=70 Inquisitor, Not Tainted
+Text=No, there are no new decrees from the church, and if there are new truths from the Grand Inquisitor, my ears have not yet heard them. All the efforts of the Inquisition are focused on the war with England and its heretic queen. Soon, the Armada will launch and bring the hand of the Inquisition to England's shores.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Can you tell me more about England?
+Go to node ID=60 England
+
+Requirement=Inquisitor IS
+Reply Text=That is good to hear. Goodbye, brother.
+Go to node ID=
+Icon=Exit Icon
+
+Requirement=Inquisitor NOT
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=71 Inquisitor, Tainted
+Text=Brother? Ah...I did not notice that you were counted among the Inquisition. Hmm. You are touched by magic, are you not? How did one such as you become a member of the Inquisition?
+Should Have Voiceover=0
+
+Requirement=Male IS
+Reply Text=I am attempting to purify myself, to drive the taint of magic from my body. My body may be tainted, but my soul may still be saved.
+Go to node ID=72 Answer, Male
+Action work in progress=(PC is Male)
+
+Requirement=Male IS
+Reply Text=I believe in the Inquisition and believe in the order it has restored to Europe. It has brought order from chaos, and I believe it may do the same to my spirit.
+Go to node ID=72 Answer, Male
+Action work in progress=(PC is Male)
+
+Requirement=Male IS
+Reply Text=The Inquisition is open to all who wish to uphold God's will, brother, and there is no higher duty that one may aspire to, no?
+Go to node ID=72 Answer, Male
+Action work in progress=(PC is Male)
+
+Requirement=Female IS
+Reply Text=I am attempting to purify myself, to drive the taint of magic from my body. My body may be tainted, but my soul may still be saved.
+Go to node ID=73 Answer, Female
+Action work in progress=(PC is Female)
+
+Requirement=Female IS
+Reply Text=I believe in the Inquisition and believe in the order it has restored to Europe. It has brought order from chaos, and I believe it may do the same to my spirit.
+Go to node ID=73 Answer, Female
+Action work in progress=(PC is Female)
+
+Requirement=Female IS
+Reply Text=The Inquisition is open to all who wish to uphold God's will, brother, and there is no higher duty that one may aspire to, no?
+Go to node ID=73 Answer, Female
+Action work in progress=(PC is Female)
+
+Requirement=!None
+Reply Text=Oh, we are *all* around you, brother. We reach deeply into the Inquisition as well - reflect upon that. Goodbye.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=It is a story for another time. Goodbye, brother.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=72 Answer, Male
+Text=I see, brother - a true answer. I respect your strength. Go with God, brother, and I wish you well on your spiritual journey.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=73 Answer, Female
+Text=I see - a true answer. I respect your strength. Go with God, sister, and I wish you well on your spiritual journey.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=80 begone
+Text=You there! What could you possibly want from that shop? Are you a friend of the former proprieter? Answer immediatly by order of the Inquisition.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 25
+Reply Text=I'm innocent. I merely came to spit on the door of a filthy heretic, your grace. 
+Go to node ID=90 used speech to get out
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Leave me alone, Inquisitor.  It is none of your business.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Inquisitor attacks
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nothing, I was just looking around, Inquisitor.
+Go to node ID=81 Goodbye after shop
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=81 Goodbye after shop
+Text=Then go with God, child, and be careful. You do not want to rouse the suspicions of people like me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=85 we shall see
+Text=We shall see who's business it is.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 used speech to get out
+Text=Well spoken, citizen. Rest assured, all heretics will be rooted out and brought before justice. Go with God, child.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=used speech to avoid inq
+Experience Points To Add=1
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Fixt the enemy of the inquisition
+Text=I know it, child. Your name is written in a ledger in the Temple District, beside a number, and the number is not small. <He does not reach for a weapon.> We are a patient order. We are also a very good one at arithmetic.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+}

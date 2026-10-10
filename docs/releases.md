@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.46.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.47.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,138 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.47.0 - the five titles nothing awarded
+
+The game has **13 title perks**. They are unselectable by design, carrying a deliberately
+impossible requirement -- `CIsGreaterThanOrEqual` of the constants `0` and `1` -- so they can only
+ever be handed out by script. **Five of them were handed out by nothing.**
+
+| perk | the title it awards | granted by |
+|---|---|---|
+| `Goblin Slayer` | **Goblin Slayer** | nothing |
+| `FACTION Inquisitor Killer` | **Enemy of the Inquisition** | nothing |
+| `FACTION Templar Killer` | **Enemy of the Knights Templar** | nothing |
+| `FACTION Wielder Killer` | **Enemy of the Wielders** | nothing |
+| `FACTION Saladin Killer` | the Saladin equivalent | a grant that cannot fire |
+
+### Goblin Slayer needed no mechanism, only a line in the right place
+
+`Goblin Kill Counter.DerivedCharacterAttribute` is live, and **ten** threshold sites across **six**
+files already compute *"twelve goblins killed"* -- and already act on it, firing the Raylark bounty
+in `Bounty Hunter Camp` and advancing `Slay the Goblins for the Savage Heart`. The perk is now
+granted **in that same branch**, so no threshold, no counter and no mechanism was invented. The
+grant is idempotent through the `CHasPerkExpression` guard Fixt already uses for `Child Killer`.
+
+### The four faction titles hook the can, not the generators
+
+Those four factions have **707** spawn points between them. Hooking generators would have meant
+editing all of them. Instead each member can's own `Destroyed Script Action` -- which was **empty on
+every single one** -- now carries the grant, so one edit covers every place that can is spawned:
+**33 cans, 568 spawn points.**
+
+| title | cans | spawn points |
+|---|---|---|
+| Enemy of the Inquisition | 14 | **109** |
+| Enemy of the Knights Templar | 13 | **425** |
+| Enemy of the Wielders | 3 | 17 |
+| the Saladin title | 3 | 17 |
+
+**The trap this project already documented was waiting here.** A generator's
+`CSetDestroyedScriptActionAction` **replaces** the can's death slot rather than adding to it -- the
+bug that left the Lava Troll Hide dead from 0.10.0 until 0.30.1. Several of these cans are spawned
+by generators that do exactly that, so those grants would have been silently dead. Rather than
+overwrite, each existing action is **wrapped** so both run:
+
+```
+New Destroyed Action=CMultipleActionsAction
+    Item Count=2
+    Action=<the generator's original action, untouched>
+    Action=<the idempotent perk grant>
+```
+
+Which is why killing **Inquisitor Fournier** still fails his three quests -- `Find the Witch for the
+Inquisitor`, `Talk with The Mayor for the Inquisitor`, `Purify the Shadow Dryad` -- *and* now marks
+you an enemy of the Inquisition.
+
+**A completeness audit then walked every spawn point independently**, reading the hooks back off
+disk rather than trusting the build script. It found two more overriding generators the first pass
+had missed, because that pass only checked each can's *first* spawn in each map. It now reports no
+spawn whose generator overrides the hook without carrying it.
+
+### The Saladin perk was dead too, and this document said otherwise
+
+An earlier version of this survey called `FACTION Saladin Killer` *"the working quarter sitting
+beside it as a reference implementation."* **It does not work.** Its only grant sits on a part that
+is `Active=0`, is one of **34** parts named `warp` in that map, and is activated by nothing
+anywhere. So all four faction titles were dead, not three, and `Child Killer` -- which Fixt wired
+itself across 40 hooks in 7 maps -- was the only real reference. Saladin is now hooked the same way
+as its siblings, through `Knight of Saladin Can`, `Knight of Saladin` and **Jafar**, who turns out
+to be the faction leader: he carries `Faction Leader Saladin Drop Action`.
+
+### Who counts as a member was decided from the data, not the names
+
+| excluded | why |
+|---|---|
+| `Dead Knight Templar 1`-`5` | corpse props, from a folder literally called `Dead body Knight Templars and Inquisitor` |
+| `Undead Templar 1`, `2` | crypt undead, not Templar agents |
+| `Extraplanar Inquisition Jail` | race `ExtraPlanar Enemy` |
+| `Inquisitor Buying Player` | race `Generic Human`; the slaver scene |
+| **the rogue inquisitors** | a rogue has **left** the Inquisition, and the Grand Inquisitor's own tree carries a `413 rogue inquisitors` node about hunting them, so killing one is not slaying an agent of the Inquisition |
+
+### Every title gets a reaction
+
+Each is answered on its faction's **generic member** tree, so a single edit reaches every member of
+it. Three of the four hang off a greeting that calls the player a friend, which is where it bites.
+
+**The Inquisition**, from *"Greetings, child. How might I help you this day?"*:
+
+> *"I know it, child. Your name is written in a ledger in the Temple District, beside a number, and
+> the number is not small. <He does not reach for a weapon.> We are a patient order. We are also a
+> very good one at arithmetic."*
+
+**The Knights Templar**, on the ordinary greeting **and** on both *"Well met, brother / sister"*
+introductions:
+
+> *"Then I will not call you brother again, and that costs me more than I expected it to. We bury
+> ours with their swords on their chests and their names read aloud. <He does not look away.> Yours
+> were read. Go, before I learn which of my vows is the louder one."*
+
+**The Wielders**, including *"Welcome, fellow Wielder"*:
+
+> *"We felt each one go out, like candles down a long hall. And still you walk in here and expect
+> the passage to open. <The cold in the room arrives, and stays.> It will open. We have not finished
+> counting, and the lost street keeps a long memory."*
+
+**The Knights of Saladin**, including *"Word of your deeds have come before you, brother"*:
+
+> *"Salaam -- and may God forgive what I say next to a guest. My brothers rode from Persia to guard
+> a relic, not to be buried in a foreign street. I will not strike you while the truce holds. But do
+> not come to our fire, do not take our bread, and do not call me brother where the others can hear
+> you."*
+
+**And the goblins answer `Goblin Slayer` three ways.** The villagers -- reachable from all **17** of
+their greeting variants, every one of which is otherwise about eating you:
+
+> *"You are the one from the vale. <It does not offer to eat you.> We have stopped counting. The
+> young ones are told you are weather -- a thing that happens to goblins, and cannot be fought."*
+
+**Raylark**, who commissioned the bounty and already had a body-count line, and **the Khan**, gated
+on holding the title *while* carrying goblin rank, so it only appears if you are in the horde and
+have been slaughtering it:
+
+> *"Both are true, and it troubles you far more than it troubles me. I did not raise you up to be
+> gentle, morsel -- I raised you to be useful."*
+
+A new *greeting* for the villagers was the first plan and would have been **inert**: greeting node
+IDs are hard-coded per entity across **16** maps, so a new one is never selected. Replies on the
+shared tree reach every goblin in the Wilderness from one edit.
+
+### What needs playing
+
+`PK1`-`PK16` in [`qa.md`](qa.md). **`PK13` is the regression that matters most** -- the wrapped
+generators must still do their original work. **`PK1`** and **`PK5`** prove the two halves of the
+release, and **`PK16`** checks the rogue-inquisitor exclusion was the right call.
 
 ## 0.46.0 - the creatures sent after Machiavelli
 
