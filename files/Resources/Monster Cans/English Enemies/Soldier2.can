@@ -779,7 +779,27 @@ CCannedObject
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=8
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Fighting/OneHandedMelee
+							}
 							Action=CActionSelectSkill
 							{
 								Character to select skill=$Trigger

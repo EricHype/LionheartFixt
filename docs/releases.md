@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.51.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.52.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,102 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.52.0 - half as much shouting in a crowd
+
+**This is the first release in this line built because a playthrough asked for it, rather than
+because a survey found something missing.** The report was that the barks are good, and that when
+surrounded by enemies there are far too many of them.
+
+### How a bark is throttled
+
+A bark is a node in a tree, a `CDisplayDialogBalloonAction` pointing at it, hung on a hook. The rate
+comes from padding inside a `CRandomAction`: the engine picks **one** array entry uniformly, and only
+one of those entries is the bark bank. The rest are `CActionSelectSkill` calls.
+
+Across all **96 cans and 108 bark sites** the shape was perfectly uniform:
+
+| hook | fires when | was | sites |
+|---|---|---|---|
+| `Shoot Completed` | **every completed attack swing** | 3 pads + 1 bank = **1 in 4** | 96 |
+| `Damaged Script Action` | that creature is wounded | 5 pads + 1 bank = 1 in 6 | 12 |
+
+### Why being surrounded was the complaint
+
+**The attack hook is per-creature.** One enemy barks once per four swings. Six enemies swing six
+times as often, so the *group* barked more than once per swing-round. The complaint was not that the
+rate was set too high in the abstract -- it was that the rate is multiplied by the crowd, and nothing
+in the shape accounted for that.
+
+### What changed, and what deliberately did not
+
+| hook | was | now | pads |
+|---|---|---|---|
+| `Shoot Completed` | 1/4 | **1/8** | 3 -> 7 (93 cans) |
+| `Shoot Completed`, the 3 shaman cans | 1/4 | **1/7** | 3 -> 6 |
+| `Damaged Script Action` | 1/6 | **1/6, untouched** | 5 |
+
+**The wounded hook is left byte-for-byte as it shipped**, and that is the deliberate half of this
+release. It does not multiply: the player strikes one creature at a time, so its rate is bounded by
+the player's own attack speed however many enemies are present. It was therefore never the reported
+problem. It is also the hook carrying the *reactive* lines -- the ones that answer something the
+player just did -- and leaving it is what keeps a solitary fight from going silent while the crowded
+fights get quiet. The diff is one hunk per can and **no diff line in the release mentions
+`Damaged Script Action`.**
+
+So this release does not halve the barks in every situation, and should not be read as doing so. It
+halves the hook that the crowd multiplies. In a crowded fight, where the swing hook dominates because
+it scales with the number of attackers, that is most of the noise. In a one-on-one fight, where the
+wounded hook is a far larger share of the total, far less changes -- which is the intent, because a
+one-on-one fight was not what anybody complained about.
+
+### The padding is load-bearing, which set the arithmetic
+
+`CActionSelectSkill` **is not a no-op** -- it chooses the creature's next attack, which this project
+learned the hard way when 21 archer cans shipped selecting a melee skill their race did not have. So
+the pads are doing two jobs at once, and their *counts are a distribution*.
+
+Three cans prove it. `Mongol Goblin Shaman`, `Shaman Tough` and `Shaman Super` pad with **Spike x1,
+Static Charge x2** -- that array is encoding a **1:2 spell mix**. Cloning the first pad to reach a
+target count would have quietly made them cast Spike almost always.
+
+So every pad count here was set by cycling each can's **own** pad sequence and snapping the target to
+a multiple of that sequence's period. Which produces one counter-intuitive number worth recording:
+
+**the pad count is the rate denominator *minus one*,** because the array holds the pads *plus* the
+bark bank. A sequence of period 3 can therefore only land on denominators of the form **3n+1** --
+1/4, 1/7, 1/10, 1/13, 1/16. **1/8 is unreachable for the shamans** (7 is not a multiple of 3), so
+they sit at 1/7 and keep their mix exactly: 2 Spike : 4 Static Charge. They bark 14% more often than
+the other goblins, which is not perceptible, and the alternative was drifting Spike from 33% to 43%.
+
+**No can's skill selection changed.** The audit reads every site back off disk and confirms it.
+
+### The better design, measured and rejected
+
+The right fix is **one shared cooldown**: a global lock, so a crowd barks at a lone enemy's rate
+instead of N times faster. Every primitive is heavy vanilla idiom --
+`CCreateEntityFromCanAction` creates a named entity with no map-side source, `CCheckExistenceAction`
+reads it (**1,926** uses), `CDelayAction` times it (**4,694**), `CDeleteAction` clears it (**1,107**).
+
+It was dropped on what the data said about the *unlock*. Vanilla has **13** cases of a `CDelayAction`
+inside a death hook, and **every one uses `Delay=0` or `Delay=0.1`** -- they are frame-ordering
+tricks, not real waits. **Zero** vanilla cases delay a delete of a named target past a creature's
+death.
+
+A bark lock is held *during combat*, which is precisely when its holder is most likely to die
+mid-cooldown. If the delayed delete dies with it, the lock sticks and **every combat bark in the game
+goes silent for that save** -- a total, silent regression undoing five releases of bark work, resting
+on an engine fact that is not in evidence. That question is answerable in the decompiler, and until
+it is answered the flat halving is the change that cannot fail quietly.
+
+### Not touched
+
+`Montserrat Barks` is referenced by 4 maps, but through `GetCloseThenTrigger` proximity specifiers --
+ambient, non-combat lines you walk past. It is not part of the combat bark surface and was left
+alone. The five Fixt bark trees are referenced by **0** maps: they are driven only from the two can
+hooks, so there is no aggro-time burst to account for.
+
+No bark line was removed, no bank was thinned, and no tree changed. Only the swing rate.
 
 ## 0.51.0 - magic ammunition that could never drop
 

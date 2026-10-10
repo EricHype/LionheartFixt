@@ -1473,6 +1473,40 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Half as much shouting in a crowd
+
+Reported from play: the barks are good, and when surrounded by enemies there are far too many. A bark
+is diluted by padding inside a `CRandomAction`, and the attack hook is **per-creature** -- six enemies
+swing six times as often, so the group barked more than once per swing-round. `Shoot Completed` is now
+**1/4 -> 1/8** (the 3 shaman cans **1/7**, see below).
+
+**`Damaged Script Action` is untouched at 1/6**, byte-for-byte as it shipped. It cannot multiply with
+the crowd -- the player strikes one creature at a time -- so it was never the problem, and it is what
+keeps a solitary fight talking. **So this is not half the barks in every situation**: it is half the
+hook the crowd multiplies, which is most of the noise in a crowded fight and much less of it in a
+duel.
+
+**`BV1` is the pull-trigger row.** The failure mode of a rate cut is a rate cut to *zero*. If barks
+have stopped appearing altogether, something is wrong with the array splice rather than with the
+number, and this release should come back out.
+
+**`BV5` and `BV6` guard the thing that nearly went wrong.** The padding is not filler --
+`CActionSelectSkill` chooses the creature's next attack, and the three shaman cans encode a
+**1 Spike : 2 Static Charge** spell mix in their pads. Pad counts were set by cycling each can's own
+sequence, so no distribution moved; these two rows confirm that in play.
+
+**`BV7` is the judgement row.** The two hooks are separate numbers and can move independently.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| BV1 | **The pull-trigger row.** Any fight with goblins, thieves, English soldiers, trolls or Snakebreed | Fight for a minute or two | **Barks still appear.** Floating text over a creature's head. Fewer than before, but present -- if none appear at all in several fights, the splice is broken, not the number |
+| BV2 | **The row that proves it.** A fight where you are surrounded -- a goblin camp, a Mongol patrol, the Troll Pit | Let a group engage you and watch the hover text | **Noticeably less chatter than before.** There should rarely be two balloons up at once, where previously a crowd produced them faster than once per swing-round |
+| BV3 | One enemy, alone | Fight a single goblin or thief | It still barks, and a solitary fight should feel **much closer to before** than a crowded one does -- the wounded hook was left alone precisely so this case did not go quiet |
+| BV4 | Wound something and let it live | Hit a creature, back off, hit it again | **Wounded barks fire at exactly their old rate.** This hook was not changed. If these feel rarer than they used to, say so -- it would mean the swing cut is reading as an overall cut and the two hooks need looking at together |
+| BV5 | **Mongol Goblin Shaman**, any variant | Fight one and watch which spells it casts | It still casts **both Spike and Static Charge**, with Static Charge roughly twice as common. Its pads encode that mix; if it has started casting almost nothing but Spike, the pad cycling was wrong |
+| BV6 | Any **archer** can -- Mongol Goblin Archer, Soldier2 Bow, Sewer Theif3 Bow | Fight one at range | It still shoots. `CActionSelectSkill` in the padding is what selects the ranged attack, so an archer that has stopped using its bow would mean the padding was damaged |
+| BV7 | **The judgement row.** After a few hours | - | Is the swing rate right now? If crowds are still loud, the attack hook comes down again. If crowds are good but the game overall feels too quiet, the wounded hook is the one to *raise* -- it is still at its original 1/6 and is the hook carrying the reactive lines |
+
 ## Magic ammunition that could never drop
 
 `Arrow selection MAGIC` and `Bolt selection MAGIC` are exact twins -- same base item, same six

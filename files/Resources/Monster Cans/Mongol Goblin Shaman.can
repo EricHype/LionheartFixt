@@ -421,7 +421,22 @@ CCannedObject
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=7
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Magic Thought/Offensive/Spike
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Magic Thought/Offensive/Static Charge
+							}
+							Action=CActionSelectSkill
+							{
+								Character to select skill=$Trigger
+								Skill to select=Skills/Magic Thought/Offensive/Static Charge
+							}
 							Action=CActionSelectSkill
 							{
 								Character to select skill=$Trigger
