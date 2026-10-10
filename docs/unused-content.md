@@ -627,7 +627,7 @@ against vanilla. Two entries this list used to carry turned out to be shipped an
 
 | | |
 |---|---|
-| `100 Respond ask about Tank` in `8 Alamut/Dialog/DaVinci Ending.DialogTree` | the node is present with **0 incoming links**. Act 8, and the act-8 `Siege Tank` part is `Active=0` and activated from elsewhere, so it is its own job rather than a tail of 0.43.0 |
+| ~~`100 Respond ask about Tank`~~ | **a false positive -- the node is live.** See the correction below |
 | `GrandInquisitor / 120 combat.ogg` | 172 KB, and **statically undecidable** -- see below |
 
 ### The Grand Inquisitor's orphan recording cannot be placed from the files
@@ -1452,4 +1452,58 @@ the `CDisplayAffectingPlayerIconAction` beside it puts a HUD icon on the player.
 one-time self-buff on a creature; 0.48.0's are new in that respect, even though the mechanism around
 them is vanilla's. It also means `CDisplayAffectingPlayerIconAction` is the wrong tell for an enemy
 buffing itself -- that is a player-HUD action -- and `CSpawnEffectAction` is right.
+
+
+## The last backlog item was a false positive, and it failed the same test twice
+
+`100 Respond ask about Tank` in `8 Alamut/Dialog/DaVinci Ending.DialogTree` was the last entry on
+this document's open list, recorded as *"the node is present with 0 incoming links."* **That is true
+and it means nothing.**
+
+### Why the measurement was wrong
+
+**Every one of the 13 nodes in that tree has 0 incoming links.** The tree has no internal branching
+at all -- `08 Final Encounter.zax` opens each node directly as a balloon. Counting `Go to node ID=`
+within the tree was the wrong instrument:
+
+| node | incoming links | opened by a map |
+|---|---|---|
+| all 13, including `100 Respond ask about Tank` | **0** | **`08 Final Encounter.zax`** |
+
+`reachability.py` never flagged it, because that tool checks map openers as well as links. **The tool
+was right and the hand-written note was wrong**, which is the part worth remembering.
+
+### What the node actually is
+
+It sits in the middle of the act-8 opening cutscene, and the chain reads:
+
+```
+MASTER Start level NIS   (Active=1, relay-fired)
+  -> DaVinci Ending / 100 Respond ask about Tank   "Time will tell if it does us any good..."
+  -> activate  Tank Camera,  Siege Tank,  Old Man Camera
+  -> OldMan / 40 ruse
+```
+
+So it is **DaVinci's line immediately before the siege tank rolls in**, and the camera cuts to the
+tank on the very next action. The node's name means "DaVinci responding *about* the tank", not "a
+reply to the player asking about the tank". It plays in every run of act 8.
+
+### The second failure, which is the method lesson
+
+This document's own note said the `Siege Tank` part *"is `Active=0` and activated from elsewhere, so
+it is its own job."* It observed the activation and still treated the part as a problem. **`Active=0`
+plus an activator is the normal idiom for a scripted entrance, not a defect** -- it is exactly how
+`Trigger Assassins Relay` works in the House of Ilk ambush that 0.46.0 repaired, and how the four
+tank-related parts here work:
+
+| part | state |
+|---|---|
+| `Siege Tank`, `Tank Camera`, `Path blocker behind Tank`, `Collide poly for Tank` | `Active=0` **and activated** by `MASTER Start level NIS` |
+| `Tank Path`, `Hit Spot for Tank Cannon`, `Sound of Tank location`, `DaVinci goto when tank arrives` | `Active=1` |
+
+The tank arrives, a camera follows it, a path blocker drops in behind it, and DaVinci walks over to
+meet it. The whole sequence is finished and shipped.
+
+**Nothing was built for this, and nothing should be.** With it struck, the open list from the
+original survey is empty.
 
