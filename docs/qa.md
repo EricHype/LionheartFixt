@@ -1473,6 +1473,33 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The book nobody could find
+
+`Inquisitor Feralkin Journal` was the only one of the twelve books in `Quest Items/Books/` obtainable
+nowhere -- no shop, no map, no dialogue. The item itself was always complete, so this is wiring: an
+11th entry in Weng Choi's stock rotation, a 10th check in his rare-book gate, and an inquisitor who
+notices you carrying it.
+
+**`FJ2` proves the release.** **`FJ8` is the regression** -- this release reached into the middle of
+the `CSeriesAction` that hands out all ten of Weng Choi's other books, so those must still cycle.
+
+**How Weng Choi's stock works, which matters for testing:** it is a series that gives **one book per
+visit** and then cycles back to the start. So the Journal is the eleventh thing he offers, not
+something that appears immediately. Expect to go back and forth.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| FJ1 | The Gate District, Weng Choi's shop | Become a valued customer and collect his rare books, returning as many times as it takes | You are given a different book each time, cycling through his stock |
+| FJ2 | **The row that proves it.** Keep collecting from `FJ1` past the tenth book | - | **The `Feralkin Journal` is among them.** Before this release it existed in the files and could not be got hold of anywhere in the game |
+| FJ3 | Look at the Journal in your inventory | - | It is called **`Feralkin Journal`** -- with **no trailing full stop**. It was the only one of the twelve books whose name ended in one. Its description mentions the life and trials of a Feralkin at the hands of the Inquisition |
+| FJ4 | Pick it up and put it down | - | It plays the scroll/book pickup and putdown sounds. Those were always in the item; nothing here changed them |
+| FJ5 | **He buys it too.** Sell the Journal back to Weng Choi | - | His *"What is this you have sold me? A rare book?"* response fires, exactly as it does for the other ten |
+| FJ6 | **The reaction.** Carry the Journal and talk to any ordinary inquisitor | Read the replies | A new reply offers to tell him you are carrying an account of what his order did to a feralkin. Taking it gets his answer about the wretch having written it *alive* |
+| FJ7 | After `FJ6`, check your inventory | - | **You still have the book.** He demands it and nothing takes it -- that is deliberate. If the Journal is gone, something is wrong |
+| FJ8 | **The regression.** Collect Weng Choi's books again on a fresh character | - | **All ten of the originals still appear** -- Eloquent Works, Art of Barter, the five History books, Centuries, Tome of Geomancy, Book of Death, Poetry Book. This release inserted into the middle of the series that gives them out |
+| FJ9 | Without the Journal, talk to an inquisitor | - | The new reply is **absent**. It is gated on actually carrying the book. The 0.47.0 *"Enemy of the Inquisition"* reply, if you have earned that title, is unaffected and still works |
+| FJ10 | Judge the **scene**, which no check settles | Do `FJ6` as a feralkin character, if you can | Does his answer land? He is being shown an account of his own order's cruelty and refuses the accusation rather than denying the facts. If it reads as toothless, the node is worth rewriting |
+
 ## The two wands that were only a description
 
 `Fire and Ice` and `The Mage` shipped as a name, an icon, a `5 Unique` rarity and a paragraph of

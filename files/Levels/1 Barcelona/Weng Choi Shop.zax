@@ -3185,7 +3185,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=10
+							Item Count=11
 							Action=CActionGiveStandardInventoryItem
 							{
 								Who to give to=$instigator
@@ -3291,6 +3291,17 @@ CLayerSaveData
 								Delete Trigger=0
 								Notify Player=1
 								Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+								Additions to add=Array
+								{
+									Item Count=0
+								}
+							}
+							Action=CActionGiveStandardInventoryItem
+							{
+								Who to give to=$instigator
+								Delete Trigger=0
+								Notify Player=1
+								Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Books/Inquisitor Feralkin Journal
 								Additions to add=Array
 								{
 									Item Count=0

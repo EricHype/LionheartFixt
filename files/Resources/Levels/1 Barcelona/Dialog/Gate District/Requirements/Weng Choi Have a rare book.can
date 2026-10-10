@@ -1,0 +1,78 @@
+CCannedObject
+{
+	Object=CActionExpression
+	{
+		Action=CAndAction
+		{
+			Action=Array
+			{
+				Item Count=2
+				Action=COrAction
+				{
+					Action=Array
+					{
+						Item Count=10
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+						}
+						Action=CActionCheckForInventoryItem
+						{
+							Who to give check=$instigator
+							Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Inquisitor Feralkin Journal
+						}
+					}
+					Early Exit=0
+				}
+				Action=CIsQuestStateTheCurrentStateAction
+				{
+					Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+					State=2LK2EVMQ
+				}
+			}
+			Early Exit=0
+		}
+	}
+	Use=Shared Global Instance
+}

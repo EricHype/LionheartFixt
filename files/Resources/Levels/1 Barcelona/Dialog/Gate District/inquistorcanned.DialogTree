@@ -12,6 +12,14 @@ Should Have Voiceover=0
 Requirement=!None
 Custom Requirement=CUseCannedExpressionExpression
 {
+Canned Expression=Dialog/Requirements/Fixt Carries Feralkin Journal
+}
+Reply Text=I am carrying an account of what your order did to a feralkin.
+Go to node ID=1 Fixt the feralkin journal
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
 Canned Expression=Dialog/Requirements/Fixt Is Enemy of the Inquisition
 }
 Reply Text=You know what I have done to your order.
@@ -528,6 +536,15 @@ Is Default Reply=1
 ------------------------------------------------------------
 Node ID=1 Fixt the enemy of the inquisition
 Text=I know it, child. Your name is written in a ledger in the Temple District, beside a number, and the number is not small. <He does not reach for a weapon.> We are a patient order. We are also a very good one at arithmetic.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Fixt the feralkin journal
+Text=Then you carry a lie, child, and you carry it badly -- openly. <He puts out his hand for it, and waits.> Whatever that wretch set down, he set it down afterward, which means he set it down alive. We are not the thing that manuscript describes. Give it here, and we need not discuss how it came to you.
 Should Have Voiceover=0
 
 Requirement=!None

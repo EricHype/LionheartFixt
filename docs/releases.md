@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.49.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.50.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,67 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.50.0 - the book nobody could find
+
+Twelve books sit in `Inventory/Specific Item Cans/Quest Items/Books/`. **Eleven of them can be
+obtained. One cannot be obtained anywhere at all.**
+
+| | how you get it |
+|---|---|
+| ten of them | **Weng Choi's stock rotation** -- a `CSeriesAction` that hands out one book per visit, `When Done=Repeat Series` so it cycles |
+| `History Book Crusades` | Shylocke's shop, and placed in `Knights Templar.zax` |
+| **`Inquisitor Feralkin Journal`** | **nothing. No shop, no map, no dialogue, nowhere** |
+
+### It was never unfinished
+
+This is the opposite of the two wand shells in 0.49.0. The Journal is a **complete item**: its own
+pickup and putdown sounds (`pick_up_scroll_book.ogg`, `put_down_scroll.ogg`), an icon, a value, an
+encumbrance, and a written description --
+
+> *"This well written manuscript details the life and trials of a Feralkin at the hands of the
+> Inquisition."*
+
+Nothing about it needed building. It needed a **shop**. An earlier version of this survey said it
+"needs a reader more than a quest", which was looking for the wrong missing piece: the other eleven
+books have no reader either. What they have is a merchant.
+
+### Wired three ways
+
+**The 11th book in Weng Choi's rotation.** His stock is a `CSeriesAction` of ten
+`CActionGiveStandardInventoryItem` entries; the Journal is now the eleventh (`Item Count` 10 -> 11).
+The entry was **cloned from his existing last one and repointed**, so every surrounding field is
+guaranteed to match rather than hand-written. Since the series is `Repeat Series`, the rotation still
+cycles and every book remains reachable.
+
+**The 10th check in `Weng Choi Have a rare book`.** That can is a `COrAction` over nine
+`CActionCheckForInventoryItem` entries -- the gate on whether the player is carrying something he
+would want. The Journal is now the tenth, so his existing `1000 Received Rare Book` node
+(*"What is this you have sold me? A rare book?"*) fires for it. He sells it **and** buys it.
+
+**And an inquisitor notices it.** Gated on actually having the book in your pack, hung on the same
+generic-inquisitor tree 0.47.0 used -- which was verified undisturbed, 25 nodes to 26 with the
+earlier reply intact:
+
+> *"Then you carry a lie, child, and you carry it badly -- openly. <He puts out his hand for it, and
+> waits.> Whatever that wretch set down, he set it down afterward, which means he set it down alive.
+> We are not the thing that manuscript describes. Give it here, and we need not discuss how it came
+> to you."*
+
+**Nothing takes the book.** He demands it and the exchange ends; the threat is the content, and you
+keep a rare book worth selling. Making an NPC confiscate an item the player hunted down would be a
+worse scene than the one his refusal to be accused already is.
+
+### One small defect, fixed in passing
+
+Its display name was **`Feralkin Journal.`** -- with a trailing full stop, the only one of the twelve
+books with one. The others read `History of the Crusades`, `Tome of Geomancy`, `Art of Barter`.
+
+### What needs playing
+
+`FJ1`-`FJ10` in [`qa.md`](qa.md). **`FJ2` proves the release** -- the book has to actually come out
+of Weng Choi's rotation. **`FJ8` is the regression**: the other ten books must still cycle, since
+this release reached into the middle of the series that hands them out.
 
 ## 0.49.0 - the two wands that were only a description
 

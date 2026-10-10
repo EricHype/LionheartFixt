@@ -76,7 +76,7 @@ Three came off this list in 0.39.0: both Trapped Spirit items and
 | ~~`Hangover Cure Potion`~~ | *"Clears the mind and body after the consumption of excess alcohol."* | **Done in 0.44.0** -- the drunkard who teaches Drunken Boxing asks for it after Montserrat; Quinn brews it from nightshade root given by Na Roqua in Montaillou |
 | `Titan Crystal` | *"Large and unwieldly. Smells bad."* | unused, but its **icon art is reused** by the live `LuciusMneme` |
 | `Titan Sphere` | *"Spirit gem"* | unused, but its **icon art is reused** by all four live stone hearts |
-| `Inquisitor Feralkin Journal` | *"details the life and trials of a Feralkin at the hands of the Inquisition"* | a readable book; needs a reader more than a quest |
+| ~~`Inquisitor Feralkin Journal`~~ | *"details the life and trials of a Feralkin at the hands of the Inquisition"* | **done in 0.50.0.** It never needed a reader -- it needed a **shop**. The item was always complete; it was the only one of the twelve books obtainable nowhere |
 
 **The two Titan items need classifying before building.** Their art survived into live items, and
 the concepts they name are both covered by live content -- `LuciusMneme` for the crystal and
@@ -614,7 +614,7 @@ against vanilla. Two entries this list used to carry turned out to be shipped an
 |---|---|---|
 | **`Goblin Slayer`** | **0** | `Goblin Kill Counter.DerivedCharacterAttribute` is live and **7 maps write to it**. The perk exists with `Display Name=Goblin Slayer` and **no actions at all** -- a title granted by nothing. This is a threshold read away. **The trap:** `Bounty Hunter Camp.zax` looks like it references the perk, but the match is an entity named `Goblin Slayer Xp Giver` -- a substring collision, not a grant |
 | **The three `FACTION * Killer` perks** | **0** each | Their display names are already written and good: *"Enemy of the Inquisition"*, *"Enemy of the Knights Templar"*, *"Enemy of the Wielders"*. A shipped pattern with a working quarter as reference. Needs a decision about where detection lives -- a per-member death slot rather than a map trigger -- but invents nothing |
-| `Inquisitor Feralkin Journal` | **0** | needs a reader; the item is the easy half |
+| ~~`Inquisitor Feralkin Journal`~~ | -- | **done in 0.50.0** -- added to Weng Choi's rotation as its 11th book, to his rare-book check as its 10th, and noticed by an inquisitor |
 | `Bolt selection MAGIC` | **0** | the last loose end in the magic pipeline. `Boot`, `Gauntlet`, `Necklace` and `Arrow selection MAGIC` each resolve from exactly **one** map, so only `Bolt` is truly adrift |
 
 **Reachable only from a test map:**
