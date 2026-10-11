@@ -161,6 +161,19 @@ Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
+Icon=Quest Icon
+
 
 Requirement=!None
 Reply Text=I need nothing today. Goodbye.
@@ -322,6 +335,19 @@ State=TRD4K8ZM
 }
 Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
 Icon=Quest Icon
 
 
@@ -487,6 +513,19 @@ Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
+Icon=Quest Icon
+
 
 Requirement=!None
 Reply Text=I need nothing today. Goodbye.
@@ -648,6 +687,19 @@ State=TRD4K8ZM
 }
 Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
 Icon=Quest Icon
 
 
@@ -816,6 +868,19 @@ State=TRD4K8ZM
 }
 Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
 Icon=Quest Icon
 
 
@@ -1138,6 +1203,19 @@ Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
+Icon=Quest Icon
+
 
 Requirement=!None
 Reply Text=I need nothing today. Goodbye.
@@ -1172,6 +1250,19 @@ Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=6 Return Dialogue Wizard
 Text=Eh...welcome back to Eduardo's Blacksmith Shop. Perhaps you have forgiven me for my earlier insult? I meant no harm. Please, let me show you what weapons and armor I have.
@@ -1188,6 +1279,19 @@ State=TRD4K8ZM
 }
 Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
 Icon=Quest Icon
 
 ------------------------------------------------------------
@@ -3133,6 +3237,19 @@ State=TRD4K8ZM
 }
 Reply Text=I have been down to the lava trolls. Their chief sends you terms.
 Go to node ID=790 the troll terms
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=Has your man been down to the trolls yet?
+Go to node ID=794 the rock does not answer
 Icon=Quest Icon
 
 ------------------------------------------------------------
@@ -5108,5 +5225,77 @@ Quest=Levels/Sewers/Quests/The Red Ore Trade
 State=TRD7Q2NB
 }
 Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=794 the rock does not answer
+Text=<He does not put the tongs down this time. He keeps working while he talks, which from him is not discourtesy; it is a man keeping his hands busy.>  Mateo. I sent Mateo, in daylight, with iron on his back, the same man every time so they would know the face of him.  <He turns the piece over and looks at it instead of at you.>  He knocked on the rock and he waited the way I told him to wait. Nothing came up. He went down again the second day and waited longer, and nothing came up then either. The third day he would not go, and I did not make him.  <He sets the tongs down after all.>  Fourteen years I sent boys into that dark and never once asked what was on the other end of it. Then I asked, properly, like a man -- and the dark has stopped answering.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I killed them. All of them.
+Go to node ID=795 the smith told
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT7B2WM
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I know nothing about it.
+Go to node ID=796 the smith not told
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT7B2WM
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=<Say nothing.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=795 the smith told
+Text=<He takes it with no expression at all, which is somehow worse than the laugh would have been.>  ...I see.  <The forge is the only sound for a while.>  I will not ask you why. I do not think I would understand the answer, and I am not certain you would either.  <He picks the tongs back up.>  I had an agreement with something that had lived under my city for fourteen years, and I never once knew its name. I had that agreement for nine days.  You may still buy from me, senor, and my prices are my prices. But do not come in here and talk to me about terms again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave him to it.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=796 the smith not told
+Text=<He looks at you for a moment too long.>  No. Of course not.  <He goes back to the piece, and his hands are a little too careful with it.>  Then it is one of those things. A pit goes quiet and nobody knows why, and the man who carried the terms down also does not know why, and I am a smith and not a magistrate.  <He does not look up again.>  Mateo asked me whether he had done something wrong. I told him no.  That part is true, at least.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave him to it.>
+Go to node ID=
+Icon=Exit Icon
 Is Default Reply=1
 }

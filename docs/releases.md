@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.52.3 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.53.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,137 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.53.0 - the peace you brokered
+
+**Reported from play, and the report was a verdict:** *"After peaceful resolution of Lava Troll quest
+lines, when decided to kill them for XP, only targeted troll is fighting back, rest is idle. You can
+pick them one by one in this way - too easy."*
+
+### Why only one troll fought
+
+Three facts, and the third is the one that mattered.
+
+* The pacifier blanks `Valid Targets=`, and target acquisition is
+  `CEntityBehaviorStateSetClosestTarget`. With an empty list there is nothing to acquire, so a
+  pacified troll standing six feet from a murder is not ignoring it -- it cannot see it as a target
+  at all.
+* The troll you hit fights back because every troll can carries `Target shooter if hit=1`, which
+  bypasses acquisition entirely. That is the same field family as 0.28.2's Fernand fix.
+* **There is no call for help in this engine.** `CCallForReinforcementsAction` is registered in the
+  exe and used **zero** times in the shipped game, while 698 creatures carry
+  `Respond to calls for reinforcements=1`. Half the bestiary is listening to a radio nobody
+  transmits on.
+
+So nothing was broken. The behaviour was the sum of three correct mechanisms, which is the kind of
+hole no static check finds and one playthrough finds immediately.
+
+### The guard that turned out to be the hole
+
+0.29.0 gave a wounded drone an alarm that fetches `Troll Chief`, and guarded it behind
+`CCheckExistenceAction` on `Troll Peace Keeper` so that an accidental swing could not turn the pit
+hostile. `qa.md` row `LT10` recorded the result as a **pass**: *"No alarm at all."*
+
+That row was wrong, and it was wrong in the way `WT8` was wrong two releases ago -- a case written
+from the implementation rather than from play, which therefore could only ever confirm itself. The
+guard did stop accidents. It also made the pit an eighty-troll experience farm with no risk
+attached, and the protection it bought was worth less than the exploit it opened. `LT10` is rewritten
+here and **nothing happening is now a failure**.
+
+### What the pit does instead
+
+The empty `Then=` branch in all six troll cans now fires a `Troll peace broken` relay, and the three
+**boss** cans got a damage hook they never had, so striking the chief breaks the peace too. The relay
+is `Trigger Only Once=1` and does four things in a deliberate order:
+
+1. **stop the `Troll Peace Keeper` first.** It is `When Done=Repeat Series` at two seconds across
+   twelve actions, so it re-pacifies every name once per twenty-four seconds. Left running it would
+   have quietly undone the whole release mid-fight -- and it explains a detail of the original
+   report, because even the troll that was fighting should have gone idle again if the fight dragged.
+2. open `The Peace You Brokered`, which is both the record and the signal Eduardo reads upstairs.
+3. **let the chief speak**, choosing from three variants.
+4. after six seconds, restore hostility.
+
+### Not a broadcast, and why that matters
+
+The obvious implementation is `CGoToCombatAction { Enemy Name=Lava Troll }`, which the desecration
+relay in this same map already fires. **0.29.0 built exactly that, measured 80-94 trolls in the pit
+on a `Max dist from home` of 4000, and cut it.** Re-reading that measurement found the number it
+turned on: **4000 is the leash, not the acquisition range.** Acquisition is `Max Distance=550`.
+
+So this release does not push anyone into combat. It gives each troll back its target type, its
+`Enemy` category and its own hostile `CAIInteractionSpecifier`, and lets the shipped acquisition code
+do the rest. The trolls near you come; the far side of the pit waits until you walk over to it.
+That is the gap between the two outcomes 0.29.0 had measured, and it is why the restore carries
+**no `CGoToCombatAction` at all** -- asserted in the build, not inspected.
+
+The specifier is **cloned from each can's own**, field for field, rather than built from
+`lhbuild.specifier()`. That helper writes `Triggered By Companions`, which these cans do not carry:
+**642 of 644** specifier blocks in vanilla monster cans omit it. Building one from the library would
+have been the deviation, and removing the specifier instead of restoring it would have been a worse
+one, since only **2** of 244 vanilla enemy cans have none.
+
+### The two men who ever find out
+
+**Eduardo** secured fourteen years of ore on nothing but the chief's word and a face the trolls
+agreed to recognise -- *"he sends the same man each time, so we know the face"* -- so the trade dies
+with the chief. He finds out the only way he can: Mateo knocked on the rock in daylight, with iron,
+three days running, and *"the dark has stopped answering."* **Admitting it and lying to him are both
+written**, and the lie is the worse of the two scenes. He records it either way.
+
+**Enrique** withdrew the contract because the player stood in his hall and argued the trolls' case at
+him until he felt like a man who pays for murder -- and then it happened anyway, for free. He is
+given no accusation and no reprisal, only the arithmetic: *"either I am a fool who was talked out of
+his money, or I am something worse that I was talked into. I am not going to ask you which. I want
+you to understand that I could, and that I am not, and that those are two different things."*
+
+Neither of them can prove anything, and nothing above ground changes. **The pit dying is quiet**,
+and that is the intended note rather than a limitation worked around.
+
+### The scene, and what it refuses to do
+
+Three variants, each built out of a promise the shipped tree had already made, escalating by how
+much of the player's own word went into the peace:
+
+| node | fires when | the line it is built on |
+|---|---|---|
+| `160 the peace broken rite` | `The Chief Before` stood | *"a chief is counted by one who was not there... You owe him nothing"* |
+| `161 the peace broken ore` | `The Red Ore Trade` paid | *"he sends the same man each time, so we know the face"* |
+| `162 the peace broken word` | the case argued upstairs | *"take it out of the men who sent him"*, and Enrique pulling the contract |
+
+`162` is the one most players will see and the one the writing is aimed at, because it closes the
+Speech check that opened the peace. The player told the chief his grievance was with the men above
+and not with the child they sent. The chief gives that back: *"Tell the men who sent you that we
+counted every time. <A pause.> There are none. I know that. Say it to yourself instead."*
+
+Structurally all three copy `127`/`128`, the shipped desecration scene, exactly: he is simply there,
+he is not looking at you, he names the thing, the sound starts in the rock, **one reply**,
+`Icon=Fight Icon`. **There is no Speech check anywhere in the scene, and that is the point** --
+Speech is what the player spent, so it is not also the exit. No forgiveness path exists and none is
+planned; the trolls' entire register is that things are remembered permanently.
+
+**No quest alibi was added either.** Node `133 the hide` already has the chief hand over the
+*Lava Troll Hide* for Quinn's errand -- *"there are hides out there that nobody is wearing, and you
+are the one who counted them"* -- so the peaceful route already pays that quest in full. Killing them
+is greed with nothing riding on it, and the release treats it as exactly that rather than promoting it
+to a valid route.
+
+### Checked
+
+31 links walked end to end -- can to relay, relay to marker, relay to node, gate to node, reply to
+node -- because nothing in the toolchain checks that a node id, relay name, marker or quest state
+exists at the other end of a reference. Every reply target in all three edited trees resolves.
+`validate.py` clean on 695 files; `test_triggers.py` and `test_md2bbcode.py` pass.
+
+Two of my own checks were wrong before the data was, both while verifying rather than editing: a
+tail comparison that hit `balanced()` stopping before the CRLF, and a regex that forgot the brace is
+indented. Neither reached a file.
+
+### Still open
+
+Breaking the peace and *then* walking onto the old chief's body field plays the desecration scene as
+well, since that relay is not gated on the peace. It is a hard state to reach alive and it is
+recorded in `BP14` to watch rather than patched blind.
 
 ## 0.52.3 - the skill level nine wands never managed to print
 

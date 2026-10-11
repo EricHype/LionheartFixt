@@ -1434,7 +1434,10 @@ CCannedObject
 					Name To Check For=Troll Peace Keeper
 					Desired Minimum Count=1
 				}
-				Then=
+				Then=CTriggerRelayAction
+				{
+					Relay Name=Troll peace broken
+				}
 				Else=CGoToCombatAction
 				{
 					Enemy Name=Troll Chief

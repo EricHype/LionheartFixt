@@ -1473,6 +1473,35 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The peace you brokered
+
+Reported from play: the troll peace could be broken one troll at a time, for experience, with no
+risk. The hole was a guard -- `LT10` used to pass on *"no alarm at all"* -- and that row is rewritten
+below rather than left to confirm itself.
+
+**Needs a character who has NOT entered `05 Troll Pit`.** The can hooks reach only trolls spawned
+after the install, and the relay is a new `Level Part`, which a save freezes on first visit. A save
+that has already been in the pit will show none of this.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BP1 | Make peace with the trolls by any route, then strike one | - | **The chief comes and speaks.** Nothing happening is the exact failure this release exists to fix |
+| BP2 | `BP1` having also stood the rite over the old chief (`The Chief Before` complete) | - | `160 the peace broken rite` -- *"I told you a chief must be counted by one who was not there."* The deepest of the three, and it should beat the other two |
+| BP3 | `BP1` having carried the ore terms and taken the first ore, **without** the rite | - | `161 the peace broken ore` -- *"The same man each time. So we know the face."* |
+| BP4 | `BP1` with neither -- only the case argued to Enrique | - | `162 the peace broken word` -- *"Tell the men who sent you that we counted every time... There are none."* |
+| BP5 | In any of `BP2`-`BP4`, look for a way to talk it back | - | There is none. One reply, `<There is nothing you can say to this.>`, and **no Speech check anywhere in the scene** |
+| BP6 | Watch the pit for the few seconds after he finishes | - | The trolls near you come. The far side of the pit does not, until you go to it |
+| BP7 | Count what engages at once | - | A handful, exactly as `LT11` still requires. **If the whole pit converges the restore has been pushed instead of restored** -- that would mean a `CGoToCombatAction` is in the relay, and none should be |
+| BP8 | Strike a second and a third troll | - | No second speech. The relay is `Trigger Only Once=1` |
+| BP9 | Let the fight run well past half a minute | - | **Nobody goes idle again.** The `Troll Peace Keeper` is stopped before anything else happens; a troll that stops fighting after about twenty-four seconds means its two-second tick is still running |
+| BP10 | Open the quest log | - | *The Peace You Brokered* is there, and it says nobody above was paying for this one |
+| BP11 | Reach Eduardo at the Gate District forge and ask whether his man has been down | - | `794 the rock does not answer` -- Mateo knocked three days running. The reply is offered in **all nine** of his greeting variants |
+| BP12 | `BP11`, then **admit it**; on a separate run, **lie** | - | `795 the smith told` and `796 the smith not told`. Either closes the quest, and the lie is the worse scene. Saying nothing leaves it open |
+| BP13 | Attack the **chief** first, rather than a drone | - | The scene still fires. The three boss cans had no damage hook at all before this release, so this is new ground, not a regression check |
+| BP14 | Break the peace, survive, then walk onto the old chief's body field | - | **Known overlap:** the desecration scene plays as well, because that relay is not gated on the peace. Recorded rather than patched blind -- report what it looks like |
+| BP15 | Tell Enrique in the Hall of Beggars | - | `713 the contract nobody paid` -- *"I am not going to ask you which."* He accuses you of nothing, and nothing is recorded from him |
+| BP16 | `python tools/validate.py` | - | Passes on 695 files |
+
 ## What the wand actually does
 
 Reported from play: a generated wand reading `(Could not evaluate expression)` and a raw
@@ -3224,8 +3253,8 @@ All four are can / race / item level, so one fresh Troll Pit covers them togethe
 | LT7 | Fight him again with **cold** | - | Markedly easier: `Cold Damage Resistance=-15` is their one weakness and it already shipped in vanilla |
 | LT8 | Hit a lone drone away from the others | - | **The chief comes.** One ally, not the pit. Fires once per drone |
 | LT9 | Hit a second drone | - | The chief does not come twice. `COnlyOnceAction` is per troll, and he only has to arrive once |
-| LT10 | Make peace with the trolls first, then strike one | - | **No alarm at all.** The call sits behind a `Troll Peace Keeper` check, so an accidental swing does not turn the pit hostile |
-| LT11 | Count the trolls that engage after an alarm | - | A handful, never the whole level. The pit holds 80-94 trolls with a 4000 leash -- a group-wide call was built, measured, and deliberately cut back |
+| LT10 | Make peace with the trolls first, then strike one | - | **CORRECTED 2026-10-10 -- this row was a false pass and is now covered by `BP1`-`BP16`.** It used to pass on *"no alarm at all"*, on the reasoning that an accidental swing should not blow the peace. Play showed that was a hole rather than a guard: the pit could be killed one troll at a time for experience at no risk. Striking a troll at peace must now bring the chief and turn the pit hostile, and **nothing happening is a failure** |
+| LT11 | Count the trolls that engage after an alarm | - | A handful, never the whole level. The pit holds 80-94 trolls with a 4000 leash -- a group-wide call was built, measured, and deliberately cut back. **0.53.0 holds to this**: breaking the peace restores hostility rather than pushing a charge, so engagement is still bounded by the 550 acquisition range and not by the 4000 leash |
 | LT12 | Kill the chief | - | The *Lava Troll Hide* still arrives in your pack (`TH1`). None of this touched the drop |
 
 ## 0.28.2 - Fernand's combat AI stops freezing

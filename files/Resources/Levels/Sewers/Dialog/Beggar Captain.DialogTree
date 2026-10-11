@@ -145,6 +145,19 @@ Reply Text=I have been down to the lava trolls, and they have something to say t
 Go to node ID=700 the trolls case
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=The trolls are dead. You should hear it from me.
+Go to node ID=713 the contract nobody paid
+Icon=Quest Icon
+
 
 Requirement=!None
 Reply Text=Sorry, not today.  I'll be going now.
@@ -350,6 +363,19 @@ State=SPK2H7VL
 }
 Reply Text=I have been down to the lava trolls, and they have something to say to you.
 Go to node ID=700 the trolls case
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/The Peace You Brokered
+State=CNT4H9RX
+}
+}
+Reply Text=The trolls are dead. You should hear it from me.
+Go to node ID=713 the contract nobody paid
 Icon=Quest Icon
 
 
@@ -1576,4 +1602,19 @@ Reply Text=<Get on with it.>
 Go to node ID=701 never came up
 Is Default Reply=1
 
+------------------------------------------------------------
+Node ID=713 the contract nobody paid
+Text=<He is pleased to see you right up until he is not.>  The trolls. Yes.  <He turns his cup around on the table without drinking from it.>  I have heard nothing, which is the thing I keep coming back to. Nobody has come up out of that pit in a week. The men I send for water go the long way round now and they do not say why, and I have not asked them, and I notice that I have not asked them.  <He looks up at you.>  I pulled that contract because you stood in this hall and argued their case at me until I felt like a man who pays for murder. I took the coin off the table. It is still off the table.  <The pause goes on longer than is comfortable.>  And it happened anyway. For nothing. So either I am a fool who was talked out of his money, or I am something worse that I was talked into.  <He sets the cup down.>  I am not going to ask you which. I want you to understand that I could, and that I am not, and that those are two different things.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It was me. Nobody paid me either.
+Go to node ID=
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=<Let him keep not asking.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 }

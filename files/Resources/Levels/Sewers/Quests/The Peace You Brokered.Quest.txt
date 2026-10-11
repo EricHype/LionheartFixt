@@ -1,0 +1,19 @@
+CQuestDefinition
+{
+	Name=The Peace You Brokered
+	States=Array
+	{
+		Item Count=2
+		State=CQuestStateDefinition
+		{
+			Text=You broke the peace you brokered. The lava trolls are hostile again, and nobody above is paying for this one -- Enrique withdrew the contract when you argued their case at him. Eduardo's trade died with the chief who agreed to it, and the smith does not know yet.
+			ID=CNT4H9RX
+		}
+		State=CQuestStateDefinition
+		{
+			Text=Eduardo knows. He sent his man down in daylight carrying iron, exactly as the chief asked, and the man knocked on the rock three days running and nothing answered him.
+			ID=CNT7B2WM
+		}
+	}
+	Sub-Quest of=!None
+}
