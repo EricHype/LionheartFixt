@@ -1,0 +1,122 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorWand
+		{
+			Spell=Skills/Magic Thought/Offensive/Poison Ring
+			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			{
+				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Ring
+				Expression Name=numberofcharges
+				Value=0
+			}
+			Charges Remaining Is Valid=0
+			Charges Remaining=0
+		}
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Ring
+						Expression Name=skilllevel
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Offensive/Poison Ring
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2000
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wands/WandSlow
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Poison Rings
+	Description=The wielder of this wand can throw %i[numberofcharges] Poison Spikes, similar to the Thought spell Poison Ring at skill level %i[displaylevel].
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/WandSlow
+	Minimum Value=2000
+	Minimum Addition Ammount=0
+	Inbetween Value=2000
+	Inbetween Addition Ammount=0
+	Maximum Value=2000
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=3
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=skilllevel
+				Expression=CCacheFirstResult
+				{
+					Operand1=CSubtract
+					{
+						Operand1=CConstant
+						{
+							Constant Value=20
+						}
+						Operator=
+						Operand2=CVariableSkill
+						{
+							Skill=Skills/Magic Thought/Offensive/Poison Ring
+						}
+					}
+					Has Been Evaluated=0
+					Cached Value=0
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=numberofcharges
+				Expression=CRandom
+				{
+					Operator=
+					Minimum=CConstant
+					{
+						Constant Value=10
+					}
+					Maximum=CConstant
+					{
+						Constant Value=20
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=displaylevel
+				Expression=CConstant
+				{
+					Constant Value=20
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Wand Additions
+	Addition Rarity=Inventory Item Rarity/4 Very Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

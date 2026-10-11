@@ -1480,23 +1480,35 @@ Reported from play: a generated wand reading `(Could not evaluate expression)` a
 vanilla additions, and two descriptions that named the **target** where the mechanic affects the
 **wielder** (`$Instigator`). **No mechanics changed**; these wands always behaved correctly.
 
+**IMPORTANT, found in play 2026-10-10: these rows need a NEWLY GENERATED wand.** A wand already in
+a save kept the old broken text after installing. So an item instance carries its own copy of the
+description template, and only the `%i[...]` token substitution happens live -- which is why the same
+wand could show `(Could not evaluate expression)` (a live failure) *and* the old wording (a baked
+string) at the same time. **Do not test these on a wand you already own.** Loot or buy a fresh one,
+or start a new game. If a brand-new wand also shows the old text, check that the game was restarted
+after installing -- a running process holds the previous `data.dat`.
+
 **`WT4` is the row that matters most**, and it is a *restraint* check: the two Cure wands also say
 "target", and theirs is **correct** -- they heal `$trigger`. They were deliberately not reworded, and
 they are what proved the convention. If their text has changed, the reword was applied too broadly.
 
-**`WT5` is still broken on purpose.** The `(Could not evaluate expression)` half of the report is
-defect 3 and is parked -- nine wand additions print a skill *adjustment* where they mean a skill
-*level*. Expect to still see it.
+**`WT5` was fixed in 0.52.3 and its meaning is now inverted.** It used to say to *expect*
+`(Could not evaluate expression)`. That is now a **failure**. Nine wand additions printed a skill
+*adjustment* where they meant a skill *level*; each gained a `displaylevel` constant and only the
+description token was repointed, because the old expression is also the `N - skill` normaliser and
+changing it would have turned "pin to N" into "+N".
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
-| WT1 | Any `Poisonous Touch` wand -- buy, loot or generate one | Read its description | It reads **"do N points of poison damage"** with a real number, not a raw token. Note vanilla's own wording gives **"1 points"** on a roll of 1; that is left as-is |
-| WT2 | Any `Revelation` wand | Read its description | It says **"The wielder of this wand receives 60 skill points..."** -- not "the target" |
-| WT3 | Any `Poisonous Touch` wand | Read its description | It says **"All physical attacks done by the wielder of this wand..."** -- not "the target" |
-| WT4 | **The restraint row.** A `Cure Small Wounds` or `Cure Major Wounds` wand | Read its description | It **still says "the target of this wand is healed"**. That is correct for these two -- they heal `$trigger`, not the wielder. If it now says "wielder", the reword hit files it should not have |
-| WT5 | **Known, still broken.** Any Lightning, Fireball, Spikes, Slow, Poison Ring or Fire Circle wand on the ground or in a shop | Read its description | It may still read **`at skill level (Could not evaluate expression)`**, or a negative number if your skill in that spell is above the wand's level. **This is defect 3 and was deliberately not fixed in 0.52.2.** Do not report it as new |
+| WT1 | A **newly generated** `Poisonous Touch` wand -- loot or buy one *after* installing; a wand you already owned keeps the old text | Read its description | It reads **"do N points of poison damage"** with a real number, not a raw token. Note vanilla's own wording gives **"1 points"** on a roll of 1; that is left as-is |
+| WT2 | A **newly generated** `Revelation` wand (not one you already owned) | Read its description | It says **"The wielder of this wand receives 60 skill points..."** -- not "the target" |
+| WT3 | A **newly generated** `Poisonous Touch` wand (not one you already owned) | Read its description | It says **"All physical attacks done by the wielder of this wand..."** -- not "the target" |
+| WT4 | **The restraint row.** A **newly generated** `Cure Small Wounds` or `Cure Major Wounds` wand | Read its description | It **still says "the target of this wand is healed"**. That is correct for these two -- they heal `$trigger`, not the wielder. If it now says "wielder", the reword hit files it should not have |
+| WT5 | **Was known-broken, fixed in 0.52.3 -- this row now means the opposite.** A newly generated Lightning, Fireball, Spikes, Slow, Poison Ring, Fire Circle or Swarm wand | Read its description | It reads **`at skill level 5`** (or 10, 15, 20, 25, 30 -- Lightning/Fireball /Spikes Minor 5, Fire Circle 10, Slow 15, Poison Ring 20, Lightning/Fireball Major 25, Swarm 30). **`(Could not evaluate expression)` is now a FAILURE**, as is a negative number. The wand pins your effective skill to that level while selected, so the number is what you cast at regardless of your own skill |
 | WT6 | Fire a `Revelation` wand, then check your own character | Look at Find Traps/Secret Doors | **Your** skill went up by 60 for 30 seconds. This confirms the reworded text is the accurate one -- the mechanic was always the wielder |
 | WT7 | Hit something in melee while a `Poisonous Touch` wand is selected | - | **Your** strikes apply poison damage over time to what you hit. Again the wielder, as the new text says |
+| WT8 | **0.52.3, the mechanical regression row.** Take a Lightning Minor wand to a character with a **high** Lightning Bolt skill | Select the wand and watch your Lightning Bolt skill | It is **pinned to 5**, not raised by 5. The displayed level and the mechanic come from two different expressions now; if your skill went *up* instead of down to 5, the normaliser was damaged and 0.52.3 must come out |
+| WT9 | **0.52.3.** Same wand, cast it | - | The bolt behaves as it always did. Only text changed -- the `N - skill` expression is byte-identical to vanilla and still the `Modification Amount` |
 
 ## Half as much shouting in a crowd
 
@@ -2517,7 +2529,7 @@ why `EH5` exists and why it is the row to run first if anything behaves oddly.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| EH5 | **Run this before the rest.** Start a new game and play any ordinary fight -- thugs in the Port District will do | - | **Everything normal.** Adding a 93rd skill to a 92-skill game is the one structural risk here. If enemies behave strangely, spells misfire, or the game will not load, this is the cause and the whole feature comes back out |
+| EH5 | **Run this before the rest.** Start a new game and play any ordinary fight -- thugs in the Port District will do. Also skim your character sheet's skill list, and fold in `EH3` while you are there | - | **You are looking for nothing to happen.** Port thugs are not the Priest family, so no new behaviour should appear; this only confirms that adding a 93rd `.Skill` to a 92-skill game broke nothing. **Checked 2026-10-10 and the risk is narrower than this row used to claim:** `Skill Values` is keyed by **full path name** with **no `Item Count`** (184 entries of `Skills/<path>=v,min,max`), so there is no positional index and **adding a skill cannot shift anything**. The only live question is whether a name-lookup miss returns 0 or errors. Fail looks like an enemy standing inert or using a visibly wrong attack, a blank or duplicated entry in the skill list, or a crash on entering combat or opening the skill tree -- **not** odd numbers. If it fails, the fallback needs no new skill at all: `CGiveHealthToCharacterAction` fired from a can makes an enemy heal itself. **PASSED 2026-10-10** -- Port District thugs fought normally on a fresh game. The 93rd `.Skill` breaks nothing, so **0.33.0 and 0.34.0 are no longer at risk of wholesale removal** and the name-keyed `Skill Values` reading is confirmed in play. Note this clears the *structural* gate only: the healing feature itself is still unproven, and `EH1` (act 6, a Priest and soldiers together) remains the row it exists for |
 | EH1 | **The row the feature exists for.** `Gate District Siege` or `Temple District Siege`, a fight with a **Priest and soldiers together**. Wound a soldier, do not kill it, and watch the Priest | - | The soldier's health **goes back up**. This is the first time anything in Lionheart has healed an enemy, and it is the one thing that cannot be proved statically |
 | EH2 | Fight a Priest **alone** and wound it | - | It heals **itself** -- the Priest is `Category=Enemy` like everything else, so it is inside its own oval |
 | EH3 | **The safety row.** Cast your own **Healing** on yourself with enemies nearby | - | It heals **you and your friends only**, exactly as before. The vanilla `Healing.Skill` was not touched and is still gated to `Player,Player Friend`. If your heal is now topping up enemies, stop and report immediately |

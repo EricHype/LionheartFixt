@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.52.2 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.52.3 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,82 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.52.3 - the skill level nine wands never managed to print
+
+**Reported twice from play**, which is what moved it from parked to fixed. It is defect 3 of the three
+found in one generated wand; 0.52.2 took the other two.
+
+### What was wrong
+
+Nine wand additions describe the level they cast at with a `skilllevel` token, and that expression is
+`N - skill` read off the wielder via `CVariableSkill`. So the sentence printed an **adjustment where
+it meant a level**:
+
+| wielder's own skill | what a level-5 wand printed |
+|---|---|
+| 0 | "at skill level 5" -- correct, and why it shipped |
+| 20 | "at skill level -15" |
+| no readable context | **`(Could not evaluate expression)`** |
+
+### The second report corrected the diagnosis
+
+0.52.2's notes explained the error as a missing character context -- the wand being on the ground or
+in a shop. **That was wrong.** The second report came from a wand the player was carrying, so a
+character plainly existed. The description renderer has no evaluation context for `CVariableSkill` at
+all, which means no amount of care with *when* the text is read would have helped and **a constant was
+always the only answer.**
+
+### Why the fix had to be additive
+
+The obvious fix -- make `skilllevel` a constant -- would have been a serious bug. That same expression
+is the **normaliser**: it sits under `CPlugInBehaviorModifyCharacterWhenSelected` as the
+`Modification Amount`, so `skill + (N - skill)` pins the effective skill to exactly `N`. Replacing it
+with `N` would turn *pin to N* into *+N on top of your own skill*.
+
+So each file gains a **new** expression and only the sentence moves:
+
+```
+Array Item=CNamedExpressionsArrayItem
+{
+    Name=displaylevel
+    Expression=CConstant { Constant Value=N }
+}
+```
+
+| addition | level | | addition | level |
+|---|---|---|---|---|
+| `Lightning Minor` | 5 | | `Lightning Major` | 25 |
+| `Fireball Minor` | 5 | | `Fireball Major` | 25 |
+| `Spikes Minor` | 5 | | `Poison Ring` | 20 |
+| `Slow` | 15 | | `Fire Circle` | 10 |
+| `Swarm` | 30 | | | |
+
+`Fire Circle`'s token is named `firecirclelevel10` rather than `skilllevel`, which is why the edit was
+driven per file rather than by one search and replace.
+
+### How it was audited
+
+Each file is diffed against its vanilla original, and three things are asserted per file:
+
+- the `N - skill` item is **byte-identical** to vanilla's, and still the `Modification Amount`
+- `displaylevel` contains **no `CVariableSkill`** -- it must be a bare constant
+- **nothing outside the description line and the expressions array differs from vanilla at all**
+
+So the mechanics are unchanged by construction rather than by inspection. `Array Count` was bumped and
+checked against the real item count in every file.
+
+**Two of my own bugs were caught by those checks on the way**, both the CRLF family: a regex anchored
+`$` against `\r\n` matched nothing, and the fix for it consumed the `\r` without restoring it, leaving
+a bare LF that the CRLF assertion caught before anything was written.
+
+### What needs playing
+
+`WT5` **inverts** -- it previously told the tester to expect `(Could not evaluate expression)`, and
+that is now a failure. **`WT8` is the new regression row and the one that matters**: take a Lightning
+Minor wand to a caster with high Lightning Bolt and confirm the skill is **pinned to 5, not raised by
+5**. The displayed level and the mechanic now come from two different expressions, and `WT8` is what
+proves they did not get crossed.
 
 ## 0.52.2 - what the wand actually does
 
