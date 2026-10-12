@@ -1473,6 +1473,35 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## One supply, one thing
+
+Reported from play, two halves of one questline. **Both fixes are dialogue only, so they work on an
+existing save** -- including one already stuck. The Knights of Saladin are not a faction you join, so
+these cases need a character who is **in the Templars (or the Inquisition) and also a Favored One of
+Saladin**; `SV1` is the cheap way to confirm you are set up.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SV1 | Reach Eduardo holding both commissions | - | **Both** *"I've been told you can forge a Lion Shield"* and *"...a Sacred Scimitar"* are offered. If only one is, the character is not in both orders and nothing below applies |
+| SV2 | Bring him the one Magnetized Silver and take **either** item | - | It arrives as it always did. `qa.md` has no row for this because vanilla's delivery nodes are reused untouched |
+| SV3 | Talk to him again | - | **The new reply: *"The silver is gone, I know that. Is there enough left for the shield?"*** (or the scimitar). Before this release there was nothing here, which is the whole report |
+| SV4 | Take it | - | He explains the filings and the skin off the pour, and names **a thousand gold** -- the silver is free because you went into the mine for it, the weeks are not |
+| SV5 | With Barter **below** 50 | - | Only the flat price is offered. The argument reply is absent |
+| SV6 | With Barter **50+** and at least 600 gold | - | *"A thousand for sweepings? Six hundred, Eduardo, and you keep a customer."* Pay it and **600** leaves your purse, not 1000 |
+| SV7 | With less gold than the price | - | That price's reply is **absent** rather than offered and failing. Both are gated on `CHasMoneyAction` |
+| SV8 | Pay, either way | - | The second item arrives through vanilla's own delivery node, and its quest advances. **Check your purse** -- the gold must actually be gone |
+| SV9 | Talk to him once more | - | Neither new reply is offered any longer. Both are gated on the item still being owed |
+| SV10 | Deliver the **first** item and then check the silver errand | - | Unchanged. The silver path is byte-identical to before this release; if the first delivery behaves differently, that is a regression |
+| SH1 | Take Jafar's **scimitar** task at the fork, then recover the Shard of Dreams from the slavers | - | No quest appears for it. That is correct and is the design -- you took the other task |
+| SH2 | `SH1`, then talk to Jafar | - | **The new reply: *"I have something that belongs to your Order. Nobody asked me to bring it."*** Before this release the Shard was unreturnable |
+| SH3 | Give it to him | - | `216 the shard unasked`. He presses coins on you and will not take it as a gift. **Karma and 250 coin**, and the Shard leaves your pack |
+| SH4 | Check the quest log afterwards | - | **No new quest, completed or otherwise.** The task stays untaken; only the relic changed hands |
+| SH5 | Check what he says next | - | He does **not** send you to the Dream Djinn trials. That is `215 shard`, the task version, and this route must not reach it |
+| SH6 | Take the **shard** task at the fork instead, carrying the Shard already | - | The existing *"I already have the Shard of Dreams"* reply resolves it, with its own full reward. 0.3.0 built that and this release must not have disturbed it |
+| SH7 | **The trap case.** Carry the Shard but do not reach Jafar's fork yet | - | The new reply is **absent**. It also requires that the scimitar task was actually taken -- otherwise you could hand the relic over and then be sent to find it |
+| SH8 | Do the shard task normally, start to finish | - | Unchanged, including the Dream Djinn hand-off |
+| SH9 | `python tools/validate.py` | - | Passes on 695 files |
+
 ## The peace you brokered
 
 Reported from play: the troll peace could be broken one troll at a time, for experience, with no

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.53.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.54.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,120 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.54.0 - one supply, one thing
+
+**The same player who reported the troll peace reported this**, in one issue with two halves that
+turned out to be the same questline: *"both dialog options are present, but after picking one, you
+end up with one item only"*, and *"I have shard of dreams item in inventory without option to give it
+to Amir"*.
+
+### Are the two orders meant to be exclusive? The game answers out loud
+
+That was the first thing worth settling, because if the Templars and the Knights of Saladin were
+designed as alternatives then there is no bug here, only a choice. The evidence for exclusivity is
+real and it is what makes the report confusing: **one** Magnetized Silver, **one** shared
+`Recover a Supply of Silver` quest serving both commissions, requirement cans named in the singular
+alternative -- `Blacksmith - Scimitar or Lionshield seeker has silver` -- and delivery replies gated
+on the permissive `CWasQuestEverActivatedAction` rather than a current state, which only behaves if
+one of the two can ever be true. With both ever-activated all four replies appear at once and
+`61 Already Had Silver` ends up carrying **two** `Is Default Reply=1`.
+
+And then Jafar says the opposite, in as many words:
+
+> Unfortunately, it is forbidden for a westerner to ever be fully welcomed into our order. However,
+> if you are interested, you may become what we call a **Favored One**.
+
+The player's own reply is *"Though it is unfortunate that I cannot join your faction..."*, and
+`150 initiate warning` is a node that exists for no other purpose than to tell the player
+`<the Challenges of the Favored One will not fulfill DaVinci's quest to join a faction. The Knights
+of Saladin lack the influence of the other major factions.>` No join path in Jafar's, Lord Javier's,
+Sir Auric's or the Grand Inquisitor's trees excludes another order, and the Grand Inquisitor shares a
+quest state with the Saladin chain.
+
+So the Saladin line is **built to be run alongside a real faction**, and the author's one-or-the-other
+model was an assumption rather than a rule. There is a clean reason it was never caught: **all
+fifteen** of Eduardo's scimitar replies *require* `53F5R12P` and not one of them sets it, and the only
+setter in the shipped game is an `Active=0` dev warp in `Blacksmith map.zax`. His scimitar half is
+complete and byte-identical to vanilla -- fifteen replies, node `64 here is your scimitar`, all three
+state setters. Only Jafar's *offer* was cut, which 0.3.0 restored. Nobody could play the combination,
+so nobody hit the silver.
+
+### The silver, and why the second order was simply never served
+
+The door into `60 Back With Silver` is a three-way `CAND`, and two of its three terms are shared:
+
+| term | shield | scimitar |
+|---|---|---|
+| own forge quest state | `U55606EI` | `9040X23V` |
+| `Recover a Supply of Silver` | `GTXL684X` | `GTXL684X` |
+| holds `Magnetized Silver` | required | required |
+
+There is exactly one Magnetized Silver: a chest in `Ravine Cave West`, `Trigger Only Once=1`.
+Eduardo's tree removes it on delivery and the silver quest completes, so the shared terms can never
+pass again.
+
+**Eduardo keeps the remainder.** Two new nodes, offered from all **eleven** of his hub nodes, gated on
+this order's piece still being owed *and* the other already delivered. He charges for the labour
+rather than the metal -- *"The silver I will not charge you for -- you went into a goblin mine for
+that and I have not forgotten it. The weeks are mine."* **1000 gold flat, or 600 at Barter 50+**,
+which is the threshold his own barter path already uses, and both are amounts vanilla already takes.
+The replies then hand off to vanilla's `63`/`64`, so the item grant and the quest advance are the
+shipped ones and **the silver path is byte-unchanged**.
+
+### The Shard of Dreams, which had become refuse
+
+Jafar's two "second tasks" are a genuine one-shot choice -- the only route to `202 make a scimitar` is
+the reply that removes `Letter to Jafar Saladin Quest`, and nodes `200` and `201` are single-reply
+passthroughs, so handing the letter over drops you at the fork with no way back. **That stays**, by
+decision: *"I have decided on your second task"* is one task, and the exclusivity is the design.
+
+What does not stay is the consequence. Take the scimitar and `Recover the Shard of Dreams` can never
+be activated -- and the Shard is still lying in the slavers' lair, pickable by anyone. Its own
+behaviour is
+
+    If (quest at 1IBFN2FU or FFDQ9SAE) Then set B9TT1VV9  Else (nothing)
+
+and Jafar's short turn-in is gated on `B9TT1VV9`. Picked up with no quest, the `Else` is empty, that
+state can never be set, and **Jafar is the only thing in the entire game that accepts the item** --
+verified across every shipped resource; the only other giver is an `Active=0` dev entity. `Value=0`,
+`Encumbrance=0`, no other use. A weightless worthless stone carried for the rest of the run.
+
+He wants it anyway. Node `210` calls it *"an invaluable treasure that is sacred to our Order"*, so one
+durable reply on his two hub nodes lets you hand it back without reopening the task: **karma and
+coin, below the quest's own 50 karma**, no quest log entry, and deliberately **not** routed through
+`215 shard`, which pushes the player on to the Dream Djinn trials that the scimitar route already
+replaced.
+
+> I did not set you this task. I set you another and you took it, and that was yours to take, and I
+> had made my peace with never holding this again. [...] So there was nothing in it for you. You
+> carried it up out of there anyway. `<He presses coins into your hand and closes your fingers over
+> them.>` No. Not a gift. I will not have the Order take a sacred thing as a gift from someone who
+> owes us nothing.
+
+**The gate needs a third term, and finding that out was the real work.** Written as "holds the Shard
+and never had the task" it would have fired for a player who has not reached the fork yet: they hand
+the relic over early, then get offered the shard task with no Shard left to find. A new dead end, of
+my own making, replacing the old one. It also requires
+`CWasQuestEverActivatedAction(Forge a Sacred Scimitar)`, so it only ever fires for someone who
+actually took the other fork.
+
+### Checked, and two things I nearly got wrong
+
+20 links walked end to end; `validate.py` clean on 695 files; the suite and the playtest guide pass.
+Both fixes are **dialogue only**, so they reach a save that is already stuck -- which was the point,
+since the reporter is mid-playthrough and a map edit would never have arrived.
+
+My link audit flagged `10 goodbye` as dangling. The node is `10 Goodbye`, lookups fold case, and
+**vanilla ships the identical mismatch** -- which is exactly what
+`lionheart-name-audits-must-fold-case` exists to stop, and I did it anyway. Folding case properly
+then paid for itself: vanilla Jafar carries two genuinely dangling replies, `210 have scimitar` and
+`400 NIS Dialogue 4`, and **0.3.0 had already repaired both**.
+
+Two more things were investigated and are **not** defects, because the control settled them: the
+Saladin umbrella quest's unreferenced state looked dead until the Templar and Inquisition umbrellas
+turned out to carry **zero** states each, and `Face the Dream Djinni` is a superseded draft of
+`Pass the Trial of Dreams`, which is fully wired.
 
 ## 0.53.0 - the peace you brokered
 

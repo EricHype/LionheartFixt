@@ -231,6 +231,83 @@ Icon=Quest Icon
 Requirement=Jafar Recovered the Shard
 Reply Text=I have recovered the Shard.
 Go to node ID=215 shard
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+}
+}
+}
+}
+Reply Text=I have something that belongs to your Order. Nobody asked me to bring it.
+Go to node ID=216 the shard unasked
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
 Action work in progress=(recovered shard)
 Custom Action=CMultipleActionsAction
 {
@@ -955,6 +1032,83 @@ Icon=Quest Icon
 Requirement=Jafar Recovered the Shard
 Reply Text=I have recovered the Shard.
 Go to node ID=215 shard
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+}
+}
+}
+}
+Reply Text=I have something that belongs to your Order. Nobody asked me to bring it.
+Go to node ID=216 the shard unasked
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Shard of Dreams Saladin Quest
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=add karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
 Action work in progress=(recovered shard)
 Custom Action=CSetQuestSatusToCompletedAction
 {
@@ -2682,5 +2836,15 @@ Requirement=!None
 Reply Text=I am ready.
 Go to node ID=120 donate gem
 Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=216 the shard unasked
+Text=<Amir takes it in both hands, and for a moment he is not performing anything at all.>  ...Where.  <He does not wait for an answer.>  No. It does not matter where. It is here.  <He looks at you properly, which he does not often do.>  I did not set you this task. I set you another and you took it, and that was yours to take, and I had made my peace with never holding this again.  <He is quiet for a while.>  So there was nothing in it for you. You carried it up out of there anyway.  <He presses coins into your hand and closes your fingers over them.>  No. Not a gift. I will not have the Order take a sacred thing as a gift from someone who owes us nothing. Take it, and do not argue with an old man about his own customs.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Take the coin. Arguing would be worse.>
+Go to node ID=
+Icon=Exit Icon
 Is Default Reply=1
 }

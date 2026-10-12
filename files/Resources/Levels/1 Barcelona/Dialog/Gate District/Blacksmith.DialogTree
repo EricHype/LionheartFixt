@@ -1073,6 +1073,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -1100,6 +1137,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -1443,6 +1517,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -1470,6 +1581,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -1665,6 +1813,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -1692,6 +1877,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -1926,6 +2148,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -1953,6 +2212,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -3476,6 +3772,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -3503,6 +3836,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -3712,6 +4082,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -3739,6 +4146,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -3936,6 +4380,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -3963,6 +4444,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -4162,6 +4680,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -4189,6 +4744,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -4384,6 +4976,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -4411,6 +5040,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -4593,6 +5259,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -4620,6 +5323,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -4954,6 +5694,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - Lion shield seeker recovers silver
 Reply Text=Here is the silver you wanted. Now can you forge the Lion Shield for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=U55606EI
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=PBJ9W0UZ
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=I8FFAL7P
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the shield?
+Go to node ID=797 the silver is spent shield
+Icon=Quest Icon
 Action work in progress=(Got Silver, Lion Shield)
 Custom Action=CMultipleActionsAction
 {
@@ -4981,6 +5758,43 @@ Icon=Quest Icon
 Requirement=Blacksmith - scimitar seeker has silver
 Reply Text=Here is the silver you wanted. Now can you forge the Sacred Scimitar for me?
 Go to node ID=60 Back With Silver
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=9040X23V
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+State=53F5R12P
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Forge a Lion Shield
+State=YBK846G1
+}
+}
+}
+Reply Text=The silver is gone, I know that. Is there enough left for the scimitar?
+Go to node ID=798 the silver is spent scimitar
+Icon=Quest Icon
 Action work in progress=(Got Silver, Scimitar)
 Custom Action=CMultipleActionsAction
 {
@@ -5295,6 +6109,130 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=<Leave him to it.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=797 the silver is spent shield
+Text=<He does not look up from the bench.>  The silver, si. I used it. You brought me one supply and I made you one thing out of it, because one supply makes one thing.  <He turns the piece over and sets it down.>  There is a little left. Filings, the skin off the pour, what I swept up because I am not a man who sweeps silver into the fire. Enough for a second if I am very careful, and I would have to be careful for a long while.  <He wipes his hands.>  The silver I will not charge you for -- you went into a goblin mine for that and I have not forgotten it. The weeks are mine. A thousand gold for the shield, senor, and I will not pretend that is kind.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1000
+}
+}
+Reply Text=Then here is the gold.
+Go to node ID=63 here is your shield
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1000
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Thieving/Barter
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=A thousand for sweepings? Six hundred, Eduardo, and you keep a customer.
+Go to node ID=63 here is your shield
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=600
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Not at that price. Not today.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=798 the silver is spent scimitar
+Text=<He does not look up from the bench.>  The silver, si. I used it. One supply, one blade, and there is no arguing with how much of it goes into a blade.  <He turns the piece over and sets it down.>  There is a little left. Filings, the skin off the pour, what I swept up because I am not a man who sweeps silver into the fire. Enough for a second if I am very careful, and a sacred thing is not something I would hurry.  <He wipes his hands.>  The silver I will not charge you for -- you went into a goblin mine for that and I have not forgotten it. The weeks are mine. A thousand gold for the scimitar, and I will not pretend that is kind.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1000
+}
+}
+Reply Text=Then here is the gold.
+Go to node ID=64 here is your scimitar
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1000
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Thieving/Barter
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=600
+}
+}
+}
+Reply Text=A thousand for sweepings? Six hundred, Eduardo, and you keep a customer.
+Go to node ID=64 here is your scimitar
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=600
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Not at that price. Not today.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
