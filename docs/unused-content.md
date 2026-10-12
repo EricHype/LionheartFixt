@@ -43,7 +43,7 @@ wrong are more reusable than the results.
 | Summon tiers | 5 | 2 | **2** -- levels 4 and 5, six cans |
 | Perks (`.Perk`) | 98 | 5 | **0 left** -- all five were awarded in 0.47.0 |
 | Factions (`.Faction`) | 13 | 0 | **0** -- one was restored by Fixt |
-| Voiced dialogue nodes | 1,573 recordings | **132** sit on unreachable nodes | **11.48 MB** written, cast, performed and unhearable |
+| Voiced dialogue nodes | 1,573 recordings | **117** sit on unreachable nodes | **11.18 MB** written, cast, performed and unhearable (was 132 / 11.48 before 0.56.0) |
 
 That last row is the one to read first, and it was [measured backwards until
 2026-10-11](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted). It is now
@@ -1548,10 +1548,13 @@ python tools/vo_reach.py --replies-only --min-kb 100
 | | unreachable nodes carrying a recording | performed audio | trees |
 |---|---|---|---|
 | **vanilla as shipped** | **204** (97 carry replies) | **19.27 MB** | 33 |
-| **as Fixt leaves it after 0.55.0** | **132** (53 carry replies) | **11.48 MB** | 25 |
+| **as Fixt left it after 0.55.0** | **132** (53 carry replies) | **11.48 MB** | 25 |
+| **as Fixt leaves it after 0.56.0** | **117** (53 carry replies) | **11.18 MB** | 25 |
 
-Earlier releases have therefore already recovered **72 nodes and 7.79 MB** of it, every one as a side
-effect of chasing something else. Nobody was aiming at this number, because nobody had taken it.
+Earlier releases had already recovered **72 nodes and 7.79 MB** of it, every one as a side effect
+of chasing something else. Nobody was aiming at this number, because nobody had taken it. 0.56.0
+is the first release aimed at it directly and it brought back **15 lines**, which is where the
+117 comes from -- re-measured with the tool, not subtracted on paper.
 
 Recorded voiceover is the top of this document's own signal ranking -- **recorded VO > authored
 item/dialogue definition > quest states > a filename** -- because a recording means the line survived
@@ -1747,15 +1750,15 @@ encounter trigger, and belongs to a different question.
 The cheapest class in the whole sweep: a map already opens another node in the same name family, so
 nothing has to be designed, only pointed at. `tools/vo_reach.py` reports these first.
 
-| node | KB | siblings a map already opens |
-|---|---|---|
-| `weirdwoman / 200 nis weird woman conclusion 2` | 117 | `200 nis weird woman conclusion` |
-| `DaVinciBarcelona / 700 montaillou banter 4` | 55 | `700 montaillou banter`, `2`, `5`, `6` |
-| `JoanofArc / 400 combat banter 1` | 40 | `400 combat banter 2` |
-| `JoanofArc / 400 combat banter 3` | 22 | `400 combat banter 2` |
-| `JoanofArc / 400 combat banter 4` | 42 | `400 combat banter 2` |
-| `JoanofArc / 400 combat banter 5` | 31 | `400 combat banter 2` |
-| `cortes / 800 cortes wild addition 1` | 18 | `800 cortes wild addition 2` |
+| node | KB | siblings a map already opens | |
+|---|---|---|---|
+| `weirdwoman / 200 nis weird woman conclusion 2` | 117 | `200 nis weird woman conclusion` | **open** |
+| `DaVinciBarcelona / 700 montaillou banter 4` | 55 | `700 montaillou banter`, `2`, `5`, `6` | **open** |
+| ~~`JoanofArc / 400 combat banter 1`~~ | 40 | `400 combat banter 2` | 0.56.0 |
+| ~~`JoanofArc / 400 combat banter 3`~~ | 22 | `400 combat banter 2` | 0.56.0 |
+| ~~`JoanofArc / 400 combat banter 4`~~ | 42 | `400 combat banter 2` | 0.56.0 |
+| ~~`JoanofArc / 400 combat banter 5`~~ | 31 | `400 combat banter 2` | 0.56.0 |
+| ~~`cortes / 800 cortes wild addition 1`~~ | 18 | `800 cortes wild addition 2` | 0.56.0 |
 
 **Joan of Arc has five recorded combat lines and one of them plays.** She fights beside the player
 with four fifths of her combat voice unreachable. DaVinci's Montaillou banter wires four of five.
@@ -1778,7 +1781,7 @@ Ranked by what exists, not by size. None of these is classified yet.
 | `Demonic Spirit / 500 divine explanation demon` | 414 | the largest single recording in the sweep |
 | `weirdwoman / 100 Return` | 63 | **9 replies.** Na Roqua's return conversation |
 | `WengChoi / 600 something else`, `570 scroll give`, `580 no help` | 137 | 8 replies on the first; a shop branch |
-| `CedricAlsen / 60 too much`, `Jafar / 42 thefts`, `LordJavier / 500 pyrenees`, `Blacksmith / 6 Return Dialogue Wizard`, `Cervantes / 500 magic quill explanation`, `Elemental Spirit / 1 Completed Skills Tutorial Elemental`, `GoblinKhan / 10 Goodbye`, `Relican / 5 Raised from the dead as a zombie!` | 760 | singles, each needing its own look |
+| ~~`CedricAlsen / 60 too much`~~ (**adjudicated** -- the notes call it a superseded draft, its join reply gated on Templar AND Inquisitor, which no character can be), `Jafar / 42 thefts`, `LordJavier / 500 pyrenees`, `Blacksmith / 6 Return Dialogue Wizard`, `Cervantes / 500 magic quill explanation`, `Elemental Spirit / 1 Completed Skills Tutorial Elemental`, `GoblinKhan / 10 Goodbye`, `Relican / 5 Raised from the dead as a zombie!` | 760 | singles, each needing its own look |
 
 **Not leads, and already settled above:** `Blacksmith / 80 Do You Have The Item I Need?` and the
 `10 Don't use this node` family are superseded drafts, and `Juanita Suarez / 200 my fee` and
@@ -1789,6 +1792,45 @@ should not be re-reported as discoveries.
 all, undecidable without listening to the file.
 
 ---
+
+### Done in 0.56.0 -- the companions had voices
+
+**Fifteen recorded lines, 0.30 MB, and not one new word written.** Every balloon points at the node
+that already held the line, so the voiceover plays because `<Tree> VOs/<Node ID>.ogg` resolves as it
+always did.
+
+| who | hook | rate | lines |
+|---|---|---|---|
+| Joan of Arc | `Shoot Completed` | 1 in 8 | 5 combat calls, 4 of them dead |
+| Cortez / Cortez with arm | `Shoot Completed` | 1 in 10 | `800 general attack ` and 2-4 |
+| Cortez / Cortez with arm | `Damaged Script Action` | 1 in 12 | `cortes hurt 1`, `2` |
+| Cervantes | `Shoot Completed` | 1 in 16 | `400 companion attack general`, his only attack line |
+| Cervantes | `Damaged Script Action` | 1 in 12 | `under attack`, `under attack 2`, **wrapped** beside the shipped relay |
+| Cortes, `01 Grove Exterior` | the companion-remark relay | alternates | `wild addition 1` joins `2` |
+| Cervantes, `Barcelona Coast` | his approach cycle | 3rd entry | `500 wilderness quips` joins the cycle |
+
+**Four findings worth keeping:**
+
+- **Balloons play voiceover.** 325 vanilla balloon firings land on nodes that have recordings,
+  Joan's own cutscene lines among them. This was checked before building, because the whole value
+  of the work rested on it.
+- **Every bark in this game is Fixt's.** Zero vanilla cans fire a balloon from `Shoot Completed` or
+  `Damaged Script Action`; all 95 and 13 are ours. Vanilla uses `Shoot Completed` for skill
+  selection and summoning only.
+- **A wired sibling does not mean a bank exists.** `400 combat banter 2` is wired, but as one beat
+  inside the plateau cutscene, with `After Action` advancing the scene. Pointing the other four at
+  that site would have spliced barks into a cutscene. `tools/vo_reach.py` reports the sibling and
+  cannot report what *kind* of site it is, so the site must be read.
+- **The same node id, two opposite rules.** `800 general attack ` carries a trailing space. A
+  can-to-node reference is matched **byte-exactly** -- a mismatch is a hard crash on map entry, which
+  is how the Goblin Warrens crash shipped in the 0.1.x line, and `validate.py` A0.7b caught it here.
+  The recording, meanwhile, is `800 general attack.ogg` **without** the space, so voiceover resolves
+  on the **trimmed** id. Both are true at once, and a verifier that strips gets the first one wrong.
+
+Left out deliberately, with reasons: `cervantes / 500 don quixote attacks` duplicates a node that is
+live in Don Quixote's own tree; `don quixote / 206 cervantes dies` is the other outcome of the
+Quixote duel and is quest logic rather than a bark; `joanofarc / 15 combat` needs classifying against
+`601 Joan Leaves party and Attacks Player`, which 0.17.0 wired for the same beat.
 
 ### The sweep got four things wrong before it got them right
 

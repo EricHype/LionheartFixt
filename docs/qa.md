@@ -1474,6 +1474,34 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## The companions had voices
+
+Fifteen recorded lines that nothing in the game fired. **Thirteen are can edits**, so they reach only
+companions spawned after the install -- Joan in the Crypt, Cortes and Cervantes from the point they
+join. **Two are map edits** (`Barcelona Coast`, `01 Grove Exterior`), so they need a save that has
+**not yet entered those maps**, since a visited map is restored from the save's own snapshot.
+
+Every line below is vanilla voiceover that was already on the disc. If text appears with no voice,
+the node id and the `.ogg` name have drifted apart and that is the bug to report.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| CV1 | Enter `7 Doomed Plateau` with **Joan of Arc** as a companion and fight | - | She calls out while fighting, **in her recorded voice**: *"Hold strong, brothers!"*, *"En nom Dieu!"*, *"Fight bravely! Pour la France, pour Dieu!"*, *"Is there no end to these abominations?"* or *"These creatures must not steal the relic!"* Roughly one per eight of her own attacks |
+| CV2 | `CV1`: keep her through `8 Ante Chamber` and `9 Burial Chamber` | - | The line **varies**. All five should turn up over a long fight; one line repeating means the pool is not wired as a pool |
+| CV3 | Stand with Joan while nothing is fighting | - | **Silence.** The bank hangs off completed attacks, so an idle companion says nothing |
+| CV4 | **The regression row for the cutscene.** Arrive on the plateau for the first time and watch the Joan sequence | - | Unchanged: `420 wait`, then `421 Now`, then *"These creatures must not steal the relic!"*, **and control returns**. That line is now also in her bark pool; the scene must still play it in its place and end |
+| CV5 | Check the dialogue log after a fight with Joan | - | Her barks are **not** logged. The cutscene lines still are. Barks repeat, and the log is not for repeats |
+| CV6 | Travel with **Cortes** after the install and fight beside him | - | *"Por Espana!"*, *"You are a fool to attack a conquistador of Espana!"*, *"For God and Espana!"* or *"By my father's sword, I will be victorious!"* About one per ten of his attacks |
+| CV7 | Let Cortes take hits in a fight | - | *"I need assistance!"* or *"I need healing - I will perish soon!"*, about one damage event in twelve |
+| CV8 | Fight a long stretch beside **Cervantes** | - | *"Ah hah! Beast, you will not survive my flashing blade!"* -- **rare on purpose**, about one in sixteen of his attacks, because it is the only attack line he has |
+| CV9 | **The regression row that matters most.** Attack Cervantes yourself in the Temple District | - | The district still reacts exactly as before -- his damaged slot relays `Damage a guard in the Temple district`. His bark bank was **wrapped beside** that action, never over it. If the guards stop caring, the wrap is wrong and this is a real bug |
+| CV10 | Let an enemy wound Cervantes while he travels with you | - | *"Ayudame! Help me squire!"* or a pained grunt, occasionally |
+| CV11 | **`Barcelona Coast`, not yet visited on that save**: walk up to Cervantes several times | - | He now cycles **three** lines -- his greeting, *"We must not waste any time. La bestia is lurking nearby."*, and *"Have caution, squire, la bestia is everywhere."* Two of the three are what vanilla cycled |
+| CV12 | **`01 Grove Exterior`, not yet visited**: with Cortes as a companion, let his remark fire twice | - | *"I yearn to find the treasure. Let us return to our quest."* first, then *"Keep that madman Cervantes away from me."* -- **and control returns both times.** The remark plays inside a non-interactive sequence and each entry carries its own end; one that did not would freeze you exactly like the Cathar hang |
+| CV13 | Find Cervantes as a **prisoner** in `Inquisition Pit3` and hurt him | - | **No bark.** That map replaces his damaged slot by name, which is expected and deliberately left alone |
+| CV14 | `python tools/validate.py` | - | Passes on 702 files. **A0.7b is what caught this release's one real defect**: `800 general attack ` carries a trailing space, a can-to-node reference is matched byte-exactly, and a mismatch is a hard crash on map entry |
+| CV15 | `python tools/vo_reach.py` | - | **117** unreachable recordings, down from 132, and 11.18 MB down from 11.48. Fifteen lines came back; if the count is higher, something did not take |
+
 ## No way out, no way in
 
 Reported from play: paying the Cathar toughs 150 gold locked the game. **The Cathar fix is dialogue
@@ -1489,7 +1517,7 @@ edits, so they need creatures spawned after the install.
 | CT5 | As a **Wielder**, reach `70 Challenge Answer` and give the Wielder reason | - | Same ending, same release. This route has been hanging since 0.14.0 and nobody reported it |
 | CT6 | Refuse instead, by any of the insult replies | - | The fight starts and control returns. Those four exits always worked and must still |
 | CT7 | After any peaceful ending, walk up to a Cathar tough and talk to him | - | *"Welcome to town."* and **nothing else happens** -- no XP, nobody despawns, no sequence ends. This is vanilla's greeting and it must stay inert. Getting this wrong was this release's first attempt |
-| CT8 | `python tools/validate.py` | - | Passes on 698 files. A0.16 is what would have caught the original bug |
+| CT8 | `python tools/validate.py` | - | Passes on 702 files. A0.16 is what would have caught the original bug |
 | SM1 | Fight a **Snakebreed Summoner** in act 2 (Grove Exterior, the Druid Council, Clan of the Hand or Skull, Cave 2) and let it summon | - | A taunt appears as it casts -- *"Come, my brood. Come."*, *"We are many. You are one."*, *"The nessst wakessss."*, or *"<It calls, and the dark answers>"* |
 | SM2 | Count how often it summons across a few fights, against a pre-0.55.0 save if you have one | - | **Unchanged.** The bark is inside the summon branch, not a sibling entry, so the rate is identical. If summoning feels rarer, the bark was added in the wrong place |
 | SM3 | Watch a summoner that is **not** summoning | - | No summoner taunt. These four lines fire only on the summon, unlike the shared and drone banks |

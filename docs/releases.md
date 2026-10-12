@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.55.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.56.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,142 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.56.0 - the companions had voices
+
+Not reported from play. This one came out of a question -- *"is there anything else from a cut
+content perspective that we can restore or add back?"* -- and the answer turned out to be sitting
+behind a measurement this project had taken in only one direction for five releases.
+
+### The sweep that was run backwards
+
+0.41.0's voiceover audit asked **"is every recording named after a node?"** It found 1,314 of 1,330,
+98.8%, chased the 16 misses to the end, and the category read as closed. It never asked the other
+question: **"can the player reach the node a recording sits on?"**
+
+A line that was written, cast and performed, whose node is spelled perfectly and which nothing in
+the game can enter, passes the first test and fails the second. The two tests are the same two lists
+joined the other way round.
+
+| | nodes carrying a recording that nothing can reach | performed audio |
+|---|---|---|
+| vanilla as shipped | **204** | **19.27 MB** |
+| as Fixt left it after 0.55.0 | 132 | 11.48 MB |
+| as Fixt leaves it after 0.56.0 | **117** | **11.18 MB** |
+
+`tools/vo_reach.py` is new and takes that number; it borrows `reachability.py`'s own entry-point
+resolution rather than re-solving it. The full ranked backlog is in
+[`unused-content.md`](unused-content.md).
+
+### The companions were the cleanest group in it
+
+Filtering to combat-shaped node names gives 1,436 KB of barks nothing fires, and the companions'
+share of it is unusually tidy: the lines are generic, their cans leave the right hooks empty, and no
+scene has to be touched.
+
+| | what was recorded | what was wired |
+|---|---|---|
+| **Joan of Arc** | five battle cries | **one**, and not as a bark -- `400 combat banter 2` is a beat inside her arrival cutscene on `7 Doomed Plateau` |
+| **Cortes** | four battle cries, two calls for aid | none |
+| **Cervantes** | one attack line, two for being wounded | none |
+| **Don Quixote** | nothing of his own | - |
+
+### Where the banks hang, and why the rates differ
+
+Every bark in this game is already Fixt's work: **zero** vanilla cans fire a balloon from
+`Shoot Completed` or `Damaged Script Action`, while 95 and 13 of ours do. Vanilla uses
+`Shoot Completed` for skill selection and summoning only. So the shape was settled and only the
+numbers needed deciding.
+
+| can | hook | rate | lines |
+|---|---|---|---|
+| `Joan of Arc.can` | `Shoot Completed` | 1 in 8 | all five of her calls |
+| `Cortez.can`, `Cortez with arm.can` | `Shoot Completed` | 1 in 10 | `800 general attack ` and 2-4 |
+| the same two | `Damaged Script Action` | 1 in 12 | `cortes hurt 1`, `2` |
+| `Cervantes.can` | `Shoot Completed` | 1 in 16 | `400 companion attack general` |
+| `Cervantes.can` | `Damaged Script Action` | 1 in 12 | `under attack`, `under attack 2` |
+
+**The rates are set by pool size rather than copied.** 93 of the 95 shipped bark cans use 1 in 8,
+but an enemy barks for the few seconds it survives while a companion stands beside the player for a
+whole act. Choosing N so that N x pool is roughly 40 attacks keeps a line from coming back too soon;
+Cervantes's single line gets 1 in 16, because one line said often is a catchphrase.
+
+The padding entries are `CActionSelectSkill` on `Fighting/OneHandedMelee`, which is the **only**
+skill each of these three races lists. That matters: padding is not inert, it chooses the creature's
+next attack, and 0.52.x shipped 21 archers selecting a skill their race lacked.
+
+**Cervantes's damaged slot was occupied** -- a `CIfAction` that relays player damage to
+`Damage a guard in the Temple district`, which is what makes the district care when you hit him. His
+bank is **wrapped beside** it in a `CMultipleActionsAction`, never over it. A generator's
+`CSetDestroyedScriptActionAction` replacing a can's slot is how the Lava Troll Hide was dead code
+from 0.10.0 to 0.30.1, and the same care applies to replacing one by hand. An audit by **target
+name** -- not by byte proximity, which flagged a neighbour -- found only two overrides touching any
+of these characters: `Inquisition Pit3` sets a damaged script on the imprisoned Cervantes, and
+`Barcelona Coast` sets a destroyed script on Don Quixote. Neither is in the way.
+
+### Two lines needed no bank at all
+
+Where a map already fires one line of a pair, the repair is an entry, not a design, and each site
+got **its own idiom** rather than one invented shape:
+
+- **`Barcelona Coast`**, the Cervantes generator's `GetCloseThenTrigger` specifier, already cycles
+  `CSeriesAction{1 Conversation Start, 500 wilderness quip 2}` with `When Done=Repeat Series`.
+  `500 wilderness quips` was a missing **third entry**, so the cycle is 2 -> 3.
+- **`01 Grove Exterior`**, the relay `Check have Cortes as Companion third` (`Trigger Only Once=0`,
+  so it repeats) said one line forever. It is now a two-entry repeating series with
+  `800 cortes wild addition 2` **first**, so the line players already hear stays the one they hear
+  first. Both entries carry their own `CEndNonInteractiveSequenceAction`: the remark plays inside a
+  non-interactive sequence, only the chosen entry runs, and an entry without its own End would
+  freeze the player exactly like the Cathar hang.
+
+### Four things checked before anything was built
+
+- **Balloons play voiceover.** The whole value of the work rested on it, so it was measured: **325**
+  vanilla balloon firings land on nodes that have recordings, Joan's own cutscene lines among them.
+  Vanilla pairs balloons with recorded audio deliberately.
+- **A wired sibling does not mean a bank exists.** `vo_reach.py` reports that
+  `400 combat banter 2` has a live sibling; it cannot report that the live site is a **cutscene**,
+  with `After Action` advancing the scene. Pointing the other four there would have spliced barks
+  into a cutscene.
+- **A series gap needs the node to exist.** Cervantes wires tree attacks 1, 2, 3, 4 and 6, which
+  reads as a missing 5. There is no `112 tree attack 5`. Likewise `600 davinci stroll banter 7`,
+  which a hand-rolled byte window called unwired and a map does open.
+- **The notes, before the files.** `cortes` is spelled `Cortez` in the can filenames, and a filename
+  filter on "cortes" found no can at all for him -- the Andre/Lucious trap again.
+
+### The one real defect, caught by the gate
+
+`800 general attack ` carries a **trailing space**. A can-to-node or map-to-node reference is
+matched **byte-exactly**, and a mismatch is a hard crash on map entry: that is how the Goblin
+Warrens crash shipped in the 0.1.x line, and `validate.py` A0.7b exists because of it. The first
+build wrote the id without the space, which would have crashed the Tavern, Cortez Cave, River and
+Lake on entry. The builder now preflights every node id against the tree before writing a byte.
+
+And the asymmetry worth remembering: the recording is `800 general attack.ogg`, **without** the
+space. The node reference is exact; the voiceover lookup is trimmed. Both are true at once, and a
+verifier that strips the id gets the first one wrong -- mine did, after being fixed for the second.
+
+### Left dead on purpose
+
+| | why |
+|---|---|
+| `cervantes / 500 don quixote attacks` | duplicates a node that is **live** in Don Quixote's own tree |
+| `don quixote / 206 cervantes dies` | the other outcome of the Quixote duel. Quest logic, not a bark, and worth its own release |
+| `joanofarc / 15 combat` | needs classifying against `601 Joan Leaves party and Attacks Player`, which 0.17.0 wired for the same beat |
+| `CedricAlsen / 25 Attack` | the notes already adjudicated it: `600 Attack Cedric` plays instead |
+
+### Checked
+
+`validate.py` clean on **702** files, `reachability.py` green, `test_triggers` and `test_md2bbcode`
+pass. A purpose-built verifier reads all six files back from disk for **129** assertions, including
+the regressions that matter: Cervantes's relay survives inside its wrapper, the plateau cutscene
+still plays `420 wait` -> `421 Now` -> `banter 2` in order and ends, part counts are unchanged, and
+the Grove map's count of sequence-ends is up by exactly one. Its first run reported three failures
+that were **the wrong baseline** -- both maps are already Fixt files, so vanilla is not what they
+should be compared against, which is 0.54.0's lesson repeated.
+
+`CV1`-`CV15` in [`qa.md`](qa.md). `CV9` fails if the wrap is wrong, `CV4` if the cutscene was
+damaged, and `CV15` is `vo_reach.py` reporting 117.
 
 ## 0.55.0 - no way out, no way in
 

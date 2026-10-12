@@ -12997,16 +12997,37 @@ CLayerSaveData
 										Can Fast Forward=1
 									}
 								}
-								Action=CDisplayDialogBalloonAction
+								Action=CSeriesAction
 								{
-									Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
-									Node ID=800 cortes wild addition 2
-									Name of Position=Cortes with arm
-									Position Offset=0.000000,-75.000000
-									After Action=CEndNonInteractiveSequenceAction
+									Action=Array
 									{
+										Item Count=2
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
+											Node ID=800 cortes wild addition 2
+											Name of Position=Cortes with arm
+											Position Offset=0.000000,-75.000000
+											After Action=CEndNonInteractiveSequenceAction
+											{
+											}
+											Include In Log=1
+										}
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
+											Node ID=800 cortes wild addition 1
+											Name of Position=Cortes with arm
+											Position Offset=0.000000,-75.000000
+											After Action=CEndNonInteractiveSequenceAction
+											{
+											}
+											Include In Log=1
+										}
 									}
-									Include In Log=1
+									When Done=Repeat Series
+									Require Success To Advance=1
+									Next Action Index=0
 								}
 							}
 						}
