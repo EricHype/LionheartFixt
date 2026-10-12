@@ -28,6 +28,7 @@ wrong are more reusable than the results.
 - [Done so far](#done-so-far)
 - [What to pick up next](#what-to-pick-up-next)
 - [How this was measured](#how-this-was-measured)
+- [**Voiceover on nodes nobody can reach**](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted) -- the current backlog, and the richest vein left
 
 ---
 
@@ -40,8 +41,13 @@ wrong are more reusable than the results.
 | Monster cans | 478 | **48** | 48, all with working art |
 | Skills (`.Skill`) | 92 | - | **0** -- nothing was cut |
 | Summon tiers | 5 | 2 | **2** -- levels 4 and 5, six cans |
-| Perks (`.Perk`) | 98 | 5 | **5** title perks nothing awards |
+| Perks (`.Perk`) | 98 | 5 | **0 left** -- all five were awarded in 0.47.0 |
 | Factions (`.Faction`) | 13 | 0 | **0** -- one was restored by Fixt |
+| Voiced dialogue nodes | 1,573 recordings | **132** sit on unreachable nodes | **11.48 MB** written, cast, performed and unhearable |
+
+That last row is the one to read first, and it was [measured backwards until
+2026-10-11](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted). It is now
+the largest open category in this document by a wide margin.
 
 **Nothing in the unused set is missing art.** Across all 478 monster cans there are **zero**
 unresolvable models and **zero** unresolvable races. The unused creatures are complete; they are
@@ -610,10 +616,15 @@ against vanilla. Two entries this list used to carry turned out to be shipped an
 
 **Genuinely unreferenced, and the mechanism is already there:**
 
+**Both perk entries below shipped in 0.47.0** and are struck through; they are kept because the
+reasoning about where detection lives is what made that release work. The whole of this subsection is
+now closed, and the live backlog is
+[the voiceover sweep](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted).
+
 | | refs | what makes it cheap |
 |---|---|---|
-| **`Goblin Slayer`** | **0** | `Goblin Kill Counter.DerivedCharacterAttribute` is live and **7 maps write to it**. The perk exists with `Display Name=Goblin Slayer` and **no actions at all** -- a title granted by nothing. This is a threshold read away. **The trap:** `Bounty Hunter Camp.zax` looks like it references the perk, but the match is an entity named `Goblin Slayer Xp Giver` -- a substring collision, not a grant |
-| **The three `FACTION * Killer` perks** | **0** each | Their display names are already written and good: *"Enemy of the Inquisition"*, *"Enemy of the Knights Templar"*, *"Enemy of the Wielders"*. A shipped pattern with a working quarter as reference. Needs a decision about where detection lives -- a per-member death slot rather than a map trigger -- but invents nothing |
+| ~~**`Goblin Slayer`**~~ | **0** | **done in 0.47.0.** `Goblin Kill Counter.DerivedCharacterAttribute` is live and **7 maps write to it**. The perk exists with `Display Name=Goblin Slayer` and **no actions at all** -- a title granted by nothing. This is a threshold read away. **The trap:** `Bounty Hunter Camp.zax` looks like it references the perk, but the match is an entity named `Goblin Slayer Xp Giver` -- a substring collision, not a grant |
+| ~~**The three `FACTION * Killer` perks**~~ | **0** each | **done in 0.47.0, and the fourth was dead too** -- the Saladin grant this list called the working reference sits on an `Active=0` part nothing activates. All four hook each member can's own empty `Destroyed Script Action`: 33 cans, 568 spawn points, instead of 700 generators.  Their display names are already written and good: *"Enemy of the Inquisition"*, *"Enemy of the Knights Templar"*, *"Enemy of the Wielders"*. A shipped pattern with a working quarter as reference. Needs a decision about where detection lives -- a per-member death slot rather than a map trigger -- but invents nothing |
 | ~~`Inquisitor Feralkin Journal`~~ | -- | **done in 0.50.0** -- added to Weng Choi's rotation as its 11th book, to his rare-book check as its 10th, and noticed by an inquisitor |
 | ~~`Bolt selection MAGIC`~~ | -- | **done in 0.51.0.** And the diagnosis was too narrow: `All Arrows and Bolts.can`, which **38 maps** use for ammunition loot, yielded only *mundane* ammunition, so `Arrow selection MAGIC` at one map was barely better off. Both are now in that aggregate at weighting 6 and 4 |
 
@@ -1507,3 +1518,244 @@ meet it. The whole sequence is finished and shipped.
 **Nothing was built for this, and nothing should be.** With it struck, the open list from the
 original survey is empty.
 
+---
+
+## Voiceover on nodes nobody can reach -- the sweep the first one inverted
+
+Added 2026-10-11, after 0.55.0. With the original survey's open list empty, the question *"what else
+is there?"* needed a new axis. This is that axis, and it is the largest one yet.
+
+**The first voiceover sweep asked the wrong question.** It asked *"is every recording named after a
+node?"* -- 1,314 of 1,330 matched, **98.8%**, so the corpus looked clean, and the 16 misses were
+chased to the end and are [documented above](#orphaned-voiceover-is-the-strongest-signal-there-is).
+It never asked the other direction: ***"can the player reach the node a recording sits on?"***
+
+A line that was written, cast and performed, whose node is spelled perfectly and which nothing in the
+game can enter, **passes the first test and fails the second**. Both tests are one cheap join over
+the same two lists. Only one of them was run, for five releases.
+
+Reproduce with the tool this finding produced, which crosses `reachability.py`'s entry-point
+resolution with the voiceover corpus:
+
+```
+python tools/vo_reach.py                   # the game as this mod leaves it
+python tools/vo_reach.py --as-shipped      # vanilla alone
+python tools/vo_reach.py --replies-only --min-kb 100
+```
+
+### The headline
+
+| | unreachable nodes carrying a recording | performed audio | trees |
+|---|---|---|---|
+| **vanilla as shipped** | **204** (97 carry replies) | **19.27 MB** | 33 |
+| **as Fixt leaves it after 0.55.0** | **132** (53 carry replies) | **11.48 MB** | 25 |
+
+Earlier releases have therefore already recovered **72 nodes and 7.79 MB** of it, every one as a side
+effect of chasing something else. Nobody was aiming at this number, because nobody had taken it.
+
+Recorded voiceover is the top of this document's own signal ranking -- **recorded VO > authored
+item/dialogue definition > quest states > a filename** -- because a recording means the line survived
+all the way to a studio session. 11.48 MB of it sits behind replies that were never written.
+
+### Where it is
+
+| tree | nodes | MB | with replies |
+|---|---|---|---|
+| `Demonic Spirit` | 9 | 1.36 | 6 |
+| `GrandInquisitor` | 8 | 1.13 | 6 |
+| `Beast Spirit` | 9 | 1.06 | 3 |
+| `DaVinciBarcelona` | 9 | 1.03 | 4 |
+| `Elemental Spirit` | 10 | 0.93 | 4 |
+| `InquisitorRaphael` | 8 | 0.84 | 2 |
+| `weirdwoman` | 5 | 0.79 | 1 |
+| `cortes` | 21 | 0.66 | 9 |
+| `BrotherMichel` | 5 | 0.60 | 0 |
+| `shakespeare` | 7 | 0.46 | 3 |
+| `Shylocke` | 4 | 0.45 | 4 |
+| `Jafar` | 3 | 0.30 | 2 |
+| `Cervantes` | 10 | 0.26 | 1 |
+| 12 more trees | 36 | 1.66 | 11 |
+
+The split that matters more than the sizes: **53 nodes carry replies** and are authored branches,
+needing a reply written or a requirement fixed. The other **79 carry none** and are barks, balloons
+and scene beats, needing a **trigger placed in a map** instead.
+
+---
+
+### 1. Purify the Shadow Dryad -- the best remaining lead in the game
+
+A complete, voiced Inquisition mission with its own journal, its own kill detection, its own reward
+perk, and **no way in**. Everything below already ships:
+
+| piece | state |
+|---|---|
+| quest file | `Levels/1 Barcelona/Quests/Temple District/Purify the Shadow Dryad`, **3 authored states** |
+| voiceover | `410` 148 KB, `411` 199 KB, `412` 217 KB, `401 already dead` 168 KB -- **732 KB** |
+| the briefing | nodes `410 shadow dryad` and `411 shadow dryad 2`, written |
+| the activation | `CActivateQuestStateAction{State=AM6C3B5E}`, written on node 411 |
+| the gates | three requirement cans: `Torquemade requires Shadow Dryad NOT killed yet`, `Torquemada Requires Shadow Dryad Dead before meeting`, `Torquemade requires Shadow Dryad killed` |
+| the completion | `CSetQuestSatusToCompletedAction` + `Get XP Frome=Killed Weird Woman`, written on node 411's second reply |
+| **kill detection** | already in **`Inquisition Chambers2.zax`**, which references the return state `V3X8REJC` |
+| the reward | `Perks/!NPC or Event Given Perks/Torquemada Divine Boon` -- **+7 skill points to all four Divine branches** (Defensive, Divine Favor, Fortitude, Smite), permanent, with an authored description. **Granted nowhere else in the game**: the only file in the archive that names it is this tree |
+| the target | **Na Roqua**, live, helpful and talkable in Montaillou, masquerading as a Cathar perfecti |
+
+**And the break is a dangling question the player can hear.** Node `407 killed khan` is reachable, and
+ends:
+
+> I have known, child. I felt the blight lift from the forest as the beast drew its last breath. You
+> have my gratitude. **Are you ready for another task?**
+
+Its **only** reply is *"Thank you, Grand Inquisitor. I shall take my leave of you now."* The question
+is asked and the answer was never wired. The node that **does** answer it, `401 already dead`, asks
+the same question in almost the same words and sends *"Yes."* to `410 shadow dryad` -- and nothing
+reaches `401 already dead` either. Note the id collision with the live `401 tasks 2`, which is a
+plausible cause and worth checking before assuming anything else.
+
+Tracing the three quest states is what settles it:
+
+| state | its text, abbreviated | referenced by |
+|---|---|---|
+| `AM6C3B5E` | Torquemada asks you to find and eliminate the shadow dryad | **only** `GrandInquisitor.DialogTree`, on the unreachable node |
+| `S6JH3MKG` | "you must slay the shadow dryad" | **nothing at all** |
+| `V3X8REJC` | return and tell him you have purified her | `Inquisition Chambers2.zax` **and** a requirement can |
+
+So the mission is wired at the **end** and dead at the **start**: the level already notices the kill
+and a requirement can already tests it, while the briefing that would start it cannot be entered.
+
+The shipped file even carries the developers' own markers next to all of it --
+`Action work in progress=(shadow dryad quest not completed, then add shadow dryad quest)` and
+`Action work in progress=(grant kickass Grand Inquisitor perk - add to exorcism and detection)`.
+
+It is also a **real choice** rather than a chore: the Inquisition is asking the player to murder the
+woman who helps them, and the tree already branches for having killed her before being asked. Na
+Roqua's own `100 Return` greeting (9 replies, 63 KB recorded) is unreachable too, in the same vein.
+
+**Before building it**, classify against the taxonomy as always: find the live node that does this
+job and check whether it is better. Nothing else in the game grants `Torquemada Divine Boon` or
+activates this quest, which is what separates this from a superseded draft.
+
+---
+
+### 2. The spirit companions were written to react to what you meet
+
+Each of the three starting spirits has a set of nodes a map or can opens directly -- 12 for Beast, 14
+for Demonic, 12 for Elemental -- so **the mechanism is placed and working**:
+
+| wired, in all three | from |
+|---|---|
+| `30 dragon encounter` | `02 Shifting Dunes.zax` |
+| `300 aesma warning` / `300 prime wererat warning` | `Wererat Cave.zax` |
+| `400 khan demon` | `Goblin Warrens.zax` |
+| `600 wizard tremblethorn aka manah` | `Ogre Conjurer Cave.zax` |
+| `700 old man warning` | `07 Dark Temple.zax` |
+| `800 weird woman` | `01 Hamlet Exterior.zax` |
+| `1100 Found Mana` / `1101 Found Health` | `First Mana Pickup Spirit Call.can` -- a **can**, not a map |
+
+And beside them, recorded and entered by nothing:
+
+| | Beast | Demonic | Elemental |
+|---|---|---|---|
+| `35 undead encounter` | 98 KB | 156 KB | 93 KB |
+| `750 name` | 268 KB | 238 KB | 67 KB |
+| `20 prime werewolf encounter` | 70 KB | -- | -- |
+| `750 good and evil` | 248 KB | -- | -- |
+| `200 beast compliment` / `200 divine compliment` | 71 KB | -- | 53 KB |
+| `1000 druid finale` | 197 KB | 216 KB | 163 KB |
+| `1000 adversary` + `part 2` | -- | -- | 257 KB |
+| `1000 ...alamut reply` | -- | -- | 175 KB |
+
+`35 undead encounter` in **all three** is the clearest shape: one trigger, never placed in any map,
+three recordings. `1000 druid finale` in all three is the next: a story beat with a per-companion
+reaction written for each, which is how this game writes its companions.
+
+**The classification question for this group**, which must be answered before anything is built:
+Demonic has a live `20 general danger encounter warning` and Elemental a live `20 generic danger
+sense`, either of which could be the **superseding** generic version of the specific encounter lines.
+Check that first. The `750` pair looks like a cut "tell me about yourself" branch rather than an
+encounter trigger, and belongs to a different question.
+
+---
+
+### 3. Seven lines whose own name sibling is already wired
+
+The cheapest class in the whole sweep: a map already opens another node in the same name family, so
+nothing has to be designed, only pointed at. `tools/vo_reach.py` reports these first.
+
+| node | KB | siblings a map already opens |
+|---|---|---|
+| `weirdwoman / 200 nis weird woman conclusion 2` | 117 | `200 nis weird woman conclusion` |
+| `DaVinciBarcelona / 700 montaillou banter 4` | 55 | `700 montaillou banter`, `2`, `5`, `6` |
+| `JoanofArc / 400 combat banter 1` | 40 | `400 combat banter 2` |
+| `JoanofArc / 400 combat banter 3` | 22 | `400 combat banter 2` |
+| `JoanofArc / 400 combat banter 4` | 42 | `400 combat banter 2` |
+| `JoanofArc / 400 combat banter 5` | 31 | `400 combat banter 2` |
+| `cortes / 800 cortes wild addition 1` | 18 | `800 cortes wild addition 2` |
+
+**Joan of Arc has five recorded combat lines and one of them plays.** She fights beside the player
+with four fifths of her combat voice unreachable. DaVinci's Montaillou banter wires four of five.
+
+---
+
+### 4. The rest of the reply-carrying leads
+
+Ranked by what exists, not by size. None of these is classified yet.
+
+| lead | KB | what it looks like |
+|---|---|---|
+| `cortes / 165 help with arm`, `165 help with arm 2`, `170 accept cortes arm quest` | 186 | Cortes asking for the mechanical arm. **DaVinci's half is live** -- `2010 give arm` is opened by `DaVinci Workshop interior.zax` -- and the quest `Give Cortes a Hand` has **6 states**. How much of it currently runs is unmeasured; do that before anything else |
+| `cortes / 300 secret cave`, `160 cortes cave quest female response` | 111 | the treasure expedition; the quest `Recover the hidden treasure for Cortes` exists with 1 state |
+| `InquisitorRaphael / 500 Return from Montaillou`, `321 chapter 2 mission 2` | 468 | act-boundary Inquisition dialogue |
+| `GrandInquisitor / 400 NIS Dialogue 4b` + `Jafar / 400 NIS Dialogue 4b` | 171+ | an alternate branch of the council scene, in **both** trees |
+| `DaVinciBarcelona / 500 davinci gives a gift ... male` / `female` | 554 | a starting gift, gendered pair, the largest single pair in the sweep |
+| `shakespeare / 1000 in wilderness`, `in wilderness 2`, `1000 extended shakespeares debt` | 294 | Shakespeare encountered in the Wilderness, scripting *Richard II* in the player's honour |
+| `Shylocke / 140 no resolution`, `312 charge`, `500 shylocke gets gold`, `7 return with shakepeares money` | 459 | the arbitration's unresolved branches, matching `cortes / 151 no resolution 2` and `800 Return Dialogue` on the other side of the same dispute |
+| `Demonic Spirit / 500 divine explanation demon` | 414 | the largest single recording in the sweep |
+| `weirdwoman / 100 Return` | 63 | **9 replies.** Na Roqua's return conversation |
+| `WengChoi / 600 something else`, `570 scroll give`, `580 no help` | 137 | 8 replies on the first; a shop branch |
+| `CedricAlsen / 60 too much`, `Jafar / 42 thefts`, `LordJavier / 500 pyrenees`, `Blacksmith / 6 Return Dialogue Wizard`, `Cervantes / 500 magic quill explanation`, `Elemental Spirit / 1 Completed Skills Tutorial Elemental`, `GoblinKhan / 10 Goodbye`, `Relican / 5 Raised from the dead as a zombie!` | 760 | singles, each needing its own look |
+
+**Not leads, and already settled above:** `Blacksmith / 80 Do You Have The Item I Need?` and the
+`10 Don't use this node` family are superseded drafts, and `Juanita Suarez / 200 my fee` and
+`GoblinKhan / 400 Where are you going` are `Should Have Voiceover=0`. They appear in a raw survey and
+should not be re-reported as discoveries.
+
+**Still blocked:** `GrandInquisitor / 120 combat` remains the one recording matching **no** node at
+all, undecidable without listening to the file.
+
+---
+
+### The sweep got three things wrong before it got them right
+
+All three were caught inside the hour, by checking a claim against the data instead of against the
+shape of the data. They are recorded because the pattern repeats.
+
+**1. A hand-rolled byte window invented a wiring gap.** Looking for entry points by scanning 900
+bytes either side of each `Dialog Tree File=` reported `600 davinci stroll banter 7` as unwired, in a
+series whose other eight are wired -- a perfect-looking find. A map **does** open it; the window
+simply missed the `Node ID=` in that block. `reachability.py` already solves this properly with a
+brace walk and documents why, so `tools/vo_reach.py` imports the same logic. **Do not re-solve a
+problem this repo has a tool for.**
+
+**2. A gap in a numbered series needs the node to exist.** `Cervantes` wires tree attacks 1, 2, 3, 4
+and 6, which reads as a missing 5. There is **no** `112 tree attack 5` node, so nothing is missing. A
+series gap is a finding only when the node is present *and* unreachable *and* ideally recorded, which
+is what the sibling column now tests.
+
+**3. A broken query looked like a clean result.** The quest-state sweep matched `Name=` for state ids
+when the field is `ID=`, and printed *"0 quests with state ids, 0 never-referenced"* -- a result that
+reads like good news. The fixed query finds **24** quests carrying a state nothing activates, but
+most of those states are **duplicate prose**: the author copied a state, wired one copy and left the
+other. Only `Purify the Shadow Dryad` has an unreferenced state with its own distinct text. So the
+quest-state axis is **weak on its own** and useful only as corroboration, which is exactly how it was
+used above.
+
+### Rules this sweep adds
+
+- **Measure a join in both directions.** Names-to-nodes and nodes-to-reachable are the same two
+  lists and different questions. Asking one and reporting the category closed is how 19 MB of
+  performed audio stayed invisible for five releases.
+- **A recording is the strongest lead, and still not a verdict.** Classify every one of these against
+  the [orphan taxonomy](#the-three-kinds-of-orphaned-node) before building. Two of the loudest
+  entries in a raw survey are already-settled superseded drafts.
+- **Prefer the sibling.** When a name family has wired members and one dead one, the mechanism is
+  already placed and the repair is an entry, not a design.
