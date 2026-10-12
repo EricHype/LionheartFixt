@@ -15,7 +15,7 @@ that no longer exists here, so renumbering a case cannot silently orphan the gui
 
 ## Gate 0 - automated, before anyone plays
 
-A0.1-A0.12, A0.14 and A0.15 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
+A0.1-A0.12 and A0.14-A0.16 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
 [`tools/reachability.py`](../tools/reachability.py), which needs the vanilla archive to
 tell our orphans from the shipped game's. Both must be re-run after *any* change to
 `files/`:
@@ -52,6 +52,7 @@ is parsed, so a new *text* type cannot slip through by being unlisted.
 | A0.13 | Every node this mod adds is reachable -- `python tools/reachability.py` | zero unreachable. Nodes already orphaned in the shipped tree are tolerated; a Fixt tree is usually a shipped tree with nodes spliced in, and should not inherit the blame for what it copied |
 | A0.14 | No can-level quest-item drop is overridden by the generator that spawns it | zero overridden drops. `CSetDestroyedScriptActionAction` in a generator's `After Action` **replaces** the can's `Destroyed Script Action`, so a drop written only on the can is dead code -- this is how the Lava Troll Hide was unobtainable from 0.10.0 |
 | A0.15 | Every `=CSomething` names a class the engine registers | zero unknown classes. Checked against the C-prefixed strings in `Lionheart.exe` plus every class vanilla's data uses. An invented class is a hard CTD -- *"Invalid class type"* -- and `CIsQuestStatusCompletedAction` in the Grand Inquisitor's tree shipped in **0.13.0 and survived 27 tagged releases** before a player walked into it |
+| A0.16 | No exit this mod makes reachable leaves the player inside a non-interactive sequence | zero hangs. Scoped to trees where **every** exit vanilla could reach ends the sequence, and only to exits vanilla could not already enter, so inherited shapes stay quiet. **Blind spot: "exit" means reply-reachable**, so a node a map opens directly is invisible -- grep the maps before satisfying this by adding actions to a node |
 
 **A0.11 is the one that has bitten this project before.** The loose `data\` tree shadows
 `data.dat`; a correct archive with a stale mirror is a mod that silently does nothing.
@@ -1473,6 +1474,29 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## No way out, no way in
+
+Reported from play: paying the Cathar toughs 150 gold locked the game. **The Cathar fix is dialogue
+only, so it works on an existing save**, including one stuck mid-hang. The summoner barks are can
+edits, so they need creatures spawned after the install.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| CT1 | As a **Templar**, eat meat with the Inquisitor in the Montaillou tavern, then leave and let the toughs stop you | - | `61 the knights` -- *"What is a winter worth, brother?"* |
+| CT2 | Pay the 150 gold | - | **The scene ends and you get control back.** The gears must stop. This is the whole report |
+| CT3 | `CT2`: watch the three toughs | - | They stand down and walk off, the same way they do if you frighten them off as a Wielder. They must not stand there frozen |
+| CT4 | `CT2`: check your purse | - | 150 gold gone. The reply is gated on having it, so it is absent if you cannot pay |
+| CT5 | As a **Wielder**, reach `70 Challenge Answer` and give the Wielder reason | - | Same ending, same release. This route has been hanging since 0.14.0 and nobody reported it |
+| CT6 | Refuse instead, by any of the insult replies | - | The fight starts and control returns. Those four exits always worked and must still |
+| CT7 | After any peaceful ending, walk up to a Cathar tough and talk to him | - | *"Welcome to town."* and **nothing else happens** -- no XP, nobody despawns, no sequence ends. This is vanilla's greeting and it must stay inert. Getting this wrong was this release's first attempt |
+| CT8 | `python tools/validate.py` | - | Passes on 698 files. A0.16 is what would have caught the original bug |
+| SM1 | Fight a **Snakebreed Summoner** in act 2 (Grove Exterior, the Druid Council, Clan of the Hand or Skull, Cave 2) and let it summon | - | A taunt appears as it casts -- *"Come, my brood. Come."*, *"We are many. You are one."*, *"The nessst wakessss."*, or *"<It calls, and the dark answers>"* |
+| SM2 | Count how often it summons across a few fights, against a pre-0.55.0 save if you have one | - | **Unchanged.** The bark is inside the summon branch, not a sibling entry, so the rate is identical. If summoning feels rarer, the bark was added in the wrong place |
+| SM3 | Watch a summoner that is **not** summoning | - | No summoner taunt. These four lines fire only on the summon, unlike the shared and drone banks |
+| SM4 | Fight ordinary Snakebreed, Venom and Boss variants | - | Their barks are exactly as before. Only the three summoner cans changed |
+| TF1 | Ask the knight at the fire in the Crypt camp how the war goes, at each of the three tide states | - | `60 the line has moved`, `61 the line has slipped`, `62 the line is where it was`. **Unchanged.** Three superseded drafts were deleted from `The Fronts`, and this is the report that survives |
+| TF2 | `python tools/reachability.py` | - | *"every node this mod adds is reachable"*. It had been failing on seven nodes |
+
 ## One supply, one thing
 
 Reported from play, two halves of one questline. **Both fixes are dialogue only, so they work on an

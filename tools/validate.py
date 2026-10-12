@@ -95,9 +95,53 @@ fails = []
 # sequence can be mangled on the way into this file (that is how the shipped defect happened)
 WS_CLASS = re.compile(("^[^" + chr(13) + chr(10) + "=]*=[ " + chr(9) + "]+C[A-Z][A-Za-z0-9]*" + chr(13) + chr(10)).encode("latin-1"), re.M)
 LF = chr(10)
+DASHES = "-" * 60
 
 
 _VANILLA_DANGLING = {}
+_VANILLA_REACHABLE = {}
+
+
+def terminal_exits(t):
+    """({lowered id: as written}, {lowered ids that end the NIS}) for one tree's text."""
+    reach = {g.strip().lower() for g in re.findall(r"^Go to node ID=(.*)$", t, re.M) if g.strip()}
+    ends, all_ = set(), {}
+    for seg in t.split(LF + DASHES + LF):
+        m = re.match(r"Node ID=(.*)$", seg, re.M)
+        if not m:
+            continue
+        nid = m.group(1).strip()
+        if nid.lower() not in reach:
+            continue                              # orphan: cannot be entered
+        gos = re.findall(r"^Go to node ID=(.*)$", seg, re.M)
+        if not gos or any(g.strip() for g in gos):
+            continue                              # not a terminal exit
+        all_[nid.lower()] = nid
+        if "EndNonInteractiveSequenceAction" in seg:
+            ends.add(nid.lower())
+    return all_, ends
+
+
+def vanilla_nis_tree(p):
+    """Does the SHIPPED copy of this tree run wholly inside a non-interactive sequence?
+
+    True only when vanilla could reach two or more terminal exits and EVERY one of them ends
+    the sequence -- which is how `cathartoughs` is built, and how a tree says "an NIS is
+    running for this entire conversation". `DaVinciBarcelona` and `Bar Patrons` end one
+    somewhere too, but most of their exits correctly do not, so they are ordinary dialogue
+    and A0.16 must stay silent about them. Returns the vanilla-reachable exits as well, so a
+    node vanilla could already enter is never blamed on this mod.
+    """
+    rel = p.relative_to(F).as_posix()
+    if rel not in _VANILLA_REACHABLE:
+        try:
+            v = zf.read(rel).decode("latin-1").replace(chr(13) + LF, LF)
+        except KeyError:
+            _VANILLA_REACHABLE[rel] = (False, set())
+        else:
+            all_, ends = terminal_exits(v)
+            _VANILLA_REACHABLE[rel] = (len(all_) >= 2 and set(all_) == ends, set(all_))
+    return _VANILLA_REACHABLE[rel]
 
 
 def vanilla_dangling(p):
@@ -221,6 +265,35 @@ def check_dialogtree(p, raw):
             rf.parse_resource_text(m.group(1) + LF + t[start:i + 1])
         except Exception as e:
             fails.append(name + ": embedded " + m.group(1) + " failed to parse: " + str(e))
+
+    # A0.16 -- an exit that leaves the player inside a non-interactive sequence HANGS THE GAME.
+    # Reported from play in issue #6: paying the Montaillou Cathars 150 gold spun the gears
+    # forever. `cathartoughs` begins its ambush with a `CBeginNonInteractiveSequenceAction` in
+    # the map and had five reachable exits, only four of which ended it. The fifth,
+    # `100 Welcome`, carries no actions at all -- and it is VANILLA'S node, an orphan nothing
+    # could reach until 0.14.0 wired `Wielder IS` to it and 0.24.0 added the Templar's
+    # 150-gold reply. The defect shipped the moment the node became enterable.
+    #
+    # KNOWN BLIND SPOT, and it is the one that nearly made this fix worse than the bug. "Exit"
+    # here means reply-reachable: a node a MAP opens directly is invisible to this check.
+    # `100 Welcome` is exactly that -- vanilla hangs it on `Cathar tough guy 3` as a
+    # GetCloseThenTalk greeting with `Trigger Only Once=0`, which is why it rightly carries no
+    # actions and why giving it the resolution would have let a friendly hello end a sequence
+    # that was not running, re-award the XP and delete all three toughs, repeatably. Before
+    # satisfying this check by adding actions to a node, grep the maps for it.
+    #
+    # Scoped twice so it accuses only what this mod did. First the tree must be one that runs
+    # wholly inside an NIS in vanilla -- every exit vanilla could reach ends it -- which is
+    # what makes `cathartoughs` different from `DaVinciBarcelona` and `Bar Patrons`, where an
+    # NIS is ended on one branch and the ordinary goodbyes correctly do not. Then only an exit
+    # VANILLA COULD NOT ALREADY ENTER is reported, so inherited shapes stay quiet.
+    in_nis, was_reachable = vanilla_nis_tree(p)
+    if in_nis:
+        all_, ends = terminal_exits(t)
+        for low in sorted(set(all_) - ends - was_reachable):
+            fails.append(name + ": node " + repr(all_[low]) + " is an exit this mod made reachable"
+                         " and it never ends the non-interactive sequence (A0.16) -- the game"
+                         " hangs with the gears spinning")
 
 
 # Every path-shaped resource reference must resolve to a file, in the mod or in vanilla.

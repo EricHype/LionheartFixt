@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.54.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.55.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,115 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.55.0 - no way out, no way in
+
+**Reported from play:** *"During conversation you can give them 150 gold pieces to presumably avoid
+fighting with them, but we never now as game is unresponsive (metal gears icon in top left corner
+still spins and nothing happens). I waited for 30min for no result."*
+
+The spinning gears name the mechanism. The Cathar ambush opens inside a
+`CBeginNonInteractiveSequenceAction` fired from `01 Hamlet Exterior.zax`, so the player's input is
+held until something calls the matching End. `cathartoughs.DialogTree` had **five reachable exits and
+four Ends**.
+
+### The fifth exit was not a broken exit
+
+`100 Welcome` is vanilla's, and it is correct. It is `Cathar tough guy 3`'s talk response, attached
+through the generator's `AIs to Add` -> `CAIInteractionSpecifier` (`GetCloseThenTalk`) ->
+`CDisplayDialogTreeAction`, with `Trigger Only Once=0`. Walk up to him afterwards and he says
+*"Welcome to town."* Nothing is holding you, so there is nothing to release, so it carries no actions.
+
+**The tree does two unrelated jobs**, and that is the trap. It holds the ambush conversation, and it
+also holds a set of map-opened greetings and ambient barks -- `100 Welcome`, `101 Welcome` and three
+variants, `102 Pissed off`, `103 fight prelude`, `110`-`116 Drunk Guy`, `120 grumble`,
+`121 more grumbles` -- none of which belong to that conversation.
+
+**0.14.0** wanted a peaceful outcome for a Wielder, found a node reading *"Welcome to town."* with
+nothing in the tree pointing at it, and wired it. **0.24.0** added `61 the knights` and sent the
+Templar's 150-gold reply to the same place, by then established precedent. Both arrive from inside
+the sequence, where a greeting releases nothing. There is no timeout, so the thirty minutes were
+never going to help.
+
+So this is **ours, and a misuse of a working node rather than an inherited defect**. There is no
+vanilla save where it hangs.
+
+### The first fix would have been worse than the bug
+
+It put the resolution onto `100 Welcome`. Twelve assertions passed, because every one of them tested
+the exit and not one asked what else used the node. Greeting tough guy 3 would then have ended a
+sequence that was not running, re-awarded the encounter XP, and dismissed, walked off and deleted all
+three toughs -- repeatably, since the specifier is `Trigger Only Once=0`.
+
+What was missing was one question: **a map can open a tree at any node**, so searching the tree for
+`Go to node ID=` proves nothing about whether a node is used. `reachability.py` has encoded exactly
+that since it was written, and its docstring records getting it wrong as a first-attempt mistake that
+*"reports live balloon nodes as orphans"*. It has never flagged `100 Welcome`. An ad-hoc grep
+overruled the project's own tool on a fact the repo had already learned.
+
+`100 Welcome` is therefore **byte-identical to vanilla**, and both Fixt replies now reach
+`91 they stand down`, which carries the resolution cloned from `90 Freak Out`, the one peaceful
+ending that always worked: End the sequence, dismiss all three toughs, award the encounter XP, walk
+them to their goto point and delete them.
+
+### A0.16, and what running it honestly cost
+
+The new gate fails any **reachable terminal exit that never ends the sequence**. Precision took two
+attempts: the first flagged 31 nodes, the second 6, all false positives in `DaVinciBarcelona` and
+`Bar Patrons`, which end a sequence on one branch while their ordinary goodbyes correctly do not.
+
+The rule that works borrows this file's own philosophy. A tree qualifies only if **every exit vanilla
+could reach ends the sequence**, which is how a tree says the whole conversation runs inside one; then
+only an exit **vanilla could not already enter** is reported. Verified both ways: silent across 698
+files, and with the fix reverted it names `100 Welcome` exactly. Its comment records the blind spot
+that nearly made this worse, because "exit" means reply-reachable and a node a map opens is invisible
+to it.
+
+**Then A0.13 turned out to be red, and had been for releases.** Seven nodes of this mod's own that
+nothing can reach, in two groups needing opposite treatment.
+
+### Four barks that could not be attached, and why
+
+The snakebreed bark bank has five families. The cans open 21 nodes covering `shared`, `venom`, `boss`
+and `drone`. The four `summoner` lines were attached to nothing, while three `Snakebreed Summoner`
+cans are spawned across **eight** maps in act 2.
+
+Every can the bark release wired had an **empty** `Shoot Completed`. The summoners' is occupied by
+vanilla, and that bank *is* the summon-rate mechanism:
+
+| can | `Item Count` | the summon entry |
+|---|---|---|
+| `Snakebreed Summoner` | 5 | `CIfAction{snakebreed summoning enabled}` -> `CSeriesAction` of clone-casts |
+| `Snakebreed Summoner Tough` | 4 | the same |
+| `Snakebreed Summoner Super` | 3 | the same |
+
+One entry summons and the rest select melee, so the rate rises by tier. Adding a bark as another
+entry would have diluted it, which is 0.52.0's load-bearing-padding lesson exactly. So the bank is
+untouched and the bark wraps the **inside** of the summon branch: the line fires when the creature
+actually summons, which is what it was written for -- *"Come, my brood. Come."*,
+*"<It calls, and the dark answers>"*. Audited against vanilla rather than against expectation:
+`Item Count`, clone count, skill selections and animation count are identical in all three.
+
+### Three drafts of the same report
+
+`3 tide holding`, `3 tide garrison` and `3 tide necromancer` in `The Fronts` are a terser early
+version of the crypt-war tide report. The shipped version is `Garrison Camp` nodes
+`60 the line has moved`, `61 the line has slipped` and `62 the line is where it was`, reachable and
+better written, and 0.16.0's notes describe the knight's version as the design. Wiring these would
+have duplicated it, so they are **deleted**. The orphaned-node taxonomy calls this the superseded
+draft, and that is the third kind.
+
+### Checked
+
+`validate.py` clean on **698** files with A0.16 live; **A0.13 green for the first time in this line**
+-- *"every node this mod adds is reachable"*; the suite and the playtest guide pass. The Cathar fix is
+dialogue only, so it reaches a save already stuck on the hang.
+
+Four of my own mistakes, all caught by assertions rather than by luck: `balanced()` excludes the
+trailing CRLF and the lifted series concatenated into the next brace, which is the **fourth** time
+that one trap has bitten; an assertion that the clone count equalled the series `Item Count`, which
+was wrong because five entries contain four summons, re-based onto vanilla; and the two A0.16 passes
+above.
 
 ## 0.54.0 - one supply, one thing
 
