@@ -1580,12 +1580,69 @@ The split that matters more than the sizes: **53 nodes carry replies** and are a
 needing a reply written or a requirement fixed. The other **79 carry none** and are barks, balloons
 and scene beats, needing a **trigger placed in a map** instead.
 
+### What is new here, and what is not
+
+**Entry 1 below is a re-find, not a discovery, and the sweep gave no sign of it.** 0.9.0 investigated
+`Purify the Shadow Dryad` at length, scoped it as that release's **headline** restoration, and then
+cut it on evidence -- see *Tier 1 - the Inquisition's second task: half built, half impossible* in
+[releases.md](releases.md) and the "not in this release, deliberately" list in
+[qa.md](qa.md). Its verdict is corrected into entry 1 rather than left to collide with it.
+
+**`--with-mod` cannot catch this.** The overlay hides what Fixt *built*; it cannot hide what Fixt
+*decided not to build*, because the shape of that decision is a node left exactly as vanilla wrote
+it. A deliberately-unopened node and a never-noticed node are byte-identical. **So grep
+releases.md and qa.md for a lead's own node ids before calling it open** -- the same way the map
+files must be grepped before assuming a node is unused.
+
+Genuinely new from this sweep: **the quantification** (204 / 19.27 MB shipped, 132 / 11.48 MB
+remaining), the **spirit companions' encounter reactions** in entry 2, the **sibling-wired seven** in
+entry 3, and most of entry 4.
+
 ---
 
-### 1. Purify the Shadow Dryad -- the best remaining lead in the game
+### 1. Purify the Shadow Dryad -- re-found here, and ruled out by 0.9.0
 
-A complete, voiced Inquisition mission with its own journal, its own kill detection, its own reward
-perk, and **no way in**. Everything below already ships:
+**Read this entry as a correction of the sweep, not as a lead.** The chain below is real and the
+numbers are right, and **the conclusion drawn from them the first time was wrong**: this was called
+"the best remaining lead in the game" by a reading that had not checked the project's own release
+notes. 0.9.0 had already built the reachable half, measured the rest, and cut it for a reason the
+voiceover join cannot see.
+
+| 0.9.0's finding | |
+|---|---|
+| `407 killed khan`, the Inquisitor's own Khan report | **built by 0.9.0** -- so the dangling *"Are you ready for another task?"* in the current build is **this mod's own doing**, recorded there as permanent rather than pending |
+| `401 already dead` and `402 tasks 3`'s pre-emptive report | **deliberately left orphaned**, because the only thing they lead to is a quest with no ending |
+| `Weird Woman dead`, the flag the completion gates on | **a debug switch.** Its one setter in the shipped game is a part named `warp`, `Active=0`, commented *"This is to kill the Weird woman to test what happens when you kill her"*, beside an `Editor/Test Interaction`. No Montaillou map references it under any spelling |
+| Na Roqua | **built to be unkillable**, three independent ways: `Has Hit Points=0`, a race carrying **AC 1000 / HP 10000** with full resistances across 11 presets, and a `Gotocombat` handler firing the `kicks you` relay that banishes the player to `01 Hamlet Exterior`. `CGoToCombatAction` naming her occurs **zero** times |
+| being banished | **not a failure state but a written beat** -- the live Fournier questline ships dialogue for it: *"when I confronted her she used her magic to send me to a den of wolves"* |
+
+So the two claims that made this look cheap are both wrong. **"Kill detection already exists" is
+not usable detection**: the `V3X8REJC` reference in `Inquisition Chambers2.zax` covers only the
+player who killed her *before* meeting Torquemada, and nothing legitimate can set the flag it keys
+on. And **wiring `410` -> `411` and stopping** yields a quest the player can accept and never
+finish, with the perk still unreachable, which is precisely what 0.9.0's scope would have shipped
+before it was corrected.
+
+**What this sweep adds is one fact, and it is a small one:** the reward perk's content. `Torquemada
+Divine Boon` grants **+7 skill points to all four Divine branches** (Defensive, Divine Favor,
+Fortitude, Smite), permanently, with an authored description -- and **the only file in the archive
+that names it is this tree**, so no other route grants it. 0.9.0 recorded that node 412 "grants a
+perk" without pricing it.
+
+**What the work would actually be, if it is ever taken:** not a reply. Giving Na Roqua hit points,
+conditioning or removing the banish, and writing a resolution -- which is authoring over a live
+scene. 0.9.0 ruled that out when the project's standing rule was restore, do not author. **That rule
+no longer holds** -- 0.53.0 wrote a scene and three quest-gated branches, 0.54.0 wrote a second
+commission and a karma trade -- so this is now a **policy question for the author rather than a
+measurement question**, and it is the only entry in this section that is. The cheaper shapes worth
+weighing first, both of which leave her alive: resolve on the **banish** the game already writes
+rather than on a death, or let a Speech-gated reply **lie** to Torquemada, which the node's own
+*"I have already made arrangements to deal with the witch"* text already sounds like.
+
+Everything below is the evidence, kept because it is accurate and was expensive to assemble twice:
+
+| piece | state |
+|---|---|
 
 | piece | state |
 |---|---|
@@ -1595,21 +1652,22 @@ perk, and **no way in**. Everything below already ships:
 | the activation | `CActivateQuestStateAction{State=AM6C3B5E}`, written on node 411 |
 | the gates | three requirement cans: `Torquemade requires Shadow Dryad NOT killed yet`, `Torquemada Requires Shadow Dryad Dead before meeting`, `Torquemade requires Shadow Dryad killed` |
 | the completion | `CSetQuestSatusToCompletedAction` + `Get XP Frome=Killed Weird Woman`, written on node 411's second reply |
-| **kill detection** | already in **`Inquisition Chambers2.zax`**, which references the return state `V3X8REJC` |
+| ~~kill detection~~ | `Inquisition Chambers2.zax` references the return state `V3X8REJC`, **but only for the player who killed her before meeting Torquemada**, and it keys on a flag nothing legitimate sets. Not usable detection |
 | the reward | `Perks/!NPC or Event Given Perks/Torquemada Divine Boon` -- **+7 skill points to all four Divine branches** (Defensive, Divine Favor, Fortitude, Smite), permanent, with an authored description. **Granted nowhere else in the game**: the only file in the archive that names it is this tree |
-| the target | **Na Roqua**, live, helpful and talkable in Montaillou, masquerading as a Cathar perfecti |
+| the target | **Na Roqua**, live, helpful and talkable in Montaillou, masquerading as a Cathar perfecti -- **and unkillable by construction**, per the table above |
 
-**And the break is a dangling question the player can hear.** Node `407 killed khan` is reachable, and
-ends:
+**The break the player can hear.** Node `407 killed khan` is reachable, and ends:
 
 > I have known, child. I felt the blight lift from the forest as the beast drew its last breath. You
 > have my gratitude. **Are you ready for another task?**
 
-Its **only** reply is *"Thank you, Grand Inquisitor. I shall take my leave of you now."* The question
-is asked and the answer was never wired. The node that **does** answer it, `401 already dead`, asks
-the same question in almost the same words and sends *"Yes."* to `410 shadow dryad` -- and nothing
-reaches `401 already dead` either. Note the id collision with the live `401 tasks 2`, which is a
-plausible cause and worth checking before assuming anything else.
+Its **only** reply is *"Thank you, Grand Inquisitor. I shall take my leave of you now."* The node that
+**does** answer it, `401 already dead`, asks the same question in almost the same words and sends
+*"Yes."* to `410 shadow dryad`, and nothing reaches `401 already dead` either. **Both of those facts
+are 0.9.0's decisions, not vanilla's oversight** -- in vanilla `407` is unreachable too, so the
+question is never asked. A first reading here also offered the id collision with the live
+`401 tasks 2` as a plausible cause; it is not the cause, and that guess was made with the answer
+already written down in releases.md.
 
 Tracing the three quest states is what settles it:
 
@@ -1619,8 +1677,10 @@ Tracing the three quest states is what settles it:
 | `S6JH3MKG` | "you must slay the shadow dryad" | **nothing at all** |
 | `V3X8REJC` | return and tell him you have purified her | `Inquisition Chambers2.zax` **and** a requirement can |
 
-So the mission is wired at the **end** and dead at the **start**: the level already notices the kill
-and a requirement can already tests it, while the briefing that would start it cannot be entered.
+So the mission is wired at the **end** and dead at the **start** -- except that the end it is wired
+to cannot occur, which is the whole of 0.9.0's finding. The third checker,
+`Torquemade requires Shadow Dryad killed`, is used by nobody and is exactly the gate a report-back
+reply would need, so even the missing piece was pre-cut.
 
 The shipped file even carries the developers' own markers next to all of it --
 `Action work in progress=(shadow dryad quest not completed, then add shadow dryad quest)` and
@@ -1630,9 +1690,15 @@ It is also a **real choice** rather than a chore: the Inquisition is asking the 
 woman who helps them, and the tree already branches for having killed her before being asked. Na
 Roqua's own `100 Return` greeting (9 replies, 63 KB recorded) is unreachable too, in the same vein.
 
-**Before building it**, classify against the taxonomy as always: find the live node that does this
-job and check whether it is better. Nothing else in the game grants `Torquemada Divine Boon` or
-activates this quest, which is what separates this from a superseded draft.
+**Na Roqua's own `100 Return`** greeting (9 replies, 63 KB recorded) is unreachable as well, and is a
+**separate and open** lead: it needs no kill, no flag and no policy decision, only an entry. It is
+listed in entry 4 and should not be bundled with the quest above.
+
+**The orphan taxonomy is not what settles this one.** `Torquemada Divine Boon` is granted nowhere
+else and nothing else activates this quest, so it is not a superseded draft -- it is the fourth
+thing, which this document had not needed a name for until now: **adjudicated.** Finished content,
+correctly identified, deliberately left dead by this mod for a recorded reason. Those look exactly
+like leads, and only the release notes tell them apart.
 
 ---
 
@@ -1724,7 +1790,7 @@ all, undecidable without listening to the file.
 
 ---
 
-### The sweep got three things wrong before it got them right
+### The sweep got four things wrong before it got them right
 
 All three were caught inside the hour, by checking a claim against the data instead of against the
 shape of the data. They are recorded because the pattern repeats.
@@ -1741,7 +1807,15 @@ and 6, which reads as a missing 5. There is **no** `112 tree attack 5` node, so 
 series gap is a finding only when the node is present *and* unreachable *and* ideally recorded, which
 is what the sibling column now tests.
 
-**3. A broken query looked like a clean result.** The quest-state sweep matched `Name=` for state ids
+**3. The headline lead was already adjudicated, and it was ranked first anyway.**
+`Purify the Shadow Dryad` was 0.9.0's scoped headline, investigated to the bottom and cut with its
+reasoning written out in releases.md and its exclusion listed in qa.md. The sweep could not know
+that -- a node left deliberately closed is byte-identical to one never noticed -- but **a grep of
+this project's own notes for those node ids would have, and it was not run until the author asked
+whether this had been worked on before.** The cost is not the wasted read; it is that the first
+version of this section told the author something false about his own repository.
+
+**4. A broken query looked like a clean result.** The quest-state sweep matched `Name=` for state ids
 when the field is `ID=`, and printed *"0 quests with state ids, 0 never-referenced"* -- a result that
 reads like good news. The fixed query finds **24** quests carrying a state nothing activates, but
 most of those states are **duplicate prose**: the author copied a state, wired one copy and left the
@@ -1759,3 +1833,7 @@ used above.
   entries in a raw survey are already-settled superseded drafts.
 - **Prefer the sibling.** When a name family has wired members and one dead one, the mechanism is
   already placed and the repair is an entry, not a design.
+- **Grep releases.md and qa.md for a lead's own node ids before calling it open.** `--with-mod`
+  subtracts what this mod **built**; nothing subtracts what it **considered and cut**, and the two
+  are indistinguishable in the data. Adjudicated content is a fourth kind of orphan, and the only
+  one that cannot be recognised from the files at all.
