@@ -1474,6 +1474,37 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## Na Roqua answers the spirit you brought
+
+Both halves are **map** edits, so they need a save that has **not yet entered** the room or the map
+in question: a visited map is restored from the save's own snapshot, not re-read from the `.zax`.
+
+The witch scene needs three characters to test properly, one per starting spirit. If you only run
+one, run `NQ2` -- that is the bug.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| NQ1 | Enter the witch's interior in Montaillou carrying the **Ancestral** spirit | - | Your spirit names her *Druj*; she answers *"...not since we clashed so long ago as bitter enemies"*, then *"I am no longer Druj... I am Na Roqua, and I have atoned for my past"*, then *"I have a new life here among the folk of Montaillou... otherwise leave in peace."* |
+| NQ2 | **The report. Do this one if you do only one.** The same scene carrying the **Beast** spirit | - | **Her answer to the beast**: *"...the beast spirit within you knew me long ago when I was *different*, when I lived in darkness. But seasons turn, and I travel a new path, one of atonement..."* In the shipped game she plays the **elemental** line here, to everyone who brought a beast spirit |
+| NQ3 | The same scene carrying the **Demonic** spirit | - | He recognises her and reminisces about corrupting mortals together; **then her answer to him**: *"...you should beware of this impish spirit you keep as counsel, he has deceived others before you."* Then her two closing lines, then **his parting shot**: *"Oh, who to trust? Your dutiful spirit companion, or the witch of lies?"* |
+| NQ4 | In **every** arm, watch the scene to its end | - | **Control comes back.** The whole scene runs inside a non-interactive sequence and each arm must release it exactly once. A freeze here is the Cathar hang of 0.55.0 all over again |
+| NQ5 | Count her lines in any arm | - | Five of hers: the two introductions, her spirit-specific answer, and both closing lines. **No line twice**, and no silence between them |
+| NQ6 | After the scene, talk to Na Roqua normally, and leave and re-enter | - | Unchanged. Only the scripted scene was edited; her conversation was not touched |
+| NQ7 | `python tools/vo_reach.py` | - | **112** unreachable recordings, down from 117, and 10.51 MB down from 11.18. Five lines came back |
+| CF1 | Take **Cortes** as a companion with a **female** character, then reach the point where he has to leave: the Montserrat grove, Montaillou's hamlet, the Titan village, the Crypt entrance, the Heart entrance, the Mountain Pass or the Plains | - | **He says goodbye**, in the line recorded for a woman. In the shipped game he leaves without a word |
+| CF2 | **The regression row.** The same with a **male** character | - | **Unchanged**, exactly the farewell that always played. The branch tests for *female* and falls through to the male line, so a male character cannot be affected |
+| CF3 | Either gender: check he actually goes | - | He is still released from the party and still walks off. `CReleaseCompanionAction` and the sequence around it were not touched; only the line he speaks is now chosen |
+| CF4 | `python tools/validate.py` | - | Passes on 702 files. No new files ship in this release; eight maps changed |
+
+**The failure mode is deliberately one-sided.** If `$Instigator` ever failed to resolve in that relay,
+the gender test would be false and **every** player would get the male line, which is what ships
+today. It cannot produce silence, and it cannot give a man the woman's line.
+
+**Not in this release:** `800 cortes leaves alternate`, `800 cortes companion return` and
+`800 cortes companion returned` are also recorded and fired by nothing, and none of them is
+classified yet. `weirdwoman / 400 cathars` (222 KB) and `100 Return` (9 replies) are in the same
+tree and are a separate question about her ordinary conversation, not about this scene.
+
 ## The companions had voices
 
 Fifteen recorded lines that nothing in the game fired. **Thirteen are can edits**, so they reach only

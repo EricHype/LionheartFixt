@@ -69109,12 +69109,35 @@ CLayerSaveData
 								{
 									Companion To Release=Cortes with arm
 								}
-								Action=CDisplayDialogTreeAction
+								Action=CIfAction
 								{
-									Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
-									Node ID=800 cortes leaves MALE pc
-									Speaker=Cortes with arm
-									Player Being Spoken To=$Instigator
+									If=CExpressionAction
+									{
+										Expression=CIsGender
+										{
+											Acceptable Genders=Array
+											{
+												Item Count=1
+												Acceptable Gender=Female
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
+										Node ID=800 cortes leaves FEMALE pc
+										Speaker=Cortes with arm
+										Player Being Spoken To=$Instigator
+									}
+									Else=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
+										Node ID=800 cortes leaves MALE pc
+										Speaker=Cortes with arm
+										Player Being Spoken To=$Instigator
+									}
+									Return failure if the If failes=0
 								}
 							}
 						}

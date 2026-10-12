@@ -1952,9 +1952,37 @@ CLayerSaveData
 																							Node ID=200 nis weird woman respond to elemental
 																							Name of Position=Weird Woman
 																							Position Offset=0.000000,-80.000000
-																							After Action=CTriggerRelayAction
+																							After Action=CDelayAction
 																							{
-																								Relay Name=end spirit nis
+																								Next Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																									Node ID=200 nis weird woman conclusion
+																									Name of Position=Weird Woman
+																									Position Offset=0.000000,-80.000000
+																									After Action=CDelayAction
+																									{
+																										Next Action=CDisplayDialogBalloonAction
+																										{
+																											Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																											Node ID=200 nis weird woman conclusion 2
+																											Name of Position=Weird Woman
+																											Position Offset=0.000000,-80.000000
+																											After Action=CTriggerRelayAction
+																											{
+																												Relay Name=end spirit nis
+																											}
+																											Include In Log=1
+																										}
+																										Delay=0.5
+																										Plus or Minus=0
+																										Forget Trigger=0
+																									}
+																									Include In Log=1
+																								}
+																								Delay=0.5
+																								Plus or Minus=0
+																								Forget Trigger=0
 																							}
 																							Include In Log=1
 																						}
@@ -2040,12 +2068,40 @@ CLayerSaveData
 																						After Action=CDisplayDialogBalloonAction
 																						{
 																							Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
-																							Node ID=200 nis weird woman respond to elemental
+																							Node ID=200 nis weird woman respond to beast
 																							Name of Position=Weird Woman
 																							Position Offset=0.000000,-80.000000
-																							After Action=CTriggerRelayAction
+																							After Action=CDelayAction
 																							{
-																								Relay Name=end spirit nis
+																								Next Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																									Node ID=200 nis weird woman conclusion
+																									Name of Position=Weird Woman
+																									Position Offset=0.000000,-80.000000
+																									After Action=CDelayAction
+																									{
+																										Next Action=CDisplayDialogBalloonAction
+																										{
+																											Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																											Node ID=200 nis weird woman conclusion 2
+																											Name of Position=Weird Woman
+																											Position Offset=0.000000,-80.000000
+																											After Action=CTriggerRelayAction
+																											{
+																												Relay Name=end spirit nis
+																											}
+																											Include In Log=1
+																										}
+																										Delay=0.5
+																										Plus or Minus=0
+																										Forget Trigger=0
+																									}
+																									Include In Log=1
+																								}
+																								Delay=0.5
+																								Plus or Minus=0
+																								Forget Trigger=0
 																							}
 																							Include In Log=1
 																						}
@@ -2127,12 +2183,54 @@ CLayerSaveData
 																									Next Action=CDisplayDialogBalloonAction
 																									{
 																										Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
-																										Node ID=200 nis weird woman conclusion
+																										Node ID=200 nis weird woman respond to demon
 																										Name of Position=Weird Woman
 																										Position Offset=0.000000,-80.000000
-																										After Action=CTriggerRelayAction
+																										After Action=CDelayAction
 																										{
-																											Relay Name=end spirit nis
+																											Next Action=CDisplayDialogBalloonAction
+																											{
+																												Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																												Node ID=200 nis weird woman conclusion
+																												Name of Position=Weird Woman
+																												Position Offset=0.000000,-80.000000
+																												After Action=CDelayAction
+																												{
+																													Next Action=CDisplayDialogBalloonAction
+																													{
+																														Dialog Tree File=Levels/3 Montaillou/Dialog/weirdwoman
+																														Node ID=200 nis weird woman conclusion 2
+																														Name of Position=Weird Woman
+																														Position Offset=0.000000,-80.000000
+																														After Action=CDelayAction
+																														{
+																															Next Action=CDisplayDialogBalloonAction
+																															{
+																																Dialog Tree File=Levels/Wilderness/Dialog/Demonic Spirit
+																																Node ID=1000 nis weird woman demon departs
+																																Name of Position=Spawn Spirit Here
+																																Position Offset=0.000000,-115.000000
+																																After Action=CTriggerRelayAction
+																																{
+																																	Relay Name=end spirit nis
+																																}
+																																Include In Log=1
+																															}
+																															Delay=0.5
+																															Plus or Minus=0
+																															Forget Trigger=0
+																														}
+																														Include In Log=1
+																													}
+																													Delay=0.5
+																													Plus or Minus=0
+																													Forget Trigger=0
+																												}
+																												Include In Log=1
+																											}
+																											Delay=0.5
+																											Plus or Minus=0
+																											Forget Trigger=0
 																										}
 																										Include In Log=1
 																									}

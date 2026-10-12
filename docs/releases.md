@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.56.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,81 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.0 - answering the spirit you brought
+
+Two defects in the shipped game, both found by 0.56.0's voiceover sweep, both with the mechanism
+already in place and the lines already in the studio.
+
+### Na Roqua answers the wrong spirit
+
+`06 Witch Interior.zax` holds a scripted scene: the witch recognises the player, the spirit the
+player carries names her as **Druj, Daeva of Lies and Deception**, and she answers. The map branches
+three ways on `CHasSpirit` to pick her answer.
+
+**The Beastial arm fires `200 nis weird woman respond to elemental`** -- the same node id as the
+Ancestral arm. Copy-pasted, never changed. Counted against the archive: vanilla fires
+`respond to elemental` **twice**, `respond to beast` **zero** times, `respond to demon` **zero**
+times. So a beast-spirit player hears a line about a clash between the witch and a spirit that is
+not theirs, and 406 KB of her other two answers has never played for anyone.
+
+**The reconstruction is not a guess.** Four facts pin it:
+
+| | |
+|---|---|
+| all three spirit lines name her *Druj* and call her a *creature* | so her answer and her closing both have the same cue in every arm |
+| all three of her answers open identically | *"I have not heard that name in many ages..."* -- parallel variants, one per spirit |
+| `conclusion` answers exactly that cue | *"I am no longer Druj, the **creature** that your spirit named. I am Na Roqua, and I have atoned for my past."* Vanilla plays it in the demon arm only |
+| `conclusion 2` closes the scene | *"I have a new life here among the folk of Montaillou. If you have things to discuss you may stay, otherwise leave in peace."* Fired by nothing |
+
+So each arm now runs: **the spirit names her, she answers that spirit, then both closing lines.**
+`conclusion` goes from one arm to three; `conclusion 2` from none to three.
+
+**The demon keeps his asymmetry, because it is deliberate.** His arm already had two lines where the
+others have one, and only the Demonic tree carries a departing line -- `1000 nis weird woman demon
+departs`, *"Oh, who to trust? Your dutiful spirit companion, or the witch of lies? I leave it to
+your **sound** judgment."* It is restored at the end of his arm.
+
+**Every arm still releases the sequence exactly once.** The scene runs inside a
+`CBeginNonInteractiveSequenceAction` and each arm ends on the `end spirit nis` relay; the build
+asserts that count is still three, because 0.55.0 was a hang caused by exactly this kind of edit.
+
+### Cortes says nothing at all to a woman
+
+`800 cortes leaves MALE pc` is fired from **seven** maps -- the Montserrat grove, Montaillou's
+hamlet, the Titan village, the Crypt entrance, the Heart entrance, the Mountain Pass and the Plains.
+`800 cortes leaves FEMALE pc` is recorded, 48 KB, and fired from **none**. Half of all players lose
+a companion who walks off without a word.
+
+All seven sites are byte-identical `CDisplayDialogTreeAction` blocks, and they now sit inside a
+`CIfAction` on `CIsGender`. **The branch is deliberately the safe way round**: it tests for
+**Female**, with the male line in the `Else`. Vanilla has 21 `CIsGender` expressions and every one
+reads the gender off `$Instigator`; one of them tests Female, so both halves are precedented, and
+this very action already trusts `$Instigator` in its own `Player Being Spoken To` field. If that
+context ever failed to resolve, the test is false and everyone gets the male line, which is what
+ships today. The failure mode cannot produce silence and cannot give a man the woman's line.
+
+### Checked
+
+`validate.py` clean on 702 files -- **no new files ship; eight maps changed** -- `reachability.py`
+green, and `vo_reach.py` reports **112** unreachable recordings and **10.51 MB**, down from 117 and
+11.18. That drop is exactly the five lines, counted by the tool rather than asserted.
+
+A purpose-built verifier reads all eight maps back off disk for **62** assertions: each arm answers
+with its own spirit's node, her lines keep her anchor and the demon's keeps his, every node id is
+byte-exact, every newly fired node has a real `.ogg`, the sequence-release count is unchanged, and
+all seven farewell sites put the female line in the `Then` and the male in the `Else`. Baselines are
+`git show HEAD:files/<map>`, because all eight were already Fixt files and vanilla is not their
+baseline -- the mistake 0.56.0's first verifier made.
+
+`NQ1`-`NQ7` and `CF1`-`CF4` in [`qa.md`](qa.md). **`NQ2` is the report** and needs a beast-spirit
+character; `CF2` is the regression that a male character is unaffected.
+
+### Left for later
+
+`800 cortes leaves alternate`, `800 cortes companion return` and `800 cortes companion returned` are
+recorded and fired by nothing, and none is classified. `weirdwoman / 400 cathars` (222 KB) and her
+`100 Return` hub (9 replies) belong to a separate question about her ordinary conversation.
 
 ## 0.56.0 - the companions had voices
 
