@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.2 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,99 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.2 - four prices for the turret ring
+
+**Reported from play**, immediately after 0.57.1 made the gear hand-in-able: the quest was trivial,
+because any one potion bought it. And the machine's own node had been lying since 0.43.0 --
+*"the big one costs more than a flask of steam does"* -- while charging exactly a flask of steam, the
+same as the small crossbow gears.
+
+| route | before | after | gate |
+|---|---|---|---|
+| **in flasks** | any one potion | **three potions** | `Fixt Three Potions for the machine` (new) |
+| **in blood** | - | **50 unavoidable damage** | `Fixt Endurance 6 or greater` (new) |
+| **haggle** | Barter 35 | Barter **50** | the shipped `Barter moreequal 50` |
+| **insight** | **ungated** | the public apology | the shipped `Outwit 7 greater or equal` |
+
+Resources, body, tongue, mind. The flask route is the one anyone can reach, so nothing is stranded.
+
+### What the design had to work around, which took four wrong answers to find
+
+**Red Ore was the obvious price and it would have broken Cortes's arm.** The node's argument is that
+a badly cut ring seizes under load, Eduardo's chain establishes Red Ore as the rare iron from
+beneath the sewers, and lava trolls guard it. But the whole game yields **one** obtainable Red Ore
+before act 7: the Troll Pit chest is `Trigger Only Once=1`, the givers on `Blacksmith map` and
+`Slave Pits` are both `Active=0` dev parts, and the next real source is `05 Exalted Chambers`.
+Eduardo eats that one for the arm. Charging it here is the Magnetized Silver dead end 0.54.0 was
+written to repair.
+
+**Darkwood was the travel answer and the author killed it from play**: one woodcutter drop, and
+Cedric Alsen and the Inquisition both consume it for faction initiations.
+
+**A specific potion is not expressible.** `Healing Potion.can`, `Potion Fire Protection.can` and the
+rest are **generators**, not items: each emits `Inventory Items/Potion` plus an addition from
+`Inventory Additions/Miscellaneous/Potions/<X>`. Nothing in the engine reads additions, so "a potion
+of fire protection" cannot be required, and a player's looted Potion of Fire Protection would not
+have matched the pre-made can of the same name. **Vanilla's "any potion will do" is not lazy
+writing; it is the only check the engine can make.** It also means the player cannot choose which
+three flasks leave the pack, which is why the choice is offered one level up, at the reply.
+
+**And fire protection is available far more widely than a first count suggested**: it is one of 14
+potion additions, all 14 sit in `Potion selection MAGIC`, which is in stock lists and loot tables
+across the game -- the Troll Pit among them, where the map prints *"Ironically, the skeleton is still
+clutching an unused Potion of Fire Protection..."*
+
+### Counting items works, and Quinn is the proof
+
+`CActionCheckForInventoryItem` has no count field in any of its **1,210** uses across vanilla and
+this mod. The quantity idiom is to repeat the whole check under an AND, with matching removes:
+Quinn's *"I have five wasp stingers for you."* is **5 checks and 5 removes**, and the author
+confirmed in play that he refuses four. So the three-flask gate is a nested
+`CAND(check, CAND(check, check))`, built the same way.
+
+An earlier answer in that conversation claimed the engine could not count items at all. The sweep
+behind it read `zf.read()` -- the **vanilla archive** -- so the Fixt file that disproves it was
+excluded by construction, which is exactly what `always-read-through-lhbuild-read` exists to
+prevent, and it was asserted while quoting a 653-use figure as if it covered the whole game.
+
+### The blood price
+
+The machine already damages the player: its tantrum in `machine quake` carries
+`CPainAction{Hit Points=25, Damage Type=Unavoidable, Target=$Instigator}`. The tithe is the same
+action at **50**, double its own slap, routed through a new node `703 Fixt the tithe` so it answers
+the offer before it takes anything:
+
+> ... I have cut gears for thirty years and nobody has offered me that. He never would. `<The slot
+> opens, and a bracket inside it unfolds in a way that is clearly not for brass.>` Hold still,
+> apprentice. I am good at this and I will not be gentle, because the steam wants it hot.
+
+`Damage Type=Unavoidable` in 75 of 76 vanilla uses, so armour and resistance do nothing.
+
+**It can kill, on purpose.** `CExpressionHitPointsRemaining` exists -- it is what the health pickups
+read -- and a floor on current health was offered and declined: *"if it kills them so be it."* That
+is recorded here so a later reader does not mistake it for an oversight.
+
+The Endurance gate needed the one piece that did not ship: there is a canned ladder for Outwit,
+Barter and Speech, but nothing for a raw attribute, so `Fixt Endurance 6 or greater` is cloned from
+vanilla's `Tremblethorn requires high outwit skill.can`, which reads `(IN) Intelligence` the same way
+and whose filename lies about which stat it tests.
+
+### Checked
+
+`validate.py` clean on **704** files, `reachability.py` green, 26 assertions off disk against
+`git show HEAD`: the cans' shapes and thresholds, three removes where there was one, the pain action
+and its target, all four routes reaching the cut, all four shaking the room, the gear and quest state
+still handed over, the credit marker intact, the crossbow transaction untouched, node count up by
+exactly one, ASCII only, CRLF intact.
+
+One formatting trap worth recording, because this release hit both halves of it in one build: a
+**`.can` must** go through `write_map` for canonical indentation or `validate.py` fails it as "not in
+canonical engine formatting", while a **`.DialogTree` must not**, because `resource_format` rejects
+its dashed node separators outright.
+
+`GP1`-`GP11` in [`qa.md`](qa.md). A full pass wants four characters; `GP2` and `GP3` are the new
+prices, `GP6` and `GP8` are the rows that prove the raised and added gates actually bite.
 
 ## 0.57.1 - the turret gear, repaired from play
 

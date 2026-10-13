@@ -326,14 +326,24 @@ Node ID=700 Fixt the turret gear
 Text=Forty-one. <The machine's hissing drops to something almost thoughtful> He has finally drawn the turret ring, then. That is not a gear, apprentice, that is the whole argument - one tooth out of true and the housing tears itself off the carriage the first time it fires. I can cut it. I am the only thing in this city that can cut it. But the big one costs more than a flask of steam does, so let us discuss what you are bringing me.
 Should Have Voiceover=0
 
-Requirement=DaVinci Have a Potion for machine
-Reply Text=A potion, then. More than a flask of steam, as you asked. Take it and cut the ring.
+Requirement=Fixt Three Potions for the machine
+Reply Text=Three flasks, then. One for the heat, one for the cut, one for the ring itself.
 Go to node ID=705 Fixt the gear is cut
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory Items/Potion
+}
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -347,12 +357,17 @@ Relay Name=Fixt gear cut shake
 }
 Icon=Quest Icon
 
-Requirement=Barter moreequal 35
+Requirement=Barter moreequal 50
 Reply Text=You will cut it for nothing, because you have spent ten minutes telling me you are the only thing in Barcelona that can, and a thing that rare does not haggle.
 Go to node ID=704 Fixt out-argued
 Icon=Speach Skill Icon
 
-Requirement=!None
+Requirement=Fixt Endurance 6 or greater
+Reply Text=You want enchanted liquid. I am full of it, and I heal. Take it out of me.
+Go to node ID=703 Fixt the tithe
+Icon=Quest Icon
+
+Requirement=Outwit 7 greater or equal
 Reply Text=I have nothing to pay you with. But I will tell him - to his face - that the machine built it.
 Go to node ID=702 Fixt the bargain
 Icon=Quest Icon
@@ -392,6 +407,34 @@ Relay Name=Fixt gear cut shake
 Icon=Quest Icon
 Is Default Reply=1
 
+------------------------------------------------------------
+Node ID=703 Fixt the tithe
+Text=<A very long hiss, and something behind the plate begins to turn over slowly.> ... I have cut gears for thirty years and nobody has offered me that. He never would. <The slot opens, and a bracket inside it unfolds in a way that is clearly not for brass.> Hold still, apprentice. I am good at this and I will not be gentle, because the steam wants it hot.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=(hold out your arm)
+Go to node ID=705 Fixt the gear is cut
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPainAction
+{
+Hit Points=50
+Damage Type=Unavoidable
+Sound=!None.wav
+Target=$Instigator
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt gear cut shake
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=704 Fixt out-argued
 Text=<A long, flat hiss.> ... That is the first interesting thing anyone has said in this workshop in a decade, and I resent it enormously. Fine. Stand clear of the slot.

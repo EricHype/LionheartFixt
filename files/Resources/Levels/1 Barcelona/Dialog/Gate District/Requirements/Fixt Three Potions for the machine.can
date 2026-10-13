@@ -1,0 +1,36 @@
+CCannedObject
+{
+	Object=CAND
+	{
+		Operand1=CActionExpression
+		{
+			Action=CActionCheckForInventoryItem
+			{
+				Who to give check=$instigator
+				Inventory Item To Check For=Inventory Items/Potion
+			}
+		}
+		Operator=
+		Operand2=CAND
+		{
+			Operand1=CActionExpression
+			{
+				Action=CActionCheckForInventoryItem
+				{
+					Who to give check=$instigator
+					Inventory Item To Check For=Inventory Items/Potion
+				}
+			}
+			Operator=
+			Operand2=CActionExpression
+			{
+				Action=CActionCheckForInventoryItem
+				{
+					Who to give check=$instigator
+					Inventory Item To Check For=Inventory Items/Potion
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

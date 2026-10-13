@@ -1474,6 +1474,32 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.2 - four prices for the turret ring
+
+Reported from play: any one potion bought the gear, which made the errand trivial and made the
+machine's own line a lie. **Dialogue and two new requirement cans, so this works on any save** that
+has not already bought the gear.
+
+Each route needs a different character, so a full pass wants four. `GP2` is the one with teeth.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GP1 | Ask the engine for the turret ring carrying **one** potion | - | **The flask route is not offered.** It wants three now, and the reply is absent, not greyed |
+| GP2 | **The new one.** Carry **three** potions and take that route | - | *"Three flasks, then. One for the heat, one for the cut, one for the ring itself."* **Three** potions leave your pack, and you cannot choose which three: every potion in the game is the same item wearing an addition, so the engine picks |
+| GP3 | With **Endurance 6 or more**, take the blood route | - | `703 Fixt the tithe`, then *"(hold out your arm)"*, and you take **50 unavoidable damage**. Armour and resistance do nothing. **This can kill you**, deliberately, and no health floor was added |
+| GP4 | With **Endurance 5 or less** | - | The blood route is absent. A frail character pays in flasks, haggles, or thinks of the apology |
+| GP5 | With **Barter 50+** | - | The haggle route works as before. It used to open at 35, which was vanilla's price for the *small* crossbow gears |
+| GP6 | With **Barter 35 to 49** | - | **No haggle.** This is the row that proves the raise landed |
+| GP7 | With **Outwit 7+** | - | The promise route is offered, free, and still sets the debt the engine reproaches you for |
+| GP8 | With **Outwit 6 or less** | - | **The promise is gone.** It was ungated before, so a dull character used to get the ring for nothing. Check the other routes are still there, because this is the gate that could strand someone if its can failed to resolve |
+| GP9 | **Any** of the four routes | - | `705 Fixt the gear is cut` plays, the room **shakes**, and the rotary gear lands in your inventory with the quest state advanced |
+| GP10 | Buy the **crossbow** gears from the engine, before or after | - | Unchanged, still one potion. Only the turret ring was repriced |
+| GP11 | `python tools/validate.py` | - | Passes on **704** files. The two new cans are requirement cans and must be in canonical engine formatting; written raw they fail that check |
+
+**On the blood price:** `CExpressionHitPointsRemaining` exists and would have let the reply refuse
+when your health is too low. It was left out on purpose. If a character bleeds out paying a machine
+for a gear, that is the price of the route.
+
 ## 0.57.1 - the turret gear, repaired from play
 
 Reported mid-test: the gear could not be handed in anywhere. **The hand-in is dialogue, so it works
