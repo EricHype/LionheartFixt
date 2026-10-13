@@ -1474,6 +1474,29 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.4 - the reward arrives, and the ring goes in
+
+Reported from play: the chamber hand-in took the gear, completed the quest and **paid nothing**.
+**Both halves of this are dialogue, so both work on the save you are playing** -- including the one
+that was already shorted.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR1 | **The report.** Carry the gear to DaVinci and hand it over, in the chamber or the workshop | - | **500 experience actually arrives**, the gear leaves, the quest completes. It used to pay nothing to any character who had been in that room before the quest existed |
+| TR2 | **The request.** Carry the gear to the **tank** in the chamber and examine it | - | Two choices: *(fit the rotary gear into the turret ring)* and *(leave it as it stands)*. Fitting it seats the ring, completes the quest and pays the same 500 |
+| TR3 | `TR2`: read what it says as it goes in | - | The ring seats, the turret swings a hand's breadth and stops, *"because nothing inside it is alive yet"*. The tank still needs the spirit, which is the other half of DaVinci's problem and a live quest |
+| TR4 | Examine the tank **without** the gear | - | **Exactly as before:** the description, and no choices at all. Both replies are gated on carrying the gear, the exit included, so nothing changes for a player who has not got it |
+| TR5 | Fit it to the tank, then talk to DaVinci | - | He has **no** hand-in reply left. Both routes gate on holding the gear, so the quest cannot be paid twice |
+| TR6 | Hand it to DaVinci, then examine the tank | - | No fitting option. The mirror of `TR5` |
+| TR7 | Examine the **catapult** and the **sweeper** | - | Unchanged. They share this tree and must not have grown replies |
+| TR8 | `python tools/reachability.py` | - | Green. `2 Fixt the ring goes in` is only reachable if that gated reply parses |
+
+**Why the old reward failed, for the record:** it drew its amount from a marker entity placed in the
+chamber, and a room's entity list is **frozen into a save the first time you enter**. A character who
+had been down there before the quest existed never had the marker, so the award resolved to nothing
+and said nothing. The experience is now written into the conversation itself, which is how 711 of the
+game's 1,259 awards do it.
+
 ## 0.57.3 - credit where it is due, and only where it is true
 
 Reported from play: settling the engine's debt, DaVinci thanked the player for the crossbow gears as

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.3 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.4 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,82 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.4 - the reward arrives, and the ring goes in
+
+**Reported from play:** the chamber hand-in took the gear, completed the quest, and paid nothing.
+
+### Why it paid nothing, and why the part was not the bug
+
+The award read:
+
+```
+CGiveExperiencePointsToAllPlayersAction
+{
+    Get XP Frome=Fixt Tank Gear XP
+    Experience Points To Add=1
+}
+```
+
+That takes its **amount from a named map entity**. The entity is correct: compared field by field
+against vanilla's working `Retrieve Gears from Steam Machine`, ours matches it exactly -- 500 points,
+`Visible=0`, `Stationary=1`, `Used In=QuestMode`, the same `CLabelPrinterAI` plus
+`CShowExperiencePoints` activities.
+
+**The flaw is that it depends on a map at all.** A room's entity list is frozen into a save the
+first time the player walks in. A character who had been in the secret chamber before 0.43.0 existed
+never had that marker, so `Get XP Frome` resolved to nothing and the award was silently zero. And
+0.57.1's clone into the workshop carries the identical flaw for anyone who had already been in the
+workshop, which is nearly everyone.
+
+**The repair is vanilla's other form.** Of the game's 1,259 experience awards, **711** read
+`Get XP Frome=$Trigger` with a **literal** `Experience Points To Add=<n>` -- no entity, no
+snapshot, no dependence on which map the conversation is running in. So `902 Fixt the gear fitted`
+now awards `$Trigger` / **500**. It pays on any save, anywhere, including the save that was shorted.
+
+The two marker entities are now unused. They are `Visible=0` and harmless, and deleting parts from
+maps is more risk than it is worth, so they stay where they are.
+
+### The ring goes into the tank, and it needed no map edit
+
+Requested: an interaction on the tank itself rather than handing the gear to a man standing beside
+it. The tank was **already interactable** -- a `CAIInteractionSpecifier` at radius 200 on the object
+and a `siege tank ai poly` at radius 70, both firing a `CDisplayDialogTreeAction` on
+`1 Siege Tank` in `Leonardo DaVinci Invention`.
+
+So this is a **tree** change, not a new entity: the reply hangs on the node the tank already opens,
+which is exactly why it reaches a save that has already been in the chamber. The same reasoning that
+explains the bug explains the shape of the fix.
+
+| | |
+|---|---|
+| *(fit the rotary gear into the turret ring)* | removes the gear, completes the quest, pays the 500 |
+| *(leave it as it stands)* | walks away |
+
+**Both replies are gated on `Fixt Tank Gear Carried`, the exit included.** That is deliberate: a
+player without the gear sees what they have always seen, the description and no choices, so
+examining the tank does not grow a click for everybody else.
+
+And the result keeps the fiction straight -- the tank is still not finished, because it has no soul
+in it yet, which is the live `Obtain the Spirit Gem for DaVinci` half of his problem:
+
+> `<The ring drops over the shaft, and you lean on it until it seats with a sound like a key turning
+> in a lock the size of a door. The turret swings a hand's breadth and stops, because nothing inside
+> it is alive yet. Forty-one teeth, true to a thousandth, and the quiet of a machine that is only
+> waiting now.>`
+
+Neither route can pay twice: both gate on holding the gear, so taking one removes the other.
+
+### Checked
+
+`validate.py` clean on **705** files -- the invention tree is new to `files/` -- `reachability.py`
+green on 136 trees, and 16 assertions off disk against `git show HEAD`: the award's form and its
+delta, the gear and quest actions intact, 0.57.3's credit pair untouched, two gated replies on the
+tank and only there, the catapult and sweeper unchanged, the examine text unchanged, ASCII, CRLF.
+
+One assert of mine was wrong first, and it is the same mistake as three others this week: it checked
+an **absolute** count of `Get XP Frome=$Trigger` rather than a delta, and vanilla already has one in
+that tree.
 
 ## 0.57.3 - credit where it is due, and only where it is true
 

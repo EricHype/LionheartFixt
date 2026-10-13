@@ -1,0 +1,61 @@
+CDialogTree
+{
+Name=Leonardo DaVinci Invention
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Catapult
+Text=This DaVinci invention looks to be a unique prototype of a new siege catapult. The invention is not complete and does not look functional.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Sweeper
+Text=This device appears to be a fearsome war machine, with sharp rotating blades for use against ground troops. It appears incomplete and does not look functional.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1 Siege Tank
+Text=Heavy wheels and covered turrets hint at this hulking vehicle's purpose. Once completed, this siege vehicle looks like it could cause tremendous damage to its targets.
+Should Have Voiceover=0
+
+Requirement=Fixt Tank Gear Carried
+Reply Text=(fit the rotary gear into the turret ring)
+Go to node ID=2 Fixt the ring goes in
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/DaVinci Tank Gear
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=$Trigger
+Experience Points To Add=500
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Fixt Tank Gear Carried
+Reply Text=(leave it as it stands)
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Fixt the ring goes in
+Text=<The ring drops over the shaft, and you lean on it until it seats with a sound like a key turning in a lock the size of a door. The turret swings a hand's breadth and stops, because nothing inside it is alive yet. Forty-one teeth, true to a thousandth, and the quiet of a machine that is only waiting now.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=(step back from it)
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}
