@@ -18,6 +18,31 @@ Text=Heavy wheels and covered turrets hint at this hulking vehicle's purpose. On
 Should Have Voiceover=0
 
 Requirement=Fixt Tank Gear Carried
+Reply Text=(look at where the ring would go)
+Go to node ID=3 Fixt the empty shaft
+Icon=Quest Icon
+
+Requirement=Fixt Tank Gear Carried
+Reply Text=(leave it as it stands)
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 Fixt the ring goes in
+Text=<The ring drops over the shaft, and you lean on it until it seats with a sound like a key turning in a lock the size of a door. The turret swings a hand's breadth and stops, because nothing inside it is alive yet. Forty-one teeth, true to a thousandth, and the quiet of a machine that is only waiting now.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=(step back from it)
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Fixt the empty shaft
+Text=<The turret ring sits on a bare shaft at the back of the hull, keyed, oiled and empty. Somebody has wiped it down recently, which is either hope or habit. The rotary gear in your pack is cut for exactly this, and nothing else in the room is.>
+Should Have Voiceover=0
+
+Requirement=Fixt Tank Gear Carried
 Reply Text=(fit the rotary gear into the turret ring)
 Go to node ID=2 Fixt the ring goes in
 Custom Action=CMultipleActionsAction
@@ -43,18 +68,8 @@ Experience Points To Add=1
 }
 Icon=Quest Icon
 
-Requirement=Fixt Tank Gear Carried
-Reply Text=(leave it as it stands)
-Go to node ID=
-Icon=Exit Icon
-Is Default Reply=1
-------------------------------------------------------------
-Node ID=2 Fixt the ring goes in
-Text=<The ring drops over the shaft, and you lean on it until it seats with a sound like a key turning in a lock the size of a door. The turret swings a hand's breadth and stops, because nothing inside it is alive yet. Forty-one teeth, true to a thousandth, and the quiet of a machine that is only waiting now.>
-Should Have Voiceover=0
-
 Requirement=!None
-Reply Text=(step back from it)
+Reply Text=(not yet)
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1

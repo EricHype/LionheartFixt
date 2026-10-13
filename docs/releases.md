@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.5 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.6 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,62 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.6 - the tank stops taking the gear from passers-by
+
+**Reported from play**, three symptoms: *"the promise route doesn't have the same fulfillment with
+Leo, the gear is removed as soon as i enter the secret room, no XP was awarded."*
+
+**One cause, and it is mine.** The siege tank's examine is an interaction specifier of type
+`GetCloseThenTrigger`, `Triggered By Players=1`, `Trigger Only Once=0`, at **radius 200**, with a
+second poly at 70. GetCloseThenTrigger fires on **proximity** -- there is no click. The conversation
+opens by itself as the player walks into the room, exactly as the catapult's and the sweeper's
+descriptions do beside it.
+
+0.57.4 made the **first reply** of that node *(fit the rotary gear into the turret ring)*, with
+`CActionRemoveInventoryItem` attached. So an unasked-for box appeared on entry and one dismissive
+click consumed the quest item. The other two symptoms follow from it: with the gear gone, DaVinci's
+`902` hand-over scene could never play, and the accidental fit awarded from a marker this save's
+chamber does not hold.
+
+Before 0.57.4 that node had **no replies at all**, which is why vanilla's version is safe.
+
+### The rule, and vanilla's one example of doing it right
+
+A node opened by an auto-firing specifier must not carry a reply that removes an item, takes money,
+hurts the player or completes a quest -- **unless its own text asks the question**, so the click is
+an answer rather than a dismissal.
+
+A sweep of all **148** auto-opened (tree, node) pairs found exactly one with a costly reply besides
+mine, and it is the model: `Relican Summoning Ring / 01 Conversation Start` opens by itself and
+reads *"An odd feeling of decision washes over you. It is now or never. Do you wish to activate the
+ring and bring destruction onto La Calle Perdida?"*, with the removal behind **Yes.**
+
+So the fitting moves behind a deliberate second click:
+
+| node | offers |
+|---|---|
+| `1 Siege Tank` (opens by itself) | *(look at where the ring would go)*, *(leave it as it stands)* -- both harmless |
+| `3 Fixt the empty shaft` (new) | *(fit the rotary gear into the turret ring)*, *(not yet)* |
+
+### The gate that would have caught it
+
+**`tools/auto_open_risk.py`** is new. It indexes every (tree, node) pair opened by an auto-firing
+specifier, checks each node's replies for destructive actions, allow-lists Relican's ring **by name
+with the reason**, and exits non-zero otherwise. Verified against `git show HEAD`: it fails on
+exactly what 0.57.4 and 0.57.5 shipped, naming `CActionRemoveInventoryItem` on
+`(fit the rotary gear into the turret ring)`.
+
+It is a separate tool rather than a `validate.py` check because it reads every map in the archive,
+which validate's half-minute cannot absorb. Run it when adding a reply to anything a map opens on
+its own. **This is the second defect this week that a gate could have caught and did not exist
+yet**; the first became A0.16.
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green on 136 trees, `auto_open_risk.py` clean
+with one documented allow-list entry, and the build asserts the auto-opening node carries no
+removal, no quest completion, no award, no money and no pain action.
 
 ## 0.57.5 - the award, put back the way it works
 

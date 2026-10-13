@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.6 - the tank stops taking the gear from passers-by
+
+Reported from play: **the gear vanished on entering the chamber**, DaVinci's hand-over scene never
+happened, and no experience arrived. All three from one cause. **Dialogue only, any save.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR13 | **The report.** Walk into the secret chamber carrying the gear and let the tank's box open by itself, then click through it the way you would dismiss it | - | **You still have the gear.** The only options are *(look at where the ring would go)* and *(leave it as it stands)*, and neither costs anything |
+| TR14 | Choose *(look at where the ring would go)* | - | `3 Fixt the empty shaft`: the ring's seat, keyed, oiled and empty. **Then** the fitting is offered |
+| TR15 | From there, choose *(fit the rotary gear into the turret ring)* | - | The ring seats, the quest completes, the experience is awarded where the marker exists |
+| TR16 | From there, choose *(not yet)* | - | Nothing happens and you keep the gear. This is the row that proves the second step is a real decision |
+| TR17 | With the gear, hand it to DaVinci instead | - | His hand-over scene plays as before. **The tank must not have eaten the gear first**, which is what made this look like two bugs |
+| TR18 | `python tools/auto_open_risk.py` | - | Passes, and allow-lists exactly one node: Relican's summoning ring, whose own text asks the question |
+
 ## 0.57.5 - the award, put back the way it works
 
 0.57.4's award paid **nobody**, not just old saves, so this is the row to run first on any character.
