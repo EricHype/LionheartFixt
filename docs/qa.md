@@ -1474,6 +1474,17 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.5 - the award, put back the way it works
+
+0.57.4's award paid **nobody**, not just old saves, so this is the row to run first on any character.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR9 | On a character whose **first** visit to the chamber or workshop is after installing, hand in or fit a rotary gear | - | The experience arrives. 0.57.4 paid zero here, which is worse than the bug it tried to fix |
+| TR10 | Check your purse | - | **No coin.** This quest pays experience or nothing, by design |
+| TR11 | On the shorted save | - | **Still nothing, and it cannot be fixed.** Every working form of the award names a room entity, and that room was frozen into the save before the entity existed |
+| TR12 | `python tools/validate.py` | - | Passes on 705 files |
+
 ## 0.57.4 - the reward arrives, and the ring goes in
 
 Reported from play: the chamber hand-in took the gear, completed the quest and **paid nothing**.

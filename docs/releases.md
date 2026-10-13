@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.4 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.5 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,62 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.5 - the award, put back the way it works
+
+**0.57.4's fix paid nobody.** It is worth being precise about why, because the error was not in the
+reading of the data but in the **scope** of the count.
+
+That release moved the award to `Get XP Frome=$Trigger` with a literal 500, on the strength of
+"711 of the game's 1,259 awards use this form". That figure is real and it is useless, because
+**477 of those 711 are in `.can` files**, where `$Trigger` is the entity that fired the action.
+Split by file type, vanilla's dialogue trees award experience 430 times:
+
+| form | uses in trees |
+|---|---|
+| named entity **+ 1** | **420** |
+| named entity **+ literal** | 8 |
+| `$Trigger` **+ 1** | 2 |
+| **`$Trigger` + literal** | **0** |
+
+And `$Trigger` exists as an entity in **no map in the game**. So the award named a source that
+cannot resolve, and paid zero to every character, new saves included -- a regression on 0.43.0,
+which paid correctly for anyone whose rooms held the marker.
+
+Both hand-ins are back to `Get XP Frome=Fixt Tank Gear XP` with `Experience Points To Add=1`.
+
+**No money was added.** It was offered as the save-proof alternative and declined: this quest pays
+experience or nothing.
+
+### What is still broken, stated plainly
+
+A save whose chamber **and** workshop snapshots predate the marker cannot be paid for this quest at
+all. Every working form of the award names a map entity; a room's entity list is frozen into a save
+the first time the player enters; and there is no form of the action that takes a bare amount. That
+is a limit of the engine and the save format, not something a line of dialogue can repair.
+
+### One engine question left open rather than guessed
+
+In the 8 literal-amount awards, three of the four distinct sources carry an `Experience Points`
+value that **disagrees** with the action's literal:
+
+| source | action says | the entity says |
+|---|---|---|
+| `Accept Templars Help XP` | 200 | **400** |
+| `Experience Points when release Conquistador` | 200 | **100** |
+| `Gave Wind Scroll` | 750 | **500** |
+| `Kill River Dryad for Grumjun XP` | 500 | 500 |
+
+So whether the amount comes from the entity or from the action is unresolved, and the obvious trick
+that would follow from one answer -- creating the marker at runtime with
+`CCreateDefaultEntityAction`, which the witch scene already does for spirits -- only works if the
+literal is the amount. Settling it needs the decompiler, which is not connected this session, so it
+stays unbuilt. **Two wrong guesses about this action have already shipped; a third is not acceptable.**
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green, and the build asserts there is no money
+action anywhere near either hand-in.
 
 ## 0.57.4 - the reward arrives, and the ring goes in
 
