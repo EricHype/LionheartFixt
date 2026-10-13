@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.6 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.7 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,59 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.7 - the ring is seated where the tank is
+
+**Reported from play:** *"i got the gear, talked to davinci, chose the quest marker reply, lost the
+gear and got xp. No trip to tank needed."*
+
+**Nothing was broken. The design was.** Three things lined up against the ending the quest is about:
+
+- the engine that cuts the ring stands in the **workshop**,
+- DaVinci stands beside it, and his hand-in was reply **#1 of 8** on his entry greeting and **#1 of
+  14** on his return greeting,
+- the tank is a floor away, through the Viola Organista.
+
+So the fastest thing in the room took the gear, and a quest about finishing a war machine ended ten
+feet from where it started, with the machine never involved.
+
+### He declines it now
+
+> `<He looks at it, and does not take it.>` No. Not to me, to it. I have held that ring in my head
+> for eleven months and I would like to watch somebody else's hands put it on the shaft. Go down and
+> seat it. The instrument knows the way, and you know the instrument. `<He turns back to the bench,
+> then adds, without looking up.>` Lean on it. It wants weight, not coaxing.
+
+No removal, no completion, and it names the route rather than leaving the player to remember it.
+
+**Both endings now happen at the machine.** In the chamber, hand it to him and `902` plays -- the
+scene where he fits it with the player holding the lamp -- or fit it yourself at the tank. Either
+way the quest ends in the room with the tank in it.
+
+### Checked before requiring the trip
+
+Declining in the workshop would strand the quest if the chamber could become unreachable, so that
+was established first: the organista's `60 enter secret area` is **ungated**, and the workshop opens
+the instrument with `Trigger Only Once=0`. The room is always reachable.
+
+That is the opposite of DaVinci himself, who is stripped of his talk AI and deactivated in the
+chamber for good the moment the player says goodbye to him down there -- which is why **the tank,
+not the man, is the reliable ending**, and why 0.57.1 had to add a workshop hand-in in the first
+place. With the tank carrying the ending, that prop is no longer needed.
+
+### The gate lost its fragile half
+
+`Fixt Tank Gear Carried` was `CAND(has the gear, quest's CURRENT state is V8BRC4JN)`. Holding the
+gear already implies the quest is live, and the state clause gave every one of these replies a way
+to disappear silently if anything else moved the quest on. It now asks one question.
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green on 136 trees, `auto_open_risk.py` clean,
+and 16 assertions off disk against `git show HEAD`: both workshop hubs redirected and neither
+reaching `902`, both chamber hubs still reaching it, `902` still the lamp scene that pays, the
+decline carrying no removal or completion or award, the tank still two-step, the gate reduced to the
+item check and canonically formatted, node count up by exactly one.
 
 ## 0.57.6 - the tank stops taking the gear from passers-by
 

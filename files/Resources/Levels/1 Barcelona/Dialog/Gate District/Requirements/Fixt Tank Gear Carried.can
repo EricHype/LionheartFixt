@@ -1,23 +1,11 @@
 CCannedObject
 {
-	Object=CAND
+	Object=CActionExpression
 	{
-		Operand1=CActionExpression
+		Action=CActionCheckForInventoryItem
 		{
-			Action=CActionCheckForInventoryItem
-			{
-				Who to give check=$instigator
-				Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/DaVinci Tank Gear
-			}
-		}
-		Operator=
-		Operand2=CActionExpression
-		{
-			Action=CIsQuestStateTheCurrentStateAction
-			{
-				Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
-				State=V8BRC4JN
-			}
+			Who to give check=$instigator
+			Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/DaVinci Tank Gear
 		}
 	}
 	Use=Shared Global Instance

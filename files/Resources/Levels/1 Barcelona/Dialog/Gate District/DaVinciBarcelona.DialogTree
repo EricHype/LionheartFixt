@@ -1689,7 +1689,7 @@ Should Have Voiceover=1
 
 Requirement=Fixt Tank Gear Carried
 Reply Text=Your rotary gear. Your engine cut it.
-Go to node ID=902 Fixt the gear fitted
+Go to node ID=906 Fixt not to me
 Icon=Quest Icon
 
 Requirement=!None
@@ -1765,7 +1765,7 @@ Should Have Voiceover=1
 
 Requirement=Fixt Tank Gear Carried
 Reply Text=Your rotary gear. Your engine cut it.
-Go to node ID=902 Fixt the gear fitted
+Go to node ID=906 Fixt not to me
 Icon=Quest Icon
 
 Requirement=Fixt Machine Credit Owed
@@ -3231,5 +3231,15 @@ Warp Behavior=
 }
 }
 Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=906 Fixt not to me
+Text=<He looks at it, and does not take it.> No. Not to me, to it. I have held that ring in my head for eleven months and I would like to watch somebody else's hands put it on the shaft. Go down and seat it. The instrument knows the way, and you know the instrument. <He turns back to the bench, then adds, without looking up.> Lean on it. It wants weight, not coaxing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then I will go and put it on myself.
+Go to node ID=
+Icon=Quest Icon
 Is Default Reply=1
 }

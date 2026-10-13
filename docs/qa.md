@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.7 - the ring is seated where the tank is
+
+Reported from play: the quest ended in the workshop, ten feet from the engine that cut the ring, and
+the tank never came into it. **Dialogue only, any save.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR19 | **The report.** Buy the gear, then offer it to DaVinci **in the workshop** | - | *"No. Not to me, to it."* He **does not take it**, the quest does **not** complete, and he tells you the instrument knows the way down |
+| TR20 | Check your pack and quest log after `TR19` | - | **You still have the gear** and the quest is still open. This is the row that proves he declines rather than silently accepting |
+| TR21 | Go down through the Viola Organista and offer it to him **in the chamber** | - | `902` plays, the fitting scene with the lamp, the quest completes and the experience arrives |
+| TR22 | Or ignore him and fit it at the **tank** | - | `(look at where the ring would go)`, then `(fit the rotary gear into the turret ring)`, same completion and the same reward |
+| TR23 | Make sure the instrument still works more than once | - | It does, and it is ungated: the chamber must stay reachable, or declining in the workshop would strand the quest |
+| TR24 | Carry the gear a long time, doing other quests, then try either ending | - | Both still offered. The gate now asks only whether you hold the gear, where before it also required the quest's current state to be the one the engine set |
+
 ## 0.57.6 - the tank stops taking the gear from passers-by
 
 Reported from play: **the gear vanished on entering the chamber**, DaVinci's hand-over scene never
