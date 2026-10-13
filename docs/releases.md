@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,85 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.1 - the turret gear, repaired from play
+
+**Reported mid-test**, by the author, testing 0.43.0: the quest started, the engine cut the gear and
+put it in his inventory, and then it could not be handed in. He tried the workshop, which is where
+DaVinci stands.
+
+### My defect, and it was quest-breaking
+
+0.43.0 put the only hand-in reply on `900 davinci in secret chamber 5` and `6`. Vanilla's own
+`davinci leaves` relay, `Trigger Only Once=1`, does this when the player picks **Goodbye** in that
+room:
+
+| | |
+|---|---|
+| `CRemoveAIAction` | strips his `CAIInteractionSpecifier` -- he can no longer be talked to |
+| `CDeactivateAction` after 1s | removes him from the chamber |
+
+The intended exit is physical: *"approach the yellow crystal and touch it"*, which does not fire
+that relay, and `transport to secret` is `Trigger Only Once=0`, so the room is re-enterable. **So
+the quest was finishable by luck** -- leave by the crystal and he is still there -- and **one polite
+goodbye ended it permanently**, with nothing anywhere else able to take the gear.
+
+The reporter's instinct was the right design. He lives in the workshop; the gear should be
+hand-in-able there.
+
+### Three fixes and one request
+
+**1. The hand-in is offered in the workshop.** `3 Return Dialogue Workshop` and
+`300 Enter Workshop` both gained the reply, gated on the existing `Fixt Tank Gear Carried`, both
+reaching the existing `902 Fixt the gear fitted`. The chamber routes are untouched, because that is
+still the better scene: the tank is down there and he fits the ring to it.
+
+**2. The XP followed it.** `Fixt Tank Gear XP` existed **only in the chamber map**, and
+`Get XP Frome=` resolves by name in whichever map the conversation is running in. A workshop hand-in
+would have removed the gear, completed the quest and paid **nothing**. The part is cloned into the
+workshop verbatim, so the 500 cannot drift between the two.
+
+**3. The engine no longer claims a deal that never happened.** The potion reply read *"A potion, the
+same as last time. Take it and cut the gear."* That assumes the player had already bought the
+crossbow gears, which is how `650 collect gears` works -- and nothing requires it. It now leans on
+what the engine itself just said instead: *"A potion, then. More than a flask of steam, as you
+asked. Take it and cut the ring."* A gated pair, flattering the returning customer, was considered
+and left alone; it needs a checker on the crossbow quest for one line of flavour.
+
+**4. Requested: the engine shakes the room while it cuts.** The machine already has a screen shake,
+in `machine quake`, for when it is angry about its button being pressed. **Vanilla puts
+`CShakeScreenAction` in maps and in cans and in none of its 338 dialogue trees**, while trees reach
+the world through `CTriggerRelayAction` **1,226** times. So the three routes into
+`705 Fixt the gear is cut` fire a new relay in the workshop map, `Fixt gear cut shake`
+(`Trigger Only Once=0`), and the relay carries the shake **copied verbatim** from the tantrum: nine
+seconds, two pixels decaying to zero. Long is right here -- the node says the engine *"turns over
+for a long time, slowly, with a sound like a millstone being asked a difficult question."*
+
+Its sound, `Traps/Steam Machine Angry.wav`, is deliberately **not** borrowed. It is labouring, not
+angry.
+
+### Checked
+
+`validate.py` clean on 702 files, `reachability.py` green, and a verifier reads all three files back
+off disk for **23** assertions against `git show HEAD`: four hand-in routes where there were two,
+the XP source present in both maps at 500, the shake identical to `machine quake`'s parameters
+modulo indentation, the potion still taken, the credit marker still set, the crossbow transaction's
+node count unchanged, and both trees still pure CRLF.
+
+Two of those checks were vacuous when first written -- an `or True` that could not fail -- and were
+removed rather than counted. A check that cannot fail is worse than no check, because it gets
+reported as evidence.
+
+`GC1`-`GC10` in [`qa.md`](qa.md). **`GC1` is the report**, `GC5` proves the trap no longer bites,
+`GC6` is the reworded line and `GC8` is the shake.
+
+### A note on method
+
+`write_map()` runs its text through `resource_format`, which parses the pure brace grammar only and
+rejects a `.DialogTree` outright on the dashed node separators. Trees are written as raw bytes with
+the line endings asserted first. Four of this patch's build failures were the same two traps: a
+multi-line literal written with LF against a CRLF file, and backslash escapes passed through a shell
+heredoc, which is what `python-escapes-need-a-written-file` exists to prevent.
 
 ## 0.57.0 - answering the spirit you brought
 

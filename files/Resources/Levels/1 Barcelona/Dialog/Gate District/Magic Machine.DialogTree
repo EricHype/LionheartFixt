@@ -327,12 +327,23 @@ Text=Forty-one. <The machine's hissing drops to something almost thoughtful> He 
 Should Have Voiceover=0
 
 Requirement=DaVinci Have a Potion for machine
-Reply Text=A potion, the same as last time. Take it and cut the gear.
+Reply Text=A potion, then. More than a flask of steam, as you asked. Take it and cut the ring.
 Go to node ID=705 Fixt the gear is cut
-Custom Action=CActionRemoveInventoryItem
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
 Inventory Item To remove=Inventory Items/Potion
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt gear cut shake
+}
+}
 }
 Icon=Quest Icon
 
@@ -364,13 +375,17 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=1
+Item Count=2
 Action=CActivateAction
 {
 Target Name=Fixt Machine Promised Credit
 Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt gear cut shake
 }
 }
 }
@@ -385,6 +400,10 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=(stand clear)
 Go to node ID=705 Fixt the gear is cut
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt gear cut shake
+}
 Is Default Reply=1
 
 ------------------------------------------------------------

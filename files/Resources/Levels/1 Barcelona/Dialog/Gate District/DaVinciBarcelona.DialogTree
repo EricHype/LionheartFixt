@@ -1687,6 +1687,11 @@ Node ID=300 Enter Workshop
 Text=So good to see that you found my workshop! Per favore, be careful in this place. There are many gears and moving parts, so many delicate machines.
 Should Have Voiceover=1
 
+Requirement=Fixt Tank Gear Carried
+Reply Text=Your rotary gear. Your engine cut it.
+Go to node ID=902 Fixt the gear fitted
+Icon=Quest Icon
+
 Requirement=!None
 Custom Requirement=CAND
 {
@@ -1757,6 +1762,11 @@ Is Default Reply=1
 Node ID=3 Return Dialogue Workshop
 Text=Always a pleasure to see you my friend. What can I do for you?
 Should Have Voiceover=1
+
+Requirement=Fixt Tank Gear Carried
+Reply Text=Your rotary gear. Your engine cut it.
+Go to node ID=902 Fixt the gear fitted
+Icon=Quest Icon
 
 Requirement=Fixt Machine Credit Owed
 Reply Text=Before anything else, and loudly enough for the room: the turret ring is your engine's work, not mine and not yours. It asked me to say so where it could hear it.

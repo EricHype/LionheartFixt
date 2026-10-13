@@ -1474,6 +1474,26 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.1 - the turret gear, repaired from play
+
+Reported mid-test: the gear could not be handed in anywhere. **The hand-in is dialogue, so it works
+on an existing save**, including one that has already said goodbye to DaVinci in the chamber. The
+XP source and the screen shake are **map** edits in `DaVinci Workshop interior`, so those two need a
+save that has not yet entered the workshop.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GC1 | **The report.** Carry the rotary gear to DaVinci in his **workshop** and talk to him | - | *"Your rotary gear. Your engine cut it."* is offered, and he takes it. Before this release the only place it could be handed in was the hidden chamber |
+| GC2 | `GC1` from the **first** workshop greeting rather than the return one (`300 Enter Workshop`) | - | The same reply is there. Both hubs carry it |
+| GC3 | Hand it in in the **hidden chamber** instead | - | Unchanged, and still the better scene: he fits it to the tank |
+| GC4 | Either place: check the quest log and your XP | - | The quest **completes**, the gear leaves your inventory, and you are paid **500**. In the workshop this is the new XP source; if the quest completes and pays nothing, that clone did not take |
+| GC5 | Say **"Goodbye"** to DaVinci in the chamber, then come back with the gear | - | He is gone from that room for good -- that is vanilla's `davinci leaves` relay and it is not changed -- **but the workshop hand-in still works**. That is the whole point of this patch |
+| GC6 | Buy the gear from the engine with a **potion**, having never dealt with it before | - | *"A potion, then. More than a flask of steam, as you asked."* It must not claim you paid it **last time** |
+| GC7 | Buy the **crossbow** gears from the engine as well, before or after | - | Unchanged. That transaction, its potion and its own nodes were not touched |
+| GC8 | **The request.** Watch the screen as the engine cuts the ring, by any of the three routes (potion, Barter 35, the promise) | - | The room shakes, the engine's own shake: nine seconds, fading out. It is the same effect it uses when it is angry at you for pressing its button |
+| GC9 | `GC8`: listen | - | **No angry steam sound.** Only the shake was borrowed; the sound belongs to the tantrum, not to work |
+| GC10 | Take the promise route and then settle the debt in the workshop | - | Unchanged: `903 Fixt credit given`, and the engine stops reproaching you |
+
 ## Na Roqua answers the spirit you brought
 
 Both halves are **map** edits, so they need a save that has **not yet entered** the room or the map
