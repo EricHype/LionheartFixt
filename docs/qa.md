@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.3 - credit where it is due, and only where it is true
+
+Reported from play: settling the engine's debt, DaVinci thanked the player for the crossbow gears as
+well, on a character who had never started that quest. **Dialogue only, so it works on any save.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| CG1 | **The report.** Take the apology route from the engine, **without ever having built the repeating crossbow**, then settle it with DaVinci in the workshop | - | He thanks you for the ring and says the engine has had a hand in every machine in the room. **No mention of crossbow gears** |
+| CG2 | The same, **having finished** `Build DaVinci's Repeating Crossbow` | - | The original, richer line: *"it is the engine's ring, the crossbow gears were the engine's too"*. That line is unchanged and should read exactly as it did |
+| CG3 | Either case: talk to the engine afterwards | - | It stops reproaching you. **Both endings set the same marker**, so a player who got the neutral line is not left owing it forever |
+| CG4 | Either case: check the apology appears **once** | - | One reply, not two. The pair has mutually exclusive gates and identical player text, so a doubled reply means one gate is not resolving |
+| CG5 | **Mid-quest**: start the crossbow quest but do not finish it, then settle the debt | - | The **neutral** line. Completed-rather-than-started is deliberate: the neutral version is never wrong, and this is the row that confirms the safe direction was taken |
+| CG6 | `python tools/reachability.py` | - | Green. `904` must be reachable, which it only is if that second reply's gate parses |
+
 ## 0.57.2 - four prices for the turret ring
 
 Reported from play: any one potion bought the gear, which made the errand trivial and made the

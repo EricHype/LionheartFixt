@@ -1769,8 +1769,30 @@ Go to node ID=902 Fixt the gear fitted
 Icon=Quest Icon
 
 Requirement=Fixt Machine Credit Owed
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+}
+}
 Reply Text=Before anything else, and loudly enough for the room: the turret ring is your engine's work, not mine and not yours. It asked me to say so where it could hear it.
 Go to node ID=903 Fixt credit given
+Icon=Quest Icon
+
+Requirement=Fixt Machine Credit Owed
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Build DaVinci's Repeating Crossbow
+}
+}
+}
+Reply Text=Before anything else, and loudly enough for the room: the turret ring is your engine's work, not mine and not yours. It asked me to say so where it could hear it.
+Go to node ID=904 Fixt credit given no crossbow
 Icon=Quest Icon
 
 Requirement=Fixt DaVinci Task Open
@@ -3186,4 +3208,28 @@ Warp Behavior=
 Icon=Exit Icon
 Is Default Reply=1
 
+------------------------------------------------------------
+Node ID=904 Fixt credit given no crossbow
+Text=<He stops what he is doing, and somewhere behind you the hissing goes very quiet.> ...It said that to you. Out loud. To a stranger. Forgive me, I am laughing at myself and not at you - it is right, of course. It has been right for thirty years and I have been too proud and too busy to walk ten feet and say so. Very well: it is the engine's ring, and it has had a hand in every machine in this room, and I shall oil it myself tonight and tell it as much, which it will be insufferable about for a month. Thank you for carrying that. It cannot have been comfortable.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It will be insufferable. It has earned a month.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateAction
+{
+Target Name=Fixt Machine Credited
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
 }

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.2 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.3 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,65 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.3 - credit where it is due, and only where it is true
+
+**Reported from play**, immediately after 0.57.2: settling the engine's debt, DaVinci says
+
+> ...it is the engine's ring, **the crossbow gears were the engine's too**, and I shall oil it
+> myself tonight...
+
+to a player who has never touched the repeating crossbow. My line, 0.43.0, and the **same class of
+defect** as the engine's *"a potion, the same as last time"* that 0.57.1 repaired: authored text
+assuming a transaction the player may never have had.
+
+### Swept rather than fixed one at a time
+
+Both trees were searched for that assumption. `DaVinciBarcelona` and `Magic Machine` between them
+carry two Fixt-authored lines matching on *"again"* -- `801 Fixt DaVinci Joins` (*"no answer to
+it"*) and `702 Fixt the bargain` (*"Say that again"*) -- and both are fine in any state. **This was
+the only remaining one**, which is worth knowing: the class is now closed rather than one report
+shorter.
+
+### Node text cannot be gated, so the reply is
+
+Gates live on replies. So the workshop's apology reply became a **pair** with identical player text
+and mutually exclusive requirements:
+
+| gate | destination |
+|---|---|
+| `CIsQuestCompletedAction` on `Build DaVinci's Repeating Crossbow` | `903 Fixt credit given`, unchanged |
+| `CExpressionNot` of the same | `904 Fixt credit given no crossbow`, new |
+
+`904` is `903` with the clause replaced by something **vanilla already establishes**: the engine
+says in `655 machine talks` that it helped build all of his inventions, so *"it is the engine's
+ring, and it has had a hand in every machine in this room"* is true for everyone and costs the
+speech nothing.
+
+**Completed rather than started is the safe direction.** A player mid-crossbow-quest gets the
+neutral line, which is never wrong, where the alternative risks the richer line landing on someone
+who has not had those gears cut yet. And both endings still set `Fixt Machine Credited`, so nobody
+is left owing a debt the engine goes on reproaching them for.
+
+### Checked
+
+`validate.py` clean on 704 files, `reachability.py` green -- `904` is only reachable if that second
+gate parses, which is the cheap proof that a two-arm requirement resolved. 16 assertions off disk
+against `git show HEAD`: `903` **byte-identical**, `904` carrying the rest of the speech verbatim,
+both arms present with opposite gates and identical player text, the marker set on both endings,
+node count up by exactly one, and vanilla's single non-ASCII character in this tree untouched.
+
+### Four of my own asserts were wrong before any of them were right
+
+Recorded because they are all the same shape -- a check written against the wrong scope:
+
+- `"Node ID=903 Fixt credit given"` is a **substring** of `"Go to node ID=903 Fixt credit given"`,
+  which the new reply pair had just added earlier in the file, so a bare `.index()` landed inside
+  the reply and the slice swallowed the rest of the tree, including `2030 give crossbow`.
+- `$` in a CRLF file sits before the `\n`, so `^Node ID=...$` never matches; the line ends `...\r`.
+- node `903` is the **last** node in the file, so slicing to the next dashed separator throws.
+- and the ASCII assert was run over the **whole tree**, which rightly contains one non-ASCII
+  character of vanilla's that 0.43.0 deliberately preserved. ASCII applies to **authored** text.
 
 ## 0.57.2 - four prices for the turret ring
 
