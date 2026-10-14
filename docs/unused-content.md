@@ -1775,7 +1775,7 @@ Ranked by what exists, not by size. None of these is classified yet.
 | `cortes / 300 secret cave`, `160 cortes cave quest female response` | 111 | the treasure expedition; the quest `Recover the hidden treasure for Cortes` exists with 1 state |
 | `InquisitorRaphael / 500 Return from Montaillou`, `321 chapter 2 mission 2` | 468 | act-boundary Inquisition dialogue |
 | `GrandInquisitor / 400 NIS Dialogue 4b` + `Jafar / 400 NIS Dialogue 4b` | 171+ | an alternate branch of the council scene, in **both** trees |
-| `DaVinciBarcelona / 500 davinci gives a gift ... male` / `female` | 554 | a starting gift, gendered pair, the largest single pair in the sweep |
+| ~~`DaVinciBarcelona / 500 davinci gives a gift ... male` / `female`~~ | 554 | a starting gift, gendered pair, the largest single pair in the sweep. **Done in 0.58.0** |
 | `shakespeare / 1000 in wilderness`, `in wilderness 2`, `1000 extended shakespeares debt` | 294 | Shakespeare encountered in the Wilderness, scripting *Richard II* in the player's honour |
 | `Shylocke / 140 no resolution`, `312 charge`, `500 shylocke gets gold`, `7 return with shakepeares money` | 459 | the arbitration's unresolved branches, matching `cortes / 151 no resolution 2` and `800 Return Dialogue` on the other side of the same dispute |
 | `Demonic Spirit / 500 divine explanation demon` | 414 | the largest single recording in the sweep |
@@ -1792,6 +1792,26 @@ should not be re-reported as discoveries.
 all, undecidable without listening to the file.
 
 ---
+
+### Done in 0.58.0 -- the parting gift, and what its node shape gave away
+
+**554 KB, the largest unreachable pair in the sweep, and the classification was in the node's own
+fields.** `500 davinci gives a gift to help you get started male` / `female` have blank reply text,
+no target node and `Custom Action=CSendAIDoneMessage{Target=DaVinci}`. That trio is the **cutscene**
+signature -- a node a map displays and then releases the character's AI -- not a conversation branch.
+Reading it that way named the host before any map was searched: a scene opening *"Oh, how could I
+have forgotten?"* belongs after a goodbye, and `1000 you need allies exit` is his goodbye, shown once
+per game by a `Trigger Only Once=1` relay that deactivates itself, with no reply in the tree pointing
+at it. The gift inherited that gate instead of needing one.
+
+**A form check that saved a release:** firing the scene from the reply directly looked obvious, and
+has **zero** precedent -- both vanilla uses of `CDisplayDialogTreeAction` inside a dialogue tree are
+nested in an interaction specifier being added to a character. A reply triggering a relay has 661.
+Same shape of error as the `$Trigger` experience award two releases earlier.
+
+**Rule this adds:** read a node's reply fields before deciding what it is. `Reply Text=` blank plus
+`Go to node ID=` blank plus `CSendAIDoneMessage` means a map was supposed to show it, so the question
+is *which map and which moment*, not *which reply should point here*.
 
 ### Done in 0.56.0 -- the companions had voices
 
