@@ -1480,9 +1480,9 @@ Still needs a **brand-new character**. Three faults from 0.58.0, each with its o
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| GF9 | New game. Finish the opening conversation and then **walk north with him** | - | The gift scene fires **partway up the walk**, not the instant the goodbye closes. Roughly 500 units along |
-| GF10 | **The row the report is about.** Listen | - | *You hear it.* 25 seconds of DaVinci in the male recording, 22 in the female. Silence here means the speaker still is not resolving |
-| GF11 | Watch him while it plays | - | He is **still beside you**, on the walk. The scene sits short of the courtyard trigger that releases him, so he should not be strolling or bantering yet |
+| GF9 | New game. Finish the opening conversation and then **walk north with him** | - | The gift scene fires **partway up the walk**, not the instant the goodbye closes. Roughly 500 units along **PASSED** |
+| GF10 | **The row the report is about.** Listen | - | *You hear it.* 25 seconds of DaVinci in the male recording, 22 in the female. Silence here means the speaker still is not resolving **PASSED** -- *"it worked"*, 2026-10-13 |
+| GF11 | Watch him while it plays | - | He is **still beside you**, on the walk. The scene sits short of the courtyard trigger that releases him, so he should not be strolling or bantering yet **PASSED** |
 | GF12 | On a male character, read which line you got | - | *"Signore!"*, and the male text. Before this release the gender read happened in a context with no instigator and every character would have fallen to the female line |
 | GF13 | Open the bag afterwards | - | The icon flashes, one extra Potion of Healing, two in total. Unchanged from 0.58.0 |
 | GF14 | **Regression on vanilla's sequence.** After the courtyard | - | He strolls and banters as he always did, and the faction quest and the opening autosave both still happen. The goodbye reply kept all three of its own actions and only gained the arming |
@@ -1496,7 +1496,7 @@ nothing will happen, and that is not a bug.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| GF1 | New game. Play the opening until DaVinci sends you off to meet the factions | - | After *"Before you go, I advise you to explore this city..."* closes, he opens a second scene: *"Signore! Oh, how could I have forgotten? I have something for you!"* **with voiceover** -- the recording is vanilla's own |
+| GF1 | New game. Play the opening until DaVinci sends you off to meet the factions | - | After *"Before you go, I advise you to explore this city..."* closes, he opens a second scene: *"Signore! Oh, how could I have forgotten? I have something for you!"* **with voiceover** -- the recording is vanilla's own **PASSED** (in 0.58.1's placement) |
 | GF2 | Same on a **female** character | - | *"Signora!"*, and the wording differs through the whole line. The check tests for Male and falls to female, so a wrong gender shows up as a female character hearing *"Signore"* |
 | GF3 | Close the scene and open the bag | - | The inventory icon flashes, and there is **one more Potion of Healing** than the kit gave you. Two in total |
 | GF4 | **Regression.** Check the rest of the starting kit | - | Unchanged: the weapon or bow the kit rolls for your build, infinite arrows and bolts, and the kit's own single healing potion. The gift relay was added beside that one, not into it |
