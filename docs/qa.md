@@ -1481,9 +1481,9 @@ read-it-and-judge rows, not mechanism rows.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| TR35 | Seat the ring and watch the screen, not the text | - | He teleports in **about half a second** after it seats, while the paragraph about the ring is still up, and the balloon *"Ah! Do not move it, let me *see*!"* lands a second later |
-| TR36 | Talk to him there | - | Three sentences, not eight: *"I felt that through the floor and I knew! <He pats the hull twice.> The turret will turn now..."* |
-| TR37 | **The judgement row.** Read it next to any vanilla DaVinci line, say his *"There! It is complete."* or *"Bravisimo!"* | - | It should sound like the same man. If it still reads like a narrator rather than Leonardo, say so and it gets cut again |
+| TR35 | Seat the ring and watch the screen, not the text | - | He teleports in **about half a second** after it seats, while the paragraph about the ring is still up, and the balloon *"Ah! Do not move it, let me *see*!"* lands a second later **PASSED** |
+| TR36 | Talk to him there | - | Three sentences, not eight: *"I felt that through the floor and I knew! <He pats the hull twice.> The turret will turn now..."* **PASSED** |
+| TR37 | **The judgement row.** Read it next to any vanilla DaVinci line, say his *"There! It is complete."* or *"Bravisimo!"* | - | It should sound like the same man. If it still reads like a narrator rather than Leonardo, say so and it gets cut again. **PASSED** -- *"it works"*, 2026-10-13 |
 | TR38 | Finish at the tank, talk to him there, then go up and talk to the workshop DaVinci | - | **The two do not repeat each other.** The chamber line is about feeling it through the floor; the workshop line reaches for the spirit's temper instead |
 | TR39 | **Regression.** Hand the gear to him in the chamber instead, if you kept him there | - | `902` still plays, still has *"Hold the lamp"*, which is his own phrase and was kept, and is now about a third shorter |
 
@@ -1495,9 +1495,9 @@ chamber, and already watched DaVinci teleport out of it, gets this.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| TR30 | Seat the ring at the tank and stay in the room | - | About two and a half seconds later DaVinci **teleports back in**, at his old spot by the door, and a balloon over him reads *"Do not move it yet. Let me see."* |
-| TR31 | Talk to him there | - | *"I felt that through the floor. It seated true..."* -- the root eased, the turret that will turn when something in it is willing, the half he cannot see. Nothing is taken and nothing is paid |
-| TR32 | **The one that catches a half-restored NPC.** Walk up to him and check he is solid and clickable | - | Fully opaque, not a ghost, and the conversation opens. He was faded to zero opacity on his way out, so a silhouette you cannot talk to means the fade or the specifier swap did not land |
+| TR30 | Seat the ring at the tank and stay in the room | - | About two and a half seconds later DaVinci **teleports back in**, at his old spot by the door, and a balloon over him reads *"Do not move it yet. Let me see."* **PASSED** (0.57.10's wording and 0.5s timing) |
+| TR31 | Talk to him there | - | *"I felt that through the floor. It seated true..."* -- the root eased, the turret that will turn when something in it is willing, the half he cannot see. Nothing is taken and nothing is paid **PASSED** |
+| TR32 | **The one that catches a half-restored NPC.** Walk up to him and check he is solid and clickable | - | Fully opaque, not a ghost, and the conversation opens. He was faded to zero opacity on his way out, so a silhouette you cannot talk to means the fade or the specifier swap did not land **PASSED** -- he is solid and the conversation opens |
 | TR33 | Talk to him again, then leave the chamber and come back | - | He is still there and still says it. He does not teleport out again -- the leave relay is spent |
 | TR34 | Go upstairs and talk to the workshop DaVinci | - | 0.57.8's reaction is still offered. Two of him being pleased is intended; the chamber one is the scene, the workshop one is the fallback for anyone who finished the quest before this release |
 
