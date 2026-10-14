@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.9 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.10 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,82 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.10 - he arrives on the beat and sounds like himself
+
+**Reported from play:** *"he arrived after i had seated the gear, also his words when holding the
+lamp aren't right tonally for leonardo and it's too long."*
+
+Both right, and the second one is the more interesting failure.
+
+### The beat
+
+0.57.9 delayed his arrival 2.5 seconds, reasoning that it should land after the player had read the
+paragraph about the ring seating rather than behind the dialogue box. That turned a reaction into an
+afterthought: the ring goes in, the moment passes, and then a man appears.
+
+**0.5 seconds**, with the balloon a second behind it. He materialises while that paragraph is still
+on screen and speaks as it closes. Nothing else about the reply changed, which the build asserts by
+putting the delay back and comparing the whole file to what shipped.
+
+### The voice
+
+This is the part worth recording. All three of his reactions to the finished gear were written like
+this:
+
+> Let me see it. ... Si, that is the profile, and the root has been eased, which I did not draw and
+> should have. Hold the lamp. There. It will turn now, when there is something in it willing to turn
+> it. One half of a war machine, my friend, and the other half is a spirit I have not yet found a
+> decent excuse for taking. Thank you. Genuinely.
+
+Measured against what the man actually says in this game, that is somebody else. Vanilla's DaVinci
+is short, warm and exclamatory, and he reaches for Italian when he is pleased:
+
+> There! It is complete.
+> Bravisimo! A moving performance on the viola organista, I should say!
+> Perfecto! To complete the design, I'll need help gathering some of the final components.
+> Grazie! <Thank you!>
+> Now, do *try* not to break anything. Arrivederci!
+
+Three sentences is a long speech for him. He does not say *"which I did not draw and should have"*,
+and he does not say *"a decent excuse for taking"*.
+
+So all three are rewritten in his register and cut by a third to a half:
+
+| | where | was | now |
+|---|---|---|---|
+| `902` | the chamber hand-in | 340 chars | 218 |
+| `907` | the workshop fallback | 431 | 234 |
+| `908` | the chamber arrival | 413 | 192 |
+
+> I felt that through the floor and I knew! `<He pats the hull twice.>` The turret will turn now -
+> all it wants is a spirit willing to live in it, and that I must still arrange. Grazie, my friend!
+
+**Each room says it differently**, and the three were checked against each other, because a player
+who finishes at the tank can hear the chamber line and then the workshop line in the same minute.
+The workshop one reaches for vanilla's own running joke instead -- *"Some of these spirits are more
+temperamental than others"*, *"a feisty spirit! His tempestuous nature should be able to power the
+siege machine"* -- and asks for a spirit **with the temper to live inside a war machine**.
+
+**What was kept:** *"Hold the lamp"*, because that is his phrase and it is the reason the player is
+standing there holding a lamp. And the reply to all of it now calls him what his friends call him,
+from his own introduction: *"Then find your spirit, Signor Leo."*
+
+### The rule this leaves behind
+
+A restored line can pass every check in the project and still be wrong, because none of them read
+for voice. The cheap test is to put the new line in a column beside four of the character's shipped
+ones and see whether a reader could tell which is which. That costs one grep.
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green on 136 trees, `auto_open_risk.py` clean,
+and 20 assertions off disk against `git show HEAD`: the delay moved and **nothing else in that file
+did**, each of the three cut by at least a third, the phrase he would never use gone from all three,
+one stage direction each and none in the balloon, the three distinct from one another, the fact that
+matters (the turret turns, it still wants a spirit) surviving in all three, no node added or
+removed, no `.zax` in the diff, and vanilla's *"sinister taint in your soul"* still the only soul in
+the file.
 
 ## 0.57.9 - he comes back for it
 

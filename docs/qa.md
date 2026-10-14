@@ -1474,6 +1474,19 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.10 - he arrives on the beat and sounds like himself
+
+Two reports on 0.57.9, both accepted. **The lines are the point of this release**, so these rows are
+read-it-and-judge rows, not mechanism rows.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR35 | Seat the ring and watch the screen, not the text | - | He teleports in **about half a second** after it seats, while the paragraph about the ring is still up, and the balloon *"Ah! Do not move it, let me *see*!"* lands a second later |
+| TR36 | Talk to him there | - | Three sentences, not eight: *"I felt that through the floor and I knew! <He pats the hull twice.> The turret will turn now..."* |
+| TR37 | **The judgement row.** Read it next to any vanilla DaVinci line, say his *"There! It is complete."* or *"Bravisimo!"* | - | It should sound like the same man. If it still reads like a narrator rather than Leonardo, say so and it gets cut again |
+| TR38 | Finish at the tank, talk to him there, then go up and talk to the workshop DaVinci | - | **The two do not repeat each other.** The chamber line is about feeling it through the floor; the workshop line reaches for the spirit's temper instead |
+| TR39 | **Regression.** Hand the gear to him in the chamber instead, if you kept him there | - | `902` still plays, still has *"Hold the lamp"*, which is his own phrase and was kept, and is now about a third shorter |
+
 ## 0.57.9 - he comes back for it
 
 **This one reaches an existing save.** Nothing in it is a map part: the whole scene is actions on a
