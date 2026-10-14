@@ -1654,7 +1654,12 @@ Should Have Voiceover=1
 
 Requirement=!None
 Reply Text=I will leave for Montserrat to recover the Lance. 
-Go to node ID=238 Leave for Montserrat
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine ending relay
+}
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=600 nis torquemada joins
 Text=Grand Inquisitor, your presence alone strengthens my resolve and bolsters my hope that we will persevere through these dark times.

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,69 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.1 - the Montserrat briefing can always end
+
+**Reported by Stricken145, [issue #7](https://github.com/EricHype/LionheartFixt/issues/7):** *"So,
+when you are given task to go to Montserrat, during conversation after you ask Javier about some
+details ( basically you are not choosing dialog options to take quest and end conversation ASAP) ,
+game is still in scrip/event mode with icon of gears spinning and nothing happens."*
+
+**This one is ours, from 0.9.0.**
+
+### What the scene is
+
+The Montserrat send-off in `1 Barcelona/Church Interior.zax` is a non-interactive sequence. A
+`<Faction> NIS Relay` fires `CBeginNonInteractiveSequenceAction` with `Disable Player Controls=1`;
+`Start <Faction> NIS Conversation` plays three balloons and then opens `400 NIS Dialogue 4b` as a
+real conversation; and the player's choice is meant to reach `determine ending relay`, which
+balloons Javier's farewell, fades the screen, **ends the sequence** and relocates the player to the
+Temple District.
+
+**Exactly one reply in the entire tree fires that relay:** *"I am ready to depart for Montserrat."*
+Vanilla's two optional questions inside the scene, the Crown of Thorns and the relics, both loop
+back to the node that carries it, so in vanilla every path through the briefing ends at the one
+reply that can close it.
+
+### What we added
+
+0.9.0 gave that node a fourth option, *"Before I go, tell me about the Sacred Lance."*, which reaches
+`500 Sacred Lance` -- a node **vanilla leaves unreachable**. Its own reply goes to
+`238 Leave for Montserrat`, which has no replies of its own, because it exists to be *ballooned* by
+the ending relay rather than talked to. So the conversation closes, the relay never fires, and the
+sequence runs on with the controls disabled. Gears spinning, no way out but a reload.
+
+A restoration opened a door out of a cutscene without giving it the cutscene's exit.
+
+### The fix
+
+`500 Sacred Lance` is reachable from nothing but our own reply, which the build asserts against
+vanilla, so its exit simply becomes the exit that works: the target goes blank and the reply fires
+`determine ending relay`, the same action its neighbour has carried since 2003. The player hears
+about the Lance, says they will go, and the scene ends the way it does for everyone else.
+
+### What this says about restoring content
+
+Every release in this run has asked "can the player reach it". This one is the other question:
+**what does the player's new path owe the machinery it is now inside?** A reply added to a
+conversation that a cutscene opened inherits that cutscene's obligation to end it, and nothing in
+the tree says so -- the obligation lives in a relay name in a different file.
+
+`auto_open_risk.py` catches the mirror image of this (a conversation that opens itself and can cost
+you something). A gate for this one -- a reply that closes a conversation the map opened inside a
+sequence, without firing anything that ends it -- was prototyped for this release and **is not
+shippable yet**: restricted to cutscene parts it is quiet, but the heuristic for "this conversation
+belongs to that sequence" needs to follow relay chains rather than part names, and a version that
+guesses flags every shopkeeper in a map that has a cutscene somewhere in it. Recorded as a lead
+rather than shipped half-built.
+
+### Checked
+
+`validate.py` clean on 709 files, `reachability.py` green, `auto_open_risk.py` clean, and the facts
+the fix rests on asserted against the vanilla file at build time: vanilla never reaches
+`500 Sacred Lance`, we are its only way in, and `determine ending relay` had exactly one caller
+before this and has two now. No node added, and **no `Text=` or `Reply Text=` line changed
+anywhere** -- only where one reply goes, and what it fires on the way out.
 
 ## 0.60.0 - Shakespeare in the Wilderness
 

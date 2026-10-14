@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.60.1 - the Montserrat briefing can always end
+
+**This is a soft lock we shipped**, reported as issue #7. It needs a character at the act-1
+Montserrat send-off in the Church, on any faction path that plays that scene.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| LJ1 | **The report.** Reach the Montserrat briefing, and when the conversation opens ask *"Before I go, tell me about the Sacred Lance."* | - | He explains the Lance. Say you will go and **the scene ends**: his farewell, the screen fades, controls come back and you are in the Temple District. Before this release the gears spun forever |
+| LJ2 | Same run, watch the gear icon | - | It clears. If it is still spinning after the fade, the relay did not fire |
+| LJ3 | **Regression, the main path.** Take *"I am ready to depart for Montserrat."* straight away | - | Unchanged, exactly as it always worked |
+| LJ4 | **Regression, the vanilla detours.** Ask about the Crown of Thorns and about the relics, then depart | - | Both still loop back to the directions node and the scene still ends |
+| LJ5 | Check the Lance text itself | - | Unchanged. Only where the reply goes changed, and no line in the tree was rewritten |
+| LJ6 | Afterwards, talk to Javier again in the Temple District | - | Normal return dialogue. The quest is live and nothing about the knighting or the faction paths moved |
+
 ## 0.60.0 - Shakespeare in the Wilderness
 
 **Needs a character who has not been to the Crossroads yet** -- two new level parts, and a map's
