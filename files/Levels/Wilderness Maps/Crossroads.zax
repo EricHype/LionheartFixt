@@ -87,6 +87,218 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Shakespeare Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=11
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=1
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/1 Barcelona/Character Templates/Port District/Shakespeare
+								}
+							}
+						}
+					}
+					New Name=William in the wilderness
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=0
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTalk
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
+										Node ID=1000 in wilderness
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
+										Node ID=1000 in wilderness 2
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
+										Node ID=1000 return too early
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
+							X Radius=100
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=Any Direction
+					Angle Variation=0.785398
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=3078
+			Position Y=1641
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Shakespeare arrives
+			Child List=
+			Visible=0
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingOvalTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CIfAction
+					{
+						If=CIsQuestCompletedAction
+						{
+							Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CActivateAction
+								{
+									Target Name=Fixt Shakespeare Generator
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Fixt Shakespeare arrives
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+					X Radius=300
+					YX Ratio=0.712766
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Trigger Icon, Proximity
+			Position X=3318
+			Position Y=1623
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt Crossroads Vendor Horde
 			Child List=
 			Visible=0

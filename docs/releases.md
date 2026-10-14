@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.59.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,86 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.0 - Shakespeare in the Wilderness
+
+Asked for after the shortlist: *"do shakespeare in the wilderness."*
+
+**Five nodes, 0.34 MB of performed voiceover, opened by nothing:**
+
+> And enter the hero, stage right! It is fortuitous that you arrived so, as I have been scripting a
+> new play based on your glorious exploits! I thought it appropriate that I visit your battle sites
+> personally, experience your struggles, and inhale the very scent of your valor.
+
+> I have been mulling the thought of naming this new work Richard II, in honor of you, of course. A
+> story of a long lost king, great struggle against an odious evil, sweet love and bitter loss, a
+> tale whose ending *you* will complete.
+
+Then his delight if you are flattered, his retreat if you send him home, and *"the fruit of the tree
+is too young and not yet ripe for the picking"* for every visit after.
+
+### The file was hiding in plain sight
+
+His tree is `Resources/Levels/1 Barcelona/Dialog/Port District/shakespeare.dialogtree` -- **lowercase
+extension**. The engine does not care; every search I ran for `*.DialogTree` did. `vo_reach.py` found
+the lead anyway, because it works from the voiceover folders rather than from the tree names, which
+is the second time that tool has seen something a name-based search could not.
+
+### How it is delivered, which is the opposite of last release
+
+These nodes carry replies, so they are conversations, not balloons -- where 0.59.0's undead warning
+had none and had to be ballooned from a can. Three conversations on one NPC is the **`Secret Leo`**
+idiom from DaVinci's secret chamber: a `CSeriesAction` of `CDisplayDialogTreeAction`s with
+`When Done=Repeat Last Action`. So the first approach plays the arrival, the second the pitch, and
+every one after that gets "return later" -- which is the honest permanent state, because the game
+contains no opening-scene node for the play he is writing.
+
+### Where, and why there
+
+**The Crossroads**, at (3078, 1641), which is an existing `Editor/Spawn Point` position and therefore
+walkable by construction -- 243 units west of where the player arrives from Barcelona, on the road.
+He has **7 hit points**, so he goes where vanilla is willing to stand unarmed civilians: this map
+already carries vendors, travellers and a hunter, and it already hosts one literary cameo, since
+`Don Quixote Generator` spawns **Cervantes** out here.
+
+He appears once the **Muse** quest is complete, because that is the quest that gives him back the
+ability to write at all. The trigger sits on the Barcelona entrance at `Trigger Only Once=0` and only
+deactivates itself after it has fired, so crossing before the muse is recovered does not lock the
+scene out.
+
+### The reply that was broken before it shipped
+
+> This place is too dangerous for you. Return to Barcelona.
+
+That reply had **no action on it at all**, so he would have said *"If that is your wish, I will honor
+it. The rest of my work can continue in my humble abode"* and then stood in the Wilderness for the
+rest of the game. It now strips his talk AI, fades him to nothing over a second and a half, and
+switches off both him and his generator, so he is gone and stays gone.
+
+### One thing deliberately not done
+
+`1000 extended shakespeares debt` reads like an unreached reward: 500 experience from a marker that
+exists in his house, a generated amulet, **+75 karma**. It is a **draft that lost**. The shipped
+reply that would open it -- *"I convinced Shylocke to extend your debt"* -- already completes the
+quest and already pays the experience from that same marker, and the draft node's own action list
+would pay it a **second** time. The live node it goes to instead, `255 side with shakespeare`, even
+carries a developer's note in the file: `Action work in progress=(speak with shylocke quest)`.
+
+So the draft stays unwired. Adding the gift to the **live** reply would be a design decision, not a
+restoration, and it is recorded in `docs/unused-content.md` as that.
+
+### Checked
+
+`validate.py` clean on 709 files, `reachability.py` green on 137 trees, `auto_open_risk.py` clean,
+and 26 assertions off disk against HEAD and vanilla: all five nodes present in vanilla with their
+recordings, the generator armed off and spawning vanilla's own template, standing on a vanilla spawn
+point, talked to rather than walked into, three displays in written order with the last repeating,
+node ids byte-exact, the trigger covering all three Barcelona entrances and clearing the pad,
+the map HEAD plus exactly two parts with Fixt's earlier work in it intact, one action added to the
+whole tree and no node, **no `Text=` or `Reply Text=` line changed anywhere**, and the extended-debt
+draft left exactly as it was.
+
+`vo_reach.py`: **107 unreachable recorded nodes / 9.63 MB -> 102 / 9.29 MB.**
 
 ## 0.59.0 - the spirit warns you about the undead
 

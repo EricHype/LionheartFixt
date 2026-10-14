@@ -1,0 +1,1480 @@
+CDialogTree
+{
+Name=William
+Portrait=Dialog/NPC Portraits/Shakespeare
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Salutations and greetings to you. I am Melpomene's confidant and Thalia's clown, a playwright poor in coin but rich in talent.  I have a moment if you wish to speak, but please consider brevity the soul of wit. 
+Should Have Voiceover=1
+
+Requirement=Shylocke Collect Debt from the Bard
+Reply Text=Shylocke sent me here to collect your debt.
+Go to node ID=250 collect shylocke debt
+Action work in progress=(have Shylocke debt quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=15 who
+
+Requirement=!None
+Reply Text=Who are Melpomene and Thalia?
+Go to node ID=2 muses
+
+Requirement=!None
+Reply Text=Are you working on a play now?
+Go to node ID=20 play
+
+Requirement=!None
+Reply Text=How did you become poor?
+Go to node ID=30 poor
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 muses
+Text=They are sisters of inspiration and genius, the muses of tragedy and of comedy, the patrons of my pen and the reason for ink. 
+Should Have Voiceover=1
+
+Requirement=Shylocke Collect Debt from the Bard
+Reply Text=Shylocke sent me here to collect your debt.
+Go to node ID=250 collect shylocke debt
+Action work in progress=(have Shylocke debt quest)
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=15 who
+
+Requirement=!None
+Reply Text=Are you working on a play now?
+Go to node ID=20 play
+
+Requirement=!None
+Reply Text=How did you become poor?
+Go to node ID=30 poor
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Welcome, you; how now, you; what, you; and thus much for greeting. Before this poor bard's hand returns to writing, his tongue will turn to exposition. Of what would you like to speak?
+Should Have Voiceover=1
+
+Requirement=Shylocke Collect Debt from the Bard
+Reply Text=Shylocke sent me here to collect your debt.
+Go to node ID=250 collect shylocke debt
+Action work in progress=(have Shylocke debt quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+}
+Reply Text=I convinced Shylocke to extend your debt.
+Go to node ID=255 side with shakespeare
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Extend Shakespeare's Debt
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=FMNHRA8C
+}
+}
+Reply Text=I've taken care of that problem you had with Shylocke - he won't be bothering you, or anyone else, ever again.
+Go to node ID=255 side with shakespeare
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Extend Shakespeare's Debt
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+}
+Early Exit=0
+}
+Then=CFailAction
+{
+Action=
+}
+Else=CSucceedAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+}
+Reply Text=Who are you again?
+Go to node ID=15 who
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+}
+}
+Reply Text=What are you writing?
+Go to node ID=20 play
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+}
+}
+Reply Text=How did you become poor?
+Go to node ID=30 poor
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 Shakespeare Hates you
+Text=Here comes the little villain, with slander and venom waiting on forked tongue. I have few kind words for you.
+Should Have Voiceover=1
+
+Requirement=Shakespeare have muse
+Reply Text=But I have recovered your muse Sytheria.
+Go to node ID=200 saved muse
+Action work in progress=(complete muse quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Muse Quest XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Return Dialogue 2
+Text=Speak quickly then, I should return to my play soon.
+Should Have Voiceover=1
+
+Requirement=Shakespeare have muse
+Reply Text=I have recovered your muse Sytheria.
+Go to node ID=200 saved muse
+Action work in progress=(complete muse quest)
+Icon=Quest Icon
+
+Requirement=Shylocke Collect Debt from the Bard
+Reply Text=Shylocke sent me here to collect your debt.
+Go to node ID=250 collect shylocke debt
+Action work in progress=(have Shylocke debt quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+}
+Reply Text=I convinced Shylocke to extend your debt.
+Go to node ID=255 side with shakespeare
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Tell me about your play.
+Go to node ID=20 play
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+}
+}
+Reply Text=You mentioned before that you are poor - what happened?
+Go to node ID=30 poor
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text='Til we meet again.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=15 who
+Text=My name is William Shakespeare. I have not been in this grand city long, but perhaps you've heard of me?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I've heard of you.
+Go to node ID=17 heard of shakespeare
+
+Requirement=!None
+Reply Text=I've never heard of you.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=17 heard of shakespeare
+Text=How wonderful! I meet few admirers since my muse led me so far from the shore of my nativity. You'll be delighted to hear that my next play will be a rousing success, if I should manage to complete it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why have you come to Barcelona?
+Go to node ID=18 explanation
+
+Requirement=!None
+Reply Text=What is your new play about?
+Go to node ID=20 play
+
+Requirement=!None
+Reply Text=I wish you luck, then. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=18 explanation
+Text=Alas, I fear I offended Elizabeth, the good Queen of England. Her sense of humor has been strained of late and perhaps my comparison of her to the Wetnurse of All England was ill-timed, though I think metaphorically apt.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=18 explanation 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=18 explanation 2
+Text=As it was, I thought it best to leave England while my head still rested on my shoulders and so I've come to this grand city seeking to rebuild my fortune. <Sighs> But I have found it difficult to adapt my writing to the tastes of Spaniards.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is your new play about?
+Go to node ID=20 play
+
+Requirement=!None
+Reply Text=I wish you luck, then. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 play
+Text=My play is "The Merchant of Barcelona". A timely story about a man who enters into an agreement with a treacherous moneylender to help a friend in need. It's nearly complete, although I cannot seem to bring it to a happy conclusion. 
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+}
+}
+Reply Text=Why can't you finish the play?
+Go to node ID=50 obstacle
+Action work in progress=(Plot Obstacle known, can be checked in Node 5)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=I wish you luck with your writing. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Plot Obstacle known, can be checked in Node 5)
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Action work in progress=(Plot Obstacle known, can be checked in Node 5)
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 poor
+Text=My last play was not well-received here in this Mediterranean clime. Having nothing, nothing to lose, or so I thought, I borrowed money from Shylocke to fund a new play.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is the play about?
+Go to node ID=20 play
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+}
+}
+Reply Text=Who is Shylocke?
+Go to node ID=400 shylocke
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 obstacle
+Text=I am having trouble with its resolution. Sytheria labors not, so my quill remains still.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+}
+}
+Reply Text=Who is Sytheria?
+Go to node ID=70 muse
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 muse
+Text=She is my love, the muse of Shakespeare. My inspiration! Her mere radiant presence helped me write my other plays, but alas, I have lost her to Shylocke.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+}
+}
+Reply Text=Why did Shylocke take your muse?
+Go to node ID=90 muse to shylocke
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+}
+}
+Reply Text=Who is Shylocke?
+Go to node ID=400 shylocke
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+}
+}
+Reply Text=That's too bad, wish I could be of help.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 muse to shylocke
+Text=A man of desperate means often takes to desperate measures. My last play sprang stillborn onto the stage, thumbed its nose at me, and robbed me of my purse.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 muse to shylocke 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=91 muse to shylocke 2
+Text=Yet though she can be fickle, my art demands unflinching devotion. When she will not support me, I must support her and so I was forced to take a loan from Shylocke. As gold is precious to him, he demanded collateral that is precious to me. And now Sytheria languishes in the maw of that serpent. What fools we mortals be!
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shakespeare Muse
+}
+}
+Reply Text=I already have your Muse.
+Go to node ID=200 saved muse
+Icon=Quest Icon
+
+Requirement=Shakespeare Already Have Muse Quest
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shakespeare Muse
+}
+}
+}
+Reply Text=I will help you get your muse back.
+Go to node ID=100 muse back
+Action work in progress=(give Shakespeare muse  quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A2ZEEI6E
+}
+Icon=Quest Icon
+
+Requirement=Shakespeare Already Have Muse Quest
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shakespeare Muse
+}
+}
+}
+Reply Text=I see. I have another question for you.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shakespeare Muse
+}
+}
+}
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 muse back
+Text=You would help a stranger in a time of such dire need? If you could aid me, if you could free Sytheria, I would be eternally grateful.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=101 muse back 2
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=101 muse back 2
+Text=Shylocke can be found in his den in the temple district, basking in the pale golden glow of his own avarice. Please return when you have slaked that beast's thirst.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=I'll be going now. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 saved muse
+Text=My dear Sytheria, parting was such bitter sorrow! You saved her and saved my soul!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=201 saved muse 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add 100 karma
+Modification is permanent=0
+Character to modify=$Party
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=100
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Muse Quest XP
+Experience Points To Add=1
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Shakespeare Muse
+}
+Action=CActivateAction
+{
+Target Name=shakespeare muse quest done
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=201 saved muse 2
+Text=O Destiny, at last you have cooled the stinging brand of ill fortune, and given hope to your struggling bard. My friend, I have a gift for you, though it does not gleam or shine, its worth will show in time. A thousand thanks, and then a thousand more!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=250 collect shylocke debt
+Text=You would help a serpent squeeze life from an innocent man?
+Should Have Voiceover=1
+
+Requirement=Shylocke Collect Debt from the Bard
+Reply Text=Give me the gold or I'll take it by force.
+Go to node ID=260 intimidate
+Icon=Quest Icon
+
+Requirement=Shakespeare already have debt quest
+Reply Text=Well, I could try to convince Shylocke to give you more time.
+Go to node ID=255 side with shakespeare
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=M71QQWA2
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=255 side with shakespeare
+Text=Thank you a hundred times, and then a thousand times more. Now I am in your debt, a debt I would sooner repay every glorious morning the sun rises than sleep one night longer under the heel of Shylocke.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(speak with shylocke quest)
+Custom Action=CActivateAction
+{
+Target Name=shakespeare quest done
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=260 intimidate
+Text=I like not unfair terms and a villain's mind. You would strip a man of his wealth and dreams? Does Shylocke not understand that this play will repay his investment several times over?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Pay up or I'll let slip the dogs of war.
+Go to node ID=270 threat
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+}
+}
+Reply Text=Very well. I'll see if I can convince Shylocke to give you more time.
+Go to node ID=255 side with shakespeare
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=M71QQWA2
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I warned you. Now I'm going to beat the money out of you.
+Go to node ID=270 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=270 threat
+Text=Spare your threats, I shall pay your master the money once loaned to me. Know that you are guilty of twisting the dagger left by that greedy assassin of prosperity. I go now to settle my debt, and end my dream.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(give gold to player for Shylocke quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Collect Debt for Shylocke
+State=93J6H0DU
+}
+Action=CSendAIDoneMessage
+{
+Target=Shakespeare
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=start shakespeare debt scene
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Shylocke Shop
+}
+Action=CActivateAction
+{
+Target Name=shakespeare hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Action=CIfAction
+{
+If=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Then=CSetQuestSatusToFailedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=280 combat
+Text=Time to make an honorable retreat rather than face a dishonorable foe!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 shakespeare debt scene 1
+Text=Here is your filthy gold, Shylocke. May it bring ruin to your house.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 shakespeare debt scene 2
+Text=Oh William, stop being so...dramatic. It was a pleasure doing business with you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 shylocke
+Text=Shylocke? Never did I know a creature that did bear the shape of man, yet the heart of a serpent.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=400 shylocke continued
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 shylocke continued
+Text=If ever I have met the devil, it was when I met Shylocke. He is less an honest businessman than a treacherous usurer who, like the moneylenders of Jerusalem, infests the temple district. To my eternal dismay, I owe him a weighty sum of gold.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Shylocke murdered
+Desired Minimum Count=1
+}
+}
+Reply Text=Uh.. that problem has recently been solved.  I happen to know that Shylocke won't be bothering you, or anyone else, ever again if you catch my meaning.
+Go to node ID=255 side with shakespeare
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Extend Shakespeare's Debt
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Shylocke murdered
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I could help by convincing Shylocke to give you more time for your debt.
+Go to node ID=101 muse back 2
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=M71QQWA2
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Sounds like you deserve your fate.
+Go to node ID=800 shakespeare hates you
+Custom Action=CActivateAction
+{
+Target Name=shakespeare hates you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 shakespeare hates you
+Text=Thou art a villain to impugn me thus. So I bid you farewell, and pray you pester a soul more deserving of your slander!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 extended shakespeares debt
+Text=O Destiny, at last you have cooled the stinging brand of ill fortune, and given Hope to your struggling bard. My friend, I have a humble gift for you, a bauble passed down in my family for generations, it is but a shallow reflection of the true gratitude I feel.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Extend Shakespeare's Debt
+Experience Points To Add=1
+}
+Action=CGenerateInventoryItemAction
+{
+Number of items to generate=1
+Level of item to generate=
+Location=$Trigger
+Location Offset=0,0
+Generate Within Radius=128
+Aspect Ratio=0.712766
+Item List=CInventoryItemGeneratorMixedList
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorMixedListItem
+{
+Weighting=10
+Item=CInventoryItemGeneratorAdditionalMagic
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorBasicItem
+{
+Weighting=10
+Item=Inventory Items/Amulet
+}
+}
+Chance Has Additional Magic=1
+Additional Magic=Array
+{
+Array Count=3
+Array Item=CInventoryItemGeneratorAdditionalMagicItem
+{
+Weighting=10
+Addition=Inventory/Inventory Additions/Armor/Skill Bringer
+Level=0
+}
+Array Item=CInventoryItemGeneratorAdditionalMagicItem
+{
+Weighting=10
+Addition=Inventory/Inventory Additions/Armor/Magic Enhancer
+Level=0
+}
+Array Item=CInventoryItemGeneratorAdditionalMagicItem
+{
+Weighting=10
+Addition=Inventory/Inventory Additions/Armor/Poison Resistance
+Level=0
+}
+}
+}
+}
+}
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add 75 Karma
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActivateAction
+{
+Target Name=shakespeare quest done
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 in wilderness
+Text=And enter the hero, stage right! It is fortuitous that you arrived so, as I have been scripting a new play based on your glorious exploits! I thought it appropriate that I visit your battle sites personally, experience your struggles, and inhale the very scent of your valor.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=1000 in wilderness 2
+Text=I have been mulling the thought of naming this new work Richard II, in honor of you, of course. A story of a long lost king, great struggle against an odious evil, sweet love and bitter loss, a tale whose ending *you* will complete. My only fear is that I neglect one of the many virtuous aspects of your heroic personality!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'm pleased and flattered, William. I look forward to your work.
+Go to node ID=1000 shakespeare continues work
+
+Requirement=!None
+Reply Text=This place is too dangerous for you. Return to Barcelona.
+Go to node ID=1000 leave wilderness
+Custom Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CRemoveAIAction
+{
+Target Name=William in the wilderness
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=0
+Seconds To Fade=1.5
+Part To Fade=William in the wilderness
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeactivateAction
+{
+Target Name=William in the wilderness
+}
+Action=CDeactivateAction
+{
+Target Name=Fixt Shakespeare Generator
+}
+}
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=3
+Plus or Minus=0
+Forget Trigger=0
+}
+------------------------------------------------------------
+Node ID=1000 leave wilderness
+Text=If that is your wish, I will honor it. The rest of my work can continue in my humble abode. Farewell then, hero!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 shakespeare continues work
+Text=Oh joyous moment, how I wish I could grasp time itself and live in this second! I am pleased beyond measure that you approve of my work. You must return later and I will reveal to you the opening scene of your play!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 return too early
+Text=The fruit of the tree is too young and not yet ripe for the picking. Return later and I will share my work with thee.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love 1
+Text=I must confess to you a happy ebullience that lifts my step, yet harbors a fear that grows heavy laden on my heart. The course of love never did run smooth, but you have made my road the sweetest that ever a man did travel.  
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=2000 Shakespeare in love 2
+Custom Action=CActivateAction
+{
+Target Name=shakespeare proposes
+Play Activate Sound=1
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love 2
+Text=Doubt thou the stars are fire, doubt that the sun doth move, doubt truth to be a liar but never doubt that I love you. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=You must woo me before you can have my hand.
+Go to node ID=2000 Shakespeare in love 3a
+
+Requirement=!None
+Reply Text=I have no idea what you are babbling about.
+Go to node ID=2000 Shakespeare in love 3a
+
+Requirement=!None
+Reply Text=I'm not interested in your advances.
+Go to node ID=2000 Shakespeare in love 4
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love 3a
+Text=My mistress' eyes are nothing like the sun; Coral is far more red than her lips' red; If snow be white, why then her breasts are dun.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=2000 Shakespeare in love 3b
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love 3b
+Text=I have seen roses damasked, red and white; But no such roses I see in her cheeks; And in some perfumes is there more delight Than in the breath from my mistress reaks...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What a charming sonnet! I love it! 
+Go to node ID=2000 Shakespeare gets lucky 2
+
+Requirement=!None
+Reply Text=Please, stop, I can endure no more of this drivel.
+Go to node ID=2000 Shakespeare in love 6
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love 4
+Text=Love is the most beautiful of dreams and the worst of nightmares. Can I not beg you to reconsider? To make the poor life of this wretched bard rich beyond measure?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How could I refuse such eloquence - please, recite your poem. 
+Go to node ID=2000 Shakespeare in love 3a
+
+Requirement=!None
+Reply Text=But...I fear that our union would produce...ugly children.
+Go to node ID=2000 Shakespeare in love 5
+
+Requirement=!None
+Reply Text=Forget it, I like my men a bit more...masculine.
+Go to node ID=2000 Shakespeare in love goodbye
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love 5
+Text=Love looks not with eyes, but with the mind. Could not my poetry express for you my love, a love which transcends the unsightly shell in which it dwells? 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=A poem? For me? I would love to hear your poetry!
+Go to node ID=Shakespeare in love 3a
+
+Requirement=!None
+Reply Text=Forget it, no poem could mask your gruesome visage.
+Go to node ID=2000 Shakespeare in love goodbye
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love 6
+Text=But you must let me finish, my love. <Ahem> I love to...no, that's not it...how did that go? Oh, yes: My mistress loves to...no, no, oh hateful brain, you have forgotten the ending!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=2000 Shakespeare gets lucky 1
+Text=Alas, words fail me dear lady, and I can express no kinder sign of love, than this kind kiss.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare gets bubble dialogue
+Text=Oh, sweet joy!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare gets lucky 2
+Text=Fear not for your reputation, sweet lady, if asked, nay -- if brought before the fearsome implements of the very Inquisition itself and subjected to all its horrors I would say no more than "sacred and sweet was all I saw in her."
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=(continue)
+Go to node ID=2000 Shakespeare gets lucky 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare gets lucky 3
+Text=Though, I must confess, 'twere that all I saw I would not be the happy man you see before you now. Please, before you go, my dearest, I have a trifle to keep you safe in your travels.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Thank you, my love.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=shakespeare loves you
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Shakespeare's Promise Ring
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2000 Shakespeare in love goodbye
+Text=When you depart from me sorrow abides and happiness takes his leave.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=2020 have muse
+Text=How now you! How goes your quest to aid this poor bard?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A5AML6Z3
+}
+}
+Reply Text=Though I used the only key to Shylocke's chests, I believe that I still could find a way to pick the lock and recover the muse eventually.
+Go to node ID=10 goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=XH0Q9B4B
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=A5AML6Z3
+}
+}
+Reply Text=I used the only key to open Shylocke's chest. I'm afraid that I cannot save your muse.
+Go to node ID=10 goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=4QYHSM4H
+}
+Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+State=XH0Q9B4B
+}
+}
+Reply Text=I'm still working on recovering your muse.
+Go to node ID=10 goodbye
+Icon=Quest Icon
+
+Requirement=Shylocke Collect Debt from the Bard
+Reply Text=Shylocke sent me here to collect your debt.
+Go to node ID=250 collect shylocke debt
+Action work in progress=(have Shylocke debt quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=33MF7UWD
+}
+}
+Reply Text=I convinced Shylocke to extend your debt.
+Go to node ID=255 side with shakespeare
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Extend Shakespeare's Debt
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+State=FMNHRA8C
+}
+}
+Reply Text=I've taken care of that problem you had with Shylocke - he won't be bothering you, or anyone else, ever again.
+Go to node ID=255 side with shakespeare
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Convince Shylocke to grant William more time to pay off debt
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Extend Shakespeare's Debt
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Shakespeare have muse
+Reply Text=I have recovered Sytheria.
+Go to node ID=200 saved muse
+Action work in progress=(complete muse quest)
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Shakespeare Muse
+}
+}
+}
+Reply Text=I have other questions.
+Go to node ID=5 Return Dialogue 2
+
+Requirement=!None
+Reply Text=I should be on my way.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10000 zombie
+Text=Is this the end of Zombie Shakespeare?
+Should Have Voiceover=0
+}

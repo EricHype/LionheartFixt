@@ -1474,6 +1474,23 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.60.0 - Shakespeare in the Wilderness
+
+**Needs a character who has not been to the Crossroads yet** -- two new level parts, and a map's
+entity list is frozen into a save on first entry. He appears only once the **Muse** quest is
+complete.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SW1 | Recover Shakespeare's muse from Shylocke, then travel to the Crossroads from Barcelona | - | He is standing on the road a few steps in, west of where you arrive |
+| SW2 | Talk to him | - | *"And enter the hero, stage right!"* -- he is visiting your battle sites to research a play. **With voiceover** |
+| SW3 | Talk again | - | The pitch: **Richard II**, named for you, *"a tale whose ending *you* will complete"*, and two replies |
+| SW4 | Take *"I'm pleased and flattered"* | - | *"Oh joyous moment... You must return later and I will reveal to you the opening scene of your play!"* |
+| SW5 | Talk to him after that | - | *"The fruit of the tree is too young and not yet ripe for the picking."* Every time, for good -- the game contains no opening-scene node, so this is the honest end of the thread |
+| SW6 | **The row that was broken before it shipped.** On a different character, take *"This place is too dangerous for you. Return to Barcelona."* | - | He says farewell **and goes**: he stops being talkable, fades out over a second and a half, and is gone. Before this release the reply had no action and he would have stood there forever |
+| SW7 | After sending him home, leave the Crossroads and come back | - | Still gone. The generator is switched off too, so he does not respawn |
+| SW8 | **Regression.** Visit his house in the Port District | - | Everything there is as it was: the muse thanks, the debt conversations, the arbitration. One action was added to his whole tree and no line was changed |
+
 ## 0.59.0 - the spirit warns you about the undead
 
 **New character, or at least one that has never entered Darkwood Cave** -- the trigger is a new level
