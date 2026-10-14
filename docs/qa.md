@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.58.1 - the gift, where the detector was meant to be
+
+Still needs a **brand-new character**. Three faults from 0.58.0, each with its own row.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GF9 | New game. Finish the opening conversation and then **walk north with him** | - | The gift scene fires **partway up the walk**, not the instant the goodbye closes. Roughly 500 units along |
+| GF10 | **The row the report is about.** Listen | - | *You hear it.* 25 seconds of DaVinci in the male recording, 22 in the female. Silence here means the speaker still is not resolving |
+| GF11 | Watch him while it plays | - | He is **still beside you**, on the walk. The scene sits short of the courtyard trigger that releases him, so he should not be strolling or bantering yet |
+| GF12 | On a male character, read which line you got | - | *"Signore!"*, and the male text. Before this release the gender read happened in a context with no instigator and every character would have fallen to the female line |
+| GF13 | Open the bag afterwards | - | The icon flashes, one extra Potion of Healing, two in total. Unchanged from 0.58.0 |
+| GF14 | **Regression on vanilla's sequence.** After the courtyard | - | He strolls and banters as he always did, and the faction quest and the opening autosave both still happen. The goodbye reply kept all three of its own actions and only gained the arming |
+| GF15 | Dawdle: finish the talk, wander back toward the city gate, then go north later | - | The scene still fires when you eventually cross that stretch. The detector stays armed; it is `Trigger Only Once=1`, not time-limited |
+
 ## 0.58.0 - DaVinci's parting gift
 
 **This needs a brand-new character.** The scene is a new level part in the Gate District, and a map's

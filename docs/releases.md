@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.58.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.58.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,87 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.58.1 - the gift, where the detector was meant to be
+
+**Reported from play:** *"it fired immediately after the normal intro from Leo, I didn't hear any
+audio for it. Leonardo instead wandered off and played other lines."*
+
+Three faults, one cause: 0.58.0 hung the scene off the goodbye reply. And the game had already said
+where it goes, in a field at the top of the file I had read past.
+
+### Vanilla named this entity and never built it
+
+The tree's root carries:
+
+    Default Canceled Node Action=CMultipleActionsAction{
+        CActivateAction{Target Name=detect player for davinci gift}
+        CActivateAction{Target Name=davinci banter relay}}
+
+**`detect player for davinci gift` exists in no map in the game.** So the gift was wired from the
+dialogue side -- ending the opening conversation arms a detector and sets him strolling -- and the
+entity it arms was never placed. The name says what it is: a proximity trigger. That is the shape
+0.58.0 should have built, and `vo_reach.py` could never have told me, because a name only a tree
+mentions looks like nothing at all.
+
+### Where it sits, and the arithmetic behind that
+
+It is a clone of this map's own `start davinci dialogue`: `CTouchingOvalTriggerAI`, `Active=0`,
+`Trigger Only Once=1`, `Triggered By Name=Player1`, work in `Repeat Action` with `Repeat Every=0.1`,
+then self-deactivate.
+
+It sits on **`DaVinci Walks Here 1`**, the first waypoint of the escort, radius 200:
+
+| | | |
+|---|---|---|
+| where the opening talk happens | `start davinci dialogue` (1647, 3136) | **523** units away |
+| where it sits | (2105, 2882) | radius 200 |
+| where his AI is released | `davinci enters barcelona` (2091, 2306) | **576** units away |
+
+Both clearances are more than the radius's own width, and the build asserts it. The first draft of
+this fix used radius 300 at the *second* waypoint and the verifier caught it: that circle reached to
+within 275 of the courtyard trigger, whose `Enter Action` sends `CSendAIDoneMessage{Target=DaVinci}`.
+The two zones would have overlapped and freed him in the middle of his own scene -- the exact bug
+being fixed.
+
+### Why there was no audio
+
+Two reasons, both now fixed.
+
+**`Speaker=$trigger` resolves to nothing when a dialogue reply fires the relay.** It is the correct
+idiom for a relay a *trigger* fires, which is why it is in 1,276 places, and meaningless here. A
+literal speaker name is shipped in about ninety, so it is `Speaker=DaVinci` -- the name the generator
+gives him and the name his own `CSendAIDoneMessage` already targets.
+
+**And the lines were talking over each other.** `1000 you need allies exit` is a **17.9 second**
+recording; the gift is **25.2**. Firing the second the instant the first was dismissed asked the
+engine to start a voice line while a voice line was still running. Several hundred units of walking
+puts real time between them.
+
+Both recordings were checked as audio, not just as filenames: Ogg Vorbis, mono, 44.1 kHz, 25.2s and
+21.9s, the same shape as the goodbye line that does play.
+
+### A silent wrong answer that was also in there
+
+`Character to get attributes from=$Instigator` has the same problem one level down: a relay inherits
+no instigator, so the gender test would have failed and **every character would have been read as
+female**. The fix is vanilla's own, four parts up this same map file: the starting-kit relay wraps
+its work in `CImpersonateAction{Trigger=$Trigger, Instigator=Player1}` for precisely this reason.
+The gender branch now sits inside that.
+
+Nothing about his escort changed, and the goodbye reply kept all three of its original actions -- the
+faction quest state, the AI-done that ends his talking step, and the autosave. It only gained the
+arming.
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green on 136 trees, `auto_open_risk.py` clean,
+and 24 assertions off disk against `git show HEAD`, `v0.57.10` and vanilla: the entity vanilla names
+and never placed now exists exactly once, 0.58.0's relay gone without a trace, the map is 0.57.10
+plus one part, the trigger armed off and one-shot and self-deactivating, both clearances asserted by
+arithmetic, the speaker named, the impersonation outside the gender read, both node ids byte-exact,
+both .ogg files real audio, the escort parts byte-identical to vanilla, and still not one word of
+dialogue written.
 
 ## 0.58.0 - DaVinci's parting gift
 

@@ -2765,9 +2765,12 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=4
-Action=CTriggerRelayAction
+Action=CActivateAction
 {
-Relay Name=Fixt davinci parting gift
+Target Name=detect player for davinci gift
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
 }
 Action=CActivateQuestStateAction
 {
