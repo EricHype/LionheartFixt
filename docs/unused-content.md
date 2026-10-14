@@ -1733,8 +1733,7 @@ And beside them, recorded and entered by nothing:
 | `1000 adversary` + `part 2` | -- | -- | 257 KB |
 | `1000 ...alamut reply` | -- | -- | 175 KB |
 
-`35 undead encounter` in **all three** is the clearest shape: one trigger, never placed in any map,
-three recordings. `1000 druid finale` in all three is the next: a story beat with a per-companion
+~~`35 undead encounter` in **all three** is the clearest shape: one trigger, never placed in any map, three recordings.~~ **Done in 0.59.0.** `1000 druid finale` in all three is the next: a story beat with a per-companion
 reaction written for each, which is how this game writes its companions.
 
 **The classification question for this group**, which must be answered before anything is built:
@@ -1792,6 +1791,33 @@ should not be re-reported as discoveries.
 all, undecidable without listening to the file.
 
 ---
+
+### Done in 0.59.0 -- the undead warning, and the classification question answered
+
+**The notes asked for this group to be classified before anything was built, and the answer is that
+the live generic lines are not supersessions.** Demonic's `20 general danger encounter warning` and
+Elemental's `20 generic danger sense` are vague on purpose -- *"Something just ahead would like to
+separate your head from your shoulders"*, *"I sense a formidable power nearby"* -- while
+`35 undead encounter` names what it senses. Specific, recorded in all three trees, placed nowhere.
+
+**The reply count told me how to fire it, and the earlier reading of that signal was wrong.** Every
+wired spirit warning carries replies and opens as a conversation: `30 dragon encounter` three,
+`300 aesma warning` two, `800 weird woman` two. `35 undead encounter` has none -- and so does
+`1100 Found Mana`, which **is** wired, as a **balloon**, from
+`Common Objects and Scripts/First Mana Pickup Spirit Call.can`. So in this family a reply-less node is
+not an unfinished node, it is a balloon, and that can is the template for every one of them.
+
+**That can is also the cheapest possible host.** It creates its own marker at `$Trigger` and ends its
+own non-interactive sequence, so a new scene costs **one** level part, where the wererat and ogre cave
+scenes each need four (`spirit nis switch`, `goblin spirit scene relay`, `Spawn Spirit Here`,
+`end spirit nis`). 0.59.0's can is vanilla's with four substitutions, proved by reversing them and
+comparing byte for byte.
+
+**Still unplaced in this group, and now classifiable the same way:** `750 name` (all three),
+`750 good and evil` (Beast), `200 beast compliment` / `200 divine compliment`, `20 prime werewolf
+encounter` (Beast), `1000 druid finale` (all three), `1000 adversary` + `part 2` and the two
+`1000 ... alamut reply` nodes (Elemental). The `1000` ones carry replies, so they are conversations
+and need a moment in the story rather than a trigger in a corridor.
 
 ### Done in 0.58.0 -- the parting gift, and what its node shape gave away
 
