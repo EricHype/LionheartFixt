@@ -49,7 +49,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -63,6 +63,104 @@ Action=CGiveExperiencePointsToAllPlayersAction
 {
 Get XP Frome=Fixt Tank Gear XP
 Experience Points To Add=1
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CActivateAction
+{
+Target Name=DaVinci
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CFadeToOpacityAction
+{
+Opacity To Fade To=1
+Seconds To Fade=0.3
+Part To Fade=DaVinci
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=DaVinci
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CRemoveAIAction
+{
+Target Name=DaVinci
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CAddAIAction
+{
+Target Name=DaVinci
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Companions=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTalk
+Action=CDisplayDialogTreeAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/DaVinciBarcelona
+Node ID=908 Fixt he returns to the chamber
+Speaker=$trigger
+Player Being Spoken To=$Instigator
+}
+X Radius=100
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
+}
+Action=CDelayAction
+{
+Next Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/DaVinciBarcelona
+Node ID=909 Fixt he is back
+Name of Position=DaVinci
+Position Offset=0.000000,-80.000000
+After Action=
+Include In Log=1
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Delay=2.5
+Plus or Minus=0
+Forget Trigger=0
 }
 }
 }

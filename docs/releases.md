@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.8 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.9 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,71 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.9 - he comes back for it
+
+**Reported from play:** *"leonardo didn't appear when i put the gear in the tank, but the rest of the
+mechanism worked."*
+
+0.57.8 moved his reaction upstairs on the strength of a real finding: the chamber copy of DaVinci is
+stripped of his conversation and **deactivated** by the `davinci leaves` relay, fired from the
+Goodbye reply of the conversation that hands out the quest. That is still true. The conclusion drawn
+from it was too quick.
+
+### Deactivated is not deleted
+
+`CDeactivateAction{Target Name=DaVinci}` switches the spawned instance off. It does not mark it for
+deletion. The man is still parked in the room, at his old spot, faded to zero opacity.
+
+And the game itself turns one back on. `3 Montaillou/01 Hamlet Exterior.zax` deactivates both
+`Mayor Generator` and `Mayor` in the interior map, and a later relay activates **both** again, with
+`CAddAIAction` handing the character a fresh interaction specifier a tenth of a second afterwards.
+That is the whole mechanism needed here, shipped, in a map nobody modded.
+
+### So the ring brings him back
+
+Seating it now runs his exit scene backwards, in the same order and with the same parts:
+
+- `CActivateAction` on `DaVinci`,
+- `CFadeToOpacityAction` to **1**, because he left at 0,
+- `CSpawnEffectAction` with `Special Effects/Teleport Generic`, the effect he vanished on,
+- `CRemoveAIAction` then `CAddAIAction` -- the shipped swap -- handing him a `GetCloseThenTalk`
+  specifier that opens his reaction,
+- and a balloon over him a second later, so the player looks up instead of walking out.
+
+> `<He arrives with a lamp in one hand and does not look up from the hull.>` I felt that through the
+> floor. It seated true, which means the root has been eased, and I did not draw that and should
+> have. It will turn now, when there is something in it willing to turn it. One half of a war
+> machine, my friend. The other half is a spirit I have not yet found a decent excuse for taking.
+> Thank you for the half I can see.
+
+The whole thing is delayed two and a half seconds, so it happens while the player is reading the
+paragraph about the ring seating rather than behind the dialogue box.
+
+### Why this one works on a save that has already been down there
+
+**Every part it names already exists in that map, and every line of it lives in a dialogue tree.**
+Map parts are frozen into a save the first time the room is entered; dialogue is resolved at
+conversation time. That is the difference that has shaped this whole run -- it is why the experience
+marker could not be paid on an old save, and it is why this scene can be.
+
+The specifier swap is also idempotent on purpose. A player who escaped the first conversation
+instead of saying goodbye still has a DaVinci standing there with his original two-node greeting;
+the remove-then-add gives that player the same scene rather than a second conversation competing
+with the first.
+
+### 0.57.8 stays
+
+The workshop reaction is still offered once the quest is complete. It is the fallback for anyone who
+finished the quest in 0.57.1 through 0.57.8, when there was nobody downstairs to show it to.
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green on 136 trees, `auto_open_risk.py` clean,
+and 20 assertions off disk against `git show HEAD`: four actions where there were three with the
+original three byte-identical, activated rather than generated a second time, faded **up**, the swap
+in the right order, the conversation player-initiated, the balloon anchored on him, **no `.zax` in
+the diff at all**, and vanilla's own *"sinister taint in your soul"* still the only soul in the file.
 
 ## 0.57.8 - he looks the work over
 

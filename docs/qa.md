@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.9 - he comes back for it
+
+**This one reaches an existing save.** Nothing in it is a map part: the whole scene is actions on a
+dialogue reply, and dialogue is read at conversation time. A character who has already been in the
+chamber, and already watched DaVinci teleport out of it, gets this.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR30 | Seat the ring at the tank and stay in the room | - | About two and a half seconds later DaVinci **teleports back in**, at his old spot by the door, and a balloon over him reads *"Do not move it yet. Let me see."* |
+| TR31 | Talk to him there | - | *"I felt that through the floor. It seated true..."* -- the root eased, the turret that will turn when something in it is willing, the half he cannot see. Nothing is taken and nothing is paid |
+| TR32 | **The one that catches a half-restored NPC.** Walk up to him and check he is solid and clickable | - | Fully opaque, not a ghost, and the conversation opens. He was faded to zero opacity on his way out, so a silhouette you cannot talk to means the fade or the specifier swap did not land |
+| TR33 | Talk to him again, then leave the chamber and come back | - | He is still there and still says it. He does not teleport out again -- the leave relay is spent |
+| TR34 | Go upstairs and talk to the workshop DaVinci | - | 0.57.8's reaction is still offered. Two of him being pleased is intended; the chamber one is the scene, the workshop one is the fallback for anyone who finished the quest before this release |
+
 ## 0.57.8 - he looks the work over
 
 The tank ends the quest; this is the beat after it. **Gated on the quest being completed rather than
