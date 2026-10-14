@@ -1775,7 +1775,7 @@ Ranked by what exists, not by size. None of these is classified yet.
 | `InquisitorRaphael / 500 Return from Montaillou`, `321 chapter 2 mission 2` | 468 | act-boundary Inquisition dialogue |
 | `GrandInquisitor / 400 NIS Dialogue 4b` + `Jafar / 400 NIS Dialogue 4b` | 171+ | an alternate branch of the council scene, in **both** trees |
 | ~~`DaVinciBarcelona / 500 davinci gives a gift ... male` / `female`~~ | 554 | a starting gift, gendered pair, the largest single pair in the sweep. **Done in 0.58.0** |
-| `shakespeare / 1000 in wilderness`, `in wilderness 2`, `1000 extended shakespeares debt` | 294 | Shakespeare encountered in the Wilderness, scripting *Richard II* in the player's honour |
+| ~~`shakespeare / 1000 in wilderness`, `in wilderness 2`~~ | 294 | Shakespeare encountered in the Wilderness, scripting *Richard II* in the player's honour. **Done in 0.60.0**; `1000 extended shakespeares debt` is a draft and stays unwired, see below |
 | `Shylocke / 140 no resolution`, `312 charge`, `500 shylocke gets gold`, `7 return with shakepeares money` | 459 | the arbitration's unresolved branches, matching `cortes / 151 no resolution 2` and `800 Return Dialogue` on the other side of the same dispute |
 | `Demonic Spirit / 500 divine explanation demon` | 414 | the largest single recording in the sweep |
 | `weirdwoman / 100 Return` | 63 | **9 replies.** Na Roqua's return conversation |
@@ -1791,6 +1791,42 @@ should not be re-reported as discoveries.
 all, undecidable without listening to the file.
 
 ---
+
+### Done in 0.60.0 -- Shakespeare in the Wilderness, and a draft that was left alone
+
+**The file is `shakespeare.dialogtree`, lowercase.** Every `*.DialogTree` search in this project's
+ad-hoc tooling misses it; the engine does not care. `vo_reach.py` found the lead anyway because it
+works from the voiceover folders rather than the tree names, which is the second time it has seen
+something a name-based search could not. **If a tree seems to be missing, check the case of its
+extension before concluding the file was cut.**
+
+**Restored:** five nodes, 0.34 MB -- the arrival, the Richard II pitch, his delight, his retreat and
+*"the fruit of the tree is too young and not yet ripe"* for every visit after. Delivered as three
+`CDisplayDialogTreeAction`s in a `CSeriesAction` with `When Done=Repeat Last Action` on one
+specifier, the `Secret Leo` idiom, because **these nodes carry replies**. That is the dividing line
+this run established: replies mean a conversation, no replies means a balloon
+([[lionheart-a-replyless-node-is-a-balloon]]).
+
+**Also fixed, and it was broken before it shipped:** the reply "This place is too dangerous for you.
+Return to Barcelona." had **no action at all**, so he would have agreed to leave and then stood in
+the Wilderness permanently.
+
+### NOT done, and why: `1000 extended shakespeares debt`
+
+It reads like an unreached reward -- 500 XP from a marker that **does** exist in his house, a
+generated amulet, +75 karma. It is a **draft that lost**, and three things say so:
+
+1. the shipped reply that would open it (*"I convinced Shylocke to extend your debt"*, gated on state
+   `33MF7UWD`) already **completes the quest** and already **pays the experience from that same
+   marker**;
+2. the draft's own action list pays that experience a **second** time, so wiring it double-pays;
+3. the live node it goes to instead, `255 side with shakespeare`, carries a developer's note in the
+   file: `Action work in progress=(speak with shylocke quest)`.
+
+**Adding the amulet and the karma to the live reply would be a design decision, not a restoration.**
+It is a reasonable one -- the extended-debt route currently pays less than the murder route does in
+karma terms -- but it is a change to a shipped reward and belongs to whoever is tuning rewards, not
+to a restoration pass.
 
 ### Done in 0.59.0 -- the undead warning, and the classification question answered
 
