@@ -1,0 +1,556 @@
+CCannedObject
+{
+	Object=CIfExpressionAction
+	{
+		If Expression=CIsEqualTo
+		{
+			Operand1=CVariableDerivedCharacterAttribute
+			{
+				Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Undead Warning Given
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=0
+			}
+		}
+		Character to get attributes from=Player1
+		Then=CMultipleActionsAction
+		{
+			Action=Array
+			{
+				Item Count=3
+				Action=CBeginNonInteractiveSequenceAction
+				{
+					Options=CNonInteractiveSequence
+					{
+						Pause Characters=1
+						Disable Player Controls=1
+					}
+				}
+				Action=CAddCharacterModifierToCharacterAction
+				{
+					Modifier Description=
+					Modification is permanent=0
+					Character to modify=Player1
+					Modifiers=Array
+					{
+						Item Count=1
+						Modifier=CCharacterModifierDerivedAttribute
+						{
+							Modification Amount=CConstant
+							{
+								Constant Value=1
+							}
+							Modification amount is a percent=0
+							Allow Accumulation=1
+							Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Undead Warning Given
+						}
+					}
+					OPTIONAL Duration=
+					Expression Context=$Instigator
+				}
+				Action=CConditionalAction
+				{
+					Try Action=CExpressionAction
+					{
+						Expression=CHasSpirit
+						{
+							Spirit=Spirits/Ancestral
+						}
+						Character to get attributes from=$Instigator
+					}
+					Succeed Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CCreateCustomEntityAction
+							{
+								New Location=$Trigger
+								Copy Height=0
+								Random Location Delta=70
+								Warp Behavior=
+								Entity=CEntityBase
+								{
+									Name=fixt undead spirit dialog spot
+									Child List=
+									Visible=1
+									Collideable=1
+									Half Height=0
+									Full Height=1
+									Tries To Collide=0
+									Has Hit Points=0
+									Stationary=1
+									Active=1
+									Is Temporarily Excluded=0
+									Is Marked For Deletion=0
+									Activity=Array
+									{
+										Item Count=1
+										Activity=CAIAttractCamera
+										{
+											Marked For Deletion=0
+											Publisher=
+											Camera Arrived Action=
+											Disable Self When Camera Arrives=0
+										}
+									}
+									Category=
+									Team Number=Nutral
+									Used In=QuestMode
+									Current Target=
+									Publisher=
+									Model=Editor/Position Marker
+									Position X=0
+									Position Y=0
+									Rendering Height=0
+									Rendering Height Float=0
+									Cur Sequence=Idle
+								}
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CSpawnEffectAction
+										{
+											Explosion Model=Special Effects/Spirit Calls/Ancestral
+											Location Entity=fixt undead spirit dialog spot
+											Make effect a child of the location entity=0
+											X Offset=0
+											Y Offset=0
+											Height Offset=0
+											Play Default Sound=1
+											Action to execute After Effect=
+										}
+										Action=CDelayAction
+										{
+											Next Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CCreateDefaultEntityAction
+													{
+														New Location=fixt undead spirit dialog spot
+														Copy Height=0
+														Random Location Delta=0
+														Warp Behavior=
+														Model to Create=Special Effects/Spirits/Ancestral
+														New Name=Summoned Spirit
+													}
+													Action=CPlayAnimationAction
+													{
+														Animation=Appear
+														Random From Sequencial Set=0
+														Target Name=Summoned Spirit
+														When Done=Set Sequence
+														End Sequence Name=Idle
+														Delay Between Targets=0
+														Play In Reverse=0
+														AI To Interrupt=CSkeletonAI
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Elemental Spirit
+															Node ID=35 undead encounter
+															Name of Position=Summoned Spirit
+															Position Offset=0.000000,-105.000000
+															After Action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=4
+																	Action=CEndNonInteractiveSequenceAction
+																	{
+																	}
+																	Action=CPlayAnimationAction
+																	{
+																		Animation=Disappear
+																		Random From Sequencial Set=0
+																		Target Name=Summoned Spirit
+																		When Done=Stop on last frame
+																		End Sequence Name=Idle
+																		Delay Between Targets=0
+																		Play In Reverse=0
+																		AI To Interrupt=CSkeletonAI
+																	}
+																	Action=CDeleteAction
+																	{
+																		Target Name=fixt undead spirit dialog spot
+																	}
+																	Action=CDelayAction
+																	{
+																		Next Action=CDeleteAction
+																		{
+																			Target Name=Summoned Spirit
+																		}
+																		Delay=1.5
+																		Plus or Minus=0
+																		Forget Trigger=0
+																	}
+																}
+															}
+															Include In Log=1
+														}
+														Delay=1.8
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Fail Action=CConditionalAction
+					{
+						Try Action=CExpressionAction
+						{
+							Expression=CHasSpirit
+							{
+								Spirit=Spirits/Beastial
+							}
+							Character to get attributes from=$Instigator
+						}
+						Succeed Action=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CCreateCustomEntityAction
+								{
+									New Location=$Trigger
+									Copy Height=0
+									Random Location Delta=70
+									Warp Behavior=
+									Entity=CEntityBase
+									{
+										Name=fixt undead spirit dialog spot
+										Child List=
+										Visible=1
+										Collideable=1
+										Half Height=0
+										Full Height=1
+										Tries To Collide=0
+										Has Hit Points=0
+										Stationary=1
+										Active=1
+										Is Temporarily Excluded=0
+										Is Marked For Deletion=0
+										Activity=Array
+										{
+											Item Count=1
+											Activity=CAIAttractCamera
+											{
+												Marked For Deletion=0
+												Publisher=
+												Camera Arrived Action=
+												Disable Self When Camera Arrives=0
+											}
+										}
+										Category=
+										Team Number=Nutral
+										Used In=QuestMode
+										Current Target=
+										Publisher=
+										Model=Editor/Position Marker
+										Position X=0
+										Position Y=0
+										Rendering Height=0
+										Rendering Height Float=0
+										Cur Sequence=Idle
+									}
+								}
+								Action=CDelayAction
+								{
+									Next Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Special Effects/Spirit Calls/Beast
+												Location Entity=fixt undead spirit dialog spot
+												Make effect a child of the location entity=0
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CDelayAction
+											{
+												Next Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CCreateDefaultEntityAction
+														{
+															New Location=fixt undead spirit dialog spot
+															Copy Height=0
+															Random Location Delta=0
+															Warp Behavior=
+															Model to Create=Special Effects/Spirits/Beast
+															New Name=Summoned Spirit
+														}
+														Action=CPlayAnimationAction
+														{
+															Animation=Appear
+															Random From Sequencial Set=0
+															Target Name=Summoned Spirit
+															When Done=Set Sequence
+															End Sequence Name=Idle
+															Delay Between Targets=0
+															Play In Reverse=0
+															AI To Interrupt=CSkeletonAI
+														}
+														Action=CDelayAction
+														{
+															Next Action=CDisplayDialogBalloonAction
+															{
+																Dialog Tree File=Levels/Wilderness/Dialog/Beast Spirit
+																Node ID=35 undead encounter
+																Name of Position=Summoned Spirit
+																Position Offset=0.000000,-105.000000
+																After Action=CMultipleActionsAction
+																{
+																	Action=Array
+																	{
+																		Item Count=4
+																		Action=CEndNonInteractiveSequenceAction
+																		{
+																		}
+																		Action=CPlayAnimationAction
+																		{
+																			Animation=Disappear
+																			Random From Sequencial Set=0
+																			Target Name=Summoned Spirit
+																			When Done=Stop on last frame
+																			End Sequence Name=Idle
+																			Delay Between Targets=0
+																			Play In Reverse=0
+																			AI To Interrupt=CSkeletonAI
+																		}
+																		Action=CDeleteAction
+																		{
+																			Target Name=fixt undead spirit dialog spot
+																		}
+																		Action=CDelayAction
+																		{
+																			Next Action=CDeleteAction
+																			{
+																				Target Name=Summoned Spirit
+																			}
+																			Delay=1.5
+																			Plus or Minus=0
+																			Forget Trigger=0
+																		}
+																	}
+																}
+																Include In Log=1
+															}
+															Delay=1.8
+															Plus or Minus=0
+															Forget Trigger=0
+														}
+													}
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Delay=0
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+							}
+						}
+						Fail Action=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CCreateCustomEntityAction
+								{
+									New Location=$Trigger
+									Copy Height=0
+									Random Location Delta=70
+									Warp Behavior=
+									Entity=CEntityBase
+									{
+										Name=fixt undead spirit dialog spot
+										Child List=
+										Visible=1
+										Collideable=1
+										Half Height=0
+										Full Height=1
+										Tries To Collide=0
+										Has Hit Points=0
+										Stationary=1
+										Active=1
+										Is Temporarily Excluded=0
+										Is Marked For Deletion=0
+										Activity=Array
+										{
+											Item Count=1
+											Activity=CAIAttractCamera
+											{
+												Marked For Deletion=0
+												Publisher=
+												Camera Arrived Action=
+												Disable Self When Camera Arrives=0
+											}
+										}
+										Category=
+										Team Number=Nutral
+										Used In=QuestMode
+										Current Target=
+										Publisher=
+										Model=Editor/Position Marker
+										Position X=0
+										Position Y=0
+										Rendering Height=0
+										Rendering Height Float=0
+										Cur Sequence=Idle
+									}
+								}
+								Action=CDelayAction
+								{
+									Next Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Special Effects/Spirit Calls/Demon
+												Location Entity=fixt undead spirit dialog spot
+												Make effect a child of the location entity=0
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CDelayAction
+											{
+												Next Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CCreateDefaultEntityAction
+														{
+															New Location=fixt undead spirit dialog spot
+															Copy Height=0
+															Random Location Delta=0
+															Warp Behavior=
+															Model to Create=Special Effects/Spirits/Demonic
+															New Name=Summoned Spirit
+														}
+														Action=CPlayAnimationAction
+														{
+															Animation=Appear
+															Random From Sequencial Set=0
+															Target Name=Summoned Spirit
+															When Done=Set Sequence
+															End Sequence Name=Idle
+															Delay Between Targets=0
+															Play In Reverse=0
+															AI To Interrupt=CSkeletonAI
+														}
+														Action=CDelayAction
+														{
+															Next Action=CDisplayDialogBalloonAction
+															{
+																Dialog Tree File=Levels/Wilderness/Dialog/Demonic Spirit
+																Node ID=35 undead encounter
+																Name of Position=Summoned Spirit
+																Position Offset=0.000000,-105.000000
+																After Action=CMultipleActionsAction
+																{
+																	Action=Array
+																	{
+																		Item Count=4
+																		Action=CEndNonInteractiveSequenceAction
+																		{
+																		}
+																		Action=CPlayAnimationAction
+																		{
+																			Animation=Disappear
+																			Random From Sequencial Set=0
+																			Target Name=Summoned Spirit
+																			When Done=Stop on last frame
+																			End Sequence Name=Idle
+																			Delay Between Targets=0
+																			Play In Reverse=0
+																			AI To Interrupt=CSkeletonAI
+																		}
+																		Action=CDeleteAction
+																		{
+																			Target Name=fixt undead spirit dialog spot
+																		}
+																		Action=CDelayAction
+																		{
+																			Next Action=CDeleteAction
+																			{
+																				Target Name=Summoned Spirit
+																			}
+																			Delay=1.5
+																			Plus or Minus=0
+																			Forget Trigger=0
+																		}
+																	}
+																}
+																Include In Log=1
+															}
+															Delay=1.8
+															Plus or Minus=0
+															Forget Trigger=0
+														}
+													}
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Delay=0
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+							}
+						}
+						Return failure if the TryAction failes=0
+					}
+					Return failure if the TryAction failes=0
+				}
+			}
+		}
+		Else=CSucceedAction
+		{
+			Action=
+		}
+	}
+	Use=Shared Global Instance
+}

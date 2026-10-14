@@ -1474,6 +1474,23 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.59.0 - the spirit warns you about the undead
+
+**New character, or at least one that has never entered Darkwood Cave** -- the trigger is a new level
+part, and a map's entity list is frozen into a save on first entry. It fires **once per game**, on
+its own scripting variable.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| UE1 | Enter Darkwood Cave from the Woodcutter Forest and walk west | - | A few steps in, the screen takes over: your spirit appears beside you with its own summoning effect, says its line, and vanishes again |
+| UE2 | Listen | - | *With voiceover.* Beast and Elemental: *"I sense abominations... unliving creatures animated by dark spirits."* Demonic has its own: *"Die by their hands and you'll join them in unlife. Do *try* and avoid dying, mmm?"* |
+| UE3 | **The row that proves the spirit branch.** Play a character of each spirit | - | Each gets **their own** recording and their own summoning effect, Beast / Demonic / Elemental. The same three-way test the wererat cave scene uses |
+| UE4 | Note where it fires | - | **Before** the first undead, not on top of them, and not as the map loads. It sits 350 units past the arrival pad and 339 short of the nearest skeleton generator |
+| UE5 | **Once only.** Leave the cave and come back; find undead elsewhere | - | It does not play again, anywhere. It is guarded by a scripting variable that is set the first time, exactly as the first-mana-pickup scene is |
+| UE6 | Watch the end of it | - | Controls come back, the spirit plays its Disappear and is gone. Anything left standing in the cave means the cleanup did not run |
+| UE7 | **Regression.** Pick up a spirit-mana charge for the first time on a fresh character | - | The *mana* scene still plays normally. The new can is a copy of it and must not have disturbed it |
+| UE8 | **Regression.** Finish the darkwood errand | - | Unchanged. Nothing else in the cave was touched: every other level part is byte-identical to vanilla |
+
 ## 0.58.1 - the gift, where the detector was meant to be
 
 Still needs a **brand-new character**. Three faults from 0.58.0, each with its own row.

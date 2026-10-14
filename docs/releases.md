@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.58.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.59.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,91 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.59.0 - the spirit warns you about the undead
+
+Asked for after the shortlist: *"do the undead encounter."*
+
+`35 undead encounter` exists in **all three** companion spirit trees, recorded in all three -- 98 KB
+Beast, 156 KB Demonic, 93 KB Elemental -- flagged `Should Have Voiceover=1`, and placed in no map.
+
+> I sense abominations... unliving creatures animated by dark spirits. Lionheart, beware the undead
+> here.
+
+> Can you sense them? Undead creatures, corpses animated by dark spirits. Die by their hands and
+> you'll join them in unlife. Do *try* and avoid dying, mmm?
+
+### The open question in the notes, answered
+
+`docs/unused-content.md` flagged this group as needing classification first, because Demonic has a
+live `20 general danger encounter warning` and Elemental a live `20 generic danger sense`, either of
+which could have been the generic line that replaced the specific one.
+
+Read side by side, they are not. The live ones are vague on purpose -- *"Something just ahead would
+like to separate your head from your shoulders"*, *"I sense a formidable power nearby"* -- and this
+one names what it senses. A specific line that was never placed, not a draft of a generic one.
+
+### The node's shape told me how to fire it
+
+Every spirit warning that **is** wired carries replies: `30 dragon encounter` has three, `300 aesma
+warning` two, `800 weird woman` two, and all are opened with `CDisplayDialogTreeAction` as
+conversations with your spirit.
+
+`35 undead encounter` has **no replies at all**. The other reply-less node in this family is
+`1100 Found Mana`, and that one is fired as a **balloon** by
+`Common Objects and Scripts/First Mana Pickup Spirit Call.can`. So the undead line is a balloon, and
+that can is its template -- which also means the reply-less shape was never a sign of unfinished
+work, just of a different delivery.
+
+### Built as a derivation, not a rewrite
+
+The new can is vanilla's mana can with **four substitutions and nothing else**, which the build
+proves by reversing them and comparing the whole file byte for byte:
+
+| | |
+|---|---|
+| the scripting variable | `Player first pickup of Spirit Mana` -> `Fixt Undead Warning Given` |
+| the node id | `1100 Found Mana` -> `35 undead encounter` |
+| the marker it creates | `first mana spirit dialog spot` -> `fixt undead spirit dialog spot` |
+| the description | the variable's own |
+
+So it keeps all of the shipped scene: the three-way `CHasSpirit` conditional (Ancestral to the
+Elemental tree, Beastial to the Beast tree, else Demonic), the `Spirit Calls` effect, the spirit
+model created and played through `Appear`, the balloon, and the `After Action` that ends the
+non-interactive sequence, plays `Disappear` and deletes both entities. Being a can, it creates its
+own marker at `$Trigger`, so the host map needs no `Spawn Spirit Here` -- which is why this took one
+new level part instead of the four the wererat cave scene uses.
+
+### Where it fires, and the arithmetic
+
+**Darkwood Cave**, because the main quest's darkwood is in it, so every character goes there, and
+because every shipped spirit warning is a cave-entrance scene (Wererat Cave, Ogre Conjurer Cave).
+
+| | | |
+|---|---|---|
+| the player arrives | `From Woodcutter Forest` (2950, 1655) | **350** units away |
+| the warning fires | (2600, 1640), radius 250 | |
+| the nearest undead generator | (2261, 1629) | **339** units away |
+
+Both clearances exceed the radius, asserted in the build, so it cannot fire while the map is loading
+and it cannot fire after the first skeleton is already swinging. The undead centroid is (1532, 1367),
+further west again: the whole cave is ahead of the player when the spirit speaks.
+
+The trigger ends with `CActionResetPointClickAI` on the player, which is what the shipped
+`spirit nis switch` in both cave scenes does -- it cancels the move order so the player does not walk
+on through their own cutscene.
+
+### Checked
+
+`validate.py` clean on 708 files, `reachability.py` green, `auto_open_risk.py` clean, and 27
+assertions off disk against vanilla: the can is vanilla's with the four substitutions reversed, three
+balloons and no tree display, each spirit's branch matched to its own tree and effect, one begin and
+three ends for the cutscene, six deletes for the cleanup, no `Spawn Spirit Here` needed, the variable
+present and reading zero, nothing of the mana pickup left in it, Darkwood Cave vanilla plus exactly
+one part with **every other part byte-identical**, both distances asserted, and all three spirit
+trees untouched -- not one word written.
+
+`vo_reach.py`: **110 unreachable recorded nodes / 9.97 MB -> 107 / 9.63 MB.**
 
 ## 0.58.1 - the gift, where the detector was meant to be
 
