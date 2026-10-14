@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.7 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.57.8 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,61 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.57.8 - he looks the work over
+
+**Reported from play:** *"how can i offer it to him in the secret room? HE leaves when i leave the
+first time (where i get the quest) and I don't think he ever returns."*
+
+Correct, and the mechanism is worse than it sounds. He is not placed in the chamber at all: a touch
+polygon (`trigger poly`, `CTouchingPolygonTriggerAI`, `Trigger Only Once=0`) activates a generator
+called `Secret Leo` that sits `Active=0` until the player walks into it. The `davinci leaves` relay
+then does `CRemoveAIAction` on his interaction specifier and `CDeactivateAction` on him, at
+`Trigger Only Once=1`.
+
+**And that relay is fired by the "Goodbye." reply on nodes 5 and 6 -- the very conversation that
+hands out the quest.** So the ordinary way to end the conversation where you are given the errand
+removes the man from the room for the rest of the game. The polygon can fire again; he does not come
+back.
+
+Which means the chamber hand-in 0.57.7 preserved was dead content, and `902` -- the scene where he
+fits the ring while the player holds the lamp -- was unreachable with it.
+
+### The payoff moves to where he reliably is
+
+A reply on both workshop hubs, gated on `CIsQuestCompletedAction` for the tank quest:
+
+> `<He wipes his hands on his apron and does not sit down.>` Si. It is on the shaft, and the root
+> has been eased, which I did not draw and should have. It will turn now, when there is something in
+> it willing to turn it. `<He looks past you, at the floor, in the direction of the chamber.>` One
+> half of a war machine, my friend. The other half is a spirit I have not yet found a decent excuse
+> for taking. Thank you for the half I can see.
+
+**The gate is the quest's own completion**, not a marker entity, which is the lesson of this whole
+run: a quest-state check works on any save, where `Get XP Frome` needs a part the player's copy of
+the room may never have had.
+
+So the quest now reads: he refuses the ring upstairs, you seat it yourself at the machine, and he
+examines your work when you come back. Three beats, each in the right room.
+
+### soul became spirit
+
+At the author's instruction, here and in `902`. **Lowercase**, because that is how his own vanilla
+lines write it -- *"a rare spirit to me, bound within a special gem"*, *"You possess a spirit, one of
+great strength"* -- with the capital reserved for node and item names like `Spirit Transfer Gem
+DaVinci`.
+
+**Vanilla's own use of the word is untouched:** *"There is a sinister taint in your soul that you
+must restrain"* is the original game's line and stays exactly as written. The build asserts the
+count goes from two to one and never to zero, after a first version of that assert tried to take
+both.
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green on 136 trees, `auto_open_risk.py` clean,
+and 11 assertions off disk against `git show HEAD`: the reaction present on both hubs behind the
+completion gate, carrying no removal, no completion and no award, `902` reworded too, vanilla's line
+intact, 0.57.7's decline still standing, node count up by exactly one.
 
 ## 0.57.7 - the ring is seated where the tank is
 

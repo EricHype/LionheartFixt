@@ -1687,6 +1687,18 @@ Node ID=300 Enter Workshop
 Text=So good to see that you found my workshop! Per favore, be careful in this place. There are many gears and moving parts, so many delicate machines.
 Should Have Voiceover=1
 
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
+}
+}
+Reply Text=Your ring is on the shaft. I leaned on it, as instructed.
+Go to node ID=907 Fixt he inspects the work
+Icon=Quest Icon
+
 Requirement=Fixt Tank Gear Carried
 Reply Text=Your rotary gear. Your engine cut it.
 Go to node ID=906 Fixt not to me
@@ -1762,6 +1774,18 @@ Is Default Reply=1
 Node ID=3 Return Dialogue Workshop
 Text=Always a pleasure to see you my friend. What can I do for you?
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Create Mechanical Gears for DaVinci's Siege Tank
+}
+}
+Reply Text=Your ring is on the shaft. I leaned on it, as instructed.
+Go to node ID=907 Fixt he inspects the work
+Icon=Quest Icon
 
 Requirement=Fixt Tank Gear Carried
 Reply Text=Your rotary gear. Your engine cut it.
@@ -3153,7 +3177,7 @@ Is Default Reply=1
 
 ------------------------------------------------------------
 Node ID=902 Fixt the gear fitted
-Text=Let me see it. ... Si, that is the profile, and the root has been eased, which I did not draw and should have. Hold the lamp. There. It will turn now, when there is something in it willing to turn it. One half of a war machine, my friend, and the other half is a soul I have not yet found a decent excuse for taking. Thank you. Genuinely.
+Text=Let me see it. ... Si, that is the profile, and the root has been eased, which I did not draw and should have. Hold the lamp. There. It will turn now, when there is something in it willing to turn it. One half of a war machine, my friend, and the other half is a spirit I have not yet found a decent excuse for taking. Thank you. Genuinely.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -3241,5 +3265,15 @@ Requirement=!None
 Reply Text=Then I will go and put it on myself.
 Go to node ID=
 Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=907 Fixt he inspects the work
+Text=<He wipes his hands on his apron and does not sit down.> Si. It is on the shaft, and the root has been eased, which I did not draw and should have. It will turn now, when there is something in it willing to turn it. <He looks past you, at the floor, in the direction of the chamber.> One half of a war machine, my friend. The other half is a spirit I have not yet found a decent excuse for taking. Thank you for the half I can see.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Find your excuse. I will be nearby.
+Go to node ID=
+Icon=Exit Icon
 Is Default Reply=1
 }

@@ -1474,6 +1474,19 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.57.8 - he looks the work over
+
+The tank ends the quest; this is the beat after it. **Gated on the quest being completed rather than
+on a marker, so it works on any save.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR25 | Seat the ring at the tank, then go up and talk to DaVinci | - | *"Your ring is on the shaft. I leaned on it, as instructed."* opens his inspection: the root eased, the turret that will turn when something in it is willing, and the half he cannot see yet |
+| TR26 | Read what he calls the missing half | - | **a spirit**, not a soul. Lowercase, matching his own lines about the spirit gem |
+| TR27 | Before finishing the quest, check the same greeting | - | **No such reply.** It is gated on the quest being complete |
+| TR28 | Ask him again later | - | He says it again. It is a reflection on his machine, not a one-time cutscene, and nothing is paid twice |
+| TR29 | **Regression.** Find his vanilla line about a dark nature growing in you | - | *"There is a sinister taint in your **soul** that you must restrain"* -- unchanged. Only my own line was reworded |
+
 ## 0.57.7 - the ring is seated where the tank is
 
 Reported from play: the quest ended in the workshop, ten feet from the engine that cut the ring, and
