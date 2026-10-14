@@ -2276,9 +2276,33 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=
 Go to node ID=
-Custom Action=CSendAIDoneMessage
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Potion
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+}
+}
+Action=CFlashHudIconAction
+{
+Icon To Flash=Inventory Button
+Duration=45
+}
+Action=CSendAIDoneMessage
 {
 Target=DaVinci
+}
+}
 }
 Is Default Reply=1
 ------------------------------------------------------------
@@ -2289,9 +2313,33 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=
 Go to node ID=
-Custom Action=CSendAIDoneMessage
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Potion
+Additions to add=Array
+{
+Item Count=1
+Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Healing
+}
+}
+Action=CFlashHudIconAction
+{
+Icon To Flash=Inventory Button
+Duration=45
+}
+Action=CSendAIDoneMessage
 {
 Target=DaVinci
+}
+}
 }
 Is Default Reply=1
 ------------------------------------------------------------
@@ -2716,7 +2764,11 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt davinci parting gift
+}
 Action=CActivateQuestStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Gate District/DaVinci Tells You to Join A Faction

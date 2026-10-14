@@ -1474,6 +1474,23 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.58.0 - DaVinci's parting gift
+
+**This needs a brand-new character.** The scene is a new level part in the Gate District, and a map's
+entity list is frozen into a save the first time that map is entered. On any existing character
+nothing will happen, and that is not a bug.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GF1 | New game. Play the opening until DaVinci sends you off to meet the factions | - | After *"Before you go, I advise you to explore this city..."* closes, he opens a second scene: *"Signore! Oh, how could I have forgotten? I have something for you!"* **with voiceover** -- the recording is vanilla's own |
+| GF2 | Same on a **female** character | - | *"Signora!"*, and the wording differs through the whole line. The check tests for Male and falls to female, so a wrong gender shows up as a female character hearing *"Signore"* |
+| GF3 | Close the scene and open the bag | - | The inventory icon flashes, and there is **one more Potion of Healing** than the kit gave you. Two in total |
+| GF4 | **Regression.** Check the rest of the starting kit | - | Unchanged: the weapon or bow the kit rolls for your build, infinite arrows and bolts, and the kit's own single healing potion. The gift relay was added beside that one, not into it |
+| GF5 | **The one that catches a repeat.** Finish the scene, keep playing, come back and talk to him | - | No second gift and no second potion. The relay is `Trigger Only Once=1` and deactivates itself, and nothing in the tree points at the node that fires it |
+| GF6 | Check the quest log and the autosave | - | *DaVinci Tells You to Join A Faction* is active and the opening autosave still happened. The gift was added to that reply's action list, not in place of it |
+| GF7 | Watch him after the scene | - | He carries on -- walks off, banters, is talkable. Both scenes end on `CSendAIDoneMessage{Target=DaVinci}`, which is what releases his AI; if he stands frozen, that message is not landing |
+| GF8 | Any **existing** save | - | Nothing. Expected, and the reason GF1 says new game |
+
 ## 0.57.10 - he arrives on the beat and sounds like himself
 
 Two reports on 0.57.9, both accepted. **The lines are the point of this release**, so these rows are

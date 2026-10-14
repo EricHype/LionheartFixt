@@ -87,6 +87,84 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt davinci parting gift
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsGender
+									{
+										Acceptable Genders=Array
+										{
+											Item Count=1
+											Acceptable Gender=Male
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/DaVinciBarcelona
+									Node ID=500 davinci gives a gift to help you get started male
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
+								}
+								Else=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/DaVinciBarcelona
+									Node ID=500 davinci gives a gift to help you get started female
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
+								}
+								Return failure if the If failes=0
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt davinci parting gift
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1700
+			Position Y=2645
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Dynamic Properties=1
 			{
 				Experience Points=500

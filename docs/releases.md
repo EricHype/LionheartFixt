@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.57.10 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.58.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,78 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.58.0 - DaVinci's parting gift
+
+Asked for by the author after the voiceover sweep was re-ranked: *"do the gift, let him give an extra
+healing potion."*
+
+**The largest unreachable recording pair in the game.** `500 davinci gives a gift to help you get
+started male` and `female`, 299 KB and 255 KB, `Should Have Voiceover=1`, both `.ogg` files sitting
+in `DaVinciBarcelona VOs/`, and entered by nothing at all.
+
+> Signore! Oh, how could I have forgotten? I have something for you! I am far too old to be carrying
+> this around, but it might serve you. You might find it useful when exploring the wilderness beyond
+> the city walls, or you might sell it to a merchant and buy something else entirely. Honestly, I
+> don't mind, I have no more use for it. Ciao signore!
+
+### What the node's shape says
+
+Blank reply text, no target node, and `Custom Action=CSendAIDoneMessage{Target=DaVinci}` -- the
+message a scripted scene sends to tell a character's AI it may carry on. That is a **cutscene node**,
+not a conversation branch. It was waiting for a map to display it, and no map ever did.
+
+### Where it goes, and why that slot is the right one
+
+`1000 you need allies exit` is his goodbye at the end of the opening escort: *"Before you go, I
+advise you to explore this city and meet the leaders of the different factions."* The gift line opens
+with *"Oh, how could I have forgotten?"*, which is a thing you say **after** a goodbye.
+
+That node is shown by the `DaVinci tells you to get quest` relay at `Trigger Only Once=1`, which
+deactivates itself when it fires, and **no reply anywhere in the tree points at it**. So it plays
+exactly once per game, and the gift needs no gate of its own -- it inherits one.
+
+### Three details taken from shipped practice rather than invented
+
+**The display goes through a relay.** Both vanilla uses of `CDisplayDialogTreeAction` inside a
+dialogue tree are nested in an interaction specifier being *added to a character*, and **none** fires
+a node directly from a reply. A reply triggering a relay, on the other hand, is everywhere: 661 uses.
+So his goodbye fires `Fixt davinci parting gift`, and the relay shows the scene. This is the same
+lesson as the experience award two releases back: when the form has no precedent, the form is wrong.
+
+**The gender split is this map's own.** Four parts up the same file, the Squire picks between
+`3 Return Dialogue Male` and `3 Return Dialogue Female` with
+`CExpressionAction{CIsGender{Acceptable Gender=Male}}` on `$Instigator`. Cloned exactly, male tested
+and female as the else.
+
+**The potion is literally an extra one.** The vanilla starting kit relay, `davinci hands you the
+gift`, gives `Inventory Items/Potion` plus
+`Inventory/Inventory Additions/Miscellaneous/Potions/Healing` in **both** its ranged and melee
+branches. The gift hands over a second of exactly that, from the scene's own reply, and flashes the
+inventory icon with `CFlashHudIconAction` -- which is what the kit does, for the same reason, in this
+same tree.
+
+### Not one word was written
+
+The build asserts it: no node added or removed, and the list of every `Text=` line in the tree is
+byte-identical to what shipped. The scene is vanilla's, the performance is vanilla's, and all that
+was missing was the two lines of wiring that would show it.
+
+`vo_reach.py` goes from 112 unreachable recorded nodes / 10.51 MB to **110 / 9.97 MB** -- the largest
+single-release cut in that backlog so far.
+
+### Checked
+
+`validate.py` clean on 705 files, `reachability.py` green on 136 trees (and two fewer nodes
+tolerated as vanilla-orphaned), `auto_open_risk.py` clean, and 26 assertions off disk against
+`git show HEAD`: one new level part and nothing else moved, live and one-shot and self-deactivating,
+both node ids byte-exact with no trailing space (the crash class), the relay named once in the tree,
+four actions on the goodbye where there were three with the other three unchanged, one potion per
+gendered scene and never both, the kit relay byte-identical, no money and no experience and nothing
+taken, and the `Text=` list unchanged.
+
+**It needs a new character.** A map's entity list is frozen into a save on first entry, so the relay
+cannot exist on a save that has already played the opening. `GF8` is that row.
 
 ## 0.57.10 - he arrives on the beat and sounds like himself
 
