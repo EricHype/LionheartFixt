@@ -1478,8 +1478,8 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| HR33 | **The report.** Enter the Crossroads | - | It loads. 0.60.5 died here with a DataCrash about an unexpected `{` while parsing `CSkeletonAI` |
-| HR34 | Then everything the horse was supposed to do: it wanders, it will not swing, it whinnies, the tenth click quotes Mister Ed | - | All of it, unchanged from what 0.60.5 intended |
+| HR33 | **The report.** Enter the Crossroads | - | It loads. 0.60.5 died here with a DataCrash about an unexpected `{` while parsing `CSkeletonAI`  **PASSED** -- *"works"*, 2026-10-15 |
+| HR34 | Then everything the horse was supposed to do: it wanders, it will not swing, it whinnies, the tenth click quotes Mister Ed | - | All of it, unchanged from what 0.60.5 intended  **PASSED**, which carries HR22, HR26 and HR29 with it |
 | HR35 | **Regression.** Any other map that was fine before | - | Fine. The broken file was new in 0.60.5 and is referenced only by the horse |
 
 ## 0.60.5 - the horse wanders and cannot swing
