@@ -1490,8 +1490,8 @@ answered: it attacks first, and swinging breaks its model.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| HR17 | **New character.** Reach the Crossroads and walk up to the merchant's camp | - | The horse stands by the cart. It does **not** approach you, does not attack, and your companion ignores it |
-| HR18 | **The save-reaching half.** On a character that already met the hostile horse, trade with Alvaro once | - | It settles from that moment: no more charging, and the companion loses interest. The pacifier rides on his shop replies because dialogue is read fresh and map entities are not |
+| HR17 | **New character.** Reach the Crossroads and walk up to the merchant's camp | - | The horse stands by the cart. It does **not** approach you, does not attack, and your companion ignores it **PASSED** -- *"the horse is calm now"*, 2026-10-14 |
+| HR18 | **The save-reaching half.** On a character that already met the hostile horse, trade with Alvaro once | - | It settles from that moment: no more charging, and the companion loses interest. The pacifier rides on his shop replies because dialogue is read fresh and map entities are not **PASSED in effect.** The report did not say which half delivered it, fresh spawn or shop repair, so this row is still worth walking deliberately on a save that had the hostile horse |
 | HR19 | **The model.** Watch it for a while, with a companion beside you | - | It stays a horse. The "granny model" was the engine falling back when it asked for an attack animation the horse does not have; with nothing to attack it never asks |
 | HR20 | **Regression.** Hit the horse yourself | - | Alvaro still turns on you. The damaged script that 0.45.0 put on it is untouched |
 | HR21 | **Regression.** Buy and sell with Alvaro, including as a Goblin Horde character | - | The shop works exactly as before, on all three of his shop replies. The pacifier was added in front of the merchant window, not in place of it |
