@@ -1474,6 +1474,14 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.60.6 - the crash 0.60.5 shipped
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| HR33 | **The report.** Enter the Crossroads | - | It loads. 0.60.5 died here with a DataCrash about an unexpected `{` while parsing `CSkeletonAI` |
+| HR34 | Then everything the horse was supposed to do: it wanders, it will not swing, it whinnies, the tenth click quotes Mister Ed | - | All of it, unchanged from what 0.60.5 intended |
+| HR35 | **Regression.** Any other map that was fine before | - | Fine. The broken file was new in 0.60.5 and is referenced only by the horse |
+
 ## 0.60.5 - the horse wanders and cannot swing
 
 | # | Step | Say | Expect |

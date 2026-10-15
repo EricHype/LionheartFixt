@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.5 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.6 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,45 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.6 - the crash 0.60.5 shipped
+
+**Reported with a screenshot, on entering the Crossroads:**
+
+> "DataCrash Explanation" - Fatal Error
+> Found unexpected '{' while parsing class "CSkeletonAI" in file
+> "Resources/Common Objects and Scripts/Fixt Horse Calm.can:Object:Action:AI".
+
+### One line, and it was mine
+
+0.60.5 gave the horse a copy of its own `CSkeletonAI` with the attack taken out, by replacing the
+class name in `Attack AI=CNormalAttackAI` with nothing. **A class brings its own `{ ... }` block,
+and that block stayed.** So the file said `Attack AI=` and then a brace, and the engine refused the
+file the moment the map asked for it.
+
+A vanilla empty attack, as in `Barcelona Boy.can`, is `Attack AI=` followed straight by the next
+field. The whole block goes, not just the name.
+
+The construct itself was never the problem: `CAddAIAction` with `AI=CSkeletonAI` has **37 vanilla
+uses**, and the one-use `CReplaceSkeletonAIAction` was not needed.
+
+### Why nothing caught it
+
+`resource_format`, which `validate.py` and the release build both lean on, **parsed the broken file
+happily** -- it attaches an orphan block to the preceding key as an unnamed object -- and
+round-tripped it byte for byte, so the file was judged canonically formatted and the zip verified
+clean. Every gate was green on a file that kills the engine on load.
+
+### A0.17
+
+So this release adds the check: **a field with an empty value must not be followed by a brace
+block.** It is a byte-level check for the same reason the whitespace-led class check is
+([A0.1 ships from 0.9.1's map crash](changelog.md)) -- the parser's tolerance is exactly what hides
+it. Run against the mod it fires on 0.60.5's file and on nothing else in 711.
+
+### What to do
+
+Update. If you are mid-session on 0.60.5, avoid the Crossroads until you have.
 
 ## 0.60.5 - the horse wanders and cannot swing
 

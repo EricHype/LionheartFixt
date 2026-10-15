@@ -94,6 +94,10 @@ fails = []
 # a class-valued field whose value starts with whitespace; built from chr() so no escape
 # sequence can be mangled on the way into this file (that is how the shipped defect happened)
 WS_CLASS = re.compile(("^[^" + chr(13) + chr(10) + "=]*=[ " + chr(9) + "]+C[A-Z][A-Za-z0-9]*" + chr(13) + chr(10)).encode("latin-1"), re.M)
+# A0.17: `Some Field=` on one line and `{` on the next. The class name was deleted and its block
+# left behind -- a load-time fatal in the engine, invisible to resource_format.
+ORPHAN_BLOCK = re.compile(("^[ " + chr(9) + "]*([^" + chr(13) + chr(10) + "=]+)=" + chr(13)
+                           + chr(10) + "[ " + chr(9) + "]*\\{").encode("latin-1"), re.M)
 LF = chr(10)
 DASHES = "-" * 60
 
@@ -446,6 +450,14 @@ def check_resource(p, raw):
     # The parser keeps such whitespace as part of the value, so only a byte check catches it.
     for m in WS_CLASS.finditer(raw):
         fails.append(p.name + ": CRASH -- class value led by whitespace: " + repr(m.group(0)[:70]))
+    # A0.17 -- a field with an EMPTY value must not be followed by a brace block. Blanking a
+    # class name and leaving the block it owned reads fine to this parser, which attaches the
+    # orphan to the preceding key, and kills the engine the moment the file loads:
+    #   Found unexpected '{' while parsing class "CSkeletonAI" ... :Object:Action:AI
+    # 0.60.5 shipped exactly that in Fixt Horse Calm.can and crashed the Crossroads.
+    for m in ORPHAN_BLOCK.finditer(raw):
+        fails.append(p.name + ": CRASH -- empty value followed by a block: "
+                     + repr(m.group(1).decode("latin-1").strip()))
     tmp = Path(tempfile.gettempdir()) / "_rf_check.txt"
     rf.write_resource_file(node, tmp)
     if tmp.read_bytes() != raw:
