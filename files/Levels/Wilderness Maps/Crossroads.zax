@@ -1004,7 +1004,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=4
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=$Instigator
@@ -1015,6 +1015,10 @@ CLayerSaveData
 							{
 								Target Name=$Instigator
 								Categories To Remove=Enemy
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Fixt Horse Calm
 							}
 							Action=CSetDamagedScriptActionAction
 							{

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.4 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.5 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,56 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.5 - the horse wanders and cannot swing
+
+**Asked for:** *"we also want it to not try to attack if aggro, then it will show the broken 'granny
+model' art."* And then, of the first attempt at it: *"I'd prefer the wandering without the
+fighting."*
+
+0.60.2 took away what the horse wanted to attack: blank `Valid Targets`, no `Enemy` category. That
+stops it starting a fight, but not a fight being started at it, and the damaged script positively
+invites the player to hit it. One swing shows the wrong model, because the horse has no attack
+animation.
+
+### The first pass went too far
+
+`Attack AI=CNormalAttackAI` lives inside the can's `CSkeletonAI`, so the obvious move is to remove
+that activity -- `CRemoveAIAction{AI=CSkeletonAI}`, 35 vanilla uses. It works, and it takes the
+patrol with it: a horse that cannot fight and cannot move either. Reported immediately as the wrong
+trade.
+
+### What vanilla does instead
+
+**An empty `Attack AI=` is shipped 47 times.** `Barcelona Boy.can` has one: a child who walks about
+the Gate District and cannot fight anybody. The field is simply blank, and everything else in the
+skeleton AI, the patrol included, stays.
+
+So the horse is handed a copy of **its own** `CSkeletonAI` with that one value emptied. Copying
+rather than authoring means every field of a 13 KB block is exactly what vanilla put there, and the
+difference is fifteen characters.
+
+### Written once
+
+Inlining 13 KB into the generator and each of Alvaro's three shop replies would be the same text
+four times. It lives in `Common Objects and Scripts/Fixt Horse Calm.can` instead, and all four
+callers use `CUseCannedActionAction` -- 4,682 vanilla uses. The can names the horse rather than
+using `$Instigator`, because `$Instigator` is the spawned animal in a generator's After Action and
+the **player** in a dialogue reply; naming it works in both, and vanilla aims actions at a spawned
+character by name inside an After Action in `Gate District.zax`.
+
+### What survives
+
+The whinny specifier, 0.60.2's pacifier, and the damaged script that brings Alvaro down on anyone
+who hits the horse.
+
+### Checked
+
+`validate.py` clean on 711 files, `reachability.py` green, `auto_open_risk.py` clean. The build
+asserts that the copied skeleton still holds its patrol, that `CNormalAttackAI` appears nowhere in
+it, that the copy is exactly fifteen characters shorter than the original, that the generator still
+carries its 37 balloons and the pacifier and the damaged script, that the map is one changed part
+out of 981, and that all three shop replies kept their own distinct merchant.
 
 ## 0.60.4 - the horse has a voice
 

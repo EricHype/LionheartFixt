@@ -1474,6 +1474,16 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.60.5 - the horse wanders and cannot swing
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| HR28 | **The report.** Provoke it however you can: hit it, let a wolf at it, fight beside it | - | It never swings, and the wrong model never appears |
+| HR29 | **The half that was asked for second.** Watch it for a while | - | It still **moves**: shifts, turns, wanders its little radius. Only the attack was taken, not the behaviour around it |
+| HR30 | **Regression.** Click it, ten times | - | Still whinnies, still says its line on the tenth |
+| HR31 | **Regression.** Hit it on purpose | - | Alvaro still turns on you |
+| HR32 | **The save-reaching half.** On a character whose horse was already standing there, trade with Alvaro, then provoke it | - | Same: it wanders, it will not swing. The shop replies swap its behaviour for the de-fanged copy |
+
 ## 0.60.4 - the horse has a voice
 
 | # | Step | Say | Expect |

@@ -1,0 +1,545 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=2
+			Action=CRemoveAIAction
+			{
+				Target Name=Alvaros Horse
+				AI=CSkeletonAI
+				Delay Between Removes=0
+			}
+			Action=CAddAIAction
+			{
+				Target Name=Alvaros Horse
+				AI=CSkeletonAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Patrol AI=CSeriesAI
+					{
+						Marked For Deletion=0
+						Publisher=
+						AIs=Array
+						{
+							Item Count=2
+							AI=CScanAreaAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Play Ratio=0
+								Next Try To Move=0
+								State=Scanning
+								Go Home Range=300
+								Move To Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Starting Angle=-10
+								Ending Angle=10
+								Turning Speed=3
+								Time Between Turning=0
+								Start Out Waiting=0
+								Start Counterclockwise=0
+								Turning Flag=0
+								Turn Sequence Name=Idle
+								End Turn Action=CSendAIDoneMessage
+								{
+									Target=$Trigger
+								}
+								Execute Each Turn=0
+								Reset Each Begin=1
+								Current Time To Wait=0
+								Current Start Angle=0
+								Current End Angle=0
+								Waiting=1
+								Starting Facing Angle=-999
+								Complete Turn Time=0
+								Current Turn Time=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+							}
+							AI=CLimitedTimeAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								What To Do=CPatrolAreaAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Radius=150
+									TimeOfLastChangeDirectionDueToCollide=0
+									Moving=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=0.4
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
+									}
+									Retry New Point=0
+								}
+								Max Time=4
+								Time Left=0
+								Done Action=CSendAIDoneMessage
+								{
+									Target=$Trigger
+								}
+							}
+						}
+						Current AI=0
+						When Done=Repeat Series
+						Restart Series Next Begin=0
+					}
+					Patrol Start Action=
+					Patrol End Action=CRandomAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CPlaySoundAction
+							{
+								Sound=Enemies/Animals/Wolf Attack.ogg
+								Position=$Trigger
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Enemies/Animals/Wolf Attack2.ogg
+								Position=$Trigger
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Enemies/Animals/Wolf random growl3.wav
+								Position=$Trigger
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Enemies/Animals/Wolf random growl2.wav
+								Position=$Trigger
+							}
+						}
+					}
+					Respond to calls for reinforcements=0
+					Target shooter if hit=1
+					Never Unacquire=0
+					Sneak Adjustment=0
+					Target Type=CEntityBehaviorStateSetClosestTarget
+					{
+						Max Distance=550
+						Vision Cone=360
+						Name To Target=
+						Must Be Collideable=1
+						Must Have HPs=1
+						Valid Targets=Player,Player Friend
+					}
+					Has Seen Target=0
+					Max dist from home=1200
+					Pursue AI=CChasePursueAI
+					{
+						Marked For Deletion=0
+						Publisher=
+						AFloat=CEntityBehaviorMoveToPos
+						{
+							Old Stationary Flag=0
+							Angle To Turn To=0
+							Facing Backwards=0
+							Idle Behavior=CEntityBehaviorIdle
+							{
+								Num Seconds=1
+								Seconds Have Transitioned=0
+								Override Fidget Options=
+								Current Fidget Data=
+								Time Until Next Fidget=0
+								Fidgeting=0
+							}
+							Play Ratio=1
+							Smooth Turning=1
+							Do Path Finding=1
+							Finished=1
+							Failed Last Path=0
+							Idle Begin Called=0
+							Move To Rate=0
+							CurTargetNormalX=0
+							CurTargetNormalY=0
+							Path Finding Params=CWayPointPath
+							{
+								Start Point=0,0
+								End Point=0,0
+								Length=0
+								Max Dist To Travel=0
+								Num Failed Paths=0
+								Max Failed Paths=0
+								Pos To Move Index=0
+								Dist So Far=0
+								Path=
+							}
+							Pos Moving From=0.000000,0.000000
+							Final Dest=0.000000,0.000000
+							Dest Radius=0
+							Cur Dest Move To=0.000000,0.000000
+							Last Neg Dist=0
+							NumTimesLostGound=0
+							Sequence=
+							Planed Path For=
+						}
+						Play Ratio=0
+						Next Try To Move=0
+						Max Radius From Final Pos To Get Within=0
+						Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+					}
+					Pursue Start Action=
+					Pursue End Action=
+					Max distance from home=1000
+					Investigate End Action=
+					Investigate Start Action=
+					Investigate AI=CChaseInvestigateAI
+					{
+						Marked For Deletion=0
+						Publisher=
+						AFloat=CEntityBehaviorMoveToPos
+						{
+							Old Stationary Flag=0
+							Angle To Turn To=0
+							Facing Backwards=0
+							Idle Behavior=CEntityBehaviorIdle
+							{
+								Num Seconds=1
+								Seconds Have Transitioned=0
+								Override Fidget Options=
+								Current Fidget Data=
+								Time Until Next Fidget=0
+								Fidgeting=0
+							}
+							Play Ratio=1
+							Smooth Turning=0
+							Do Path Finding=1
+							Finished=1
+							Failed Last Path=0
+							Idle Begin Called=0
+							Move To Rate=0
+							CurTargetNormalX=0
+							CurTargetNormalY=0
+							Path Finding Params=CWayPointPath
+							{
+								Start Point=0,0
+								End Point=0,0
+								Length=0
+								Max Dist To Travel=0
+								Num Failed Paths=0
+								Max Failed Paths=0
+								Pos To Move Index=0
+								Dist So Far=0
+								Path=
+							}
+							Pos Moving From=0.000000,0.000000
+							Final Dest=0.000000,0.000000
+							Dest Radius=0
+							Cur Dest Move To=0.000000,0.000000
+							Last Neg Dist=0
+							NumTimesLostGound=0
+							Sequence=
+							Planed Path For=
+						}
+						Turn Behavior=CEntityBehaviorTurnToAngle
+						{
+							Old Stationary Flag=0
+							Angle To Turn To=0
+							Facing Backwards=0
+						}
+						Play Ratio=0
+						Next Try To Move=0
+						Time To Investigate=5
+						Count To Investigate=0
+						Radius to Investigate Point=0
+						Run To Investigate=1
+						State=Chasing
+						Investigate AI=CScanInvestigateAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							AI=CScanAreaAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Play Ratio=0
+								Next Try To Move=0
+								State=Scanning
+								Go Home Range=300
+								Move To Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Starting Angle=-45
+								Ending Angle=45
+								Turning Speed=10
+								Time Between Turning=0
+								Start Out Waiting=0
+								Start Counterclockwise=0
+								Turning Flag=0
+								Turn Sequence Name=Idle
+								End Turn Action=
+								Execute Each Turn=0
+								Reset Each Begin=1
+								Current Time To Wait=0
+								Current Start Angle=0
+								Current End Angle=0
+								Waiting=1
+								Starting Facing Angle=-999
+								Complete Turn Time=0
+								Current Turn Time=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+							}
+						}
+					}
+					Max Dist=70
+					Attack AI=
+					{
+						Marked For Deletion=0
+						Publisher=
+						Use Primary Shoot Behavior=1
+						Shoot Behavior=CShootEntityBehavior
+						{
+							Play Sequence=
+							Play Reload Sequence=
+						}
+						Shoot Completed=
+						Turn Behavior=CPointWeaponAtTargetEntityBehavior
+						{
+						}
+						MoveBehavior=CEntityBehaviorMoveToPos
+						{
+							Old Stationary Flag=0
+							Angle To Turn To=0
+							Facing Backwards=0
+							Idle Behavior=CEntityBehaviorIdle
+							{
+								Num Seconds=1
+								Seconds Have Transitioned=0
+								Override Fidget Options=
+								Current Fidget Data=
+								Time Until Next Fidget=0
+								Fidgeting=0
+							}
+							Play Ratio=1
+							Smooth Turning=0
+							Do Path Finding=1
+							Finished=1
+							Failed Last Path=0
+							Idle Begin Called=0
+							Move To Rate=0
+							CurTargetNormalX=0
+							CurTargetNormalY=0
+							Path Finding Params=CWayPointPath
+							{
+								Start Point=0,0
+								End Point=0,0
+								Length=0
+								Max Dist To Travel=0
+								Num Failed Paths=0
+								Max Failed Paths=0
+								Pos To Move Index=0
+								Dist So Far=0
+								Path=
+							}
+							Pos Moving From=0.000000,0.000000
+							Final Dest=0.000000,0.000000
+							Dest Radius=0
+							Cur Dest Move To=0.000000,0.000000
+							Last Neg Dist=0
+							NumTimesLostGound=0
+							Sequence=
+							Planed Path For=
+						}
+						Minimum Attack Distance=100
+						Move Buffer Zone=50
+						Waiting For Threshold=0
+						Moving State=1
+						Firing Complete=1
+						Firing In Progress=0
+						Waiting To Shoot=0
+						Time To Next State Change=0
+						Time To Next MoveRevision=0
+						Began Shooting From=0.000000,0.000000
+					}
+					Attack Start Action=
+					Attack End Action=
+					Check Range When Firing=0
+					Ignore line of sight if in range=0
+					Retreat when=0
+					Retreat Start Action=
+					Has Started Retreat=0
+					State=Any
+					Allowed To Roam Anywhere=0
+					Transition=Array
+					{
+						Array Count=1
+						Array Item=CSkeletonTransition
+						{
+							Trigger=Once Per New Target
+							From State=Any
+							To State=Attack
+							Action=CRandomAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CPlaySoundAction
+									{
+										Sound=Enemies/Animals/Wolf Attack.ogg
+										Position=$Trigger
+									}
+									Action=CPlaySoundAction
+									{
+										Sound=Enemies/Animals/Wolf Attack2.ogg
+										Position=$Trigger
+									}
+									Action=CPlaySoundAction
+									{
+										Sound=Enemies/Animals/Wolf random growl3.wav
+										Position=$Trigger
+									}
+								}
+							}
+							IsDone=0
+						}
+					}
+				}
+				Delay Between Adds=0
+			}
+		}
+	}
+	Use=Shared Global Instance
+}
