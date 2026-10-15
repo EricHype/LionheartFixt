@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.2 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.3 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,57 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.3 - Fernand by name
+
+**Reported from play:** *"Ferdnand is still called 'sailor' in the log, check the quicksave."*
+
+### Reading the quicksave
+
+Worth recording, because a plain search of a `.sav` for a character's name finds nothing. A save is
+brace-grammar text, but every visited map is held in a `Current Temp File=TempFile` block as
+`Length=N bytes`, a `#### BEGIN TEMPORARY FILE ####` marker, three little-endian uint32s and then a
+**zlib stream**. Decompressed, each blob is the same format as a `.zax`, and the Port District one
+carries his spawned instance with the name it was created with.
+
+### Where the log name actually lives
+
+Every character can in this game carries `Display Name=unnamed` and keeps the name the player sees
+in **`User Assigned Name`**:
+
+| can | User Assigned Name |
+|---|---|
+| `Jafar` | `Amir` |
+| `Joan of Arc` | `Jehanne d'Arc` |
+| `Cortez` | `Cortes` |
+| `Distressed Sailor` | **`Sailor`** |
+
+0.28.x gave Fernand his own race (`Races/NPCs/Fernand Desoto`), a dialogue tree titled
+`Fernand Desoto`, and the line *"My name is Fernand, eldest of the Desoto family"* -- and left the
+one field the combat log reads. A character can introduce himself in dialogue for nine releases and
+still be "Sailor" everywhere the engine prints a name.
+
+### One field, and three that were deliberately not touched
+
+- **`New Name=Distressed Sailor`** on his generator is the handle **29 script references** in the
+  Port District use to find him. Renaming it would break the rescue.
+- **`ShipSailorsonShipCanned.can`** is the generic ship-sailor template, and Juan's body is one
+  instance of it. Renaming that would call every sailor on the ship Juan.
+- **`Mute Sailor.can`** belongs to a man with no name on purpose.
+
+### It reaches new spawns only
+
+A can is read when the entity is created, so a character who already has Fernand keeps the old name.
+There is no shipped way to rename an NPC in play: all six vanilla uses of
+`CSetCharacterDisplayNameAction` rename `$instigator`, the player, and not one names an NPC. After a
+week of learning what zero precedent means, that experiment is offered rather than shipped.
+
+### Checked
+
+`validate.py` clean on 709 files, and the change is one field: the file is the same line count, the
+same length plus the difference between the two names, `Fernand` goes from one occurrence to two
+(the race, and now the name), the generator still answers to `Distressed Sailor` 29 times, and the
+other two sailor templates are byte-identical.
 
 ## 0.60.2 - the cart horse is a horse
 

@@ -1474,6 +1474,15 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.60.3 - Fernand by name
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| FN13 | **New character.** Reach the dying sailor on the Port District docks and look at the name over him, then at the combat log | - | **Fernand Desoto**, not Sailor. Before this release his template still carried the generic name |
+| FN14 | Take him as a companion and get into a fight | - | The log names him Fernand Desoto on every line about him |
+| FN15 | **The limit, and it is expected.** An existing save that already has him | - | He stays "Sailor". A character template is read when the entity is created, so a man already standing in your game keeps the name he was made with |
+| FN16 | **Regression.** Look at the other sailors: the mute one, the crew on the ship, and Juan's body | - | All still "Sailor". Only his own template changed, and the shared ship-sailor template was deliberately left alone |
+
 ## 0.60.2 - the cart horse is a horse
 
 0.45.0's `HR9` asked whether the horse's unstripped AI would look bad enough to want a patch. Play
