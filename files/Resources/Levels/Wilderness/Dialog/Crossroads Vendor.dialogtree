@@ -179,10 +179,28 @@ Canned Expression=Dialog/Requirements/Faction/Goblin Horde NOT
 }
 Reply Text=
 Go to node ID=
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetTargetTypeAction
+{
+Entity Name=Alvaros Horse
+Name To Target=
+Valid Targets=
+}
+Action=CRemoveCategoryAction
+{
+Target Name=Alvaros Horse
+Categories To Remove=Enemy
+}
+Action=CDisplayMerchantWindowAction
 {
 Merchant=Vendor 1 Inventory
 After Closed Action=
+}
+}
 }
 Is Default Reply=1
 
@@ -515,10 +533,28 @@ Canned Expression=Dialog/Requirements/Faction/Goblin Horde NOT
 }
 Reply Text=
 Go to node ID=
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetTargetTypeAction
+{
+Entity Name=Alvaros Horse
+Name To Target=
+Valid Targets=
+}
+Action=CRemoveCategoryAction
+{
+Target Name=Alvaros Horse
+Categories To Remove=Enemy
+}
+Action=CDisplayMerchantWindowAction
 {
 Merchant=Good Karma Store for Alvaro
 After Closed Action=
+}
+}
 }
 Is Default Reply=1
 
@@ -616,10 +652,28 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Show me the goods.
 Go to node ID=
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetTargetTypeAction
+{
+Entity Name=Alvaros Horse
+Name To Target=
+Valid Targets=
+}
+Action=CRemoveCategoryAction
+{
+Target Name=Alvaros Horse
+Categories To Remove=Enemy
+}
+Action=CDisplayMerchantWindowAction
 {
 Merchant=Fixt Crossroads Vendor Horde
 After Closed Action=
+}
+}
 }
 
 Requirement=!None

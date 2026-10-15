@@ -566,13 +566,31 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=CSetDamagedScriptActionAction
+					After Action=CMultipleActionsAction
 					{
-						New Damaged Action=CTriggerRelayAction
+						Action=Array
 						{
-							Relay Name=Fixt Alvaros horse struck
+							Item Count=3
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=$Instigator
+								Categories To Remove=Enemy
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Alvaros horse struck
+								}
+								Target Name=$Instigator
+							}
 						}
-						Target Name=$Instigator
 					}
 					New Facing Angle=3.57782
 					Angle Variation=0

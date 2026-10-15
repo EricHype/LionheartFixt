@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.2 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,65 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.2 - the cart horse is a horse
+
+**Reported from play**, the first time anyone had seen it standing there: *"the horse appears now,
+but it seems to be hostile, it walks up to me and then it changed to 'granny model' which i think
+shows the attack animation is missing. My companion attacks it."*
+
+### Three symptoms, one fact
+
+Vanilla's `Monster Cans/Animals/Horse.can`:
+
+    Race=Races/Enemies/Animals/Wolf Gray
+    Valid Targets=Player,Player Friend
+    Category=Animal,Enemy
+    Attack AI=CNormalAttackAI
+
+**It is a wolf wearing a horse.** So it acquires the player and walks up to attack; the companion
+sees an `Enemy` category and answers; and when it tries to swing, the model has no swing. The horse
+ships four files -- `Idle`, `Walk`, `Death` and the model itself -- with **no attack and no
+get-hit animation**, so the engine falls back to another model. That is the granny.
+
+Which is almost certainly why vanilla places this can in **no map at all**: it was never finishable
+as an enemy, and nobody made it anything else.
+
+0.45.0 placed it anyway and left its AI unstripped, recording the open question as `HR9`: *"judge
+whether retaliating looks bad enough to strip it in a patch."* The answer is worse than the
+question assumed, because it does not retaliate. It starts.
+
+### The fix, in two halves
+
+**At the generator**, so every future spawn is calm: the `After Action` already set the damaged
+script that makes Alvaro angry if you hit the horse, and it now also runs the pair vanilla uses for
+exactly this, both with `Target Name=$Instigator`, in `Calle Perdida.zax` and `Church Interior.zax`:
+
+    CSetTargetTypeAction{Entity Name=$Instigator, Name To Target=, Valid Targets=}
+    CRemoveCategoryAction{Target Name=$Instigator, Categories To Remove=Enemy}
+
+Blank valid targets is the pacification 0.53.0 put on the trolls, where play proved a pacified troll
+cannot even see a killing beside it. With nothing it may target, the attack AI never swings, so the
+missing animation is never asked for. `Animal` stays on the category list, so anything that cares
+whether a thing is an animal still sees one.
+
+**And in Alvaro's dialogue**, so a horse that is already standing there hostile can be settled: his
+three shop replies now run the same pair first, targeted **by name** rather than by `$Instigator`,
+because in a reply `$Instigator` is the player and blanking the player's valid targets is the last
+thing anyone wants. Naming an entity that may not exist is harmless -- `Calle Perdida.zax` does it
+with `Entity Name=Undead Guard`.
+
+That second half exists because of the asymmetry this whole run keeps turning on: **a map's entities
+are frozen into a save the first time the player enters, and dialogue is read fresh every time.** A
+fix that only lives in the generator reaches nobody who has already met the horse.
+
+### Checked
+
+`validate.py` clean on 709 files, `reachability.py` green, `auto_open_risk.py` clean, and the facts
+asserted at build time: the can really does carry the wolf race, the player targeting, the `Enemy`
+category and the attack AI, and the horse's animation set really is exactly `{death, horse, idle,
+walk}`. The generator keeps its damaged script and its one spawn; the three merchant windows are
+unchanged and still three; no node, no `Text=` and no `Reply Text=` line moved.
 
 ## 0.60.1 - the Montserrat briefing can always end
 
