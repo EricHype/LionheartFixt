@@ -183,7 +183,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
 Action=CSetTargetTypeAction
 {
 Entity Name=Alvaros Horse
@@ -194,6 +194,445 @@ Action=CRemoveCategoryAction
 {
 Target Name=Alvaros Horse
 Categories To Remove=Enemy
+}
+Action=CAddAIAction
+{
+Target Name=Alvaros Horse
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Companions=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+Action=CSeriesAction
+{
+Action=Array
+{
+Item Count=10
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=100 of course
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+When Done=Repeat Series
+Require Success To Advance=1
+Next Action Index=0
+}
+X Radius=100
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
 }
 Action=CDisplayMerchantWindowAction
 {
@@ -537,7 +976,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
 Action=CSetTargetTypeAction
 {
 Entity Name=Alvaros Horse
@@ -548,6 +987,445 @@ Action=CRemoveCategoryAction
 {
 Target Name=Alvaros Horse
 Categories To Remove=Enemy
+}
+Action=CAddAIAction
+{
+Target Name=Alvaros Horse
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Companions=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+Action=CSeriesAction
+{
+Action=Array
+{
+Item Count=10
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=100 of course
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+When Done=Repeat Series
+Require Success To Advance=1
+Next Action Index=0
+}
+X Radius=100
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
 }
 Action=CDisplayMerchantWindowAction
 {
@@ -656,7 +1534,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=4
 Action=CSetTargetTypeAction
 {
 Entity Name=Alvaros Horse
@@ -667,6 +1545,445 @@ Action=CRemoveCategoryAction
 {
 Target Name=Alvaros Horse
 Categories To Remove=Enemy
+}
+Action=CAddAIAction
+{
+Target Name=Alvaros Horse
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Companions=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+Action=CSeriesAction
+{
+Action=Array
+{
+Item Count=10
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CRandomAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=10 whinny
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=20 neigh
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=30 snort
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=40 long one
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+}
+Action=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/Wilderness/Dialog/Alvaros Horse
+Node ID=100 of course
+Name of Position=$trigger
+Position Offset=0.000000,-75.000000
+After Action=
+Include In Log=1
+}
+}
+When Done=Repeat Series
+Require Success To Advance=1
+Next Action Index=0
+}
+X Radius=100
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
 }
 Action=CDisplayMerchantWindowAction
 {

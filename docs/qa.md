@@ -1474,6 +1474,17 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.60.4 - the horse has a voice
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| HR22 | **New character.** Click the horse | - | It whinnies: a balloon over it, one of four lines, and **no attack**. Before this release the click swung at it |
+| HR23 | Click it a few more times | - | The line varies. Four of them, picked at random, the way the Montaillou chickens work |
+| HR24 | **The save-reaching half.** On a character whose horse was already standing there, trade with Alvaro, then click the horse | - | Same: it whinnies. The shop reply hands it the interaction with `CAddAIAction`, beside the pacifier from 0.60.2 |
+| HR25 | **Regression.** Attack it on purpose from the attack cursor, and check Alvaro | - | You can still hit it, and he still turns on you. Only the **default** click changed |
+| HR26 | **The tenth click.** Click it ten times | - | The tenth balloon reads *"A horse is a horse, of course, of course"*. Then it goes back to whinnying, and the tenth after that says it again |
+| HR27 | Walk away, come back, keep clicking | - | The count carries on where it left off rather than restarting. `CSeriesAction` keeps its index per instance, and the instance is in your save |
+
 ## 0.60.3 - Fernand by name
 
 | # | Step | Say | Expect |

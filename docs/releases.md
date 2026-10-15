@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.3 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.4 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,71 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.4 - the horse has a voice
+
+Asked for after 0.60.2 settled it: *"the horse's default interaction is to fight it, can you make it
+just have a hover text where it whinnies or neighs."*
+
+### There is a shipped animal that already does this
+
+Beatrice's flock in `01 Hamlet Exterior.zax`. The chicken generator hands each bird a
+`CAIInteractionSpecifier` with `Interaction Type=Interaction Specifiers/GetCloseThenTrigger`, whose
+action is a `CRandomAction` over four `CDisplayDialogBalloonAction`s, one per node of
+`Levels/3 Montaillou/Dialog/Chicken`:
+
+> Bluck, cluk, bok ek! / Buk kek, bok, bok. / Cluck, cluck baw kek! / Baaawwwk
+
+**Having a specifier at all is what takes the click away from the attack** -- that is why clicking a
+chicken clucks rather than swinging at it, and why the horse, which had none, got swung at.
+
+So the horse gets the same shape, with four lines of its own in a new tree beside the Crossroads
+vendor's:
+
+> Hhhrrruuuhhh! / Nnneeeighhh! / Hff. Hff-hff. / Nnnneeeeiiiiighhhh!
+
+### The tenth click
+
+Nine whinnies and then:
+
+> A horse is a horse, of course, of course
+
+The specifier's action is a `CSeriesAction` of ten entries -- nine copies of the random whinny and
+the line -- with `When Done=Repeat Series`, the most common of the six shipped values at 780 uses,
+so it comes round every tenth click rather than firing once and never again.
+
+This works because **`CSeriesAction`'s index is per instance**, which 0.48.0 settled by
+decompilation after a release had assumed otherwise. The count belongs to that horse, and it rides
+in the save with it.
+
+### Text, not audio
+
+The only horse sound in the whole game is `Sounds/Enemies/Animals/horse_death.1.ogg`. There is no
+whinny and no neigh to play, and the death cry is not the sound to make when somebody pats it. The
+chicken's lines are balloons too; hers happen to have recordings and the horse's do not.
+
+### Both halves, again
+
+On the **generator**, so every future spawn has it. And handed to a horse that is already standing
+there, by `CAddAIAction` on Alvaro's three shop replies -- the same action 0.57.9 used to give
+DaVinci his conversation back, and it sits beside the pacifier 0.60.2 put on those same replies. So
+one trade with Alvaro both calms the horse and gives it its voice.
+
+### Checked
+
+`validate.py` clean on 710 files, `reachability.py` green on 138 trees, `auto_open_risk.py` clean --
+and that last one matters here, because the horse's new interaction is exactly the auto-firing kind
+that gate exists to watch: it costs nothing, takes nothing and starts nothing.
+
+The build also asserts what did **not** move: 0.60.2's pacifier and the damaged script that brings
+Alvaro down on you are both still on the generator, the three merchant windows are still three, and
+the vendor tree gained no node -- its separator count is unchanged, and the twelve new `Node ID=`
+lines are the four balloons on each of the three replies.
+
+**One thing worth recording about the format:** a `.DialogTree` is flat, so an action's `Node ID=`
+line starts at column 0 exactly like a node header does. Counting `Node ID=` to count nodes is
+wrong; the dashed separators are what delimit them. Vanilla does the same thing inside
+`SewerEntranceBeggar.DialogTree`.
 
 ## 0.60.3 - Fernand by name
 
