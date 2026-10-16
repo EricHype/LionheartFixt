@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.62.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.62.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,62 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.62.1 - the surcharge Alvaro never charged
+
+Alvaro's dialogue tree is a copy of the Barcelona vendor's, and it kept **two** references to
+entities that exist only in `Levels/1 Barcelona/Gate District.zax`.
+
+### The price
+
+`51 Beg from NONHuman` fires `CTriggerRelayAction{Relay Name=Vendor1 make worse prices for Tainted}`.
+In Barcelona that relay is a `CAdjustMerchantPriceMultiplierAction` of **+0.15** on
+`Vendor 1 Inventory`. **There is no price relay anywhere in the Crossroads** -- not under that name,
+not under any name -- so *"You have some nerve begging from me, you tainted lout! Be off with you!"*
+has always been free, in every version of the game.
+
+### The memory
+
+The second reference is `Money from First Vendor asked for`, the checker that remembers you begged.
+Both beg replies are gated on it **not** existing, and **Alvaro's own entity in `Crossroads.zax`
+reads it** to decide whether to greet you with `100 Begged from Vendor Return`, *"What *you* want
+now?"* The entity was never placed, so that greeting has never been reachable and the beg option
+comes back every time you drop under 10 gold.
+
+### Why the price goes in the reply
+
+Vanilla writes `CAdjustMerchantPriceMultiplierAction` straight into a reply's `Custom Action` **six**
+times -- the Herbalist, the Con Man, and the Desert Merchant's four haggling steps -- against six in
+maps and cans. So inline is shipped practice rather than a shortcut, and unlike a map part it reaches
+a save that has already walked into the Crossroads, which is nearly every save by act 4.
+
+**It adjusts all three of his stores.** Barcelona's vendor has one. Alvaro has `Vendor 1 Inventory`,
+`Good Karma Store for Alvaro` and `Fixt Crossroads Vendor Horde`, and which one opens depends on
+karma and allegiance, so adjusting only the one vanilla names would leave the restored surcharge
+inert for two players in three. That is the same defect in a new place.
+
+**And it cannot stack.** The gate that would have stopped a second beg is the checker that does not
+exist, so on an existing save the reply repeats. The adjustment is wrapped in a
+`CIfExpressionAction` on a scripting variable, the idiom the mana-pickup can uses, so it applies once
+per character however many times he is asked. `CIfExpressionAction` appears inside vanilla dialogue
+trees 18 times, and `$Instigator` is the only value vanilla ever gives those two fields in a tree,
+83 times against 3 for anything else.
+
+The checker is placed in the map as well. That is what gets the once-only begging and the
+`100 Begged from Vendor Return` greeting back, for a save that has not yet been there.
+
+### Checked
+
+`validate.py` clean on 715 files, `reachability.py` green. The build asserts the dead relay is named
+exactly once before the edit and nowhere after it, that the reply still carries two actions and still
+activates the checker, that no `Text=` line is rewritten and no node or reply is added or lost, and
+that the map gains exactly one level part and removes none.
+
+### What it does not change
+
+Nothing about the Horde surcharge, which is a separate thing: that is `Fixt Crossroads Vendor Horde`
+at a flat 1.5 from 0.24.0, gated on `Goblin Rank > 0`. A Horde-sworn non-human who begs now pays
+1.65, which is the two costs adding up rather than a new one.
 
 ## 0.62.0 - the druid finale
 

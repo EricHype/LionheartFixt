@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.62.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.62.0).
+-- currently [0.62.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.62.1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -57,7 +57,7 @@ The three most recent pieces of restored content. The patches between and after 
 | **0.60.0** | the Crossroads | **Shakespeare comes out to the Wilderness to research a play about you.** Five nodes and **0.34 MB** of performed voiceover, opened by nothing: *"And enter the hero, stage right! ... I thought it appropriate that I visit your battle sites personally, experience your struggles, and inhale the very scent of your valor."* Then the pitch -- **Richard II, named for you** -- his delight or his retreat, and *"the fruit of the tree is too young and not yet ripe"* for every visit after. Three conversations on one specifier, the `CSeriesAction` idiom DaVinci's chamber uses, so it unfolds across visits. He appears once the **Muse** quest is done, which is the quest that gives him back the ability to write, standing on an existing spawn-point position so the ground is walkable, in the map that already keeps **Cervantes** as a cameo. And the reply that sends him home now actually sends him home: it carried no action at all, so he would have said farewell and stood in the Wilderness for the rest of the game. **His tree is `shakespeare.dialogtree`, lowercase**, which is why every `*.DialogTree` search in this project had missed it. Not a word written |
 | **0.59.0** | Darkwood Cave | **Your spirit warns you about the undead, which it was recorded to do.** `35 undead encounter` exists in **all three** companion spirit trees, recorded in all three (**347 KB**), and placed in no map. The open question in the notes is answered: it is not superseded by the live generic warnings, which say *"something just ahead would like to separate your head from your shoulders"* where this one names what it senses. And the node has **no replies**, which is the balloon shape -- the wired warnings all carry replies and open as conversations, while the reply-less `1100 Found Mana` is ballooned from a can. That can is the template, cloned with **four substitutions and nothing else**, so the three-way `CHasSpirit` branch, the summoning effect, the Appear and the cleanup are all vanilla's. It fires in Darkwood Cave, which the main quest's darkwood makes mandatory: 350 units past the arrival pad so it cannot fire as the map loads, 339 short of the first undead generator so the warning comes first |
 
-The **97 releases around those** are one line each in [`docs/changelog.md`](docs/changelog.md).
+The **98 releases around those** are one line each in [`docs/changelog.md`](docs/changelog.md).
 
 Everything the shipped game defines and then references from nothing -- unplaced quest items, the enemy cans that nothing spawns, and why that count was first reported as 48 and is honestly zero, two whole summon tiers, and which of them Fixt has since picked up -- is surveyed in [`docs/unused-content.md`](docs/unused-content.md), along with the four ways that survey was wrong before it was right.
 
@@ -68,7 +68,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.62.0 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.62.1 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.62.1 - the surcharge Alvaro never charged
+
+Needs a **non-human** character (Feralkin, Sylvant or Demokin) with **under 10 gold**, which is what
+gates the beg option. TS6 needs a save that has not yet entered the Crossroads.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TS1 | Talk to Alvaro and take *"Can you spare some coin for a poor traveller?"* | - | *"You have some nerve begging from me, you tainted lout! Be off with you!"* |
+| TS2 | Note the price of something in his shop **before** begging, then beg and reopen the shop | - | The same item is **15% dearer**. Before this release begging cost nothing at all |
+| TS3 | **The row that matters.** If the beg option is still offered, take it again and reopen the shop | - | Prices **unchanged from TS2**. The surcharge is once per character, and the vanilla gate that would have stopped a second beg is the checker that was missing |
+| TS4 | On a **high-karma** non-human, do TS2 against his special stock | - | The 15% lands there too. Vanilla's relay named only the ordinary store |
+| TS5 | On a **Horde-sworn** non-human, do TS2 | - | The 15% lands on the Horde store as well, so his 1.5 becomes 1.65 |
+| TS6 | **New save only.** Beg once, leave the conversation, talk to him again | - | *"What *you* want now?"* and **no beg option**. That greeting has never been reachable at the Crossroads |
+| TS7 | **Regression, human character.** Beg | - | *"What do you think I am running here, a charity?"* and **no price change**. The surcharge is the non-human branch only |
+| TS8 | **Regression.** Shop as a non-human who has **not** begged | - | Normal prices. Nothing applies until you ask him for money |
+
 ## 0.62.0 - the druid finale
 
 Needs a save that has **not yet reached** the Crossroads-to-England road in act 6, because a new
