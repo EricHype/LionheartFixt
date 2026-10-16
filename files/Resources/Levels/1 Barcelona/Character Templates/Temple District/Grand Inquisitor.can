@@ -409,7 +409,22 @@ CCannedObject
 				Allowed To Roam Anywhere=0
 				Transition=Array
 				{
-					Array Count=0
+					Array Count=1
+					Array Item=CSkeletonTransition
+					{
+						Trigger=First Time
+						From State=Any
+						To State=Attack
+						Action=CDisplayDialogBalloonAction
+						{
+							Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/GrandInquisitor
+							Node ID=1000 attack torquemada 
+							Name of Position=$trigger
+							Position Offset=0.000000,-75.000000
+							After Action=
+							Include In Log=1
+						}
+					}
 				}
 			}
 			Activity=CAICharacterProfile

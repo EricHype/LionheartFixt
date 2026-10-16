@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.63.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.64.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,79 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.64.0 - what they say when you attack them
+
+Five named NPCs recorded a line for the moment you turn on them. None of them could say it.
+
+> **Torquemada.** Arrogant fool! Guards! Restrain this heretic!
+
+> **Cedric Alsen.** Wielders, to me! La Calle Perdida is under attack! The intruder must not leave
+> here alive!
+
+> **Joan of Arc.** So be it, monster. We will send you back to the fires of perdition.
+
+> **Raphael.** To the hellfire with you, heathen!
+
+> **Shakespeare.** Time to make an honorable retreat rather than face a dishonorable foe!
+
+### The hook was already in all five of their cans, empty
+
+`CSkeletonTransition` with `To State=Attack` ships **461** times across 337 files, and 33 of those
+fire a dialogue node, so "say this when you enter combat" is among the most used mechanisms in the
+game rather than something that had to be designed. Each of these five character templates holds
+exactly one `CSkeletonAI`, and inside it, at the same place in the same order:
+
+```
+Allowed To Roam Anywhere=0
+Transition=Array
+{
+    Array Count=0
+}
+```
+
+`Brother Michel.can` is the same file with `Array Count=1` and a transition that fires
+`1000 Michel Attacked`, *"Brothers! Help me!"* -- which is why his bark plays and theirs did not.
+This release is five copies of that edit with his gate removed, since his checks whether Lucious is
+dead and these have no such condition.
+
+### Torquemada's node id ends in a space
+
+`1000 attack torquemada ` is how his own tree spells it, and the three matching rules are not the
+same: a **reply** resolves its target trimmed, a recording resolves trimmed, but a **can or map
+naming a node is matched byte-exactly**, and a mismatch there is a crash when the map loads, not a
+line that fails to play. It is written with the space, it survives the round trip through
+`resource_format`, and `validate.py` A0.7b checks every node id a build writes against the tree's own
+unstripped list. That gate exists because a single trailing space crashed the Goblin Warrens in the
+0.1.x line.
+
+### What is left out, and why
+
+Three more nodes in this family are **greetings, not barks**:
+
+- `1000 After Michel Attacked` -- *"Restrain your barbaric ways while in my presence."*
+- `1000 after attack raphael` -- *"For your sake, I pray your time in prison has soothed your belligerence."*
+- `100 attacked blacksmith` -- *"Perhaps now you will think twice about attacking me, eh? Behave yourself in my shop. Or else."*
+
+Each is a conversation opening for a player who has **already** attacked, which needs something that
+remembers the attack happened. No such requirement exists in the shipped game, and inventing one is a
+different piece of work from filling a slot vanilla left empty. They stay on the list.
+
+The same goes for `grandinquisitor / 1000 return after attack` and `1100 Player attacks`, found in
+his tree beside the bark and also unreached, and for the spirits' combat praise
+(`200 beast compliment`, `200 divine compliment`), which needs a trigger on fighting well rather than
+on being attacked.
+
+### Checked
+
+`validate.py` clean on 717 files including A0.7b, `reachability.py` green with **ten** fewer
+tolerated vanilla orphans. Each can is diffed against `git show HEAD:` rather than vanilla, because
+Fixt already ships three of the five, and every one comes out as a single hunk: `Array Count=0`
+replaced, sixteen lines added, nothing removed. The build also asserts the node id exists in the
+named tree **unstripped** before writing a byte, that each can still holds exactly one
+`CSkeletonAI` and one transition, and that the id survives the round trip.
+
+`vo_reach.py`: **83 unreachable recorded nodes / 6.72 MB -> 78 / 6.45 MB.**
 
 ## 0.63.0 - the spirit's name
 

@@ -1474,6 +1474,24 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.64.0 - what they say when you attack them
+
+**A can edit only reaches a character spawned after you install it**, so each row needs a save that
+has not yet loaded that NPC's map. Torquemada, Raphael, Cedric and Shakespeare are act 1; Joan is act
+4.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| AB1 | **The row that matters most.** Walk into the Temple District at all | - | **No crash.** Torquemada's node id ends in a space and a can naming a node is matched byte-exactly; getting it wrong is a load-time crash, not a missed line |
+| AB2 | Attack Torquemada | - | A balloon over him: *"Arrogant fool! Guards! Restrain this heretic!"* **With voiceover** |
+| AB3 | Attack Cedric Alsen in La Calle Perdida | - | *"Wielders, to me! La Calle Perdida is under attack! The intruder must not leave here alive!"* |
+| AB4 | Attack Joan of Arc on the Doomed Plateau | - | *"So be it, monster. We will send you back to the fires of perdition."* |
+| AB5 | Attack Raphael in the Temple District | - | *"To the hellfire with you, heathen!"* |
+| AB6 | Attack Shakespeare in the Port District | - | *"Time to make an honorable retreat rather than face a dishonorable foe!"* He cannot actually retreat; nothing in this engine can |
+| AB7 | Let one of them drop combat and provoke the same character again | - | The line plays **once**. The transition is `Trigger=First Time`, which is what Brother Michel's uses |
+| AB8 | **Regression.** Talk to all five normally, before attacking anything | - | Their conversations are unchanged. Only the combat slot was touched |
+| AB9 | **Regression.** Take Joan as an ally into the Crypt and fight beside her | - | Her combat banter from 0.56.0 still plays |
+
 ## 0.63.0 - the spirit's name
 
 All of this is dialogue except DaVinci's line, so it works on any save. The spirit conversation opens
