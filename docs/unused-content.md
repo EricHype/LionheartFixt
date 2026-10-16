@@ -1764,6 +1764,52 @@ with four fifths of her combat voice unreachable. DaVinci's Montaillou banter wi
 
 ---
 
+### Measured in 0.65.0 -- the Cortes arm and the cave already run, end to end
+
+The note here used to say *"How much of it currently runs is unmeasured; do that before anything
+else."* It was measured, and the answer is **all of it**. Every reply on the path below is
+`Requirement=!None`, and it starts from a node the map opens:
+
+```
+1 Conversation Start            <- Tavern Port District.zax opens this
+  "Why are you no longer a conquistador?"      -> 30 conquistador -> 31 conquistador 2
+  "Tell me about the one way to repay your debt."  -> 130 hidden treasure -> 2 -> 3
+  "Why are you unable to enter the cave?"       -> 133 cave monsters -> 134 cave monsters 2
+  "Is there a way I could help you compensate for your lost arm?"
+                                                -> 164 cortes needs to repair the arm
+                                                   = Give Cortes a Hand, state EPVSO4Y0
+```
+
+From there the quest is wired across three NPCs: DaVinci sets `WEDKYW9X` and `YJ2T7PXI`, the
+blacksmith sets `3KL9W1JQ` nine ways and `M3GF3HGM`, `3 Return Dialogue Arm` sets `VTH2DOJX` when the
+arm is ready, and `220 cortes receives new arm` -- *"Dios mio! This mechanical arm is perfect! Now I
+am ready."* -- offers the expedition. The cave itself is map-driven: `600 cave map`,
+`600 arrive at river`, `310 cross the river`, `310 mayan transmute`, `600 cortes sees dragon`,
+`600 enter cave`, `920 Cortes get his treasure and leaves`, `921 Cortes gives half treasure and
+leaves` are all opened by maps. Five of the quest's six states are activated by live content; only
+`VTH2DOJX`'s activator sits on a node the map opens rather than a reply, which is why it reads as
+unreferenced.
+
+**So the recordings still listed as unreachable around this thread are a draft layer, and one of them
+would have broken the quest:**
+
+| node | KB | why not |
+|---|---|---|
+| `cortes / 165 help with arm`, `165 help with arm 2`, `170 accept cortes arm quest` | 186 | A second way to ask, off `15 Return Greeting`, which nothing opens. The live ask is `134 cave monsters 2` -> `164 cortes needs to repair the arm`, and `165 help with arm 2` activates the same `WEDKYW9X` |
+| `cortes / 300 secret cave` | 54 | Draft of `310 cross the river`, which the map opens. Both are *the cave is past this river and I know a charm* |
+| `cortes / 160 cortes cave quest female response` | 57 | **Wiring this would break the expedition.** It carries **2** actions where the live `160 cortes cave quest` carries **5**: it never activates `Recover the hidden treasure`, never prints the map marker, and recruits `Companion=Cortes` where the live node recruits `Companion=Cortes with arm`. It predates the arm being part of the thread |
+| `shylocke / 7 return with shakepeares money` | 120 | Draft of `700 complete collect from shakespeare quest`, which `Shylocke Shop.zax` opens and whose `700 complete quest part 2` pays the share **and** gives the bartering book |
+| `shylocke / 500 shylocke gets gold` | 99 | A fixed 500 gold against the live `50 special loan`, which asks how much you want and halves its thirty percent interest |
+| `shylocke / 140 no resolution` | 139 | Its only reply names `151 no resolution 2`, **a node that exists in cortes's tree and not in Shylocke's** -- the 0.61.0 defect class, harmless only because nothing reaches it |
+| `shylocke / 312 charge` | 101 | An entry into the haggle at `315 barter charge` / `330 pay the price` / `400 threat`, which other nodes already enter |
+
+**The general lesson, now paid for twice.** `vo_reach.py` cannot tell a draft from a gap: both are a
+recording with nothing pointing at it. The KB column is not a measure of what is missing from the
+game, it is a measure of what was recorded and then replaced. Before planning work from a size, read
+the live sibling and count its actions -- the female cave response looks like a gendered variant and
+is actually a pre-arm draft that drops three actions.
+
+
 ### Adjudicated in 0.65.0 -- four that stay unwired
 
 The "answer whose question was never written" class is the cheapest kind of restoration and it has
