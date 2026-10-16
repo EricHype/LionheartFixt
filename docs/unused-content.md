@@ -1792,6 +1792,38 @@ all, undecidable without listening to the file.
 
 ---
 
+### Done in 0.61.0 -- the Divine Ones, and the druid finale ruled a design decision
+
+**The largest single unreachable recording in the game, restored by one reply.**
+`demonic spirit / 500 divine explanation demon`, 414 KB, had zero ways in while its twin
+`500 daevas explanation demon` is reached seven times. Its own closing clause -- *"if you ask me,
+which you did"* -- names the slot: it is an answer, so the ask goes at the end of the Daeva lecture.
+**A node that answers a question nobody can ask is the easiest class in this whole survey**, and it
+is worth looking for the tell in the text itself before searching maps.
+
+**It also carried a vanilla defect.** Its two replies were both *"What is a Daeva?"*, and one
+pointed at `500 daevas explanation elemental` -- another spirit's node id, absent from this tree.
+The same copy-paste-between-spirit-trees error 0.57.0 found in the witch scene. **When a node is
+unreachable, the defects inside it are invisible too, so wiring one means reading its replies.**
+
+### NOT done: the druid finale, and why it is a design decision
+
+`1000 druid finale` in all three trees (576 KB), plus `1000 adversary`, `1000 adversary part 2` and
+the two `alamut reply` nodes behind it -- about **1 MB**, the largest family left in the sweep.
+
+It is the beat where the Old Man of the Mountain is revealed behind the druids and the enemy escapes
+through a portal. **The thread was cut whole**, not just the lines:
+
+- no map opens any node of the family;
+- the two quests that would frame it, `Find the portals used by the English forces` (3 Montaillou)
+  and `Pursue the retreating English forces and recover the True Cross` (6 Barcelona Attack), are
+  **defined and referenced by nothing**, exactly like the nodes;
+- act 6's only `portal` is a prop with no activity, in `Temple District Siege.zax`.
+
+So there is no moment to attach it to. Restoring it means choosing where act 6's story turns and
+building the scene around it, which is **writing**, not wiring, and it needs a decision before it
+needs a release. Recorded here so the next sweep does not re-find it as cheap.
+
 ### Done in 0.60.0 -- Shakespeare in the Wilderness, and a draft that was left alone
 
 **The file is `shakespeare.dialogtree`, lowercase.** Every `*.DialogTree` search in this project's
