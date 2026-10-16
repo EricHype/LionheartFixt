@@ -1474,6 +1474,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.69.0 - the Titan Crystal
+
+Monster cans reach only creatures the game creates after you install, so this needs a save that has
+not yet loaded the Mountain Pass. 0.68.0's RT rows cover the sphere; these cover the crystal.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TC1 | Kill **basic** Rock Titans in the Mountain Pass until one drops a crystal | - | Roughly **one in four** leaves a **Titan Crystal**, beside the gold and spirit charge |
+| TC2 | **The row that matters.** Look at it in your inventory | - | **Green over the whole icon**, not green at the edges and violet in the middle. The whole-image recolour is the point of this release; a partial one would look exactly like a bug |
+| TC3 | Look at it on the ground before picking it up | - | Its own model, `TitanCrystal_PU`, used by this item alone and never displayed in the game before |
+| TC4 | Sell it | - | **200 gold**, the same as the sphere and the Expensive Gem |
+| TC5 | **Regression.** Kill the Tough and Super tiers | - | The **sphere** as in 0.68.0, blue, and **no crystal**. Each tier drops one stone, not both |
+| TC6 | **Regression.** Lucius' Mneme, from Toulouse | - | Still **violet**, unchanged. It shares the original icon; only the loot copy was recoloured |
+| TC7 | **Regression.** Check every other inventory icon you own | - | Unchanged. An identity recolour reproduces all 259 of the game's icons byte for byte, both planes included |
+
 ## 0.68.0 - the Titan Sphere as titan loot
 
 Monster cans only reach creatures the game creates **after** you install, so this needs a save that

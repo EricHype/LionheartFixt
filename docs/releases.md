@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.68.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.69.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,75 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.69.0 - the Titan Crystal
+
+0.68.0 shipped the Titan Sphere and said the crystal could not come with it: its colour was in buffer
+4, `recolor_icon_in_place` only touched buffer 1, and recolouring it would have repainted a quarter
+of the image. That report was wrong, and finding out why was worth more than the item.
+
+### Buffers 4 and 5 were the wrong way round
+
+ReVa could not connect this session, so the binary was read with **capstone** instead.
+
+**The loader `FUN_0055d0a0`** allocates and reads ten pointers in pairs, data then a `height*4` row
+table, which fixes the field map: buffer 1 at `+0x0c`/`+0x18`, buffer 4 at `+0x2c`/`+0x30`, buffer 5
+at `+0x34`/`+0x38`.
+
+**`GetColorAt`'s fallback at `0x0055ed2c`**, taken wherever buffer 1 decodes to 0, reads its opcodes
+**and its two-byte colour values** from `+0x34` -- buffer 5 -- and **one byte per pixel** from
+`+0x2c` -- buffer 4 -- as an alpha, keeping the colour only where that byte is non-zero:
+
+```
+mov ecx,[eax+0x34]          ; buffer 5 -> opcodes and 2-byte values
+mov edi,[eax+0x2c]          ; buffer 4 -> one alpha byte per pixel
+...
+mov cl,byte ptr [edx+esi]   ; at the target x; zero means transparent
+```
+
+So the module had the two planes swapped, which is why "extend the recolour to buffer 4" never worked
+and should never have been called mechanical. Verified both ways against the data: **buffer 5 walks
+clean under buffer 1's grammar on 257/257** icons that have one, every row covering exactly `width`
+pixels and consuming exactly `table[y+1] - table[y]` bytes; and buffer 4 is not an opcode stream at
+all, since buffer 1's grammar walks **0 of 257** and a four-way search over value width and repeat
+polarity fits 14% of 23434 rows, which is chance. `Armor Chain` row 0 reads
+`10 3c 65 7d 87 92 8c 83 79 5d 46 27 0d` because it is thirteen alpha values, one per pixel.
+
+### So the crystal recolours, all of it
+
+```
+buffer 1:   1510 values  (161, 0, 245) -> (0, 249, 0)
+buffer 5:  10106 values  ( 41, 0, 184) -> (0, 185, 0)
+11616 colour values moved, 23232 bytes changed
+length, header and silhouette identical
+```
+
+**Green**, because blue is the sphere's now and violet stays Lucius' Mneme's -- the crystal shares its
+original icon with the Mneme exactly as the sphere shares its one with the four stone hearts. The
+transform sends each pixel's brightest channel to green and the other two to its dimmest, so
+brightness is preserved rather than washed out.
+
+### Where it drops
+
+1 in 4 from the **basic** `Rock Titan Blue`, using the same `Chance 1 in N` can idiom and the same
+`Destroyed Effect Action` slot as the sphere, for the reasons 0.68.0 set out. That gives each of the
+three tiers something, and which titan you killed tells you which stone you got: basic the crystal,
+Tough and Super the sphere. 200 gold either way, vanilla's own value, with the name and description
+untouched -- *"Large and unwieldly. Smells bad."*
+
+And like the sphere, it puts a ground model on screen that no player has seen: `TitanCrystal_PU`,
+used by this item alone.
+
+### Checked
+
+`validate.py` clean on 726 files, `reachability.py` green. The build asserts buffer 5 is populated
+before it starts, that the header and the silhouette survive, that **both** planes go from violet to
+green rather than one of them, that the item keeps its value, name, description and ground model, and
+that the basic titan's death action goes from three actions to four with its 1509 XP intact and the
+pain-sound `CRandomAction` untouched -- plus that the sphere is **not** on this tier.
+
+In the tool: an identity recolour reproduces all **259** of the game's rle16 inventory icons byte for
+byte, with the second plane and without it.
 
 ## 0.68.0 - the Titan Sphere as titan loot
 
