@@ -1,0 +1,739 @@
+CDialogTree
+{
+Name=Bestial Spirit
+Portrait=Dialog/NPC Portraits/Spirit Beast
+Should Have Voiceovers=1
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=end spirit nis
+}
+------------------------------------------------------------
+Node ID=1 Conversation Start Beast
+Text=You did well to escape the trap of those assassins, Scion of Lionheart. We are being hunted, and there will be more such attacks. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Start Skills Tutorial 1
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Start Skills Tutorial 1
+Text=You must rely on your senses, instincts, and skills to survive. Now that you have had a taste of danger, you are ready to focus your experience and choose the way you wish to progress.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Start Skills Tutorial 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsLessThanOrEqual
+{
+Operand1=CVariableCharacterLevel
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=Player1
+}
+Succeed Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tutorial XP
+Experience Points To Add=1
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CEndNonInteractiveSequenceAction
+{
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Start Skills Tutorial 2
+Text=Since you have gained a level of experience, you are able to place Skill Points into various skills of your choice. Select the flashing Skills Icon to bring up the Character Skills Screen.  Then press 'Continue' below to learn more.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Start Skills Tutorial 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Start Skills Tutorial 3
+Text=You will see five main disciplines on the Character Skills Screen that you can choose from: Fighting, Thieving/Diplomacy, Divine Magic, Thought Magic, and Tribal Magic. Whenever you have Skill Points to spend, first select the discipline you want and then choose the specific skill you would like to improve.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about the skill disciplines.
+Go to node ID=1 Skill Disciplines
+
+Requirement=!None
+Reply Text=I think I can handle things from here.
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Skill Disciplines
+Text=Which of the disciplines do you want to learn about?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Fighting discipline.
+Go to node ID=1 Fight Skills Explanation
+
+Requirement=!None
+Reply Text=Tell me about the Thieving/Diplomacy discipline.
+Go to node ID=1 Thief Skills Explanation
+
+Requirement=!None
+Reply Text=Tell me about the Divine Magic discipline.
+Go to node ID=1 Divine Magic Explanation
+
+Requirement=!None
+Reply Text=Tell me about the Thought Magic discipline.
+Go to node ID=1 Thought Magic Explanation
+
+Requirement=!None
+Reply Text=Tell me about the Tribal Magic discipline.
+Go to node ID=1 Tribal Magic Explanation
+
+Requirement=!None
+Reply Text=I think I do the rest for myself. 
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Fight Skills Explanation
+Text=The most direct and least subtle of the disciplines, fighting skills allow you to increase your prowess in battle. Within this discipline, you can increase your proficiency with missile and melee weapons, learn to fight unarmed, and learn to evade the blows of your enemies.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about the other skill disciplines.
+Go to node ID=1 Skill Disciplines
+
+Requirement=!None
+Reply Text=I think I do the rest for myself. 
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Thief Skills Explanation
+Text=These skills are the domain of the roguish adventurer. Within this discipline you can increase your Stealth skill, allowing you to sneak past enemies undetected, and also learn to detect secret doors or pick a lock. You can also improve your ability in Speech, allowing you to beguile, charm, and smooth talk your way out of difficult situations, and can learn to Barter, allowing you to get better prices from merchants.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about the other skill disciplines.
+Go to node ID=1 Skill Disciplines
+
+Requirement=!None
+Reply Text=I think I do the rest for myself.
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Tribal Magic Explanation
+Text=Tribal Magic is the most diverse and versatile of the three magic disciplines. The different Spell Branches of the Tribal Magic Discipline let you tap into raw earth magic and command the forces of nature to do your bidding. Some spell groups allow you to conjure natural and unnatural monsters to your defense, or to charm creatures to assist you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Spell Branch?
+Go to node ID=1 Spell Group Description
+
+Requirement=!None
+Reply Text=Tell me more about the other skill disciplines.
+Go to node ID=1 Skill Disciplines
+
+Requirement=!None
+Reply Text=I think I do the rest for myself.
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Spell Group Description
+Text=Within each of three Magic Disciplines, there are several 'Spell Branches' that you can improve. By placing Skill Points into a Spell Branch you will improve all the spells within it. As you continue to apply more points to a Spell Branch, each of the spells within it becomes more powerful.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about the other skill disciplines.
+Go to node ID=1 Skill Disciplines
+
+Requirement=!None
+Reply Text=I think I do the rest for myself.
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Divine Magic Explanation
+Text=Divine Magic is the domain of healing and protective spells. The different spell groups within this discipline allow you to heal damage, protect yourself from certain forms of attack, and call down divine fury against evil and unnatural creatures.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Spell Branch?
+Go to node ID=1 Spell Group Description
+
+Requirement=!None
+Reply Text=Tell me more about the other skill disciplines.
+Go to node ID=1 Skill Disciplines
+
+Requirement=!None
+Reply Text=I think I do the rest for myself.
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Thought Magic Explanation
+Text=Thought Magic relies on a focused mind to harness nature and unleash powerful elemental energies against your foes. The different spell groups within this discipline let you cast the most potent destructive magic, like spells that unleash terrible storms of fire, torrents of jagged ice, and thunderous bolts of lightning.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Spell Branch?
+Go to node ID=1 Spell Group Description
+
+Requirement=!None
+Reply Text=Tell me more about the other skill disciplines.
+Go to node ID=1 Skill Disciplines
+
+Requirement=!None
+Reply Text=I think I do the rest for myself.
+Go to node ID=1 Exit Skill Tutorial
+Custom Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Exit Skill Tutorial
+Text=Very well, Scion of Lionheart, do you have other questions for me, or can we resume our journey together?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What exactly are you?
+Go to node ID=10 beast spirit
+
+Requirement=!None
+Reply Text=Why do you call me Scion of Lionheart?
+Go to node ID=10 lionheart
+
+Requirement=!None
+Reply Text=Who is hunting us?
+Go to node ID=10 hunted
+
+Requirement=!None
+Reply Text=I tire of your counsel. Begone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Thank you, spirit. Let's continue on.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye 1
+Text=Let us continue our hunt for the truth.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=end spirit nis
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye 2
+Text=Stay cautious and trust your senses.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=end spirit nis
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye after warning
+Text=Continue on, but heed my warning.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=end spirit nis
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=We shall speak again when the situation requires it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=end spirit nis
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 beast spirit
+Text=I am a spirit born of primal nature and your flesh has been my cage these many years. During the time of the Disjunction, much of the world was thrown into chaos.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=10 beast spirit 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 beast spirit 2
+Text=Amidst the great battle, I found strength in King Richard and joined with him. Ever since that time, I have slept in the blood of your family, Richard's family. And now I have awakened in you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 union
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=37 bastard child
+Text=Though your blood is descended from his, you are not in line for the throne. Richard was a man of strong instincts and passions - during the crusades, he sired a large brood of children across the face of Europe. You are but one cub of a large pride.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Exit Skill Tutorial
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 hunted
+Text=I do not know. I have slumbered these many years and my senses are still dulled. There is much that I do not know. We should track down those that hunt us and learn why they seek to capture you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Exit Skill Tutorial
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 lionheart
+Text=I am a spirit that has lived in your family for generations, ever since I joined with your ancestor King Richard the Lionhearted. I have slumbered for many years within your bloodline, waiting for a scion as worthy as Richard. I sense that you *could* be the one I have been waiting for.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=King Richard? Does that mean I am an heir to the throne?
+Go to node ID=37 bastard child
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=1 Exit Skill Tutorial
+
+Requirement=!None
+Reply Text=I tire of your counsel. Begone.
+Go to node ID=5 goodbye 2
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Thank you, spirit. Let's continue on.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 union
+Text=We draw on each other's strengths and form a powerful union. Without a host, I cannot exist in the material world. And without me, you cannot wield magic.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I welcome your presence spirit.
+Go to node ID=40 welcome
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I don't like being possessed.
+Go to node ID=50 unwelcome
+------------------------------------------------------------
+Node ID=20 prime werewolf encounter
+Text=Have caution here, Lionheart. I sense a powerful spirit within the beast. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=30 dragon encounter
+Text=Wait, hold a moment. Do you hear that noise, like the voice of the north wind? That is the breath of a great beast and we are in grave danger. We trespass in the lair of Azi Dahaka, the devourer. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is this Azi Dahaka?
+Go to node ID=30 Azi Dahaka
+
+Requirement=!None
+Reply Text=I fear no beast. Now begone.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Thank you spirit. We should continue on now.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Azi Dahaka
+Text=Azi Dahaka is a storm demon and one of the strongest of the Daeva. He has grown large on a diet of *entire* armies. He is an enemy of your kind and one of the greatest forces of evil on this wayward planet. This will be the most dangerous opponent you have faced yet.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How can this creature be defeated?
+Go to node ID=30 defeat dragon
+
+Requirement=!None
+Reply Text=Could it be possible to convince Azi Dahaka to let us pass?
+Go to node ID=30 speak with dragon
+
+Requirement=!None
+Reply Text=I've heard enough out of you. Begone.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Thank you spirit. We should continue on now.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 defeat dragon
+Text=I do not know if Azi Dahaka has a weakness, but few weapons or magics are potent against him. I can only advise you to protect yourself from his fearsome dragonfire.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Could it be possible to convince Azi Dahaka to let us pass?
+Go to node ID=30 speak with dragon
+
+Requirement=!None
+Reply Text=I've heard enough out of you. Begone.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Thank you spirit. We should continue on now.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 speak with dragon
+Text=The beast is not without cunning. If you attempt to match wits against it, you must be as clever as a fox - if Azi Dahaka senses weakness in you, we will perish.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=How can this creature be defeated?
+Go to node ID=30 defeat dragon
+
+Requirement=!None
+Reply Text=I've heard enough out of you. Begone.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Thank you spirit. We should continue on now.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 undead encounter
+Text=I sense abominations... unliving creatures animated by dark spirits. Lionheart, beware the undead here.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=40 welcome
+Text=And I embrace your courage, young one. Together, we will become something stronger and accomplish great things.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Exit Skill Tutorial
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Rogue Inquisitors
+Text=Beware, the dark inquisitors wield the power to cancel magic by touch, so do not let them get close to us.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=50 unwelcome
+Text=You will learn that pulling against the leash of fate can sometimes be futile. In time, you will sense the strength and power I grant you, and appreciate my presence.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Exit Skill Tutorial
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 beast compliment
+Text=You fight with a fierceness I respect. You are worthy to bear my power.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 aesma warning beast
+Text=I know that scent. Within that cave lies Aesma, the demon of Hate and Fury. It will not listen to reason and will try to rend you limb from limb.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about this demon.
+Go to node ID=500 daevas explanation beast
+
+Requirement=!None
+Reply Text=I've heard enough. Let's continue on.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 tawrich
+Text=Tawrich is the Daeva of Hunger, a powerful demon with a ravenous appetite for mortal flesh that is never sated. Throughout history, he has bonded with conquerors and raiders, seeking to devour the world. He has had many names. Buddhists call him Pretas and Rome knew him as Fames, but all know him as suffering.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Daeva?
+Go to node ID=500 daevas explanation beast
+
+Requirement=!None
+Reply Text=I've heard enough. Let's continue on.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 khan demon
+Text=<Sniff> There is a stench within this cave. This is the lair of a great predator, one that has a hunger unmatched by any animal. My instincts tell me that it is Tawrich, the Devourer. If so, do not charge blindly into this encounter. Be cunning, and prepare yourself for a vicious opponent.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who is Tawrich?
+Go to node ID=400 tawrich
+
+Requirement=!None
+Reply Text=I've heard enough. Let's continue on.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 daevas explanation beast
+Text=The Daevas are powerful demons whose purpose is to cause strife and spread evil across the world. Each Daeva is unique and possesses dreadful power. For as long as I can remember, they have fought the Divine Spirits in a senseless war that I have tried, sometimes unsuccessfully, to avoid.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the Divine Spirits.
+Go to node ID=500 divine spirit explanation beast
+
+Requirement=!None
+Reply Text=I've heard enough. Let's continue on.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 divine spirit explanation beast
+Text=Divine Spirits have opposed the Daevas since humankind first knew good from evil. Humans have given them many names throughout time. In the south they are known as the guardian Ombwiri. In the west they are Cherubim and in the east, Kurabi. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=500 divine spirit explanation beast part 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 divine spirit explanation beast part 2
+Text=Each Divine Spirit represents a virtue and possesses the power of some aspect of good. But to me, they are no better or no different than the Daevas - good and evil are but two sides of one coin.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Daeva?
+Go to node ID=500 daevas explanation beast
+
+Requirement=!None
+Reply Text=I've heard enough. Let's continue on.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 wizard tremblethorn aka manah
+Text=<Growls> Betrayal and temptation pervade these caves. This is the work of a powerful Daeva, Aka Manah, known in your tongue as the Evil Mind. He is always seeking to tempt and corrupt the credulous and weak-willed. Guard your body and mind against this foe.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who is Aka Manah?
+Go to node ID=600 Aka Manah
+
+Requirement=!None
+Reply Text=I've heard enough. Let's continue on.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 aka manah
+Text=Aka Manah is a treacherous Daeva. He is the personification of destructive temptation. Those that are fooled by his seductions become little more than slaves to his addictions. Resist his calling and stay true to your heart.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Daeva?
+Go to node ID=500 daevas explanation beast
+
+Requirement=!None
+Reply Text=I've heard enough. Let's continue on.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=700 old man warning
+Text=Hold, Scion of Lionheart. There is a very powerful spirit near to us. I sense something almost familiar, but... mysterious. Be prepared, I believe this is the foe that has been seeking us out.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=750 name
+Text=I have been called both demonic and divine in my long history. Far to the east I was called Raiju, the thunder beast, in the New World I took the form of the Coyote to teach and beguile. My ancient name is...best not spoken, but know that I have left the great struggle and now serve the *balance*.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=750 good and evil
+Text=Such concepts of good and evil are unknown to animals, though they can appear unmercifully cruel or loyally protective at their whim. It is said mortals that fail to achieve perfection in life, return as animals in their next life to help the balance, such is the natural order of things. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 weird woman
+Text=There is a presence within that dwelling that troubles me, like an ominous veil shrouding this place, hiding a presence I have sensed before. Something is not what it seems.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is this presence?
+Go to node ID=800 dark presence weird woman
+
+Requirement=!None
+Reply Text=Thank you spirit. We should continue on now.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 dark presence weird woman
+Text=Though there is magic shrouding her presence, the scent of a Daeva is unmistakable. I cannot discern the demon's identity, so it would be best to prepare yourself for any eventuality.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What is a Daeva?
+Go to node ID=500 daevas explanation beast
+
+Requirement=!None
+Reply Text=Thank you spirit. We should continue on now.
+Go to node ID=5 goodbye after warning
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 druid finale
+Text=Now the wolf has shed its false coat and our *true* enemy is revealed. We must act immediately and follow those assassins through the portal, wherever it may lead. Whoever stole the True Cross and the other relics intends to unleash unimaginable destruction on the world.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Agreed, we must pursue our enemy and recover the relics.
+Go to node ID=5 goodbye 1
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I care not for others, I seek the relics for *myself*.
+Go to node ID=1000 evil response reply
+------------------------------------------------------------
+Node ID=1000 evil response reply
+Text=Be wary! Such instincts have led many to ruin. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=end spirit nis
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1100 Found Mana
+Text=That blue spirit you just absorbed is a spirit let loose by the Disjunction. I...we...can obtain Mana energy from such a spirit. During our travels, we will find many of them to boost our magic power. While they evade the sight of most people, your keen eye can spot them.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1101 Found Health
+Text=While you are bound to me, you can gather these lost souls to replenish your life energies. It is the way of nature that things die and leave their remains for the strong to consume.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 nis spirit recognizes weird woman
+Text=Now the scent is familiar to me. This *creature* before you is *Druj* the Daeva of Lies and Deception. Weigh her words carefully.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1200 Near Nanghaithya
+Text=There is a very powerful spirit near to us. Be wary!
+Should Have Voiceover=1
+}

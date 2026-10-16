@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.61.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.61.0).
+-- currently [0.62.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.62.0).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -53,11 +53,11 @@ The three most recent pieces of restored content. The patches between and after 
 
 | Release | Where | What |
 |---|---|---|
+| **0.62.0** | the road out of Barcelona | **The act 6 story turn, and no map opened any of it.** `1000 druid finale` exists in all three spirit trees, and **13 nodes and 1.31 MB** of performed voiceover hang off it: *"Now the wolf has shed its false coat and our *true* enemy is revealed"*, *"the Old Man of the Mountain has moved his pawns brilliantly, placing the world in *check*"*, then `1000 adversary`, the Disjunction and three karma answers. Every follow-on's only way in is the finale, so **one trigger reaches all of it**, and the shape is vanilla's: `700 old man warning` has zero inbound replies too and plays because `07 Dark Temple` opens it the same way, twelve wirings in one map. It fires on the **Crossroads-to-England road**, walking up to the portal, which is the road out of the sacked city and the quest **0.32.0 restored** on it already says *"Follow it"*. **Three defects came out with it:** the beast finale answered *"Agreed, we must pursue our enemy"* with *"Be wary! Such instincts have led many to ruin"*, because both its replies fired the evil node; the elemental's default reply named a node that **does not exist in that tree**; and four terminals carried no exit at all, which inside a cutscene means the controls never come back. **A fourth is reachable today:** the beast spirit's *"I tire of your counsel. Begone"* names `5 goodbye angry`, which the other two trees have and **the beast tree does not** |
 | **0.60.0** | the Crossroads | **Shakespeare comes out to the Wilderness to research a play about you.** Five nodes and **0.34 MB** of performed voiceover, opened by nothing: *"And enter the hero, stage right! ... I thought it appropriate that I visit your battle sites personally, experience your struggles, and inhale the very scent of your valor."* Then the pitch -- **Richard II, named for you** -- his delight or his retreat, and *"the fruit of the tree is too young and not yet ripe"* for every visit after. Three conversations on one specifier, the `CSeriesAction` idiom DaVinci's chamber uses, so it unfolds across visits. He appears once the **Muse** quest is done, which is the quest that gives him back the ability to write, standing on an existing spawn-point position so the ground is walkable, in the map that already keeps **Cervantes** as a cameo. And the reply that sends him home now actually sends him home: it carried no action at all, so he would have said farewell and stood in the Wilderness for the rest of the game. **His tree is `shakespeare.dialogtree`, lowercase**, which is why every `*.DialogTree` search in this project had missed it. Not a word written |
 | **0.59.0** | Darkwood Cave | **Your spirit warns you about the undead, which it was recorded to do.** `35 undead encounter` exists in **all three** companion spirit trees, recorded in all three (**347 KB**), and placed in no map. The open question in the notes is answered: it is not superseded by the live generic warnings, which say *"something just ahead would like to separate your head from your shoulders"* where this one names what it senses. And the node has **no replies**, which is the balloon shape -- the wired warnings all carry replies and open as conversations, while the reply-less `1100 Found Mana` is ballooned from a can. That can is the template, cloned with **four substitutions and nothing else**, so the three-way `CHasSpirit` branch, the summoning effect, the Appear and the cleanup are all vanilla's. It fires in Darkwood Cave, which the main quest's darkwood makes mandatory: 350 units past the arrival pad so it cannot fire as the map loads, 339 short of the first undead generator so the warning comes first |
-| **0.58.0** | Gate District | **DaVinci's parting gift, the largest unreachable recording pair in the game.** **554 KB** across a male and a female take, both `.ogg` files on disk, entered by nothing: *"Signore! Oh, how could I have forgotten? I have something for you!"* The node's shape said cutscene rather than conversation -- blank reply text, no target node, `CSendAIDoneMessage` -- so it wanted a map to show it, and **the tree's own root names the trigger**: `Default Canceled Node Action` arms `detect player for davinci gift`, an entity that **exists in no map in the game**. It exists now, as a clone of this map's own touch trigger, sitting on the walk into the city so he catches you a few steps later rather than talking over his own goodbye, and he hands over a healing potion: literally an extra one, the same `Potion` plus `Potions/Healing` addition the vanilla starting kit gives |
 
-The **94 releases around those** are one line each in [`docs/changelog.md`](docs/changelog.md).
+The **97 releases around those** are one line each in [`docs/changelog.md`](docs/changelog.md).
 
 Everything the shipped game defines and then references from nothing -- unplaced quest items, the enemy cans that nothing spawns, and why that count was first reported as 48 and is honestly zero, two whole summon tiers, and which of them Fixt has since picked up -- is surveyed in [`docs/unused-content.md`](docs/unused-content.md), along with the four ways that survey was wrong before it was right.
 
@@ -68,7 +68,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.61.0 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.62.0 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

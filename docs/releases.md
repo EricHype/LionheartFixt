@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.61.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.62.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,103 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.62.0 - the druid finale
+
+The act 6 story turn. `1000 druid finale` exists in all three spirit trees, **13 nodes and 1.31 MB**
+of performed voiceover hang off it, and no map opened any of it.
+
+> **Beast.** Now the wolf has shed its false coat and our *true* enemy is revealed. We must act
+> immediately and follow those assassins through the portal, wherever it may lead.
+>
+> **Demonic.** As I suspected, those simple *druids* lacked the mental capacity to so effectively act
+> alone against the Knights Templar. It appears the Old Man of the Mountain has moved his pawns
+> brilliantly, placing the world in *check*. Perhaps we should pursue with haste before he declares
+> *mate*.
+>
+> **Elemental.** Now our *true* adversary has moved against us directly. We must act immediately and
+> follow those assassins through the portal, wherever it may lead.
+
+### One trigger, not thirteen wirings
+
+Every follow-on node's only way in is the finale, so a single scene makes the whole family
+reachable: the elemental's *"Do you know the identity of our adversary?"* into `1000 adversary` and
+`1000 adversary part 2`, which name the Daeva and the Disjunction, then the karma answers in all
+three trees.
+
+**And the delivery is vanilla's, not invented.** `700 old man warning` has zero inbound replies in
+all three trees, exactly like the finale, and it plays in the retail game because
+`8 Alamut/07 Dark Temple.zax` opens it from a map trigger with a three-way `CHasSpirit` branch,
+twelve wirings in one map. The same shape drives the dragon in `02 Shifting Dunes`, the prime wererat
+in `Wererat Cave`, the Goblin Warrens and the Ogre Conjurer Cave. This release is one more of those:
+the marker, the summoning effect, the `Appear`, the two-second beat before the line, the disappear
+and the delete are each copied from `Wererat Cave`'s own relay pair.
+
+### Where, and why there
+
+**Acts 6 and 7 contain no spirit scene at all.** The spirit is silent from the Crypt council in act 4
+until the Alamut desert in act 8, and the finale is the one scene written for that gap.
+
+It fires on the **Crossroads-to-England road**, walking up to the portal at the far side. That is the
+road out of the sacked city, the portal is its only exit, and the line is *"follow those assassins
+through the portal"*. The quest on that road already says the same thing, because **0.32.0 restored
+it**: *"The Druid force is falling back west through the crossroads, and the True Cross is going with
+them. Follow it."* This is the voiced beat that belongs to that line.
+
+The siege maps were the alternative and were rejected: 791 to 920 level parts each, and a
+conversation opening during active combat.
+
+### Three defects came out with it
+
+All three were invisible while the family was unreachable, which is the pattern this project keeps
+finding: code nobody could run is code nobody could see was wrong.
+
+**The beast finale fired the wrong line.** Both of its replies pointed at `1000 evil response
+reply`, so *"Agreed, we must pursue our enemy and recover the relics"* was answered with *"Be wary!
+Such instincts have led many to ruin."* Same shape as 0.57.0's witch scene and 0.61.0's duplicate.
+The good reply now goes to `5 goodbye 1`, *"Let us continue our hunt for the truth"*, which is 36 KB
+of recorded voiceover that sat unreachable beside it and is exactly the answer the reply asks for.
+
+**The elemental had a reply to nowhere.** `1000 adversary part 2`'s default reply named
+`1000 good response reply`, **a node that does not exist in that tree**. It now names
+`1000 good response alamut reply`, which does, and which the finale's own good reply already named.
+
+**Four terminals never ended the scene.** This conversation runs inside a non-interactive sequence,
+so an exit has to fire the `end spirit nis` relay. The beast's `1000 evil response reply` and the
+elemental's three `alamut reply` nodes carry **no replies at all**, which inside a cutscene means
+the line plays and the controls never come back. Each now carries the same blank exit reply
+`5 goodbye after warning` uses in the same file. The demonic variant needed nothing: both of its
+exits already fire the relay, which is how the discipline was identified in the first place.
+
+### And a fourth that is reachable today
+
+The same sweep found a wrong target outside the finale. `10 lionheart` is the beast spirit's own
+introduction, off the hub after the skill tutorial, and its dismissal *"I tire of your counsel.
+Begone."* names `5 goodbye angry` -- **a node the demonic and elemental trees both have and the beast
+tree does not**. So for a bestial player that line has never had an answer. It now goes to
+`5 goodbye 2`, *"Stay cautious and trust your senses"*, 42 KB of recorded answer that nothing
+reached, and the terse reply a dismissal asks for.
+
+### Checked
+
+`validate.py` clean on 714 files, `reachability.py` green with one fewer tolerated vanilla orphan,
+`test_triggers.py` passing, and `auto_open_risk.py` unchanged. The build asserts the map gains
+**exactly four level parts and removes none**, that all three spirit arms name `1000 druid finale`,
+that no `Text=` line is rewritten anywhere, and that no blank line is left before a node separator,
+because vanilla has **0 of those against 2602**.
+
+`vo_reach.py`: **101 unreachable recorded nodes / 8.88 MB -> 88 / 7.57 MB.** The largest single
+restoration in this mod.
+
+### What this does not reach
+
+A new trigger in a map is only seen by a save that has **not yet entered that map**, so a save
+already standing on that road will not get the scene. There is no dialogue reply to piggyback the fix
+onto, because no NPC on that road is in the right conversation.
+
+And one loose end from the same thread stays open: `Find the portals used by the English forces`, in
+act 3, is still an empty quest definition that nothing references. Unlike its act 6 sibling it has no
+recorded scene behind it, so there is nothing to restore it with.
 
 ## 0.61.0 - the Divine Ones
 

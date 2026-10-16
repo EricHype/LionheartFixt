@@ -1474,6 +1474,25 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.62.0 - the druid finale
+
+Needs a save that has **not yet reached** the Crossroads-to-England road in act 6, because a new
+trigger in a map only reaches saves that have not entered that map. DF8 is separate and needs any
+save with the **Beast** spirit.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DF1 | Leave the Crossroads siege, cross the road map and walk up to the portal at the far side | - | Your spirit's summoning effect plays, the spirit appears beside you, and your controls lock |
+| DF2 | Listen | - | The finale, **with voiceover**, in your own spirit's register. Beast: *"Now the wolf has shed its false coat"*. Demonic: *"...placing the world in *check*. Perhaps we should pursue with haste before he declares *mate*"*. Elemental: *"Now our *true* adversary has moved against us directly"* |
+| DF3 | **The row that matters most.** Take any reply through to its end | - | The spirit plays its disappear animation and **your controls come back**. This scene runs inside a non-interactive sequence and four of its exits ended nothing |
+| DF4 | Elemental only: take *"Do you know the identity of our adversary?"* | - | Two more nodes, the Daeva and the Disjunction, then three karma replies |
+| DF5 | Elemental only: from there take *"Agreed, we must pursue our enemy and recover the relics."* | - | *"Your valor inspires strength and hope within me, rivaling even King Richard's courage."* Vanilla pointed this reply at a node that does not exist in that tree |
+| DF6 | Beast only: take *"Agreed, we must pursue our enemy and recover the relics."* | - | *"Let us continue our hunt for the truth."* **Not** *"Be wary! Such instincts have led many to ruin"*, which is what both replies used to fire |
+| DF7 | After the scene, walk out of the area and back to the portal | - | Nothing fires a second time |
+| DF8 | Click the portal | - | You relocate to the English Shrine as before |
+| DF9 | **Regression, any save with the Beast spirit.** Talk to it, work to its introduction (*"I am a spirit that has lived in your family for generations"*) and take *"I tire of your counsel. Begone."* | - | *"Stay cautious and trust your senses."* Vanilla named a node the beast tree does not have, so the dismissal answered with nothing |
+| DF10 | **Regression.** Check your quest log on that road | - | *"The Druid force is falling back west through the crossroads, and the True Cross is going with them. Follow it."* unchanged from 0.32.0 |
+
 ## 0.61.0 - the Divine Ones
 
 Needs the Demonic spirit, and the wererat cave scene where he explains the Daevas.
