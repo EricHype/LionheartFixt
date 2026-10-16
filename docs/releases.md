@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.66.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.67.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,61 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.67.0 - who stole the relic from the mosque
+
+`Jafar / 42 thefts` is **202 KB** of recorded voiceover that nothing reached:
+
+> Unfortunately, we do not know. Our enemy must wield powerful sorcery to overcome the wards we
+> placed around the mosque. We fear that even the Cathedral of Barcelona may be vulnerable to whoever
+> or whatever is targeting the relics.
+
+### The only orphan in a family where everything else is live
+
+`40 mission`, `41 templar`, `43 noble`, `44 insult` and `48 Old Pact` are all reached. `42 thefts`
+was not, and the gap is on the node that raises the subject. `40 mission` is Amir saying:
+
+> One of the sacred relics from the third crusade was stolen from a secret mosque guarded by my
+> order. We are concerned that those responsible may attempt to steal the relics under the care of
+> the Knights Templar.
+
+Its only two replies were *"I have other questions."* and *"Goodbye."* So the player heard that a
+relic had been stolen, was told the Templars' relics might be next, and could not ask who took it.
+
+That shape -- one unreached node among live siblings, answering a question its own host fails to
+offer -- is the signature this project now classifies on, and it has paid five times: 0.61.0's Divine
+Ones, 0.63.0's spirit name, 0.65.0's Michel, 0.66.0's Inquisition order, and this.
+
+### It needed nothing but the question
+
+`42 thefts` already carries its own two replies, back to `15 questions` and out through
+`10 Goodbye`, which are reached seventeen and nineteen other ways. And the route to its host is
+repeatable -- the hub, then *"Where are you from?"*, then *"What is this important matter?"* -- so the
+question stays available instead of passing by once.
+
+The reply is in the register of the hub it hangs under, where the player's lines are plain: *"Who are
+you?"*, *"Where are you from?"*, *"Why are these tents here?"*
+
+> Do you know who is responsible?
+
+### Checked
+
+`validate.py` clean on 717 files, `reachability.py` green with one fewer tolerated vanilla orphan.
+The build asserts nothing reached the node before and one reply does after, that the answer node
+itself comes out **byte-identical** (it needed no change), that its two exits are the live ones, that
+the new reply sits above the pair that was already there, and that no node, `Text=` line or other
+reply moved. Diffed against `git show HEAD:`: one hunk, four lines added, nothing removed.
+
+`vo_reach.py`: **76 unreachable recorded nodes / 5.96 MB -> 75 / 5.77 MB.**
+
+### That closes the Inquisition and Saladin sweep
+
+With this, the five nodes left unclassified after 0.66.0 are all settled: this one restored, three
+superseded drafts (`401 already dead` against the live `407`/`408` pair, `202 trial 2` against
+`203 trial 3`, `220 pass trials` against `230 knight of saladin`), and
+`300 inquisition inquisitor scene` -- Torquemada greeting the Daeva Asha as an old acquaintance --
+which has no scene, no map and no second line anywhere, and would mean writing that revelation rather
+than restoring it.
 
 ## 0.66.0 - the order the Inquisition never gave
 

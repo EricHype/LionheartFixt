@@ -1474,6 +1474,19 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.67.0 - who stole the relic from the mosque
+
+Dialogue only, so any save works. Amir is at the tents in the Gate District.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| AM1 | Talk to Amir, take *"Where are you from?"*, then *"What is this important matter?"* | - | His account of the theft from the mosque, and a new option: **"Do you know who is responsible?"** |
+| AM2 | Take it | - | **With voiceover.** *"Unfortunately, we do not know. Our enemy must wield powerful sorcery to overcome the wards we placed around the mosque. We fear that even the Cathedral of Barcelona may be vulnerable to whoever or whatever is targeting the relics."* |
+| AM3 | **The row that matters.** Click through his answer | - | You land back on *"Now, what else would you like to speak about?"* and can carry on. His answer already carried its own way out |
+| AM4 | Take *"Goodbye"* from his answer instead | - | The conversation closes normally |
+| AM5 | Return to the subject later through the hub | - | The option is still there. The route to that node is repeatable, so this is not a one-time question |
+| AM6 | **Regression.** Take the two replies that were always on that node | - | *"I have other questions"* still reaches his hub, *"Goodbye"* still closes |
+
 ## 0.66.0 - the order the Inquisition never gave
 
 Needs an **Inquisitor** character who has finished the induction and been to the cathedral summit,
