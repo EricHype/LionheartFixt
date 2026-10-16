@@ -1474,6 +1474,18 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.61.0 - the Divine Ones
+
+Needs the Demonic spirit, and the wererat cave scene where he explains the Daevas.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DV1 | Ask him about the Daevas and hear the lecture out to its last part | - | A new third option: *"You keep saying *so-called* Divine Ones. What are they?"* |
+| DV2 | Take it | - | 414 KB of him on the Ahura Spentas, the Cherubim and the Ombwiri, ending *"if you ask me, which you did"*. **With voiceover** |
+| DV3 | From there, ask *"What is a Daeva?"* | - | It loops back into the Daeva explanation, which runs on to its last part again. No dead end |
+| DV4 | **The row that matters most.** Take *"I've heard enough"* from the Divine answer | - | The scene ends and your controls come back. This conversation runs inside a non-interactive sequence, and every exit the new path can reach has to fire `end spirit nis` |
+| DV5 | **Regression.** Count the options on his Divine answer | - | **Two**, not three. Vanilla had two identical *"What is a Daeva?"* replies and the second led to a node that does not exist in his tree |
+
 ## 0.60.7 - the horse stops following people
 
 | # | Step | Say | Expect |

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.7 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.61.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,71 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.61.0 - the Divine Ones
+
+The largest single unreachable recording in the game: **414 KB**, one node, and nothing reached it.
+
+> Ah, the so-called Divine Ones. Like the Daevas, the Divine Spirits have also been referred to by
+> many names over the course of history. The ancient Persians knew them as the immortal Ahura
+> Spentas, while here the Christians call them Cherubim. In Africa they manifest as the Ombwiri. But
+> I call them meddlers of the worst sort, always interfering with the free will of humanity, pushing
+> impressionable young mortals to take the *moral* path. It's the highest form of hypocrisy, if you
+> ask me, **which you did**.
+
+### The twin was wired seven times
+
+`500 daevas explanation demon` is reached from *"What is a Daeva?"* on `300 aesma`, *"Tell me about
+the Daevas."* on `400 tawrich 2` and five more, and runs on through `demon 2` into `part 2`. The
+Divine counterpart sits beside it with zero ways in. That is the cheapest class of restoration in
+the sweep: the speaker, the hub and the conversation all exist, and what is missing is the question.
+
+**And his own last clause names where it goes.** *"If you ask me, which you did"* only works if the
+player has just asked, and *"Like the Daevas..."* only works if they have just heard about Daevas.
+So the ask goes at the end of the Daeva lecture, beside the reply already there:
+
+> You keep saying *so-called* Divine Ones. What are they?
+
+### The node carried a defect out with it
+
+The Divine answer had **two identical** *"What is a Daeva?"* replies. The first points at
+`500 daevas explanation demon`. The second points at `500 daevas explanation elemental` -- **a node
+id from a different spirit's tree, which does not exist in this one**.
+
+Harmless while the node was unreachable; a reply that leads nowhere the moment it is not. This is
+the same shape as 0.57.0's witch scene, where one arm of a three-way branch fired another arm's node
+id: a copy-paste between spirit trees that nobody could see because the result was never played. The
+duplicate is removed.
+
+### The exits were the risk
+
+This conversation runs **inside a non-interactive sequence** -- the end of the Daeva lecture fires
+`end spirit nis` -- so a new reply inherits the obligation that 0.60.1 was spent on. Every exit the
+new path can reach was traced: the Divine answer leads back into the Daeva chain, which returns to
+the part that ends the sequence, or to `5 goodbye after warning`, whose own terminal reply fires
+`end spirit nis`. Both routes close it.
+
+### Checked
+
+`validate.py` clean on 712 files, including A0.16, which exists to catch exactly the failure above;
+`reachability.py` green; and the build asserts no node added, no `Text=` line rewritten, the reply
+count unchanged (one added, one removed), the dangling target gone, and the loop back into the Daeva
+explanation intact.
+
+`vo_reach.py`: **102 unreachable recorded nodes / 9.29 MB -> 101 / 8.88 MB.**
+
+### The other half of what was asked, and why it is not here
+
+The **druid finale** -- `1000 druid finale` in all three spirit trees, 576 KB, with `1000 adversary`
+and two `alamut reply` nodes behind it, about 1 MB in all -- has no moment to attach to. It is the
+beat where the Old Man of the Mountain is revealed behind the druids and the enemy escapes through a
+portal, and **the thread it belongs to was cut whole**: the two quests that would frame it,
+`Find the portals used by the English forces` and `Pursue the retreating English forces and recover
+the True Cross`, are defined and **referenced by nothing**, exactly like the nodes. No map opens any
+node of the family.
+
+So restoring it is not wiring, it is writing a scene into act 6 and deciding where that act's story
+turns. That is a design decision rather than a restoration, and it is recorded as one.
 
 ## 0.60.7 - the horse stops following people
 
