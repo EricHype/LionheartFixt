@@ -1474,23 +1474,39 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.65.0 - Michel's answer about his own face
+
+Dialogue only, so any save works. Brother Michel is in Montaillou, in the house Andre the titan
+stands outside.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BM1 | Talk to Michel and take *"You're a demokin, aren't you?"* | - | His answer as before, and a new option among the replies: **"Is that why you pray in private?"** |
+| BM2 | Take it | - | **With voiceover.** *"One of the reasons why I prefer to pray in private, away from the cold stares and sneers of strangers. All my life I have strived to overcome the burden of my heritage - it took extraordinary...patience to endure the tests for knighthood, made all the more difficult because of my appearance."* |
+| BM3 | **The row that matters.** Click through his answer | - | You land on *"You are a good person, and I can only wish there were more in this world like you. Is there something I can help you with?"* and can carry on. Not dropped out of the conversation |
+| BM4 | **All four variants.** Repeat BM1 on a human, on an Inquisitor, on a Sylvant or Feralkin, and on a demokin Knight or Inquisitor | - | The new option is on every one of the four. They are chosen by race and order, and only one is reachable per character |
+| BM5 | **Regression.** Take the other replies on that node | - | Unchanged: the Montserrat quest hands over, the sympathetic one and the Lucius one still reach their own answers, the hostile one still annoys him |
+| BM6 | **Regression, karma.** Take the new reply and check your karma did not drop | - | It fires `Good karma`, which is what both of its neighbours fire |
+
 ## 0.64.0 - what they say when you attack them
 
 **A can edit only reaches a character spawned after you install it**, so each row needs a save that
 has not yet loaded that NPC's map. Torquemada, Raphael, Cedric and Shakespeare are act 1; Joan is act
 4.
 
+**AT, not AB.** The 0.26.0 Mongol-camp rows already own `AB1`-`AB7`, and this section shipped with the same prefix. Renamed here; two different releases answering to one row number is how a pass gets recorded against the wrong thing.
+
 | # | Step | Say | Expect |
 |---|---|---|---|
-| AB1 | **The row that matters most.** Walk into the Temple District at all | - | **No crash.** Torquemada's node id ends in a space and a can naming a node is matched byte-exactly; getting it wrong is a load-time crash, not a missed line |
-| AB2 | Attack Torquemada | - | A balloon over him: *"Arrogant fool! Guards! Restrain this heretic!"* **With voiceover** |
-| AB3 | Attack Cedric Alsen in La Calle Perdida | - | *"Wielders, to me! La Calle Perdida is under attack! The intruder must not leave here alive!"* |
-| AB4 | Attack Joan of Arc on the Doomed Plateau | - | *"So be it, monster. We will send you back to the fires of perdition."* |
-| AB5 | Attack Raphael in the Temple District | - | *"To the hellfire with you, heathen!"* |
-| AB6 | Attack Shakespeare in the Port District | - | *"Time to make an honorable retreat rather than face a dishonorable foe!"* He cannot actually retreat; nothing in this engine can |
-| AB7 | Let one of them drop combat and provoke the same character again | - | The line plays **once**. The transition is `Trigger=First Time`, which is what Brother Michel's uses |
-| AB8 | **Regression.** Talk to all five normally, before attacking anything | - | Their conversations are unchanged. Only the combat slot was touched |
-| AB9 | **Regression.** Take Joan as an ally into the Crypt and fight beside her | - | Her combat banter from 0.56.0 still plays |
+| AT1 | **The row that matters most.** Walk into the Temple District at all | - | **No crash.** Torquemada's node id ends in a space and a can naming a node is matched byte-exactly; getting it wrong is a load-time crash, not a missed line **PASSED** -- *"temple district loads"*, 2026-10-16, on 0.64.0 verified deployed (`'1000 attack torquemada '` read back from data.dat with its trailing space) |
+| AT2 | Attack Torquemada | - | A balloon over him: *"Arrogant fool! Guards! Restrain this heretic!"* **With voiceover** |
+| AT3 | Attack Cedric Alsen in La Calle Perdida | - | *"Wielders, to me! La Calle Perdida is under attack! The intruder must not leave here alive!"* |
+| AT4 | Attack Joan of Arc on the Doomed Plateau | - | *"So be it, monster. We will send you back to the fires of perdition."* |
+| AT5 | Attack Raphael in the Temple District | - | *"To the hellfire with you, heathen!"* |
+| AT6 | Attack Shakespeare in the Port District | - | *"Time to make an honorable retreat rather than face a dishonorable foe!"* He cannot actually retreat; nothing in this engine can |
+| AT7 | Let one of them drop combat and provoke the same character again | - | The line plays **once**. The transition is `Trigger=First Time`, which is what Brother Michel's uses |
+| AT8 | **Regression.** Talk to all five normally, before attacking anything | - | Their conversations are unchanged. Only the combat slot was touched |
+| AT9 | **Regression.** Take Joan as an ally into the Crypt and fight beside her | - | Her combat banter from 0.56.0 still plays |
 
 ## 0.63.0 - the spirit's name
 

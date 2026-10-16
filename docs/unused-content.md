@@ -1764,6 +1764,25 @@ with four fifths of her combat voice unreachable. DaVinci's Montaillou banter wi
 
 ---
 
+### Adjudicated in 0.65.0 -- four that stay unwired
+
+The "answer whose question was never written" class is the cheapest kind of restoration and it has
+paid three times (0.61.0, 0.63.0, 0.65.0). This is the other side of it: four candidates that look
+identical from the tool's output and are **drafts or unused variants**, where the finished line is
+already in the player's game. Wiring any of them would add a second, worse copy.
+
+| node | KB | the live version |
+|---|---|---|
+| `weirdwoman / 400 cathars` | 222 | `50 cathars`, from `50 Caverns`. Same paragraph plus one sentence |
+| `goblinkhan / 10 Goodbye` | 149 | `13 Have Earned Goodbye`, off the fully wired `11 Earn Goodbye` |
+| `blacksmith / 6 Return Dialogue Wizard` | 144 | `03 Return Dialogue 1, Insulted`; the map opens seven entry nodes and not this one |
+| `lordjavier / 500 pyrenees` | 96 | `400 NIS Dialogue 4b` into `400 NIS Montserrat Directions`, granting the same `WB7EAGTQ` |
+
+**The test that separates them from a real lead:** read the live siblings' text before classifying.
+`vo_reach.py` cannot tell a draft from a gap, because both are a recording with nothing pointing at
+it. A near-verbatim twin that is reachable is the signature, and it is only visible if you read both.
+
+
 ### 4. The rest of the reply-carrying leads
 
 Ranked by what exists, not by size. None of these is classified yet.

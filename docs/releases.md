@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.64.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.65.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,71 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.65.0 - Michel's answer about his own face
+
+`100 michel the demon` is the largest single unreachable recording left in the game at **288 KB**,
+and the only thing missing was the question.
+
+> One of the reasons why I prefer to pray in private, away from the cold stares and sneers of
+> strangers. All my life I have strived to overcome the burden of my heritage - it took
+> extraordinary...patience to endure the tests for knighthood, made all the more difficult because
+> of my appearance.
+
+### It continues a conversation that already works
+
+Ask Michel *"You're a demokin, aren't you?"* and he answers on one of **four** nodes, chosen by the
+player's own race and order: `950 Human`, `950 Human and Inquisitor`, `950 Sylvant or Feralkin`,
+`950 Demokin and Knight or Inquisitor`. All four say the same thing in different registers -- the
+burden, the Knights Templar who were not all accepting, the prejudice that a life of service did not
+erase -- and all four offer the same four replies: the Montserrat quest, a sympathetic one, *"Does
+your heritage have anything to do with your friendship with Lucius?"*, and a hostile one.
+
+None of them asks him to say more about the burden itself. This node is the answer to exactly that.
+
+**His own first clause names the question.** *"One of the reasons why I prefer to pray in private"*
+only reads as an answer if the player has just said *pray in private* -- the same test 0.61.0 used on
+*"if you ask me, which you did"*. And the player is in a position to ask it: they have just come past
+Andre, the titan who keeps visitors from his door, and `01 Conversation Start` already offers *"You
+might want to tell your titan to go easy on your visitors."*
+
+So the new reply goes on all four variants, beside the Lucius one, in the plain register the others
+use:
+
+> Is that why you pray in private?
+
+It fires `Good karma`, which is what both of its neighbours do, and the answer returns to
+`951 Good Attitude`, which is where those neighbours land. Nothing needs an exit action: his
+conversation is not a cutscene.
+
+### Four more in the same class, ruled out rather than restored
+
+This release's survey looked at every large reply-less answer that might have a missing question.
+Four of the five turned out to be drafts or unused variants whose finished version is already in
+play, and wiring them would have put a second, worse copy of a line the player already hears into the
+game. **611 KB that should stay unreachable:**
+
+| node | KB | why not |
+|---|---|---|
+| `weirdwoman / 400 cathars` | 222 | **Near-verbatim draft of `50 cathars`**, which is live from `50 Caverns`. The live one is the same paragraph with *"attuned to nature"* instead of *"attuned with nature"* and one more sentence: *"These Cathars look to me for spiritual guidance and together we will find truth."* |
+| `goblinkhan / 10 Goodbye` | 149 | A variant of `13 Have Earned Goodbye`, *"That was very sporting of you! I am entertained, so for now, you will not be detained."* His leave-taking branch is fully wired -- `11 Earn Goodbye` demands entertainment and four skill-gated flatteries answer it |
+| `blacksmith / 6 Return Dialogue Wizard` | 144 | An **eighth** entry node. `Blacksmith map.zax` opens seven, including a race-split introduction set and both `03 Return Dialogue 1 Normal` and `03 Return Dialogue 1, Insulted`, and this one duplicates the insulted greeting's job |
+| `lordjavier / 500 pyrenees` | 96 | Says what `400 NIS Dialogue 4b` says -- the knights sent to Montserrat, not heard from, fear the worst -- and **grants the same quest state** `WB7EAGTQ`. The live chain runs `400 NIS Dialogue 4b` into `400 NIS Montserrat Directions` |
+
+One thing the sweep cleared on the way: Fixt's own Red Ore replies, *"I have been down to the lava
+trolls. Their chief sends you terms"* and *"Has your man been down to the trolls yet?"*, appear on
+`6 Return Dialogue Wizard` too. They are **not** stranded there: the same pair is on all seven entry
+nodes the map opens, plus `75 Red Iron Barter or Speech`. The copy on the unused node is the eighth.
+
+### Checked
+
+`validate.py` clean on 717 files, `reachability.py` green with one fewer tolerated vanilla orphan.
+The build asserts nothing asked for this node before the edit and that exactly four replies do after,
+that no node is added, no `Text=` line rewritten, five replies added in total, and that no blank line
+is left before a node separator. The tree is diffed against `git show HEAD:` rather than vanilla,
+because Fixt already ships it.
+
+`vo_reach.py`: **78 unreachable recorded nodes / 6.45 MB -> 77 / 6.17 MB.**
 
 ## 0.64.0 - what they say when you attack them
 

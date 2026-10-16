@@ -2446,6 +2446,14 @@ Relay Name=Good karma
 Icon=Attribute Icon
 
 Requirement=!None
+Reply Text=Is that why you pray in private?
+Go to node ID=100 michel the demon
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+
+Requirement=!None
 Reply Text=I'm sure you're an honorable man, but can somebody so infused with magic really be trusted?
 Go to node ID=951 trustworthyness
 Custom Action=CTriggerRelayAction
@@ -2511,6 +2519,14 @@ Relay Name=Good karma
 Icon=Attribute Icon
 
 Requirement=!None
+Reply Text=Is that why you pray in private?
+Go to node ID=100 michel the demon
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
+
+Requirement=!None
 Reply Text=Tainted individuals, especially demokin, cannot be trusted. Even when they strive to lead honorable lives, the pull of their taint draws them to heresy.
 Go to node ID=951 trustworthyness
 Custom Action=CTriggerRelayAction
@@ -2567,6 +2583,14 @@ Custom Action=CTriggerRelayAction
 Relay Name=Good karma
 }
 Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Is that why you pray in private?
+Go to node ID=100 michel the demon
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
 
 Requirement=!None
 Reply Text=Do not lump me in with your kind, Michel, I may be 'tainted' but I'm no *demokin*.
@@ -2679,6 +2703,14 @@ Custom Action=CTriggerRelayAction
 Relay Name=Good karma
 }
 Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Is that why you pray in private?
+Go to node ID=100 michel the demon
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Good karma
+}
 
 Requirement=!None
 Reply Text=One day I will have my revenge on those who have put me down for no better reason than my birthright.
@@ -2825,6 +2857,11 @@ Should Have Voiceover=1
 Node ID=100 michel the demon
 Text=One of the reasons why I prefer to pray in private, away from the cold stares and sneers of strangers. All my life I have strived to overcome the burden of my heritage - it took extraordinary...patience to endure the tests for knighthood, made all the more difficult because of my appearance.
 Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=951 Good Attitude
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=1000 crypt location
 Text=Would that my scarred old body could join you on this quest, my sword would be yours - I will pray for you. The Crypt is to the north, beyond Toulouse. I will mark the location on the map.
