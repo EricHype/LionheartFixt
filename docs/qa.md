@@ -1474,6 +1474,15 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.60.7 - the horse stops following people
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| HR36 | **The report.** Stand near the horse, then walk away across the camp | - | It stays where it is. It does not trail you, and it does not trail your companion either |
+| HR37 | Watch it for a while | - | It still shifts about its own small area. The patrol was never the problem and is untouched |
+| HR38 | **Regression.** Click it, ten times; then hit it | - | Whinnies, the tenth line, and Alvaro still objects. None of that moved |
+| HR39 | **The save-reaching half.** On a character whose horse already follows, trade with Alvaro | - | It settles and stops following from that moment |
+
 ## 0.60.6 - the crash 0.60.5 shipped
 
 | # | Step | Say | Expect |

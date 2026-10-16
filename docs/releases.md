@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.60.6 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.60.7 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,49 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.60.7 - the horse stops following people
+
+**Reported:** *"the horse now sees and follows me around the map, i think it's still hostile just
+with no attack. My companion does not attack it, the horse will follow them as well."*
+
+Exactly right, including the diagnosis.
+
+### The field is inside the AI, not on the character
+
+`Valid Targets=Player,Player Friend` is a field of **`CSkeletonAI`** -- nested in its
+`Target Type=CEntityBehaviorStateSetClosestTarget` block, beside `Max Distance=550` and
+`Vision Cone=360`.
+
+So the sequence was: 0.60.2 blanked the **live** skeleton's targeting with `CSetTargetTypeAction`,
+which is the shipped pacifier and worked. Then 0.60.5, fixing the attack, replaced that whole
+skeleton with a **factory-fresh copy from the can** -- and the copy brought the targeting back with
+it. The horse acquires the nearest player or companion, `CChasePursueAI` walks it over, and with no
+`Attack AI` there is nothing to do when it arrives. A horse that follows you about, politely.
+
+### The fix
+
+The copy is neutered the same way the live pacifier does it: `Valid Targets=` empty, which vanilla
+ships **972 times**, including in `Raise Enemy Action.can` and the dead Templars. Nothing to
+acquire, nothing to pursue. `Patrol AI` is untouched, so it still wanders its own circle, and the
+two pacifier actions on the generator and in Alvaro's shop replies are now belt and braces rather
+than the thing holding it together.
+
+### The shape of this mistake
+
+Three releases in a row on one animal, each fixing the previous one's blind spot: take away what it
+wants to attack (0.60.2), take away the ability (0.60.5), and now take away what it can see
+(0.60.7). The common thread is that **`CSkeletonAI` is not one behaviour but a bundle** -- patrol,
+targeting, pursuit and attack in one activity -- so touching it wholesale moves four things when
+you mean to move one. The lesson for next time is to edit fields inside the bundle rather than
+swapping the bundle.
+
+### Checked
+
+`validate.py` clean on 711 files including A0.17, which the last release added. The build asserts
+the copy carries no `CNormalAttackAI`, no `Player,Player Friend`, and still one `Patrol AI=CSeriesAI`
+with its `CScanAreaAI` and `CPatrolAreaAI` intact, and that neither blanked field is followed by an
+opening brace.
 
 ## 0.60.6 - the crash 0.60.5 shipped
 
