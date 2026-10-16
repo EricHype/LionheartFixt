@@ -1219,7 +1219,7 @@ CCannedObject
 			{
 				Action=Array
 				{
-					Item Count=4
+					Item Count=5
 					Action=CGiveExperiencePointsToAllPlayersAction
 					{
 						Get XP Frome=$Trigger
@@ -1227,7 +1227,11 @@ CCannedObject
 					}
 					Action=CUseCannedActionAction
 					{
-						Canned Object=Inventory/Enemy Drop Items Cans/Fixt Chance 1 in 4 Titan Sphere Drop Action
+						Canned Object=Inventory/Enemy Drop Items Cans/Fixt Chance 1 in 2 Titan Sphere Drop Action
+					}
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Inventory/Enemy Drop Items Cans/Fixt Chance 1 in 4 Titan Crystal Drop Action
 					}
 					Action=CUseCannedActionAction
 					{

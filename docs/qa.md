@@ -1474,6 +1474,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.69.1 - one heart each, graded by tier
+
+Still needs a save that has not loaded the Mountain Pass. These replace the drop halves of RT1 and
+TC1.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TG1 | Kill a good number of **basic** Rock Titans | - | A **sphere** about one in four, worth **100** now rather than 200. **No crystal** |
+| TG2 | Kill **Tough** ones | - | A sphere about one in three. Still no crystal |
+| TG3 | **The row that matters.** Kill **Super** ones | - | A sphere about one in two, **and** a crystal about one in four -- so roughly one Super in eight leaves **both**, which no other titan can |
+| TG4 | Sell one of each | - | Sphere **100**, crystal **200**. The sphere now matches all four Stone Hearts and Lucius' Mneme; the crystal is double, as the rarer organ |
+| TG5 | Add up a dozen kills per tier | - | Rising roughly 25, 33 and 100 gold expected per kill against 100, 130 and 160 HP |
+| TG6 | **Regression.** Check XP and the ordinary loot | - | 1509 XP and the same gold and spirit charge on all three, untouched |
+| TG7 | **Regression.** Andre's errand in Toulouse | - | Still wants the four named Stone Hearts. Neither of these stones is one of them |
+
 ## 0.69.0 - the Titan Crystal
 
 Monster cans reach only creatures the game creates after you install, so this needs a save that has

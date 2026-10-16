@@ -17,7 +17,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.69.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.69.0).
+-- currently [0.69.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.69.1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -57,7 +57,7 @@ The three most recent pieces of restored content. The patches between and after 
 | **0.68.0** | the Mountain Pass | **A cut item, recoloured, as loot off the Pyrenees rock titans.** `Titan Sphere` -- *"Spirit gem"*, 200 gold -- is referenced by nothing, and 0.67.0 settled why: it is the generic predecessor of the four named stone hearts, which **share its icon**. So it cannot come back as a quest item, but Andre's own live line says what it is -- *"Inside the chest of each elder titan you will find a sphere"* -- and the Mountain Pass has `Rock Titan Blue` in three tiers. **The icon is recoloured because the original is in use:** `recolor_icon_in_place`, the function Quinn's three potion tiers were made with, swaps the red and blue channels and turns its amber to blue -- mean rgb (121, 99, 62) to (62, 99, 121) over the same **3623** opaque pixels, file length and header byte-identical. **Blue because the monster is called Rock Titan Blue**, so the colour is the game's choice. The drop is the game's own idiom, a `Chance 1 in 4` can of the kind `Enemy Drop Items Cans` holds 105 of, hung on the two higher tiers' **`Destroyed Effect Action`** -- not the Script slot a generator's `CSetDestroyedScriptActionAction` replaces, which is how the Lava Troll Hide was dead code from 0.10.0. Vanilla's 200 gold is kept: a wolf pelt is 10, a high-quality pelt or a lava troll hide 25, and the `Expensive Gem` 200. And it puts `TitanSphere_PU` on screen, a ground model **no player has ever seen** |
 | **0.67.0** | the Gate District | **Amir tells you a relic was stolen from his order's mosque and there was no way to ask who took it.** `40 mission` is live and reachable as often as you like -- *"One of the sacred relics from the third crusade was stolen from a secret mosque guarded by my order. We are concerned that those responsible may attempt to steal the relics under the care of the Knights Templar"* -- and its only two replies were *"I have other questions"* and *"Goodbye."* The answer sat in the same file with nothing pointing at it: **202 KB**, *"Unfortunately, we do not know. Our enemy must wield powerful sorcery to overcome the wards we placed around the mosque. We fear that even the Cathedral of Barcelona may be vulnerable to whoever or whatever is targeting the relics."* `42 thefts` was **the only orphan in a family where every sibling is live** -- `40 mission`, `41 templar`, `43 noble`, `44 insult` and `48 Old Pact` are all reached -- which is the signature this project now classifies on. It needed nothing but the question: its own two replies already return to his hub and his goodbye, reached seventeen and nineteen other ways |
 
-The **105 releases around those** are one line each in [`docs/changelog.md`](docs/changelog.md).
+The **106 releases around those** are one line each in [`docs/changelog.md`](docs/changelog.md).
 
 Everything the shipped game defines and then references from nothing -- unplaced quest items, the enemy cans that nothing spawns, and why that count was first reported as 48 and is honestly zero, two whole summon tiers, and which of them Fixt has since picked up -- is surveyed in [`docs/unused-content.md`](docs/unused-content.md), along with the four ways that survey was wrong before it was right.
 
@@ -68,7 +68,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.69.0 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.69.1 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

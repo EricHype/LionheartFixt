@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.69.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.69.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,55 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.69.1 - one heart each, graded by tier
+
+0.68.0 gave the sphere to the two higher rock titan tiers and 0.69.0 gave the crystal to the basic
+one, both on a flat 1 in 4. Two things were wrong with that, and the fiction settles the first.
+
+### Every titan has one heart
+
+Andre's live line is *"Inside the chest of each elder titan you will find a sphere"*, and the four
+live items are one named Stone Heart per elder: Lethos, Iapetus, Menoetius, Rhea. A crystal is not a
+heart -- the Mneme quest says *"retrieve the mneme crystal from his chest"*, which is a memory. So
+the ordinary titan dropping a crystal and the tougher ones a sphere said a weak titan has a memory
+but no heart.
+
+**Every tier now drops the sphere**, with the chance rising, and the crystal stays the Super's
+extra: a mneme is a memory, and the oldest titan is the one with a memory worth cutting out. A
+titan carrying both a heart and a memory is consistent; a titan carrying two hearts is not.
+
+### Both prices come from vanilla, each from the right precedent
+
+Vanilla rewards all three tiers **identically** -- 1509 XP and the same gold and spirit cans across
+100, 130 and 160 HP -- so a gradient is a balance call rather than a restoration. What keeps it
+honest is that neither number is invented:
+
+| item | value | precedent |
+|---|---|---|
+| Titan Sphere | **200 -> 100** | what every titan heart in the game costs: all four Stone Hearts, and `Lucius' Mneme` |
+| Titan Crystal | **200**, kept | its own vanilla value, now earned by being the rare organ |
+
+At 200 a nameless rock titan's stone out-valued the Stone Heart of Lethos, which was backwards.
+
+| tier | HP | drops | expected |
+|---|---|---|---|
+| `Rock Titan Blue` | 100 | sphere **1 in 4** | 25 gold |
+| `Rock Titan Blue Tough` | 130 | sphere **1 in 3** | 33 gold |
+| `Rock Titan Blue Super` | 160 | sphere **1 in 2** and crystal **1 in 4** | 100 gold |
+
+Four times across the range instead of three, the valuable stone is the one only the toughest titan
+carries, and the Super is still the only one that can leave both -- which a player reads without
+numbers.
+
+### Checked
+
+`validate.py` clean on 728 files. The build asserts the basic tier carried the crystal before the
+edit and carries a sphere and **no** crystal after, that every tier drops a heart, that each tier's
+action count and its 1509 XP survive, that the sphere keeps its name, description, recoloured icon
+and ground model while only its value moves, that the crystal keeps 200, and -- the check that makes
+the table above true rather than claimed -- it **computes** each tier's expected gold from the cans
+actually present and asserts 25, 33 and 100.
 
 ## 0.69.0 - the Titan Crystal
 
