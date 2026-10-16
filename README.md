@@ -113,6 +113,7 @@ Mountain, because Act 4 does.
 | [`docs/plan.md`](docs/plan.md) | the work, section by section and map by map |
 | [`docs/releases.md`](docs/releases.md) | every release: survey, tiers, decisions, what was built, what was left alone |
 | [`docs/changelog.md`](docs/changelog.md) | every release in one line, newest first -- the history the README used to carry |
+| [`docs/engine-notes.md`](docs/engine-notes.md) | what the engine actually does: how content is reached, what reaches a save, the four shapes that crash, and the method rules each mistake paid for |
 | [`docs/qa.md`](docs/qa.md) | every case a release has to pass, and which have |
 | [`docs/playtest-guide/`](docs/playtest-guide/) | the same cases as a route to walk, built by `build.py` |
 | [`dist/`](dist/) | release notes and forum posts per version; `README.txt` is what a player reads after unzipping |
