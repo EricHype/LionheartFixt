@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.66.0 - the order the Inquisition never gave
+
+Needs an **Inquisitor** character who has finished the induction and been to the cathedral summit,
+and who has **not yet reached Montserrat**. Dialogue only, so any such save works.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| IQ1 | After the summit, return to Raphael in the Chambers of the Inquisition | - | A new option on his return hub: **"What would you have me do about Montserrat?"** |
+| IQ2 | Take it | - | **With voiceover.** *"To the north is the Abbey of Montserrat... I wish you to head north to the abbey and determine what has happened."* |
+| IQ3 | **The row that matters.** Check your quest log | - | **Investigate the fate of Montserrat** is now active. Before this release no node in the game could start it |
+| IQ4 | Check **Aid Sir Auric** in the log | - | Failed. The Inquisition order replaces the Templar initiation, and `321` is what fails it |
+| IQ5 | Go to Montserrat, speak to Brother Montgomerie, then come back to Raphael | - | The new option is **gone** (Montgomerie advances Javier's quest past the state the option is gated on) and the existing report option is there instead |
+| IQ6 | **Regression.** Take the report option and finish the thread | - | Unchanged. `330 return from montserrat` already completes the quest this release can finally start |
+| IQ7 | **Regression, non-Inquisitor.** Talk to Raphael as a Templar or unaffiliated character | - | No new option. It is gated `Inquisitor IS`, the same requirement its neighbour uses |
+| IQ8 | Ask twice in the same window, if you can | - | Harmless. Re-activating a state that is already current is a no-op, and a failed quest cannot fail twice |
+
 ## 0.65.0 - Michel's answer about his own face
 
 Dialogue only, so any save works. Brother Michel is in Montaillou, in the house Andre the titan

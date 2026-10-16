@@ -415,6 +415,19 @@ Custom Requirement=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=WB7EAGTQ
+}
+}
+Reply Text=What would you have me do about Montserrat?
+Go to node ID=321 chapter 2 mission 2
+Icon=Quest Icon
+
+Requirement=Inquisitor IS
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=SAXRA7U2
 }

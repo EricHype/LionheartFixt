@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.65.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.66.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,69 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.66.0 - the order the Inquisition never gave
+
+`InquisitorRaphael / 321 chapter 2 mission 2` is **213 KB** of recorded voiceover that nothing could
+reach:
+
+> To the north is the Abbey of Montserrat, where a brotherhood of monks and Knights Templar guard the
+> holy Crown of Thorns. We have not heard anything from Montserrat for some time now, and we fear the
+> worst. I wish you to head north to the abbey and determine what has happened.
+
+### Its neighbour is live, and so is the report that follows it
+
+`320 chapter 2 mission` is reached twice, from `301 no calle perdida 2` and `311 betray la calle 2`,
+the two ends of the Inquisition induction. It says *"Unknown enemies have attempted to steal the True
+Cross... I would like you to accompany me to the Cathedral, where we will convene with Lord Javier of
+the Knights Templar"*, and its reply fires `Inquisition Start Church Movie`. That summit plays in
+full: `Church Interior.zax` runs a complete Inquisition arm through Raphael and Torquemada, ends with
+Javier's `400 NIS Dialogue 4b`, and drops the player back in the Temple District.
+
+What never came is the order afterwards. And **`321` is the only thing in the game that activates
+`Investigate the fate of Montserrat`** -- a two-state quest whose *completion* is already a live
+reply on `3 Return Dialogue`, gated `Inquisitor IS`: *"The Relic was stolen from Monserrat. Before his
+death, Brother Montgomerie asked me to go to France..."*
+
+So an Inquisitor could report back from a quest that could never be given. `321` also fails
+`Aid Sir Auric`, the Templar initiation path it replaces, which therefore never got failed either.
+
+### Where it goes, and why it closes its own window
+
+`3 Return Dialogue` is Raphael's progress hub, and every step of the induction is a gated reply on
+it: the tithe, the Rod of the Inquisitor, the Darkwood, the hair of a saint, rescuing Darsh, finding
+La Calle Perdida, and the Montserrat report. The missing step is the one immediately before that
+report, so the ask goes there with the same `Inquisitor IS` gate its neighbour uses, plus a check that
+Javier's shared `Ensure safety of Monserrat Relics` is at state `WB7EAGTQ`.
+
+That second check does two jobs. It proves the summit has happened, which matters because **the
+summit sets no flag of its own** -- its closing action deactivates Torquemada and Raphael, relocates
+the player and ends the sequence, and that is all. And **Brother Montgomerie advances that quest and
+completes it** when the player reaches Montserrat, so the new option disappears exactly when it
+should, with nothing added to track it.
+
+### The rest of the Inquisition's backlog, classified
+
+The remaining Inquisition recordings break into three kinds, and only one of them is buildable:
+
+| node | KB | ruling |
+|---|---|---|
+| `raphael / 400 nis inquisition raphael speaks` | 103 | **Word-for-word identical** to the live `400 NIS Dialogue 2b`, which the summit fires. A renamed draft |
+| `raphael / 400 NIS Begin` and `jafar / 400 NIS Begin` | 45+49 | *"Lord Javier, it is indeed an honor to meet you"*, the **same line in both trees**. An early shared greeting, superseded by the per-faction arms the summit actually runs |
+| `raphael / 500 Return from Montaillou` | 255 | Duplicates the live `330 return from montserrat`, *"We have heard the terrible news about Montserrat"*, which is reached four ways |
+| `raphael / 340 siege of barcelona`, `350 cross stolen` | 154 | **No speaker.** *"Inquisitor! The English are invading the city! To arms!"* and *"They have stolen the True Cross... they are retreating to the west"* are act-6 balloons, and **Raphael is in none of the eight act-6 maps**; the only "Raphael" in that act is a quest path being failed on a spawn point. Restoring these means placing him in the siege, which is a design decision rather than a wiring |
+| `grandinquisitor / 410`, `411`, `412 shadow dryad` | 564 | Already adjudicated: the dryad cannot be killed, so the branch is unfinished rather than cut |
+| `grandinquisitor / 401 already dead`, `202 trial 2`, `300 inquisition inquisitor scene`, `jafar / 42 thefts`, `220 pass trials` | 617 | **Not yet classified.** Each needs its live sibling read before anything is promised, which is the lesson 0.65.0 paid for twice |
+
+### Checked
+
+`validate.py` clean on 717 files, `reachability.py` green with one fewer tolerated vanilla orphan.
+The build asserts nothing reached the node before and exactly one reply does after, that its
+neighbour `320` is still reached twice, that the node still carries both of its quest actions, that
+the new reply sits **before** the report rather than after it, and that no node, `Text=` line or
+other reply changed. Diffed against `git show HEAD:`.
+
+`vo_reach.py`: **77 unreachable recorded nodes / 6.17 MB -> 76 / 5.96 MB.**
 
 ## 0.65.0 - Michel's answer about his own face
 
