@@ -84,10 +84,44 @@ Three came off this list in 0.39.0: both Trapped Spirit items and
 | `Titan Sphere` | *"Spirit gem"* | unused, but its **icon art is reused** by all four live stone hearts |
 | ~~`Inquisitor Feralkin Journal`~~ | *"details the life and trials of a Feralkin at the hands of the Inquisition"* | **done in 0.50.0.** It never needed a reader -- it needed a **shop**. The item was always complete; it was the only one of the twelve books obtainable nowhere |
 
-**The two Titan items need classifying before building.** Their art survived into live items, and
-the concepts they name are both covered by live content -- `LuciusMneme` for the crystal and
-`Spirit Transfer Gem DaVinci` for the "spirit gem". That is the signature of a **superseded draft**,
-the third category below, so check for a live replacement before writing anything.
+~~The two Titan items need classifying before building.~~ **Classified below.**
+
+### Settled -- the last two are drafts of items that shipped under better names
+
+Both were suspected here because their art is reused. Reading the thread they belong to settles it:
+each is the **generic predecessor of a named item that shipped**, and the story around it got larger,
+not smaller.
+
+**`Titan Crystal`** -- *"Large and unwieldly. Smells bad."* -- became **`LuciusMneme`**, which uses
+the same icon and the same ground pickup. The quest that carries it is live and six states deep, and
+its own name gives the item away: `Retrieve the Crystal Mneme from Lucius`, *"Kill Lucius, retrieve
+the mneme crystal from his chest, and return it to Lethos in the village of Toulouse."* Ten files
+reference that quest -- Lethos's tree gives it, both of Andre's cans carry it, and Michel, the mayor
+and the bartender all talk about it.
+
+**`Titan Sphere`** -- *"Spirit gem"* -- became **the four stone hearts**, one per Toulouse elder:
+`Thestoneheart ofLethos`, `ThestoneheartofIapetus`, `ThestoneheartofMenoetius`,
+`ThestoneheartofRhea`. All four share the Titan Sphere icon, each drops from its own titan's can
+(`Lethos.can`, `Rhea.can` and so on), and Andre asks for them in a **live** node,
+`825 Titan Slaying`: *"And one more thing...this is very important. Inside the chest of each elder
+titan you will find a sphere."* He explains why in `825 Crystals Explained`: the funerary rites.
+
+**And the draft quest is still in the archive, naming a different titan.**
+`Help Andre the Titan with his tasks.Quest.txt` is referenced by nothing, and inside it the titan is
+called **Marcus**, not Andre:
+
+| state | text |
+|---|---|
+| `7LOVAAS1` | Find Marcus' cousin and take sphere from him |
+| `3MGFA36C` | Return Sphere to Marcus |
+
+One sphere from one cousin. What shipped is four hearts from four elder titans you have to kill, with
+Andre's rites as the reason he wants them. The item, the quest and the titan's name were all replaced
+together.
+
+**So the quest-item list is closed.** `Titan Crystal` and `Titan Sphere` are not unplaced content;
+they are what `LuciusMneme` and the stone hearts were called before the Toulouse thread was written
+properly. Neither should be built.
 
 Also at zero references: `Gem` and `Expensive Gem`. Those are generic loot rather than
 hand-authored uniques, so they belong to a different question than this table.
