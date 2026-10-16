@@ -1474,6 +1474,23 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.63.0 - the spirit's name
+
+All of this is dialogue except DaVinci's line, so it works on any save. The spirit conversation opens
+from the skill tutorial at the start, and again from every map scene and pickup that calls your
+spirit.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SN1 | Open a conversation with your spirit and reach its hub, *"do you have other questions for me, or can we resume our journey together?"* | - | A new option, **"What is your name?"**, above *"I tire of your counsel"* |
+| SN2 | Take it | - | **With voiceover.** Elemental: *"I am Armati, a divine spirit, one of the amesha spentas of fertility of the earth."* Demonic: *"Moi? I am the patron saint of discontentment... know me as Saurva."* Beast: *"Far to the east I was called Raiju, the thunder beast..."* |
+| SN3 | **The row that matters.** Click through the answer | - | You are **back at the hub**, able to ask the next question. Not dropped out of the conversation, and not stuck with the controls locked |
+| SN4 | **Beast spirit only.** On the hub, take **"What of good and evil?"** | - | *"Such concepts of good and evil are unknown to animals... mortals that fail to achieve perfection in life, return as animals in their next life to help the balance."* With voiceover, then back to the hub |
+| SN5 | On the other two spirits, count the hub's options | - | **Six**, not seven. Only the Beast has the good-and-evil answer recorded |
+| SN6 | **Regression.** Ask the three questions that were always there | - | Unchanged, and each still returns you to the hub |
+| SN7 | **Regression, inside a scene.** Trigger a spirit scene that locks your controls (a mana pickup, or a cave warning), ask the name there, then leave through *"Thank you, spirit. Let's continue on."* | - | Your controls come back. The new answers exit through the hub's own goodbyes, which already end the sequence |
+| SN8 | **DaVinci, needs a save that has not been to Montaillou's hamlet.** Stand near him while he works on the flying machine and listen to the rotation | - | Five lines become six, the new one being *"Oh, there is so much damage...Where to begin?"* |
+
 ## 0.62.1 - the surcharge Alvaro never charged
 
 Needs a **non-human** character (Feralkin, Sylvant or Demokin) with **under 10 gold**, which is what

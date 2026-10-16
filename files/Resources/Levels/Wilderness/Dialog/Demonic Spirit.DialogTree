@@ -299,6 +299,10 @@ Reply Text=Who is hunting us?
 Go to node ID=10 hunted
 
 Requirement=!None
+Reply Text=What is your name?
+Go to node ID=750 name
+
+Requirement=!None
 Reply Text=I tire of your counsel. Begone.
 Go to node ID=5 goodbye
 Icon=Exit Icon
@@ -747,6 +751,11 @@ Should Have Voiceover=1
 Node ID=750 name
 Text=Moi? I am the patron saint of discontentment, the demon of little *white* lies, apostasy incarnate. My true ancient name is too difficult for you to pronounce - you can imagine the teasing I endured as demon child. It will suffice for you to know me as Saurva.
 Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=1 Exit Skill Tutorial
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=800 weird woman
 Text=Intriguing, there is a shadowy veil shrouding this dwelling, hiding a *presence* I have sensed before. Something is not what it seems. Oh, I do relish a good mystery!

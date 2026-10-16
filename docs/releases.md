@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.62.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.63.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,85 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.63.0 - the spirit's name
+
+### The question that was never in the list
+
+`1 Exit Skill Tutorial` is the companion spirit's hub in all three trees. It is reached **13 ways**
+in each of them and it is the conversation every player opens, from the skill tutorial onward. Its
+questions are:
+
+> What exactly are you? / Why do you call me Scion of Lionheart? / Who is hunting us?
+
+There is no *"What is your name?"* And `750 name` is its answer, recorded in all three and reached by
+nothing:
+
+> **Beast, 268 KB.** I have been called both demonic and divine in my long history. Far to the east I
+> was called Raiju, the thunder beast, in the New World I took the form of the Coyote to teach and
+> beguile. My ancient name is...best not spoken, but know that I have left the great struggle and now
+> serve the *balance*.
+
+> **Demonic, 238 KB.** Moi? I am the patron saint of discontentment, the demon of little *white*
+> lies, apostasy incarnate. My true ancient name is too difficult for you to pronounce - you can
+> imagine the teasing I endured as demon child. It will suffice for you to know me as Saurva.
+
+> **Elemental, 67 KB.** I am Armati, a divine spirit, one of the amesha spentas of fertility of the
+> earth.
+
+The Beast carries a second unreached answer, `750 good and evil`, **248 KB**, on the subject its own
+name speech ends by naming:
+
+> Such concepts of good and evil are unknown to animals, though they can appear unmercifully cruel or
+> loyally protective at their whim. It is said mortals that fail to achieve perfection in life,
+> return as animals in their next life to help the balance, such is the natural order of things.
+
+### The shape is the sibling's, byte for byte
+
+`10 hunted` is the hub's third answer, and in all three trees it is one node carrying exactly one
+reply: blank text, `Go to node ID=1 Exit Skill Tutorial`, `Is Default Reply=1`. The spirit speaks,
+the player clicks, the hub comes back. Each new answer gets that reply and nothing else.
+
+**That is also why none of this needs the cutscene exit 0.62.0 had to add.** These conversations run
+with the player's controls locked, and in 0.62.0 four terminal nodes had to be given an
+`end spirit nis` reply because they ended the conversation outright. An answer that returns to the
+hub does not: the player leaves through the hub's own goodbyes, which already fire the relay.
+
+### A correction to this project's own notes
+
+`docs/unused-content.md` filed the `750` nodes with the balloon group, "classifiable the same way" as
+the undead warning, meaning they needed a trigger placed in a corridor. That was wrong. *"I am
+Armati, a divine spirit"* is an answer to a question, not a line called out at a cave mouth, and it
+belongs with the Divine Ones class of 0.61.0: speaker, hub and conversation all present, only the
+question missing. The notes are corrected.
+
+The same table claimed `weirdwoman / 200 nis weird woman conclusion 2` was still open. **0.57.0 wired
+it**, in all three spirit branches of the witch-hut scene, and `vo_reach.py` has been reporting it
+reachable ever since. The row was read instead of the tool. Corrected too.
+
+### DaVinci's fifth Montaillou line
+
+`davinci banter relay` in `01 Hamlet Exterior.zax` is a `CSeriesAction` with `When Done=Repeat
+Series` over five entries, and `700 montaillou banter 4` is not one of them:
+
+> Oh, there is so much damage...Where to begin?
+
+Same class as 0.56.0's Joan of Arc combat banter, where four of her five recorded lines were
+unreachable. It goes in after the pair about the machine flying again, so the rotation now reads: it
+will fly again, unless the manifold collapses and it becomes a burning heap, oh there is so much
+damage, gravity you are a harsh mistress, O Icarus. There is no `banter 3` in his tree at all, so the
+gap at 3 is not a defect.
+
+### Checked
+
+`validate.py` clean on 715 files, and it earned its keep here: the first build put each new reply
+straight after `Should Have Voiceover=1` with no blank line between, which vanilla never does, and
+the gate named all three files. `reachability.py` green with **five** fewer tolerated vanilla
+orphans. The build asserts no node added, no `Text=` line rewritten, exactly two replies added per
+answer, and for the map that the series declares six entries and still names all five old ones once
+each.
+
+`vo_reach.py`: **88 unreachable recorded nodes / 7.57 MB -> 83 / 6.72 MB.**
 
 ## 0.62.1 - the surcharge Alvaro never charged
 

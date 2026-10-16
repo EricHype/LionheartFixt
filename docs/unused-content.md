@@ -1751,8 +1751,8 @@ nothing has to be designed, only pointed at. `tools/vo_reach.py` reports these f
 
 | node | KB | siblings a map already opens | |
 |---|---|---|---|
-| `weirdwoman / 200 nis weird woman conclusion 2` | 117 | `200 nis weird woman conclusion` | **open** |
-| `DaVinciBarcelona / 700 montaillou banter 4` | 55 | `700 montaillou banter`, `2`, `5`, `6` | **open** |
+| ~~`weirdwoman / 200 nis weird woman conclusion 2`~~ | 117 | `200 nis weird woman conclusion` | 0.57.0 |
+| ~~`DaVinciBarcelona / 700 montaillou banter 4`~~ | 55 | `700 montaillou banter`, `2`, `5`, `6` | 0.63.0 |
 | ~~`JoanofArc / 400 combat banter 1`~~ | 40 | `400 combat banter 2` | 0.56.0 |
 | ~~`JoanofArc / 400 combat banter 3`~~ | 22 | `400 combat banter 2` | 0.56.0 |
 | ~~`JoanofArc / 400 combat banter 4`~~ | 42 | `400 combat banter 2` | 0.56.0 |
@@ -1881,11 +1881,18 @@ scenes each need four (`spirit nis switch`, `goblin spirit scene relay`, `Spawn 
 `end spirit nis`). 0.59.0's can is vanilla's with four substitutions, proved by reversing them and
 comparing byte for byte.
 
-**Still unplaced in this group, and now classifiable the same way:** `750 name` (all three),
-`750 good and evil` (Beast), `200 beast compliment` / `200 divine compliment`, `20 prime werewolf
-encounter` (Beast), `1000 druid finale` (all three), `1000 adversary` + `part 2` and the two
-`1000 ... alamut reply` nodes (Elemental). The `1000` ones carry replies, so they are conversations
-and need a moment in the story rather than a trigger in a corridor.
+**Still unplaced in this group:** `200 beast compliment` / `200 divine compliment` and
+`20 prime werewolf encounter` (Beast). Both are reply-less lines about something that just
+happened in a fight, so they want a combat trigger rather than a reply.
+
+~~`1000 druid finale` (all three), `1000 adversary` + `part 2`, the two `1000 ... alamut reply`
+nodes~~ **done in 0.62.0**, from one trigger on the Crossroads-to-England road.
+
+~~`750 name` (all three), `750 good and evil` (Beast)~~ **done in 0.63.0 -- and this entry was
+misfiled here.** They are not balloons wanting a trigger. "I am Armati, a divine spirit" is an
+answer to a question, and the question was missing from `1 Exit Skill Tutorial`, the spirit's own
+hub. That is the 0.61.0 class, not the 0.59.0 one: read what a node SAYS before classifying it by
+its reply count.
 
 ### Done in 0.58.0 -- the parting gift, and what its node shape gave away
 
