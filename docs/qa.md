@@ -1474,6 +1474,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.68.0 - the Titan Sphere as titan loot
+
+Monster cans only reach creatures the game creates **after** you install, so this needs a save that
+has not yet loaded the Mountain Pass, or any other map with Rock Titans in it.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| RT1 | Kill Rock Titans in the Mountain Pass until one drops a sphere | - | Roughly **one in four** of the Tough and Super tiers leaves a **Titan Sphere** on the ground, beside the gold and spirit charge they already drop |
+| RT2 | **The row that matters.** Look at it on the ground before picking it up | - | Its own model, not the generic gem the stone hearts use. `TitanSphere_PU` has never been displayed in the game before |
+| RT3 | Pick it up and find it in your inventory | - | **Blue**, under **Miscellaneous**, not under Quest Items. The four Stone Hearts are the amber version of the same shape and stay amber |
+| RT4 | Sell it | - | **200 gold** before barter, vanilla's own value. For scale: a wolf pelt is 10, a high-quality pelt or a lava troll hide 25 |
+| RT5 | **Regression.** Kill the basic `Rock Titan Blue` tier | - | Gold and spirit charge as before, and **no sphere**. Only the two higher tiers drop it |
+| RT6 | **Regression.** Finish Andre's errand in Toulouse with the real hearts | - | Unchanged. He wants `The Stone Heart of Lethos` and the other three by name; a Titan Sphere is not one of them and never was |
+| RT7 | **Regression.** Check XP from a rock titan | - | 1509, unchanged. The drop was added beside the XP action, not in place of it |
+
 ## 0.67.0 - who stole the relic from the mosque
 
 Dialogue only, so any save works. Amir is at the tents in the Gate District.

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.67.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.68.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,85 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.68.0 - the Titan Sphere as titan loot
+
+`Titan Sphere` -- *"Spirit gem"*, 200 gold, encumbrance 0 -- is referenced by nothing in the shipped
+game. 0.67.0 settled what it is: **the generic predecessor of the four named stone hearts**, which
+share its icon, and which Andre asks for in a live node. The item was replaced; its art was kept.
+
+So it cannot come back as a quest item without duplicating one. But Andre's own line says exactly
+what a sphere is:
+
+> Inside the chest of each elder titan you will find a sphere.
+
+And the Mountain Pass has `Rock Titan Blue` in three tiers, dropping gold and a spirit charge.
+
+### The icon is recoloured, because the original is in use
+
+All four stone hearts point at `Items/Inventory Images/Quest Items/Titan Sphere`. Shipping the loot
+item on that icon would show the player something indistinguishable from a quest item Andre wants,
+and the names alone would not fix it.
+
+`recolor_icon_in_place` -- the function Quinn's three potion tiers were made with, from the Extra
+Healing flask -- walks the existing opcode stream and changes only stored colour values. A red/blue
+channel swap turns the sphere's amber to blue:
+
+```
+before:  mean rgb (121, 99, 62)   3623 opaque pixels
+after:   mean rgb  (62, 99, 121)  3623 opaque pixels
+6602 colour bytes changed; file length, header, silhouette identical
+```
+
+**Blue because the monster is called `Rock Titan Blue`.** The colour is the game's choice rather than
+a preference.
+
+It works here for a measurable reason: the sphere keeps **9143 bytes in buffer 1 against 250 in
+buffer 4**, the same shape as the potion that proved the function, and the recolour only touches
+buffer 1. `Titan Crystal` is the opposite -- 3387 against **10110** -- so recolouring it would
+repaint a quarter of the image and leave the rest violet. It needs the buffer-4 extension the format
+notes call mechanical but untested, and it is left alone.
+
+### The drop uses the game's own idiom
+
+`Inventory/Enemy Drop Items Cans/` holds **105** canned drop actions, several of them
+`Chance 1 in N ...`: a `CRandomAction` over N arms where N-1 are `CSucceedAction{Action=}` and one
+generates the item. This ships a 1-in-4 of that exact shape and hangs it on the two higher tiers,
+beside the gold and spirit-charge cans already in their death action.
+
+**In `Destroyed Effect Action`, not `Destroyed Script Action`.** The Script slot is the one a
+generator's `CSetDestroyedScriptActionAction` replaces, which is how the Lava Troll Hide was dead
+code from 0.10.0 until `validate.py` A0.14 was written to catch it. The wolf pelt, the game's own
+sellable drop, uses the Effect slot for the same reason.
+
+### What it is worth, and where it sits
+
+Vanilla's **200 gold** is kept, along with the name and the description. For scale:
+
+| item | value |
+|---|---|
+| Wolf Pelt | 10 |
+| Wasp Stinger | 10 |
+| Wolf Pelt, High Quality / Lava Troll Hide | 25 |
+| **Titan Sphere** | **200** |
+| Expensive Gem, the game's top generic valuable | 200 |
+
+The one thing changed about the item besides its icon is its display group: **Quest Items ->
+Miscellaneous**, where the Expensive Gem sits. Same value, same weightlessness, same job, and it
+stops the sphere filing itself among things the player is carrying for somebody.
+
+And it puts `TitanSphere_PU` on screen. That ground model is used by this item alone, it is present
+in the archive, and because the item was cut **no player has ever seen it** -- the stone hearts and
+Lucius' Mneme all lie on the floor as the generic `Gem_PU`.
+
+### Checked
+
+`validate.py` clean on 722 files, `reachability.py` green. The build asserts buffer 1 dominates
+before recolouring at all, that the recolour changes no byte of the header and no pixel of the
+silhouette, that the swap really is amber-to-blue, that the item keeps its value, name, description
+and ground model, that the new can holds three succeed arms and one generate, and that each titan's
+death action goes from three actions to four with its 1509 XP intact and the pain-sound `CRandomAction`
+untouched.
 
 ## 0.67.0 - who stole the relic from the mosque
 
