@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.70.0 - what became of your order
+
+Dialogue and one map relay, in the endgame map. Needs a save that can reach the ending, or a
+character taken through it.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| OE1 | **The row that matters most.** Finish the game on any character | - | After Lord Javier's last line, Nostradamus speaks once more about your order, and then **the credits roll**. The credits moved into the new relay, so if they do not roll, nothing else about this release matters |
+| OE2 | Finish as a **Templar** who did **not** talk Ahriman to death | - | The white cross takes the hand from the eastern desert. Three tiers: sworn, banner-carrier, or near enough to Javier to be remembered as his |
+| OE3 | Finish as a **Templar** who **did** talk Ahriman into dying | - | A different paragraph: the order endured **without** a benefactor, and *"they would never know how near a thing it was"* |
+| OE4 | Finish as an **Inquisitor**, a **Knight of Saladin**, a **Wielder**, and a **Horde** character | - | One paragraph each, and the closing sentence changes with rank: two tiers for the Inquisition, Saladin and the Wielders, three for the Horde |
+| OE5 | Finish as a character who joined **nothing** | - | *"every order would claim the Lion anyway"* |
+| OE6 | **The soft-lock check.** Press escape out of one of the new slides | - | The sequence continues and the credits still roll. That slot was empty before this release |
+| OE7 | **Regression.** Check Nostradamus's own prophecy and all four of Javier's lines | - | Unchanged, in the same order, with the same pacing. Only what happens *after* Javier changes |
+| OE8 | **For later.** Record a line and save it as `<Node ID>.ogg` in `Nostrodomus Ending VOs/` | - | It plays, with no change to the mod. `vo_reach.py` will also start listing it, which cross-checks the filename |
+
 ## 0.69.1 - one heart each, graded by tier
 
 Still needs a save that has not loaded the Mountain Pass. These replace the drop halves of RT1 and

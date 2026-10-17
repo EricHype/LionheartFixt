@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.69.1 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.70.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,102 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.70.0 - what became of your order
+
+The game has never told you what happened to the order you gave years to. It tells you the world's
+fate, through Nostradamus, and it tells you Lord Javier's intentions, and then it rolls the credits.
+
+### Where it goes, and why it fits there
+
+The epilogue is in-engine dialogue rather than a movie. `END GAME Siege Map.zax` fires one of three
+outcome-gated Nostradamus prophecies; that node's reply triggers `MASTER NIS trigger`, a
+`CSeriesAction` that walks Javier's four lines and finishes with a fade, the end of the
+non-interactive sequence, and `CShowCreditsAction`.
+
+**Nostradamus now closes on your order.** He already owns the outcome-varying voice of this scene, so
+the slides are nodes in his own tree, fired the same way his prophecies are. One character, one
+register, and one voice to record if you ever want to.
+
+His register decided the writing. He never says *you* -- the player is always **the Lion of the
+west** -- and he writes in prophecy tense about pacts, darkness and a starving world, in two or three
+sentences. So these are not "where are they now" cards. They are prophecy:
+
+> The pyres of the Inquisition would burn on, for a frightened world gives its inquisitors more work,
+> not less. They would call the Cataclysm a judgement and the next one a warning, and they would be
+> believed.
+
+> Under the mountains the goblin tribes would number themselves and find the number larger than they
+> had believed. A Khan's banner would rise again within three generations, and the men who write
+> histories would be astonished, as they always are.
+
+> The Lion of the west would belong to no order, and every order would claim the Lion anyway. The
+> Templars would write that a knight had done it, the Inquisition that a faithful servant had, the
+> sorcerers that one of their own had, and each would be lying, and each would believe it.
+
+### Keyed to what the game already tracks
+
+Each allegiance has a rank attribute and ready-made requirement cans, used throughout the shipped
+game, so the closing sentence changes with **how far you rose** rather than merely whether you
+joined:
+
+| allegiance | tiers |
+|---|---|
+| Templar | `> 0`, `> 1`, `> 2` |
+| Horde | `> 0`, `> 1`, `> 2` |
+| Inquisition / Saladin / Wielder | `> 0`, `> 2` |
+
+Fourteen slides need **eighteen** gates: the no-allegiance paragraph alone is an AND of all five
+`NOT` cans. Each applicable allegiance fires, in a fixed order, because a character who served the
+Templars and rose in the Horde did both.
+
+### The Templar prophecy has two cores, and finding out why corrected me
+
+I had drafted it on the premise that Javier always swears the Templars to Ahriman. **He does not.**
+Entry 4 of `MASTER NIS trigger` checks `Player talked way into Ahriman death` and, when it exists,
+skips Javier's `40 End` entirely. So a player who talked Ahriman into dying never hears the fealty
+speech, and telling them their order knelt would have been a lie about their own playthrough.
+
+That branch now gets its own paragraph: the order endured **without** a benefactor, and *"they would
+never know how near a thing it was."*
+
+### Built for narration you have not recorded yet
+
+Every slide ships `Should Have Voiceover=1` **with no audio**, which is safe rather than clever: **52
+vanilla nodes already do exactly that**, five of them the Blacksmith's, in conversations everybody
+plays. The text simply shows.
+
+So if you record these later, you save each one as `<Node ID>.ogg` in `Nostrodomus Ending VOs/` and
+they speak. **No change to the mod, not a line of script, no rebuild of logic.** `vo_reach.py` will
+also begin listing them, which cross-checks that your filenames match the node ids.
+
+### A soft lock closed on the way
+
+The tree's `Default Canceled Node Action` was **empty**. Escaping out of a slide would have advanced
+nothing, the series would have stalled, and the credits would never have rolled -- on the last screen
+of the game. It now triggers the relay, which is exactly how all three companion-spirit trees use
+that field. That also fixes the same latent stall on vanilla's own prophecy node, where cancelling
+previously did nothing at all.
+
+### Checked
+
+`validate.py` clean on 730 files, `reachability.py` green. The build asserts the ending's own
+finisher appears **twice** before the edit and **zero** times after, that both arms now trigger the
+relay, that the credits live in the relay and not in the old part, that the relay declares seven
+entries and names all fourteen slides exactly once each, that there are eighteen faction gates with
+each `NOT` can appearing once, and that no existing `Text=` line in the tree moved.
+
+Gate form is vanilla's own, used **70** times in maps: `CIfExpressionAction` with
+`If Expression=CUseCannedExpressionExpression`. `Character to get attributes from` is `Player1`, not
+`$Instigator`, because this relay is fired from a reply and from another relay, where `$Instigator`
+resolves to nothing.
+
+### The companions are a separate release
+
+Nothing persistent records who travelled with you -- the only companion attribute in the game is
+`Companion Follow Enabled`, a toggle. The answer is quest history, which **is** persistent and
+testable: `CWasQuestEverActivatedAction` is live in 75 vanilla files and `CIsQuestCompletedAction` in
+51 more. That measurement comes first, per companion, before a word of their text is written.
 
 ## 0.69.1 - one heart each, graded by tier
 
