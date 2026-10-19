@@ -1,0 +1,361 @@
+CDialogTree
+{
+Name=
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+------------------------------------------------------------
+Node ID=900 order templar knelt killer
+Text=The Knights Templar came out of the siege with their chapter houses standing and their numbers halved, and within the year Lord Javier swore the order to the power he had called his benefactor. You had worn their cross and you had killed men wearing it, and the order never found a way to put both facts on the same page. The commanderies took their new instructions quietly. Those who objected were reassigned to postings they did not come back from, and inside a generation the white cross was a thing worn in the desert's service. Your name stayed in the rolls eleven years, and was then struck out by a hand nobody signed for.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order templar unknelt killer
+Text=The Knights Templar came out of the siege with their chapter houses standing and their numbers halved, and no benefactor ever came to collect on them. You had killed men who wore the same cross you did, and then you spared the whole order by talking its creditor into its own death, which is not a thing the rolls have a line for. They rebuilt slowly, under their own banners and out of their own treasury. The brothers who had buried the men you killed argued with the brothers who had read the Alamut dispatches, and they argued for as long as any of them lived, and the order never settled it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order templar high knelt
+Text=The Knights Templar came out of the siege with their chapter houses standing and their numbers halved, and within the year Lord Javier swore the order to the power he had called his benefactor. You had stood close enough to Javier to be counted among his own, and when he knelt there was no record of you being anywhere else. The commanderies took their new instructions quietly. Those who objected were reassigned to postings they did not come back from, and inside a generation the white cross was a thing worn in the desert's service. The men who carried it there had trained under you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order templar mid knelt
+Text=The Knights Templar came out of the siege with their chapter houses standing and their numbers halved, and within the year Lord Javier swore the order to the power he had called his benefactor. You had carried their banner the length of the war, from the Port District chapter to the relic vaults at Montserrat, and knights who had trained beside you rose behind you. The commanderies took their new instructions quietly, and those who objected were reassigned to postings they did not come back from. Inside a generation the white cross was a thing worn in the desert's service, carried by men who had learned how to carry it from watching you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order templar knelt
+Text=The Knights Templar came out of the siege with their chapter houses standing and their numbers halved, and within the year Lord Javier swore the order to the power he had called his benefactor. You had taken their oath and fought under it, and that was the whole of what the rolls had to say about you. The commanderies took their new instructions quietly. Those who objected were reassigned to postings they did not come back from, and inside a generation the white cross was a thing worn in the desert's service. Nobody ever wrote to ask what you thought of it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order templar unknelt
+Text=The Knights Templar came out of the siege with their chapter houses standing and their numbers halved, and no benefactor ever came for them. You had taken their oath, and you had talked the thing that meant to collect on it into its own death before it ever reached a chapter house. The order rebuilt slowly, under its own banners and out of its own treasury, and for a generation it was poorer than it had been in two hundred years. No record was ever written of what you spared them, because the only men who could have written it were standing at Alamut and did not understand what they had heard.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order inquisition exposer
+Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. Part of that standing was your doing. You walked into the Temple District and told them where La Calle Perdida was, and your directions were good, because you had been inside it as a friend. The Holy Office took the quarter apart over nine days and spent thirty years cataloguing what it found there. The men who did the work were promoted on the strength of your word, the pyres were lit in the plaza where the markets had been, and the cities paid for the wood.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order inquisition killer
+Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. You had worn its mark and you had killed its own, and the Holy Office is an organisation that keeps careful records of a name entered twice. Its fires burned on through the peace exactly as they had burned through the war, because a frightened city asks its inquisitors for more work rather than less, and the cities paid for the wood without being asked twice. Nothing was ever formally charged against you. But there were four towns between Barcelona and the coast that you never entered again, and you knew all four names.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order inquisition high
+Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. You had risen high in the Holy Office, high enough that the work reached you as paper rather than as duty, and high enough to sign what other men then carried out. Its fires burned on through the peace exactly as they had burned through the war, because a frightened city asks its inquisitors for more work rather than less. The cities paid for the wood. Your signature was on enough of it that the archive eventually gave you a box of your own.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order inquisition
+Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. You had worn its mark and done its work, and for a few years afterward the mark was worth a good deal more than the work had been. It opened doors in the new Barcelona, and then it went on opening doors you had stopped wanting to walk through. Its fires burned on through the peace exactly as they had burned through the war, and the cities paid for the wood. You stopped wearing the mark somewhere in the third year, and nobody ever came to ask you why.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin killer
+Text=The Knights of Saladin kept the pact of east and west after the west had stopped keeping it, and after Alamut they kept it alone. You had eaten at their table in the Gate District and you had killed one of their knights, and the order wrote down both of those without comment, which is their way of closing a matter. They held the eastern shrines for two generations against raids the west never heard about, and were called weak for it by men who had never fought them. Guests at their table were told your name, and told it carefully, as part of a longer lesson about hospitality.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin high
+Text=The Knights of Saladin kept the pact of east and west after the west had stopped keeping it, and after Alamut they kept it alone. You had been named a Favored One, the first westerner in living memory given the title, and the men who argued against it were outnumbered rather than persuaded. They held the eastern shrines for two generations against raids the west never heard about, and were called weak for it by men who had never fought them. Your name stayed in the recitation at Alamut long after anybody there could have said what you looked like.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin
+Text=The Knights of Saladin kept the pact of east and west after the west had stopped keeping it, and after Alamut they kept it alone. You had been their guest, and you had fought beside them in a season when their own numbers were thin enough that it mattered. They held the eastern shrines for two generations against raids the west never heard about, and were called weak for it by men who had never fought them. The order kept a short list of westerners who had been worth the hospitality. You were on it, and in sixty years the list did not get any longer.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order wielder ring
+Text=La Calle Perdida was never found, because by the end of that year there was nothing left of it to find. You put on Relican's ring and turned it on the hidden city yourself, and the few who walked out gave you the only title that fit, which was Dark Lord of a place that no longer existed. What the Church had spent three hundred years failing to drown, you buried in an afternoon. The Tome of Geomancy went down with it, the Five Ways crystals were never gathered again, and nobody taught any of it in the open, then or afterward.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order wielder exposed
+Text=La Calle Perdida was found, and it was found because you told the Inquisition where to look. You had been inside as a friend first, which is the only reason your directions were good enough to act on. The Holy Office took the quarter apart over nine days, and what the Wielders had kept hidden for a century was catalogued, carted out and burned in the open. Cedric's library went in the third load. A handful got away through the sewers and taught what they could remember to people who did not understand what they were being given, and inside two generations it was gone.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order wielder killer
+Text=La Calle Perdida was never found, not by the Inquisition and not by the knights. You had walked its streets as a friend and left Wielder dead behind you, and in a city that small both of those were known before you reached the gate. The magic the Church had tried to drown went on under the streets without you, and was taught in the open again long after everyone who had hidden it was dead. The door you had been given was not opened a second time. They never hunted you for it, which was its own kind of answer.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order wielder high
+Text=La Calle Perdida was never found, not by the Inquisition and not by the knights, and after the siege it took in more of Barcelona's unwanted than it had room for. You had risen high among the Wielders, a scion of Richard's line who chose the sorcerers over the cross, and that choice was argued over in both houses for a century. The magic the Church had tried to drown went on breathing under the streets, and was taught in the open again long after everyone who had hidden it was dead. When it was, the first teachers cited you, and got the details wrong.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order wielder
+Text=La Calle Perdida was never found, not by the Inquisition and not by the knights, and after the siege it took in more of Barcelona's unwanted than it had room for. You had walked the hidden city as a friend, and the Wielders put your name somewhere the Inquisition's archive was never going to reach it. The magic the Church had tried to drown went on breathing under the streets, and was taught in the open again long after everyone who had hidden it was dead. You were welcome there for the rest of your life. You went back twice.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order horde traitor
+Text=The goblin tribes came down out of the mountains, counted themselves, and discovered that they had two claimants and one rock. You handed the Khan's east rock to Butu's heir, and you were paid for it, and the Horde has a word for that and the word is not Champion. What might have been a war against the border towns was a war inside Khara'Khorum instead. It ran three generations and ended with fewer goblins than it started with. They remembered you accurately, which was the worst of it: of all the names that came out of that war, yours was the one they taught to children.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order horde high
+Text=The goblin tribes came down out of the mountains, counted themselves, and found that they were many, and that nothing in the west was counting at all. You had been their Champion, and when the banner went up your name was stitched beside the Khan's on it, in a script you could not read. A Khan's banner rose again inside three generations. The border towns burned first, then the valley forts, and the chronicles of the west recorded the whole thing as a surprise. In Khara'Khorum it had been expected for ninety years, and they were still telling the story with your name in it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order horde mid
+Text=The goblin tribes came down out of the mountains, counted themselves, and found that they were many, and that nothing in the west was counting at all. You had been blooded among them, which is further than almost any outsider gets, and the tribes argued for years afterward about what exactly that had made you. A Khan's banner rose again inside three generations. The border towns burned first, and the chronicles of the west recorded it as a surprise. Your name came up in their arguments about the succession, and was voted down, and came up again.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order horde
+Text=The goblin tribes came down out of the mountains, counted themselves, and found that they were many, and that nothing in the west was counting at all. You had been a chum of the Horde, which in their mouths means useful rather than trusted, and they kept the word for as long as any of them remembered you. A Khan's banner rose again inside three generations. The border towns burned first, and the chronicles of the west recorded it as a surprise. Two trade paths through the mountains stayed open that entire time, and nobody ever wrote down why.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order savage heart betrayed
+Text=The Savage Heart came out of the war the way mercenary companies do, which is richer and with a shorter roster, and one of the names on the short side was Raylark's. You took his contract, and then you took the Khan's, and you carried the Everlasting into Khara'Khorum to prove you had earned it. The company does not avenge its dead, it prices them, and the price it set on you was entered in the books at Marseilles and never once collected. In the years after Alamut the Savage Heart turned away more work than it could staff. None of it was ever yours, and that was the whole of its revenge.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order savage heart
+Text=The Savage Heart came out of the war the way mercenary companies do, which is richer and with a shorter roster. You took Raylark's contract and killed goblins for the bounty, counted by the ear, and the company's books still carry the entry under your name. In the years after Alamut half of Europe wanted men who would do that sort of work and not ask after the paperwork, and the Savage Heart raised its rate twice in five years. Raylark kept his camp west of Khara'Khorum until he was too old to hold it. The Horde had learned to count western killers by name, and yours was one of the names.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order none
+Text=Every order came out of the siege smaller than it had gone in, and every one of them claimed the ending as its own. You had taken no oath and worn no mark, and there was no faction anywhere that could produce a document with your name on it. The Templars wrote that a knight had finished it. The Inquisition wrote that a faithful servant had. The Wielders wrote that one of their own had, and the Horde told it as a story about a westerner who had owed them a favour. All four accounts survive in the archives, and not one of them is true.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order england
+Text=England spent that year waiting on Barcelona, and in the end the Armada never had to sail into a city that was already burning. You had carried the Crown's business through the Port District while the fleet was still in harbour, inside a conspiracy that would have hanged you in any week of it. Guy Fawkes' promise was kept the way such promises are kept: a pension paid out of an account with another man's name on it, a quiet word in two ports, and no record anywhere of the reason for either. He was hanged for something else, years later, and said nothing about you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order omalley
+Text=Grace O'Malley kept her ships, her harbour and her true name, and the Crown learned none of the three from you. You had been given more than her silence to hold, at a point where selling it would have cost you nothing and paid well. She was still taking prizes off the Irish coast twenty years after Barcelona, under the name she had chosen rather than the one she was born to. Her crews told the Barcelona story the entire time, with you in it, and told it badly, and she never once corrected them.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+}

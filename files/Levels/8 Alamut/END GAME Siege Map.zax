@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=7
+							Item Count=10
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -125,12 +125,31 @@ CLayerSaveData
 										Canned Expression=Dialog/Requirements/Faction/Templar IS
 									}
 									Character to get attributes from=Player1
-									Then=CDisplayDialogTreeAction
+									Then=CIfExpressionAction
 									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-										Node ID=900 order templar unknelt
-										Speaker=Fake Talker for NIS
-										Player Being Spoken To=Player1
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order templar unknelt killer
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order templar unknelt
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
 									}
 									Else=CTriggerRelayAction
 									{
@@ -141,27 +160,24 @@ CLayerSaveData
 								{
 									If Expression=CUseCannedExpressionExpression
 									{
-										Canned Expression=Dialog/Requirements/Faction/Templar Highlevel
+										Canned Expression=Dialog/Requirements/Faction/Templar IS
 									}
 									Character to get attributes from=Player1
-									Then=CDisplayDialogTreeAction
+									Then=CIfExpressionAction
 									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-										Node ID=900 order templar high knelt
-										Speaker=Fake Talker for NIS
-										Player Being Spoken To=Player1
-									}
-									Else=CIfExpressionAction
-									{
-										If Expression=CUseCannedExpressionExpression
+										If Expression=CHasPerkExpression
 										{
-											Canned Expression=Dialog/Requirements/Faction/Templar Mid Level
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+											}
 										}
 										Character to get attributes from=Player1
 										Then=CDisplayDialogTreeAction
 										{
-											Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-											Node ID=900 order templar mid knelt
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order templar knelt killer
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
 										}
@@ -169,36 +185,62 @@ CLayerSaveData
 										{
 											If Expression=CUseCannedExpressionExpression
 											{
-												Canned Expression=Dialog/Requirements/Faction/Templar IS
+												Canned Expression=Dialog/Requirements/Faction/Templar Highlevel
 											}
 											Character to get attributes from=Player1
 											Then=CDisplayDialogTreeAction
 											{
-												Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-												Node ID=900 order templar knelt
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order templar high knelt
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CTriggerRelayAction
+											Else=CIfExpressionAction
 											{
-												Relay Name=Fixt order epilogue relay
+												If Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Templar Mid Level
+												}
+												Character to get attributes from=Player1
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order templar mid knelt
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order templar knelt
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
 											}
 										}
+									}
+									Else=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
 									}
 								}
 								Return failure if the If failes=0
 							}
 							Action=CIfExpressionAction
 							{
-								If Expression=CUseCannedExpressionExpression
+								If Expression=CHasPerkExpression
 								{
-									Canned Expression=Dialog/Requirements/Faction/Inquisitor Highlevel
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Exposer of Calle Perdida
+									}
 								}
 								Character to get attributes from=Player1
 								Then=CDisplayDialogTreeAction
 								{
-									Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-									Node ID=900 order inquisition high
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 order inquisition exposer
 									Speaker=Fake Talker for NIS
 									Player Being Spoken To=Player1
 								}
@@ -209,12 +251,46 @@ CLayerSaveData
 										Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
 									}
 									Character to get attributes from=Player1
-									Then=CDisplayDialogTreeAction
+									Then=CIfExpressionAction
 									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-										Node ID=900 order inquisition
-										Speaker=Fake Talker for NIS
-										Player Being Spoken To=Player1
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order inquisition killer
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CUseCannedExpressionExpression
+											{
+												Canned Expression=Dialog/Requirements/Faction/Inquisitor Highlevel
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order inquisition high
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order inquisition
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+										}
 									}
 									Else=CTriggerRelayAction
 									{
@@ -226,95 +302,24 @@ CLayerSaveData
 							{
 								If Expression=CUseCannedExpressionExpression
 								{
-									Canned Expression=Dialog/Requirements/Faction/Saladin Highlevel
+									Canned Expression=Dialog/Requirements/Faction/Saladin IS
 								}
 								Character to get attributes from=Player1
-								Then=CDisplayDialogTreeAction
+								Then=CIfExpressionAction
 								{
-									Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-									Node ID=900 order saladin high
-									Speaker=Fake Talker for NIS
-									Player Being Spoken To=Player1
-								}
-								Else=CIfExpressionAction
-								{
-									If Expression=CUseCannedExpressionExpression
+									If Expression=CHasPerkExpression
 									{
-										Canned Expression=Dialog/Requirements/Faction/Saladin IS
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/FACTION Saladin Killer
+										}
 									}
 									Character to get attributes from=Player1
 									Then=CDisplayDialogTreeAction
 									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-										Node ID=900 order saladin
-										Speaker=Fake Talker for NIS
-										Player Being Spoken To=Player1
-									}
-									Else=CTriggerRelayAction
-									{
-										Relay Name=Fixt order epilogue relay
-									}
-								}
-							}
-							Action=CIfExpressionAction
-							{
-								If Expression=CUseCannedExpressionExpression
-								{
-									Canned Expression=Dialog/Requirements/Faction/Wielder Highlevel
-								}
-								Character to get attributes from=Player1
-								Then=CDisplayDialogTreeAction
-								{
-									Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-									Node ID=900 order wielder high
-									Speaker=Fake Talker for NIS
-									Player Being Spoken To=Player1
-								}
-								Else=CIfExpressionAction
-								{
-									If Expression=CUseCannedExpressionExpression
-									{
-										Canned Expression=Dialog/Requirements/Faction/Wielder IS
-									}
-									Character to get attributes from=Player1
-									Then=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-										Node ID=900 order wielder
-										Speaker=Fake Talker for NIS
-										Player Being Spoken To=Player1
-									}
-									Else=CTriggerRelayAction
-									{
-										Relay Name=Fixt order epilogue relay
-									}
-								}
-							}
-							Action=CIfExpressionAction
-							{
-								If Expression=CUseCannedExpressionExpression
-								{
-									Canned Expression=Dialog/Requirements/Faction/Goblin Horde Highlevel
-								}
-								Character to get attributes from=Player1
-								Then=CDisplayDialogTreeAction
-								{
-									Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-									Node ID=900 order horde high
-									Speaker=Fake Talker for NIS
-									Player Being Spoken To=Player1
-								}
-								Else=CIfExpressionAction
-								{
-									If Expression=CUseCannedExpressionExpression
-									{
-										Canned Expression=Dialog/Requirements/Faction/Goblin Horde Midlevel
-									}
-									Character to get attributes from=Player1
-									Then=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-										Node ID=900 order horde mid
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order saladin killer
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
@@ -322,21 +327,279 @@ CLayerSaveData
 									{
 										If Expression=CUseCannedExpressionExpression
 										{
-											Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+											Canned Expression=Dialog/Requirements/Faction/Saladin Highlevel
 										}
 										Character to get attributes from=Player1
 										Then=CDisplayDialogTreeAction
 										{
-											Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-											Node ID=900 order horde
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order saladin high
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order saladin
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+									}
+								}
+								Else=CTriggerRelayAction
+								{
+									Relay Name=Fixt order epilogue relay
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Ruler of Calle Perdida
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 order wielder ring
+									Speaker=Fake Talker for NIS
+									Player Being Spoken To=Player1
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Exposer of Calle Perdida
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order wielder exposed
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CUseCannedExpressionExpression
+										{
+											Canned Expression=Dialog/Requirements/Faction/Wielder IS
+										}
+										Character to get attributes from=Player1
+										Then=CIfExpressionAction
+										{
+											If Expression=CHasPerkExpression
+											{
+												Perks To Check For=Array
+												{
+													Item Count=1
+													Perk To Check For=Perks/!Event Title Perks/FACTION Wielder Killer
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order wielder killer
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CIfExpressionAction
+											{
+												If Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Wielder Highlevel
+												}
+												Character to get attributes from=Player1
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order wielder high
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order wielder
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+											}
 										}
 										Else=CTriggerRelayAction
 										{
 											Relay Name=Fixt order epilogue relay
 										}
 									}
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Goblin Traitor
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 order horde traitor
+									Speaker=Fake Talker for NIS
+									Player Being Spoken To=Player1
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order horde high
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Goblin Blooded
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order horde mid
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CHasPerkExpression
+											{
+												Perks To Check For=Array
+												{
+													Item Count=1
+													Perk To Check For=Perks/!Event Title Perks/Goblin Chum
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order horde
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+										}
+									}
+								}
+							}
+							Action=CIfAction
+							{
+								If=CWasQuestEverActivatedAction
+								{
+									Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+								}
+								Then=CIfAction
+								{
+									If=CIsQuestCompletedAction
+									{
+										Quest=Levels/Wilderness/Quests/Deal with the bounty hunter preying on the goblins
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order savage heart betrayed
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order savage heart
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Return failure if the If failes=0
+								}
+								Else=CTriggerRelayAction
+								{
+									Relay Name=Fixt order epilogue relay
+								}
+								Return failure if the If failes=0
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 order england
+									Speaker=Fake Talker for NIS
+									Player Being Spoken To=Player1
+								}
+								Else=CTriggerRelayAction
+								{
+									Relay Name=Fixt order epilogue relay
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Graces Regard
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 order omalley
+									Speaker=Fake Talker for NIS
+									Player Being Spoken To=Player1
+								}
+								Else=CTriggerRelayAction
+								{
+									Relay Name=Fixt order epilogue relay
 								}
 							}
 							Action=CIfExpressionAction
@@ -374,12 +637,176 @@ CLayerSaveData
 													Canned Expression=Dialog/Requirements/Faction/Goblin Horde NOT
 												}
 												Character to get attributes from=Player1
-												Then=CDisplayDialogTreeAction
+												Then=CIfExpressionAction
 												{
-													Dialog Tree File=Levels/8 Alamut/Dialog/Nostrodomus Ending
-													Node ID=900 order none
-													Speaker=Fake Talker for NIS
-													Player Being Spoken To=Player1
+													If Expression=CExpressionNot
+													{
+														Operand1=CHasPerkExpression
+														{
+															Perks To Check For=Array
+															{
+																Item Count=1
+																Perk To Check For=Perks/!Event Title Perks/Exposer of Calle Perdida
+															}
+														}
+													}
+													Character to get attributes from=Player1
+													Then=CIfExpressionAction
+													{
+														If Expression=CExpressionNot
+														{
+															Operand1=CHasPerkExpression
+															{
+																Perks To Check For=Array
+																{
+																	Item Count=1
+																	Perk To Check For=Perks/!Event Title Perks/Ruler of Calle Perdida
+																}
+															}
+														}
+														Character to get attributes from=Player1
+														Then=CIfExpressionAction
+														{
+															If Expression=CExpressionNot
+															{
+																Operand1=CHasPerkExpression
+																{
+																	Perks To Check For=Array
+																	{
+																		Item Count=1
+																		Perk To Check For=Perks/!Event Title Perks/Goblin Traitor
+																	}
+																}
+															}
+															Character to get attributes from=Player1
+															Then=CIfExpressionAction
+															{
+																If Expression=CExpressionNot
+																{
+																	Operand1=CHasPerkExpression
+																	{
+																		Perks To Check For=Array
+																		{
+																			Item Count=1
+																			Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+																		}
+																	}
+																}
+																Character to get attributes from=Player1
+																Then=CIfExpressionAction
+																{
+																	If Expression=CExpressionNot
+																	{
+																		Operand1=CHasPerkExpression
+																		{
+																			Perks To Check For=Array
+																			{
+																				Item Count=1
+																				Perk To Check For=Perks/!Event Title Perks/Goblin Blooded
+																			}
+																		}
+																	}
+																	Character to get attributes from=Player1
+																	Then=CIfExpressionAction
+																	{
+																		If Expression=CExpressionNot
+																		{
+																			Operand1=CHasPerkExpression
+																			{
+																				Perks To Check For=Array
+																				{
+																					Item Count=1
+																					Perk To Check For=Perks/!Event Title Perks/Goblin Chum
+																				}
+																			}
+																		}
+																		Character to get attributes from=Player1
+																		Then=CIfExpressionAction
+																		{
+																			If Expression=CExpressionNot
+																			{
+																				Operand1=CHasPerkExpression
+																				{
+																					Perks To Check For=Array
+																					{
+																						Item Count=1
+																						Perk To Check For=Perks/!Event Title Perks/Servant of the Queen
+																					}
+																				}
+																			}
+																			Character to get attributes from=Player1
+																			Then=CIfExpressionAction
+																			{
+																				If Expression=CExpressionNot
+																				{
+																					Operand1=CHasPerkExpression
+																					{
+																						Perks To Check For=Array
+																						{
+																							Item Count=1
+																							Perk To Check For=Perks/!Event Title Perks/Graces Regard
+																						}
+																					}
+																				}
+																				Character to get attributes from=Player1
+																				Then=CIfAction
+																				{
+																					If=CWasQuestEverActivatedAction
+																					{
+																						Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+																					}
+																					Then=CTriggerRelayAction
+																					{
+																						Relay Name=Fixt order epilogue relay
+																					}
+																					Else=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+																						Node ID=900 order none
+																						Speaker=Fake Talker for NIS
+																						Player Being Spoken To=Player1
+																					}
+																					Return failure if the If failes=0
+																				}
+																				Else=CTriggerRelayAction
+																				{
+																					Relay Name=Fixt order epilogue relay
+																				}
+																			}
+																			Else=CTriggerRelayAction
+																			{
+																				Relay Name=Fixt order epilogue relay
+																			}
+																		}
+																		Else=CTriggerRelayAction
+																		{
+																			Relay Name=Fixt order epilogue relay
+																		}
+																	}
+																	Else=CTriggerRelayAction
+																	{
+																		Relay Name=Fixt order epilogue relay
+																	}
+																}
+																Else=CTriggerRelayAction
+																{
+																	Relay Name=Fixt order epilogue relay
+																}
+															}
+															Else=CTriggerRelayAction
+															{
+																Relay Name=Fixt order epilogue relay
+															}
+														}
+														Else=CTriggerRelayAction
+														{
+															Relay Name=Fixt order epilogue relay
+														}
+													}
+													Else=CTriggerRelayAction
+													{
+														Relay Name=Fixt order epilogue relay
+													}
 												}
 												Else=CTriggerRelayAction
 												{

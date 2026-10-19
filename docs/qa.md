@@ -1474,6 +1474,28 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.0 - the ending slides
+
+Dialogue and one map relay, in the endgame map. Needs a save that can reach the ending, or a
+character taken through it. **0.70.0 must be uninstalled or overwritten** -- it put slides in
+Nostradamus's tree, and this release takes them out again.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| ES1 | **The row that matters most.** Finish the game on any character | - | After Lord Javier's last line, one or more closing paragraphs appear, and then **the credits roll**. The credits live inside the new relay, so if they do not roll, nothing else about this release matters |
+| ES2 | Look at the box the slides appear in | - | **No name and no portrait.** If it says *Nostrodomus*, the wrong tree is being spoken and 0.70.0 is still installed |
+| ES3 | **Regression.** Watch Nostradamus's own prophecy and all four of Javier's lines | - | Unchanged, in the same order, same pacing. His tree is vanilla again apart from one previously-empty field |
+| ES4 | **The soft-lock check.** Press escape out of one of the slides | - | The sequence continues and the credits still roll. Also try escaping Nostradamus's own prophecy, which stalled in vanilla |
+| ES5 | Finish as a **Templar** who did **not** talk Ahriman to death | - | Javier swears the order; three tiers by rank. A Templar who has also killed Templars gets a different paragraph again, ending *"struck out by a hand nobody signed for"* |
+| ES6 | Finish as a **Templar** who **did** talk Ahriman into dying | - | The order endures **without** a benefactor, and no record of it was ever written |
+| ES7 | **The Wielders, three ways.** Finish (a) as a Wielder with the city intact, (b) having told Raphael where La Calle Perdida was, (c) having used Relican's ring | - | Three different paragraphs. (b) also fires an Inquisition slide, since you did them a service. (c) calls you Dark Lord of a place that no longer existed |
+| ES8 | **The Horde, five ways.** Chum, Blooded, Champion, `Goblin Traitor`, and none of them | - | Highest standing wins, and the traitor paragraph beats all of them. Remember the titles accumulate: a Champion still carries Chum and Blooded, so the order of testing is what makes this correct |
+| ES9 | **Enemy of the ...** Finish as an Inquisitor, Knight of Saladin or Wielder who has killed that faction's own | - | The hostile paragraph rather than the ordinary one. These are 0.47.0's titles, so they are earned by killing a member anywhere in the game |
+| ES10 | **The Savage Heart.** Take Raylark's contract and finish; then on another character take it and kill him for the Khan | - | Two different paragraphs. A character who never took the contract gets neither |
+| ES11 | **England.** Finish carrying `Servant of the Queen`, and separately `Grace's Regard` | - | One paragraph each, and **both** if you hold both |
+| ES12 | Finish as a character who joined **nothing** and holds none of the fate titles | - | *"All four accounts survive in the archives, and not one of them is true."* And **only** that one -- if any other slide also fires, a gate in the no-allegiance chain is wrong |
+| ES13 | **For later.** Record a line and save it as `<Node ID>.ogg` in `Fixt Ending Slides VOs/` | - | It plays, with no change to the mod. `vo_reach.py` will also start listing it, which cross-checks the filename |
+
 ## 0.70.0 - what became of your order
 
 Dialogue and one map relay, in the endgame map. Needs a save that can reach the ending, or a

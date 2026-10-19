@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.70.0 are published.** Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.0 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,146 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.0 - the ending slides
+
+**0.70.0 is withdrawn.** It closed the game with fourteen Nostradamus prophecies. Two things were
+wrong with it, and the second was mine twice over.
+
+| what was wrong | why |
+|---|---|
+| the voice was not his | aphoristic, ironic, 53-83 words of nested clauses, where his lines are plain declaratives. The same failure as 0.45.0's DaVinci reactions, which this project already had a rule about |
+| the faction's **future** was fixed | it varied only with how far the player had risen, so two slides told the player the opposite of what they had actually done |
+
+### The second one was a measurement failure, not a writing failure
+
+Asked whether a faction should only do well if the player worked with them, the honest answer needed
+a survey of what the game can test. That survey was run against **`data.dat.vanilla.bak`**, which
+answers *"was this ever wired in the shipped game"* -- not *"is it wired now"*. It reported four
+*Enemy of the ...* titles granted by nothing.
+
+**0.47.0 wired all four**, onto 33 member cans covering **568** spawn points. The note in this
+project's own memory is called *Fixt is not vanilla*, and this is the third time it has been needed.
+
+### What the game can actually test
+
+| lever | kind | what it changes |
+|---|---|---|
+| `Player talked way into Ahriman death` | endgame flag (vanilla) | the Templars are never sworn to Ahriman |
+| `Exposer of Calle Perdida` -- *Hero of the Inquisition* | perk | you gave the hidden city to the Inquisition |
+| `Ruler of Calle Perdida` -- *Dark Lord of Calle Perdida* | perk | you turned Relican's ring on it yourself |
+| `Goblin Traitor` | perk (Fixt) | you handed the Khan's east rock to Butu's heir |
+| `Goblin Chum` / `Blooded` / `Champion` | perks (Fixt) | how far you rose in the Horde |
+| the four `FACTION ... Killer` titles | perks (0.47.0) | you killed that faction's own |
+| `Slay Goblins for the Savage Heart` | quest history | you took Raylark's contract |
+| `Slay the Bounty Hunter for the Khan` | quest history | you killed Raylark for the Khan |
+
+**Every one of these lives on the character, and that is why they were chosen.** Perks, rank
+attributes and quest history all test from any map and all survive on a save made before Fixt was
+installed. Map flags cannot do this job: an existence check is local to its map, which is why
+vanilla's own `Player talked way into Ahriman death` needs a checker entity sitting **in** the
+endgame map and a `COtherMapAction` fired at it from `08 Final Encounter`. A flag for something the
+player did in the Wilderness would never reach a save already past that point.
+
+### Three beats, from three different places
+
+Each slide covers the faction's **status**, **your impact on them**, and **their near future**. The
+beats read different levers, and that split is what keeps them honest:
+
+| beat | reads | why |
+|---|---|---|
+| status | the fate levers | the player can actually change this |
+| impact | rank, titles, quest history | standing, not institutional fate |
+| near future | the fate levers | follows from the status |
+
+So killing fourteen Inquisitors does not change the Inquisition -- it stays a fact about you, and the
+paragraph ends *"there were four towns between Barcelona and the coast that you never entered again,
+and you knew all four names."* Selling out La Calle Perdida **does** change the Wielders, so it
+rewrites their status sentence.
+
+### Spoken by nobody
+
+The slides are a new tree, `Fixt Ending Slides`, with a **blank `Name=`** and `Portrait=!None`.
+That is a shipped form rather than an invention: **13 vanilla trees** have no name and no portrait.
+It is spoken through `Fake Talker for NIS`, the invisible dummy speaker the epilogue already uses.
+
+The practical point is that a voice for these can be **anyone's**. There is no Nostradamus
+performance to match, which is what made the first attempt unworkable.
+
+Length and cadence are pitched at the **Fallout: New Vegas** ending slides -- 95 to 117 words, four
+to six sentences, outcome then mechanism then one concrete particular then the long view. The
+particular is what does the work:
+
+> ...and inside a generation the white cross was a thing worn in the desert's service. **Your name
+> stayed in the rolls eleven years, and was then struck out by a hand nobody signed for.**
+
+### The 27
+
+| faction | slides | what splits them |
+|---|---|---|
+| Knights Templar | 6 | three ranks, plus Javier's conditional fealty, plus *Enemy of the Knights Templar* |
+| Inquisition | 4 | two ranks, *Enemy of the Inquisition*, and *Hero of the Inquisition* |
+| Order of Saladin | 3 | two ranks and *Knight of Saladin Slayer* |
+| Wielders | 5 | two ranks, *Enemy of the Wielders*, and **two different ways to destroy the city** |
+| Goblin Horde | 4 | Chum, Blooded, Champion, and `Goblin Traitor` |
+| Savage Heart | 2 | took Raylark's contract, or took it and then killed him for the Khan |
+| England | 2 | `Servant of the Queen`, `Grace's Regard` |
+| no allegiance | 1 | an AND of **fourteen** negatives |
+
+Two of those are new factions for this purpose. The **Savage Heart** is the mercenary company Raylark
+hunts for, and it has no rank and no perk, so joining is read off quest history. **England** is
+Fixt's own thread, from the Port District conspiracy.
+
+The goblin titles **accumulate and cannot be removed**, so a Champion still carries Chum and Blooded.
+Testing order is therefore load-bearing rather than cosmetic, and the traitor is tested before all
+three.
+
+### The no-allegiance slide needs fourteen gates by itself
+
+Every slide that can fire on a perk alone has to be excluded, or a character who joined nothing but
+sold out a city would be told there was *"no faction anywhere that could produce a document with your
+name on it"*. So that paragraph is an AND of five `NOT` rank cans, eight absent perks and one
+never-activated quest.
+
+### A date correction
+
+Every slide in the 0.70.0 draft, and in the first rewrite, opened with the faction coming out of
+**the Cataclysm**. The Cataclysm is 1192. The game ends at the siege of Barcelona and at Alamut,
+four centuries later. They now come out of the siege.
+
+### Nostradamus goes back to vanilla, minus one empty field
+
+His tree is byte-identical to the shipped file except that `Default Canceled Node Action`, which was
+**empty**, now advances the series. That was 0.70.0's one durable find: escaping his prophecy
+advanced nothing, the series stalled, and the credits never rolled -- on the last screen of the game.
+It is a vanilla defect, and it is kept fixed.
+
+### Checked
+
+`validate.py` clean on 731 files, `reachability.py` green, `test_triggers.py` passing. The build
+asserts the ending's own finisher appears **once** before the edit and that the credits end up in the
+relay and not in the old part; that both arms of `MASTER NIS trigger` entry 4 still trigger the
+relay; that the relay declares **ten** entries and names all 27 slides exactly once each; that there
+are **15** rank gates and **22** perk gates and eight `CExpressionNot` wrappers; and that every
+vanilla `Text=` line in Nostradamus's tree is unmoved.
+
+Then a separate pass reads the deployed bytes back and cross-checks the **map against the tree in
+both directions**, because a node reference from a map is byte-exact and a mismatch crashes on entry.
+It also asserts that all 27 approved paragraphs appear in the shipped tree verbatim -- the build
+parses them out of [`ending-slides.md`](ending-slides.md), the file that was reviewed, so the shipped
+bytes are the reviewed bytes rather than a retyping of them.
+
+### What needs playing
+
+`ES1`-`ES13` in [`qa.md`](qa.md). **`ES1` is the row that proves the release** -- the credits must
+still roll. `ES2` catches a stale 0.70.0 install, `ES4` is the soft-lock check, and `ES12` is the one
+that catches a wrong gate in the no-allegiance chain.
+
+### Still to come
+
+The companions are a separate release and were measured during 0.70.0: nothing persistent records who
+travelled with you, so quest history is the lever. **Joan of Arc has none at all** -- no quest,
+attribute or perk bears her name, and act 4 ships one quest with zero states.
 
 ## 0.70.0 - what became of your order
 
