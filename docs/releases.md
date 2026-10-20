@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.8 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.9 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,129 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.9 - the brief, and the men who did not come
+
+The narrative half of [issue #11](https://github.com/EricHype/LionheartFixt/issues/11). Mixxer5's
+second report is a design complaint, not a wiring fault, and both halves of it check out.
+
+### The player was never allowed to state the brief
+
+> *"Assassins and Snakebreeds are your enemies until this point. Then an assassin invites you in
+> and you can simply accept. It screams of being a trap and completely against directions you were
+> given by a guildmaster."*
+
+The directions are the opposite. Every patron sends the player to look:
+
+| who | what they say |
+|---|---|
+| Lord Javier | *"travel to Montserrat at once and see what has happened"* |
+| Cedric Alsen | *"travel to the abbey and see what you can discover"* |
+| Jafar | *"travel with all speed to Montserrat to see if our enemies have stolen the Crown of Thorns"* |
+
+Surrendering to be taken to whoever is in charge carries out that brief directly. The route is
+consistent with the mandate. What was missing is that **the game never let the player say so.**
+
+Every way through `1 halt` as it shipped:
+
+| reply | gate | what it gave the player |
+|---|---|---|
+| *"I am. Take me to your captain."* | none | bare compliance, no stated reason |
+| *"I am, and I was told to come as I am. Armed..."* | Outwit 6 | a bluff |
+| *"Look at me. Do I look like one of theirs?"* | Demokin or Sylvant | a racial out |
+| *"I am not. <Draw.>"* | none | the fight |
+
+A deceptive character had a line. A Demokin or Sylvant had a line. Everyone else had four words of
+compliance with nothing behind them, which is exactly why it read as a lapse rather than a
+decision -- and Mixxer5 conceded the deceptive case unprompted, which is the one path that already
+had a voice.
+
+Two replies, neither gated, both reaching `deliver` by the path the compliance reply already took:
+
+> I came to learn what happened to this house. Your captain knows. Take me to them.
+
+> This is a trap, but I suppose I have no choice. You have your orders, I have mine.
+
+The second leads to a new node where the sentry declines to soften it:
+
+> I was told to bring you up alive. That is the whole of my orders, and I do not ask after the rest.
+
+He does not deny it and does not engage, which is more in character than a retort. Both lines ship
+out of [`sentry-lines.md`](sentry-lines.md), the file that was reviewed. Measured against his own
+five lines and seven replies: his run 12 to 31 words and 2 to 25, these are 16, 18 and 23, and
+there is not a verb contraction anywhere in the tree.
+
+### The wounded assassin was abandoned by men standing in the room
+
+0.71.7 gated his plea on `CIsAliveAction{Assassin}`. Exactly one generator carries that name:
+
+| distance from him | generator | active at load | gate sees it |
+|---|---|---|---|
+| **291** | unnamed | **yes** | **no** |
+| 450 | `Hall Ambush Generator` | no | yes |
+| **682** | unnamed | **yes** | **no** |
+
+The pack actually standing beside him has no `New Name`, and `CIsAliveAction` matches by name, so
+the gate could not see it. Worse on the peaceful route, where that pack carries the pacify
+`After Action` and is therefore alive, friendly and in plain sight when he says *"They have gone on
+without me."*
+
+**And fixing the gate alone would have deleted his scene.** The condition is "has his side been
+cleared off this floor", and on the peaceful route the player kills nobody, so it is false for the
+entire route. He would have gone from a wrong line to a body that does not speak.
+
+So he has a second opening, for when they are still standing:
+
+> <A man in black lies propped against a dead knight, a Templar's sword still through his side. The
+> men down the hall do not look over.> You are late. They can see me from there. I am not worth the
+> walk - failure earns no coin or sympathy.
+
+The first sentence is byte-identical to his original, because it is the same body and the same
+wound; only the second changes, to the thing the player can confirm by turning round. Its eight
+replies are cloned from the original, gates and all, so he knows the same things either way. Being
+written off is now his reason to answer.
+
+That answer is the faction's own logic rather than bitterness. A trader on the road calls them
+*"a bit gruff, but they pay well"*; they take tribute and move cargo; Pau has just told the player
+they carried off every monk who could not walk. They carried the monks and left their own man,
+because the monks were worth carrying.
+
+### Why the obvious implementations were both wrong
+
+**A proximity probe.** `CAIAreaOvalManager` with `CCheckCategoryAction` is how `Snakebreed dead
+relay` decides whether anything stands near Brother Montgomerie, and it looked like the clean
+answer here. It is not. The spawns take `Category=Enemy` from their `.can`, and the pacify action
+is `CRemoveCategoryAction{Categories To Remove=Enemy}` -- it works by stripping that category.
+Level 1 adds no categories anywhere and checks none; the only category verb in the map is that
+removal. So on the peaceful route the nearby allies carry **no category at all**, a probe keyed to
+`Enemy` would find nothing, and the bug would reproduce itself through new machinery.
+
+**Setting the new checker when the lock is picked**, the equivalent one-liner on the other fix,
+fails the same way: `guard room poly` reads that checker, so it would skip the Sneak check and
+delete the lockpick route's whole risk.
+
+### What the gate takes, and what it leaves
+
+A sweep found **five** unnamed pacifying generators within 900 of him, at 291, 682, 716, 841 and
+841. Gating on all five would make a player who fought their way in clear the entire floor,
+including rooms they may never enter, before he would say his original line.
+
+So the gate takes only what stands nearer than the hall ambush 0.71.7 already judged relevant: the
+ambush at 450, and the one pack at 291, now named `Hall Snakebreed`. That is a rule that can be
+stated rather than a radius picked to fit. Men in another room are not standing over him.
+
+The empty `Then=` goes away as a side effect. Until now, clicking him while the ambush lived did
+nothing at all -- no balloon, no refusal -- so the player could not tell whether he was a character
+or scenery.
+
+### Still open on #11
+
+- The warden cannot be spoken to from inside the cell. He is 298 from the nearest spot in it,
+  against a reach of 110. Brother Pau was the other half of that complaint and 0.71.8 fixed him.
+- Brother Montgomerie never appears on the peaceful route. `Snakebreed dead relay` is fired only
+  from the death slots of Sahar's generator and the ten Snakebreed and guard generators, so if you
+  kill nobody in the sanctum it never runs. One relay away, and not in this release.
+- You fight to the gates and are only then offered peaceful entry.
 
 ## 0.71.8 - the sneak that counted as loud, and Pau's cell
 

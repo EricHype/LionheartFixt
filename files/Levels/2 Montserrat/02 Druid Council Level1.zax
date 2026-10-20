@@ -1924,12 +1924,47 @@ CLayerSaveData
 					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
 					Action=CIfAction
 					{
-						If=CIsAliveAction
+						If=COrAction
 						{
-							Name To Check For=Assassin
-							Desired Minimum Count=1
+							Action=Array
+							{
+								Item Count=2
+								Action=CIsAliveAction
+								{
+									Name To Check For=Assassin
+									Desired Minimum Count=1
+								}
+								Action=CIsAliveAction
+								{
+									Name To Check For=Hall Snakebreed
+									Desired Minimum Count=1
+								}
+							}
+							Early Exit=0
 						}
-						Then=
+						Then=CIfAction
+						{
+							If=CCheckExistenceAction
+							{
+								Name To Check For=questioned the assassin
+								Desired Minimum Count=1
+							}
+							Then=CDisplayDialogTreeAction
+							{
+								Dialog Tree File=Levels/2 Montserrat/Dialog/Wounded Assassin
+								Node ID=3 return
+								Speaker=Wounded Assassin
+								Player Being Spoken To=$Instigator
+							}
+							Else=CDisplayDialogTreeAction
+							{
+								Dialog Tree File=Levels/2 Montserrat/Dialog/Wounded Assassin
+								Node ID=2 left
+								Speaker=Wounded Assassin
+								Player Being Spoken To=$Instigator
+							}
+							Return failure if the If failes=0
+						}
 						Else=CIfAction
 						{
 							If=CCheckExistenceAction
@@ -9940,7 +9975,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Hall Snakebreed
 					Remove Default AIs=0
 					AIs to Add=Array
 					{

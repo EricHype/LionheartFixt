@@ -1474,6 +1474,25 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.9 - the brief, and the men who did not come
+
+The sentry rows are dialogue, so they reach a save standing anywhere in Montserrat. The wounded
+assassin's second opening is dialogue too, but the gate that chooses it is map work, so `WA4`
+onwards need a save that has **not** entered `02 Druid Council Level1`.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SN1 | Walk up to the Grove sentry on any character with no Outwit and no Demokin or Sylvant blood | *"I came to learn what happened to this house."* | The reply is **there**. Before this release a plain character's only way in was *"I am. Take me to your captain."* |
+| SN2 | Take it through | - | He demands your steel exactly as before, and you are delivered. Nothing about the route changed |
+| SN3 | Start again and name the trap | *"This is a trap, but I suppose I have no choice."* | He answers *"I was told to bring you up alive..."* and does **not** reassure you. Then you can go on, or still draw |
+| SN4 | **Regression.** Run the Outwit 6 bluff, and the Demokin or Sylvant line | - | Both unchanged, both still deliver you armed or unsearched as before |
+| SN5 | **Regression.** Pick the fight instead, at every step including the new node | - | `sentry draws` fires every time. There is still no node you can get stuck in |
+| WA1 | Enter Level 1 by **fighting**, clear the hall and the pack beyond it, then talk to the wounded assassin | - | *"You are late. They have gone on without me."* His original line, unchanged, because now it is true |
+| WA2 | **The row that matters.** Get delivered to the pen, escape by the drain, then find him with his own side still alive nearby | - | *"They can see me from there. I am not worth the walk."* If he says *"gone on without me"* while they are standing there, the gate did not take |
+| WA3 | From either opening, ask him everything | - | The same eight replies, the same answers, the same Speech 40 and Demokin branches. The two openings differ only in their first line |
+| WA4 | Talk to him, walk away, come back | - | *"Still here? Finish it, or go."* -- the return node, from either opening |
+| WA5 | **The thing that used to be invisible.** Click him on a save where the hall ambush is alive and unsprung | - | He is reachable and says something. He used to do nothing at all, with no way to tell him from scenery |
+
 ## 0.71.8 - the sneak that counted as loud, and Pau's cell
 
 Map edits only, so these need a save that has **not** yet entered the Undercroft. Get delivered to

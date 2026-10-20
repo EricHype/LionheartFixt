@@ -39,6 +39,14 @@ Reply Text=Look at me. Do I look like one of theirs?
 Go to node ID=25 own
 
 Requirement=!None
+Reply Text=I came to learn what happened to this house. Your captain knows. Take me to them.
+Go to node ID=10 steel
+
+Requirement=!None
+Reply Text=This is a trap, but I suppose I have no choice. You have your orders, I have mine.
+Go to node ID=15 seen
+
+Requirement=!None
 Reply Text=I am not. <Draw.>
 Go to node ID=
 Custom Action=CTriggerRelayAction
@@ -65,6 +73,24 @@ Requirement=Outwit 6 greater or equal
 Reply Text=I was told to come armed. She will want to see what I carry. Ask her.
 Go to node ID=20 armed
 Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I have changed my mind.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sentry draws
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 seen
+Text=I was told to bring you up alive. That is the whole of my orders, and I do not ask after the rest.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then let us go.
+Go to node ID=10 steel
 
 Requirement=!None
 Reply Text=I have changed my mind.
