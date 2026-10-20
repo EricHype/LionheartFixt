@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.3 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.4 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,82 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.4 - Level 2's rout, and a claim of mine that was wrong
+
+### The correction first
+
+0.71.2's notes, its commit message and my comment on [issue
+#11](https://github.com/EricHype/LionheartFixt/issues/11) all say that Montserrat's Level 2 never
+routs and that `rout exit L2` is "a marker nothing references".
+
+**Both are false.** `sahar dies` has carried a `CSetPatrolAIAction` aimed at `rout exit L2` since
+0.11.0, with the same fourteen-name roster Level 1 uses and the same `CDeleteAction` on arrival. The
+death ending has always emptied all three maps.
+
+I swept for `Relay Name=`, `Target Name=` and `Name To Check For=`, and never for **`Destination=`**
+-- the field a `CGoToAI` names its marker in. This project's note for that mistake is *one query is
+not proof of absence*, and this is its fourth outing. The build now asserts the death ending routs
+Level 2, so the claim cannot be made wrongly again.
+
+### What was actually missing, and it was mine
+
+0.71.2 gave the peaceful ending its stand-down by copying what the death ending does. It copied
+**six of the seven** actions and missed the seventh:
+
+| action | her death | her word, as 0.71.2 shipped it |
+|---|---|---|
+| activate `routed` | yes | yes |
+| rout the Grove | yes | yes |
+| rout Level 1 | yes | yes |
+| deactivate `Snakebreed Generator` | yes | yes |
+| blank the roster's target types | yes | yes |
+| drop the roster's `Enemy` category | yes | yes |
+| **walk the roster to `rout exit L2` and delete it** | **yes** | **no** |
+
+So after taking the ring, the Grove and Level 1 emptied and **Level 2's garrison stood pacified in
+place**. Harmless, and more confusing than the original dead end: the room you are standing in is the
+one that does not clear.
+
+### The fix
+
+The patrol is **lifted out of `sahar dies` by the build** and appended to the reply, so the two
+endings cannot drift. The build then prints them side by side and asserts the counts match:
+
+```
+                                       her word     her death
+Target Name=routed                     1            1
+Relay Name=garrison routs              2            2
+Target Name=Snakebreed Generator       1            1
+CSetTargetTypeAction                   1            1
+CRemoveCategoryAction                  1            1
+Destination=rout exit L2               1            1
+```
+
+It goes on the reply rather than in the map, so it reaches a save standing in the sanctum.
+
+### Sahar is deliberately not in the patrol
+
+She is not in Level 1's roster either. `Snakebreed dead relay` carries the comment *"This activates
+Brother Montgomerie when the snakebreed are all dead"* and tests `CIsAliveAction{Snakebreed}` **OR**
+`CIsAliveAction{Sahar}`. Deleting her on the peaceful ending would flip that test and summon
+Montgomerie as a side effect of accepting a ring. The garrison leaves; she stays, alive, and the gate
+is untouched.
+
+### One more of mine, caught by the gate
+
+The first attempt at this spliced the patrol in and produced a brace imbalance, because
+`lhbuild.balanced()` returns the index **after** the closing brace -- so the lifted block ends in `}`
+and not in a newline, and consuming the original's separator left two blocks fused. `validate.py`
+named it as *"embedded CMultipleActionsAction failed to parse"* before anything was published. The
+splice now asserts the separator is there and leaves it alone. Third time that one has cost a build
+in this project; it is in the notes as such.
+
+### Checked
+
+`validate.py` clean on 732 files, `reachability.py` green. Exactly one `CSetPatrolAIAction` and one
+`Destination=rout exit L2` exist in the tree afterwards, no `Text=`, `Reply Text=`, `Node ID=` or
+`Go to node ID=` line moved, and the ring is still given once.
 
 ## 0.71.3 - Sahar's two lines
 
@@ -338,7 +414,7 @@ repair:
 
 | still open | shape |
 |---|---|
-| Level 2 never routs | `garrison routs` exists in the Grove and Level 1 only, and `rout exit L2` is a marker **nothing references**. This is why killing Sahar "doesn't make the garrison disappear" where the player is standing |
+| ~~Level 2 never routs~~ | **This was wrong, and is corrected in 0.71.4.** `sahar dies` has aimed a patrol at `rout exit L2` since 0.11.0; the death ending always emptied all three maps. What was missing was the same patrol on the **peaceful** ending, which this release itself omitted |
 | NPCs untargetable from inside the cell | the cell door blocks conversation; wants a talk-through-the-grate reply |
 | the warden aggros on lockpicking but not on the drain, and nobody upstairs reacts either way | one escape is noisy and one is quiet, and neither propagates |
 | the wounded assassin pleads as though abandoned while his allies stand around him | wants gating on the hall being cleared |

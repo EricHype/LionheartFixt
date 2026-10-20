@@ -1474,6 +1474,18 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.4 - Level 2's rout on the peaceful ending
+
+One dialogue reply. Reaches a save already in the sanctum.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| RL1 | **The row that matters.** Take Sahar's ring, then watch the sanctum | `<Take the ring.>` | Any snakebreed or assassin still standing in Level 2 **walks east and leaves**. Before this they stood pacified in place forever |
+| RL2 | Walk out through Level 1 and the Grove | - | Still empty, as in 0.71.2 |
+| RL3 | **Sahar herself** | - | **Stays where she is, alive.** She is not in the roster, deliberately: removing her would flip `Snakebreed dead relay` and summon Brother Montgomerie as a side effect of accepting a ring |
+| RL4 | **Regression.** Fight her instead and win | `<Draw.>` | Level 2 empties exactly as it did before this release. The death ending is untouched |
+| RL5 | **Regression.** Check the ring, the Montaillou quest state and her balloon | - | All unchanged |
+
 ## 0.71.3 - Sahar's two lines
 
 Dialogue only. Reaches a save already in the sanctum.
