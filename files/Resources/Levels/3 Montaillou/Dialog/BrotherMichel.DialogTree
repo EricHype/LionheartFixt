@@ -1672,10 +1672,62 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=I have other questions.
 Go to node ID=80 Advice
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Cavern Nostradamus
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=39VLQTM0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
 
 Requirement=!None
 Reply Text=Very well. Goodbye.
 Go to node ID=10 Goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=NML4JYFE
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Cavern Nostradamus
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the location of the seer Nostradamus
+State=39VLQTM0
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------

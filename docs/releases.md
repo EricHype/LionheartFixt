@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.4 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.5 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,85 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.5 - Brother Michel was written to end this quest and never could
+
+[Issue #8](https://github.com/EricHype/LionheartFixt/issues/8), reported by Stricken145: *"I tried
+every single dialogue option and despite it quest for seeking Nostradamus is still active. Didn't
+receive any experience as well."*
+
+### Four of the quest's eight state slots are set by nothing
+
+Swept by plain substring and then reading backwards for the owning action class -- **three strict
+regexes in this session each produced a false "referenced by nothing"**, so the method had to change
+before the finding could be trusted:
+
+| state | text | set by |
+|---|---|---|
+| `NML4JYFE` | DaVinci sends you; ask around Montaillou | DaVinci, `06 Witch Interior` |
+| `MRZFAVTU` | you have been shown the location | the witch, Menoetius |
+| `ENBLRE1B` | you will cut through the Hujark and capture him | Nostradamus Monk |
+| `39VLQTM0` | **"Brother Michel has shown you the location of the Cave of Nostradamus"** | **nothing** |
+| `NLZR5B3V` | you sided with the Hujark to defend him | **nothing** |
+| `UV9EURCQ` | Nostradamus warned you about Montaillou's danger | **nothing** |
+| `PUXZPWW5` | Nostradamus told you of the Daevas | **nothing** |
+
+The definition also carries `MRZFAVTU` **twice**, in two different state slots with different text.
+
+### Michel is the obvious person to ask, and he could do nothing
+
+DaVinci's instruction is to *"speak with anyone in Montaillou that might know of the seer's
+whereabouts"*. Michel has **seven** Nostradamus nodes -- `220 Caverns`, `245 Nostradamus Inquisitor`,
+`260 The Minor Prophecies`, `270 Nostradamus Flees`, `280 Nostradamus' Fate`, `290 Warning`,
+`310/315 Why` -- which is more than any other character in the game. He explains that the Inquisition
+drove the seer into the caves, that nobody has heard from him since, and he warns you what lives
+there.
+
+Then the conversation ends and the quest has not moved. Only the witch and the titan can reveal the
+location, and the state written in Michel's name is set by nobody. A player does exactly what the
+quest told them to do, exhausts the dialogue of the man it pointed them at, and concludes the thing
+is broken. That is the report.
+
+### The fix
+
+Michel now reveals the Caverns on the two replies of `290 Warning`, his closing line:
+
+> Hmmm. Very well. But if you go, take care. Strange creatures are said to make their home in the
+> caves, and they may not welcome your arrival.
+
+By then he has accepted that the player is going, so **no new dialogue had to be written**. The reveal
+is the witch's own pair of actions, **lifted out of her tree by the build** rather than retyped --
+enable the `Cavern Nostradamus` point of interest, set the quest state -- with her state swapped for
+**his**, `39VLQTM0`, which brings that dead line back into the game.
+
+**Gated so it cannot rewind the quest.** If the witch or Menoetius already told you, the state is past
+DaVinci's step and re-setting it would rewind the displayed text. The witch gates all eleven of her
+Nostradamus replies on `CIsQuestStateTheCurrentStateAction{NML4JYFE}`; this uses the same test.
+
+### What this does not claim
+
+The report does not say which act the reporter was in, and the quest legitimately stays active until
+you reach Nostradamus' demesne at the end of act 5, where arriving completes it and pays `Nostra XP`.
+That part is wired correctly and is unchanged here. **What is fixed is the Montaillou half**: the
+person the quest sends you to can now actually send you on. I have asked on the issue which act it
+was, in case there is a second defect behind the same sentence.
+
+Still open from the same quest: `NLZR5B3V`, and `UV9EURCQ` with `PUXZPWW5`. The last two are things
+Nostradamus tells you **after** you reach him, and the quest is completed on arrival at his map,
+before he speaks -- so reaching them means resequencing the completion, which is a design change
+rather than a repair.
+
+### Checked
+
+`validate.py` clean on 732 files, `reachability.py` green. The build asserts the witch's reveal is
+exactly two actions before lifting it, that the guard's braces balance before it goes near a file,
+that `39VLQTM0` went from **0 setters to 2**, and that no `Text=`, `Reply Text=`, `Node ID=` or
+`Go to node ID=` line in Michel's 74-node tree moved.
+
+One of mine, caught by the gate: the first attempt let `Else=` run straight onto the lifted block's
+closing brace, because `lhbuild.balanced()` stops **after** the brace and the block therefore does not
+end in a newline. `validate.py` reported *"embedded CIfAction failed to parse"*. That is the **fourth**
+time that single fact has cost a build in this project, twice today.
 
 ## 0.71.4 - Level 2's rout, and a claim of mine that was wrong
 

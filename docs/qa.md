@@ -1474,6 +1474,18 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.5 - Brother Michel and the Nostradamus quest (issue #8)
+
+Dialogue only. Reaches a save already in Montaillou.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| NQ1 | **The row that matters.** Take DaVinci's quest, go to Montaillou, ask Michel about the Caverns and follow it through to his warning | any reply on *"But if you go, take care"* | The **Caverns of Nostradamus appear on the world map**, and the quest step changes to *"Brother Michel has shown you the location of the Cave of Nostradamus"* |
+| NQ2 | Check the world map afterwards | - | The Caverns are selectable. Before this release only the witch or the titan Menoetius could do that |
+| NQ3 | **The no-rewind check.** Get the location from the witch **first**, then go through Michel's warning | - | The quest step does **not** change back. His reveal is gated on the quest still sitting at DaVinci's step |
+| NQ4 | **Regression.** Michel's other conversations: the Crypt, the demon, his prayers, the Montaillou quests | - | All unchanged. Only two replies on one node gained an action |
+| NQ5 | Go to the Caverns and finish the act | - | The quest completes and pays its experience on arrival at Nostradamus' demesne, as before |
+
 ## 0.71.4 - Level 2's rout on the peaceful ending
 
 One dialogue reply. Reaches a save already in the sanctum.
