@@ -87,6 +87,626 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt cellar 1
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/BoxClosed C
+			Position X=470
+			Position Y=640
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 2
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/BoxClosed D
+			Position X=370
+			Position Y=590
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 3
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/BoxOpen E
+			Position X=690
+			Position Y=650
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 4
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Torture Items/BoxOpen B
+			Position X=600
+			Position Y=720
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Fixt cellar chest
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CPlayAnimationAction
+							{
+								Animation=opening
+								Random From Sequencial Set=0
+								Target Name=$Trigger
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CDelayAction
+							{
+								Next Action=CGenerateInventoryItemAction
+								{
+									Number of items to generate=1
+									Level of item to generate=CUseCannedExpressionExpression
+									{
+										Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Average
+									}
+									Location=$Trigger
+									Location Offset=4,39
+									Generate Within Radius=32.5
+									Aspect Ratio=0.712766
+									Item List=CInventoryItemGeneratorMixedList
+									{
+										Items=Array
+										{
+											Array Count=1
+											Array Item=CInventoryItemGeneratorMixedListItem
+											{
+												Weighting=1
+												Item=CInventoryItemGeneratorCannedList
+												{
+													Canned Item List=Inventory/Creating Random Magic Items/1 MASTER ALL Items in the game
+												}
+											}
+										}
+									}
+								}
+								Delay=0.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=1
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=40
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Outpost/Generic/Chests/Chest 01 A
+			Position X=820
+			Position Y=610
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 6
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Barrel1/Barrel1 A
+			Position X=460
+			Position Y=540
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 7
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Barrel2/Barrel2 A
+			Position X=550
+			Position Y=530
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 8
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Boxes/Pot1/Pot1 A
+			Position X=710
+			Position Y=750
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 9
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Outpost/Transformed Region/Extras/Hay 02 A
+			Position X=470
+			Position Y=600
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 10
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Debris/Debris1 A
+			Position X=730
+			Position Y=660
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 11
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Debris/Debris2 D
+			Position X=750
+			Position Y=720
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 12
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Bones/Bones1
+			Position X=720
+			Position Y=620
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt cellar 13
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Buckets/Bucket1
+			Position X=680
+			Position Y=610
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=pau talk poly
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Brother Pau
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=4
+								Action=CActionResetPointClickAI
+								{
+									Character with PointClickAI=$instigator
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=Brother Pau
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Brother Pau
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Companions=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
+										Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Brother Pau
+											Node ID=3 again
+											Speaker=Brother Pau
+											Player Being Spoken To=$Instigator
+										}
+										X Radius=110
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
+								}
+								Action=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/2 Montserrat/Dialog/Brother Pau
+									Node ID=1 straw
+									Speaker=Brother Pau
+									Player Being Spoken To=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=345, 250, 405, 250, 405, 360, 345, 360, 345, 250
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt loud escape heard
 			Child List=
 			Visible=0
@@ -342,10 +962,15 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=3
+								Item Count=4
 								Action=CCheckExistenceAction
 								{
 									Name To Check For=escorted
+									Desired Minimum Count=1
+								}
+								Action=CCheckExistenceAction
+								{
+									Name To Check For=Fixt slipped out
 									Desired Minimum Count=1
 								}
 								Action=CCheckExistenceAction
@@ -385,9 +1010,12 @@ CLayerSaveData
 								Action=Array
 								{
 									Item Count=2
-									Action=CTriggerRelayAction
+									Action=CActivateAction
 									{
-										Relay Name=Fixt loud escape heard
+										Target Name=Fixt slipped out
+										Play Activate Sound=0
+										Delay Between Activations=0
+										Warp Behavior=
 									}
 									Action=CDisplayDialogBalloonAction
 									{
@@ -892,8 +1520,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Spirit Generator Level2
-			Position X=640
-			Position Y=200
+			Position X=708.545
+			Position Y=159.767
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -932,548 +1560,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Spirit Generator Level2
-			Position X=760
-			Position Y=850
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Barrel1/Barrel1 A
-			Position X=455.962
-			Position Y=289.094
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Barrel2/Barrel2 A
-			Position X=486.125
-			Position Y=274.555
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Barrel2/Barrel2 B
-			Position X=507.032
-			Position Y=293.572
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Barrel2/Barrel2 B
-			Position X=700
-			Position Y=110
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Town/House Items/Shelves2/Shelves2 B
-			Position X=631.826
-			Position Y=116.314
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Shrine Level/Objects/Table1/Table1 A
-			Position X=640
-			Position Y=300
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Misc/Table Items/BottleA
-			Position X=640
-			Position Y=268
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/barce wrecked/church in/bench b
-			Position X=720
-			Position Y=340
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Pot1/Pot1 A
-			Position X=520
-			Position Y=350
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Pot2/Pot2 A
-			Position X=540
-			Position Y=362
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Crypt Of Vika/Chests/Chest2
-			Position X=782.118
-			Position Y=239.35
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Closed
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Outpost/Transformed Region/Extras/Hay A
-			Position X=200
-			Position Y=300
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Outpost/Transformed Region/Extras/Hay B
-			Position X=300
-			Position Y=410
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Druid Grove/CampSiteStuff/Bedding/BedRoll1 C
-			Position X=240
-			Position Y=330
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Pot1/Pot1 A
-			Position X=150
-			Position Y=320
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Outpost/Transformed Region/Extras/Hay C
-			Position X=640
-			Position Y=800
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Pot2/Pot2 A
-			Position X=740
-			Position Y=830
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Hamlet/General/Boxes/Barrel1/Barrel1 A
-			Position X=860
-			Position Y=240
+			Position X=770.019
+			Position Y=790.813
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -1563,6 +1651,36 @@ CLayerSaveData
 			Publisher=
 			Model=Editor/Checker
 			Position X=1040
+			Position Y=60
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt slipped out
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1100
 			Position Y=60
 			Rendering Height=0
 			Rendering Height Float=0
@@ -2300,8 +2418,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Enemy Generator Spot
-			Position X=600
-			Position Y=330
+			Position X=704.308
+			Position Y=397.055
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2453,8 +2571,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Enemy Generator Spot
-			Position X=700
-			Position Y=800
+			Position X=469.536
+			Position Y=263.388
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2534,7 +2652,7 @@ CLayerSaveData
 										Highlight Until Clicked=0
 										Is Locked=1
 										Allow Interact If Has Target=1
-										Lock Pick Adjustment=35
+										Lock Pick Adjustment=40
 										Inventory item to use as key=Inventory Items/!None
 										Is Bussy Talking=0
 									}
@@ -2570,10 +2688,15 @@ CLayerSaveData
 										{
 											Action=Array
 											{
-												Item Count=3
+												Item Count=4
 												Action=CCheckExistenceAction
 												{
 													Name To Check For=escorted
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=Fixt slipped out
 													Desired Minimum Count=1
 												}
 												Action=CCheckExistenceAction
@@ -2613,10 +2736,15 @@ CLayerSaveData
 										{
 											Action=Array
 											{
-												Item Count=3
+												Item Count=4
 												Action=CCheckExistenceAction
 												{
 													Name To Check For=escorted
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=Fixt slipped out
 													Desired Minimum Count=1
 												}
 												Action=CCheckExistenceAction
@@ -2635,16 +2763,25 @@ CLayerSaveData
 										Then=
 										Else=CIfAction
 										{
-											If=CIsAliveAction
+											If=CIsDoorOpenAction
 											{
-												Name To Check For=Handler
-												Desired Minimum Count=1
+												Door Name=cell door
 											}
-											Then=CTriggerRelayAction
+											Then=
+											Else=CIfAction
 											{
-												Relay Name=escort
+												If=CIsAliveAction
+												{
+													Name To Check For=Handler
+													Desired Minimum Count=1
+												}
+												Then=CTriggerRelayAction
+												{
+													Relay Name=escort
+												}
+												Else=
+												Return failure if the If failes=0
 											}
-											Else=
 											Return failure if the If failes=0
 										}
 										Return failure if the If failes=0
@@ -3052,36 +3189,6 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars H
-			Position X=425.36
-			Position Y=606.19
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
 			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne G
 			Position X=372.77
 			Position Y=722.99
@@ -3262,69 +3369,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Torch A
-			Position X=333
-			Position Y=570
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
 			Model=Environments/Rethgorad/Stockade/Walls/Wall1/WallOne C
 			Position X=501.27
 			Position Y=38.74
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 D
-			Position X=497.33
-			Position Y=354.67
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3387,36 +3434,6 @@ CLayerSaveData
 			Position Y=427.29
 			Rendering Height=0
 			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Special Effects/Torch Fire
-			Position X=342
-			Position Y=516
-			Rendering Height=84
-			Rendering Height Float=84
 			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
@@ -3562,36 +3579,6 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 C
-			Position X=532.5
-			Position Y=601.75
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
 			Model=Environments/Rethgorad/Stockade/Walls/Wall Posts/WallPost1
 			Position X=494
 			Position Y=170
@@ -3622,129 +3609,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door3Frame/DoorTop
-			Position X=614.25
-			Position Y=624.5
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door3Frame/DoorRtLeg
-			Position X=614.25
-			Position Y=624.5
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Special Effects/Big Fire
-			Position X=595
-			Position Y=156
-			Rendering Height=54
-			Rendering Height Float=54
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
 			Model=Environments/Rethgorad/Stockade/Walls/Torch Stands/TorchOne/Torch1
-			Position X=575
-			Position Y=193.75
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door3Frame/DoorLftLeg
-			Position X=614.25
-			Position Y=624.5
+			Position X=780.636
+			Position Y=229.513
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -3777,36 +3644,6 @@ CLayerSaveData
 			Position Y=888.4
 			Rendering Height=0
 			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Special Effects/Torch Fire
-			Position X=625
-			Position Y=50
-			Rendering Height=116
-			Rendering Height Float=116
 			Cur Sequence=Idle
 		}
 		Level Part=CEntityBase
@@ -3925,36 +3762,6 @@ CLayerSaveData
 			Model=Environments/Rethgorad/Stockade/Walls/Wall Posts/WallPost1
 			Position X=648
 			Position Y=106
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars E
-			Position X=767.36
-			Position Y=615.19
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -4105,96 +3912,6 @@ CLayerSaveData
 			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 A
 			Position X=891.33
 			Position Y=316.5
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Special Effects/Torch Fire
-			Position X=847
-			Position Y=552
-			Rendering Height=84
-			Rendering Height Float=84
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Heart of Fire/Misc Pieces/Torch A
-			Position X=838
-			Position Y=606
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 D
-			Position X=896.5
-			Position Y=672
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -5184,151 +4901,6 @@ CLayerSaveData
 			Trying To Move=0
 			Tracking Updates Since Relocate=0
 		}
-		Level Part=CEntityAnimated
-		{
-			Name=monk door
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=2
-				Activity=CDoorAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Is Locked=0
-					Allow Open or Close?=
-					Before Open=
-					After Opened=
-					Before Closed=
-					After Closed=
-					After Locked=
-					After Unlocked=
-					Auto-Close Timeout=0
-					State=Unknown
-					Timeout Time Left=0
-					Frame Andvance=0
-					Next Pain=0
-					Triggered By Players=1
-					Triggered By Enemies=1
-				}
-				Activity=CAIInteractionSpecifier
-				{
-					Marked For Deletion=0
-					Publisher=
-					Trigger Only Once=0
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Companions=0
-					Triggered By Name=
-					Interaction Description=
-					Interaction Type=Interaction Specifiers/GetCloseThen OpenDoor
-					Action=CToggleDoorAction
-					{
-						Door Name=$Trigger
-						Delay Between Doors=0
-					}
-					X Radius=80
-					Attacker Range Modifier=0
-					YX Ratio=0.712766
-					Highlight Self Time=0
-					Highlight Until Clicked=0
-					Is Locked=1
-					Allow Interact If Has Target=1
-					Lock Pick Adjustment=35
-					Inventory item to use as key=Inventory Items/!None
-					Is Bussy Talking=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/Doors/Doors Sw/Door3
-			Position X=596.75
-			Position Y=624.5
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Closed
-			Cur Damage=0
-			Destroyed Script Action=
-			Destroyed Effect Action=
-			Damaged Script Action=
-			Damaged Effect Action=
-			Hit Action=
-			Default Death Type=!None
-			Has Done Death Processing=0
-			Play Ratio=0
-			Aiming Angle=0
-			Movement Angle=0
-			Start FacingAngle=0
-			Current Frame=0
-			Created By=
-			BehaviorStack=CEntityBehaviorStack
-			{
-				InProcess=0
-				Blocking Priority=Idle
-				BehaviorList=Array
-				{
-					Item Count=0
-				}
-			}
-			Facing Backwards=0
-			Last Facing Backwards=0
-			Upper Body Present=0
-			Synch Aiming And Moving=1
-			Frame Index Locked=0
-			Waiting For Discharge=0
-			Still Shooting=0
-			Trying To Move=0
-			Tracking Updates Since Relocate=0
-		}
-		Level Part=CEntityBase
-		{
-			Name=
-			Child List=
-			Visible=1
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=0
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars A
-			Position X=872.821
-			Position Y=630.973
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
 		Level Part=CEntityBase
 		{
 			Name=
@@ -5445,6 +5017,308 @@ CLayerSaveData
 			Model=Environments/Druid Grove/WellHoles/WellGrate G
 			Position X=864
 			Position Y=501
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/WallBars/WallBars F
+			Position X=619.901
+			Position Y=170.101
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 F
+			Position X=680.763
+			Position Y=288.492
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door2Frame/DoorTop
+			Position X=616.785
+			Position Y=296.231
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door2Frame/DoorLftLeg
+			Position X=616.88
+			Position Y=294.187
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Door2Frame/DoorRtLeg
+			Position X=617.064
+			Position Y=294.629
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Doors/Doors Sw/Door2
+			Position X=607.889
+			Position Y=308.02
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 F
+			Position X=555.251
+			Position Y=345.779
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Wall90/Crnr90 F
+			Position X=521.02
+			Position Y=318.464
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Rethgorad/Stockade/Walls/Wall45/Wall45 D
+			Position X=489.639
+			Position Y=351.379
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
