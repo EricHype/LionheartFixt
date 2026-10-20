@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.7 - the loud escape, and the wounded assassin (issue #11)
+
+Map edits only, so these need a save that has not yet entered Montserrat.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| LE1 | **The row that matters.** Take the peaceful entry, then pick the cell lock instead of using the drain | - | The warden turns on you **and the abbey above now knows**. Go up the stairs and see the difference: 47 checks that could never fire now can |
+| LE2 | Compare with the quiet route: take the drain instead | - | Nothing above reacts, which is the intended half and was the only half that worked |
+| LE3 | **Regression.** Walk the delivered route through to Sahar without escaping at all | - | Unchanged from 0.71.6 |
+| LE4 | **The one to watch.** Play the loud route all the way out | - | Harder than before, deliberately. None of this had ever run, so if anything is now unwinnable rather than merely hunted, that is worth reporting |
+| WA1 | Enter Level 1 and go to the wounded assassin **before** springing the hall ambush | - | He can still be spoken to. The ambush starts switched off, so his scene is not lost |
+| WA2 | Spring the hall ambush, then try to talk to him while any of them live | - | **He says nothing.** He is a body on the floor until his own side is dead |
+| WA3 | Kill the ambush, then talk to him | - | His conversation plays exactly as before, including the return node if you had already questioned him |
+
 ## 0.71.6 - Thierry's death was never recorded (issue #9)
 
 One map and one dialogue tree. The tree half reaches a save already in Toulouse.

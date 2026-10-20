@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.6 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.7 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,116 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.7 - the loud escape could never be heard
+
+Two more from [issue #11](https://github.com/EricHype/LionheartFixt/issues/11).
+
+### 47 checks that were all permanently false
+
+0.11.0's design note says it in one line: *"a quiet one is a delivery; a loud one is hunted"*.
+
+| map | reads `escaped loud` | carries the checker entity |
+|---|---|---|
+| `4 Undercroft` | 3 | **yes**, Active=0 |
+| `02 Druid Council Level1` | 16 | **no** |
+| `02 Druid Council Level2` | 10 | **no** |
+| `01 Grove Exterior` | 21 | **no** |
+
+A `CCheckExistenceAction` for a name that no entity in the current map carries is false, always. So
+**47 tests across three maps could never be true**, and the three setters in the cellar carried no
+`COtherMapAction` to reach them even if they had existed.
+
+Compare `delivered`, built two stages earlier in the same release: a checker in all four maps, pushed
+into three of them from the Grove. The loud half simply never got the same treatment.
+
+So you could pick the lock, have the warden come at you, walk up the stairs, and find the abbey
+carrying on exactly as before. Which is what the reporter said: *"everyone above acts as if nothing
+happened"*.
+
+### The fix is the checker and one relay
+
+The Undercroft's own `escaped loud` part is **cloned** into Level 1, Level 2 and the Grove -- cloned
+rather than authored, so it carries exactly the fields the shipped one does, and it arrives
+`Active=0` as it should. Then one relay, `Fixt loud escape heard`, activates it locally and in all
+three maps, and the three existing activations in `handler fights`, `guard room poly` and `loud` are
+swapped one-for-one to trigger it.
+
+**This switches on a large amount of behaviour that has never run once.** That was a deliberate
+decision rather than an oversight: the alternative was leaving 47 written consequences dead. `LE4` in
+the QA rows is the row that matters, and it asks the tester to report anything that is now
+unwinnable rather than merely harder.
+
+### The wounded assassin pleaded while his allies stood over him
+
+> there's a "dying" assassin that can be talked to and he acts as if he was left to die (despite the
+> fact that his allies surround him)
+
+`Wounded Assassin Generator` is `Active=1` from map load with no condition at all, so he was lying
+there dying the moment the player walked into Level 1 -- and the hall ambush spawns 450 units up the
+same corridor, at (2000,1450) against his (2000,1900).
+
+His conversation is now wrapped:
+
+```
+if CIsAliveAction{Assassin}  ->  nothing; he is a body on the floor
+else                        ->  the conversation, exactly as it was
+```
+
+**The gate is exact, which is what makes it safe.** `Assassin` is the New Name of precisely **one**
+generator in the whole of Level 1 -- the hall ambush -- so the test means that ambush and nothing
+else. And because the ambush generator starts `Active=0`, no `Assassin` exists before the player
+springs it, the check is false, and he is available: a player who never triggers the ambush does not
+lose his scene. His own generator is untouched, so the body is on the floor either way.
+
+### Still open on #11
+
+| | |
+|---|---|
+| **NPCs cannot be spoken to from inside the cell** | diagnosed, not built. The Handler at (600,330) and Brother Pau at (700,800) both use `GetCloseThenTalk`, which requires walking to them, and the cell runs roughly x 250-410 by y 360-453 with the door at (411,453). So they can never be approached. The Handler is close enough to call to; Brother Pau is across the map. Whether his tree has anything to say to a caged prisoner is the open question, and if it does not, this needs new dialogue rather than new wiring |
+| **fight to the gates, then peaceful entry** | a design question, not a defect |
+
+### A correction of mine from the same investigation
+
+I reported `loud`, `drain secret` and `cell pins` as dead checkers, set and read by nothing. **All
+three are live content.** I had swept them as checker names, and none of them is a checker:
+
+| part | what it actually is |
+|---|---|
+| `cell pins` | a `CFreeRangePoly` gated on `Dialog/Requirements/Attributes/ST 8+`. Force the door's pins with Strength 8 or more and it fires the `loud` relay. **It is the Strength route out of the cell** |
+| `drain secret` | a `CAISecretReveal` at `Skill Adjustment=20` worth **25 XP**, which reveals the drain and sets `drain known` |
+| `loud` | the relay `cell pins` triggers: it opens the cell door, wakes the handler, and now alerts the abbey |
+
+That is the fourth wrong-field false negative in this session, and the lesson is the same each time:
+searching one field name is not proof of absence.
+
+### And the warden's "inconsistency" is the design working
+
+`pen setup` fires on `delivered` and **replaces the cell door's interaction with a locked one at
+`Lock Pick Adjustment=35`**, so there are three stat routes out of the cell: pick the lock, force the
+pins at `ST 8+`, or find the drain at `Skill Adjustment=20`.
+
+The reason the warden reacts to the first two and not to the drain is **not the method**. Leaving by
+the door walks you east through `guard room poly`, 470-800 by 180-470, where he sees you. The drain
+bypasses that polygon entirely.
+
+So what the report called an inconsistency was correct behaviour with its upstairs half missing, and
+the upstairs half is what this release connects.
+
+### Checked
+
+`validate.py` clean on 732 files, `reachability.py` green, `test_triggers.py` passing. The build
+**proves each defect before touching it**: it asserts the 47 reads, that none of the three maps has
+the checker, and that `Assassin` is exactly one generator in Level 1 and that its generator starts
+switched off -- and refuses to run otherwise. Afterwards it reads the deployed bytes back and
+confirms one checker per map, three setters routed through the relay, the relay's one local and three
+cross-map activations, both of the assassin's dialogue nodes still present, and the part counts
+unchanged apart from the four additions.
+
+Two of mine, neither published: the cloned checker ended at its closing brace with no newline, so
+`add_parts` fused it to the following part and `resource_format` could not parse the map; and a
+pattern built from `B()` matched nothing against an indented map. Both are the same two facts that
+have cost builds all day, and both were caught before anything was written.
 
 ## 0.71.6 - Thierry could die, and the game had no way to know
 
