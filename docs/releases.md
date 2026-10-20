@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.7 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.8 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,108 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.8 - the sneak that counted as loud, and Pau's cell
+
+Repair to 0.71.7, plus the room the scene always described.
+
+### Beating the Sneak check was recorded as failing it
+
+0.71.7 connected `escaped loud` to the three maps above the cellar. It connected it from the wrong
+branch. `guard room poly` fires when the player crosses the warden's room after picking the cell
+door, and it reads:
+
+| Sneak 30 | balloon | and then |
+|---|---|---|
+| passed | *"28 sneaks past"* | `CTriggerRelayAction{Fixt loud escape heard}` |
+| failed | *"53 handler caught"* | `CTriggerRelayAction{handler fights}`, which fires the same relay |
+
+So both branches set `escaped loud`. The maps above pacify their enemy generators on
+`(delivered AND NOT escaped loud) OR routed`, so **passing the check turned the whole of Montserrat
+hostile** -- the one outcome the check exists to avoid -- while the player was told they had slipped
+past unseen. The check decided whether the warden swung, and nothing else.
+
+### Why the one-line fix is wrong
+
+Delete the call from the success branch and a second bug appears immediately. `pen setup` holds a
+delayed action at t=100 that fires `escort` -- the warden walks the player upstairs and the map
+relocates them -- unless one of `escorted`, `escaped loud` or `drain used` is set. A successful
+sneaker was covered only by the very bug being removed. Taking it out alone trades a wrong flag for
+a wrong teleport.
+
+So success sets a new checker, `Fixt slipped out`, cloned from `escaped loud` and inactive like its
+siblings, and it joins all three "has the player already got out?" guards: the poly's own early-out
+and both of `pen setup`'s delays. `handler fights` and `loud` keep their `Fixt loud escape heard`
+calls untouched -- being caught **is** the loud escape, and the pins route is meant to be loud.
+
+### And the gap it was masking
+
+A player who picks the lock and then stays in the cell block -- poking at the drain, talking to Pau
+-- finishes no route, so sets no flag, so at t=100 the warden escorts a prisoner who is standing in
+an open doorway. This predates all of today's work; removing the `escaped loud` bug only stopped
+masking it.
+
+The obvious fix is wrong for the same reason twice over: `guard room poly` **reads** `Fixt slipped
+out`, so setting it when the lock is picked would make the poly decide the player was already away
+and skip the Sneak check -- deleting the lockpick route's risk entirely. "Out of the cell" and "out
+of the cellar" are different facts.
+
+`CIsDoorOpenAction` is the actual question and needs no new state. Its four shipped uses all sit in
+a `CTryAction`'s `Try Action=` slot and never inside a `COr`, so rather than make that `COr` the
+first heterogeneous one in the game, the inner test is wrapped instead -- an `If=` slot, which this
+same branch already uses for `CIsAliveAction`.
+
+All five routes, traced end to end:
+
+| route | gate | sets | Montserrat after |
+|---|---|---|---|
+| talk the warden up | Speech 40 **or** CH 7+ | `escorted` | calm |
+| the drain | secret at Skill Adj 20, **or** PE 7+ | `drain used` | calm |
+| the pins | ST 8+ | `escaped loud` | hostile |
+| pick the lock, sneak past | Lock Pick 40, then Sneak 30 | `Fixt slipped out` | **calm** (was hostile) |
+| pick the lock, get caught | Lock Pick 40 | `escaped loud` | hostile |
+
+### The pen is now two cells
+
+Brother Pau's first line has read *"In the next cell, an old man in what was a habit sits with his
+back to the bars"* since 0.11.0. He was standing in the open outside the cells, in no cell at all.
+
+He now sits at (469,263), behind the player's east barred wall, in a compartment closed by its own
+door. The nearest spot a player can stand inside their own cell is (406,263) -- **64 away, against
+an interaction reach of 110** -- so he is reachable from the bars and from nowhere else.
+
+Reaching him is not left to the player guessing that a patch of floor can be clicked. A
+`CFreeRangePoly` over the cell's north-east corner opens the conversation when they walk to the
+bars, the same idiom `Henri dialog start poly` uses in Montaillou. It swaps his interaction to
+`3 again` **before** displaying `1 straw`, because his `CSeriesAction` index is per-instance: a poly
+that only replayed the opening would leave the series at zero and the next click would repeat it.
+
+And the cell door is now pickable at **40** rather than 35.
+
+### A map crash, caught by the gate and not by play
+
+Pau's door had been cloned as a plain `CEntityBase` carrying `Cur Sequence=Idle`. `Door2` has no
+Idle animation, and all nine `Door2` entities in the shipped game are `CEntityAnimated` with
+`Cur Sequence=Closed`; the clone was also missing all 24 animated-entity fields. `validate.py`
+calls that a crash, correctly. It is rebuilt from `cell door`, the only other `Door2` in the map.
+
+### The cellar is dressed
+
+Thirteen props in the southern chamber: crates and debris from `Stockade/Walls`, this room's own
+art family, and barrels and pots from the Hamlet set the game puts in every larder it has. The
+chest is the 251-instance vanilla shape and rolls `Chest Generator Average`, because vanilla never
+writes a literal item into a chest -- all 1266 of its generators roll a canned level expression.
+
+Three hand-placed passes read fine as coordinates and wrong on screen: a chest in a patch of floor
+that renders near black, debris inside a wall sprite's 243 pixels of height, crates 34 apart when
+the sprites are 140 wide. The final positions are solved against the undressed render instead --
+bright enough to see, clear of wall sprites, far enough apart not to interpenetrate. Thirteen of
+fourteen fit; the lit, wall-clear floor would not take the fourteenth, and it was dropped rather
+than crowd the rest.
+
+**Known, and deliberate:** the southern chamber is a dead end. No route passes through it -- every
+way out runs north -- so the chest is a find for a player who explores after taking the drain,
+not a reward on the path.
 
 ## 0.71.7 - the loud escape could never be heard
 

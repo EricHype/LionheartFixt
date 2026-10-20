@@ -1474,6 +1474,26 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.8 - the sneak that counted as loud, and Pau's cell
+
+Map edits only, so these need a save that has **not** yet entered the Undercroft. Get delivered to
+the pen by the peaceful route.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| UC1 | **The row that matters.** Pick the cell lock, cross the warden's room and pass the Sneak 30 check -- the balloon says you slip past -- then go up the stairs into Level 1 | - | **The abbey is calm.** Nothing aggros. If Level 1 turns on you, this release did not take: that is exactly the 0.71.7 bug |
+| UC2 | Same run, but fail the Sneak check and let the warden catch you | - | Level 1 **is** hostile. The loud half still works, which is what 0.71.7 was for |
+| UC3 | Break the pins with Strength 8+ instead | - | Hostile above. Unchanged |
+| UC4 | **The gap.** Pick the lock, then stay in the cell block for two full minutes without crossing into the warden's room | - | **Nothing fetches you.** Before this release the warden escorted you upstairs at 100 seconds while the cell door hung open |
+| UC5 | **The regression UC4 risks.** Get delivered and then do nothing at all, leaving the cell door shut | - | The warden still comes at 100 seconds and walks you up. If he never comes, the door guard is over-reaching and UC4's fix is too wide |
+| UC6 | Take the drain instead | - | Nothing above reacts. Unchanged |
+| UC7 | Wake in the pen and walk to the east bars | - | Pau speaks **without being clicked**, and he is visibly behind bars in a compartment of his own with its own door -- not standing in the open beside the cells |
+| UC8 | After that conversation ends, click Pau again | - | *"Still here. Good..."* -- **not** the opening line a second time. If he repeats it, the series swap did not take |
+| UC9 | Try to reach Pau by clicking him from the far side of your cell | - | You walk to the bars and talk, or you stop at the bars. Either is fine; being teleported or stuck on the geometry is not |
+| UC10 | Walk south through the cellar after escaping by the drain | - | A dressed larder: crates, barrels, litter. Nothing floating, nothing inside a wall, nothing overlapping |
+| UC11 | Open the chest down there | - | It opens, pays loot scaled to your level, and does not re-open for a second payout |
+| UC12 | **Crash check.** Simply enter the Undercroft | - | It loads. Pau's door was a `Door2` carrying `Cur Sequence=Idle`, an animation that model does not have |
+
 ## 0.71.7 - the loud escape, and the wounded assassin (issue #11)
 
 Map edits only, so these need a save that has not yet entered Montserrat.
