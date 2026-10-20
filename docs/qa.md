@@ -1474,6 +1474,19 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.3 - Sahar's two lines
+
+Dialogue only. Reaches a save already in the sanctum.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SL1 | Reach Sahar as a **delivered** prisoner and read her opening without asking anything | - | It ends *"The Crown you came for is already over the mountains, if that helps you decide anything."* So the reason to go north is on screen before you can accept |
+| SL2 | Take *"Then send me north"* immediately, asking no questions | - | The bargain now reads as a trade rather than as surrender to no purpose. The ring and the stand-down work exactly as in 0.71.2 |
+| SL3 | Reach Sahar having **fought** your way in | - | Her opening ends *"I had wagons for this once, and sisters I could spare. You have spent both on your way in."* |
+| SL4 | On that same character, look for a peaceful reply | - | There is still none, and that is deliberate. SL3 is the line that tells you why |
+| SL5 | **Regression.** Ask her about the master, the Crown and the monks | - | All three answers unchanged |
+| SL6 | **Regression.** Fight her | - | Unchanged, and her death still routs the garrison |
+
 ## 0.71.2 - Montserrat's peaceful route (issue #11)
 
 One dialogue tree. Reaches a save already inside the sanctum.

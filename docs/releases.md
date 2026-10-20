@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.2 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.3 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,79 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.3 - Sahar's two lines
+
+0.71.2 made the peaceful route work. This is the separate question of whether it makes sense, asked
+during review: *"do we do enough to explain why this route works? Why Sahar would allow or choose
+this?"*
+
+Reading all nine of her lines, the answer was **her side yes, the player's side only by accident**.
+
+### Her motive was never the problem
+
+`1 delivered` already carried it in full: an order she cannot execute, a stated reason she cannot,
+and her actively looking for a way out.
+
+> You walked in. Good. It saves rope. He wants you whole, and north, and **I have no wagons left and
+> no sisters I can spare** to walk you over the mountains. **I have been sitting on this step
+> deciding what to do about that.**
+
+### The player's motive was in an optional branch
+
+Why walk north into Ahriman's hands? Because that is where the Crown went -- and she said so only on
+`20 crown`, which the player need never visit, because *"Then send me north"* is offered **straight
+off `1 delivered`**. Take it immediately and you have agreed to deliver yourself having been told
+nothing.
+
+One sentence, appended:
+
+> **The Crown you came for is already over the mountains, if that helps you decide anything.**
+
+It tells the player their own objective went north, hands them the reason to accept, and does it as a
+shrug rather than a pitch. *"If that helps you decide anything"* treats their decision as a
+formality, which is how she treats everything else about them, and it sets up *"A parcel that carries
+itself"* -- which lands harder when the parcel has its own reason to walk.
+
+### And a player who fought in saw no trace of any of it
+
+`1 too late` was four lines with no wagons, no sisters, and no problem she was sitting there solving.
+So the only angle most players see the route from was the angle that made it look arbitrary.
+
+> **I had wagons for this once, and sisters I could spare. You have spent both on your way in.**
+
+**This does not open the route to them** -- *"Then send me north"* stays gated on `delivered`. What it
+does is make the missing offer a **consequence**: they spent the means of it getting there. The two
+nouns are **her own, lifted from `1 delivered`**, so the two openings read as the same woman with the
+same problem, differently caused.
+
+It is also the honest answer to the report that the path "makes zero sense". It did not, from that
+angle, because the game never said why.
+
+### What was deliberately not written
+
+| | |
+|---|---|
+| the player's reply | *"Your word for my life, and I carry whatever you want carried"* already reads as a trade, and the new line supplies what is being traded for. *"I am going that way regardless"* would say out loud what she has just implied, and she is not a character who needs things said twice |
+| `40 courier` | fine now that 0.71.2 stopped it being a trap |
+| stage direction | she has two pieces in nine lines and both earn their place |
+
+### Checked
+
+`validate.py` clean on 732 files, `reachability.py` green. The text is parsed out of
+[`sahar-lines.md`](sahar-lines.md) rather than retyped, and the build refuses to run unless **the
+doc's "as it ships" paragraph matches the tree byte for byte** -- so if the doc and the game ever
+drift, the build stops instead of shipping something nobody reviewed. It then asserts that the
+bolded span is the *only* difference between the shipped and proposed paragraphs.
+
+Her register is asserted rather than assumed: every one of her existing lines is checked to contain
+**no contractions**, and both new sentences are held to the same rule, to ASCII, to no em-dash and to
+introducing no new stage direction. Exactly two `Text=` lines change; every `Reply Text=` and
+`Go to node ID=` line is byte-identical.
+
+One correction of my own: the word counts quoted in the draft doc were wrong -- `1 delivered` is 44
+words as shipped, not 60. The prose was right and approved; the numbers beside it were not measured,
+and are now.
 
 ## 0.71.2 - Montserrat's peaceful route had no ending
 
