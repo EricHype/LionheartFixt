@@ -13,9 +13,12 @@ Text=<She does not rise from the reliquary's step. Two of the creatures coil at 
 Should Have Voiceover=0
 
 Requirement=Outwit 7 greater or equal
-Custom Requirement=CUseCannedExpressionExpression
+Custom Requirement=CActionExpression
 {
-Canned Expression=Dialog/Requirements/Derived Attributes/Outwit 7 greater or equal
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
 }
 Reply Text=I carry Machiavelli's word. The contract stands; you and I are on the same side of it, and your creatures are wasted on me.
 Go to node ID=40 courier
@@ -153,6 +156,30 @@ Text=Machiavelli. He was to deliver you, not send you. Very well, courier. Deliv
 Should Have Voiceover=0
 
 Requirement=!None
+Reply Text=Who is your master?
+Go to node ID=10 master
+
+Requirement=!None
+Reply Text=Where is the Crown?
+Go to node ID=20 crown
+
+Requirement=!None
+Reply Text=The monks. Where are they?
+Go to node ID=30 monks
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=delivered
+Desired Minimum Count=1
+}
+}
+Reply Text=Then send me north. Your word for my life, and I carry whatever you want carried.
+Go to node ID=50 her word
+
+Requirement=!None
 Reply Text=<Draw.>
 Go to node ID=
 Custom Action=CTriggerRelayAction
@@ -167,6 +194,13 @@ Text=You walked in. Good. It saves rope. He wants you whole, and north, and I ha
 Should Have Voiceover=0
 
 Requirement=Outwit 7 greater or equal
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
 Reply Text=I carry Machiavelli's word. The contract stands; you and I are on the same side of it, and your creatures are wasted on me.
 Go to node ID=40 courier
 Icon=Speach Skill Icon
@@ -209,7 +243,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=8
 Action=CTriggerRelayAction
 {
 Relay Name=sahar word given
@@ -224,6 +258,44 @@ Additions to add=Array
 {
 Item Count=0
 }
+}
+Action=CActivateAction
+{
+Target Name=routed
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CTriggerRelayAction
+{
+Relay Name=garrison routs
+}
+Other Map Name=2 Montserrat/01 Grove Exterior
+}
+Action=COtherMapAction
+{
+Action=CTriggerRelayAction
+{
+Relay Name=garrison routs
+}
+Other Map Name=2 Montserrat/02 Druid Council Level1
+}
+Action=CDeactivateAction
+{
+Target Name=Snakebreed Generator
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+Name To Target=
+Valid Targets=
+}
+Action=CRemoveCategoryAction
+{
+Target Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+Categories To Remove=Enemy
 }
 }
 }

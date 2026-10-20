@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.1 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.2 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,137 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.2 - Montserrat's peaceful route had no ending
+
+[Issue #11](https://github.com/EricHype/LionheartFixt/issues/11), reported by Mixxer5. The
+recommendation there was to remove the route. **It stays** -- what was missing was its last action.
+
+### The route was shipped unplayed, and this is the part that proves it
+
+0.11.0's own section says so: *"All five stages built; A, B and C played and repaired as they were
+built, D and E (Sahar's prisoner talk, her word, the rout) and the ring's three readers unplayed."*
+The reporter walked D and E.
+
+### Sahar says the garrison stands down. It did not.
+
+Her line at `50 her word`:
+
+> A parcel that carries itself. *&lt;She works a ring off her hand: iron, a snake eating its tail.&gt;*
+> Wear it where they can see it, and **nothing of ours on the road north will touch you**; it says you
+> are already his. [...] Go. You are the last thing I was told to send, and **then I can leave this
+> place**.
+
+What taking the ring actually did:
+
+| action | effect |
+|---|---|
+| activate `sahar word` in three maps | **nothing in the game reads that checker. 0 checks, game-wide** |
+| pacify `Snakebreed, Sahar` | the two names standing in the sanctum |
+| set the Montaillou quest state | correct |
+| play balloon `57 her word` | correct |
+
+Everything outside the sanctum stayed hostile, around a player who had just been **delivered to the
+abbey as an unarmed prisoner**. That is the reported dead end, and no static check could have raised
+it: every part involved exists, is named correctly and is active.
+
+### The branch beside it was already complete
+
+`sahar dies`, one reply away, does four more things:
+
+```
+activate routed
+COtherMapAction -> trigger `garrison routs` in 01 Grove Exterior
+COtherMapAction -> trigger `garrison routs` in 02 Druid Council Level1
+deactivate Snakebreed Generator, then pacify all fourteen names
+```
+
+and `garrison routs` sets a `CGoToAI` patrol that walks every survivor to `rout exit` and runs
+`CDeleteAction` on arrival. The peaceful ending had the entire mechanism sitting next to it, unused.
+
+This is the shape this project's notes call *a correct restoration can still be inert*: the route was
+built, the text was written, and the one action that gives it consequence was never added.
+
+### Her word now does what her death did
+
+The six actions are added to the reply itself, and the roster of fourteen names is **lifted out of
+`sahar dies` by the build** rather than retyped, so the two branches cannot drift apart.
+
+**It goes on the reply, not in the relay, and that is the whole point.** `sahar word given` is a map
+part, so editing it would reach only a save that has not yet entered the sanctum -- and every
+affected player is standing in it. A dialogue tree is read fresh every time.
+
+`routed` is the flag the act already reads **47 times** across the three maps, so the stand-down
+routes through it rather than through a second parallel flag. `sahar word` stays as it is, unread;
+the ring is the real token, and act 5's assassins already read that.
+
+### You can no longer invoke a man you have never met
+
+> *"I carry Machiavelli's word. The contract stands; you and I are on the same side of it, and your
+> creatures are wasted on me."*
+
+Gated on `Outwit 7 greater or equal` and nothing else, on both her opening node and her
+delivered-prisoner node -- and in one of the two it was gated **twice over on the same thing**, a
+`Requirement=` line and a `Custom Requirement=` canned expression that repeated it. It now requires
+`Task for Machiavelli` to have been activated as well.
+
+### Checked
+
+`validate.py` clean on 732 files, `reachability.py` green. The build asserts the death branch really
+does all four things before lifting its roster, that the roster is fourteen names, that the reply ends
+up with eight actions, that both cross-map routs and both Machiavelli gates are present exactly once
+each, that the ring is still given exactly once, and that **no `Text=`, `Reply Text=`, `Node ID=` or
+`Go to node ID=` line moved**.
+
+### Outwit 7 cost the player the peaceful ending
+
+Her cleverest line needs `Outwit 7 greater or equal`:
+
+> *"I carry Machiavelli's word. The contract stands; you and I are on the same side of it, and your
+> creatures are wasted on me."*
+
+It leads to `40 courier`, and `40 courier` had **one reply: `<Draw.>`**. So spending seven points of
+Outwit on the sharpest thing the player can say to her **permanently forfeited the ring and the
+stand-down**, with no route back to her questions and none to *"Then send me north"*. Being punished
+for the investment is backwards, and it is also what the reporter meant by *"Suggest you deliver
+yourself... Whatever that means at this point"* -- they reached that node already delivered, and
+attacking was the only thing the game would let them do.
+
+`40 courier` now offers what her other nodes offer: the three questions back, the delivered-gated
+*"Then send me north"*, and `<Draw.>` still last and still the default. The line is a detour now
+rather than a trap.
+
+**Not one word of new text was written for this.** All four reply strings are lifted verbatim out of
+the tree by the build, which asserts that the set of reply strings in the file is unchanged
+afterwards, and the north reply keeps the same `delivered` gate it carries in `10 master`,
+`20 crown` and `30 monks`.
+
+### Who can reach the peaceful ending, now that it works
+
+Worth recording, because it is not what the reporter assumed and not what I assumed either:
+
+| | |
+|---|---|
+| the gate on *"Then send me north"* | `delivered` -- **not** Machiavelli, and **not** Outwit |
+| a delivered prisoner who never met Machiavelli | reaches the ring and the stand-down normally |
+| a player who fought their way in | **has no peaceful ending with Sahar at all**; every reply on `1 too late` ends in a fight |
+
+That last row is the mechanical reason the route reads as incoherent from outside: you fight to the
+gates, and only surrendering unlocks the diplomacy. It is deliberate -- the ring is the delivery
+route's reward -- but it is worth stating plainly rather than leaving a player to infer it.
+
+### Still open on #11, and why
+
+The reporter listed more than the dead end, and the rest is a second pass rather than a one-line
+repair:
+
+| still open | shape |
+|---|---|
+| Level 2 never routs | `garrison routs` exists in the Grove and Level 1 only, and `rout exit L2` is a marker **nothing references**. This is why killing Sahar "doesn't make the garrison disappear" where the player is standing |
+| NPCs untargetable from inside the cell | the cell door blocks conversation; wants a talk-through-the-grate reply |
+| the warden aggros on lockpicking but not on the drain, and nobody upstairs reacts either way | one escape is noisy and one is quiet, and neither propagates |
+| the wounded assassin pleads as though abandoned while his allies stand around him | wants gating on the hall being cleared |
+| you fight to the gates and are then offered peaceful entry | ordering, and the largest of these |
 
 ## 0.71.1 - the Cathedral summit, and two vanilla defects under it
 

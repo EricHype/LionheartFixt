@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.2 - Montserrat's peaceful route (issue #11)
+
+One dialogue tree. Reaches a save already inside the sanctum.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| MP1 | **The row that matters.** Take the peaceful entry, reach Sahar, and take her ring | `<Take the ring.>` | The abbey **stands down**. Assassins and snakebreed stop being hostile, the Grove and Level 1 garrison walk off and vanish, and you can leave the way you came |
+| MP2 | Walk out through Level 1 and the Grove after taking the ring | - | Nothing attacks. Before this release the garrison was still hostile and a delivered prisoner had no way through it |
+| MP3 | **Regression.** Reach Sahar and fight her instead | `<Draw.>` | Unchanged: she fights, and on her death the garrison routs exactly as before |
+| MP4 | **Regression.** Check you still receive the ring | - | `Sahar Ring` in inventory, once, and act 5's assassins still read it as safe conduct |
+| MP5 | Check the Montaillou quest after taking the ring | - | Still advances, as before |
+| MP6 | **Machiavelli.** Reach Sahar with Outwit 7 but without ever taking Machiavelli's task | - | The *"I carry Machiavelli's word"* reply **does not appear** |
+| MP7 | Same, but after taking Machiavelli's task in the Temple District | - | The reply appears, on both her opening node and her delivered-prisoner node |
+| MP8 | **The funnel.** Reach Sahar with Outwit 7 and Machiavelli's task taken, use the Machiavelli line | `I carry Machiavelli's word...` | She answers, and you can still ask her questions or say *"Then send me north"*. Before this release `<Draw.>` was the only reply and the ring was gone for good |
+| MP9 | Same, as a **delivered** prisoner | - | *"Then send me north"* is offered on that node too, so the Outwit line costs nothing |
+
 ## 0.71.1 - the Cathedral summit (issue #10)
 
 Dialogue trees plus one map part. The tree half reaches saves already in progress; the map half
