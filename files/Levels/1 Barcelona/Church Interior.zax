@@ -8848,9 +8848,57 @@ CLayerSaveData
 											{
 												Relay Name=Templar NIS Relay
 											}
-											Else=CTriggerRelayAction
+											Else=CIfExpressionAction
 											{
-												Relay Name=Saladin NIS Relay
+												If Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Wielder IS
+												}
+												Character to get attributes from=Player1
+												Then=CTriggerRelayAction
+												{
+													Relay Name=Wielder Start NIS Relay
+												}
+												Else=CIfExpressionAction
+												{
+													If Expression=CUseCannedExpressionExpression
+													{
+														Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+													}
+													Character to get attributes from=Player1
+													Then=CTriggerRelayAction
+													{
+														Relay Name=Inquisition NIS Relay
+													}
+													Else=CIfExpressionAction
+													{
+														If Expression=CUseCannedExpressionExpression
+														{
+															Canned Expression=Dialog/Requirements/Faction/Templar IS
+														}
+														Character to get attributes from=Player1
+														Then=CTriggerRelayAction
+														{
+															Relay Name=Templar NIS Relay
+														}
+														Else=CIfExpressionAction
+														{
+															If Expression=CUseCannedExpressionExpression
+															{
+																Canned Expression=Dialog/Requirements/Faction/Saladin IS
+															}
+															Character to get attributes from=Player1
+															Then=CTriggerRelayAction
+															{
+																Relay Name=Saladin NIS Relay
+															}
+															Else=CTriggerRelayAction
+															{
+																Relay Name=Templar NIS Relay
+															}
+														}
+													}
+												}
 											}
 											Return failure if the If failes=0
 										}

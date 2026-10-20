@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.0 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.1 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,126 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.1 - the Cathedral summit, and two vanilla defects under it
+
+[Issue #10](https://github.com/EricHype/LionheartFixt/issues/10), reported by Mixxer5 with a
+QuickSave attached. The save is why this was diagnosed rather than guessed at.
+
+### What the save proved
+
+Reading the stored `Church Interior` layer out of `QuickSave.sav`:
+
+| entity | state |
+|---|---|
+| `if templar` / `if wielder` / `if dark wielder` / `if inquisition` | **all `Active=0`** |
+| `Saladin NIS Relay` | **`Was Triggered=1`** |
+| `Jafar Generator Saladin NIS` | `Has Started Generating=1` |
+| `Knight Generator` | `Has Started Generating=1` |
+| `Auric Generator`, `Auric`, `Knight`, `Jafar` | **absent -- deleted** |
+
+The character holds `Wielder Rank=1`, and their quest log holds
+`Knights Saladin Initiation/Travel to Montserrat` but **not** `Ensure safety of Monserrat Relics`.
+
+That is a complete account of both defects.
+
+### Defect 1: the second summit cannot be survived
+
+Three briefings lead to the same scene:
+
+| order | tree | node |
+|---|---|---|
+| Wielders | `CedricAlsen` | `500 chapter 2 mission` |
+| Dark Wielders | `Lord Relican` | `40 dark wielder task 3` |
+| Inquisition | `InquisitorRaphael` | `320 chapter 2 mission` |
+
+The cast is **single-use and shared**. The scene-end relay deletes `Auric`, `Knight` and `Jafar` and
+the `Auric Generator` entity outright, and `Knight Generator` keeps `Has Started Generating=1`. A
+second summit re-activates generators that are gone or spent, so nobody spawns --
+`CBeginNonInteractiveSequenceAction` has already taken the player's controls and
+`CSendAIDoneMessage{Target=Lord Javier}` fires into a scene with no one left to advance it.
+
+Orders are not mutually exclusive either. The block that fails the *other* orders' initiation quests
+on joining exists on only **two of five** join paths -- Templar and Wielder have it; Inquisition,
+Dark Wielder and Saladin have none.
+
+**Vanilla knew.** Javier's tree activates `joined other faction`, and **nothing in the game checks
+it and no checker entity for it exists anywhere**. The hook was written and never finished.
+
+### The fix goes in the trees, because the trees reach saves in progress
+
+A map edit only reaches a save that has not yet entered the map, and every affected player is past
+that point by definition. So the guard is a character attribute --
+`Fixt Cathedral Summit Done`, cloned field-for-field from Fixt's own `Fixt Undead Warning Given`,
+which is already proven live in this very save's scripting variables.
+
+Each of the three triggers now reads:
+
+```
+if Fixt Cathedral Summit Done == 0
+  and NOT (Knights Saladin "Travel to Montserrat" ever activated)
+  and NOT ("Ensure safety of Monserrat Relics" ever activated)
+      -> set the marker, run the trip
+else    -> nothing: the briefing still plays, the trip does not
+```
+
+The marker covers every playthrough from here on. The two quest tests are the retro-fit for a save
+where a summit **already** ran and the marker cannot exist -- which is exactly the reporter's case,
+since their log carries the Saladin Montserrat quest.
+
+**The residual gap, stated plainly:** a save whose first summit already ran *correctly* as the
+Wielder or Dark Wielder scene carries neither of those two quests, so a second briefing there is
+still unguarded. The two Crown of Thorns quests cannot be used to close it, because Cedric and
+Relican hand those out in ordinary conversation and testing them would block the **first** summit.
+
+### Defect 2: a Wielder was shown another order's summit
+
+`Wielders Start Church Movie` activates the `if wielder` checker **inside** `Church Interior` with a
+`COtherMapAction`, then relocates the player there a second later. For a player who has never loaded
+that map, the relocate lands and **the remote activation does not stick**. `Choose NIS Player` then
+falls through all four checker tests to its last resort.
+
+Vanilla's last resort was `Templar NIS Relay`. **0.7.0 repointed it to `Saladin NIS Relay`.** So this
+Wielder watched Jafar's Saladin summit and was given the Knights Saladin Montserrat quest, which is
+why they reported having done "first with Knights of Saladin" -- they never joined them.
+
+The chooser now keeps its four checker tests and then falls back to **faction rank**:
+
+```
+if dark wielder (checker)   -> Dark Wielder      | elif Wielder IS (rank)    -> Wielder
+elif if wielder (checker)   -> Wielder           | elif Inquisitor IS (rank) -> Inquisition
+elif if inquisition         -> Inquisition       | elif Templar IS (rank)    -> Templar
+elif if templar             -> Templar           | elif Saladin IS (rank)    -> Saladin
+                                                 | else                      -> Templar
+```
+
+Rank lives on the character and cannot be lost in transit. The checkers stay in front because
+**Dark Wielder cannot be told apart by rank** -- Relican grants the same `Wielder Mage` Cedric does.
+The last resort goes back to vanilla's Templar.
+
+A side effect worth naming: **0.7.0's restored Saladin summit is now reached by actual Knights of
+Saladin.** It had no rank arm, so the only way into it was the fallback, which means every player who
+ever saw it saw it by accident.
+
+### Checked
+
+`validate.py` clean on 732 files, `reachability.py` green. The build asserts each tree keeps exactly
+one copy of its church-movie trigger, now inside the guard, and that no `Text=`, `Node ID=` or
+`Reply Text=` line moved in any of the three. The chooser is read back from the deployed bytes: four
+checker tests and four rank cans, each named once, with `Wielder Start NIS Relay` and
+`Inquisition NIS Relay` twice, `Templar NIS Relay` three times, `Saladin NIS Relay` once, and the
+map's part count unchanged.
+
+Three of my own mistakes before the build was right: an absolute blank-line assert fired on three
+pre-existing blank lines before node separators in `Lord Relican.DialogTree` (vanilla has none, and
+`validate.py` does not check for them -- harmless where they sit, but noted); `B()` emits unindented
+text and was compared against the indented map; and `"Name="` matched `"Relay Name="` in the
+read-back, which is the third time that has cost a build in this project.
+
+### What needs playing
+
+`CS1`-`CS8` in [`qa.md`](qa.md). **`CS2` is the regression that matters most** -- the first summit
+must still run in full. `CS3` tests the reporter's own save, and `CS4` tests the wrong-scene fix.
 
 ## 0.71.0 - the ending slides
 

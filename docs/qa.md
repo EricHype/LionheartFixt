@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.1 - the Cathedral summit (issue #10)
+
+Dialogue trees plus one map part. The tree half reaches saves already in progress; the map half
+needs a save that has not yet entered the Cathedral.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| CS1 | **The row that matters.** Join one order, go through the Cathedral summit, then join a second order and take its chapter-2 briefing | - | The briefing plays and the conversation ends normally. **No second trip to the Cathedral**, no empty room, no lost controls |
+| CS2 | **Regression, and the one that must not break.** On a fresh character, join one order and take its chapter-2 briefing | - | The summit runs exactly as before: the cast is present, Javier speaks, you are sent to Montserrat |
+| CS3 | Load the save attached to issue #10 and talk to the Wielder guildmaster | - | No warp to the Cathedral. That save already ran its summit, and the guard detects it from the Montserrat quest in the log rather than from the marker, which it cannot have |
+| CS4 | **The wrong-scene fix.** On a character who has never entered the Cathedral, join the **Wielders** and take Cedric's briefing | - | **The Wielder scene**, not the Saladin or Templar one. Before this release the `if wielder` flag was lost in transit and the player got whichever scene the fallback pointed at |
+| CS5 | Same for the **Inquisition** (Raphael) and the **Dark Wielders** (Relican) | - | Each order's own scene |
+| CS6 | **Saladin.** Reach the summit as a Knight of Saladin | - | Jafar's Saladin summit, now reached because you hold Saladin rank rather than because every other test failed |
+| CS7 | Check your quest log after the summit | - | The Montserrat quest belongs to **your** order. A Wielder should not be carrying `Knights Saladin Initiation/Travel to Montserrat` |
+| CS8 | **Attributes window** | - | `Fixt Cathedral Summit Done` does not appear. It is a scripting variable with `Display In Attributes Window=0`, like `Fixt Undead Warning Given` |
+
 ## 0.71.0 - the ending slides
 
 Dialogue and one map relay, in the endgame map. Needs a save that can reach the ending, or a
