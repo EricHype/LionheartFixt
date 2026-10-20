@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.5 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.6 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,96 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.6 - Thierry could die, and the game had no way to know
+
+[Issue #9](https://github.com/EricHype/LionheartFixt/issues/9), reported by Stricken145: the titans
+left peacefully, the prisoners vanished with them, the quest still said to talk to Thierry, and
+*"he is nowhere to be found"* while *"the woman who gave us this quest is still in city center and
+asks for help"*.
+
+All three of those are one defect.
+
+### The grief scene was written, built, and unreachable
+
+| piece | where | state |
+|---|---|---|
+| reply *"I'm sorry, but your husband is dead, he..."* | `Esclarmonde`, on `3 Return Greeting` | gated on `CCheckExistenceAction{Thierry dead}` |
+| relay `told Esclarmonde Thierry is dead` | `01 Hamlet Exterior` | **Active=1**, shows the balloon, assigns a task, touches the quest |
+| node `No!` -- *"No! No, it can't be!"* | `Esclarmonde` | text, no replies, so a balloon |
+| checker `Thierry dead` | `01 Hamlet Exterior` | **activated by nothing in the game** |
+
+One flag, set by nobody, and the whole scene is sealed off.
+
+### Four resolutions, four empty slots
+
+Toulouse resolves its prisoners four ways: `Peaceful Ending Relay`, `Prisoners escape`,
+`Quest complete relay`, and Fixt's own `Memnos returns to his tribe`. Each one asks the same question
+and takes the same action:
+
+```
+if CIsAliveAction{Thierry}
+    then -> COtherMapAction{ activate `Thierry Generator` in 01 Hamlet Exterior }
+    else ->                                 <- empty, in all four
+```
+
+So when he lives, he is waiting for you in Montaillou. When he dies, **nothing happens at all.**
+
+### And the quest advance does not ask
+
+The peaceful ending moves the quest to `ZQSA71EU`, *"You must meet with Thierry in Montaillou"*, on a
+test of the quest's **own state** and nothing else:
+
+```
+if quest is at GBT135MI or ULG53LU2  ->  activate ZQSA71EU
+```
+
+Those two conditions are independent. Kill Thierry, or let the titans do it, then talk Lethos into
+leaving, and the game sends you to meet a dead man. Esclarmonde keeps asking for help, because her
+bubble is gated on his generator and his generator was never switched on. And the one reply that
+would let you tell her is behind a flag nobody sets.
+
+That is the report, line for line.
+
+### The fix is one flag in four empty slots
+
+```
+else -> COtherMapAction{ activate `Thierry dead` in 01 Hamlet Exterior }
+```
+
+**Nothing is invented.** The checker, the reply, the relay and the balloon were already shipped. What
+was missing was any line of script that admitted he had died.
+
+The same guard also goes inline on **Lethos's three peaceful replies**, because those are in a
+dialogue tree and a tree is read fresh -- so this reaches a player standing in Toulouse now, where a
+map edit cannot. `Thierry dead` is set from **7** sites where it was set from 0.
+
+`Thierry prompter` tests whether he is alive too, and is deliberately untouched: its `Then` does not
+send him anywhere, it only prompts the player near the pen.
+
+### On the reporter's other suggestion
+
+> I think the prisoners should not vanish as titans did and instead there should be option to talk to
+> them and letting them know they are free to go.
+
+The vanishing is intended -- the villagers and Thierry are deleted in Toulouse and re-spawned in
+Montaillou, which is where the quest then sends you. What was broken is that they only re-spawned
+when Thierry lived, and nothing covered the other case. A farewell scene in the pen is a separate
+piece of writing rather than a repair, and is not in this release.
+
+### Checked
+
+`validate.py` clean on 732 files, `reachability.py` green. The build first **proves the defect**: it
+asserts the reply, the relay and the `No!` node all exist and that `Thierry dead` has **0** setters,
+and refuses to continue otherwise. It then asserts each of the four blocks it touches really does
+send Thierry to Montaillou in its `Then`, that each has exactly one empty `Else`, that braces balance
+before anything is written, that the prompter is left alone, that Lethos's three blocks go from four
+actions to five, and that no `Text=`, `Reply Text=`, `Node ID=` or `Go to node ID=` line moved.
+
+Two of mine on the way, neither published: a bare `Custom Action=CTriggerRelayAction` match found
+nothing because all three of Lethos's replies already wrap four actions, and then a generated-Python
+heredoc mangled its own escapes -- which is a rule this project already has written down, broken
+again.
 
 ## 0.71.5 - Brother Michel was written to end this quest and never could
 

@@ -2019,7 +2019,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CTriggerRelayAction
 {
 Relay Name=Peaceful Ending Relay
@@ -2049,6 +2049,27 @@ Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
 Delay=0.1
 Plus or Minus=0
 Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsAliveAction
+{
+Name To Check For=Thierry
+Desired Minimum Count=1
+}
+Then=
+Else=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Thierry dead
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -2133,7 +2154,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CTriggerRelayAction
 {
 Relay Name=Peaceful Ending Relay
@@ -2163,6 +2184,27 @@ Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
 Delay=0.1
 Plus or Minus=0
 Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsAliveAction
+{
+Name To Check For=Thierry
+Desired Minimum Count=1
+}
+Then=
+Else=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Thierry dead
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Return failure if the If failes=0
 }
 }
 }
@@ -2182,7 +2224,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CTriggerRelayAction
 {
 Relay Name=Peaceful Ending Relay
@@ -2212,6 +2254,27 @@ Quest=Levels/3 Montaillou/Quests/Recover Lucius' Mneme
 Delay=0.1
 Plus or Minus=0
 Forget Trigger=0
+}
+Action=CIfAction
+{
+If=CIsAliveAction
+{
+Name To Check For=Thierry
+Desired Minimum Count=1
+}
+Then=
+Else=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Thierry dead
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
+Return failure if the If failes=0
 }
 }
 }

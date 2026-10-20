@@ -1563,7 +1563,17 @@ CLayerSaveData
 													}
 													Other Map Name=3 Montaillou/01 Hamlet Exterior
 												}
-												Else=
+												Else=COtherMapAction
+												{
+													Action=CActivateAction
+													{
+														Target Name=Thierry dead
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+													Other Map Name=3 Montaillou/01 Hamlet Exterior
+												}
 												Return failure if the If failes=0
 											}
 											Action=CDeleteAction
@@ -12846,7 +12856,17 @@ CLayerSaveData
 										}
 										Other Map Name=3 Montaillou/01 Hamlet Exterior
 									}
-									Else=
+									Else=COtherMapAction
+									{
+										Action=CActivateAction
+										{
+											Target Name=Thierry dead
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Other Map Name=3 Montaillou/01 Hamlet Exterior
+									}
 									Return failure if the If failes=0
 								}
 								Delay=8
@@ -27257,7 +27277,17 @@ CLayerSaveData
 													}
 													Other Map Name=3 Montaillou/01 Hamlet Exterior
 												}
-												Else=
+												Else=COtherMapAction
+												{
+													Action=CActivateAction
+													{
+														Target Name=Thierry dead
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+													Other Map Name=3 Montaillou/01 Hamlet Exterior
+												}
 												Return failure if the If failes=0
 											}
 											Action=CDeleteAction
@@ -28948,7 +28978,17 @@ CLayerSaveData
 													}
 													Other Map Name=3 Montaillou/01 Hamlet Exterior
 												}
-												Else=
+												Else=COtherMapAction
+												{
+													Action=CActivateAction
+													{
+														Target Name=Thierry dead
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+													Other Map Name=3 Montaillou/01 Hamlet Exterior
+												}
 												Return failure if the If failes=0
 											}
 											Action=CDeleteAction

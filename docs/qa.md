@@ -1474,6 +1474,19 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.6 - Thierry's death was never recorded (issue #9)
+
+One map and one dialogue tree. The tree half reaches a save already in Toulouse.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TD1 | **The row that matters.** Let Thierry die in Toulouse, then talk Lethos into leaving | `Then I will let you settle this matter amongst yourselves.` | Back in Montaillou, Esclarmonde offers a new reply: *"I'm sorry, but your husband is dead, he..."* |
+| TD2 | Take that reply | - | She answers **"No! No, it can't be!"** and the rescue quest resolves. Before this release the reply never appeared and the quest sat open forever |
+| TD3 | **Regression, and the one that must not break.** Keep Thierry alive and take the peaceful ending | - | He is waiting in Montaillou at the north of the hamlet, exactly as before, and Esclarmonde thanks you |
+| TD4 | Same for the other three resolutions: the prisoners escaping, the quest completing normally, and Memnos returning to his tribe | - | Thierry alive sends him home; Thierry dead records it. All four behave the same way now |
+| TD5 | **Esclarmonde's bubble** | - | She stops asking for help once Thierry is accounted for, alive or dead |
+| TD6 | Walk past the prisoner pen with Thierry alive | - | His prompt still works. The prompter also tests whether he is alive and was deliberately left alone |
+
 ## 0.71.5 - Brother Michel and the Nostradamus quest (issue #8)
 
 Dialogue only. Reaches a save already in Montaillou.
