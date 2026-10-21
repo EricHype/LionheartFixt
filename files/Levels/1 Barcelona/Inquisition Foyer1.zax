@@ -101,6 +101,113 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=raphael jailed you
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=870
+			Position Y=1120
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=raphael has sent you to the cell
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=raphael jailed you
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
+									Node ID=1000 after attack raphael
+									Name of Position=Inquisitor Raphael
+									Position Offset=0.000000,-75.000000
+									After Action=
+									Include In Log=1
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=raphael jailed you
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=690, 1090, 960, 1090, 960, 1300, 690, 1300, 690, 1090
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
 			Dynamic Properties=1
 			{
 				Experience Points=500
@@ -6251,7 +6358,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=9
+							Item Count=10
 							Action=CDeactivateAction
 							{
 								Target Name=Raphael Sends you to jail
@@ -6346,6 +6453,13 @@ CLayerSaveData
 								Delay=2.5
 								Plus or Minus=0
 								Forget Trigger=0
+							}
+							Action=CActivateAction
+							{
+								Target Name=raphael jailed you
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
 							}
 						}
 					}

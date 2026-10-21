@@ -49006,7 +49006,7 @@ CLayerSaveData
 									Action to execute After Effect=CDisplayDialogTreeAction
 									{
 										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/GrandInquisitor
-										Node ID=203 trial 3
+										Node ID=202 trial 2
 										Speaker=Grand Inquisitor
 										Player Being Spoken To=$Instigator
 									}
@@ -49773,7 +49773,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=5
 							Action=CMultipleActionsAction
 							{
 								Action=Array
@@ -49815,6 +49815,18 @@ CLayerSaveData
 										Warp Behavior=
 									}
 								}
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/GrandInquisitor
+								Node ID=300 inquisition inquisitor scene
+								Name of Position=Grand Inquisitor
+								Position Offset=0.000000,-80.000000
+								After Action=CTriggerRelayAction
+								{
+									Relay Name=Torquemada and Old Man Cutscene
+								}
+								Include In Log=1
 							}
 							Action=CDisplayDialogBalloonAction
 							{

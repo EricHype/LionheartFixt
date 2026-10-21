@@ -2918,12 +2918,12 @@ CLayerSaveData
 										}
 										Then=
 										Else=CDisplayDialogTreeAction
-										Else={
-										Else=	Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
-										Else=	Node ID=1 bars
-										Else=	Speaker=Handler
-										Else=	Player Being Spoken To=Player1
-										Else=}
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
+											Node ID=1 bars
+											Speaker=Handler
+											Player Being Spoken To=Player1
+										}
 										Return failure if the If failes=0
 									}
 									Delay=75

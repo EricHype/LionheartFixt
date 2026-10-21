@@ -1474,6 +1474,25 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.72.0 - what the Inquisition knows, and a repair to 0.71.10
+
+All of it is map work, so all of it needs a save that has **not** entered `Inquisition Chambers2`,
+`Inquisition Foyer1` or `4 Undercroft`. Those are act 1 and act 2, so in practice this is a new game.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TQ1 | **The row that matters.** Get past the tithe inquisitor and step into the Grand Inquisitor's chamber for the first time | - | The apparition forms out of the fog, **Torquemada speaks first** -- *"It is a great honor to speak with you again, Asha."* -- then the Old Man gives his order about the Cathars, then he dissolves |
+| TQ2 | **The row that stops TQ1 going too far.** Watch it to the end without fast-forwarding | - | Controls come back, and the secret door behind him can now be found. A series that stalls on a balloon leaves the player locked in the cutscene with no controls, which is the only way this change can hurt |
+| TQ3 | Fast-forward it instead | - | Same ending: controls back, secret findable |
+| TQ4 | On a magic-using character, let Torquemada try to purify you with fire | - | He now says *"You resist? The flames do not harm you..."* **before** *"I do not know whether divine providence or fiendish charms guard your body"* |
+| TQ5 | **Regression.** Take each of the three replies on *"do you wield your magic for good or for dark purposes?"* | - | Good goes to `204 saved`, own needs to `220 no reasoning`, dark purposes starts the fight. Unchanged |
+| RJ1 | Draw on Inquisitor Raphael in the foyer, serve the jail, walk back to the foyer and approach him | - | He balloons *"For your sake, I pray your time in prison has soothed your belligerence."* Before this release he said *"Welcome back, child"* |
+| RJ2 | **The row that stops RJ1 firing twice.** Leave the foyer and come back | - | Nothing on approach. Clicking him opens the ordinary return conversation |
+| RJ3 | **Regression.** A character who never attacked anyone walks past him | - | No balloon, ever, on any visit |
+| WD1 | **The row 0.71.10 claimed and could not pass.** Fresh save, delivered to the cellar by the peaceful route, thrown in the pen, wait and do nothing | - | At about 75 seconds the warden's conversation **opens by itself**. On 0.71.10 nothing happened at all |
+| WD2 | **Regression on the repair.** The same wait, watched through | - | The t=45 bark still fires and the t=100 escort still fires, both unchanged |
+| WD3 | Gate 0 | `python tools/validate.py` | Passes. Run it against 0.71.10's `4 Undercroft.zax` and A0.18 reports four lines |
+
 ## 0.71.10 - the warden comes to the bars
 
 Map and dialogue both, and the map half is what makes the scene happen, so these need a save that

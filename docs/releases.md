@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.10 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.72.0 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,177 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.72.0 - what the Inquisition knows, and a repair to 0.71.10
+
+Three restorations in Barcelona's Inquisition questline, and one defect of this project's own that
+should never have reached a zip.
+
+### The Grand Inquisitor answers the apparition
+
+`Inquisition Chambers2.zax` carries a built, armed, load-bearing cutscene called
+`Torquemada and Old Man Cutscene`. `Tithe Inquisitor Generator` fires the relay that opens the
+illusion wall to his chamber and arms a small triangle of floor just inside the doorway, so the
+scene plays the first time any Inquisition-path player walks in. Its four steps: begin a
+non-interactive sequence, park a camera at (3483,662), fire `Old Man Cutscene fogpusher`, generate
+`Levels/8 Alamut/Character Templates/Old Man of the Mountain` at (3575,603) and fade him to **0.6
+opacity**; play his line; fade and delete him; end the sequence and hand `Torquemada Secret Room` the
+`CAISecretReveal` that makes the secret door findable.
+
+His line, `OldMan / 300 inquisition scene`, is opened by the map and works:
+
+> The Cathars are a grave threat to you and to the Inquisition. I sense that they are gathering to
+> oppose you in France. You need to move against them.
+
+Torquemada is standing **103 units** away at (3479,564), inside the shot. His answer is written,
+recorded at 59 KB, and **absent from the series**: `GrandInquisitor / 300 inquisition inquisitor
+scene`, which is four words long and is the whole meaning of the scene.
+
+> It is a great honor to speak with you again, Asha.
+
+**Asha is the Old Man.** Asha Vahishta, once the greatest of the Ahuras, keeper of the highest truth
+and foe of all lies, who questioned why darkness could not be beaten and looked to the darkness for
+light. `Nostradamus.DialogTree` tells that story, `weirdwoman.DialogTree` calls him her twin and her
+eternal foe, and `OldMan.DialogTree` lets a Speech 130 player name him to his face. So the beat the
+scene never played is the one where the Inquisition's own Grand Inquisitor greets the game's hidden
+antagonist by name, with deference, and takes an instruction from him -- and the instruction is the
+Cathar hunt that the whole of Montaillou runs on.
+
+The fix is one balloon spliced in as series item 2, `Item Count` 4 to 5, with
+`After Action=CTriggerRelayAction` so the series advances the way the shipped item beside it does.
+Greeting first, then the order: the other way round makes a courtesy the answer to a command.
+
+### The fire trial stopped skipping its own middle
+
+A magic-using character Torquemada tries to purify gets `200 trial` -- *"The purifying fire will sear
+away your sins"* -- which fires `cast fire purification spell`. That relay plays his spellcast, spawns
+`Fire Circle Small` on the player, and then opened `203 trial 3`: *"I do not know whether divine
+providence or fiendish charms guard your body from the fire."*
+
+Between them sits `202 trial 2`, **133 KB recorded**, which is the beat that explains the rest:
+
+> You resist? The flames do not harm you. Truly, I have not seen such a phenomenon. But is this a
+> miracle or the work of demons?
+
+One token. The relay now opens `202 trial 2`, whose single default reply is `203 trial 3`, so nothing
+downstream changes and all three of that node's replies behave as before.
+
+### Raphael remembers the jail
+
+Draw on Inquisitor Raphael in the foyer and `Raphael Sends you to jail` runs: he stops targeting you,
+the guards are turned loose, the screen fades, and `CRelocateAction` puts you in
+`1 Barcelona/Inquisition Chambers2` at `Jail Start`. Walk back and he says *"Welcome back, child.
+What do you seek now?"*
+
+His recorded `1000 after attack raphael` is **60 KB** and reads:
+
+> For your sake, I pray your time in prison has soothed your belligerence.
+
+**Torquemada has exactly this and it works.** `Sent to jail cam` ends with a delayed
+`CActivateAction` on a poly named `torquy has sent you to the cell`, which balloons his
+`1000 return after attack` on re-entry and then deactivates itself. Raphael has the cam and the jail
+and no such poly.
+
+It could not be copied verbatim, and the reason is worth recording: Torquemada's jail is **in his own
+map**, so vanilla can arm the poly at `Delay=3.6`, a tenth of a second after the relocate, and the
+action still runs in a loaded map. Raphael's jail is in a *different* map, and a delayed action does
+not survive the swap. So the flag is set first and read later: a checker `raphael jailed you`, set by
+the jail relay with no delay so it is map state before the relocate at t=2.5, and an always-live poly
+around him whose `Enter Action` is `CIfAction{If=CCheckExistenceAction}` over the balloon and a
+`CDeactivateAction` that clears the checker, so the line plays once. **19** shipped touching polys
+gate their entry action on an existence check this way; the closest is
+`01 Hamlet Exterior.zax`'s `check to see if demon was killed in toulouse`.
+
+All four of the foyer's arrival points -- `From Chambers2` (534,910), `From Chambers1` (1095,1020),
+`start here` (905,1413), `start here2` (527,1291) -- sit outside the poly, so coming back is always a
+fresh entry rather than a player already standing inside it.
+
+### The repair: 0.71.10's warden shipped broken
+
+The t=75 beat, which is the entire point of that release, was in the zip as this:
+
+```
+Then=
+Else=CDisplayDialogTreeAction
+Else={
+Else=	Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
+Else=	Node ID=1 bars
+Else=	Speaker=Handler
+Else=	Player Being Spoken To=Player1
+Else=}
+```
+
+`build_warden.py` took a block's indentation as everything before the class name on its line, which
+includes the literal `Else=`, so every line came out carrying it. **0.71.10's own notes record this
+happening and being fixed** -- to the *interaction* block, which `reachability.py` caught because a
+node stopped being reachable. The same helper built this second block and the fix went to one place
+only. Nothing caught the survivor: `resource_format` round-trips it, `check_array_counts` is happy,
+A0.15 sees a registered class name on the first line, and `validate.py` **passed**.
+
+It is confirmed in all three places it could be: the working tree, `lionheart-fixt-0.71.10.zip`, and
+the installed `data.dat`. So 0.71.10's verification was not wrong about anything it checked -- the
+deployed bytes really were byte-identical to the working tree, and the beats really were at 45, 75
+and 100. It compared the game against the source of truth and never asked whether the source of truth
+was well formed.
+
+### A0.18, and the number that makes it safe
+
+A value that is itself a `Key=Value` assignment is always a builder bug. Measured against the shipped
+game: of **4,035,942** `key=value` lines, the only values holding an `=` that is not preceded by a
+space belong to `Action work in progress` (195 designer comments, e.g. `(speech=20)`) and `Text` (3
+lines of prose, e.g. `Resistances -= 100`). **Zero** vanilla lines have a brace as their whole value,
+which is the other half of the same mangling (`Else={`, `Else=}`) and the half that would be the only
+symptom in a block of nothing but nested class names.
+
+So the rule is nearly free, and on its first run against this mod's own tree it found the defect
+above. That is the Gate 0 gap 0.71.10's notes asked for a rule about, closed by the thing it was
+asked about.
+
+### What was left alone, and why
+
+The Raphael sweep that found this release also found **403 KB of draft** in the same tree, and none
+of it is wired:
+
+| node | KB | why not |
+|---|---|---|
+| `500 Return from Montaillou` | 255 | A copy of **Jafar's** node of the same name, *"May the Prophet give us strength"* and all, in an Inquisitor's mouth. Both reply targets, `238 Leave for Montserrat` and `500 Sacred Lance`, exist only in Jafar's and Lord Javier's trees. The Inquisition's live version is `330 return from montserrat`, which 0.71.2 already extended with `331 tomas` |
+| `400 nis inquisition raphael speaks` | 103 | Word for word the wired `400 NIS Dialogue 2b` |
+| `400 NIS Begin` | 45 | *"Lord Javier, it is indeed an honor to meet you"*, sitting unreachable in **Jafar's** tree as well, while both arms of the summit open with Javier greeting the escort by name |
+| `GrandInquisitor / 400 NIS Dialogue 4b` | 171 | A near-twin of Javier's wired `4b`, and wrong in Torquemada's mouth: Javier dispatched the knights to Montserrat |
+
+One finding disposes of all four. The Cathedral summit was rewritten so that **Lord Javier, the
+host, speaks the shared beats**, and each faction escort kept a now-dead copy in its own tree. The
+summit runs in three arms today -- Templar (4 beats), Saladin (5), Inquisition (11) -- and all three
+are wired.
+
+Also not taken: `340 siege of barcelona` and `350 cross stolen`, 154 KB of Raphael addressing an
+Inquisition player during the act 6 siege. Those are real, but Raphael appears in **zero** act 6 maps
+and act 6 has no named Inquisition presence at all, the generic `Defenders / 30 invaders` already
+shouts the first beat, and 0.18.0's own `BA1CROSS` quest state already delivers the second at the
+Crossroads. That is a character to place, not a line to reconnect.
+
+### One engine fact, nearly published backwards
+
+`Grand Inquisitor generator` is `Active=0` and **no `CActivateAction` anywhere in the game names
+it**, which reads as "Torquemada cannot be met in his own chambers" and is not true. These generators
+are **templates**: a relay called `RESET MAP for Invulnerable Grand Inquisitor` clones the part onto
+its own position, the clone generates the character, and the clone is deleted. Every arrival point in
+the map fires that relay, `Jail Start` included, so he is rebuilt fresh and non-hostile on every
+entry -- which is also what guarantees he is present for the balloon added above. **134**
+`CCloneAction`s in the shipped game clone a part onto itself this way, across the 9 maps carrying a
+`RESET MAP` relay, and Lord Javier reaches the Cathedral the same way. `tools/deadparts.py` has
+always known this, because it counts a clone as naming a part. In `docs/engine-notes.md` now.
+
+### The sweep, re-measured
+
+| | unreachable nodes carrying a recording | performed audio |
+|---|---|---|
+| vanilla as shipped | 204 | 19.27 MB |
+| after 0.56.0 | 117 | 11.18 MB |
+| after 0.71.10 | 75 | 5.77 MB |
+| **after 0.72.0** | **72** | **5.52 MB** |
+
+GrandInquisitor goes from 44 to 46 reachable nodes of 51, InquisitorRaphael from 55 to 56 of 61.
 
 ## 0.71.10 - the warden comes to the bars
 

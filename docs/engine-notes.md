@@ -160,6 +160,23 @@ exactly this to the Mayor in `01 Hamlet Exterior.zax`. Before writing a later sc
 check whether something tears them down first -- DaVinci's chamber copy is removed for good by the
 Goodbye reply of the conversation that hands out his quest.
 
+**An inactive generator is a template, and the clone is what spawns.** `Grand Inquisitor generator`
+in `Inquisition Chambers2.zax` is `Active=0` and no `CActivateAction` anywhere in the game names it,
+which reads as dead content and is not. A relay called `RESET MAP for Invulnerable Grand Inquisitor`
+clones the part onto its own position, the clone generates the character, and the clone is then
+deleted. Every arrival point in the map fires that relay, `Jail Start` included, so the character is
+rebuilt fresh on each entry and is always non-hostile and always present. **134** `CCloneAction`s in
+the shipped game clone a part onto itself this way, across the 9 maps that carry a `RESET MAP` relay
+-- `Church Interior`, both Inquisition maps, `Calle Perdida`, `Knights Templar`,
+`DaVinci Workshop interior`, `Blacksmith map`, `Crossroads` and `06 Witch Interior`. Lord Javier
+reaches the Cathedral the same way.
+
+So **`Active=0` with no activator is not evidence that a generator never fires**: look for
+`Source Name=` and `New Location=` before concluding anything about who is in a room.
+`tools/deadparts.py` already counts a clone as naming a part, which is why it has never reported
+these. This one was caught one query short of being written up as "the Grand Inquisitor cannot be
+met in his own chambers".
+
 **`$Instigator` means different things in different places.** In a generator's `After Action` it is
 the entity just spawned. In a dialogue reply it is the **player**. In a relay fired from a reply it
 resolves to nothing at all, and so does `$trigger` -- use a literal entity name there, as about

@@ -101,6 +101,36 @@ ORPHAN_BLOCK = re.compile(("^[ " + chr(9) + "]*([^" + chr(13) + chr(10) + "=]+)=
 LF = chr(10)
 DASHES = "-" * 60
 
+# A0.18: a value that is itself a `Key=Value` assignment. 0.71.10's map builder took the literal
+# `Else=` as part of a block's indentation, so every line of the conversation it generated came out
+# as `Else=<tab>Dialog Tree File=...`. resource_format round-trips that happily, A0.15 sees a
+# registered class name on the first line, and this script PASSED it -- the warden's walk to the
+# bars, the whole point of that release, shipped as seven dead lines in the zip and in data.dat.
+# Measured against the shipped game: of 4,035,942 `key=value` lines, the only values holding an `=`
+# that is not preceded by a space belong to `Action work in progress` (195 designer comments) and
+# `Text` (3 lines of prose, e.g. "Resistances -= 100"). Anything else is a builder bug.
+PROSE_KEYS = {"action work in progress", "text", "reply text"}
+ASSIGN_LINE = re.compile("^[ " + chr(9) + "]*([^" + chr(13) + chr(10) + "=]+)=([^" + chr(13) + chr(10) + "]*)$")
+
+
+def check_nested_assignment(p, raw):
+    for ln in raw.decode("latin-1").split(chr(13) + chr(10)):
+        m = ASSIGN_LINE.match(ln)
+        if not m or m.group(1).strip().lower() in PROSE_KEYS:
+            continue
+        v = m.group(2)
+        # The same mangling turns a block's own braces into `SomeField={` and `SomeField=}`, and a
+        # block of nothing but nested class names would show no other symptom. Zero vanilla lines
+        # have a brace as their whole value.
+        if v.strip() in ("{", "}"):
+            fails.append(p.name + ": a brace as a whole value (A0.18): " + repr(ln.strip()[:74]))
+            continue
+        for i, ch in enumerate(v):
+            if ch == "=" and (i == 0 or v[i - 1] != " "):
+                fails.append(p.name + ": a value that is itself an assignment (A0.18) -- a builder"
+                             " wrote the field name into the indentation: " + repr(ln.strip()[:74]))
+                break
+
 
 _VANILLA_DANGLING = {}
 _VANILLA_REACHABLE = {}
@@ -504,6 +534,7 @@ for p in files:
         raw.decode("latin-1").encode("latin-1")
     except Exception:
         fails.append(p.name + ": not latin-1 clean")
+    check_nested_assignment(p, raw)
     if p.suffix.lower() == ".dialogtree":
         check_dialogtree(p, raw)
         # an exact node reference is just as fatal written in a tree as written in a map, and until
