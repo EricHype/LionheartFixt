@@ -1474,6 +1474,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.71.10 - the warden comes to the bars
+
+Map and dialogue both, and the map half is what makes the scene happen, so these need a save that
+has **not** entered `4 Undercroft`. Get delivered by the peaceful route.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| HW1 | **The row that matters.** Get thrown in and wait, doing nothing | - | At about 45 seconds he glances over and barks. At about 75 he **walks to the bars and starts talking**. Before this release he never came and could not be clicked |
+| HW2 | **What t=75 is protecting.** In that first minute, go to the east bars and talk to Brother Pau | - | You have time for his whole tree, the drain included, before the warden arrives |
+| HW3 | On a Speech 40 or Charisma 7 character, take his offer | - | He walks you up. You arrive in Druid Council Level 2 and the abbey is calm. This route was unreachable until now |
+| HW4 | Instead, dismiss him with *"Nothing."* | - | He **walks back across the room** to his stool and can no longer be reached. The offer is gone |
+| HW5 | **The row that stops HW4 going too far.** Ask him about the monks, or about the old man | - | He answers and the conversation ends, but he **stays at the bars**. Click him again and he says *"Still here. Good."*, offer intact |
+| HW6 | Escape by the drain, the pins or the lock before 75 seconds | - | He never walks over, and no conversation opens behind you |
+| HW7 | **Regression.** Wait past 100 seconds without talking to him at all | - | He still comes and escorts you, exactly as before |
+
 ## 0.71.9 - the brief, and the men who did not come
 
 The sentry rows are dialogue, so they reach a save standing anywhere in Montserrat. The wounded

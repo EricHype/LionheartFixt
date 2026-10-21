@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.71.9 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.71.10 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,90 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.71.10 - the warden comes to the bars
+
+A sixth way out of the pen that was written, wired, and impossible to enter.
+
+### The scene could not be had
+
+His tree opens:
+
+> &lt;A ring of keys hangs from his belt, where you cannot reach it.&gt; Comfortable? The monks were.
+> Captain's orders: nobody talks to you, nobody feeds you, nobody opens that door until she sends
+> for you. So sit.
+
+That is a man addressing a prisoner through bars, and his return node is *"Still here. Good. Sit."*
+One of his questions is *"Who is the old man?"*, meaning Pau in the next cell. Four of his replies,
+behind Speech 40 and Charisma 7, reach `10 fetch`, which fires `escort`.
+
+His only interaction was `GetCloseThenTalk` at reach 110, on a generator at (704,397). The nearest
+spot a prisoner can stand is (406,397), **298 away**. To reach him you needed to be at x 594, which
+is 188 units past your own cell wall. So the conversation could only happen once you were already
+out, at which point *"nobody opens that door until she sends for you"* is nonsense and talking him
+into escorting you is pointless.
+
+This is the half of Mixxer5's report that 0.71.8 did not fix. Worse, [0.71.9's routes
+table](https://github.com/EricHype/LionheartFixt/issues/11) listed the speech route as a working
+way out. It was not, and that comment needs correcting.
+
+### He comes over now
+
+| t=45 | he glances across and barks, unchanged |
+| t=75 | he walks to the bars and opens the conversation himself |
+| t=100 | if you are still in there and he is alive, he escorts you anyway |
+
+All three carry the same four-way escaped guard, so none of them fires if you have already got out.
+
+He spawns at (460,455), just outside `cell door`, which puts him **54** from the nearest spot
+inside the cell against his reach of 110. When you dismiss him he walks back to a new `handler
+stool` marker at his old position, using `CGoToAI{Destination=...}` -- the same thing the rout uses
+to walk fourteen named assassins off Level 1 and the Grove.
+
+So the place he has always sat becomes the result of a scene rather than an unexplained starting
+state, and *"so sit"* arrives at the moment it means something.
+
+### Why t=75 and not the moment you wake
+
+`escort` fades at three seconds and relocates at four. A Speech 40 or Charisma 7 character offered
+the deal as they got up would be standing in Druid Council Level 2 four seconds later, having never
+spoken to Brother Pau -- and Pau is the one who tells you they took the monks **alive**, that they
+went north with the wagons, where the drain is, and *"if you go after them, go after them alive."*
+
+That is the context that makes Sahar's offer legible, and it is what 0.71.8 existed to make
+reachable. Putting the warden at t=2 would have meant **the best talkers were the ones who skipped
+it**, reintroducing the original complaint for a different slice of players. Seventy-five seconds
+is long enough to take stock and read the old man properly first.
+
+### What dismisses him, and what does not
+
+`Default Canceled Node Action` and both *"Nothing."* replies fire `handler leaves`. Asking about the
+monks or the old man does **not**, even though those replies are terminal too -- the shipped tree
+gives each of those nodes a single blank reply, so hooking them would mean asking him a question
+cost you the escort route. He leaves when you dismiss him, not when you talk to him. `10 fetch` is
+not hooked either, because it fires `escort` and walking him off at the same moment is a race for
+no benefit.
+
+His `CSeriesAction` is gone. The opening is fired once by `pen setup`, and his click interaction is
+a plain `3 still here`, so there is no series index to fall out of step -- the problem the Pau poly
+had to work around in 0.71.8.
+
+### A gap in Gate 0
+
+The first build of this mangled the interaction block. I took the indentation as everything before
+`CSeriesAction` on its line, which also contains the literal `Action=`, so every line of the block
+came out prefixed with it. `resource_format` read that as a field named `Action` whose value was
+`{`, and **`validate.py` passed it.** `reachability.py` caught it, by noticing that `3 still here`
+had stopped being reachable.
+
+Structurally valid and semantically wrecked is a shape Gate 0 does not currently catch. Worth a
+rule.
+
+### Still open
+
+The speech check only buys you the twenty-five seconds between t=75 and t=100, because waiting gets
+you escorted regardless. That is the shipped design rather than anything introduced here, but it
+does leave the check close to cosmetic.
 
 ## 0.71.9 - the brief, and the men who did not come
 

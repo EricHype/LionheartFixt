@@ -87,6 +87,149 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=handler leaves
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CRemoveAIAction
+							{
+								Target Name=Handler
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Handler
+								AI=CGoToAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Destination=handler stool
+									Offset=0.000000,0.000000
+									Starting Action=
+									Finished=0
+									Move Finished=0
+									Failed Path=0
+									Target Was Set By Goto AI=0
+									Move Behavior=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=Run
+										Planed Path For=
+									}
+									Done action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDeleteAction
+											{
+												Target Name=Cortes with arm
+											}
+											Action=COtherMapAction
+											{
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Cloner of Cortes as Companion post Montserrat
+												}
+												Other Map Name=1 Barcelona/Tavern Port District
+											}
+										}
+									}
+									Run=0
+									Make New Home=0
+									Play Ratio=0
+									Time To Try To Move=0
+									Set Facing Angle=0
+									Turn Sequence Name=Idle
+									Facing Angle=CEntityBehaviorTurnToAngle
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+									}
+									Need to Call Start=1
+								}
+								Delay Between Adds=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1080
+			Position Y=80
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt cellar 1
 			Child List=
 			Visible=1
@@ -1830,6 +1973,36 @@ CLayerSaveData
 			Rendering Height Float=0
 			Cur Sequence=Idle
 		}
+		Level Part=CEntityBase
+		{
+			Name=handler stool
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=704.308
+			Position Y=397.055
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=To 02 Druid Council Level1
@@ -2369,29 +2542,12 @@ CLayerSaveData
 									Triggered By Name=
 									Interaction Description=
 									Interaction Type=Interaction Specifiers/GetCloseThenTalk
-									Action=CSeriesAction
+									Action=CDisplayDialogTreeAction
 									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CDisplayDialogTreeAction
-											{
-												Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
-												Node ID=1 bars
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
-											}
-											Action=CDisplayDialogTreeAction
-											{
-												Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
-												Node ID=3 still here
-												Speaker=$trigger
-												Player Being Spoken To=$Instigator
-											}
-										}
-										When Done=Repeat Last Action
-										Require Success To Advance=1
-										Next Action Index=0
+										Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
+										Node ID=3 still here
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
 									}
 									X Radius=110
 									Attacker Range Modifier=0
@@ -2418,8 +2574,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Enemy Generator Spot
-			Position X=704.308
-			Position Y=397.055
+			Position X=460
+			Position Y=455
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -2609,7 +2765,7 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=9
+								Item Count=10
 								Action=CCloseDoorAction
 								{
 									Door Name=cell door
@@ -2725,6 +2881,52 @@ CLayerSaveData
 										Return failure if the If failes=0
 									}
 									Delay=45
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+								Action=CDelayAction
+								{
+									Next Action=CIfAction
+									{
+										If=COrAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=escorted
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=Fixt slipped out
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=escaped loud
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=drain used
+													Desired Minimum Count=1
+												}
+											}
+											Early Exit=0
+										}
+										Then=
+										Else=CDisplayDialogTreeAction
+										Else={
+										Else=	Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
+										Else=	Node ID=1 bars
+										Else=	Speaker=Handler
+										Else=	Player Being Spoken To=Player1
+										Else=}
+										Return failure if the If failes=0
+									}
+									Delay=75
 									Plus or Minus=0
 									Forget Trigger=0
 								}

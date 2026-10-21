@@ -3,7 +3,10 @@ CDialogTree
 Name=Handler
 Portrait=!None
 Should Have Voiceovers=0
-Default Canceled Node Action=
+Default Canceled Node Action=CTriggerRelayAction
+{
+Relay Name=handler leaves
+}
 ------------------------------------------------------------
 Node ID=1 bars
 Text=<A ring of keys hangs from his belt, where you cannot reach it.> Comfortable? The monks were. Captain's orders: nobody talks to you, nobody feeds you, nobody opens that door until she sends for you. So sit.
@@ -30,6 +33,10 @@ Go to node ID=21 old man
 Requirement=!None
 Reply Text=Nothing.
 Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=handler leaves
+}
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
@@ -58,6 +65,10 @@ Go to node ID=21 old man
 Requirement=!None
 Reply Text=Nothing.
 Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=handler leaves
+}
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
