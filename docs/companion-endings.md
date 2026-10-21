@@ -115,34 +115,35 @@ lines alone.
 
     node id: 900 friend cervantes
 
-Miguel de Cervantes went home with the quill and without the beast, and could not have explained
-either to anybody who asked. He had kept notes on every road you walked, in the hand of a man being
-followed down it by his own invention. Years later he published a long book about a madman who
-believed himself a knight, sold it badly, and was copied everywhere. He never once set a scene in
-Barcelona and never wrote down what the quill was. Readers have spent four hundred years assuming he
-made the knight up.
+Miguel de Cervantes went home with his quill and without the beast, and could not have explained
+either to anybody who asked. He had kept notes on every road you walked, and the notes outlasted
+the hunt by four hundred years. Years later he published a long book about a madman who believed
+himself a knight, sold it badly, and was copied everywhere. He never once set a scene in Barcelona
+and never wrote down what the quill was. He died in Madrid, in debt, and is buried somewhere
+nobody has since managed to find.
 
 ### when: died in your service
 
     node id: 900 friend cervantes dead
 
-Cervantes was buried where he fell with the quill still on him, and whoever went through his pockets
-could not read. A bookseller in Valladolid later claimed to have owned a manuscript about a madman
-who believed himself a knight, could never produce it, and was not believed. The book was never
-written. Whatever the quill had been doing, it stopped being anybody's problem, and the shade it had
-made was not seen in Barcelona after the week the author died. The beast was still out there, and
-nobody else had ever seen that either.
+Cervantes was buried where he fell with the quill still on him, and whoever went through his
+pockets could not read. A bookseller in Valladolid later claimed to have owned a manuscript about
+a madman who believed himself a knight, could never produce it, and was not believed. The book was
+never written. A Templar inventory of his effects lists four notebooks, a sword he could not have
+lifted, and one quill, and values the quill at nothing at all. The beast was still out there, and
+nobody else had ever seen it either. His brother collected nothing, there being nothing to
+collect.
 
 ### when: he died and never travelled with you
 
     node id: 900 friend cervantes dead alone
 
-Cervantes died in Barcelona with the quill on him and his invention still walking about the Port
-District, insisting to strangers that the dead man had been the fiction. No book was written and no
-beast was hunted. The quill went into an evidence chest in the Chambers of the Inquisition, entered
-by a clerk as a quill, and is presumably there still. The shade outlasted the man by eleven days and then was not anywhere. Nobody in Spain has heard of
-either of them. Don Quixote de la Mancha exists in no library anywhere, and the gap it leaves is
-not shaped like anything, so nobody has ever noticed it.
+Cervantes died in Barcelona with the quill still on him, and no book was written and no beast was
+hunted. The quill went into an evidence chest in the Chambers of the Inquisition, entered by a
+clerk as a quill, and is presumably there yet. Nobody in Spain has heard of him. Don Quixote de la
+Mancha exists in no library anywhere, and the gap it leaves is not shaped like anything, so nobody
+has ever noticed that it is missing, and nobody ever will. The beast was never found either, by
+him or by anybody who came after him.
 
 ### when: you heard him out and left him to it
 
@@ -174,6 +175,56 @@ If you want the kill recorded -- you took the shade's word against the author's 
 for him, which `206 cervantes dies` makes reachable -- that needs its own variable, because the
 Bestia quest records only that Cervantes died and not who did it. It is the strongest ending in the
 file and it is one write site away.
+
+---
+
+## The shade, which is where Don Quixote's fate goes
+
+Fires immediately after whichever Cervantes slide applies, and only if you met him, which is what
+the Bestia quest's `1V7S39O7` records: the state in which DaVinci has told you what the quill did.
+A slide is one node and text is not composed at runtime, so the shade cannot be a sentence inside
+Cervantes' paragraph. It is the next paragraph instead, which is how the faction set already handles
+a character who served two orders.
+
+### when: you convinced him he was not real
+
+    node id: 900 shade feather
+
+You told Don Quixote what he was and he believed you, which is the only argument anybody won in
+Barcelona that year. He asked whether there had been quests he would not now get to, was told that
+there had been, and took it a great deal better than the man who made him would have. A single
+feather came down where he had been standing, went along the floor, and out under the door.
+Cervantes did not write about it and did not pick the quill up again for eleven years. The book,
+when it finally came, is about a man whom nobody had conjured.
+
+### when: you killed him
+
+    node id: 900 shade killed
+
+You killed Don Quixote in front of the man who had made him, and Cervantes watched it without
+saying anything and then talked about it for thirty years. There was no body, and they buried
+something anyway, in a plot the parish never charged for because the parish never established what
+was in it. He had asked only that you address him correctly, and you had, every time, which he
+mentioned to Cervantes more than once. He said he was a slayer of dragons. By the end that was
+nearly true. Nobody in the Port District ever asked what was in the coffin.
+
+### when: you met him and left it alone
+
+    node id: 900 shade persists
+
+Don Quixote was still at it twenty years later, by which time he had outlasted most of the people
+who had found him funny. He kept to the Port District, challenged whatever he was given to
+challenge, and was fed by a tavern that had decided he was good for custom and billed the city for
+his stool twice. Nobody ever told him what he was, and Cervantes never did either, which may have
+been cowardice and may have been the kindest thing either of them managed. He is in the book. He
+does not know.
+
+**Two beats of that scene do not currently play.** `Barcelona Coast.zax` opens
+`500 convince don quixote`, so you can talk him out of existing, and `500 feather` -- the node that
+shows it, *"&lt;As the spirit of Don Quixote fades, a single feather floats for a moment, then blows
+away.&gt;"* -- is **unreachable**, so the scene ends on nothing at all. `206 cervantes dies`, **39 KB
+recorded**, is the shade thanking you for killing the author, and that is unreachable too. One
+`After Action` each, and both belong in the same release as these slides.
 
 ---
 
@@ -260,6 +311,39 @@ wrong: it had never been about France, she had said so plainly, and France was w
 anyway. A chapel outside Orleans carried her name within a century, built by men who could not have
 named the relic she died for.
 
+### when: you broke the curse and released her
+
+    node id: 900 friend joan released
+
+Jehanne d'Arc stopped. Two hundred years of holding one gallery ended in a sentence somebody else
+worded carefully to an efreet, and she had time to say *Dieu est avec vous* before the rest of it
+caught up with her. Her knights went in the same minute, all down the corridor, in no particular
+order and without being told to. The Lance stayed where it was. The Spirit Council never explained
+itself to anybody, and what was left in that crypt afterwards was ordinary stone, which is the
+first thing it had been in two centuries.
+
+### when: she raised the gate and you left her holding it
+
+    node id: 900 friend joan passed
+
+Jehanne raised the gate and let you by, which she had done for nobody in two hundred years, and
+then went back to standing exactly where she had been standing. You took the Lance out of the tomb
+below her and she did not stop you, having been told by somebody she believed that the Council
+wished it so. The Council never spoke to her again and she went on listening for it. She was still
+there when the crypt was sealed, nobody ever lifted the curse, and she would not have asked
+anybody twice.
+
+### when: you killed her for the Lance
+
+    node id: 900 friend joan killed
+
+You killed Jehanne d'Arc where she stood, with the Council she had trusted for two centuries not
+answering, and took the Bleeding Lance off a knight who had been set to guard it and never once
+relieved. Her knights fought on until there was nothing left to fight for. The curse was never
+lifted, there being nobody left for it to be on. She had told you she was the maiden and the
+commander of the army of France, and she had been telling the truth the entire time. The gallery
+was quiet afterwards for the first time in two hundred years.
+
 ---
 
 ## Sir Roger Templeton
@@ -313,6 +397,17 @@ threatened to vanquish a knave, was written about you by a goblin who had decide
 The hall he would have recited it in was still standing eighty years later and was never used for
 poetry again.
 
+### when: you killed him
+
+    node id: 900 friend grumdjum killed
+
+Grumdjum died in the Wilderness at your hands, mid-sentence, which was the one ending he had never
+thought to compose. He had been working on the verse for years and reciting it to whoever stopped
+walking, and it went with him. Goblins who had heard pieces of it argued about the pieces for a
+season and then stopped. The dryad he wanted dead outlived him by a century. He had promised to
+make an epic of your long torture, and he had been joking, and he was the only goblin in the Horde
+who would have bothered to joke with you.
+
 ---
 
 ## Bishop Diego
@@ -337,6 +432,28 @@ for six years afterwards, the Inquisition having no record of anyone ever being 
 gone out with you knowing exactly how little he could see. The stone room became a shepherds' shelter
 and then a ruin. Nobody local could say what the old blind man had been doing there, only that he had been there a long time, and had called everyone *my child*, and had meant it. He
 had asked to be buried where he fell and was, under a cairn the shepherds kept adding to.
+
+### when: you killed him for the Dark Inquisitors
+
+    node id: 900 friend diego sold
+
+You took the Dark Inquisitors' coin and killed a blind bishop on the south road of the plains,
+which took a good deal less doing than they had led you to expect. They paid, and spoke about you
+afterwards in the admiring way of people who have found somebody worse than themselves. The stone
+room stood empty for six years and then became a shepherds' shelter. He had called you *my child*
+at the end of every conversation the two of you ever had, including the last one, which he did not
+know was the last one.
+
+### when: you dealt with the cult for him, and parted there
+
+    node id: 900 friend diego defended
+
+You dealt with the Dark Inquisitors on his behalf and went on your way, and Bishop Diego kept his
+post and his failing eyes for another decade. He never learned how close the cult had come to
+buying his death, because the only man who could have told him was the man who had turned the
+offer down. He blessed you by name whenever you came back, having long since no idea what you
+looked like. The Inquisition left him there because he was useful and because moving him would
+have needed somebody to decide something.
 
 ---
 
@@ -363,6 +480,18 @@ the story. Nobody senior enough to be curious ever asked how he had got out of t
 first place, so the part you did goes unrecorded in an archive that records everything. The last thing
 he said to you he had been saying to everyone for forty years, in exactly that tone: *you disappoint
 me, young one.*
+
+### when: you never got him out of the camp
+
+    node id: 900 friend darsh eaten
+
+Darsh was never taken out of the goblin camp, and the goblins did what goblins do. The Warrens
+argued for a fortnight afterwards about whether he had been better with the red spice or the grey,
+settled on the grey by a narrow margin, and still cite the argument as the time there was
+something in the Warrens worth arguing about. The Inquisition recorded him lost in the Wilderness.
+Raphael asked after him twice in eleven years and was told nothing, there being nothing anybody
+wished to put in writing. The Khan's daughter was not consulted and remembers the whole business
+differently.
 
 ---
 
@@ -440,6 +569,28 @@ heard about it in a port three weeks later, from a man who had all the details w
 coast alone after that and stopped going near the island altogether, and told the rescue story exactly
 once a year, accurately, which is how everyone who heard it knew he had not made it up. There is no boat named after you. Juan considered it and could not afford a boat, and kept his
 brother's name on the licence for the rest of his working life.
+
+### when: Juan was not saved, and Fernand outlived him
+
+    node id: 900 friend fernand brother lost
+
+Fernand Desoto went back to the water alone, which the dock had expected of him and he had not. He
+worked the Barcelona coast for another thirty years, never once went north past the island, never
+told a crew why, and was understood by every crew he shipped with. He told the rescue story once,
+to a man who asked him twice, and told it accurately, which is how that man knew not to ask a
+third time. There is a boat named after you. He bought it cheap and kept it afloat long past its
+worth.
+
+### when: you both died, the brother first
+
+    node id: 900 friend fernand dead both
+
+Fernand Desoto died inland, which for a sailor is its own joke and the one he would have made
+first, and there was nobody left who would have got it. The brothers are in no parish register in
+Barcelona, having been born somewhere that kept none either. A landlord in the Port District held
+their account open for two years out of a habit he could not account for, and then closed it. The
+island is still there. Nothing on that coast is named for either of them, or for you. The boat he
+had meant to buy went to somebody else and sank inside the year.
 
 ---
 
@@ -533,20 +684,36 @@ companion who travelled with you at all gets the surviving slide, and death over
 **Firing order.** The faction slides test fate levers before rank tiers. These want to fire after all
 of the faction slides, in the order above, which is roughly the order you can meet them.
 
-### What is still unwritten
+### Where the draft stands
 
-Cervantes and Cortes are finished, because they are the two you asked about: Cervantes has four
-slides and Cortes has five, including all three verdicts in the Shylocke dispute. The other twelve
-still have only the two states that were drafted before the "didn't travel with you" decision:
+**43 slides**, against the 27 the factions ship with. 95 to 114 words, mean 102, inside the range the
+shipped set holds to.
+
+| who | slides | states |
+|---|---|---|
+| **Cervantes** | 4 | survived, died with you, died without you, you heard him out and left him to it |
+| **the shade** | 3 | you unmade him, you killed him, you left him to it. Fires after whichever Cervantes slide applied |
+| **Cortes** | 5 | survived, died with you, and all three verdicts in the Shylocke dispute |
+| **Joan of Arc** | 5 | survived, died with you, **released from the curse**, she raised the gate and you left her to it, you killed her for the Lance |
+| **Bishop Diego** | 4 | survived, died with you, **sold to the Dark Inquisitors**, you dealt with the cult for him |
+| **Fernand Desoto** | 4 | survived with Juan, survived without Juan, died with you, you both died with Juan first |
+| **Darsh** | 3 | survived, died with you, **never got out of the camp** |
+| **Grumdjum** | 3 | survived, died with you, **you killed him** |
+| Sir Roger, the Knight of Saladin, the Lost Knight, the Goblin Girl, Fang, the War Golem | 2 each | survived, died with you |
+
+**Still to write:** the didn't-travel slide for Sir Roger and the Lost Knight, whose quest levers
+exist (`OZUYGYAV` against `50CZ48GZ` for the knight) and which I have not reached yet. The Goblin
+Girl, Fang, the Golem, the Knight of Saladin and Grace get none, because walking past them says
+nothing about either of you.
+
+**Variables still to add**, on top of the four-state record already built:
 
 | | |
 |---|---|
-| **six more to write** | the didn't-travel slide for Joan, Diego, Darsh, the Lost Knight, Fernand and Grumdjum, each off the quest lever in the table above |
-| **nothing to write** | the Goblin Girl, Fang, the Golem, Grace, Sir Roger, the Knight of Saladin -- no quest footprint, so walking past them says nothing |
-| **one variable to add** | the arbitration verdict, for the three Cortes slides that are already written |
-| **one variable, optional** | whether *you* killed Cervantes for the shade, which `206 cervantes dies` makes reachable and which the Bestia quest does not distinguish from any other death |
-
-That is **37 slides** when it is done, against the 27 the factions ship with.
+| the arbitration verdict | three Cortes slides depend on it, and the verdicts set only a Port District checker |
+| whether *you* killed Cervantes for the shade | the Bestia quest records only that he died, not who did it |
+| which of the shade's three fates happened | `500 convince don quixote` and the kill are both reachable and neither is recorded |
+| Juan | `VMS91BAX` and `JUA1LIVE` already record it, so **no new variable** -- this one is free |
 
 **Voiceover.** As with the faction slides, every node ships flagged for voiceover and a recording can
 be dropped in later as `<node id>.ogg` beside the tree.
