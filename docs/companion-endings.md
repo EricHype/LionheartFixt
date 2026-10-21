@@ -56,20 +56,53 @@ Most of the growth roster can:
 | Knight of Saladin, Lost Knight, Fang, War Golem | Alamut, the vault, the Crossroads, the Giants Cave | same |
 | **Gentle Ben** | the Montaillou hamlet | **he is not a companion at all.** A `Cathar Bearform` with no dialogue tree and nothing setting him as one. He went on the roster from a name scan and must come off it |
 
-**One piece of infrastructure fixes both.** A scripting variable per companion, set on the recruitment
-reply, exactly as `Fixt Companion Growth Watch` is set:
+**That half is built.** Commit `e7e228b` carries one scripting variable per companion, written where
+recruitment actually happens: **14 variables, 14 canned guarded writes, 46 call sites** across 14
+trees and 5 maps. Every write is guarded on `== 0`, so a dismiss-and-rejoin cycle cannot double it.
 
-* the growth branch gates on the variable **and** existence, so presence stops meaning consent and
-  the balloon still has an anchor
-* the ending slide reads the variable at the finale, from a different map, on a save made before any
-  of this existed
+| value | means | written by |
+|---|---|---|
+| **0** | never happened | nothing |
+| **1** | travelled with you | recruitment, `+1` |
+| **2** | died without ever travelling with you | death, `+2` -- **not built yet** |
+| **3** | travelled with you and died in your service | both |
 
-**Death** uses 0.47.0's proven pattern: the companion can's own empty `Destroyed Script Action`, the
-hook that carries the four faction-killer titles across 33 cans and 568 spawn points.
+The growth branch now fires on **1**, and existence survives only to give the balloon an anchor. The
+slides below read the same variable at the finale, from a different map, on a save made before any of
+it existed. Don Quixote and Gentle Ben came off the roster in that commit.
 
-That is the 34-reply surgery I avoided on 20 October by installing the watcher from the companion
-overlay's tree. It is now justified twice over, and it is the only part of this that is engineering
-rather than writing.
+**Death, the `+2`, is what is still missing**, and it is 0.47.0's pattern: the companion can's own
+`Destroyed Script Action`, the hook that carries the four faction-killer titles across 33 cans and
+568 spawn points. It is not uniformly available, and I checked before relying on it:
+
+| can | slot | so |
+|---|---|---|
+| `Joan of Arc.can`, `Cub Companion.can` | **empty, unoverridden** | the hook goes straight in. Joan killed in the Crypt is cleanly detectable, which is the whole of the state you asked about |
+| `Cervantes.can` | **already holds a `CIfAction`** | the hook has to extend what is there rather than fill an empty field |
+| Grumdjum, Bishop Diego | **overridden at runtime** | `01 Desert Sprawl.zax`, `Lake.zax` and `Plains.zax` all call `CSetDestroyedScriptActionAction` on them, pointing at existing `Grumdjum Dead` and `Diego Dead` checkers. A can-level hook would be silently replaced the moment the player enters those maps, which is exactly how the Lava Troll Hide was dead code from 0.10.0. Their write goes inside the existing override payload |
+
+Those two already track the death locally. It just cannot be read from the finale, which is the whole
+reason this needs character-resident state.
+
+### Where a "didn't travel with you" slide gets its gate
+
+Quest history, which `ending-slides.md` already permits and which reads from any map on an old save.
+Eight of the fourteen have a footprint of their own:
+
+| companion | the lever |
+|---|---|
+| **Joan of Arc** | `Release the Doomed Knights from their Torment` -- `CRY1KNGT`, `CRY2CURS`, `CRY3LAMP`. The knights were cursed into undeath by a Saracen's wish and the lamp of Jah'roosh grants one, so you can free them without her ever joining |
+| **Bishop Diego** | `Bring the Dark Inquisitors to Justice` against **`Slay Bishop Diego for the Dark Inquisitors`** -- `AS4T5BB5` is *"now that Bishop Diego is dead"*. You can be hired to kill him |
+| **Darsh** | `SZLH5UEU` tell Raphael that Darsh died, against `TTX37U4V` escorted home |
+| **The Lost Knight** | `OZUYGYAV` *"met an unfortunate end in the sewers"* against `50CZ48GZ` found and escorted back |
+| **Fernand Desoto** | `VMS91BAX` *"his brother perished"* against `JUA1LIVE` *"his brother lives"*. His ending turns on Juan, which is right |
+| **Grumdjum** | `Slay the River Dryad for the Goblin Grumdjum`, `2QEGR0S8` collect the reward |
+| **Cervantes** | the five Bestia states, including `5PV5XAHX` imprisoned for what he did to a wall and `QYCL1DO7` died |
+| **Cortes** | `Give Cortes a Hand` and `Recover the Hidden Treasure with Cortes` -- **plus the arbitration, which needs one new variable**: the three verdicts set only a Port District checker, and a checker cannot be read at the finale |
+
+The Goblin Girl, Fang, the Golem, Grace, Sir Roger and the Knight of Saladin have no quest footprint,
+so for them "didn't travel" means you walked past them, and they get no slide rather than one about
+nothing.
 
 **Reviewing:** rewrite any prose freely, this file is the input for the build. Leave the `node id`
 lines alone.
@@ -82,51 +115,65 @@ lines alone.
 
     node id: 900 friend cervantes
 
-Miguel de Cervantes went back to Spain with four notebooks and no money, which was how he had
-arrived. He had kept notes on every road you walked and on the beast nobody but him ever saw, and
-the notes outlasted the beast. Years later he published a long book about a madman who believed
-himself a knight, sold it badly, and was copied everywhere. He never once set a scene in Barcelona.
-The thing in the dark that he could never make you turn and look at appears in chapter eight, and it
-is a windmill.
+Miguel de Cervantes went home with the quill and without the beast, and could not have explained
+either to anybody who asked. He had kept notes on every road you walked, in the hand of a man being
+followed down it by his own invention. Years later he published a long book about a madman who
+believed himself a knight, sold it badly, and was copied everywhere. He never once set a scene in
+Barcelona and never wrote down what the quill was. Readers have spent four hundred years assuming he
+made the knight up.
 
 ### when: died in your service
 
     node id: 900 friend cervantes dead
 
-Cervantes was buried where he fell with the notebooks still on him, and whoever went through his
-pockets could not read. He had been writing the whole way without telling you what it was for. A
-bookseller in Valladolid later claimed to have owned a manuscript about a madman who believed himself
-a knight, could never produce it, and was not believed. *Don Quixote de la Mancha* was never written.
-The joke he had been building for a year, about the beast and the windmill, died with the only man
-who knew the punchline. The notebooks went into a fire that winter, by a soldier who wanted the
-heat and could not have told you whose they were.
+Cervantes was buried where he fell with the quill still on him, and whoever went through his pockets
+could not read. A bookseller in Valladolid later claimed to have owned a manuscript about a madman
+who believed himself a knight, could never produce it, and was not believed. The book was never
+written. Whatever the quill had been doing, it stopped being anybody's problem, and the shade it had
+made was not seen in Barcelona after the week the author died. The beast was still out there, and
+nobody else had ever seen that either.
+
+### when: he died and never travelled with you
+
+    node id: 900 friend cervantes dead alone
+
+Cervantes died in Barcelona with the quill on him and his invention still walking about the Port
+District, insisting to strangers that the dead man had been the fiction. No book was written and no
+beast was hunted. The quill went into an evidence chest in the Chambers of the Inquisition, entered
+by a clerk as a quill, and is presumably there still. The shade outlasted the man by eleven days and then was not anywhere. Nobody in Spain has heard of
+either of them. Don Quixote de la Mancha exists in no library anywhere, and the gap it leaves is
+not shaped like anything, so nobody has ever noticed it.
+
+### when: you heard him out and left him to it
+
+    node id: 900 friend cervantes alone
+
+You listened to him about the beast and left him to it, which is what the whole Port District had
+been doing for a year. He hunted it alone, was arrested for what he did to a wall while hunting it,
+and was released once the Templars decided he was harmless rather than heretical. He published
+anyway. The book is about a madman who believed himself a knight, and the man who wrote it had been
+followed down the street by one, and no reader has ever needed to know that to laugh at it.
 
 ---
 
-## Don Quixote
+## Don Quixote has no ending, and cannot have one
 
-### when: travelled with you, survived
+He is not a person and he cannot be a companion. `Companion=` never names him anywhere in the game,
+and his can is built from `Races/NPCs/Cervantes` and `Characters/NPC/Barcelona/Cervantes` -- the
+author's own race and the author's own model, because he is the shade the quill conjured. His tree
+argues the other way (*"I am real! Cervantes is the shade!"*), DaVinci settles it, and
+`500 convince don quixote` lets you talk him out of existing: *"You're right, I sense that I was not
+real, but I hoped I was wrong. There were so many quests I wanted..."*, and then `500 feather`.
 
-    node id: 900 friend quixote
+He belongs in Cervantes' slides, which is where he now is. **An earlier draft of this file gave him
+two of his own**, written from the historical Cervantes rather than from the game's, in which he dies
+old in a bed and the author writes a book about him. Both were wrong on the fiction and one of them
+was wrong about who exists.
 
-Don Quixote went on calling himself a Spanish knight and a slayer of dragons, and after Alamut nobody
-in the party was inclined to correct him. He had charged things that were not there and twice charged
-things that were, and the second kind did him less harm than the first. He died old, in a bed, of
-nothing in particular. Cervantes was at the funeral and had the better part of a book about him
-written inside the year, in which he is defeated by farm machinery and is entirely right about
-everything else.
-
-### when: died in your service
-
-    node id: 900 friend quixote dead
-
-Don Quixote died charging something, which is the only ending he would have accepted and close to the
-one he had described in advance. The thing he charged was real, which he never got the satisfaction
-of knowing. Cervantes wrote him down anyway and gave him a windmill instead and let him lose to it.
-He had asked nothing of you but that you address him correctly, and you had, which he mentioned to
-Cervantes more than once and at length. Readers took the joke for four hundred years and missed what
-the author knew: the man had been right once, at the end, in a desert, and it had cost him
-everything.
+If you want the kill recorded -- you took the shade's word against the author's and killed Cervantes
+for him, which `206 cervantes dies` makes reachable -- that needs its own variable, because the
+Bestia quest records only that Cervantes died and not who did it. It is the strongest ending in the
+file and it is one write site away.
 
 ---
 
@@ -153,6 +200,39 @@ the bench where he had built it and did not rebuild it. He kept the hand in a dr
 visitors for years, and told the story of it wrong every time. The debt was never paid and never pursued,
 Shylocke being a man who kept accounts and also kept score. The treasure stayed where it was. Nobody
 else in Barcelona knew where the cave was, because Cortes had told only you.
+
+### when: you judged the dispute for Cortes, and parted there
+
+    node id: 900 friend cortes vindicated
+
+You heard both men out and found for the conquistador, and Shylocke did not get the ship. Cortes
+never sailed again regardless, having no crew and one arm and no credit anywhere in Barcelona, but he
+kept the ship tied up where he could see it from the tavern and paid harbour fees on it for nine
+years. He told the story of the hearing to everybody, and in his telling you are a judge rather than
+a stranger who happened to be standing there. Shylocke's version is shorter and he tells it less. Cortes is in the harbour ledgers for nine
+years running and in no other record of the city at all.
+
+### when: you judged the dispute for Shylocke
+
+    node id: 900 friend cortes shylocke
+
+You found for the moneylender, and he took the ship inside a fortnight and sold it inside a month.
+Cortes said one thing about it at the time -- *"here I thought you would vindicate me"* -- and
+nothing afterwards, to you or about you. He drank in La Serpienta Vieja on credit extended out of
+pity by a landlord who had heard the story, and he never went back into the desert, and the treasure
+is still in the cave. Shylocke, who had been entirely within his rights, did not thank you either. The landlord's
+charity outlasted the moneylender's profit on the ship by about six years.
+
+### when: you would not judge it
+
+    node id: 900 friend cortes no verdict
+
+You declined to settle it and the two of them went on arguing, which suited Shylocke, time being the
+only thing in the dispute that was working for him. The case was heard eventually by a Templar
+magistrate who had no patience for either man and split the difference badly. Cortes kept half a
+ship and a debt he could not service. *"I suppose I should not have rested my hopes on a stranger,"*
+he had said, and he turned out to be right about that in a way he had not intended. Shylocke
+billed him for the magistrate's time as well, and collected.
 
 ---
 
@@ -444,16 +524,29 @@ nineteen other names.
 **Grace O'Malley already has one.** `900 order omalley`, gated on her `Grace's Regard` perk. She is
 not in this file and does not need a second slide.
 
-**Gentle Ben is not a companion** and gets no slide. He also has to come off the growth roster, which
-is a repair rather than a decision.
+**Gentle Ben and Don Quixote are not companions** and get no slides. Both came off the growth roster
+in `e7e228b`; neither was a decision, both were my error.
 
-**Dismissed is not a fate.** Leaving somebody behind is reversible in this game, so there is no third
-variant for it. A companion who travelled with you at all gets the surviving slide; death overrides
-it. If you would rather dismissal counted as its own ending, that is a third variant each and a
-second scripting variable, and I would want to hear the argument before writing fourteen more.
+**Dismissed is still not a fate.** Leaving somebody behind is reversible, so it gets no variant. A
+companion who travelled with you at all gets the surviving slide, and death overrides it.
 
 **Firing order.** The faction slides test fate levers before rank tiers. These want to fire after all
 of the faction slides, in the order above, which is roughly the order you can meet them.
+
+### What is still unwritten
+
+Cervantes and Cortes are finished, because they are the two you asked about: Cervantes has four
+slides and Cortes has five, including all three verdicts in the Shylocke dispute. The other twelve
+still have only the two states that were drafted before the "didn't travel with you" decision:
+
+| | |
+|---|---|
+| **six more to write** | the didn't-travel slide for Joan, Diego, Darsh, the Lost Knight, Fernand and Grumdjum, each off the quest lever in the table above |
+| **nothing to write** | the Goblin Girl, Fang, the Golem, Grace, Sir Roger, the Knight of Saladin -- no quest footprint, so walking past them says nothing |
+| **one variable to add** | the arbitration verdict, for the three Cortes slides that are already written |
+| **one variable, optional** | whether *you* killed Cervantes for the shade, which `206 cervantes dies` makes reachable and which the Bestia quest does not distinguish from any other death |
+
+That is **37 slides** when it is done, against the 27 the factions ship with.
 
 **Voiceover.** As with the faction slides, every node ships flagged for voiceover and a recording can
 be dropped in later as `<node id>.ogg` beside the tree.
