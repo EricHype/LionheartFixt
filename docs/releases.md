@@ -265,6 +265,96 @@ So the rule is nearly free, and on its first run against this mod's own tree it 
 above. That is the Gate 0 gap 0.71.10's notes asked for a rule about, closed by the thing it was
 asked about.
 
+### Companions grow as you level, and say so
+
+The complaint this answers is a table rather than an opinion. Of 71 race overrides in the mod, three
+are recruitable NPCs and all three are ours, so no vanilla companion's preset had ever been touched:
+
+| joins at | |
+|---|---|
+| Fang 27, Bishop Diego 35, Goblin Girl 36, **Fernand Desoto 36**, Darsh 42, Lost Knight 49, Cervantes 60, Don Quixote 60, Cortes 60, War Golem 67 | the ones you are expected to keep |
+| Grace 165, Gentle Ben 175, Joan of Arc 200, Sir Roger 200, Knight of Saladin 220, Grumdjum 225 | already fine |
+
+Beatrice, at **12 HP**, is deliberately left out.
+
+**`CSetCharacterLevelAction` is not the tool.** Its field is `Character to give experiecne to`, the
+engine files it under *"Action/Cheats used for Testing"*, and all **99** of its uses in the game
+target `$instigator`. What it actually does, which is worth knowing on its own, is **floor the
+player's level at each act boundary**: 8 and 10 in the Grove, 11 in the Ogre Conjurer Cave, 12 in
+Montaillou and Titan Village, 16 in the Crypt, 21 in Hamlet Burned, 22 at the siege, 24 at the
+Shrine, 26 and 28 in Alamut.
+
+**`CXRPGAITriggerWhenLevelUp` is.** *"Action is triggered when the layer part the AI is attached to
+levels up. [...] the $trigger is set to be the LayerPart that leveled up."* It is registered in the
+exe and **used nowhere in the shipped game**, so its field layout comes from the registration table
+rather than from a sibling to clone. Attached to the player, its action is 17 `CIfAction`s over
+`CCheckExistenceAction` -- one per scripting name, `Cortes` and `Cortes with arm` sharing a node --
+and each one grants and then speaks.
+
+| tier | per level | who |
+|---|---|---|
+| joins under 70 HP | **+9 HP, +8 AC, +3 skill** | Fang, Diego, Goblin Girl, Fernand, Darsh, Lost Knight, Cervantes, Don Quixote, Cortes, War Golem |
+| joins at 150 or better | **+5 HP, +3 AC, +1 skill** | Grace, Gentle Ben, Joan, Sir Roger, Knight of Saladin, Grumdjum |
+
+Diego and Darsh grow Celestial Smite rather than melee, because that is what their races preset. A
+companion only earns the levels gained **while they are with you**, so a late joiner never catches an
+early one and a parked companion stops growing.
+
+### Why a permanent modifier is not a layer over the stat system
+
+It is the stat system. Pulling a companion out of a mid-game save:
+
+```
+Derived Character Attribute Permanent Modifiers=Array
+{
+    Derived Character Attributes/(AC) Armor Class=59
+    Derived Character Attributes/(HP) Hit Points=120
+}
+```
+
+That character's race presets are **AC 100 / HP 150**, so a preset is not an absolute written onto
+the character -- it lands in this array as a delta on an attribute-and-equipment base, serialized per
+instance. `CAddCharacterModifierToCharacterAction{Modification is permanent=1}` writes into the same
+array. Vanilla already does this to named companions: **Joan of Arc** three times, AC +100 beside a
+skill modifier in `7 Doomed Plateau` and `9 Burial Chamber`, plus **Sir Roger Templeton**, Quinn and
+the Khan.
+
+### One tree edit instead of thirty-four reply edits
+
+`Resources/Player Data/Companion AI Interaction Specifier.can` is the overlay a companion wears, and
+it opens `Generic Companion Dialog / 01 Conversation Start` on `GetCloseThenTalk`. So the install
+goes on that tree's two replies: **clicking any companion once** adds the watcher, no companion means
+no watcher, and because it is dialogue rather than a map **it reaches a save already in progress**.
+The alternative was 34 recruitment replies across 19 trees, 5 of which would have needed wrapping
+rather than appending -- which is exactly the mechanical repetition that produced the `Else=` wreckage
+this same release repairs.
+
+Two choices made against the proven idiom rather than the first draft: the AI is added to
+`Target Name=$Instigator`, which has **621** uses game-wide against **zero** for `Player1`, and the
+balloon tree's `Name=` is blank like `Fixt Goblin Barks` rather than labelling every line
+"Companion".
+
+### What the roster pass turned up
+
+| | |
+|---|---|
+| **Fernand Desoto's scripting name is still `Distressed Sailor`** | 0.60.3 gave him a `User Assigned Name`; the scripting name a balloon and an existence check need never changed |
+| **`Darsh`, not `Inquisitor Darsh`** | spawned by `Darsh Generator` from a can spelled `Inquisitor Darsch`. Seven maps already carry a part commented **`Is Darsh a Companion`** over `CCheckExistenceAction{Name To Check For=Darsh}`, so the "is this companion with you" test is the shipped one |
+| **Captain Isabella is not a companion** | her tree hosts *Grace's* England scenes -- `502 arrive in england grace friendly`, `502 grace joined romantic`, `502 grace companion near death` -- which is why it carries four `CSetCompanionAction`s and why Grace has no tree of her own |
+| **Grumdjum is not a broken-speech goblin** | he talks about *"tales of bloodshed that goblin poets will sing of"* and threatens *"an epic poem about your long torture"*. His line is *"The poets will need a longer verse for me now."* An assumption corrected by reading him |
+| our own `Knight of Saladin Companion.Race` carries **melee 200** against Joan's 90 | probably overtuned by us in an earlier release. Left alone here and worth a look |
+
+The lines were drafted and reviewed in [`docs/companion-growth-lines.md`](companion-growth-lines.md)
+before any of this was built, and the build parses that file, so the shipped bytes are the reviewed
+bytes. Animals and the golem get a stage direction instead of speech.
+
+### The risk, named
+
+`CXRPGAITriggerWhenLevelUp` has never run. `validate.py`'s A0.15 confirms the engine registers the
+class, and `CRepeatTimerTriggerAI` polling `CVariableCharacterLevel` against a stored variable is the
+fallback if it turns out not to fire -- all classes with dozens of shipped instances. `CG1` is the
+row that decides it.
+
 ### What was left alone, and why
 
 The Raphael sweep that found this release also found **403 KB of draft** in the same tree, and none

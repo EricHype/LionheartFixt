@@ -1492,6 +1492,13 @@ All of it is map work, so all of it needs a save that has **not** entered `Inqui
 | WD1 | **The row 0.71.10 claimed and could not pass.** Fresh save, delivered to the cellar by the peaceful route, thrown in the pen, wait and do nothing | - | At about 75 seconds the warden's conversation **opens by itself**. On 0.71.10 nothing happened at all |
 | WD2 | **Regression on the repair.** The same wait, watched through | - | The t=45 bark still fires and the t=100 escort still fires, both unchanged |
 | WD3 | Gate 0 | `python tools/validate.py` | Passes. Run it against 0.71.10's `4 Undercroft.zax` and A0.18 reports four lines |
+| CG1 | **The row that decides the feature.** Recruit Cervantes, then level up with him beside you | - | He says *"I am writing all of this down. Including the parts where I improve."* If no line ever appears, `CXRPGAITriggerWhenLevelUp` does not fire and the timer fallback is needed |
+| CG2 | **The row that proves the grant, not just the line.** Level up a few times with him, then `python tools/savecheck.py grep Cervantes --save latest` | - | His `Derived Character Attribute Permanent Modifiers` has grown by 9 HP and 8 AC per level |
+| CG3 | **The row that stops the watcher installing twice.** Click a companion several times, dismiss and re-recruit, then level | - | Exactly one line per companion per level, never two |
+| CG4 | A tier B companion: level up beside Joan of Arc or Grumdjum | - | +5 HP and +3 AC, not +9 and +8 |
+| CG5 | Two companions at once | - | Both speak, each in their own voice |
+| CG6 | **Regression.** Beatrice | - | No line, no grant, ever. She is excluded on purpose |
+| CG7 | **Reaches a save in progress.** On a save that already has a companion, click them once, then level | - | The line appears. This is the point of installing from the companion overlay's tree rather than from a map |
 
 ## 0.71.10 - the warden comes to the bars
 

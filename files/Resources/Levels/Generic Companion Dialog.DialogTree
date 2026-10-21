@@ -1,0 +1,51 @@
+CDialogTree
+{
+Name=Companion
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=<What would you like your companion to do?>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Release Companion
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CReleaseCompanionAction
+{
+Companion To Release=$Trigger
+}
+Action=CPrintCombatTextAction
+{
+Text to print=A companion has left your party
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Action=CSendMessageAction
+{
+Message=Released companion
+Target=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+}
+}
+}
+
+Requirement=!None
+Reply Text=Nothing
+Go to node ID=
+Custom Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+}
+Is Default Reply=1
+}
