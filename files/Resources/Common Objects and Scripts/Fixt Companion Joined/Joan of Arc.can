@@ -1,0 +1,42 @@
+CCannedObject
+{
+	Object=CIfExpressionAction
+	{
+		If Expression=CIsEqualTo
+		{
+			Operand1=CVariableDerivedCharacterAttribute
+			{
+				Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Joan of Arc
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=0
+			}
+		}
+		Character to get attributes from=Player1
+		Then=CAddCharacterModifierToCharacterAction
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Character to modify=Player1
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Joan of Arc
+				}
+			}
+			OPTIONAL Duration=
+			Expression Context=$Instigator
+		}
+		Else=
+	}
+}

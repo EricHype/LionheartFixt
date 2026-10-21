@@ -31,1162 +31,1281 @@ CCannedObject
 						{
 							Action=Array
 							{
-								Item Count=17
-								Action=CIfAction
+								Item Count=15
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Fang
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Fang
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Fang
-												Name of Position=Fang
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Fang
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Fang
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Fang
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Fang
+													Name of Position=Fang
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Bishop Diego
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Bishop Diego
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Magic Divine/Offensive/Celestial Smite
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Bishop Diego
-												Name of Position=Bishop Diego
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Bishop Diego
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Bishop Diego
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Bishop Diego
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Magic Divine/Offensive/Celestial Smite
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Bishop Diego
+													Name of Position=Bishop Diego
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Goblin Girl
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Goblin Girl
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Goblin Girl
-												Name of Position=Goblin Girl
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Goblin Girl
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Goblin Girl
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Goblin Girl
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Goblin Girl
+													Name of Position=Goblin Girl
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Distressed Sailor
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Distressed Sailor
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Distressed Sailor
-												Name of Position=Distressed Sailor
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Distressed Sailor
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Distressed Sailor
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Distressed Sailor
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Distressed Sailor
+													Name of Position=Distressed Sailor
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Darsh
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Darsh
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Magic Divine/Offensive/Celestial Smite
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Darsh
-												Name of Position=Darsh
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Darsh
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Darsh
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Darsh
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Magic Divine/Offensive/Celestial Smite
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Darsh
+													Name of Position=Darsh
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Lost Knight
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Lost Knight
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Lost Knight
-												Name of Position=Lost Knight
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Lost Knight
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Lost Knight
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Lost Knight
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Lost Knight
+													Name of Position=Lost Knight
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Cervantes
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Cervantes
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Cervantes
-												Name of Position=Cervantes
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Cervantes
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Cervantes
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Cervantes
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Cervantes
+													Name of Position=Cervantes
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Don Quixote
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Don Quixote
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Don Quixote
-												Name of Position=Don Quixote
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Cortes
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Cortes
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Cortes
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Cortes
+													Name of Position=Cortes
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Cortes
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Cortes
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Cortes
-												Name of Position=Cortes
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Cortes
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Cortes with arm
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Cortes with arm
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Cortes
+													Name of Position=Cortes with arm
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Cortes with arm
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Cortes with arm
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Cortes
-												Name of Position=Cortes with arm
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Golem
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Golem
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Golem
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Golem
+													Name of Position=Golem
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Golem
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Golem
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=9
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=8
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Golem
-												Name of Position=Golem
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Grace
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Grace
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Grace
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=5
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Grace
+													Name of Position=Grace
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Grace
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Grace
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=5
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=1
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Grace
-												Name of Position=Grace
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Joan of Arc
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Joan of Arc
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Joan of Arc
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=5
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Joan of Arc
+													Name of Position=Joan of Arc
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Gentle Ben
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Gentle Ben
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=5
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=1
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Gentle Ben
-												Name of Position=Gentle Ben
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Sir Roger Templeton
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Sir Roger Templeton
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Sir Roger Templeton
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=5
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Sir Roger Templeton
+													Name of Position=Sir Roger Templeton
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Joan of Arc
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Joan of Arc
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=5
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=1
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Joan of Arc
-												Name of Position=Joan of Arc
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Knight of Saladin
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Knight of Saladin
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Knight of Saladin
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=5
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Knight of Saladin
+													Name of Position=Knight of Saladin
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
 									Else=
-									Return failure if the If failes=0
 								}
-								Action=CIfAction
+								Action=CIfExpressionAction
 								{
-									If=CCheckExistenceAction
+									If Expression=CIsEqualTo
 									{
-										Name To Check For=Sir Roger Templeton
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Sir Roger Templeton
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=5
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=1
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Sir Roger Templeton
-												Name of Position=Sir Roger Templeton
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Goblin Grumdjum
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
 										}
 									}
-									Else=
-									Return failure if the If failes=0
-								}
-								Action=CIfAction
-								{
-									If=CCheckExistenceAction
+									Character to get attributes from=Player1
+									Then=CIfAction
 									{
-										Name To Check For=Knight of Saladin
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
+										If=CCheckExistenceAction
 										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
+											Name To Check For=Goblin Grumdjum
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
 											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Knight of Saladin
-												Modifiers=Array
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
 												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Goblin Grumdjum
+													Modifiers=Array
 													{
-														Modification Amount=CConstant
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
 														{
-															Constant Value=5
+															Modification Amount=CConstant
+															{
+																Constant Value=5
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
 														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
+														Modifier=CCharacterModifierDerivedAttribute
 														{
-															Constant Value=3
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
 														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
+														Modifier=CCharacterModifierSkill
 														{
-															Constant Value=1
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
 														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
 													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
 												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Knight of Saladin
-												Name of Position=Knight of Saladin
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Goblin Grumdjum
+													Name of Position=Goblin Grumdjum
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
 											}
 										}
+										Else=
+										Return failure if the If failes=0
 									}
 									Else=
-									Return failure if the If failes=0
-								}
-								Action=CIfAction
-								{
-									If=CCheckExistenceAction
-									{
-										Name To Check For=Goblin Grumdjum
-										Desired Minimum Count=1
-									}
-									Then=CMultipleActionsAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CAddCharacterModifierToCharacterAction
-											{
-												Modifier Description=Fixt companion growth
-												Modification is permanent=1
-												Character to modify=Goblin Grumdjum
-												Modifiers=Array
-												{
-													Item Count=3
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=5
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
-													}
-													Modifier=CCharacterModifierDerivedAttribute
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=3
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
-													}
-													Modifier=CCharacterModifierSkill
-													{
-														Modification Amount=CConstant
-														{
-															Constant Value=1
-														}
-														Modification amount is a percent=0
-														Allow Accumulation=1
-														Skill to modify=Skills/Fighting/OneHandedMelee
-													}
-												}
-												OPTIONAL Duration=
-												Expression Context=$Instigator
-											}
-											Action=CDisplayDialogBalloonAction
-											{
-												Dialog Tree File=Levels/Fixt Companion Growth
-												Node ID=Goblin Grumdjum
-												Name of Position=Goblin Grumdjum
-												Position Offset=0.000000,-70.000000
-												After Action=
-												Include In Log=1
-											}
-										}
-									}
-									Else=
-									Return failure if the If failes=0
 								}
 							}
 						}

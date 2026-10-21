@@ -318,10 +318,20 @@ Experience Points To Add=200
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Sir Roger Templeton
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -364,10 +374,20 @@ Experience Points To Add=200
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Sir Roger Templeton
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -566,10 +586,20 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Sure, come with me.
 Go to node ID=
-Custom Action=CSetCompanionAction
+Custom Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Sir Roger Templeton
+}
+}
 }
 Icon=Exit Icon
 

@@ -1,0 +1,1835 @@
+CLayerSaveData
+{
+	Dynamic Properties=1
+	{
+		Point of interest affiliation=Interface/World Map/Montaillou
+	}
+	Custom Map Properties=
+	Music Mix=CMusicMixerData
+	{
+		Num Seconds To Switch=5
+		Full Mix Song=3 Montaillou/AMB_Mntllou_Giants.ogg
+		Med Mix Song=3 Montaillou/AMB_Mntllou_Giants.ogg
+		Ambiant Song=3 Montaillou/AMB_Mntllou_Giants.ogg
+	}
+	Width=1920
+	Height=1152
+	Action Queue=CActionQueue
+	{
+		Items=Array
+		{
+			Item Count=0
+		}
+	}
+	Suggested Num Players=4
+	Max Players=No Limit
+	Default Game Type=QuestMode
+	Allowable Games=QuestMode
+	Has Begin Been Called=0
+	Map Description=Strange Cave
+	First Fire Action=
+	First Load Action=
+	View Position=518.000000,409.000000
+	Int View Position=518,409
+	Partial File Name=3 Montaillou/07 Giants Cave
+	Team Info=Array
+	{
+		Item Count=1
+		Team Info=CTeamInfo
+		{
+			Spawn Point Name=start here
+			Re-Spawn Point Name=
+			Model Type=!Unknown Model
+		}
+	}
+	Ambient Sounds=Array
+	{
+		Item Count=0
+	}
+	Shake Time=0
+	Max Shake Time=0
+	Pixels To Shake=CLengthEnvelope
+	{
+		Start Value=0
+		End Value=0
+		Speed=0
+		Ending Behavior=Stop at end
+		Current Value=0
+		Using Start=1
+		Direction=1
+	}
+	Last Shake Delta=0.000000,0.000000
+	Active Paths=
+	Path Data=CWayPointMap
+	{
+		MinDistBetweenWayPoints=20
+		MaxDistToConnect=39
+	}
+	Monitor=CUpdateMonitorList
+	{
+		Monitor List=Array
+		{
+			Item Count=0
+		}
+	}
+	Disable AutoMap=0
+	Left AutoMap Clipping=Left UnClipped
+	Top AutoMap Clipping=Top UnClipped
+	Right AutoMap Clipping=Right UnClipped
+	Bottom AutoMap Clipping=Bottom UnClipped
+	AutoMap X Offset=0
+	AutoMap X Scale=0
+	AutoMap Y Offset=0
+	AutoMap Y Scale=0
+	Max Allowed To Roam Anywhere=1
+	Allowed To Roam Anywhere=0
+	Tree List=CSortList2D
+	{
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=0, 1023, 0, 0, 752, 0, 747, 176, 432, 177, 459, 713, 1183, 653, 1185, 1023, 0, 1023
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet Giants Cave/GiantsCave
+			Position X=780
+			Position Y=383
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixed Dead Body Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/English Enemies/Wargolem Deactivated
+					New Name=Golem
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CDelayAction
+					{
+						Next Action=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=6
+								Action=CSetCurSequenceAction
+								{
+									Sequence=dead
+									Target Name=$Instigator
+								}
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CAssignTemporaryTaskAction
+								{
+									Target=$Instigator
+									Temporary Task AI=CWaitAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Time To Wait=0
+										Time Left=0
+										Done Action=
+										Behavior to run=
+										Delete AI When Done=0
+									}
+									Original AI Type=CSkeletonAI
+									Completion Message to wait for=AI Done
+									Suppress can't assign error=0
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CTouchingOvalTriggerAI
+									Delay Between Removes=0
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+								{
+									Target Name=$Instigator
+									New Category=
+								}
+							}
+						}
+						Delay=0
+						Plus or Minus=0
+						Forget Trigger=0
+					}
+					New Facing Angle=1.90241
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Dead Body Generator
+			Position X=638
+			Position Y=436
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=War Golem poly Gets up
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CDisplayDialogTreeAction
+					{
+						Dialog Tree File=Levels/3 Montaillou/Dialog/Unusual Suit of Armor
+						Node ID=1 Inert Golem
+						Speaker=$trigger
+						Player Being Spoken To=$Instigator
+					}
+					X Radius=55
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=624, 457.25, 627, 409.25, 653, 412.25, 659, 456.25, 624, 457.25
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=Golem Charger
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CDisplayDialogTreeAction
+					{
+						Dialog Tree File=Levels/3 Montaillou/Dialog/HOVER TEXT Electrical Switch
+						Node ID=1 Pull Handle
+						Speaker=Golem Charger
+						Player Being Spoken To=$Instigator
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Wilderness/electrical sphere/elec switch base c
+			Position X=659
+			Position Y=474
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=idle
+		}
+		Level Part=CEntityAnimated
+		{
+			Name=Charger Switch
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CDoorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Is Locked=0
+					Allow Open or Close?=
+					Before Open=
+					After Opened=
+					Before Closed=
+					After Closed=
+					After Locked=
+					After Unlocked=
+					Auto-Close Timeout=0
+					State=Closed
+					Timeout Time Left=0
+					Frame Andvance=0
+					Next Pain=0
+					Triggered By Players=1
+					Triggered By Enemies=1
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Wilderness/electrical sphere/elec handle c
+			Position X=661
+			Position Y=475
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=closed
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixed Dead Body Generator
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Monster Cans/English Enemies/Wargolem Deactivated
+					New Name=Golem 1
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CHandleMessageAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Message To Handle=After Death Spell
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CDeactivateAction
+									{
+										Target Name=War Golem poly
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=golem buzzes
+									}
+								}
+							}
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Genderate Dead Body
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=$Instigator
+								AI=CTouchingOvalTriggerAI
+								Delay Between Removes=0
+							}
+							Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+							{
+								Target Name=$Instigator
+								New Category=
+							}
+						}
+					}
+					New Facing Angle=2.44346
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Dead Body Generator
+			Position X=735
+			Position Y=393
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=War Golem poly
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CDisplayDialogTreeAction
+					{
+						Dialog Tree File=Levels/3 Montaillou/Dialog/Unusual Suit of Armor
+						Node ID=1 Dead Golem
+						Speaker=$trigger
+						Player Being Spoken To=$Instigator
+					}
+					X Radius=55
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=700, 396, 700, 380, 765, 385, 767, 410, 700, 396
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityAnimated
+		{
+			Dynamic Properties=1
+			{
+				Comment=
+			}
+			Name=warp
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CPlayAnimationAction
+							{
+								Animation=GetUp
+								Random From Sequencial Set=0
+								Target Name=Golem
+								When Done=Stop on last frame
+								End Sequence Name=Idle
+								Delay Between Targets=0
+								Play In Reverse=0
+								AI To Interrupt=CSkeletonAI
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Golem
+								AI=CSkeletonAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Patrol AI=CGaurdNearMovingPosAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Average Seconds To Move=0
+										Patrol Area AI=CPatrolAreaAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Radius=200
+											TimeOfLastChangeDirectionDueToCollide=0
+											Moving=CEntityBehaviorMoveToPos
+											{
+												Old Stationary Flag=0
+												Angle To Turn To=0
+												Facing Backwards=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+												Play Ratio=1
+												Smooth Turning=0
+												Do Path Finding=1
+												Finished=1
+												Failed Last Path=0
+												Idle Begin Called=0
+												Move To Rate=0
+												CurTargetNormalX=0
+												CurTargetNormalY=0
+												Path Finding Params=CWayPointPath
+												{
+													Start Point=0,0
+													End Point=0,0
+													Length=0
+													Max Dist To Travel=0
+													Num Failed Paths=0
+													Max Failed Paths=0
+													Pos To Move Index=0
+													Dist So Far=0
+													Path=
+												}
+												Pos Moving From=0.000000,0.000000
+												Final Dest=0.000000,0.000000
+												Dest Radius=0
+												Cur Dest Move To=0.000000,0.000000
+												Last Neg Dist=0
+												NumTimesLostGound=0
+												Sequence=
+												Planed Path For=
+											}
+											Retry New Point=0
+										}
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+									}
+									Patrol Start Action=
+									Patrol End Action=
+									Respond to calls for reinforcements=1
+									Target shooter if hit=1
+									Never Unacquire=0
+									Time Since Acquiring Shooter=999
+									Sneak Adjustment=0
+									Target Type=CEntityBehaviorStateSetClosestTarget
+									{
+										Max Distance=300
+										Vision Cone=90
+										Name To Target=
+										Must Be Collideable=1
+										Must Have HPs=1
+										Valid Targets=
+									}
+									Has Seen Target=0
+									Max dist from home=500
+									Pursue AI=CChasePursueAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										AFloat=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Play Ratio=0
+										Next Try To Move=0
+										Max Radius From Final Pos To Get Within=0
+										Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+									}
+									Pursue Start Action=
+									Pursue End Action=
+									Force Pursue Shooter=2
+									Max distance from home=500
+									Investigate End Action=
+									Investigate Start Action=
+									Investigate AI=CChaseInvestigateAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										AFloat=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Turn Behavior=CEntityBehaviorTurnToAngle
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+										}
+										Play Ratio=0
+										Next Try To Move=0
+										Time To Investigate=5
+										Count To Investigate=0
+										Radius to Investigate Point=0
+										Run To Investigate=1
+										State=Chasing
+										Investigate AI=CScanInvestigateAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											AI=CScanAreaAI
+											{
+												Marked For Deletion=0
+												Publisher=
+												Play Ratio=0
+												Next Try To Move=0
+												State=Scanning
+												Go Home Range=300
+												Move To Behavior=CEntityBehaviorMoveToPos
+												{
+													Old Stationary Flag=0
+													Angle To Turn To=0
+													Facing Backwards=0
+													Idle Behavior=CEntityBehaviorIdle
+													{
+														Num Seconds=1
+														Seconds Have Transitioned=0
+														Override Fidget Options=
+														Current Fidget Data=
+														Time Until Next Fidget=0
+														Fidgeting=0
+													}
+													Play Ratio=1
+													Smooth Turning=0
+													Do Path Finding=1
+													Finished=1
+													Failed Last Path=0
+													Idle Begin Called=0
+													Move To Rate=0
+													CurTargetNormalX=0
+													CurTargetNormalY=0
+													Path Finding Params=CWayPointPath
+													{
+														Start Point=0,0
+														End Point=0,0
+														Length=0
+														Max Dist To Travel=0
+														Num Failed Paths=0
+														Max Failed Paths=0
+														Pos To Move Index=0
+														Dist So Far=0
+														Path=
+													}
+													Pos Moving From=0.000000,0.000000
+													Final Dest=0.000000,0.000000
+													Dest Radius=0
+													Cur Dest Move To=0.000000,0.000000
+													Last Neg Dist=0
+													NumTimesLostGound=0
+													Sequence=
+													Planed Path For=
+												}
+												Starting Angle=-45
+												Ending Angle=45
+												Turning Speed=10
+												Time Between Turning=0
+												Start Out Waiting=0
+												Start Counterclockwise=0
+												Turning Flag=0
+												Turn Sequence Name=Idle
+												End Turn Action=
+												Execute Each Turn=0
+												Reset Each Begin=1
+												Current Time To Wait=0
+												Current Start Angle=0
+												Current End Angle=0
+												Waiting=1
+												Starting Facing Angle=-999
+												Complete Turn Time=0
+												Current Turn Time=0
+												Idle Behavior=CEntityBehaviorIdle
+												{
+													Num Seconds=1
+													Seconds Have Transitioned=0
+													Override Fidget Options=
+													Current Fidget Data=
+													Time Until Next Fidget=0
+													Fidgeting=0
+												}
+											}
+										}
+									}
+									Max Dist=80
+									Attack AI=CNormalAttackAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Use Primary Shoot Behavior=1
+										Shoot Behavior=CShootEntityBehavior
+										{
+											Play Sequence=
+											Play Reload Sequence=
+										}
+										Shoot Completed=
+										Turn Behavior=CPointWeaponAtTargetEntityBehavior
+										{
+										}
+										MoveBehavior=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Minimum Attack Distance=100
+										Move Buffer Zone=50
+										Waiting For Threshold=0
+										Moving State=1
+										Firing Complete=1
+										Firing In Progress=0
+										Waiting To Shoot=0
+										Time To Next State Change=0
+										Time To Next MoveRevision=0
+										Began Shooting From=0.000000,0.000000
+									}
+									Attack Start Action=
+									Attack End Action=
+									Check Range When Firing=0
+									Ignore line of sight if in range=0
+									Retreat when=40
+									Retreat Start Action=
+									Has Started Retreat=0
+									State=Any
+									Allowed To Roam Anywhere=0
+									Transition=Array
+									{
+										Array Count=0
+									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSetCompanionAction
+								{
+									Player=$Instigator
+									Companion=Golem
+								}
+								Delay=0.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					X Radius=4000
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CLabelPrinterAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Label=
+					Append Comment to Label=1
+					Append Name to Label=0
+					Display Position=0.000000,0.000000
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Test Interaction
+			Position X=730.25
+			Position Y=508.5
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+			Cur Damage=0
+			Destroyed Script Action=
+			Destroyed Effect Action=
+			Damaged Script Action=
+			Damaged Effect Action=
+			Hit Action=
+			Default Death Type=!None
+			Has Done Death Processing=0
+			Play Ratio=0
+			Aiming Angle=0
+			Movement Angle=0
+			Start FacingAngle=0
+			Current Frame=0
+			Created By=
+			BehaviorStack=CEntityBehaviorStack
+			{
+				InProcess=0
+				Blocking Priority=Idle
+				BehaviorList=Array
+				{
+					Item Count=0
+				}
+			}
+			Facing Backwards=0
+			Last Facing Backwards=0
+			Upper Body Present=0
+			Synch Aiming And Moving=1
+			Frame Index Locked=0
+			Waiting For Discharge=0
+			Still Shooting=0
+			Trying To Move=0
+			Tracking Updates Since Relocate=0
+		}
+		Level Part=CEntityBase
+		{
+			Name=Switch dialog for companion
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CRemoveAIAction
+							{
+								Target Name=Golem
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Golem
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/3 Montaillou/Dialog/War Golem Companion
+										Node ID=20 Companion
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									X Radius=80
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Golem
+								Categories to add=Companion
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=700
+			Position Y=723
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1184, 1023, 1179, 655, 1070, 521, 1199, 507, 1222, 319, 1034, 307, 1090, 176, 744, 176, 749, 0, 1791, 0, 1792, 1023, 1184, 1023
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=golem buzzes
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingOvalTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Enter Action=
+					Exit Action=
+					Repeat Action=CRandomAction
+					{
+						Action=Array
+						{
+							Item Count=8
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/Unusual Suit of Armor
+								Node ID=10 Golem Banter 2
+								Name of Position=Golem 1
+								Position Offset=0.000000,-50.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/Unusual Suit of Armor
+								Node ID=10 Golem Banter 3
+								Name of Position=Golem 1
+								Position Offset=0.000000,-50.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/Unusual Suit of Armor
+								Node ID=10 Golem Banter 4
+								Name of Position=Golem 1
+								Position Offset=0.000000,-50.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/Unusual Suit of Armor
+								Node ID=10 Golem Banter 5
+								Name of Position=Golem 1
+								Position Offset=0.000000,-50.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/3 Montaillou/Dialog/Unusual Suit of Armor
+								Node ID=10 Golem Banter
+								Name of Position=Golem 1
+								Position Offset=0.000000,-50.000000
+								After Action=
+								Include In Log=1
+							}
+							Action=
+							Action=
+							Action=
+						}
+					}
+					Repeat Every=4
+					Touching LayerPart=
+					Next Repeat Time=0
+					X Radius=182
+					YX Ratio=0.712766
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Trigger Icon, Proximity
+			Position X=772
+			Position Y=459
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Companion oval trigger
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingOvalTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Enter Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CSetCompanionAction
+							{
+								Companion=Golem
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Common Objects and Scripts/Fixt Companion Joined/Golem
+							}
+						}
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+					X Radius=358
+					YX Ratio=0.712766
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Trigger Icon, Proximity
+			Position X=770
+			Position Y=478
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=charge golem
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt2
+								Location Entity=Golem
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CSpawnEffectAction
+										{
+											Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt2
+											Location Entity=Golem
+											Make effect a child of the location entity=0
+											X Offset=0
+											Y Offset=0
+											Height Offset=0
+											Play Default Sound=1
+											Action to execute After Effect=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CSendAIDoneMessage
+													{
+														Target=Golem
+													}
+													Action=CAssignTemporaryTaskAction
+													{
+														Target=Golem
+														Temporary Task AI=CPlaySequenceOnceAI
+														{
+															Marked For Deletion=0
+															Publisher=
+															Behavior=CEntityBehaviorPlaySequenceOnce
+															{
+																Sequence=Getup
+																Speed To Play=1
+																Done Sequence=Idle
+																Done Frame=0
+																Was Stationary=0
+																Old Play Ratio=0
+																Move With Sequence=0
+																After Action=
+																Cur Speed To Play=1
+															}
+															Stop Action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=$Trigger
+																	}
+																	Action=CTriggerRelayAction
+																	{
+																		Relay Name=Switch dialog for companion
+																	}
+																	Action=CActivateAction
+																	{
+																		Target Name=Companion oval trigger
+																		Play Activate Sound=0
+																		Delay Between Activations=0
+																		Warp Behavior=
+																	}
+																}
+															}
+															Execute Action Only Once=1
+															Stop Action Executed=0
+														}
+														Original AI Type=CSkeletonAI
+														Completion Message to wait for=AI Done
+														Suppress can't assign error=0
+													}
+												}
+											}
+										}
+										Action=CDeactivateAction
+										{
+											Target Name=golem buzzes
+										}
+									}
+								}
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=War Golem poly Gets up
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=795
+			Position Y=729
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThen Exit Area
+					Action=CRelocateAction
+					{
+						Return to map=unlikely soon
+						New Map Name=3 Montaillou/01 Hamlet Exterior
+						New Location=From Giants Cave
+						Who To Switch=$Instigator
+						Relative Position=0
+						Ignore Party Ready Rules=0
+					}
+					X Radius=30
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=937, 414, 931, 295, 946, 283, 981, 294, 1021, 325, 1021, 366, 1021, 439, 1010, 466, 937, 414
+			Center Position Offset=10.000000,67.000000
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=977, 420, 945, 459, 977, 420
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CEntityBase
+		{
+			Name=start here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSpawnPointAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Per Party Spawn Action=
+					Per Character Spawn Action=
+					Set Facing Angle=1
+					Facing Angle=145
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Spawn Point
+			Position X=947
+			Position Y=460
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Hamlet/General/Bones/Bones3
+			Position X=989
+			Position Y=509
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=1
+			Full Height=0
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1010, 505, 990, 524, 965, 596, 953, 520, 979, 464, 1011, 464, 1010, 505
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=1058, 526, 1015, 505, 1008, 468, 1017, 434, 1013, 365, 1033, 305, 1227, 315, 1206, 508, 1058, 526
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CWayPointsPolygon
+		{
+			Tries To Collide=0
+			Team Number=Nutral
+			Used In=QuestMode
+			Polygon=977, 419, 1051, 391, 977, 419
+			Center Position Offset=0.000000,0.000000
+			Insertion Priority=Secondary
+			Include Closing Segment=1
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=2038, 1456, 1961, 1480, 1956, 1372, 1928, 1316, 1919, 1263, 1946, 1210, 2028, 1142, 2095, 1114, 2167, 1120, 2249, 1180, 2308, 1138, 2360, 1120, 2438, 1130, 2482, 1157, 2509, 1213, 2509, 1326, 2617, 1496, 2626, 1522, 2617, 1547, 2602, 1556, 2554, 1546, 2480, 1532, 2196, 1326, 2038, 1456
+			Center Position Offset=0.000000,0.000000
+		}
+	}
+	Plasma Ground=CPlasmaTileMap
+	{
+		Blending=0.5
+		Num Textures=8
+		Texture 0=14 Black
+		Texture 1=Hamlet/Hamletg14
+		Texture 2=Hamlet/Hamletg13
+		Texture 3=Hamlet/Hamletg12
+		Texture 4=Hamlet/Hamletg11
+		Texture 5=Hamlet/Hamletg10
+		Texture 6=Hamlet/Hamletg9
+		Texture 7=Hamlet/stonepath5
+		Elevations Row 0=04040404040404040404040404040400000000000000000000000000000000
+		Elevations Row 1=04040404040404040404040404040400000000000000000000000000000000
+		Elevations Row 2=04040404040404040404040404040400000000000000000000000000000000
+		Elevations Row 3=04040404040404040404040404040400000000000000000000000000000000
+		Elevations Row 4=04040004040404040404040404040400000000000000000000000000000000
+		Elevations Row 5=0404000004040404042F562F2F040400000000000000000000000000000000
+		Elevations Row 6=0404040004040404043F41A65F26A5922D0000000000000000000000000000
+		Elevations Row 7=0404040404040404594E87544E584D55340000000000000000000000000000
+		Elevations Row 8=04040404040404046D5E4F5284A14175000000000000000000000000000000
+		Elevations Row 9=04040404000404040000242F00292F00000000000000000000000000000000
+		Elevations Row 10=04040404040404040404040404040400000000000000000000000000000000
+		Elevations Row 11=04040404040404040404040404040400000000000000000000000000000000
+		Elevations Row 12=04040404040404040404040404040400000000000000000000000000000000
+		Elevations Row 13=04000404040404040404040404040000000000000000000000000000000000
+		Elevations Row 14=00000000000404040404040404000000000000000000000000000000000000
+		Elevations Row 15=00000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 16=00000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 17=00000000000000000000000000000000000000000000000000000000000000
+		Elevations Row 18=00000000000000000000000000000000000000000000000000000000000000
+		Light Overlay Row 0=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 1=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 2=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 3=80808080808080808072808000000000000072708E807072807072808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 4=80808080808080808000000000000072707272708EFFFFFF727072807072808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 5=808080808080808080008E72FFFFFF72708E727072FFFFFFFFFFFF807072808E80808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 6=8080808080808080808070728E7072FFFFFFFFFFFF8E70727270728E7072808E8E808E80808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 7=80808080808080808080707272708EFFFFFFFFEFFFFFFFFFFFFFFF727072FFFFFF808E80808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 8=808080808080808080728080728E8E8E7072728E72FFFFFF727072807072727072807080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 9=8080808080808080807280807280808070FE7280FE8070FE808072808E80807072807080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 10=808080808080808080808080808080808080808080808080808080807080807080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 11=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 12=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 13=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 14=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 15=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 16=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 17=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+		Light Overlay Row 18=808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080808080
+	}
+}

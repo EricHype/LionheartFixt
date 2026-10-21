@@ -859,10 +859,20 @@ CLayerSaveData
 													After Action=
 													Include In Log=1
 												}
-												Action=CSetCompanionAction
+												Action=CMultipleActionsAction
 												{
-													Player=$Instigator
-													Companion=$Trigger
+													Action=Array
+													{
+														Item Count=2
+														Action=CSetCompanionAction
+														{
+															Companion=$Trigger
+														}
+														Action=CUseCannedActionAction
+														{
+															Canned Object=Common Objects and Scripts/Fixt Companion Joined/Grace
+														}
+													}
 												}
 												Action=CDeactivateAction
 												{

@@ -159,10 +159,20 @@ Next Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Bishop Diego
+}
+}
 }
 Action=CActivateAction
 {
@@ -321,10 +331,20 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Bishop Diego
+}
+}
 }
 Action=CActivateAction
 {

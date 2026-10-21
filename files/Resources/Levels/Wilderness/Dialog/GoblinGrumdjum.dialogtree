@@ -1424,10 +1424,20 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Grumdjum
+}
+}
 }
 Action=CMultipleActionsAction
 {
@@ -1582,10 +1592,20 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Grumdjum
+}
+}
 }
 Action=CMultipleActionsAction
 {
@@ -1850,10 +1870,20 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Grumdjum
+}
+}
 }
 Action=CMultipleActionsAction
 {

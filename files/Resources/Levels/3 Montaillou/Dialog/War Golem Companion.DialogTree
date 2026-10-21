@@ -1,0 +1,56 @@
+CDialogTree
+{
+Name=War Golem
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 Golem Banter
+Text=<Brrrt>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Golem Banter 2
+Text=<Vrrrt>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Golem Banter 3
+Text=<Whrrzzz>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Golem Banter 4
+Text=<Zzzrrt>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Golem Banter 5
+Text=<ZzzzZzzrt>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 Companion
+Text=<Brrrt>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Follow Me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Golem
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Stay here.
+Go to node ID=
+Icon=Exit Icon
+}

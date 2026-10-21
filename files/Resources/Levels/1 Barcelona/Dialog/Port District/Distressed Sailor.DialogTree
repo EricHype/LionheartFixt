@@ -758,10 +758,20 @@ Relay Name=fernand joins you
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=Distressed Sailor
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Distressed Sailor
+}
+}
 }
 Delay=0.5
 Plus or Minus=0
@@ -778,10 +788,20 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Walk with me again, Fernand.
 Go to node ID=
-Custom Action=CSetCompanionAction
+Custom Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=Distressed Sailor
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Distressed Sailor
+}
+}
 }
 
 Requirement=!None
@@ -797,10 +817,20 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Walk with me again, Fernand.
 Go to node ID=
-Custom Action=CSetCompanionAction
+Custom Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=Distressed Sailor
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Distressed Sailor
+}
+}
 }
 
 Requirement=!None

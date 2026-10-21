@@ -1137,10 +1137,20 @@ Relay Name=Switch Joan of Arc interactions specifier for companion mode
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Joan of Arc
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -1238,10 +1248,20 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=Yes, follow me.
 Go to node ID=
-Custom Action=CSetCompanionAction
+Custom Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Joan of Arc
+}
+}
 }
 
 Requirement=!None

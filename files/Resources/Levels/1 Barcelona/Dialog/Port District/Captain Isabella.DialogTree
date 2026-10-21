@@ -1388,10 +1388,20 @@ Relay Name=Switch Interaction Specifier when Grace becomes a companion
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Grace
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -1429,10 +1439,20 @@ Relay Name=Switch Interaction Specifier when Grace becomes a companion
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Grace
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -1490,10 +1510,20 @@ Relay Name=Switch Interaction Specifier when Grace becomes a companion
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Grace
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -1531,10 +1561,20 @@ Relay Name=Switch Interaction Specifier when Grace becomes a companion
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Grace
+}
+}
 }
 Delay=0
 Plus or Minus=0

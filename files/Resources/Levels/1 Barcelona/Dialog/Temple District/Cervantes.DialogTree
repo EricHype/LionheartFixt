@@ -1,0 +1,639 @@
+CDialogTree
+{
+Name=Cervantes
+Portrait=Dialog/NPC Portraits/Cervantes
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=La bestia! <the beast!> Did you see it? It was right over there. Tell me that you saw it!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What are you talking about?
+Go to node ID=20 beast
+
+Requirement=!None
+Reply Text=I didn't see anything.
+Go to node ID=40 there is no beast
+
+Requirement=!None
+Reply Text=Yes, I saw it. <Lie>
+Go to node ID=50 saw the beast
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=It was just here! Perhaps you saw it this time?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What are you talking about?
+Go to node ID=20 beast
+
+Requirement=!None
+Reply Text=I didn't see anything.
+Go to node ID=40 there is no beast
+
+Requirement=!None
+Reply Text=Yes, I saw it. <Lie>
+Go to node ID=50 saw the beast
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=Be cautious, the beast is everywhere.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=12 crazy goodbye
+Text=So, you also think I'm crazy in the head, eh? You won't think I'm crazy when the beast comes for you some day!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=15 not help
+Text=Ah, I understand your reluctance. But know that la bestia is real, I assure you of that. If you change your mind, I will be here.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 beast
+Text=La bestia! Dios mio! It is the most hideous creature that stalks the streets of Barcelona. It has been stalking me since I first saw it three weeks ago in the western forest.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me more about the beast.
+Go to node ID=30 more beast
+
+Requirement=!None
+Reply Text=Why is the beast stalking you?
+Go to node ID=60 beast stalks
+
+Requirement=!None
+Reply Text=Where did you first see it?
+Go to node ID=200 orange crystal
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 more beast
+Text=The beast is seen only when it wants to be seen. It changes form as well. I have seen it appear as a great scaled dragon and sometimes as a devilish horned monster!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=35 more beast 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 more beast 2
+Text=No one else sees it, so no one else believes it exists. I have been questing to slay this beast for many weeks now, but I need help to destroy it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will help you destroy this beast.
+Go to node ID=100 quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I cannot help you. Goodbye.
+Go to node ID=15 not help
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 there is no beast
+Text=You are like the others, the beast is able to hide from your eyes too. But you must believe me, we are in terrible danger. La bestia es muy peligrosa. <The beast is very dangerous.>
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=45 there is no beast 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 there is no beast 2
+Text=I am questing to destroy it and need a trustworthy squire to assist me. Would you like to help me slay la bestia?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will help you destroy this beast.
+Go to node ID=100 quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I don't have time for your ranting.
+Go to node ID=12 crazy goodbye
+
+Requirement=!None
+Reply Text=I cannot help you. Farewell.
+Go to node ID=15 not help
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 saw the beast
+Text=At last! I almost started to fear that I *am* crazy! But you have seen it! You know it must be destroyed! Will you join me in my quest to slay la bestia?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will help you destroy this beast.
+Go to node ID=100 quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I don't have time for your ranting.
+Go to node ID=12 crazy goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I cannot help you. Farewell.
+Go to node ID=15 not help
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 beast stalks
+Text=The beast stalks me because I know it exists, because I have seen it! It has tried many times to kill me, but I will slay it first.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Where did you see it?
+Go to node ID=200 orange crystal
+
+Requirement=!None
+Reply Text=I have to leave. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 quest
+Text=Excelente! This is truly wonderful news! Together we shall defeat la bestia and gain fame and fortune. The people of Barcelona will not soon forget our bravery! Now, follow me to glory, squire!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Cervantes joins you as npc)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSendAIDoneMessage
+{
+Target=Cervantes
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Cervantes La Beastia relay
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
+State=C99QOG3L
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 tree attack 1
+Text=Aqui! Here! La bestia! Help me attack the beast!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=112 tree attack 2
+Text=There is la bestia! It will not survive my blade!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=112 tree attack 3
+Text=Squire! Assist me!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=112 tree attack 4
+Text=You shall not escape me this time!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=112 tree attack 6
+Text=By my honor I shall slay la bestia! Follow me, squire!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=114 building attack 1
+Text=How clever you are to hide there! But I see you, foul monster!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=117 building attack 2
+Text=Dios Mio! To arms, squire! To arms!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=150 after attack tree
+Text=Squire, I nearly destroyed it! But it slipped away again!
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Reply Text=Perhaps if you allowed me to lead, I could help you track this creature down.
+Go to node ID=170 set Cervantes to companion
+Action work in progress=(speech)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Let's just keep looking for the beast.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cervantes Action Relay
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You were attacking a *tree*, not a creature.
+Go to node ID=155 cortes defends himself
+
+Requirement=!None
+Reply Text=I don't have time for your ranting. Goodbye.
+Go to node ID=12 crazy goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=155 cortes defends himself
+Text=A tree? Did you not see the creature clawing at me? My squire, you are not seeing clearly if you thought I was fighting a tree. Now, we must continue our quest to destroy la bestia.
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Reply Text=Perhaps if you allowed me to lead, I could help you track this creature down.
+Go to node ID=170 set Cervantes to companion
+Action work in progress=(speech)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I didn't see it. Let's keep looking for the beast.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cervantes Action Relay
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I don't have time for your ranting. Goodbye.
+Go to node ID=12 crazy goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 set Cervantes to companion
+Text=You think you can track la bestia, eh, squire? I will follow you for a time. But we must slay it quickly so that it will no longer terrorize Barcelona.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=make cervantes a companion relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 orange crystal
+Text=I was by the windmill along the coast, daydreaming about my novel, Man of La Mancha. Just as I approached the windmill a ferocious creature appeared. La bestia! It must have followed me into the city, and now it is my duty to slay it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will help you destroy this beast.
+Go to node ID=100 quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I don't have time for your ranting.
+Go to node ID=12 crazy goodbye
+
+Requirement=!None
+Reply Text=I cannot help you. Goodbye.
+Go to node ID=15 not help
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=202 encounter beast	
+Text=There! There is the beast! Quickly, squire, slay the beast!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=205 don quixote
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=206 don quixote dies
+Text=Thank you for helping me destroy the beast! Now that it will trouble me no more, I can finally put my mind at rest.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=207 don quixote dies 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=207 don quixote dies 2
+Text=I realize that you doubted my sanity at times, and I am sincerely grateful that you stayed besides me. I have a humble reward to repay your kindness. Muchas gracias, my friend!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=player receives gold and xp)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=153 after third attack
+Text=Squire, surely you saw it this time! The creature leapt from the flames and nearly devoured me!
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 20
+Reply Text=Perhaps if you allowed me to lead, I could help you track this creature down.
+Go to node ID=170 set Cervantes to companion
+Action work in progress=(speech)
+Custom Action=CDeactivateAction
+{
+Target Name=citizen thinks cervantes crazy
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=I didn't see it. Let's keep looking for the beast.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=cervantes continue on squire relay
+}
+Action=CDeactivateAction
+{
+Target Name=citizen thinks cervantes crazy
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You are a raving lunatic and a menace to this city. You should be thrown in jail!
+Go to node ID=12 crazy goodbye
+Custom Action=CDeactivateAction
+{
+Target Name=citizen thinks cervantes crazy
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I don't have time for your ranting. Goodbye.
+Go to node ID=12 crazy goodbye
+Custom Action=CDeactivateAction
+{
+Target Name=citizen thinks cervantes crazy
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 continue on
+Text=Yes, you are right squire. We must hurry and vanquish la bestia.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 cervantes saved
+Text=Muy bueno! You handled that very well! Now, shall we resume our quest, squire?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll continue the quest only if you follow *me*.
+Go to node ID=170 set Cervantes to companion
+Icon=Quest Icon
+
+Requirement=Speech moreequal 15
+Reply Text=I don't have time for your ranting. Goodbye.
+Go to node ID=12 crazy goodbye
+Icon=Speach Skill Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 cervantes saved return
+Text=Squire, I grow impatient. Shall we resume our quest then?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll continue the quest only if you follow *me*.
+Go to node ID=170 set Cervantes to companion
+Icon=Quest Icon
+
+Requirement=Speech moreequal 15
+Reply Text=I don't have time for your ranting. Goodbye.
+Go to node ID=12 crazy goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 cervantes nearly dead as companion
+Text=Squire! Help, I am gravely wounded!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 companion leave cervantes
+Text=Very well, squire, you may leave for a time. But you must return soon so we can continue our quest! I will wait for you here.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 companion attack general
+Text=Ah hah! Beast, you will not survive my flashing blade!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 companion leave Cervantes alternate
+Text=Very well, squire, you may leave for a time. But you must return soon so we can continue our quest! I will wait for you in Barcelona.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=114 follow me banter
+Text=Follow my lead squire, we must hurry!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=207 don quixiote pleads
+Text=Kill Cervantes! He's a madman, he thinks I'm a dragon!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 wilderness quips
+Text=Have caution, squire, la bestia is everywhere.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 wilderness quip 2
+Text=We must not waste any time. La bestia is lurking nearby.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 don quixote attacks
+Text=You're all crazy! I'll end this right now!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 magic quill explanation
+Text=No! That can't be! *I* am real! Cervantes is the shade!
+Should Have Voiceover=1
+
+Requirement=Speech moreequal 25
+Reply Text=Cervantes created you with a magic quill. You are nothing more than a character from his story.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=dispel don quixote
+}
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=You are an evil spectre and must be destroyed.
+Go to node ID=500 don quixote attacks
+Custom Action=CSetTargetTypeAction
+{
+Entity Name=Don Quixote
+Name To Target=
+Valid Targets=Player,Player Friend
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=This whole thing is crazy. I'm leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 convince don quixote
+Text=Everything felt so real, but I *knew*. I had hoped I was wrong. So many desires and so many quests I still want to pursue! Thank you, Cervantes, for my brief existence...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1000 cervantes in jail
+Text=Praise the saints, you have come back for me! You must find a way to unlock this door - the guard who brought me here has departed. We could easily sneak out of this prison. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will find a way to free you.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
+State=5PV5XAHX
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Actually, I hope you *rot* in this prison, maniac.
+Go to node ID=1002 insult Cervantes in jail
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have *no* intention of rescuing you. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 cervantes in jail return
+Text=Have you found a way to free me from this place? We must continue our quest, squire!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll work on picking the lock.
+Go to node ID=
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have *no* intention of saving you.
+Go to node ID=1002 insult Cervantes in jail
+
+Requirement=!None
+Reply Text=Do I know you? Sorry, there must be some mistake.
+Go to node ID=1002 insult Cervantes in jail
+
+Requirement=!None
+Reply Text=I really must be going.
+Go to node ID=1002 insult Cervantes in jail
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1002 insult Cervantes in jail
+Text=No! You cannot leave me here! NO!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1005 saved cervantes
+Text=Well done squire! I think it is best if *you* lead now. Let us continue our quest!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1500 cervantes leaves party dialogue
+Text=You disappoint me, squire. If that is your wish, I will await you in Barcelona. You will find me in the park where we first met.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cervantes goes back to Barcelona
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1500 cervantes under attack
+Text=Ayudame! Help me squire!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1500 cervantes under attack 2
+Text=<Pained grunt>
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=1500 cervantes irritated if veer too far
+Text=Squire, we have traveled far from Barcelona and I no longer sense la bestia. We *must* return to our quest and stop the creature before it attacks again!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=3 Return after release as a companion
+Text=Shall we continue our journey?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Sure, come with me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Cervantes
+}
+}
+}
+
+Requirement=!None
+Reply Text=No, I'd rather not.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=5000 arrive at church and knights are dead
+Text=Squire, I nearly destroyed it! But it slipped away again!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Perhaps if you allowed me to lead, I could help you track this creature down.
+Go to node ID=170 set Cervantes to companion
+Action work in progress=(speech)
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5000 davinci
+Text=Senor DaVinci! Perhaps he can help us find La Bestia.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=davinci chides cervantes
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Is Default Reply=1
+}

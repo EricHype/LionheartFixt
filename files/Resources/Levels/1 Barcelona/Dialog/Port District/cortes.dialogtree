@@ -1,0 +1,1184 @@
+CDialogTree
+{
+Name=Cortes
+Portrait=Dialog/NPC Portraits/Cortez
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=It is certainly my good fortune that you arrived when you did. That *man* makes serpents seem trustworthy. Allow me to properly introduce myself. I am Hernan Cortes, former conquistador for España, and explorer of the New World. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the New World.
+Go to node ID=20 new world
+
+Requirement=!None
+Reply Text=Why are you no longer a conquistador?
+Go to node ID=30 conquistador
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Good to see you again. What can I do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=passed on cave quest
+Desired Minimum Count=1
+}
+}
+Reply Text=On second thought, I will help you find the treasure in the cave you mentioned.
+Go to node ID=160 cortes cave quest
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=passed on cave quest
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Tell me about the New World.
+Go to node ID=20 new world
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=passed on cave quest
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Why are you no longer a conquistador?
+Go to node ID=30 conquistador
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Arm
+Text=You return. Has DaVinci constructed the mechanical arm?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=VTH2DOJX
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Cortez Arm
+}
+}
+}
+Reply Text=Yes, I have the arm.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cortes becomes companion
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=
+}
+Reply Text=Not yet, I'll let you know when it's complete.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 cortes agrees to deliberation
+Text=Yes, I would agree to let this one settle our dispute. What say you, stranger?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What are you arguing about?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=cortes argument more info node
+}
+
+Requirement=!None
+Reply Text=I have heard enough to side with Cortes.
+Go to node ID= 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke storms off angry
+}
+
+Requirement=!None
+Reply Text=I have heard enough to side with you, Shylocke.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=side with shylocke
+}
+
+Requirement=!None
+Reply Text=I do not wish to interfere. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke ends dialogue with taunt
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 cortes agrees to deliberation return
+Text=Have you returned to decide our quarrel?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What are you arguing about?
+Go to node ID=50 more info
+
+Requirement=!None
+Reply Text=I have heard enough to side with Cortes.
+Go to node ID= 
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke storms off angry
+}
+
+Requirement=!None
+Reply Text=I have heard enough to side with you, Shylocke.
+Go to node ID=150 cortes disappointed
+Custom Action=CTriggerRelayAction
+{
+Relay Name=side with shylocke
+}
+
+Requirement=!None
+Reply Text=I do not wish to interfere. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke ends dialogue with taunt
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 goodbye
+Text=Until the next time.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=10 Cortes Balloon 1
+Text=Por favor, señor Shylocke! I have nothing left after the expedition. I lost everything!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=30 Cortes Balloon 2
+Text=If you could just spare but a single chest of gold, I could sail to the New World and recover your losses!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=50 Cortes Balloon 3
+Text=I can make you a rich man!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=70 Cortes Balloon 4
+Text=You are a heartless miser!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=90 Cortes Balloon 5
+Text=Shylocke, you must spare more gold!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 new world
+Text=Across the blue sea, there is an untamed land, wilder and more alive than any place you have ever seen in Europe. The New World, the Americas, it was supposed to be a land of wealth and dreams. After three expeditions to that accursed land, I can tell you it is a place of nightmares.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about your first expedition.
+Go to node ID=25 first expedition
+
+Requirement=!None
+Reply Text=Tell me about your second expedition.
+Go to node ID=26 second expedition
+
+Requirement=!None
+Reply Text=Tell me about your third expedition.
+Go to node ID=28 third expedition
+
+Requirement=!None
+Reply Text=Why are you no longer a conquistador?
+Go to node ID=30 conquistador
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=25 first expedition
+Text=My first expedition, in 1507, proved to be successful. We explored a land known as Mexico and found a friendly tribe of natives, the Cempoalas, who were willing to share food, gold, and other resources. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 first expedition 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=26 second expedition
+Text=I traveled to Mexico a second time and heard legends of the Aztecs, a fierce tribe of strong warriors and powerful shamans. The Aztec capital, Tenochtitlan, supposedly contained riches beyond imagination. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=41 second expedition 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=28 third expedition
+Text=When I returned to España, I found that other conquistadors had told the King about the perilous encounters they faced in the New World. Despite the treasure I brought back, the King was hesitant to explore the New World further.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=42 third expedition 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 conquistador
+Text=Unlike the soldiers under my command, I barely survived my last expedition, and a winged feathered beast snapped my arm off during my escape.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=31 conquistador 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 conquistador 2
+Text=Now I am heavily indebted, and I fear that no lender will give me more gold. There is one possible way for me to repay my debts, but with one arm it would be an impossible task.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about the one way to repay your debt.
+Go to node ID=130 hidden treasure
+
+Requirement=!None
+Reply Text=Tell me about your last expedition.
+Go to node ID=28 third expedition
+
+Requirement=!None
+Reply Text=Tell me about the New World.
+Go to node ID=20 new world
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 first expedition 2
+Text=I befriended a tribal shaman, who led me to a wondrous fountain hidden deep within the jungle. The water restored my vitality and has kept me youthful to this day, even though I am over a hundred years old.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about your second expedition.
+Go to node ID=26 second expedition
+
+Requirement=!None
+Reply Text=Tell me about your third expedition.
+Go to node ID=28 third expedition
+
+Requirement=!None
+Reply Text=Why are you no longer a conquistador?
+Go to node ID=30 conquistador
+
+Requirement=!None
+Reply Text=Tell me about the New World.
+Go to node ID=20 new world
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=41 second expedition 2
+Text=With my small force, I could not hope to conquer the capital. Instead I engaged the outlying Aztec territories so that I could return with some treasures to convince España to give me an army.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Tell me about your first expedition.
+Go to node ID=25 first expedition
+
+Requirement=!None
+Reply Text=Tell me about your third expedition.
+Go to node ID=28 third expedition
+
+Requirement=!None
+Reply Text=Why are you no longer a conquistador?
+Go to node ID=30 conquistador
+
+Requirement=!None
+Reply Text=Tell me about the New World.
+Go to node ID=20 new world
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 third expedition 2
+Text=I turned to private moneylenders like Shylocke to fund my expedition. When I showed him the intricate gold idols, precious gems, and jewels he gave me the money to buy ships and hire soldiers. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=43 third expedition 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=43 third expedition 3
+Text=We sailed back to Mexico and searched for Tenochtitlan. What we found was death. All but a few of my men were captured and sacrificed to bloodthirsty Aztec gods or else eaten by their terrible beasts. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why are you no longer a conquistador?
+Go to node ID=30 conquistador
+
+Requirement=!None
+Reply Text=Tell me about your first expedition.
+Go to node ID=25 first expedition
+
+Requirement=!None
+Reply Text=Tell me about your second expedition.
+Go to node ID=26 second expedition
+
+Requirement=!None
+Reply Text=Tell me about the New World.
+Go to node ID=20 new world
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 hidden treasure
+Text=During the return voyage from the Americas, we encountered a derelict ship, strangely deserted by its crew. And in the empty captain's quarters, I found a tattered map leading to a great cache of treasure. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=130 hidden treasure 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 hidden treasure 2
+Text=I thought our bad fortunes had reversed, but when we returned to our own vessel, dark spirits and ghostly pirates awoke on the mysterious ship and pursued us. Only the rising sun and the grace of God saved us from a grisly death.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=130 hidden treasure 3
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 hidden treasure 3
+Text=I have spent many weeks studying every detail of the map. The treasure lies just beyond the walls of Barcelona in a secret cave, and only *I* know its location.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why are you unable to enter the cave?
+Go to node ID=133 cave monsters
+
+Requirement=!None
+Reply Text=What kind of treasure are you talking about?
+Go to node ID=131 riches
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=131 riches
+Text=Oh, Dios Mio! According to the map, there is enough treasure in the cave to make us both very wealthy. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why are you unable to enter the cave?
+Go to node ID=133 cave monsters
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=133 cave monsters
+Text=There is a reason this hidden treasure has never been claimed. The map warns of ghastly, monstrous, terrible creatures guarding whatever treasures lie within the cave.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=134 cave monsters 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=134 cave monsters 2
+Text=And with the loss of my arm, I know that I could not survive the cave alone. If I could claim the treasure, I could repay Shylocke and still have enough gold to fund another expedition to the New World.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Is there a way I could help you compensate for your lost arm?
+Go to node ID=164 cortes needs to repair the arm
+
+Requirement=!None
+Reply Text=You would likely be more of a liability to me without your arm. Farewell.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye 
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 cortes cave quest
+Text=Magnifico! Then we shall leave quickly and begin our quest. I have a keen sense of character, my friend, and I have a feeling that our partnership will bring us both good fortune.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(add Cortes as NPC and add cave quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CTriggerRelayAction
+{
+Relay Name=cortes companion release interaction specifier
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Companion=Cortes with arm
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Cortes
+}
+}
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the hidden treasure for Cortes
+State=GG4LTXRF
+}
+Action=CPrintCombatTextAction
+{
+Text to print=Cortes has marked a spot on your map where he believes the cave to be.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/River
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 cortes cave quest female response
+Text=Magnifico! Then we shall leave quickly and begin our quest. I have a keen sense of character, amiga, and I have a feeling that we our partnership will bring us both good fortune.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(add Cortes as NPC and add cave quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=cortes companion release interaction specifier
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Companion=Cortes
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Cortes
+}
+}
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=162 cortes no fool
+Text=Gracias, your offer is very *generous*, but how do I know you would return with the treasure, eh? No, we go together or not all.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will help you retrieve this treasure to pay off Shylocke.
+Go to node ID=160 cortes cave quest
+Icon=Quest Icon
+
+Requirement=Barter moreequal 30
+Reply Text=I will help you retrieve this treasure, but I demand half of the treasure.
+Go to node ID=163 even share
+Action work in progress=(barter)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=No, I'm not interested.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=passed on cave quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=163 even share
+Text=Perhaps Señor Shylocke has taught you his famous bargaining skills, eh? I am thankful for your aid and have little choice but to accept your difficult terms. We should leave soon and begin our quest.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(add Cortes as NPC and add cave quest and set flag to give more treasure reward for quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=6
+Action=CTriggerRelayAction
+{
+Relay Name=cortes companion release interaction specifier
+}
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Companion=Cortes with arm
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Cortes
+}
+}
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Recover the hidden treasure for Cortes
+State=GG4LTXRF
+}
+Action=CPrintCombatTextAction
+{
+Text to print=Cortes has marked a spot on your map where he believes the cave to be.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/River
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Convinced cortes to give half of treasure
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=Wilderness Maps/Cortez Cave
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=164 cortes needs to repair the arm
+Text=I appreciate your kindness, friend. I have spoken with the greatest medical mind of this city, none other than Leonardo da Vinci. He has offered to design a mechanical limb to replace my arm, and though I am skeptical...I pray that he can construct a miracle from gears and metal. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will speak with DaVinci about the mechanical arm.
+Go to node ID=164 cortes needs to repair the arm 2
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=EPVSO4Y0
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I think I'll leave now.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=164 cortes needs to repair the arm 2
+Text=Gracias! I will wait here for any word from Señor DaVinci.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=220 cortes receives new arm
+Text=Dios mio! This mechanical arm is perfect! *Now* I am ready. Are you prepared to earn some gold and help me find the hidden treasure?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I am ready to go with you on your expedition.
+Go to node ID=160 cortes cave quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Cortes, tell me where this treasure is and I will retrieve it for you.
+Go to node ID=162 cortes no fool
+Icon=Quest Icon
+
+Requirement=Barter moreequal 30
+Reply Text=Cortes, I will help you retrieve this treasure, but I demand an even share.
+Go to node ID=163 even share
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=No, I think I'll leave now.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=passed on cave quest
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=230 wait to leave
+Text=Very well, I will wait here until you are ready to leave.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=300 secret cave
+Text=Aqui! Here is the cave, just as I promised. It appears, though, that this river blocks our path. I know an incantation that might help us get across.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=310 mayan transmute
+Action work in progress=(Cortes casts a tramsute spell, play sound of Indian chanting with spell)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=310 mayan transmute
+Text=I learned that transmutation charm from a witch doctor I captured in the Americas. Now, let us seek our destiny!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=400 female romance
+Text=I must admit, your courage and bravery inspire me. Fire burns through your blood and heart. I find your strength to be very alluring. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=You are most kind, but I do not feel the same for you.
+Go to node ID=410 romance rejection
+
+Requirement=!None
+Reply Text=I also admire your strength and bravery.
+Go to node ID=420 possible romance
+
+Requirement=!None
+Reply Text=Let's just focus on our quest, Cortes.
+Go to node ID=410 romance rejection
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Why don't you just take a long swim in a cold river?
+Go to node ID=412 rude romance rejection
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=410 romance rejection
+Text=With time, perhaps, you will come to appreciate that many women would be grateful for my affection. But for now, we shall resume the mission.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=412 rude romance rejection
+Text=With all that I could offer, how could you deny me? If I could not please you, no man could. Ah, well, perhaps I have answered my own question, no? Let us be on our way...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=420 possible romance
+Text=Of course you do. There is a powerful force drawing our destinies together. I am drawn to your stunning beauty and you are enamored of my rugged charms and my irresistible Spanish machismo. It is love, el amor.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 arrive at river
+Text=According to my map, we are very close to the cave now! Al suroeste! To the southwest!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=310 cross the river
+Text=The cave is just beyond this river. I know an earth charm that may help us cross it.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 enter cave
+Text=I smell la Sangre del Diablo <The Blood of the Devil>. This cave is haunted by old spirits, so stay aware.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 cave map
+Text=According to the text on this map, we walk forty paces south, ten paces east, and then use our eyes to find the gold.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=600 cortes sees dragon
+Text=Dios mio! Look at that beast. El dragon still looks fearsome, even in death. We must be close to the treasure!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 Conversation Start Shylocke Argument
+Text=You cannot seize my ship, Shylocke. No one in the world would agree that what you say is fair!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=cortes shylocke argument
+}
+Action=CDelayAction
+{
+Next Action=CRemoveAIAction
+{
+Target Name=shylocke
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Delay=0
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CAddAIAction
+{
+Target Name=shylocke
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTalk
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=Cortes Banter Relay
+}
+Action=CDeactivateAction
+{
+Target Name=Shylocke Banter Relay
+}
+Action=CDisplayDialogTreeAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Shylocke
+Node ID=3 Return Dialogue
+Speaker=$trigger
+Player Being Spoken To=$Instigator
+}
+Action=CActivateAction
+{
+Target Name=start the cortes shylocke banter
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+X Radius=55
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
+}
+Delay=0.01
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 Return Dialogue
+Text=Hola amigo, have you formed an opinion about our dispute?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What are you arguing about again?
+Go to node ID=50 more info
+
+Requirement=!None
+Reply Text=I have heard enough to side with Cortes.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke storms off angry
+}
+
+Requirement=!None
+Reply Text=I have heard enough to side with you, Shylocke.
+Go to node ID=150 cortes disappointed
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 35
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 35
+}
+}
+Reply Text=You are both rational men. Perhaps we can settle a compromise?
+Go to node ID=130 compromise
+Action work in progress=(Either Barter >=35%, Speech >=50%, CH 7+ or IN 8+)
+
+Requirement=!None
+Reply Text=I do not wish to interfere. Goodbye.
+Go to node ID=140 no resolution
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Return Greeting
+Text=Hola, my friend. I must thank you again for helping me with Shylocke. Perhaps you could find it in your heart to help an old conquistador once more?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What do you have in mind?
+Go to node ID=165 help with arm
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 cortes refutes
+Text=<Cortes raises a stump where his left arm used to be> The expedition has cost me a great deal already. Shylocke knew the risks when he invested in the expedition. I have offered to recover his losses if he would fund another expedition. Now, what do you say, stranger?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I have heard enough to side with Cortes.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke storms off angry
+}
+
+Requirement=!None
+Reply Text=I have heard enough to side with you, Shylocke.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=side with shylocke
+}
+
+Requirement=!None
+Reply Text=I do not wish to interfere. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke ends dialogue with taunt
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=151 no resolution 2
+Text=I suppose I should not have rested my hopes on a stranger. If you will excuse me, I must find a way to pay that miser back.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CSendAIDoneMessage
+{
+Target=Cortes
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 cortes disappointed
+Text=Damn it all! And here I thought you would vindicate me. Instead, you help that miser Shylocke. We shall not see each other again.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=shylocke leaves pleased
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=165 help with arm
+Text=I lost my arm during an expedition to the New World and with it my livelihood. A famous inventor in town, Leonardo da Vinci, has agreed to design a mechanical arm, but he lacks the materials to complete it. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=165 help with arm 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=165 help with arm 2
+Text=I have heard through rumor that you know him well. Could you help him? If so, I could be of some use to you later. I recovered a treasure map during my expedition that details the location of a hidden treasure cache. Help me with the arm and we can share the gold.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I will find a way to repair your arm.
+Go to node ID=170 accept cortes arm quest
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Give Cortes a Hand
+State=WEDKYW9X
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=No thanks, I'm not interested.
+Go to node ID=10 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 accept cortes arm quest
+Text=Gracias. I will be eternally grateful if you can help me gain the use of my arm again.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=player gets cortes arm quest
+------------------------------------------------------------
+Node ID=10 extra balloon text
+Text=Por favor?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=10 extra balloon text 2
+Text=I could make you a fortune!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=10 extra balloon text 3
+Text=I need but a modest sum for a new expedition.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes leaves MALE pc
+Text=When you have need of my sword arm again, which I wager will be soon, you will find me in the tavern where we first met, amigo.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Cortes goes back to Barcelona
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=800 cortes leaves FEMALE pc
+Text=Although it saddens me to leave such beauty unprotected in these dangerous times, I will go if that is your heart's desire, amiga.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes leaves alternate
+Text=When you have need of my sword arm again, which I wager will be soon, you will find me here.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes companion return 
+Text=Are you ready to continue our quest?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes companion returned 
+Text=Good. A conquistador cannot stay idle for long. Let us find our gold and glory.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 general attack 
+Text=Por España!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 general attack 2
+Text=You are a fool to attack a conquistador of España!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 general attack 3
+Text=For God and España!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 general attack 4
+Text=By my father's sword, I will be victorious!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes hurt 1
+Text=I need assistance!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes hurt 2
+Text=I need healing - I will perish soon!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes wild addition 1
+Text=Keep that madman Cervantes away from me.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=800 cortes wild addition 2
+Text=I yearn to find the treasure. Let us return to our quest. 
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=900 Cortes released as companion
+Text=Are you ready to continue our quest?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Sure, follow me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Cortes
+}
+}
+}
+Action=CActivateAction
+{
+Target Name=Cortes is a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=No, just stay here.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=910 Cortes stays in cave
+Text=If you wish to leave, go ahead. I'm going to stay here to look for treasure.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=920 Cortes get his treasure and leaves
+Text=Magnifico! Now I can repay my debt to Shylocke. It is time that I return to make preparations for my next expedition. I will leave you this gem...whatever else you find here is yours.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=930 there
+Text=There! I see a chest.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=921 Cortes gives half treasure and leaves
+Text=Magnifico! Now I can repay my debt to Shylocke. It is time that I return to make preparations for my next expedition. Here is your half of the treasure as we discussed...whatever else you find here is yours.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 nothing to say
+Text=<He has nothing to say to you.>
+Should Have Voiceover=0
+}

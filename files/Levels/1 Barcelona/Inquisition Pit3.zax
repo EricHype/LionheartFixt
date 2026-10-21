@@ -13779,10 +13779,20 @@ CLayerSaveData
 							}
 							Action=CDelayAction
 							{
-								Next Action=CSetCompanionAction
+								Next Action=CMultipleActionsAction
 								{
-									Player=$Instigator
-									Companion=Cervantes
+									Action=Array
+									{
+										Item Count=2
+										Action=CSetCompanionAction
+										{
+											Companion=Cervantes
+										}
+										Action=CUseCannedActionAction
+										{
+											Canned Object=Common Objects and Scripts/Fixt Companion Joined/Cervantes
+										}
+									}
 								}
 								Delay=0.1
 								Plus or Minus=0

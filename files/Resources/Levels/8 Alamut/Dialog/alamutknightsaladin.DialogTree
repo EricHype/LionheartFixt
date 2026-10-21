@@ -624,10 +624,20 @@ Array Count=0
 }
 Delay Between Adds=0
 }
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Knight of Saladin
+}
+}
 }
 }
 }
@@ -1088,10 +1098,20 @@ Array Count=0
 }
 Delay Between Adds=0
 }
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Knight of Saladin
+}
+}
 }
 }
 }
@@ -1532,10 +1552,20 @@ Array Count=0
 }
 Delay Between Adds=0
 }
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Knight of Saladin
+}
+}
 }
 }
 }

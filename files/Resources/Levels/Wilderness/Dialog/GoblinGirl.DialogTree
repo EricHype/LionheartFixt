@@ -107,10 +107,20 @@ Action=Array
 Item Count=3
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Girl
+}
+}
 }
 Delay=0.1
 Plus or Minus=0
@@ -207,10 +217,20 @@ Action=Array
 Item Count=3
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Girl
+}
+}
 }
 Delay=0.1
 Plus or Minus=0
@@ -254,10 +274,20 @@ Action=Array
 Item Count=3
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Girl
+}
+}
 }
 Delay=0.1
 Plus or Minus=0
@@ -394,10 +424,20 @@ Action=Array
 Item Count=3
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Girl
+}
+}
 }
 Delay=0.1
 Plus or Minus=0

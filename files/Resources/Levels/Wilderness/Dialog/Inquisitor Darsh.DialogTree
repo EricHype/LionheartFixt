@@ -29,10 +29,20 @@ Relay Name=darsh gets new dialog
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -122,10 +132,20 @@ Relay Name=darsh gets new dialog
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -209,10 +229,20 @@ Relay Name=darsh gets new dialog
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -438,10 +468,20 @@ Relay Name=darsh gets new dialog
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -509,10 +549,20 @@ Relay Name=darsh gets new dialog
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -602,10 +652,20 @@ Relay Name=darsh gets new dialog
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -649,10 +709,20 @@ Relay Name=darsh gets new dialog
 }
 Action=CDelayAction
 {
-Next Action=CSetCompanionAction
+Next Action=CMultipleActionsAction
 {
-Player=$Instigator
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Delay=0
 Plus or Minus=0
@@ -735,10 +805,20 @@ Custom Action=CMultipleActionsAction
 Action=Array
 {
 Item Count=3
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CSetCompanionAction
 {
-Player=$Instigator
 Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Darsh
+}
+}
 }
 Action=CActivateAction
 {

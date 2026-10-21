@@ -7,6 +7,36 @@ sentence, because it is a balloon over their head and not a conversation.
 
 ---
 
+## Corrected after building it
+
+Two names came off the roster, and the gate was rebuilt, because presence in a map is not consent.
+
+**`CCheckExistenceAction` tests whether an entity of that name is in the current map.** The engine has
+no companionship test: `CSetCompanionAction` and `CReleaseCompanionAction` exist and nothing reads
+them. Vanilla's own `Is Darsh a Companion` works only because Darsh cannot be in those maps unless he
+is following you. Most of this roster can, so 0.72.0 as published grants stats and a line to people
+who never joined -- including **Joan of Arc, who is hostile in the Crypt until talked down**, which
+made a boss fight harder for no reason.
+
+The gate now reads a per-companion scripting variable written where recruitment actually happens, at
+46 sites across 14 trees and 5 maps: **0** never happened, **1** travelled with you, **2** died
+without travelling with you, **3** travelled with you and died. The growth branch fires on 1, and
+existence is kept only to give the balloon an anchor. The same record is what the ending slides in
+[`companion-endings.md`](companion-endings.md) read at the finale.
+
+**Don Quixote is not recruitable.** `Companion=` never names him anywhere in the game. He is the shade
+Cervantes' quill conjured, built from `Races/NPCs/Cervantes` and `Characters/NPC/Barcelona/Cervantes`
+-- the same race and model as the man.
+
+**Gentle Ben is not a companion either.** A `Cathar Bearform` standing in the Montaillou hamlet with
+no dialogue tree. **Fang is**, and stays: the `Cub Companion` can, recruited at the Crossroads by
+`hunter scene poly 1`, talking through `Bear Companion.DialogTree`.
+
+All three errors had one cause: the roster was built from a `New Name=` scan, which finds every NPC
+the maps name rather than every NPC you can recruit. The authoritative source is `CSetCompanionAction`.
+
+---
+
 ## How it fires
 
 `CXRPGAITriggerWhenLevelUp`, attached to the player: *"Action is triggered when the layer part the
@@ -39,11 +69,11 @@ in the Grove and 28 in Alamut.
 | Inquisitor Darsh | `Darsh` | 42 | 70 | smite 30 | the goblin camp |
 | Lost Knight | `Lost Knight` | 49 | 80 | melee 50 | thieves' vault |
 | Cervantes | `Cervantes` | 60 | 50 | melee 50 | act 1 |
-| Don Quixote | `Don Quixote` | 60 | 50 | melee 50 | act 1 |
+| ~~Don Quixote~~ | -- | 60 | 50 | melee 50 | **not recruitable, removed** |
 | Cortes | `Cortes` | 60 | 85 | melee 75 | act 1 |
 | War Golem | `Golem` | 67 | 100 | melee 100 | Giants Cave |
 | Grace O'Malley | `Grace` | 165 | 190 | melee 110 | English Shrine |
-| Gentle Ben | `Gentle Ben` | 175 | 180 | melee 62 | Montaillou |
+| ~~Gentle Ben~~ | -- | 175 | 180 | melee 62 | **not a companion, removed** |
 | Joan of Arc | `Joan of Arc` | 200 | 225 | melee 90 | the Crypt |
 | Sir Roger Templeton | `Sir Roger Templeton` | 200 | 200 | melee 90 | English Shrine |
 | Knight of Saladin | `Knight of Saladin` | 220 | 215 | melee 200 | Alamut |
@@ -70,7 +100,7 @@ opening does.
 | who | the line |
 |---|---|
 | Cervantes | I am writing all of this down. Including the parts where I improve. |
-| Don Quixote | The dragons grow larger, and so does my arm. |
+| ~~Don Quixote~~ | *unused -- he cannot be recruited* |
 | Cortes | Bueno. I am worth more than I was this morning. |
 | Joan of Arc | I learn in the fighting. God is a thorough teacher. |
 | Sir Roger Templeton | I have not been drilled this hard since my vigil. |
@@ -84,7 +114,7 @@ opening does.
 | Lost Knight | Good. The next ones will be easier. |
 | War Golem | &lt;The golem's plates reseat themselves, and it holds its weapon differently.&gt; |
 | Fang | &lt;Fang's ears go flat, and he circles wider than he used to.&gt; |
-| Gentle Ben | &lt;The bear sets its feet wider than before, and watches your hands.&gt; |
+| ~~Gentle Ben~~ | *unused -- he is not a companion* |
 
 ### Why these and not "I have learned some new skills"
 
