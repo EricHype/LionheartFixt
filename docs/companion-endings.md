@@ -100,9 +100,10 @@ Eight of the fourteen have a footprint of their own:
 | **Cervantes** | the five Bestia states, including `5PV5XAHX` imprisoned for what he did to a wall and `QYCL1DO7` died |
 | **Cortes** | `Give Cortes a Hand` and `Recover the Hidden Treasure with Cortes` -- **plus the arbitration, which needs one new variable**: the three verdicts set only a Port District checker, and a checker cannot be read at the finale |
 
-The Goblin Girl, Fang, the Golem, Grace, Sir Roger and the Knight of Saladin have no quest footprint,
-so for them "didn't travel" means you walked past them, and they get no slide rather than one about
-nothing.
+The Goblin Girl, Fang, the Golem, Sir Roger and the Knight of Saladin have no quest footprint, so for
+them "didn't travel" means you walked past them, and they get no slide rather than one about
+nothing. Grace is the exception in the other direction: her Barcelona choice already has a slide, and
+what it lacked was the case where she dies with you.
 
 **Reviewing:** rewrite any prose freely, this file is the input for the build. Leave the `node id`
 lines alone.
@@ -592,6 +593,30 @@ their account open for two years out of a habit he could not account for, and th
 island is still there. Nothing on that coast is named for either of them, or for you. The boat he
 had meant to buy went to somebody else and sank inside the year.
 
+## Grace O'Malley
+
+She is the one companion who already has a slide, and it is wrong in one case.
+
+`900 order omalley` fires on the `Graces Regard` perk, which is granted in **Barcelona** and then
+checked as a `CHasPerkExpression` on her recruitment reply in England. It records what you did about
+her secret, not whether she lived. So it says *"she was still taking prizes off the Irish coast
+twenty years after Barcelona"* even when she joined you and died in Alamut, which is 0.71.0's own
+work contradicted by this roster.
+
+**The fix is a gate, not a rewrite.** `900 order omalley` keeps firing on the perk, with
+`Fixt Companion Grace != 3` added, and the slide below takes the case it was never written for.
+
+### when: she sailed with you and died doing it
+
+    node id: 900 friend grace dead
+
+Grace O'Malley died a long way from the sea, which she had told you more than once was the only
+end she was afraid of. Her ships were taken by a cousin who had been waiting on exactly that news
+and were sailing under another name inside the year. The harbour she had kept out of the Crown's
+hands was in the Crown's hands by the following spring. Nobody in Ireland was ever told where she
+had gone or what she had been doing there, and the story her crews told about Barcelona stopped
+having an ending, so in time they stopped telling it.
+
 ---
 
 ## Fang
@@ -672,8 +697,9 @@ nineteen other names.
 
 ## Open
 
-**Grace O'Malley already has one.** `900 order omalley`, gated on her `Grace's Regard` perk. She is
-not in this file and does not need a second slide.
+**Grace O'Malley already had one, and it was not enough.** `900 order omalley` fires on a perk
+granted in Barcelona and asserts she outlived the campaign, so it is false whenever she dies as your
+companion. She now has a death slide and the old one needs `Fixt Companion Grace != 3` on its gate.
 
 **Gentle Ben and Don Quixote are not companions** and get no slides. Both came off the growth roster
 in `e7e228b`; neither was a decision, both were my error.
@@ -699,12 +725,13 @@ shipped set holds to.
 | **Fernand Desoto** | 4 | survived with Juan, survived without Juan, died with you, you both died with Juan first |
 | **Darsh** | 3 | survived, died with you, **never got out of the camp** |
 | **Grumdjum** | 3 | survived, died with you, **you killed him** |
+| **Grace O'Malley** | 1 + 1 shipped | `900 order omalley` already covers her Barcelona choice; the new one is **died with you**, which that slide contradicts |
 | Sir Roger, the Knight of Saladin, the Lost Knight, the Goblin Girl, Fang, the War Golem | 2 each | survived, died with you |
 
 **Still to write:** the didn't-travel slide for Sir Roger and the Lost Knight, whose quest levers
 exist (`OZUYGYAV` against `50CZ48GZ` for the knight) and which I have not reached yet. The Goblin
-Girl, Fang, the Golem, the Knight of Saladin and Grace get none, because walking past them says
-nothing about either of you.
+Girl, Fang, the Golem and the Knight of Saladin get none, because walking past them says nothing
+about either of you.
 
 **Variables still to add**, on top of the four-state record already built:
 
@@ -714,6 +741,7 @@ nothing about either of you.
 | whether *you* killed Cervantes for the shade | the Bestia quest records only that he died, not who did it |
 | which of the shade's three fates happened | `500 convince don quixote` and the kill are both reachable and neither is recorded |
 | Juan | `VMS91BAX` and `JUA1LIVE` already record it, so **no new variable** -- this one is free |
+| Grace's gate | no new variable either: `900 order omalley` takes `Fixt Companion Grace != 3`, which the gate fix already built |
 
 **Voiceover.** As with the faction slides, every node ships flagged for voiceover and a recording can
 be dropped in later as `<node id>.ogg` beside the tree.
