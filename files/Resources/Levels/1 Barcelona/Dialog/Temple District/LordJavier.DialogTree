@@ -38,7 +38,9 @@ Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Seek 
 Icon=Quest Icon
 
 Requirement=Templar IS
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
@@ -46,8 +48,52 @@ Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=SAXRA7U2
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=The relic of Montserrat has been stolen. Brother Montgomerie asked me to travel to Montaillou and safeguard a relic hidden in a secret Crypt.
 Go to node ID=530 montserrat
+Action work in progress=(completed montserrat)
+Icon=Quest Icon
+
+Requirement=Templar IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=The relic of Montserrat has been stolen. One of the assassins gave me her word and sent me to Montaillou, to safeguard a relic hidden in a secret Crypt.
+Go to node ID=530 sahar sent you
 Action work in progress=(completed montserrat)
 Icon=Quest Icon
 
@@ -187,7 +233,9 @@ Text=Welcome back, traveler. How can I be of service today?
 Should Have Voiceover=1
 
 Requirement=Templar IS
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
@@ -195,8 +243,52 @@ Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=SAXRA7U2
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=The relic of Montserrat has been stolen. Brother Montgomerie asked me to travel to Montaillou and safeguard a relic hidden in a secret Crypt.
 Go to node ID=530 montserrat
+Action work in progress=(completed montserrat)
+Icon=Quest Icon
+
+Requirement=Templar IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=The relic of Montserrat has been stolen. One of the assassins gave me her word and sent me to Montaillou, to safeguard a relic hidden in a secret Crypt.
+Go to node ID=530 sahar sent you
 Action work in progress=(completed montserrat)
 Icon=Quest Icon
 
@@ -613,7 +705,9 @@ Go to node ID=105 auric initiate 2
 Icon=Quest Icon
 
 Requirement=Templar IS
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
@@ -621,8 +715,52 @@ Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=SAXRA7U2
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=The relic of Montserrat has been stolen. Brother Montgomerie asked me to travel to Montaillou and safeguard a relic hidden in a secret Crypt.
 Go to node ID=530 montserrat
+Action work in progress=(completed montserrat)
+Icon=Quest Icon
+
+Requirement=Templar IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=The relic of Montserrat has been stolen. One of the assassins gave me her word and sent me to Montaillou, to safeguard a relic hidden in a secret Crypt.
+Go to node ID=530 sahar sent you
 Action work in progress=(completed montserrat)
 Icon=Quest Icon
 
@@ -1469,6 +1607,42 @@ Is Default Reply=1
 Node ID=530 montserrat
 Text=It is grim news that Montserrat has fallen. We must double our efforts to safeguard the relics. Do as Brother Montgomerie said and travel to the Crypt outside of Montaillou. You must ensure that the seal still protects the entrance. Go with speed, young one.
 Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=Sir Tomas de Vilanova led your knights. I have his journal. His last words were for you: they did not run.
+Go to node ID=531 tomas
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will do as you ask, Lord Javier. I will make my way to Montaillou and find the Crypt.
+Go to node ID=
+Action work in progress=(crypt quest given)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=FX3UY821
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=530 sahar sent you
+Text=It is grim news that Montserrat has fallen. We must double our efforts to safeguard the relics. Go north to the Crypt outside Montaillou as the assassin said, since for once her purpose and ours run the same way. You must ensure that the seal still protects the entrance. Go with speed, young one.
+Should Have Voiceover=0
 
 Requirement=!None
 Custom Requirement=CActionExpression

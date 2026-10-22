@@ -260,10 +260,56 @@ CLayerSaveData
 								}
 								Other Map Name=2 Montserrat/01 Grove Exterior
 							}
-							Action=CActivateQuestStateAction
+							Action=CMultipleActionsAction
 							{
-								Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
-								State=SAXRA7U2
+								Action=Array
+								{
+									Item Count=2
+									Action=CActivateQuestStateAction
+									{
+										Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+										State=SAXRA7U2
+									}
+									Action=CIfExpressionAction
+									{
+										If Expression=CIsEqualTo
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CAddCharacterModifierToCharacterAction
+										{
+											Modifier Description=
+											Modification is permanent=0
+											Character to modify=Player1
+											Modifiers=Array
+											{
+												Item Count=1
+												Modifier=CCharacterModifierDerivedAttribute
+												{
+													Modification Amount=CConstant
+													{
+														Constant Value=1
+													}
+													Modification amount is a percent=0
+													Allow Accumulation=1
+													Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+												}
+											}
+											OPTIONAL Duration=
+											Expression Context=Player1
+										}
+										Else=
+									}
+								}
 							}
 							Action=CSetTargetTypeAction
 							{

@@ -1,0 +1,29 @@
+CQuestDefinition
+{
+	Name=Travel to France and Seek Out Brother Michel in Montaillou
+	States=Array
+	{
+		Item Count=4
+		State=CQuestStateDefinition
+		{
+			Text=You have been asked to cross the Pyrenees Mountains and make your way north to France. You must go to the village of Montaillou and find Brother Michel to tell him the Relic of Montserrat has been stolen.
+			ID=SAXRA7U2
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You have reported back to Lord Javier and informed him of the attack against Montserrat. Lord Javier has agreed with the assessment and has asked you to travel to France. You must find Brother Michel in Montaillou and safeguard the relic within the Crypt.
+			ID=FX3UY821
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You have reported back to Inquisitor Raphael and informed him of the attack against Montserrat. He has agreed with the assessment and has asked you to travel to France. You must find Brother Michel in Montaillou and safeguard the relic within the Crypt.
+			ID=V8439DKP
+		}
+		State=CQuestStateDefinition
+		{
+			Text=You have reported back to Cedric and informed him of the attack against Montserrat. He has agreed with the assessment and has asked you to travel to France. You must find Brother Michel in Montaillou and safeguard the relic within the Crypt.
+			ID=XQX0TUT7
+		}
+	}
+	Sub-Quest of=!None
+}

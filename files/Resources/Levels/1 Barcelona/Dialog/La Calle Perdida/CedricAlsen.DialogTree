@@ -510,7 +510,9 @@ Text=You are back. What is on your mind?
 Should Have Voiceover=1
 
 Requirement=Wielder IS
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
@@ -518,8 +520,51 @@ Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=SAXRA7U2
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=The relic of Montserrat has been stolen. Before his death, a knight named Brother Montgomerie told me to go to Montaillou and safeguard a relic hidden within a secret Crypt.
 Go to node ID=530 montserrat
+Icon=Quest Icon
+
+Requirement=Wielder IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=The relic of Montserrat has been stolen. One of the assassins gave me her word and sent me to Montaillou, to safeguard a relic hidden within a secret Crypt.
+Go to node ID=530 sahar sent you
 Icon=Quest Icon
 
 Requirement=Cedric Player has Darkwood
@@ -1134,13 +1179,70 @@ State=XQX0TUT7
 Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=530 sahar sent you
+Text=It is grim news that Montserrat has fallen. We must double our efforts to safeguard the relics. Go north to the crypt outside Montaillou as the assassin said, since for once her purpose and ours run the same way. You must ensure that the seal still protects the entrance.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=Sir Tomas de Vilanova led the Templars at Montserrat. I have his journal; his last words were for Lord Javier.
+Go to node ID=531 tomas
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Very well, I will go to Montaillou and find Brother Michel.
+Go to node ID=
+Action work in progress=(montserrat quest given)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=XQX0TUT7
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=531 tomas
 Text=<He turns the book over without opening it.> A knight's last words to his master. We are no friends of the Temple, but we are not thieves of the dead either. I will see it reaches Javier - quietly, and without your name on it, which is a kindness to you both.
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
 Reply Text=Then it is in the right hands.
 Go to node ID=530 montserrat
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=Then it is in the right hands.
+Go to node ID=530 sahar sent you
 Custom Action=CMultipleActionsAction
 {
 Action=Array

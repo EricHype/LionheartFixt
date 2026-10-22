@@ -424,7 +424,9 @@ Go to node ID=321 chapter 2 mission 2
 Icon=Quest Icon
 
 Requirement=Inquisitor IS
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
@@ -432,8 +434,50 @@ Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=SAXRA7U2
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=The Relic was stolen from Monserrat. Before his death, Brother Montgomerie asked me to go to France and safeguard the relic of a secret Crypt.
 Go to node ID=330 return from montserrat
+
+Requirement=Inquisitor IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=The Relic was stolen from Monserrat. One of the assassins gave me her word and sent me north to find the relic of a secret Crypt.
+Go to node ID=330 sahar sent you
 Custom Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
@@ -474,7 +518,9 @@ Text=Well then, speak your mind.
 Should Have Voiceover=1
 
 Requirement=Inquisitor IS
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
@@ -482,8 +528,50 @@ Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=SAXRA7U2
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=The Relic was stolen from Monserrat. Before his death, Brother Montgomerie asked me to go to France and safeguard the relic of a secret Crypt.
 Go to node ID=330 return from montserrat
+
+Requirement=Inquisitor IS
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=SAXRA7U2
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=The Relic was stolen from Monserrat. One of the assassins gave me her word and sent me north to find the relic of a secret Crypt.
+Go to node ID=330 sahar sent you
 Custom Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
@@ -1945,8 +2033,36 @@ Text=A Templar's journal. <He reads the last line, and closes it.> Lord Javier w
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
 Reply Text=Then it is in the right hands.
 Go to node ID=330 return from montserrat
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=Then it is in the right hands.
+Go to node ID=330 sahar sent you
 Custom Action=CMultipleActionsAction
 {
 Action=Array
@@ -2321,8 +2437,36 @@ Experience Points To Add=1
 Icon=Quest Icon
 
 Requirement=Raphael requires knowledge of Montserrat
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
 Reply Text=The Relic was stolen from Monserrat.
 Go to node ID=330 return from montserrat
+
+Requirement=Raphael requires knowledge of Montserrat
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=The Relic was stolen from Monserrat.
+Go to node ID=330 sahar sent you
 Custom Action=CSetQuestSatusToCompletedAction
 {
 Quest=Levels/1 Barcelona/Quests/Temple District/Inquisition Initiation Quests/Investigate the fate of Montserrat
@@ -2666,4 +2810,32 @@ Should Have Voiceover=0
 Node ID=1070 Spellcast detect
 Text=Unfathomable! Magic in these chambers? Guards! Arrest this heretic!
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=330 sahar sent you
+Text=We have heard the terrible news about Montserrat. It is disturbing that our enemies have captured another holy relic, and more disturbing that one of them let you walk out to tell me so. Go north to Montaillou as she said, since for once her purpose and ours run the same way. Seek out Brother Michel, and make sure the Sacred Lance is secure. Let faith guide you, young one.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=Sir Tomas de Vilanova led the Templars at Montserrat. I have his journal; his last words were for Lord Javier.
+Go to node ID=331 tomas
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Yes, I will go to Montaillou and find Brother Michel.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
+State=V8439DKP
+}
+Icon=Quest Icon
+Is Default Reply=1
 }
