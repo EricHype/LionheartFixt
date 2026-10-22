@@ -33778,7 +33778,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=4
 							Action=CDisplayDialogBalloonAction
 							{
 								Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Don Quixote
@@ -33907,6 +33907,57 @@ CLayerSaveData
 										Part To Fade=Don Quixote
 									}
 								}
+							}
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Don Quixote
+								Node ID=500 feather
+								Name of Position=Don Quixote
+								Position Offset=0.000000,-85.000000
+								After Action=CTriggerRelayAction
+								{
+									Relay Name=dispel don quixote
+								}
+								Include In Log=1
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsEqualTo
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shade Fate
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=0
+									Character to modify=Player1
+									Modifiers=Array
+									{
+										Item Count=1
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CConstant
+											{
+												Constant Value=1
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=1
+											Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Shade Fate
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=Player1
+								}
+								Else=
 							}
 						}
 						When Done=Do Nothing
@@ -35140,7 +35191,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=1
+							Item Count=2
 							Action=CMultipleActionsAction
 							{
 								Action=Array
@@ -35384,6 +35435,45 @@ CLayerSaveData
 										Part To Fade=Don Quixote
 									}
 								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsEqualTo
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shade Fate
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=0
+									Character to modify=Player1
+									Modifiers=Array
+									{
+										Item Count=1
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CConstant
+											{
+												Constant Value=2
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=1
+											Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Shade Fate
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=Player1
+								}
+								Else=
 							}
 						}
 					}

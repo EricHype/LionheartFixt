@@ -134,25 +134,163 @@ Relay Name=cortes argument more info node
 Requirement=!None
 Reply Text=I have heard enough to side with Cortes.
 Go to node ID= 
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=shylocke storms off angry
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None
 Reply Text=I have heard enough to side with you, Shylocke.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=side with shylocke
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=2
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None
 Reply Text=I do not wish to interfere. Goodbye.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=shylocke ends dialogue with taunt
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=3
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 Icon=Exit Icon
 Is Default Reply=1
@@ -168,25 +306,163 @@ Go to node ID=50 more info
 Requirement=!None
 Reply Text=I have heard enough to side with Cortes.
 Go to node ID= 
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=shylocke storms off angry
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None
 Reply Text=I have heard enough to side with you, Shylocke.
 Go to node ID=150 cortes disappointed
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=side with shylocke
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=2
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None
 Reply Text=I do not wish to interfere. Goodbye.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=shylocke ends dialogue with taunt
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=3
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 Icon=Exit Icon
 Is Default Reply=1
@@ -906,14 +1182,99 @@ Go to node ID=50 more info
 Requirement=!None
 Reply Text=I have heard enough to side with Cortes.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=shylocke storms off angry
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None
 Reply Text=I have heard enough to side with you, Shylocke.
 Go to node ID=150 cortes disappointed
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=2
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
 
 Requirement=!None
 Custom Requirement=COR
@@ -935,6 +1296,45 @@ Action work in progress=(Either Barter >=35%, Speech >=50%, CH 7+ or IN 8+)
 Requirement=!None
 Reply Text=I do not wish to interfere. Goodbye.
 Go to node ID=140 no resolution
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=3
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
@@ -959,25 +1359,163 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=I have heard enough to side with Cortes.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=shylocke storms off angry
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None
 Reply Text=I have heard enough to side with you, Shylocke.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=side with shylocke
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=2
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None
 Reply Text=I do not wish to interfere. Goodbye.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=shylocke ends dialogue with taunt
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=3
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Cortes Verdict
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 Icon=Exit Icon
 Is Default Reply=1

@@ -1071,7 +1071,10 @@ CCannedObject
 		Rendering Height Float=0
 		Cur Sequence=idle
 		Cur Damage=0
-		Destroyed Script Action=
+		Destroyed Script Action=CUseCannedActionAction
+		{
+			Canned Object=Common Objects and Scripts/Fixt Companion Died/Grace
+		}
 		Destroyed Effect Action=CIfAction
 		{
 			If=CWasDamagedByPlayerAction

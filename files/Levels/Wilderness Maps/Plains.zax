@@ -19435,7 +19435,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=3
+										Item Count=4
 										Action=CActivateAction
 										{
 											Target Name=Diego Dead
@@ -19450,6 +19450,10 @@ CLayerSaveData
 										Action=CSetQuestSatusToFailedIfActiveAction
 										{
 											Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+										}
+										Action=CUseCannedActionAction
+										{
+											Canned Object=Common Objects and Scripts/Fixt Companion Died/Bishop Diego
 										}
 									}
 								}

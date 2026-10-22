@@ -29568,7 +29568,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=3
 										Action=CSetQuestSatusToFailedIfActiveAction
 										{
 											Quest=Levels/Wilderness/Quests/Slay the River Dryad
@@ -29579,6 +29579,10 @@ CLayerSaveData
 											Play Activate Sound=0
 											Delay Between Activations=0
 											Warp Behavior=
+										}
+										Action=CUseCannedActionAction
+										{
+											Canned Object=Common Objects and Scripts/Fixt Companion Died/Goblin Grumdjum
 										}
 									}
 								}

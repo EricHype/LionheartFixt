@@ -320,12 +320,23 @@ CLayerSaveData
 							Item Count=1
 							Action=CSetDestroyedScriptActionAction
 							{
-								New Destroyed Action=CActivateAction
+								New Destroyed Action=CMultipleActionsAction
 								{
-									Target Name=Grumdjum Dead
-									Play Activate Sound=0
-									Delay Between Activations=0
-									Warp Behavior=
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Grumdjum Dead
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CUseCannedActionAction
+										{
+											Canned Object=Common Objects and Scripts/Fixt Companion Died/Goblin Grumdjum
+										}
+									}
 								}
 								Target Name=$Instigator
 							}

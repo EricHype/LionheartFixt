@@ -1206,36 +1206,66 @@ CCannedObject
 		Rendering Height Float=0
 		Cur Sequence=Snapshot
 		Cur Damage=0
-		Destroyed Script Action=CIfAction
+		Destroyed Script Action=CMultipleActionsAction
 		{
-			If=CWasQuestEverActivatedAction
+			Action=Array
 			{
-				Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
-			}
-			Then=CMultipleActionsAction
-			{
-				Action=Array
+				Item Count=3
+				Action=CIfAction
 				{
-					Item Count=2
-					Action=CActivateQuestStateAction
+					If=CWasQuestEverActivatedAction
 					{
 						Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
-						State=QYCL1DO7
 					}
-					Action=CDelayAction
+					Then=CMultipleActionsAction
 					{
-						Next Action=CSetQuestSatusToFailedAction
+						Action=Array
 						{
-							Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
+							Item Count=2
+							Action=CActivateQuestStateAction
+							{
+								Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
+								State=QYCL1DO7
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSetQuestSatusToFailedAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Temple District/Help Cervantes hunt La Bestia
+								}
+								Delay=0.1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
 						}
-						Delay=0.1
-						Plus or Minus=0
-						Forget Trigger=0
 					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Action=CUseCannedActionAction
+				{
+					Canned Object=Common Objects and Scripts/Fixt Companion Died/Cervantes
+				}
+				Action=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Don Quixote
+						Desired Minimum Count=1
+					}
+					Then=CDisplayDialogBalloonAction
+					{
+						Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Don Quixote
+						Node ID=206 cervantes dies
+						Name of Position=Don Quixote
+						Position Offset=0.000000,-85.000000
+						After Action=
+						Include In Log=1
+					}
+					Else=
+					Return failure if the If failes=0
 				}
 			}
-			Else=
-			Return failure if the If failes=0
 		}
 		Destroyed Effect Action=CIfAction
 		{
