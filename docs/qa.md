@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.73.1 - the man who never spoke to you
+
+All dialogue, so it works on a save already in progress. The peaceful record is written when Sahar
+gives her word, so a save already past that scene will read as the violent route -- which is the
+right failure, since those players did hear the original lines.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| BM1 | **The row that matters.** Take the peaceful route at Montserrat, then report to your patron | - | He credits **the assassin**, not Brother Montgomerie. Before this release all three patrons named a man you never met |
+| BM2 | Check the quest log on that route | - | *"You have been asked to cross the Pyrenees Mountains"*. No Montgomerie |
+| BM3 | **The row that stops BM1 going too far.** Fight through Montserrat, meet Montgomerie, then report | - | The original lines, naming him, exactly as before |
+| BM4 | On the peaceful route, hand your patron Sir Tomas' journal and continue | - | You come back to the **assassin** version, not the Montgomerie one. This was the leak the first two passes missed |
+| BM5 | **Regression, and the important one.** On the peaceful route, go on to Montaillou and talk to Brother Michel | - | He recognises you and the act proceeds. His entry tests `SAXRA7U2` seven times, which is why the route keeps that state |
+| BM6 | Do the same having fought through | - | Michel behaves identically |
+| BM7 | **Adjudication, not a bug.** Peaceful route, no kills in the sanctum | - | Brother Montgomerie does **not** appear, and nothing waits on him. This is deliberate |
+
 ## 0.73.0 - what became of the people who travelled with you
 
 The slides fire at the very end of the game, so most of these are one playthrough's worth of setup

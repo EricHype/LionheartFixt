@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.73.0 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.73.1 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,67 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.73.1 - the man who never spoke to you
+
+A question rather than a bug report: *why would we want him to show?*
+
+### He should not, and that is the answer
+
+[Issue #11](https://github.com/EricHype/LionheartFixt/issues/11) listed Brother Montgomerie's absence
+on the peaceful route as a defect, and 0.71.9's notes accepted the framing and called it *"one relay
+away"*. It is not a defect. `Snakebreed dead relay` is commented *"This activates Brother Montgomerie
+when the snakebreed are all dead"* and is fired from **16 death slots** -- Sahar's generator, her four
+retinue generators, ten Snakebreed generators and a chest trap. On the peaceful route they are alive,
+because that is the route.
+
+Three things settle it:
+
+| | |
+|---|---|
+| nothing depends on him | `sahar word given` already activates `Travel to Montaillou and find Brother Michel`, and **his own scene carries no quest actions and no states at all** -- his poly activates a camera and a balloon |
+| the cellar contradicts him | Brother Pau says the monks were taken north with the wagons, **alive**. A surviving monk in the sanctum unsays it |
+| the scene would be incoherent | a dying monk delivering a prophecy while Sahar's snakebreed coil around the reliquary is not a scene anybody wrote |
+
+So it is **adjudicated** -- the fourth kind of orphan this project keeps finding: finished content,
+correctly identified, deliberately left unfired for a recorded reason.
+
+### The real defect, which nobody reported
+
+Three patrons and the quest log credit him anyway:
+
+| | |
+|---|---|
+| `SAXRA7U2` | *"Brother Montgomerie has asked you to cross the Pyrenees Mountains"*, in the journal |
+| Raphael `330` | *"Do as Brother Montgomerie told you and head north to Montaillou"* |
+| Javier and Cedric `530 montserrat` | *"Do as Brother Montgomerie said and travel to the Crypt outside of Montaillou"* |
+| the player's own replies | *"Before his death, Brother Montgomerie asked me to..."*, on four hub nodes across three trees |
+
+**The state could not be split.** `SAXRA7U2` is tested as the **current** state by 13
+`CIsQuestStateTheCurrentStateAction` checks across four trees, and **seven of them are Brother
+Michel's act 3 entry**, so giving the peaceful route its own state would have locked Michel out of
+the act that follows. Its wording is route-neutral now, and so are the three reported-back states;
+no gate moved.
+
+The dialogue branches, on `Fixt Montserrat Peaceful`, written where Sahar gives her word. Each patron
+gets a variant of his own line, **cloned from the original node with one sentence substituted** so the
+replies and gates cannot drift from it, and every reply reaching either version is gated to its
+route. 11 replies split in all. Raphael's reads:
+
+> ...and more disturbing that one of them let you walk out to tell me so. Go north to Montaillou as
+> she said, since for once her purpose and ours run the same way.
+
+### Mis-scoped three times, and the audit that should have come first
+
+First *"only Raphael"*. Then *"only the player's reply for the other two"*, which was wrong because
+their own nodes name him too. Then the journal branches `331 tomas` and `531 tomas` -- added by this
+project in 0.71.2 -- which return to the original node, so a peaceful player who handed over Sir
+Tomas' journal landed back on the Montgomerie line.
+
+All three came from reading a truncated grep and generalising. The check that settled it is the one
+that should have been written first, and it is the shape to reuse: **for every node whose text names
+him, assert that every reply reaching it carries the non-peaceful gate, and that no map opens it
+directly.** It reports 4, 3 and 2 replies with **0 ungated**.
 
 ## 0.73.0 - what became of the people who travelled with you
 
