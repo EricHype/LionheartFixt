@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.72.0 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.73.0 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,110 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.73.0 - what became of the people who travelled with you
+
+The ending slides covered the five orders, England and one person. Everybody who actually walked
+beside you stopped existing at the credits.
+
+### The gap
+
+27 slides shipped in 0.71.0: six Templar variants, four Inquisition, three Saladin, five Wielder,
+four Horde, two Savage Heart, one for no allegiance, one for England, and `900 order omalley` for
+Grace, who is in there because her fate turns on a choice. Vanilla closes the loop on **DaVinci** and
+**Galileo** -- 233 and 225 references in `08 Final Encounter.zax` -- and on nobody you recruited.
+
+0.72.0 made that worse by giving companions twenty levels of growth and then forgetting them.
+
+### 47 slides
+
+Same register as the faction set: 95 to 114 words, mean 102, plain past tense, outcome then
+mechanism then a particular then the long view. Drafted and reviewed in
+[`companion-endings.md`](companion-endings.md) before anything was built, and the build parses that
+file, so the shipped bytes are the reviewed bytes.
+
+| who | slides |
+|---|---|
+| **Cortes** | 5, including all three verdicts in the Shylocke dispute |
+| **Joan of Arc** | 5, including **released from the curse** and **killed for the Lance** |
+| **Fernand Desoto** | 5, branching on whether Juan lived |
+| **Cervantes** | 4 |
+| **Bishop Diego** | 4, including **sold to the Dark Inquisitors** |
+| **The Lost Knight** | 4, including **killed and reported to the man who sent you** |
+| the shade, Sir Roger, Grumdjum, Darsh | 3 each |
+| the Goblin Girl, the Knight of Saladin, Fang, the War Golem | 2 each |
+| Grace | 1, plus the shipped one, now gated |
+
+### The record, and what it is not
+
+A companion is **0 never happened, 1 travelled with you, 2 died without ever travelling with you, 3
+travelled with you and died in your service**. Written where recruitment actually happens -- 46 sites
+across 14 trees and 5 maps -- and on death, which took three shapes and is the reason all 14 cans
+were checked before anything relied on one:
+
+| | |
+|---|---|
+| ten cans | `Destroyed Script Action` empty, so the call goes straight in |
+| four cans | already occupied: Cervantes a `CIfAction`, Darsh and the Knight of Saladin a `CConditionalAction`, the Goblin Girl a `CMultipleActionsAction`. Wrapped |
+| **Grumdjum and Diego** | slots empty, but `01 Desert Sprawl`, `Lake` and `Plains` call `CSetDestroyedScriptActionAction` on them at runtime, which **replaces** the can's slot. The call went inside those payloads too, or their deaths would have been recorded everywhere except the places they actually die |
+
+That last one is the Lava Troll Hide failure from 0.10.0, which is why it was checked.
+
+**Where the game already knows more than four states, the slide reads the game.**
+`CWasQuestStateActivatedAction` has 16 vanilla users and works from any map on an old save, which is
+what makes the didn't-travel slides possible: `OZUYGYAV` the knight reported dead, `AS4T5BB5` Diego
+killed on the cult's contract, `SZLH5UEU` Darsh never coming out, `JUA1LIVE` and `VMS91BAX` for Juan,
+`CRY2CURS` for Jehanne's curse, and the five Bestia states for Cervantes. Two variables were added
+only where the game records nothing at all: the arbitration verdict, on the 12 replies that deliver
+one, and the shade's fate.
+
+### The repair: 0.72.0's growth was gated on presence, not consent
+
+`CCheckExistenceAction` tests whether an entity of that name is **in the current map**. There is no
+companionship test in the engine: `CSetCompanionAction` and `CReleaseCompanionAction` exist and
+nothing reads them, and the only Companion or Party classes in the exe are `CCompanionFollowMessage`,
+`CCompanionManagerAI`, `CPartyMojo` and `CPartySize`. Vanilla's own `Is Darsh a Companion` works only
+because Darsh cannot be in those maps unless he is following you.
+
+Most of the roster can. Cervantes, Cortes and Don Quixote stand in the Port District tavern, Grumdjum
+and Diego in the Wilderness, the Goblin Girl in the Warrens, Grace and Sir Roger at the Shrine --
+and **Joan of Arc in the Crypt, where she is hostile until talked down.** Levelling in her gallery
+handed her +5 HP and +3 AC and balloned a line at her, which made a boss fight harder for no reason.
+The gate now reads the record above and fires only on 1.
+
+**Two names came off the roster, and both were this project's error.** Don Quixote is not
+recruitable -- `Companion=` never names him anywhere, and his can is `Races/NPCs/Cervantes` on
+`Characters/NPC/Barcelona/Cervantes`, the author's own race and model, because he is the shade the
+quill conjured. Gentle Ben is a `Cathar Bearform` standing in the Montaillou hamlet with no tree at
+all. Both had been put on the roster from a `New Name=` scan, which finds every NPC the maps name
+rather than every NPC you can recruit; the authoritative source is `CSetCompanionAction`.
+
+### Two beats that have never played
+
+| | |
+|---|---|
+| `500 feather` | *"&lt;As the spirit of Don Quixote fades, a single feather floats for a moment, then blows away.&gt;"* `Barcelona Coast.zax` opens `500 convince don quixote`, so you could always talk him out of existing, and the node that **shows** it was unreachable, so the scene ended on nothing. Appended to the `dispel don quixote` series |
+| `206 cervantes dies` | **39 KB recorded.** The shade thanking you for killing the author: *"Thank you for helping me destroy that madman!"* Hung off Cervantes' own death slot, conditional on the shade still being there to say it |
+
+Don Quixote's tree is 7 of 7 reachable, from 5 of 7. The sweep goes from 72 unreachable recorded
+nodes and 5.52 MB to **71 and 5.48 MB**.
+
+### Grace's slide was wrong and nothing would have caught it
+
+`900 order omalley` fires on `Graces Regard`, which is granted in **Barcelona** and checked as a
+`CHasPerkExpression` on her recruitment reply in England. It records what you did about her secret,
+not whether she lived, and it says *"she was still taking prizes off the Irish coast twenty years
+after Barcelona"* even when she died in Alamut as your companion. 0.71.0 wrote it before a companion
+could be tracked; 0.72.0 made her trackable. It now carries `Fixt Companion Grace != 3`, and her
+death has its own slide.
+
+### What was guessed and rejected
+
+Seven quest paths, taken from the quest **titles** rather than the filenames: the file behind
+*"Quest for La Bestia"* is `Help Cervantes hunt La Bestia`, and the one behind *"Slay Bishop Diego for
+the Dark Inquisitors"* is `Eliminate Bishop Diego`. `validate.py` rejected all seven, and the real
+paths came from looking each state id up in the archive. Worth recording because the titles are what
+the quest log shows and the filenames are what the engine resolves.
 
 ## 0.72.0 - what the Inquisition knows, and a repair to 0.71.10
 

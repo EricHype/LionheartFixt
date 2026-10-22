@@ -1474,6 +1474,29 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.73.0 - what became of the people who travelled with you
+
+The slides fire at the very end of the game, so most of these are one playthrough's worth of setup
+and then one screen. `CG` rows from 0.72.0 still apply and still gate the growth half.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| CE1 | **The row that matters.** Finish the game with at least one companion alive beside you | - | After the faction slides, a paragraph about that companion. Before this release there was none for anybody |
+| CE2 | **The row that proves the record, not the slide.** Recruit Cervantes, lose him in a fight, finish the game | - | His **died in your service** slide, not his surviving one |
+| CE3 | **The repair.** Walk into Joan's gallery in the Crypt without talking her down, and level up | - | **No balloon and no grant.** On 0.72.0 she gained +5 HP and +3 AC per level while still hostile |
+| CE4 | Talk Jehanne down and leave her holding the Lance, then finish the game | - | The slide where she raises the gate and goes back to standing where she stood |
+| CE5 | Free Jehanne and her knights with the lamp, then finish the game | - | The **released** slide. Her knights go in the same minute, down the corridor, without being told |
+| CE6 | Kill her for the Lance instead | - | The **killed** slide, and not the released or passed one |
+| CE7 | Judge the Cortes and Shylocke dispute for Shylocke, never recruit Cortes, finish | - | *"here I thought you would vindicate me"*, the ship sold inside a month |
+| CE8 | Take the Dark Inquisitors' contract on Bishop Diego and finish the game | - | The **sold** slide, not his ordinary death |
+| CE9 | Never free Darsh from the goblin camp, report it to Raphael, finish | - | The Warrens argue about the red spice against the grey |
+| CE10 | Save Juan, keep Fernand, finish | - | The slide with the small boat that leaks. Then fail to save Juan on another run and get the other one |
+| CE11 | **The two repaired beats.** Talk Don Quixote out of existing at Barcelona Coast | - | A feather comes down where he was standing. Before this release the scene ended on nothing at all |
+| CE12 | Kill Cervantes for Don Quixote instead | - | The shade thanks you: *"Thank you for helping me destroy that madman!"* 39 KB of recorded audio that has never played |
+| CE13 | **Regression on Grace.** Recruit Grace, let her die, finish the game | - | Her death slide, and **not** `900 order omalley` claiming she took prizes for twenty years |
+| CE14 | **Regression on the series.** Finish the game having recruited nobody at all | - | The faction slides play exactly as in 0.72.0 and nothing stalls between them |
+| CE15 | Gate 0 | `python tools/validate.py && python tools/reachability.py` | 792 files clean; every node this mod adds is reachable |
+
 ## 0.72.0 - what the Inquisition knows, and a repair to 0.71.10
 
 All of it is map work, so all of it needs a save that has **not** entered `Inquisition Chambers2`,
