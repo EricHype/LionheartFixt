@@ -613,7 +613,7 @@ work contradicted by this roster.
 Grace O'Malley died a long way from the sea, which she had told you more than once was the only
 end she was afraid of. Her ships were taken by a cousin who had been waiting on exactly that news
 and were sailing under another name inside the year. The harbour she had kept out of the Crown's
-hands was in the Crown's hands by the following spring. Nobody in Ireland was ever told where she
+hands was taken by the Crown by the following spring. No Ireland survivor was ever told where she
 had gone or what she had been doing there, and the story her crews told about Barcelona stopped
 having an ending, so in time they stopped telling it.
 
@@ -693,6 +693,28 @@ that required no further action. The thieves kept the vault another eleven years
 compliment he had not yet finished building. Auric prayed for him annually, from a list, among
 nineteen other names.
 
+### when: you killed him
+
+    node id: 900 friend lost knight killed
+
+You killed a Templar in a thieves' vault and then told Sir Auric that he had met an unfortunate
+end in the sewers, which was true in every particular and complete in none of them. Auric wrote it
+up as a patrol lost underground and stopped sending patrols. The thieves kept the vault for
+another eleven years and never learned they had been done a favour. He had been entirely certain
+that his brothers were coming for him, and nobody has ever told them that one of them did. Auric
+prayed for him annually, from a list, among nineteen other names.
+
+### when: you walked him out and he went back to work
+
+    node id: 900 friend lost knight returned
+
+The Lost Knight went back to his duties, which is the phrase he used and the whole of the thanks
+he gave, and he was perfectly sincere in both. He told the order that his brothers had come for
+him, because that is what he had been certain of underground and he was not going to start
+doubting it in daylight. Auric, who had sent one stranger, did not correct him. He served another
+twenty years and never once explained to anybody junior how he had come to be lying in a vault
+with his head open.
+
 ---
 
 ## Open
@@ -726,10 +748,11 @@ shipped set holds to.
 | **Darsh** | 3 | survived, died with you, **never got out of the camp** |
 | **Grumdjum** | 3 | survived, died with you, **you killed him** |
 | **Grace O'Malley** | 1 + 1 shipped | `900 order omalley` already covers her Barcelona choice; the new one is **died with you**, which that slide contradicts |
-| Sir Roger, the Knight of Saladin, the Lost Knight, the Goblin Girl, Fang, the War Golem | 2 each | survived, died with you |
+| **The Lost Knight** | 4 | survived, died with you, **you killed him and reported it to Auric**, you walked him out and he returned to duty |
+| Sir Roger, the Knight of Saladin, the Goblin Girl, Fang, the War Golem | 2 each | survived, died with you |
 
-**Still to write:** the didn't-travel slide for Sir Roger and the Lost Knight, whose quest levers
-exist (`OZUYGYAV` against `50CZ48GZ` for the knight) and which I have not reached yet. The Goblin
+**Still to write:** the didn't-travel slide for Sir Roger, who has no quest of his own and whose
+only non-companion state is that you met him at the Shrine and left. The Goblin
 Girl, Fang, the Golem and the Knight of Saladin get none, because walking past them says nothing
 about either of you.
 
