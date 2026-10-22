@@ -371,6 +371,17 @@ that remembered the alliance inside a generation, there being nobody left who ha
 about it. His sword went to a nephew who sold it. The entry beside his name reads *abroad*, which is
 the whole of what the order knew.
 
+### when: you met him at the Shrine and left him there
+
+    node id: 900 friend roger alone
+
+Sir Roger Templeton offered you his sword three times, in the formula his order keeps for
+strangers of rank, and you went into the Shrine without him. He went in later with men of his own
+and came out with fewer of them, and the order wrote the action up as a success because the Cross
+came back. He was given a garrison in Kent and the kind of duty that goes to men who are owed
+something and trusted with nothing. He never told anybody that he had made the offer, which is the
+only part of it he was ashamed of.
+
 ---
 
 ## Goblin Grumdjum
@@ -749,10 +760,11 @@ shipped set holds to.
 | **Grumdjum** | 3 | survived, died with you, **you killed him** |
 | **Grace O'Malley** | 1 + 1 shipped | `900 order omalley` already covers her Barcelona choice; the new one is **died with you**, which that slide contradicts |
 | **The Lost Knight** | 4 | survived, died with you, **you killed him and reported it to Auric**, you walked him out and he returned to duty |
-| Sir Roger, the Knight of Saladin, the Goblin Girl, Fang, the War Golem | 2 each | survived, died with you |
+| **Sir Roger Templeton** | 3 | survived, died with you, you left him at the Shrine |
+| the Knight of Saladin, the Goblin Girl, Fang, the War Golem | 2 each | survived, died with you |
 
-**Still to write:** the didn't-travel slide for Sir Roger, who has no quest of his own and whose
-only non-companion state is that you met him at the Shrine and left. The Goblin
+**Nothing is outstanding in the prose.** Every companion with a non-companion state worth stating
+now has one, and the six without a quest footprint get none on purpose. The Goblin
 Girl, Fang, the Golem and the Knight of Saladin get none, because walking past them says nothing
 about either of you.
 
