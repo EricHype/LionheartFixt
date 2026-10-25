@@ -1,0 +1,22 @@
+CCannedObject
+{
+	Object=CActionExpression
+	{
+		Action=CNotAction
+		{
+			Action=CExpressionAction
+			{
+				Expression=CHasPerkExpression
+				{
+					Perks To Check For=Array
+					{
+						Item Count=1
+						Perk To Check For=Perks/!NPC or Event Given Perks/Leonardos Gift
+					}
+				}
+				Character to get attributes from=$Instigator
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

@@ -224,6 +224,85 @@ does, which means it is centred on you and the location-based aim is only the ca
 **`Cure Major Wounds.Skill` is untouched**: `Magic Thought/Defensive/ENEMY Magical Shield` is
 parented to it through a differential-zero chain, so Greater Healing was given its own file instead.
 
+### The organ keeps one sequence, and stops being a fountain
+
+Four of the five test sequences come out, leaving **`F A C E`** and a Wand of Revelation, the cheapest
+of the five at 210, which makes a fair hidden reward rather than a dispenser. 15 of the 19 added nodes
+go, the tree drops from 40 nodes to 25 against vanilla's 21, A, B, D and E return to the targets
+vanilla gave them, and the `C, E, C, C, A` chain to the secret chamber is asserted intact at both ends.
+
+**It gives once per character and then never again**, whatever the player happens to be carrying.
+The organ hands over five Wand Charges along with the wand, and charges are the scarce resource the
+rest of the design rests on: one restock in thirty-one at four shops, one chest branch at a wand's own
+weight. An unlimited source would undo that in a way an extra 210 gold wand would not.
+
+Vanilla's way of remembering that something has happened to a character is a perk: **56** uses of
+`CGiveCharacterPerkAction`, **157** of `CHasPerkExpression`, and nine perks sitting in
+`Perks/!NPC or Event Given Perks/` for exactly this. `Weng Choi Perk` carries
+`Requirements=CIsGreaterThan{0, 1}`, permanently false, so it can never be picked at level up and only
+a script can grant it.
+
+So the organ grants **Leonardo's Gift**, a perk with `PlugIn Behaviors Item Count=0` and no effect of
+any kind, and the reply requires not having it. It shows on the character sheet, which is why it is
+written as a memento rather than as bookkeeping: *the viola organista played for you once, and opened
+a drawer you were not meant to find.*
+
+The requirement keeps the shape proven by `Weng Choi Have a rare book.can`, `CActionExpression` at the
+top, and binds the character through `CExpressionAction`'s own `Character to get attributes from`
+field rather than hoping a bare expression finds one. That is the lesson from
+`Display and Cast Requirements`, where an unbound check silently evaluated false. A second, ungated
+reply sits beside it so the node is never a dead end.
+
+### Where a charge comes from
+
+Until now the only charges in the game came from the test organ, so a wand found as loot was useless.
+
+**The chests.** `All Misc Items except Potions.can` is a mixed list of four branches: jewellery at
+weight 17, and All Scrolls, All Wands and All Magic Equipment at 2 apiece, the last two being Fixt's
+own additions. A fifth branch holds the charge at **weight 2**, the same as a wand. That is reasoned
+rather than arbitrary: a charge drop is a stack of five, which is exactly one wand's worth, so equal
+weights mean a wand found is a wand usable.
+
+**The merchants.** Stock is a list of `CMerchantListItem{Quantity, Item=<generator>, Level}`, and a
+generator always produces something, so a slot of its own would make charges guaranteed rather than
+rare. Rarity has to come from weighting inside a slot, so each shop gains one slot that is
+overwhelmingly its own ordinary stock and occasionally a charge:
+
+| shop | slots | the new slot rolls |
+|---|---|---|
+| `Non-Inquisitor Inventory for Herbalist` | 2 to 3 | Potion 30, Wand Charge 1 |
+| `Wielder Store for Herbalist` | 12 to 13 | Potion 30, Wand Charge 1 |
+| `Inventory for Weng Choi` | 3 to 4 | Scroll 30, Wand Charge 1 |
+| `Special Inventory for Weng Choi` | 6 to 7 | Scroll 30, Wand Charge 1 |
+
+About one restock in thirty-one. Quinn restocks on a 900 second timer, so a patient player can wait
+for one, which is how the rest of this game's economy already works.
+
+Quinn is the herbalist the game itself sends you to about wizards, there being a quest called *Speak
+with Quinn the Herbalist about wizards*, and Weng Choi deals in exotica and rare books. Both maps were
+already shipped by the mod, so no new overrides were created for this.
+
+### The charge leaves the Bolt slot, which it never needed
+
+The slot existed only to feed `CPlugInBehaviorUseAmmo`, which never fired on a cast and has since
+been removed. What spends a charge now is `CActionRemoveInventoryItem` inside the spell's payload,
+and what looks for one is `CActionCheckForInventoryItem` beside it. **Neither mentions a slot.** Both
+work on the character's inventory, so the charge can be an ordinary pack item and the clash with
+crossbows disappears: `Crossbow` and `DaVinci Repeating Crossbow` draw from
+`Character Slot Types/Bolt`, and the charge is no longer in it.
+
+The right donor turned out to be `Gem.InventoryItem` rather than `Bolt`. **Eight** vanilla items have
+exactly the shape wanted, a stackable that sits in the pack and does nothing on its own: Gem,
+Expensive Gem, Wolf Pelt, Bear Skin, Wasp Stinger, Tears of Kwan Yin, Alamut Tooth Medallion and
+Vodyanoi Skull, each with `Slot Used In=Character Slot Types/!None`,
+`Inventory Addition Group=Inventory/!None` and three plugins: merge, pick up, put down. Rebuilding
+from Gem also drops the projectile and damage plugins that only existed to make a crossbow-fired
+charge harmless, a situation that can no longer arise.
+
+Four gem icons exist and **`Gem Onyx` and `Gem Ruby` are used by nothing**, so the charge takes Onyx
+and reads as its own item rather than as treasure to sell: *a splinter of dark crystal that hums
+faintly to the touch*.
+
 ### `CPlugInBehaviorWand` comes off. Everything it was for is done by something that works
 
 Lining every test up against one variable settles what had looked like noise:
@@ -969,11 +1048,15 @@ is a stick rather than a drawing. The inventory images are the real paintings an
 `WandCursedTotem` 20x118 at 766 opaque, `WandLightning` 19x127 at **1038**. So the glyph is a crop of a
 head, not a squeeze of a whole wand.
 
-`WandLightning` is the densest of them and it is **the Rigor Mortis wand's own inventory art**. Its row
-ink profile names the head exactly: full-width rows at y=16 to 20 with high density to about y=35 over a
-thin shaft below. Rows **10 to 33**, 24 rows of 19, doubled to **38x48** -- an integer scale, so no
-resampling blur, and a size that sits between `tribal` and `divine`. It decodes back pixel-exact on all
-1824.
+`WandLightning` is the densest of them and it is **the Rigor Mortis wand's own inventory art**. The
+first cut took rows 10 to 33 and doubled them, which filled the frame with the crystal alone and cut
+the shaft off: reported from play as too zoomed in, and it was. The glyph is now **rows 2 to 49 at
+1x**, 19x48, showing the same head in its wooden cage plus a good length of shaft in the same height,
+at half the magnification and with no upscaling at all. It carries **52%** of the drawing where the
+first cut carried 30, and decodes back pixel-exact on all 912.
+
+Width is the source's natural 19 rather than a padded canvas, which is how vanilla authors these:
+`tribal` is 35 wide because its tree is 35 and `divine` is 48 because its emblem is.
 
 One difference from the five vanilla tabs: each of those carries a second highlight plane in buffers 4
 and 5, and `build_icon_file` writes buffer 1 only. That is not a category requirement -- 17 of 24 branch

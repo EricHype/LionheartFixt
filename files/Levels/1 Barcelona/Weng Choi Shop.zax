@@ -2828,7 +2828,7 @@ CLayerSaveData
 					Time Of Last Restocking=0
 					Items=Array
 					{
-						Array Count=3
+						Array Count=4
 						Array Item=CMerchantListItem
 						{
 							Quantity=10
@@ -2864,6 +2864,28 @@ CLayerSaveData
 							{
 								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
 							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=30
+										Item=Inventory Items/Scroll
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=1
+										Item=Inventory Items/Wand Charge
+									}
+								}
+							}
+							Level=
 						}
 					}
 				}
@@ -3885,7 +3907,7 @@ CLayerSaveData
 					Time Of Last Restocking=0
 					Items=Array
 					{
-						Array Count=6
+						Array Count=7
 						Array Item=CMerchantListItem
 						{
 							Quantity=1
@@ -3968,6 +3990,28 @@ CLayerSaveData
 									{
 										Weighting=10
 										Item=Inventory Items/Tears of Kwan Yin
+									}
+								}
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=30
+										Item=Inventory Items/Scroll
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=1
+										Item=Inventory Items/Wand Charge
 									}
 								}
 							}

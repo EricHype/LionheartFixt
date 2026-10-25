@@ -1,0 +1,26 @@
+CCharacterPerk
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Display Name=Leonardo's Gift
+	Description=The viola organista played for you once, and opened a drawer you were not meant to find. Whatever was in it is yours, and it will not open again.
+	Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsGreaterThan
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Number of ranks=1
+}

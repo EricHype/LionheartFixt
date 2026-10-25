@@ -4,7 +4,7 @@ CCannedObject
 	{
 		Items=Array
 		{
-			Array Count=4
+			Array Count=5
 			Array Item=CInventoryItemGeneratorMixedListItem
 			{
 				Weighting=17
@@ -78,6 +78,22 @@ CCannedObject
 				Item=CInventoryItemGeneratorCannedList
 				{
 					Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Magic Equipment
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=2
+				Item=CInventoryItemGeneratorBasic
+				{
+					Items=Array
+					{
+						Array Count=1
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/Wand Charge
+						}
+					}
 				}
 			}
 		}

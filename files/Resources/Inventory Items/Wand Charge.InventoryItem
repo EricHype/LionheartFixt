@@ -2,50 +2,17 @@ CInventoryItem
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=5
+		Item Count=3
 		PlugIn Behavior=CInventoryItemPlugInBehaviorMergeMultipleInstances
 		{
 			Current Count=5
 			Maximum Count=999
 		}
-		PlugIn Behavior=CPlugInBehaviorProjectile
-		{
-			Projectile Model=Items/Projectiles/Bolt Level 1
-			Stop At Target Position=1
-			Num Seconds Allowed To Live=-1
-			Hit Action=
-		}
-		PlugIn Behavior=CPlugInBehaviorDamage
-		{
-			Hit Or Miss=Damage Types/Damage Hit Or Miss/Ranged
-			Cache Hit Or Miss Result=1
-			Hit Margin=1
-			Damages=Array
-			{
-				Item Count=1
-				Damage=CXRPGDamage
-				{
-					Damage Type=Damage Types/Piercing
-					Damage Amount=CRandom
-					{
-						Operator=
-						Minimum=CConstant
-						{
-							Constant Value=2
-						}
-						Maximum=CConstant
-						{
-							Constant Value=10
-						}
-					}
-				}
-			}
-		}
 		PlugIn Behavior=CPlugInBehaviorPickUpAction
 		{
 			Pick Up Action=CPlaySoundAction
 			{
-				Sound=Pickups/pick_up_bowarrow.ogg
+				Sound=Pickups/pick_up_ring_key.ogg
 				Position=$Trigger
 			}
 		}
@@ -53,7 +20,7 @@ CInventoryItem
 		{
 			Put Down Action=CPlaySoundAction
 			{
-				Sound=Pickups/put_down_club.ogg
+				Sound=Pickups/put_down_ring_key.ogg
 				Position=$Trigger
 			}
 		}
@@ -64,28 +31,28 @@ CInventoryItem
 	}
 	Is Magic=1
 	Encumbrance=0
-	On the ground=Items/PickUps/Weapons/Bolts_PU
+	On the ground=Items/PickUps/Misc Items/Gem_PU
 	Requirements=Array
 	{
 		Item Count=0
 	}
 	Display Name=Wand Charge
-	Description=A sliver of charged quartz. A wand draws one of these each time it is used.
+	Description=A splinter of dark crystal that hums faintly to the touch. A wand draws one each time it is used.
 	Inventory Window Images=Array
 	{
-		Basic=Items/Inventory Images/Weapons/Bolts
-		Better=Items/Inventory Images/Weapons/Bolts
-		Special=Items/Inventory Images/Weapons/Bolts
+		Basic=Items/Inventory Images/Misc Items/Gem Onyx
+		Better=Items/Inventory Images/Misc Items/Gem Onyx
+		Special=Items/Inventory Images/Misc Items/Gem Onyx
 	}
-	Whole Item Display Name=Bolts
+	Whole Item Display Name=
 	Whole Item Description=
 	Number Of Additions Added=0
-	Slot Used In=Character Slot Types/Bolt
+	Slot Used In=Character Slot Types/!None
 	Sub Slot Used In=0
 	Number Hands Needed=None
 	Unique Select ID=0
 	IsCurrentlyUsedByPlayer=0
-	Catagory for display Grouping=Inventory/Grouping Catagories/Ammunition
+	Catagory for display Grouping=Inventory/Grouping Catagories/Miscellaneous
 	Inventory Addition Group=Inventory/!None
 	Item Grade=Basic
 	Origonal Item=Inventory Items/Wand Charge

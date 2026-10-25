@@ -4633,7 +4633,7 @@ CLayerSaveData
 					Time Of Last Restocking=0
 					Items=Array
 					{
-						Array Count=2
+						Array Count=3
 						Array Item=CMerchantListItem
 						{
 							Quantity=1
@@ -4662,6 +4662,28 @@ CLayerSaveData
 							Item=CInventoryItemGeneratorCannedList
 							{
 								Canned Item List=Inventory/Generator Combinations/Weapons/ALL WEAPONS Mojo Standard
+							}
+							Level=
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=30
+										Item=Inventory Items/Potion
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=1
+										Item=Inventory Items/Wand Charge
+									}
+								}
 							}
 							Level=
 						}
@@ -6197,7 +6219,7 @@ CLayerSaveData
 					Time Of Last Restocking=0
 					Items=Array
 					{
-						Array Count=12
+						Array Count=13
 						Array Item=CMerchantListItem
 						{
 							Quantity=5
@@ -6314,6 +6336,28 @@ CLayerSaveData
 							{
 								Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
 							}
+						}
+						Array Item=CMerchantListItem
+						{
+							Quantity=1
+							Item=CInventoryItemGeneratorBasic
+							{
+								Items=Array
+								{
+									Array Count=2
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=30
+										Item=Inventory Items/Potion
+									}
+									Array Item=CInventoryItemGeneratorBasicItem
+									{
+										Weighting=1
+										Item=Inventory Items/Wand Charge
+									}
+								}
+							}
+							Level=
 						}
 					}
 				}
