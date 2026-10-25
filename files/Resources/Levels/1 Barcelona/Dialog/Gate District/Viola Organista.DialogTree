@@ -1,0 +1,2374 @@
+CDialogTree
+{
+Name=Viola Organista
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 start instrument
+Text=<You see a grand organ with a row of black and white keys - a plaque above the keys reads: Viola Organista. A crank wheel rests on the left side of the instrument. Somewhere within the instrument you hear a soft humming.>
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=tuned organ
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Turn the crank wheel. 
+Go to node ID=5 wheel
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=tuned organ
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=spawn notes
+}
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=tuned organ
+Desired Minimum Count=1
+}
+}
+Reply Text=Turn the wheel crank.
+Go to node ID=5 wheel already tuned
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=tuned organ
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Examine the keys. 
+Go to node ID=40 play the organ not tuned
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=tuned organ
+Desired Minimum Count=1
+}
+}
+Reply Text=Examine the keys. 
+Go to node ID=40 play the organ
+
+Requirement=!None
+Reply Text=Leave the instrument alone. 
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 wheel
+Text=<The wheel turns, tightening the strings connected to the keys of the instrument. The humming grows louder, until a high-pitched voice speaks from the organ itself.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=5 organ tuned
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 wheel already tuned
+Text=<The wheel turns, tightening the strings connected to the keys of the instrument. The humming grows louder, until a high-pitched voice speaks from the organ itself.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=5 organ already tuned
+Custom Action=CTriggerRelayAction
+{
+Relay Name=spawn notes
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 organ tuned
+Text=Thank you for tuning me! I was feeling a little...flat.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How is it that you can speak?
+Go to node ID=5 talking organ
+
+Requirement=!None
+Reply Text=What is the viola organista?
+Go to node ID=5 viola
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=60 name
+
+Requirement=!None
+Reply Text=Do you mind if I compose music?
+Go to node ID=50 use keys
+
+Requirement=!None
+Reply Text=This is too strange. I need to leave. 
+Go to node ID=5 goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 organ already tuned
+Text=You have returned. Please, compose a piece of music! Unlock the poetry in your spirit and stoke the fires of your creativity!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like to compose music.
+Go to node ID=50 use keys
+
+Requirement=!None
+Reply Text=How is it that you can speak?
+Go to node ID=5 talking organ
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=5 organista
+
+Requirement=!None
+Reply Text=This is too strange. I need to leave. 
+Go to node ID=5 goodbye 
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=5 organ tuned
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 other questions
+Text=Please, compose a piece of music! Unlock the poetry in your spirit and stoke the fires of your creativity!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like to compose music.
+Go to node ID=50 use keys
+
+Requirement=!None
+Reply Text=What is the viola organista?
+Go to node ID=5 viola
+
+Requirement=!None
+Reply Text=How is it that you can speak?
+Go to node ID=5 talking organ
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=60 name
+
+Requirement=!None
+Reply Text=This is too strange. I need to leave. 
+Go to node ID=5 goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 viola
+Text=It is one of Leonardo's newest inventions, a musical instrument both of string and bow, a mystical device that sings to heaven with each note! When Leonardo drafted the design, I begged him to let me help with its creation, to be a *part* of it, and be one with its song. I have been here since, still entranced with the viola organista.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=5 other questions
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 talking organ
+Text=My voice rings louder for those with a desire to create and compose. I am a *muse*, a spirit of artistic expression. When Leonardo crafted the viola organista, I was drawn to it like bees to honey, seeking the sweetness of this wondrous instrument.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=5 other questions
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=<The organ trembles slightly and hums a tune.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=spawn notes
+}
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=tuned organ
+Desired Minimum Count=1
+}
+Then=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 play the organ not tuned
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 key not tuned
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 key not tuned
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 key not tuned
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 key not tuned
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 key not tuned
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 key not tuned
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 key not tuned
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=tuned organ
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Turn the crank wheel. 
+Go to node ID=5 wheel
+Custom Action=CActivateAction
+{
+Target Name=tuned organ
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 key not tuned
+Text=<You strike the key and hear a dissonant note.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 play the organ not tuned
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 play the organ 1
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=90 wand A
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=90 wand B
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+Action=CTriggerRelayAction
+{
+Relay Name=spawn notes
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=90 wand D
+Custom Action=CMultipleDelayedActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+Delay Between Actions=1
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=90 wand E
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=90 wand F
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 play the organ 2
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 3
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+Action=CTriggerRelayAction
+{
+Relay Name=spawn notes
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Steam machine hates organ
+}
+}
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 play the organ 3
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 4
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 play the organ 4
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 5
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 play the organ 5
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=60 enter secret area
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.wav
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 broken key
+Text=<The key strikes a dissonant note and you hear a snapping sound. A broken string flies from the instrument. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 use keys
+Text=O, good fortune! I look forward to hearing you play!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 play the organ 1
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 name
+Text=Some call me Inspiration, the muse Euterpe, and others describe me through music. It is my existence to evoke beauty through flute and lyre.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=5 other questions
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 enter secret area
+Text=<The organ trembles slightly and the keys emanate a soft glow.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CRelocateAction
+{
+Return to map=definitely soon
+New Map Name=1 Barcelona/Davinci Secret Chamber
+New Location=Start Here
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=1
+}
+Action=CSpawnEffectAction
+{
+Explosion Model=Special Effects/Teleport Generic
+Location Entity=$Instigator
+Make effect a child of the location entity=0
+X Offset=0
+Y Offset=0
+Height Offset=0
+Play Default Sound=1
+Action to execute After Effect=
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=solved organ puzzle
+Experience Points To Add=1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 return
+Text=You have returned. Please, compose a piece of music! Unlock the poetry in your spirit and stoke the fires of your creativity!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like to compose music.
+Go to node ID=50 use keys
+
+Requirement=!None
+Reply Text=What is the viola organista?
+Go to node ID=5 viola
+
+Requirement=!None
+Reply Text=How is it that you can speak?
+Go to node ID=5 talking organ
+
+Requirement=!None
+Reply Text=What are you?
+Go to node ID=60 name
+
+Requirement=!None
+Reply Text=This is too strange. I need to leave. 
+Go to node ID=5 goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Goodbye. 
+Go to node ID=5 goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=90 wand A
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=90 wand AG
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand AG
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=90 wand AGE
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand AGE
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=90 give greater healing
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 give greater healing
+Text=<The keys glow and a shallow drawer slides open beneath them. A slender wand rolls out and comes to rest at your feet, beside a card in Leonardo's hand reading: Greater Healing.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take the wand.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGenerateInventoryItemAction
+{
+Number of items to generate=1
+Level of item to generate=CConstant
+{
+Constant Value=9
+}
+Location=$Instigator
+Location Offset=0,0
+Generate Within Radius=32.5
+Aspect Ratio=0.712766
+Item List=CInventoryItemGeneratorMixedList
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorMixedListItem
+{
+Weighting=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Specific Item Cans/Misc Items/Wand Cure Major Wounds
+}
+}
+}
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Wand Charge
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand B
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=90 wand BE
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand BE
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=90 give lesser healing
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 give lesser healing
+Text=<The keys glow and a shallow drawer slides open beneath them. A slender wand rolls out and comes to rest at your feet, beside a card in Leonardo's hand reading: Lesser Healing.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take the wand.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGenerateInventoryItemAction
+{
+Number of items to generate=1
+Level of item to generate=CConstant
+{
+Constant Value=6
+}
+Location=$Instigator
+Location Offset=0,0
+Generate Within Radius=32.5
+Aspect Ratio=0.712766
+Item List=CInventoryItemGeneratorMixedList
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorMixedListItem
+{
+Weighting=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Specific Item Cans/Misc Items/Wand Cure Small Wounds
+}
+}
+}
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Wand Charge
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand D
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=90 wand DE
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand DE
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=90 wand DEA
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand DEA
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=90 give rigor mortis
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 give rigor mortis
+Text=<The keys glow and a shallow drawer slides open beneath them. A slender wand rolls out and comes to rest at your feet, beside a card in Leonardo's hand reading: Rigor Mortis.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take the wand.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGenerateInventoryItemAction
+{
+Number of items to generate=1
+Level of item to generate=CConstant
+{
+Constant Value=14
+}
+Location=$Instigator
+Location Offset=0,0
+Generate Within Radius=32.5
+Aspect Ratio=0.712766
+Item List=CInventoryItemGeneratorMixedList
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorMixedListItem
+{
+Weighting=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Specific Item Cans/Misc Items/Wand Rigor Mortis
+}
+}
+}
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Wand Charge
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand E
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=90 wand ED
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand ED
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=90 wand EDG
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand EDG
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=90 give lockpicking
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 give lockpicking
+Text=<The keys glow and a shallow drawer slides open beneath them. A slender wand rolls out and comes to rest at your feet, beside a card in Leonardo's hand reading: Lockpicking.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take the wand.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGenerateInventoryItemAction
+{
+Number of items to generate=1
+Level of item to generate=CConstant
+{
+Constant Value=4
+}
+Location=$Instigator
+Location Offset=0,0
+Generate Within Radius=32.5
+Aspect Ratio=0.712766
+Item List=CInventoryItemGeneratorMixedList
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorMixedListItem
+{
+Weighting=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Specific Item Cans/Misc Items/Wand Open Locks
+}
+}
+}
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Wand Charge
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand F
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=90 wand FA
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand FA
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=90 wand FAC
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 wand FAC
+Text=<There are seven keys on the organ, each labeled with a single letter from A to G.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Press the A key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note A.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the B key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note B.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the C key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note C.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the D key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note D.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the E key.
+Go to node ID=90 give revelation
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note E.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the F key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note F.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Press the G key.
+Go to node ID=40 play the organ 1
+Custom Action=CPlaySoundAction
+{
+Sound=Traps/Organ Notes/Organ Note G.ogg
+Position=$Trigger
+Multiplayer=Heard by all players
+}
+
+Requirement=!None
+Reply Text=Leave the organ alone.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 give revelation
+Text=<The keys glow and a shallow drawer slides open beneath them. A slender wand rolls out and comes to rest at your feet, beside a card in Leonardo's hand reading: Revelation.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Take the wand.
+Go to node ID=40 play the organ 1
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGenerateInventoryItemAction
+{
+Number of items to generate=1
+Level of item to generate=CConstant
+{
+Constant Value=3
+}
+Location=$Instigator
+Location Offset=0,0
+Generate Within Radius=32.5
+Aspect Ratio=0.712766
+Item List=CInventoryItemGeneratorMixedList
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorMixedListItem
+{
+Weighting=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Specific Item Cans/Misc Items/Wand Secret Reveal
+}
+}
+}
+}
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$Instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory Items/Wand Charge
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
+Is Default Reply=1
+}

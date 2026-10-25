@@ -1474,6 +1474,33 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.74.0 - the wands that were never wands
+
+An addition rolls its instance when the item is generated, so **a wand already in your pack keeps
+its old behaviour**. Every row below needs a freshly looted or bought wand, the same caveat WT1 to
+WT4 carry.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WC1 | **The row that matters.** Get a newly generated wand of Revelation, Lockpicking, Lesser Healing, Greater Healing or Rigor Mortis, and some Wand Charges | Equip the wand, pick its spell out of **Wand Magic > Charged Spells**, cast it | It casts and the effect lands. All five were uncastable in vanilla, gated behind `Display and Cast Requirements=CIsEqualTo(0,1)` |
+| WC2 | **Zero mana, the whole point.** Note the mana bar, then cast from any of the five | - | The bar does **not** move. Each spell carries `ManaUse=CConstant 0`, which is the author's own model for a wand-only spell |
+| WC3 | **The charge is spent.** Watch the Wand Charge stack in the Bolt slot while casting | - | It falls by one per cast. The spell's payload holds a `CActionRemoveInventoryItem`, because `CPlugInBehaviorWand`'s own count never decremented and an item plugin cannot see a cast |
+| WC4 | **An empty wand does nothing and says so.** Spend every charge, then cast again | Watch for floating text | `The wand has no charges left`, no effect, nothing consumed, and **the wand stays in the pack**. It is useless, not destroyed: nothing in the engine can destroy it at the right moment |
+| WC5 | **Anyone can use it.** Repeat WC1 on a character with no magic skill at all | - | Identical. The pin sets the spell's level, so a fighter casts it exactly as a mage does |
+| WC6 | **Nobody gets them free. This row caught a real defect in play.** Hold no wand | Open the skill window and **read the number** on each of the five | Each reads **0 or negative** and refuses to cast. The resting value is `parent - differential` against a parent pinned at 0. **If any reads 450**, a pre-made character file is still baking it: that number lives in `Preexisting Characters/*.Character.txt`, not in any `.Skill` |
+| WC7 | **A buffed caster still gets nothing.** Max Divine Protective, take the perks, hold no wand | Try to cast | Refused. The five hang off a group whose value nothing can move, so no branch bonus can reach them |
+| WC8 | **One wand, one spell.** Collect wands from the organ and from chests | Read each name | `Wand of <one spell>`, optionally with a non-wand bonus after it such as `, Evasion`. **A second spell, or the same one twice, means the additions are back in `Wand Additions`** and the generator is stacking them |
+| WC9 | **The wand group.** Open the skill window | Look below Tribal | **Wand Magic**, holding one branch **Charged Spells**, holding the five spells, each at its own row. Its tab icon is a wand head cropped from the Rigor Mortis wand's own art |
+| WC10 | **The sign error.** Rigor Mortis, cast at an enemy | - | It stands still about 5 seconds, then moves and attacks **slowly**. Vanilla stored `amount=75` on a percent modifier, which would have made it 75% faster |
+| WC11 | **The friend filter.** Greater Healing, with an ally beside you and an enemy adjacent | - | You and the ally heal 19-23. The enemy does not. The `CCheckCategoryAction{Player,Player Friend}` filter is lifted from the real `Healing.Skill` |
+| WC12 | **Lesser Healing actually heals.** Take damage, cast it on yourself | Watch Hit Points | Up by 10 to 13. It read 0 before, because the amount was fetched from the item rather than declared on the spell |
+| WC13 | Lockpicking | Cast it, then try a lock previously refused as too complex | It opens. +50 covers 188 of the 197 locks carrying a numeric `Lock Pick Adjustment`; the nine it misses sit at -300, the game's not-pickable marker |
+| WC14 | Revelation | Cast it, then read the character sheet | Find Traps/Secret Doors up by **60**, falling back after 30 seconds |
+| WC15 | **Regression.** Poisonous Touch | Hit something with it | Unchanged. It is the one strike wand and it was already working |
+| WC16 | **Regression, and the one that would break something invisible.** Fight anything that casts Magical Shield at you | - | Still cast. `ENEMY Magical Shield` is parented to `Fake Wand Spells/Cure Major Wounds`, which is why that file was left alone |
+| WC17 | **Regression.** Cast a Fireball or Lightning wand | - | Unchanged, including vanilla's own trap of pinning a real caster's skill **down** to the wand's level. Those eleven were not touched |
+| WC18 | **The rename.** Look at the Lesser Healing wand and at Divine > Protective | - | The item reads **Lesser Healing** and does not collide with the real `Healing` spell in that branch |
+
 ## 0.73.1 - the man who never spoke to you
 
 All dialogue, so it works on a save already in progress. The peaceful record is written when Sahar

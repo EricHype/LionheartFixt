@@ -1,0 +1,39 @@
+CSkillDescription
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Display Name=Wand Magic
+	Description=Spells that exist only in a wand. They cannot be learned, and no amount of skill will cast one: the wand itself supplies the power, and it holds a limited number of charges.
+	Character Creation Screen Description=
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=0
+		}
+	}
+	Parent Skill=Skills/!None
+	Value Type=Sum of childrens values
+	Value Differential=0
+	Can be selected as Tag Skill=0
+	Image=Skills/Wand
+	Amount To Increase Value By With Each Upgrade=1
+	Minimum Value=-5700
+	Maximum Value=5700
+	Sort Priority=13
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
+	Initial Minimum & Maximum=0.000000,0.000000
+	Display and Cast Requirements=Array
+	{
+		Item Count=0
+	}
+	Cast Requirements=Array
+	{
+		Item Count=0
+	}
+}

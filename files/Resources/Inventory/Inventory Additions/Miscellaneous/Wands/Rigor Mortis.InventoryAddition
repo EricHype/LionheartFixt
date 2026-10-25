@@ -1,0 +1,95 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Wand spell pin
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=139
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Fake Wand Spells/Rigor Mortis
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2590
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wands/WandLightning
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Rigor Mortis
+	Description=The spell cast by this wand freezes the target in place for 5 seconds. Upon regaining movement, the target is slowed to %i[showamount]% of its base movement rate as it shakes off the effects of its touch with death. This slow effect lasts for %i[duration] seconds, and is non-cumulative. Each use draws one Wand Charge.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/WandLightning
+	Minimum Value=2590
+	Minimum Addition Ammount=0
+	Inbetween Value=2590
+	Inbetween Addition Ammount=0
+	Maximum Value=2590
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=4
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=duration
+				Expression=CConstant
+				{
+					Constant Value=15
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=amount
+				Expression=CConstant
+				{
+					Constant Value=-25
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=numberofcharges
+				Expression=CConstant
+				{
+					Constant Value=5
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=showamount
+				Expression=CConstant
+				{
+					Constant Value=75
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/!None
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

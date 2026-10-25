@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.73.1 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.74.0 are published.** 0.70.0 is WITHDRAWN and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. 0.6.0 is played only as far as the Juan rescue; **0.7.0 and 0.8.0 are entirely unplayed**, and 0.7.0 changed a late-game promotion for every faction combination. 0.9.0 is scoped below and not started. 0.5.0 was built and never published; its artifact crashes on entering the vault and is superseded by 0.5.1. The sections below are in reverse release order, newest first.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -139,6 +139,1148 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.74.0 - the wands that were never wands
+
+Asked in play: *"how do I actually use wands? When I equip them, there doesn't seem to be a way to
+cast the spell they hold."*
+
+You equip the wand, then equip its spell from a skill branch and cast with the right mouse button.
+The game says so in its own tooltip: *"To cast the currently equipped spell, move the attack cursor
+over a target and click the right mouse button."* Eleven wands work that way. **Five never have.**
+
+### One cause, five symptoms
+
+Every wand-only spell under `Skills/Fake Wand Spells` carries
+`Display and Cast Requirements=CIsEqualTo(0,1)`, which is false forever. An undisplayable spell
+cannot be equipped, so it cannot be cast, and **a charge is only ever spent by a cast**.
+
+| | what it had | why nothing happened |
+|---|---|---|
+| `Open Locks` | `PlugIn Behaviors Item Count=0` | literally nothing, and no expressions either -- a description, pooled at `3 Rare` |
+| `Cure Major Wounds` | `CPlugInBehaviorLaunchAction` | a wand has no launch event; all 11 launchers in the item set are bows and crossbows |
+| `Secret Reveal` | `CPlugInBehaviorLaunchAction` | the same |
+| `Rigor Mortis` | only the uncastable spell | no hook at all |
+| `Cure Small Wounds` | `CPlugInBehaviorStrikeAction` | it fired, but aimed at `$trigger` -- the thing you hit -- and its amount read an expression the file never declares |
+
+`Poisonous Touch` survives in the shipped game only because its effect hangs off
+`CPlugInBehaviorStrikeAction`, which needs no cast -- and as a side effect **its charges have
+never decremented either**, so it is unlimited in vanilla. It is left alone.
+
+### Rigor Mortis was finished, and nobody ever saw it
+
+It is a complete 5.4 KB spell. Its freeze is not a speed value, because **the engine has no freeze
+primitive**: it is `CAssignTemporaryTaskAction{Target=$Trigger, Temporary Task AI=CWaitAI{Time To
+Wait=5, Done Action=CSendAIDoneMessage, Remove Wait AI If Actor Dies=1}, Original AI Type=CSkeletonAI,
+Completion Message to wait for=AI Done}` -- the creature's skeleton AI is swapped for a five second
+wait and then handed back, with the dies-while-waiting case already covered. Then the slow, on
+`Speed/Base Animation Speed Multiplier`, the same primitive `Slow.Skill` uses.
+
+Two defects inside it:
+
+| | |
+|---|---|
+| `Target=%trigger` | a percent sign where the game uses `$`. **The only one in the entire archive**, against 32,021 correct references. It sits in the `CPlugInBehaviorLaunchAction` copy of the payload; the `CXRPGPlugInBehaviorLauncher` copy says `$Trigger`, so there was a clean donor |
+| `amount=75` | percent modifiers are additive deltas -- `Slow` stores -15 to -50 and displays `100 + percent` to produce "slowed to 65%". Rigor Mortis stored **75**, making the target **75% faster** once it unfroze. The description was the half that was right, so the modifier is -25 and a display-only `showamount=75` feeds the text, which is 0.52.3's pattern |
+
+### The model: a charge is the only currency
+
+A real spell's `ManaUse` is shared global, so **any wand pointed at a real spell eats the caster's
+mana** -- which is what all eleven working wands do. The author's own answer was a parallel family of
+wand-only spells with `ManaUse` **empty**, and the split is exact: empty is **3 of 3** among them and
+**0 of 58** among player-learnable spells. Empty was never an oversight; it meant free.
+
+So each repaired wand now has its own spell at an explicit `ManaUse=CConstant 0` -- explicit rather
+than empty, because nothing has ever evaluated the empty expression -- built on the
+`Spell`/`PlaySequence`/`Attack`/`LaunchAction` skeleton that `Greater Sight`, `Healing` and
+`Animal Grace` all share. Each is kept out of every character's reach by `Value Type=Normal` with
+`Initial Value=CConstant 0` and `Amount To Increase Value By With Each Upgrade=0`, so its value is 0
+for everybody, no skill point can move it, and **only a wand's pin makes it castable**. The first two
+builds of this release used a `Value Differential` of 300 instead, which did not work; the subsection
+below says why:
+
+| wand | charges | per charge | mana |
+|---|---|---|---|
+| **Rigor Mortis** `5 Unique` | 10-20 | 5s freeze, then slowed to 75% for 15s | **0** |
+| **Revelation** `1 Common` | 10-20 | +60 Find Traps/Secret Doors for 30s | **0** |
+| **Lockpicking** `3 Rare` | 10-20 | +50 Lockpick for 60s | **0** |
+| **Greater Healing** `4 Very Rare` | 10-20 | 19-23 HP to the wielder and allies beside them | **0** |
+| **Lesser Healing** `2 Uncommon` | 10-20 | 10-13 HP to the wielder and allies beside them | **0** |
+
+Anyone can use one, whatever their magic, because the pin sets the spell to a usable level while the
+wand is held. Charges deplete per cast and the plugin then disables the skill, so a spent wand is
+dead weight -- the engine has no way to destroy an item, so "useless" is as far as it goes.
+
+**Every number is the author's own** -- 75% and 15 seconds, 60 points and 30 seconds, 19-23 Hit
+Points -- except Lockpicking's **+50 for 60 seconds**, because vanilla gave that wand no numbers at
+all. +50 covers **188 of the 197** locked doors and containers carrying a numeric
+`Lock Pick Adjustment`; the nine it misses all sit at **-300**, the game's own not-pickable marker,
+which is exactly what "most non-magical locks" should mean.
+
+Greater Healing's area block is **lifted out of the real `Healing.Skill`** rather than written here,
+including its `CCheckCategoryAction{Target Name=$Trigger, Category to check for=Player,Player
+Friend}` filter, so enemies cannot be healed, and it attaches with `Target Name=$caster` as vanilla
+does, which means it is centred on you and the location-based aim is only the casting gesture.
+**`Cure Major Wounds.Skill` is untouched**: `Magic Thought/Defensive/ENEMY Magical Shield` is
+parented to it through a differential-zero chain, so Greater Healing was given its own file instead.
+
+### `CPlugInBehaviorWand` comes off. Everything it was for is done by something that works
+
+Lining every test up against one variable settles what had looked like noise:
+
+| the addition's group | the wand that arrived | result |
+|---|---|---|
+| in `Wand Additions` | `Wand of Revelation` | 17 casts |
+| in `Wand Additions` | `Wand of Revelation, Lesser Healing` | first spell cast |
+| in `Wand Additions` | `Wand of Revelation` | cast, charge consumed |
+| `Inventory/!None` | `Wand of Revelation, Evasion` | disabled, crumble |
+| `Inventory/!None` | `Wand of Revelation, Evasion` | disabled, crumble |
+
+**In group, 3 of 3 cast. Out of group, 0 of 2.** The generator initialises a wand plugin only for an
+addition it draws through the item's own addition group; one merely named in a can is attached but
+left uninitialised, so the plugin believes it has no charges and disables the spell. Group membership
+is also exactly what lets the generator stack a second addition on. The two cannot both be had, which
+is why the last several rounds kept trading one defect for the other.
+
+So the plugin goes. Everything it was supposedly for is already done by something confirmed working in
+play:
+
+| what it was for | what does it now |
+|---|---|
+| making the spell castable | the pin, lifting the spell from its negative resting value to 30 while the wand is held |
+| limiting uses | the Wand Charge item, one removed per cast by the spell's payload |
+| refusing an empty wand | the `CIfAction` in that payload |
+
+What it uniquely contributed was disabling the skill, which is what broke every build. A wand addition
+is now a single `CPlugInBehaviorModifyCharacterWhenSelected` and nothing else.
+
+Nothing else in the game disables a skill, so `Event Notification Actions/Skill Is Disabled.can` can
+never fire. Its override is deleted and vanilla's own file ships again, rather than carrying an edit
+that cannot run. The crumble goes with it: **a spent wand is not destroyed**, it simply does nothing
+and says so, which is the "or useless" half of the original brief.
+
+### The duplicate came back because I undid the fix for it
+
+`Wand of Revelation, Revelation`: the same addition twice, the case where two `CPlugInBehaviorWand`
+plugins collide and neither spell works. Nothing to do with the charge item or the gate.
+
+Taking the eighteen additions out of `Wand Additions` had already solved this, producing
+`Wand of Revelation, Evasion`, one wand spell plus a harmless stat bonus from `UNIQUE Item Additions`.
+I then reverted it while restoring "the configuration that cast seventeen times", on the assumption
+that every difference from that build mattered. It did not. What broke that build was
+`MergeMultipleInstances` turning the wand into a stack; the group membership was never implicated, and
+undoing it put the stacking straight back.
+
+The degrouping is re-applied. The cans and the pool name their additions directly, so nothing is
+orphaned by it.
+
+### Charges work. The stop at zero lives in the payload, not the requirement
+
+Two halves, and only the first survived first contact.
+
+**Spending works.** `Wand Charge added to inventory (15)` then
+`Removed Wand Charge from inventory`, with the effect landing: a spell cast can meter itself, by
+putting `CActionRemoveInventoryItem` in the payload that is already firing. It takes one unit off a
+stack, which the stack experiment had shown when a pile of 20 became 19.
+
+**Gating in `Display and Cast Requirements` does not.** The spell stopped casting entirely, no charge
+spent, the disabled message fired. The field has **6** vanilla users and every one of them is a
+constant comparison, `CIsEqualTo{0, 1}`; **not one asks a question about a character**, and an
+inventory check there evaluates false because nothing binds `$Instigator` in the skill window. That
+should have been read off the precedent rather than from a test.
+
+The payload is different. It resolves characters, which is how the heal reaches `$Trigger` and the
+Find Traps bonus reaches `$Instigator`, and vanilla puts exactly this check in exactly this position:
+the Sanchez bribe chain is a stack of `CIfAction{If=CActionCheckForInventoryItem{...}}`. So each
+payload is now
+
+```
+CIfAction
+  If   = CActionCheckForInventoryItem{ $Instigator, Inventory Items/Wand Charge }
+  Then = everything it already did, including spending the charge
+  Else = combat text, "The wand has no charges left"
+```
+
+With a charge the effect fires and one is spent. Without, nothing happens and the player is told why.
+The cast itself is not refused, because the only field that could refuse it does not work, so this is
+the nearest honest thing: **casting an empty wand does nothing**.
+
+Charges are **5** now rather than 15, and the five descriptions end "Each use draws one Wand Charge."
+rather than naming a number the wand no longer controls.
+
+### Charges work: spent on every cast, and the cast refused at zero
+
+The save settles the first half. `Wand Charge added to inventory (15)` followed by
+`Removed Wand Charge from inventory`, with the effect landing: **a spell cast can meter itself**, by
+putting `CActionRemoveInventoryItem` in the payload that is already firing. It takes one unit off a
+stack, which the earlier stack experiment had shown it doing when it went from 20 to 19.
+
+The stop at zero goes in `Display and Cast Requirements`, which **6 of 92** vanilla skills populate,
+all with a `CIsEqualTo`. `Cast Requirements` would read more tidily but **0 of 92** use it, and this
+release has been taught repeatedly what no precedent means. The requirement is an inventory check
+adapted into an expression: `CActionExpression` wrapping `CActionCheckForInventoryItem`, the first
+being how vanilla turns an action into an expression across 374 files, the second checked against
+`$Instigator`, which is 576 of its roughly 653 vanilla uses.
+
+Because that field gates display as well as casting, a spell with no charges left also drops out of
+the Wand Magic branch and returns when charges do, which is a fair reading of "spent".
+
+So the system is: the wand grants the spell while held, the spell costs one Wand Charge per cast, and
+with no charges the spell is neither visible nor castable. That is the brief, reached by a route
+nothing in the shipped game uses, after `CPlugInBehaviorWand`'s own charges turned out not to count
+and `CPlugInBehaviorUseAmmo` turned out not to see a cast.
+
+### The spell spends the charge, because the item plugin will not
+
+The wand casts, the effect lands, and the Wand Charge is untouched. That is the clean negative the
+last build existed to produce: **a spell cast is neither a strike nor a launch as far as
+`CPlugInBehaviorUseAmmo` is concerned**, so the ammunition plugin can never see one. That route is
+closed and the plugin comes off all five wands.
+
+The spell's own payload does run, which is why the effect lands, and an action inside it can remove an
+item. Two things already established make that enough:
+
+* `CActionRemoveInventoryItem` is what the crumble uses, and the stack experiment showed it taking
+  **one unit off a stack** rather than the whole pile, 20 going to 19.
+* `MultipleInstances/Current Count` on a separate item is a counter the engine keeps across saves.
+
+So each of the five spells now removes one `Inventory Items/Wand Charge` from the caster, from inside
+the payload that is already firing. Two of them had a `CMultipleActionsAction` to append to; the two
+healing spells had a bare `CAddAIAction` that is now wrapped in one.
+
+**This round deliberately leaves out the gate that refuses a cast at zero.** That needs a
+`Cast Requirements` entry wrapping `CActionCheckForInventoryItem`, and if it resolved wrongly the wand
+would refuse to cast at all, which would hide whether the removal works. One change at a time, which
+is the lesson this release has relearned about four times.
+
+One asymmetry, recorded so it is not mistaken for a bug later: for the four spells whose payload is
+the effect, the charge goes on every cast. **Rigor Mortis is a projectile and its payload runs on
+hit**, so a miss will not cost a charge.
+
+### The wand spends ammunition instead of counting itself
+
+The two halves were established separately last round. `CPlugInBehaviorUseAmmo` is real and spends a
+stack one unit at a time, with seven vanilla users, five bows on the Arrow slot and two crossbows on
+the Bolt slot. `MultipleInstances/Current Count` is the persistent counter that does the holding. What
+failed was putting the counter on the **wand**: a stacked item keeps no per-item plugin state, so the
+wand plugin went silent.
+
+So the counter moves off the wand and onto a separate item, which is how every working consumable in
+the game is built. The bow is not a stack; the arrows are.
+
+* **`Inventory Items/Wand Charge`**, cloned from `Bolt.InventoryItem` and kept close to it because a
+  bolt is a known-good stackable, with `Current Count=15`, `Maximum Count=999`, worth 10 apiece, and
+  the projectile and damage plugins dropped since nothing fires it as a missile.
+* **`CPlugInBehaviorUseAmmo` on the five wand additions**, spending one from the Bolt slot on strike
+  and on launch, minimum one, so an empty slot refuses the cast. The wand gains no counter and stays a
+  single item, which is last round's lesson.
+* **The organ hands fifteen charges over with each wand**, a `CMultipleActionsAction` holding the
+  generator that makes the wand and a grant for the charges.
+
+**The Bolt slot is borrowed, and that is this test's honest cost.** There is no spare: the engine's
+list is !None, Arm, Arrow, Body, Bolt, Finger, Foot, Hand, Head, HotKey, Neck, Waist and Weapon, and
+every one is already used. A wand and a crossbow would compete for it, and a crossbow user would feed
+bolts to the wand. If the mechanism works the slot is worth solving properly; if it does not, nothing
+has been spent on it.
+
+**How it fails, if it fails:** the charge count does not move, which means a spell cast is neither a
+strike nor a launch to an item plugin, and the ammunition route is closed for good.
+
+### The ammunition idea half-worked, and a stack is not a wand
+
+The count moved. A stack of **20** was handed over and came back as `Current Count=19` after one cast
+attempt, so `MultipleInstances/Current Count` is live and something spends it. For the first time
+`Charges Remaining Is Valid=1` and `Charges Remaining=15` also survived into a save, where before they
+had never serialised at all.
+
+And the wand still would not cast. `No skill points spent on spell`, with the pin applied and the
+count present. Adding `CInventoryItemPlugInBehaviorMergeMultipleInstances` turns the wand into a
+**stack of wands**, and on a stack the wand plugin reports nothing: stacked items are fungible, so
+per-item plugin state is not kept for them. The crumble then took one unit off the stack instead of
+destroying the item, which is why the message fired and the wand stayed in the pack.
+
+The reasoning behind the attempt still holds, and the question that prompted it was the right one: the
+game really does keep a persistent count for potions and arrows, and `Infinite.InventoryAddition`
+really does prove an addition can set it. What it cannot do is hold that count and a wand plugin on the
+same item.
+
+Both plugins come out, and the eighteen additions rejoin `Wand Additions`, which is the other thing
+that had changed since the only build that ever cast a wand seventeen times. That configuration is
+what ships now: pin, wand plugin, a pre-loaded count of 15, in the group, generated by the can.
+
+### Counting a wand the way the game counts arrows
+
+Asked in play, and it is the right question: why can the game hold ten of one healing potion but not
+one wand used ten times? It can. `CPlugInBehaviorWand`'s own `Charges Remaining` does not persist, but
+`MultipleInstances/Current Count` plainly does, and two different systems spend it.
+
+* **Potions** carry `Current Count=1, Maximum Count=999` in the HotKey slot and are consumed on use.
+* **Arrows** carry `Current Count=50`, and a bow spends them one at a time through
+  `CPlugInBehaviorUseAmmo{Ammo To Use Slot=Character Slot Types/Arrow, How Much To Use On Launch=1,
+  Minimum Needed To Launch=1}`. Seven vanilla items have that plugin, five bows on the Arrow slot and
+  two crossbows on the Bolt slot, and the stack destroys itself at zero.
+* `Infinite.InventoryAddition` writes the literal `Current Count=Infinite` over an arrow's 50, which
+  proves an **addition** can set the count.
+
+So the count is addition-settable, persistent, and spent by a plugin, which is everything the charge
+system turned out not to be. And the slot list includes `Character Slot Types/Weapon`, so a wand can
+be told to spend ammunition from the slot it is sitting in: **the wand becomes its own ammunition**,
+fifteen uses in one item, each cast eating one, gone at zero by the machinery that empties a quiver.
+
+Each of the five gains two plugins:
+
+```
+CInventoryItemPlugInBehaviorMergeMultipleInstances{ Current Count=15, Maximum Count=999 }
+CPlugInBehaviorUseAmmo{ Ammo To Use Slot=Character Slot Types/Weapon,
+                        How Much To Use On Launch=1, Minimum Needed To Launch=1,
+                        How Much To Use On Strike=1, Minimum Needed To Strike=1 }
+```
+
+Both strike and launch are set where vanilla's bows set launch only, because a wand spell casts
+through `CPlugInBehaviorAttack` and some of them through `CXRPGPlugInBehaviorLauncher` as well, and
+nothing in the data says which of the two a cast counts as. `CPlugInBehaviorWand` stays, since it is
+what makes the spell castable at all; if this works the limit comes from the ammunition instead and
+its own count stops mattering.
+
+**How it fails, if it fails:** the count never moves and the wand is unlimited, meaning a spell cast
+is neither a strike nor a launch as far as an item plugin is concerned. Or it moves on a melee swing
+but not on a cast, which would show up as a wand lost to hitting somebody with it.
+
+### Stacking is solved. The charge count does not work at all
+
+Taking the eighteen additions out of `Wand Additions` worked. The wand arrived as
+`Wand of Revelation, Evasion`: **one wand spell**, plus a plain +15 Evasion drawn from
+`UNIQUE Item Additions`, which the group still pulls in and which holds no wand spells. That is a
+minor bonus on a wand, which is how magic items are supposed to read, and it is the shape the harness
+and shipped loot will both produce from now on.
+
+What it did not fix is charges, and the two results together now say why:
+
+| `Charges Remaining Is Valid` | `Charges Remaining` | behaviour |
+|---|---|---|
+| **1** | 15 | casts fine, **17 casts and still counting**, never depletes |
+| **0** | 0 | disabled before the first cast, crumbles, nothing happens |
+
+Both are explained by one thing: **the count is read back from the addition definition rather than
+kept on the item**. Pre-load it and every read returns 15, so it never runs out. Leave it at vanilla's
+0 and every read returns 0, so the spell is disabled from the moment the wand exists. Nothing in
+between is reachable, because nothing persists.
+
+That also explains the biggest vanilla finding of this release. **`All Wands.can` has zero referrers:
+no chest, monster or merchant in the shipped game ever rolls a wand.** The authors left the whole
+family out of the loot tables, and a charge system that cannot count is a good reason why.
+
+The build now carries `Is Valid=1` and `Remaining=15`, the only configuration that has ever cast a
+wand spell. So the wands work, they do everything their descriptions promise, and they are
+**unlimited**. The design this release was built to deliver was *anyone can use it, it has limited
+charges, when it is used up it is broken or useless*. Two of those three hold. The third is not
+reachable from data, and `Skill Is Disabled.can` can never fire while the count never reaches zero,
+which makes the crumble dead code.
+
+### Taking away what the generator stacks from
+
+The grant action was tried again with `Maximum Charges=CConstant 15` and gave exactly one addition,
+`Wand of Revelation` with no comma, a pin that fired, and **no charges**. So this release's original
+reading was right and the retraction of it last round was wrong: the retraction assumed the broken
+charge expression explained that first test, and the plain constant has now been tried on the same
+route with the same result.
+
+Every wand test this release has run:
+
+| route | additions on the item | charges |
+|---|---|---|
+| `CActionGiveStandardInventoryItem`, charges via the addition expression | 1 | none |
+| `CActionGiveStandardInventoryItem`, `Maximum Charges=CConstant 15` | 1 | **none** |
+| `CInventoryItemGeneratorMiscellaneousMagic` | 2 different | **17 casts** |
+| `CInventoryItemGeneratorMiscellaneousMagic` | 2 different | first spell worked |
+| `CInventoryItemGeneratorMiscellaneousMagic` | the same one twice | none |
+
+**Only the addition-attaching generator produces a working wand**, and it is also the thing that
+stacks a second addition on. Two attempts to stop the stacking have failed: the exclusion field did not
+bind, and the generation budget was undercut anyway.
+
+The lever left is to keep the generator and take away what it stacks *from*. Its extra-magic pass draws
+candidates from the base item's `Inventory Addition Group`, which for `Inventory Items/Wand` is
+`Wand Additions`, and every wand addition declares membership. The cans and the pool do not need that
+membership, because `Wand Secret Reveal.can` and `Wand selection MAGIC.can` both name their additions
+**directly** in an `Additional Magic` array. So all eighteen now carry
+`Inventory Addition Group=Inventory/!None` and the pass has nothing to find.
+
+Unlike the two that failed, this covers **shipped loot as well as the harness**, since the pool names
+its eighteen directly too. And it fails loudly rather than quietly: if the guaranteed addition turns
+out to need group membership as well, a wand arrives reading just "Wand" with no spell at all, which
+is obvious on the first pickup.
+
+### The harness goes back to the grant action, and a conclusion of mine does not survive
+
+Reported: `Wand of Revelation, Revelation`, consumed on the first cast, no stat benefit. One cause.
+**Two plugins for the same spell collide**, and this time even the first fails, where two plugins for
+different spells had left the first one working. The dead charges and the missing bonus both follow
+from the duplicate.
+
+The duplicate is the generator's doing and two levers have now failed to stop it. The budget
+arithmetic said level 3 buys a 210 wand and leaves 90 against a cheapest wand addition of 200, so a
+second should not fit; it fitted anyway. `Additions Cannot Be Combined With` did not bind either.
+
+**So the grant action gets another look, and the reason I ruled it out was wrong.** This release
+concluded that `CActionGiveStandardInventoryItem` does not give a wand charges. That rests on a single
+test, at the 23:50 build, where `Maximum Charges` still read
+`CInventoryAdditionsNamedExpressionExpression{Expression Name=numberofcharges}` -- the indirection
+later proved to return nothing when no addition is bound. The count was broken in that test whatever
+made the item, so the route was never what was being measured, and every later test that worked
+changed the route and the expression together. Two variables at once, which is the mistake this
+release has now made twice.
+
+`Maximum Charges` is a plain `CConstant 15` now. The grant action puts exactly one addition on an item
+and no generator gets a say, so a duplicate is impossible by construction.
+
+**What this does not fix is shipped loot.** A chest still runs the generator, and the generator still
+stacks: two spells where only the first fires, or the same spell twice where none does. That is
+vanilla's arrangement, it predates this release, and the two data levers available have both been
+tried. If the harness proves the grant action works, the honest options for loot are to hand the five
+wands out at fixed places rather than as drops, or to say in the notes that a stacked wand can drop
+and only its first spell will cast.
+
+### Reverted: a wand only gets charges as an addition
+
+The complete-item conversion is out. Two findings from the save it was tested on, both decisive.
+
+**The engine stamps `Origonal Item` with the path an item was created from**, overwriting what the file
+says. The live wand read `Inventory/Specific Item Cans/Misc Items/Wand of Revelation` where its file
+said `Inventory Items/Wand`, so the crumble naming `Inventory Items/Wand` matched nothing: the message
+fired from the shared notification and the wand stayed in the pack.
+
+**A wand only has charges if an addition-attaching generator made it.** The live item was correct on
+paper, a pin at `Constant Value=79` that the log shows firing as `Temporary +79`, and a
+`CPlugInBehaviorWand` with `Maximum Charges=CConstant 15`, and it still reported none. Across every
+test only one arrangement has ever produced a working wand:
+
+| how the item was made | the wand plugin arrived | charges |
+|---|---|---|
+| `CActionGiveStandardInventoryItem` | on an addition | none, crumble on cast 1 |
+| `CInventoryItemGeneratorMiscellaneousMagic` | on an addition | **worked, 17 casts** |
+| `CInventoryItemGeneratorBasic` | baked into the item | none, crumble on cast 1 |
+
+So the generator that attaches additions is what turns `Maximum Charges` into a live count. The plugin
+does not do it for itself, and a wand that is simply born holding one is born empty.
+
+Everything goes back: the eighteen items deleted, the cans and the pool pointing at the additions
+again, all eighteen additions returned to the `Wand Additions` group, and the exclusions removed since
+they never bound. `Spikes Major` was only ever copied in for them and is dropped, so the mod stops
+shipping a file identical to vanilla. Drop weights are untouched.
+
+One wand per spell now rests on the generation budget alone, at the per-wand levels the harness
+carries, **3, 4, 6, 9 and 14**, chosen so the leftover after each wand is at most 90 against a cheapest
+wand addition of 200. That build has never actually been played: it was written and replaced by the
+named items in the same round.
+
+### A wand with a second pool is never destroyed
+
+Asked in play: when one pool runs out, can the crumble check whether the item has charges left
+elsewhere? **No.** The count lives in a field the editor labels `Debug/Charges Remaining`, and of the
+engine's **53** expression classes only two touch an item at all, `CInventoryAdditionAmmountExpression`
+and `CInventoryAdditionsNamedExpressionExpression`; neither can see a charge. There is no expression
+for "is this skill disabled" either. Nothing can ask the question.
+
+The behaviour is reachable structurally, and the same change repairs something the conversion to named
+items had quietly broken. `CActionRemoveInventoryItem` names an item. Before the conversion every wand
+was `Inventory Items/Wand` plus an addition, which is exactly what the shared crumble names and what it
+removed correctly in play. Afterwards all eighteen were complete items whose `Origonal Item` pointed at
+themselves, as all **109** vanilla specific item cans do, so the crumble would very likely have matched
+nothing at all.
+
+So the sixteen single-pool wands take `Origonal Item=Inventory Items/Wand`, which is what they honestly
+are: variants of a real base item, where vanilla's 109 are uniques with no base of their own.
+**`Wand of Fire and Ice` and `Wand of The Mage` keep pointing at themselves.** That is the exemption.
+The crumble names `Inventory Items/Wand`, so it cannot touch them, and the only two wands in the game
+with a second pool are never destroyed while that pool may still hold charges:
+
+| wand | spell | charges |
+|---|---|---|
+| Wand of Fire and Ice | Fireball | 5 to 10 |
+| | Ice Storm | 5 to 10 |
+| Wand of The Mage | Lightning Bolt | 5 |
+| | Fear | 5 |
+
+Two independent rolls on Fire and Ice, so its spells will usually run out at different times. Those two
+revert to vanilla's dead-weight behaviour, which for two rare uniques is the right trade.
+
+**One uncertainty, stated rather than hidden.** Whether `CActionRemoveInventoryItem` matches on
+`Origonal Item` or on the resource path an item was created from cannot be told apart from the save
+that showed it working, because before the conversion both were the same string. If a spent
+single-pool wand now fails to crumble, matching is by creation path, and the crumble would have to name
+all eighteen items individually, which brings back the problem of removing the wrong one out of a pack.
+
+### All eighteen wands are named items now
+
+The other thirteen followed the five. Every wand in the game is a complete `.InventoryItem` under
+`Specific Item Cans/Misc Items` carrying `Inventory Addition Group=Inventory/!None`, so the generator
+can no longer put two spells on one wand anywhere, not just on the five this release repaired.
+
+An item has nowhere to put named expressions: **0 of the game's inventory items carry an `Expressions`
+array and 0 use a `%i[]` token.** So two things were resolved as each addition's plugins moved across.
+
+* **Every `CInventoryAdditionsNamedExpressionExpression` inside a plugin is inlined** with the
+  expression it names, recursively. 44 references in all, from 1 on the simplest wand to **19** on The
+  Mage. That keeps vanilla's behaviour exactly, including the
+  `CCacheFirstResult(N - CVariableSkill(spell))` pin that drops a real caster's own skill to the wand's
+  level, which is vanilla's design and not this release's business to change. It also keeps the charge
+  roll random, where the five repaired wands stay pinned to a constant 15 until depletion is proven.
+* **Every `%i[]` token in a description became text.** A `CConstant` writes its number, a `CRandom`
+  writes "a to b", a `CCacheFirstResult` is unwrapped, and `CSubtract(CConstant N, CVariableSkill)`
+  writes N, which is the level the wand casts at and exactly what the `displaylevel` token means on the
+  nine wands that have one. So "can be used %i[numberofcharges] times" now reads "can be used 10 to 20
+  times", which is truthful and keeps the roll.
+
+`Fire and Ice` and `The Mage` each keep **two** `CPlugInBehaviorWand` plugins. That is the author's
+design, two spells in one unique wand, and the rule being fixed here is that the generator must not
+bolt a second spell onto a wand, not that no wand may ever have two.
+
+`Wand selection MAGIC.can` is now 18 finished items at exactly the weights their additions held,
+totalling the same 255, so **drop rates are unchanged**. All 18 additions carry
+`Inventory Addition Group=Inventory/!None`, so nothing can attach them to anything ever again; they
+remain on disk as the source the items were built from.
+
+Naming follows what the engine composed before, `Wand of ` plus the addition's display name, so
+`Slowing` becomes `Wand of Slowing` and `The Swarm` becomes `Wand of The Swarm`.
+
+### Five named wands, the way every special weapon in the game is built
+
+The exclusions did not bind and the budget arithmetic only ever covered the harness, so the five stop
+being additions and become complete items.
+
+The mechanism is one field. All **109** of vanilla's specific item cans carry
+`Inventory Addition Group=Inventory/!None`, against the base Wand's `Wand Additions`. An item in no
+addition group cannot be handed an addition, so a finished item can never pick up a second spell. That
+is what makes The Everlasting a sword with exactly the properties its author gave it, and it is the
+only structural answer to stacking.
+
+Each wand is now a complete `.InventoryItem` under `Specific Item Cans/Misc Items`: the base Wand's
+three plugins plus the two the addition carried, its own name, value and art, and its description with
+the numbers written out, because an item has no `Expressions` array to resolve a `%i[]` token against.
+
+| item | value | spell |
+|---|---|---|
+| Wand of Revelation | 210 | Secret Reveal |
+| Wand of Lockpicking | 310 | Open Locks |
+| Wand of Lesser Healing | 710 | Cure Small Wounds |
+| Wand of Greater Healing | 1310 | Greater Healing |
+| Wand of Rigor Mortis | 2600 | Rigor Mortis |
+
+Three things are repointed so nothing is orphaned. The five `Wand <name>.can` generators produce the
+finished item through `CInventoryItemGeneratorBasic`. `Wand selection MAGIC.can`, the pool that
+`All Misc Items except Potions` draws through, becomes a mixed list holding the five finished items at
+the weights their additions held and one entry carrying the other thirteen additions unchanged, so
+**relative drop rates are identical**: our five summed 120 of 255 and the remaining thirteen keep their
+135. And the five additions take `Inventory Addition Group=Inventory/!None` so the generator's budget
+pass cannot bolt them onto a plain Wand behind the pool's back, which is how the stacking happened.
+
+**A vanilla finding worth recording.** Nothing in vanilla references the wand pool at all:
+`All Wands.can` has zero referrers, so no chest, monster or merchant ever rolls a wand and they appear
+only in two test maps. It is Fixt that wired `All Wands` into `All Misc Items except Potions`, which is
+why wands drop in this build at all, and why this release exists.
+
+The thirteen other wands keep vanilla's arrangement, so two of them can still land on one item with
+only the first spell firing. That is vanilla behaviour and the same conversion would fix it, thirteen
+items at a time.
+
+### Starving the generator instead
+
+The exclusions did not hold: the wand still arrived as Revelation plus Lesser Healing. The field is not
+at fault, because the bytes this release writes are identical to vanilla's down to the tabs, and the
+engine does implement the rule -- its own log string is *"but could not because it is not allowed to be
+combined with"*. Either the check is consulted only by the generator classes vanilla pairs additions in
+(all 22 vanilla exclusions are armour, amulets and bracers, generated by `Armor` and `Weapon`), or a
+can's guaranteed addition skips it. Neither is reachable from data.
+
+The lever that is reachable is **arithmetic**. `CInventoryItemGeneratorMiscellaneousMagic` spends a
+budget set by the item level and buys extra magic while money remains;
+`Rules/Item Level To Monetary Value Conversion Table.Object` reads 100, 200, 300, 400, 600, 800, 1000,
+1200, 1400, 1600, 1800, 2000, 2300, 2600, 2900 for levels 1 to 15; and **the cheapest wand addition in
+the game is Revelation at 200**. Generate each wand at the level whose budget just covers it and there
+is never 200 left for a second spell:
+
+| wand | item value | level | budget | left over |
+|---|---|---|---|---|
+| Revelation | 210 | **3** | 300 | 90 |
+| Lockpicking | 310 | **4** | 400 | 90 |
+| Lesser Healing | 710 | **6** | 800 | 90 |
+| Greater Healing | 1310 | **9** | 1400 | 90 |
+| Rigor Mortis | 2600 | **14** | 2600 | 0 |
+
+Rigor Mortis needed its addition at **2590** rather than 2600 for that: at 2610 the item misses level
+14's budget and has to generate at 15, which leaves 290 and buys a second spell. Same price to a
+player, and it was already a repriced number, down from vanilla's 6500.
+
+**This fixes the harness and not shipped loot.** In play a chest picks the level, so a wand can still
+arrive with two spells of which only the first fires. That is vanilla's behaviour and has been since
+2003. The exclusions stay because they cost nothing and may bind in the classes that do consult them.
+The one data lever left for shipped loot would be to move the wand additions out of the
+`Wand Additions` group that `Inventory Items/Wand` draws its extra magic from, since the `Wand <name>`
+cans name their additions directly and would still work. That is a change to the loot pool this release
+exists to fill, so it is not being made on a guess.
+
+### One wand, one spell
+
+Reported from play, and the event log is exact:
+
+```
+Wand of Revelation, Lesser Healing added to inventory
+Temporary +79 modifier to Revelation
+Temporary +54 modifier to Lesser Healing
+Temporary +60 modifier to Find Traps/Secret Doors    <- Revelation cast, worked
+The wand is spent and crumbles to dust               <- Lesser Healing cast, did not
+...
+Wand of Lockpicking, Revelation and Lesser Healing, Spikes added to inventory
+Wand of Revelation, Revelation added to inventory
+```
+
+The item generator stacks wand additions onto one base Wand, four on one item and the same one twice,
+and only the first spell on an item fires. **That is not something this release introduced.** The field
+that exists to stop it, `Additions Cannot Be Combined With`, is `Item Count=0` on every one of the 15
+vanilla wand additions. The field is real and used: 22 of 286 additions declare an exclusion, always as
+a pair, Giant Bones against Titan Bones, Night against Dead of Night, Archery against Blessed Archery.
+
+So every addition carrying a `CPlugInBehaviorWand` now excludes every other one, **18** of them. The 15
+vanilla, plus `Open Locks` which this release gave a wand plugin it never had, plus `Fire and Ice` and
+`Spikes Major` which Fixt already shipped. The eleven untouched vanilla wands are included on purpose:
+a vanilla wand of two spells where only the first fires is the same defect, and it has been in the loot
+pool since 2003.
+
+Each list names all 18 rather than the other 17. Excluding itself is the one part without vanilla
+precedent and it is deliberate, because the save shows `Wand of Revelation, Revelation` and nothing
+else blocks a duplicate. The check can only run between an addition being applied and those already on
+the item, so a self-entry is unreachable on the first application and bites only on the second. **If a
+wand now arrives with no addition at all, that reasoning was wrong and the self-entries come out.**
+
+`Replaces matching plugins=1` was the alternative, used by 6 vanilla additions, all weapon damage. It
+would let the second addition land and quietly replace the first's plugins, leaving an item still named
+for two spells. Refusing the combination is the honest version.
+
+### The wands work. What is left is the count not falling
+
+The generator route fixed it. The save records **17 casts**, each logging
+`Temporary +60 modifier to Find Traps/Secret Doors` and its removal thirty seconds later, with no
+`Skill Is Disabled` and no crumble. The spell fires, the payload lands, the pin goes on and comes off.
+That also settles the previous section's question: **`CActionGiveStandardInventoryItem` does not give a
+wand usable charges**, and since these five ship as loot, the release was never affected -- only the
+harness was.
+
+What is left is that the count never falls, and `Maximum Charges` cannot cause that; a valid maximum
+would still decrement. What can is the state pair, and it was the last thing in the plugin no vanilla
+wand does:
+
+| field | ours | all 15 vanilla wands |
+|---|---|---|
+| `Charges Remaining Is Valid` | **1** | **0**, every one |
+| `Charges Remaining` | **15** | **0**, every one |
+
+I had set those to pre-load the count as insurance against an initialisation that looked broken. It was
+not broken, the grant route was. A flag named "is valid", false on all fifteen shipped wands, is the
+plugin being told to work the count out for itself; setting it true plausibly tells the plugin its
+state is already loaded, so it neither initialises nor accounts. Both are back to 0.
+
+`Maximum Charges` stays `CConstant 15` for this round. It is also without precedent -- the fifteen
+split 12 reading the addition's `numberofcharges` and 3 holding a `CRandom` -- but it is simple and
+certainly non-zero, and changing one field at a time is what has moved this forward. The 10 to 20 roll
+returns once depletion is seen working.
+
+The harness also drops from item level 20 to 15, because at 20 the generator had budget left after the
+wand and bolted a second addition on: `Wand of Revelation, Poisonous Touch added to inventory`, two
+wand plugins on one item, which is not what a test wants. The conversion table gives 2900 at level 15
+against Rigor Mortis at 2610, the dearest of the five.
+
+### The harness was handing the wand over by a route vanilla never uses
+
+Reported from play: the wand was taken and equipped, `Temporary +79 modifier to Revelation` in the
+event log, and the first cast gave `The wand is spent and crumbles to dust` then
+`No skill points spent on spell`. **The cast never happened**, so the payload never ran, which is why
+Find Traps did not move. One cause, both symptoms: `CPlugInBehaviorWand` still believed the wand had no
+charges.
+
+The charge path is now as plain as the format allows -- `Maximum Charges=CConstant 15`,
+`Charges Remaining Is Valid=1`, `Charges Remaining=15`, no expression indirection left anywhere in the
+file -- and it changed nothing. So the suspect is not the data but **how the item is created**, and
+that is the last thing in this feature with no vanilla precedent:
+
+* `CActionGiveStandardInventoryItem`, which the harness used, appears **374** times in vanilla, **60**
+  of them passing an `Addition to add`. Every one of those 60 is a potion, an infinite-arrow, a cloak
+  or a flat damage bonus. **Not one carries a plugin with runtime state, and not one is a wand.**
+* Wands reach a player through `CGenerateInventoryItemAction`, used **2035** times, which runs an item
+  generator and drops the result on the ground. All eighteen `Wand <name>.can` generators exist for
+  that path and nothing else.
+
+So the harness stops inventing a route: each sequence now runs the same generator a chest runs, pointed
+at that wand's own can, and the wand lands at the player's feet. Level 20 for the budget, because
+`Rules/Item Level To Monetary Value Conversion Table.Object` reaches 2600 at level 14 and 2900 at 15,
+and Rigor Mortis is the dearest of the five at 2610.
+
+**Either answer from this test is worth having.** If the wand now works, the release is unaffected --
+these five ship as **loot**, so the generator is the only route that matters in play and only the test
+harness was ever broken. If it still dies on the first cast, the fault is inside `CPlugInBehaviorWand`
+and no arrangement of data will reach it.
+
+`Open Locks` had no generator can, because vanilla never pooled it. It has one now, cloned from
+`Wand Secret Reveal` with the addition swapped, which the loot pool wants regardless of the harness.
+
+### A branch with no maximum has no track to draw on
+
+Reported from play: the pins land and come off correctly -- the save holds
+`Skill Modifiers=Array{ Skills/Fake Wand Spells/Secret Reveal=54 }` with the wand equipped, and every
+`Temporary +54` in the event log is paired with a `Removed +54`. No crumble either, so the charge fix
+held. What was still missing was the third level of the window: Wand Magic drew, Charged Spells drew
+reading 0, and no spell appeared under it.
+
+Giving the five distinct ladder slots had not been enough, so the differential was not the whole story.
+Measuring the two new skills against all 92 vanilla ones finds the thing that was actually
+unprecedented:
+
+| field | the two new skills | all 92 vanilla skills |
+|---|---|---|
+| `Maximum Value` | **0** | 300 (x80), 5700 (x11), 100 (x1). **Never 0** |
+| `Amount To Increase Value By With Each Upgrade` | **0** | 1 (x86), 2 (x3), 3 (x2), 4 (x1). **Never 0** |
+
+and all 21 branches are identical to each other: `Normal`, `-300/300`, upgrade 1. A branch whose
+maximum is 0 has no track for the window to lay its spells along. So both take the shape their siblings
+have: the category is `Sum of childrens values` at `-5700/5700` like the other five, the branch is
+`Normal` at `-300/300` like the other twenty-one, and a field-by-field sweep now finds only one value
+in either file without vanilla precedent, `Sort Priority=13`, which has to be new because it is what
+orders the group after Tribal's 12.
+
+A negative value does not stop a spell drawing. The player's `Magic Divine/Defensive` read **1**, which
+puts Physical Aura at -23, Holy Fire at -48 and Mana Shield at -88, and all of them drew -- that is what
+"too wide to fit" meant. So the five can sit at negative values and still appear.
+
+**What this gives up, stated plainly.** With a real maximum the branch can take points, and a spell at
+`branch - differential` turns positive once the branch passes its slot. The five therefore move off the
+0 slot onto **24, 49, 74, 89 and 109**, so the cheapest leak is **25 points** spent in a branch whose
+own description says it buys nothing, for one wand spell at value 1. That is a self-punishing trade
+rather than a free lunch, and it is the price of the spells being visible at all. Closing it needs a
+branch that renders but cannot be spent in, and nothing in 92 vanilla skills shows how.
+
+### `Value Differential` is the slot a spell is drawn in
+
+Reported from play: the Wand Magic group appears, `Charged Spells` appears under it reading 0, and
+**nothing appears under that**. No spell to click, no way to select one.
+
+List the branches side by side and the convention is unmistakable. Every spell in a vanilla branch
+carries `Sort Priority=0` and a `Value Differential` from one ladder, and inside a branch those values
+are **always distinct**:
+
+| branch | its spells |
+|---|---|
+| Protective | Aid **0**, Physical Aura **24**, Holy Fire **49**, Mana Shield **89** |
+| Domination | Slow **0**, Discord **24**, Sleep **49**, Dominate **89** |
+| Fortitude | Healing **0**, Purify Body **24**, Resist Elements **49**, Divine Assistance **74**, Greater Resistance **109** |
+
+0, 24, 49, 74, 89, 109: one per row, and `Sort Priority` does no work at all. All five wand spells
+shared **1000**, so they were assigned the same slot, off the end of the ladder, and nothing was drawn.
+It also explains the earlier complaint that Protective was too wide: seven spells, four in vanilla's
+slots and three piled into one.
+
+So the differential goes back to the job the game gives it, and the hiding moves entirely onto the
+parent, which was always the stronger of the two. `Charged Spells` is `Value Type=Normal` with
+`Initial Value=CConstant 0` and `Minimum Value` and `Maximum Value` both **0** -- a value nothing in
+the game references and no point, perk or item can reach. With the parent fixed at 0 the derived values
+are just the negated ladder, and the engine refuses anything at or below zero, its own message being
+`Spell Cast Failed: Skill has 0 value`:
+
+| spell | slot | alone | wand pin | in hand |
+|---|---|---|---|---|
+| Lesser Healing | **0** | 0 | +30 | **30** |
+| Revelation | **24** | -24 | +54 | **30** |
+| Lockpicking | **49** | -49 | +79 | **30** |
+| Greater Healing | **74** | -74 | +104 | **30** |
+| Rigor Mortis | **109** | -109 | +139 | **30** |
+
+Each wand pins its own spell, so each pin is its slot plus 30 and all five read exactly 30 in hand. The
+1030 pin goes with the 1000 differential; it only ever existed to clear a differential that was doing
+the wrong job. Five spells, five slots, the same shape as Fortitude's five.
+
+### A group of their own, and a charge count that was never there
+
+Two reports from one save, `wands.sav`, whose event log settles both:
+
+```
+Wand of Revelation added to inventory
+Temporary +1030 modifier to Revelation        <- equipped
+Removed +1030 modifier to Revelation          <- unequipped
+Temporary +1030 modifier to Revelation        <- equipped again
+The wand is spent and crumbles to dust        <- first cast attempt
+Removed Wand of Revelation from inventory
+Removed +1030 modifier to Revelation
+No skill points spent on spell
+```
+
+**The pin works, the crumble works, the charge count does not.** `Skill Is Disabled` fires before a
+single charge has been spent, so `CPlugInBehaviorWand` already believed there were none. All **15**
+wands in the game ship `Charges Remaining Is Valid=0` and `Charges Remaining=0`, so the count has to be
+initialised at runtime from `Maximum Charges`, and ours read
+
+```
+Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+{ InventoryAddition=.../Wands/Secret Reveal, Expression Name=numberofcharges }
+```
+
+the **third** thing in this release broken by that one class. It cached garbage as `skilllevel`, it
+returned nothing for fifteen effect numbers, and it was the only indirection left in the charge path.
+There is now none anywhere in the five wands: `Maximum Charges` is a plain `CConstant 15`, and
+`Charges Remaining Is Valid=1` with `Charges Remaining=15` so nothing has to be initialised at all.
+Both halves on purpose, since either alone leaves the other a single point of failure. The cost is a
+fixed 15 charges rather than a 10-to-20 roll, which is a trade and not an oversight: the roll can come
+back once depletion is proven, and `numberofcharges` is 15 on both the item and the spell so the
+description still tells the truth.
+
+**The Protective branches were overloaded.** Three wand spells had been parented to
+`Magic Divine/Defensive`, which vanilla gives **4** children, taking it to 7 and making the row too wide
+for the window.
+
+The tree is entirely data-driven. `Skills/!None` is the true root and is its own parent; the five
+categories carry `Parent Skill=Skills/!None` with `Sort Priority` 1, 2, 10, 11 and 12; and **no resource
+anywhere enumerates them**. Two checks before adding a sixth: nothing reads `!None`'s value, its 802
+references being 429 `Selected Skill`, 367 `Skill To Select When Shoot Sequence Ends` and 6
+`Parent Skill`, so its `Sum of childrens values` is consumed by nothing; and `Mana Capacity` reads only
+`Divine`, `Thought` and `Tribal`, so a new sibling cannot change mana.
+
+So **Wand Magic** is a new top-level group at `Sort Priority=13`, holding one branch, **Charged
+Spells**, holding the five. That shape is vanilla's: every root child checked is a non-spell `Normal`
+point skill carrying 4 or 5 spells, and **no root anywhere has a castable spell as a direct child**, so
+the first attempt at this -- the five hung straight off the category -- was a shape the game never uses
+and the intermediate branch went in before it shipped.
+
+Both new skills are `Value Type=Normal` with `Initial Value=CConstant 0` and `Minimum Value` and
+`Maximum Value` both **0**, no upgrade and no tag: a value pinned at zero that nothing in the game
+references and no point, perk or item can move. Neither is `Sum of childrens values` like its five
+siblings, which would be circular here, the children being derived from the parent.
+
+That makes the hiding structural rather than a margin. The round before widened the differential to
+1000 because branch bonuses add on top of a branch's stored cap and could reach about 334; hanging from
+a group pinned at 0, the derived value is exactly **-1000** for every character who can ever exist. The
+differential and the pin stay at 1000 and 1030 as defence in depth.
+
+**The group's icon is cut from one of its own wands.** A skill icon is a pair, a `CStandAloneFrame`
+descriptor at `Resources/Skills/<name>.txt` and the compiled frame at
+`Cache/Resources/Skills/<name>.frm16`, and the five category icons are all **48 tall** with widths from
+**35 to 48**, so the slot takes a narrow glyph.
+
+Two families of wand art exist and only one is usable. The world pickups are the right shape and nearly
+empty -- `CursedTotem` is 21x23 with **54** opaque pixels and `RodOfBone` 47x55 with the same 54, which
+is a stick rather than a drawing. The inventory images are the real paintings and far too tall:
+`WandCursedTotem` 20x118 at 766 opaque, `WandLightning` 19x127 at **1038**. So the glyph is a crop of a
+head, not a squeeze of a whole wand.
+
+`WandLightning` is the densest of them and it is **the Rigor Mortis wand's own inventory art**. Its row
+ink profile names the head exactly: full-width rows at y=16 to 20 with high density to about y=35 over a
+thin shaft below. Rows **10 to 33**, 24 rows of 19, doubled to **38x48** -- an integer scale, so no
+resampling blur, and a size that sits between `tribal` and `divine`. It decodes back pixel-exact on all
+1824.
+
+One difference from the five vanilla tabs: each of those carries a second highlight plane in buffers 4
+and 5, and `build_icon_file` writes buffer 1 only. That is not a category requirement -- 17 of 24 branch
+icons and 19 of 58 spell icons ship without one, including `Magic Divine/Defensive` -- but the new tab
+may not glow on hover the way the other six do.
+
+### The review before the test: a 300 differential still leaks
+
+Found by reviewing the design rather than in play, which is the first defect this release caught before
+a tester did. The hiding rests on `parent - differential <= 0`, and 300 was justified by the branch's
+`Maximum Value=300`. **That bound is on the stored value, and modifiers add on top of it.** Measured
+against the three parents the five spells hang from:
+
+| source | amount | branch |
+|---|---|---|
+| `Divine Protective.Perk` | **+15** | Magic Divine/Defensive |
+| `Torquemada Divine Boon.Perk` | **+7** | Magic Divine/Defensive |
+| `Tribal Protective.Perk` | **+15** | Magic Tribal/Defensive |
+| `Domination.Perk` | **+15** | Magic Tribal/Domination |
+| `Wands/Special/Mage`, "The Mage" | +4 | all three |
+| `Divine Attunement` | +2 | Magic Divine/Defensive |
+| `of the Mage` armour, `Voodoo`, `Trapped Spirit Ring`, `Wielder DARK Quest Rod Bone WITH Spirit` | +1 or +2, and armour stacks per piece | various |
+
+Every one is `Allow Accumulation=1`, so they add. A maxed Divine Protective caster with both perks, The
+Mage, Divine Attunement and a few `of the Mage` pieces reaches about **334**, which at a differential of
+300 is `+34` on Revelation, Lesser Healing and Greater Healing with no wand in hand -- free, unlimited,
+no charges. The exact leak the differential exists to prevent.
+
+So the differential is **1000** and the pin **1030**, the pin's job still being to clear the differential
+and leave 30:
+
+| | derived value | result |
+|---|---|---|
+| no wand | `parent - 1000` | at worst `334 - 1000 = -666`, refused |
+| wand held | `parent - 1000 + 1030` | **30 to about 364**, castable |
+
+A 666-point margin against the largest total the archive can produce, and `Minimum Value=-5700` holds
+-1000 without clamping. The cost is cosmetic: the skill screen reads the stored value plus modifiers, so
+a held wand shows a large number there rather than 30. Vanilla's own wands have the same split between
+what the screen shows and what a cast uses.
+
+Two smaller things the same review turned up. `Rigor Mortis` and `Secret Reveal` rolled
+`numberofcharges` with a **bare `CRandom`**, so the count in the item description could differ from one
+look to the next; the other three wrap it in `CCacheFirstResult`, which is the author's own fix on 3 of
+vanilla's 15 wands, and all five now do. And `Inventory Items/Rod` shares the `Wand Additions` group with
+`Inventory Items/Wand`, so a wand addition can in principle land on a Rod, which the crumble would not
+destroy -- but `Inventory Items/Rod` is named by **4 test maps and nothing else**, no shipped level,
+monster or merchant, so it is recorded rather than fixed. Covering it would mean a second removal that
+could take a Rod the player wanted.
+
+### Where 450 actually came from, and the arithmetic that was wrong
+
+Reported from play: *"started a new game, the character still has 451 for the wand skills. When reset by
+the organ, they go down to 1. I can still cast the wand skills without having gotten any wand."*
+
+**It was never `Initial Value`, which this release said twice.** Searching the archive for a baked skill
+value finds it in nine files, and eight are `Resources/Preexisting Characters/*.Character.txt` --
+Antonio, Azul Tain, Cassandra, Dena, Grall, Liliana, Ruthgar and Safa, the characters the New Game
+screen offers. Each carries **11** entries at 450 in its `Skill Values` array: the six category roots
+and the five vanilla Fake Wand Spells, which is exactly the set whose `Initial Value` was empty when the
+author saved those files. The number was frozen into them years ago and nothing in a `.Skill` can reach
+it. That is also why `Greater Healing` and `Open Locks` read 0 while the other three read 450 -- those
+two are files this release created, and no pre-made character lists them. All five now read 0 in all
+eight. The six roots are left: they are `Sum of childrens values`, nothing reads them as a stored
+number, and `Skills/!None=450,-100,100` holding a value above its own maximum is vanilla's own business.
+
+**The screen and the cast read different numbers, which is why round three looked contradictory.** A
+save storing 450 and a cast refused with `Skill Value Zero` are both true at once: the skill screen
+prints the **stored** value, and the cast evaluates the **derived** one. `Magic Divine/Defensive` reads
+1 on that character, which is the whole of "451" and of the "1" left after the organ reset.
+
+**So the differential comes back, and the pin pays for it.** `Value Type=Normal` was the wrong lesson:
+it makes the derived value equal the stored one, which is the number the pre-made file had poisoned. The
+derived form is bounded by construction, because every magic branch is `Value Type=Normal` capped at
+`Maximum Value=300`, so `parent - 300` is at or below zero for every character who can exist. What
+defeated it the first time was arithmetic, not structure -- a +30 pin cannot clear a 300 differential.
+At **330**:
+
+| | derived value | result |
+|---|---|---|
+| no wand | `parent - 300` | **-300 to 0**, refused with `Skill Value Zero` |
+| wand held | `parent - 300 + 330` | **30 to 330**, castable |
+
+and the effects are fixed constants now, so a caster's branch does not scale them.
+
+**The organ's retune reply is removed.** It subtracted the baked 450 from a stored value; against a
+derived value it would subtract 450 from the modified total instead, leaving `330 - 450` and a wand that
+can never fire. It is also redundant now that the pre-made files are fixed at source.
+
+### Lesser Healing healed nothing: the number was on the item
+
+Reported from play: *"Lesser healing seems to do nothing."* The heal reads
+
+```
+CGiveHealthToCharacterAction{ Amount of health to give=CRandom{minheal, maxheal} }
+```
+
+and both ends of that range were
+`CInventoryAdditionsNamedExpressionExpression{InventoryAddition=.../Wands/Cure Small Wounds,
+Expression Name=minheal}`. The number lived on the **item**, so the spell had to resolve an addition
+instance at the moment it fired. All five repaired spells were built that way and pulled **15** numbers
+through it: every heal, every bonus, every duration.
+
+Vanilla says not to, and the split across its 92 skills is exact:
+
+| | files | references |
+|---|---|---|
+| `CInventoryAdditionsNamedExpressionExpression` | **3** | 7 |
+| `CSkillsNamedExpressionExpression` | **52** | 297 |
+
+The three are `Poison Touch`, `Rigor Mortis` and `Secret Reveal` -- all Fake Wand Spells, none of which
+has ever run in a shipped game. So the item indirection is 0 for 3 among spells that execute, while 52
+files of working practice declare the numbers in the skill's own `Expressions` array and read them back
+with `CSkillsNamedExpressionExpression{Skill=<self>, Expression Name=<name>}`. `Healing.Skill` declares
+nine that way.
+
+**This is the third time one indirection has broken this feature, and the same indirection twice.**
+`skilllevel` cached garbage because `CVariableSkill` resolved with no character bound; these fifteen
+read nothing because no addition was bound. An expression that must resolve something external at read
+time will resolve nothing when that something is absent, and a wand spell is cast in exactly that
+situation. All five now declare their own numbers and ask the item for none.
+
+The addition keeps its own copy, because a `%i[token]` in an item description resolves against that
+item's expressions and nothing else. The build asserts the two copies equal rather than leaving them to
+drift.
+
+### A spent wand crumbles
+
+The design said *"when it is used up it is broken or useless"*, and useless was as far as the engine
+looked willing to go. It also left a money pump: `Value` is a static `CConstant` on **all 284** vanilla
+inventory additions, so a wand sells for the same spent as full.
+
+**Rigor Mortis is repriced, 6500 to 2600**, which is the one number in this release taken from vanilla
+rather than restored to it. At 6500 it was worth more than double the dearest wand vanilla sells -- the
+next highest are Greater Fireballs and Greater Lightning Bolts at 2500, and Slowing at 2100 -- and it is
+the wand that made a buy-use-sell loop worth running. 2600 puts it at the top of that band instead of
+far outside it. Sell value does not fall as charges are spent, so the sticker price is the whole of the
+exposure.
+
+`CPlugInBehaviorWand` has no on-empty hook -- four registered fields, `Spell`, `Maximum Charges`,
+`Debug/Charges Remaining`, `Debug/Charges Remaining Is Valid` -- and nothing can read the count. The
+engine's expression set is **53** classes and only two touch an item at all,
+`CInventoryAdditionAmmountExpression` and `CInventoryAdditionsNamedExpressionExpression`, neither of
+which sees a charge. So the moment the last charge is spent is not observable.
+
+**The first cast after it is.** At zero charges the engine fires
+`Event Notification Actions/Skill Is Disabled.can`, a shared global holding ordinary actions with
+`$Instigator` bound to the caster, and that event has exactly one cause. The engine's own diagnostic
+reads `Spell Cast Failed: Skill is diabled (probably by wand plugin)`, and enumerating every "disable"
+in the executable turns up nothing else that disables a skill --
+`CDisableRecastingOfSpellForSpellsDuration` raises a different event, `Too Soon To Recast Spell`. So
+that `.can` is where a wand dies, and it now carries `CActionRemoveInventoryItem` alongside text that
+says what happened instead of `Skill is disabled`, which told the player nothing. Being a shared
+global, it covers the eleven vanilla wands too.
+
+**It removes one item, not all of them.** That is the author's own word rather than an assumption: the
+Sanchez bribe chain in `Inquisition Chambers2.zax` walks 40 `CActionRemoveInventoryItem` calls and
+prints *"Sanchez has taken a potion from your inventory"*, singular.
+
+Two limits worth stating plainly, because neither is fixed:
+
+* **All fourteen wands share the base item `Inventory Items/Wand`**, so the action names a type and not
+  the instance in your hand, and no file says which instance the engine picks. **Settled in play, and it
+  picks the right one**: a save taken after a Revelation wand crumbled, with Lockpicking and Rigor Mortis
+  also in the pack, has the Revelation wand gone and the other two untouched. One case rather than a
+  proof, but it is the case that matters.
+* **Destroying a selected item still runs its deselect.** The same save shows
+  `Skill Modifiers=Array{ Skills/Fake Wand Spells/Open Locks=30 }` holding exactly one entry, the pin
+  from the wand equipped at that moment, with nothing left over from the wand that had just been
+  destroyed. A `CRemoveCharacterModifierFromCharacterAction` was built to cancel the pin by hand and
+  then taken back out: the engine's note under `Modifier Description` is *"Every modification action must
+  having a matching modification with the same description and the opposite amount"*, so a removal that
+  fires when nothing needs removing is at best a no-op and at worst -30 on all five spells for good.
+* **A wand you never fire again is never destroyed.** The cast that empties it succeeds, so the item
+  sits spent until used. With no charge counter anywhere in the UI a player cannot see that state, but
+  one who counts can still sell at full price.
+
+### The third round: a pin that pinned nothing
+
+Reported from play: *"i still had rigor mortis and revelation at 450, even though i equipped a wand of
+lesser healing. It also said i hadn't spent any skill points on the skill."* The second half is the
+real finding. `No skill points spent on spell` is not a UI label, it is the text of
+`Common Objects and Scripts/Event Notification Actions/Skill Value Zero.can`, so the engine read the
+spell's value as zero or below **with the wand in hand**. The quicksave carries the event, and the
+character's `Selected Skill=Skills/Fake Wand Spells/Cure Small Wounds`, so every step up to the cast
+had worked.
+
+The save then names the cause outright. On the live wand:
+
+```
+Modification Amount=CInventoryAdditionsNamedExpressionExpression
+{ Expression Name=skilllevel,       Value=3.12791e-027 }
+Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+{ Expression Name=numberofcharges,  Value=15.6808 }
+```
+
+Both are `CCacheFirstResult`. `numberofcharges` wraps a `CRandom`, which needs nothing, and it rolled
+16 -- which the item's own description confirms, *"can be used 16 times"*. `skilllevel` wraps
+`CSubtract(30, CVariableSkill(spell))`, which needs a character, and the first evaluation got none.
+`CCacheFirstResult` then locked that garbage in **for the life of the item**, so the wand pinned its
+spell to roughly zero.
+
+That idiom was copied faithfully from vanilla, where all eleven working wands write
+`CCacheFirstResult(CSubtract(N, CVariableSkill(<a real spell>)))`. For a real spell the subtraction is
+the point: it is the delta that lands on exactly `N` from a starting value you do not know, which is
+also why 0.60.0's note here says turning `skilllevel` into a constant would be a serious bug. That
+note is about **real** spells and still holds. These five are not real spells, and after the second
+cause below their value is 0 for every character alive, so the subtraction buys nothing and can only
+go wrong. `skilllevel` is now `CConstant 30`.
+
+The second cause is the hiding scheme itself. `Value Differential=300` against a branch capped at 300
+does keep the natural value at or below zero, but it puts it at roughly **-300**, and +30 cannot reach
+zero from there. **A correction to what this release said twice:** I claimed every vanilla
+`Parents value minus differential` spell carries `Value Differential=0`. It does not. Counting all 92
+vanilla skills, 65 are derived and **45 of them carry a nonzero differential** -- 24, 49, 74, 89 or 109,
+twelve spells at 24, twelve at 49, nine at 74, three at 89, nine at 109. The differential is a tier
+offset, which was the right reading, but a very common one rather than an unused field: `Fireball` sits
+at 89, so a caster needs Fire above 89 before the spell has any value at all. What is unprecedented is
+only the size -- 300 is the branch ceiling, so it gates the spell off entirely rather than behind a
+tier, and nothing in vanilla goes past 109.
+
+That correction strengthens the design rather than weakening it. Vanilla's own working wands pin derived
+spells with nonzero differentials: the Fireball wands point at a spell at differential 89 and set
+`skilllevel` to land on 5. So a modifier lifting a derived value is shipped, tested practice. The player's own `Magic Divine/Defensive` read **1** in that save, which puts Cure Small Wounds
+at -299 and makes it uncastable no matter what the wand adds.
+
+So the five are now `Value Type=Normal`, which means a skill's value is its own and its parent is only
+a position in the tree -- `Magic Divine/Defensive` is itself `Normal` under `Skills/Divine`, and in the
+same save it reads 1 while its parent reads 450. With `Initial Value=CConstant 0` and
+`Amount To Increase Value By With Each Upgrade=0`, the value is 0 for everyone, no branch can leak into
+it, and a skill point spent on one does nothing. The wand adds 30 and the spell becomes castable;
+unequip it and the spell is back to zero.
+
+**The branch parent stays, deliberately.** Vanilla's device for a skill that must not appear in the
+tree is `ENEMY Magical Shield`, parented to `Fake Wand Spells/Cure Major Wounds`, which is itself
+undisplayable. Copying that would hide these five too -- and the tree is the only place the game
+documents for equipping a spell: *"To equip a spell, click on a spell from within a skill branch."*
+The quicksave shows that route being used. Whether `CPlugInBehaviorWand` selects its own spell is not
+something any file states, so the clickable route is kept rather than gambled away.
+
+**What the 450 was, finally.** It is stale, and it was never going to clear on that character. Skill
+values are written once at character creation and restored from the save thereafter, so the
+`Initial Value` fix cannot reach a character made before it. The same save proves the fix itself works:
+Leonardo DaVinci, built fresh from the installed data in that very level, reads **0** on all five
+repaired spells and **450** on exactly the two left alone, `Cure Major Wounds` and `Poison Touch`.
+
+Two smaller facts the save settled, both of which had been read the wrong way:
+
+* **An empty `Skill Modifiers` array was evidence after all, and I argued it away.** I read it as
+  "item modifiers are reapplied from the item and never serialised", on the grounds that a vanilla
+  Battle Axe's Slow is absent from the derived-attribute arrays too. A later save settles it: with a
+  working wand equipped the array holds `Skills/Fake Wand Spells/Open Locks=30`. It was empty because
+  the pin was not firing. That makes `Skill Modifiers` the one reliable place to check a pin, which the
+  skill screen is not -- the screen shows the base value, so a held wand's +30 does not appear there.
+* **A save's skill bounds come from `Minimum Value`/`Maximum Value`, not `Initial Minimum & Maximum`.**
+  All five carry `Initial Minimum & Maximum=0.000000,0.000000`, copied from `ENEMY Magical Shield`, and
+  the freshly built DaVinci still writes them at `-5700,5700`. The `-9999,9999` seen on two of them is
+  what the engine writes for an entry a save did not already have.
+
+### The one that nearly shipped: `Initial Value`
+
+Caught in play before release: *"the wand i'm holding is giving me 450 skill in rigor mortis, but it
+is a wand of healing?"* All five wand spells were reading **450** and were castable with no wand, no
+charge and no mana -- the entire design defeated, in the one place I had flagged as unverifiable.
+
+The cause is a single field. Of **92** vanilla skills, exactly **11** carry `Initial Value=` empty:
+the six category roots and the five `Fake Wand Spells`. The other **72** carry
+`Initial Value=CConstant{0}` and read 0. Those 11, plus the two skill files this release created,
+are precisely the **13** entries reading 450 in a save.
+
+In vanilla it never mattered, because those five spells were hidden behind
+`Display and Cast Requirements=CIsEqualTo(0,1)` and their value was never read by anything. Removing
+that gate is what exposed the uninitialised value, and the empty field was carried into all five new
+spells without being questioned -- it came along inside the skeleton cloned from the author's
+finished Rigor Mortis.
+
+All five now carry `Initial Value=CConstant{0}`, matching every real skill in the game. **The
+diagnosis of 450 was also wrong twice before it was right**: the save shows it on 13 entries, which
+was first read as a "derived, not stored" sentinel on the grounds that `Skills/!None=450,-100,100`
+holds a value above its own maximum. That reasoning was comfortable and false, and the thing that
+disproved it was somebody looking at the skill screen.
+
+### The fifth wand, and a correction to this release's own first draft
+
+`Cure Small Wounds` was first written up here as **adjudicated** -- working, but healing whatever
+you struck, which was called vanilla's design rather than a defect. Asked the obvious question in
+play: *"why would i want to hit an enemy and cure them? That makes no sense."* It does not, and the
+item was worse than that write-up claimed.
+
+Its heal sat on `CPlugInBehaviorStrikeAction` aimed at `$trigger`, the struck target, so a healing
+wand healed the enemy you were swinging at. **And the amount read
+`Expression Name=healthpoints`, which the file never declares** -- its three expressions are
+`minheal`, `maxheal` and `numberofcharges`, so the figure resolved to nothing and the wand healed
+**zero**. It was never a working-but-silly item; it was the fifth dead one, and the earlier
+reasoning for leaving it alone rested on a mechanism that did not work either.
+
+It is now **Lesser Healing**: the same spell, charges and zero mana as its Major sibling, paying
+**10-13** HP at `2 Uncommon` against Greater Healing's **19-23** at `4 Very Rare`. That is the
+Minor/Major pairing the game already uses for Fireball, Lightning and Spikes. The earlier objection
+-- that the only heal spell in the game has a cliff at `Input Step=299` -- stopped applying the
+moment these wands got their own spells, because the amount now comes off the wand rather than from
+a skill-level table. Both the item and its spell are renamed from "Healing" so they agree with each
+other and neither collides with the real `Magic Divine/Defensive/Healing` sitting in the same branch.
+
+`Skills/Fake Wand Spells/Cure Small Wounds.Skill` is repurposed to carry it, which is safe because
+**nothing inherits from that file** -- unlike `Cure Major Wounds.Skill`, which `ENEMY Magical Shield`
+is parented to and which is therefore left untouched.
 
 ## 0.73.1 - the man who never spoke to you
 

@@ -1,0 +1,187 @@
+CSkillDescription
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=4
+		PlugIn Behavior=CPlugInBehaviorSpell
+		{
+			ManaUse=CConstant
+			{
+				Constant Value=0
+			}
+			Duration=CConstant
+			{
+				Constant Value=2
+			}
+			Automatically disable recasting of spell for duration=1
+			Maximum Range=
+		}
+		PlugIn Behavior=CPlugInBehaviorPlaySequence
+		{
+			Granny Animations=Array
+			{
+				Item Count=0
+			}
+			Sequence Name=SpellCast
+			Random Sequence Selection=0
+			Sequence Index=-1
+		}
+		PlugIn Behavior=CPlugInBehaviorAttack
+		{
+			Max Attack Range=800
+			Is Location Based=1
+			Can Use Slayer Mode=0
+			Can Use Sniper Mode=0
+			Action On Hit=
+			Action On Miss=
+		}
+		PlugIn Behavior=CPlugInBehaviorLaunchAction
+		{
+			Launch Action=CIfAction
+			{
+				If=CActionCheckForInventoryItem
+				{
+					Who to give check=$Instigator
+					Inventory Item To Check For=Inventory Items/Wand Charge
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=2
+						Action=CAddAIAction
+						{
+							Target Name=$caster
+							AI=CAIAreaOvalManager
+							{
+								Marked For Deletion=0
+								Publisher=
+								Radius=CConstant
+								{
+									Constant Value=200
+								}
+								Aspect Ratio=0.712766
+								Re Trigger Delay=CConstant
+								{
+									Constant Value=0
+								}
+								Max Times To Trigger=CConstant
+								{
+									Constant Value=2
+								}
+								Re-Check who is in oval each re-trigger=0
+								Every Trigger Action=
+								First Trigger Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Trigger
+										Category to check for=Player,Player Friend
+									}
+									Then=CGiveHealthToCharacterAction
+									{
+										Character to give health to=$Trigger
+										Amount of health to give=CRandom
+										{
+											Operator=
+											Minimum=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Fake Wand Spells/Cure Small Wounds
+												Expression Name=minheal
+											}
+											Maximum=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Fake Wand Spells/Cure Small Wounds
+												Expression Name=maxheal
+											}
+										}
+										Expression Context=$Instigator
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Re-Trigger Action=
+								After Last Trigger Action=
+								Only Trigger if has HP=1
+								Trigger if Player=0
+								Trigger if Enemy=0
+								Trigger Anything=1
+								Max Entities to affect=
+								Seconds Since Last Triggered=0
+								Number Of Times Triggered=0
+								Has Triggered At Least Once=0
+								Has Begin Been Called Before=0
+								Affected Layer Parts=Array
+								{
+									Item Count=0
+								}
+							}
+							Delay Between Adds=0
+						}
+						Action=CActionRemoveInventoryItem
+						{
+							Who to remove from=$Instigator
+							Inventory Item To remove=Inventory Items/Wand Charge
+						}
+					}
+				}
+				Else=CPrintCombatTextAction
+				{
+					Text to print=The wand has no charges left
+					Character to show text to=$Instigator
+					Emphasize=0
+					Suppress Duplicates=1
+				}
+				Return failure if the If failes=0
+			}
+		}
+	}
+	Display Name=Lesser Healing
+	Description=Heals the caster and any allies beside them. Castable only from a wand of Lesser Healing.
+	Character Creation Screen Description=
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=2
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=minheal
+				Expression=CConstant
+				{
+					Constant Value=10
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=maxheal
+				Expression=CConstant
+				{
+					Constant Value=13
+				}
+			}
+		}
+	}
+	Parent Skill=Skills/Wand/Charged Spells
+	Value Type=Parents value minus differential
+	Value Differential=24
+	Can be selected as Tag Skill=0
+	Image=Skills/Magic Divine/Defensive/Healing
+	Amount To Increase Value By With Each Upgrade=0
+	Minimum Value=-5700
+	Maximum Value=5700
+	Sort Priority=0
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
+	Initial Minimum & Maximum=0.000000,0.000000
+	Display and Cast Requirements=Array
+	{
+		Item Count=0
+	}
+	Cast Requirements=Array
+	{
+		Item Count=0
+	}
+}

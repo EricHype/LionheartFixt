@@ -1,0 +1,244 @@
+CSkillDescription
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=5
+		PlugIn Behavior=CPlugInBehaviorAttack
+		{
+			Max Attack Range=800
+			Is Location Based=1
+			Can Use Slayer Mode=0
+			Can Use Sniper Mode=0
+			Action On Hit=
+			Action On Miss=
+		}
+		PlugIn Behavior=CPlugInBehaviorLaunchAction
+		{
+			Launch Action=CIfAction
+			{
+				If=CActionCheckForInventoryItem
+				{
+					Who to give check=$Instigator
+					Inventory Item To Check For=Inventory Items/Wand Charge
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=3
+						Action=CAssignTemporaryTaskAction
+						{
+							Target=$Trigger
+							Temporary Task AI=CWaitAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Time To Wait=5
+								Time Left=0
+								Done Action=CSendAIDoneMessage
+								{
+									Target=$Trigger
+								}
+								Behavior to run=
+								Delete AI When Done=0
+								Remove Wait AI If Actor Dies=1
+							}
+							Original AI Type=CSkeletonAI
+							Completion Message to wait for=AI Done
+							Suppress can't assign error=0
+						}
+						Action=CAddCharacterModifierToCharacterAction
+						{
+							Modifier Description=
+							Modification is permanent=0
+							Character to modify=$trigger
+							Modifiers=Array
+							{
+								Item Count=1
+								Modifier=CCharacterModifierDerivedAttribute
+								{
+									Modification Amount=CSkillsNamedExpressionExpression
+									{
+										Skill=Skills/Fake Wand Spells/Rigor Mortis
+										Expression Name=amount
+									}
+									Modification amount is a percent=1
+									Allow Accumulation=0
+									Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+								}
+							}
+							OPTIONAL Duration=CSkillsNamedExpressionExpression
+							{
+								Skill=Skills/Fake Wand Spells/Rigor Mortis
+								Expression Name=duration
+							}
+							Expression Context=$Instigator
+						}
+						Action=CActionRemoveInventoryItem
+						{
+							Who to remove from=$Instigator
+							Inventory Item To remove=Inventory Items/Wand Charge
+						}
+					}
+				}
+				Else=CPrintCombatTextAction
+				{
+					Text to print=The wand has no charges left
+					Character to show text to=$Instigator
+					Emphasize=0
+					Suppress Duplicates=1
+				}
+				Return failure if the If failes=0
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPlaySequence
+		{
+			Granny Animations=Array
+			{
+				Item Count=0
+			}
+			Sequence Name=SpellCast
+			Random Sequence Selection=1
+			Sequence Index=-1
+		}
+		PlugIn Behavior=CXRPGPlugInBehaviorLauncher
+		{
+			After Launch Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CAssignTemporaryTaskAction
+					{
+						Target=$Trigger
+						Temporary Task AI=CWaitAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Time To Wait=5
+							Time Left=0
+							Done Action=CSendAIDoneMessage
+							{
+								Target=$Trigger
+							}
+							Behavior to run=
+							Delete AI When Done=0
+							Remove Wait AI If Actor Dies=1
+						}
+						Original AI Type=CSkeletonAI
+						Completion Message to wait for=AI Done
+						Suppress can't assign error=0
+					}
+					Action=CAddCharacterModifierToCharacterAction
+					{
+						Modifier Description=
+						Modification is permanent=0
+						Character to modify=$trigger
+						Modifiers=Array
+						{
+							Item Count=1
+							Modifier=CCharacterModifierDerivedAttribute
+							{
+								Modification Amount=CSkillsNamedExpressionExpression
+								{
+									Skill=Skills/Fake Wand Spells/Rigor Mortis
+									Expression Name=amount
+								}
+								Modification amount is a percent=1
+								Allow Accumulation=0
+								Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+							}
+						}
+						OPTIONAL Duration=CSkillsNamedExpressionExpression
+						{
+							Skill=Skills/Fake Wand Spells/Rigor Mortis
+							Expression Name=duration
+						}
+						Expression Context=$Instigator
+					}
+				}
+			}
+			Num To Launch=1
+			Dispersion Angle=180
+			Aim At Parents Target=1
+			Launch Offset=0.000000,0.000000
+			Parents Bone Launch Location=Bip01 L Finger1
+			Direction From Bone X=0
+			Direction From Bone Y=0
+			Direction From Bone Z=0
+			Requires Line Of Sight=1
+			Primary Launchable Slot=Character Slot Types/!None
+			Secondary Launchable Types=Array
+			{
+				Item Count=1
+				Secondary Launchable Type=Inventory Items/!None
+			}
+			Damages=Array
+			{
+				Item Count=0
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorSpell
+		{
+			ManaUse=CConstant
+			{
+				Constant Value=0
+			}
+			Duration=CSkillsNamedExpressionExpression
+			{
+				Skill=Skills/Fake Wand Spells/Rigor Mortis
+				Expression Name=duration
+			}
+			Automatically disable recasting of spell for duration=1
+			Maximum Range=
+		}
+	}
+	Display Name=Rigor Mortis
+	Description=Freezes the target in place for 5 seconds. Upon regaining movement it is slowed as it shakes off the effects of its touch with death. Castable only from a wand of Rigor Mortis.
+	Character Creation Screen Description=
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=2
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=duration
+				Expression=CConstant
+				{
+					Constant Value=15
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=amount
+				Expression=CConstant
+				{
+					Constant Value=-25
+				}
+			}
+		}
+	}
+	Parent Skill=Skills/Wand/Charged Spells
+	Value Type=Parents value minus differential
+	Value Differential=109
+	Can be selected as Tag Skill=0
+	Image=Skills/Magic Tribal/Offensive/Slow
+	Amount To Increase Value By With Each Upgrade=0
+	Minimum Value=-5700
+	Maximum Value=5700
+	Sort Priority=0
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
+	Initial Minimum & Maximum=0.000000,0.000000
+	Display and Cast Requirements=Array
+	{
+		Item Count=0
+	}
+	Cast Requirements=Array
+	{
+		Item Count=0
+	}
+}

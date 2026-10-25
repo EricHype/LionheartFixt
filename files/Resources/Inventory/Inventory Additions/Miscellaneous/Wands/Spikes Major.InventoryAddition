@@ -1,0 +1,112 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CSubtract
+					{
+						Operand1=CConstant
+						{
+							Constant Value=25
+						}
+						Operator=
+						Operand2=CVariableSkill
+						{
+							Skill=Skills/Magic Thought/Offensive/Spike
+						}
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Magic Thought/Offensive/Spike
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorWand
+		{
+			Spell=Skills/Magic Thought/Offensive/Spike
+			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			{
+				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Spikes Major
+				Expression Name=numberofcharges
+				Value=0
+			}
+			Charges Remaining Is Valid=0
+			Charges Remaining=0
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2000
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wands/SpikeWand
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Greater Spikes
+	Description=The wielder of this wand can throw %i[numberofcharges] Spikes as if using the Thought spell Spike at skill level %i[skilllevel].
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/WandSpike
+	Minimum Value=2000
+	Minimum Addition Ammount=0
+	Inbetween Value=2000
+	Inbetween Addition Ammount=0
+	Maximum Value=2000
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=2
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=skilllevel
+				Expression=CConstant
+				{
+					Constant Value=25
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=numberofcharges
+				Expression=CCacheFirstResult
+				{
+					Operand1=CRandom
+					{
+						Operator=
+						Minimum=CConstant
+						{
+							Constant Value=10
+						}
+						Maximum=CConstant
+						{
+							Constant Value=20
+						}
+					}
+					Has Been Evaluated=0
+					Cached Value=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/!None
+	Addition Rarity=Inventory Item Rarity/4 Very Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

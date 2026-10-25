@@ -16,6 +16,8 @@ wrong.
 - [The save, and what reaches it](#the-save-and-what-reaches-it)
 - [Shapes that crash](#shapes-that-crash)
 - [Characters and their behaviour](#characters-and-their-behaviour)
+- [Skills, spells and the skill window](#skills-spells-and-the-skill-window)
+- [Wands](#wands)
 - [Method rules](#method-rules)
 - [What each lesson cost](#what-each-lesson-cost)
 
@@ -184,7 +186,147 @@ ninety vanilla `CDisplayDialogTreeAction`s do.
 
 ---
 
+## Skills, spells and the skill window
+
+**A branch needs a real `Maximum Value` or its spells are not drawn at all.** Of 92 vanilla skills, `Maximum Value` is 300 eighty times, 5700 eleven times and 100 once, and `Amount To Increase Value By With Each Upgrade` is 1 eighty-six times; **neither field is ever 0**. A branch built with a maximum of 0, to make it unspendable, renders itself and nothing under it. All 21 vanilla branches are `Normal` at `-300/300` with upgrade 1. A negative spell value is no obstacle: a branch reading 1 still draws its spells at -23, -48 and -88.
+
+**`Value Differential` is the row a spell is drawn in, not only a gate.** Every spell in a vanilla
+branch carries `Sort Priority=0` and a differential from one ladder -- **0, 24, 49, 74, 89, 109** --
+and within a branch those values are always distinct. Protective is Aid 0, Physical Aura 24, Holy Fire
+49, Mana Shield 89; Fortitude is Healing 0, Purify Body 24, Resist Elements 49, Divine Assistance 74,
+Greater Resistance 109. Give two spells in one branch the same differential and they take the same
+slot; give them a value off the ladder and the window draws nothing at all. `Sort Priority` does no
+work.
+
+**The skill tree is entirely data-driven, and `Skills/!None` is its root.** `!None` is its own parent;
+the five categories carry `Parent Skill=Skills/!None` with `Sort Priority` 1, 2, 10, 11, 12; and no
+resource anywhere enumerates them, so a new category is just a skill parented to `!None`. Nothing
+reads `!None`'s own value: its ~800 references are `Selected Skill`, `Skill To Select When Shoot
+Sequence Ends` and six `Parent Skill`, so its `Sum of childrens values` is consumed by nothing.
+
+**The tree is strictly category, branch, spell.** Every root child is a non-spell `Normal` point skill
+carrying four or five spells, and **no root anywhere has a castable spell as a direct child**. A path
+like `Skills/Magic Divine/Defensive/Healing` is decorative: that spell's parent is
+`Skills/Magic Divine/Fortitude`. Only `Parent Skill` builds the tree.
+
+**The window shows the stored value; a cast evaluates the derived one.** A character whose save held
+450 for a spell at `Value Differential=300` under a branch reading 1 saw 450 on the screen and was
+refused with `Skill has 0 value`, because the cast used `parent - differential`.
+
+**A branch's `Maximum Value` bounds the stored value, not the total.** Every branch bonus in the game
+is `Allow Accumulation=1` and adds on top: `Divine Protective` +15, `Torquemada Divine Boon` +7,
+`Domination` +15, `Tribal Protective` +15, The Mage +4, and the `of the Mage` armour line +1 a piece.
+A branch capped at 300 can reach about 334, so `parent - 300` is not a safe way to hold a derived skill
+at or below zero. A parent pinned with `Minimum Value` and `Maximum Value` both 0 is, because nothing
+can modify what nothing references.
+
+**`Initial Value=` empty is not zero**, and eleven vanilla skills have it: the six category roots and
+the five `Fake Wand Spells`. Whatever it produced was frozen into the eight
+`Preexisting Characters/*.Character.txt` files as **450**, eleven entries each, and a character made
+from one carries it forever. No change to a `.Skill` can reach a value a character file already bakes.
+
+**`CInventoryAdditionsNamedExpressionExpression` reads nothing when no addition is bound.** It broke
+three separate things in one release: a `skilllevel` pin cached garbage through `CCacheFirstResult`,
+fifteen spell effect numbers came back zero so a healing wand healed nothing, and a wand's
+`Maximum Charges` read zero so the wand was spent before its first cast. Put a spell's numbers in its
+own `Expressions` array and read them with `CSkillsNamedExpressionExpression`: the split across 92
+vanilla skills is **52 files using the skill's own against 3 using the addition's**, and all three are
+wand spells that never ran.
+
+---
+
+## Wands
+
+Every wand in the game is `Inventory Items/Wand` plus an addition carrying
+`CPlugInBehaviorWand`. A night of testing established the following, and the table at the end is
+what was actually tried, in order, so none of it needs repeating.
+
+**Vanilla never drops a wand.** `All Wands.can` has zero referrers, so no chest, monster or
+merchant ever rolls one, and wands appear only in two test maps. Fixt reaches them by wiring
+`All Wands` into `All Misc Items except Potions`.
+
+**A wand plugin is initialised only for an addition drawn through the item's addition group.** An
+addition named directly in a can is attached but left uninitialised, so `CPlugInBehaviorWand`
+believes it has no charges and disables its spell: in group it cast 3 times out of 3, out of group
+0 out of 2. Group membership is also what lets the generator stack a second addition onto the item,
+so a wand cannot have both a working plugin and a guaranteed single spell. The way out is to drop
+the plugin: a pin makes the spell castable, a separate charge item limits it, and a `CIfAction` in
+the payload refuses an empty one.
+
+**A wand only works if the item generator made it.** `CActionGiveStandardInventoryItem` gives the item and its addition, but the wand comes out with no usable charges and the first cast fails `Skill Is Disabled`. Of its 374 vanilla uses the 60 that pass an `Addition to add` are potions, arrows, cloaks and flat damage bonuses, none with a stateful plugin. Wands reach a player through `CGenerateInventoryItemAction` (2035 uses), which runs a `Wand <name>.can` generator and drops the item on the ground; through that route the same wand casts normally. All 15 vanilla wands also carry `Charges Remaining Is Valid=0` and `Charges Remaining=0`, leaving the plugin to work the count out itself.
+
+**A wand's charge count does not persist, so it cannot count down.** `Charges Remaining` is read
+back from the addition definition rather than kept on the item: pre-load it with
+`Charges Remaining Is Valid=1` and the wand casts for ever, leave it at vanilla's 0 and the spell is
+disabled before the first cast. Nothing in between is reachable. All 15 vanilla wands carry 0, and
+`All Wands.can` has no referrers, so no shipped chest, monster or merchant ever rolls one.
+
+**A stacked item keeps no per-item plugin state.** Adding
+`CInventoryItemPlugInBehaviorMergeMultipleInstances` to a wand turns it into a stack, and the wand
+plugin then reports no charges however the count is set, because stacked items are fungible.
+`MultipleInstances/Current Count` itself is live and persistent, which is how arrows and potions
+work, and `Infinite.InventoryAddition` shows an addition can set it; it just cannot share an item
+with a wand.
+
+**Only the first wand addition on an item works, and nothing in vanilla stops a second.** The generator stacks additions from a group while the budget lasts, so a wand can arrive as `Wand of Lockpicking, Revelation and Lesser Healing, Spikes`, or with the same addition twice, and casting any spell but the first fails. `Additions Cannot Be Combined With` is the field for it, used by 22 of 286 additions and always pairwise, and it is `Item Count=0` on all 15 vanilla wands.
+
+**An item in no addition group cannot be given an addition.** All 109 of vanilla's specific item
+cans carry `Inventory Addition Group=Inventory/!None`, which is what makes a named weapon carry
+exactly the properties its author gave it, and it is the only reliable way to stop the generator
+adding magic. `Additions Cannot Be Combined With` is honoured somewhere, the engine logging
+*"but could not because it is not allowed to be combined with"*, but not for a can's guaranteed
+addition, and all 22 vanilla uses of it are armour, amulets and bracers. A complete item also has
+no `Expressions` array, so a `%i[]` token in its description resolves to nothing and the numbers
+have to be written out.
+
+**`Origonal Item` is stamped by the engine, not read from the file.** An item created from
+`Specific Item Cans/Misc Items/Wand of Revelation` carries that path in the save whatever its file
+says, so `CActionRemoveInventoryItem` has to name the path an item was actually created from.
+
+**`Display and Cast Requirements` cannot ask about a character.** All 6 vanilla users hold a
+constant comparison, `CIsEqualTo{0, 1}`. An inventory check placed there evaluates false, because
+nothing binds `$Instigator` in the skill window, and the spell stops casting altogether. Conditions
+that need a character belong in the spell's payload, where `CIfAction{If=CActionCheckForInventoryItem}`
+is vanilla's own shape.
+
+**A spell cast is neither a strike nor a launch.** `CPlugInBehaviorUseAmmo` on a wand never fires,
+whichever of its four thresholds is set, so an item plugin cannot meter a spell. What can is the
+spell's own payload: `CActionRemoveInventoryItem` inside a `CPlugInBehaviorLaunchAction` runs on
+every cast and takes **one unit off a stack**, which is how a charge item gets spent.
+
+**What was tried, and what each attempt proved.**
+
+| attempt | result |
+|---|---|
+| `CActionGiveStandardInventoryItem`, charges read through the addition's named expression | no charges |
+| the same, with `Maximum Charges=CConstant 15` | no charges, so the route is the problem, not the expression |
+| `CInventoryItemGeneratorMiscellaneousMagic`, `Charges Remaining Is Valid=1` | **17 casts, never depleted** |
+| the same with `Is Valid=0`, vanilla's value | disabled before the first cast |
+| two different additions on one item | only the first spell casts |
+| the same addition twice | neither casts |
+| `Additions Cannot Be Combined With` across all 18 | did not bind; the generator stacked anyway |
+| item level tuned so the budget cannot afford a second addition | undercut anyway |
+| the 18 additions taken out of `Wand Additions` | **stacking solved**, one wand spell per wand |
+| the whole wand rebuilt as a complete `.InventoryItem` | no charges, and `Origonal Item` is overwritten |
+| `MergeMultipleInstances` plus `UseAmmo` on the Weapon slot | the count moved, 20 to 19, but a stack cannot hold a wand plugin |
+| `UseAmmo` on the wand, charges in a separate stack | the spell casts and the effect lands, but the count never moves |
+| `CActionRemoveInventoryItem` inside the spell's payload | **the route that can meter a cast** |
+| the same, gated by `Display and Cast Requirements` on an inventory check | the spell stopped casting at all; that field cannot see a character |
+| the charge check moved into the payload as a `CIfAction` | **the working system: a charge spent per cast, an empty wand does nothing** |
+
+A wand's limit therefore lives outside the wand: a stackable charge item, removed by the
+spell's own payload, with `Display and Cast Requirements` refusing the cast when none is held.
+
+The working configuration is therefore: addition in the `Wand Additions` group, generated by a
+`Wand <name>.can`, `Charges Remaining Is Valid=1` with a pre-loaded count. It casts reliably and
+**without limit**, because nothing decrements.
+---
+
 ## Method rules
+
+**Reverting a whole configuration hides which part mattered.** Chasing a build that had worked, this
+release restored every difference at once and put a solved defect back, then spent another round
+rediscovering it. Revert the change that is implicated, not the ones that merely changed alongside it.
 
 **No vanilla precedent means the form is wrong.** Checked three times this run, each time after
 shipping the unprecedented version: `$Trigger` plus a literal for experience (0 of 430 tree awards),

@@ -1,0 +1,39 @@
+CSkillDescription
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Display Name=Charged Spells
+	Description=Spells carried by a wand rather than learned. The wand supplies the power and holds a limited number of charges. Skill points spent here buy nothing: no amount of training will cast one of these without the wand in your hand.
+	Character Creation Screen Description=
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=0
+		}
+	}
+	Parent Skill=Skills/Wand
+	Value Type=Normal
+	Value Differential=0
+	Can be selected as Tag Skill=0
+	Image=Skills/Wand
+	Amount To Increase Value By With Each Upgrade=1
+	Minimum Value=-300
+	Maximum Value=300
+	Sort Priority=0
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
+	Initial Minimum & Maximum=-300.000000,300.000000
+	Display and Cast Requirements=Array
+	{
+		Item Count=0
+	}
+	Cast Requirements=Array
+	{
+		Item Count=0
+	}
+}

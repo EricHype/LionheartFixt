@@ -1,0 +1,87 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=Wand spell pin
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=54
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Fake Wand Spells/Cure Small Wounds
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=700
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Wands/CursedTotem
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Lesser Healing
+	Description=The wielder of this wand, and any allies beside them, are healed of %i[minheal] to %i[maxheal] Hit Points. Each use draws one Wand Charge.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/WandCursedTotem
+	Minimum Value=700
+	Minimum Addition Ammount=0
+	Inbetween Value=700
+	Inbetween Addition Ammount=0
+	Maximum Value=700
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=3
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=numberofcharges
+				Expression=CConstant
+				{
+					Constant Value=5
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=minheal
+				Expression=CConstant
+				{
+					Constant Value=10
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=maxheal
+				Expression=CConstant
+				{
+					Constant Value=13
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/!None
+	Addition Rarity=Inventory Item Rarity/2 Uncommon
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}
