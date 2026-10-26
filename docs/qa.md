@@ -1474,6 +1474,28 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.75.0 - what a chance is worth
+
+Six addition files, no map and no dialogue, so **nothing here needs a new character**. What it does
+need is **newly generated loot**, because whether an item already in your pack re-reads these numbers
+is an open question. Buy or find fresh items rather than reading a weapon you have carried for ten
+levels.
+
+These are 4 Very Rare suffixes. Expect to shop for them: a merchant restock is a far faster route
+than a chest.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| IB1 | **The row the report is about.** Find or buy an expensive weapon of Firestorms or of Lightning and read its tooltip | - | The chance is well above the old flat 10% and 5%, up toward 50% on a dear weapon, and the damage range is wider: Lightning to 38, Firestorms to 44 |
+| IB2 | Swing it at something and watch | - | It fires on something like half your hits, not one in twenty. Before this release you could finish a fight without ever seeing it |
+| IB3 | A weapon of Demonic Bile | - | Chance up to 12% on a dear one, and the 40 to 105 damage untouched. It is still the lottery the text describes, now priced like one |
+| IB4 | **Regression, the floor.** A cheap weapon of Firestorms, early game | - | Still 10%. The chance scales from today's value, so nothing at the bottom of the curve moved |
+| IB5 | **Regression.** Weapons of Carnage, Shocking, Heartseeking, Acid, Venom, of Fear | - | Unchanged. Only three files were touched and none of these is one of them |
+| IB6 | A Shield of the Frostwyrm | - | The tooltip now names three bonuses, and the One-Handed Melee one runs 5 to 20 with the shield's price exactly as the Firedrake's does |
+| IB7 | Equip it and open the skill window | - | One-Handed Melee is higher by the number the tooltip claims, and drops back when the shield comes off |
+| IB8 | **Regression.** A Shield of the Firedrake | - | Unchanged, all three bonuses as before. The Frostwyrm was cloned from it; it was not edited |
+| IB9 | **Regression.** The Frostwyrm's cold resistance and cold damage | - | Unchanged. Only the third modifier was added, and the two curves were not touched |
+
 ## 0.74.1 - the gift, with DaVinci's commentary out of the way
 
 Needs a **brand-new character** -- the fix is an edit to a Gate District level part, and a map's

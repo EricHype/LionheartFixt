@@ -140,6 +140,127 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.75.0 - what a chance is worth
+
+Reported by a player, at length and with examples:
+
+> A Demonic Bile and Heartseeking was always the go-to for damage, while a suffix like Shocking,
+> Firestorms or Acid barely go above the basic "of Carnage" weapon. [...] The clearest example would
+> be Shields "of Firedrake" vs "Frostwyrm".
+
+Both halves of that turned out to be checkable, and the answers went in opposite directions.
+
+### How a suffix gets its numbers
+
+Every addition in the game carries three value/amount pairs:
+
+    Minimum Value    -> Minimum Addition Ammount
+    Inbetween Value  -> Inbetween Addition Ammount
+    Maximum Value    -> Maximum Addition Ammount
+
+The engine interpolates `Addition Ammount` from those against the item's value, and every number a
+suffix shows is read off it through `CInventoryAdditionAmmountExpression`. **102 of the game's 286
+additions scale that way, 97 do not, 9 are mixed and 78 have no character modifiers at all.** So the
+report's premise is sound as a count, and the damage suffixes in particular almost all scale.
+
+### The defect is that the chance was left a constant
+
+Three weapon suffixes gate their damage behind a roll. Fold the roll in and they collapse. Expected
+extra damage per successful hit, each at the top of its own curve:
+
+| suffix | rarity | what it does | per hit |
+|---|---|---|---|
+| Heartseeking | 4 Very Rare | +4 always, plus 25% of 50 | 16.50 |
+| **Carnage** | **1 Common** | +15 always | **11.33** |
+| Double Biting | 3 Rare | 100% of 2-7, three ticks | 13.50 |
+| Shocking | 3 Rare | 3-12 always | 7.50 |
+| Demonic Bile | 4 Very Rare | 5% of 40-105 | **5.25** |
+| Firestorms | 4 Very Rare | 10% of 4-15 | **0.95** |
+| Lightning | 4 Very Rare | 5% of 12-22 | **0.85** |
+
+A 4 Very Rare suffix was worth **8%** of the commonest suffix in the game. And the three at the
+bottom are exactly the three whose chance is a `CConstant`: every other gated suffix in the folder
+scales its chance with the item, `Heartfinder` 15 to 25, `of Fear` 10 to 35, `Gas Cloud` 5 to 50.
+
+Demonic Bile deserves its own line, because the report names it as the go-to and the measurement
+disagrees. It is worth 5.25 a hit. It reads as enormous because its tooltip promises **105 points of
+fire damage** and never says that a one-in-twenty chance is the whole of it. All three also carry
+`Defend Against=1`, so the lump is rolled against the target's defence a second time, which none of
+the numbers above account for, and which the always-hit suffixes they lose to do not do.
+
+### The fix, and why it is not a rebalance
+
+The constant becomes the same `CExpressionScale` over the addition amount that its three unmispriced
+siblings already use. Two rules, both taken from the game rather than chosen:
+
+- **floored at today's value**, so a cheap weapon is unchanged. The one hand-placed example in the
+  game, a Firestorms longsword in `4 Crypt/2 Retreat of Souls` generated at `Level=0`, plays exactly
+  as before.
+- **capped at 50**, which is `Gas Cloud`'s own ceiling.
+
+Where 50% still lost to a Common, the chance was not the only thing underweight and the lump's top
+rises until the suffix clears it. Target is 12, above Carnage's 11.33 and below Heartseeking's 16.50.
+
+| | chance | lump | per hit, floor to ceiling |
+|---|---|---|---|
+| Demonic Bile | 5% flat to **5-12%** | untouched, 40-105 | 2.00 to **12.60**, was 5.25 |
+| Lightning | 5% flat to **5-50%** | top 22 to **38** | 0.55 to **12.50**, was 0.85 |
+| Firestorms | 10% flat to **10-50%** | top 15 to **44** | 0.43 to **12.00**, was 0.95 |
+
+**No string was edited.** Every one of those descriptions interpolates the same named expressions the
+modifiers read, so the tooltips tell the truth about the new numbers on their own.
+
+### The Frostwyrm, where the report was wrong and the complaint was right
+
+> The Frostwyrm OTOH has fixed 5%s for Cold and no One Handed bonus.
+
+Half of that. Both shields scale, on the same mechanism, and the Frostwyrm reaches its caps on
+**cheaper** shields than the Firedrake does:
+
+| | 5 at | 10 at | 20 at | modifiers |
+|---|---|---|---|---|
+| the Firedrake | 1700 | 6000 | 20000 | fire resist, fire damage %, **One-Handed Melee** |
+| the Frostwyrm | 2000 | 5000 | 16000 | cold resist, cold damage % |
+
+The real defect is the third modifier. They are the same grade, the same rarity and the same addition
+group, and they are the only elemental pair of their kind, so the Frostwyrm now carries the same
+One-Handed Melee bonus, cloned whole from the Firedrake in each of the three shield-size folders
+rather than written fresh. Its `CInventoryAdditionsNamedExpressionExpression` is a self-reference and
+had to be repointed from `Fire Lizard` to the `Cold Dragon` of that folder. The curves are untouched,
+so the bonus runs 5 to 20 exactly as the Firedrake's does.
+
+Checked the other 11 shield additions in each folder. No other pair has the asymmetry, and
+`Metal Skill` is the only other shield addition with three modifiers, so this was one case and not a
+pattern.
+
+The new text keeps the Frostwyrm's own register, which says *confers* and *grants* where the
+Firedrake says *grants* and *strengthens*, and the Firedrake's clause order:
+
+> This shield confers +N% Cold Resistance, increases its bearer's One-Handed Melee skill by N points
+> and grants a +N% Cold Damage bonus to its bearer.
+
+### What this release deliberately does not do
+
+The same survey found three larger faults, measured and left for later rather than half-done:
+
+- **70 non-consumable additions are flat**, and all but one have `min = mid = max` on the value and
+  `0/0/0` on the amount: the curve was never filled in, not merely unread. Converting one needs a
+  price band, an amount band, and new prose, because only **8 of the 70** interpolate a number into
+  their description today and the rest hardcode it. The six necklace Carnage lines are the cheapest
+  honest batch and are not in this release.
+- **The uniques are outside the system.** They are `Item Grade=Basic` with hand-written plugins and
+  constant modifiers, and **0 of the 95 specific item cans carry a baked addition**, so there is no
+  curve to copy. A census of all 628 `Modification Amount` expressions in vanilla found the route
+  that does exist: 36 are `CIfExpression`, and inside them sit `CVariableCharacterAttribute` (12),
+  `CVariableDerivedCharacterAttribute` (15) and `CHasPerkExpression` (7). `Inventory Items/Crossbow`
+  is the model, granting +1 to an attribute if the wielder holds Sharpshooter. So a unique can be made
+  to scale off the player rather than off what it would sell for, which is the right axis for a quest
+  reward. Waiting on the reporter's own recommendations.
+- **Two mechanics are unsettled** and both gate the work above: whether an item already in a save
+  re-reads its addition's expressions, and whether a `Modification Amount` can read character state
+  reliably. 0.74.0's wand work had one come back as `3.12791e-027`, against 27 vanilla amounts that
+  read character attributes without trouble.
+
 ## 0.74.1 - the gift, with his commentary out of the way
 
 Reported from play: *"we added an interaction where Leonardo gives you a healing potion. If he's

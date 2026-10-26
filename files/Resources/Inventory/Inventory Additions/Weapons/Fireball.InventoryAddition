@@ -1,0 +1,218 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorStrikeAction
+		{
+			Strike Action=CIfExpressionAction
+			{
+				If Expression=CIfExpression
+				{
+					Condition=CIsGreaterThan
+					{
+						Operand1=CExpressionHitMargin
+						{
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=0
+						}
+					}
+					OperatorPart1=
+					Value if True =CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CRandom
+							{
+								Operator=
+								Minimum=CConstant
+								{
+									Constant Value=1
+								}
+								Maximum=CConstant
+								{
+									Constant Value=100
+								}
+							}
+							Operator=
+							Operand2=CInventoryAdditionsNamedExpressionExpression
+							{
+								InventoryAddition=Inventory/Inventory Additions/Weapons/Fireball
+								Expression Name=chancetohit
+								Value=100
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=1
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=0
+						}
+					}
+					OperatorPart2=
+					Value if False=CConstant
+					{
+						Constant Value=0
+					}
+				}
+				Character to get attributes from=$Instigator
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=2
+						Action=CSpawnEffectAction
+						{
+							Explosion Model=Spell Effects/Hits and Effects/Fire Attacks/Fireball Small Hit
+							Location Entity=$trigger
+							Make effect a child of the location entity=0
+							X Offset=0
+							Y Offset=0
+							Height Offset=0
+							Play Default Sound=1
+							Action to execute After Effect=
+						}
+						Action=CActionDoDamage
+						{
+							Character Doing Damage=$instigator
+							Character To Damage=$trigger
+							Defend Against=1
+							No Friendly Fire Check=0
+							Damages=Array
+							{
+								Item Count=1
+								Damage=CXRPGDamage
+								{
+									Damage Type=Damage Types/Fire
+									Damage Amount=CRandom
+									{
+										Operator=
+										Minimum=CInventoryAdditionsNamedExpressionExpression
+										{
+											InventoryAddition=Inventory/Inventory Additions/Weapons/Fireball
+											Expression Name=min
+											Value=1.22973
+										}
+										Maximum=CInventoryAdditionsNamedExpressionExpression
+										{
+											InventoryAddition=Inventory/Inventory Additions/Weapons/Fireball
+											Expression Name=max
+											Value=7
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Else=
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Firestorms
+	Description=With each successful strike, there is a %i[chancetohit]% chance that a firestorm will engulf the target, dealing an additional %i[min] - %i[max] points of fire damage.
+	Item Grade=Better
+	Inventory Window=!Unknown Model
+	Minimum Value=250
+	Minimum Addition Ammount=6
+	Inbetween Value=1500
+	Inbetween Addition Ammount=10
+	Maximum Value=10000
+	Maximum Addition Ammount=44
+	Sample Value=169.5
+	Addition Ammount=7
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=3
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=chancetohit
+				Expression=CExpressionScale
+				{
+					Input Value=CInventoryAdditionAmmountExpression
+					{
+						Addition Ammount=0
+					}
+					Input Minimum=CConstant
+					{
+						Constant Value=6
+					}
+					Input Maximum=CConstant
+					{
+						Constant Value=44
+					}
+					Output Minimum=CConstant
+					{
+						Constant Value=10
+					}
+					Output Maximum=CConstant
+					{
+						Constant Value=50
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=min
+				Expression=CExpressionScale
+				{
+					Input Value=CInventoryAdditionAmmountExpression
+					{
+						Addition Ammount=0
+					}
+					Input Minimum=CConstant
+					{
+						Constant Value=6
+					}
+					Input Maximum=CConstant
+					{
+						Constant Value=44
+					}
+					Output Minimum=CConstant
+					{
+						Constant Value=1
+					}
+					Output Maximum=CConstant
+					{
+						Constant Value=4
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=max
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=7
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Weapons/Melee Weapon Additions
+	Addition Rarity=Inventory Item Rarity/4 Very Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}
