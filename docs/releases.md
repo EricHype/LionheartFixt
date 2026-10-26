@@ -140,6 +140,88 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.75.2 - where a curve ends, for the three that have none
+
+The report named two of these:
+
+> Icy Fury, Acid Touch etc. stat from Necklaces arguably needs a more felt level scale in dmg
+
+The plan was to do for them what 0.75.1 did for the Carnage necklaces: fill in the band and let the
+numbers grow with the item. Most of the work went into finding out that this would have changed
+nothing at all.
+
+### They are not loot, so there is no value to scale against
+
+Three findings in order, each of which killed an approach:
+
+**They have no character modifier.** Unlike the 70 flat additions, these three carry none. Their
+damage is a `CRandom` of two constants inside a `CPlugInBehaviorAddAIWhenSelected`, so they belong
+with the auras rather than with the flat-modifier family.
+
+**Nothing in the game can roll them.** Zero items carry their `UNIQUE Item Additions` group. They
+appear in exactly one real map and two test maps, and in that real map a single trigger in
+`Wilderness Maps/Bounty Hunter Camp` hands over **all three at once**:
+
+    CActionGiveStandardInventoryItem
+      Inventory Item To Give=Inventory Items/Amulet
+      Additions to add=Array { Addition to add=.../UNIQUE/Cold Zone }      x3, one per element
+
+**So the item's value is fixed by construction.** A plain amulet plus a fixed addition is the same
+price every time, and the three value/amount pairs the engine interpolates against value would
+resolve to the same point forever. Filling in the band is a **no-op**, not a fix. This is the second
+time in three releases that a census of how `Value` and the band interact has decided the shape of the
+work, and the first time it said stop.
+
+### The character axis is not safely available either
+
+A damage expression does evaluate with a character: the Sacred Scimitar's `CVariableSkill` ladder sits
+inside one and has worked for twenty-three years. But two things rule it out here.
+
+No skill belongs to an amulet's aura. The Scimitar reads One-Handed Melee because you swing it; these
+radiate cold, acid and fire from your neck while you do whatever you do.
+
+And `CVariableCharacterLevel`, which is the axis that would actually fit a one-off reward, appears in
+**7 vanilla files and not one of them is an item**: a perk-support derived attribute and the six
+spirit-energy drop cans. Putting an unprecedented expression inside a `CAIAreaOvalManager`'s trigger
+action risks the aura silently dealing nothing, which would be a regression on content that currently
+works, and nothing but a play test would catch it.
+
+### What is left is the number, and there is a grounded place for it
+
+`Armor/Cold Touch`, Deepest Winter, is the **only other damaging aura in the game** and the only one
+with a curve: **1-2 at the bottom to 2-7 at the top**, over 2500/4500/11500. A fixed reward has no
+curve to climb, so it belongs at the top of the scaling equivalent's.
+
+All three now read **2-7**, up from a flat 1-3. Four digits changed, two constants and two in the
+description, and each file is the same length as vanilla's to the byte.
+
+### What was already theirs, and stays
+
+This is the part that reframes the complaint. The damage number was never the whole of these items:
+
+| | per tick | interval | radius | per second, to each enemy in reach |
+|---|---|---|---|---|
+| Deepest Winter, 4 Very Rare | 1-2 to 2-7 | 6s | 80 | 0.25 to 0.75 |
+| these three, before | 1-3 | 2s | 110 | 1.00 |
+| these three, now | **2-7** | 2s | 110 | **2.25** |
+
+So they were never weak next to the one aura in the game that scales. They were already three times
+its damage a second, because they fire three times as often and reach further. The complaint that the
+number never moved was correct; the implication that they were behind was not.
+
+### Lava Burn
+
+The report named two. There are three. `Lava Burn` is the same file with `Fire` in place of `Cold`,
+the same rarity, the same trigger, handed over by the same action in the same breath. Fixing two of
+three siblings is the inconsistency this project keeps finding in other people's work, so it is in.
+
+### One thing nobody has seen
+
+**No one has confirmed in play that this aura fires at all.** It is vanilla content reachable only
+from that one Bounty Hunter Camp trigger, and this release changes its numbers without ever having
+watched it run. If it turns out to be dead, that is a separate and more interesting bug, and these
+four digits will have been harmless either way.
+
 ## 0.75.1 - a curve the jewellery already had
 
 The second half of the report that produced 0.75.0:

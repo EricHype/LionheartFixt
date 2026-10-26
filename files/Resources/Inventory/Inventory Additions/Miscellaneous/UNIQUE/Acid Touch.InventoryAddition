@@ -1,0 +1,107 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorAddAIWhenSelected
+		{
+			AI To Add=CAIAreaOvalManager
+			{
+				Marked For Deletion=0
+				Publisher=
+				Radius=CConstant
+				{
+					Constant Value=110
+				}
+				Aspect Ratio=0.712766
+				Re Trigger Delay=CConstant
+				{
+					Constant Value=2
+				}
+				Max Times To Trigger=
+				Re-Check who is in oval each re-trigger=1
+				Every Trigger Action=CActionDoDamage
+				{
+					Character Doing Damage=$Instigator
+					Character To Damage=$Trigger
+					Defend Against=1
+					No Friendly Fire Check=0
+					Damages=Array
+					{
+						Item Count=1
+						Damage=CXRPGDamage
+						{
+							Damage Type=Damage Types/Acid
+							Damage Amount=CRandom
+							{
+								Operator=
+								Minimum=CConstant
+								{
+									Constant Value=2
+								}
+								Maximum=CConstant
+								{
+									Constant Value=7
+								}
+							}
+						}
+					}
+				}
+				First Trigger Action=
+				Re-Trigger Action=
+				After Last Trigger Action=
+				Only Trigger if has HP=1
+				Trigger if Player=0
+				Trigger if Enemy=1
+				Trigger Anything=0
+				Max Entities to affect=
+				Seconds Since Last Triggered=0
+				Number Of Times Triggered=0
+				Has Triggered At Least Once=0
+				Has Begin Been Called Before=0
+				Affected Layer Parts=Array
+				{
+					Item Count=0
+				}
+			}
+			AI On Character=
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2500
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Acid Touch
+	Description=Inflicts 2-7 points of acid damage to any enemy within melee range of the character.
+	Item Grade=Basic
+	Inventory Window=!Unknown Model
+	Minimum Value=2500
+	Minimum Addition Ammount=0
+	Inbetween Value=2500
+	Inbetween Addition Ammount=0
+	Maximum Value=2500
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=0
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/UNIQUE Item Additions
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

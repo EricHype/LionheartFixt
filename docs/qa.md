@@ -1474,6 +1474,26 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.75.2 - where a curve ends, for the three that have none
+
+Three addition files, no map and no dialogue, so **nothing here needs a new character**. Unlike
+0.75.0 and 0.75.1 it does not need fresh loot either, because these additions are not rolled: they
+come from one trigger.
+
+**Getting them is the whole test.** They are handed over together by a single trigger in the
+Wilderness map `Bounty Hunter Camp`. If you have already taken them on this character, you have them
+and cannot take them again.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| AU1 | Reach the Bounty Hunter Camp in the Wilderness and walk into the trigger | - | Three amulets at once: Icy Fury, Acid Touch and Lava Burn |
+| AU2 | Read each tooltip | - | *"Inflicts 2-7 points of cold / acid / fire damage to any enemy within melee range of the character."* Vanilla said 1-3 |
+| AU3 | **The row that has never been run, in vanilla or here.** Wear one, stand next to something hostile and do nothing | - | It takes damage about every two seconds without you attacking. **If nothing happens, the aura is dead in vanilla too** and that is a separate bug worth a report of its own |
+| AU4 | Watch the combat log while it ticks | - | 2 to 7 of the right damage type, and the figure respects the target's resistance to it |
+| AU5 | Stand further away | - | It stops. The radius is 110 and was not changed |
+| AU6 | **Regression.** A suit of armour of Deepest Winter, if you have one | - | Unchanged, 1-2 to 2-7 every six seconds in radius 80. It was the reference for this release, not a target of it |
+| AU7 | **Regression.** `Evasion` and `Luck`, the other two UNIQUE additions | - | Unchanged. Only the three aura files were edited |
+
 ## 0.75.1 - a curve the jewellery already had
 
 Six addition files, no map and no dialogue, so **nothing here needs a new character**. As with 0.75.0
