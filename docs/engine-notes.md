@@ -65,6 +65,15 @@ Add=1`; the marker carries the real amount. Of 430 awards in trees, **0** use `$
 literal, and `$Trigger` resolves only inside cans. A save that predates the marker can never be
 paid, because a room's entity list is frozen on first visit.
 
+**A conversation must silence the speaker's balloon loop first.** The engine plays one voice line at
+a time, so a repeating `CDisplayDialogBalloonAction` keyed to an NPC cuts off any conversation that NPC
+is given. Vanilla's answer is a `CDeactivateAction` on the balloon host, fired immediately before the
+`CDisplayDialogTreeAction`, and it uses it at **both** of its own DaVinci conversations in the Gate
+District. 0.58.1's gift scene was the third and the only one that did not, so his idle commentary talked
+over 25 seconds of recorded line. Counted across every shipped map, **65** balloon hosts can fire more
+than once and all 65 are vanilla's -- this project has added none, which is why the gift was the only
+case. The deactivation is permanent in vanilla too: nothing ever re-activates `davinci banter relay`.
+
 **Item counts are expressible, by repetition.** `CActionCheckForInventoryItem` has no count field in
 any of its **653** uses across vanilla's `.can`, `.zax` and `.dialogtree` files; N checks AND'd with N removes really does require N, confirmed in play with
 Quinn's wasp stingers.

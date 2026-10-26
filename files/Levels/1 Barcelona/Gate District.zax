@@ -123,7 +123,11 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
+							Action=CDeactivateAction
+							{
+								Target Name=davinci banter relay
+							}
 							Action=CImpersonateAction
 							{
 								Action=CIfAction

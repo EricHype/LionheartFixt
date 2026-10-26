@@ -1474,6 +1474,24 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.74.1 - the gift, with DaVinci's commentary out of the way
+
+Needs a **brand-new character** -- the fix is an edit to a Gate District level part, and a map's
+entity list is frozen into the save the first time that map is entered.
+
+One fault, reported from play: his idle commentary talked over the gift line. `davinci banter relay`
+is fired by the turn-idle he parks into after the stroll, once per completed turn, and vanilla
+deactivates that relay before each of its own two DaVinci conversations. 0.58.1's gift trigger was
+the third and the only one that did not.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GB1 | **The row the report is about.** New game. Finish the opening talk, then dawdle -- let him finish the whole stroll and park in the courtyard, turning in place and commenting on things. Now walk north into the gift spot | - | The gift scene opens and runs to the end, 25 seconds of it, with **no hovertext line cutting in**. His commentary stops the moment the scene opens and does not come back |
+| GB2 | Now the other way: new character, walk north with him instead of lagging | - | The gift still fires partway up the walk, and his arrival line at that same spot does not land on top of it. That waypoint is where the trigger sits, so this is the near-certain collision, not the unlucky one |
+| GB3 | **Regression.** On that walk, before the gift fires, listen | - | He still banters during the stroll. Nothing is silenced until the gift scene opens |
+| GB4 | **Regression.** After the gift, keep walking with him into the city | - | He still comments on the portcullis and on the market as he goes. Those two are played straight from his walk, not through the relay, so the fix must not have touched them |
+| GB5 | **Regression.** Walk up and talk to him | - | His return dialogue opens as before, and the faction quest and the opening autosave both still happen |
+
 ## 0.74.0 - the wands that were never wands
 
 An addition rolls its instance when the item is generated, so **a wand already in your pack keeps

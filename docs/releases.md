@@ -140,6 +140,84 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.74.1 - the gift, with his commentary out of the way
+
+Reported from play: *"we added an interaction where Leonardo gives you a healing potion. If he's
+already in the state where he wanders and comments on things, he'll play a hovertext line which
+overtakes the audio and cuts off what he was saying."*
+
+### What fires the commentary
+
+`davinci banter relay` is a `CRelayAI` holding six `CDisplayDialogBalloonAction`s. Three separate
+things fire it, and only the third is a loop:
+
+| | |
+|---|---|
+| his arrival at `DaVinci Walks Here 1` | the `Done action` of that walk leg, once |
+| banter 1, 2 and 4 | each balloon's own `After Action` re-triggers the relay |
+| the fourth `CScanAreaAI` | its `End Turn Action`, **once per completed turn, forever** |
+
+That fourth scan is the state the report describes. He parks in it when the stroll is over --
+`Turning Speed=5`, `Starting Angle=-45`, `Ending Angle=45` -- and every completed turn asks the relay
+for another line. Scans **#1 to #3** carry `End Turn Action=` empty, so they are silent pauses
+between walk legs and the commentary belongs to the fourth alone.
+
+### Vanilla had already written the fix
+
+The engine plays one voice line at a time, so a repeating balloon keyed to an NPC will cut off any
+conversation that NPC is given. Vanilla's answer is a `CDeactivateAction` on the balloon host, fired
+immediately before the `CDisplayDialogTreeAction`, and it uses it at **both** of its own DaVinci
+conversations in this map:
+
+| the conversation | what runs first |
+|---|---|
+| `GetCloseThenTalk` into `3 Return Dialogue` | `CDeactivateAction{davinci banter relay}` |
+| the send-off to the crossroads | `CDeactivateAction{davinci banter relay}` |
+| **0.58.1's gift trigger** | **nothing** |
+
+So the gift was the third DaVinci conversation in the Gate District and the only one a balloon could
+talk over. Worse than bad luck: `detect player for davinci gift` sits at `X Radius=200` centred on
+**2105, 2882**, which is `DaVinci Walks Here 1` to the unit -- the exact waypoint whose arrival fires
+a banter line. The trigger's action array goes from two items to three and the deactivation is first,
+ahead of the gender read and the dialogue.
+
+The deactivation is permanent, which is also vanilla's behaviour: nothing in the map ever
+re-activates that relay, so talking to DaVinci has always ended his idle commentary for good.
+
+### Two things that look like holes and are not
+
+**Stroll banter 3 and 5 are played straight from the walk**, as `CDisplayDialogBalloonAction`s in the
+`Done action`s of the legs to `DaVinci Walks Here 2` and `Davinci enters city`, not through the relay.
+Deactivating the relay cannot silence them, and it does not need to: a walk leg begins only when
+something sends AI-done, and the gift node's own `CSendAIDoneMessage{Target=DaVinci}` is what sends
+it, at the **end** of the line. They land after the scene closes, which is why he still comments on
+the portcullis and the market on the rest of the walk.
+
+**The reverse race is not the reported one.** A balloon already on screen when the gift opens would
+be cut off by the gift, not the other way round. The report is of a line arriving *during* the 25
+seconds, and every line that can arrive during them comes through the relay.
+
+### The same shape, everywhere else in the game
+
+Asked whether this project had built the same trap elsewhere. It has not, and the count is the answer
+rather than an impression: across every shipped map, **65** balloon hosts can fire more than once --
+either a balloon re-triggers its own host, or something repeating fires it -- and **all 65 are
+vanilla's**. This project has added 148 balloon-bearing level parts and not one of them is a loop;
+they are hover specifiers, which the player opens deliberately, and one-shot triggers. The single
+Fixt part with a repeat timer, `Troll Peace Keeper` in the Troll Pit, already deactivates itself
+before its own conversation.
+
+That finding is now in [`engine-notes.md`](engine-notes.md), because the rule generalises past
+DaVinci: a conversation must silence its speaker's balloon loop first.
+
+### Testing it
+
+The fix is an edit to an existing Gate District level part, and a map's entity list is written into
+the save the first time the player enters, so **it needs a character who has not been to the Gate
+District** -- in practice, a new game. `qa.md`'s 0.74.1 section is five rows: GB1 is the reported
+case, GB2 the walk-beside-him case, and GB3 to GB5 regressions on his stroll banter, on the two lines
+played straight from the walk, and on his ordinary dialogue.
+
 ## 0.74.0 - the wands that were never wands
 
 Asked in play: *"how do I actually use wands? When I equip them, there doesn't seem to be a way to
