@@ -1,0 +1,73 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=$Instigator
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Belts/Titan Endurance
+						Expression Name=endurancebonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Character attribute to modify=Character Attributes/(EN) Endurance
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=9500
+	}
+	Is Magic=1
+	Encumbrance=1
+	On the ground=Items/PickUps/Misc Items/BeltTitanEndure_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Endurance
+	Description=This belt increases its wearer's Endurance by %i[endurancebonus].
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/Belt_TitanEndur
+	Minimum Value=1500
+	Minimum Addition Ammount=2
+	Inbetween Value=4000
+	Inbetween Addition Ammount=2
+	Maximum Value=9000
+	Maximum Addition Ammount=3
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=endurancebonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Belt Additions
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

@@ -1,0 +1,115 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=$Instigator
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Shield/SHIELD MEDIUM/Charismatic Totem
+						Expression Name=charismabonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Character attribute to modify=Character Attributes/(CH) Charisma
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride
+		{
+			Dynamic Properties=1
+			{
+				Comment=Mdm Special
+			}
+			Override Models=Array
+			{
+				Character Slot Types/!None=Models3D/!None/!None
+				Character Slot Types/Arm=Models3D/Weapons/Shields/ShieldLarge/ShieldLarge
+				Character Slot Types/Arrow=Models3D/!None/!None
+				Character Slot Types/Body=Models3D/!None/!None
+				Character Slot Types/Bolt=Models3D/!None/!None
+				Character Slot Types/Finger=Models3D/!None/!None
+				Character Slot Types/Foot=Models3D/!None/!None
+				Character Slot Types/Hand=Models3D/!None/!None
+				Character Slot Types/Head=Models3D/!None/!None
+				Character Slot Types/HotKey=Models3D/!None/!None
+				Character Slot Types/Neck=Models3D/!None/!None
+				Character Slot Types/Shield=Models3D/!None/!None
+				Character Slot Types/Waist=Models3D/!None/!None
+				Character Slot Types/Weapon=Models3D/!None/!None
+			}
+			Override Names=Array
+			{
+				Character Slot Types/!None=
+				Character Slot Types/Arm=Shield Mdm Special
+				Character Slot Types/Arrow=
+				Character Slot Types/Body=
+				Character Slot Types/Bolt=
+				Character Slot Types/Finger=
+				Character Slot Types/Foot=
+				Character Slot Types/Hand=
+				Character Slot Types/Head=
+				Character Slot Types/HotKey=
+				Character Slot Types/Neck=
+				Character Slot Types/Shield=
+				Character Slot Types/Waist=
+				Character Slot Types/Weapon=
+			}
+			Override Active=0
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=9250
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Armor/Shield_MediumSPECIAL_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Charisma
+	Description=This glittering, perhaps hypnotic shield grants +%i[charismabonus] Charisma to its bearer.
+	Item Grade=Special
+	Inventory Window=!Unknown Model
+	Minimum Value=2100
+	Minimum Addition Ammount=2
+	Inbetween Value=6400
+	Inbetween Addition Ammount=2
+	Maximum Value=22500
+	Maximum Addition Ammount=3
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=charismabonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Shields and Armor/Shield MEDIUM Additions
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

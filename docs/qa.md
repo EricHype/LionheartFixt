@@ -1474,6 +1474,27 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.75.3 - today's number as the floor
+
+Ten addition files, no map and no dialogue, so **nothing here needs a new character**. It wants
+**newly generated loot**, like 0.75.0 and 0.75.1, because whether an item already in your pack
+re-reads its addition's numbers is still unsettled.
+
+Every row is a 3 Rare or better enchantment on a specific slot, so shopping restocks beat chests.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| AT1 | Find or buy an expensive Belt of Titan Strength or Titan Endurance | - | **+3**, where vanilla always said +2. 9000 gold or more |
+| AT2 | A cheap one | - | Still **+2**. Today's value is the floor, so nothing in this release can be worse than vanilla |
+| AT3 | **The row the rule rests on.** A mid-priced one, around 4000 to 6000 | - | +2 or +3. If the game shows a fraction such as **+2.2**, say so: the engine interpolates linearly and whether it floors is the open question behind this whole release |
+| AT4 | Equip it and read the character sheet, not the tooltip | - | The attribute really moves by the number the tooltip claims, and drops back when the item comes off |
+| AT5 | A Shield of the Charismatic Totem, expensive | - | +3 Charisma. All three shield sizes were changed, so check whichever you find |
+| AT6 | A Necklace of Necromancy | - | Up to **+25** Summoning on a dear one, where vanilla always said 10. It reaches its ceiling by about 3500 gold |
+| AT7 | Armour of Giant Strength, a Gauntlet of Heroic Strength, a Helm of Focused Logic | - | Up to +2 each, +1 at the bottom. These were flat +1 |
+| AT8 | A Cloak of Charisma | - | +2 rising to +3 by about 3500 gold |
+| AT9 | **Regression.** Anything with `Mastery`, `Haste`, `Speed` or `Lethargy` | - | Unchanged and still flat. Rates and multipliers were deliberately left out |
+| AT10 | **Regression.** The six Carnage necklaces and the three aura amulets | - | Unchanged from 0.75.1 and 0.75.2 |
+
 ## 0.75.2 - where a curve ends, for the three that have none
 
 Three addition files, no map and no dialogue, so **nothing here needs a new character**. Unlike

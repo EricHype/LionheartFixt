@@ -1,0 +1,74 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Gauntlets/Hero Strength
+						Expression Name=strengthbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Character attribute to modify=Character Attributes/(ST) Strength
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=5000
+	}
+	Is Magic=1
+	Encumbrance=1
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Heroic Strength
+	Description=The wearer's Strength is increased by %i[strengthbonus].
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Armor/Gauntlets Hero Strength
+	Minimum Value=600
+	Minimum Addition Ammount=1
+	Inbetween Value=1500
+	Inbetween Addition Ammount=1
+	Maximum Value=4000
+	Maximum Addition Ammount=2
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=strengthbonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Gauntlet Additions
+	Addition Rarity=Inventory Item Rarity/4 Very Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=1
+		Addition Cannot Be Combined With=Inventory/Inventory Additions/Miscellaneous/Gauntlets/Vast Power
+	}
+}

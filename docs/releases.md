@@ -140,6 +140,83 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.75.3 - today's number as the floor
+
+The third batch out of the flat-addition family that 0.75.0's survey turned up. It was scoped as
+eighteen files and shipped as ten, and the eight that fell out did so for reasons worth keeping.
+
+### The rule, and why not the vanilla band
+
+Every one of these grants a fixed bonus with `min = mid = max` on the value and `0/0/0` on the
+amount. The same-target twins exist, but for attribute bonuses they are `Armor/Titan Bones` at
+**1/1.5/2** and `Weapons/Agility Advance` at **1/2/3**, and adopting the first would have put a
+fractional attribute into the game while nerfing every flat +2 at the bottom of its own curve.
+
+The rule chosen instead, at the maintainer's call: **today's value becomes the floor and the middle,
+and the ceiling is one step above it.** Nobody is ever worse off than vanilla. The invented part, and
+it is worth naming, is the flat-then-rise shape: no vanilla addition has a band of 2/2/3.
+
+| addition | rarity | today | band | prices |
+|---|---|---|---|---|
+| `Armor/Giant Bones`, Strength | 4 Very Rare | +1 | 1/1/2 | 2500/5000/9500 |
+| `Belts/Titan Strength`, `Belts/Titan Endurance` | 5 Unique | +2 | 2/2/3 | 1500/4000/9000 |
+| `Cloaks/Charisma` | 3 Rare | +2 | 2/2/3 | 400/1000/3500 |
+| `Gauntlets/Hero Strength` | 4 Very Rare | +1 | 1/1/2 | 600/1500/4000 |
+| `Helmets/Focused Logic`, Intelligence | 5 Unique | +1 | 1/1/2 | 1500/4000/9000 |
+| `Charismatic Totem`, all three shield sizes | 5 Unique | +2 | 2/2/3 | each folder's own |
+| `Necklaces/Summoning Power`, Necromancy | 3 Rare | 10 | 10/10/25 | 400/1000/3500 |
+
+Price bands are rarity-matched from the jewellery family 0.75.1 validated: `Amulets/Poison
+Resistance` 400/1000/3500 at 3 Rare, `Rings/Arrow Dampening` 600/1500/4000 at 4 Very Rare,
+`Rings/Laceration` 1500/4000/9000 at 5 Unique, with each folder's own band for armour and shields.
+
+A first pass instead took the widest band inside each slot folder, and was thrown away: it gave belts
+**750/2250/5000** against additions priced at 9500, and cloaks **100/200/300**. Both pin the curve at
+its ceiling, which turns a curve back into a flat number and would have shipped as a silent buff.
+
+### The rule does not remove fractions, which was its appeal
+
+Worth recording against the decision rather than quietly. The declared amounts are integers, but the
+engine interpolates **linearly** between the three points, so a mid-priced item lands on 2.2 or 1.9
+whatever the endpoints are.
+
+What the rule does guarantee is the thing actually wanted: because every value sits between today's
+number and one above it, **flooring cannot nerf anything**. `Armor/Titan Bones`' 1/1.5/2 would have
+floored to 1 across most of its range and halved every flat +2 item. So the choice holds and the
+label was optimistic.
+
+### Five of the eighteen are dead additions
+
+`Eyes of the Archer`, `Hujark Helmet`, `of Range Skill`, `Strength Advance` and `English Mace` all
+carry `Inventory Addition Group=Inventory/!None`. **No item can ever receive them**, so filling in
+their band changes nothing, exactly as 0.75.2 found for the three unique auras. One of them says so
+in its own voice; `of Range Skill`'s entire description is:
+
+> This item is not used.
+
+The selection check that let them through is worth naming too: 205 items declare `Inventory/!None` as
+their own addition group, and a count of "items declaring this group" therefore passed `!None` as the
+most popular group in the game. It means the opposite. **An addition in `!None` belongs to no group;
+an item in `!None` accepts no additions.**
+
+### Three need a technique this release does not have
+
+`the Snake`, `English Axe` and `the Gymnast` each carry two modifiers of **different magnitudes** --
+10 poison resistance and 5 Sneak, 20 crushing resistance and 6 AC. An addition has exactly one
+`Addition Ammount`, so two different curves need the `CExpressionScale` remap that `Shocker` uses for
+its min and max. That is a real job and not this one.
+
+And two are left alone on purpose: `the Hujark` scimitar's **-15** cold resistance and
+`Goblin Stitched`'s **-2** Speech. Scaling a penalty makes the better item worse, which may well be
+right, but it is a design question and should not arrive as a side effect of a batch.
+
+### Where the family stands
+
+Of the 70 non-consumable flat additions the survey found: **6** shipped in 0.75.1, **10** here, **5**
+are dead and need nothing, about **24** are rates and toggles that should stay flat, and the rest want
+either the two-modifier remap or a ruling on penalties. The eighteen was really ten, and establishing
+that cost three selection passes, each killed by a different property of the data.
+
 ## 0.75.2 - where a curve ends, for the three that have none
 
 The report named two of these:
