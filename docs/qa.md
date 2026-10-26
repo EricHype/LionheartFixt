@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.75.1 - a curve the jewellery already had
+
+Six addition files, no map and no dialogue, so **nothing here needs a new character**. As with 0.75.0
+it wants **newly generated loot**, because whether an item already in your pack re-reads its
+addition's numbers is still an open question.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| CN1 | **The row the report is about.** Find or buy an expensive necklace of any Carnage and read it | - | 15%, where it used to say 10%. 4000 gold or more for Crushing, Piercing or Slashing; 3500 for Fire, Cold or Electrical |
+| CN2 | A cheap one, early game | - | It **exists**, which it could not before, and reads 5%. The band's floor dropped from 3700 to 400 |
+| CN3 | Wear one and check the damage it names | - | The bonus matches the number in its own tooltip. Both are read from the same expression, so a mismatch means the modifier is not reading it |
+| CN4 | Read the sentence itself | - | Unchanged except the number, including the double space in Fire Carnage's *"enhanced  15%"*. If any of the six reads differently from vanilla, the prose edit went too far |
+| CN5 | **Regression.** The necklace's price in a merchant window | - | Still 3700 or 4000. The addition's `Value` was deliberately not touched, only its band |
+| CN6 | **Regression.** `Necromancy` and `Voodoo`, the other two necklace additions | - | Unchanged and still flat. Only the six Carnage files were edited |
+| CN7 | **Regression.** 0.75.0's work, a weapon of Firestorms or Lightning and a Shield of the Frostwyrm | - | Unchanged from 0.75.0 |
+
 ## 0.75.0 - what a chance is worth
 
 Six addition files, no map and no dialogue, so **nothing here needs a new character**. What it does

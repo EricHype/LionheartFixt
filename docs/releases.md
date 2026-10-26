@@ -140,6 +140,83 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.75.1 - a curve the jewellery already had
+
+The second half of the report that produced 0.75.0:
+
+> Icy Fury, Acid Touch etc. stat from Necklaces arguably needs a more felt level scale in dmg
+
+The six Carnage necklaces are the cheapest honest batch of that complaint, and doing them first was
+deliberate: one decision covers all six, and it sets the policy the rest of the flat family will need.
+
+### The band was never filled in
+
+0.75.0's notes recorded that 70 non-consumable additions are flat. What they did not yet say is which
+*kind* of flat. Checked: **69 of the 70 have `min = mid = max` on the value and `0/0/0` on the
+amount.** Exactly one, `Weapons/Slow Factor`, has a real band of 40/400/1200 that nothing reads.
+
+So the first assumption, that these were wiring jobs with the author's numbers already present, was
+wrong. The form was never filled in, and a conversion needs a price band, an amount band and new
+prose.
+
+All six necklaces are the same shape:
+
+| | rarity | value | band | amount | gives |
+|---|---|---|---|---|---|
+| Fire, Cold, Electrical Carnage | 3 Rare | 3700 | 3700/3700/3700 | 0/0/0 | flat 10% |
+| Crushing, Piercing, Slashing Carnage | 4 Very Rare | 4000 | 4000/4000/4000 | 0/0/0 | flat 10% |
+
+### No number in this release was invented
+
+That was the thing worth being able to say, and a census made it possible. Of the game's 286
+additions, **27** combine a nonzero `Value` with a real band that their modifiers read. **All 27 are
+jewellery or clothing**, which is this exact family, and **13 of them use precisely `5/10/15`**. So
+the amounts are the house pattern, and both value bands are lifted whole from a named file at matching
+rarity:
+
+| | precedent | band |
+|---|---|---|
+| the 3 Rare trio | `Miscellaneous/Amulets/Poison Resistance`, 3 Rare | 400 / 1000 / 3500 |
+| the 4 Very Rare trio | `Miscellaneous/Rings/Arrow Dampening`, 4 Very Rare | 600 / 1500 / 4000 |
+
+The same census settled an implementation risk that would have made this release a **no-op**. A flat
+addition sets its `Value` to the same number as its band, so it looked possible that `Value` was what
+the engine interpolated against, in which case widening the band would change nothing. It is not: in
+all 27, `Value` is independent of the band, and **not one** of them has it equal to the band's middle
+point. The necklaces keep their 3700 and 4000 gold prices and only the power curve moved.
+
+What comes out, against vanilla's flat 10% at every price:
+
+| necklace value | 300 | 600 | 1000 | 1500 | 2500 | 4000+ |
+|---|---|---|---|---|---|---|
+| the 3 Rare trio | 5% | 7% | 10% | 11% | 13% | 15% |
+| the 4 Very Rare trio | 5% | 5% | 7% | 10% | 12% | 15% |
+
+### What it does, said plainly
+
+**At the price they used to sit at, they go from 10% to 15%.** That is a buff, not a repricing, and 15
+is the ceiling the game's own jewellery uses in 13 separate files. **And they are reachable from 400
+gold instead of 3700**, at 5%, which is the felt scale the report asked for.
+
+The alternative was to put the band's middle at today's 3700 and 4000, so that nothing gained at the
+price it already existed at. That was rejected for one reason: **no jewellery addition in the game
+tops out above about 5000**, so a band reaching the 9000 or so it would need is a shape this project
+would be inventing. Copying beat centring.
+
+### One token of prose each
+
+This was the risk flagged when tier 2 was scoped: only 8 of the 70 flat additions interpolate a number
+into their description, so 62 of them need new sentences in the original author's register, and no gate
+here can catch prose that reads like the wrong writer. On this batch it cost nothing, because each
+description is one sentence with one number in it. The number is replaced by its expression and
+nothing else is touched, down to the double space vanilla left in Fire Carnage:
+
+> All fire based damage dealt by the wearer of this necklace is enhanced  %i[firedamagebonus]%.
+
+The remaining **56** will not be so kind. `the Sylvant` builds a clause around each of four numbers,
+and `Titan Strength` is a whole sentence that is nothing but its number. Those get their own release
+and their own care.
+
 ## 0.75.0 - what a chance is worth
 
 Reported by a player, at length and with examples:
