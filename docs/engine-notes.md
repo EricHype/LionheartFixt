@@ -401,13 +401,32 @@ of 20, and its description says "every 5 seconds for 20 seconds", so the 4 is th
 `poisonbonus` is the per-tick value. `Gas Cloud` is `poisonbonus x 2` over a duration that is itself
 an expression. Do not read a per-swing figure off the description or off the amount alone.
 
-**Whether a re-applied damage-over-time stacks or refreshes is UNKNOWN and not answerable from the
-resources.** The node has no stacking, refresh or max-stacks field, in any of the 23 files that use
-it. The question matters more than any number in the family: a 20-second effect that refreshes
-delivers its total once per 20 seconds, roughly 1.2 a second for Snakebiting's 24, against an
-instant suffix's 11 to 13.5 a swing at about half a swing a second, roughly 6 a second. So the same
-addition is either the worst paid in its family by a factor of five, or the best paid. Settle it in
-the binary, or by watching a fight, before tuning any of the three damage-over-time suffixes.
+**A re-applied damage-over-time REFRESHES, it does not stack.** Settled in the binary rather than
+inferred: `FUN_004439d0` is the apply path, reached from the damage pipeline, and it walks the
+`CDamageCoordinator` damage array type-checking each element against `CXRPGDamageOverTime` through
+`FUN_00497f10`. A character holds its pending effects as a dynamic array of pointers, base at
+`this+0x110`, count at `this+0x114`, capacity at `this+0x118`. On apply it **scans that array for
+an existing entry of the same damage type**; if it finds one it reuses it, and only allocates a new
+entry when no entry of that type exists. So there is **at most one pending entry per damage type**.
+
+At the reuse label the incoming total simply **overwrites** the entry -- `entry[3]` becomes the
+per-tick amount and `entry[4]` the tick count, computed from the incoming total. The remaining
+damage of the previous application is **discarded**. The old and new amounts are added together
+only when their signs differ, which is the healing-over-time case, not two poisons.
+
+The cancel path, `FUN_00443cb0` reached from `CActionCancelPendingDamageOverTime`, scans the whole
+array backwards and removes every entry matching the type, compacting with a memmove and
+decrementing the count. That full scan reads like evidence of stacking and is not -- it is generic
+code, correct because several *types* can be pending at once. Reading it that way was the first
+wrong turn here.
+
+**What it costs in balance terms.** A damage-over-time delivers its total once per duration no
+matter how often it is re-applied, so its real throughput is total/duration: Snakebiting's 24 over
+20 seconds is about **1.2 a second**, against an instant suffix's 11 to 13.5 on every swing, about
+**6 a second** at half a swing a second. The three damage-over-time suffixes -- `Snakebiting`,
+`Venom` and `Ripping` -- are therefore underpaid against the instant ones by roughly a factor of
+five, and any per-swing figure quoted for them, including those in 0.77.3's release notes,
+overstates them by the number of swings that land inside one duration.
 
 **Raising a band's ceiling without raising its amount is a nerf.** The band is interpolated, so
 stretching the top flattens everything below it. Tested on the four Rare damage suffixes: moving
