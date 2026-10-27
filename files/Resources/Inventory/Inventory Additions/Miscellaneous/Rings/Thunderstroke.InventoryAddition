@@ -1,0 +1,63 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=$Instigator
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=20
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=3750
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Thunderstroke
+	Description=This ornate ring crawls with a charge that lifts the hair of the hand wearing it. While worn, it enhances any Electrical Damage its wearer deals by 20%.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/RingThunderstroke
+	Minimum Value=3750
+	Minimum Addition Ammount=0
+	Inbetween Value=3750
+	Inbetween Addition Ammount=0
+	Maximum Value=3750
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=0
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Ring Additions
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

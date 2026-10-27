@@ -1,0 +1,83 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=2
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=5
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Cold Damage Threshold
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=25
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_metal_armor.ogg
+				Position=$Trigger
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down__metal_armor.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=4200
+	}
+	Is Magic=1
+	Encumbrance=5
+	On the ground=Items/PickUps/Misc Items/Gauntlet_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Gauntlets of Hoarfrost
+	Description=Rimed white and painful to hold, these gauntlets carry a still, patient cold that does not melt. Although uncomfortable, they provide a +25% cold damage modifier and a +5 cold damage threshold.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Misc Items/Images for RED file/Gauntlets Hoarfrost
+		Better=Items/Inventory Images/Misc Items/Images for RED file/Gauntlets Hoarfrost
+		Special=Items/Inventory Images/Misc Items/Images for RED file/Gauntlets Hoarfrost
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Arm
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Armor
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Special Objects for RED file/Gauntlets of Hoarfrost
+}

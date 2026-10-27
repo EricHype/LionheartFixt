@@ -140,6 +140,76 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.76.1 - the other two elements
+
+Reported as [issue #12](https://github.com/EricHype/LionheartFixt/issues/12) by Przemyslaw92pl:
+
+> Is there any chance to increase the % damage for ice and electricity? Unfortunately, fire magic
+> dominates everything, especially the gloves and ring.
+
+Measured against the files, and the report is precise, including which two items to look at.
+
+### What the gap was
+
+| | fire | cold | electrical |
+|---|---|---|---|
+| ring | `Fiery Death`, flat **20%** | `Magical Devotion`, 5% | `Magical Devotion`, 5% |
+| gauntlets | `Gauntlets of Hellfire`, **25% + 5 threshold** | **nothing** | **nothing** |
+
+`Magical Devotion` is not a cold ring. It is one ring giving 5% of cold, electrical and fire alike,
+so a fire build gets 20 from a dedicated ring and everyone else gets 5 from a shared one. And of the
+ten gauntlet items and additions in the game, Hellfire is the **only** one that touches elemental
+damage at all, so there was nothing on the hands to compare against.
+
+Everything else was already even, which is what makes those two stand out: shields are 5-20 either
+way, `Armor/Elemental Damage` is 5 across all three, and the bows are 25 fire, 25 electrical, 20
+cold.
+
+### This project did not cause it
+
+Worth checking before answering, and checked. 0.75.1 moved all three Carnage necklaces identically,
+flat 10% to 5-15%, so the ratio between the elements is exactly vanilla's. The two items in the
+report are untouched by anything here. If anything 0.75.0 narrowed a different fire/cold gap, by
+giving the Frostwyrm shield the One-Handed bonus its Firedrake twin always had.
+
+### Straight parity
+
+| | | |
+|---|---|---|
+| **Killing Frost** | 20% Cold Damage | 5 Unique ring addition, value 3750 |
+| **Thunderstroke** | 20% Electrical Damage | 5 Unique ring addition, value 3750 |
+| **Gauntlets of Hoarfrost** | 25% Cold Damage, +5 Cold threshold | value 4200 |
+| **Gauntlets of the Tempest** | 25% Electrical Damage, +5 Electrical threshold | value 4200 |
+
+Each is a clone of its fire twin with the damage type swapped and nothing else moved: same rarity,
+same value, same group, same plugin structure, same encumbrance.
+
+The rings are **additions**, so the generator rolls them onto any ring and nothing had to be placed.
+The gauntlets are specific item cans, so they needed a home, and they went on the shelf the fire pair
+already sits on: `Inventory for RED FILE guy after quest` in the Gate District, whose stock goes from
+two entries to four. The elemental choice is now made at one counter rather than scattered.
+
+### The line of untested engine here
+
+`Cold Damage Threshold` and `Electrical Damage Threshold` **exist** as derived attributes, alongside
+fire, crushing, piercing, slashing and the rest. **No item in the game has ever used either of
+them.** Only fire had a threshold on anything.
+
+So the two new gauntlets are the first things in Lionheart to grant a cold or electrical damage
+threshold. The attribute is there and the fire pair proves the shape, but nothing has ever exercised
+those two, and that is the one row in the QA list that could come back wrong.
+
+### Four recolours, no new drawing
+
+The rings take a red and blue channel swap, which keeps the jewel the artist drew rather than
+flattening it; a luminance tint was tried first and lost the facets. The gauntlets take the
+luminance tint, which keeps the studs and straps, and the channel swap was tried first and produced
+purple rather than ice.
+
+All four were encoded off a buffer-1-only donor, verified with `verify_icon`, then decoded and
+compared pixel by pixel against their sources: zero differences beyond RGB565 rounding, zero pixels
+changing visibility under the format's 1 bit alpha. Hotspots recomputed from the drawn content.
+
 ## 0.76.0 - a mile in his shoes
 
 Asked for directly:

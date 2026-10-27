@@ -1474,6 +1474,27 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.76.1 - the other two elements
+
+The **rings** are additions, so they reach any save, but like every addition they apply to loot as it
+is generated: look at new finds and fresh merchant stock, not a ring you have worn for ten levels.
+
+The **gauntlets** are a map edit to the Gate District merchant, so they need a character who has not
+been there.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| EL1 | Find or buy a ring of **Killing Frost** | - | +20% Cold Damage, matching Fiery Death's fire. 5 Unique, so shop restocks beat chests |
+| EL2 | A ring of **Thunderstroke** | - | +20% Electrical Damage |
+| EL3 | **Regression.** A ring of Fiery Death | - | Still +20% fire, unchanged |
+| EL4 | New character. Finish the RED FILE guy's quest in the Gate District and open his stock | - | **Four** things, not two: Hellfire, Hoarfrost, the Tempest and the Sword of Undead Ice |
+| EL5 | Buy the **Gauntlets of Hoarfrost** and wear them | - | +25% Cold Damage **and +5 Cold Damage Threshold** on the sheet |
+| EL6 | **The row that could come back wrong.** Check the threshold is really applied, not just printed | - | No item in the game has ever granted a Cold or Electrical damage threshold. If the number does not move, these two need the threshold removing and only the 25% keeping |
+| EL7 | The **Gauntlets of the Tempest** | - | +25% Electrical and +5 Electrical Threshold |
+| EL8 | **Regression.** Gauntlets of Hellfire | - | +25% fire and +5 fire threshold, unchanged, and still first on his list |
+| EL9 | Look at all six icons together | - | Three rings and three gauntlets, each readable as fire, ice or lightning at inventory size. The rings keep their jewel; the gauntlets keep their studs |
+| EL10 | **Regression.** The six Carnage necklaces from 0.75.1 | - | Unchanged, 5-15% each. Nothing in this release touched them |
+
 ## 0.76.0 - a mile in his shoes
 
 **Needs a brand-new character.** Two reasons, and both are absolute: the XP marker is a new level
