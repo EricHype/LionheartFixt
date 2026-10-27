@@ -140,6 +140,89 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.77.1 - the ceiling nobody reaches
+
+0.77.0 argued that `Carnage`, a **1 Common**, out-paid the four Rare damage suffixes, and raised three of them on that basis. The arithmetic was right and the prices were imaginary. This release measures what a magic weapon is actually worth, and fixes the four ceilings against that instead.
+
+### What a generated magic weapon is really worth
+
+From 71 save files, every generated item carrying at least one addition, read out of the baked instances rather than modelled: **4,525 items**, of which **908 are melee weapons**.
+
+| | item Value |
+|---|---|
+| minimum | 2 |
+| **median** | **255** |
+| 90th percentile | 1,986 |
+| **dearest melee weapon in any save** | **7,790** |
+| dearest item of any kind | 12,995 |
+
+`Carnage`'s value band runs to **23,000**. **No item in the game approaches it**, so its advertised flat 15 is never paid by anything.
+
+### The model, confirmed rather than assumed
+
+0.77.0 rested on an unrecorded assumption: that the engine interpolates an addition's `Addition Ammount` from the finished item's gold value across the addition's three value/amount pairs. It is not in `engine-notes.md` and it had never been checked. A save settles it, because an item instance is baked in with its expressions resolved to literal constants:
+
+- **War Hammer of Carnage**, item `Value=7790`, has `Extra Damage` resolved to **8**. The model predicts 8.02.
+- **Bolts of Carnage**, item `Value=2`, resolved to **1**, and the generated tooltip reads *"These missiles deal +1 Piercing Damage."*
+
+So the mechanism is as assumed. What was wrong was never asking what values occur. The resolved amount lives in a save as the `Value=` field of the `CInventoryAdditionsNamedExpressionExpression` that reads it, not under a field called `Addition Ammount`, which is why a first probe for it found nothing.
+
+### So 0.77.0 overstated the defect it fixed
+
+At prices that actually occur, the gap is much smaller than the release claimed, and it only exists at the very top:
+
+| weapon value | Acid Splash | Cold Biting | Flame | Shocking | **Carnage** (1 Common) |
+|---|---|---|---|---|---|
+| 255 (median) | 2.23 | 2.11 | 1.97 | 1.81 | **1.70** |
+| 1,986 (90th pct) | 4.43 | 4.62 | 4.95 | 4.95 | **5.31** |
+| 7,790 (dearest) | 6.93 | 6.89 | 6.78 | 6.78 | **7.94** |
+
+Effective damage, after the spawn-weighted bestiary. The Common **loses** on a median weapon and wins by about **15%** on the dearest one ever seen -- not the 2x that quoting its 23,000 gold ceiling implied.
+
+### Why the obvious fix was rejected
+
+The instinctive repair is to raise the four Rare value ceilings to 23,000 so they stop plateauing. Measured, that is a **nerf**, because a value band is interpolated: stretching the top flattens the curve across everything below it.
+
+| suffix | at 1,986g | at 7,790g |
+|---|---|---|
+| Acid Splash | 4.48 to **3.90** | 7.00 to **4.76** |
+| Cold Biting | 5.70 to **4.96** | 8.50 to **5.94** |
+| Flame | 5.62 to 5.41 | 7.71 to **6.27** |
+| Shocking | 5.62 to 5.41 | 7.71 to **6.27** |
+
+Every figure in the range where items really sit falls, by up to **32%**, to buy a bigger number at a price no weapon ever has. Rejected on the measurement.
+
+### The ceilings come down into reach instead
+
+| | value band | amount band | min term |
+|---|---|---|---|
+| **Acid Splash** | 75/600/6500 to **75/600/7000** | 2/6/12 to **2/6/19** | output 2 to **3** |
+| **Cold Bite** | 75/600/6000 to **75/600/7000** | 2/8/15 to **2/8/24** | output 2 to **3** |
+| **Firebrand** | 75/1000/**10000** to 75/1000/**7000** | 2/9/15 to **2/9/22** | output 2 to **3** |
+| **Shocker** | 125/1000/**10000** to 125/1000/**7000** | 2/9/15 to **2/9/21** | output 3 to **4** |
+
+Every advertised maximum is now attainable on a weapon that exists. `Firebrand` and `Shocker` previously topped out at 10,000, which **no melee weapon in any save reaches**, so their stated 15 was unreachable too; both now finish at 7,790 rather than short of it.
+
+At the dearest weapon ever seen, all four land level and clear of the Common:
+
+| suffix | raw | effective |
+|---|---|---|
+| Flame | 12.50 | **11.00** |
+| Shocking | 12.50 | **11.00** |
+| Cold Biting | 13.50 | **10.94** |
+| Acid Splash | 11.00 | **10.89** |
+| Carnage, unchanged | 8.02 | 7.94 |
+
+A spread of 0.11 across four damage types, which has never been true of this family, and still under `Ripping`'s 11.3. `Shocker` takes 21 where the others take 22 because its min term scales to 3 rather than 2.
+
+### The dip an assertion caught
+
+Moving only the `min` term's Input Maximum widens that scale's domain, which **lowers** the interpolated floor at small amounts: a 255 gold weapon of Acid Splash lost 0.03 damage, about 1.3%. Trivial in play, and it would have shipped, except the rule across this whole family has been that nothing is ever worse than vanilla and the check was written as an assertion rather than a glance. Raising each Output Maximum in step restores the low end and lifts it slightly. **0.77.0 moved three Input Maximums without this, so it carries the same 1.3% dip at the bottom of those three bands**, which this release also corrects.
+
+### Left alone, on the standing call
+
+`Pestilence` is not touched, which remains the right call: disease is resisted by 168 of 422 races, 37% of spawns are flatly immune, and only 63% of a hit lands, so its damage type is the problem and no ceiling fixes that. Worth recording that its value band tops at 10,000 and is therefore **also unreachable**, so if it is ever revisited the cheap half of the fix is to bring that to 7,000 and change no number at all. `Dragon Teeth` already tops at 7,000 and needs nothing. `Carnage` itself stays exactly as shipped.
+
 ## 0.77.0 - what a condition is worth
 
 Five items raised on the [rpgcodex thread](https://rpgcodex.net/forums/threads/some-crazy-guy-is-modding-lionheart-legacy-of-the-crusader.157467/page-3) by Laz Sundays, worked in sequence. Three held up, one was dropped outright, and one changed shape completely once it was measured.

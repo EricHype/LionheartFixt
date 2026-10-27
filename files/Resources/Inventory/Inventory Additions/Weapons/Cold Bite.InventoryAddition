@@ -53,8 +53,8 @@ CInventoryAddition
 	Minimum Addition Ammount=2
 	Inbetween Value=600
 	Inbetween Addition Ammount=8
-	Maximum Value=6000
-	Maximum Addition Ammount=15
+	Maximum Value=7000
+	Maximum Addition Ammount=24
 	Sample Value=0
 	Addition Ammount=0
 	Expressions=CNamedExpressionsArray
@@ -77,7 +77,7 @@ CInventoryAddition
 					}
 					Input Maximum=CConstant
 					{
-						Constant Value=15
+						Constant Value=24
 					}
 					Output Minimum=CConstant
 					{
@@ -85,7 +85,7 @@ CInventoryAddition
 					}
 					Output Maximum=CConstant
 					{
-						Constant Value=2
+						Constant Value=3
 					}
 				}
 			}

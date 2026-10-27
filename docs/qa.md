@@ -1474,6 +1474,28 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.77.1 - the ceiling nobody reaches
+
+Four addition files, no map and no dialogue, so **no new character is needed**. As with every addition change, these apply to loot **as it is generated**: a weapon already in your pack has its behaviours baked into the save with the expressions resolved to constants, so look at fresh drops and fresh merchant stock.
+
+The thing to carry into these rows: a generated magic weapon's bonus is read off **its own gold value**. Median melee value in the saves is **255**, the 90th percentile 1,986, and the dearest ever seen 7,790. So a cheap weapon showing a small number is correct, not a bug, and the big numbers only appear on expensive weapons.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| RC1 | Find or buy a **dear** melee weapon of Acid, several thousand gold, and read the tooltip | - | Promises up to **19**, not 12 |
+| RC2 | A dear weapon of **Cold Biting** | - | Up to **24**, not 15 |
+| RC3 | A dear weapon of **Flame** or **Shocking** | - | Up to **22** and **21**, not 15 |
+| RC4 | **The row that proves the ceiling is reachable.** Compare the tooltip maximum against the damage you actually roll on a weapon worth about 7,000 or more | - | The rolls should reach near the stated maximum. This is the whole point of the release: before it, Flame and Shocking stated 15 at a price band topping at 10,000 that **no melee weapon in any save reaches**, so the number was unreachable |
+| RC5 | **The row that proves nothing got worse.** A **cheap** weapon of any of the four, a few hundred gold | - | The same as before or very slightly better, never worse. Checked at 904 price points against the pristine archive, but this is the one a player would notice |
+| RC6 | Look at the **low end** of the damage range on a mid-priced weapon | - | Unchanged or a touch higher. Raising the band ceiling alone would have dropped it about 1.3%, which is what the min term's output ceiling moving in step prevents |
+| RC7 | **Regression, and the most important one.** A weapon of **Carnage** | - | Completely unchanged. Carnage was deliberately not touched, in either this release or 0.77.0 |
+| RC8 | **Regression.** A weapon of **Pestilence** | - | Unchanged, still 2/7/14. Left alone on purpose because disease is resisted by 168 of 422 races and 37% of spawns are immune |
+| RC9 | **Regression.** A weapon of **Ripping** | - | Unchanged, 4/12/20 |
+| RC10 | **Regression.** 0.77.0's three creature-gated suffixes, Hunting, Exorcism and Goblin Slaying | - | Unchanged from 0.77.0: 5/14/30, 6/12/26 and 6/14/25 |
+| RC11 | **Regression.** 0.77.0's Venom fix | - | Unchanged, damage still scaling with the band, chance still 5 to 50 |
+| RC12 | **Regression.** The Bow of Fiery Smite in act 5's `10 Cave 5` | - | Still there. No map was touched in this release |
+| RC13 | Compare the four against each other on similarly priced dear weapons | - | They should feel about equal. After the bestiary they land within 0.11 of each other, which has never been true of this family: cold's bigger number exists because only 81% of cold damage lands, against acid's 99% |
+
 ## 0.77.0 - what a condition is worth
 
 Two halves with different requirements, and mixing them up is the easiest way to record a false pass.
