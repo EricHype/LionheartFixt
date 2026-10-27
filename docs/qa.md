@@ -1474,6 +1474,33 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.78.0 - what a poison is actually worth
+
+Two addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated, so look at fresh drops and fresh merchant stock.
+
+Two things to hold on to, because both make correct behaviour look like a bug:
+
+- **The poison does not stack.** Hitting the same enemy again replaces the pending poison, it does not add to it. That is the engine, confirmed by decompiling the apply path, and it is the whole reason for this release's numbers.
+- **The first tick lands 5 seconds after the hit.** Anything that dies before then takes **no poison damage at all**. Against trash this suffix does nothing; against something that survives, it does a lot.
+
+**DT3 and DT4 are the rows that prove the release.** DT5 is the one most likely to be mistaken for a bug.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| DT1 | Find or buy a **dear** melee weapon of Snakebiting, 7,000 gold or more, and read the tooltip | - | "an extra **27** points of damage every 5 seconds for 20 seconds", not 6 |
+| DT2 | A dear weapon of **Venom** | - | A per-tick figure in the **18 to 91** range, where it used to be 4 to 20. Chance still reads 50% |
+| DT3 | **The row that proves the release.** Hit something tanky with the dear Snakebiting weapon once, then stand back and watch for 20 seconds | - | Four ticks of about 27, roughly 108 damage total. If you see four ticks of 6, the band did not take |
+| DT4 | **The row that proves the mechanic.** Hit a tanky enemy repeatedly with it and watch the ticks | - | The ticks stay at about 27 and do **not** grow. Re-applying refreshes the timer, it does not pile up. If the ticks grow, the engine stacks after all and every number in this release is wrong |
+| DT5 | **The row most likely to look like a bug.** Kill something weak in two or three swings with a Venom or Snakebiting weapon | - | It takes **no poison damage**. The first tick is 5 seconds out. This is intended and is why the numbers are deliberately short of parity |
+| DT6 | **Regression.** A **cheap** weapon of either | - | The same or slightly better, never worse. Per-tick rises at every price |
+| DT7 | **Regression.** Venom's chance | - | Still about half of swings on a dear weapon, 5% on a cheap one. The chance band is untouched at 5/25/50 |
+| DT8 | **Regression.** Both durations | - | Snakebiting still 20 seconds, Venom still 10. Only the per-tick amount moved |
+| DT9 | Hit an **undead** with either | - | No poison at all. 40% of what the game spawns is immune to poison, undead among them |
+| DT10 | **Regression, and the correction this release makes.** A weapon of **Ripping** | - | Unchanged at 4/12/20, and it is **instant slashing damage, not a poison or a damage-over-time**. Earlier notes called it one; it never was |
+| DT11 | **Regression.** `Pestilence`, and the four from 0.77.1 | - | Unchanged: Pestilence 2/7/26, the four at ceilings 7,000 with amounts 19/24/22/21 |
+| DT12 | **Regression.** `Carnage` and `Double Biting` | - | Unchanged. Double Biting deals Acid despite the name and was never in scope |
+| DT13 | **Worth timing if you can.** Count how many swings you land in ten seconds | - | Nothing to pass or fail. Every number in this release assumes a two-second swing and scales inversely with it; if it is really one second they are all half what they should be |
+
 ## 0.77.3 - the two poison suffixes, and the question that stops short
 
 Two addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated, so look at fresh drops and fresh merchant stock.

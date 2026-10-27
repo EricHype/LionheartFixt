@@ -140,6 +140,80 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.78.0 - what a poison is actually worth
+
+0.77.3 left the two damage-over-time suffixes untuned and recorded why: setting a number for either needed to know whether a re-applied effect stacks or refreshes, and the resource format cannot say. That has since been settled in the binary, and the answer changes what they should pay.
+
+### The mechanic, decompiled
+
+`FUN_004439d0` is the apply path, reached from the damage pipeline, and it walks `CDamageCoordinator`'s damage array type-checking each element against `CXRPGDamageOverTime`. A character holds its pending effects as a dynamic array of pointers -- base at `this+0x110`, count at `this+0x114`, capacity at `this+0x118`, serialized in a can as `Damages=Array`. On apply it **scans that array for an existing entry of the same damage type**, reuses it if found, and allocates only when none exists.
+
+So there is **at most one pending entry per damage type**, and at the reuse label the incoming total simply **overwrites** it -- the previous application's remaining damage is discarded. The two are summed only when their signs differ, which is the healing-over-time case rather than two poisons.
+
+**A damage-over-time refreshes. It does not stack.**
+
+Beside the array sits the character field **`Damage Application Period=5`**, the tick interval. So sustained damage is **perTick ÷ 5**, and the duration only governs how long the effect keeps paying *after* you stop swinging. That is the useful consequence: **raising the total by shortening the duration would buy nothing**, and the lever is the per-tick amount.
+
+### How far behind they were
+
+Against an instant Rare at 10.94 effective a swing, which is 5.47 a second at a two-second swing:
+
+| | perTick | throughput | effective | share of an instant Rare |
+|---|---|---|---|---|
+| Snakebiting | 6 | 1.20/s | **0.72/s** | **13%** |
+| Venom | 4-20, avg 12, at a 50% chance | 1.20/s | **0.72/s** | **13%** |
+
+Both at exactly the same figure, by coincidence rather than design.
+
+### The one input that is not measured
+
+The swing interval. It is animation-driven -- there is **no attack-period field anywhere in the resources** -- and `Combat Speed` is `ActionPoints/2 + (ST+EN)/8` over `Action Points = 5 + AG/2`, which is a rate in units the data does not name. Every number below scales inversely with it:
+
+| swing interval | Snakebiting perTick | Venom perTick |
+|---|---|---|
+| 1.5s | 36 | 73 |
+| **2.0s (used here)** | **27** | **55** |
+| 3.0s | 18 | 37 |
+
+Timing ten swings in play would pin it, and if it turns out far from two seconds these numbers want revisiting in proportion.
+
+### The target, and why it is short of parity
+
+**60% of single-target parity, which is 3.28 effective a second.** Two effects cut in opposite directions and roughly cancel, so neither extreme is trustworthy:
+
+- a refreshing effect spread across several enemies pays on **all of them** from one hit each, which single-target arithmetic ignores -- that argues for a discount;
+- the first tick only lands at **5 seconds**, so anything that dies in two or three swings takes **nothing at all** -- that argues against one.
+
+Neither suffix has ever been played at any number, so the smaller change ships and can be raised later.
+
+| | change | result |
+|---|---|---|
+| **Snakebiting** | per-tick ceiling **6 to 27** | 27 a tick, 108 over its 20 seconds, **3.24 effective/s** |
+| **Venom** | per-tick roll **4-20 to 18-91** | averages 54.5, **3.27 effective/s** |
+
+Venom's **chance band is untouched** at 5/25/50, as it has been since 0.77.0, and both durations are untouched. Its roll keeps vanilla's 1:5 shape rather than being tightened. Snakebiting needed no scale work: its `poisonbonus` *is* the addition amount.
+
+Where that leaves the family, effective per second at a two-second swing:
+
+| suffix | | |
+|---|---|---|
+| Cold Biting | instant, 3 Rare | 5.47/s |
+| Pestilence | instant, 63% coverage | 4.88/s |
+| **Venom** | damage-over-time | **3.27/s** |
+| **Snakebiting** | damage-over-time | **3.24/s** |
+
+Nothing is lower than before at any of the three real weapon values, and the per-tick amount rises at every price.
+
+### A number quoted in the plan was wrong
+
+The working figures put Venom's current per-tick average at 16 and proposed 21-89. Its shipped scale ceilings are **4 and 20**, not 6 and 26 -- the latter came from a draft that was reverted before 0.77.3 shipped. The target average was unaffected, so the edit is **18/91** rather than 21/89, and the increase is 4.6x rather than 3.4x.
+
+### Correction: Ripping is not a damage-over-time
+
+0.77.3's notes, and an engine note written just after it, called `Ripping` the third damage-over-time suffix and said it was in the same holding pattern. **It is not one.** `Dragon Teeth` has no `CXRPGDamageOverTime` node at all; it deals instant slashing damage through a `CRandom`, which is why its 4/12/20 band reads as per-swing damage and always has. There are **two** of these suffixes, not three. Both documents are corrected, and `Ripping` needs nothing.
+
+`Double Biting` also deals **Acid** despite its name, and is likewise unaffected.
+
 ## 0.77.3 - the two poison suffixes, and the question that stops short
 
 0.77.2 flagged `Venom` and `Snakebiting` as the same shape as Pestilence and left them for a release of their own. This is that release, and it does **less** than the flag implied, for a reason worth writing down rather than quietly working around.
@@ -190,7 +264,7 @@ The reachability fix needs none of it: an addition that cannot reach its own sta
 
 ### What is left open
 
-**`Venom` is still the lowest in the family at 7.20 blended**, against the ungated four at 10.89 to 11.00 and Pestilence at 9.77. That is not a claim it is correctly priced; it is a claim that the next step needs the stacking answer first. The same applies to `Ripping`, which is a slashing damage-over-time and was checked and left alone in 0.77.0 for different reasons.
+**`Venom` is still the lowest in the family at 7.20 blended**, against the ungated four at 10.89 to 11.00 and Pestilence at 9.77. That is not a claim it is correctly priced; it is a claim that the next step needs the stacking answer first. **Correction, from 0.78.0:** this section originally added that the same applied to `Ripping`. It does not. `Ripping` has no `CXRPGDamageOverTime` node and deals instant slashing damage through a `CRandom`, so there are two of these suffixes and not three.
 
 Worth recording from the same pass: **`Double Biting` deals Acid despite the name**, so nothing in the poison work touches it.
 

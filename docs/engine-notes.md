@@ -423,8 +423,8 @@ wrong turn here.
 **What it costs in balance terms.** A damage-over-time delivers its total once per duration no
 matter how often it is re-applied, so its real throughput is total/duration: Snakebiting's 24 over
 20 seconds is about **1.2 a second**, against an instant suffix's 11 to 13.5 on every swing, about
-**6 a second** at half a swing a second. The three damage-over-time suffixes -- `Snakebiting`,
-`Venom` and `Ripping` -- are therefore underpaid against the instant ones by roughly a factor of
+**6 a second** at half a swing a second. The two damage-over-time suffixes -- `Snakebiting`
+and `Venom` -- are therefore underpaid against the instant ones by roughly a factor of
 five, and any per-swing figure quoted for them, including those in 0.77.3's release notes,
 overstates them by the number of swings that land inside one duration.
 
