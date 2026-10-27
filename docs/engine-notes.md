@@ -362,6 +362,8 @@ long speech for him; three reactions written for him ran to eight and had to be 
 **Fix both halves when the save matters.** The generator or template for every future spawn, and a
 dialogue route for the character who already has the broken version.
 
+**Counting records is not measuring effect.** 0.77.0 justified a damage change with "a third is lost to resistance", taken from the number of races carrying a resistance: 164 of 422 for cold at a median of 40. Weighted by the **15,683** creature spawns the shipped maps actually place, cold lands at **81%** and fire and electrical at **88%**, because the heavy resisters are rare spawns. The claim was wrong by about a factor of two and it reached the release notes, the changelog, the README and the mod description before being caught. Weight a bestiary statistic by spawn count, and bound it against the records that fail to resolve.
+
 **A census is only as good as the field name.** A race stores a resistance as a `CPresetDerivedCharacterAttribute` whose number is in **`Value To Preset=`** -- not `Value=`, `Amount=` or `Preset Value=`, all three of which were tried and all three of which returned nothing while looking like a finding. And a damage type is written `Damage Type=Damage Types/Acid`, **with a space in it**, so capturing it as one run of non-space characters yields the word "Damage" for every suffix in the game and a type column built that way says nothing at all. 0.77.0 built two tables on both mistakes before the numbers were checked against a raw block. Print one raw record before trusting any count drawn from a pattern.
 
 **Play finds what static checks cannot.** This run shipped six defects that every gate passed, three

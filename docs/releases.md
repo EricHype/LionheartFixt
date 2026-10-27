@@ -150,7 +150,7 @@ The bows looked badly spread until the requirement was read. They are gated on R
 
 ### Items 2 and 3: the ungated suffixes
 
-Three elemental suffixes lose a third of their number to resistance and the acid ones lose almost none. Measured across all 422 races, counting the field the files actually use:
+Three elemental suffixes lose 12 to 19% of their number to resistance once it is weighted by how often each race actually spawns, and the acid ones lose almost nothing. Measured across all 422 races, counting the field the files actually use:
 
 | type | races resisting | median | races vulnerable |
 |---|---|---|---|
@@ -160,7 +160,7 @@ Three elemental suffixes lose a third of their number to resistance and the acid
 | **Acid** | **37** | 95 | 0 |
 | Disease | 168 | 100 | 0 |
 
-So `Carnage`, which is **1 Common** and deals acid, keeps its whole number against nearly everything, while the three elemental Rares lose roughly a third of theirs. Each ceiling goes **12 to 15** with the middle raised in proportion: `Flame` and `Shocking` 2/7/12 to 2/9/15, `Cold Biting` 2/6/12 to 2/8/15. Real average at the top, which is what the `CRandom` actually pays rather than the number in the tooltip, moves from 7.0 to 8.5 for Flame and Cold Biting and 7.5 to 9.0 for Shocking. All three stay under Ripping's 11.5 and well under Heartseeking's 16.5, which has been the ceiling for every change in this family.
+**That table counts races, which is not the same as counting damage, and the difference matters.** Weighted by the **15,683** real creature spawns in the shipped maps, the fraction of a hit that actually lands is **acid 99%**, slashing 98%, piercing 90%, **fire and electrical 88%**, **cold 81%**, disease 63% and poison 59%. The heavy resisters are rare spawns, so the elemental penalty is 12 to 19%, not the third a race count implies. Bounded against the 1,695 spawns whose race file does not resolve, known-only gives 0.87, 0.87 and 0.79, so it holds. `Carnage`, which is **1 Common** and deals acid, keeps essentially its whole number. Each ceiling goes **12 to 15** with the middle raised in proportion: `Flame` and `Shocking` 2/7/12 to 2/9/15, `Cold Biting` 2/6/12 to 2/8/15. Real average at the top, which is what the `CRandom` actually pays rather than the number in the tooltip, moves from 7.0 to 8.5 for Flame and Cold Biting and 7.5 to 9.0 for Shocking. All three stay under Ripping's 11.5 and well under Heartseeking's 16.5, which has been the ceiling for every change in this family.
 
 **`Pestilence` is left alone deliberately.** Its problem is not the band, it is that disease is resisted by 168 races at a median of 100, so raising the number would not help. Same for `Carnage`, which is correct as shipped.
 
@@ -231,7 +231,9 @@ Both maps already carried Fixt work, 2,227 changed lines in Cave 5 and 164 in th
 
 ### Known, open, and deliberately not in this release
 
-`Acid Splash` is a **3 Rare** capping at a real 7.0, against `Carnage`, a **1 Common**, at 15.0. Same damage type, so there is no resistance difference to explain it, and it is the one inconsistency this release found and did not rule on. It is recorded here rather than quietly fixed because the whole family has now moved twice and the right ceiling for it is a design question, not a defect with an obvious answer.
+**This section first named `Acid Splash` as the outlier, and that was wrong.** Price-matched at 6,500 gold, where it tops out, effective damage after the bestiary is `Acid Splash` **6.93**, `Cold Biting` 6.90, `Shocking` 6.77 and `Flame` 6.38, so after this release it is the **strongest** of the four Rares rather than the odd one out. Its lower nominal ceiling, 12 against 15, is almost exactly offset by acid landing at 99% where cold lands at 81%.
+
+The real open item is `Carnage`, and it is structural rather than one addition's number. It is the **only** suffix in this family whose value band reaches **23,000** gold; the four Rares stop between 6,000 and 10,000 and then plateau. So a **1 Common** overtakes Acid Splash at about **870 gold** of weapon value and beats every Rare in the family from there to the end of the game, reaching a flat 15 where they sit at 7 to 9. Raising a Rare's number does not touch that; the price ceiling is what makes it, and whether a Rare should keep scaling to 23,000 is a design question this release deliberately did not answer. The maintainer's call on the earlier pass was to leave Carnage alone, and nothing here changes it.
 
 ## 0.76.1 - the other two elements
 
