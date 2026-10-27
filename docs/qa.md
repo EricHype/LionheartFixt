@@ -1474,6 +1474,27 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.77.2 - Pestilence is conditional, not weak
+
+One addition file, no map and no dialogue, so **no new character is needed**. Like every addition change it reaches loot **as it is generated**, so look at fresh drops and fresh merchant stock, not a weapon already in your pack.
+
+The thing to hold on to: disease is **all or nothing**. 63% of what the game spawns takes the full hit and 37% takes none, with nothing in between. A Pestilence weapon doing nothing to a skeleton is correct behaviour, not a bug.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PS1 | Find or buy a **dear** melee weapon of Pestilence, several thousand gold, and read the tooltip | - | Promises up to **26**, not 14 |
+| PS2 | **The row that proves the ceiling is reachable.** Check the damage you actually roll on a weapon worth about 7,000 | - | Rolls reach near 26. Before this release the band topped at 10,000, which **no melee weapon in any save reaches**, so the stated 14 was never paid either |
+| PS3 | **The row that proves the gate.** Hit a bandit or a goblin with it, then hit any **undead** with the same weapon | - | The living target takes a large extra hit; the undead takes **nothing at all**. Not "less" -- zero. Undead are 4,334 of the 5,783 immune spawns |
+| PS4 | The same weapon against a **wolf or bear**, and against a **sewer** creature | - | Also nothing. Animals and the Sewers are immune too, which is less obvious than the undead and is the part a player is most likely to report as a bug |
+| PS5 | Carry it through the **Crypt** (act 4) | - | Effectively a plain weapon for that whole act. This is intended, and is why its number is higher than any unconditional suffix |
+| PS6 | **The row that proves nothing got worse.** A **cheap** weapon of Pestilence, a few hundred gold | - | Identical to before, not merely close. The median case was held to the digit by keeping vanilla's slope; checked at 904 price points |
+| PS7 | Compare it against a weapon of **Flame** or **Cold Biting** on a similarly dear weapon, against a **living** target | - | Pestilence should hit noticeably harder, 15.5 against 11.0 to 13.5. That is what it is paid for having a 37% blind spot |
+| PS8 | **Regression.** A weapon of **Carnage** | - | Unchanged, and still byte-identical to vanilla |
+| PS9 | **Regression.** A weapon of **Ripping** | - | Unchanged, 4/12/20 |
+| PS10 | **Regression.** The four from 0.77.1: Acid, Cold Biting, Flame, Shocking | - | Unchanged: value ceilings 7,000 and amounts 19/24/22/21 |
+| PS11 | **Regression.** The three from 0.77.0: Hunting, Exorcism, Goblin Slaying | - | Unchanged: 5/14/30, 6/12/26, 6/14/25 |
+| PS12 | **Regression.** Venom and Snakebiting | - | Untouched in this release. Both deal poison and are 40% immune, which is the same shape as disease and is flagged in the release notes as the next thing to look at, not something done here |
+
 ## 0.77.1 - the ceiling nobody reaches
 
 Four addition files, no map and no dialogue, so **no new character is needed**. As with every addition change, these apply to loot **as it is generated**: a weapon already in your pack has its behaviours baked into the save with the expressions resolved to constants, so look at fresh drops and fresh merchant stock.

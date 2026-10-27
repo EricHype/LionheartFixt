@@ -140,6 +140,72 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.77.2 - Pestilence is conditional, not weak
+
+Pestilence was left out of 0.77.0 and 0.77.1 twice over, on a reading given in both: disease is resisted by 168 of 422 races at a median of 100, so the damage type is the problem and no ceiling fixes it. Measured by spawn instead of by race, that was half right, and the wrong half is the one that mattered.
+
+### Disease is binary
+
+| type | full damage | partial | immune |
+|---|---|---|---|
+| **Disease** | **63%** | **0%** | **37%** |
+| Poison | 58% | 2% | 40% |
+| Fire | 64% | 32% | 2% |
+| Cold | 46% | 48% | 2% |
+
+**Nothing in the game partially resists disease.** Among the 9,900 non-immune spawns, **99.8%** of the hit lands. The "median of 100" that kept Pestilence off the table twice was not describing a heavy partial resistance at all; it was describing immunity, and I read a graded number into a switch.
+
+The immune 5,783 spawns are coherent rather than scattered:
+
+| immune group | spawns |
+|---|---|
+| Undead | 4,334 |
+| English Enemies | 629 |
+| Animals | 563 |
+| Sewers | 248 |
+
+So Pestilence is dead through the Crypt and act 7, and at **full strength everywhere else**. That is a conditional suffix, like `Hunting` and `Exorcism`, not a weak one, and blending it into a bestiary-wide average described no enemy that actually exists.
+
+### Which puts it on the ladder 0.77.0 built
+
+| suffix | coverage | raw at its ceiling |
+|---|---|---|
+| Goblin Slaying | 3% | 25.0 |
+| Hunting | 11% | 21.0 |
+| Exorcism | 25% | 18.0 |
+| **Pestilence** | **63%** | **7.50 to 15.50** |
+| the ungated four | 100% | 11.0 to 13.5 |
+
+63% is the widest coverage of any conditional in the game, so it belongs just above the ungated four and well below Exorcism. **15.5** puts it there: more than any unconditional suffix on the enemies it does affect, far short of the narrow conditionals, and blended across the whole bestiary **9.77** against the ungated four's 10.89 to 11.00 -- so being useless against undead still costs something, which is right.
+
+### The change
+
+| | was | now |
+|---|---|---|
+| value band | 130/1000/**10000** | 130/1000/**7000** |
+| amount band | 2/7/**14** | 2/7/**26** |
+| min term output | 1..**3** | 1..**5** |
+
+The value ceiling comes to 7,000 like the other four, because **10,000 is reached by no melee weapon in any save** -- so its stated 14 was unreachable as well as low.
+
+The min term's output goes to **5**, not 4, and that is not a round number chosen by eye. Preserving vanilla's slope across the widened input range requires `o1 = 1 + (A-2)/6`, which for an amount ceiling of 26 is exactly 5. At 4 the floor would have dipped by a hair, which is the trap 0.77.0 fell into on three bands and 0.77.1 repaired.
+
+| weapon value | was | now |
+|---|---|---|
+| 255 (median) | 1.92 | **1.92** |
+| 1,986 (90th pct) | 4.86 | **6.24** |
+| 7,790 (dearest seen) | 7.50 | **15.50** |
+
+The median weapon is identical to vanilla to the digit, which is what the slope arithmetic buys. Verified at **904 price points** against the pristine archive: worst delta **+0.0000**.
+
+### What this does not change
+
+`Carnage` and `Ripping` stay exactly as shipped and are checked byte-identical to vanilla. The four from 0.77.1 and the three from 0.77.0 are untouched.
+
+**Poison is the obvious next question and is deliberately not answered here.** It is the same shape as disease -- 40% immune, 2% partial, 58% full -- and **two** suffixes in this family deal it: `Venom` and `Snakebiting`. So the same reframing applies to both: they are conditional weapons with an immune 40%, not weak ones, and the numbers they were given were set against a blended average that describes no actual enemy. `Venom` was rebuilt in 0.77.0 for a different defect, its band running entirely into the chance, and `Snakebiting` was checked and left alone there. Both now want revisiting on these grounds, and that is a change of its own rather than something to sweep into a patch about Pestilence.
+
+Worth recording while the table is to hand: `Double Biting` deals **Acid** despite the name, so it is unaffected by any of this.
+
 ## 0.77.1 - the ceiling nobody reaches
 
 0.77.0 argued that `Carnage`, a **1 Common**, out-paid the four Rare damage suffixes, and raised three of them on that basis. The arithmetic was right and the prices were imaginary. This release measures what a magic weapon is actually worth, and fixes the four ceilings against that instead.

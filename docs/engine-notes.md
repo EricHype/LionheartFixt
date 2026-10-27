@@ -364,6 +364,36 @@ Base melee weapons that accept additions top out at **400** gold on their own an
 `Value=` is `CConstant 0`, so the thousands come from the engine's own pricing of the finished item,
 not from either part alone.
 
+**Resistance is graded for some damage types and binary for others, and the distinction decides
+how a suffix should be priced.** Measured by spawn across the shipped maps, not by race:
+
+| type | full damage | partial | immune | vulnerable |
+|---|---|---|---|---|
+| Disease | 63% | **0%** | **37%** | 0% |
+| Poison | 58% | 2% | **40%** | 0% |
+| Fire | 64% | 32% | 2% | 3% |
+| Cold | 46% | 48% | 2% | 3% |
+| Electrical | 67% | 27% | 3% | 3% |
+| Acid | 99% | 0% | 1% | 0% |
+| Slashing | 91% | 9% | 0% | 0% |
+| Piercing | 66% | 34% | 0% | 0% |
+| Crushing | 93% | 4% | 0% | 3% |
+
+**Disease and poison are switches, not dials.** Nothing partially resists disease, and 99.8% of a
+disease hit lands on any non-immune target. A suffix in one of those two types is therefore a
+*conditional* weapon with a blind spot, not a weak one, and pricing it against a bestiary-wide
+average describes no enemy that exists. Fire, cold and electrical are genuinely graded and the
+average is the right tool for them.
+
+The immune groups are coherent rather than scattered, which is what makes the conditional reading
+fair: disease immunity is Undead (4,334 spawns), English Enemies (629), Animals (563) and the
+Sewers (248).
+
+**A race count is not a spawn count, and the median of a race count can mislead about kind as well
+as degree.** "Disease is resisted by 168 of 422 races at a median of 100" was read twice as heavy
+partial resistance, and it meant total immunity on a bit over a third of what the game actually
+spawns.
+
 **Raising a band's ceiling without raising its amount is a nerf.** The band is interpolated, so
 stretching the top flattens everything below it. Tested on the four Rare damage suffixes: moving
 their value ceilings to 23,000 cut the payoff by up to 32% across the range items really occupy.
