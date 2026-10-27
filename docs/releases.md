@@ -140,6 +140,60 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.77.3 - the two poison suffixes, and the question that stops short
+
+0.77.2 flagged `Venom` and `Snakebiting` as the same shape as Pestilence and left them for a release of their own. This is that release, and it does **less** than the flag implied, for a reason worth writing down rather than quietly working around.
+
+### Poison is a switch too
+
+| type | full damage | partial | immune |
+|---|---|---|---|
+| Poison | 58% | 2% | **40%** |
+| Disease | 63% | 0% | 37% |
+
+So both suffixes are conditional weapons with a blind spot across roughly two spawns in five, not weak ones -- exactly the reframing 0.77.2 applied to Pestilence.
+
+### Both ceilings were unreachable, and one of them was ours
+
+| | value ceiling | dearest melee weapon in any save |
+|---|---|---|
+| Venom | 10,500 | 7,790 |
+| Snakebiting | 10,000 | 7,790 |
+
+Neither has ever delivered its advertised maximum. In Venom's case that includes something this project put there: **0.77.0 deliberately set its chance band to reach 50%**, and because the band is read against a value no weapon attains, the chance tops out at **43%** in play. The release notes for 0.77.0 state a 50% ceiling that the game has never once rolled.
+
+Both ceilings come to **7,000**, matching the four from 0.77.1 and Pestilence from 0.77.2.
+
+| | 255g | 1,986g | 7,790g | chance at top | blended |
+|---|---|---|---|---|---|
+| **Snakebiting** was | 5.24 | 10.36 | 20.24 | 100% | 12.14 |
+| **Snakebiting** now | 5.24 | **11.46** | **24.00** | 100% | **14.40** |
+| **Venom** was | 0.65 | 4.29 | 9.13 | **43%** | 5.48 |
+| **Venom** now | 0.65 | **4.69** | **12.00** | **50%** | **7.20** |
+
+Lowering a value ceiling can only raise the amount at every price, so this is monotone: checked at **1,660 price points** across the whole range rather than just the reachable part, worst delta **+0.0000**.
+
+### Nothing else was tuned, and that is deliberate
+
+Both are `CXRPGDamageOverTime`, where `Damage Amount` is the **total** and `Duration` spreads it -- Snakebiting is `poisonbonus x 4` over 20 seconds with `AlwaysHit`, Venom `poisonbonus x 2` over a scaling duration behind the chance roll. Neither description can be trusted for the arithmetic and neither was used for it.
+
+Setting a magnitude for either one needs an answer this project does not have: **when the effect is re-applied on the next swing, does it stack or merely refresh?** The node carries only `Damage Type`, `Damage Amount` and `Duration`. There is **no stacking, refresh or max-stacks field anywhere in the format**, across all 23 files that use it, so the resources cannot answer it, and the Ghidra bridge was unavailable.
+
+It is not a detail. It inverts the conclusion:
+
+- **If a 20-second effect refreshes**, Snakebiting's real throughput is 24 per 20 seconds, about **1.2 a second**, against an instant suffix's 11 to 13.5 a swing at roughly half a swing a second, about **6 a second**. Snakebiting would then be the most underpaid thing in the family by a factor of five.
+- **If it stacks**, a per-swing reading is right and Snakebiting at 24 is already the best paid in the family.
+
+A number chosen without knowing which is a coin flip, and picking the wrong side of exactly this kind of question is what 0.77.0 and 0.77.1 each had to correct. So the magnitudes stay as they are.
+
+The reachability fix needs none of it: an addition that cannot reach its own stated ceiling is wrong under either reading, and it is a strict improvement either way.
+
+### What is left open
+
+**`Venom` is still the lowest in the family at 7.20 blended**, against the ungated four at 10.89 to 11.00 and Pestilence at 9.77. That is not a claim it is correctly priced; it is a claim that the next step needs the stacking answer first. The same applies to `Ripping`, which is a slashing damage-over-time and was checked and left alone in 0.77.0 for different reasons.
+
+Worth recording from the same pass: **`Double Biting` deals Acid despite the name**, so nothing in the poison work touches it.
+
 ## 0.77.2 - Pestilence is conditional, not weak
 
 Pestilence was left out of 0.77.0 and 0.77.1 twice over, on a reading given in both: disease is resisted by 168 of 422 races at a median of 100, so the damage type is the problem and no ceiling fixes it. Measured by spawn instead of by race, that was half right, and the wrong half is the one that mattered.

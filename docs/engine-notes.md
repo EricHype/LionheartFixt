@@ -394,6 +394,21 @@ as degree.** "Disease is resisted by 168 of 422 races at a median of 100" was re
 partial resistance, and it meant total immunity on a bit over a third of what the game actually
 spawns.
 
+**A damage-over-time's `Damage Amount` is the TOTAL, not a per-tick figure.** `CXRPGDamageOverTime`
+carries exactly three fields -- `Damage Type`, `Damage Amount` and `Duration` -- and the amount is
+usually a `CMultiply` that bakes the tick count in. `Snakebite` is `poisonbonus x 4` over a duration
+of 20, and its description says "every 5 seconds for 20 seconds", so the 4 is the tick count and
+`poisonbonus` is the per-tick value. `Gas Cloud` is `poisonbonus x 2` over a duration that is itself
+an expression. Do not read a per-swing figure off the description or off the amount alone.
+
+**Whether a re-applied damage-over-time stacks or refreshes is UNKNOWN and not answerable from the
+resources.** The node has no stacking, refresh or max-stacks field, in any of the 23 files that use
+it. The question matters more than any number in the family: a 20-second effect that refreshes
+delivers its total once per 20 seconds, roughly 1.2 a second for Snakebiting's 24, against an
+instant suffix's 11 to 13.5 a swing at about half a swing a second, roughly 6 a second. So the same
+addition is either the worst paid in its family by a factor of five, or the best paid. Settle it in
+the binary, or by watching a fight, before tuning any of the three damage-over-time suffixes.
+
 **Raising a band's ceiling without raising its amount is a nerf.** The band is interpolated, so
 stretching the top flattens everything below it. Tested on the four Rare damage suffixes: moving
 their value ceilings to 23,000 cut the payoff by up to 32% across the range items really occupy.

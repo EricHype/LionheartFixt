@@ -1474,6 +1474,28 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.77.3 - the two poison suffixes, and the question that stops short
+
+Two addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated, so look at fresh drops and fresh merchant stock.
+
+Poison is **all or nothing** like disease: 58% of spawns take the full hit, 2% partial, **40% immune**. A poison weapon doing nothing to an undead is correct.
+
+**PO3 is the row that proves the release.** Everything else here is a regression check or a confirmation that the numbers moved.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PO1 | Find or buy a **dear** melee weapon of Snakebiting, 7,000 gold or more | - | The poison delivers its full advertised amount. Before this release its band topped at 10,000, which no melee weapon in any save reaches |
+| PO2 | A dear weapon of **Venom**, 7,000 gold or more | - | Noticeably more poison than before, about 12 a swing against 9 |
+| PO3 | **The row that proves the release.** With that dear Venom weapon, watch roughly thirty swings and count how often the poison fires | - | About **half**. 0.77.0's notes promised a 50% ceiling and the game could only ever roll **43%**, because the chance is read against a weapon value nothing reaches. If it still looks like two in five, the value ceiling did not take |
+| PO4 | **The row that proves the chance band itself was not touched.** A **cheap** weapon of Venom | - | Still fires rarely, around 5%. The chance band is unchanged at 5/25/50; only the value it is read against moved |
+| PO5 | **Regression.** Any cheap or mid-priced weapon of either | - | Identical or very slightly better, never worse. Checked at 1,660 price points across the whole range |
+| PO6 | Hit an **undead** with either weapon | - | No poison damage at all. Not less, zero. Same immunity shape as Pestilence |
+| PO7 | **Regression.** A weapon of **Pestilence** | - | Unchanged from 0.77.2: 2/7/26, value ceiling 7,000 |
+| PO8 | **Regression.** The four from 0.77.1 | - | Unchanged: ceilings 7,000, amounts 19/24/22/21 |
+| PO9 | **Regression.** The three gated ones from 0.77.0 | - | Unchanged: 5/14/30, 6/12/26, 6/14/25 |
+| PO10 | **Regression.** `Carnage`, `Ripping` and `Double Biting` | - | All unchanged. Carnage and Ripping are byte-identical to vanilla; Double Biting deals Acid despite its name and was never in scope |
+| PO11 | **Open question, not a test.** If you notice whether hitting the same enemy repeatedly makes the poison **stack** or just restart its timer, that is the one fact blocking any further work on these two | - | Nothing to pass or fail. The resource format has no stacking field, so it cannot be read statically, and the answer decides whether Snakebiting is the best or the worst paid suffix in the family |
+
 ## 0.77.2 - Pestilence is conditional, not weak
 
 One addition file, no map and no dialogue, so **no new character is needed**. Like every addition change it reaches loot **as it is generated**, so look at fresh drops and fresh merchant stock, not a weapon already in your pack.
