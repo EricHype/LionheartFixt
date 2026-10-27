@@ -1696,7 +1696,7 @@ CCannedObject
 			{
 				Action=Array
 				{
-					Item Count=3
+					Item Count=4
 					Action=CGiveExperiencePointsToAllPlayersAction
 					{
 						Get XP Frome=$Trigger
@@ -1713,6 +1713,10 @@ CCannedObject
 							Comment=generates 2small spirit
 						}
 						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/2Small Spirit Charge Drop Action
+					}
+					Action=CUseCannedActionAction
+					{
+						Canned Object=Inventory/Enemy Drop Items Cans/Fixt Chance 1 in 3 Snakebreed Venom Sac Drop Action
 					}
 				}
 			}

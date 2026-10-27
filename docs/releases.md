@@ -140,6 +140,113 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.76.0 - a mile in his shoes
+
+Asked for directly:
+
+> for ones like marco polo, I wish there was a way to upgrade them because wearing them adds content
+> to the game (his commentary as you travel)
+
+That is exactly right about the boots, and it turned out to be the constraint that shaped everything.
+
+### What the boots already do
+
+Marco Polo's spirit is inside them. His own node 200 is him asking to transfer it -- *"I could
+transfer my spirit into an article of clothing, perhaps my old pair of walking boots?"* -- and the
+seven quips are him speaking from your feet, on the Gate District, the Temple District, the Sewers,
+the Mountain Pass, Montaillou, Alamut and the plane he left.
+
+**All seven are gated on carrying the boots, not wearing them**, through
+`CActionCheckForInventoryItem` against the exact can. That matters twice over: the content is never
+lost by equipping better boots, and **the upgrade cannot be a better pair of boots**, because a new
+item would fail all seven checks and silence him.
+
+### So the boots read a perk instead
+
+Vanilla's own idiom, from `Inventory Items/Crossbow`, which grants +1 to an attribute if the wielder
+holds Sharpshooter: a `CIfExpression` over `CHasPerkExpression` in the modifier amount. A census of
+all 628 `Modification Amount` expressions in the game found 29 that read character state this way,
+of which 14 are on specific item cans exactly like this one.
+
+| | boots worn, no perk | boots worn, perk | boots off |
+|---|---|---|---|
+| carry weight | +20 | **+60** | nothing |
+| walk speed | none | **+5%** | nothing |
+| Endurance | +1 | +1 | nothing |
+
+The perk is **empty** -- `PlugIn Behaviors Item Count=0`, no modifier, no plugin. Every number stays
+on the boots inside `CPlugInBehaviorModifyCharacterWhenSelected` with `Modification is permanent=0`,
+so taking them off removes the bonus entirely, including the base 20, and selling them leaves the
+perk on the sheet as a record of work done and nothing else. The +5% is half of `Boots/Speed`, whose
+own developer comment reads *"Increases speed by 10%"*.
+
+### The quest was already named
+
+`Bring exotic creature parts back to Weng Choi` ships with `Item Count=0`, no states, no parent, and
+**one reference in the entire game**, in a siege map. The name existed and nothing was built behind
+it. Weng Choi is also the right host without stretching: *"Imperial Ambassador from China, and humble
+purveyor of exotic goods"*, 33 nodes, and a vanilla line about how his homeland coexists with spirits
+rather than fearing them, which is why a Western binding done in haste is the thing he would notice.
+
+He asks for an **Ogre Tusk** and a **Snakebreed Venom Sac**, drops at **1 in 3** from the nine ogre
+cans the Wilderness actually spawns and the three Snakebreed **Venom** variants, the ones that spit.
+Both ride in each can's `Destroyed Effect Action` inside the existing `CWasDamagedByPlayerAction`
+check, not in `Destroyed Script Action`, which is the slot a map generator's
+`CSetDestroyedScriptActionAction` silently overrides -- the bug that left the Lava Troll Hide dead
+from 0.10.0 until 0.28.0.
+
+**500 XP**, from the neighbours rather than taste: his own shop pays 250 a book and 3000 for the
+whole collection, and two-item fetches elsewhere in Barcelona sit at 500. No gold, by request,
+though his book trade pairs the two every time.
+
+### The version that was thrown away
+
+The first build was two steps: Weng Choi prepares the leather, then you carry the boots back to
+Marco in the ether plane, where a trigger re-armed the interaction specifier that handing them over
+had removed, restoring his orphaned five-reply `03 Return Dialogue`.
+
+It was wrong, and wrong at the premise. **Marco is the boots.** His specifier is removed on handover
+*because he leaves*, and re-arming him would have put a second Marco in a place his spirit had
+already departed. The orphaned hub node is not cut content; it is the conversation you can no longer
+have because you took the person with you.
+
+Collapsing to one scene paid three dividends beyond being true: no map edit for the plane, no
+`CAddAIAction` re-arm, which was the only unproven mechanism in the chain, and no dead end. In the
+two-step version, selling the boots after the parts were taken stranded the quest permanently with
+both rare drops consumed.
+
+### Two refusals rather than two silences
+
+He will not take the parts without the boots. The reply carries the **same words** either way and the
+gates are mutually exclusive, so the player offers the same sentence and gets a different answer:
+
+> And the boots, spirit bearer? No, no - put these away. A tusk is a tusk, and a sac of venom is a
+> sac of venom; neither is worth the carrying unless there is something to work them into. You did
+> not hunt these for their own sake.
+
+Hiding the reply would have closed the hole just as well and told the player nothing.
+
+### The art is two recolours
+
+No new drawing. The **Ogre Tusk** is the `Alamut Talisman`, which turned out to be a large ivory tusk
+hanging from a jewelled silver cap; the cap was painted off by hand and the broken edge left dark on
+purpose. The **Snakebreed Venom Sac** is `Woodsman's Liver` with its red and green channels
+exchanged, which keeps every value the artist chose, so the veining and the wet highlight survive.
+
+Both were re-encoded with `build_icon_file` off a buffer-1-only donor, verified with `verify_icon`,
+then decoded and compared pixel by pixel against the source: **0 differences** beyond RGB565
+rounding, and **0 pixels** changing visibility under the format's 1 bit alpha. Hotspots were
+recomputed from the drawn content rather than inherited, because across 259 vanilla icons the hotspot
+tracks the content's centre more closely than the canvas centre.
+
+### What this release is not
+
+It is a two-item fetch with no second route, nothing to decide and no way to fail, and the writing
+carries more of it than the design does. The player's replies are three variations on assent. It is
+also not gated to a point in the story: what keeps it late is that snakebreed live in Montserrat and
+ogres in the Wilderness, which is incidental rather than designed. And it is invisible during the act
+6 siege, because his siege hubs are separate nodes and the replies were not added to them.
+
 ## 0.75.3 - today's number as the floor
 
 The third batch out of the flat-addition family that 0.75.0's survey turned up. It was scoped as

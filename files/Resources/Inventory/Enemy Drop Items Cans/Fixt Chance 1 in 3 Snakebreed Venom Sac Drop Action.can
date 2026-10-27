@@ -1,0 +1,56 @@
+CCannedObject
+{
+	Object=CRandomAction
+	{
+		Action=Array
+		{
+			Item Count=3
+			Action=CSucceedAction
+			{
+				Action=
+			}
+			Action=CSucceedAction
+			{
+				Action=
+			}
+			Action=CDelayAction
+			{
+				Next Action=CGenerateInventoryItemAction
+				{
+					Number of items to generate=1
+					Location=$Trigger
+					Location Offset=0,25
+					Generate Within Radius=20
+					Aspect Ratio=0.712766
+					Item List=CInventoryItemGeneratorMixedList
+					{
+						Items=Array
+						{
+							Array Count=1
+							Array Item=CInventoryItemGeneratorMixedListItem
+							{
+								Weighting=10
+								Item=CInventoryItemGeneratorBasic
+								{
+									Items=Array
+									{
+										Array Count=1
+										Array Item=CInventoryItemGeneratorBasicItem
+										{
+											Weighting=10
+											Item=Inventory/Specific Item Cans/Quest Items/Snakebreed Venom Sac
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Delay=1
+				Plus or Minus=0
+				Forget Trigger=0
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

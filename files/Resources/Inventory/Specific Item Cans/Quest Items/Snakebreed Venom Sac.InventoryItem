@@ -1,0 +1,54 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_boots_hide.ogg
+				Position=$Trigger
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_boots_hide.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=35
+	}
+	Is Magic=0
+	Encumbrance=2
+	On the ground=Items/PickUps/Special Items/LavaTrollHide_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Snakebreed Venom Sac
+	Description=Cut from a snakebreed that spat. Still warm, and still full.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Quest Items/Snakebreed Venom Sac
+		Better=Items/Inventory Images/Quest Items/Snakebreed Venom Sac
+		Special=Items/Inventory Images/Quest Items/Snakebreed Venom Sac
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/!None
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Miscellaneous
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Snakebreed Venom Sac
+}

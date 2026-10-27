@@ -1,0 +1,26 @@
+CCharacterPerk
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Display Name=Walk a Mile in His Shoes
+	Description=Weng Choi has settled the spirit in Marco Polo's Boots the way it should have been settled at the first, and the old explorer walks with you now rather than against you. While the boots are worn they carry 40 more pounds and move you 5% faster.
+	Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsGreaterThan
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Number of ranks=1
+}

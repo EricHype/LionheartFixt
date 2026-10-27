@@ -1474,6 +1474,30 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.76.0 - a mile in his shoes
+
+**Needs a brand-new character.** Two reasons, and both are absolute: the XP marker is a new level
+part in `Weng Choi Shop`, and an item instance in a save carries a **baked copy** of its own plugin
+behaviours, so boots obtained before this release can never read the perk however the quest ends.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| MB1 | New game. Reach the ether plane under La Calle Perdida and let Marco put his spirit in his boots | - | You get Marco Polo's Boots, exactly as in vanilla. Nothing in this release changes how you get them |
+| MB2 | Carry them to Weng Choi in the Gate District and talk to him | - | A new reply, *"You keep looking at my boots."* It appears whether or not you are a special customer, because both of his return hubs carry it |
+| MB3 | Decline with *"They are dead men's errands."* and talk to him again | - | The offer is still there. Declining does not activate the quest, so it is not spent |
+| MB4 | Accept | - | A journal entry naming an ogre tusk and a snakebreed venom sac |
+| MB5 | Kill ogres in the Wilderness | - | An **Ogre Tusk**, about one kill in three. Check the icon is a broken ivory tusk with a dark root and **not** the jewelled Alamut medallion |
+| MB6 | Kill the venom-spitting snakebreed in Montserrat | - | A **Snakebreed Venom Sac**, about one in three. Green, veined. The plain and boss snakebreed drop nothing, deliberately |
+| MB7 | **The row the edge case is about.** Put the boots in a chest or sell them, then take both parts to Weng Choi | - | He **refuses, aloud**, and **keeps nothing**. Both parts are still in your pack afterwards. If he takes them, the quest can be stranded unfinishable |
+| MB8 | Recover the boots, return with all three | - | He takes the tusk and the sac, the quest completes, **500 XP**, and **Walk a Mile in His Shoes** appears on the character sheet |
+| MB9 | Wear the boots and read the sheet | - | Carry weight **+60**, not +20. The tooltip still says 20; that is deliberate, the perk's own text supplies the other 40 |
+| MB10 | **The row that catches the worst failure.** Take the boots off, read the sheet, put them on, read it again | - | Off: the bonus is gone **entirely**, including the base 20. On: +60 again and **not +120**. A growing number means the modifier is stacking and the release should be pulled |
+| MB11 | Walk around with them on and off | - | Slightly faster with them on. 5% is small; the sheet is the better check if the game shows it |
+| MB12 | **Regression, the whole point of the release.** Travel with the boots to a map where Marco has not yet spoken | - | He still speaks. Five of the seven are once-only, so pick one you have not triggered: the Mountain Pass, Alamut or Montaillou |
+| MB13 | **Regression.** Talk to Weng Choi about books, the Wind Scroll and his special stock | - | Unchanged. Four replies were added to his two hubs and nothing else was touched |
+| MB14 | After finishing, talk to him again | - | No offer, no delivery reply, no refusal. All three are gated on the quest's state or on not having activated it |
+| MB15 | **Regression.** An ogre or a snakebreed killed by something other than you | - | No part. The drop sits inside the existing `CWasDamagedByPlayerAction` check |
+
 ## 0.75.3 - today's number as the floor
 
 Ten addition files, no map and no dialogue, so **nothing here needs a new character**. It wants

@@ -1,0 +1,5987 @@
+CDialogTree
+{
+Name=Weng Choi
+Portrait=Dialog/NPC Portraits/Weng Choi
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=And another discerning customer enters Choi's Choice Goods. Ah, but this one is different...a strong spirit guides your way, no?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Gave Book to Weng Relay
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about wind scroll
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=7AIRL8LN
+}
+}
+}
+}
+}
+Reply Text=Choice Goods... you wouldn't happen to have a Wind Scroll would you?
+Go to node ID=550 Wind Scroll
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Gave Book to Weng Relay
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about wind scroll
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=7AIRL8LN
+}
+}
+}
+}
+}
+Reply Text=Choice Goods... you wouldn't happen to have a Wind Scroll would you?
+Go to node ID=105 very special
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 weng
+
+Requirement=!None
+Reply Text=How do you sense such things?
+Go to node ID=30 spirit
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Ah, the spirit bearer has returned. How can Weng Choi help you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=given book but not taken quest
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+}
+Reply Text=If I find any more rare books, I will bring them to you.
+Go to node ID=190 quest
+Action work in progress=(activate wengs book quest)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+Action=CDeactivateAction
+{
+Target Name=given book but not taken quest
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about wind scroll
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=7AIRL8LN
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Gave Book to Weng Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=You wouldn't happen to have a Wind Scroll would you?
+Go to node ID=550 Wind Scroll
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Gave Book to Weng Relay
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about wind scroll
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=7AIRL8LN
+}
+}
+}
+}
+}
+Reply Text=You wouldn't happen to have a Wind Scroll would you?
+Go to node ID=105 very special
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about wind scroll
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Gave Book to Weng Relay
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I would like to purchase a Wind Scroll now.
+Go to node ID=560 wind scroll 2
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+}
+}
+Reply Text=I have a book that you may be interested in. Shakepeare's Eloquent Works?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shakespeare Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+}
+}
+Reply Text=I have a book that you may be interested in. Shylocke's Art of Barter?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shylocke Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Weng Choi Have a rare book
+Reply Text=I have recovered a book for your collection.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Crusades XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Death XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Batu Khan poetry book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Dragons XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Fell Spirits XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Inquisition XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Necromancers XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Nostradamus Centuries XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tome of Geomancy XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=COrAction
+{
+Action=Array
+{
+Item Count=11
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+}
+Early Exit=0
+}
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have recovered a book for your collection.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Crusades XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Death XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Batu Khan poetry book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Dragons XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Fell Spirits XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Inquisition XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Necromancers XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Nostradamus Centuries XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tome of Geomancy XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shakespeare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shylocke Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=Choi Have already given book
+Reply Text=May I see your special stock?
+Go to node ID=201 return to special stock
+
+Requirement=!None
+Reply Text=I would like to see your stock.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=How are you able to sense my spirit?
+Go to node ID=30 spirit
+
+Requirement=!None
+Reply Text=Who are you again?
+Go to node ID=20 weng
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Marco Polo Boots
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+}
+}
+}
+}
+Reply Text=You keep looking at my boots.
+Go to node ID=900 marco boots
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Ogre Tusk
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Snakebreed Venom Sac
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Marco Polo Boots
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+State=MPRD4K7X
+}
+}
+}
+}
+Reply Text=I have the tusk and the sac you asked for.
+Go to node ID=902 marco parts
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Ogre Tusk
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Snakebreed Venom Sac
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Marco Polo Boots
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+State=MPRD4K7X
+}
+}
+}
+}
+Reply Text=I have the tusk and the sac you asked for.
+Go to node ID=904 marco needs the boots
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=May your fate bring you prosperity.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 weng
+Text=I am Weng Choi, Imperial Ambassador from China, and humble purveyor of exotic goods.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Where is China?
+Go to node ID=45 china
+
+Requirement=!None
+Reply Text=What kind of goods do you sell?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 spirit
+Text=The people of my homeland embrace spirit-born magic. Unlike the people of the West, many Chinese coexist and gain power from spirits. Where I come from, people are not persecuted for using magic and spirits are not powers to be feared. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 weng
+
+Requirement=!None
+Reply Text=Where are you from?
+Go to node ID=45 china
+
+Requirement=!None
+Reply Text=What kind of goods do you sell?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 celestial kingdom
+Text=It is the Celestial Kingdom for it is a perfect union of the spirit world and the physical world. The spirits of our ancestors have returned to gift China with their wisdom, and the emperors of the past advise our emperors of the present.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 weng
+
+Requirement=!None
+Reply Text=What kind of goods do you sell?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 china
+Text=China is a mighty empire far to the east. It is a strong nation, much different than the kingdoms of the West. To many, China is known as the Celestial Kingdom.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Why is it called the Celestial Kingdom?
+Go to node ID=40 celestial kingdom
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=20 weng
+
+Requirement=!None
+Reply Text=What kind of goods do you sell?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 vendor
+Text=I specialize in rare and exotic items, trinkets, and oddities that I have collected during my travels. Some of these items are mundane, some are quite special. I also have a collection of rare scrolls and tomes that you might be interested in.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=What kind of special items do you have?
+Go to node ID=60 special items
+
+Requirement=!None
+Reply Text=Tell me about your book collection.
+Go to node ID=55 collection
+
+Requirement=!None
+Reply Text=Not today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 collection
+Text=<Weng's eyes open wide> Ah, it is the finest collection of books in the West, and possibly the East. I collect original manuscripts, plays, holy books, scrolls, tablets, any precious material with an imprint of history and culture. It is my life's passion to collect such things - and I am willing to pay handsomely for rare books.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+}
+}
+Reply Text=I have a book that you may be interested in. Shakepeare's Eloquent Works?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shakespeare Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+}
+}
+Reply Text=I have a book that you may be interested in. Shylocke's Art of Barter?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shylocke Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=9
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I believe I have such a book for your collection.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Crusades XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Death XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Batu Khan poetry book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Dragons XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Fell Spirits XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Inquisition XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Necromancers XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Nostradamus Centuries XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tome of Geomancy XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=9
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+}
+Early Exit=0
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+}
+Reply Text=If I find any rare books, I will bring them to you.
+Go to node ID=190 quest
+Action work in progress=(activate wengs book quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=What kind of special items do you have?
+Go to node ID=60 special items
+
+Requirement=!None
+Reply Text=What kind of goods do you sell?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 special items
+Text=Ah, by far the most fantastic invention I bring to the West is the firepowder. A few pinches of this material can be used to spark an inferno, a barrel could crack open a small mountain.
+Should Have Voiceover=1
+
+Requirement=Choi Not delivered book to choi
+Reply Text=Can I purchase this firepowder?
+Go to node ID=100 special customer
+Custom Action=CActivateAction
+{
+Target Name=have been told about firepowder
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Choi Have Delivered Book to Weng
+Reply Text=Can I purchase this firepowder?
+Go to node ID=200 show special stock
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Player1
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CPlayAnimationAction
+{
+Animation=Bow
+Random From Sequencial Set=0
+Target Name=Weng Choi
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+}
+}
+}
+Action=CActivateAction
+{
+Target Name=have been told about firepowder
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+
+Requirement=!None
+Reply Text=What other kind of goods do you sell again?
+Go to node ID=50 vendor
+Custom Action=CActivateAction
+{
+Target Name=have been told about firepowder
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=Tell me about your book collection.
+Go to node ID=55 collection
+Custom Action=CActivateAction
+{
+Target Name=have been told about firepowder
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Custom Action=CActivateAction
+{
+Target Name=have been told about firepowder
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 special customer
+Text=You must understand, I only have a limited stock of the firepowder. I can only sell it to my most valued customers.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 45
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=have been told about firepowder
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Ah, but a man may prove his value in many ways...perhaps with some additional gold to make the sale of firepowder worthwhile?
+Go to node ID=115 Good Barter
+Action work in progress=(Barter >= 45%)
+Icon=Barter Skill Icon
+
+Requirement=Speech moreequal 25
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Reply Text=Perhaps my many talents could help me become a special customer?
+Go to node ID=110 become special customer
+Action work in progress=(Speech =20)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Reply Text=And how could I become a valued customer?
+Go to node ID=110 become special customer
+
+Requirement=!None
+Reply Text=What other kind of goods do you sell again?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=Tell me about your book collection.
+Go to node ID=55 collection
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 become special customer
+Text=My valued customers know of my great appreciation for rare books and tomes. If you brought me a valuable tome for my collection, I might be persuaded to return the favor, and sell you some of my rarer goods.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 45
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CCheckExistenceAction
+{
+Name To Check For=have been told about firepowder
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Ah, but a man may prove his value in many ways...perhaps with some additional gold to make the sale of firepowder worthwhile?
+Go to node ID=115 Good Barter
+Action work in progress=(Barter >= 45%)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Reply Text=If I find any rare books, I will bring them to you.
+Go to node ID=190 quest
+Action work in progress=(activate wengs book quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Reply Text=I have a book that you may be interested in. Shylocke's Art of Barter?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shylocke Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+}
+Reply Text=I have a book that you may be interested in. Shakepeare's Eloquent Works?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shakespeare Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=9
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+}
+Early Exit=0
+}
+}
+Reply Text=I have recovered a book for your collection.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Crusades XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Death XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Batu Khan poetry book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Dragons XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Fell Spirits XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Inquisition XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Necromancers XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Nostradamus Centuries XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tome of Geomancy XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What other kind of goods do you sell again?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=11
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=Tell me about your book collection.
+Go to node ID=55 collection
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=115 Good Barter
+Text=Gold has value, but my valued customers know of my great appreciation for rare books and tomes. If you brought me a valuable tome for my collection, ah, such a book would be gold in my eyes.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 55
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=200
+}
+}
+Reply Text=But with enough coin, one might be able to purchase the tomes you describe. Would two hundred gold interest you?
+Go to node ID=200 show special stock
+Action work in progress=(if have 200 gold)
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=200
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+}
+Reply Text=I have a book that you may be interested in. Shakepeare's Eloquent Works?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shakespeare Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Reply Text=I have a book that you may be interested in. Shylocke's Art of Barter?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shylocke Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=COrAction
+{
+Action=Array
+{
+Item Count=9
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+}
+Early Exit=0
+}
+}
+Reply Text=Then I have a rare book you might want for your collection. If I find any others, I will bring them to you.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Crusades XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Death XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Batu Khan poetry book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Dragons XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Fell Spirits XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Inquisition XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Necromancers XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Nostradamus Centuries XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tome of Geomancy XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+Action=COrAction
+{
+Action=Array
+{
+Item Count=7
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+}
+Early Exit=0
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=If I find any rare books, I will bring them to you.
+Go to node ID=190 quest
+Action work in progress=(activate wengs book quest)
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=What other kind of goods do you sell again?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=Tell me about your book collection.
+Go to node ID=55 collection
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=190 quest
+Text=I would be most appreciative, spirit bearer. Now, is there anything else I can do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What other kind of goods do you sell again?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=Tell me about your book collection.
+Go to node ID=55 collection
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 show special stock
+Text=Ah, yes - many thanks, spirit bearer. In return, let me show you some special items that might be of some use to you.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+}
+}
+Reply Text=I have a book that you may be interested in. Shylocke's Art of Barter?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shylocke Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CActivateAction
+{
+Target Name=Gave Book to Weng Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+State=2LK2EVMQ
+}
+}
+}
+Reply Text=I have a book that you may be interested in. Shakepeare's Eloquent Works?
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Shakespeare Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CActivateAction
+{
+Target Name=Gave Book to Weng Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=Weng Choi Have a rare book
+Reply Text=Actually, I have recovered another book for your collection.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Crusades XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Death XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Batu Khan poetry book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Dragons XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Fell Spirits XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Inquisition XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Necromancers XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Nostradamus Centuries XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tome of Geomancy XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=brought a book back counter
+}
+Action=CActivateAction
+{
+Target Name=Gave Book to Weng Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Yes, show me your special stock.
+Go to node ID=
+Action work in progress=(special vendor window)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=Gave Book to Weng Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Player1
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Else=
+Return failure if the If failes=0
+}
+}
+Action=CTriggerRelayAction
+{
+Relay Name=sold out
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Perhaps another time. I must go.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Gave Book to Weng Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=03 Return Dialogue Special Customer
+Text=Welcome back spirit bearer, how can Weng Choi help one of his most valued customers?
+Should Have Voiceover=1
+
+Requirement=Weng Choi Have a rare book
+Reply Text=I have recovered a book for your collection.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Rare Book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=Choi Have already given book
+Reply Text=I would like to see your special stock.
+Go to node ID=10 Goodbye
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Player1
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CPlayAnimationAction
+{
+Animation=Bow
+Random From Sequencial Set=0
+Target Name=Weng Choi
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+}
+}
+}
+
+Requirement=!None
+Reply Text=How are you able to sense my spirit?
+Go to node ID=30 spirit
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Tell me your name again.
+Go to node ID=20 weng
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Marco Polo Boots
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+}
+}
+}
+}
+Reply Text=You keep looking at my boots.
+Go to node ID=900 marco boots
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Ogre Tusk
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Snakebreed Venom Sac
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Marco Polo Boots
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+State=MPRD4K7X
+}
+}
+}
+}
+Reply Text=I have the tusk and the sac you asked for.
+Go to node ID=902 marco parts
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Ogre Tusk
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Snakebreed Venom Sac
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Marco Polo Boots
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+State=MPRD4K7X
+}
+}
+}
+}
+Reply Text=I have the tusk and the sac you asked for.
+Go to node ID=904 marco needs the boots
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=201 return to special stock
+Text=Very well spirit bearer, let me show you some special items that might be of some use to you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(special vendor window)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=Gave Book to Weng Relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Player1
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CPlayAnimationAction
+{
+Animation=Bow
+Random From Sequencial Set=0
+Target Name=Weng Choi
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+}
+}
+}
+Action=CTriggerRelayAction
+{
+Relay Name=sold out
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 Scurrying bubble Siege
+Text=I must prepare...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=301 Scurrying bubble Siege
+Text=So much to do...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=302 Scurrying bubble Siege
+Text=Where is my ledger?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=303 Scurrying bubble Siege
+Text=Coins, scrolls...what else?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=304 Scurrying bubble Siege
+Text=My best sandals are here somewhere.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=500 Start Siege
+Text=So, the spirit bearer returns. Please forgive the state of my humble shop...many have tried to enter with vile intentions. What can I do for you in these troubled times?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I need that which only you can sell.
+Go to node ID=510 first time sale
+Custom Action=CDeactivateAction
+{
+Target Name=Weng Player asked to see goods already
+}
+
+Requirement=!None
+Reply Text=Nothing. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=502 Siege Return
+Text=How else can I assist you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Weng Player asked to see goods already
+Desired Minimum Count=1
+}
+}
+Reply Text=I need to see what you have for sale.
+Go to node ID=510 first time sale
+Action work in progress=(NOT seen goods for sale yet)
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Weng Player asked to see goods already
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I need to see what you have for sale.
+Go to node ID=
+Action work in progress=(HAS SEEN goods for sale already, Go sale screen)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+
+Requirement=!None
+Reply Text=Nevermind. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=510 first time sale
+Text=Luckily, I still have a few things left. I tried giving some of my firepowder to the city guard, but their inexperience wound up doing more harm than good. Perhaps you could have more luck than they.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(Go to sales screen)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=550 Wind Scroll
+Text=Ahh, a sea farer are you, or perhaps you are on a mission for the Spanish Armada who are ashamed to admit that such a scroll would help them? At any rate, the answer is yes, I do have such a scroll and will happily sell it to you.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Player1
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CPlayAnimationAction
+{
+Animation=Bow
+Random From Sequencial Set=0
+Target Name=Weng Choi
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=560 wind scroll 2
+Text=Yes, of course. 
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Player1
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CPlayAnimationAction
+{
+Animation=Bow
+Random From Sequencial Set=0
+Target Name=Weng Choi
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=570 scroll give
+Text=Excellent choice. Here is the scroll.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=600 something else
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=WZU9LRDN
+}
+Action=CDeactivateAction
+{
+Target Name=asked about wind scroll
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=580 no help
+Text=Then I am afraid I can be of no help to you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=600 something else
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=600 something else
+Text=Is there something else I can do for you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about wind scroll
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find a Wind Scroll for Captain Isabella
+State=7AIRL8LN
+}
+}
+}
+}
+Reply Text=Choice Goods... you woudn't happen to have a Wind Scroll would you?
+Go to node ID=550 Wind Scroll
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=asked about wind scroll
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to purchase a Wind Scroll now.
+Go to node ID=560 wind scroll 2
+Icon=Quest Icon
+
+Requirement=Weng Choi Have a rare book
+Reply Text=I have recovered a book for your collection.
+Go to node ID=200 show special stock
+Action work in progress=(if have quest book)
+Custom Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Crusades XP
+Experience Points To Add=1
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Death XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Batu Khan poetry book XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Dragons XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Fell Spirits XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Inquisition XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Book of Necromancers XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Nostradamus Centuries XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=250
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tome of Geomancy XP
+Experience Points To Add=1
+}
+Action=CSucceedAction
+{
+Action=
+}
+}
+}
+Else=CFailAction
+{
+Action=
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Quest Icon
+
+Requirement=Choi Have already given book
+Reply Text=May I see your special stock?
+Go to node ID=201 return to special stock
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Special Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=Player1
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Scroll Wind
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Swap Special Merchant AI
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CPlayAnimationAction
+{
+Animation=Bow
+Random From Sequencial Set=0
+Target Name=Weng Choi
+When Done=Set Sequence
+End Sequence Name=Idle
+Delay Between Targets=0
+Play In Reverse=0
+AI To Interrupt=CSkeletonAI
+}
+}
+}
+}
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=11
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=How are you able to sense my spirit?
+Go to node ID=30 spirit
+
+Requirement=!None
+Reply Text=Who are you again?
+Go to node ID=20 weng
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=105 very special
+Text=You must understand, I have but a single Wind Scroll.  I can only sell it to my most valued customers.
+Should Have Voiceover=1
+
+Requirement=Barter moreequal 25
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Reply Text=Perhaps there is something I could offer you that would be of equal value?
+Go to node ID=110 become special customer
+Action work in progress=(Barter >= 25%)
+Icon=Barter Skill Icon
+
+Requirement=Barter moreequal 45
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=have been told about firepowder
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Ah, but a man may prove his value in many ways...perhaps with some additional gold to make the sale of firepowder worthwhile?
+Go to node ID=115 Good Barter
+Action work in progress=(Barter >= 45%)
+Icon=Barter Skill Icon
+
+Requirement=Speech moreequal 20
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Brink back any rare books to Weng Choi
+}
+}
+}
+Reply Text=Perhaps my many talents could help me become a special customer?
+Go to node ID=110 become special customer
+Action work in progress=(Speech =20)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=What other kind of goods do you sell again?
+Go to node ID=50 vendor
+
+Requirement=!None
+Reply Text=I would like to see what you have for sale.
+Go to node ID=
+Action work in progress=(vendor window)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Weng Choi
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=CIfAction
+{
+If=COrAction
+{
+Action=Array
+{
+Item Count=11
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Book of Death
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Butu Khan Poetry Book
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Crusades
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Fell Spirits
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Inquisition
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Necromancers
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Nostrodomus Centuries
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Tome Geomancy
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/History Book Dragons
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shakespeare Eloquent Works
+}
+Action=CActionCheckForInventoryItem
+{
+Who to give check=Inventory for Weng Choi
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Shylock Art of Barter
+}
+}
+Early Exit=0
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Weng Choi thanks you for book
+}
+Else=
+Return failure if the If failes=0
+}
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1000 Received Rare Book
+Text=What is this you have sold me? A rare book?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=1000 sold out
+Text=Thank you, spiritbearer. If you wish to return later, I'm expecting a new shipment of rare goods that might interest you.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=900 marco boots
+Text=Ah - forgive Weng Choi his staring, spirit bearer. Those boots you carry. In my homeland a spirit is not pushed into a thing as a cork is pushed into a bottle; it is invited, and it is made comfortable. Whoever shut this one in did it in great haste, and it has been fretting at the seams ever since. Bring me the tusk of an ogre and the venom sack of a snake, and I will settle it properly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will find them.
+Go to node ID=03 Return Dialogue
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+State=MPRD4K7X
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=They are dead men's errands. Another time.
+Go to node ID=03 Return Dialogue
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=902 marco parts
+Text=Ah, both - and neither easily got. The boots also, if you please. Weng Choi does not hurry this part. There. The leather has drunk what it needed, and the spirit inside has stopped turning round and round to face the way you are walking. Listen to him - he is pleased. I have no Venetian, spirit bearer, but one does not need the words. Wear them. He will carry you further than he managed himself.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then I had better keep walking.
+Go to node ID=03 Return Dialogue
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=5
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Ogre Tusk
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Snakebreed Venom Sac
+}
+Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!NPC or Event Given Perks/Walk a Mile in His Shoes
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Gate District/Bring exotic creature parts back to Weng Choi
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Marco Polo Boots XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=904 marco needs the boots
+Text=And the boots, spirit bearer? No, no - put these away. A tusk is a tusk, and a sack of venom is a sack of venom; neither is worth the carrying unless there is something to work them into. You did not hunt these for their own sake. Bring Weng Choi the boots and bring these also, and we shall have a trade.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will come back with them.
+Go to node ID=03 Return Dialogue
+Icon=Quest Icon
+
+}
