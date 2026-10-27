@@ -6578,10 +6578,7 @@ CLayerSaveData
 									Action=CGenerateInventoryItemAction
 									{
 										Number of items to generate=1
-										Level of item to generate=CUseCannedExpressionExpression
-										{
-											Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Chest Generator Average
-										}
+										Level of item to generate=
 										Location=$Trigger
 										Location Offset=0,0
 										Generate Within Radius=128
@@ -6593,10 +6590,18 @@ CLayerSaveData
 												Array Count=1
 												Array Item=CInventoryItemGeneratorMixedListItem
 												{
-													Weighting=10
-													Item=CInventoryItemGeneratorCannedList
+													Weighting=1
+													Item=CInventoryItemGeneratorBasic
 													{
-														Canned Item List=Inventory/Creating Random Magic Items/1 MASTER ALL Items in the game
+														Items=Array
+														{
+															Array Count=1
+															Array Item=CInventoryItemGeneratorBasicItem
+															{
+																Weighting=10
+																Item=Inventory/Specific Item Cans/Unique Magic Items/Bow of Fiery Smite
+															}
+														}
 													}
 												}
 											}

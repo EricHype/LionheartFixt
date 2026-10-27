@@ -1474,6 +1474,43 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.77.0 - what a condition is worth
+
+Two halves with different requirements, and mixing them up is the easiest way to record a false pass.
+
+The **seven addition files** reach any save, but like every addition they apply to loot **as it is generated**. A weapon already in your pack has its behaviours baked into the save with the expressions resolved to constants, so look at fresh finds and fresh merchant stock, never at a weapon you have carried.
+
+The **bow relocation** is two map edits, and a map's entity list freezes on first entry, so it needs a character who has **never entered** act 5's `10 Cave 5` and, for the regression rows, one who has never entered act 8's `06 Chamber of Torment`.
+
+Numbers below are the real average the `CRandom` pays, not the tooltip range, so compare against the tooltip only where a row says to.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GS1 | Find a weapon of **Hunting** worth about 10,000 and read its tooltip | - | Promises up to **30**, not 15 |
+| GS2 | **The row that proves the gate still works.** Hit a bear or a wolf with it, then hit a wererat or a thief with the same weapon | - | The animal takes a large extra hit; the wererat and the thief take **none**. If both take it, the category check broke; if neither does, the bonus is not firing at all |
+| GS3 | **The row that proves the band was rewired, not just the ceiling.** Find a **cheap** weapon of Hunting, a few hundred gold | - | Still a small bonus, roughly 5 to 7. If a cheap weapon now hits for 20 the `min` scale's input range did not move with the band |
+| GS4 | A weapon of **Exorcism** against the Crypt's undead | - | Noticeably larger than before, about 12.6 on a 6,000 gold weapon. Undead are 85% of act 4, so this is the easiest of the three to feel |
+| GS5 | A weapon of **Goblin Slaying** in the Wilderness | - | Large, about 22 on a 6,000 gold weapon, and goblins are 20% of what the Wilderness spawns |
+| GS6 | The same Goblin Slaying weapon anywhere outside the Wilderness and Barcelona | - | Nothing. It is a swap weapon by design, and that is why its number is the biggest of the three |
+| GS7 | **Resistance check.** Use any of the three against an enemy with high fire or cold resistance | - | The bonus still lands in full. All three deal acid, which only 37 races resist |
+| GS8 | **Regression.** `Axe of the Feral Curse`, bought from Mauldo in the Plains | - | Unchanged: 66 flat against animals, +20 Sneak, +20 Evasion, -1 Charisma, 1,722 gold, still in his stock. Nothing in this release touched it |
+| EL1 | A fresh weapon of **Flame**, **Cold Biting** or **Shocking** at the top of its price band | - | Tooltip ceiling reads **15**, not 12 |
+| EL2 | **Regression.** `Carnage` and `Pestilence` | - | Untouched. Carnage still caps 15, Pestilence still 2/7/14 |
+| EL3 | A fresh weapon of **Venom** worth about 10,000 | - | The poison now **hurts**: about 12 a swing, where it used to be 3.5 |
+| EL4 | **The row that proves the chance was left alone.** Watch roughly twenty swings with that weapon | - | It still procs about half the time, not more. The chance band was deliberately not changed |
+| EL5 | A **cheap** weapon of Venom | - | Still almost nothing, about 0.35 a swing. The floor was deliberately untouched so nothing got worse |
+| EL6 | **Regression.** Weapons of `Snakebiting`, `Double Biting` and `Ripping` | - | Unchanged. Only Venom was rewired in that group |
+| EL7 | **Regression.** 0.75.0's three chance-gated suffixes, Demonic Bile, Lightning and Firestorms | - | Unchanged from 0.75.0, still landing around 12 a hit |
+| BW1 | **New character, never been to act 5's caves.** Reach `10 Cave 5` and find the Hidden Treasure | - | It yields the **Bow of Fiery Smite**, not a random item, and still awards **50 XP** |
+| BW2 | **The row that proves it is still a secret.** Walk past the spot without searching | - | Nothing appears. It is a `CAISecretReveal` and must still require detection, not be lying on the floor |
+| BW3 | Read the bow's requirement with a low Ranged skill | - | Needs **Ranged 125** and cannot be equipped yet. Finding it before you qualify is intended; growing into it is the point of moving it earlier |
+| BW4 | The combat text when it is found | - | Still "You have found an item buried at the base of the pole." The line was deliberately not rewritten, because it is as true of a bow as of anything else |
+| BW5 | **New character, never been to the Chamber of Torment.** Trigger `secret 05` in act 8 | - | **Two** items still drop, not one: a roll from the MASTER ALL list and a random magic item. If only one appears, the swap dropped a slot |
+| BW6 | The same secret, watching what else happens | - | The guards still spawn with it: two spirits, an assassin and a guard dog. Eight entities share that name, so one trigger must still do all of it |
+| BW7 | **Regression.** The Bow of Fiery Smite must not exist twice | - | It is in Cave 5 and **nowhere** in act 8. This was a relocation, not a duplication |
+| BW8 | **Regression.** The other three bows | - | Composite Long Bow in the Gate District, Icy Carnage in the Plains, Maelstrom in act 3's Secret Cave, all unchanged at Ranged 50, 85 and 105 |
+| BW9 | **Regression, the one that would be expensive to miss.** In `10 Cave 5`, check the act 5 quest content still works, and in the Chamber of Torment check the Knight of Saladin escort still appears | - | Both intact. Each map already carried Fixt work, 2,227 changed lines and 164, and the swap had to layer on top of it rather than revert it |
+
 ## 0.76.1 - the other two elements
 
 The **rings** are additions, so they reach any save, but like every addition they apply to loot as it

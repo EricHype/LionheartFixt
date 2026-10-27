@@ -140,6 +140,99 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.77.0 - what a condition is worth
+
+Five items raised on the [rpgcodex thread](https://rpgcodex.net/forums/threads/some-crazy-guy-is-modding-lionheart-legacy-of-the-crusader.157467/page-3) by Laz Sundays, worked in sequence. Three held up, one was dropped outright, and one changed shape completely once it was measured.
+
+### Item 1, dropped: the three bows are a ladder, not an imbalance
+
+The bows looked badly spread until the requirement was read. They are gated on Ranged skill at 50, 85, 105 and 125, which is a deliberate progression, so equalising them would have flattened a thing that works. Dropped at the maintainer's call. The top rung turned out to have a different problem, which is item 5.
+
+### Items 2 and 3: the ungated suffixes
+
+Three elemental suffixes lose a third of their number to resistance and the acid ones lose almost none. Measured across all 422 races, counting the field the files actually use:
+
+| type | races resisting | median | races vulnerable |
+|---|---|---|---|
+| Cold | 164 | 40 | 14 |
+| Fire | 125 | 45 | 8 |
+| Electrical | 97 | 50 | 13 |
+| **Acid** | **37** | 95 | 0 |
+| Disease | 168 | 100 | 0 |
+
+So `Carnage`, which is **1 Common** and deals acid, keeps its whole number against nearly everything, while the three elemental Rares lose roughly a third of theirs. Each ceiling goes **12 to 15** with the middle raised in proportion: `Flame` and `Shocking` 2/7/12 to 2/9/15, `Cold Biting` 2/6/12 to 2/8/15. Real average at the top, which is what the `CRandom` actually pays rather than the number in the tooltip, moves from 7.0 to 8.5 for Flame and Cold Biting and 7.5 to 9.0 for Shocking. All three stay under Ripping's 11.5 and well under Heartseeking's 16.5, which has been the ceiling for every change in this family.
+
+**`Pestilence` is left alone deliberately.** Its problem is not the band, it is that disease is resisted by 168 races at a median of 100, so raising the number would not help. Same for `Carnage`, which is correct as shipped.
+
+`Venom` was the real defect in the damage-over-time group. Its band, 5 to 50, ran **entirely into the chance**, while the damage it then does was a flat `CRandom` of 1 to 6 that never read the band at all. So a 10,500 gold weapon of Venom procs ten times as often as a 125 gold one and hits for exactly the same trivial amount, capping at 3.5 damage a swing against Ripping's 11.5 and Double Biting's 13.5. Both ends of the damage now scale beside the chance, 1-4 and 6-20 across the band, which is `Shocker`'s own shape. **The chance stays exactly as it was at the maintainer's call**, 5 to 50. Per swing the ceiling goes 3.5 to **12.0**, and the floor is untouched at 0.35 so no existing weapon of Venom gets worse. `Snakebiting`, `Double Biting` and `Ripping` were checked and left alone.
+
+### Item 4 was not the category. It was the payoff, running backwards
+
+The item as raised was to widen `Hunting`'s creature category, and that is the wrong fix.
+
+Measured across all **16,125** creature spawns in the game, `Animal` is 11% of them, and concentrated exactly where a player would carry such a weapon: **38% of Alamut**, 23% of the Wilderness, 24% of Montserrat. Coverage was never the problem. Widening would also have made the description false, because it promises "all simple animals", and it would have meant editing creature cans rather than the check: of the **139** uses of `CCheckCategoryAction` in the game, **not one** names more than a single category, and wererats carry only `Enemy`.
+
+The real defect is that the ladder is inverted. Coverage falls, rarity rises, and the money falls with it:
+
+| suffix | gate | share of all spawns | rarity | avg damage at 6,000g |
+|---|---|---|---|---|
+| Exorcism | Undead | 25% | 3 Rare | 6.2 |
+| Hunting | Animal | 11% | **4 Very Rare** | 8.5 |
+| Goblin Slaying | Goblin | 3% | **4 Very Rare** | 10.0 |
+| Cold Biting | none | - | 3 Rare | 8.5 |
+| Ripping | none | - | 3 Rare | 10.8 |
+
+`Hunting` is a Very Rare that fires against one enemy in nine and paid exactly what an ungated Rare paid, and less than ungated `Ripping`. **There was no price at which any of the three beat Ripping.** All three deal acid, the least-resisted type in the game, so nothing was quietly compensating them either.
+
+Each is raised so that, price-matched, it beats Ripping by a factor set against its own coverage:
+
+| | band | price ceiling | at 6,000g | at its top |
+|---|---|---|---|---|
+| **Exorcism** | 4/6/15 to **6/12/26** | 12,000 unchanged | 6.2 to **12.6** | 9.5 to **18.0** |
+| **Hunting** | 3/8/15 to **5/14/30** | 6,000 to **10,000** | 8.5 to **16.2** | 8.5 to **21.0** |
+| **Goblin Slaying** | 3/4/10 to **6/14/25** | 4,000 to **8,000** | 10.0 to **21.9** | 10.0 to **25.0** |
+
+Every floor rises too, so no weapon carrying one of these gets worse. The two price ceilings move because a Very Rare topping out on a cheaper weapon than a Rare was part of the same inversion.
+
+**Goblins are not dead content, which was worth checking before buffing them.** They are 3% of the game but **20% of the Wilderness**, so a goblin-slaying weapon has a real place to be carried, and that is the place the Horde content lives.
+
+### A method note worth recording
+
+The first resistance census came back as all zeroes. Races store a resistance as a `CPresetDerivedCharacterAttribute` whose value sits in **`Value To Preset=`**, not `Value=`, `Amount=` or `Preset Value=`. A damage type is also written `Damage Type=Damage Types/Acid`, with a space in it, so capturing it as a single run of non-space characters returns the word "Damage" for every suffix in the game, and a type column built that way is meaningless. Both are in [`engine-notes.md`](engine-notes.md) now. The direction of the elemental change survived the correction; the type column in the working notes did not.
+
+The `min` term on `Hunting` and `Exorcism` is a `CExpressionScale` whose **input range is the band itself**, so its Input Minimum and Input Maximum had to move with it or the low end stops interpolating. That is the same trap 0.75.0 hit on Lightning and Fireball.
+
+### Item 5, half dropped: the axe stays in the Plains
+
+`Axe of the Feral Curse` was to move from the Wilderness into Barcelona, on the reading that it is stranded in an obscure map. It is not. **The Plains is a named world-map destination**, enabled by `CEnablePointOfInterestOnWorldMapAction` when Brother Montgomerie closes the Montserrat relics quest, so it is a guaranteed act 2 stop rather than a random encounter, and the axe occupies a fixed slot in Mauldo's stock rather than a roll. At **1,722 gold** it grants **66 flat acid damage** against animals, 20 Sneak and 20 Evasion against -1 Charisma, which makes it one of the best-value items in the game and well clear of anything in this release. Nothing is wrong with it. Like item 1, the premise did not survive checking.
+
+### Item 5: the top bow leaves the last act
+
+The ladder that saved item 1 is what condemns this placement:
+
+| bow | Ranged | value | where |
+|---|---|---|---|
+| Composite Long Bow | 50 | 700 | act 1, Gate District |
+| Bow of Icy Carnage | 85 | 8,900 | Wilderness Plains, act 2 onward |
+| Maelstrom Bow of the Horde | 105 | 7,000 | act 3, 08 Secret Cave |
+| **Bow of Fiery Smite** | **125** | **5,600** | **act 8, 06 Chamber of Torment, map 6 of 8** |
+
+A ranged build upgrades in acts 1, 2 and 3 and then gets **nothing at all for acts 4, 5, 6 and 7**, and the top rung appears two maps from the end of the game. Acts 5 and 6 hold no unique magic item of any kind. The bow's own perk makes it worse: it adds 25% fire damage, and fire is resisted by 125 races at a median of 45, the desert bestiary it currently sits in among them. It is also the cheapest of the three magic bows despite carrying the highest requirement.
+
+It moves to act 5's `10 Cave 5`, onto the **Hidden Treasure** secret: a `CAISecretReveal` the player has to detect, in an optional cave, worth 50 XP. That is the shape of the rung directly below it, which sits in act 3's "08 Secret Cave", and the shape it is leaving, act 8's `secret 05`.
+
+**The exchange is symmetric, so neither map loses a reward and nothing is invented.** Cave 5 gives up its roll on `1 MASTER ALL Items in the game` and the Chamber of Torment receives it, together with the `Chest Generator Average` level expression that roll needs. The Chamber of Torment keeps its second reward, a `CInventoryItemGeneratorAdditionalMagic`, so that secret still pays twice, and it already rolls MASTER ALL in **twelve** other chests on that map, so the roll is at home there.
+
+Worth recording about that secret: **eight entities in the Chamber of Torment share the name `secret 05`** -- the chest, a cover polygon, and generators for two spirits, an assassin and a guard dog. One trigger therefore spawns the guards and reveals the chest in the same breath, because activation broadcasts to every entity of that name.
+
+### What this touched that was already ours
+
+Both maps already carried Fixt work, 2,227 changed lines in Cave 5 and 164 in the Chamber of Torment, including an act 5 quest marker and a Knight of Saladin escort. Reading through `lhbuild.read` rather than the vanilla archive meant the swap layered on top of that work instead of reverting it, which is the whole reason that rule exists. Both files were asserted to round-trip byte-identically before and after, and edited structurally rather than by regex, so brace depth and CRLF could not drift.
+
+### Known, open, and deliberately not in this release
+
+`Acid Splash` is a **3 Rare** capping at a real 7.0, against `Carnage`, a **1 Common**, at 15.0. Same damage type, so there is no resistance difference to explain it, and it is the one inconsistency this release found and did not rule on. It is recorded here rather than quietly fixed because the whole family has now moved twice and the right ceiling for it is a design question, not a defect with an obvious answer.
+
 ## 0.76.1 - the other two elements
 
 Reported as [issue #12](https://github.com/EricHype/LionheartFixt/issues/12) by Przemyslaw92pl:
