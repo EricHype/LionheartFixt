@@ -288,13 +288,13 @@ Target Name=Snakebreed Generator
 }
 Action=CSetTargetTypeAction
 {
-Entity Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 Name To Target=
 Valid Targets=
 }
 Action=CRemoveCategoryAction
 {
-Target Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 Categories To Remove=Enemy
 }
 Action=CSetPatrolAIAction
@@ -323,7 +323,7 @@ Facing Angle=CEntityBehaviorTurnToAngle
 }
 Need to Call Start=1
 }
-Target=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+Target=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 }
 }
 }

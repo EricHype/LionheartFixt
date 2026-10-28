@@ -175,24 +175,71 @@ CLayerSaveData
 										Sequence=Run
 										Planed Path For=
 									}
-									Done action=CMultipleActionsAction
+									Done action=CAddAIAction
 									{
-										Action=Array
+										Target Name=Handler
+										AI=CAIInteractionSpecifier
 										{
-											Item Count=2
-											Action=CDeleteAction
+											Marked For Deletion=0
+											Publisher=
+											Trigger Only Once=0
+											Was Triggered=0
+											Auto-Flip Switch=1
+											Trigge Must Have HP=0
+											Triggered By Anything=0
+											Triggered By Players=1
+											Triggered By Player Friends=0
+											Triggered By Enemies=0
+											Triggered By Projectiles=0
+											Triggered By Companions=0
+											Triggered By Name=
+											Interaction Description=
+											Interaction Type=Interaction Specifiers/GetCloseThenTalk
+											Action=CIfAction
 											{
-												Target Name=Cortes with arm
-											}
-											Action=COtherMapAction
-											{
-												Action=CTriggerRelayAction
+												If=COrAction
 												{
-													Relay Name=Cloner of Cortes as Companion post Montserrat
+													Action=Array
+													{
+														Item Count=2
+														Action=CCheckExistenceAction
+														{
+															Name To Check For=drain used
+															Desired Minimum Count=1
+														}
+														Action=CCheckExistenceAction
+														{
+															Name To Check For=Fixt slipped out
+															Desired Minimum Count=1
+														}
+													}
+													Early Exit=0
 												}
-												Other Map Name=1 Barcelona/Tavern Port District
+												Then=CTriggerRelayAction
+												{
+													Relay Name=handler fights
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
+													Node ID=3 still here
+													Speaker=$trigger
+													Player Being Spoken To=$Instigator
+												}
+												Return failure if the If failes=0
 											}
+											X Radius=320
+											Attacker Range Modifier=0
+											YX Ratio=0.712766
+											Highlight Self Time=0
+											Highlight Until Clicked=0
+											Is Locked=0
+											Allow Interact If Has Target=1
+											Lock Pick Adjustment=0
+											Inventory item to use as key=Inventory Items/!None
+											Is Bussy Talking=0
 										}
+										Delay Between Adds=0
 									}
 									Run=0
 									Make New Home=0
@@ -987,7 +1034,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=5
+							Item Count=7
 							Action=CDelayAction
 							{
 								Next Action=CGoToCombatAction
@@ -1011,6 +1058,17 @@ CLayerSaveData
 							Action=CTriggerRelayAction
 							{
 								Relay Name=Fixt loud escape heard
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Handler
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Handler
+								Categories To Add=Enemy
 							}
 							Action=CGoToCombatAction
 							{
@@ -1922,10 +1980,7 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CTriggerRelayAction
-					{
-						Relay Name=pen setup
-					}
+					Per Party Spawn Action=
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=230
