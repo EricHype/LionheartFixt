@@ -511,6 +511,15 @@ def check_array_counts(p, node, path=""):
                 items += 1
         if count is not None and count != items:
             fails.append(p.name + ": Array at " + (path or "<root>") + " says " + str(count) + " items, holds " + str(items))
+        # And it must say so FIRST. The engine takes the count and then reads that many items, so an
+        # item written ahead of the declaration is at best dropped. Vanilla never does it: 0 of
+        # 103,108 arrays across 200 maps. 0.79.7 did, once, by inserting at index 0 of a field list
+        # whose index 0 was the count, and the equality check above passed it because the number was
+        # still right. That shipped the Brother Pau Karma penalty as dead weight.
+        keys = [k for k, _ in node.fields]
+        if ("Item Count" in keys or "Array Count" in keys) and keys[0] not in ("Item Count", "Array Count"):
+            fails.append(p.name + ": Array at " + (path or "<root>") + " declares its count after "
+                         + repr(keys[0]) + "; it must be the first field")
     for k, v in node.fields:
         if isinstance(v, rf.ResourceNode):
             check_array_counts(p, v, path + "/" + k)

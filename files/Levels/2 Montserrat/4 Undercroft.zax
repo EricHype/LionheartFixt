@@ -2666,6 +2666,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
+							Item Count=5
 							Action=CSetDestroyedScriptActionAction
 							{
 								New Destroyed Action=CAddCharacterModifierToCharacterAction
@@ -2692,7 +2693,6 @@ CLayerSaveData
 								}
 								Target Name=$Instigator
 							}
-							Item Count=5
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=$Instigator
