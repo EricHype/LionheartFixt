@@ -140,6 +140,109 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.2 - the sceptre nothing could fill
+
+The second defect in [issue #12](https://github.com/EricHype/LionheartFixt/issues/12), reported by Przemyslaw92pl:
+
+> But a problem popped up: Relikan won't complete the bone scepter quest for me. Could the problem
+> be that I picked up this scepter before having that dialogue? Also, the scepter itself cannot be
+> used.
+
+Both halves are right, and the guess between them is the diagnosis. Two defects, both introduced by
+0.39.0, both in the same item.
+
+### The bind was gated on a state only the pickup could set
+
+0.39.0 gave the Dark Wielder initiation the middle step it shipped without. DaVinci's secret chamber
+yields `Rod Bone NO Spirit`, an empty shell, and a spirit is bound into it either by the Mad
+Enchanter at the ether plane or by Relican himself. The quest gained a third state, `K7MQ3XRB`,
+describing the lifeless sceptre.
+
+**That state is set in one place and required in three.** It is set by the shell's own
+`CPlugInBehaviorPickUpAction`, and only when the quest is already at `UFG3W5T9` -- the state Relican
+sets when he names the errand:
+
+| | |
+|---|---|
+| sets `K7MQ3XRB` | the shell's pickup action, if the quest is already at `UFG3W5T9` |
+| requires `K7MQ3XRB` | `Fixt Relican Bind Shell`, the reply `47 Fixt Relican Binds Shell` hangs off |
+| | `Fixt Enchanter Sceptre Bindable`, the reply `75 Fixt Sceptre` hangs off |
+| | the ether plane's own `Fixt Bind Sceptre of Bone` relay |
+
+Nothing gates the chamber's drop on the quest, and nothing should -- vanilla's chamber was ungated
+too, and it dropped the finished sceptre. So loot the chamber before taking the initiation and the
+state never advances, all three gates stay shut, and the player holds a shell that nothing in the
+game will fill. The initiation cannot pass task 1: `45 Rod Bone Returned` wants the spirited
+sceptre, and the reply that would bind the shell is the one being hidden.
+
+**Vanilla was robust to exactly this.** Its turn-in asks for the item and either of the quest's two
+states, never for a state the item itself has to install. The regression is ours, and this project's
+own QA row EB7 said in writing what it would cost -- *"If this reply does not appear, the Dark
+Wielder initiation is unfinishable and the release must be pulled"* -- but the row was written for
+the normal order and never run against an early-looted chamber.
+
+In all three gates the state check becomes `CWasQuestEverActivatedAction`, which is the condition
+that was meant all along: the errand is open and you are holding an empty sceptre. 36 vanilla `If=`
+sites use it. `K7MQ3XRB` is now only ever written, never required, so the journal still gets its
+middle state and nothing depends on when it arrived.
+
+### If a save is already stuck
+
+Two things reach it. The gate is read when the reply is offered rather than baked into the save, so
+installing this is enough -- Relican will offer to bind the shell. And there is a workaround that
+needs no patch at all: **drop the sceptre and pick it up again** while the errand is active. A
+pickup action re-fires on every re-take, which is the same mechanism as the unbounded
+skill-stacking exploit 0.39.0 closed on the spirited sceptre.
+
+### The shell was not a club
+
+`Rod Spirits NO Spirit` -- the Wielder rod's shell, carrying the same authored description word for
+word -- is the sibling this should have been built from, and it was not read.
+
+| | the Wielder shell | the Wielder rod |
+|---|---|---|
+| slot | **Weapon** | Weapon |
+| club damage | **1-3** crushing | 2-8 crushing |
+| `Is Magic` | 0 | 1 |
+| `Encumbrance` | 2 | 0 |
+
+Those, the pickup sound, the icon and the description are the **only** differences between the two
+vanilla rods; the model override, the attack behaviour, the one-handed skill ladder and the speed
+modifier are identical, with one plugin reordered in the array. "No spirit" costs the magic and most
+of the damage and nothing more.
+
+Ours was 1,923 bytes carrying two plugin behaviours, a pickup sound and a put-down sound, with
+`Slot Used In=Character Slot Types/!None`. It could not be equipped or swung, which is the second
+half of the report.
+
+It is rebuilt from `Rod Bone WITH Spirit` under vanilla's rule: the same object, 1-3 crushing
+instead of 2-8, keeping the one-handed skill ladder, the One-Handed Weapon Specialization bonus, the
+model override, the attack behaviour and its Very Fast animation speed. What comes off is what the
+spirit paid for -- **+2 to each of eight Thought and Tribal branches**, and the **-250 Karma** the
+spirited sceptre applies while selected, because an empty shell holds nothing to offend anyone with.
+Seven plugin behaviours where the spirited sceptre has nine. The description gains vanilla's own
+clause: *"When used as a club, it is a One-Handed weapon that does %s[damage]."*
+
+**One limit, read off a save rather than guessed.** A save serializes an item's `PlugIn Behaviors`
+in full: `noreward.sav`, parked in the secret chamber with a shell in the pack, carries the old
+two-plugin list and names the can in `Origonal Item=`. So a shell already looted stays inert in that
+save, and what fixes it is the bind, which hands over a freshly generated spirited sceptre. The club
+matters for new games.
+
+### The journal
+
+If the shell is already in the pack when Relican names the errand, the handout now activates
+`K7MQ3XRB` rather than `UFG3W5T9`, so the entry describes the lifeless sceptre being carried instead
+of telling the player to go and find it. Both handout replies -- on `40 dark wielder task 1` and on
+`40 sceptre` -- branch on `If=CActionCheckForInventoryItem`, which has 129 vanilla uses.
+
+### What was checked
+
+- Gate 0 clean at 889 files. The rebuilt shell and both requirement cans round-trip byte-identically
+  through `resource_format`, and the plugin array's `Item Count` matches its entries
+- `K7MQ3XRB` is now required in **0** places and written in **2**
+- 71 saves scanned for the two rods: ten hold the spirited sceptre, one holds the shell
+
 ## 0.79.1 - four trinkets that never scaled
 
 Four trinket additions whose curve was never filled in -- the same defect class 0.75.3 addressed on ten others, in the slots 0.79.0 did not reach. Raised as worth looking at by Laz Sundays on the rpgcodex thread.

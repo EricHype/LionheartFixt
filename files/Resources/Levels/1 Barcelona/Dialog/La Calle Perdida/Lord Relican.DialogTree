@@ -364,10 +364,24 @@ Action=CDeactivateAction
 {
 Target Name=Relican started giving quests already to player
 }
-Action=CActivateQuestStateAction
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=K7MQ3XRB
+}
+Else=CActivateQuestStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
 State=UFG3W5T9
+}
+Return failure if the If failes=0
 }
 Action=CConditionalAction
 {
@@ -451,10 +465,24 @@ Action=CDeactivateAction
 {
 Target Name=Relican started giving quests already to player
 }
-Action=CActivateQuestStateAction
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=K7MQ3XRB
+}
+Else=CActivateQuestStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
 State=UFG3W5T9
+}
+Return failure if the If failes=0
 }
 Action=CConditionalAction
 {

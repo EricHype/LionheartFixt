@@ -1474,6 +1474,24 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.2 - the sceptre nothing could fill
+
+One item file, two requirement cans, one map relay and Relican's tree. **SB1 is the row that proves
+the release and the one the report is about.** It needs a game that reaches DaVinci's secret chamber
+*before* taking the Dark Wielder initiation, which is the ordinary way round for a player who is not
+following a walkthrough.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SB1 | **The row that proves the release.** Loot the shell from DaVinci's secret chamber *before* Relican names the Sceptre errand. Then take the initiation from him | - | The journal entry reads the lifeless-sceptre state, not "recover the fabled Sceptre". Talk to him again: *"I have the Sceptre, but it is a dead thing"* is offered -> `47 Fixt Relican Binds Shell`, the spirited sceptre arrives and the quest completes. Before this release no reply was offered at all and the initiation stopped here |
+| SB2 | **Regression.** The normal order: take the errand, then loot the chamber | - | Exactly as 0.39.0 left it. The journal advances on pickup and the same bind reply is offered |
+| SB3 | **Equip the shell** | - | It goes in the weapon slot and swings as a club, 1-3 crushing plus the one-handed ladder. Before this it could not be equipped at all, which is the second half of the report |
+| SB4 | Character sheet, shell equipped | - | **No** skill bonuses and **no** Karma change. Both belong to the spirited sceptre only |
+| SB5 | **Regression.** The Enchanter route: ally him, take the ring, then offer him the shell | - | `75 Fixt Sceptre`. The shell is removed, the spirited sceptre arrives, and the journal advances to deliver it to Relican |
+| SB6 | **Regression.** Equip the spirited sceptre | - | 2-8 crushing, +2 to each of the eight Thought and Tribal branches, and the Karma penalty, unchanged |
+| SB7 | **A save that is already stuck** -- shell in the pack, Relican offering nothing. Install and load it | - | The bind reply appears. The shell itself stays inert in that save, because a save serializes the item's own plugin list; binding it replaces the item |
+| SB8 | The workaround, for a stuck save on an older build | - | Drop the sceptre and pick it up again while the errand is active. The journal advances, which is what opens the bind reply |
+
 ## 0.79.1 - four trinkets that never scaled
 
 Four addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated.
