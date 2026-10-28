@@ -479,6 +479,24 @@ about 1.3% on a 255 gold weapon. Move the Output Maximum in step.
 
 ## Method rules
 
+**A number measured against the wrong precedent is as wrong as a form without one.** The rule above
+catches an invented *shape*; this one catches an invented *value*. 0.78.0 compared the two poison
+suffixes against instant weapon suffixes, found them paying a fifth as much a second, and raised
+them four and a half times. The game has its own damage-over-time scale -- three shared canned
+expressions at 0.20, 0.40 and 0.60 damage a second that every monster poison resolves through, with
+the weapon suffixes between 0.35 and 1.20 -- so nine data points were available the whole time and
+the release shipped outside all of them. Before setting a number, find the family the thing belongs
+to and price it against that.
+
+**Waiting for a file to appear is not waiting for a job to finish, and a green log is not a deployed
+build.** An `until [ -f "$zip" ]` loop fired the moment the dist build created the archive, while it
+was still being written; the install read a half-written zip, died with `BadZipFile`, and the
+playtest kit then rebuilt `data.dat` over the *previous* release. The combined log still ended
+"Built data.dat with 2 mod(s) enabled", which reads as success, and the game was left running the
+old version with kit items cut for the new one. Wait on the process, not the path, and confirm a
+deploy by reading the installed `mod.json` version and the bytes in `data.dat` -- never the
+installer's own output.
+
 **Reverting a whole configuration hides which part mattered.** Chasing a build that had worked, this
 release restored every difference at once and put a solved defect back, then spent another round
 rediscovering it. Revert the change that is implicated, not the ones that merely changed alongside it.
