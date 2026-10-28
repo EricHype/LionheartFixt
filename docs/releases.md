@@ -140,7 +140,64 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.78.1 - the scale the game already had
+
+**Supersedes 0.78.0.** Its arithmetic held and its yardstick did not. Raised by a player asking the obvious question: aren't there already damage-over-time effects on other weapons, and how is this materially different?
+
+### There are, and I had not counted them
+
+0.78.0 said 23 resources use `CXRPGDamageOverTime`. That figure came from searching two file types. The real number is **111**: 77 monster cans, 15 enemy items, 10 character templates, 6 inventory additions, 2 spell projectiles and a skill.
+
+It also said `Double Biting` deals Acid "despite the name" and was therefore not in scope. **It is a damage-over-time** -- `CXRPGDamageOverTime`, Acid, 13.5 over 15 seconds. Its damage type was checked and its node type never was. `Ripping` really is instant, so that correction stands; the one made beside it did not.
+
+### The game has its own scale, in shared canned expressions
+
+| tier | total | duration | per second |
+|---|---|---|---|
+| Weak poison / disease | 6 | 30s | **0.20** |
+| Medium | 24 | 60s | **0.40** |
+| Strong | 54 | 90s | **0.60** |
+
+Every monster poison and disease in the game resolves through these -- wasps, wererats, desert beasts, snakebreed spit, zombie chunks. Set the weapon suffixes beside them and the whole design space appears:
+
+| | per second |
+|---|---|
+| Weak tier | 0.20 |
+| Venom, vanilla | 0.35 |
+| Medium tier | 0.40 |
+| Strong tier | 0.60 |
+| Double Biting | 0.90 |
+| Snakebiting, vanilla | 1.20 |
+| **Snakebiting, 0.78.0** | **5.40** |
+| **Venom, 0.78.0** | **5.45** |
+
+**0.20 to 1.20, nine independent points in a narrow band.** That is a design, not an oversight: the designers price a damage-over-time at roughly a fifth of instant damage, which makes sense for an effect that needs no follow-up swing and spreads across every enemy touched. 0.78.0 put both poisons at **four and a half times the highest figure anywhere in the game**.
+
+### The state before 0.78.0 was already right
+
+After 0.77.0 rewired Venom's chance and damage, and 0.77.3 brought both value ceilings into reach, each sat at exactly **1.20 a second** -- matched to each other, at the top of the band, above Double Biting's 0.90. This restores that.
+
+| | 0.78.0 | 0.78.1 |
+|---|---|---|
+| **Snakebiting** | 108 over 20s, 5.40/s | **24 over 20s, 1.20/s** |
+| **Venom** | 109 over 10s, 5.45/s | **24 over 10s, 1.20/s** |
+
+Snakebiting's per-tick ceiling goes back to **6** and Venom's per-tick roll back to **4-20**. Snakebiting now differs from vanilla in exactly one field, its value ceiling.
+
+### Kept, because each was a real defect or a real finding
+
+- **0.77.3's value ceilings at 7,000.** 10,000 and 10,500 are reached by no melee weapon in any save, so neither ever delivered its stated maximum. That defect is unrelated to magnitude.
+- **Venom's chance reaching 50%.** 0.77.0 set that ceiling and the unreachable value band meant the game could only ever roll 43%.
+- **Venom's damage scaling with its band at all.** In vanilla the band ran entirely into the chance while the damage stayed a flat 1-6, which is why vanilla Venom sits at 0.35 against Snakebiting's 1.20. Fixing that is what brings it to parity.
+- **The refresh mechanic**, decompiled, and everything that followed from it.
+
+### What this says about the method
+
+The reasoning in 0.78.0 was sound in isolation and wrong in context. It measured a damage-over-time against instant suffixes, concluded it was underpaid five times over, and never asked what the game's other damage-over-time effects pay. Nine data points were available the whole time. The engine-notes rule says a form without vanilla precedent is wrong; the matching rule, learned here, is that **a number against the wrong precedent is wrong too** -- so find the family the thing actually belongs to before setting its value.
+
 ## 0.78.0 - what a poison is actually worth
+
+> **SUPERSEDED BY 0.78.1 -- do not install.** Its magnitudes were set against instant weapon suffixes, which is the wrong yardstick: the game has a damage-over-time scale of its own running from 0.20 to 1.20 damage a second, and 0.78.0 put both poisons at about **5.4**. The decompiled mechanic below is sound and is kept; the numbers are reverted. See 0.78.1.
 
 0.77.3 left the two damage-over-time suffixes untuned and recorded why: setting a number for either needed to know whether a re-applied effect stacks or refreshes, and the resource format cannot say. That has since been settled in the binary, and the answer changes what they should pay.
 
@@ -212,7 +269,7 @@ The working figures put Venom's current per-tick average at 16 and proposed 21-8
 
 0.77.3's notes, and an engine note written just after it, called `Ripping` the third damage-over-time suffix and said it was in the same holding pattern. **It is not one.** `Dragon Teeth` has no `CXRPGDamageOverTime` node at all; it deals instant slashing damage through a `CRandom`, which is why its 4/12/20 band reads as per-swing damage and always has. There are **two** of these suffixes, not three. Both documents are corrected, and `Ripping` needs nothing.
 
-`Double Biting` also deals **Acid** despite its name, and is likewise unaffected.
+~~`Double Biting` also deals **Acid** despite its name, and is likewise unaffected.~~ **Wrong, corrected in 0.78.1:** it deals Acid, but it *is* a damage-over-time -- `CXRPGDamageOverTime`, 13.5 over 15 seconds, 0.90 a second. Its damage type was checked and its node type was not.
 
 ## 0.77.3 - the two poison suffixes, and the question that stops short
 
@@ -266,7 +323,7 @@ The reachability fix needs none of it: an addition that cannot reach its own sta
 
 **`Venom` is still the lowest in the family at 7.20 blended**, against the ungated four at 10.89 to 11.00 and Pestilence at 9.77. That is not a claim it is correctly priced; it is a claim that the next step needs the stacking answer first. **Correction, from 0.78.0:** this section originally added that the same applied to `Ripping`. It does not. `Ripping` has no `CXRPGDamageOverTime` node and deals instant slashing damage through a `CRandom`, so there are two of these suffixes and not three.
 
-Worth recording from the same pass: **`Double Biting` deals Acid despite the name**, so nothing in the poison work touches it.
+Worth recording from the same pass: `Double Biting` deals Acid despite the name. **Corrected in 0.78.1:** that is true of the type but it is still a damage-over-time, 0.90 a second, and belongs in any comparison of these.
 
 ## 0.77.2 - Pestilence is conditional, not weak
 
@@ -332,7 +389,7 @@ The median weapon is identical to vanilla to the digit, which is what the slope 
 
 **Poison is the obvious next question and is deliberately not answered here.** It is the same shape as disease -- 40% immune, 2% partial, 58% full -- and **two** suffixes in this family deal it: `Venom` and `Snakebiting`. So the same reframing applies to both: they are conditional weapons with an immune 40%, not weak ones, and the numbers they were given were set against a blended average that describes no actual enemy. `Venom` was rebuilt in 0.77.0 for a different defect, its band running entirely into the chance, and `Snakebiting` was checked and left alone there. Both now want revisiting on these grounds, and that is a change of its own rather than something to sweep into a patch about Pestilence.
 
-Worth recording while the table is to hand: `Double Biting` deals **Acid** despite the name, so it is unaffected by any of this.
+Worth recording while the table is to hand: `Double Biting` deals **Acid** despite the name. **Corrected in 0.78.1:** it is nonetheless a damage-over-time at 0.90 a second, so it is part of this family even though no change here touches it.
 
 ## 0.77.1 - the ceiling nobody reaches
 

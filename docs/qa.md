@@ -1474,6 +1474,27 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.78.1 - the scale the game already had
+
+Two addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated.
+
+This release **reverts** 0.78.0's numbers, so the thing to check is that the poisons are back to vanilla's rate while the three genuine fixes underneath them survive.
+
+**If you tested 0.78.0 with the kit's test swords, those were pinned at its numbers.** Re-take them from the menu after this install; they now pin 0.78.1's.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SC1 | A **dear** melee weapon of Snakebiting, 7,000 gold or more | - | Back to "an extra **6** points of damage every 5 seconds for 20 seconds", not 27 |
+| SC2 | A dear weapon of **Venom** | - | Per-tick back in the **4 to 20** range, not 18-91. Chance still reads **50%** |
+| SC3 | **The fix that must survive.** Check that dear Venom weapon's chance over about thirty swings | - | About **half** of landed hits show an `infected` line. Before 0.77.3 the game could only ever roll 43%, because the band was read against a weapon value nothing reaches |
+| SC4 | **The other fix that must survive.** Confirm both reach their stated maximum on a 7,000 gold weapon | - | They do. Their value ceilings stay at 7,000; vanilla's 10,000 and 10,500 were reached by no melee weapon in any save |
+| SC5 | Compare Snakebiting against a weapon of **Double Biting** on similar weapons | - | Snakebiting a little stronger: 1.20 a second against 0.90. Both are damage-over-time, which earlier notes got wrong about Double Biting |
+| SC6 | Compare either against a **monster's** poison -- a wasp, a desert beast, a snakebreed's spit | - | The same order of magnitude. Monster poisons run 0.20 to 0.60 a second through the game's shared tiers; a weapon suffix sitting at 1.20 is the top of the scale, not a different class |
+| SC7 | **Still the open question.** On a **100+ hit point** target, hit repeatedly and watch the size of each health-bar drop | - | The drops do **not** grow. Re-applying refreshes, it does not stack. Untested in play so far: every wolf died to the first application |
+| SC8 | **Regression.** `Pestilence`, `Carnage`, `Ripping` | - | Unchanged. Ripping is instant slashing and is not part of this family |
+| SC9 | **Regression.** The four from 0.77.1 and Pestilence from 0.77.2 | - | Unchanged: ceilings 7,000, amounts 19/24/22/21 and 2/7/26 |
+| SC10 | **Regression.** A **cheap** weapon of either poison | - | Unchanged from vanilla. Only the value ceiling and, for Venom, the 0.77.0 damage rewire differ from vanilla at all |
+
 ## 0.78.0 - what a poison is actually worth
 
 Two addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated, so look at fresh drops and fresh merchant stock.
@@ -1517,7 +1538,7 @@ Two things to hold on to, because both make correct behaviour look like a bug:
 | DT9 | Hit an **undead** with either | - | No poison at all. 40% of what the game spawns is immune to poison, undead among them |
 | DT10 | **Regression, and the correction this release makes.** A weapon of **Ripping** | - | Unchanged at 4/12/20, and it is **instant slashing damage, not a poison or a damage-over-time**. Earlier notes called it one; it never was |
 | DT11 | **Regression.** `Pestilence`, and the four from 0.77.1 | - | Unchanged: Pestilence 2/7/26, the four at ceilings 7,000 with amounts 19/24/22/21 |
-| DT12 | **Regression.** `Carnage` and `Double Biting` | - | Unchanged. Double Biting deals Acid despite the name and was never in scope |
+| DT12 | **Regression.** `Carnage` and `Double Biting` | - | Both unchanged. Double Biting deals Acid and **is** a damage-over-time, 0.90 a second -- earlier rows called it instant, which was wrong; it is simply not altered here |
 | DT13 | **Worth timing if you can.** Count how many swings you land in ten seconds | - | Nothing to pass or fail. Every number in this release assumes a two-second swing and scales inversely with it; if it is really one second they are all half what they should be |
 
 ## 0.77.3 - the two poison suffixes, and the question that stops short
@@ -1539,7 +1560,7 @@ Poison is **all or nothing** like disease: 58% of spawns take the full hit, 2% p
 | PO7 | **Regression.** A weapon of **Pestilence** | - | Unchanged from 0.77.2: 2/7/26, value ceiling 7,000 |
 | PO8 | **Regression.** The four from 0.77.1 | - | Unchanged: ceilings 7,000, amounts 19/24/22/21 |
 | PO9 | **Regression.** The three gated ones from 0.77.0 | - | Unchanged: 5/14/30, 6/12/26, 6/14/25 |
-| PO10 | **Regression.** `Carnage`, `Ripping` and `Double Biting` | - | All unchanged. Carnage and Ripping are byte-identical to vanilla; Double Biting deals Acid despite its name and was never in scope |
+| PO10 | **Regression.** `Carnage`, `Ripping` and `Double Biting` | - | All unchanged. Carnage and Ripping are byte-identical to vanilla; Double Biting is itself a damage-over-time at 0.90 a second and was never in scope |
 | PO11 | **Open question, not a test.** If you notice whether hitting the same enemy repeatedly makes the poison **stack** or just restart its timer, that is the one fact blocking any further work on these two | - | Nothing to pass or fail. The resource format has no stacking field, so it cannot be read statically, and the answer decides whether Snakebiting is the best or the worst paid suffix in the family |
 
 ## 0.77.2 - Pestilence is conditional, not weak

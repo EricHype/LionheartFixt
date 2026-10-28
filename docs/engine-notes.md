@@ -401,6 +401,29 @@ of 20, and its description says "every 5 seconds for 20 seconds", so the 4 is th
 `poisonbonus` is the per-tick value. `Gas Cloud` is `poisonbonus x 2` over a duration that is itself
 an expression. Do not read a per-swing figure off the description or off the amount alone.
 
+**The game prices a damage-over-time at roughly a fifth of instant damage, and it has a scale for
+it.** Three shared canned expressions define the tiers, and every monster poison and disease in the
+game resolves through them -- 77 monster cans and 15 enemy items:
+
+| tier | total | duration | per second |
+|---|---|---|---|
+| Weak poison / disease | 6 | 30s | 0.20 |
+| Medium | 24 | 60s | 0.40 |
+| Strong | 54 | 90s | 0.60 |
+
+The weapon suffixes sit in the same band: `Venom` 0.35 in vanilla, `Double Biting` 0.90,
+`Snakebiting` 1.20. So the whole design space is **0.20 to 1.20 damage a second**, nine independent
+points, against instant suffixes paying 11 to 13.5 on every swing. **Before setting any
+over-time number, compare it against this table and not against an instant suffix.** 0.78.0 did the
+latter, concluded the two poisons were underpaid five times over, and shipped them at 5.4 a second
+before being reverted in 0.78.1.
+
+`CXRPGDamageOverTime` appears in **111** resources: 77 monster cans, 15 enemy items, 10 character
+templates, 6 inventory additions, 2 spell projectiles and a skill. A count taken over
+`.InventoryAddition` and `.InventoryItem` alone gives 23 and misses the precedent entirely.
+**`Double Biting` is one of them** despite dealing Acid; `Ripping` is not, and deals instant
+slashing. Check the node type, not the damage type.
+
 **A pending damage-over-time is runtime-only and is not saved.** The character field
 `Damage Application Period`, and the `Damages=Array` beside it that holds the pending entries,
 appear in `.can` templates but **zero times across all 71 save files**. So an effect in flight
