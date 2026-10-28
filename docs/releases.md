@@ -140,6 +140,55 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.5 - "Still here. Good. Sit."
+
+Found in play, one release after the warden became reachable at all: take the drain, come up by the
+stairs, walk back across the room and click him. He opens `3 still here`, which reads **"Still here.
+Good. Sit."** -- addressed to a man he believes is behind bars, said to his face in the middle of his
+own guard room.
+
+### The guard was on the timers and not on him
+
+`pen setup` guards all three of its timed beats on the same four flags -- `escorted`,
+`Fixt slipped out`, `escaped loud`, `drain used` -- so the glance at 45 seconds, the conversation at
+75 and the escort at 100 all correctly stop once you are out. **His interaction was never given the
+same guard**, so the one way to reach him after an escape is the one path that was never considered.
+
+It had been unreachable before now for a different reason: until 0.79.3 he stood inside the wall, and
+before 0.71.10 he was 298 units away with a reach of 110. Making him clickable is what exposed this.
+
+### What he does about it was already decided
+
+The pen's design, as the [0.71.9 routes table](https://github.com/EricHype/LionheartFixt/issues/11)
+states it, is that a quiet escape leaves the abbey calm and **being caught** makes it hostile:
+
+| route | the abbey afterwards |
+|---|---|
+| the drain, or lockpick then Sneak 30 | calm |
+| forcing the pins, or being caught picking the lock | hostile |
+
+The drain is quiet because it passes under his room and he never sees you. Walking up to him
+afterwards is being seen. So he catches you, and the relay for that already exists: `handler fights`,
+which his damaged script fires -- he draws, `Stair Assassin` draws, the stair reinforcements spawn and
+`Fixt loud escape heard` tells the floors above.
+
+**Nothing new is written and no new entity is added.** Clicking him after `drain used` or
+`Fixt slipped out` fires that relay; any other time he opens `3 still here` exactly as before. It is
+guarded on the two quiet escapes only, since `escaped loud` already has him hostile and `escorted`
+takes the player off the map.
+
+### The cost, stated plainly
+
+A player who escapes quietly and then clicks the warden out of curiosity loses the calm abbey. That
+is the intended shape of it -- the consequence follows from presenting yourself to the man whose
+orders were to keep you in a cell, not from the route you took -- but it is a real cost and it is
+worth knowing rather than discovering.
+
+### Which saves this reaches
+
+**None already inside the pen.** It is map-side, and the engine bakes a map's entity list into the
+save on first entry.
+
 ## 0.79.4 - the garrison was never listening
 
 A player reported that a snakebreed attacked them in the middle of the sentry's parley outside the

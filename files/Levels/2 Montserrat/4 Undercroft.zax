@@ -2542,12 +2542,38 @@ CLayerSaveData
 									Triggered By Name=
 									Interaction Description=
 									Interaction Type=Interaction Specifiers/GetCloseThenTalk
-									Action=CDisplayDialogTreeAction
+									Action=CIfAction
 									{
-										Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
-										Node ID=3 still here
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										If=COrAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=drain used
+													Desired Minimum Count=1
+												}
+												Action=CCheckExistenceAction
+												{
+													Name To Check For=Fixt slipped out
+													Desired Minimum Count=1
+												}
+											}
+											Early Exit=0
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=handler fights
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
+											Node ID=3 still here
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Return failure if the If failes=0
 									}
 									X Radius=320
 									Attacker Range Modifier=0

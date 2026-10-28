@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.5 - "Still here. Good. Sit."
+
+One map. **Every row needs a character who has not yet entered the Undercroft.** WD1 is the reported
+row; WD3 and WD4 are the ones that would catch an over-broad guard.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WD1 | **The reported row.** Take the drain out of the cell, come up by the stairs, walk back to the warden and click him | - | He draws on you. The stair assassin draws, the reinforcements spawn and the floors above are alerted. Before this he said *"Still here. Good. Sit."* to your face |
+| WD2 | Pick the lock, pass the Sneak roll, then come back and click him | - | The same. `Fixt slipped out` is the other quiet escape and is guarded identically |
+| WD3 | **Regression, and the row that matters.** Click him while you are still in the cell | - | `3 still here`, unchanged, with all five replies including Speech 40 and Charisma 7. **If he draws on a prisoner who is still behind bars, the guard is inverted** |
+| WD4 | **Regression.** Do nothing at all and let the three beats run | - | Glance at 45s, conversation at 75s, escort at 100s. None of them touched |
+| WD5 | **Regression.** Force the pins, or get caught picking the lock | - | Hostile as before, by the same relay. Nothing should fire twice or spawn reinforcements twice |
+| WD6 | Escape by the drain and go straight up the stairs without approaching him | - | The abbey is still calm. The guard fires on the click, not on the escape |
+
 ## 0.79.4 - the garrison was never listening
 
 Three maps, no dialogue. **Every row needs a character who has never entered the Grove, Level 1 or
