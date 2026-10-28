@@ -1474,6 +1474,27 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.1 - four trinkets that never scaled
+
+Four addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated.
+
+**The common case is deliberately unchanged.** A plain Belt of Voodoo still gives exactly 1 point per Tribal branch, because today's value is the floor *and* the middle. The extra point only appears when the item carries another enchantment besides this one, which is what pushes its value toward the ceiling.
+
+**VD3 is the row that proves the release. VD5 is the one that would catch a real break.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| VD1 | Find a plain **Belt of Voodoo** and read the description | - | It names the figure instead of a hardcoded "1 point": "enhances all Tribal spell skills by N". Same for the necklace, the ring and the helm |
+| VD2 | **Regression, and the common case.** Check that plain belt on the character sheet | - | Still exactly **+1** to each of the four Tribal branches. Nothing should have changed for a single-enchantment belt |
+| VD3 | **The row that proves the release.** Find a Belt or Necklace of Voodoo that *also* carries another enchantment, so it is worth more | - | **1.5 to 2** per Tribal branch instead of a flat 1. Before this release no Voodoo piece ever gave more than 1, however rich the item |
+| VD4 | A **Ring of Divine Attunement** on a richer ring, and a **Helm of the Sylvant** likewise | - | 2 to 3 per Divine branch, and 4 to 5 melee, instead of flat 2 and flat 4 |
+| VD5 | **The row that would catch a real break.** Wear the Belt **and** the Necklace of Voodoo together | - | The set bonus still fires: **one extra skill point per level up**, counted once for the pair. `Number of Voodoo Items` was deliberately left a literal 1 on each piece; if it had been scaled, one belt would claim to be two items and the set would misfire |
+| VD6 | **Regression.** `the Sylvant`'s Armor Class and Unarmed bonuses | - | Unchanged. Both are race-gated `CIfExpression` modifiers and only the two plain melee skills were scaled |
+| VD7 | **Regression.** Armour of **"Magery"** (`Mana Stream`) | - | Untouched, and that is intentional: it adds +0.4 to a mana-rate attribute whose base is 0.0334, so it already multiplies regeneration about thirteenfold |
+| VD8 | **Regression.** Everything from 0.79.0 | - | `of the Mage` still scales its skill half 1 to 5, and both it and `Deepest Winter` still top out at 9,000 |
+| VD9 | **Regression.** `Feral Power`, `Wound Constriction` | - | Unchanged. Feral Power's value band is inert, so banding it would have been a no-op |
+| VD10 | Check prices | - | No item should cost differently. Each addition's own `Value` field was left exactly as it was; only the band it is read against changed |
+
 ## 0.79.0 - the mage's armour, and two ceilings in a new slot
 
 Two addition files, no map and no dialogue, so **no new character is needed**. Both are armour additions, so they reach armour as it is generated: look at fresh drops and fresh merchant stock, not something already worn.

@@ -140,6 +140,44 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.1 - four trinkets that never scaled
+
+The flat conversions 0.79.0 deferred, from the same Laz Sundays post on armour and trinkets. Five were listed there; **four** are done and the fifth turned out not to need it.
+
+Under the rule the maintainer set for 0.75.3 and which shipped ten additions: **integers only, today's value becomes the floor and the middle, and the ceiling is one step above.** Nothing is ever worse than vanilla and the common case is identical.
+
+| addition | amount | value band | scaled |
+|---|---|---|---|
+| **Voodoo** (belt) | 0/0/0 to **1/1/2** | 950/1900/3800 | 4 Tribal branches |
+| **Voodoo** (necklace) | 0/0/0 to **1/1/2** | 425/850/1700 | 4 Tribal branches |
+| **Divine Attunement** | 0/0/0 to **2/2/3** | 825/1650/3300 | 4 Divine branches |
+| **the Sylvant** | 0/0/0 to **4/4/5** | 1100/2200/4400 | One-Handed and Two-Handed Melee |
+
+Checked at **8,000 price points**: nothing falls below vanilla's flat literal anywhere.
+
+### Why the value band is half, own, double
+
+0.79.0 turned up the fact this depends on: **a flat addition declares its own price contribution in `Value` and pins its band to exactly that figure**, which is why these four have never travelled. Each is accepted by exactly one base item, so a single addition lands the item at about its own contribution and only a second addition pushes it higher.
+
+So the band is set at half, own, double. The floor and the middle both pay today's number, and the ceiling pays one more, reached when the item carries another enchantment besides this one. Each addition's own `Value` is left exactly as it was, so no item's price moves.
+
+The rule keeps fractions, which was its stated appeal in 0.75.3: a Belt of Voodoo on a richer belt lands on 1.5 rather than jumping.
+
+### Two kinds of modifier deliberately left as literals
+
+- **`Number of Voodoo Items`** on both Voodoo pieces. It is a set-piece **counter** -- the belt and the necklace each contribute 1 so the pair can detect itself and grant its extra skill point per level. Scaling it would make one belt claim to be two items and break the set bonus outright.
+- **`the Sylvant`'s Armor Class and Unarmed modifiers**, which are already `CIfExpression` and race-gated. Only its two plain melee skills scale.
+
+Every description's hardcoded number becomes the interpolated token, as 0.79.0 did for `of the Mage`, so the text cannot drift from the number again.
+
+### The fifth was dropped, and it is the interesting one
+
+**"Magery" is not weak.** It is `Mana Stream`'s display name, and its one modifier adds **+0.4** to `Mana Variable Rate within Replenishment` -- an attribute whose base is **0.0334**. So it multiplies mana regeneration about **thirteenfold**, and its flat band is protecting the balance rather than hurting it. The post asks for "an added Mana capacity and a faster regen"; the regen half is already one of the largest single effects in the game.
+
+That is the third item in this run whose premise did not survive measurement, after `Deepest Winter` already exceeding what was asked for it and `Feral Power`'s value band being inert.
+
+Worth recording for whoever revisits it: `Mana Stream` is the one addition in the game that declares `Value=0` like a banded addition while carrying a flat band, so it is half-converted in vanilla. Nothing reads its amount, so the band is inert in the same way `Feral Power`'s is.
+
 ## 0.79.0 - the mage's armour, and two ceilings in a new slot
 
 The first work on armour. From Laz Sundays' third analysis post, the one on armour and trinkets, which had not been read properly until now -- the five items worked through in 0.77 and 0.78 all came from a single earlier post.

@@ -1,0 +1,177 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=$Instigator
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=4
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Helmets/Sylvant
+						Expression Name=meleebonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Fighting/OneHandedMelee
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Helmets/Sylvant
+						Expression Name=meleebonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Fighting/TwoHandedMelee
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CIfExpression
+					{
+						Condition=CIsRace
+						{
+							Acceptable Races=Array
+							{
+								Item Count=1
+								Acceptable Race=Races/Imbued
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=3
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=1
+						}
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CIfExpression
+					{
+						Condition=CIsRace
+						{
+							Acceptable Races=Array
+							{
+								Item Count=1
+								Acceptable Race=Races/Imbued
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=4
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=0
+						}
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Fighting/Unarmed
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride
+		{
+			Override Models=Array
+			{
+				Character Slot Types/!None=Models3D/!None/!None
+				Character Slot Types/Arm=Models3D/!None/!None
+				Character Slot Types/Arrow=Models3D/!None/!None
+				Character Slot Types/Body=Models3D/Enemies/Barcelona/Hired Goon Sword/Mail
+				Character Slot Types/Bolt=Models3D/!None/!None
+				Character Slot Types/Finger=Models3D/!None/!None
+				Character Slot Types/Foot=Models3D/!None/!None
+				Character Slot Types/Hand=Models3D/!None/!None
+				Character Slot Types/Head=Models3D/!None/!None
+				Character Slot Types/HotKey=Models3D/!None/!None
+				Character Slot Types/Neck=Models3D/!None/!None
+				Character Slot Types/Shield=Models3D/!None/!None
+				Character Slot Types/Waist=Models3D/!None/!None
+				Character Slot Types/Weapon=Models3D/!None/!None
+			}
+			Override Names=Array
+			{
+				Character Slot Types/!None=
+				Character Slot Types/Arm=
+				Character Slot Types/Arrow=
+				Character Slot Types/Body=
+				Character Slot Types/Bolt=
+				Character Slot Types/Finger=
+				Character Slot Types/Foot=
+				Character Slot Types/Hand=
+				Character Slot Types/Head=Helmet1
+				Character Slot Types/HotKey=
+				Character Slot Types/Neck=
+				Character Slot Types/Shield=
+				Character Slot Types/Waist=
+				Character Slot Types/Weapon=
+			}
+			Override Active=0
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2200
+	}
+	Is Magic=1
+	Encumbrance=3
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=the Sylvant
+	Description=Rare helms such as this grant the wearer %i[meleebonus] skill points in One-Handed and Two-Handed Melee skills and is enchanted to grant an additional 1 point to Armor Class. If the wearer is a Sylvant, it gives an additional 4 skill points in their Unarmed skill and adds an additional 3 points to Armor Class.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Armor/Helmet1 Mod
+	Minimum Value=1100
+	Minimum Addition Ammount=4
+	Inbetween Value=2200
+	Inbetween Addition Ammount=4
+	Maximum Value=4400
+	Maximum Addition Ammount=5
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=meleebonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Helmet Additions
+	Addition Rarity=Inventory Item Rarity/5 Unique
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}
