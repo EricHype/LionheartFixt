@@ -452,6 +452,34 @@ templates, 6 inventory additions, 2 spell projectiles and a skill. A count taken
 **`Double Biting` is one of them** despite dealing Acid; `Ripping` is not, and deals instant
 slashing. Check the node type, not the damage type.
 
+**Healing, in hit points a second.** `HealingRate = 1 + EN/10 + Level/5`, and the engine multiplies
+it by **0.1** to get hit points a second -- the constant at 0x6b9e30. Hit points themselves are `15
++ 2*EN + (EN/3 + 3) * (Level - 1 + <canned>)`. So natural regeneration is small and the pool grows
+faster than the rate does:
+
+| level | EN | HP | HealingRate | HP a second |
+|---|---|---|---|---|
+| 5 | 6 | 47 | 2.60 | 0.260 |
+| 10 | 7 | 77 | 3.70 | 0.370 |
+| 20 | 8 | 139 | 5.80 | 0.580 |
+| 30 | 10 | 219 | 8.00 | 0.800 |
+
+That is the baseline any healing effect has to be judged against, and it is why a flat heal looks
+generous early and thin later. Balance a regeneration effect against the rate at the level it is
+worn, never at level 1.
+
+**A damage-triggered action fires on EVERY damage event, and they accumulate.**
+`CAITriggerWhenDamaged`'s handler is twelve lines at 0x004b7820: if an action is configured, run it.
+There is **no fired-flag, no cooldown and no re-arm check**, so each hit schedules its own copy.
+`Wound Constriction` is the only file in the game that uses it -- a 4 second delay then a heal -- so
+in sustained combat its delayed heals stack and it returns roughly 2.6 times the natural rate when
+the wearer is hit every two seconds.
+
+**This is the opposite of a damage-over-time, which is worth holding together.** The over-time apply
+path searches the target's pending list for an entry of the same damage type and **overwrites** it;
+the damage trigger has no such check and simply fires again. So re-application makes a poison no
+stronger and a triggered heal twice as strong. Do not assume one from the other.
+
 **A pending damage-over-time is runtime-only and is not saved.** The character field
 `Damage Application Period`, and the `Damages=Array` beside it that holds the pending entries,
 appear in `.can` templates but **zero times across all 71 save files**. So an effect in flight
