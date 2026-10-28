@@ -313,13 +313,13 @@ CLayerSaveData
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed, Sahar
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Sahar
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed, Sahar
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Sahar
 								Categories To Remove=Enemy
 							}
 							Action=CDisplayDialogBalloonAction
@@ -419,13 +419,13 @@ CLayerSaveData
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 								Categories To Remove=Enemy
 							}
 							Action=CSetPatrolAIAction
@@ -454,7 +454,7 @@ CLayerSaveData
 									}
 									Need to Call Start=1
 								}
-								Target=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Target=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 							}
 						}
 					}
@@ -515,7 +515,7 @@ CLayerSaveData
 									}
 									Action=CSetTargetTypeAction
 									{
-										Entity Name=Snakebreed
+										Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 										Name To Target=
 										Valid Targets=
 									}
@@ -690,7 +690,7 @@ CLayerSaveData
 							}
 							Action=CGoToCombatAction
 							{
-								Enemy Name=Snakebreed
+								Enemy Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 							}
 							Action=CGoToCombatAction
 							{
@@ -1985,7 +1985,7 @@ CLayerSaveData
 							}
 							Action=CGoToCombatAction
 							{
-								Enemy Name=Snakebreed
+								Enemy Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 							}
 							Action=CGoToCombatAction
 							{
@@ -2238,7 +2238,7 @@ CLayerSaveData
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Name To Target=
 								Valid Targets=
 							}

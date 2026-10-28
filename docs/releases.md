@@ -140,6 +140,79 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.4 - the garrison was never listening
+
+A player reported that a snakebreed attacked them in the middle of the sentry's parley outside the
+abbey. It is not a placement problem or a missing pacifier. **Three quarters of Sahar's garrison has
+never been addressable by name**, in any release since the route was built, and that one report
+exposes it.
+
+### A spawn is called what its can calls it, not what its file is called
+
+A generator with a blank `New Name` leaves the spawn carrying its can's `User Assigned Name`. The
+reporter's save settles it: **nine** entities called `Assassin` stand in the Grove while only
+**four** generators assign that name explicitly, so the other five took it from
+`Montserrat Assassin*.can`, each of which reads `User Assigned Name=Assassin`.
+
+The snakebreed cans do not name themselves after their files:
+
+| templates | what the spawn is actually called |
+|---|---|
+| Snakebreed, Tough, Super | **Snakebreed** |
+| Snakebreed Venom, Venom Tough, Venom Super | **Snakebreed Viper** |
+| Snakebreed Boss, Boss Tough, Boss Super | **Snakebreed Crusher** |
+| Snakebreed Summoner, Summoner Tough, Summoner Super | **Snakebreed Summoner** |
+
+Every list in the three Montserrat maps was written from the filenames. Checked against every can in
+the archive and every `New Name` the maps assign, **eleven** of the names they target cannot be borne
+by anything in the game: the three `Montserrat Assassin*`, `Snakebreed Super`, `Snakebreed Tough`,
+`Snakebreed Venom`, and the three `Snakebreed Boss*`.
+
+So of the seven snakebreed entries in the parley's pacifier, exactly **one** -- `Snakebreed` -- ever
+matched a creature. And `Snakebreed Summoner` appears in **no list in any of the three maps**, so the
+summoners were never addressed at all.
+
+### What that broke, which is most of the route
+
+The same lists do the pacifying, the routing and the re-aggro, so one spelling mistake runs through
+every stage of the peaceful path:
+
+| | what it was supposed to do | what it did |
+|---|---|---|
+| the parley | stand the garrison down while the sentry talks to you | stood down the plain family; Vipers, Crushers and Summoners kept attacking |
+| taking the ring | pacify the garrison | same |
+| `garrison routs` | walk every survivor off all three maps | walked off the plain family and left the rest standing |
+| `sentry draws` | put the garrison back into combat if you attack him | put back only the plain family |
+
+**That is almost certainly behind the shape of two reports on
+[issue #11](https://github.com/EricHype/LionheartFixt/issues/11)**: "the vast majority of them are
+not attackable" is exactly what a half-matching pacifier produces, and an abbey that still feels
+hostile after Sahar gives her word is what a half-matching rout leaves behind.
+
+### The repair
+
+Names only, 36 sites across the three maps. Where a value named a snakebreed family it now names the
+four that exist; where it named an assassin template it names `Assassin`; **every other name in every
+list is left exactly where it was**, so no list gains a target it was not already trying to hit.
+
+Several single-name pairs in the Grove's stand-down become the same list as their neighbours. That is
+idempotent -- setting a target type or removing a category twice does nothing -- and is preferred
+here to renumbering an action array.
+
+### A note on how this was nearly shipped broken
+
+The first pass used `(.*)$` under `re.MULTILINE`, which captures the trailing carriage return, and
+rebuilt each line without it. Three maps quietly became part LF, which every gate would have passed.
+They were restored from git and the rewrite now carries the carriage return explicitly, with an
+assertion on bare newlines in all three files. This is the rule in `engine-notes.md` about
+`read_text` destroying CRLF, arriving by a new route.
+
+### Which saves this reaches
+
+**None that have been inside those maps.** All three fixes are map-side, and the engine bakes a map's
+entity list into the save on first entry. A character already in the Grove keeps the broken lists.
+This wants a run from before Montserrat.
+
 ## 0.79.3 - the warden in the wall
 
 Two defects found by playing the Montserrat pen, which is the part of this project that has shipped

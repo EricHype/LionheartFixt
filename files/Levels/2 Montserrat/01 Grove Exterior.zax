@@ -354,13 +354,13 @@ CLayerSaveData
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 								Categories To Remove=Enemy
 							}
 							Action=CSetPatrolAIAction
@@ -389,7 +389,7 @@ CLayerSaveData
 									}
 									Need to Call Start=1
 								}
-								Target=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Super, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Montserrat Assassin, Montserrat Assassin Tough, Montserrat Assassin Super, Assassin, Grove Sentry, Handler, Stair Assassin
+								Target=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 							}
 						}
 					}
@@ -3551,101 +3551,101 @@ CLayerSaveData
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Montserrat Assassin
+								Entity Name=Assassin
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Montserrat Assassin
+								Target Name=Assassin
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Montserrat Assassin Tough
+								Entity Name=Assassin
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Montserrat Assassin Tough
+								Target Name=Assassin
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Montserrat Assassin Super
+								Entity Name=Assassin
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Montserrat Assassin Super
+								Target Name=Assassin
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed Super
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed Super
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed Tough
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed Tough
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed Boss
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed Boss
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed Boss Tough
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed Boss Tough
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
 							{
-								Entity Name=Snakebreed Boss Super
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Name To Target=
 								Valid Targets=
 							}
 							Action=CRemoveCategoryAction
 							{
-								Target Name=Snakebreed Boss Super
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 								Categories To Remove=Enemy
 							}
 							Action=CSetTargetTypeAction
@@ -3780,7 +3780,7 @@ CLayerSaveData
 							}
 							Action=CGoToCombatAction
 							{
-								Enemy Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Snakebreed Super
+								Enemy Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 							}
 							Action=CGoToCombatAction
 							{
@@ -3855,13 +3855,13 @@ CLayerSaveData
 								Item Count=8
 								Action=CSetTargetTypeAction
 								{
-									Entity Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Snakebreed Super
+									Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 									Name To Target=
 									Valid Targets=
 								}
 								Action=CRemoveCategoryAction
 								{
-									Target Name=Snakebreed, Snakebreed Venom, Snakebreed Tough, Snakebreed Boss, Snakebreed Boss Tough, Snakebreed Boss Super, Snakebreed Super
+									Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
 									Categories To Remove=Enemy
 								}
 								Action=CDeactivateAction

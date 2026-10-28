@@ -1474,6 +1474,23 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.4 - the garrison was never listening
+
+Three maps, no dialogue. **Every row needs a character who has never entered the Grove, Level 1 or
+Level 2**, because the engine bakes a map's entity list into the save on first entry. GR1 is the row
+the report came from; GR3 is the one that matters most, because it is the stage players have been
+reporting as broken since the route was built.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GR1 | **The reported row.** Fight to the gates, then let the sentry hail you and hold the conversation open | - | Nothing attacks you while you talk. Before this, any Viper, Crusher or Summoner still alive kept swinging, because the pacifier named six creatures that do not exist and one that does |
+| GR2 | Accept the invitation and watch the gate yard as you are taken | - | The whole garrison is standing down, not just the plain snakebreed |
+| GR3 | **The row that matters most.** Take Sahar's ring, then walk back out through Level 1 and the Grove | - | **Every** survivor has gone, on all three maps. Previously the plain family walked off and every Viper, Crusher and Summoner stayed where it was, which is what "the vast majority of them are not attackable" describes from the other side |
+| GR4 | **Regression.** Refuse the sentry, or attack him | - | The whole garrison comes back at you, including the Vipers and Crushers, and the three gate packs spawn. `sentry draws` had the same half-matching list |
+| GR5 | **Regression.** Kill Sahar instead of taking the ring | - | The death ending still empties all three maps. It uses the same lists, so it was also half-broken and should now be complete |
+| GR6 | **Regression.** The wounded assassin, and Brother Montgomerie | - | Unchanged. Neither is in any of these lists and neither was touched |
+| GR7 | Check that nothing in the abbey is pacified that should not be | - | The lists gained no new targets. Only the names that matched nothing were corrected, so the undead, the vodyanoi and the wolves in the Grove are exactly as before |
+
 ## 0.79.3 - the warden in the wall
 
 One map and one dialogue tree. **PN1 and PN4 are the rows the release is for.** The warden half
