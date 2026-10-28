@@ -1478,6 +1478,25 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 
 Two addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated, so look at fresh drops and fresh merchant stock.
 
+**Read this before running the rows -- it was learned from play and it changes how you test.**
+
+The combat log reports when a poison is **applied** but never how much it **does**. A hit that
+carries it reads `Antonio Gula infected Black Wolf (Poison Infection)`, or
+`hit Black Wolf for 15 (Poison Infection, 15 Slashing Damage)`. The 5-second applications that
+follow print **nothing**. Every `INFLICTED` number in the log belongs to something hitting
+*you*, not to your poison.
+
+So the per-application damage has to be read off the **target's health bar**, which drops in a
+step every 5 seconds with no swing from you.
+
+**Pick a target with enough hit points.** Wolves have 18 to 22, so one 27 application kills
+outright and there is nothing to count. Use something with 100 or more -- a wererat boss or a
+troll -- so it survives all four.
+
+**A poison kill shows as experience gained with no "kills" line.** That is its signature in
+the log, and it is how the first play test was confirmed: two wolves died that way after melee
+left them on 7 and 13 hit points.
+
 Two things to hold on to, because both make correct behaviour look like a bug:
 
 - **The poison does not stack.** Hitting the same enemy again replaces the pending poison, it does not add to it. That is the engine, confirmed by decompiling the apply path, and it is the whole reason for this release's numbers.
@@ -1489,11 +1508,11 @@ Two things to hold on to, because both make correct behaviour look like a bug:
 |---|---|---|---|
 | DT1 | Find or buy a **dear** melee weapon of Snakebiting, 7,000 gold or more, and read the tooltip | - | "an extra **27** points of damage every 5 seconds for 20 seconds", not 6 |
 | DT2 | A dear weapon of **Venom** | - | A per-tick figure in the **18 to 91** range, where it used to be 4 to 20. Chance still reads 50% |
-| DT3 | **The row that proves the release.** Hit something tanky with the dear Snakebiting weapon once, then stand back and watch for 20 seconds | - | Four ticks of about 27, roughly 108 damage total. If you see four ticks of 6, the band did not take |
-| DT4 | **The row that proves the mechanic.** Hit a tanky enemy repeatedly with it and watch the ticks | - | The ticks stay at about 27 and do **not** grow. Re-applying refreshes the timer, it does not pile up. If the ticks grow, the engine stacks after all and every number in this release is wrong |
-| DT5 | **The row most likely to look like a bug.** Kill something weak in two or three swings with a Venom or Snakebiting weapon | - | It takes **no poison damage**. The first tick is 5 seconds out. This is intended and is why the numbers are deliberately short of parity |
+| DT3 | **The row that proves the release.** Hit a **high-hit-point** enemy once with the Snakebiting sword, then stand back and watch its health bar for 20 seconds | - | **Four drops, about 5 seconds apart**, each roughly 27, totalling about 108. The log will not print the numbers, so read the bar. On a wolf this cannot be seen: 22 hit points die to the first one |
+| DT4 | **The row that proves the mechanic.** Hit that same high-hit-point enemy repeatedly and watch the **size of each health-bar drop** | - | The drops stay about the same and do **not** grow. Re-applying refreshes the timer, it does not pile up. If they grow, the engine stacks after all and every number in this release is wrong. Expect an `infected` line in the log on each hit -- that is the application, not the damage |
+| DT5 | **The row most likely to look like a bug.** Kill something weak in two or three swings | - | It dies to your melee alone and takes **no poison damage**, because the first application is 5 seconds out. Intended, and why the numbers are deliberately short of parity. You will still see the `infected` line on the hit |
 | DT6 | **Regression.** A **cheap** weapon of either | - | The same or slightly better, never worse. Per-tick rises at every price |
-| DT7 | **Regression.** Venom's chance | - | Still about half of swings on a dear weapon, 5% on a cheap one. The chance band is untouched at 5/25/50 |
+| DT7 | **Regression.** Venom's chance -- and the log measures this one exactly | - | Count `infected` lines against your landed hits: about **half** on a dear weapon, 1 in 20 on a cheap one. The chance band is untouched at 5/25/50 |
 | DT8 | **Regression.** Both durations | - | Snakebiting still 20 seconds, Venom still 10. Only the per-tick amount moved |
 | DT9 | Hit an **undead** with either | - | No poison at all. 40% of what the game spawns is immune to poison, undead among them |
 | DT10 | **Regression, and the correction this release makes.** A weapon of **Ripping** | - | Unchanged at 4/12/20, and it is **instant slashing damage, not a poison or a damage-over-time**. Earlier notes called it one; it never was |

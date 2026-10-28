@@ -401,6 +401,15 @@ of 20, and its description says "every 5 seconds for 20 seconds", so the 4 is th
 `poisonbonus` is the per-tick value. `Gas Cloud` is `poisonbonus x 2` over a duration that is itself
 an expression. Do not read a per-swing figure off the description or off the amount alone.
 
+**The combat log reports a damage-over-time being applied but never what it does.** The save's
+own `CGameEventLog` prints `<attacker> infected <defender> (Poison Infection)` on the hit, and
+`hit <defender> for 15 (Poison Infection, 15 Slashing Damage)` when a swing carries one, but
+the 5-second applications that follow print nothing at all. In a 150-entry log from a fight
+with two poison weapons, the only poison lines were the six applications, and every
+`INFLICTED` figure belonged to an enemy hitting the player. **A kill by a later application
+shows as experience gained with no "kills" line** -- that is the only trace it leaves. So any
+test of over-time damage has to read the target's health bar, and needs a target with enough
+hit points to survive it: wolves have 18 to 22 and die to a single 27 application.
 **A re-applied damage-over-time REFRESHES, it does not stack.** Settled in the binary rather than
 inferred: `FUN_004439d0` is the apply path, reached from the damage pipeline, and it walks the
 `CDamageCoordinator` damage array type-checking each element against `CXRPGDamageOverTime` through
