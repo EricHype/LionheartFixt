@@ -1474,6 +1474,24 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.8 - the garrison finally leaves
+
+Four maps and one tree. **Every row but RT2 needs a character who has not yet reached Montserrat.**
+RT1 is the row fourteen releases have been waiting for.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| RT1 | **The row the release is for.** Resolve Sahar either way -- her word or her death -- then watch the sanctum, and walk back out through Level 1 and the Grove | - | The garrison **walks off and is gone** on all three maps. Before this they were pacified and stayed exactly where they stood, which is what "the vast majority of them are not attackable" looks like from the inside |
+| RT2 | The same on the truce route specifically, which is dialogue-driven | - | Her `<Take the ring.>` reply now names the four creatures that exist instead of nine template filenames. This one row works on a save already in the sanctum |
+| RT3 | **The one thing here that was measured and not proven.** Watch the sanctum's own survivors in particular | - | They should reach `rout exit L2` and vanish. Its marker is the only one of the three with no spawn point near it, so **if they jam, say so** and the marker moves |
+| RT4 | **The jailer.** Talk to him in the cell, close the conversation with "Nothing." or Escape, then click him again | - | He walks back to his stool and **can be hailed again**, with the Speech-40 and Charisma-7 replies still on him. Before this he was unclickable forever from the first dismissal |
+| RT5 | **Then check Barcelona.** After doing RT4, go to the Tavern in the Port District | - | **One** Cortes, not two. Closing the jailer's conversation used to fire the Barcelona Cortes cloner |
+| RT6 | **The burned scene.** Fight in the front door, go down the prison stair before ever being captured, look around, leave, then surrender to the sentry | - | The cell block is empty on the early visit, and the **real scene still plays** when you are delivered: locked door, jailer, Brother Pau, the 45/75/100 beats. Before this the early visit spent the one-shot and the delivery woke you in an unlocked, empty cell |
+| RT7 | **The great door.** Escape the cell up the stair so Level 1 is first entered from below, then try the great door switch | - | It works and the exit polygon is there. Before this you were forced out through the sanctum |
+| RT8 | **Regression.** Attack the warden and let him fight | - | He is hostile, auto-targetable, and swings. His `Valid Targets` and `Enemy` category are now restored explicitly |
+| RT9 | **Regression, 0.79.7.** Kill Brother Pau | - | Karma drops by exactly 200. The array that holds that penalty had its count declared in the wrong place |
+| RT10 | **Montgomerie, which this release did not change.** Kill Sahar and wait | - | He comes out, says he will not last, names Brother Michel, unlocks the Plains on the world map and dies. **If he does not appear, say so** -- the files say the only reachable branch reveals him, and if that is wrong it is unfound |
+
 ## 0.79.7 - what the cellar costs you
 
 Two maps, no dialogue. **Both rows need a character who has not yet entered Level 2 or the

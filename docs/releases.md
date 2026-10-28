@@ -140,6 +140,129 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.8 - the garrison finally leaves
+
+Five releases in a row had repaired this act on single reports from play. This one comes out of a
+deliberate review of the undercroft and the three maps around it, read by five independent passes
+and then checked against the bytes. Ten defects were confirmed; four are fixed here, and the two
+that are decisions rather than defects are left for the maintainer.
+
+### The rout has never worked
+
+All three abbey maps send the garrison to an exit marker with a `CGoToAI` whose `Move Behavior` and
+`Facing Angle` are default-constructed **empty** blocks:
+
+```
+Move Behavior=CEntityBehaviorMoveToPos
+{
+}
+```
+
+Vanilla fills those **4,735 of 4,735** and **1,355 of 1,355** times. Empty, there is no
+`Do Path Finding` and no walk sequence, so the creatures head straight at the marker through
+interior geometry, never arrive, and never run the `Done action=CDeleteAction` that removes them.
+
+**The pacify works, which is exactly why nobody could see what was failing.** Two players described
+the symptom precisely and neither could have named the cause: *"the vast majority of them are not
+attackable"* and *"killing her doesn't make garrison disappear"*. The garrison was being stood down
+and then told to leave by a walk that could not complete. Fourteen releases, and the payoff of the
+whole peaceful route has never once played.
+
+The donor is this project's own `hall runner flees` in Level 1, which walks a named runner to a
+marker with both blocks filled and works. Worth recording, because a reviewer expected otherwise:
+its `Sequence=` is **empty**, so the fix copies what works rather than what sounded right.
+
+**Two of the three destinations are proven ground.** Level 1's `rout exit` is at (3456, 418), which
+is the exact position of the `From 01 Grove Exterior` spawn point, and the Grove's is 100 units from
+one; a spawn point is walkable by definition. `rout exit L2` at (4450, 2100) has no spawn point near
+it and is the one thing in this release that wants a playtest rather than a measurement.
+
+### Sahar's own tree still carried the old list
+
+0.79.4 corrected the names in the three maps and missed the fourth file. Her `<Take the ring.>`
+reply carries its own copy of the rout block, and nine of its fourteen names are character-template
+filenames that nothing can be called. `Sahar` is deliberately **not** added to it: she stays in her
+sanctum while her garrison leaves.
+
+### The jailer, three defects in one block
+
+`handler leaves` removes the warden's interaction specifier and gives him a walk back to his stool.
+Two things were wrong with it and one with what it leads to.
+
+| | |
+|---|---|
+| nothing re-added the specifier | from the first time you closed his conversation he could never be spoken to again, which silently deleted the Speech-40 and Charisma-7 route out of the cell |
+| its walk's `Done action` was a verbatim Cortes dismissal | `CDeleteAction{Cortes with arm}` and a `COtherMapAction` firing Barcelona's Cortes cloner, reached from three places including the tree's `Default Canceled Node Action` -- so **pressing Escape on the jailer cloned a companion two acts away** |
+| `handler fights` restored nothing | the generator pacifies him with a blank `Valid Targets` and `CRemoveCategoryAction{Enemy}`, and the relay only called `CGoToCombatAction` |
+
+The first two are repaired by one change: the walk's `Done action` now gives him back the very
+specifier his generator installed, so he returns to his stool and can be hailed again, which is the
+fiction 0.71.10 described. For the third, his can declares `Valid Targets=Player,Player Friend` and
+`Category=Enemy`, and both are now restored explicitly rather than relying on
+`CGoToCombatAction`'s documented side effect. **The same restore goes into `truce broken`**, which
+0.79.6 wrote with the category and not the targets.
+
+### Two on-ramps that burned the scene
+
+**`pen setup` is a one-shot fired from both Undercroft entrances**, and its whole body is
+`if delivered` with an empty else. Walk down the stair before being captured and the relay is spent
+on a false condition; surrender afterwards and you wake in an unlocked, unguarded, empty cell with no
+jailer, no Brother Pau and no scene. **That is the mechanism behind "it keeps appearing fixed and
+then broken again"**: the same save passes or fails on whether Level 1 was visited first. The stair
+call is removed rather than the one-shot loosened, because a repeatable `pen setup` would restart
+the 45, 75 and 100 second timers on every stair entry.
+
+**Level 1's great door** is worked by `Big Door Switch`, which carries no AI in the map; the
+specifier that operates it is added at run time by the `Per Party Spawn Action` of the two vanilla
+arrival markers. This project's own `From 4 Undercroft` marker had an empty one, so a player whose
+first visit to Level 1 is up the Undercroft stair -- the headline route of the whole act -- found the
+switch dead and the exit polygon absent, and had to leave through the sanctum. The donor action does
+exactly one thing, so it copies cleanly.
+
+### And a defect of 0.79.7's, three hours old
+
+0.79.7 added the Brother Pau death script by inserting it at index 0 of an action array, which put it
+**ahead of the `Item Count` field**. Vanilla declares the count first in 103,108 of 103,108 arrays;
+this mod did it once. The displaced item was the -200 Karma, so that penalty may never have applied.
+Fixed, and the gate now has the rule.
+
+### Two new gate checks, because four of the ten were classes nothing was looking for
+
+- **`check_dangling_names`** -- a name-bearing field whose value nothing in the game can be called.
+  A name resolves if any map or can can produce it: a Level Part's `Name=`, a generator's
+  `New Name=`, or the `User Assigned Name=` of the can a generator spawns when `New Name` is blank.
+  That last clause is the whole of 0.79.4's defect. Deliberately generous, so runtime-only
+  companions like `Cortes with arm` pass; inherited debris is excused per file.
+- **`check_empty_blocks`** -- a sub-object shipped empty that vanilla never ships empty. Only the
+  three types measured as never-empty are gated, because an empty block is not wrong in general:
+  vanilla ships `CEndNonInteractiveSequenceAction` empty 188 times.
+
+Gate 0 went from **35 findings to 2**, both in other acts and both real: a dangling `Target Name` in
+`Abandoned Cave` and an empty `CNonInteractiveSequence` in `01 Hamlet Exterior`.
+
+### A finding this release does not make, because it was wrong
+
+The review reported that killing Sahar strands the act: no Brother Montgomerie, no onward pointer,
+three Barcelona conversations left talking as though Montserrat never resolved. **It is not true**,
+and it was passed on before being checked.
+
+The guard that appeared to be blocking him tests for the category `Scripted Custom 1`, and **nothing
+in the entire act carries that category** -- the only mention of it in Montserrat is the test itself.
+So the test can never find anything, the "hostiles are near him" marker is never set, and the branch
+always falls through to activating his reveal. He comes out when she dies, and his `50 Bro michelle`
+node does the whole payoff: the Montaillou quest state, the Plains on the world map, six quest
+states closed, `Montserrat XP`, and his own death sequence.
+
+What is true is narrower. On the **truce** route he never speaks, which is deliberate and documented
+-- `Fixt Montserrat Peaceful` reads *"1 means Sahar gave her word and sent you north, so Brother
+Montgomerie never spoke to you"* -- and `sahar word given` compensates with the quest state but
+**not** with the Plains or the quest closures. That gap is real and is not addressed here.
+
+### Which saves this reaches
+
+Sahar's tree is dialogue and is read live. Everything else is map-side, so it needs a character who
+has not yet reached Montserrat.
+
 ## 0.79.7 - what the cellar costs you
 
 Two Karma penalties, at the maintainer's call, for the two things in Montserrat a player can do that
