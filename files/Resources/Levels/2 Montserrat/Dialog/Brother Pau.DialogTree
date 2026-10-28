@@ -106,12 +106,23 @@ Go to node ID=21 legs
 Requirement=!None
 Reply Text=Thank you, brother.
 Go to node ID=
-Custom Action=CActivateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
 {
 Target Name=drain known
 Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
+}
+Action=CShowAction
+{
+Target Name=drain secret
+}
+}
 }
 Icon=Quest Icon
 Is Default Reply=1
@@ -123,12 +134,23 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=I will.
 Go to node ID=
-Custom Action=CActivateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
 {
 Target Name=drain known
 Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
+}
+Action=CShowAction
+{
+Target Name=drain secret
+}
+}
 }
 Icon=Quest Icon
 Is Default Reply=1

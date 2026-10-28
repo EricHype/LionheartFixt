@@ -140,6 +140,62 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.3 - the warden in the wall
+
+Two defects found by playing the Montserrat pen, which is the part of this project that has shipped
+unplayed more often than any other.
+
+### The warden was standing inside the wall
+
+0.71.10 gave the pen a sixth way out: talk the warden into walking you up himself. To make the
+conversation reachable it moved `Handler Generator` from the stool at (704.308, 397.055) to
+**(460, 455)**, reasoning entirely in coordinates -- the cell door is at (411.5, 453.75), so 460 is
+just outside it, 54 from the nearest spot a prisoner can stand, against his reach of 110.
+
+The engine did exactly as it was told. The save has him at **(458.26, 459.616)**, embedded in the
+wall, where he cannot be clicked.
+
+**There is no coordinate near those bars this project can verify.** A `.zax` carries no collision;
+`Path Data=CWayPointMap` is empty in the shipped map because the engine builds the graph from the
+terrain at load, and it is not serialized into a save either. Choosing another spot by eye would be
+the same mistake that produced this one.
+
+So the spawn goes back to the stool, the one position in that room proven by sixty releases of
+play, and the reach does the work instead:
+
+| | was | now |
+|---|---|---|
+| spawn | (460, 455), inside the wall | (704.308, 397.055), the stool |
+| `X Radius` | 110 | **320** |
+
+320 against the 298 the 0.71.10 notes measured from the stool to the nearest spot inside the cell.
+**380 interaction specifiers in the shipped game use a radius of 300 or more**, so this is ordinary
+rather than a stretch. None of the timed beats cares where he stands: the glance at 45 seconds, the
+conversation at 75 seconds and the escort at 100 seconds are all fired by `pen setup` and anchor
+their balloons on `Handler` by name.
+
+### Being told where the drain is left you with less than finding it by accident
+
+`drain secret` is a `CAISecretReveal` whose model is `Special Effects/Secret Icon` and whose
+`Visible=0`. Detecting it with Perception runs `Found Hidden Treasure`, and the **first** thing that
+canned object does is a `CShowAction` on the secret, so the icon appears over the grate and marks
+the spot.
+
+Brother Pau's two replies activated `drain known`, which makes the drain *usable*, and never showed
+the icon. A player he had just told where to look therefore had strictly less to look at than one
+who stumbled onto it. Both replies now show the secret as well. **The 25 experience points stay with
+the Perception route**, because being told is not finding.
+
+### Which half of this reaches an existing save
+
+The engine bakes a map's entity list into the save on first entry and restores it from there
+forever, so this is worth stating per fix rather than hoping it is inferred:
+
+| | a save already inside the pen | a save that has not entered it |
+|---|---|---|
+| the drain icon | **yes**, dialogue is read live | yes |
+| the warden's position | **no**, the Undercroft is baked in | **yes** |
+
 ## 0.79.2 - the sceptre nothing could fill
 
 The second defect in [issue #12](https://github.com/EricHype/LionheartFixt/issues/12), reported by Przemyslaw92pl:

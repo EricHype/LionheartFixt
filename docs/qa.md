@@ -1474,6 +1474,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.3 - the warden in the wall
+
+One map and one dialogue tree. **PN1 and PN4 are the rows the release is for.** The warden half
+needs a save that has **never entered the Undercroft**, because the engine bakes a map's entity list
+into the save on first entry; the drain half works on any save, including one already in the cell.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PN1 | **The row the release is for.** Get delivered to the pen on a character who has never been in it, and look at the warden | - | He is sitting on his stool across the room, in the open. Before this he stood inside the wall beside the cell door |
+| PN2 | Click him from inside the cell | - | His conversation opens, `1 bars` or `3 still here`. His reach is now 320 against the 298 from the stool to the bars. **If nothing happens, say so** -- the fallback is a click-poly at the bars, which is what `cell pins` and `cell drain` already are |
+| PN3 | **Regression.** Wait in the cell without touching anything | - | 45s a glance and a bark, 75s he opens the conversation himself, 100s he escorts you up. All three anchor on him by name, so none depends on where he stands |
+| PN4 | **The second row the release is for.** Ask Brother Pau about the drain and take either closing reply | - | A **Secret Icon appears over the grate** in your cell. Before this you were told it existed and shown nothing |
+| PN5 | Then click the grate | - | You go down the drain and come up at `Drain Out`, abbey calm. Unchanged, this is only about finding it |
+| PN6 | **Regression.** Find the drain with Perception 7 instead, without asking Pau | - | The icon appears, the secret-found sound plays and you get the **25 experience points**. Being told by Pau should pay nothing |
+| PN7 | **Regression.** The other four ways out of the pen | - | Speech 40 or Charisma 7 through the warden, Strength 8 on the pins, Lock Pick 40 then Sneak 30, and doing nothing. Only the two loud ones turn the abbey hostile |
+
 ## 0.79.2 - the sceptre nothing could fill
 
 One item file, two requirement cans, one map relay and Relican's tree. **SB1 is the row that proves
