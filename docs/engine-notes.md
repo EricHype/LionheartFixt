@@ -401,6 +401,12 @@ of 20, and its description says "every 5 seconds for 20 seconds", so the 4 is th
 `poisonbonus` is the per-tick value. `Gas Cloud` is `poisonbonus x 2` over a duration that is itself
 an expression. Do not read a per-swing figure off the description or off the amount alone.
 
+**A pending damage-over-time is runtime-only and is not saved.** The character field
+`Damage Application Period`, and the `Damages=Array` beside it that holds the pending entries,
+appear in `.can` templates but **zero times across all 71 save files**. So an effect in flight
+is lost on save and reload, and a save can never be used to inspect one -- which is worth
+knowing before searching for it, twice, as happened here. It also means an effect survives the
+attacker's death within a session: the entry sits on the target and names nobody.
 **The combat log reports a damage-over-time being applied but never what it does.** The save's
 own `CGameEventLog` prints `<attacker> infected <defender> (Poison Infection)` on the hit, and
 `hit <defender> for 15 (Poison Infection, 15 Slashing Damage)` when a swing carries one, but
