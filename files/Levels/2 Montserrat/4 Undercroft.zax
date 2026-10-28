@@ -120,140 +120,66 @@ CLayerSaveData
 							Action=CAddAIAction
 							{
 								Target Name=Handler
-								AI=CGoToAI
+								AI=CAIInteractionSpecifier
 								{
 									Marked For Deletion=0
 									Publisher=
-									Destination=handler stool
-									Offset=0.000000,0.000000
-									Starting Action=
-									Finished=0
-									Move Finished=0
-									Failed Path=0
-									Target Was Set By Goto AI=0
-									Move Behavior=CEntityBehaviorMoveToPos
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CIfAction
 									{
-										Old Stationary Flag=0
-										Angle To Turn To=0
-										Facing Backwards=0
-										Idle Behavior=CEntityBehaviorIdle
+										If=COrAction
 										{
-											Num Seconds=1
-											Seconds Have Transitioned=0
-											Override Fidget Options=
-											Current Fidget Data=
-											Time Until Next Fidget=0
-											Fidgeting=0
-										}
-										Play Ratio=1
-										Smooth Turning=0
-										Do Path Finding=1
-										Finished=1
-										Failed Last Path=0
-										Idle Begin Called=0
-										Move To Rate=0
-										CurTargetNormalX=0
-										CurTargetNormalY=0
-										Path Finding Params=CWayPointPath
-										{
-											Start Point=0,0
-											End Point=0,0
-											Length=0
-											Max Dist To Travel=0
-											Num Failed Paths=0
-											Max Failed Paths=0
-											Pos To Move Index=0
-											Dist So Far=0
-											Path=
-										}
-										Pos Moving From=0.000000,0.000000
-										Final Dest=0.000000,0.000000
-										Dest Radius=0
-										Cur Dest Move To=0.000000,0.000000
-										Last Neg Dist=0
-										NumTimesLostGound=0
-										Sequence=Run
-										Planed Path For=
-									}
-									Done action=CAddAIAction
-									{
-										Target Name=Handler
-										AI=CAIInteractionSpecifier
-										{
-											Marked For Deletion=0
-											Publisher=
-											Trigger Only Once=0
-											Was Triggered=0
-											Auto-Flip Switch=1
-											Trigge Must Have HP=0
-											Triggered By Anything=0
-											Triggered By Players=1
-											Triggered By Player Friends=0
-											Triggered By Enemies=0
-											Triggered By Projectiles=0
-											Triggered By Companions=0
-											Triggered By Name=
-											Interaction Description=
-											Interaction Type=Interaction Specifiers/GetCloseThenTalk
-											Action=CIfAction
+											Action=Array
 											{
-												If=COrAction
+												Item Count=2
+												Action=CCheckExistenceAction
 												{
-													Action=Array
-													{
-														Item Count=2
-														Action=CCheckExistenceAction
-														{
-															Name To Check For=drain used
-															Desired Minimum Count=1
-														}
-														Action=CCheckExistenceAction
-														{
-															Name To Check For=Fixt slipped out
-															Desired Minimum Count=1
-														}
-													}
-													Early Exit=0
+													Name To Check For=drain used
+													Desired Minimum Count=1
 												}
-												Then=CTriggerRelayAction
+												Action=CCheckExistenceAction
 												{
-													Relay Name=handler fights
+													Name To Check For=Fixt slipped out
+													Desired Minimum Count=1
 												}
-												Else=CDisplayDialogTreeAction
-												{
-													Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
-													Node ID=3 still here
-													Speaker=$trigger
-													Player Being Spoken To=$Instigator
-												}
-												Return failure if the If failes=0
 											}
-											X Radius=320
-											Attacker Range Modifier=0
-											YX Ratio=0.712766
-											Highlight Self Time=0
-											Highlight Until Clicked=0
-											Is Locked=0
-											Allow Interact If Has Target=1
-											Lock Pick Adjustment=0
-											Inventory item to use as key=Inventory Items/!None
-											Is Bussy Talking=0
+											Early Exit=0
 										}
-										Delay Between Adds=0
+										Then=CTriggerRelayAction
+										{
+											Relay Name=handler fights
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Handler
+											Node ID=3 still here
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Return failure if the If failes=0
 									}
-									Run=0
-									Make New Home=0
-									Play Ratio=0
-									Time To Try To Move=0
-									Set Facing Angle=0
-									Turn Sequence Name=Idle
-									Facing Angle=CEntityBehaviorTurnToAngle
-									{
-										Old Stationary Flag=0
-										Angle To Turn To=0
-										Facing Backwards=0
-									}
-									Need to Call Start=1
+									X Radius=320
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
 								}
 								Delay Between Adds=0
 							}

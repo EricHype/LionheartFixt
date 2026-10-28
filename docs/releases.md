@@ -140,6 +140,111 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.9 - the captain, and a staff on a narrow canvas
+
+Six fixes, all from one afternoon of play. Five are in the sanctum and the prison; the sixth is an
+icon.
+
+### Two of these were caused by 0.79.3 and 0.79.6
+
+**The warden skated, and drifted into Brother Pau's cell door.** 0.71.10 spawned him at the bars and
+had `handler leaves` walk him back to a `handler stool` marker at his old position. 0.79.3 moved his
+spawn to the stool -- the bars turned out to be inside the wall -- and left the walk-back in place,
+so his destination became the exact spot he already stood on:
+
+| | |
+|---|---|
+| `Handler Generator` | (704.308, 397.055) |
+| `handler stool` | (704.308, 397.055) |
+
+A no-op walk, and not a harmless one: it handed a stationary character a movement AI on top of the
+`CSkeletonAI` his can carries, which drifted him west toward Pau's generator at (469.536, 263.388).
+The skate is in the same block -- `Move Behavior` carried `Sequence=Run` while the `CGoToAI` set
+`Run=0`, so he played a run cycle at walking pace. Vanilla leaves that field empty **493 times out of
+565**. The `CGoToAI` is gone; `handler leaves` now removes his interaction specifier and adds it
+straight back, leaving him standing on his stool, hailable, with no movement AI at all.
+
+**Sahar's conversation could be lost to a keypress.** Her tree's envelope fired `sahar fights` on
+cancel, and her only click interaction was `GetCloseThenTriggerAndFight` -- so an accidental
+dismissal started the fight and there was no way back: the approach trigger is one-shot and spent,
+and clicking her attacks. 0.79.6 and 0.79.7 made that worse by attaching real consequences to a
+misclick. The gate sentry has the identical design *except* his specifier is `GetCloseThenTalk` with
+`Trigger Only Once=0`, so he can be hailed again. She now has the same.
+
+### She watched one door out of a thousand units
+
+`sahar approach poly` was a sliver at x 3496..3570, y 2294..2565, and crossing it is what
+force-generates her. In that x band the map's content runs from y 770 to y 2744, so the tripwire
+covered **271 units of a 1,974-unit gap**. Approach the sanctum from the Undercroft stair and go
+east, and you cross x 3500 somewhere above it, never trip it, and walk into an empty chamber -- she
+is not spawned at all.
+
+It is now a box around her: **x 3530..3990, y 2180..2620**, 230 units clear on every side. Both
+arrival markers sit deliberately outside it -- `From Grove Exterior` at (4248, 2169) and
+`Escort Arrival` at (3300, 2440) -- so neither route trips it on spawn and you have to walk to her.
+Kept close to her rather than covering the room, because the poly's enter action pacifies the
+garrison and `Activate Brother Montgomerie Poly` shows the sanctum runs x 3622..4285: a trigger that
+size would end the fight the moment a fighting player stepped inside.
+
+### She is dismissive once you carry her ring
+
+Her re-entry picks its opening the way the approach trigger already did -- the ring, then `delivered`,
+then `1 too late` -- and the ring state gets a node of its own, in her register rather than longer
+than it:
+
+> **`60 the ring is on your hand`:** *&lt;She does not look up from the reliquary step.&gt; Still here.
+> The ring says what you are and the road says where. I have nothing further to send.*
+
+Its `<Draw.>` fires **`truce broken`** and not `sahar fights`, because after the ring that is what
+drawing on her is: the relay that restores her hostility and costs the 100 Karma. Her earlier draw
+replies are untouched.
+
+**Emptying the cancel action cannot be exploited to walk past her**, which was checked before doing
+it: the approach poly pacifies the four snakebreed names and **not Sahar**, so she remains an Enemy
+with her own `CSkeletonAI` and comes for you. And when any fight relay fires, `CGoToCombatAction`
+flips her specifier back to fight-on-click by itself, which is how the sentry already works.
+
+### The escort delivers you 462 units from her, into an unframed scene
+
+Every other staged moment in this map frames itself -- `Brother Montgomerie cam` sits 118 units from
+his reveal, and the game carries 125 camera attractors. The escort had none. `sahar cam` is cloned
+field-for-field from his and activated when the escort lands, at (3560, 2420): 201 units from her,
+261 from the player. Activate-only with no release, because **108 of the 115** camera attractors the
+game activates are never deactivated.
+
+### The staff icon was centred on the wrong canvas
+
+All 87 shipped skill icons were measured first: 85 are 48x48 at hotspot (0,0), and 86 of the 87 put
+their ink within one pixel of their canvas centre. Ours was **19x48**, with the staff perfectly
+centred inside that narrow canvas. A 19-wide icon anchored at (0,0) in a 48-wide slot draws against
+the left edge.
+
+So the canvas was padded, not the drawing: the 19 columns were pasted unchanged onto 48x48 at x
+offset 14. **541 opaque pixels translated, zero altered** -- asserted pixel by pixel -- and all 29
+padding columns fully transparent. Ink centre lands at 23.0 against a canvas centre of 23.5, half a
+pixel left, matching `Generic Skill Icon`, the one vanilla skill icon that is not 48x48. The file is
+still 1,572 bytes; transparent runs cost nothing in this format.
+
+### A negative result worth recording
+
+Sahar was given a `CHueRemapHolder` of her own, mapping every hue to red, to find out whether the
+engine's hue remapper reaches a monster's texture. **It does not** -- she came out green. All three
+pieces were reverted rather than left as dead config.
+
+The experiment was testing the wrong mechanism anyway, which the wasps show: all twelve wasp cans and
+all sixteen snake-woman cans read `Hue Remapper=!None`, and the variants are **separately authored,
+recoloured meshes** -- three wasp `.gr2` files at 17,324, 17,300 and 17,028 bytes, three snake-woman
+meshes likewise. Hue remapping is the player-equipment lever: every shipped use of a real remapper
+sits beside `Gender=` and `Head=`.
+
+Recorded in [`engine-notes.md`](engine-notes.md), along with what the meshes turn out to be: Granny 2,
+version 6, six sections, four of them Oodle0-compressed and one stored uncompressed.
+
+### Which saves this reaches
+
+Sahar's tree is dialogue and is read live. The icon is art and applies immediately. The rest is
+map-side and needs a character who has not yet reached Montserrat.
+
 ## 0.79.8 - the garrison finally leaves
 
 Five releases in a row had repaired this act on single reports from play. This one comes out of a

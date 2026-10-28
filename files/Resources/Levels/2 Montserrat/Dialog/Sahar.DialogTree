@@ -3,10 +3,7 @@ CDialogTree
 Name=Sahar
 Portrait=!None
 Should Have Voiceovers=0
-Default Canceled Node Action=CTriggerRelayAction
-{
-Relay Name=sahar fights
-}
+Default Canceled Node Action=
 ------------------------------------------------------------
 Node ID=1 too late
 Text=<She does not rise from the reliquary's step. Two of the creatures coil at her feet; a third, older, stands behind her with its hands folded.> You are late, Lionheart. The Master has what he came for, and I have what I was left to do. I had wagons for this once, and sisters I could spare. You have spent both on your way in.
@@ -346,4 +343,23 @@ Should Have Voiceover=0
 Node ID=100 phase two
 Text=The Master is not done with me.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 the ring is on your hand
+Text=<She does not look up from the reliquary step.> Still here. The ring says what you are and the road says where. I have nothing further to send.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Draw.>
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=truce broken
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
 }

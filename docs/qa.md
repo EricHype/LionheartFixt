@@ -1474,6 +1474,23 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.9 - the captain, and a staff on a narrow canvas
+
+Three maps, one tree, one icon. **SC1 and SC3 need a character who has not yet reached Montserrat**;
+SC5 and SC6 work on any save.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SC1 | **The reported row.** Come up the prison stair into Level 1, cross to Level 2 and head east toward the sanctum | - | She stops you. Before this the tripwire covered 271 units of a 1,974-unit gap, so this approach missed it and she was never spawned -- an empty chamber |
+| SC2 | **The warden.** Talk to him in the cell, close the conversation, and watch him | - | He stands still on his stool. No skating, and no drifting west into Brother Pau's cell door. Click him again and he talks |
+| SC3 | **The keypress.** Open Sahar's conversation and close it with Escape, then walk up and click her | - | Her conversation reopens. Before this the close started the fight and nothing could reopen it |
+| SC4 | **The ring.** Take the ring, leave, then come back and click her | - | `60 the ring is on your hand` -- *"Still here. The ring says what you are and the road says where."* Choosing `<Draw.>` there should cost **100 Karma**, because it fires `truce broken` |
+| SC5 | **The icon.** Open the skills window and look at the staff group | - | Centred in its slot, not hard against the left edge |
+| SC6 | **Regression.** Every other skill group icon | - | Unchanged. Only the staff's canvas was resized; its 541 drawn pixels are byte-identical |
+| SC7 | The escort route, for the camera | - | Arriving before Sahar, the view is framed on the scene rather than leaving her a small shape 462 units away. **If the camera sticks after the conversation, say so** -- it is activate-only, like 108 of the game's 115 camera attractors, and a release is one line |
+| SC8 | **Regression.** Refuse her outright with `<Draw.>` from her opening node | - | The fight starts as before, via `sahar fights`, with no Karma penalty -- that is refusing a parley, not breaking a truce |
+| SC9 | **Regression.** Attack her after the ring without talking | - | `truce broken` still fires from her damaged script: she and anything standing turn on you, 100 Karma, once only |
+
 ## 0.79.8 - the garrison finally leaves
 
 Four maps and one tree. **Every row but RT2 needs a character who has not yet reached Montserrat.**
