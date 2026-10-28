@@ -1474,6 +1474,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.7 - what the cellar costs you
+
+Two maps, no dialogue. **Both rows need a character who has not yet entered Level 2 or the
+Undercroft.** Note your Karma before each, because the only way to read these is the character sheet.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| KM1 | Note your Karma, take Sahar's ring, then attack her | - | Karma drops by exactly **100**, once. She and anything still standing turn on you |
+| KM2 | Keep hitting her after that | - | **No further Karma loss.** The relay is `Trigger Only Once=1`; if it drops again the penalty is farmable |
+| KM3 | Note your Karma, get into the pen, then kill Brother Pau | - | Karma drops by exactly **200** |
+| KM4 | **Regression.** Talk to Pau and leave him alive | - | No Karma change, and his drain line still works |
+| KM5 | **Regression.** Attack a calmed snakebreed during the sentry's parley | - | The fight comes back, and **no** Karma change. You gave no word, and the same relay fires if you simply refuse him |
+| KM6 | **Regression.** Refuse the sentry outright, or close his conversation | - | Hostile, no Karma change |
+| KM7 | **Regression.** Kill Sahar the ordinary way, without taking the ring | - | No truce to break, so no Karma penalty from this release |
+
 ## 0.79.6 - a truce you could not break
 
 Two maps, no dialogue. **Every row needs a character who has not yet entered the Grove or Level 2.**

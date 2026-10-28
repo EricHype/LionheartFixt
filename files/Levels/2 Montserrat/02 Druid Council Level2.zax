@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CAddCategoryAction
 							{
 								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Sahar
@@ -120,9 +120,31 @@ CLayerSaveData
 							{
 								Enemy Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Sahar
 							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=
+								Modification is permanent=1
+								Character to modify=Player#1-9#
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-100
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Karma
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=Player#1-9#
+							}
 						}
 					}
-					Trigger Only Once=0
+					Trigger Only Once=1
 					Was Triggered=0
 				}
 			}

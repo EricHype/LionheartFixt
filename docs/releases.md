@@ -140,6 +140,57 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.7 - what the cellar costs you
+
+Two Karma penalties, at the maintainer's call, for the two things in Montserrat a player can do that
+nothing in the game had an opinion about.
+
+### Set against the game's own scale
+
+The scale was read out of the archive rather than guessed at. Vanilla's commonest penalty is **-50**,
+59 uses, and `Attack Blacksmith.can` is one of them: that is the price of raising a hand to a
+civilian. -25 is a lesser wrong. The deliberate betrayals run -200 for the Grand Inquisitor, -250 for
+carrying Kublai Khan's Sword, -500 for the Amulet of Dour Tidings, -800 for handing La Calle Perdida
+to Relican and -1000 at the final encounter.
+
+| what you did | Karma |
+|---|---|
+| **Breaking Sahar's truce** | **-100** |
+| **Killing Brother Pau** | **-200** |
+
+**-100 for the truce.** You took her ring and her word and then drew on her in her own sanctum. A
+clear notch above striking a stranger, well short of an ending.
+
+**-200 for Pau.** A legless monk in a cell who has just told you the way out. It is the nastiest
+thing available in that cellar, and -200 is a magnitude the game already uses for a deliberate
+betrayal, below the Khan's sword and the amulet.
+
+### How each is wired
+
+Both use the form 106 vanilla sites use for a one-off Karma change: a
+`CAddCharacterModifierToCharacterAction` over **`Player#1-9#`**, which needs nothing resolved at run
+time, with `Modification is permanent=1` and `Allow Accumulation=1`.
+
+The truce penalty goes inside the `truce broken` relay 0.79.6 added, which also becomes
+`Trigger Only Once=1` so the hit cannot be farmed by striking her twice. The re-aggro only needs to
+happen once.
+
+**Pau's hangs off `CSetDestroyedScriptActionAction` in his generator's After Action, which is the
+only place it works.** A generator replaces the can's own death slot, so setting it on
+`Brother Pau.can` would have been dead code -- the defect this project already hit once with the Lava
+Troll Hide, and which `validate.py` check A0.14 exists because of. 338 vanilla sites use that action,
+and his generator now carries it beside the pacifier that already runs there.
+
+### What is deliberately not penalised
+
+Attacking a calmed creature during the **parley** costs the fight, not Karma. You have not given your
+word at that point -- he has made an offer -- and `sentry draws` is also what fires when you simply
+refuse him or close the conversation, so Karma there would punish walking away.
+
+### Which saves this reaches
+
+**None already in those maps.** Both are map-side.
+
 ## 0.79.6 - a truce you could not break
 
 Asked in play, after 0.79.5 made the warden react to an escaped prisoner: does attacking a calmed

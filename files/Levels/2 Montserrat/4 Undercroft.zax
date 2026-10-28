@@ -2666,7 +2666,33 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=1
+									Character to modify=Player#1-9#
+									Modifiers=Array
+									{
+										Item Count=1
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CConstant
+											{
+												Constant Value=-200
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=1
+											Derived character attribute to modify=Derived Character Attributes/Karma
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=Player#1-9#
+								}
+								Target Name=$Instigator
+							}
+							Item Count=5
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=$Instigator
