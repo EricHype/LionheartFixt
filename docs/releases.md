@@ -142,7 +142,7 @@ before concluding a resource does not exist.
 
 ## 0.79.1 - four trinkets that never scaled
 
-The flat conversions 0.79.0 deferred, from the same Laz Sundays post on armour and trinkets. Five were listed there; **four** are done and the fifth turned out not to need it.
+Four trinket additions whose curve was never filled in -- the same defect class 0.75.3 addressed on ten others, in the slots 0.79.0 did not reach. Raised as worth looking at by Laz Sundays on the rpgcodex thread.
 
 Under the rule the maintainer set for 0.75.3 and which shipped ten additions: **integers only, today's value becomes the floor and the middle, and the ceiling is one step above.** Nothing is ever worse than vanilla and the common case is identical.
 
@@ -174,15 +174,15 @@ Every description's hardcoded number becomes the interpolated token, as 0.79.0 d
 
 **"Magery" is not weak.** It is `Mana Stream`'s display name, and its one modifier adds **+0.4** to `Mana Variable Rate within Replenishment` -- an attribute whose base is **0.0334**. So it multiplies mana regeneration about **thirteenfold**, and its flat band is protecting the balance rather than hurting it. The post asks for "an added Mana capacity and a faster regen"; the regen half is already one of the largest single effects in the game.
 
-That is the third item in this run whose premise did not survive measurement, after `Deepest Winter` already exceeding what was asked for it and `Feral Power`'s value band being inert.
+It is left alone for the same reason `Deepest Winter` and `Feral Power` were: measuring it first showed there was nothing to fix.
 
 Worth recording for whoever revisits it: `Mana Stream` is the one addition in the game that declares `Value=0` like a banded addition while carrying a flat band, so it is half-converted in vanilla. Nothing reads its amount, so the band is inert in the same way `Feral Power`'s is.
 
 ## 0.79.0 - the mage's armour, and two ceilings in a new slot
 
-The first work on armour. From Laz Sundays' third analysis post, the one on armour and trinkets, which had not been read properly until now -- the five items worked through in 0.77 and 0.78 all came from a single earlier post.
+The first work on armour: a flat expression sitting inside an otherwise scaling addition, and two value ceilings no item reaches. Both are defect classes this project has already fixed elsewhere, found here after Laz Sundays' notes on the rpgcodex thread pointed at the slot.
 
-Of the nine things that post names, **two** are real defects with precedent here. The rest are already done, already correct, or dead, and each is accounted for below rather than quietly skipped.
+Several other armour and trinket additions were measured at the same time and left alone; what was checked and why it was not changed is recorded at the end, so the next person does not re-survey it.
 
 ### `of the Mage` has a flat expression sitting beside four scaling ones
 
@@ -562,13 +562,13 @@ Moving only the `min` term's Input Maximum widens that scale's domain, which **l
 
 ## 0.77.0 - what a condition is worth
 
-Five items raised on the [rpgcodex thread](https://rpgcodex.net/forums/threads/some-crazy-guy-is-modding-lionheart-legacy-of-the-crusader.157467/page-3) by Laz Sundays, worked in sequence. Three held up, one was dropped outright, and one changed shape completely once it was measured.
+Damage suffixes that pay less than they should, and one that pays nothing like what its description implies. The leads came from Laz Sundays' analysis on the [rpgcodex thread](https://rpgcodex.net/forums/threads/some-crazy-guy-is-modding-lionheart-legacy-of-the-crusader.157467/page-3); each was then measured against the files, and what the measurements said is below, including where they contradicted the suggestion.
 
-### Item 1, dropped: the three bows are a ladder, not an imbalance
+### The three bows are a ladder, not an imbalance
 
 The bows looked badly spread until the requirement was read. They are gated on Ranged skill at 50, 85, 105 and 125, which is a deliberate progression, so equalising them would have flattened a thing that works. Dropped at the maintainer's call. The top rung turned out to have a different problem, which is item 5.
 
-### Items 2 and 3: the ungated suffixes
+### The ungated suffixes
 
 Three elemental suffixes lose 12 to 19% of their number to resistance once it is weighted by how often each race actually spawns, and the acid ones lose almost nothing. Measured across all 422 races, counting the field the files actually use:
 
@@ -586,7 +586,7 @@ Three elemental suffixes lose 12 to 19% of their number to resistance once it is
 
 `Venom` was the real defect in the damage-over-time group. Its band, 5 to 50, ran **entirely into the chance**, while the damage it then does was a flat `CRandom` of 1 to 6 that never read the band at all. So a 10,500 gold weapon of Venom procs ten times as often as a 125 gold one and hits for exactly the same trivial amount, capping at 3.5 damage a swing against Ripping's 11.5 and Double Biting's 13.5. Both ends of the damage now scale beside the chance, 1-4 and 6-20 across the band, which is `Shocker`'s own shape. **The chance stays exactly as it was at the maintainer's call**, 5 to 50. Per swing the ceiling goes 3.5 to **12.0**, and the floor is untouched at 0.35 so no existing weapon of Venom gets worse. `Snakebiting`, `Double Biting` and `Ripping` were checked and left alone.
 
-### Item 4 was not the category. It was the payoff, running backwards
+### Not the creature category: the payoff, running backwards
 
 The item as raised was to widen `Hunting`'s creature category, and that is the wrong fix.
 
@@ -622,11 +622,11 @@ The first resistance census came back as all zeroes. Races store a resistance as
 
 The `min` term on `Hunting` and `Exorcism` is a `CExpressionScale` whose **input range is the band itself**, so its Input Minimum and Input Maximum had to move with it or the low end stops interpolating. That is the same trap 0.75.0 hit on Lightning and Fireball.
 
-### Item 5, half dropped: the axe stays in the Plains
+### The axe stays in the Plains
 
-`Axe of the Feral Curse` was to move from the Wilderness into Barcelona, on the reading that it is stranded in an obscure map. It is not. **The Plains is a named world-map destination**, enabled by `CEnablePointOfInterestOnWorldMapAction` when Brother Montgomerie closes the Montserrat relics quest, so it is a guaranteed act 2 stop rather than a random encounter, and the axe occupies a fixed slot in Mauldo's stock rather than a roll. At **1,722 gold** it grants **66 flat acid damage** against animals, 20 Sneak and 20 Evasion against -1 Charisma, which makes it one of the best-value items in the game and well clear of anything in this release. Nothing is wrong with it. Like item 1, the premise did not survive checking.
+`Axe of the Feral Curse` was to move from the Wilderness into Barcelona, on the reading that it is stranded in an obscure map. It is not. **The Plains is a named world-map destination**, enabled by `CEnablePointOfInterestOnWorldMapAction` when Brother Montgomerie closes the Montserrat relics quest, so it is a guaranteed act 2 stop rather than a random encounter, and the axe occupies a fixed slot in Mauldo's stock rather than a roll. At **1,722 gold** it grants **66 flat acid damage** against animals, 20 Sneak and 20 Evasion against -1 Charisma, which makes it one of the best-value items in the game and well clear of anything in this release. Nothing is wrong with it. Measuring it was enough to settle it.
 
-### Item 5: the top bow leaves the last act
+### The top bow leaves the last act
 
 The ladder that saved item 1 is what condemns this placement:
 
