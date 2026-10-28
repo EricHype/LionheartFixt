@@ -334,6 +334,34 @@ The working configuration is therefore: addition in the `Wand Additions` group, 
 
 ## Items, additions, and what a number is worth
 
+**Generated item values differ by slot, and the melee figure cannot be reused.** An addition's bonus
+is interpolated from the finished item's gold value, so a band topping above what its slot reaches
+is a ceiling nobody is paid. Measured from the baked instances in 71 saves, counting only generated
+items that carry at least one addition:
+
+| slot | count | median | 90th pct | dearest seen |
+|---|---|---|---|---|
+| Melee weapons | 912 | 255 | 1,890 | 7,790 |
+| Armour | 243 | 85 | 2,400 | 10,025 |
+| Bows | 145 | 300 | 2,100 | 4,565 |
+| Shields | 114 | 475 | 3,345 | 9,010 |
+| Helmets | 42 | 2,000 | 5,275 | 12,008 |
+| Necklaces | 31 | 500 | 2,206 | 2,400 |
+| Belts | 30 | 85 | 2,093 | 2,093 |
+| Rings | 24 | 1,565 | 2,000 | 6,402 |
+| Gauntlets | 23 | 953 | 12,995 | 12,995 |
+| Bracers | 20 | 520 | 3,715 | 3,715 |
+
+**The small samples are a caveat, not a cap.** Belts, rings, gauntlets and bracers have 20 to 31
+instances each, so their maxima are *not observed* rather than proven unreachable; melee's 912 and
+armour's 243 carry real weight. Widen a band modestly rather than treating a thin slot's observed
+maximum as a hard ceiling.
+
+**A value band is inert if the file never reads `CInventoryAdditionAmmountExpression`.** `Feral
+Power` has a band of 6000/6000/6000 and amounts of 0/0/0 and reads the amount zero times, so moving
+its band changes nothing at all. Check for that read before costing a ceiling fix, the same way
+0.75.3 checks for `Inventory/!None` before costing an amount fix.
+
 **An addition's bonus is interpolated from the finished item's gold value.** The three
 `Minimum/Inbetween/Maximum Value` pairs map to `Minimum/Inbetween/Maximum Addition Ammount`
 piecewise-linearly, and `CInventoryAdditionAmmountExpression` reads the result. This had been

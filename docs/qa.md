@@ -1474,6 +1474,27 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.0 - the mage's armour, and two ceilings in a new slot
+
+Two addition files, no map and no dialogue, so **no new character is needed**. Both are armour additions, so they reach armour as it is generated: look at fresh drops and fresh merchant stock, not something already worn.
+
+**Finding a dear enough piece is the hard part.** Armour runs median 85 and 90th percentile 2,400 gold, so most of what drops sits at or near these additions' floor, where nothing has changed. The new numbers only show on armour above about 4,000 gold.
+
+**AR2 is the row that proves the release.**
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| AR1 | Find armour **of the Mage** and read its description | - | It now names the skill figure instead of promising "+1": "adds +N to each of the magical skill branches". If it still says "+1 skill point" as fixed text, the description edit did not take |
+| AR2 | **The row that proves the release.** Compare a cheap piece of the Mage against a dear one, 6,000 gold or more, on the character sheet | - | The cheap one gives **+1** to each magical branch; the dear one gives **3 to 5**. Before this release both gave +1, however expensive the armour |
+| AR3 | On that dear piece, check the four resistances too | - | Acid, Cold, Fire and Electrical all around **14 to 20%**, and reaching 20 at 9,000 rather than never. They always scaled; only their ceiling moved |
+| AR4 | **Regression.** A **cheap** piece of the Mage | - | Identical to before: 5% resistances, +1 skill. The floor was deliberately left alone, checked at 3,000 price points |
+| AR5 | Armour of **Deepest Winter**, 9,000 gold or more | - | The frost aura reaches its full **7** damage. Its band is unchanged at 2/4/7; only the value it is read against moved |
+| AR6 | **Regression.** A cheap piece of Deepest Winter | - | Unchanged, 2 damage |
+| AR7 | **Regression, and the thing most likely to be wrong.** Check the Mage's **twelve** branches, not just the one you use | - | Divine, Elemental and Tribal branches should all move together. Twelve modifiers share the one expression, so if any branch is still stuck at +1 the edit reached only some of them |
+| AR8 | **Regression.** `Wound Constriction`, `Feral Power`, both `Voodoo` pieces, `Divine Attunement`, `the Sylvant` | - | All unchanged. Named in the same post and deliberately left; Feral Power in particular would have been a no-op because its value band is inert |
+| AR9 | **Regression.** The three amulet auras from 0.75.2, Icy Fury, Acid Touch and Lava Burn | - | Unchanged at 2-7. Deepest Winter shares their plugin and was checked against them rather than raised past them |
+| AR10 | **Regression.** Everything from 0.77 and 0.78 | - | Untouched. This release is armour only; no weapon addition is in it |
+
 ## 0.78.1 - the scale the game already had
 
 Two addition files, no map and no dialogue, so **no new character is needed**. Reaches loot as it is generated.

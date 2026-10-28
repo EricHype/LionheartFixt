@@ -140,6 +140,54 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.0 - the mage's armour, and two ceilings in a new slot
+
+The first work on armour. From Laz Sundays' third analysis post, the one on armour and trinkets, which had not been read properly until now -- the five items worked through in 0.77 and 0.78 all came from a single earlier post.
+
+Of the nine things that post names, **two** are real defects with precedent here. The rest are already done, already correct, or dead, and each is accounted for below rather than quietly skipped.
+
+### `of the Mage` has a flat expression sitting beside four scaling ones
+
+Its `acidbonus`, `coldbonus`, `firebonus` and `electricalbonus` all read the addition amount and climb **5 to 20** with the item's value. Its `skillbonus`, which **twelve** skill modifiers share, is `CConstant{1}` -- a literal that ignores the band entirely.
+
+So a **5 Unique** armour gives +1 skill point to each magical branch forever while its resistances quadruple. That is precisely Venom's defect from 0.77.0, a flat `poisonbonus` beside a scaling `chancetohit`, and the post read it straight off the description, which is accurate.
+
+`skillbonus` becomes a `CExpressionScale` over the band, **1 at the floor to 5 at the ceiling**:
+
+| armour value | resistances | skill per branch |
+|---|---|---|
+| 2,500 | 5% | 1.0 *(unchanged)* |
+| 4,000 | 10% | **2.3** |
+| 6,000 | 14% | **3.4** |
+| 9,000+ | 20% | **5.0** |
+
+The floor is untouched, so nothing gets worse, and 5 is what the post asked for. The amount band stays 5/10/20; only the expression reading it changed.
+
+**The description's hardcoded "+1" is now the interpolated token**, so the text can never drift from the number again. That is the defect class 0.52.2 and 0.52.3 were about.
+
+### Two value ceilings are out of reach, which is 0.77.1's defect in a new slot
+
+Generated armour measured across 71 saves: **243 instances, median 85, 90th percentile 2,400, dearest ever 10,025**. Against that, `of the Mage` topped at **11,000** and `Deepest Winter` at **11,500**, so neither has ever paid its stated maximum.
+
+Both come to **9,000**, about 90% of the dearest observed -- the same standard the weapons got in 0.77.1, where 7,000 was set against a 7,790 maximum.
+
+| | at 6,000g | at 9,000g | at 10,025g |
+|---|---|---|---|
+| `of the Mage` resistances | 12.86 to **14.00** | 17.14 to **20.00** | 18.61 to **20.00** |
+| `Deepest Winter` aura | 4.64 to **5.00** | 5.93 to **7.00** | 6.37 to **7.00** |
+
+Checked at **3,000 price points** against the pristine archive: worst delta **+0.0000** for both.
+
+**Armour is a different population from weapons and the melee figure cannot be reused.** Per slot, the dearest generated item seen is armour 10,025, helmets 12,008, gauntlets 12,995, rings 6,402, necklaces 2,400, belts 2,093, against melee weapons' 7,790. Recorded in [`engine-notes.md`](engine-notes.md), with the caveat that belts, rings, necklaces and gauntlets have only 20 to 31 instances each, so those maxima are *not observed* rather than proven.
+
+### Named in the post and deliberately not done
+
+- **`Feral Power`'s ceiling.** Its value band is **inert**: the file never reads `CInventoryAdditionAmmountExpression` at all, so moving the band changes nothing until its flat modifiers are converted. Banding a dead curve is a no-op, which 0.75.3 learned on five other additions.
+- **`Deepest Winter`'s amount.** The post asks to raise its maximum to 5. **It is already 7**, and 0.75.2 put the three amulet auras at exactly 2-7 using this same `CPlugInBehaviorAddAIWhenSelected` plugin, so it is already in line with its own family. Only its ceiling was wrong.
+- **"Magery".** This is `Mana Stream`'s display name, and it is a live but flat 0/0/0 addition, so it belongs with the conversions below. Not to be confused with `Magic Enhancer`, whose display name is **"Spirit Enhancement"** and which sits in `Inventory/!None` -- no item can ever receive it, so no number helps it.
+- **The five flat conversions** -- "Magery", both `Voodoo` pieces, `Divine Attunement` and `the Sylvant` -- are five files of judgement about what each should become, and are left for their own release.
+- **`Wound Constriction`.** The post wants more healing and perhaps a faster healing rate. Its band is 1/3/8 and its ceiling is reachable, so there is no defect to point at, only a balance opinion, and the rate question needs measuring against the engine's own `HealingRate` before anyone touches it.
+
 ## 0.78.1 - the scale the game already had
 
 **Supersedes 0.78.0.** Its arithmetic held and its yardstick did not. Raised by a player asking the obvious question: aren't there already damage-over-time effects on other weapons, and how is this materially different?
