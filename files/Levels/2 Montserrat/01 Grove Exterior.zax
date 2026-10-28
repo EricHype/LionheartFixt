@@ -3852,16 +3852,24 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=8
+								Item Count=9
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=sentry draws
+									}
+									Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin
+								}
 								Action=CSetTargetTypeAction
 								{
-									Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+									Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin
 									Name To Target=
 									Valid Targets=
 								}
 								Action=CRemoveCategoryAction
 								{
-									Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+									Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin
 									Categories To Remove=Enemy
 								}
 								Action=CDeactivateAction

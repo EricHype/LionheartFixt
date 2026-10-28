@@ -140,6 +140,74 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.79.6 - a truce you could not break
+
+Asked in play, after 0.79.5 made the warden react to an escaped prisoner: does attacking a calmed
+snakebreed cost you the calm abbey too? It did not, and it could not.
+
+### Two entities in the whole of Montserrat react to being hit
+
+| map | entity | hitting it fires |
+|---|---|---|
+| 01 Grove Exterior | Grove Sentry | `sentry draws` |
+| 4 Undercroft | Handler | `handler fights` |
+| 02 Druid Council Level1 | - | **nothing** |
+| 02 Druid Council Level2 | - | **nothing** |
+
+Those two are the only `CSetDamagedScriptActionAction` in the act. Everything that gets pacified has
+`Valid Targets=` blanked and the `Enemy` category removed, so it does not fight back either. You
+could stand in the gate yard killing calmed Vipers one at a time while the sentry talked to you, and
+nothing anywhere noticed.
+
+**That is Mixxer5's report on [issue #11](https://github.com/EricHype/LionheartFixt/issues/11), word
+for word, still unfixed:** *"Sahar is targetable as an enemy but even killing her doesn't aggro
+everyone around."* 0.79.4 fixed the half of that complaint about the rout. This is the other half:
+the truce had no breach condition.
+
+### The parley was also short a whole family
+
+Read side by side, the Grove's **accept** block pacifies `Assassin`, the four snakebreed and
+`Grove Sentry`. The **parley** block pacifies only the four snakebreed. So an assassin still standing
+when the sentry hails you keeps swinging -- the same defect the player reported for snakebreed, one
+family over, and it would have been the next thing they hit. The parley list now matches the accept
+list.
+
+### What changed
+
+| | |
+|---|---|
+| the parley | the garrison carries the sentry's **own** damaged script, so hitting any calmed creature fires `sentry draws` and brings the whole thing back, gate packs included |
+| the truce | Sahar carries one pointing at a new `truce broken` relay, which gives the `Enemy` category back and puts her and anything still standing into combat |
+
+Hitting a guard and hitting his men now cost the same thing, which is the symmetry that was missing.
+
+**Why the truce needs only Level 2:** `garrison routs` walks every survivor off all three maps and
+**deletes** them, so the Grove and Level 1 have nobody left to hit once Sahar has given her word. She
+does not rout -- she stays in her sanctum deliberately -- so she was the one person in the abbey who
+could be killed where she stood with no reaction at all.
+
+`CGoToCombatAction` is what `sentry draws` already relies on, and 512 vanilla actions use
+`CAddCategoryAction`, so neither half of the new relay is novel.
+
+### Should breaking it cost more than hostility?
+
+Looked at, and the answer is: not yet, because the interesting penalty is one the game cannot
+currently express.
+
+`Sahar Ring` is read in **three** places outside Montserrat -- twice in Machiavelli's tree in the
+Temple District, and once by the assassin in the Crypt, who says *"Sahar's mark. Then she let you go,
+and sent you to us wearing it... She will answer for the ring. You will answer to me."* So taking the
+ring away as a punishment would silently close two authored scenes in later acts. That is a penalty
+that deletes content rather than changing it.
+
+The version worth building is a flag those scenes can read, so Machiavelli and the Crypt assassin
+react to the fact that you took her word and broke it. That is new writing in two acts and belongs in
+its own release, not bundled here.
+
+### Which saves this reaches
+
+**None already in those maps.** All of it is map-side.
+
 ## 0.79.5 - "Still here. Good. Sit."
 
 Found in play, one release after the warden became reachable at all: take the drain, come up by the

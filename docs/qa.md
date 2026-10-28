@@ -1474,6 +1474,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.79.6 - a truce you could not break
+
+Two maps, no dialogue. **Every row needs a character who has not yet entered the Grove or Level 2.**
+TR1 is the question that prompted the release; TR4 is the one that would catch an over-broad guard.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TR1 | **The reported row.** Let the sentry hail you, then force-attack a calmed snakebreed while the conversation is open | - | The whole garrison comes back at you and the three gate packs spawn, exactly as if you had attacked the sentry. Before this it took the hit, did not fight back, and nothing noticed |
+| TR2 | Let him hail you with an assassin still alive nearby, and just talk | - | Nothing attacks you. The parley pacifier now covers `Assassin`, which the accept block always did and it did not |
+| TR3 | **The truce.** Take Sahar's ring, then attack her | - | She fights back, and anything still standing in the sanctum turns on you. Before this she stood there and died in silence |
+| TR4 | **Regression, and the row that matters.** Take the ring and leave without touching anyone | - | The abbey stays calm, the garrison is gone from all three maps and nothing turns hostile. **If the fight restarts on its own, the damaged script is firing when it should not** |
+| TR5 | **Regression.** Attack the sentry rather than his men | - | Unchanged: `sentry draws`, gate packs, the whole garrison |
+| TR6 | **Regression.** Kill Sahar instead of taking the ring | - | The death ending is untouched: all three maps empty and the route completes |
+| TR7 | After breaking the truce, check whether you still have the ring | - | You do. Confiscating it would close Machiavelli's two replies and the Crypt assassin's scene, which is deliberately not what this release does |
+
 ## 0.79.5 - "Still here. Good. Sit."
 
 One map. **Every row needs a character who has not yet entered the Undercroft.** WD1 is the reported
