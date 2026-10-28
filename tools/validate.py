@@ -870,11 +870,137 @@ def check_class_names(fails):
                          '"Invalid class type", naming this file')
 
 
+NAME_FIELDS = ("Target Name", "Entity Name", "Enemy Name", "Name To Check For", "Target",
+               "Generator Name", "Name of Position", "Speaker", "Name To Target", "Source Name",
+               "Old Name", "Companion To Release", "Part To Fade", "Door Name")
+NAME_TOKENS = {"", "!none", "none", "player1", "player#1-9#"}
+NAME_FIELD_RE = re.compile(r"(?:^|\r\n)\t*(%s)=([^\r\n]*)" % "|".join(NAME_FIELDS))
+
+
+def names_borne(text):
+    """Every name something in this file can be called at run time."""
+    out = {x.strip() for x in re.findall(r"\r\n\t*Name=([^\r\n]*)\r\n", text) if x.strip()}
+    out |= {x.strip() for x in re.findall(r"New Name=([^\r\n]*)", text) if x.strip()}
+    for e in re.findall(r"Entity=([^\r\n]*)", text):
+        hit = _CAN_NAME.get(e.strip().lower())
+        if hit:
+            out.add(hit)
+    return out
+
+
+def check_dangling_names(fails):
+    """A name-bearing field whose value nothing in the game can be called. The action is inert and
+    nothing reports it.
+
+    This is the single most expensive class this project has shipped. Eleven such names sat in the
+    three Montserrat maps for fourteen releases: the lists that pacify, rout and re-aggro Sahar's
+    garrison were written from character-template FILENAMES, and a generator with a blank `New Name`
+    leaves its spawn carrying the can's `User Assigned Name` instead -- `Snakebreed Venom` is really
+    `Snakebreed Viper`, `Snakebreed Boss` is `Snakebreed Crusher`. So the parley stood down one
+    family of four while the rest kept swinging, and the rout walked off a quarter of the abbey. Two
+    players reported the symptoms for weeks and no gate had anything to say.
+
+    A name resolves if ANY map or can in the game, ours or theirs, can produce it: a `Name=` on a
+    Level Part, a `New Name=` on a generator or a clone, or the `User Assigned Name=` of a can some
+    generator spawns. That definition is deliberately generous -- it covers companions like
+    `Cortes with arm`, which exist at run time with no Level Part of their own -- because the point
+    is to catch a name borne by NOTHING, not to prove which map it is in.
+
+    Measured before it was written: against this definition the whole archive yields two dangling
+    names in vanilla's own files, so inherited debris is excused per file the way
+    `vanilla_dangling` excuses an inherited node reference.
+    """
+    # The census over every vanilla map and can costs about a second, which is noise against the
+    # run this check sits in, so it is not cached.
+    borne = set()
+    for name in zf.namelist():
+        if name.endswith((".zax", ".can")):
+            borne |= names_borne(zf.read(name).decode("latin-1"))
+    for p in files:
+        if p.suffix.lower() in (".zax", ".can"):
+            borne |= names_borne(p.read_bytes().decode("latin-1"))
+
+    def dangling(text):
+        out = set()
+        for m in NAME_FIELD_RE.finditer(text):
+            for part in m.group(2).split(","):
+                v = part.strip()
+                if not v or v.lower() in NAME_TOKENS or v.startswith("$") or "/" in v:
+                    continue
+                if v not in borne:
+                    out.add((m.group(1), v))
+        return out
+
+    for p in files:
+        if p.suffix.lower() not in (".zax", ".can", ".dialogtree"):
+            continue
+        rel = p.relative_to(F).as_posix()
+        mine = dangling(p.read_bytes().decode("latin-1"))
+        if not mine:
+            continue
+        try:
+            theirs = dangling(zf.read(rel).decode("latin-1"))
+        except KeyError:
+            theirs = set()
+        for field, val in sorted(mine - theirs):
+            fails.append(p.name + ": " + field + "=" + repr(val)
+                         + " names something nothing in the game can be called")
+
+
+# Nested blocks the engine always wants filled in. Each count is from the 200 vanilla maps.
+NEVER_EMPTY = {"CEntityBehaviorMoveToPos": 4735,
+               "CEntityBehaviorTurnToAngle": 1355,
+               "CNonInteractiveSequence": 169}
+EMPTY_BLOCK = re.compile(r"=(C[A-Za-z]+)\r\n\t*\{\r\n\t*\}")
+
+
+def check_empty_blocks(fails):
+    """A sub-object shipped empty that vanilla never ships empty.
+
+    `Move Behavior=CEntityBehaviorMoveToPos {}` is how the Montserrat rout was written in all three
+    abbey maps, and vanilla fills that block 4,735 times out of 4,735. Default-constructed it has no
+    path-finding and no walk sequence, so the garrison Sahar promised would leave heads straight at
+    its exit marker through the walls, never arrives, and never runs the `Done action=CDeleteAction`
+    that removes it. The pacify worked, so players reported "they are not attackable any more" and
+    "killing her doesn't make the garrison disappear" -- for fourteen releases, because the beat that
+    was broken was the one nobody could see failing.
+
+    An empty block is not wrong in general: vanilla ships `CEndNonInteractiveSequenceAction` empty
+    188 times and `CPointWeaponAtTargetEntityBehavior` empty 761 times. Only the three types above
+    are never empty there, so only those are gated.
+    """
+    for p in files:
+        if p.suffix.lower() != ".zax":
+            continue
+        text = p.read_bytes().decode("latin-1")
+        for m in EMPTY_BLOCK.finditer(text):
+            cls = m.group(1)
+            if cls not in NEVER_EMPTY:
+                continue
+            line = text[:m.start()].count("\r\n") + 1
+            part = re.findall(r"\r\n\t*Name=([^\r\n]*)\r\n", text[:m.start()])
+            fails.append("%s: %s is empty at line %d (in %r); vanilla fills it %d/%d times"
+                         % (p.name, cls, line, (part[-1] if part else "?"),
+                            NEVER_EMPTY[cls], NEVER_EMPTY[cls]))
+
+
+# A can's `User Assigned Name` is what a spawn is called when its generator leaves `New Name` blank.
+# 725 of them carry one, and that mapping is the whole reason a list written from filenames matches
+# nothing.
+_CAN_NAME = {}
+for _n in zf.namelist():
+    if _n.endswith(".can"):
+        _m = re.search(r"\r\n\t*User Assigned Name=([^\r\n]*)", zf.read(_n).decode("latin-1"))
+        if _m and _m.group(1).strip():
+            _CAN_NAME[_n[len("Resources/"):-len(".can")].lower()] = _m.group(1).strip()
+
 check_references(fails)
 check_self_reference(fails)
 check_no_probes(fails)
 check_overridden_drops(fails)
 check_class_names(fails)
+check_dangling_names(fails)
+check_empty_blocks(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))
