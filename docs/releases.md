@@ -140,6 +140,93 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.81.0 - Sahar in red
+
+She is red. Not by a flag, not by a lighting trick -- her texture is repainted inside her own
+mesh, and the way it was done is reusable for any character in the game.
+
+### What three releases of failure were actually about
+
+0.79.9 gave her a hue remapper and she stayed green, and concluded the engine's remapper does not
+reach monster textures. 0.80.0 found the switch that conclusion had missed -- `Hue Remap
+Textures=0` on every snake-woman model, against 54 models that set it to 1, all 54 of them player
+characters -- forked her a model, turned it on, and she stayed green. 0.80.2 withdrew that claim.
+
+The thing none of those releases established is whether her forked model was being used at all.
+Both experiments assumed it. A throwaway probe settled it: her `Render Scaling` was set to 1.6,
+she was visibly larger in play, so the fork was live and the remapper was genuinely the dead end.
+That is the probe that should have been run after the *first* failure, not the third.
+
+### The encoder we did not have to write
+
+Her texture is Granny's **BinkTC0**, a wavelet format. The project has a decoder for it, ported
+from the Granny SDK, and no encoder -- which is what made repainting look expensive.
+
+`granny2.dll` exports the builder side of the texture API, and the decorated argument byte counts
+match the SDK signatures exactly:
+
+| export | |
+|---|---|
+| `_GrannyBeginBinkTexture@16` | `(Width, Height, MIPLevelCount, Flags)` |
+| `_GrannyEncodeImage@24` | `(Builder, Width, Height, Stride, MIPLevels, RGBA)` |
+| `_GrannyEndTexture@4` | returns a real `granny_texture` |
+
+So the game encodes for us. Feed it RGBA8888 -- not RGB, which produces a payload nearly twice
+the size *and* the wrong hue -- and the result decodes back at the colour you put in.
+
+### The splice, which was easier than it looked
+
+The encoded payload is **67,816 bytes** where the shipped one is **13,404**, so it cannot be
+written in place. Ten builder flag values made no difference to that; the size is what you get
+re-compressing an image that has already been through a lossy codec once.
+
+`GrannyWriteDataTreeToFile` would have let the library re-serialise the whole file around the
+bigger payload, and it is a dead end for now: all 48 combinations of argument order and type
+pointer fault, and they fault *writing the file back unmodified*, so the signature is wrong rather
+than the data. Left for another day.
+
+It was unnecessary, because the file's layout is kind:
+
+| | |
+|---|---|
+| sector 5 | 13,600 bytes, **already `compression_type=0`**, holds no pointers |
+| what is in it | nothing but texture pixels |
+| `Pixels` | a `u32` count at sector 0 offset 268, and a fixup at offset 272 aiming at sector 5 offset 0 |
+
+So the payload is **appended** at offset 13,600. The old bytes stay as slack, the second texture's
+pointer into the same sector never moves, and exactly two things change: the count, and the
+fixup's destination. `gltf_to_gr2.repack` -- written for a different job -- does the rest.
+
+### Verified by the runtime, not by inspection
+
+The written file is reloaded through `granny2.dll` and checked on both halves of what could go
+wrong, because a mesh that loads with no skeleton would be worse than no mesh:
+
+| | |
+|---|---|
+| structure fingerprint | identical across textures, materials, skeletons, vertex data, topologies, meshes and models |
+| texture 0 | decodes at mean hue **344** |
+| texture 1 | still decodes -- it shares the sector that grew |
+
+The repacker warns that it writes `crc32` as 0. That is a non-issue here: `GrannyFileCRCIsValid`
+returns false for the **shipped** mesh too, so the file is no worse than vanilla on that check,
+and the runtime loads it.
+
+### And the remapper is gone
+
+Every piece of the failed approach came out rather than being left as config that looks
+load-bearing: the sidecar is back to `Hue Remap Textures=0`, her can points at `!None` again, and
+`Sahar.HueRemapHolder.txt` is deleted. The `.mdl16` descriptor names the remapper too, as a
+length-prefixed string, so it was repointed in the same breath -- deleting the holder without that
+would have left the descriptor naming a file that no longer exists. `!None` and `Sahar` are both
+five characters, so nothing moved.
+
+Her mesh goes from 55 KB to 144 KB.
+
+### Which saves this reaches
+
+Art is read live, so any character sees her in red the next time she is drawn.
+
 ## 0.80.2 - the garrison holds, and she stands still to say so
 
 Four repairs from one play session, and a correction to what 0.80.0 promised.

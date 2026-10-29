@@ -1474,6 +1474,16 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.81.0 - Sahar in red
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| RD1 | **The row that proves the release.** Meet Sahar | - | She is red. SB1 in 0.80.0 and SB1b in 0.80.2 both failed this; the texture is now repainted rather than remapped |
+| RD2 | **Regression.** Any other snakebreed -- boss, summoner, viper, the garrison | - | Still green. Only her forked mesh was repainted; the six cans on the donor model are untouched |
+| RD3 | **Regression.** Watch her idle, walk, attack, cast and die | - | All play normally. Her descriptor still points its eight animation paths at `Snakewoman tough/`, and only the texture bytes changed |
+| RD4 | **Regression.** Her shading in motion | - | Folds, scale edges and shadows look as they always did. Only hue and saturation moved; lightness was untouched, worst drift 0.0000 over 1,771 samples |
+| RD5 | Watch for a missing or black texture on her at any camera distance | - | None. If one appears, the MIP chain is the suspect: the shipped texture has one level and so does the replacement |
+
 ## 0.80.2 - the garrison holds, and she stands still to say so
 
 All of these need a character who has not yet entered the abbey's second floor.

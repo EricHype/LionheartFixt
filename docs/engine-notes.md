@@ -533,6 +533,52 @@ about 1.3% on a 255 gold weapon. Move the Output Maximum in step.
 
 ---
 
+## Textures, and repainting one
+
+Character textures live inside the `.gr2` in Granny's **BinkTC0** format (`Encoding=3`), a wavelet
+compressor. Every one of the game's 923 model textures uses it; not one is raw, though the runtime
+names `Raw texture format` as encoding 1.
+
+**You do not need an encoder.** `granny2.dll` exports the builder side of the texture API, and the
+decorated argument byte counts match the SDK signatures:
+
+    _GrannyBeginBinkTexture@16   (Width, Height, MIPLevelCount, Flags)
+    _GrannyEncodeImage@24        (Builder, Width, Height, Stride, MIPLevels, RGBA)
+    _GrannyEndTexture@4          -> granny_texture *
+
+Feed it **RGBA8888**. Three-byte RGB produces a payload nearly twice the size and decodes at the
+wrong hue, even though the texture's own `Layout` reports `BytesPerPixel=3`. The `Flags` argument
+made no difference to output size across ten values.
+
+Expect the re-encoded payload to be several times larger than the one it replaces -- 67,816 bytes
+against 13,404 for a 256x256 -- because you are re-compressing an image that has already been
+through the codec once. That is not a knob; it is the cost of the round trip.
+
+**Splicing it in.** Read `Textures > Images > MIPLevels > Pixels` with `gr2_format.py`. `Pixels`
+is a reference-to-array: a `u32` count at the element's offset, and a pointer immediately after it
+recorded in that sector's fixup table at `offset + 4`. In the meshes seen so far the pixels live
+in their own sector, already `compression_type=0`, holding nothing else and no pointers -- so the
+new payload can simply be **appended** to that sector, leaving the old bytes as slack and any
+other texture's pointer into it untouched. Then change two things: the count, and the fixup's
+`dst_offset`. `Pointer` is a frozen dataclass, so replace the table entry rather than mutating it.
+`gltf_to_gr2.repack` writes the file, flipping touched sectors to uncompressed.
+
+**What not to bother with.** `GrannyWriteDataTreeToFile` would let the library re-serialise the
+whole tree and sidestep the splice entirely. All 48 combinations of argument order and of the two
+readings of the `GrannyFileInfoType` data export fault, and they fault writing the file back
+*unmodified*, so the signature is wrong rather than the data. `@16` rules out the five-argument
+form in later SDKs. Unsolved.
+
+**Verify by reloading, not by inspecting.** Read the written file back with the runtime and check
+the `granny_file_info` counts -- textures, materials, skeletons, vertex datas, topologies, meshes,
+models -- as well as the colour. A file that loads with no skeleton is worse than no file. Ignore
+`crc32`: the repacker writes 0, and `GrannyFileCRCIsValid` returns false for the shipped meshes
+too.
+
+**The hue remapper is not an alternative.** `Hue Remap Textures=1` in a `MODEL.TXT` plus a
+`CHueRemapHolder` on the can does nothing for a monster, confirmed with the model's own fork
+proven live by a render-scale probe. All 54 models that set the flag are player characters.
+
 ## Method rules
 
 **A number measured against the wrong precedent is as wrong as a form without one.** The rule above
