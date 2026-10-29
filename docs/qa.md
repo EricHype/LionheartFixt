@@ -1474,6 +1474,28 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.80.0 - the captain in red, and what Machiavelli makes of her
+
+**RL3 is the row that matters most** -- it is the one unverified mechanism that does not fail safe.
+SB1 through SB3 need a character who has not reached Montserrat; MA1 through MA5 need Montaillou.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| RL1 | **The rally.** Fight Sahar and her garrison | - | They hit harder than the same snakebreed elsewhere: +15 AC and +25 to each offensive damage percent |
+| RL2 | Break the truce after taking the ring, and fight | - | The same rally applies -- it hangs off `truce broken` as well as `sahar fights` |
+| RL3 | **Kill Sahar with her garrison still standing, and keep fighting** | - | They get **measurably weaker**. If they do not, `CRemoveCharacterModifierFromCharacterAction` did not fire -- it has one shipped use in the whole game, in a test map -- and the rally must be cut. **Say so before anything else** |
+| RL4 | **Regression.** Snakebreed anywhere outside her sanctum | - | Unchanged. The rally names only the four `sahar fights` enumerates, in her map |
+| SB1 | **Her colour.** Meet Sahar on a fresh character | - | She is rose, not green. **Unverified**: no shipped monster sets `Hue Remap Textures=1`. If she is green the flag does not reach monsters, and the fallback is repainting her texture |
+| SB2 | **Regression.** Any other snakebreed boss or summoner | - | Still green. Six cans share the donor model and it still reads `Hue Remap Textures=0` |
+| SB3 | **Regression.** Her animations -- idle, walk, attack, spellcast, death | - | All play. Her descriptor still points its eight animation paths at `Snakewoman tough/`, so a missing one means the fork broke |
+| SC3b | **The 0.79.9 repair.** Open her conversation, close it with Escape, walk up and click her | - | It reopens. 0.79.9 claimed this and shipped it into her *death* script, so it has never worked |
+| MA1 | **The betrayal.** Take her ring, then kill her, then reach Machiavelli in Montaillou | - | `233` or `303`, depending on whether you saved him in Barcelona. He approves -- the keeping-faith line from chapter 18 |
+| MA2 | On the ambush path, after the betrayal | - | The ambush is called off. He fires `machiavelli leaves` |
+| MA3 | **The blunt kill.** Kill her without ever taking the ring, then reach him | - | `234` or `304`: *"Those who rely simply on the lion do not understand what they are about."* On the ambush path **the assassins still come** |
+| MA4 | **Regression.** Take the ring, leave her alive, then reach him | - | The existing `232` / `301`, unchanged |
+| MA5 | **Regression.** Never go to the sanctum, then reach him | - | The existing default, unchanged. Before this release the blunt kill was indistinguishable from this |
+| MA6 | Check the journal after killing her | - | **No new entry.** The outcome is carried by player-scoped scripting variables, not a quest, specifically so a murder does not get a journal line |
+
 ## 0.79.9 - the captain, and a staff on a narrow canvas
 
 Three maps, one tree, one icon. **SC1 and SC3 need a character who has not yet reached Montserrat**;

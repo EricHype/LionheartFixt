@@ -140,6 +140,205 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.80.0 - the captain in red, and what Machiavelli makes of her
+
+Sahar stops being a reskinned rank-and-file boss. She gets her own model, her own reason to be
+dangerous, and -- for the first time -- consequences that outlive the room she dies in. Plus one
+defect this mod shipped in 0.79.9, and the gate that would have caught it.
+
+### She has her own model
+
+Her can has always been hers, but it was a clone of `Snakebreed Boss Super` with three lines
+changed, and `Model=Characters/Monsters/Snake Women tough` was one of six cans pointing at the same
+art. She now has `Characters/Monsters/Snake Women sahar`, built on the recipe this project proved
+on the Wasp Queen in 0.45.0: a `.mdl16` whose model path and names are rewritten to **same-length**
+strings so no length prefix moves, pointing at a byte copy of the donor `MODEL.gr2`.
+
+| | |
+|---|---|
+| `Snakewoman tough` -> `Snakewoman sahar` | 16 for 16 |
+| `Snakewoman boss` -> `Snakewoman rose` | 15 for 15 |
+| `Snake Woman tough` -> `Snake Woman sahar` | 17 for 17 |
+| `Player Data/Hue Remappers/!None` -> `.../Sahar` | 31 for 31 |
+
+The descriptor is still exactly 7,373 bytes, and its **eight animation paths deliberately still
+point at `Snakewoman tough/`**, exactly as WaspQ's point at `Wasp2/`, so not one animation is
+duplicated. Her whole model costs 63 KB, and 55 of those are a byte copy.
+
+### 0.79.9 was wrong about the hue remapper, and this says how
+
+0.79.9 recorded a negative result: a remapper of her own left her green, and the note concluded
+that *"the engine's hue remapper does not reach monster textures"*. That described the shipped
+configuration, not the engine. Every snake-woman `MODEL.TXT` carries **`Hue Remap Textures=0`**,
+and that is a switch:
+
+| | |
+|---|---|
+| models with `Hue Remap Textures=1` | **54** |
+| of those, player characters | **54** |
+| monsters that turn it on | **0** |
+
+The data path was never missing -- `Hue Remapper=` is a field of `CAICharacterProfile`, and all 716
+monster cans carry one. It was switched off at the model. Her forked `MODEL.TXT` sets it to 1.
+
+The flag was **not** flipped on the model she used to share. Six shipped cans point at it, and
+nothing in the shipped data proves the remap is applied per character rather than cached once per
+model -- every can in the game uses `!None`, so there is no case of one model worn in two colours.
+Forking removes the question. The donor still reads `Hue Remap Textures=0`, asserted against the
+installed archive.
+
+`!None` is not an empty remapper, incidentally: it maps hue 299 +/- 44 to 21.5. Against her art
+that is inert, and measured rather than assumed -- **4 pixels of 65,536**, because her green sits
+at 105..179 and that band starts at 255.
+
+### The colour, and how it was aimed
+
+Her texture was pulled out through the game's own `granny2.dll` and measured. The first aim was
+wrong and the compare image showed it: the report of "99.4% saturated" is an artifact of HLS, where
+a near-black pixel with a nine-unit green tint reports saturation 1.00, so the histogram was
+counting compression noise as her colour. Re-measured weighted by chroma, her art is one band from
+105 to 179 degrees.
+
+A rotation was then the wrong operator -- it drags a monochrome spread across a quarter of the
+wheel, and the result had a magenta background and purple-brown plates. The recipe that was
+approved compresses instead:
+
+| step | what |
+|---|---|
+| hue | 105..179 compressed into **334..357** |
+| saturation | `s ** 0.65`, lifting the muted plates without clipping the vivid |
+| lightness | **untouched**, worst drift 0.0000 over 1,771 samples |
+
+In the remapper's own terms that is hue 142 +/- 40 to **345**, saturation x1.25, lightness x1.
+
+**This is unverified.** No monster in the shipped game turns that flag on, so nothing proves the
+engine honours it here. If it does not, she is green exactly as before, and the fallback is
+repainting the texture inside the `.gr2` she now owns -- for which the fork is a prerequisite
+either way, so none of this work is wasted.
+
+### She is why the garrison is dangerous
+
+The lever for a monster's behaviour is narrower than it looks: the whole game has **one** attack
+brain, `CNormalAttackAI`, used 1,461 times. Character comes from the `Shoot Completed` slot inside
+it, where 74 cans put a `CRandomAction` whose branch count is the rate denominator -- the Snakebreed
+Summoner's three branches are melee, melee, gated summon.
+
+Rather than make her hit harder, she now rallies. `CAddCharacterModifierToCharacterAction` takes a
+plain name in `Character to modify=`, not only the player -- `Khan`, `Quinn`, `Joan of Arc`, and the
+group names **`Summoned Monster`** and **`Summoned Undead`**. The Monster Summoning spell is the
+template, buffing everything called `Summoned Monster` with HP and the three offensive damage
+percentages at once.
+
+| when | what |
+|---|---|
+| `sahar fights` | +15 Armor Class and +25 to slashing, crushing and piercing damage percent |
+| `truce broken` | the same, for the post-ring route |
+| `sahar dies` | the identical array comes back off |
+
+It hooks to the fight relays and not to her spawn, because at spawn the garrison may not exist yet
+and a modifier cannot reach a creature that is not there. Every modifier sets **`Allow
+Accumulation=0`**, which is the field the Sceptre of Bone's stacking bug needed. The names are the
+four that `sahar fights` already enumerates in its own `CGoToCombatAction`, which is authoritative
+for this garrison; the three `Assassin` generators are left out, not being snakebreed.
+
+**The release is the thin part.** `CRemoveCharacterModifierFromCharacterAction` has exactly one use
+in the shipped game, in `Test Maps/James.zax`. If it does not fire, killing her leaves the garrison
+rallied, which is worse than before this release -- so that is the first thing to check in play, and
+the numbers were kept modest for exactly that reason.
+
+### Act 3 remembers the sanctum
+
+Machiavelli's tree already branched on the Sahar Ring, in two places, and the writing was built
+around what it means to him -- he brokered the arrangement it came out of. But the ring is granted
+in exactly one place, one `Inventory Item To Give` in her tree, and **she drops nothing when
+killed**. So act 3 could not tell "I killed Sahar" from "I never went to the sanctum". Both fell to
+the same default.
+
+No quest was needed for this. The game keeps player-scoped flags under
+`Derived Character Attributes/Game Scripting Variables/`, and four are NPC-death flags --
+`Relican Dead`, `Herbalist Dead`, `Woodcutter Dead`, `River Dryad Dead`. `Relican Dead`'s own
+description reads *"0 Means he is not dead. 1 Means he is dead."* They live on the player, so they
+cross acts the way his hit points do, and `Display In Attributes Window=0` keeps them off his
+sheet -- where all 326 shipped quest states carry journal text, and a murder does not want a journal
+entry.
+
+One trap, which vanilla also shows how to avoid: the write targets `$Instigator`, which in a
+dialogue reply is the player but in a **death script is not**. Vanilla's second write of
+`Relican Dead`, in `Slave Pit Exterior.zax`, wraps it in `CForEachPlayerAction` for that reason.
+`sahar dies` gets the wrapper.
+
+Four outcomes where there was one:
+
+| you did | Parley / Dead | he says |
+|---|---|---|
+| never went | 0 / 0 | the existing default |
+| killed her outright | 0 / 1 | **`234` / `304`**, new |
+| took the ring, left her alive | 1 / 0 | the existing `232` / `301` |
+| took the ring, then killed her | 1 / 1 | **`233` / `303`**, new |
+
+All four arms exist on both Montaillou paths -- the ambush greeting and the one where he repays
+you -- and the existing ring arms now also require her to be alive, so exactly one offers itself.
+
+### What he says, and in whose words
+
+The tree already quotes Machiavelli: node `70 Task` is W. K. Marriott's chapter 6 verbatim and
+`100 accept task` is his chapter 19 with "prince" swapped to "ruler". So the new lines use Marriott
+too, checked against the text rather than remembered -- which caught two misquotes before they
+shipped. "Caressed or crushed" is Ricci, not Marriott, and the injuries line is "done all at one
+time, so that, being tasted less, they offend less".
+
+The betrayal is the one he admires, which is the whole point of him:
+
+> **`233`:** *A wise lord cannot, nor ought he to, keep faith when such observance may be turned
+> against him, and when the reasons that caused him to pledge it exist no longer.* (ch. XVIII)
+>
+> **`303`:** *It is necessary to be a fox to discover the snares and a lion to terrify the wolves.*
+> (ch. XVIII)
+
+And the blunt kill gets the other half of the same pair, which is the judgement rather than the
+praise:
+
+> **`234` / `304`:** *Those who rely simply on the lion do not understand what they are about.*
+
+The difference is mechanical too. On the ambush path the ring arm and the betrayal arm both call it
+off through `machiavelli leaves`; the plain kill does not, and falls through to
+`machiavelli ambush` exactly as the silent default does. The fox talks his way out. The lion gets
+the fight he asked for.
+
+### A defect this mod shipped in 0.79.9
+
+0.79.9's note says her re-entry talk specifier went into her generator's `After Action`. It did
+not. The script that wrote it selected the array with a loop that had no `break`, so it kept the
+*last* match in walk order -- the array inside the `CSetDestroyedScriptActionAction` her generator
+installs. **As shipped, she was handed her conversation interaction when she died.** It is now in
+her spawn action, and her death script is back to its two relays.
+
+Every existing gate passed it: the map round-tripped byte-exact, every array count was right, and
+no name dangled. So it gets a gate, **A0.18**, which fires when a `CAddAIAction` installs an
+interaction specifier on `$Instigator` inside a destroyed script. Narrow on purpose -- vanilla does
+install specifiers from death scripts 4 times in 336, but every one names a *different* object: the
+chest in Inquisition Chambers2, its south door, the Temple District church doors, and the map in
+Montaillou's House1. That is the legitimate "when this breaks, that becomes usable" shape. None
+targets the dying entity. Proven against the committed file: **1 finding on the bug, 0 after the
+fix.**
+
+### Two corrections to earlier notes
+
+**0.79.9 on the hue remapper** said the engine's remapper does not reach monster textures. It
+reaches them when the model asks for it; no shipped monster asks. Corrected above.
+
+**`garrison routs` is not dangling.** It is fired from Level 2 with no receiver in Level 2, which
+looked like a dead relay, but her ring reply fires it into the Grove and Level 1 through
+`COtherMapAction` -- a cross-map relay mechanism, which this project had not recorded. Level 2's own
+rout is done inline in the same reply. 0.79.8's repair does reach something.
+
+### Which saves this reaches
+
+Her model, her can and the two flags are read live. The rally and the 0.79.9 repair are map-side
+and need a character who has not yet entered the abbey's second floor. The flags are written by a
+kill or a parley that happens after this install, so a character who already dealt with her will
+read as having never gone.
+
 ## 0.79.9 - the captain, and a staff on a narrow canvas
 
 Six fixes, all from one afternoon of play. Five are in the sanctum and the prison; the sixth is an

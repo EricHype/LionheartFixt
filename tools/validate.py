@@ -994,6 +994,63 @@ for _n in zf.namelist():
         if _m and _m.group(1).strip():
             _CAN_NAME[_n[len("Resources/"):-len(".can")].lower()] = _m.group(1).strip()
 
+
+
+SELF_TARGETS = ("$Instigator", "$instigator", "$Trigger", "$trigger")
+
+
+def check_corpse_specifier(fails):
+    """An interaction specifier installed on the entity that is dying (A0.18).
+
+    0.79.9 gave Sahar a talk interaction so a mis-closed conversation could be reopened, and put it
+    in her death script instead of her spawn action -- the script that wrote it selected the array
+    with a loop that had no `break`, so it took the last match in walk order rather than the first.
+    She was handed her conversation when she died. Every existing gate passed: the map round-tripped
+    byte-exact, every array count was right, and no name dangled.
+
+    The broad form of this rule is false, so the gate is narrow. Vanilla installs a specifier from
+    inside a destroyed script 4 times out of 336 -- the chest in Inquisition Chambers2, its south
+    door, the Temple District church doors, and the map in Montaillou's House1 -- and every one
+    names a *different* object, which is the legitimate "when this breaks, that becomes usable"
+    shape. None targets the dying entity, and a specifier on a corpse can never fire.
+    """
+    for p in files:
+        if p.suffix.lower() not in (".zax", ".can"):
+            continue
+        raw = p.read_bytes().decode("latin-1")
+        if "New Destroyed Action" not in raw:
+            continue
+        try:
+            root = rf.parse_resource_text(raw)
+        except Exception:
+            continue                      # other checks own parse failures
+
+        def walk(n):
+            for k, v in n.fields:
+                if isinstance(v, rf.ResourceNode):
+                    yield v
+                    yield from walk(v)
+
+        for node in walk(root):
+            if node.type_name != "CSetDestroyedScriptActionAction":
+                continue
+            script = node.get("New Destroyed Action")
+            if not isinstance(script, rf.ResourceNode):
+                continue
+            for act in walk(script):
+                if act.type_name != "CAddAIAction":
+                    continue
+                ai = act.get("AI")
+                if not (isinstance(ai, rf.ResourceNode)
+                        and ai.type_name == "CAIInteractionSpecifier"):
+                    continue
+                target = (act.get("Target Name") or "").strip()
+                if target not in SELF_TARGETS:
+                    continue               # naming another object is vanilla's own pattern
+                fails.append("%s: a %s is added to %s inside a destroyed script; it can only run "
+                             "once the entity is dead, so it never runs (vanilla: 0 of 336)"
+                             % (p.name, ai.get("Interaction Type") or "CAIInteractionSpecifier",
+                                target))
 check_references(fails)
 check_self_reference(fails)
 check_no_probes(fails)
@@ -1001,6 +1058,7 @@ check_overridden_drops(fails)
 check_class_names(fails)
 check_dangling_names(fails)
 check_empty_blocks(fails)
+check_corpse_specifier(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))

@@ -240,7 +240,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=9
+Item Count=10
 Action=CTriggerRelayAction
 {
 Relay Name=sahar word given
@@ -321,6 +321,28 @@ Facing Angle=CEntityBehaviorTurnToAngle
 Need to Call Start=1
 }
 Target=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Sahar Parley
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
 }
 }
 }

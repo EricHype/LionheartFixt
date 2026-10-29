@@ -1139,7 +1139,41 @@ Text=It is fortunate for me and unfortunate for you that events transpired as th
 Should Have Voiceover=1
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Parley
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=Before your friends come in. <Show him the ring.>
+Go to node ID=233 the betrayal
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CActionCheckForInventoryItem
 {
@@ -1147,8 +1181,54 @@ Who to give check=$instigator
 Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Before your friends come in. <Show him the ring.>
 Go to node ID=232 the ring
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Parley
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=Your snake captain is dead. I killed her myself.
+Go to node ID=234 the lion
 
 Requirement=!None
 Reply Text=
@@ -1290,7 +1370,41 @@ Text=I have managed to gather resources from allies in this region. I will share
 Should Have Voiceover=1
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Parley
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=You have seen this before. <Show him the ring.>
+Go to node ID=303 the betrayal
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CActionCheckForInventoryItem
 {
@@ -1298,8 +1412,54 @@ Who to give check=$instigator
 Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=You have seen this before. <Show him the ring.>
 Go to node ID=301 the ring
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Parley
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=The snake captain at Montserrat is dead. That was me.
+Go to node ID=304 the lion
 
 Requirement=!None
 Reply Text=
@@ -1327,6 +1487,58 @@ Target=Machiavelli
 }
 }
 }
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=233 the betrayal
+Text=Where did you -- <He stops, and looks at the ring.> A wise lord cannot, nor ought he to, keep faith when such observance may be turned against him, and when the reasons that caused him to pledge it exist no longer. She gave you that, and you buried her in it. <He lifts a hand to the men behind you.> Put them up. Not him. Go, Lionheart, and do not walk in front of me again.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave him standing there.>
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=machiavelli leaves
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=303 the betrayal
+Text=Keep it covered. <He studies you rather than the ring.> It is necessary to be a fox to discover the snares and a lion to terrify the wolves. She gave you that, and then you killed her wearing it, and you contrived to be both inside one evening. I am glad we are friends. I would be obliged if you stood where I can see your hands.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Whose was it? Say the name.
+Go to node ID=302 the name
+
+Requirement=!None
+Reply Text=I will keep it where it is.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=234 the lion
+Text=Dead. <He weighs it, and does not look pleased.> Those who rely simply on the lion do not understand what they are about. You stood in the one room in Aragon where a word was worth more than a blade, and you drew. The arrangement I paid for is in the ground with her, and so is any reason I had to let you walk out of this one.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=machiavelli ambush
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=304 the lion
+Text=Dead, and by the short road. <He goes on packing.> Those who rely simply on the lion do not understand what they are about. She held something of mine in trust and it is buried with her now, so I will not pretend to grieve and I will not pretend it cost me nothing. You are an expensive friend, Lionheart. Keep walking north.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
 }

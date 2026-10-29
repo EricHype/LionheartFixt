@@ -147,7 +147,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=8
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Sahar
@@ -184,6 +184,214 @@ CLayerSaveData
 								}
 								OPTIONAL Duration=
 								Expression Context=Player#1-9#
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed Viper
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed Crusher
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed Summoner
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
 							}
 						}
 					}
@@ -500,7 +708,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=8
+							Item Count=13
 							Action=CActivateAction
 							{
 								Target Name=routed
@@ -625,6 +833,231 @@ CLayerSaveData
 									Need to Call Start=1
 								}
 								Target=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
+							}
+							Action=CRemoveCharacterModifierFromCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Character to modify=Snakebreed
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								Modification was permanent=0
+							}
+							Action=CRemoveCharacterModifierFromCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Character to modify=Snakebreed Viper
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								Modification was permanent=0
+							}
+							Action=CRemoveCharacterModifierFromCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Character to modify=Snakebreed Crusher
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								Modification was permanent=0
+							}
+							Action=CRemoveCharacterModifierFromCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Character to modify=Snakebreed Summoner
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								Modification was permanent=0
+							}
+							Action=CForEachPlayerAction
+							{
+								Action=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=0
+									Character to modify=$Instigator
+									Modifiers=Array
+									{
+										Item Count=1
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CConstant
+											{
+												Constant Value=1
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=$Instigator
+								}
 							}
 						}
 					}
@@ -1438,7 +1871,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=5
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=$Instigator
@@ -1451,7 +1884,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=4
+										Item Count=2
 										Action=CTriggerRelayAction
 										{
 											Relay Name=Snakebreed dead relay
@@ -1459,84 +1892,6 @@ CLayerSaveData
 										Action=CTriggerRelayAction
 										{
 											Relay Name=sahar dies
-										}
-										Action=CRemoveAIAction
-										{
-											Target Name=$Instigator
-											AI=CAIInteractionSpecifier
-											Delay Between Removes=0
-										}
-										Action=CAddAIAction
-										{
-											Target Name=$Instigator
-											AI=CAIInteractionSpecifier
-											{
-												Marked For Deletion=0
-												Publisher=
-												Trigger Only Once=0
-												Was Triggered=0
-												Auto-Flip Switch=1
-												Trigge Must Have HP=0
-												Triggered By Anything=0
-												Triggered By Players=1
-												Triggered By Player Friends=0
-												Triggered By Enemies=0
-												Triggered By Projectiles=0
-												Triggered By Companions=0
-												Triggered By Name=
-												Interaction Description=
-												Interaction Type=Interaction Specifiers/GetCloseThenTalk
-												Action=CIfAction
-												{
-													If=CActionCheckForInventoryItem
-													{
-														Who to give check=$instigator
-														Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
-													}
-													Then=CDisplayDialogTreeAction
-													{
-														Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-														Node ID=60 the ring is on your hand
-														Speaker=Sahar
-														Player Being Spoken To=$Instigator
-													}
-													Else=CIfAction
-													{
-														If=CCheckExistenceAction
-														{
-															Name To Check For=delivered
-															Desired Minimum Count=1
-														}
-														Then=CDisplayDialogTreeAction
-														{
-															Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-															Node ID=1 delivered
-															Speaker=Sahar
-															Player Being Spoken To=$Instigator
-														}
-														Else=CDisplayDialogTreeAction
-														{
-															Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-															Node ID=1 too late
-															Speaker=Sahar
-															Player Being Spoken To=$Instigator
-														}
-														Return failure if the If failes=0
-													}
-													Return failure if the If failes=0
-												}
-												X Radius=320
-												Attacker Range Modifier=0
-												YX Ratio=0.712766
-												Highlight Self Time=0
-												Highlight Until Clicked=0
-												Is Locked=0
-												Allow Interact If Has Target=1
-												Lock Pick Adjustment=0
-												Inventory item to use as key=Inventory Items/!None
-												Is Bussy Talking=0
-											}
-											Delay Between Adds=0
 										}
 									}
 								}
@@ -1546,6 +1901,84 @@ CLayerSaveData
 							{
 								Target Name=$Instigator
 								Categories to add=Scripted Custom 1
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CIfAction
+									{
+										If=CActionCheckForInventoryItem
+										{
+											Who to give check=$instigator
+											Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+											Node ID=60 the ring is on your hand
+											Speaker=Sahar
+											Player Being Spoken To=$Instigator
+										}
+										Else=CIfAction
+										{
+											If=CCheckExistenceAction
+											{
+												Name To Check For=delivered
+												Desired Minimum Count=1
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+												Node ID=1 delivered
+												Speaker=Sahar
+												Player Being Spoken To=$Instigator
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+												Node ID=1 too late
+												Speaker=Sahar
+												Player Being Spoken To=$Instigator
+											}
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
+									}
+									X Radius=320
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 						}
 					}
@@ -2230,7 +2663,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=7
+							Item Count=11
 							Action=CActivateAction
 							{
 								Target Name=Snakebreed Generator
@@ -2267,6 +2700,214 @@ CLayerSaveData
 							Action=CForceGenerateAction
 							{
 								Generator Name=Sahar Priestess Generator
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed Viper
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed Crusher
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Sahar's command
+								Modification is permanent=0
+								Character to modify=Snakebreed Summoner
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=15
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=25
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
 							}
 						}
 					}
