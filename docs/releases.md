@@ -140,6 +140,116 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.82.0 - what Sahar costs you
+
+The parley at Montserrat was one line long. You asked, she agreed, and the only thing that could
+go wrong was not being allowed to ask. It is now a negotiation you can lose.
+
+### The way out was locked behind a man who is never there
+
+Reported in play: killing her opens the wooden posts at the east end of the sanctum, and taking
+her ring does not.
+
+The posts are four `Exit Door2` panels, and **nothing in the map opens them**. The only thing that
+does is Brother Montgomerie's tree, twice -- and Montgomerie is the one character who never
+appears on the peaceful route, because his reveal checks that nothing hostile stands within 450
+units and after the parley Sahar is 238 away with her retinue between 222 and 417.
+
+Issue #11 logged his absence as a scene you miss. It was not. He is the only one who opens the
+road, so missing him was the missing exit. Her ring reply now fires the same `COpenDoorAction`,
+which is hers to fire -- she is the one sending you north.
+
+### She says no first
+
+The reply that won the ring -- *"Then send me north. Your word for my life"* -- was gated on
+nothing but having surrendered, and it was offered on **five of her ten nodes**. The three
+questions about the Master, the Crown and the monks looped back and changed nothing.
+
+She refuses now, and you need a lever. There is no third option: you were disarmed and delivered,
+so the ways out of that room are her agreement or her guard.
+
+| the opening | what it takes | where it goes |
+|---|---|---|
+| *You need a courier more than you need a corpse.* | Speech 50 | she tests whether you would actually arrive |
+| *Whole, and north. Those were your words.* | Outwit 9 | she makes you name who gave them |
+| *Then name the cargo and name the price.* | Barter 50 | she gives you a word instead of a cargo |
+| *The monk in your cellar says you take them alive.* | **having spoken to Brother Pau** | the only one that is not a faculty |
+
+The first two fork again -- `IN 7+` or `CH 7+` after the Speech opening, `Outwit 10` after the
+Outwit one -- and those two best answers converge on the one thing the route never gave you
+before: she tells you to take the pass above Montaillou rather than the valley road, and that the
+Crown is going to **an old man east of here, not to a church**. Which lines up with what
+Machiavelli says about the Old Man two acts later.
+
+### And you can lose it
+
+Five replies end the parley, all of them ungated, so failure comes from judgement rather than from
+your build. Each is the argument a prisoner is tempted to make and should not:
+
+| node | the mistake |
+|---|---|
+| `51 she refuses` | threatening her with a scarcity she has already counted |
+| `52 she weighs you` | telling her she has no one else, when she has just said she has no one to spare |
+| `53 her own orders` | guessing at her master, having just claimed to know her orders |
+| `54 the trade` | haggling for a share after she has named the price |
+| `55 the monk` | using Pau as leverage against her |
+
+All five reach `58 she is done` -- *"No. I have heard what you are... Put him back in the cellar,
+or do not. I have stopped caring which."* -- and she calls the guard. One strike. She owes a
+delivered prisoner nothing.
+
+**Closing the conversation is not one of the five.** `51` keeps a silent fallback that simply ends
+it, because 0.79.9 shipped a version of this scene where a keypress started the fight and nothing
+here should reintroduce that. Backing off gains nothing -- the posts are still shut and you still
+need a lever -- but it is not a death sentence.
+
+### The icons were answering the question for you
+
+The failures never carried a Fight Icon. The tell was the other way round: the safe reply carried
+`Quest Icon` and the failing one `Speach Skill Icon`, so the quest icon marked the right answer,
+and at the two nodes with exactly two replies that is not a choice at all.
+
+Both ungated replies at every node are now unmarked, which is the ordinary case and not an
+omission -- **57.1% of vanilla's 10,915 replies carry no `Icon` line whatsoever**. Checked as a
+property rather than by eye: at all five nodes the unmarked replies lead to both outcomes, so no
+icon uniquely identifies a failure.
+
+The gated levers took the icons vanilla actually uses for what they check -- `Speach Skill Icon`
+for Speech, `Barter Skill Icon` for Barter, `Attribute Icon` for Outwit and the attributes. Those
+leak nothing, because every gated reply succeeds; they only say which faculty you are spending.
+
+### A line that was talking to an equal
+
+Her opening ended *"...if that helps you decide anything."* She has had the player disarmed and
+carried to her. She is not helping him weigh his options. The fact stays, because it is the reason
+to go north, but it lands as something that happened to him while he was on her floor:
+
+> The Crown you came for went over the mountains while you were lying in my cellar.
+
+### Brother Pau finally matters
+
+Nothing recorded having spoken to him, so the one character written to explain this route could
+not be referred to in it. He now sets a player-scoped scripting variable on the `Relican Dead`
+pattern, and it is the only lever in the parley that rewards having gone looking rather than
+having a number.
+
+### Two things about the format, for next time
+
+Both found by getting them wrong first, and both now in
+[`engine-notes.md`](engine-notes.md):
+
+**Requirement references never contain a slash.** All 1,568 in vanilla are bare basenames, even
+for cans that live in subfolders. Writing `Skills/Speech/Speech moreequal 50` is wrong, and
+`validate.py` reports it as unresolved.
+
+**A reply with no `Icon` line is the normal case**, at 57.1%, so icons are a deliberate signal
+rather than decoration -- which is exactly why one in the wrong place gives a puzzle away.
+
+### Which saves this reaches
+
+All dialogue, so it is read live. The Pau lever only records meetings that happen after you
+install this.
+
 ## 0.81.0 - Sahar in red
 
 She is red. Not by a flag, not by a lighting trick -- her texture is repainted inside her own

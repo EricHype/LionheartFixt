@@ -1474,6 +1474,25 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.82.0 - what Sahar costs you
+
+Dialogue, so any save works -- but the Pau lever only records a meeting that happens after this is
+installed.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| PQ1 | **The reported row.** Take her ring, then walk east | - | The wooden posts are open. Before this only killing her opened them, because the only thing that opens them is Brother Montgomerie's tree and he never appears on this route |
+| PQ2 | **She says no.** Ask her to send you north | - | A refusal, not the ring. *"No. I have no wagons left, no sisters to spare..."* |
+| PQ3 | **A talker.** Speech 50 or better | - | *"You need a courier more than you need a corpse"*, then she asks why you would arrive. `IN 7+` or `CH 7+` answer it best |
+| PQ4 | **Her own orders.** Outwit 9 | - | She makes you name who gave them. `Outwit 10` names him |
+| PQ5 | **The payoff.** Reach `56 she is satisfied` by either route | - | She names the pass above Montaillou, and an old man east of here. New information; the route never gave you any |
+| PQ6 | **The monk.** Speak to Brother Pau in the cells, then reach her | - | A fifth opening, gated on having met him rather than on a stat |
+| PQ7 | **Lose it on purpose**, once from each of the five nodes | - | She ends the parley and the fight starts. **One strike** -- there is no second attempt |
+| PQ8 | **The keypress.** Press Escape at her refusal | - | The conversation closes and **nothing attacks you**. She can be hailed again. 0.79.9 shipped the opposite of this |
+| PQ9 | **No levers at all.** Speech under 50, Outwit under 9, Barter under 50, never met Pau | - | Two unmarked replies, the explicit fight, and the way out. Say if this reads as a dead end rather than a choice |
+| PQ10 | **The tell.** Look at the icons on her replies | - | The safe and the fatal reply look identical. If one is marked and the other is not at any node, that is the bug this release fixed coming back |
+| PQ11 | **Regression.** Her opening line | - | Ends *"...while you were lying in my cellar."* She should never sound like she is helping you decide |
+
 ## 0.81.0 - Sahar in red
 
 | # | Step | Say | Expect |

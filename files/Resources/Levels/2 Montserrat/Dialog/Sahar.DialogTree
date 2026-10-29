@@ -65,7 +65,7 @@ Desired Minimum Count=1
 }
 }
 Reply Text=Then send me north. Your word for my life, and I carry whatever you want carried.
-Go to node ID=50 her word
+Go to node ID=51 she refuses
 Icon=Quest Icon
 
 Requirement=!None
@@ -100,7 +100,7 @@ Desired Minimum Count=1
 }
 }
 Reply Text=Then send me north. Your word for my life, and I carry whatever you want carried.
-Go to node ID=50 her word
+Go to node ID=51 she refuses
 Icon=Quest Icon
 
 Requirement=!None
@@ -135,7 +135,7 @@ Desired Minimum Count=1
 }
 }
 Reply Text=Then send me north. Your word for my life, and I carry whatever you want carried.
-Go to node ID=50 her word
+Go to node ID=51 she refuses
 Icon=Quest Icon
 
 Requirement=!None
@@ -174,7 +174,7 @@ Desired Minimum Count=1
 }
 }
 Reply Text=Then send me north. Your word for my life, and I carry whatever you want carried.
-Go to node ID=50 her word
+Go to node ID=51 she refuses
 
 Requirement=!None
 Reply Text=<Draw.>
@@ -187,7 +187,7 @@ Icon=Fight Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=1 delivered
-Text=You walked in. Good. It saves rope. He wants you whole, and north, and I have no wagons left and no sisters I can spare to walk you over the mountains. I have been sitting on this step deciding what to do about that. The Crown you came for is already over the mountains, if that helps you decide anything.
+Text=You walked in. Good. It saves rope. He wants you whole, and north, and I have no wagons left and no sisters I can spare to walk you over the mountains. I have been sitting on this step deciding what to do about that. The Crown you came for went over the mountains while you were lying in my cellar.
 Should Have Voiceover=0
 
 Requirement=Outwit 7 greater or equal
@@ -204,7 +204,7 @@ Icon=Speach Skill Icon
 
 Requirement=!None
 Reply Text=Then send me north. Your word for my life, and I carry whatever you want carried.
-Go to node ID=50 her word
+Go to node ID=51 she refuses
 Icon=Quest Icon
 
 Requirement=!None
@@ -240,7 +240,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=9
+Item Count=10
 Action=CTriggerRelayAction
 {
 Relay Name=sahar word given
@@ -316,6 +316,11 @@ Derived character attribute to modify=Derived Character Attributes/Game Scriptin
 OPTIONAL Duration=
 Expression Context=$Instigator
 }
+Action=COpenDoorAction
+{
+Door Name=Exit Door2
+Delay Between Doors=0
+}
 }
 }
 Icon=Quest Icon
@@ -354,6 +359,176 @@ Icon=Fight Icon
 Requirement=!None
 Reply Text=
 Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=51 she refuses
+Text=<She looks at you for the first time.> No. I have no wagons left, no sisters to spare, and a body is simpler to account for than a courier. You are the sixth thing to walk in here and ask me for the road.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 50
+Reply Text=You need a courier more than you need a corpse. North is your road too, and you cannot walk it.
+Go to node ID=52 she weighs you
+Icon=Speach Skill Icon
+
+Requirement=Outwit 9 greater or equal
+Reply Text=Whole, and north. Those were your words. Not cold, and not here.
+Go to node ID=53 her own orders
+Icon=Attribute Icon
+
+Requirement=Barter moreequal 50
+Reply Text=Then name the cargo and name the price. I will carry it and you keep your hands.
+Go to node ID=54 the trade
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Spoke To Brother Pau
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=The monk in your cellar says you take them alive. He has watched you do it twice.
+Go to node ID=55 the monk
+
+Requirement=!None
+Reply Text=You will not get another courier through that pass without me.
+Go to node ID=58 she is done
+
+Requirement=!None
+Reply Text=<Say nothing.>
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sahar fights
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=52 she weighs you
+Text=<A long pause.> Say I agree. You would walk north with my mark on you, into his country, and arrive. Why would you arrive? Tell me what you think is waiting, and I will know whether you have understood any of this.
+Should Have Voiceover=0
+
+Requirement=IN 7+
+Reply Text=A relic is not loot. Somebody wants it whole, in one place, at one time -- and that is a ceremony, not a theft.
+Go to node ID=56 she is satisfied
+Icon=Attribute Icon
+
+Requirement=CH 7+
+Reply Text=Because I would rather owe you than bury you. That is worth more than rope.
+Go to node ID=57 she almost smiles
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Because you have no one else left to send.
+Go to node ID=58 she is done
+
+Requirement=!None
+Reply Text=I will arrive. That is all I can promise you.
+Go to node ID=50 her word
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=53 her own orders
+Text=<Her hand stops on the reliquary step.> You have a good ear. Say the rest of it, then, since you are counting my orders back to me. Who gave them.
+Should Have Voiceover=0
+
+Requirement=Outwit 10 greater or equal
+Reply Text=Someone who wanted a crown and a witness, and sent a captain for both. You call him the Master. He has another name further east.
+Go to node ID=56 she is satisfied
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Rome, at a guess. It is always Rome, under the paint.
+Go to node ID=58 she is done
+
+Requirement=!None
+Reply Text=Someone above you. That is as far as I need to count.
+Go to node ID=50 her word
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=54 the trade
+Text=<She considers it the way she would consider a cart.> A word, then, and not a cargo. You carry what you are. Men stop a stranger on that road; they do not stop one of his. The price is that you keep walking and do not come back down it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And a share of whatever it is worth at the other end.
+Go to node ID=58 she is done
+
+Requirement=!None
+Reply Text=Agreed. A word for a road.
+Go to node ID=50 her word
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=55 the monk
+Text=<Something goes out of her face.> He is still alive, then. I told them the cellar, and they heard the cellar. <She is quiet a moment.> Yes. We take them alive when there is room in the wagons. There was no room, and he could not walk, and that is the whole of why he is still in it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Send me north, or the next people down there hear what you left him in.
+Go to node ID=58 she is done
+
+Requirement=!None
+Reply Text=Then make room for one more. Send me north.
+Go to node ID=50 her word
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=56 she is satisfied
+Text=<She nods once, as though settling an account.> Then you will arrive. Go by the pass above Montaillou and do not take the valley road, whatever you are told in the village. There is an old man east of here who keeps a house of patient men, and the Crown is going to him, not to a church. Now take this before I remember what you cost me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Take what she offers.>
+Go to node ID=50 her word
+Icon=Quest Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=57 she almost smiles
+Text=<She almost smiles, and it does not reach anything.> Owe me, then. I have very little put by. <She rises, which she has not done since you came in.> You will not be stopped between here and the mountains. Past them I do not speak, and neither should you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Take what she offers.>
+Go to node ID=50 her word
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=58 she is done
+Text=<She does not raise her voice.> No. I have heard what you are. <She turns her head very slightly toward the step, and the coiled things come awake.> Put him back in the cellar, or do not. I have stopped caring which.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Draw.>
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sahar fights
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sahar fights
+}
 Icon=Exit Icon
 Is Default Reply=1
 }

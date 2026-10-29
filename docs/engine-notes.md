@@ -123,6 +123,29 @@ Putting an expression in `Requirement=` is wrong -- only 23 odd vanilla cases do
 `validate.py` reports it as an unresolved requirement, which is how 0.80.0's first draft was
 caught before shipping.
 
+### Requirement references never contain a slash
+
+All **1,568** requirement references in vanilla dialogue are bare basenames, even for cans that
+live in subfolders: `Speech moreequal 40`, not `Skills/Speech/Speech moreequal 40`; `CH 7+`, not
+`Attributes/CH 7+`. Zero use a path. `validate.py` reports the qualified form as an unresolved
+requirement, which is the only reason 0.82.0 did not ship with six dead gates.
+
+Check a basename is unique before relying on it -- all the skill, attribute and derived-attribute
+cans are, but the Requirements tree also holds hundreds of bespoke per-NPC cans.
+
+### An icon on a reply is a signal, so a wrong one gives the scene away
+
+**57.1% of vanilla's 10,915 replies carry no `Icon` line at all**, so unmarked is the ordinary
+case and an icon means something. The ones that exist, by use: `Exit Icon` 2,245, `Quest Icon`
+1,189, `Fight Icon` 700, `Speach Skill Icon` 319, `Barter Skill Icon` 129, `Attribute Icon` 100.
+
+The failure mode is subtle and it is not the obvious one. 0.82.0's first draft marked no failing
+reply with a Fight Icon -- but it left `Quest Icon` on the safe reply and `Speach Skill Icon` on
+the fatal one, so the quest icon marked the right answer, and at a node with two replies that is
+a solved puzzle. **Where a choice is meant to be a judgement, every reply in it must carry the
+same icon, or none.** Test it as a property: for each node, group replies by icon and check that
+no icon maps to exactly one outcome.
+
 ## The save, and what reaches it
 
 **A map's entity list is written into the save the first time the player enters, and restored from
