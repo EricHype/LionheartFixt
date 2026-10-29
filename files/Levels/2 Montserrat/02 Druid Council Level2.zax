@@ -4262,7 +4262,24 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CActivateAction
+							{
+								Target Name=Sahar Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CForceGenerateAction
+							{
+								Generator Name=Sahar Generator
+							}
+						}
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=30
@@ -36593,7 +36610,24 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CActivateAction
+							{
+								Target Name=Sahar Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CForceGenerateAction
+							{
+								Generator Name=Sahar Generator
+							}
+						}
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=140

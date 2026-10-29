@@ -1492,6 +1492,8 @@ installed.
 | PQ9 | **No levers at all.** Speech under 50, Outwit under 9, Barter under 50, never met Pau | - | Two unmarked replies, the explicit fight, and the way out. Say if this reads as a dead end rather than a choice |
 | PQ10 | **The tell.** Look at the icons on her replies | - | The safe and the fatal reply look identical. If one is marked and the other is not at any node, that is the bug this release fixed coming back |
 | PQ11 | **Regression.** Her opening line | - | Ends *"...while you were lying in my cellar."* She should never sound like she is helping you decide |
+| PQ12 | **The pop.** Walk into the sanctum from the Grove, and again from the prison stair | - | She is already standing on the step. Before this she was created by a trigger 230 units away and appeared in front of you |
+| PQ13 | **She holds her ground.** Watch her before speaking, and again after | - | She stays on the reliquary step and turns to watch. She used to wander up to 110 units, which also contradicted her own lines |
 
 ## 0.81.0 - Sahar in red
 

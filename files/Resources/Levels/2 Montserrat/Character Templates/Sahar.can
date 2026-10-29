@@ -26,521 +26,85 @@ CCannedObject
 			{
 				Marked For Deletion=0
 				Publisher=
-				Patrol AI=CSeriesAI
+				Patrol AI=CScanAreaAI
 				{
 					Marked For Deletion=0
 					Publisher=
-					AIs=Array
+					Play Ratio=0
+					Next Try To Move=0
+					State=Scanning
+					Go Home Range=300
+					Move To Behavior=CEntityBehaviorMoveToPos
 					{
-						Item Count=6
-						AI=CScanAreaAI
+						Old Stationary Flag=0
+						Angle To Turn To=0
+						Facing Backwards=0
+						Idle Behavior=CEntityBehaviorIdle
 						{
-							Marked For Deletion=0
-							Publisher=
-							Play Ratio=0
-							Next Try To Move=0
-							State=Scanning
-							Go Home Range=300
-							Move To Behavior=CEntityBehaviorMoveToPos
-							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
-								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
-								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
-							}
-							Starting Angle=-20
-							Ending Angle=20
-							Turning Speed=3
-							Time Between Turning=0
-							Start Out Waiting=0
-							Start Counterclockwise=0
-							Turning Flag=0
-							Turn Sequence Name=Idle
-							End Turn Action=CSendAIDoneMessage
-							{
-								Target=$Trigger
-							}
-							Execute Each Turn=0
-							Reset Each Begin=1
-							Current Time To Wait=0
-							Current Start Angle=0
-							Current End Angle=0
-							Waiting=1
-							Starting Facing Angle=-999
-							Complete Turn Time=0
-							Current Turn Time=0
-							Idle Behavior=CEntityBehaviorIdle
-							{
-								Num Seconds=1
-								Seconds Have Transitioned=0
-								Override Fidget Options=
-								Current Fidget Data=
-								Time Until Next Fidget=0
-								Fidgeting=0
-							}
+							Num Seconds=1
+							Seconds Have Transitioned=0
+							Override Fidget Options=
+							Current Fidget Data=
+							Time Until Next Fidget=0
+							Fidgeting=0
 						}
-						AI=CLimitedTimeAI
+						Play Ratio=1
+						Smooth Turning=0
+						Do Path Finding=1
+						Finished=1
+						Failed Last Path=0
+						Idle Begin Called=0
+						Move To Rate=0
+						CurTargetNormalX=0
+						CurTargetNormalY=0
+						Path Finding Params=CWayPointPath
 						{
-							Marked For Deletion=0
-							Publisher=
-							What To Do=CPatrolAreaAI
-							{
-								Marked For Deletion=0
-								Publisher=
-								Radius=110
-								TimeOfLastChangeDirectionDueToCollide=0
-								Moving=CEntityBehaviorMoveToPos
-								{
-									Old Stationary Flag=0
-									Angle To Turn To=0
-									Facing Backwards=0
-									Idle Behavior=CEntityBehaviorIdle
-									{
-										Num Seconds=1
-										Seconds Have Transitioned=0
-										Override Fidget Options=
-										Current Fidget Data=
-										Time Until Next Fidget=0
-										Fidgeting=0
-									}
-									Play Ratio=1
-									Smooth Turning=0
-									Do Path Finding=1
-									Finished=1
-									Failed Last Path=0
-									Idle Begin Called=0
-									Move To Rate=0
-									CurTargetNormalX=0
-									CurTargetNormalY=0
-									Path Finding Params=CWayPointPath
-									{
-										Start Point=0,0
-										End Point=0,0
-										Length=0
-										Max Dist To Travel=0
-										Num Failed Paths=0
-										Max Failed Paths=0
-										Pos To Move Index=0
-										Dist So Far=0
-										Path=
-									}
-									Pos Moving From=0.000000,0.000000
-									Final Dest=0.000000,0.000000
-									Dest Radius=0
-									Cur Dest Move To=0.000000,0.000000
-									Last Neg Dist=0
-									NumTimesLostGound=0
-									Sequence=
-									Planed Path For=
-								}
-								Retry New Point=0
-							}
-							Max Time=3
-							Time Left=0
-							Done Action=CRandomAction
-							{
-								Action=Array
-								{
-									Item Count=2
-									Action=CSendAIDoneMessage
-									{
-										Target=$Trigger
-									}
-									Action=CMultipleActionsAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-										}
-									}
-								}
-							}
+							Start Point=0,0
+							End Point=0,0
+							Length=0
+							Max Dist To Travel=0
+							Num Failed Paths=0
+							Max Failed Paths=0
+							Pos To Move Index=0
+							Dist So Far=0
+							Path=
 						}
-						AI=CScanAreaAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							Play Ratio=0
-							Next Try To Move=0
-							State=Scanning
-							Go Home Range=300
-							Move To Behavior=CEntityBehaviorMoveToPos
-							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
-								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
-								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
-							}
-							Starting Angle=-20
-							Ending Angle=20
-							Turning Speed=3
-							Time Between Turning=0
-							Start Out Waiting=0
-							Start Counterclockwise=0
-							Turning Flag=0
-							Turn Sequence Name=Idle
-							End Turn Action=CSendAIDoneMessage
-							{
-								Target=$Trigger
-							}
-							Execute Each Turn=0
-							Reset Each Begin=1
-							Current Time To Wait=0
-							Current Start Angle=0
-							Current End Angle=0
-							Waiting=1
-							Starting Facing Angle=-999
-							Complete Turn Time=0
-							Current Turn Time=0
-							Idle Behavior=CEntityBehaviorIdle
-							{
-								Num Seconds=1
-								Seconds Have Transitioned=0
-								Override Fidget Options=
-								Current Fidget Data=
-								Time Until Next Fidget=0
-								Fidgeting=0
-							}
-						}
-						AI=CLimitedTimeAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							What To Do=CPatrolAreaAI
-							{
-								Marked For Deletion=0
-								Publisher=
-								Radius=110
-								TimeOfLastChangeDirectionDueToCollide=0
-								Moving=CEntityBehaviorMoveToPos
-								{
-									Old Stationary Flag=0
-									Angle To Turn To=0
-									Facing Backwards=0
-									Idle Behavior=CEntityBehaviorIdle
-									{
-										Num Seconds=1
-										Seconds Have Transitioned=0
-										Override Fidget Options=
-										Current Fidget Data=
-										Time Until Next Fidget=0
-										Fidgeting=0
-									}
-									Play Ratio=1
-									Smooth Turning=0
-									Do Path Finding=1
-									Finished=1
-									Failed Last Path=0
-									Idle Begin Called=0
-									Move To Rate=0
-									CurTargetNormalX=0
-									CurTargetNormalY=0
-									Path Finding Params=CWayPointPath
-									{
-										Start Point=0,0
-										End Point=0,0
-										Length=0
-										Max Dist To Travel=0
-										Num Failed Paths=0
-										Max Failed Paths=0
-										Pos To Move Index=0
-										Dist So Far=0
-										Path=
-									}
-									Pos Moving From=0.000000,0.000000
-									Final Dest=0.000000,0.000000
-									Dest Radius=0
-									Cur Dest Move To=0.000000,0.000000
-									Last Neg Dist=0
-									NumTimesLostGound=0
-									Sequence=
-									Planed Path For=
-								}
-								Retry New Point=0
-							}
-							Max Time=4
-							Time Left=0
-							Done Action=CRandomAction
-							{
-								Action=Array
-								{
-									Item Count=2
-									Action=CSendAIDoneMessage
-									{
-										Target=$Trigger
-									}
-									Action=CMultipleActionsAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-										}
-									}
-								}
-							}
-						}
-						AI=CScanAreaAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							Play Ratio=0
-							Next Try To Move=0
-							State=Scanning
-							Go Home Range=300
-							Move To Behavior=CEntityBehaviorMoveToPos
-							{
-								Old Stationary Flag=0
-								Angle To Turn To=0
-								Facing Backwards=0
-								Idle Behavior=CEntityBehaviorIdle
-								{
-									Num Seconds=1
-									Seconds Have Transitioned=0
-									Override Fidget Options=
-									Current Fidget Data=
-									Time Until Next Fidget=0
-									Fidgeting=0
-								}
-								Play Ratio=1
-								Smooth Turning=0
-								Do Path Finding=1
-								Finished=1
-								Failed Last Path=0
-								Idle Begin Called=0
-								Move To Rate=0
-								CurTargetNormalX=0
-								CurTargetNormalY=0
-								Path Finding Params=CWayPointPath
-								{
-									Start Point=0,0
-									End Point=0,0
-									Length=0
-									Max Dist To Travel=0
-									Num Failed Paths=0
-									Max Failed Paths=0
-									Pos To Move Index=0
-									Dist So Far=0
-									Path=
-								}
-								Pos Moving From=0.000000,0.000000
-								Final Dest=0.000000,0.000000
-								Dest Radius=0
-								Cur Dest Move To=0.000000,0.000000
-								Last Neg Dist=0
-								NumTimesLostGound=0
-								Sequence=
-								Planed Path For=
-							}
-							Starting Angle=-15
-							Ending Angle=15
-							Turning Speed=2
-							Time Between Turning=0
-							Start Out Waiting=0
-							Start Counterclockwise=0
-							Turning Flag=0
-							Turn Sequence Name=Idle
-							End Turn Action=CSendAIDoneMessage
-							{
-								Target=$Trigger
-							}
-							Execute Each Turn=0
-							Reset Each Begin=1
-							Current Time To Wait=0
-							Current Start Angle=0
-							Current End Angle=0
-							Waiting=1
-							Starting Facing Angle=-999
-							Complete Turn Time=0
-							Current Turn Time=0
-							Idle Behavior=CEntityBehaviorIdle
-							{
-								Num Seconds=1
-								Seconds Have Transitioned=0
-								Override Fidget Options=
-								Current Fidget Data=
-								Time Until Next Fidget=0
-								Fidgeting=0
-							}
-						}
-						AI=CLimitedTimeAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							What To Do=CPatrolAreaAI
-							{
-								Marked For Deletion=0
-								Publisher=
-								Radius=110
-								TimeOfLastChangeDirectionDueToCollide=0
-								Moving=CEntityBehaviorMoveToPos
-								{
-									Old Stationary Flag=0
-									Angle To Turn To=0
-									Facing Backwards=0
-									Idle Behavior=CEntityBehaviorIdle
-									{
-										Num Seconds=1
-										Seconds Have Transitioned=0
-										Override Fidget Options=
-										Current Fidget Data=
-										Time Until Next Fidget=0
-										Fidgeting=0
-									}
-									Play Ratio=1
-									Smooth Turning=0
-									Do Path Finding=1
-									Finished=1
-									Failed Last Path=0
-									Idle Begin Called=0
-									Move To Rate=0
-									CurTargetNormalX=0
-									CurTargetNormalY=0
-									Path Finding Params=CWayPointPath
-									{
-										Start Point=0,0
-										End Point=0,0
-										Length=0
-										Max Dist To Travel=0
-										Num Failed Paths=0
-										Max Failed Paths=0
-										Pos To Move Index=0
-										Dist So Far=0
-										Path=
-									}
-									Pos Moving From=0.000000,0.000000
-									Final Dest=0.000000,0.000000
-									Dest Radius=0
-									Cur Dest Move To=0.000000,0.000000
-									Last Neg Dist=0
-									NumTimesLostGound=0
-									Sequence=
-									Planed Path For=
-								}
-								Retry New Point=0
-							}
-							Max Time=2
-							Time Left=0
-							Done Action=CRandomAction
-							{
-								Action=Array
-								{
-									Item Count=2
-									Action=CSendAIDoneMessage
-									{
-										Target=$Trigger
-									}
-									Action=CMultipleActionsAction
-									{
-										Action=Array
-										{
-											Item Count=2
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-											Action=CSendAIDoneMessage
-											{
-												Target=$Trigger
-											}
-										}
-									}
-								}
-							}
-						}
+						Pos Moving From=0.000000,0.000000
+						Final Dest=0.000000,0.000000
+						Dest Radius=0
+						Cur Dest Move To=0.000000,0.000000
+						Last Neg Dist=0
+						NumTimesLostGound=0
+						Sequence=
+						Planed Path For=
 					}
-					Current AI=0
-					When Done=Repeat Series
-					Restart Series Next Begin=0
+					Starting Angle=-10
+					Ending Angle=10
+					Turning Speed=2
+					Time Between Turning=1
+					Start Out Waiting=0
+					Start Counterclockwise=0
+					Turning Flag=0
+					Turn Sequence Name=Idle
+					End Turn Action=
+					Execute Each Turn=0
+					Reset Each Begin=1
+					Current Time To Wait=0
+					Current Start Angle=0
+					Current End Angle=0
+					Waiting=1
+					Starting Facing Angle=-999
+					Complete Turn Time=0
+					Current Turn Time=0
+					Idle Behavior=CEntityBehaviorIdle
+					{
+						Num Seconds=1
+						Seconds Have Transitioned=0
+						Override Fidget Options=
+						Current Fidget Data=
+						Time Until Next Fidget=0
+						Fidgeting=0
+					}
 				}
 				Patrol Start Action=
 				Patrol End Action=

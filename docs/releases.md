@@ -203,6 +203,30 @@ it, because 0.79.9 shipped a version of this scene where a keypress started the 
 here should reintroduce that. Backing off gains nothing -- the posts are still shut and you still
 need a lever -- but it is not a death sentence.
 
+### She was not in the room until you were nearly on top of her
+
+Reported in play: she pops into view as you approach. She does, because she does not exist until
+then. Her generator is `Active=0` and a trigger polygon force-generates her -- and **0.79.9 made
+that worse**. The original trigger was a 74-unit sliver that most approaches missed entirely, so
+she frequently never appeared at all; the fix was a box around her, clear by **220 to 230 units**.
+That turned "she is not there" into "she arrives in front of me", because you enter the sanctum
+from the Grove 540 units away and watch it happen.
+
+`Escort Arrival` already activated and force-generated her on arrival. The other two ways into the
+map did not, so they now carry the same pair of actions, copied from it. She exists from the
+moment you enter, however you came.
+
+The approach box is deliberately untouched. It does a different job -- the confrontation -- and it
+has to stay close to her, because its enter action pacifies the garrison and a trigger the size of
+the room would end a fight the moment a fighting player stepped inside.
+
+**And she stops wandering**, which is what makes creating her early safe. She inherited a
+`CSeriesAI` patrol from the generic boss can that walks her up to 110 units in two-to-four second
+bursts, while her own lines say she does not rise from the reliquary step. Her patrol is now a
+bare `CScanAreaAI`: she holds position and watches the room. That is the second most common Patrol
+AI in the game at **319** cans, and it leaves her Pursue and Attack AI untouched, so the fight is
+unchanged.
+
 ### The icons were answering the question for you
 
 The failures never carried a Fight Icon. The tell was the other way round: the safe reply carried
