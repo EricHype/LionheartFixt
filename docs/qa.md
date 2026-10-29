@@ -1474,6 +1474,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.80.2 - the garrison holds, and she stands still to say so
+
+All of these need a character who has not yet entered the abbey's second floor.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| GH1 | **The reported row.** Accept Sahar's ring | - | The garrison stops being hostile and **stays where it is**. Before this it was deleted on the spot the instant you agreed |
+| GH2 | Walk among them afterwards | - | They ignore you. They are still armed, still in the abbey, and still holding it |
+| GH3 | **Regression.** Attack one of them after the stand-down | - | `truce broken` still fires: they turn on you, 100 Karma, once only |
+| GH4 | The Grove and Level 1 after taking the ring | - | Same. The stand-down reaches them through `COtherMapAction`; only the walk-out was removed |
+| ST1 | **She stands still.** Talk to Sahar and watch her feet | - | She stops for the conversation and resumes afterwards. Before this she wandered off mid-sentence |
+| ST2 | **Regression.** Fight her | - | Unchanged. The canned AI only handles the talk message; her patrol, pursue and attack AI are untouched |
+| SB1b | **Her colour, corrected.** Meet Sahar | - | **She is still green.** 0.80.0 said she would be rose; that was wrong, and the hue remapper is now known not to reach monster textures. Nothing to report here until the texture repaint lands |
+
 ## 0.80.1 - the summit picked the wrong cutscene
 
 **SA1 is the reported case.** It needs a character who has finished the Knights of Saladin
@@ -1500,7 +1514,7 @@ SB1 through SB3 need a character who has not reached Montserrat; MA1 through MA5
 | RL2 | Break the truce after taking the ring, and fight | - | The same rally applies -- it hangs off `truce broken` as well as `sahar fights` |
 | RL3 | **Kill Sahar with her garrison still standing, and keep fighting** | - | They get **measurably weaker**. If they do not, `CRemoveCharacterModifierFromCharacterAction` did not fire -- it has one shipped use in the whole game, in a test map -- and the rally must be cut. **Say so before anything else** |
 | RL4 | **Regression.** Snakebreed anywhere outside her sanctum | - | Unchanged. The rally names only the four `sahar fights` enumerates, in her map |
-| SB1 | **Her colour.** Meet Sahar on a fresh character | - | She is rose, not green. **Unverified**: no shipped monster sets `Hue Remap Textures=1`. If she is green the flag does not reach monsters, and the fallback is repainting her texture |
+| SB1 | ~~**Her colour.** Meet Sahar on a fresh character~~ | - | **This row failed, and the answer is settled: she is green.** The flag does not reach a monster's texture. Her forked model is live -- proven by a render-scale probe -- so the fault was the remapper, not the fork. Superseded by SB1b in 0.80.2 |
 | SB2 | **Regression.** Any other snakebreed boss or summoner | - | Still green. Six cans share the donor model and it still reads `Hue Remap Textures=0` |
 | SB3 | **Regression.** Her animations -- idle, walk, attack, spellcast, death | - | All play. Her descriptor still points its eight animation paths at `Snakewoman tough/`, so a missing one means the fork broke |
 | SC3b | **The 0.79.9 repair.** Open her conversation, close it with Escape, walk up and click her | - | It reopens. 0.79.9 claimed this and shipped it into her *death* script, so it has never worked |

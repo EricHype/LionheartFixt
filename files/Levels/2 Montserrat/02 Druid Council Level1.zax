@@ -200,7 +200,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=3
 							Action=CActivateAction
 							{
 								Target Name=routed
@@ -218,78 +218,6 @@ CLayerSaveData
 							{
 								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 								Categories To Remove=Enemy
-							}
-							Action=CSetPatrolAIAction
-							{
-								Patrol AI=CGoToAI
-								{
-									Destination=rout exit
-									Offset=0.000000,0.000000
-									Starting Action=
-									Move Finished=0
-									Target Was Set By Goto AI=0
-									Move Behavior=CEntityBehaviorMoveToPos
-									{
-										Old Stationary Flag=0
-										Angle To Turn To=0
-										Facing Backwards=0
-										Idle Behavior=CEntityBehaviorIdle
-										{
-											Num Seconds=1
-											Seconds Have Transitioned=0
-											Override Fidget Options=
-											Current Fidget Data=
-											Time Until Next Fidget=0
-											Fidgeting=0
-										}
-										Play Ratio=1
-										Smooth Turning=0
-										Do Path Finding=1
-										Finished=1
-										Failed Last Path=0
-										Idle Begin Called=0
-										Move To Rate=0
-										CurTargetNormalX=0
-										CurTargetNormalY=0
-										Path Finding Params=CWayPointPath
-										{
-											Start Point=0,0
-											End Point=0,0
-											Length=0
-											Max Dist To Travel=0
-											Num Failed Paths=0
-											Max Failed Paths=0
-											Pos To Move Index=0
-											Dist So Far=0
-											Path=
-										}
-										Pos Moving From=0.000000,0.000000
-										Final Dest=0.000000,0.000000
-										Dest Radius=0
-										Cur Dest Move To=0.000000,0.000000
-										Last Neg Dist=0
-										NumTimesLostGound=0
-										Sequence=
-										Planed Path For=
-									}
-									Done action=CDeleteAction
-									{
-										Target Name=$Trigger
-									}
-									Run=1
-									Make New Home=1
-									Time To Try To Move=0
-									Set Facing Angle=0
-									Turn Sequence Name=Idle
-									Facing Angle=CEntityBehaviorTurnToAngle
-									{
-										Old Stationary Flag=0
-										Angle To Turn To=0
-										Facing Backwards=0
-									}
-									Need to Call Start=1
-								}
-								Target=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 							}
 						}
 					}

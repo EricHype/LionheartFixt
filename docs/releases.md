@@ -140,6 +140,88 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.80.2 - the garrison holds, and she stands still to say so
+
+Four repairs from one play session, and a correction to what 0.80.0 promised.
+
+### The garrison was never going to leave
+
+0.79.8 through 0.80.1 spent four releases trying to make the snakebreed march out of the abbey
+after Sahar gives you her ring. They should never have been marching anywhere. **They have taken
+the abbey and they are holding it** -- that is the whole reason her ring is worth something, since
+she cannot spare a guard to walk you north and gives you a token instead. A garrison that forms up
+and leaves the moment you pocket it makes her offer incoherent and empties the act of what it just
+spent a scene establishing.
+
+None of it is vanilla. There is no `garrison routs` relay, no `rout exit` marker and no Sahar in
+the original game, so this was our own invention contradicting our own scene.
+
+The stand-down and the walk-out were always separate actions, in all three places, so only the
+second had to go:
+
+| action | |
+|---|---|
+| `CActivateAction` on `routed` | kept |
+| `CSetTargetTypeAction`, blank valid targets | kept -- they stop treating you as a target |
+| `CRemoveCategoryAction`, `Enemy` | kept -- they stop being hostile |
+| `CDeactivateAction` on `Snakebreed Generator` | kept -- no fresh reinforcements |
+| `CSetPatrolAIAction` -> `CGoToAI` -> `CDeleteAction` | **removed** |
+
+They stand down where they are. The relay keeps the name `garrison routs`, because renaming it
+would mean touching both firing sites and both receivers byte-exactly across three maps for no
+behavioural gain.
+
+### A fourth copy of a bug fixed three times
+
+Before that was decided, the reason the garrison *vanished on the spot* rather than walking was
+found, and it is worth recording because the gate could not see it. 0.79.8 repaired three
+`Move Behavior=CEntityBehaviorMoveToPos {}` blocks, empty where vanilla fills them 4,735 times out
+of 4,735. There was a **fourth**, inside the `<Take the ring.>` reply in `Sahar.DialogTree` -- and
+that is the copy that actually ran. With no move behaviour the `CGoToAI` was finished the instant
+it started, so its `Done action=CDeleteAction` fired immediately.
+
+It was filled from the Level 2 donor before the walk-out was removed entirely, so the repair is
+now moot, but the gate gap it exposed is not: **`check_empty_blocks` only ever looked at `.zax`
+files.** It now covers `.DialogTree` as well, verified both ways -- 2 findings on the committed
+file, 0 after, and no false positives anywhere else in the mod.
+
+### She stands still while she talks
+
+She wandered mid-conversation because she is a clone of `Snakebreed Boss Super`, a roaming
+monster, and the clone kept its `Patrol AI`. Brother Montgomerie, who talks in the same act,
+carries none.
+
+Her patrol was **not** stripped, because the data said not to: `CSetPatrolAIAction` never ships
+with an empty `Patrol AI` in 279 uses, and only 3 of 693 cans ship an empty one. The game has a
+purpose-built answer instead -- `Resources/Common AIs/Stop During Dialog.can`, a shared
+`CCannedObject` that catches `CStopToTalkMessage`, assigns a temporary `CIdleAI` and restores the
+`CSkeletonAI` on `CDoneTalkingMessage`. Ten shipped maps use it, eight instances in Crossroads
+alone, and it attaches as one line in her generator's `Canned AIs to Add`.
+
+She keeps her patrol and her combat AI, and restores herself, so there is nothing to undo. A sweep
+of the other three Montserrat maps found she is **the only talker in the act that roams**.
+
+### Correcting 0.80.0: she is not rose
+
+0.80.0 said she would be, and asked players to report it if she was not. She is not.
+
+What was missing then was proof that her forked model was being used at all -- both recolour
+attempts assumed it. A throwaway probe settled it: her `Render Scaling` was temporarily set to
+1.6, she was visibly larger in play, so **the fork is live** and
+`Hue Remap Textures=1` genuinely does not reach a monster's texture even with the model's own
+remapper attached. The probe is reverted; her model ships at 0.9 as always.
+
+The remapper is therefore finished as an avenue, and the recolour moves to repainting the texture
+inside the `.gr2` she owns. That part is further along than it sounds: the game's own
+`granny2.dll` will encode a BinkTC0 texture for us through `GrannyBeginBinkTexture` and
+`GrannyEncodeImage`, and a decode of the result comes back at mean hue 344, which is the target.
+What remains is fitting a 67,816-byte payload where a 13,404-byte one used to sit.
+
+### Which saves this reaches
+
+All of it is map-side or can-side and needs a character who has not yet entered the abbey's
+second floor.
+
 ## 0.80.1 - the summit picked the wrong cutscene
 
 [Issue #14.](https://github.com/EricHype/LionheartFixt/issues/14) Finish the Knights of Saladin

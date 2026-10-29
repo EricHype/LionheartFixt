@@ -970,7 +970,14 @@ def check_empty_blocks(fails):
     are never empty there, so only those are gated.
     """
     for p in files:
-        if p.suffix.lower() != ".zax":
+        # dialogue trees too, not just maps. 0.79.8 repaired three of these in the abbey maps and
+        # added this check, and a FOURTH copy sat in `Sahar.DialogTree` -- in the reply that
+        # actually runs when you accept Sahar's ring. With no move behaviour the `CGoToAI` was
+        # finished the moment it started, so its `Done action=CDeleteAction` fired at once and the
+        # garrison was deleted where it stood instead of walking out. Every gate passed, because
+        # this one skipped the file. A tree's brace objects are flat rather than tab-indented, and
+        # the pattern already allows zero tabs.
+        if p.suffix.lower() not in (".zax", ".dialogtree"):
             continue
         text = p.read_bytes().decode("latin-1")
         for m in EMPTY_BLOCK.finditer(text):

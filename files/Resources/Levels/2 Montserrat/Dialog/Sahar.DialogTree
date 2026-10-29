@@ -240,7 +240,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=10
+Item Count=9
 Action=CTriggerRelayAction
 {
 Relay Name=sahar word given
@@ -293,34 +293,6 @@ Action=CRemoveCategoryAction
 {
 Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 Categories To Remove=Enemy
-}
-Action=CSetPatrolAIAction
-{
-Patrol AI=CGoToAI
-{
-Destination=rout exit L2
-Offset=0.000000,0.000000
-Starting Action=
-Move Finished=0
-Target Was Set By Goto AI=0
-Move Behavior=CEntityBehaviorMoveToPos
-{
-}
-Done action=CDeleteAction
-{
-Target Name=$Trigger
-}
-Run=1
-Make New Home=1
-Time To Try To Move=0
-Set Facing Angle=0
-Turn Sequence Name=Idle
-Facing Angle=CEntityBehaviorTurnToAngle
-{
-}
-Need to Call Start=1
-}
-Target=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner, Assassin, Grove Sentry, Handler, Stair Assassin
 }
 Action=CAddCharacterModifierToCharacterAction
 {
