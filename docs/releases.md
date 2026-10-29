@@ -140,6 +140,70 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.80.1 - the summit picked the wrong cutscene
+
+[Issue #14.](https://github.com/EricHype/LionheartFixt/issues/14) Finish the Knights of Saladin
+initiation, accept Amir's invitation to the Cathedral, and the screen fades, you arrive, Lord
+Javier welcomes you -- and nothing else happens. Escape releases you, and the chain is dead.
+
+### Nine branches, and Saladin was eighth
+
+The Cathedral decides which version of the summit to play in `Choose NIS Player`. Its first four
+branches ask whether a **forcing object** is active -- an inert entity sitting in the Cathedral
+that each route switches on as it leaves for it. The next four fall back to the player's faction.
+
+| # | test | goes to |
+|---|---|---|
+| 1-4 | `if dark wielder` / `if wielder` / `if inquisition` / `if templar` exists | that route's NIS |
+| 5 | `Faction/Wielder IS` | Wielder |
+| 6 | `Faction/Inquisitor IS` | Inquisition |
+| 7 | `Faction/Templar IS` | Templar |
+| 8 | `Faction/Saladin IS` | Saladin |
+| 9 | else | Templar |
+
+Three routes set their object and so never reach the faction tests: the Wielder route from
+`Calle Perdida`, the Inquisition route from `Inquisition Foyer1` wrapped in a `COtherMapAction`,
+and the Templar route from Lord Javier's own tree.
+
+**Amir's route set nothing.** His reply is a fade, a delay and a relocate, and that is all. So a
+Saladin initiate fell through to the faction tests and got whichever faction he already held. The
+reporter is Inquisition, so branch 6 matched: the Inquisition relay fired, Raphael and the Grand
+Inquisitor spawned, and it began an NIS whose conversation expects a chain he never started.
+Javier's welcome played and there was nowhere to go.
+
+**`if saladin` did not exist anywhere in the game.** So this was not one unlucky character -- it is
+every faction member who finishes the Saladin initiation. Only a player belonging to none of
+Wielder, Inquisitor or Templar ever reached branch 8.
+
+### Whose bug it is
+
+The summit itself is **vanilla, and vanilla shipped it unreachable**: the dialogue nodes,
+`Saladin NIS Relay`, `Start Saladin NIS Conversation` and `End Saladin NIS Relay` are all in the
+original game, and nothing in the original `Choose NIS Player` selects any of them -- its chain has
+no Saladin branch at all. Fixt added the missing `Jafar Generator Saladin NIS` and the eighth
+branch. So the cutscene is not ours and the restoration is, and the restoration was incomplete.
+
+### The fix, copied from the routes that work
+
+| | |
+|---|---|
+| `if saladin` | cloned from `if templar`, `Visible=1 Active=0`, placed beside the other four |
+| the chain | its existence is now tested **first**, so the route just taken beats the faction held |
+| Amir's reply | activates it through `COtherMapAction{Other Map Name=1 Barcelona/Church Interior}`, exactly as the Inquisition Foyer does |
+| `End Saladin NIS Relay` | switches it off again |
+
+That last one is one action more than the shipped routes do. None of the three deactivates its
+object, so all three can in principle capture a later arrival at the Cathedral; since the Saladin
+relay is `Trigger Only Once=1`, a stale flag there would mean a second arrival selects a spent
+relay and stalls exactly the way this issue describes. It costs one action to not have that.
+
+### Which saves this reaches
+
+`Church Interior` is map-side, so this needs a character who has **not yet been to the Cathedral
+summit**. Amir's reply is dialogue and is read live, but the forcing object it switches on lives in
+the Cathedral, so a save that already entered that map carries its own copy without it. A save
+taken before accepting Amir's invitation -- like the one attached to the issue -- is fine.
+
 ## 0.80.0 - the captain in red, and what Machiavelli makes of her
 
 Sahar stops being a reskinned rank-and-file boss. She gets her own model, her own reason to be

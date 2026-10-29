@@ -1474,6 +1474,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.80.1 - the summit picked the wrong cutscene
+
+**SA1 is the reported case.** It needs a character who has finished the Knights of Saladin
+initiation, belongs to another faction, and has not yet been to the Cathedral summit.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SA1 | **The reported row.** As an Inquisition character who completed the Saladin initiation, ask Amir what troubles the order and accept "Of course, I will accompany you" | - | The **Saladin** summit plays: Javier welcomes Amir, Amir answers, and it runs to "Leave for Montserrat". Before this it stalled on Javier's welcome |
+| SA2 | The same as a Templar | - | The Saladin summit, not the Templar one |
+| SA3 | The same as a Wielder | - | The Saladin summit, not the Wielder one |
+| SA4 | **Regression.** Reach the summit by the Inquisition route, with the Inquisitors | - | The Inquisition summit, unchanged. Its forcing object is set by `Inquisition Foyer1` and is still tested before the faction fallbacks |
+| SA5 | **Regression.** Reach it by the Templar route, through Lord Javier | - | The Templar summit, unchanged |
+| SA6 | **Regression.** Reach it as a Wielder or Dark Wielder from Calle Perdida | - | Unchanged |
+| SA7 | **Regression.** Complete the Saladin summit, then return to the Cathedral later | - | Nothing re-fires. `End Saladin NIS Relay` switches the forcing object off, which the three shipped routes do not do for theirs |
+
 ## 0.80.0 - the captain in red, and what Machiavelli makes of her
 
 **RL3 is the row that matters most** -- it is the one unverified mechanism that does not fail safe.

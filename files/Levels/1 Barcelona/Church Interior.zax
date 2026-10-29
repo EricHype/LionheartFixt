@@ -5045,6 +5045,36 @@ CLayerSaveData
 		}
 		Level Part=CEntityBase
 		{
+			Name=if saladin
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=975
+			Position Y=1750
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Wielder Start NIS Relay
 			Child List=
 			Visible=0
@@ -8664,7 +8694,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=8
+							Item Count=9
 							Action=CDisplayDialogBalloonAction
 							{
 								Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Jafar
@@ -8760,6 +8790,10 @@ CLayerSaveData
 								Delay Between Activations=0
 								Warp Behavior=
 							}
+							Action=CDeactivateAction
+							{
+								Target Name=if saladin
+							}
 						}
 					}
 					Trigger Only Once=0
@@ -8808,97 +8842,110 @@ CLayerSaveData
 							{
 								If=CCheckExistenceAction
 								{
-									Name To Check For=if dark wielder
+									Name To Check For=if saladin
 									Desired Minimum Count=1
 								}
 								Then=CTriggerRelayAction
 								{
-									Relay Name=Dark Wielder Start NIS Relay
+									Relay Name=Saladin NIS Relay
 								}
 								Else=CIfAction
 								{
 									If=CCheckExistenceAction
 									{
-										Name To Check For=if wielder
+										Name To Check For=if dark wielder
 										Desired Minimum Count=1
 									}
 									Then=CTriggerRelayAction
 									{
-										Relay Name=Wielder Start NIS Relay
+										Relay Name=Dark Wielder Start NIS Relay
 									}
 									Else=CIfAction
 									{
 										If=CCheckExistenceAction
 										{
-											Name To Check For=if inquisition
+											Name To Check For=if wielder
 											Desired Minimum Count=1
 										}
 										Then=CTriggerRelayAction
 										{
-											Relay Name=Inquisition NIS Relay
+											Relay Name=Wielder Start NIS Relay
 										}
 										Else=CIfAction
 										{
 											If=CCheckExistenceAction
 											{
-												Name To Check For=if templar
+												Name To Check For=if inquisition
 												Desired Minimum Count=1
 											}
 											Then=CTriggerRelayAction
 											{
-												Relay Name=Templar NIS Relay
+												Relay Name=Inquisition NIS Relay
 											}
-											Else=CIfExpressionAction
+											Else=CIfAction
 											{
-												If Expression=CUseCannedExpressionExpression
+												If=CCheckExistenceAction
 												{
-													Canned Expression=Dialog/Requirements/Faction/Wielder IS
+													Name To Check For=if templar
+													Desired Minimum Count=1
 												}
-												Character to get attributes from=Player1
 												Then=CTriggerRelayAction
 												{
-													Relay Name=Wielder Start NIS Relay
+													Relay Name=Templar NIS Relay
 												}
 												Else=CIfExpressionAction
 												{
 													If Expression=CUseCannedExpressionExpression
 													{
-														Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+														Canned Expression=Dialog/Requirements/Faction/Wielder IS
 													}
 													Character to get attributes from=Player1
 													Then=CTriggerRelayAction
 													{
-														Relay Name=Inquisition NIS Relay
+														Relay Name=Wielder Start NIS Relay
 													}
 													Else=CIfExpressionAction
 													{
 														If Expression=CUseCannedExpressionExpression
 														{
-															Canned Expression=Dialog/Requirements/Faction/Templar IS
+															Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
 														}
 														Character to get attributes from=Player1
 														Then=CTriggerRelayAction
 														{
-															Relay Name=Templar NIS Relay
+															Relay Name=Inquisition NIS Relay
 														}
 														Else=CIfExpressionAction
 														{
 															If Expression=CUseCannedExpressionExpression
 															{
-																Canned Expression=Dialog/Requirements/Faction/Saladin IS
+																Canned Expression=Dialog/Requirements/Faction/Templar IS
 															}
 															Character to get attributes from=Player1
 															Then=CTriggerRelayAction
 															{
-																Relay Name=Saladin NIS Relay
-															}
-															Else=CTriggerRelayAction
-															{
 																Relay Name=Templar NIS Relay
+															}
+															Else=CIfExpressionAction
+															{
+																If Expression=CUseCannedExpressionExpression
+																{
+																	Canned Expression=Dialog/Requirements/Faction/Saladin IS
+																}
+																Character to get attributes from=Player1
+																Then=CTriggerRelayAction
+																{
+																	Relay Name=Saladin NIS Relay
+																}
+																Else=CTriggerRelayAction
+																{
+																	Relay Name=Templar NIS Relay
+																}
 															}
 														}
 													}
 												}
+												Return failure if the If failes=0
 											}
 											Return failure if the If failes=0
 										}

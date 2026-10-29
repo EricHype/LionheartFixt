@@ -2168,7 +2168,18 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=if saladin
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Church Interior
+}
 Action=CFadeScreenDownAction
 {
 Time Until Auto Fade Up=2
