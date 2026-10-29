@@ -81,6 +81,48 @@ Quinn's wasp stingers.
 
 ---
 
+### Relays cross maps, but only deliberately
+
+A `CTriggerRelayAction` fires an entity **in the current map**. To reach another one, wrap it:
+
+    COtherMapAction { Action=CTriggerRelayAction { Relay Name=... }, Other Map Name=2 Montserrat/01 Grove Exterior }
+
+Sahar's ring reply uses this to stand the garrison down in the Grove and on Level 1 while the
+player is on Level 2. A relay fired *without* the wrapper, whose receiver lives in another map,
+does nothing and reports nothing -- which is what "`garrison routs` is dangling" looked like
+before the wrapper was spotted two lines above it.
+
+### Choosing between versions of a scene: the forcing object
+
+When several routes lead to the same cutscene, the game does not work out where you came from. It
+reads a **forcing object**: an inert `CEntityBase` sitting in the destination map with `Active=0`,
+which the route switches on before it sends you. `Church Interior`'s `Choose NIS Player` tests
+four of them -- `if dark wielder`, `if wielder`, `if inquisition`, `if templar` -- and only then
+falls back to guessing from the player's faction.
+
+Routes set theirs from wherever they happen to be, through `COtherMapAction` when that is another
+map. **A route that sets nothing falls through to the faction guess**, which is how the Knights of
+Saladin summit played the Inquisition cutscene for every Inquisition character who took it
+(issue #14). The retail game ships that summit with no branch selecting it at all.
+
+If you add a route, add its forcing object, test it ahead of the faction fallbacks, and clear it
+when the scene ends -- none of the four shipped ones do, so all four can in principle capture a
+later arrival at a `Trigger Only Once=1` relay.
+
+### Two requirement fields, and they are not interchangeable
+
+A dialogue reply can carry both, and 366 vanilla replies do, so they AND. But they hold different
+things:
+
+| field | holds | vanilla uses |
+|---|---|---|
+| `Requirement=` | the path of a named requirement can | 10,892 |
+| `Custom Requirement=` | an inline expression tree (`CAND`, `CIsGreaterThan`, `CActionExpression`...) | `CAND` alone appears 394 times |
+
+Putting an expression in `Requirement=` is wrong -- only 23 odd vanilla cases do it -- and
+`validate.py` reports it as an unresolved requirement, which is how 0.80.0's first draft was
+caught before shipping.
+
 ## The save, and what reaches it
 
 **A map's entity list is written into the save the first time the player enters, and restored from
@@ -106,6 +148,28 @@ plain search of the file finds none of it: searching a quicksave for "Fernand" a
 zero while both sat in the Port District blob.
 
 ---
+
+### Carrying a fact across acts without a journal entry
+
+Quests work -- vanilla gates later-act dialogue on earlier-act quests five times, including
+`BrotherMichel.DialogTree` in act 3 on an act 2 quest -- but all 326 shipped quest states carry
+journal text, so a quest is the wrong vehicle for something the player should not read about.
+
+The alternative is a **player-scoped scripting variable**:
+`Derived Character Attributes/Game Scripting Variables/<name>.DerivedCharacterAttribute`. The game
+ships 28, four of them NPC-death flags -- `Relican Dead`, `Herbalist Dead`, `Woodcutter Dead`,
+`River Dryad Dead`. `Relican Dead`'s own description reads *"0 Means he is not dead. 1 Means he is
+dead."* They live on the player, so they cross acts exactly as hit points do, and
+`Display In Attributes Window=0` keeps them off the sheet.
+
+Write one with `CAddCharacterModifierToCharacterAction` holding a
+`CCharacterModifierDerivedAttribute` of `CConstant` 1. Read one in a `Custom Requirement=` with
+`CIsGreaterThan` over a `CVariableDerivedCharacterAttribute`.
+
+**The trap is `$Instigator`.** In a dialogue reply it is the player, so a plain write works. In a
+**death script it is not**, and the flag lands on the corpse. Vanilla's second write of
+`Relican Dead`, in `Slave Pit Exterior.zax`, wraps it in `CForEachPlayerAction` for exactly that
+reason. Copy that whenever the write happens anywhere but a conversation.
 
 ## Shapes that crash
 
@@ -195,6 +259,63 @@ resolves to nothing at all, and so does `$trigger` -- use a literal entity name 
 ninety vanilla `CDisplayDialogTreeAction`s do.
 
 ---
+
+### A spawn's name, and why lists of them go stale
+
+A generator's `New Name=` is what its spawns are called. **Left blank, the spawn takes its can's
+`User Assigned Name`** -- not the can's filename. A script that names creatures by filename
+matches nothing, silently; that is what left eleven of the Montserrat handler's references dead.
+Resolve a generator's name through the can before writing any list of targets, and prefer the
+list an existing action in the same map already uses, which is authoritative for that fight.
+
+### Making one character buff others
+
+`CAddCharacterModifierToCharacterAction`'s `Character to modify=` takes a **plain name**, not only
+the player: vanilla names `Khan`, `Quinn`, `Joan of Arc`, and the group names `Summoned Monster`
+and `Summoned Undead`. The Monster Summoning spell is the worked example, buffing everything
+called `Summoned Monster` with HP and the three offensive damage percentages at once.
+
+Set `Allow Accumulation=0` on each modifier or re-application stacks -- the bug the Sceptre of
+Bone shipped with. `CRemoveCharacterModifierFromCharacterAction` takes the identical modifier
+array back off, and has exactly **one** shipped use, in `Test Maps/James.zax`, so treat removal as
+the unproven half of any design that depends on it.
+
+### There is one attack brain, and the repertoire lives beside it
+
+`CNormalAttackAI` is used 1,461 times and is the only attack AI in the game, so a monster's
+character cannot come from swapping it. It comes from the `Shoot Completed` slot, which fires
+after each swing: 1,365 monsters leave it empty and simply hit things, 74 put a `CRandomAction`
+there, and **the branch count is the rate denominator**. The Snakebreed Summoner's three branches
+are melee, melee, gated summon; `Shaman Greater Super` has six, each a `CActionSelectSkill` over
+three offensive spells; `Wargolem Deactivated` has eight.
+
+Summon branches are commonly gated on a named object -- `snakebreed summoning enabled` -- which is
+created in only four maps, so the same can fights differently depending on where it spawned.
+
+### Stopping a character so it will talk
+
+A character cloned from a roaming monster keeps its `Patrol AI` and will wander off mid-sentence.
+Do not blank it: `CSetPatrolAIAction` ships with an empty `Patrol AI` **0 times in 279 uses**, and
+only 3 of 693 cans ship an empty one.
+
+The game has a purpose-built answer. `Resources/Common AIs/Stop During Dialog.can` is a shared
+`CCannedObject` holding a `CHandleMessageAI` that catches `CStopToTalkMessage`, assigns a
+temporary `CIdleAI`, and restores the `CSkeletonAI` on `CDoneTalkingMessage`. Attach it with one
+line in a generator's `Canned AIs to Add`:
+
+    Canned AI=Common AIs/Stop During Dialog
+
+Ten shipped maps use it, eight instances in Crossroads alone. The character keeps its patrol and
+its combat AI, and restores itself, so there is nothing to undo.
+
+### A generator's destroyed script replaces the can's
+
+A `CSetDestroyedScriptActionAction` in a generator's `After Action` **overrides** whatever the
+can's `Destroyed Script Action` holds, so a death script written in the can never runs. Check the
+generator first. And an interaction specifier added to `$Instigator` *inside* a destroyed script
+can only ever reach a corpse -- vanilla does install specifiers from death scripts 4 times in 336,
+but every one names a different object (a chest, two doors, a map), never the dying entity.
+`validate.py` A0.18 gates the self-targeting case.
 
 ## Skills, spells and the skill window
 
