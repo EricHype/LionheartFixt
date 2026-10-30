@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.83.4 are published** -- 167 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.83.5 are published** -- 168 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows are unplayed at the time of writing.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,93 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.83.5 - William will not speak to you
+
+Reported from play, and worth quoting because the player had done the thing the scene never
+anticipated:
+
+> I did the entire vanilla quest exploit (Muse and More time for his debt from Shylocke, then back
+> to Shylocke and extort his money) and he dramatically left the town cursing at me. So, I'm truly
+> not sure how this is SUPPOSED to go, but here he is standing in the middle of the road.
+
+### The gate asks the one question that stays true either way
+
+0.60.0's Crossroads trigger has a single condition:
+
+```
+If=CIsQuestCompletedAction
+    Quest=Levels/1 Barcelona/Quests/Port District/Recover the Muse from Shylocke
+```
+
+And vanilla's hostile greeting, `4 Shakespeare Hates you` -- *"Here comes the little villain, with
+slander and venom waiting on forked tongue"* -- **itself runs `CSetQuestSatusToCompletedAction` on
+that same quest**. That is vanilla's, not ours: 0.60.0 added exactly one action to the tree and
+changed no line of text, which the diff confirms. So every route that makes him hate you still
+leaves the muse quest complete, the gate opens, and he arrives delighted.
+
+### He still comes, and he refuses you
+
+The maintainer's call, and the better story: he *did* get his muse back and would still be out
+here writing. So he appears either way, and the first and every approach now plays
+`800 shakespeare hates you`:
+
+> Thou art a villain to impugn me thus. So I bid you farewell, and pray you pester a soul more
+> deserving of your slander!
+
+It is **recorded** -- `800 shakespeare hates you.ogg` exists -- it is reply-less so it closes the
+conversation cleanly, and until now it was reachable only from the insult route in Barcelona.
+
+**Not `4 Shakespeare Hates you`**, even though that is the canonical hostile greeting both
+Barcelona maps select. Its first reply is *"But I have recovered your muse Sytheria"*, which leads
+to `200 saved muse` -- flipping him to grateful, re-completing the quest, and paying experience
+from a `Muse Quest XP` marker that exists in `Shakespeares Home.zax` and **not** in the Crossroads.
+Out there it would be a reply that silently pays nothing and undoes the scene.
+
+### Why a variable and not the checker that already exists
+
+The hatred *is* recorded, as an entity named `shakespeare hates you` -- and that entity exists only
+in `Shakespeares Home.zax`. A `CCheckExistenceAction` for a name no entity in the current map
+carries is simply false: the 0.71.7 lesson, where `escaped loud` was tested 47 times above the
+cellar and the checker existed in none of those maps.
+
+**Four** separate moments raise it:
+
+| where | what the player did |
+|---|---|
+| `shakespeare.dialogtree`, `270 threat` | extorted Shylocke's money |
+| `shakespeare.dialogtree`, `400 shylocke continued` | *"Sounds like you deserve your fate."* |
+| `Shakespeares Home.zax`, `shakespeare flees relay` | the departure itself |
+| `Shylocke Shop.zax`, `Shakespeare generator` | already reaching across by `COtherMapAction` |
+
+And no single one of them is on every route, because a player who has already driven him out of
+Barcelona may never see the hostile greeting at all. So all four also set a player-scoped
+`Fixt Shakespeare Resents You` -- the 0.82.0 Brother Pau pattern, for a fact that has to cross
+maps. Each splice replaces one `CActivateAction` with one `CMultipleActionsAction` holding the
+original plus the write, so no parent `Item Count` moved, and the original activations are all
+asserted intact.
+
+The Crossroads interaction becomes a `CIfExpressionAction`: the hostile display in the `Then`, and
+0.60.0's three-step `CSeriesAction` untouched in the `Else`. The only line the diff removes is
+`Action=CSeriesAction`, which reappears as `Else=CSeriesAction`.
+
+### What is not a defect
+
+The permanent *"return later"* after the second approach is **intended**, and 0.60.0 says so:
+*"the honest permanent state, because the game contains no opening-scene node for the play he is
+writing."* Five nodes were recorded and five were restored; no payoff was cut, so none was
+withheld. The three-conversation shape is `CSeriesAction` with `When Done=Repeat Last Action`,
+the `Secret Leo` idiom, and the stay-or-go reply only removes him if you choose it.
+
+### Checked
+
+Gate 0 green on 908 files -- and it earned that, because the first working build lost the
+blank-line separator on a reply in `400 shylocke continued` and `A0.4` named it. `block_at` was
+eating every trailing CR instead of the block's own terminator. Read back structurally
+afterwards: four displays where there were three, the hostile node named, the original three in
+order, the branch reading the variable against `$Instigator`, `4 Shakespeare Hates you` absent,
+the muse gate untouched, and per setter file the write count, the surviving original activation
+and balanced braces.
 
 ## 0.83.4 - what a cast is worth
 

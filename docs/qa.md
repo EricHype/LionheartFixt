@@ -1477,6 +1477,22 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.83.5 - William will not speak to you
+
+Dialogue and a scripting variable, so the **Crossroads branch works on any save** -- but the
+variable is only written from this release onward, so a character who crossed him *before*
+installing has no record of it and will still get the cheerful greeting. A fresh crossing sets it.
+`SW1` and `SW8` are 0.60.0's rows this sits on.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WR1 | **The reported row.** Recover the muse, then cross him -- extort Shylocke (`270 threat`) or tell him *"Sounds like you deserve your fate"* (`400 shylocke continued`). Then go to the Crossroads | - | He is standing on the road as before, and the **first and every** approach gives *"Thou art a villain to impugn me thus. So I bid you farewell, and pray you pester a soul more deserving of your slander!"* -- `800 shakespeare hates you`, which is recorded. No arrival scene, no play named after you |
+| WR2 | **Regression, the whole point of the release.** Recover the muse and **do not** cross him | - | Unchanged from 0.60.0: arrival on the first approach, the Richard II pitch and the stay-or-go choice on the second, *"return later"* on every one after |
+| WR3 | Having crossed him, take the hostile line and then try to talk again | - | The same line again. It is reply-less, so the conversation ends on it each time |
+| WR4 | **Negative.** Having crossed him, check that no reply appears offering *"But I have recovered your muse Sytheria"* | - | **It must not.** That reply belongs to `4 Shakespeare Hates you` and leads to `200 saved muse`, which would flip him to grateful, re-complete the quest and pay experience from a `Muse Quest XP` marker that exists in Shakespeares Home and **not** in the Crossroads. `800` was chosen over `4` for exactly this |
+| WR5 | Cross him by **each** of the two routes, on separate characters | - | Both suppress the arrival. Four separate moments raise the old `shakespeare hates you` checker across two maps and two replies, and all four now also set the variable, because no single one of them is on every route |
+| WR6 | Having crossed him, choose *"This place is too dangerous for you. Return to Barcelona."* | - | **Not offered** -- that reply lives on `1000 in wilderness 2`, which a hostile player never reaches. He stays on the road, refusing you, which is the intended end state |
+
 ## 0.83.4 - what a cast is worth
 
 Two fields on `Wand Charge.InventoryItem`. Resource-level, so the **price** reaches any save

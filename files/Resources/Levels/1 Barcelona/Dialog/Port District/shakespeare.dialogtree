@@ -841,12 +841,58 @@ Warp Behavior=
 }
 Other Map Name=1 Barcelona/Shylocke Shop
 }
+Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
 Action=CActivateAction
 {
 Target Name=shakespeare hates you
 Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Resents You
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Resents You
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 }
 }
@@ -959,12 +1005,58 @@ Icon=Quest Icon
 Requirement=!None
 Reply Text=Sounds like you deserve your fate.
 Go to node ID=800 shakespeare hates you
-Custom Action=CActivateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
 {
 Target Name=shakespeare hates you
 Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Resents You
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Resents You
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+Else=
+}
+}
 }
 
 Requirement=!None

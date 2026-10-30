@@ -183,36 +183,59 @@ CLayerSaveData
 							Triggered By Name=
 							Interaction Description=
 							Interaction Type=Interaction Specifiers/GetCloseThenTalk
-							Action=CSeriesAction
+							Action=CIfExpressionAction
 							{
-								Action=Array
+								If Expression=CIsGreaterThanOrEqual
 								{
-									Item Count=3
-									Action=CDisplayDialogTreeAction
+									Operand1=CVariableDerivedCharacterAttribute
 									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
-										Node ID=1000 in wilderness
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Resents You
 									}
-									Action=CDisplayDialogTreeAction
+									Operator=
+									Operand2=CConstant
 									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
-										Node ID=1000 in wilderness 2
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
-									}
-									Action=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
-										Node ID=1000 return too early
-										Speaker=$trigger
-										Player Being Spoken To=$Instigator
+										Constant Value=1
 									}
 								}
-								When Done=Repeat Last Action
-								Require Success To Advance=1
-								Next Action Index=0
+								Character to get attributes from=$Instigator
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
+									Node ID=800 shakespeare hates you
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
+								}
+								Else=CSeriesAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
+											Node ID=1000 in wilderness
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
+											Node ID=1000 in wilderness 2
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Action=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/shakespeare
+											Node ID=1000 return too early
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+									}
+									When Done=Repeat Last Action
+									Require Success To Advance=1
+									Next Action Index=0
+								}
 							}
 							X Radius=100
 							Attacker Range Modifier=0
