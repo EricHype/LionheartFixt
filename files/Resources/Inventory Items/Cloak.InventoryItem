@@ -1,0 +1,38 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Value=CConstant
+	{
+		Constant Value=1
+	}
+	Is Magic=0
+	Encumbrance=2
+	On the ground=Items/PickUps/Misc Items/Cloak_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Cloak
+	Description=
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Misc Items/Cloak
+		Better=Items/Inventory Images/Misc Items/Cloak
+		Special=Items/Inventory Images/Misc Items/Cloak
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Shield
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Miscellaneous
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Cloak Additions
+	Item Grade=Basic
+	Origonal Item=Inventory Items/Cloak
+}

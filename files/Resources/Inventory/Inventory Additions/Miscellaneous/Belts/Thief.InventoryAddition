@@ -1,0 +1,95 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=3
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Belts/Thief
+						Expression Name=bonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Find Traps Secret Doors
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Belts/Thief
+						Expression Name=bonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Lockpick Disarm Traps
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Is Wearing Belt of the Thief
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=4500
+	}
+	Is Magic=1
+	Encumbrance=1
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=the Thief
+	Description=Charms woven into this belt give its wearer %i[bonus] skill points to Find Secret Doors/Traps and Lockpick.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/Belt_Thief
+	Minimum Value=750
+	Minimum Addition Ammount=10
+	Inbetween Value=2250
+	Inbetween Addition Ammount=15
+	Maximum Value=5000
+	Maximum Addition Ammount=20
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=bonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Belt Additions
+	Addition Rarity=Inventory Item Rarity/3 Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

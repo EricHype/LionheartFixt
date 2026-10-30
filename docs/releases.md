@@ -140,6 +140,136 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.83.0 - a slot of their own
+
+Cloaks have been in this game since 2003 and there has never been a reason to wear one. Not
+because the enchantments are weak -- because of a single field.
+
+### The cloak was an accessory the whole time
+
+`Cloak.InventoryItem` declares `Slot Used In=Character Slot Types/Body`, the same slot and the
+same sub-slot as all six body armours, and `Body` has `Number Of Slots=1`. So wearing a cloak
+meant going unarmoured. Against Leather Armour -- 15 gold, +10 AC, two resistances, **no penalty
+of any kind** -- the best cloak in the game was a max-roll Cape of Protection at +5 AC. The
+comparison people reach for is Full Plate, and it is the wrong one: the cloaks were losing to the
+cheapest armour in the game.
+
+Everything else about a cloak says accessory rather than armour:
+
+| | cloak | Leather Armour |
+|---|---|---|
+| base value | 1 | 15 |
+| encumbrance | 2 | 5 |
+
+| addition | AC ladder |
+|---|---|
+| Belt / Bracer / Helmet Protection | 1 / 3 / 5 |
+| **Cloak Protection** | **1 / 3 / 5** |
+| Armour `Armor Class Bonus` | 1 / 10 / 20 |
+
+The cloak's AC enchantment is the belt's ladder to the digit. Its additions are filed under
+`Inventory Additions/Miscellaneous/Cloaks/`, beside Amulets and Belts, not under
+`Shields and Armor/`. Its generator lives in `Generator Combinations/Misc Items/`, beside Amulet
+and Ring selection, not under `Armor/`. Its `Catagory for display Grouping` is `Miscellaneous`,
+so it answers the inventory window's "Show Misc" button and not "Show Armor". Base value 1 and
+encumbrance 2 sit with Belt at 2 and 1, Boots at 2 and 2, Helmet at 6 and 2.
+
+One field disagreed with all of that, which is what a cut slot's parked items look like.
+
+### The slot the shipped game never filled
+
+`Shield.CharacterSlotType` has one slot, is selectable, sits at index 11 of every save's
+fourteen-entry equipment array -- and is named by **zero items in the entire game**, because all
+three shields use `Hand`. It has been allocated and empty since release.
+
+So the cloak moves onto it and the slot is renamed, which is free because nothing used it and
+necessary because `Arms` was already `Arm`'s display name. Two one-line edits. `Body` is untouched
+at one slot, so one armour and one cloak, both enforced by the engine, with no flag and no
+requirement anywhere.
+
+A shield has no shield behaviour to wake up: `ShieldLarge` is a `Hand` item whose whole effect is
+ordinary modifiers, with its model on the **`Arm`** key and its `Shield` key set to `!None`. There
+is no block or parry logic keyed to the slot.
+
+### The two approaches that did not work, and why they are worth recording
+
+**A new `Cloak.CharacterSlotType` would break saves.** The player's `Equipment Slots` is fourteen
+`CInventoryItemSlotArray` entries in slot-type *filename* order, identified only by a runtime
+`Object ID`, each inner `Item Count` equal to that slot type's `Number Of Slots`. A new type sorts
+between `Bolt` and `Finger` and shifts indices 5 through 13 of every existing save.
+
+**Widening `Body` to two slots gives two undifferentiated slots.** `Sub Slot Used In` is written
+**817 times in vanilla and is 0 in every one** -- a field the engine carries and never implemented
+-- so two cloaks fit and the second evicted the armour. Guarding it with `Requirements` made it
+worse: requirements are judged against the item already worn, so the Full Plate failed the flag it
+had raised itself, drew the cannot-equip background, and **could not be clicked off**. Trapped on.
+
+**Existing saves** get the slot, because nothing about the array's shape changes. What they do not
+get is already-created cloaks: a save bakes `Slot Used In` per item instance, so a cloak already in
+a save keeps the Body slot. Measured across all 73 saves on this machine: **one** such cloak, and
+it behaves exactly as it did before rather than breaking.
+
+### The Cloak of the Thief does what it says
+
+Its description has promised this since release: *"When worn along with the Belt of the Thief,
+this bonus to the wearer's Stealth and Evasion is doubled, and the wearer receives 15 skill points
+in Find Traps/Secret Doors."*
+
+Nothing implemented any of it. The cloak held three unconditional modifiers and zero conditionals;
+`Belts/Thief` is a plain interpolated bonus with no reference to the cloak. Neither file checked
+for the other.
+
+Now the belt raises `Is Wearing Belt of the Thief`, cloned from vanilla's
+`Is Wearing Necklace of Voodoo`, and the cloak reads it: Stealth and Evasion go to +8 each and
+Find Traps gains 15 on top of the belt's own. No new prose -- both descriptions are byte-identical
+to vanilla, because the text was already correct.
+
+**The first build of this leaked, and the reason is a rule worth keeping.** The cloak both raised a
+counter and read it, and a modifier's amount is live in *both* directions -- on unequip the engine
+drops the item's own contribution first and then subtracts the conditionals recomputed at the new
+value. It added 15 and subtracted 0, every cycle, without limit. Vanilla's own Templar and Trapped
+Spirit sets cannot do this because their reader is a derived attribute's `Expression`, which
+recomputes from scratch instead of reversing a stored addition. A skill has no such Expression, so
+a set bonus on a skill must go through an item modifier -- and then **the piece that reads the flag
+must not be the piece that raises it.**
+
+### The resistance triple cloaks never got
+
+Every wearable family in the game carries Cold, Fire and Poison Resistance, and the amount ladder
+is **5/10/15 in all fifteen existing instances**, topping out at 3,500 gold. Cloaks had none of
+it, which is why 0.38.1 had to leave cloaks out of the low-mojo band "by necessity rather than
+choice": the family had nothing below Rare to roll.
+
+Three additions, each a clone of the Belt equivalent with four things repointed -- the
+self-reference in `CInventoryAdditionsNamedExpressionExpression`, which would otherwise read the
+*belt's* amount; the addition group; the inventory image; and the ground model. Bands, amounts,
+rarity and named expressions are vanilla's own, and the descriptions are vanilla's own sentences
+with one noun changed. The family goes from four enchantments all at Rare to seven across two
+tiers.
+
+The wiring is what makes them exist rather than merely be defined: all three are listed in the
+high and medium pools, a new `Cloak selection MAGIC LOW Mojo` keeps every entry and sets
+`Weighting=0` on the four Rare ones -- 0.38.1's own idiom, so a diff shows weights moving rather
+than entries vanishing -- and `Magic Equipment LOW Mojo` gains a cloak pool at all, where it held
+only amulets and rings.
+
+### Two repairs, both ours
+
+**Bernat's fire burned in an abandoned camp.** `Abandoned Cave.zax` deactivates
+`Bernat camp fire` when he packs up, and nothing was called that. The fire is not missing: there
+is exactly one `CampFireNewBig A` in the map and its `Name=` was left empty, while its siblings
+`Bernat camp bales` and `Bernat camp crate` are named and are torn down by the same relay. The
+prop was placed, the teardown was written, and the name joining them was never typed.
+
+**A thirteen-second cutscene never took the controls.** `Fixt Pain and Nanghaithya trade barbs` in
+`01 Hamlet Exterior.zax` carried an empty `Options=CNonInteractiveSequence`. Vanilla fills that
+block 200 times out of 200 and Fixt 173 of 174, 154 of them with the same three values and
+**eighteen in this same file**. Empty, the player could walk off mid-scene and the demons were not
+held for their own beat. Same shape as the empty default-constructed blocks that stopped the
+garrison leaving in 0.79.8.
+
+Gate 0 is green on 905 files for the first time in several releases.
+
 ## 0.82.0 - what Sahar costs you
 
 The parley at Montserrat was one line long. You asked, she agreed, and the only thing that could

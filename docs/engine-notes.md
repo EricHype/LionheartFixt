@@ -19,6 +19,7 @@ wrong.
 - [Skills, spells and the skill window](#skills-spells-and-the-skill-window)
 - [Wands](#wands)
 - [Items, additions, and what a number is worth](#items-additions-and-what-a-number-is-worth)
+- [Equipment slots, and the one the game never filled](#equipment-slots-and-the-one-the-game-never-filled)
 - [Method rules](#method-rules)
 - [What each lesson cost](#what-each-lesson-cost)
 
@@ -674,6 +675,87 @@ their value ceilings to 23,000 cut the payoff by up to 32% across the range item
 these additions compute the low end of their damage roll as a scale from the amount band onto a
 small range. Moving only the Input Maximum widens the domain and **lowers** the interpolated floor:
 about 1.3% on a 255 gold weapon. Move the Output Maximum in step.
+
+**A modifier's `Modification Amount` is live, and so is the subtraction when the item comes
+off.** It is not computed once at equip. A `CIfExpression` amount on a worn item's modifier
+tracks the condition continuously -- put the cloak on first and the belt second and the bonus
+still appears -- and when the item is removed the engine subtracts **the amount it evaluates to
+at that moment**, not the amount it added.
+
+**So an item modifier that reads a flag must not also move that flag.** The Thief set's first
+build had the Cloak of the Thief raise `Number of Thief Items` and read it in the same breath. On
+unequip the engine dropped the cloak's own contribution first, then subtracted three conditionals
+recomputed at a counter that was no longer 2: it had added 15 Find Traps and it subtracted 0.
+Equip and unequip repeatedly and the skill climbs without limit. It leaked Evasion and Stealth
+too, +4 each a cycle, invisibly, because the cloak's unconditional +4s were sitting on top of
+them. The working shape is that **one piece raises a flag and the other reads it** -- the belt
+raises `Is Wearing Belt of the Thief`, the cloak only reads -- which makes every transition
+symmetric.
+
+**A derived attribute reading the same flag cannot leak, which is why vanilla's own sets look
+different.** `Number of Templar Items` is read by the `(AC) Armor Class` attribute's own
+`Expression`, and `Number of Trapped Spirit Items` by `Mana Capacity Magic Enhancer`'s. An
+Expression recomputes the whole value from scratch every time, so there is no stored addition to
+reverse and nothing to get wrong. Prefer that host when the bonus lands on a derived attribute.
+A **skill** has no such Expression -- only `Initial Value` and named expressions -- so a set bonus
+on a skill has to go through an item modifier, and then the raise-and-read split is not a style
+choice but the thing that makes it correct.
+
+---
+
+## Equipment slots, and the one the game never filled
+
+**The slot set is data, and the engine enumerates it.** Thirteen `CharacterSlotType` resources
+plus `!None`, and every item names one by path in `Slot Used In`. The engine builds arrays sized
+to that count: `CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride` writes `Override Models`
+and `Override Names` as maps with **one key per slot type**, in filename order, on **81** vanilla
+items. Keys are paths rather than indices, so an added slot type gains a key the old files lack
+instead of shifting anything in the resources.
+
+**`Number Of Slots` is honoured, and the slots it makes are undifferentiated.** Finger is 2,
+HotKey is 10, the other twelve are 1. Setting `Body` to 2 does not produce "one armour slot and one
+cape slot"; it produces "any two body items". Two cloaks fit, and equipping the second cloak evicted
+the *armour* rather than the first cloak.
+
+**`Sub Slot Used In` is inert.** Vanilla writes it **817** times and the value is `0` in every
+single one. Setting a cloak to 1 against six armours at 0 changed nothing at all, which is the
+difference between a field the shipped game never used and a field the engine never implemented.
+
+**An item's `Requirements` gate equipping, and they also judge the item already worn, which makes
+them useless for exclusivity.** `BastardSword` requires `OneHandedMelee` 50 and the window has a
+`Cannot Equip Item Background` for the failure, so the gate is real. But a guard built as "raise a
+flag while worn, refuse while the flag is raised" fails on the armour that raised it: the worn Full
+Plate went red, **and a red item cannot be clicked, so it could not be taken off.** The constraint
+is violated by the very state it is meant to permit, and no threshold fixes that -- `< 2` admits a
+second item and traps both.
+
+**The paper doll is a fixed layout, and that is cosmetic rather than fatal.** `Body` at 2 still drew
+one square. But `Magic Item Background`, `Equiped Item Background` and `Cannot Equip Item
+Background` are per-item cells in the *list*, so a slot with no square still equips, unequips,
+reports that it is worn, and applies its modifiers. **Do not conclude from a missing square that a
+slot is unusable** -- that claim was made here and was wrong.
+
+**The save's equipment array is positional.** The player carries `Equipment Slots` as **14**
+`CInventoryItemSlotArray` entries in slot-type filename order, identified only by an `Object ID`
+that is a runtime pointer, with each inner `Item Count` equal to that slot type's `Number Of Slots`
+(Finger 2, HotKey 10, the rest 1). So **adding** a slot type shifts every index after it and
+misaligns existing saves -- a `Cloak.CharacterSlotType` would sort between `Bolt` and `Finger` and
+move indices 5 through 13. **Changing an existing slot's count** leaves the array's shape alone but
+is still baked, so an old save keeps the count it was written with.
+
+**A save bakes `Slot Used In` per item instance**: 360 in one save, 876 `Body` instances across 73.
+A slot change in the resources therefore reaches items created after the install and not items
+already in a save. Measured before worrying about it: across all 73 saves on this machine there is
+exactly **one** baked cloak, so the legacy cost was one item, and its failure mode is "behaves as it
+did before" rather than breakage.
+
+**`Shield.CharacterSlotType` is an allocated slot the shipped game never filled.** It has one slot,
+is selectable, sits at index 11 of every save's array, and is named by **zero** items -- all three
+shields use `Hand`. And a shield is pure data: `Hand` slot, resistance and AC modifiers, its model
+hung on the `Arm` key with its `Shield` key set to `!None`. There is no blocking or parry behaviour
+keyed to the slot, so the name is the only thing shield-like about it. That makes it the place to
+put a new one-deep equipment slot, at the cost of three one-line edits and no save migration, where
+widening `Body` cost three probe builds and produced a trap.
 
 ---
 

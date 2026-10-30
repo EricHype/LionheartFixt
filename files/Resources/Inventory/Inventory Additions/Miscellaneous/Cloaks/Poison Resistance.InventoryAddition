@@ -1,0 +1,73 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Cloaks/Poison Resistance
+						Expression Name=poisonresistancebonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Poison Damage Resistance
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2000
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=Items/PickUps/Misc Items/Cloak_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Poison Resistance
+	Description=Liberally endowed with unicorn hair, adders' tongues, and other potent antidotes, this cloak increases its wearer's Poison Resistance %i[poisonresistancebonus]%.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/Cloak
+	Minimum Value=400
+	Minimum Addition Ammount=5
+	Inbetween Value=1000
+	Inbetween Addition Ammount=10
+	Maximum Value=3500
+	Maximum Addition Ammount=15
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=poisonresistancebonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Cloak Additions
+	Addition Rarity=Inventory Item Rarity/2 Uncommon
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

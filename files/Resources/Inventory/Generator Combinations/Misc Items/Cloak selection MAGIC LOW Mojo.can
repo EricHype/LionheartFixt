@@ -1,0 +1,56 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorMiscellaneousMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Cloak
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=7
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Additional Magic=Inventory/Inventory Additions/Miscellaneous/Cloaks/Charisma
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=15
+				Additional Magic=Inventory/Inventory Additions/Miscellaneous/Cloaks/Cold Resistance
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Additional Magic=Inventory/Inventory Additions/Miscellaneous/Cloaks/Fire Resistance
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=15
+				Additional Magic=Inventory/Inventory Additions/Miscellaneous/Cloaks/Poison Resistance
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Additional Magic=Inventory/Inventory Additions/Miscellaneous/Cloaks/Protection
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Additional Magic=Inventory/Inventory Additions/Miscellaneous/Cloaks/Thief
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=0
+				Additional Magic=Inventory/Inventory Additions/Miscellaneous/Cloaks/Wyrm
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

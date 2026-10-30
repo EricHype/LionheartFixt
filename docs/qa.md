@@ -1474,6 +1474,29 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.83.0 - a slot of their own
+
+Resource-level, so **any save works** for the slot itself and for the set bonus. Two caveats that
+are the point of TK4: a cloak already sitting in a save keeps the old Body slot, because a save
+bakes `Slot Used In` per item instance, and the three new enchantments only appear on cloaks
+generated after installing.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| TK1 | Any character, a cloak and any body armour in the pack | Equip the armour, then the cloak | **Both worn at once.** The cloak occupies its own slot; the armour is not displaced. Expect no paper-doll square for it -- equip from the item list, where the equipped background marks it |
+| TK2 | TK1, holding a second cloak | Equip the second cloak | It **replaces** the first. Two cloaks must never both be worn |
+| TK3 | TK1, holding a second armour | Equip the second armour | It **replaces** the first and leaves the cloak alone. **Nothing turns red and nothing becomes unclickable** -- if an item cannot be taken off, the build has regressed to the requirement guard that trapped armour on |
+| TK4 | A save made before 0.83.0 | Buy or loot a cloak, equip it over armour | The new cloak goes in its own slot. A cloak that was **already** in that save keeps the Body slot and still displaces armour; that is expected, not a defect |
+| TK5 | Belt of the Thief, then Cloak of the Thief | Equip belt first, then cloak | Stealth **+8**, Evasion **+8**, Find Traps = the belt's own figure **plus 15** |
+| TK6 | The same two items | Equip **cloak first**, then belt | Identical to TK5. This is the order that fails if the conditional is read only at equip rather than live |
+| TK7 | TK5 or TK6 | Remove either piece | The cloak drops back to **+4 Stealth, +4 Evasion, +0 Find Traps**; the belt keeps its own bonus |
+| TK8 | TK5 | Equip and unequip each piece **six times**, reading all three skills each time | Every figure returns to exactly its previous value. **Any upward creep in any of the three is the leak** -- 0.83.0's first build added 15 Find Traps and subtracted 0 on every cycle, and a row that only checked "the bonus applies" would have passed it |
+| TK9 | TK5, reading Armor Class | - | AC reads **+3** over bare with the set, not +2. Evasion 23 moves `trunc(1 + 0.2*(Evasion-5))` from 3 to 4. This is correct and must not be "fixed" |
+| TK10 | A character below mojo 7, looting magic misc items | - | Cloaks appear, and the only enchantments on them are Cold, Fire or Poison Resistance. Before this release cloaks could not drop in that band at all |
+| TK11 | Any resistance cloak | Read its tooltip, then the character window | The tooltip states a figure between 5 and 15 and the window shows that resistance by that amount. **A zero or a mismatch means the addition is still reading the belt's amount** through its cloned self-reference |
+| TK12 | Abandoned Cave, after Bernat packs up and leaves | - | **His campfire is out.** The bales and crate go with it. Before this it burned on in an empty camp |
+| TK13 | Montaillou, Hamlet Exterior, the Pain and Nanghaithya exchange | Try to walk away while it plays | **You cannot.** The scene holds the controls for its thirteen seconds and the demons are held with you |
+
 ## 0.82.0 - what Sahar costs you
 
 Dialogue, so any save works -- but the Pau lever only records a meeting that happens after this is
